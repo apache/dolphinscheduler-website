@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="faq" />
+	<meta name="description" content="faq" />
+	<!-- 网页标签标题 -->
+	<title>faq</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><img class="logo" src="/img/hlogo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/en-us/docs/user_doc/quick-start.html" target="_self">DOCS</a></li><li class="menu-item menu-item-normal"><a href="/en-us/blog/index.html" target="_self">BLOG</a></li><li class="menu-item menu-item-normal"><a href="/en-us/docs/development/developers.html" target="_self">DEVELOPMENT</a></li><li class="menu-item menu-item-normal"><a href="/en-us/community/index.html" target="_self">COMMUNITY</a></li></ul></div></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>Documentation</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>User doc</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/user_doc/quick-start.html" target="_self">Quick Start</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/user_doc/backend-deployment.html" target="_self">Backend deploy</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/user_doc/frontend-deployment.html" target="_self">Frontend deploy</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/user_doc/system-manual.html" target="_self">System manual</a></li></ul></li><li class="menu-item menu-item-level-1"><span>Developer guide</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/developer_guide/architecture-design.html" target="_self">Architecture Design</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/developer_guide/backend-development.html" target="_self">Backend Development</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/developer_guide/plugin-development.html" target="_self">Plugin Development</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/developer_guide/frontend-development.html" target="_self">Frontend Development</a></li></ul></li><li class="menu-item menu-item-level-1"><span>Release</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/release/upgrade.html" target="_self">Upgrade</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/release/1.0.1-release.html" target="_self">1.0.1 release</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/release/1.0.2-release.html" target="_self">1.0.2 release</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/release/1.0.3-release.html" target="_self">1.0.3 release</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/release/1.0.4-release.html" target="_self">1.0.4 release</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/release/1.0.5-release.html" target="_self">1.0.5 release</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/release/1.1.0-release.html" target="_self">1.1.0 release</a></li></ul></li><li class="menu-item menu-item-level-1"><span>FAQ</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/faq.html" target="_self">FAQ</a></li></ul></li></ul></div><div class="doc-content markdown-body"><h2>Q: EasyScheduler service introduction and recommended running memory</h2>
+<p>A: EasyScheduler consists of 5 services, MasterServer, WorkerServer, ApiServer, AlertServer, LoggerServer and UI.</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MasterServer</td>
+<td>Mainly responsible for DAG segmentation and task status monitoring</td>
+</tr>
+<tr>
+<td>WorkerServer/LoggerServer</td>
+<td>Mainly responsible for the submission, execution and update of task status. LoggerServer is used for Rest Api to view logs through RPC</td>
+</tr>
+<tr>
+<td>ApiServer</td>
+<td>Provides the Rest Api service for the UI to call</td>
+</tr>
+<tr>
+<td>AlertServer</td>
+<td>Provide alarm service</td>
+</tr>
+<tr>
+<td>UI</td>
+<td>Front page display</td>
+</tr>
+</tbody>
+</table>
+<p>Note：<strong>Due to the large number of services, it is recommended that the single-machine deployment is preferably 4 cores and 16G or more.</strong></p>
+<hr>
+<h2>Q: Why can't an administrator create a project?</h2>
+<p>A: The administrator is currently &quot;<strong>pure management</strong>&quot;. There is no tenant, that is, there is no corresponding user on linux, so there is no execution permission, <strong>so there is no project, resource and data source,</strong> so there is no permission to create. <strong>But there are all viewing permissions</strong>. If you need to create a business operation such as a project, <strong>use the administrator to create a tenant and a normal user, and then use the normal user login to operate</strong>. We will release the administrator's creation and execution permissions in version 1.1.0, and the administrator will have all permissions.</p>
+<hr>
+<h2>Q: Which mailboxes does the system support?</h2>
+<p>A: Support most mailboxes, qq, 163, 126, 139, outlook, aliyun, etc. are supported. Support TLS and SSL protocols, optionally configured in alert.properties</p>
+<hr>
+<h2>Q: What are the common system variable time parameters and how do I use them?</h2>
+<p>A: Please refer to 'System parameter' in the system-manual</p>
+<hr>
+<h2>Q: pip install kazoo This installation gives an error. Is it necessary to install?</h2>
+<p>A: This is the python connection zookeeper needs to use, must be installed</p>
+<hr>
+<h2>Q: How to specify the machine running task</h2>
+<p>A: Use <strong>the administrator</strong> to create a Worker group, <strong>specify the Worker group</strong> when the <strong>process definition starts</strong>, or <strong>specify the Worker group on the task node</strong>. If not specified, use Default, <strong>Default is to select one of all the workers in the cluster to use for task submission and execution.</strong></p>
+<hr>
+<h2>Q: Priority of the task</h2>
+<p>A: We also support <strong>the priority of processes and tasks</strong>. Priority We have five levels of <strong>HIGHEST, HIGH, MEDIUM, LOW and LOWEST</strong>. <strong>You can set the priority between different process instances, or you can set the priority of different task instances in the same process instance.</strong> For details, please refer to the task priority design in the architecture-design.</p>
+<hr>
+<h2>Q: Escheduler-grpc gives an error</h2>
+<p>A: Execute in the root directory: mvn -U clean package assembly:assembly -Dmaven.test.skip=true , then refresh the entire project</p>
+<hr>
+<h2>Q: Does EasyScheduler support running on windows?</h2>
+<p>A: In theory, <strong>only the Worker needs to run on Linux</strong>. Other services can run normally on Windows. But it is still recommended to deploy on Linux.</p>
+<hr>
+<h2>Q: UI compiles node-sass prompt in linux: Error: EACCESS: permission denied, mkdir xxxx</h2>
+<p>A: Install <strong>npm install node-sass --unsafe-perm</strong> separately, then <strong>npm install</strong></p>
+<hr>
+<h2>Q: UI cannot log in normally.</h2>
+<p>A: 1, if it is node startup, check whether the .env API_BASE configuration under escheduler-ui is the Api Server service address.</p>
+<pre><code>2, If it is nginx booted and installed via **install-escheduler-ui.sh**, check if the proxy_pass configuration in **/etc/nginx/conf.d/escheduler.conf** is the Api Server service. address
+
+ 3, if the above configuration is correct, then please check if the Api Server service is normal, curl http://192.168.xx.xx:12345/escheduler/users/get-user-info, check the Api Server log, if Prompt cn.escheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null, which proves that the Api Server service is normal.
+
+4, if there is no problem above, you need to check if **server.context-path and server.port configuration** in **application.properties** is correct
+</code></pre>
+<hr>
+<h2>Q: After the process definition is manually started or scheduled, no process instance is generated.</h2>
+<p>A:   1, first <strong>check whether the MasterServer service exists through jps</strong>, or directly check whether there is a master service in zk from the service monitoring.</p>
+<p>​       2,If there is a master service, check <strong>the command status statistics</strong> or whether new records are added in <strong>t_escheduler_error_command</strong>. If it is added, <strong>please check the message field.</strong></p>
+<hr>
+<h2>Q : The task status is always in the successful submission status.</h2>
+<p>A:   1, <strong>first check whether the WorkerServer service exists through jps</strong>, or directly check whether there is a worker service in zk from the service monitoring.</p>
+<p>​       2,If the <strong>WorkerServer</strong> service is normal, you need to <strong>check whether the MasterServer puts the task task in the zk queue. You need to check whether the task is blocked in the MasterServer log and the zk queue.</strong></p>
+<p>​       3, if there is no problem above, you need to locate whether the Worker group is specified, but <strong>the machine grouped by the worker is not online</strong>.**</p>
+<hr>
+<h2>Q: Is there a Docker image and a Dockerfile?</h2>
+<p>A: Provide Docker image and Dockerfile.</p>
+<p>Docker image address: <a href="https://hub.docker.com/r/escheduler/escheduler_images">https://hub.docker.com/r/escheduler/escheduler_images</a></p>
+<p>Dockerfile address: <a href="https://github.com/qiaozhanwei/escheduler_dockerfile/tree/master/docker_escheduler">https://github.com/qiaozhanwei/escheduler_dockerfile/tree/master/docker_escheduler</a></p>
+<hr>
+<h2>Q : Need to pay attention to the problem in <a href="http://install.sh">install.sh</a></h2>
+<p>A:   1, if the replacement variable contains special characters, <strong>use the \ transfer character to transfer</strong></p>
+<p>​       2, installPath=&quot;/data1_1T/escheduler&quot;, <strong>this directory can not be the same as the <a href="http://install.sh">install.sh</a> directory currently installed with one click.</strong></p>
+<p>​       3, deployUser = &quot;escheduler&quot;, <strong>the deployment user must have sudo privileges</strong>, because the worker is executed by sudo -u tenant sh xxx.command</p>
+<p>​       4, monitorServerState = &quot;false&quot;, whether the service monitoring script is started, the default is not to start the service monitoring script. <strong>If the service monitoring script is started, the master and worker services are monitored every 5 minutes, and if the machine is down, it will automatically restart.</strong></p>
+<p>​       5, hdfsStartupSate=&quot;false&quot;, whether to enable HDFS resource upload function. The default is not enabled. <strong>If it is not enabled, the resource center cannot be used.</strong> If enabled, you need to configure the configuration of fs.defaultFS and yarn in conf/common/hadoop/hadoop.properties. If you use namenode HA, you need to copy core-site.xml and hdfs-site.xml to the conf root directory.</p>
+<p>​    Note: <strong>The 1.0.x version does not automatically create the hdfs root directory, you need to create it yourself, and you need to deploy the user with hdfs operation permission.</strong></p>
+<hr>
+<h2>Q : Process definition and process instance offline exception</h2>
+<p>A : For <strong>versions prior to 1.0.4</strong>, modify the code under the escheduler-api cn.escheduler.api.quartz package.</p>
+<pre><code>public boolean deleteJob(String jobName, String jobGroupName) {
+    lock.writeLock().lock();
+    try {
+      JobKey jobKey = new JobKey(jobName,jobGroupName);
+      if(scheduler.checkExists(jobKey)){
+        logger.info(&quot;try to delete job, job name: {}, job group name: {},&quot;, jobName, jobGroupName);
+        return scheduler.deleteJob(jobKey);
+      }else {
+        return true;
+      }
+
+    } catch (SchedulerException e) {
+      logger.error(String.format(&quot;delete job : %s failed&quot;,jobName), e);
+    } finally {
+      lock.writeLock().unlock();
+    }
+    return false;
+  }
+</code></pre>
+<hr>
+<h2>Q: Can the tenant created before the HDFS startup use the resource center normally?</h2>
+<p>A: No. Because the tenant created by HDFS is not started, the tenant directory will not be registered in HDFS. So the last resource will report an error.</p>
+<h2>Q: In the multi-master and multi-worker state, the service is lost, how to be fault-tolerant</h2>
+<p>A: <strong>Note:</strong> <strong>Master monitors Master and Worker services.</strong></p>
+<p>​    1，If the Master service is lost, other Masters will take over the process of the hanged Master and continue to monitor the Worker task status.</p>
+<p>​    2，If the Worker service is lost, the Master will monitor that the Worker service is gone. If there is a Yarn task, the Kill Yarn task will be retried.</p>
+<p>Please see the fault-tolerant design in the architecture for details.</p>
+<hr>
+<h2>Q : Fault tolerance for a machine distributed by Master and Worker</h2>
+<p>A: The 1.0.3 version only implements the fault tolerance of the Master startup process, and does not take the Worker Fault Tolerance. That is to say, if the Worker hangs, no Master exists. There will be problems with this process. We will add Master and Worker startup fault tolerance in version <strong>1.1.0</strong> to fix this problem. If you want to manually modify this problem, you need to <strong>modify the running task for the running worker task that is running the process across the restart and has been dropped. The running process is set to the failed state across the restart</strong>. Then resume the process from the failed node.</p>
+<hr>
+<h2>Q : Timing is easy to set to execute every second</h2>
+<p>A : Note when setting the timing. If the first digit (* * * * * ? *) is set to *, it means execution every second. <strong>We will add a list of recently scheduled times in version 1.1.0.</strong> You can see the last 5 running times online at <a href="http://cron.qqe2.com/">http://cron.qqe2.com/</a></p>
+<h2>Q: Is there a valid time range for timing?</h2>
+<p>A: Yes, <strong>if the timing start and end time is the same time, then this timing will be invalid timing. If the end time of the start and end time is smaller than the current time, it is very likely that the timing will be automatically deleted.</strong></p>
+<h2>Q : There are several implementations of task dependencies</h2>
+<p>A：	1, the task dependency between <strong>DAG</strong>, is <strong>from the zero degree</strong> of the DAG segmentation</p>
+<p>​	2, there are <strong>task dependent nodes</strong>, you can achieve cross-process tasks or process dependencies, please refer to the (DEPENDENT) node design in the system-manual.</p>
+<p>​	Note: <strong>Cross-project processes or task dependencies are not supported</strong></p>
+<h2>Q: There are several ways to start the process definition.</h2>
+<p>A:   1, in <strong>the process definition list</strong>, click the <strong>Start</strong> button.</p>
+<p>​       2, <strong>the process definition list adds a timer</strong>, scheduling start process definition.</p>
+<p>​       3, process definition <strong>view or edit</strong> the DAG page, any <strong>task node right click</strong> Start process definition.</p>
+<p>​       4, you can define DAG editing for the process, set the running flag of some tasks to <strong>prohibit running</strong>, when the process definition is started, the connection of the node will be removed from the DAG.</p>
+<h2>Q : Python task setting Python version</h2>
+<p>A：  1，<strong>for the version after 1.0.3</strong> only need to modify PYTHON_HOME in conf/env/.escheduler_env.sh</p>
+<pre><code>export PYTHON_HOME=/bin/python
+</code></pre>
+<p>Note: This is <strong>PYTHON_HOME</strong> , which is the absolute path of the python command, not the simple PYTHON_HOME. Also note that when exporting the PATH, you need to directly</p>
+<pre><code>export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH
+</code></pre>
+<p>​	2，For versions prior to 1.0.3, the Python task only supports the Python version of the system. It does not support specifying the Python version.</p>
+<h2>Q：Worker Task will generate a child process through sudo -u tenant sh xxx.command, will kill when kill</h2>
+<p>A：  We will add the kill task in 1.0.4 and kill all the various child processes generated by the task.</p>
+<h2>Q ： How to use the queue in EasyScheduler, what does the user queue and tenant queue mean?</h2>
+<p>A ： The queue in the EasyScheduler can be configured on the user or the tenant. <strong>The priority of the queue specified by the user is higher than the priority of the tenant queue.</strong> For example, to specify a queue for an MR task, the queue is specified by mapreduce.job.queuename.</p>
+<p>Note: When using the above method to specify the queue, the MR uses the following methods:</p>
+<pre><code>	Configuration conf = new Configuration();
+        GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
+        String[] remainingArgs = optionParser.getRemainingArgs();
+</code></pre>
+<p>If it is a Spark task --queue mode specifies the queue</p>
+<h2>Q : Master or Worker reports the following alarm</h2>
+<p align="center">
+   <img src="https://analysys.github.io/easyscheduler_docs/images/master_worker_lack_res.png" width="60%" />
+ </p>
+<p>A ： Change the value of master.properties <strong>master.reserved.memory</strong> under conf to a smaller value, say 0.1 or the value of worker.properties <strong>worker.reserved.memory</strong> is a smaller value, say 0.1</p>
+<h2>Q: The hive version is 1.1.0+cdh5.15.0, and the SQL hive task connection is reported incorrectly.</h2>
+<p align="center">
+   <img src="https://analysys.github.io/easyscheduler_docs/images/cdh_hive_error.png" width="60%" />
+ </p>
+<p>A ： Will hive pom</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;
+    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;
+    &lt;version&gt;2.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>change into</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;
+    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;
+    &lt;version&gt;1.1.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/ds_gray.png"/><div class="cols-container"><div class="col col-12"><h3>Disclaimer</h3><p>Apache DolphinScheduler (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. 
+Incubation is required of all newly accepted projects until a further review indicates 
+that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. 
+While incubation status is not necessarily a reflection of the completeness or stability of the code, 
+it does indicate that the project has yet to be fully endorsed by the ASF.</p></div><div class="col col-6"><dl><dt>Documentation</dt><dd><a href="/en-us/docs/developer_guide/architecture-design.html" target="_self">Overview</a></dd><dd><a href="/en-us/docs/user_doc/quick-start.html" target="_self">Quick start</a></dd><dd><a href="/en-us/docs/development/developers.html" target="_self">Developer guide</a></dd></dl></div><div class="col col-6"><dl><dt>ASF</dt><dd><a href="http://www.apache.org" target="_self">Foundation</a></dd><dd><a href="http://www.apache.org/licenses/" target="_self">License</a></dd><dd><a href="http://www.apache.org/events/current-event" target="_self">Events</a></dd><dd><a href="http://www.apache.org/foundation/sponsorship.html" target="_self">Sponsorship</a></dd><dd><a href="http://www.apache.org/foundation/thanks.html" target="_self">Thanks</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2018-2019 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>
