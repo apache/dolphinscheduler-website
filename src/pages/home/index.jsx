@@ -118,10 +118,12 @@ class Home extends Language {
         <section className="users-section">
           <h3>{dataSource.users.title}</h3>
           <p>{dataSource.users.desc}</p>
-          <div className="users">
+          <div>
           {
             dataSource.users.list.map((user, i) => (
-              <img src={getLink(user)} key={i} />
+              <div className="users">
+                <img src={getLink(user)} key={i} />
+              </div>
             ))
           }
           </div>
