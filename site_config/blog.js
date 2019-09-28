@@ -4,54 +4,19 @@ export default {
     postsTitle: 'All posts',
     list: [
       {
+        title: 'Apache Dolphin Scheduler(Incubating) Meetup 2019.10 Shanghai',
+        author: 'William',
+        dateStr: '2019-9-27',
+        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to rigister.',
+        link: '/en-us/blog/meetup_2019_10_26.html',
+      },
+      {
         title: 'DolphinScheduler Architecture Desgin',
         author: 'xiaochun',
-        dateStr: 'May 12nd，2018',
+        dateStr: '2019-9-20',
         desc: 'Blog description, some text to sum up the main content of the blog',
-        link: '/en-us/blog/architecture-design.html',
-      },
-      {
-        title: 'The second blog',
-        author: 'author2',
-        dateStr: 'May 2nd，2018',
-        desc: 'Blog description, some text to sum up the main content of the blog',
-        link: '/en-us/blog/blog2.html',
-      },
-      {
-        title: 'The third blog',
-        author: 'author3',
-        dateStr: 'April 25th，2018',
-        desc: 'Blog description, some text to sum up the main content of the blog',
-        link: '/en-us/blog/blog3.html',
-      },
-      {
-        title: 'The forth blog',
-        author: 'author4',
-        dateStr: 'April 22nd，2018',
-        desc: 'Blog description, some text to sum up the main content of the blog',
-        link: '/en-us/blog/blog4.html',
-      },
-      {
-        title: 'The fifth blog',
-        author: 'author5',
-        dateStr: 'April 22nd，2018',
-        desc: 'Blog description, some text to sum up the main content of the blog',
-        link: '/en-us/blog/blog5.html',
-      },
-      {
-        title: 'The sixth blog',
-        author: 'author6',
-        dateStr: 'April 22nd，2018',
-        desc: 'Blog description, some text to sum up the main content of the blog',
-        link: '/en-us/blog/blog6.html',
-      },
-      {
-        title: 'The seventh blog',
-        author: 'author7',
-        dateStr: 'April 22nd，2018',
-        desc: 'Blog description, some text to sum up the main content of the blog',
-        link: '/en-us/blog/blog7.html',
-      },
+        link: '/en-us/blog/architecture-design.html'
+      }
     ],
   },
   'zh-cn': {
@@ -59,54 +24,19 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
+        title: 'Apache Dolphin Scheduler(Incubating)将于2019.10在上海举行见面会',
+        author: '郭炜',
+        dateStr: '2019-9-27',
+        desc: 'Apache Dolphin Scheduler(Incubating) 将于2019年10月26日在上海组织一次会议，欢迎踊跃报名。 ',
+        link: '/zh-cn/blog/meetup_2019_10_26.html',
+      },
+      {
         title: 'DolphinScheduler系统架构设计',
         author: 'xiaochun.liu',
-        dateStr: 'May 12nd，2018',
+        dateStr: '2019-9-20',
         desc: '介绍DolphinScheduler整体架构',
         link: '/zh-cn/blog/architecture-design.html',
-      },
-      {
-        title: '第二篇博客',
-        author: 'author2',
-        dateStr: 'May 2nd，2018',
-        desc: '博客描述，总结博客的主体内容',
-        link: '/zh-cn/blog/blog2.html',
-      },
-      {
-        title: '第三篇博客',
-        author: 'author3',
-        dateStr: 'April 25th，2018',
-        desc: '博客描述，总结博客的主体内容',
-        link: '/zh-cn/blog/blog3.html',
-      },
-      {
-        title: '第四篇博客',
-        author: 'author4',
-        dateStr: 'April 22nd，2018',
-        desc: '博客描述，总结博客的主体内容',
-        link: '/zh-cn/blog/blog4.html',
-      },
-      {
-        title: '第五篇博客',
-        author: 'author5',
-        dateStr: 'April 22nd，2018',
-        desc: '博客描述，总结博客的主体内容',
-        link: '/zh-cn/blog/blog5.html',
-      },
-      {
-        title: '第六篇博客',
-        author: 'author6',
-        dateStr: 'April 22nd，2018',
-        desc: '博客描述，总结博客的主体内容',
-        link: '/zh-cn/blog/blog6.html',
-      },
-      {
-        title: '第七篇博客',
-        author: 'author7',
-        dateStr: 'April 22nd，2018',
-        desc: '博客描述，总结博客的主体内容',
-        link: '/zh-cn/blog/blog7.html',
-      },
+      }
     ],
   },
 };

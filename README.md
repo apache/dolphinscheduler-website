@@ -41,7 +41,7 @@ Make sure each .md starts with the following texts:
 ```
 ---
 title: title
-keywords: keywords1,keywords2,keywords3
+keywords: keywords1,keywords2, keywords3
 description: some description
 ---
 ```
