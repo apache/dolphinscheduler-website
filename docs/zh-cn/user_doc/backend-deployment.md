@@ -4,7 +4,7 @@
 
 ## 1、准备工作
 
-请下载最新版本的安装包，下载地址： [码云下载](https://gitee.com/easyscheduler/EasyScheduler/attach_files/)或者[github下载](https://github.com/analysys/EasyScheduler/releases) ，下载escheduler-backend-x.x.x.tar.gz(后端简称escheduler-backend),escheduler-ui-x.x.x.tar.gz(前端简称escheduler-ui)
+请下载最新版本的安装包，下载地址： [码云下载](https://gitee.com/dolphinscheduler/DolphinScheduler/attach_files/)或者[github下载](https://github.com/analysys/EasyScheduler/releases) ，下载escheduler-backend-x.x.x.tar.gz(后端简称escheduler-backend),escheduler-ui-x.x.x.tar.gz(前端简称escheduler-ui)
 
 #### 准备一: 基础软件安装(必装项请自行安装)
 
@@ -12,7 +12,7 @@
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装
  * [ZooKeeper](https://www.jianshu.com/p/de90172ea680)(3.4.6+) ：必装 
  * [Hadoop](https://blog.csdn.net/Evankaka/article/details/51612437)(2.6+) ：选装， 如果需要使用到资源上传功能，MapReduce任务提交则需要配置Hadoop(上传的资源文件目前保存在Hdfs上)
- * [Hive](https://staroon.pro/2017/12/09/HiveInstall/)(1.2.1) :  选装，hive任务提交需要安装
+ * [Hive](http://archive.apache.org/dist/hive/hive-1.2.1/)(1.2.1) :  选装，hive任务提交需要安装
  * Spark(1.x,2.x) : 选装，Spark任务提交需要安装
  * PostgreSQL(8.2.15+) : 选装，PostgreSQL PostgreSQL存储过程需要安装
  

@@ -7,7 +7,7 @@ There are two deployment modes for the backend:
 
 ## Preparations
 
-Download the latest version of the installation package, download address： [gitee download](https://gitee.com/easyscheduler/EasyScheduler/attach_files/) or [github download](https://github.com/analysys/EasyScheduler/releases), download escheduler-backend-x.x.x.tar.gz(back-end referred to as escheduler-backend),escheduler-ui-x.x.x.tar.gz(front-end referred to as escheduler-ui)
+Download the latest version of the installation package, download address： [gitee download](https://gitee.com/dolphinscheduler/DolphinScheduler/attach_files/) or [github download](https://github.com/analysys/EasyScheduler/releases), download escheduler-backend-x.x.x.tar.gz(back-end referred to as escheduler-backend),escheduler-ui-x.x.x.tar.gz(front-end referred to as escheduler-ui)
 
 
 
@@ -17,7 +17,7 @@ Download the latest version of the installation package, download address： [gi
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  Mandatory
  * [ZooKeeper](https://www.jianshu.com/p/de90172ea680)(3.4.6+) ：Mandatory
  * [Hadoop](https://blog.csdn.net/Evankaka/article/details/51612437)(2.6+) ：Optionally, if you need to use the resource upload function, MapReduce task submission needs to configure Hadoop (uploaded resource files are currently stored on Hdfs)
- * [Hive](https://staroon.pro/2017/12/09/HiveInstall/)(1.2.1) :   Optional, hive task submission needs to be installed
+ * [Hive](http://archive.apache.org/dist/hive/hive-1.2.1/) :   Optional, hive task submission needs to be installed
  * Spark(1.x,2.x) :  Optional, Spark task submission needs to be installed
  * PostgreSQL(8.2.15+) : Optional, PostgreSQL PostgreSQL stored procedures need to be installed
 
