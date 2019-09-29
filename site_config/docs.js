@@ -34,10 +34,6 @@ export default {
             link: '/en-us/docs/developer_guide/backend-development.html',
           },
           {
-            title: 'Plugin Development',
-            link: '/en-us/docs/developer_guide/plugin-development.html',
-          },
-          {
             title: 'Frontend Development',
             link: '/en-us/docs/developer_guide/frontend-development.html',
           },

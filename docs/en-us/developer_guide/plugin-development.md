@@ -1,3 +1,0 @@
-## Translation is not ready.
-
-
