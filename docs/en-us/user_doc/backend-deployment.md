@@ -7,7 +7,7 @@ There are two deployment modes for the backend:
 
 ## Preparations
 
-Download the latest version of the installation package, download address： [gitee download](https://gitee.com/dolphinscheduler/DolphinScheduler/attach_files/) or [github download](https://github.com/analysys/EasyScheduler/releases), download escheduler-backend-x.x.x.tar.gz(back-end referred to as escheduler-backend),escheduler-ui-x.x.x.tar.gz(front-end referred to as escheduler-ui)
+Download the latest version of the installation package, download address： [apache download](#), download escheduler-backend-x.x.x.tar.gz(back-end referred to as escheduler-backend),escheduler-ui-x.x.x.tar.gz(front-end referred to as escheduler-ui)
 
 
 

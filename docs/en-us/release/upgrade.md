@@ -9,7 +9,7 @@
 
 ## 3. Download the new version of the installation package
 
-- [gitee](https://gitee.com/easyscheduler/EasyScheduler/attach_files), download the latest version of the front and back installation packages (backend referred to as escheduler-backend, front end referred to as escheduler-ui)
+- [download](#), download the latest version of the front and back installation packages (backend referred to as escheduler-backend, front end referred to as escheduler-ui)
 - The following upgrade operations need to be performed in the new version of the directory
 
 ## 4. Database upgrade

@@ -8,7 +8,7 @@ The front-end has three deployment modes: automated deployment, manual deploymen
 
 #### Download the installation package
 
-Please download the latest version of the installation package, download address： [gitee](https://gitee.com/easyscheduler/EasyScheduler/attach_files/)
+Please download the latest version of the installation package, download address： [apache](#)
 
 After downloading escheduler-ui-x.x.x.tar.gz，decompress`tar -zxvf escheduler-ui-x.x.x.tar.gz ./`and enter the`escheduler-ui`directory
 
