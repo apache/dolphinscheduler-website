@@ -5,7 +5,7 @@
 ## 1、准备工作
 #### 下载安装包
 
-请下载最新版本的安装包，下载地址： [Apache下载](#)
+请下载最新版本的安装包，下载地址： [apache下载](#)
 
 下载 escheduler-ui-x.x.x.tar.gz 后，解压`tar -zxvf escheduler-ui-x.x.x.tar.gz ./`后，进入`escheduler-ui`目录
  
