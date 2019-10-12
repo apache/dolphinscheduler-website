@@ -98,7 +98,7 @@ class Documentation extends Language {
         <Header
           currentKey="docs"
           type="normal"
-          logo="/img/hlogo_colorful.png"
+          logo="/img/hlogo_colorful.svg"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
@@ -111,7 +111,7 @@ class Documentation extends Language {
             dangerouslySetInnerHTML={{ __html }}
           />
         </section>
-        <Footer logo="/img/ds_gray.png" language={language} />
+        <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
     );
   }
