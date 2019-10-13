@@ -37,6 +37,11 @@ export default {
             title: 'Frontend Development',
             link: '/en-us/docs/developer_guide/frontend-development.html',
           },
+          {
+            title: 'Api Document',
+            target: '_blank',
+            link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=en&lang=en'
+          },
         ],
       },
       {
@@ -125,6 +130,11 @@ export default {
           {
             title: '前端开发',
             link: '/zh-cn/docs/developer_guide/frontend-development.html',
+          },
+          {
+            title: '接口文档',
+            target: '_blank',
+            link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=zh_CN&lang=zh'
           },
         ],
       },
