@@ -47,6 +47,10 @@ export default {
         title: 'Release',
         children: [
           {
+            title: 'Note',
+            link: '/en-us/docs/release/note.html',
+          },
+          {
             title: 'Upgrade',
             link: '/en-us/docs/release/upgrade.html',
           },
@@ -135,6 +139,10 @@ export default {
       {
         title: '版本发布',
         children: [
+          {
+            title: '通知',
+            link: '/zh-cn/docs/release/note.html',
+          },
           {
             title: '升级',
             link: '/zh-cn/docs/release/upgrade.html',
