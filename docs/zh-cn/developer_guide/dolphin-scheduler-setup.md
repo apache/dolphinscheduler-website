@@ -54,7 +54,7 @@
 2. npm run build. #执行完build命令后，会生成dist文件夹，这个文件夹一定要和nginx配置文件的40行所指的目录相同。
 ```
 
-保存一下内容到dolphinscheduler.conf文件：
+保存以下内容到dolphinscheduler.conf文件：
 ```
 
 #user  nobody;
@@ -95,72 +95,36 @@ http {
         #charset koi8-r;
         access_log  /usr/local/etc/nginx/logs/host.access.log;
         location / {
-        root   /Users/momo/tboy/workspace_github/incubator-dolphinscheduler/dolphinscheduler-ui/dist; # static file directory
-        index  index.html index.html;
+            root   /xxx/xxx/incubator-dolphinscheduler/dolphinscheduler-ui/dist; #这里为ui目录，需要修改
+            index  index.html index.html;
         }
         location /dolphinscheduler {
-        proxy_pass http://localhost:12345; # interface address
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header x_real_ipP $remote_addr;
-        proxy_set_header remote_addr $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_http_version 1.1;
-        proxy_connect_timeout 300s;
-        proxy_read_timeout 300s;
-        proxy_send_timeout 300s;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection upgrade;
+            proxy_pass http://localhost:12345; # interface address
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header x_real_ipP $remote_addr;
+            proxy_set_header remote_addr $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_http_version 1.1;
+            proxy_connect_timeout 300s;
+            proxy_read_timeout 300s;
+            proxy_send_timeout 300s;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection upgrade;
         }
         #error_page  404              /404.html;
         # redirect server error pages to the static page /50x.html
         #
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
-        root   /usr/share/nginx/html;
+            root   /usr/share/nginx/html;
         }
     }
-
-
-    # another virtual host using mix of IP-, name-, and port-based configuration
-    #
-    #server {
-    #    listen       8000;
-    #    listen       somename:8080;
-    #    server_name  somename  alias  another.alias;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
-
-
-    # HTTPS server
-    #
-    #server {
-    #    listen       443 ssl;
-    #    server_name  localhost;
-
-    #    ssl_certificate      cert.pem;
-    #    ssl_certificate_key  cert.key;
-
-    #    ssl_session_cache    shared:SSL:1m;
-    #    ssl_session_timeout  5m;
-
-    #    ssl_ciphers  HIGH:!aNULL:!MD5;
-    #    ssl_prefer_server_ciphers  on;
-
-    #    location / {
-    #        root   html;
-    #        index  index.html index.htm;
-    #    }
-    #}
     include servers/*;
 }
 
 ```
-使用以下命令，启动nginx。
+修改上面root指向，然后将文件放到nginx配置同级目录,使用以下命令，启动nginx。
 ```
 ./nginx -c dolphinscheduler.conf
 ```
