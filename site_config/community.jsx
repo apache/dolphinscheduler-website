@@ -7,9 +7,9 @@ export default {
       title: 'Events & News',
       list: [
         {
-          img: '/img/meetup.png',
-          title: 'Apache Dolphin Scheduler(Incubating) Meetup 2019.10 Shanghai',
-          content: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to rigister.',
+          img: '/img/meetup_20191026.jpg',
+          title: 'Apache Dolphin Scheduler(Incubating) Meetup has been held successfully',
+          content: 'Apache Dolphin Scheduler(Incubating) Meetup has been held successfully in Shanghai 2019.10.26.',
           dateStr: '2019-9-27',
           link: '/en-us/blog/meetup_2019_10_26.html',
         },
@@ -92,9 +92,9 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
-          img: '/img/meetup.png',
-          title: 'Apache Dolphin Scheduler(Incubating)将于2019.10在上海举行见面会',
-          content: 'Apache Dolphin Scheduler(Incubating) 将于2019年10月26日在上海组织一次会议，欢迎踊跃报名。',
+          img: '/img/meetup_20191026.jpg',
+          title: 'Apache Dolphin Scheduler(Incubating) Meetup 成功举行',
+          content: 'Apache Dolphin Scheduler(Incubating) Meetup 2019年10月26日在上海成功举行。',
           dateStr: '2019-9-27',
           link: '/zh-cn/blog/meetup_2019_10_26.html',
         },
