@@ -9,11 +9,19 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 8.16.2
+    - name: Build
+      run: |
+        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r 404.html index.html en-us zh-cn build img download dist/
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.4.0
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BASE_BRANCH: master # The branch the action should deploy from.
-        BRANCH: asf-site # The branch the action should deploy to.
-        FOLDER: dist # The folder the action should deploy.
-        BUILD_SCRIPT: mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r 404.html index.html en-us zh-cn build img download dist/ # The build script the action should run prior to deploying.
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: asf-site
+        PUBLISH_DIR: ./dist
+      with:
+        keepFiles: true
