@@ -2,18 +2,18 @@
 
 ## 环境要求
 
- * [Mysql](http://geek.analysys.cn/topic/124) (5.5+) :  必装
+ * Mysql (5.5+) :  必装
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装
- * [ZooKeeper](https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper)(3.4.6+) ：必装 
+ * ZooKeeper(3.4.6+) ：必装 
  * [Maven](http://maven.apache.org/download.cgi)(3.3+) ：必装 
 
-因EasyScheduler中escheduler-rpc模块使用到Grpc，需要用到Maven编译生成所需要的类
+因DolphinScheduler中dolphinscheduler-rpc模块使用到Grpc，需要用到Maven编译生成所需要的类
 对maven不熟的伙伴请参考: [maven in five minutes](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)(3.3+)
 
 http://maven.apache.org/install.html
 
 ## 项目编译
-将EasyScheduler源码下载导入Idea开发工具后，首先转为Maven项目(右键点击后选择"Add Framework Support")
+将DolphinScheduler源码下载导入Idea开发工具后，首先转为Maven项目(右键点击后选择"Add Framework Support")
 
 * 执行编译命令：
 
@@ -23,7 +23,7 @@ http://maven.apache.org/install.html
 
 * 查看目录
 
-正常编译完后，会在当前目录生成 ./target/escheduler-{version}/
+正常编译完后，会在当前目录生成 ./target/dolphinscheduler-{version}/
 
 ```
     bin
