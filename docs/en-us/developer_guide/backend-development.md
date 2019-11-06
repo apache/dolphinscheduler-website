@@ -13,7 +13,7 @@ For those who are not familiar with maven, please refer to: [maven in five minut
 http://maven.apache.org/install.html
 
 ## Project compilation
-After importing the EasyScheduler source code into the development tools such as Idea, first convert to the Maven project (right click and select "Add Framework Support")
+After importing the DolphinScheduler source code into the development tools such as Idea, first convert to the Maven project (right click and select "Add Framework Support")
 
 * Execute the compile command:
 
