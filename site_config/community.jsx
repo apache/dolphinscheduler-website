@@ -7,11 +7,11 @@ export default {
       title: 'Events & News',
       list: [
         {
-          img: '/img/apachecon-na-2018.png',
-          title: 'November 12-16, 2007ApacheCon US 2007 was held in Atlanta, Georgia on November 12-16. ',
-          content: 'November 12-16, 2007ApacheCon US 2007 was held in Atlanta, Georgia on November 12-16. ',
-          dateStr: 'May 12nd，2018',
-          link: '/en-us/docs/developer_guide/architecture-design.html',
+          img: '/img/meetup_20191026.jpg',
+          title: 'Apache Dolphin Scheduler(Incubating) Meetup has been held successfully',
+          content: 'Apache Dolphin Scheduler(Incubating) Meetup has been held successfully in Shanghai 2019.10.26.',
+          dateStr: '2019-9-27',
+          link: '/en-us/blog/meetup_2019_10_26.html',
         },
         {
           img: '/img/architecture.jpg',
@@ -26,27 +26,6 @@ export default {
           content: 'DolphinScheduler beijing meetup has been held successfully',
           dateStr: 'May 12nd，2018',
           link: '/en-us/docs/developer_guide/architecture-design.html',
-        },
-        {
-          img: '/img/brhtqqzh.jpeg',
-          title: 'this is the title',
-          content: 'this is the content',
-          dateStr: 'May 12nd，2018',
-          link: '/en-us/blog/blog4.html',
-        },
-        {
-          img: '/img/brhtqqzh.jpeg',
-          title: 'this is the title',
-          content: 'this is the content',
-          dateStr: 'May 12nd，2018',
-          link: '/en-us/blog/blog5.html',
-        },
-        {
-          img: '/img/brhtqqzh.jpeg',
-          title: 'this is the title',
-          content: 'this is the content',
-          dateStr: 'May 12nd，2018',
-          link: '/en-us/blog/blog6.html',
         }
       ]
     },
@@ -113,11 +92,11 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
-          img: '/img/apachecon-na-2018.png',
-          title: '2007AppacheCon于11月12日至16日在乔治亚州亚特兰大举行。',
-          content: '2007AppacheCon于11月12日至16日在乔治亚州亚特兰大举行。',
-          dateStr: 'May 12nd，2018',
-          link: '/zh-cn/docs/developer_guide/architecture-design.html',
+          img: '/img/meetup_20191026.jpg',
+          title: 'Apache Dolphin Scheduler(Incubating) Meetup 成功举行',
+          content: 'Apache Dolphin Scheduler(Incubating) Meetup 2019年10月26日在上海成功举行。',
+          dateStr: '2019-9-27',
+          link: '/zh-cn/blog/meetup_2019_10_26.html',
         },
         {
           img: '/img/architecture.jpg',
@@ -132,27 +111,6 @@ export default {
           content: 'DolphinScheduler 开发者大会在北京成功举行',
           dateStr: 'May 12nd，2018',
           link: '/zh-cn/docs/developer_guide/architecture-design.html',
-        },
-        {
-          img: '/img/brhtqqzh.jpeg',
-          title: '这是标题',
-          content: '这是内容',
-          dateStr: 'May 12nd，2018',
-          link: '/zh-cn/blog/blog4.html',
-        },
-        {
-          img: '/img/brhtqqzh.jpeg',
-          title: '这是标题',
-          content: '这是内容',
-          dateStr: 'May 12nd，2018',
-          link: '/zh-cn/blog/blog5.html',
-        },
-        {
-          img: '/img/brhtqqzh.jpeg',
-          title: '这是标题',
-          content: '这是内容',
-          dateStr: 'May 12nd，2018',
-          link: '/zh-cn/blog/blog6.html',
         }
       ]
     },
