@@ -81,7 +81,7 @@ Before explaining the architecture of the schedule system, let us first understa
      - **ZooKeeper**
 
        The ZooKeeper service, the MasterServer and the WorkerServer nodes in the system all use the ZooKeeper for cluster management and fault tolerance. In addition, the system also performs event monitoring and distributed locking based on ZooKeeper.
-       We have also implemented queues based on Redis, but we hope that EasyScheduler relies on as few components as possible, so we finally removed the Redis implementation.
+       We have also implemented queues based on Redis, but we hope that DolphinScheduler relies on as few components as possible, so we finally removed the Redis implementation.
 
      - **Task Queue**
 
@@ -132,11 +132,11 @@ Problems in the design of centralized :
 - The core design of decentralized design is that there is no "manager" that is different from other nodes in the entire distributed system, so there is no single point of failure problem. However, since there is no "manager" node, each node needs to communicate with other nodes to get the necessary machine information, and the unreliable line of distributed system communication greatly increases the difficulty of implementing the above functions.
 - In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly emerging. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will spontaneously hold "meetings" to elect new "managers". Go to preside over the work. The most typical case is the Etcd implemented in ZooKeeper and Go.
 
-- Decentralization of EasyScheduler is the registration of Master/Worker to ZooKeeper. The Master Cluster and the Worker Cluster are not centered, and the Zookeeper distributed lock is used to elect one Master or Worker as the “manager” to perform the task.
+- Decentralization of DolphinScheduler is the registration of Master/Worker to ZooKeeper. The Master Cluster and the Worker Cluster are not centered, and the Zookeeper distributed lock is used to elect one Master or Worker as the “manager” to perform the task.
 
 #####  二、Distributed lock practice
 
-EasyScheduler uses ZooKeeper distributed locks to implement only one Master to execute the Scheduler at the same time, or only one Worker to perform task submission.
+DolphinScheduler uses ZooKeeper distributed locks to implement only one Master to execute the Scheduler at the same time, or only one Worker to perform task submission.
 
 1. The core process algorithm for obtaining distributed locks is as follows
 
@@ -144,7 +144,7 @@ EasyScheduler uses ZooKeeper distributed locks to implement only one Master to e
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock.png" alt="Get Distributed Lock Process" width="50%" />
  </p>
 
-2. Scheduler thread distributed lock implementation flow chart in EasyScheduler:
+2. Scheduler thread distributed lock implementation flow chart in DolphinScheduler:
 
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock_procss.png" alt="Get Distributed Lock Process" width="50%" />
@@ -180,7 +180,7 @@ Fault tolerance is divided into service fault tolerance and task retry. Service 
 Service fault tolerance design relies on ZooKeeper's Watcher mechanism. The implementation principle is as follows:
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant.png" alt="EasyScheduler Fault Tolerant Design" width="40%" />
+   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant.png" alt="DolphinScheduler Fault Tolerant Design" width="40%" />
  </p>
 
 The Master monitors the directories of other Masters and Workers. If the remove event is detected, the process instance is fault-tolerant or the task instance is fault-tolerant according to the specific business logic.
@@ -193,7 +193,7 @@ The Master monitors the directories of other Masters and Workers. If the remove 
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant_master.png" alt="Master Fault Tolerance Flowchart" width="40%" />
  </p>
 
-After the ZooKeeper Master is fault-tolerant, it is rescheduled by the Scheduler thread in EasyScheduler. It traverses the DAG to find the "Running" and "Submit Successful" tasks, and monitors the status of its task instance for the "Running" task. You need to determine whether the Task Queue already exists. If it exists, monitor the status of the task instance. If it does not exist, resubmit the task instance.
+After the ZooKeeper Master is fault-tolerant, it is rescheduled by the Scheduler thread in DolphinScheduler. It traverses the DAG to find the "Running" and "Submit Successful" tasks, and monitors the status of its task instance for the "Running" task. You need to determine whether the Task Queue already exists. If it exists, monitor the status of the task instance. If it does not exist, resubmit the task instance.
 
 
 
@@ -253,7 +253,7 @@ In the early scheduling design, if there is no priority design and fair scheduli
 - Since the Web (UI) and Worker are not necessarily on the same machine, viewing the log is not as it is for querying local files. There are two options:
   - Put the logs on the ES search engine
   - Obtain remote log information through gRPC communication
-- Considering the lightweightness of EasyScheduler as much as possible, gRPC was chosen to implement remote access log information.
+- Considering the lightweightness of DolphinScheduler as much as possible, gRPC was chosen to implement remote access log information.
 
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc remote access" width="50%" />
@@ -313,4 +313,4 @@ Public class TaskLogFilter extends Filter<ILoggingEvent {
 
 ### summary
 
-Starting from the scheduling, this paper introduces the architecture principle and implementation ideas of the big data distributed workflow scheduling system-EasyScheduler. To be continued
+Starting from the scheduling, this paper introduces the architecture principle and implementation ideas of the big data distributed workflow scheduling system-DolphinScheduler. To be continued
