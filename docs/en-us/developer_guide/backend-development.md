@@ -7,7 +7,7 @@
  * ZooKeeper (3.4.6+) ：Must be installed
  * Maven (3.3+) ：Must be installed
 
-Because the dolphinscheduler-rpc module in EasyScheduler uses Grpc, you need to use Maven to compile the generated classes.
+Because the dolphinscheduler-rpc module in DolphinScheduler uses Grpc, you need to use Maven to compile the generated classes.
 For those who are not familiar with maven, please refer to: [maven in five minutes](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)(3.3+)
 
 http://maven.apache.org/install.html
