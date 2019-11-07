@@ -71,7 +71,7 @@
 * **ZooKeeper** 
 
     ZooKeeper服务，系统中的MasterServer和WorkerServer节点都通过ZooKeeper来进行集群管理和容错。另外系统还基于ZooKeeper进行事件监听和分布式锁。
-    我们也曾经基于Redis实现过队列，不过我们希望EasyScheduler依赖到的组件尽量地少，所以最后还是去掉了Redis实现。
+    我们也曾经基于Redis实现过队列，不过我们希望DolphinScheduler依赖到的组件尽量地少，所以最后还是去掉了Redis实现。
 
 * **Task Queue** 
 
@@ -124,17 +124,17 @@
 
 
 
-- EasyScheduler的去中心化是Master/Worker注册到Zookeeper中，实现Master集群和Worker集群无中心，并使用Zookeeper分布式锁来选举其中的一台Master或Worker为“管理者”来执行任务。
+- DolphinScheduler的去中心化是Master/Worker注册到Zookeeper中，实现Master集群和Worker集群无中心，并使用Zookeeper分布式锁来选举其中的一台Master或Worker为“管理者”来执行任务。
 
 #####  二、分布式锁实践
 
-EasyScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Master执行Scheduler，或者只有一台Worker执行任务的提交。
+DolphinScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Master执行Scheduler，或者只有一台Worker执行任务的提交。
 1. 获取分布式锁的核心流程算法如下
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock.png" alt="获取分布式锁流程"  width="50%" />
  </p>
 
-2. EasyScheduler中Scheduler线程分布式锁实现流程图：
+2. DolphinScheduler中Scheduler线程分布式锁实现流程图：
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock_procss.png" alt="获取分布式锁流程"  width="50%" />
  </p>
@@ -169,7 +169,7 @@ EasyScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Master�
 服务容错设计依赖于ZooKeeper的Watcher机制，实现原理如图：
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant.png" alt="EasyScheduler容错设计"  width="40%" />
+   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant.png" alt="DolphinScheduler容错设计"  width="40%" />
  </p>
 其中Master监控其他Master和Worker的目录，如果监听到remove事件，则会根据具体的业务逻辑进行流程实例容错或者任务实例容错。
 
@@ -180,7 +180,7 @@ EasyScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Master�
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant_master.png" alt="Master容错流程图"  width="40%" />
  </p>
-ZooKeeper Master容错完成之后则重新由EasyScheduler中Scheduler线程调度，遍历 DAG 找到”正在运行”和“提交成功”的任务，对”正在运行”的任务监控其任务实例的状态，对”提交成功”的任务需要判断Task Queue中是否已经存在，如果存在则同样监控任务实例的状态，如果不存在则重新提交任务实例。
+ZooKeeper Master容错完成之后则重新由DolphinScheduler中Scheduler线程调度，遍历 DAG 找到”正在运行”和“提交成功”的任务，对”正在运行”的任务监控其任务实例的状态，对”提交成功”的任务需要判断Task Queue中是否已经存在，如果存在则同样监控任务实例的状态，如果不存在则重新提交任务实例。
 
 
 
@@ -239,7 +239,7 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
   -  将日志放到ES搜索引擎上
   -  通过gRPC通信获取远程日志信息
 
--  介于考虑到尽可能的EasyScheduler的轻量级性，所以选择了gRPC实现远程访问日志信息。
+-  介于考虑到尽可能的DolphinScheduler的轻量级性，所以选择了gRPC实现远程访问日志信息。
 
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc远程访问"  width="50%" />
@@ -299,6 +299,6 @@ public class TaskLogFilter extends Filter<ILoggingEvent {
  ```
 
 ### 总结
-本文从调度出发，初步介绍了大数据分布式工作流调度系统--EasyScheduler的架构原理及实现思路。未完待续
+本文从调度出发，初步介绍了大数据分布式工作流调度系统--DolphinScheduler的架构原理及实现思路。未完待续
 
 

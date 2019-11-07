@@ -1,6 +1,6 @@
-## Q：EasyScheduler服务介绍及建议运行内存
+## Q：DolphinScheduler服务介绍及建议运行内存
 
-A： EasyScheduler由5个服务组成，MasterServer、WorkerServer、ApiServer、AlertServer、LoggerServer和UI。
+A： DolphinScheduler由5个服务组成，MasterServer、WorkerServer、ApiServer、AlertServer、LoggerServer和UI。
 
 | 服务                      | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ |
@@ -28,7 +28,7 @@ A：支持绝大多数邮箱，qq、163、126、139、outlook、aliyun等皆支�
 
 ## Q：常用的系统变量时间参数有哪些，如何使用？
 
-A：请参考 https://analysys.github.io/easyscheduler_docs_cn/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0
+A：请参考 使用手册
 
 ---
 
@@ -50,13 +50,13 @@ A：我们同时 **支持流程和任务的优先级**。优先级我们有 **HI
 
 ----
 
-## Q：escheduler-grpc报错
+## Q：dolphinscheduler-grpc报错
 
 A：在根目录下执行：mvn -U clean package assembly:assembly -Dmaven.test.skip=true ， 然后刷新下整个项目
 
 ----
 
-## Q：EasyScheduler支持windows上运行么
+## Q：DolphinScheduler支持windows上运行么
 
 A： 理论上只有**Worker是需要在Linux上运行的**，其它的服务都是可以在windows上正常运行的。但是还是建议最好能在linux上部署使用
 
@@ -70,11 +70,11 @@ A：单独安装 **npm install node-sass --unsafe-perm**，之后再 **npm insta
 
 ## Q：UI 不能正常登陆访问
 
-A： 1，如果是node启动的查看escheduler-ui下的.env API_BASE配置是否是Api Server服务地址
+A： 1，如果是node启动的查看dolphinscheduler-ui下的.env API_BASE配置是否是Api Server服务地址
 
-    2，如果是nginx启动的并且是通过 **install-escheduler-ui.sh** 安装的，查看             											**/etc/nginx/conf.d/escheduler.conf** 中的proxy_pass配置是否是Api Server服务地址
+    2，如果是nginx启动的并且是通过 **install-dolphinscheduler-ui.sh** 安装的，查看             											**/etc/nginx/conf.d/dolphinscheduler.conf** 中的proxy_pass配置是否是Api Server服务地址
 
-    3，如果以上配置都是正确的，那么请查看Api Server服务是否是正常的，curl http://192.168.xx.xx:12345/escheduler/users/get-user-info，查看Api Server日志，如果提示 cn.escheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证明Api Server服务是正常的
+    3，如果以上配置都是正确的，那么请查看Api Server服务是否是正常的，curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info，查看Api Server日志，如果提示 cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证明Api Server服务是正常的
 
     4，如果以上都没有问题，需要查看一下 **application.properties** 中的 **server.context-path 和 server.port 配置**是否正确
 
@@ -84,7 +84,7 @@ A： 1，如果是node启动的查看escheduler-ui下的.env API_BASE配置是�
 
 A： 1，首先通过**jps 查看MasterServer服务是否存在**，或者从服务监控直接查看zk中是否存在master服务
 
-​	2，如果存在master服务，查看 **命令状态统计** 或者 **t_escheduler_error_command** 中是否增加的新记录，如果增加了，**请查看 message 字段定位启动异常原因**
+​	2，如果存在master服务，查看 **命令状态统计** 或者 **t_ds_error_command** 中是否增加的新记录，如果增加了，**请查看 message 字段定位启动异常原因**
 
 ---
 
@@ -98,23 +98,13 @@ A： 1，首先通过**jps 查看WorkerServer服务是否存在**，或者从服
 
 ---
 
-## Q： 是否提供Docker镜像及Dockerfile
-
-A： 提供Docker镜像及Dockerfile。
-
-Docker镜像地址：https://hub.docker.com/r/escheduler/escheduler_images
-
-Dockerfile地址：https://github.com/qiaozhanwei/escheduler_dockerfile/tree/master/docker_escheduler
-
----
-
 ## Q ： install.sh 中需要注意问题
 
 A：  1，如果替换变量中包含特殊字符，**请用 \ 转移符进行转移**
 
-​	2，installPath="/data1_1T/escheduler"，**这个目录不能和当前要一键安装的install.sh目录是一样的**
+​	2，installPath="/data1_1T/dolphinscheduler"，**这个目录不能和当前要一键安装的install.sh目录是一样的**
 
-​	3，deployUser="escheduler"，**部署用户必须具有sudo权限**，因为worker是通过sudo -u 租户 sh xxx.command进行执行的
+​	3，deployUser="dolphinscheduler"，**部署用户必须具有sudo权限**，因为worker是通过sudo -u 租户 sh xxx.command进行执行的
 
 ​	4，monitorServerState="false"，服务监控脚本是否启动，默认是不启动服务监控脚本的。**如果启动服务监控脚本，则每5分钟定时来监控master和worker的服务是否down机，如果down机则会自动重启**
 
@@ -126,7 +116,7 @@ A：  1，如果替换变量中包含特殊字符，**请用 \ 转移符进行�
 
 ## Q ： 流程定义和流程实例下线异常
 
-A ： 对于 **1.0.4 以前的版本中**，修改escheduler-api cn.escheduler.api.quartz包下的代码即可
+A ： 对于 **1.0.4 以前的版本中**，修改dolphinscheduler-api cn.dolphinscheduler.api.quartz包下的代码即可
 
 ```
 public boolean deleteJob(String jobName, String jobGroupName) {
@@ -205,7 +195,7 @@ A： 1，在 **流程定义列表**，点击 **启动** 按钮
 
 ## Q ： Python任务设置Python版本
 
-A：  1，对于1**.0.3之后的版本**只需要修改 conf/env/.escheduler_env.sh中的PYTHON_HOME
+A：  1，对于1**.0.3之后的版本**只需要修改 conf/env/.dolphinscheduler_env.sh中的PYTHON_HOME
 
 ```
 export PYTHON_HOME=/bin/python
@@ -225,9 +215,9 @@ A： 我们会在1.0.4中增加kill任务同时，kill掉任务产生的各种�
 
 
 
-## Q ： EasyScheduler中的队列怎么用，用户队列和租户队列是什么意思
+## Q ： DolphinScheduler中的队列怎么用，用户队列和租户队列是什么意思
 
-A ： EasyScheduler 中的队列可以在用户或者租户上指定队列，**用户指定的队列优先级是高于租户队列的优先级的。**，例如：对MR任务指定队列，是通过 mapreduce.job.queuename 来指定队列的。
+A ： DolphinScheduler 中的队列可以在用户或者租户上指定队列，**用户指定的队列优先级是高于租户队列的优先级的。**，例如：对MR任务指定队列，是通过 mapreduce.job.queuename 来指定队列的。
 
 注意：MR在用以上方法指定队列的时候，传递参数请使用如下方式：
 

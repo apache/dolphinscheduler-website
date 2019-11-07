@@ -1,15 +1,15 @@
 
-# EasyScheduler升级文档
+# DolphinScheduler升级文档
 
 ## 1. 备份上一版本文件和数据库
 
-## 2. 停止escheduler所有服务
+## 2. 停止dolphinscheduler所有服务
 
  `sh ./script/stop-all.sh`
 
 ## 3. 下载新版本的安装包
 
-- [码云下载](https://gitee.com/easyscheduler/EasyScheduler/attach_files), 下载最新版本的前后端安装包(后端简称escheduler-backend、前端简称escheduler-ui)
+- [github](https://github.com/apache/incubator-dolphinscheduler/releases), 下载最新版本的前后端安装包(dolphinscheduler-backend、dolphinscheduler-ui)
 - 以下升级操作都需要在新版本的目录进行
 
 ## 4. 数据库升级

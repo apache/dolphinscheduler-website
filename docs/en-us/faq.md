@@ -1,6 +1,6 @@
-## Q: EasyScheduler service introduction and recommended running memory
+## Q: DolphinScheduler service introduction and recommended running memory
 
-A: EasyScheduler consists of 5 services, MasterServer, WorkerServer, ApiServer, AlertServer, LoggerServer and UI.
+A: DolphinScheduler consists of 5 services, MasterServer, WorkerServer, ApiServer, AlertServer, LoggerServer and UI.
 
 | Service                   | Description                                                  |
 | ------------------------- | ------------------------------------------------------------ |
@@ -50,13 +50,13 @@ A: We also support **the priority of processes and tasks**. Priority We have fiv
 
 ----
 
-## Q: Escheduler-grpc gives an error
+## Q: dolphinscheduler-grpc gives an error
 
 A: Execute in the root directory: mvn -U clean package assembly:assembly -Dmaven.test.skip=true , then refresh the entire project
 
 ----
 
-## Q: Does EasyScheduler support running on windows?
+## Q: Does DolphinScheduler support running on windows?
 
 A: In theory, **only the Worker needs to run on Linux**. Other services can run normally on Windows. But it is still recommended to deploy on Linux.
 
@@ -70,11 +70,11 @@ A: Install **npm install node-sass --unsafe-perm** separately, then **npm instal
 
 ## Q: UI cannot log in normally.
 
-A: 1, if it is node startup, check whether the .env API_BASE configuration under escheduler-ui is the Api Server service address.
+A: 1, if it is node startup, check whether the .env API_BASE configuration under dolphinscheduler-ui is the Api Server service address.
 
-    2, If it is nginx booted and installed via **install-escheduler-ui.sh**, check if the proxy_pass configuration in **/etc/nginx/conf.d/escheduler.conf** is the Api Server service. address
+    2, If it is nginx booted and installed via **install-dolphinscheduler-ui.sh**, check if the proxy_pass configuration in **/etc/nginx/conf.d/dolphinscheduler.conf** is the Api Server service. address
     
-     3, if the above configuration is correct, then please check if the Api Server service is normal, curl http://192.168.xx.xx:12345/escheduler/users/get-user-info, check the Api Server log, if Prompt cn.escheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null, which proves that the Api Server service is normal.
+     3, if the above configuration is correct, then please check if the Api Server service is normal, curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info, check the Api Server log, if Prompt cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null, which proves that the Api Server service is normal.
     
     4, if there is no problem above, you need to check if **server.context-path and server.port configuration** in **application.properties** is correct
 
@@ -84,7 +84,7 @@ A: 1, if it is node startup, check whether the .env API_BASE configuration under
 
 A:   1, first **check whether the MasterServer service exists through jps**, or directly check whether there is a master service in zk from the service monitoring.
 
-​       2,If there is a master service, check **the command status statistics** or whether new records are added in **t_escheduler_error_command**. If it is added, **please check the message field.**
+​       2,If there is a master service, check **the command status statistics** or whether new records are added in **t_ds_error_command**. If it is added, **please check the message field.**
 
 ---
 
@@ -112,9 +112,9 @@ Dockerfile address: https://github.com/qiaozhanwei/escheduler_dockerfile/tree/ma
 
 A:   1, if the replacement variable contains special characters, **use the \ transfer character to transfer**
 
-​       2, installPath="/data1_1T/escheduler", **this directory can not be the same as the install.sh directory currently installed with one click.**
+​       2, installPath="/data1_1T/dolphinscheduler", **this directory can not be the same as the install.sh directory currently installed with one click.**
 
-​       3, deployUser = "escheduler", **the deployment user must have sudo privileges**, because the worker is executed by sudo -u tenant sh xxx.command
+​       3, deployUser = "dolphinscheduler", **the deployment user must have sudo privileges**, because the worker is executed by sudo -u tenant sh xxx.command
 
 ​       4, monitorServerState = "false", whether the service monitoring script is started, the default is not to start the service monitoring script. **If the service monitoring script is started, the master and worker services are monitored every 5 minutes, and if the machine is down, it will automatically restart.**
 
@@ -207,7 +207,7 @@ A:   1, in **the process definition list**, click the **Start** button.
 
 ## Q : Python task setting Python version
 
-A：  1，**for the version after 1.0.3** only need to modify PYTHON_HOME in conf/env/.escheduler_env.sh
+A：  1，**for the version after 1.0.3** only need to modify PYTHON_HOME in conf/env/.dolphinscheduler_env.sh
 
 ```
 export PYTHON_HOME=/bin/python
@@ -227,9 +227,9 @@ A：  We will add the kill task in 1.0.4 and kill all the various child processe
 
 
 
-## Q ： How to use the queue in EasyScheduler, what does the user queue and tenant queue mean?
+## Q ： How to use the queue in DolphinScheduler, what does the user queue and tenant queue mean?
 
-A ： The queue in the EasyScheduler can be configured on the user or the tenant. **The priority of the queue specified by the user is higher than the priority of the tenant queue.** For example, to specify a queue for an MR task, the queue is specified by mapreduce.job.queuename.
+A ： The queue in the DolphinScheduler can be configured on the user or the tenant. **The priority of the queue specified by the user is higher than the priority of the tenant queue.** For example, to specify a queue for an MR task, the queue is specified by mapreduce.job.queuename.
 
 Note: When using the above method to specify the queue, the MR uses the following methods:
 
