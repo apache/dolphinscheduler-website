@@ -38,7 +38,7 @@ Lodash 高性能的 JavaScript 实用工具库
 <h4>前端项目构建</h4>
 </li>
 </ul>
-<p>用命令行模式 <code>cd</code>  进入 <code>escheduler-ui</code>项目目录并执行 <code>npm install</code> 拉取项目依赖包</p>
+<p>用命令行模式 <code>cd</code>  进入 <code>dolphinscheduler-ui</code>项目目录并执行 <code>npm install</code> 拉取项目依赖包</p>
 <blockquote>
 <p>如果 <code>npm install</code> 速度非常慢</p>
 </blockquote>
@@ -51,7 +51,7 @@ Lodash 高性能的 JavaScript 实用工具库
 <ul>
 <li>新建一个<code>.env</code>文件，用于跟后端交互的接口</li>
 </ul>
-<p>在<code>escheduler-ui</code>目录下新建一个<code>.env</code>文件，在文件里添加后端服务的ip地址和端口，用于跟后端交互，<code>.env</code>文件内容如下：</p>
+<p>在<code>dolphinscheduler-ui</code>目录下新建一个<code>.env</code>文件，在文件里添加后端服务的ip地址和端口，用于跟后端交互，<code>.env</code>文件内容如下：</p>
 <pre><code># 代理的接口地址（自行修改）
 API_BASE = http://192.168.xx.xx:12345
 
@@ -78,7 +78,7 @@ API_BASE = http://192.168.xx.xx:12345
 <p>访问地址 <code>http://localhost:8888/#/</code></p>
 <h4>Linux下使用node启动并且守护进程</h4>
 <p>安装pm2 <code>npm install -g pm2</code></p>
-<p>在项目<code>escheduler-ui</code>根目录执行 <code>pm2 start npm -- run dev</code> 启动项目</p>
+<p>在项目<code>dolphinscheduler-ui</code>根目录执行 <code>pm2 start npm -- run dev</code> 启动项目</p>
 <h4>命令</h4>
 <ul>
 <li>
@@ -95,7 +95,7 @@ API_BASE = http://192.168.xx.xx:12345
 </li>
 </ul>
 <pre><code>
-[root@localhost escheduler-ui]# pm2 start npm -- run dev
+[root@localhost dolphinscheduler-ui]# pm2 start npm -- run dev
 [PM2] Applying action restartProcessId on app [npm](ids: 0)
 [PM2] [npm](0) ✓
 [PM2] Process successfully started
@@ -498,7 +498,7 @@ test.then(res =&gt; {
   name: 'test',  // 别名
   component: resolve =&gt; require(['../pages/test/index'], resolve),  // 路由对应组件入口文件
   meta: {
-    title: `${i18n.$t('test')} - EasyScheduler`  // title 显示
+    title: `${i18n.$t('test')} - DolphinScheduler`  // title 显示
   }
 },
 </code></pre>

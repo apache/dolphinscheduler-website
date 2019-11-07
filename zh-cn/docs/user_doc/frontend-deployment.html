@@ -16,12 +16,12 @@
 <p>前端有3种部署方式，分别为自动化部署，手动部署和编译源码部署</p>
 <h2>1、准备工作</h2>
 <h4>下载安装包</h4>
-<p>请下载最新版本的安装包，下载地址： <a href="https://gitee.com/easyscheduler/EasyScheduler/attach_files/">码云下载</a> 或者 <a href="https://github.com/analysys/EasyScheduler/releases">github下载</a></p>
-<p>下载 escheduler-ui-x.x.x.tar.gz 后，解压<code>tar -zxvf escheduler-ui-x.x.x.tar.gz ./</code>后，进入<code>escheduler-ui</code>目录</p>
+<p>请下载最新版本的安装包，下载地址： <a href="https://github.com/analysys/EasyScheduler/releases">github下载</a></p>
+<p>下载 dolphinscheduler-ui-x.x.x.tar.gz 后，解压<code>tar -zxvf dolphinscheduler-ui-x.x.x.tar.gz ./</code>后，进入<code>dolphinscheduler-ui</code>目录</p>
 <h2>2、部署</h2>
 <p>以下两种方式任选其一部署即可，推荐自动化部署</p>
 <h3>2.1 自动化部署</h3>
-<p>在<code>escheduler-ui</code>目录下编辑安装文件<code>vi install-escheduler-ui.sh</code></p>
+<p>在<code>dolphinscheduler-ui</code>目录下编辑安装文件<code>vi install-dolphinscheduler-ui.sh</code></p>
 <p>更改前端访问端口和后端代理接口地址</p>
 <pre><code># 配置前端访问端口
 esc_proxy=&quot;8888&quot;
@@ -32,7 +32,7 @@ esc_proxy_port=&quot;http://192.168.xx.xx:12345&quot;
 <blockquote>
 <p>前端自动部署基于linux系统<code>yum</code>操作，部署之前请先安装更新<code>yum</code></p>
 </blockquote>
-<p>在该目录下执行<code>./install-escheduler-ui.sh</code></p>
+<p>在该目录下执行<code>./install-dolphinscheduler-ui.sh</code></p>
 <h3>2.2 手动部署</h3>
 <p>安装epel源 <code>yum install epel-release -y</code></p>
 <p>安装Nginx <code>yum install nginx -y</code></p>
@@ -53,7 +53,7 @@ esc_proxy_port=&quot;http://192.168.xx.xx:12345&quot;
         root   /xx/dist; # 上面前端解压的dist目录地址(自行修改)
         index  index.html index.html;
     }
-    location /escheduler {
+    location /dolphinscheduler {
         proxy_pass http://192.168.xx.xx:12345; # 接口地址(自行修改)
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;

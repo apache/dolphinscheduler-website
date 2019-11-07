@@ -16,12 +16,12 @@
 <p>The front-end has three deployment modes: automated deployment, manual deployment and compiled source deployment.</p>
 <h2>Preparations</h2>
 <h4>Download the installation package</h4>
-<p>Please download the latest version of the installation package, download address： <a href="https://gitee.com/easyscheduler/EasyScheduler/attach_files/">gitee</a></p>
-<p>After downloading escheduler-ui-x.x.x.tar.gz，decompress<code>tar -zxvf escheduler-ui-x.x.x.tar.gz ./</code>and enter the<code>escheduler-ui</code>directory</p>
+<p>Please download the latest version of the installation package, download address： <a href="https://github.com/apache/incubator-dolphinscheduler/releases">github download</a></p>
+<p>After downloading dolphinscheduler-ui-x.x.x.tar.gz，decompress<code>tar -zxvf dolphinscheduler-ui-x.x.x.tar.gz ./</code>and enter the<code>dolphinscheduler-ui</code>directory</p>
 <h2>Deployment</h2>
 <p>Automated deployment is recommended for either of the following two ways</p>
 <h3>Automated Deployment</h3>
-<p>Edit the installation file<code>vi install-escheduler-ui.sh</code> in the<code>escheduler-ui</code> directory</p>
+<p>Edit the installation file<code>vi install-dolphinscheduler-ui.sh</code> in the<code>dolphinscheduler-ui</code> directory</p>
 <p>Change the front-end access port and the back-end proxy interface address</p>
 <pre><code># Configure the front-end access port
 esc_proxy=&quot;8888&quot;
@@ -32,7 +32,7 @@ esc_proxy_port=&quot;http://192.168.xx.xx:12345&quot;
 <blockquote>
 <p>Front-end automatic deployment based on Linux system <code>yum</code> operation, before deployment, please install and update<code>yum</code></p>
 </blockquote>
-<p>under this directory, execute<code>./install-escheduler-ui.sh</code></p>
+<p>under this directory, execute<code>./install-dolphinscheduler-ui.sh</code></p>
 <h3>Manual Deployment</h3>
 <p>Install epel source <code>yum install epel-release -y</code></p>
 <p>Install Nginx <code>yum install nginx -y</code></p>
@@ -53,7 +53,7 @@ esc_proxy_port=&quot;http://192.168.xx.xx:12345&quot;
         root   /xx/dist; # the dist directory address decompressed by the front end above (self-modifying)
         index  index.html index.html;
     }
-    location /escheduler {
+    location /dolphinscheduler {
         proxy_pass http://192.168.xx.xx:12345; # interface address (self-modifying)
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;

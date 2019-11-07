@@ -341,7 +341,7 @@ conf/common/hadoop.properties
 <h2>Security</h2>
 <ul>
 <li>The security has the functions of queue management, tenant management, user management, warning group management, worker group manager, token manage and other functions. It can also authorize resources, data sources, projects, etc.</li>
-<li>Administrator login, default username password: admin/escheduler 123</li>
+<li>Administrator login, default username password: admin/dolphinscheduler 123</li>
 </ul>
 <h3>Create queues</h3>
 <ul>
@@ -403,7 +403,7 @@ conf/common/hadoop.properties
         CloseableHttpClient httpclient = HttpClients.createDefault();
 
         // create http post request
-        HttpPost httpPost = new HttpPost(&quot;http://127.0.0.1:12345/escheduler/projects/create&quot;);
+        HttpPost httpPost = new HttpPost(&quot;http://127.0.0.1:12345/dolphinscheduler/projects/create&quot;);
         httpPost.setHeader(&quot;token&quot;, &quot;123&quot;);
         // set parameters
         List&lt;NameValuePair&gt; parameters = new ArrayList&lt;NameValuePair&gt;();

@@ -77,7 +77,7 @@ When the MasterServer service starts, it registers a temporary node with Zookeep
 <li>
 <p><strong>ZooKeeper</strong></p>
 <p>The ZooKeeper service, the MasterServer and the WorkerServer nodes in the system all use the ZooKeeper for cluster management and fault tolerance. In addition, the system also performs event monitoring and distributed locking based on ZooKeeper.
-We have also implemented queues based on Redis, but we hope that EasyScheduler relies on as few components as possible, so we finally removed the Redis implementation.</p>
+We have also implemented queues based on Redis, but we hope that DolphinScheduler relies on as few components as possible, so we finally removed the Redis implementation.</p>
 </li>
 <li>
 <p><strong>Task Queue</strong></p>
@@ -130,11 +130,11 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <p>In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly emerging. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will spontaneously hold &quot;meetings&quot; to elect new &quot;managers&quot;. Go to preside over the work. The most typical case is the Etcd implemented in ZooKeeper and Go.</p>
 </li>
 <li>
-<p>Decentralization of EasyScheduler is the registration of Master/Worker to ZooKeeper. The Master Cluster and the Worker Cluster are not centered, and the Zookeeper distributed lock is used to elect one Master or Worker as the “manager” to perform the task.</p>
+<p>Decentralization of DolphinScheduler is the registration of Master/Worker to ZooKeeper. The Master Cluster and the Worker Cluster are not centered, and the Zookeeper distributed lock is used to elect one Master or Worker as the “manager” to perform the task.</p>
 </li>
 </ul>
 <h5>二、Distributed lock practice</h5>
-<p>EasyScheduler uses ZooKeeper distributed locks to implement only one Master to execute the Scheduler at the same time, or only one Worker to perform task submission.</p>
+<p>DolphinScheduler uses ZooKeeper distributed locks to implement only one Master to execute the Scheduler at the same time, or only one Worker to perform task submission.</p>
 <ol>
 <li>The core process algorithm for obtaining distributed locks is as follows</li>
 </ol>
@@ -142,7 +142,7 @@ Interfaces include workflow creation, definition, query, modification, release, 
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock.png" alt="Get Distributed Lock Process" width="50%" />
  </p>
 <ol start="2">
-<li>Scheduler thread distributed lock implementation flow chart in EasyScheduler:</li>
+<li>Scheduler thread distributed lock implementation flow chart in DolphinScheduler:</li>
 </ol>
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock_procss.png" alt="Get Distributed Lock Process" width="50%" />
@@ -169,7 +169,7 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <h6>1. Downtime fault tolerance</h6>
 <p>Service fault tolerance design relies on ZooKeeper's Watcher mechanism. The implementation principle is as follows:</p>
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant.png" alt="EasyScheduler Fault Tolerant Design" width="40%" />
+   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant.png" alt="DolphinScheduler Fault Tolerant Design" width="40%" />
  </p>
 <p>The Master monitors the directories of other Masters and Workers. If the remove event is detected, the process instance is fault-tolerant or the task instance is fault-tolerant according to the specific business logic.</p>
 <ul>
@@ -178,7 +178,7 @@ Interfaces include workflow creation, definition, query, modification, release, 
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant_master.png" alt="Master Fault Tolerance Flowchart" width="40%" />
  </p>
-<p>After the ZooKeeper Master is fault-tolerant, it is rescheduled by the Scheduler thread in EasyScheduler. It traverses the DAG to find the &quot;Running&quot; and &quot;Submit Successful&quot; tasks, and monitors the status of its task instance for the &quot;Running&quot; task. You need to determine whether the Task Queue already exists. If it exists, monitor the status of the task instance. If it does not exist, resubmit the task instance.</p>
+<p>After the ZooKeeper Master is fault-tolerant, it is rescheduled by the Scheduler thread in DolphinScheduler. It traverses the DAG to find the &quot;Running&quot; and &quot;Submit Successful&quot; tasks, and monitors the status of its task instance for the &quot;Running&quot; task. You need to determine whether the Task Queue already exists. If it exists, monitor the status of the task instance. If it does not exist, resubmit the task instance.</p>
 <ul>
 <li>Worker fault tolerance flow chart:</li>
 </ul>
@@ -235,7 +235,7 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <li>Obtain remote log information through gRPC communication</li>
 </ul>
 </li>
-<li>Considering the lightweightness of EasyScheduler as much as possible, gRPC was chosen to implement remote access log information.</li>
+<li>Considering the lightweightness of DolphinScheduler as much as possible, gRPC was chosen to implement remote access log information.</li>
 </ul>
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc remote access" width="50%" />
@@ -288,7 +288,7 @@ Public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
 }
 </code></pre>
 <h3>summary</h3>
-<p>Starting from the scheduling, this paper introduces the architecture principle and implementation ideas of the big data distributed workflow scheduling system-EasyScheduler. To be continued</p>
+<p>Starting from the scheduling, this paper introduces the architecture principle and implementation ideas of the big data distributed workflow scheduling system-DolphinScheduler. To be continued</p>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/ds_gray.svg"/><div class="cols-container"><div class="col col-12"><h3>Disclaimer</h3><p>Apache DolphinScheduler (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. 
 Incubation is required of all newly accepted projects until a further review indicates 
 that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. 
