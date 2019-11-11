@@ -48,37 +48,9 @@ export default {
         title: 'Release',
         children: [
           {
-            title: 'Note',
-            link: '/en-us/docs/release/note.html',
-          },
-          {
             title: 'Upgrade',
             link: '/en-us/docs/release/upgrade.html',
-          },
-          {
-            title: '1.0.1 release',
-            link: '/en-us/docs/release/1.0.1-release.html',
-          },
-          {
-            title: '1.0.2 release',
-            link: '/en-us/docs/release/1.0.2-release.html',
-          },
-          {
-            title: '1.0.3 release',
-            link: '/en-us/docs/release/1.0.3-release.html',
-          },
-          {
-            title: '1.0.4 release',
-            link: '/en-us/docs/release/1.0.4-release.html',
-          },
-          {
-            title: '1.0.5 release',
-            link: '/en-us/docs/release/1.0.5-release.html',
-          },
-          {
-            title: '1.1.0 release',
-            link: '/en-us/docs/release/1.1.0-release.html',
-          },
+          }
         ],
       },
       {
@@ -146,37 +118,9 @@ export default {
         title: '版本发布',
         children: [
           {
-            title: '通知',
-            link: '/zh-cn/docs/release/note.html',
-          },
-          {
             title: '升级',
             link: '/zh-cn/docs/release/upgrade.html',
-          },
-          {
-            title: '1.0.1 release',
-            link: '/zh-cn/docs/release/1.0.1-release.html',
-          },
-          {
-            title: '1.0.2 release',
-            link: '/zh-cn/docs/release/1.0.2-release.html',
-          },
-          {
-            title: '1.0.3 release',
-            link: '/zh-cn/docs/release/1.0.3-release.html',
-          },
-          {
-            title: '1.0.4 release',
-            link: '/zh-cn/docs/release/1.0.4-release.html',
-          },
-          {
-            title: '1.0.5 release',
-            link: '/zh-cn/docs/release/1.0.5-release.html',
-          },
-          {
-            title: '1.1.0 release',
-            link: '/zh-cn/docs/release/1.1.0-release.html',
-          },
+          }
         ],
       },
       {
