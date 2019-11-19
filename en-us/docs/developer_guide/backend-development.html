@@ -28,7 +28,11 @@ For those who are not familiar with maven, please refer to: <a href="http://mave
 <ul>
 <li>Execute the compile command:</li>
 </ul>
-<pre><code> mvn -U clean package assembly:assembly -Dmaven.test.skip=true
+<pre><code>when deploy version &gt;= 1.2.0 , plese use:
+mvn clean package -Prelease -Dmaven.test.skip=true
+
+before 1.2.0, please use:
+ mvn -U clean package assembly:assembly -Dmaven.test.skip=true
 </code></pre>
 <ul>
 <li>View directory</li>
