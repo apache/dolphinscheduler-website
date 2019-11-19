@@ -28,6 +28,10 @@
 <ul>
 <li>执行编译命令：</li>
 </ul>
+<p>当部署的版本 &gt;= 1.2.0 , 请使用:</p>
+<pre><code> mvn -U clean package -Prelease -Dmaven.test.skip=true
+</code></pre>
+<p>1.2.0以前的版本, 请使用:</p>
 <pre><code> mvn -U clean package assembly:assembly -Dmaven.test.skip=true
 </code></pre>
 <ul>
