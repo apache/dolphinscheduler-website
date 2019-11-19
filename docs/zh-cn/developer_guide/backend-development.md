@@ -17,6 +17,12 @@ http://maven.apache.org/install.html
 
 * 执行编译命令：
 
+当部署的版本 >= 1.2.0 , 请使用:
+```
+ mvn -U clean package -Prelease -Dmaven.test.skip=true
+```
+
+1.2.0以前的版本, 请使用:
 ```
  mvn -U clean package assembly:assembly -Dmaven.test.skip=true
 ```
