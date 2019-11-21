@@ -66,7 +66,7 @@ export default {
         {
           img: '/img/mailinglist.png',
           title: 'Mailing List',
-          content: <span>Join the <a href="mailto:dev-subscribe@dolphinscheduler.apache.org">mailing list </a>and discussion your ideas with us.</span>,
+          content: <span>Subscribe <a href="https://github.com/apache/incubator-dolphinscheduler/issues/1278">mailing list </a>and discussion your ideas with us.</span>,
         },
         {
           img: '/img/issue.png',
@@ -151,7 +151,7 @@ export default {
         {
           img: '/img/mailinglist.png',
           title: '邮件列表',
-          content: <span>加入 <a href="mailto:dev-subscribe@dolphinscheduler.apache.org">邮件列表 </a>参与讨论。</span>,
+          content: <span>订阅 <a href="https://github.com/apache/incubator-dolphinscheduler/issues/1278">邮件列表 </a>参与讨论。</span>,
         },
         {
           img: '/img/issue.png',
