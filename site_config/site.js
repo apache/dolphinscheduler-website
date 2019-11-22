@@ -15,7 +15,13 @@ export default {
       {
         key: 'docs',
         text: 'DOCS',
-        link: '/en-us/docs/user_doc/quick-start.html',
+        children: [
+          {
+            key: 'docs1',
+            text: '1.1.0',
+            link: '/en-us/docs/user_doc/quick-start.html',
+          }
+        ]
       },
       // {
       //   key: 'download',
@@ -101,7 +107,13 @@ export default {
       {
         key: 'docs',
         text: '文档',
-        link: '/zh-cn/docs/user_doc/quick-start.html',
+        children: [
+          {
+            key: 'docs1',
+            text: '1.1.0',
+            link: '/zh-cn/docs/user_doc/quick-start.html',
+          }
+        ]
       },
       // {
       //   key: 'download',
@@ -124,11 +136,6 @@ export default {
         text: '社区',
         link: '/zh-cn/community/index.html',
       },
-      {
-        key: 'community',
-        text: '社区',
-        link: '/zh-cn/community/index.html',
-      }
     ],
     disclaimer: {
       title: 'Disclaimer',
