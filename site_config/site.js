@@ -23,12 +23,12 @@ export default {
           }
         ]
       },
-      // {
-      //   key: 'download',
-      //   text: 'DOWNLOAD',
-      //   link: 'https://github.com/apache/incubator-dolphinscheduler/releases',
-      //   target: '_blank',
-      // },
+      {
+        key: 'download',
+        text: 'DOWNLOAD',
+        link: 'https://github.com/apache/incubator-dolphinscheduler/releases',
+        target: '_blank',
+      },
       {
         key: 'blog',
         text: 'BLOG',
@@ -115,12 +115,12 @@ export default {
           }
         ]
       },
-      // {
-      //   key: 'download',
-      //   text: '下载',
-      //   link: 'https://github.com/apache/incubator-dolphinscheduler/releases',
-      //   target: '_blank',
-      // },
+      {
+        key: 'download',
+        text: '下载',
+        link: 'https://github.com/apache/incubator-dolphinscheduler/releases',
+        target: '_blank',
+      },
       {
         key: 'blog',
         text: '博客',
