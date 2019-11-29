@@ -48,6 +48,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      current: '',
       menuBodyVisible: false,
       language: props.language,
       search: siteConfig.defaultSearch,
@@ -69,15 +70,6 @@ class Header extends React.Component {
       }
     });
   }
-  state = {
-    current: 'home',
-  }
-
-  handleClick = e => {
-    this.setState({
-      current: e.key,
-    });
-  }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -85,9 +77,11 @@ class Header extends React.Component {
     });
   }
 
-  toggleMenu() {
+  
+
+  handleClick = e => {
     this.setState({
-      menuBodyVisible: !this.state.menuBodyVisible,
+      current: e.key,
     });
   }
 
@@ -206,6 +200,7 @@ class Header extends React.Component {
               onClick={this.toggleMenu}
               src={type === 'primary' ? getLink('/img/system/menu_white.png') : getLink('/img/system/menu_gray.png')}
             />
+            <div>
             <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
             {siteConfig[language].pageMenu.map(item => (
               item.children ? <SubMenu
@@ -217,7 +212,7 @@ class Header extends React.Component {
             >
             <Menu.ItemGroup>
             {item.children.map(items => (
-              <Menu.Item key={items.key}><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
+              <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
             ))}
             </Menu.ItemGroup>
           </SubMenu> : <Menu.Item key={item.key}>
@@ -225,6 +220,7 @@ class Header extends React.Component {
             </Menu.Item>
             ))}
           </Menu>
+          </div>
           </div>
         </div>
       </header>
