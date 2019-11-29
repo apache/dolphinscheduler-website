@@ -18,8 +18,13 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.1.0',
+            text: '1.2.0(Upcoming release)',
             link: '/en-us/docs/user_doc/quick-start.html',
+          },
+          {
+              key: 'docs2',
+              text: '1.1.0(Not Apache Release)',
+              link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
         ]
       },
@@ -110,8 +115,13 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.1.0',
+            text: '1.2.0(Upcoming release)',
             link: '/zh-cn/docs/user_doc/quick-start.html',
+          },
+          {
+              key: 'docs2',
+              text: '1.1.0(Not Apache Release)',
+              link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
         ]
       },
