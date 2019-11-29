@@ -37,7 +37,7 @@ export default {
       {
         key: 'development',
         text: 'DEVELOPMENT',
-        link: '/en-us/docs/development/developers.html',
+        link: '/en-us/docs/development/architecture-design.html',
       },
       {
         key: 'community',
@@ -129,7 +129,7 @@ export default {
       {
         key: 'development',
         text: '开发者',
-        link: '/zh-cn/docs/development/developers.html',
+        link: '/zh-cn/docs/development/architecture-design.html',
       },
       {
         key: 'community',

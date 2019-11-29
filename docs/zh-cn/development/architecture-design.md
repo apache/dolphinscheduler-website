@@ -302,3 +302,81 @@ public class TaskLogFilter extends Filter<ILoggingEvent {
 本文从调度出发，初步介绍了大数据分布式工作流调度系统--DolphinScheduler的架构原理及实现思路。未完待续
 
 
+ some processes need to be processed before other processes. This can be configured at the start of the process or at the time of scheduled start. There are 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below
+
+      <p align="center">
+         <img src="https://analysys.github.io/easyscheduler_docs_cn/images/process_priority.png" alt="Process Priority Configuration" width="40%" />
+       </p>
+
+    - The priority of the task is also divided into 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below
+
+      <p align="center">
+         <img src="https://analysys.github.io/easyscheduler_docs_cn/images/task_priority.png" alt="task priority configuration" width="35%" />
+       </p>
+
+##### VI. Logback and gRPC implement log access
+
+- Since the Web (UI) and Worker are not necessarily on the same machine, viewing the log is not as it is for querying local files. There are two options:
+  - Put the logs on the ES search engine
+  - Obtain remote log information through gRPC communication
+- Considering the lightweightness of DolphinScheduler as much as possible, gRPC was chosen to implement remote access log information.
+
+ <p align="center">
+   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc remote access" width="50%" />
+ </p>
+
+- We use a custom Logback FileAppender and Filter function to generate a log file for each task instance.
+- The main implementation of FileAppender is as follows:
+
+```java
+ /**
+  * task log appender
+  */
+ Public class TaskLogAppender extends FileAppender<ILoggingEvent {
+ 
+     ...
+
+    @Override
+    Protected void append(ILoggingEvent event) {
+
+        If (currentlyActiveFile == null){
+            currentlyActiveFile = getFile();
+        }
+        String activeFile = currentlyActiveFile;
+        // thread name: taskThreadName-processDefineId_processInstanceId_taskInstanceId
+        String threadName = event.getThreadName();
+        String[] threadNameArr = threadName.split("-");
+        // logId = processDefineId_processInstanceId_taskInstanceId
+        String logId = threadNameArr[1];
+        ...
+        super.subAppend(event);
+    }
+}
+```
+
+Generate a log in the form of /process definition id/process instance id/task instance id.log
+
+- Filter matches the thread name starting with TaskLogInfo:
+- TaskLogFilter is implemented as follows:
+
+```java
+ /**
+ * task log filter
+ */
+Public class TaskLogFilter extends Filter<ILoggingEvent {
+
+    @Override
+    Public FilterReply decide(ILoggingEvent event) {
+        If (event.getThreadName().startsWith("TaskLogInfo-")){
+            Return FilterReply.ACCEPT;
+        }
+        Return FilterReply.DENY;
+    }
+}
+```
+
+
+
+### summary
+
+Starting from the scheduling, this paper introduces the architecture principle and implementation ideas of the big data distributed workflow scheduling system-DolphinScheduler. To be continued
