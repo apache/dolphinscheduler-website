@@ -2,12 +2,8 @@ export default {
   'en-us': {
     sidemenu: [
       {
-        title: 'User doc',
+        title: 'Deployment doc',
         children: [
-          {
-            title: 'Quick Start',
-            link: '/en-us/docs/user_doc/quick-start.html',
-          },
           {
             title: 'Backend deploy',
             link: '/en-us/docs/user_doc/backend-deployment.html',
@@ -15,15 +11,29 @@ export default {
           {
             title: 'Frontend deploy',
             link: '/en-us/docs/user_doc/frontend-deployment.html',
-          },
-          {
-            title: 'System manual',
-            link: '/en-us/docs/user_doc/system-manual.html',
-          },
+          }
         ]
       },
       {
-        title: 'Release',
+          title: 'User Manual',
+          children: [
+              {
+                  title: 'Quick Start',
+                  link: '/en-us/docs/user_doc/quick-start.html',
+              },
+              {
+                  title: 'User Manual',
+                  link: '/en-us/docs/user_doc/system-manual.html',
+              }
+          ]
+      },
+      {
+          title: 'Api Document',
+          target: '_blank',
+          link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=en&lang=en'
+      },
+      {
+        title: 'Upgrade',
         children: [
           {
             title: 'Upgrade',
@@ -46,12 +56,8 @@ export default {
   'zh-cn': {
     sidemenu: [
       {
-        title: '用户文档',
+        title: '部署文档',
         children: [
-          {
-            title: '快速上手',
-            link: '/zh-cn/docs/user_doc/quick-start.html',
-          },
           {
             title: '后端部署',
             link: '/zh-cn/docs/user_doc/backend-deployment.html',
@@ -59,15 +65,34 @@ export default {
           {
             title: '前端部署',
             link: '/zh-cn/docs/user_doc/frontend-deployment.html',
-          },
-          {
-            title: '系统手册',
-            link: '/zh-cn/docs/user_doc/system-manual.html',
-          },
+          }
         ],
       },
       {
-        title: '版本发布',
+          title: '用户手册',
+          children: [
+              {
+                  title: '快速上手',
+                  link: '/zh-cn/docs/user_doc/quick-start.html',
+              },
+              {
+                  title: '用户手册',
+                  link: '/zh-cn/docs/user_doc/system-manual.html',
+              },
+          ],
+      },
+      {
+          title: 'API文档',
+          children: [
+              {
+                  title: '',
+                  target: '_blank',
+                  link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=zh_CN&lang=zh'
+              }
+          ]
+      },
+      {
+        title: '版本升级',
         children: [
           {
             title: '升级',

@@ -19,12 +19,7 @@ export default {
           {
             title: 'Frontend Development',
             link: '/en-us/docs/development/frontend-development.html',
-          },
-          {
-            title: 'Api Document',
-            target: '_blank',
-            link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=en&lang=en'
-          },
+          }
         ],
       },
       {
