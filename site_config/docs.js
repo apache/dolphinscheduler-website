@@ -2,7 +2,7 @@ export default {
   'en-us': {
     sidemenu: [
       {
-        title: 'Deployment doc',
+        title: 'Deployment Document',
         children: [
           {
             title: 'Backend deploy',
@@ -29,8 +29,13 @@ export default {
       },
       {
           title: 'Api Document',
-          target: '_blank',
-          link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=en&lang=en'
+          children: [
+              {
+                  title: 'Api Document',
+                  target: '_blank',
+                  link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=en&lang=en'
+              }
+          ]
       },
       {
         title: 'Upgrade',
@@ -39,7 +44,7 @@ export default {
             title: 'Upgrade',
             link: '/en-us/docs/release/upgrade.html',
           }
-        ],
+        ]
       },
       {
         title: 'FAQ',
@@ -85,7 +90,7 @@ export default {
           title: 'API文档',
           children: [
               {
-                  title: '',
+                  title: 'API文档',
                   target: '_blank',
                   link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=zh_CN&lang=zh'
               }
