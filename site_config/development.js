@@ -13,13 +13,13 @@ export default {
             link: '/en-us/docs/development/backend-development.html',
           },
           {
-            title: 'plugin-development',
-            link: '/en-us/docs/development/plugin-development.html',
-          },
-          {
             title: 'Frontend Development',
             link: '/en-us/docs/development/frontend-development.html',
-          }
+          },
+          {
+              title: 'plugin-development',
+              link: '/en-us/docs/development/plugin-development.html',
+          },
         ],
       },
       {
