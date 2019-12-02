@@ -1,11 +1,12 @@
 # 前端部署文档
 
-前端有3种部署方式，分别为自动化部署，手动部署和编译源码部署
+前端有2种部署方式，分别为自动化部署和手动部署
 
 ## 1、准备工作
-#### 下载安装包
+#### 下载源码包和安装包
 
-请下载最新版本的安装包，下载地址： [github下载](https://github.com/analysys/EasyScheduler/releases)
+下载地址： [github下载](https://github.com/apache/incubator-dolphinscheduler.git)
+请下载最新版本的源码包和安装包，
 
 下载 dolphinscheduler-ui-x.x.x.tar.gz 后，解压`tar -zxvf dolphinscheduler-ui-x.x.x.tar.gz ./`后，进入`dolphinscheduler-ui`目录
  
@@ -34,10 +35,12 @@ esc_proxy_port="http://192.168.xx.xx:12345"
 
 
 ### 2.2 手动部署
+以下两种方式任选其一部署即可，需要用户自行安装
 
+#### 2.2.1 nginx部署
 安装epel源 `yum install epel-release -y`
 
-安装Nginx `yum install nginx -y`
+安装Nginx `yum install nginx -y` 或者访问http://nginx.org/en/download.html下载安装
 
 
 > ####  nginx配置文件地址
@@ -91,6 +94,19 @@ systemctl restart nginx
 
 - 状态 `systemctl status nginx`
 
+#### 2.2.2 jetty部署
+在源码包`dolphinscheduler-ui`目录下执行
+
+```
+npm run build:combined
+```
+
+在后端二进制包目录下创建ui目录
+
+拷贝dolphinscheduler-ui/dist目录下所有的文件到后端二进制包ui目录下
+
+访问以下url,接口地址(自行修改)
+http://192.168.xx.xx:12345/dolphinscheduler/ui/index.html
 
 ## 前端常见问题
 ####  1. 上传文件大小限制
