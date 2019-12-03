@@ -16,8 +16,9 @@
 <p>前端有3种部署方式，分别为自动化部署，手动部署和编译源码部署</p>
 <h2>1、准备工作</h2>
 <h4>下载安装包</h4>
-<p>请下载最新版本的安装包，下载地址： <a href="https://github.com/analysys/EasyScheduler/releases">github下载</a></p>
-<p>下载 dolphinscheduler-ui-x.x.x.tar.gz 后，解压<code>tar -zxvf dolphinscheduler-ui-x.x.x.tar.gz ./</code>后，进入<code>dolphinscheduler-ui</code>目录</p>
+<p>请下载最新版本的安装包，下载地址： <a href="https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler">下载</a></p>
+<p>下载 apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz 后，
+解压<code>tar -zxvf apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.g ./</code>后，进入<code>dolphinscheduler-ui</code>目录</p>
 <h2>2、部署</h2>
 <p>以下两种方式任选其一部署即可，推荐自动化部署</p>
 <h3>2.1 自动化部署</h3>
@@ -34,8 +35,10 @@ esc_proxy_port=&quot;http://192.168.xx.xx:12345&quot;
 </blockquote>
 <p>在该目录下执行<code>./install-dolphinscheduler-ui.sh</code></p>
 <h3>2.2 手动部署</h3>
-<p>安装epel源 <code>yum install epel-release -y</code></p>
-<p>安装Nginx <code>yum install nginx -y</code></p>
+<p>以下两种部署方式任选其一即可，也可以根据自己生产环境情况自行选择其他方式部署</p>
+<h4>2.2.1 nginx方式部署</h4>
+<p>选装epel源 <code>yum install epel-release -y</code></p>
+<p>自行安装Nginx，去官网下载: <a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a>  或者 <code>yum install nginx -y</code></p>
 <blockquote>
 <h4>nginx配置文件地址</h4>
 </blockquote>
@@ -93,6 +96,14 @@ esc_proxy_port=&quot;http://192.168.xx.xx:12345&quot;
 <p>状态 <code>systemctl status nginx</code></p>
 </li>
 </ul>
+<h4>2.2.2 jetty方式部署</h4>
+<p>在源码包<code>dolphinscheduler-ui</code>目录下执行</p>
+<pre><code>npm run build:combined
+</code></pre>
+<p>在后端二进制包目录下创建ui目录</p>
+<p>拷贝dolphinscheduler-ui/dist目录下所有的文件到后端二进制包ui目录下</p>
+<p>访问以下url,接口地址(自行修改)
+<a href="http://192.168.xx.xx:12345/dolphinscheduler/ui/index.html">http://192.168.xx.xx:12345/dolphinscheduler/ui/index.html</a></p>
 <h2>前端常见问题</h2>
 <h4>1. 上传文件大小限制</h4>
 <p>编辑配置文件 <code>vi /etc/nginx/nginx.conf</code></p>
