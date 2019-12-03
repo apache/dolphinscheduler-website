@@ -4,11 +4,11 @@
 
 ## 1、准备工作
 
-请下载最新版本的安装包，下载地址： [github下载](https://github.com/apache/incubator-dolphinscheduler/releases) 
+请下载最新版本的安装包，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
 
 #### 准备一: 基础软件安装(必装项请自行安装)
 
- * Mysql (5.5+) :  必装
+ * Mysql (5.5+) :  选装
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装
  * ZooKeeper (3.4.6+) ：必装 
  * Hadoop (2.6+) ：选装， 如果需要使用到资源上传功能，MapReduce任务提交则需要配置Hadoop(上传的资源文件目前保存在Hdfs上)
@@ -54,7 +54,7 @@ dolphinscheduler  ALL=(ALL)       NOPASSWD: NOPASSWD: ALL
     ```
 
 * 创建表和导入基础数据
-    修改./conf/dao/data_source.properties中的下列属性
+    修改./conf/application-dao.properties中的下列属性
 
     ```
         spring.datasource.url
@@ -73,7 +73,11 @@ dolphinscheduler  ALL=(ALL)       NOPASSWD: NOPASSWD: ALL
 ```
 bin : 基础服务启动脚本
 conf : 项目配置文件
+DISCLAIMER : DISCLAIMER文件
 lib : 项目依赖jar包，包括各个模块jar和第三方jar
+LICENSE : LICENSE文件
+licenses : 运行时license
+NOTICE : NOTICE文件
 script : 集群启动、停止和服务监控启停脚本
 sql : 项目依赖sql文件
 install.sh : 一键部署脚本
@@ -99,7 +103,7 @@ install.sh : 一键部署脚本
 
 
 ## 2、部署
-推荐自动化部署，有经验的小伙伴也可以使用源码部署
+以下两种方式任选其一部署即可，推荐自动化部署，有经验的小伙伴也可以使用源码部署
 
 ### 2.1 自动部署
 
@@ -141,20 +145,24 @@ install.sh : 一键部署脚本
 * 执行编译命令：
 
 ```
- mvn -U clean package assembly:assembly -Dmaven.test.skip=true
+ mvn -U clean package -Prelease -Dmaven.test.skip=true
 ```
 
 * 查看目录
 
-正常编译完后，会在当前目录生成 `./target/dolphinscheduler-{version}/`
+正常编译完后，会在 `dolphinscheduler-dist/dolphinscheduler-backend/target`目录下生成
+       `apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz`
 
 ```查看目录
  ../
     ├── bin
     ├── conf
+    |── DISCLAIMER
     |—— install.sh
     |—— lib
-    |—— logs
+    |—— LICENSE
+    |—— licenses
+    |—— NOTICE
     |—— script
     |—— sql
 ```
@@ -204,7 +212,14 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 ```
 
 ## 3、数据库升级
-数据库升级是在1.0.2版本增加的功能,执行以下命令即可自动升级数据库
+修改./conf/application-dao.properties中的下列属性
+
+    ```
+        spring.datasource.url
+        spring.datasource.username
+        spring.datasource.password
+    ```
+执行以下命令即可自动升级数据库
 ```
 sh ./script/upgrade-dolphinscheduler.sh
 ```
