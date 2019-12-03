@@ -28,7 +28,7 @@
     <p align="center">
     <img src="/img/process_definitions_en.png" width="60%" />
       </p>
-  - Increase the order of execution between nodes: click "line connection". As shown, task 1 and task 3 are executed in parallel. When task 1 is executed, task 2 and task 3 are executed simultaneously.
+  - Increase the order of execution between nodes: click "line connection". As shown, task 2 and task 3 are executed in parallel. When task 1 is executed, task 2 and task 3 are executed simultaneously.
 
 <p align="center">
    <img src="/img/task_en.png" width="60%" />
