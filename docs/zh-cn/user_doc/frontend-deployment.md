@@ -5,7 +5,7 @@
 ## 1、准备工作
 #### 下载安装包
 
-请下载最新版本的安装包，下载地址： [github下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
+请下载最新版本的安装包，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
 
 下载 apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz 后，
 解压`tar -zxvf apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.g ./`后，进入`dolphinscheduler-ui`目录
@@ -38,7 +38,7 @@ esc_proxy_port="http://192.168.xx.xx:12345"
 以下两种部署方式任选其一即可，也可以根据自己生产环境情况自行选择其他方式部署
 
 #### 2.2.1 nginx方式部署
-选装epel源 `yum install epel-release -y` (阿里源)
+选装epel源 `yum install epel-release -y`
 
 自行安装Nginx，去官网下载: http://nginx.org/en/download.html  或者 `yum install nginx -y` 
 
