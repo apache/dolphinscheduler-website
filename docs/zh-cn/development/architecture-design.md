@@ -136,7 +136,7 @@ DolphinScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Mast
 
 2. DolphinScheduler中Scheduler线程分布式锁实现流程图：
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock_procss.png" alt="获取分布式锁流程"  width="50%" />
+   <img src="/img/distributed_lock_procss.png" alt="获取分布式锁流程"  width="50%" />
  </p>
 
 
