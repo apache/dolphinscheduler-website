@@ -19,10 +19,11 @@
 <li>source code compile and then deployment</li>
 </ul>
 <h2>Preparations</h2>
-<p>Download the latest version of the installation package, download address：  <a href="https://github.com/apache/incubator-dolphinscheduler/releases">github download</a>, download dolphinscheduler-backend-x.x.x.tar.gz(back-end referred to as dolphinscheduler-backend),dolphinscheduler-ui-x.x.x.tar.gz(front-end referred to as dolphinscheduler-ui)</p>
+<p>Download the latest version of the installation package, download address：  <a href="https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler">download</a>,
+download apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-backend-bin.tar.gz</p>
 <h4>Preparations 1: Installation of basic software (self-installation of required items)</h4>
 <ul>
-<li>Mysql (5.5+) :  Mandatory</li>
+<li>Mysql (5.5+) :  Optional</li>
 <li>JDK (1.8+) :  Mandatory</li>
 <li>ZooKeeper(3.4.6+) ：Mandatory</li>
 <li>Hadoop (2.6+) ：Optionally, if you need to use the resource upload function, MapReduce task submission needs to configure Hadoop (uploaded resource files are currently stored on Hdfs)</li>
@@ -62,7 +63,7 @@ flush privileges;
 </li>
 <li>
 <p>creates tables and imports basic data
-Modify the following attributes in ./conf/dao/data_source.properties</p>
+Modify the following attributes in ./conf/application-dao.properties</p>
 <pre><code>    spring.datasource.url
     spring.datasource.username
     spring.datasource.password
@@ -76,8 +77,12 @@ Modify the following attributes in ./conf/dao/data_source.properties</p>
 <pre><code> instruction of dolphinscheduler-backend directory 
 </code></pre>
 <pre><code class="language-directory">bin : Basic service startup script
+DISCLAIMER : DISCLAIMER
 conf : Project Profile
 lib : The project relies on jar packages, including individual module jars and third-party jars
+LICENSE : LICENSE
+licenses : licenses
+NOTICE : NOTICE
 script :  Cluster Start, Stop and Service Monitor Start and Stop scripts
 sql : The project relies on SQL files
 install.sh :  One-click deployment script
@@ -107,7 +112,7 @@ Change the variable to 'true' if you want to use hdfs, you also need to create t
 </li>
 </ul>
 <h2>Deployment</h2>
-<p>Automated deployment is recommended, and experienced partners can use source deployment as well.</p>
+<p>Either of the following two methods can be deployed,automated deployment is recommended, and experienced partners can use source deployment as well.</p>
 <h3>Automated Deployment</h3>
 <ul>
 <li>
@@ -142,12 +147,13 @@ Change the variable to 'true' if you want to use hdfs, you also need to create t
 <ul>
 <li>Execute the compilation command：</li>
 </ul>
-<pre><code> mvn -U clean package assembly:assembly -Dmaven.test.skip=true
+<pre><code> mvn -U clean package -Prelease -Dmaven.test.skip=true
 </code></pre>
 <ul>
 <li>View directory</li>
 </ul>
-<p>After normal compilation, ./target/dolphinscheduler-{version}/ is generated in the current directory</p>
+<p>After normal compilation, <code>apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz</code>
+is generated in the <code>./dolphinscheduler-dist/dolphinscheduler-backend/target</code> directory</p>
 <h3>Start-and-stop services commonly used in systems (for service purposes, please refer to System Architecture Design for details)</h3>
 <ul>
 <li>
@@ -190,7 +196,14 @@ sh ./bin/dolphinscheduler-daemon.sh stop logger-server
 sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 </code></pre>
 <h2>Database Upgrade</h2>
-<p>Database upgrade is a function added in version 1.0.2. The database can be upgraded automatically by executing the following command:</p>
+<p>Modify the following properties in ./conf/application-dao.properties</p>
+<pre><code>```
+    spring.datasource.url
+    spring.datasource.username
+    spring.datasource.password
+```
+</code></pre>
+<p>The database can be upgraded automatically by executing the following command:</p>
 <pre><code class="language-upgrade">sh ./script/upgrade-dolphinscheduler.sh
 </code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/ds_gray.svg"/><div class="cols-container"><div class="col col-12"><h3>Disclaimer</h3><p>Apache DolphinScheduler (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. 
