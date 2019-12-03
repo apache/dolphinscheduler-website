@@ -5,6 +5,20 @@ export default {
                 title: 'Developer guide',
                 children: [
                     {
+                        title: 'Contribution Guide',
+                        children: [
+                            {
+                                title: 'Subscribe mail list',
+                                target: '_blank',
+                                link: '/en-us/docs/user_doc/subscribe.html',
+                            },
+                            {
+                                title: 'Participate in contributing',
+                                link: '/en-us/docs/development/contribute.html',
+                            }
+                        ],
+                    },
+                    {
                         title: 'Architecture Design',
                         link: '/en-us/docs/development/architecture-design.html',
                     },
@@ -23,11 +37,11 @@ export default {
                 ],
             },
             {
-                title: 'Committer Guide',
+                title: 'Submit Guide',
                 children: [
                     {
-                        title: 'Contribute',
-                        link: '/en-us/docs/development/contribute.html',
+                        title: 'Submit Pull Request Process',
+                        link: '/en-us/docs/development/submit-code.html',
                     },
                     {
                         title: 'Developers',
@@ -66,17 +80,12 @@ export default {
                         link: '/zh-cn/docs/development/backend-development.html',
                     },
                     {
-                        title: '插件开发',
-                        link: '/zh-cn/docs/development/plugin-development.html',
-                    },
-                    {
                         title: '前端开发',
                         link: '/zh-cn/docs/development/frontend-development.html',
                     },
                     {
-                        title: '接口文档',
-                        target: '_blank',
-                        link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=zh_CN&lang=zh'
+                        title: '插件开发',
+                        link: '/zh-cn/docs/development/plugin-development.html',
                     },
                 ],
             },
@@ -84,8 +93,8 @@ export default {
                 title: '提交者向导',
                 children: [
                     {
-                        title: '参与贡献',
-                        link: '/zh-cn/docs/development/contribute.html',
+                        title: '提交流程',
+                        link: '/zh-cn/docs/development/submit-code.html',
                     },
                     {
                         title: '开发人员',
