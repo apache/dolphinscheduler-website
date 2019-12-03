@@ -15,7 +15,7 @@ jobs:
         node-version: 8.16.2
     - name: Build
       run: |
-        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r 404.html index.html en-us zh-cn build img download dist/
+        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r 404.html .asf.yaml index.html en-us zh-cn build img download dist/
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.4.0
@@ -23,5 +23,3 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: asf-site
         PUBLISH_DIR: ./dist
-      with:
-        keepFiles: true

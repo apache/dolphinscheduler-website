@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { autobind } from 'core-decorators';
 import siteConfig from '../../../site_config/site';
-import { getLink } from '../../../utils';
+import { getScrollTop,getLink } from '../../../utils';
+import 'antd/dist/antd.css';
 import './index.scss';
+import { Menu, Icon } from 'antd'
 
+const { SubMenu } = Menu;
 const languageSwitch = [
   {
     text: '中',
@@ -45,12 +48,27 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      current: '',
       menuBodyVisible: false,
       language: props.language,
       search: siteConfig.defaultSearch,
       searchValue: '',
       inputVisible: false,
     };
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', () => {
+      const scrollTop = getScrollTop();
+      if (scrollTop > 66) {
+        this.setState({
+          type: 'normal',
+        });
+      } else {
+        this.setState({
+          type: 'primary',
+        });
+      }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,9 +77,11 @@ class Header extends React.Component {
     });
   }
 
-  toggleMenu() {
+  
+
+  handleClick = e => {
     this.setState({
-      menuBodyVisible: !this.state.menuBodyVisible,
+      current: e.key,
     });
   }
 
@@ -180,19 +200,27 @@ class Header extends React.Component {
               onClick={this.toggleMenu}
               src={type === 'primary' ? getLink('/img/system/menu_white.png') : getLink('/img/system/menu_gray.png')}
             />
-            <ul>
-              {siteConfig[language].pageMenu.map(item => (
-                <li
-                  className={classnames({
-                    'menu-item': true,
-                    [`menu-item-${type}`]: true,
-                    [`menu-item-${type}-active`]: currentKey === item.key,
-                  })}
-                  key={item.key}
-                >
-                  <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                </li>))}
-            </ul>
+            <div>
+            <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+            {siteConfig[language].pageMenu.map(item => (
+              item.children ? <SubMenu
+              title={
+                <span className="submenu-title-wrapper">
+                  {item.text}
+                </span>
+              }
+            >
+            <Menu.ItemGroup>
+            {item.children.map(items => (
+              <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
+            ))}
+            </Menu.ItemGroup>
+          </SubMenu> : <Menu.Item key={item.key}>
+              <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+            </Menu.Item>
+            ))}
+          </Menu>
+          </div>
           </div>
         </div>
       </header>

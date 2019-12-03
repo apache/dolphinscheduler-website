@@ -1,5 +1,10 @@
 @import '../../variables.scss';
-
+.ant-menu { 
+  background: none;
+}
+.ant-menu-horizontal {
+  border-bottom: 0;
+}
 .header-container {
   position: fixed;
   left: 0;
@@ -26,11 +31,12 @@
       vertical-align: sub;
     }
     .header-menu {
+      margin-top: 10px;
       float: right;
       .header-menu-toggle {
         display: none;
         width: 19px;
-        margin-right: 40px;
+        margin-right: 20px;
         margin-top: $headerHeight / 2 - 15px;
         cursor: pointer;
       }
@@ -41,12 +47,45 @@
     }
     li {
       display: inline-block;
-      margin-right: 40px;
+      margin-right: 20px;
     }
     .menu-item {
       font-family: Avenir-Heavy;
       font-size: 14px;
       vertical-align: bottom;
+    }
+    .whiteClass{
+      .ant-menu-item {
+        a {
+          color: #fff;
+          opacity: 0.6;
+          font-family: Avenir-Medium;
+        }
+      }
+    }
+    .blackClass {
+      .ant-menu-item {
+        a {
+          color: #333;
+          font-family: Avenir-Medium;
+        }
+      }
+    }
+    .whiteClass {
+      .ant-menu-submenu-title {
+        .submenu-title-wrapper {
+          color: #fff;
+          font-family: Avenir-Medium;
+        }
+      }
+    }
+    .blackClass {
+      .ant-menu-submenu-title {
+        .submenu-title-wrapper {
+          color: #333;
+          font-family: Avenir-Medium;
+        }
+      }
     }
     .menu-item-primary {
       a {
@@ -93,7 +132,7 @@
       height: 24px;
       line-height: 20px;
       margin-top: $headerHeight / 2 - 12px;
-      margin-right: 40px;
+      margin-right: 20px;
       text-align: center;
       border-radius: 2px;
       cursor: pointer;
@@ -222,7 +261,7 @@
           padding-left: 30px;
           list-style: none;
           line-height: 40px;
-          margin-right: 0;
+          margin-right: 20px;
           a {
             color: #333;
             display: inline-block;
