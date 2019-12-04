@@ -147,7 +147,7 @@ DolphinScheduler uses ZooKeeper distributed locks to implement only one Master t
 2. Scheduler thread distributed lock implementation flow chart in DolphinScheduler:
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock_procss.png" alt="Get Distributed Lock Process" width="50%" />
+   <img src="/img/distributed_lock_procss.png" alt="Get Distributed Lock Process" width="50%" />
  </p>
 
 ##### Third, the thread is insufficient loop waiting problem

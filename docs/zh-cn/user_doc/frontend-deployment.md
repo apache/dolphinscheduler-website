@@ -5,10 +5,11 @@
 ## 1、准备工作
 #### 下载安装包
 
-请下载最新版本的安装包，下载地址： [github下载](https://github.com/analysys/EasyScheduler/releases)
+请下载最新版本的安装包，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
 
-下载 dolphinscheduler-ui-x.x.x.tar.gz 后，解压`tar -zxvf dolphinscheduler-ui-x.x.x.tar.gz ./`后，进入`dolphinscheduler-ui`目录
- 
+下载 apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz 后，
+解压`tar -zxvf apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.g ./`后，进入`dolphinscheduler-ui`目录
+
 
 
 
@@ -34,10 +35,12 @@ esc_proxy_port="http://192.168.xx.xx:12345"
 
 
 ### 2.2 手动部署
+以下两种部署方式任选其一即可，也可以根据自己生产环境情况自行选择其他方式部署
 
-安装epel源 `yum install epel-release -y`
+#### 2.2.1 nginx方式部署
+选装epel源 `yum install epel-release -y`
 
-安装Nginx `yum install nginx -y`
+自行安装Nginx，去官网下载: http://nginx.org/en/download.html  或者 `yum install nginx -y` 
 
 
 > ####  nginx配置文件地址
@@ -90,6 +93,21 @@ systemctl restart nginx
 - 重启 `systemctl restart nginx`
 
 - 状态 `systemctl status nginx`
+
+#### 2.2.2 jetty方式部署
+在源码包`dolphinscheduler-ui`目录下执行
+
+```
+npm run build:combined
+```
+
+在后端二进制包目录下创建ui目录
+
+拷贝dolphinscheduler-ui/dist目录下所有的文件到后端二进制包ui目录下
+
+访问以下url,接口地址(自行修改)
+http://192.168.xx.xx:12345/dolphinscheduler/ui/index.html
+
 
 
 ## 前端常见问题

@@ -8,9 +8,10 @@ The front-end has three deployment modes: automated deployment, manual deploymen
 
 #### Download the installation package
 
-Please download the latest version of the installation package, download address： [github download](https://github.com/apache/incubator-dolphinscheduler/releases)
+Please download the latest version of the installation package, download address： [download](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
 
-After downloading dolphinscheduler-ui-x.x.x.tar.gz，decompress`tar -zxvf dolphinscheduler-ui-x.x.x.tar.gz ./`and enter the`dolphinscheduler-ui`directory
+After downloading apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz，
+decompress`tar -zxvf apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz ./`and enter the`dolphinscheduler-ui`directory
 
 
 
@@ -39,10 +40,12 @@ under this directory, execute`./install-dolphinscheduler-ui.sh`
 
 
 ### Manual Deployment
+You can choose one of the following two deployment methods, or you can choose other deployment methods according to your production environment.
 
-Install epel source `yum install epel-release -y`
+#### nginx deployment
+Option to install epel source `yum install epel-release -y`
 
-Install Nginx `yum install nginx -y`
+Install Nginx by yourself, download it from the official website: http://nginx.org/en/download.html or `yum install nginx -y`
 
 
 > ####  Nginx configuration file address
@@ -101,6 +104,19 @@ systemctl restart nginx
 
 - status `systemctl status nginx`
 
+#### jetty deployment
+Enter the source package `dolphinscheduler-ui` directory and execute
+
+```
+npm run build:combined
+```
+
+Create the ui directory under the backend binary package directory
+
+Copy all files in the dolphinscheduler-ui/dist directory to the backend binary package ui directory
+
+Visit the following url, interface address (modify it yourself)
+http://192.168.xx.xx:12345/dolphinscheduler/ui/index.html
 
 ## FAQ
 #### Upload file size limit

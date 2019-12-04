@@ -2,22 +2,22 @@ export default {
     'en-us': {
         sidemenu: [
             {
-                title: 'Developer guide',
+                title: 'Contribution Guide',
                 children: [
                     {
-                        title: 'Contribution Guide',
-                        children: [
-                            {
-                                title: 'Subscribe mail list',
-                                target: '_blank',
-                                link: '/en-us/docs/user_doc/subscribe.html',
-                            },
-                            {
-                                title: 'Participate in contributing',
-                                link: '/en-us/docs/development/contribute.html',
-                            }
-                        ],
+                        title: 'Subscribe mail list',
+                        target: '_blank',
+                        link: '/en-us/docs/user_doc/subscribe.html',
                     },
+                    {
+                        title: 'Participate in contributing',
+                        link: '/en-us/docs/development/contribute.html',
+                    }
+                ],
+            },
+            {
+                title: 'Developer guide',
+                children: [
                     {
                         title: 'Architecture Design',
                         link: '/en-us/docs/development/architecture-design.html',

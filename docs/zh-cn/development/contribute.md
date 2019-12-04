@@ -90,7 +90,7 @@ Priority分为四级: Critical、Major、Minor、Trivial
 * 如果想要开发实现某个Feature功能，请先回复该功能所关联的Issue，表明您当前正在这个Issue上工作。 并在回复的时候为自己设置一个deadline，并添加的回复内容中。
 * 最好在核心贡献者找到一个导师(指导者)，导师会在设计与功能实现上给予即时的反馈。
 * 您应该新建一个分支来开始您的工作，分支的名字为Feature功能名称/issueId。 比如，您想完成依赖功能并提交了Issue 111，那么您的branch名字应为 dependency/111。 功能名称可与导师讨论后确定。
-* 完成后，发送一个pull request到incubator-dolphinscheduler，提交过程具体请参考下面《提交代码》。
+* 完成后，发送一个pull request到incubator-dolphinscheduler，提交过程具体请参考下面《[提交代码流程](submit-code.md)》。
 
 如果是想提交Pull Request完成某一个Feature或者修复某个Bug，这里都建议大家从小处做起，完成一个小功能就提交一次，每次别改动太多文件(最好6个以下)，改动文件太多也会给Reviewer造成很大的心里压力，建议通过多次pr的方式完成。
 
