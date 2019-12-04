@@ -7,13 +7,14 @@ There are two deployment modes for the backend:
 
 ## Preparations
 
-Download the latest version of the installation package, download address：  [github download](https://github.com/apache/incubator-dolphinscheduler/releases), download dolphinscheduler-backend-x.x.x.tar.gz(back-end referred to as dolphinscheduler-backend),dolphinscheduler-ui-x.x.x.tar.gz(front-end referred to as dolphinscheduler-ui)
+Download the latest version of the installation package, download address：  [download](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler),
+download apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-backend-bin.tar.gz
 
 
 
 #### Preparations 1: Installation of basic software (self-installation of required items)
 
- * Mysql (5.5+) :  Mandatory
+ * Mysql (5.5+) :  Optional
  * JDK (1.8+) :  Mandatory
  * ZooKeeper(3.4.6+) ：Mandatory
  * Hadoop (2.6+) ：Optionally, if you need to use the resource upload function, MapReduce task submission needs to configure Hadoop (uploaded resource files are currently stored on Hdfs)
@@ -58,7 +59,7 @@ Configure SSH secret-free login on deployment machines and other installation ma
     ```
 
 * creates tables and imports basic data
-    Modify the following attributes in ./conf/dao/data_source.properties
+    Modify the following attributes in ./conf/application-dao.properties
 
     ```
         spring.datasource.url
@@ -78,8 +79,12 @@ Configure SSH secret-free login on deployment machines and other installation ma
 
 ```directory
 bin : Basic service startup script
+DISCLAIMER : DISCLAIMER
 conf : Project Profile
 lib : The project relies on jar packages, including individual module jars and third-party jars
+LICENSE : LICENSE
+licenses : licenses
+NOTICE : NOTICE
 script :  Cluster Start, Stop and Service Monitor Start and Stop scripts
 sql : The project relies on SQL files
 install.sh :  One-click deployment script
@@ -103,7 +108,7 @@ install.sh :  One-click deployment script
 
 
 ## Deployment
-Automated deployment is recommended, and experienced partners can use source deployment as well.
+Either of the following two methods can be deployed,automated deployment is recommended, and experienced partners can use source deployment as well.
 
 ### Automated Deployment
 
@@ -146,12 +151,13 @@ After downloading the release version of the source package, unzip it into the r
 * Execute the compilation command：
 
 ```
- mvn -U clean package assembly:assembly -Dmaven.test.skip=true
+ mvn -U clean package -Prelease -Dmaven.test.skip=true
 ```
 
 * View directory
 
-After normal compilation, ./target/dolphinscheduler-{version}/ is generated in the current directory
+After normal compilation, `apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz`
+is generated in the `./dolphinscheduler-dist/dolphinscheduler-backend/target` directory
 
 
 ### Start-and-stop services commonly used in systems (for service purposes, please refer to System Architecture Design for details)
@@ -198,8 +204,14 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 ```
 
 ## Database Upgrade
-Database upgrade is a function added in version 1.0.2. The database can be upgraded automatically by executing the following command:
+Modify the following properties in ./conf/application-dao.properties
 
+    ```
+        spring.datasource.url
+        spring.datasource.username
+        spring.datasource.password
+    ```
+The database can be upgraded automatically by executing the following command:
 ```upgrade
 sh ./script/upgrade-dolphinscheduler.sh
 ```
