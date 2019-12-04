@@ -11,39 +11,25 @@
 * Create queue
 
 <p align="center">
-   <img src="/img/create-queue-en.png" width="60%" />
+   <img src="/img/create_queue_en.png" width="60%" />
  </p>
 
   * Create tenant
       <p align="center">
-    <img src="/img/create-tenant-en.png" width="60%" />
+    <img src="/img/create_tenant_en.png" width="60%" />
   </p>
 
   * Creating Ordinary Users
 <p align="center">
-      <img src="/img/create-user-en.png" width="60%" />
+      <img src="/img/create_user_en.png" width="60%" />
  </p>
 
   * Create an alarm group
 
  <p align="center">
-    <img src="/img/alarm-group-en.png" width="60%" />
+    <img src="/img/create_group_en.png" width="60%" />
   </p>
 
-  
-  * Create an worker group
-  
-   <p align="center">
-      <img src="/img/worker-group-en.png" width="60%" />
-    </p>
-    
- * Create an token
-  
-   <p align="center">
-      <img src="/img/token-en.png" width="60%" />
-    </p>
-     
-  
   * Log in with regular users
   > Click on the user name in the upper right corner to "exit" and re-use the normal user login.
 

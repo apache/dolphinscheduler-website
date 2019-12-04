@@ -2,22 +2,15 @@
 
 ## Operational Guidelines
 
-### Home page
-The homepage contains task status statistics, process status statistics, and workflow definition statistics for all user projects.
-
-<p align="center">
-      <img src="/img/home_en.png" width="80%" />
- </p>
-
 ### Create a project
 
   - Click "Project - > Create Project", enter project name,  description, and click "Submit" to create a new project.
   - Click on the project name to enter the project home page.
 <p align="center">
-      <img src="/img/project_home_en.png" width="80%" />
+      <img src="/img/project_home_en.png" width="60%" />
  </p>
 
-> The project home page contains task status statistics, process status statistics, and workflow definition statistics for the project.
+> Project Home Page contains task status statistics, process status statistics.
 
  - Task State Statistics: It refers to the statistics of the number of tasks to be run, failed, running, completed and succeeded in a given time frame.
  - Process State Statistics: It refers to the statistics of the number of waiting, failing, running, completing and succeeding process instances in a specified time range.
@@ -33,23 +26,23 @@ The homepage contains task status statistics, process status statistics, and wor
   - Timeout alarm. Fill in "Overtime Time". When the task execution time exceeds the overtime, it can alarm and fail over time.
   - Fill in "Custom Parameters" and refer to [Custom Parameters](#Custom Parameters)
     <p align="center">
-    <img src="/img/process_definitions_en.png" width="80%" />
+    <img src="/img/process_definitions_en.png" width="60%" />
       </p>
   - Increase the order of execution between nodes: click "line connection". As shown, task 2 and task 3 are executed in parallel. When task 1 is executed, task 2 and task 3 are executed simultaneously.
 
 <p align="center">
-   <img src="/img/task_en.png" width="80%" />
+   <img src="/img/task_en.png" width="60%" />
  </p>
 
   - Delete dependencies: Click on the arrow icon to "drag nodes and select items", select the connection line, click on the delete icon to delete dependencies between nodes.
 <p align="center">
-      <img src="/img/delete_dependencies_en.png" width="80%" />
+      <img src="/img/delete_dependencies_en.png" width="60%" />
  </p>
 
   - Click "Save", enter the name of the process definition, the description of the process definition, and set the global parameters.
 
 <p align="center">
-   <img src="/img/global_parameters_en.png" width="80%" />
+   <img src="/img/global_parameters_en.png" width="60%" />
  </p>
 
   - For other types of nodes, refer to [task node types and parameter settings](#task node types and parameter settings)
@@ -70,13 +63,13 @@ The homepage contains task status statistics, process status statistics, and wor
     * Cc: Enter the mailbox and press Enter key to save. When the process is over and fault-tolerant occurs, alarm messages are copied to the copier list.
     
 <p align="center">
-   <img src="/img/start-process-en.png" width="80%" />
+   <img src="/img/start-process-en.png" width="60%" />
  </p>
 
   * Complement: To implement the workflow definition of a specified date, you can select the time range of the complement (currently only support for continuous days), such as the data from May 1 to May 10, as shown in the figure:
   
 <p align="center">
-   <img src="/img/complement-en.png" width="80%" />
+   <img src="/img/complement-en.png" width="60%" />
  </p>
 
 > Complement execution mode includes serial execution and parallel execution. In serial mode, the complement will be executed sequentially from May 1 to May 10. In parallel mode, the tasks from May 1 to May 10 will be executed simultaneously.
@@ -86,12 +79,12 @@ The homepage contains task status statistics, process status statistics, and wor
   - Choose start-stop time, in the start-stop time range, regular normal work, beyond the scope, will not continue to produce timed workflow instances.
   
 <p align="center">
-   <img src="/img/timing-en.png" width="80%" />
+   <img src="/img/timing-en.png" width="60%" />
  </p>
 
   - Add a timer to be executed once a day at 5:00 a.m. as shown below:
 <p align="center">
-      <img src="/img/timer-en.png" width="80%" />
+      <img src="/img/timer-en.png" width="60%" />
  </p>
 
   - Timely online，**the newly created timer is offline. You need to click "Timing Management - >online" to work properly.**
@@ -102,26 +95,26 @@ The homepage contains task status statistics, process status statistics, and wor
   > Click on the process name to see the status of task execution.
 
   <p align="center">
-   <img src="/img/process-instances-en.png" width="80%" />
+   <img src="/img/process-instances-en.png" width="60%" />
  </p>
 
   > Click on the task node, click "View Log" to view the task execution log.
 
   <p align="center">
-   <img src="/img/view-log-en.png" width="80%" />
+   <img src="/img/view-log-en.png" width="60%" />
  </p>
 
  > Click on the task instance node, click **View History** to view the list of task instances that the process instance runs.
 
  <p align="center">
-    <img src="/img/instance-runs-en.png" width="80%" />
+    <img src="/img/instance-runs-en.png" width="60%" />
   </p>
 
 
   > Operations on workflow instances:
 
 <p align="center">
-   <img src="/img/workflow-instances-en.png" width="80%" />
+   <img src="/img/workflow-instances-en.png" width="60%" />
 </p>
 
   * Editor: You can edit the terminated process. When you save it after editing, you can choose whether to update the process definition or not.
@@ -133,7 +126,7 @@ The homepage contains task status statistics, process status statistics, and wor
   * Delete: Delete process instances and task instances under process instances
   * Gantt diagram: The vertical axis of Gantt diagram is the topological ordering of task instances under a process instance, and the horizontal axis is the running time of task instances, as shown in the figure:
 <p align="center">
-      <img src="/img/gantt-en.png" width="80%" />
+      <img src="/img/gantt-en.png" width="60%" />
 </p>
 
 ### View task instances
@@ -142,13 +135,13 @@ The homepage contains task status statistics, process status statistics, and wor
   >
 
 <p align="center">
-   <img src="/img/task-instances-en.png" width="80%" />
+   <img src="/img/task-instances-en.png" width="60%" />
 </p>
 
   > Click "View Log" in the action column to view the log of task execution.
 
 <p align="center">
-   <img src="/img/task-execution-en.png" width="80%" />
+   <img src="/img/task-execution-en.png" width="60%" />
 </p>
 
 ### Create data source
@@ -168,7 +161,7 @@ The homepage contains task status statistics, process status statistics, and wor
 - Jdbc connection parameters: parameter settings for MySQL connections, filled in as JSON
 
 <p align="center">
-   <img src="/img/mysql-en.png" width="80%" />
+   <img src="/img/mysql-en.png" width="60%" />
  </p>
 
   > Click "Test Connect" to test whether the data source can be successfully connected.
@@ -188,7 +181,7 @@ The homepage contains task status statistics, process status statistics, and wor
 - Jdbc connection parameters: parameter settings for POSTGRESQL connections, filled in as JSON
 
 <p align="center">
-   <img src="/img/create-datasource-en.png" width="80%" />
+   <img src="/img/create-datasource-en.png" width="60%" />
  </p>
 
 #### Create and edit HIVE data source
@@ -196,7 +189,7 @@ The homepage contains task status statistics, process status statistics, and wor
 1.Connect with HiveServer 2
 
  <p align="center">
-    <img src="/img/hive-en.png" width="80%" />
+    <img src="/img/hive-en.png" width="60%" />
   </p>
 
   - Datasource: Select HIVE
@@ -212,22 +205,22 @@ The homepage contains task status statistics, process status statistics, and wor
 2.Connect using Hive Server 2 HA Zookeeper mode
 
  <p align="center">
-    <img src="/img/zookeeper-en.png" width="80%" />
+    <img src="/img/zookeeper-en.png" width="60%" />
   </p>
 
 
 Note: If **kerberos** is turned on, you need to fill in **Principal**
 <p align="center">
-    <img src="/img/principal-en.png" width="80%" />
+    <img src="/img/principal-en.png" width="60%" />
   </p>
 
 
 
 
-#### Create and Edit Spark Datasource
+#### Create and Edit Datasource
 
 <p align="center">
-   <img src="/img/edit-datasource-en.png" width="80%" />
+   <img src="/img/edit-datasource-en.png" width="60%" />
  </p>
 
 - Datasource: Select Spark
@@ -245,41 +238,20 @@ Note: If **kerberos** is turned on, you need to fill in **Principal**
 Note: If **kerberos** If Kerberos is turned on, you need to fill in  **Principal**
 
 <p align="center">
-    <img src="/img/kerberos-en.png" width="80%" />
+    <img src="/img/kerberos-en.png" width="60%" />
   </p>
 
 ### Upload Resources
   - Upload resource files and udf functions, all uploaded files and resources will be stored on hdfs, so the following configuration items are required:
 
 ```
-conf/common/common.properties  
-    # Users who have permission to create directories under the HDFS root path
-    hdfs.root.user=hdfs
-    # data base dir, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/escheduler" is recommended
-    data.store2hdfs.basepath=/dolphinscheduler
-    # resource upload startup type : HDFS,S3,NONE
-    res.upload.startup.type=HDFS
-    # whether kerberos starts
-    hadoop.security.authentication.startup.state=false
-    # java.security.krb5.conf path
-    java.security.krb5.conf.path=/opt/krb5.conf
-    # loginUserFromKeytab user
-    login.user.keytab.username=hdfs-mycluster@ESZ.COM
-    # loginUserFromKeytab path
-    login.user.keytab.path=/opt/hdfs.headless.keytab
-    
-conf/common/hadoop.properties      
-    # ha or single namenode,If namenode ha needs to copy core-site.xml and hdfs-site.xml
-    # to the conf directory，support s3，for example : s3a://dolphinscheduler
-    fs.defaultFS=hdfs://mycluster:8020    
-    #resourcemanager ha note this need ips , this empty if single
-    yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx    
-    # If it is a single resourcemanager, you only need to configure one host name. If it is resourcemanager HA, the default configuration is fine
-    yarn.application.status.address=http://xxxx:8088/ws/v1/cluster/apps/%s
-
+conf/common/common.properties
+    -- hdfs.startup.state=true
+conf/common/hadoop.properties  
+    -- fs.defaultFS=hdfs://xxxx:8020  
+    -- yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx
+    -- yarn.application.status.address=http://xxxx:8088/ws/v1/cluster/apps/%s
 ```
-- yarn.resourcemanager.ha.rm.ids and yarn.application.status.address only need to configure one address, and the other address is empty.
-- You need to copy core-site.xml and hdfs-site.xml from the conf directory of the Hadoop cluster to the conf directory of the dolphinscheduler project and restart the api-server service.
 
 #### File Manage
 
@@ -287,14 +259,14 @@ conf/common/hadoop.properties
   >
   >
   > <p align="center">
-  >  <img src="/img/file-manage-en.png" width="80%" />
+  >  <img src="/img/file-manage-en.png" width="60%" />
   > </p>
 
   * Create file
  > File formats support the following types：txt、log、sh、conf、cfg、py、java、sql、xml、hql
 
 <p align="center">
-   <img src="/img/create-file.png" width="80%" />
+   <img src="/img/create-file.png" width="60%" />
  </p>
 
   * Upload Files
@@ -302,7 +274,7 @@ conf/common/hadoop.properties
 > Upload Files: Click the Upload button to upload, drag the file to the upload area, and the file name will automatically complete the uploaded file name.
 
 <p align="center">
-   <img src="/img/file-upload-en.png" width="80%" />
+   <img src="/img/file-upload-en.png" width="60%" />
  </p>
 
 
@@ -311,7 +283,7 @@ conf/common/hadoop.properties
 > For viewable file types, click on the file name to view file details
 
 <p align="center">
-   <img src="/img/file-view-en.png" width="80%" />
+   <img src="/img/file-view-en.png" width="60%" />
  </p>
 
   * Download files
@@ -321,7 +293,7 @@ conf/common/hadoop.properties
   * File rename
 
 <p align="center">
-   <img src="/img/rename-en.png" width="80%" />
+   <img src="/img/rename-en.png" width="60%" />
  </p>
 
 #### Delete
@@ -353,13 +325,13 @@ conf/common/hadoop.properties
   > 
 
 <p align="center">
-   <img src="/img/udf-function.png" width="80%" />
+   <img src="/img/udf-function.png" width="60%" />
  </p>
 
 ## Security
 
   - The security has the functions of queue management, tenant management, user management, warning group management, worker group manager, token manage and other functions. It can also authorize resources, data sources, projects, etc.
-- Administrator login, default username password: admin/dolphinscheduler123
+- Administrator login, default username password: admin/dolphinscheduler 123
 
 
 
@@ -370,7 +342,7 @@ conf/common/hadoop.properties
   - Queues are used to execute spark, mapreduce and other programs, which require the use of "queue" parameters.
 - "Security" - > "Queue Manage" - > "Create Queue" 
      <p align="center">
-    <img src="/img/create-queue-en.png" width="80%" />
+    <img src="/img/create-queue-en.png" width="60%" />
   </p>
 
 
@@ -379,7 +351,7 @@ conf/common/hadoop.properties
   - Tenant Code：**the tenant code is the only account on Linux that can't be duplicated.**
 
  <p align="center">
-    <img src="/img/create-tenant-en.png" width="80%" />
+    <img src="/img/create-tenant-en.png" width="60%" />
   </p>
 
 ### Create Ordinary Users
@@ -388,14 +360,14 @@ conf/common/hadoop.properties
     * Ordinary users can **create projects and create, edit, and execute process definitions**.
     * Note: **If the user switches the tenant, all resources under the tenant will be copied to the switched new tenant.**
 <p align="center">
-      <img src="/img/create-user-en.png" width="80%" />
+      <img src="/img/create-user-en.png" width="60%" />
  </p>
 
 ### Create alarm group
   * The alarm group is a parameter set at start-up. After the process is finished, the status of the process and other information will be sent to the alarm group by mail.
   * New and Editorial Warning Group
     <p align="center">
-    <img src="/img/alarm-group-en.png" width="80%" />
+    <img src="/img/alarm-group-en.png" width="60%" />
     </p>
 
 ### Create Worker Group
@@ -403,14 +375,11 @@ conf/common/hadoop.properties
 - Multiple IP addresses within a worker group (**aliases can not be written**), separated by **commas in English**
 
   <p align="center">
-    <img src="/img/worker-group-en.png" width="80%" />
+    <img src="/img/worker-group-en.png" width="60%" />
   </p>
 
 ### Token manage
   - Because the back-end interface has login check and token management, it provides a way to operate the system by calling the interface.
-    <p align="center">
-      <img src="/img/token-en.png" width="80%" />
-    </p>
 - Call examples:
 
 ```令牌调用示例
@@ -456,13 +425,13 @@ conf/common/hadoop.properties
 
   - 1.Click on the authorization button of the designated person as follows:
     <p align="center">
-      <img src="/img/operation-en.png" width="80%" />
+      <img src="/img/operation-en.png" width="60%" />
  </p>
 
 - 2.Select the project button to authorize the project
 
 <p align="center">
-   <img src="/img/auth-project-en.png" width="80%" />
+   <img src="/img/auth-project-en.png" width="60%" />
  </p>
 
 ### Monitor center
@@ -471,39 +440,29 @@ conf/common/hadoop.properties
 #### Master monitor
   - Mainly related information about master.
 <p align="center">
-      <img src="/img/master-monitor-en.png" width="80%" />
+      <img src="/img/master-monitor-en.png" width="60%" />
  </p>
 
 #### Worker monitor
   - Mainly related information of worker.
 
 <p align="center">
-   <img src="/img/worker-monitor-en.png" width="80%" />
+   <img src="/img/worker-monitor-en.png" width="60%" />
  </p>
 
 #### Zookeeper monitor
   - Mainly the configuration information of each worker and master in zookpeeper.
 
 <p align="center">
-   <img src="/img/zookeeper-monitor-en.png" width="80%" />
+   <img src="/img/zookeeper-monitor-en.png" width="60%" />
  </p>
 
 #### DB monitor
-  - Mainly the health status of DB
+  - Mainly the health status of mysql
 
 <p align="center">
-   <img src="/img/db-monitor-en.png" width="80%" />
+   <img src="/img/db-monitor-en.png" width="60%" />
  </p>
- 
-#### statistics Manage
- <p align="center">
-   <img src="/img/statistics-en.png" width="80%" />
- </p>
-  
-  -  Commands to be executed: statistics on t_ds_command table
-  -  Number of commands that failed to execute: statistics on the t_ds_error_command table
-  -  Number of tasks to run: statistics of task_queue data in zookeeper
-  -  Number of tasks to be killed: statistics of task_kill in zookeeper
 
 ## Task Node Type and Parameter Setting
 
@@ -513,7 +472,7 @@ conf/common/hadoop.properties
 > Drag the ![PNG](https://analysys.github.io/easyscheduler_docs/images/toolbar_SHELL.png) task node in the toolbar onto the palette and double-click the task node as follows:
 
 <p align="center">
-   <img src="/img/shell-en.png" width="80%" />
+   <img src="/img/shell-en.png" width="60%" />
  </p>`
 
 - Node name: The node name in a process definition is unique
@@ -530,7 +489,7 @@ conf/common/hadoop.properties
 > Drag the ![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SUB_PROCESS.png) task node in the toolbar onto the palette and double-click the task node as follows:
 
 <p align="center">
-   <img src="/img/sub-process-en.png" width="80%" />
+   <img src="/img/sub-process-en.png" width="60%" />
  </p>
 
 - Node name: The node name in a process definition is unique
@@ -545,7 +504,7 @@ conf/common/hadoop.properties
 > Drag the ![PNG](https://analysys.github.io/easyscheduler_docs/images/toolbar_DEPENDENT.png) ask node in the toolbar onto the palette and double-click the task node as follows:
 
 <p align="center">
-   <img src="/img/current-node-en.png" width="80%" />
+   <img src="/img/current-node-en.png" width="60%" />
  </p>
 
   > Dependent nodes provide logical judgment functions, such as checking whether yesterday's B process was successful or whether the C process was successfully executed.
@@ -571,7 +530,7 @@ conf/common/hadoop.properties
 > Drag the ![PNG](https://analysys.github.io/easyscheduler_docs/images/toolbar_PROCEDURE.png) task node in the toolbar onto the palette and double-click the task node as follows:
 
 <p align="center">
-   <img src="/img/node-setting-en.png" width="80%" />
+   <img src="/img/node-setting-en.png" width="60%" />
  </p>
 
 - Datasource: The data source type of stored procedure supports MySQL and POSTGRESQL, and chooses the corresponding data source.
@@ -579,16 +538,16 @@ conf/common/hadoop.properties
 - Custom parameters: Custom parameter types of stored procedures support IN and OUT, and data types support nine data types: VARCHAR, INTEGER, LONG, FLOAT, DOUBLE, DATE, TIME, TIMESTAMP and BOOLEAN.
 
 ### SQL
-  - Drag the ![PNG](https://analysys.github.io/easyscheduler_docs/images/toolbar_SQL.png) task node in the toolbar onto the palette.
   - Execute non-query SQL functionality
     <p align="center">
-      <img src="/img/dependent-nodes-en.png" width="80%" />
+      <img src="/img/dependent-nodes-en.png" width="60%" />
  </p>
 
   - Executing the query SQL function, you can choose to send mail in the form of tables and attachments to the designated recipients.
+> Drag the ![PNG](https://analysys.github.io/easyscheduler_docs/images/toolbar_SQL.png) task node in the toolbar onto the palette and double-click the task node as follows:
 
 <p align="center">
-   <img src="/img/double-click-en.png" width="80%" />
+   <img src="/img/double-click-en.png" width="60%" />
  </p>
 
 - Datasource: Select the corresponding datasource
@@ -597,8 +556,6 @@ conf/common/hadoop.properties
 - sql statement: SQL statement
 - UDF function: For HIVE type data sources, you can refer to UDF functions created in the resource center, other types of data sources do not support UDF functions for the time being.
 - Custom parameters: SQL task type, and stored procedure is to customize the order of parameters to set values for methods. Custom parameter type and data type are the same as stored procedure task type. The difference is that the custom parameter of the SQL task type replaces the ${variable} in the SQL statement.
-- Pre Statement: Pre-sql is executed before the sql statement
-- Post Statement: Post-sql is executed after the sql statement
 
 
 
@@ -611,7 +568,7 @@ conf/common/hadoop.properties
 > 
 
 <p align="center">
-   <img src="/img/spark-submit-en.png" width="80%" />
+   <img src="/img/spark-submit-en.png" width="60%" />
  </p>
 
 - Program Type: Support JAVA, Scala and Python
@@ -636,7 +593,7 @@ Note: JAVA and Scala are just used for identification, no difference. If it's a 
  1. JAVA program
 
  <p align="center">
-    <img src="/img/java-program-en.png" width="80%" />
+    <img src="/img/java-program-en.png" width="60%" />
   </p>
 
 - Class of the main function: The full path of the MR program's entry Main Class
@@ -650,7 +607,7 @@ Note: JAVA and Scala are just used for identification, no difference. If it's a 
 2. Python program
 
 <p align="center">
-   <img src="/img/python-program-en.png" width="80%" />
+   <img src="/img/python-program-en.png" width="60%" />
  </p>
 
 - Program Type: Select Python Language
@@ -670,7 +627,7 @@ Note: JAVA and Scala are just used for identification, no difference. If it's a 
 > Drag the ![PNG](https://analysys.github.io/easyscheduler_docs/images/toolbar_PYTHON.png) task node in the toolbar onto the palette and double-click the task node as follows:
 
 <p align="center">
-   <img src="/img/python-en.png" width="80%" />
+   <img src="/img/python-en.png" width="60%" />
  </p>
 
 - Script: User-developed Python program
@@ -698,44 +655,45 @@ Note: JAVA and Scala are just used for identification, no difference. If it's a 
 
 ### Time Customization Parameters
 
- -  Support code to customize the variable name, declaration: ${variable name}. It can refer to "system parameters" or specify "constants".
+> Support code to customize the variable name, declaration: ${variable name}. It can refer to "system parameters" or specify "constants".
 
- -  When we define this benchmark variable as $[...]， [yyyyMMddHHmmss] can be decomposed and combined arbitrarily, such as:$[yyyyMMdd], $[HHmmss], $[yyyy-MM-dd] ,etc.
+> When we define this benchmark variable as $[...]， [yyyyMMddHHmmss] can be decomposed and combined arbitrarily, such as:$[yyyyMMdd], $[HHmmss], $[yyyy-MM-dd] ,etc.
 
- -  Can also do this：
- 
+> Can also do this：
+>
+> 
 
+- Later N years: $[add_months (yyyyyyMMdd, 12*N)]
+- The previous N years: $[add_months (yyyyyyMMdd, -12*N)]
+- Later N months: $[add_months (yyyyyMMdd, N)]
+- The first N months: $[add_months (yyyyyyMMdd, -N)]
+- Later N weeks: $[yyyyyyMMdd + 7*N]
+- The first N weeks: $[yyyyyMMdd-7*N]
+- The day after that: $[yyyyyyMMdd + N]
+- The day before yesterday: $[yyyyyMMdd-N]
+- Later N hours: $[HHmmss + N/24]
+- First N hours: $[HHmmss-N/24]
+- After N minutes: $[HHmmss + N/24/60]
+- First N minutes: $[HHmmss-N/24/60]
 
-    *  Later N years: $[add_months (yyyyyyMMdd, 12*N)]
-    *  The previous N years: $[add_months (yyyyyyMMdd, -12*N)]
-    *  Later N months: $[add_months (yyyyyMMdd, N)]
-    *  The first N months: $[add_months (yyyyyyMMdd, -N)]
-    *  Later N weeks: $[yyyyyyMMdd + 7*N]
-    *  The first N weeks: $[yyyyyMMdd-7*N]
-    *  The day after that: $[yyyyyyMMdd + N]
-    *  The day before yesterday: $[yyyyyMMdd-N]
-    *  Later N hours: $[HHmmss + N/24]
-    *  First N hours: $[HHmmss-N/24]
-    *  After N minutes: $[HHmmss + N/24/60]
-    *  First N minutes: $[HHmmss-N/24/60]
 
 
 ### User-defined parameters
 
- - User-defined parameters are divided into global parameters and local parameters. Global parameters are the global parameters passed when the process definition and process instance are saved. Global parameters can be referenced by local parameters of any task node in the whole process.
+> User-defined parameters are divided into global parameters and local parameters. Global parameters are the global parameters passed when the process definition and process instance are saved. Global parameters can be referenced by local parameters of any task node in the whole process.
 
-  For example:
+> For example:
 <p align="center">
-   <img src="/img/user-defined-en.png" width="80%" />
+   <img src="/img/user-defined-en.png" width="60%" />
  </p>
 
- - global_bizdate is a global parameter, referring to system parameters.
+> global_bizdate is a global parameter, referring to system parameters.
 
 <p align="center">
-   <img src="/img/user-defined1-en.png" width="80%" />
+   <img src="/img/user-defined1-en.png" width="60%" />
  </p>
 
- - In tasks, local_param_bizdate refers to global parameters by  \${global_bizdate} for scripts, the value of variable local_param_bizdate can be referenced by \${local_param_bizdate}, or the value of local_param_bizdate can be set directly by JDBC.
+> In tasks, local_param_bizdate refers to global parameters by  ${global_bizdate} for scripts, the value of variable local_param_bizdate can be referenced by${local_param_bizdate}, or the value of local_param_bizdate can be set directly by JDBC.
 
 
 
