@@ -4,11 +4,10 @@
   >地址：192.168.xx.xx:8888 用户名密码：admin/dolphinscheduler123
 
 <p align="center">
-   <img src="/img/login.jpg" width="60%" />
+   <img src="/img/login.png" width="60%" />
  </p>
 
 * 创建队列
-
 <p align="center">
    <img src="/img/create-queue.png" width="60%" />
  </p>
@@ -24,9 +23,18 @@
  </p>
 
   * 创建告警组
-
  <p align="center">
     <img src="/img/mail_edit.png" width="60%" />
+  </p>
+
+ * 创建Worker分组
+ <p align="center">
+    <img src="/img/worker_group.png" width="60%" />
+  </p>
+ 
+ * 创建token令牌
+ <p align="center">
+    <img src="/img/creat_token.png" width="60%" />
   </p>
 
   * 使用普通用户登录
