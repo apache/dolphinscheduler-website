@@ -5,7 +5,7 @@
 **DAG：** 全称Directed Acyclic Graph，简称DAG。工作流中的Task任务以有向无环图的形式组装起来，从入度为零的节点进行拓扑遍历，直到无后继节点为止。举例如下图：
 
 <p align="center">
-  <img src="https://analysys.github.io/easyscheduler_docs_cn/images/dag_examples_cn.jpg" alt="dag示例"  width="60%" />
+  <img src="/img/dag_examples_cn.jpg" alt="dag示例"  width="60%" />
   <p align="center">
         <em>dag示例</em>
   </p>
@@ -37,7 +37,7 @@
 
 #### 2.1 系统架构图
 <p align="center">
-  <img src="https://analysys.github.io/easyscheduler_docs_cn/images/architecture.jpg" alt="系统架构图"  width="70%" />
+  <img src="/img/architecture.jpg" alt="系统架构图"  width="70%" />
   <p align="center">
         <em>系统架构图</em>
   </p>
