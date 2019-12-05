@@ -88,7 +88,7 @@
 
 * **UI** 
 
-    系统的前端页面，提供系统的各种可视化操作界面，详见**[系统使用手册](系统使用手册.md)**部分。
+    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/user_doc/system-manual.html" target="_self">系统使用手册</a>部分。
 
 #### 2.3 架构设计思想
 
@@ -302,7 +302,7 @@ public class TaskLogFilter extends Filter<ILoggingEvent {
 本文从调度出发，初步介绍了大数据分布式工作流调度系统--DolphinScheduler的架构原理及实现思路。未完待续
 
 
- some processes need to be processed before other processes. This can be configured at the start of the process or at the time of scheduled start. There are 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below
+ 有些流程需要先于其他流程进行处理。 可以在流程开始时或计划开始时进行配置。 有5个级别，依次为最高，高，中，低和最低。 如下所示
 
       <p align="center">
          <img src="https://analysys.github.io/easyscheduler_docs_cn/images/process_priority.png" alt="Process Priority Configuration" width="40%" />
@@ -314,19 +314,19 @@ public class TaskLogFilter extends Filter<ILoggingEvent {
          <img src="https://analysys.github.io/easyscheduler_docs_cn/images/task_priority.png" alt="task priority configuration" width="35%" />
        </p>
 
-##### VI. Logback and gRPC implement log access
+##### VI. Logback和gRPC实现日志访问
 
-- Since the Web (UI) and Worker are not necessarily on the same machine, viewing the log is not as it is for querying local files. There are two options:
-  - Put the logs on the ES search engine
-  - Obtain remote log information through gRPC communication
-- Considering the lightweightness of DolphinScheduler as much as possible, gRPC was chosen to implement remote access log information.
+- 由于Web（UI）和工作器不一定位于同一台计算机上，因此查看日志的方式与查询本地文件的方式不同。 有两种选择：
+  - 将日志放在ES搜索引擎上
+  - 通过gRPC通信获取远程日志信息
+- 考虑到DolphinScheduler的轻巧性，选择了gRPC来实现远程访问日志信息。
 
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc remote access" width="50%" />
  </p>
 
-- We use a custom Logback FileAppender and Filter function to generate a log file for each task instance.
-- The main implementation of FileAppender is as follows:
+- 我们使用自定义的Logback FileAppender和Filter函数为每个任务实例生成一个日志文件。
+- FileAppender的主要实现如下：
 
 ```java
  /**
@@ -354,9 +354,9 @@ public class TaskLogFilter extends Filter<ILoggingEvent {
 }
 ```
 
-Generate a log in the form of /process definition id/process instance id/task instance id.log
+以/ process definition id / process instance id / task instance id.log的形式生成日志
 
-- Filter matches the thread name starting with TaskLogInfo:
+- 过滤器匹配以TaskLogInfo开头的线程名称：
 - TaskLogFilter is implemented as follows:
 
 ```java
@@ -377,6 +377,6 @@ Public class TaskLogFilter extends Filter<ILoggingEvent {
 
 
 
-### summary
+### 摘要
 
-Starting from the scheduling, this paper introduces the architecture principle and implementation ideas of the big data distributed workflow scheduling system-DolphinScheduler. To be continued
+从调度开始，介绍了大数据分布式工作流调度系统DolphinScheduler的体系结构原理和实现思路。 未完待续
