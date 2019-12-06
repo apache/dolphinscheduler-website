@@ -6,7 +6,7 @@ Before explaining the architecture of the schedule system, let us first understa
 **DAG：** Full name Directed Acyclic Graph，referred to as DAG。Tasks in the workflow are assembled in the form of directed acyclic graphs, which are topologically traversed from nodes with zero indegrees of ingress until there are no successor nodes. For example, the following picture:
 
 <p align="center">
-  <img src="https://analysys.github.io/easyscheduler_docs_cn/images/dag_examples_cn.jpg" alt="dag示例"  width="60%" />
+  <img src="/img/dag_examples_cn.jpg" alt="dag示例"  width="60%" />
   <p align="center">
         <em>dag example</em>
   </p>
@@ -40,7 +40,7 @@ Before explaining the architecture of the schedule system, let us first understa
 
 #### 2.1 System Architecture Diagram
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/48329107/62609545-8f973480-b934-11e9-9a58-d8133222f14d.png" alt="System Architecture Diagram"  />
+  <img src="/img/architecture.jpg" alt="System Architecture Diagram"  />
   <p align="center">
         <em>System Architecture Diagram</em>
   </p>
@@ -98,7 +98,7 @@ Before explaining the architecture of the schedule system, let us first understa
 
      - **UI**
 
-       The front-end page of the system provides various visual operation interfaces of the system. For details, see the **[System User Manual] (System User Manual.md)** section.
+       The front-end page of the system provides various visual operation interfaces of the system. For details, see the <a href="/en-us/docs/user_doc/system-manual.html" target="_self">System User Manual</a> section.
 
      
 
@@ -147,7 +147,7 @@ DolphinScheduler uses ZooKeeper distributed locks to implement only one Master t
 2. Scheduler thread distributed lock implementation flow chart in DolphinScheduler:
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock_procss.png" alt="Get Distributed Lock Process" width="50%" />
+   <img src="/img/distributed_lock_procss.png" alt="Get Distributed Lock Process" width="50%" />
  </p>
 
 ##### Third, the thread is insufficient loop waiting problem
