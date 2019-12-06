@@ -96,7 +96,7 @@ MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeepe
 </li>
 <li>
 <p><strong>UI</strong></p>
-<p>系统的前端页面，提供系统的各种可视化操作界面，详见**<a href="%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.md">系统使用手册</a>**部分。</p>
+<p>系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/user_doc/system-manual.html" target="_self">系统使用手册</a>部分。</p>
 </li>
 </ul>
 <h4>2.3 架构设计思想</h4>
@@ -301,7 +301,7 @@ ZooKeeper Master容错完成之后则重新由DolphinScheduler中Scheduler线程
 </code></pre>
 <h3>总结</h3>
 <p>本文从调度出发，初步介绍了大数据分布式工作流调度系统--DolphinScheduler的架构原理及实现思路。未完待续</p>
-<p>some processes need to be processed before other processes. This can be configured at the start of the process or at the time of scheduled start. There are 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below</p>
+<p>有些流程需要先于其他流程进行处理。 可以在流程开始时或计划开始时进行配置。 有5个级别，依次为最高，高，中，低和最低。 如下所示</p>
 <pre><code>  &lt;p align=&quot;center&quot;&gt;
      &lt;img src=&quot;https://analysys.github.io/easyscheduler_docs_cn/images/process_priority.png&quot; alt=&quot;Process Priority Configuration&quot; width=&quot;40%&quot; /&gt;
    &lt;/p&gt;
@@ -312,22 +312,22 @@ ZooKeeper Master容错完成之后则重新由DolphinScheduler中Scheduler线程
      &lt;img src=&quot;https://analysys.github.io/easyscheduler_docs_cn/images/task_priority.png&quot; alt=&quot;task priority configuration&quot; width=&quot;35%&quot; /&gt;
    &lt;/p&gt;
 </code></pre>
-<h5>VI. Logback and gRPC implement log access</h5>
+<h5>VI. Logback和gRPC实现日志访问</h5>
 <ul>
-<li>Since the Web (UI) and Worker are not necessarily on the same machine, viewing the log is not as it is for querying local files. There are two options:
+<li>由于Web（UI）和工作器不一定位于同一台计算机上，因此查看日志的方式与查询本地文件的方式不同。 有两种选择：
 <ul>
-<li>Put the logs on the ES search engine</li>
-<li>Obtain remote log information through gRPC communication</li>
+<li>将日志放在ES搜索引擎上</li>
+<li>通过gRPC通信获取远程日志信息</li>
 </ul>
 </li>
-<li>Considering the lightweightness of DolphinScheduler as much as possible, gRPC was chosen to implement remote access log information.</li>
+<li>考虑到DolphinScheduler的轻巧性，选择了gRPC来实现远程访问日志信息。</li>
 </ul>
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc remote access" width="50%" />
  </p>
 <ul>
-<li>We use a custom Logback FileAppender and Filter function to generate a log file for each task instance.</li>
-<li>The main implementation of FileAppender is as follows:</li>
+<li>我们使用自定义的Logback FileAppender和Filter函数为每个任务实例生成一个日志文件。</li>
+<li>FileAppender的主要实现如下：</li>
 </ul>
 <pre><code class="language-java"> <span class="hljs-comment">/**
   * task log appender
@@ -353,9 +353,9 @@ ZooKeeper Master容错完成之后则重新由DolphinScheduler中Scheduler线程
     }
 }
 </code></pre>
-<p>Generate a log in the form of /process definition id/process instance id/task instance id.log</p>
+<p>以/ process definition id / process instance id / task instance id.log的形式生成日志</p>
 <ul>
-<li>Filter matches the thread name starting with TaskLogInfo:</li>
+<li>过滤器匹配以TaskLogInfo开头的线程名称：</li>
 <li>TaskLogFilter is implemented as follows:</li>
 </ul>
 <pre><code class="language-java"> <span class="hljs-comment">/**
@@ -372,8 +372,8 @@ Public <span class="hljs-class"><span class="hljs-keyword">class</span> <span cl
     }
 }
 </code></pre>
-<h3>summary</h3>
-<p>Starting from the scheduling, this paper introduces the architecture principle and implementation ideas of the big data distributed workflow scheduling system-DolphinScheduler. To be continued</p>
+<h3>摘要</h3>
+<p>从调度开始，介绍了大数据分布式工作流调度系统DolphinScheduler的体系结构原理和实现思路。 未完待续</p>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/ds_gray.svg"/><div class="cols-container"><div class="col col-12"><h3>Disclaimer</h3><p>Apache DolphinScheduler (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. 
 Incubation is required of all newly accepted projects until a further review indicates 
 that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. 
