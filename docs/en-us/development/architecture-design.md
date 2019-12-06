@@ -98,7 +98,7 @@ Before explaining the architecture of the schedule system, let us first understa
 
      - **UI**
 
-       The front-end page of the system provides various visual operation interfaces of the system. For details, see the **[System User Manual] (System User Manual.md)** section.
+       The front-end page of the system provides various visual operation interfaces of the system. For details, see the <a href="/en-us/docs/user_doc/system-manual.html" target="_self">System User Manual</a> section.
 
      
 
