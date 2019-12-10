@@ -8,13 +8,12 @@
 
 #### 准备一: 基础软件安装(必装项请自行安装)
 
- * Mysql (5.5+) :  选装
+ * PostgreSQL (8.2.15+) or Mysql (5.5+)  :  两者任选其一即可
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装
  * ZooKeeper (3.4.6+) ：必装 
- * Hadoop (2.6+) ：选装， 如果需要使用到资源上传功能，MapReduce任务提交则需要配置Hadoop(上传的资源文件目前保存在Hdfs上)
+ * Hadoop (2.6+) or MinIo ：选装， 如果需要使用到资源上传功能，可以选择Hadoop or MinIo
  * [Hive](https://staroon.pro/2017/12/09/HiveInstall/)(1.2.1) :  选装，hive任务提交需要安装
  * Spark (1.x,2.x) : 选装，Spark任务提交需要安装
- * PostgreSQL (8.2.15+) : 选装，PostgreSQL PostgreSQL存储过程需要安装
  
 ```
  注意：DolphinScheduler本身不依赖Hadoop、Hive、Spark、PostgreSQL,仅是会调用他们的Client，用于对应任务的运行。
