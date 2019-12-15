@@ -45,7 +45,7 @@ API_BASE = http://192.168.xx.xx:12345
 
 > #####  ! ! ! Special attention here. If the project reports a "node-sass error" error while pulling the dependency package, execute the following command again after execution.
 ```
-npm install node-sass --unsafe-perm //单独安装node-sass依赖
+npm install node-sass --unsafe-perm //Install node-sass dependency separately
 ```
 
 - #### Development environment operation
