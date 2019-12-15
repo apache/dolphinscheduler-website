@@ -70,13 +70,17 @@ A: Install **npm install node-sass --unsafe-perm** separately, then **npm instal
 
 ## Q: UI cannot log in normally.
 
-A: 1, if it is node startup, check whether the .env API_BASE configuration under dolphinscheduler-ui is the Api Server service address.
+A:   1, if it is node startup, check whether the .env API_BASE configuration under dolphinscheduler-ui is the Api Server service address.
 
-    2, If it is nginx booted and installed via **install-dolphinscheduler-ui.sh**, check if the proxy_pass configuration in **/etc/nginx/conf.d/dolphinscheduler.conf** is the Api Server service. address
-    
-     3, if the above configuration is correct, then please check if the Api Server service is normal, curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info, check the Api Server log, if Prompt cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null, which proves that the Api Server service is normal.
-    
-    4, if there is no problem above, you need to check if **server.context-path and server.port configuration** in **application.properties** is correct
+​       2, If it is nginx booted and installed via **install-dolphinscheduler-ui.sh**, check if the proxy_pass      			configuration in **/etc/nginx/conf.d/dolphinscheduler.conf** is the Api Server service address
+
+​       3, if the above configuration is correct, then please check if the Api Server service is normal, 
+
+​		   curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info, check the Api Server log,
+
+​          if  Prompt cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null,   		  which proves that the Api Server service is normal.
+
+​		4, if there is no problem above, you need to check if **server.context-path and server.port configuration** in **application.properties** is correct
 
 ---
 
@@ -94,7 +98,7 @@ A:   1, **first check whether the WorkerServer service exists through jps**, or 
 
 ​       2,If the **WorkerServer** service is normal, you need to **check whether the MasterServer puts the task task in the zk queue. You need to check whether the task is blocked in the MasterServer log and the zk queue.**
 
-​       3, if there is no problem above, you need to locate whether the Worker group is specified, but **the machine grouped by the worker is not online**.**
+​       3, if there is no problem above, you need to locate whether the Worker group is specified, but **the machine grouped by the worker is not online**.
 
 ---
 
@@ -187,9 +191,9 @@ A: Yes, **if the timing start and end time is the same time, then this timing wi
 
 ## Q : There are several implementations of task dependencies
 
-A：	1, the task dependency between **DAG**, is **from the zero degree** of the DAG segmentation
+A:	1, the task dependency between **DAG**, is **from the zero degree** of the DAG segmentation
 
-​	2, there are **task dependent nodes**, you can achieve cross-process tasks or process dependencies, please refer to the (DEPENDENT) node design in the system-manual. 
+​		2, there are **task dependent nodes**, you can achieve cross-process tasks or process dependencies, please refer to the (DEPENDENT) node design in the system-manual. 
 
 ​	Note: **Cross-project processes or task dependencies are not supported**
 
@@ -207,7 +211,7 @@ A:   1, in **the process definition list**, click the **Start** button.
 
 ## Q : Python task setting Python version
 
-A：  1，**for the version after 1.0.3** only need to modify PYTHON_HOME in conf/env/.dolphinscheduler_env.sh
+A:	1，**for the version after 1.0.3** only need to modify PYTHON_HOME in conf/env/.dolphinscheduler_env.sh
 
 ```
 export PYTHON_HOME=/bin/python
@@ -219,7 +223,7 @@ Note: This is **PYTHON_HOME** , which is the absolute path of the python command
 export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH
 ```
 
-​	2，For versions prior to 1.0.3, the Python task only supports the Python version of the system. It does not support specifying the Python version.
+​		2，For versions prior to 1.0.3, the Python task only supports the Python version of the system. It does not support specifying the Python version.
 
 ## Q：Worker Task will generate a child process through sudo -u tenant sh xxx.command, will kill when kill
 
@@ -234,7 +238,7 @@ A ： The queue in the DolphinScheduler can be configured on the user or the ten
 Note: When using the above method to specify the queue, the MR uses the following methods:
 
 ```
-	Configuration conf = new Configuration();
+	      Configuration conf = new Configuration();
         GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
         String[] remainingArgs = optionParser.getRemainingArgs();
 ```

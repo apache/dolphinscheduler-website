@@ -72,11 +72,17 @@ A：单独安装 **npm install node-sass --unsafe-perm**，之后再 **npm insta
 
 A： 1，如果是node启动的查看dolphinscheduler-ui下的.env API_BASE配置是否是Api Server服务地址
 
-    2，如果是nginx启动的并且是通过 **install-dolphinscheduler-ui.sh** 安装的，查看             											**/etc/nginx/conf.d/dolphinscheduler.conf** 中的proxy_pass配置是否是Api Server服务地址
+​       2，如果是nginx启动的并且是通过**install-dolphinscheduler-ui.sh**安装的，查看             
 
-    3，如果以上配置都是正确的，那么请查看Api Server服务是否是正常的，curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info，查看Api Server日志，如果提示 cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证明Api Server服务是正常的
+​              **/etc/nginx/conf.d/dolphinscheduler.conf**中的proxy_pass配置是否是Api Server服务地址
 
-    4，如果以上都没有问题，需要查看一下 **application.properties** 中的 **server.context-path 和 server.port 配置**是否正确
+​        3，如果以上配置都是正确的，那么请查看Api Server服务是否是正常的，
+
+​			curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info 查看Api Server日志，
+
+​			如果提示cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证			明Api Server服务是正常的
+
+​        4，如果以上都没有问题，需要查看一下**application.properties** 中的 **server.context-path 和				    			  server.port 配置**是否正确
 
 ---
 
@@ -84,7 +90,7 @@ A： 1，如果是node启动的查看dolphinscheduler-ui下的.env API_BASE配�
 
 A： 1，首先通过**jps 查看MasterServer服务是否存在**，或者从服务监控直接查看zk中是否存在master服务
 
-​	2，如果存在master服务，查看 **命令状态统计** 或者 **t_ds_error_command** 中是否增加的新记录，如果增加了，**请查看 message 字段定位启动异常原因**
+​	   2，如果存在master服务，查看 **命令状态统计** 或者 **t_ds_error_command** 中是否增加的新记录，如果增加了，**请查看 message 字段定位启动异常原因**
 
 ---
 
@@ -94,7 +100,7 @@ A： 1，首先通过**jps 查看WorkerServer服务是否存在**，或者从服
 
 ​       2，如果 **WorkerServer** 服务正常，需要 **查看MasterServer是否把task任务放到zk队列中** ，**需要查看MasterServer日志及zk队列中是否有任务阻塞**
 
-​	3，如果以上都没有问题，需要定位是否指定了Worker分组，但是 **Worker分组的机器不是在线状态**
+​	   3，如果以上都没有问题，需要定位是否指定了Worker分组，但是 **Worker分组的机器不是在线状态**
 
 ---
 
@@ -102,13 +108,13 @@ A： 1，首先通过**jps 查看WorkerServer服务是否存在**，或者从服
 
 A：  1，如果替换变量中包含特殊字符，**请用 \ 转移符进行转移**
 
-​	2，installPath="/data1_1T/dolphinscheduler"，**这个目录不能和当前要一键安装的install.sh目录是一样的**
+​	    2，installPath="/data1_1T/dolphinscheduler"，**这个目录不能和当前要一键安装的install.sh目录是一样的**
 
-​	3，deployUser="dolphinscheduler"，**部署用户必须具有sudo权限**，因为worker是通过sudo -u 租户 sh xxx.command进行执行的
+​	    3，deployUser="dolphinscheduler"，**部署用户必须具有sudo权限**，因为worker是通过sudo -u 租户 sh xxx.command进行执行的
 
-​	4，monitorServerState="false"，服务监控脚本是否启动，默认是不启动服务监控脚本的。**如果启动服务监控脚本，则每5分钟定时来监控master和worker的服务是否down机，如果down机则会自动重启**
+​	   4，monitorServerState="false"，服务监控脚本是否启动，默认是不启动服务监控脚本的。**如果启动服务监控脚本，则每5分钟定时来监控master和worker的服务是否down机，如果down机则会自动重启**
 
-​	5，hdfsStartupSate="false"，是否开启HDFS资源上传功能。默认是不开启的，**如果不开启则资源中心是不能使用的**。如果开启，需要conf/common/hadoop/hadoop.properties中配置fs.defaultFS和yarn的相关配置，如果使用namenode HA，需要将core-site.xml和hdfs-site.xml复制到conf根目录下
+​		5，hdfsStartupSate="false"，是否开启HDFS资源上传功能。默认是不开启的，**如果不开启则资源中心是不能使用的**。如果开启，需要conf/common/hadoop/hadoop.properties中配置fs.defaultFS和yarn的相关配置，如果使用namenode HA，需要将core-site.xml和hdfs-site.xml复制到conf根目录下
 
 ​	注意：**1.0.x版本是不会自动创建hdfs根目录的，需要自行创建，并且需要部署用户有hdfs的操作权限**
 
@@ -151,7 +157,7 @@ A：  **注意：Master监控Master及Worker服务。**
 
 ​	1，如果Master服务掉了，其它的Master会接管挂掉的Master的流程，继续监控Worker task状态
 
-​	2，如果Worker服务掉，Master会监控到Worker服务掉了，如果存在Yarn任务，Kill Yarn任务之后走重试
+​	2，如果Worker服务掉了，Master会监控到Worker服务掉了，如果存在Yarn任务，Kill Yarn任务之后走重试
 
 具体请看容错设计：https://analysys.github.io/easyscheduler_docs_cn/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1
 
@@ -177,9 +183,9 @@ A：有的，**如果定时的起止时间是同一个时间，那么此定时�
 
 ## Q ： 任务依赖有几种实现
 
-A：	1，**DAG** 之间的任务依赖关系，是从 **入度为零** 进行DAG切分的
+A：  1，**DAG** 之间的任务依赖关系，是从 **入度为零** 进行DAG切分的
 
-​	2，有 **任务依赖节点** ，可以实现跨流程的任务或者流程依赖，具体请参考 依赖(DEPENDENT)节点：https://analysys.github.io/easyscheduler_docs_cn/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#%E4%BB%BB%E5%8A%A1%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE
+​	    2，有 **任务依赖节点** ，可以实现跨流程的任务或者流程依赖，具体请参考 依赖(DEPENDENT)节点：https://analysys.github.io/easyscheduler_docs_cn/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#%E4%BB%BB%E5%8A%A1%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE
 
 ​	注意：**不支持跨项目的流程或任务依赖**
 
@@ -187,15 +193,15 @@ A：	1，**DAG** 之间的任务依赖关系，是从 **入度为零** 进行DAG
 
 A： 1，在 **流程定义列表**，点击 **启动** 按钮
 
-​	2，**流程定义列表添加定时器**，调度启动流程定义
+​		2，**流程定义列表添加定时器**，调度启动流程定义
 
-​	3，流程定义 **查看或编辑** DAG 页面，任意 **任务节点右击** 启动流程定义
+​		3，流程定义 **查看或编辑** DAG 页面，任意 **任务节点右击** 启动流程定义
 
-​	4，可以对流程定义 DAG 编辑，设置某些任务的运行标志位 **禁止运行**，则在启动流程定义的时候，将该节点的连线将从DAG中去掉
+​		4，可以对流程定义 DAG 编辑，设置某些任务的运行标志位 **禁止运行**，则在启动流程定义的时候，将该节点的连线将从DAG中去掉
 
 ## Q ： Python任务设置Python版本
 
-A：  1，对于1**.0.3之后的版本**只需要修改 conf/env/.dolphinscheduler_env.sh中的PYTHON_HOME
+A：  1，对于**1.0.3之后的版本**只需要修改 conf/env/.dolphinscheduler_env.sh中的PYTHON_HOME
 
 ```
 export PYTHON_HOME=/bin/python
@@ -207,7 +213,7 @@ export PYTHON_HOME=/bin/python
 export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH
 ```
 
-​	2，对 1.0.3 之前的版本，Python任务只能支持系统的Python版本，不支持指定Python版本
+​		2，对 1.0.3 之前的版本，Python任务只能支持系统的Python版本，不支持指定Python版本
 
 ## Q： Worker Task 通过sudo -u 租户 sh xxx.command会产生子进程，在kill的时候，是否会杀掉
 
@@ -222,7 +228,7 @@ A ： DolphinScheduler 中的队列可以在用户或者租户上指定队列，
 注意：MR在用以上方法指定队列的时候，传递参数请使用如下方式：
 
 ```
-	Configuration conf = new Configuration();
+				Configuration conf = new Configuration();
         GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
         String[] remainingArgs = optionParser.getRemainingArgs();
 ```
