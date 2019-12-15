@@ -502,7 +502,7 @@ Normal return
 }
 ```
 
-错误返回
+Error return
 ```
 {
   code:10000, 
@@ -580,7 +580,7 @@ User Center Related Interfaces `src/js/conf/home/store/user/actions.js`
 (1) Find the `tasksState` object in `src/js/conf/home/pages/dag/_source/config.js` and add it to it.
 
 ```
- 'WAITTING_DEPEND': {  // 'WAITTING_DEPEND': {  //后端定义状态类型 前端用作key值
+ 'WAITTING_DEPEND': {  // 'WAITTING_DEPEND': {  //Backend defines state type, frontend is used as key value
   id: 11,  // front-end definition id is used as a sort
   desc: `${i18n.$t('waiting for dependency')}`,  // tooltip desc
   color: '#5101be',  // The color represented is mainly used for tree and gantt
