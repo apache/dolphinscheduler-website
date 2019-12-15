@@ -98,12 +98,12 @@ export default {
     events: {
       title: '事件 & 新闻',
       list: [
-		{
+	{
           img: '/img/2019-12-08/941576036700_.pic_hd.jpg',
-          title: 'Apache ShardingSphere & DolphinScheduler(北京)联合Meetup成功举行',
+          title: 'Apache ShardingSphere & DolphinScheduler联合Meetup成功举行',
           content: 'Apache ShardingSphere & DolphinScheduler联合Meetup 2019年12月8日在北京成功举行。',
           dateStr: '2019-12-13',
-          link: '/zh-cn/blog/meetup_2019_12-08.html',
+          link: '/zh-cn/blog/meetup_2019_12_08.html',
         },
         {
           img: '/img/meetup_20191026.jpg',
