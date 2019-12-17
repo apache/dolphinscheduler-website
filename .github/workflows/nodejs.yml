@@ -19,7 +19,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     
     - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@master
       with:
         ACCESS_TOKEN: ${{ secrets.IO_ACCESS_TOKEN }}
         BRANCH: master # The branch the action should deploy to.
