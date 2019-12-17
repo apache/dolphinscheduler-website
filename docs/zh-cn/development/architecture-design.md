@@ -100,7 +100,7 @@
 <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/master_slave.png" alt="master-slave角色"  width="50%" />
  </p>
- 
+
 - Master的角色主要负责任务分发并监督Slave的健康状态，可以动态的将任务均衡到Slave上，以致Slave节点不至于“忙死”或”闲死”的状态。
 - Worker的角色主要负责任务的执行工作并维护和Master的心跳，以便Master可以分配任务给Slave。
 
@@ -117,7 +117,7 @@
  <p align="center"
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="去中心化"  width="50%" />
  </p>
- 
+
 - 在去中心化设计里，通常没有Master/Slave的概念，所有的角色都是一样的，地位是平等的，全球互联网就是一个典型的去中心化的分布式系统，联网的任意节点设备down机，都只会影响很小范围的功能。
 - 去中心化设计的核心设计在于整个分布式系统中不存在一个区别于其他节点的”管理者”，因此不存在单点故障问题。但由于不存在” 管理者”节点所以每个节点都需要跟其他节点通信才得到必须要的机器信息，而分布式系统通信的不可靠行，则大大增加了上述功能的实现难度。
 - 实际上，真正去中心化的分布式系统并不多见。反而动态中心化分布式系统正在不断涌出。在这种架构下，集群中的管理者是被动态选择出来的，而不是预置的，并且集群在发生故障的时候，集群的节点会自发的举行"会议"来选举新的"管理者"去主持工作。最典型的案例就是ZooKeeper及Go语言实现的Etcd。
@@ -302,81 +302,3 @@ public class TaskLogFilter extends Filter<ILoggingEvent {
 本文从调度出发，初步介绍了大数据分布式工作流调度系统--DolphinScheduler的架构原理及实现思路。未完待续
 
 
- 有些流程需要先于其他流程进行处理。 可以在流程开始时或计划开始时进行配置。 有5个级别，依次为最高，高，中，低和最低。 如下所示
-
-      <p align="center">
-         <img src="https://analysys.github.io/easyscheduler_docs_cn/images/process_priority.png" alt="Process Priority Configuration" width="40%" />
-       </p>
-
-    - The priority of the task is also divided into 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below
-
-      <p align="center">
-         <img src="https://analysys.github.io/easyscheduler_docs_cn/images/task_priority.png" alt="task priority configuration" width="35%" />
-       </p>
-
-##### VI. Logback和gRPC实现日志访问
-
-- 由于Web（UI）和工作器不一定位于同一台计算机上，因此查看日志的方式与查询本地文件的方式不同。 有两种选择：
-  - 将日志放在ES搜索引擎上
-  - 通过gRPC通信获取远程日志信息
-- 考虑到DolphinScheduler的轻巧性，选择了gRPC来实现远程访问日志信息。
-
- <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc remote access" width="50%" />
- </p>
-
-- 我们使用自定义的Logback FileAppender和Filter函数为每个任务实例生成一个日志文件。
-- FileAppender的主要实现如下：
-
-```java
- /**
-  * task log appender
-  */
- Public class TaskLogAppender extends FileAppender<ILoggingEvent {
- 
-     ...
-
-    @Override
-    Protected void append(ILoggingEvent event) {
-
-        If (currentlyActiveFile == null){
-            currentlyActiveFile = getFile();
-        }
-        String activeFile = currentlyActiveFile;
-        // thread name: taskThreadName-processDefineId_processInstanceId_taskInstanceId
-        String threadName = event.getThreadName();
-        String[] threadNameArr = threadName.split("-");
-        // logId = processDefineId_processInstanceId_taskInstanceId
-        String logId = threadNameArr[1];
-        ...
-        super.subAppend(event);
-    }
-}
-```
-
-以/ process definition id / process instance id / task instance id.log的形式生成日志
-
-- 过滤器匹配以TaskLogInfo开头的线程名称：
-- TaskLogFilter is implemented as follows:
-
-```java
- /**
- * task log filter
- */
-Public class TaskLogFilter extends Filter<ILoggingEvent {
-
-    @Override
-    Public FilterReply decide(ILoggingEvent event) {
-        If (event.getThreadName().startsWith("TaskLogInfo-")){
-            Return FilterReply.ACCEPT;
-        }
-        Return FilterReply.DENY;
-    }
-}
-```
-
-
-
-### 摘要
-
-从调度开始，介绍了大数据分布式工作流调度系统DolphinScheduler的体系结构原理和实现思路。 未完待续
