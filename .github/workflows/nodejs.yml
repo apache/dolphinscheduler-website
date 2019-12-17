@@ -21,7 +21,8 @@ jobs:
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@master
       with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+#         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: c51344b2756ea04d41d1e283d0dda794fa752010
         BRANCH: master # The branch the action should deploy to.
         FOLDER: build 
         BUILD_SCRIPT: npm install && npm run build
