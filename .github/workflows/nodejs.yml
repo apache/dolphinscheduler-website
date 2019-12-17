@@ -24,3 +24,4 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.IO_ACCESS_TOKEN }}
         BRANCH: master # The branch the action should deploy to.
         FOLDER: build 
+        BUILD_SCRIPT: npm install && npm run build
