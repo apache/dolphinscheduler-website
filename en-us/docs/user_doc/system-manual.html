@@ -43,7 +43,7 @@
 <li>Fill in the Node Name, Description, and Script fields.</li>
 <li>Selecting &quot;task priority&quot; will give priority to high-level tasks in the execution queue. Tasks with the same priority will be executed in the first-in-first-out order.</li>
 <li>Timeout alarm. Fill in &quot;Overtime Time&quot;. When the task execution time exceeds the overtime, it can alarm and fail over time.</li>
-<li>Fill in &quot;Custom Parameters&quot; and refer to [Custom Parameters](#Custom Parameters)<p align="center">
+<li>Fill in &quot;Custom Parameters&quot; and refer to <a href="#CustomParameters">Custom Parameters</a><p align="center">
 <img src="/img/process_definitions_en.png" width="80%" />
   </p>
 </li>
@@ -65,7 +65,7 @@
    <img src="/img/global_parameters_en.png" width="80%" />
  </p>
 <ul>
-<li>For other types of nodes, refer to [task node types and parameter settings](#task node types and parameter settings)</li>
+<li>For other types of nodes, refer to <a href="#TaskNodeType">task node types and parameter settings</a></li>
 </ul>
 <h3>Execution process definition</h3>
 <ul>
@@ -523,7 +523,7 @@ conf/common/hadoop.properties
 <li>Number of tasks to run: statistics of task_queue data in zookeeper</li>
 <li>Number of tasks to be killed: statistics of task_kill in zookeeper</li>
 </ul>
-<h2>Task Node Type and Parameter Setting</h2>
+<h2><span id=TaskNodeType>Task Node Type and Parameter Setting</span></h2>
 <h3>Shell</h3>
 <ul>
 <li>The shell node, when the worker executes, generates a temporary shell script, which is executed by a Linux user with the same name as the tenant.</li>
@@ -744,7 +744,7 @@ conf/common/hadoop.properties
 </ul>
 </li>
 </ul>
-<h3>User-defined parameters</h3>
+<h3><span id=CustomParameters>User-defined parameters</span></h3>
 <ul>
 <li>User-defined parameters are divided into global parameters and local parameters. Global parameters are the global parameters passed when the process definition and process instance are saved. Global parameters can be referenced by local parameters of any task node in the whole process.</li>
 </ul>
