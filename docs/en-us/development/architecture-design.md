@@ -24,7 +24,7 @@ Before explaining the architecture of the schedule system, let us first understa
 
 **Timed schedule**: The system uses **quartz** distributed scheduler and supports the generation of cron expression visualization
 
-**Dependency**: The system does not only support **DAG** Simple dependencies between predecessors and successor nodes, but also provides **task dependencies** nodes, support for custom task dependencies between processes**
+**Dependency**: The system does not only support **DAG** Simple dependencies between predecessors and successor nodes, but also provides **task dependencies** nodes, support for **custom task dependencies between processes**
 
 **Priority**: Supports the priority of process instances and task instances. If the process instance and task instance priority are not set, the default is first in, first out.
 
@@ -32,7 +32,7 @@ Before explaining the architecture of the schedule system, let us first understa
 
 **Failure policy**: For tasks running in parallel, if there are tasks that fail, two failure policy processing methods are provided. **Continue** means that the status of the task is run in parallel until the end of the process failure. **End** means that once a failed task is found, Kill also drops the running parallel task and the process ends.
 
-**Complement**: Complement historical data, support ** interval parallel and serial ** two complement methods
+**Complement**: Complement historical data, support **interval parallel and serial** two complement methods
 
 
 
@@ -61,7 +61,7 @@ Before explaining the architecture of the schedule system, let us first understa
 
     - **Distributed Quartz** distributed scheduling component, mainly responsible for the start and stop operation of the scheduled task. When the quartz picks up the task, the master internally has a thread pool to be responsible for the subsequent operations of the task.
 
-    - **MasterSchedulerThread** is a scan thread that periodically scans the **command** table in the database for different business operations based on different ** command types**
+    - **MasterSchedulerThread** is a scan thread that periodically scans the **command** table in the database for different business operations based on different **command types**
 
     - **MasterExecThread** is mainly responsible for DAG task segmentation, task submission monitoring, logic processing of various command types
 
@@ -212,7 +212,7 @@ Once the Master Scheduler thread finds the task instance as "need to be fault to
 Here we must first distinguish between the concept of task failure retry, process failure recovery, and process failure rerun:
 
 - Task failure Retry is task level, which is automatically performed by the scheduling system. For example, if a shell task sets the number of retries to 3 times, then the shell task will try to run up to 3 times after failing to run.
-- Process failure recovery is process level, is done manually, recovery can only be performed from the failed node ** or ** from the current node **
+- Process failure recovery is process level, is done manually, recovery can only be performed **from the failed node** or **from the current node**
 - Process failure rerun is also process level, is done manually, rerun is from the start node
 
 
@@ -222,7 +222,7 @@ Next, let's talk about the topic, we divided the task nodes in the workflow into
 - One is a business node, which corresponds to an actual script or processing statement, such as a Shell node, an MR node, a Spark node, a dependent node, and so on.
 - There is also a logical node, which does not do the actual script or statement processing, but the logical processing of the entire process flow, such as sub-flow sections.
 
-Each ** service node** can configure the number of failed retries. When the task node fails, it will automatically retry until it succeeds or exceeds the configured number of retries. **Logical node** does not support failed retry. But the tasks in the logical nodes support retry.
+Each **service node** can configure the number of failed retries. When the task node fails, it will automatically retry until it succeeds or exceeds the configured number of retries. **Logical node** does not support failed retry. But the tasks in the logical nodes support retry.
 
 If there is a task failure in the workflow that reaches the maximum number of retries, the workflow will fail to stop, and the failed workflow can be manually rerun or process resumed.
 
@@ -232,9 +232,9 @@ If there is a task failure in the workflow that reaches the maximum number of re
 
 In the early scheduling design, if there is no priority design and fair scheduling design, it will encounter the situation that the task submitted first may be completed simultaneously with the task submitted subsequently, but the priority of the process or task cannot be set. We have redesigned this, and we are currently designing it as follows:
 
-- According to ** different process instance priority ** prioritizes ** same process instance priority ** prioritizes ** task priority within the same process ** takes precedence over ** same process ** commit order from high Go to low for task processing.
+- According to **different process instance priority** prioritizes **same process instance priority** prioritizes **task priority within the same process** takes precedence over **same process** commit order from high Go to low for task processing.
 
-  - The specific implementation is to resolve the priority according to the json of the task instance, and then save the ** process instance priority _ process instance id_task priority _ task id** information in the ZooKeeper task queue, when obtained from the task queue, Through string comparison, you can get the task that needs to be executed first.
+  - The specific implementation is to resolve the priority according to the json of the task instance, and then save the **process instance priority _ process instance id_task priority _ task id** information in the ZooKeeper task queue, when obtained from the task queue, Through string comparison, you can get the task that needs to be executed first.
 
     - The priority of the process definition is that some processes need to be processed before other processes. This can be configured at the start of the process or at the time of scheduled start. There are 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below
 
