@@ -75,28 +75,28 @@
 <hr>
 <h2>Q：UI 不能正常登陆访问</h2>
 <p>A： 1，如果是node启动的查看dolphinscheduler-ui下的.env API_BASE配置是否是Api Server服务地址</p>
-<pre><code>2，如果是nginx启动的并且是通过 **install-dolphinscheduler-ui.sh** 安装的，查看             											**/etc/nginx/conf.d/dolphinscheduler.conf** 中的proxy_pass配置是否是Api Server服务地址
-
-3，如果以上配置都是正确的，那么请查看Api Server服务是否是正常的，curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info，查看Api Server日志，如果提示 cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证明Api Server服务是正常的
-
-4，如果以上都没有问题，需要查看一下 **application.properties** 中的 **server.context-path 和 server.port 配置**是否正确
-</code></pre>
+<p>​       2，如果是nginx启动的并且是通过<strong><a href="http://install-dolphinscheduler-ui.sh">install-dolphinscheduler-ui.sh</a></strong>安装的，查看</p>
+<p>​              <strong>/etc/nginx/conf.d/dolphinscheduler.conf</strong>中的proxy_pass配置是否是Api Server服务地址</p>
+<p>​        3，如果以上配置都是正确的，那么请查看Api Server服务是否是正常的，</p>
+<p>​			curl <a href="http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info">http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info</a> 查看Api Server日志，</p>
+<p>​			如果提示cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证			明Api Server服务是正常的</p>
+<p>​        4，如果以上都没有问题，需要查看一下<strong>application.properties</strong> 中的 <strong>server.context-path 和				    			  server.port 配置</strong>是否正确</p>
 <hr>
 <h2>Q： 流程定义手动启动或调度启动之后，没有流程实例生成</h2>
 <p>A： 1，首先通过<strong>jps 查看MasterServer服务是否存在</strong>，或者从服务监控直接查看zk中是否存在master服务</p>
-<p>​	2，如果存在master服务，查看 <strong>命令状态统计</strong> 或者 <strong>t_ds_error_command</strong> 中是否增加的新记录，如果增加了，<strong>请查看 message 字段定位启动异常原因</strong></p>
+<p>​	   2，如果存在master服务，查看 <strong>命令状态统计</strong> 或者 <strong>t_ds_error_command</strong> 中是否增加的新记录，如果增加了，<strong>请查看 message 字段定位启动异常原因</strong></p>
 <hr>
 <h2>Q ： 任务状态一直处于提交成功状态</h2>
 <p>A： 1，首先通过<strong>jps 查看WorkerServer服务是否存在</strong>，或者从服务监控直接查看zk中是否存在worker服务</p>
 <p>​       2，如果 <strong>WorkerServer</strong> 服务正常，需要 <strong>查看MasterServer是否把task任务放到zk队列中</strong> ，<strong>需要查看MasterServer日志及zk队列中是否有任务阻塞</strong></p>
-<p>​	3，如果以上都没有问题，需要定位是否指定了Worker分组，但是 <strong>Worker分组的机器不是在线状态</strong></p>
+<p>​	   3，如果以上都没有问题，需要定位是否指定了Worker分组，但是 <strong>Worker分组的机器不是在线状态</strong></p>
 <hr>
 <h2>Q ： <a href="http://install.sh">install.sh</a> 中需要注意问题</h2>
 <p>A：  1，如果替换变量中包含特殊字符，<strong>请用 \ 转移符进行转移</strong></p>
-<p>​	2，installPath=&quot;/data1_1T/dolphinscheduler&quot;，<strong>这个目录不能和当前要一键安装的install.sh目录是一样的</strong></p>
-<p>​	3，deployUser=&quot;dolphinscheduler&quot;，<strong>部署用户必须具有sudo权限</strong>，因为worker是通过sudo -u 租户 sh xxx.command进行执行的</p>
-<p>​	4，monitorServerState=&quot;false&quot;，服务监控脚本是否启动，默认是不启动服务监控脚本的。<strong>如果启动服务监控脚本，则每5分钟定时来监控master和worker的服务是否down机，如果down机则会自动重启</strong></p>
-<p>​	5，hdfsStartupSate=&quot;false&quot;，是否开启HDFS资源上传功能。默认是不开启的，<strong>如果不开启则资源中心是不能使用的</strong>。如果开启，需要conf/common/hadoop/hadoop.properties中配置fs.defaultFS和yarn的相关配置，如果使用namenode HA，需要将core-site.xml和hdfs-site.xml复制到conf根目录下</p>
+<p>​	    2，installPath=&quot;/data1_1T/dolphinscheduler&quot;，<strong>这个目录不能和当前要一键安装的install.sh目录是一样的</strong></p>
+<p>​	    3，deployUser=&quot;dolphinscheduler&quot;，<strong>部署用户必须具有sudo权限</strong>，因为worker是通过sudo -u 租户 sh xxx.command进行执行的</p>
+<p>​	   4，monitorServerState=&quot;false&quot;，服务监控脚本是否启动，默认是不启动服务监控脚本的。<strong>如果启动服务监控脚本，则每5分钟定时来监控master和worker的服务是否down机，如果down机则会自动重启</strong></p>
+<p>​		5，hdfsStartupSate=&quot;false&quot;，是否开启HDFS资源上传功能。默认是不开启的，<strong>如果不开启则资源中心是不能使用的</strong>。如果开启，需要conf/common/hadoop/hadoop.properties中配置fs.defaultFS和yarn的相关配置，如果使用namenode HA，需要将core-site.xml和hdfs-site.xml复制到conf根目录下</p>
 <p>​	注意：<strong>1.0.x版本是不会自动创建hdfs根目录的，需要自行创建，并且需要部署用户有hdfs的操作权限</strong></p>
 <hr>
 <h2>Q ： 流程定义和流程实例下线异常</h2>
@@ -126,7 +126,7 @@
 <h2>Q :  多Master和多Worker状态下，服务掉了，怎么容错</h2>
 <p>A：  <strong>注意：Master监控Master及Worker服务。</strong></p>
 <p>​	1，如果Master服务掉了，其它的Master会接管挂掉的Master的流程，继续监控Worker task状态</p>
-<p>​	2，如果Worker服务掉，Master会监控到Worker服务掉了，如果存在Yarn任务，Kill Yarn任务之后走重试</p>
+<p>​	2，如果Worker服务掉了，Master会监控到Worker服务掉了，如果存在Yarn任务，Kill Yarn任务之后走重试</p>
 <p>具体请看容错设计：<a href="https://analysys.github.io/easyscheduler_docs_cn/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1">https://analysys.github.io/easyscheduler_docs_cn/系统架构设计.html#系统架构设计</a></p>
 <hr>
 <h2>Q ： 对于Master和Worker一台机器伪分布式下的容错</h2>
@@ -137,28 +137,28 @@
 <h2>Q： 定时有有效时间范围吗</h2>
 <p>A：有的，<strong>如果定时的起止时间是同一个时间，那么此定时将是无效的定时</strong>。<strong>如果起止时间的结束时间比当前的时间小，很有可能定时会被自动删除</strong></p>
 <h2>Q ： 任务依赖有几种实现</h2>
-<p>A：	1，<strong>DAG</strong> 之间的任务依赖关系，是从 <strong>入度为零</strong> 进行DAG切分的</p>
-<p>​	2，有 <strong>任务依赖节点</strong> ，可以实现跨流程的任务或者流程依赖，具体请参考 依赖(DEPENDENT)节点：<a href="https://analysys.github.io/easyscheduler_docs_cn/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#%E4%BB%BB%E5%8A%A1%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE">https://analysys.github.io/easyscheduler_docs_cn/系统使用手册.html#任务节点类型和参数设置</a></p>
+<p>A：  1，<strong>DAG</strong> 之间的任务依赖关系，是从 <strong>入度为零</strong> 进行DAG切分的</p>
+<p>​	    2，有 <strong>任务依赖节点</strong> ，可以实现跨流程的任务或者流程依赖，具体请参考 依赖(DEPENDENT)节点：<a href="https://analysys.github.io/easyscheduler_docs_cn/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#%E4%BB%BB%E5%8A%A1%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE">https://analysys.github.io/easyscheduler_docs_cn/系统使用手册.html#任务节点类型和参数设置</a></p>
 <p>​	注意：<strong>不支持跨项目的流程或任务依赖</strong></p>
 <h2>Q： 流程定义有几种启动方式</h2>
 <p>A： 1，在 <strong>流程定义列表</strong>，点击 <strong>启动</strong> 按钮</p>
-<p>​	2，<strong>流程定义列表添加定时器</strong>，调度启动流程定义</p>
-<p>​	3，流程定义 <strong>查看或编辑</strong> DAG 页面，任意 <strong>任务节点右击</strong> 启动流程定义</p>
-<p>​	4，可以对流程定义 DAG 编辑，设置某些任务的运行标志位 <strong>禁止运行</strong>，则在启动流程定义的时候，将该节点的连线将从DAG中去掉</p>
+<p>​		2，<strong>流程定义列表添加定时器</strong>，调度启动流程定义</p>
+<p>​		3，流程定义 <strong>查看或编辑</strong> DAG 页面，任意 <strong>任务节点右击</strong> 启动流程定义</p>
+<p>​		4，可以对流程定义 DAG 编辑，设置某些任务的运行标志位 <strong>禁止运行</strong>，则在启动流程定义的时候，将该节点的连线将从DAG中去掉</p>
 <h2>Q ： Python任务设置Python版本</h2>
-<p>A：  1，对于1**.0.3之后的版本**只需要修改 conf/env/.dolphinscheduler_env.sh中的PYTHON_HOME</p>
+<p>A：  1，对于<strong>1.0.3之后的版本</strong>只需要修改 conf/env/.dolphinscheduler_env.sh中的PYTHON_HOME</p>
 <pre><code>export PYTHON_HOME=/bin/python
 </code></pre>
 <p>注意：这了 <strong>PYTHON_HOME</strong> ，是python命令的绝对路径，而不是单纯的 PYTHON_HOME，还需要注意的是 export PATH 的时候，需要直接</p>
 <pre><code>export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH
 </code></pre>
-<p>​	2，对 1.0.3 之前的版本，Python任务只能支持系统的Python版本，不支持指定Python版本</p>
+<p>​		2，对 1.0.3 之前的版本，Python任务只能支持系统的Python版本，不支持指定Python版本</p>
 <h2>Q： Worker Task 通过sudo -u 租户 sh xxx.command会产生子进程，在kill的时候，是否会杀掉</h2>
 <p>A： 我们会在1.0.4中增加kill任务同时，kill掉任务产生的各种所有子进程</p>
 <h2>Q ： DolphinScheduler中的队列怎么用，用户队列和租户队列是什么意思</h2>
 <p>A ： DolphinScheduler 中的队列可以在用户或者租户上指定队列，<strong>用户指定的队列优先级是高于租户队列的优先级的。</strong>，例如：对MR任务指定队列，是通过 mapreduce.job.queuename 来指定队列的。</p>
 <p>注意：MR在用以上方法指定队列的时候，传递参数请使用如下方式：</p>
-<pre><code>	Configuration conf = new Configuration();
+<pre><code>				Configuration conf = new Configuration();
         GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
         String[] remainingArgs = optionParser.getRemainingArgs();
 </code></pre>

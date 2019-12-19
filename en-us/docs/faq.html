@@ -74,13 +74,12 @@
 <p>A: Install <strong>npm install node-sass --unsafe-perm</strong> separately, then <strong>npm install</strong></p>
 <hr>
 <h2>Q: UI cannot log in normally.</h2>
-<p>A: 1, if it is node startup, check whether the .env API_BASE configuration under dolphinscheduler-ui is the Api Server service address.</p>
-<pre><code>2, If it is nginx booted and installed via **install-dolphinscheduler-ui.sh**, check if the proxy_pass configuration in **/etc/nginx/conf.d/dolphinscheduler.conf** is the Api Server service. address
-
- 3, if the above configuration is correct, then please check if the Api Server service is normal, curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info, check the Api Server log, if Prompt cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null, which proves that the Api Server service is normal.
-
-4, if there is no problem above, you need to check if **server.context-path and server.port configuration** in **application.properties** is correct
-</code></pre>
+<p>A:   1, if it is node startup, check whether the .env API_BASE configuration under dolphinscheduler-ui is the Api Server service address.</p>
+<p>​       2, If it is nginx booted and installed via <strong><a href="http://install-dolphinscheduler-ui.sh">install-dolphinscheduler-ui.sh</a></strong>, check if the proxy_pass      			configuration in <strong>/etc/nginx/conf.d/dolphinscheduler.conf</strong> is the Api Server service address</p>
+<p>​       3, if the above configuration is correct, then please check if the Api Server service is normal,</p>
+<p>​		   curl <a href="http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info">http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info</a>, check the Api Server log,</p>
+<p>​          if  Prompt cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null,   		  which proves that the Api Server service is normal.</p>
+<p>​		4, if there is no problem above, you need to check if <strong>server.context-path and server.port configuration</strong> in <strong>application.properties</strong> is correct</p>
 <hr>
 <h2>Q: After the process definition is manually started or scheduled, no process instance is generated.</h2>
 <p>A:   1, first <strong>check whether the MasterServer service exists through jps</strong>, or directly check whether there is a master service in zk from the service monitoring.</p>
@@ -89,7 +88,7 @@
 <h2>Q : The task status is always in the successful submission status.</h2>
 <p>A:   1, <strong>first check whether the WorkerServer service exists through jps</strong>, or directly check whether there is a worker service in zk from the service monitoring.</p>
 <p>​       2,If the <strong>WorkerServer</strong> service is normal, you need to <strong>check whether the MasterServer puts the task task in the zk queue. You need to check whether the task is blocked in the MasterServer log and the zk queue.</strong></p>
-<p>​       3, if there is no problem above, you need to locate whether the Worker group is specified, but <strong>the machine grouped by the worker is not online</strong>.**</p>
+<p>​       3, if there is no problem above, you need to locate whether the Worker group is specified, but <strong>the machine grouped by the worker is not online</strong>.</p>
 <hr>
 <h2>Q: Is there a Docker image and a Dockerfile?</h2>
 <p>A: Provide Docker image and Dockerfile.</p>
@@ -142,8 +141,8 @@
 <h2>Q: Is there a valid time range for timing?</h2>
 <p>A: Yes, <strong>if the timing start and end time is the same time, then this timing will be invalid timing. If the end time of the start and end time is smaller than the current time, it is very likely that the timing will be automatically deleted.</strong></p>
 <h2>Q : There are several implementations of task dependencies</h2>
-<p>A：	1, the task dependency between <strong>DAG</strong>, is <strong>from the zero degree</strong> of the DAG segmentation</p>
-<p>​	2, there are <strong>task dependent nodes</strong>, you can achieve cross-process tasks or process dependencies, please refer to the (DEPENDENT) node design in the system-manual.</p>
+<p>A:	1, the task dependency between <strong>DAG</strong>, is <strong>from the zero degree</strong> of the DAG segmentation</p>
+<p>​		2, there are <strong>task dependent nodes</strong>, you can achieve cross-process tasks or process dependencies, please refer to the (DEPENDENT) node design in the system-manual.</p>
 <p>​	Note: <strong>Cross-project processes or task dependencies are not supported</strong></p>
 <h2>Q: There are several ways to start the process definition.</h2>
 <p>A:   1, in <strong>the process definition list</strong>, click the <strong>Start</strong> button.</p>
@@ -151,19 +150,19 @@
 <p>​       3, process definition <strong>view or edit</strong> the DAG page, any <strong>task node right click</strong> Start process definition.</p>
 <p>​       4, you can define DAG editing for the process, set the running flag of some tasks to <strong>prohibit running</strong>, when the process definition is started, the connection of the node will be removed from the DAG.</p>
 <h2>Q : Python task setting Python version</h2>
-<p>A：  1，<strong>for the version after 1.0.3</strong> only need to modify PYTHON_HOME in conf/env/.dolphinscheduler_env.sh</p>
+<p>A:	1，<strong>for the version after 1.0.3</strong> only need to modify PYTHON_HOME in conf/env/.dolphinscheduler_env.sh</p>
 <pre><code>export PYTHON_HOME=/bin/python
 </code></pre>
 <p>Note: This is <strong>PYTHON_HOME</strong> , which is the absolute path of the python command, not the simple PYTHON_HOME. Also note that when exporting the PATH, you need to directly</p>
 <pre><code>export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH
 </code></pre>
-<p>​	2，For versions prior to 1.0.3, the Python task only supports the Python version of the system. It does not support specifying the Python version.</p>
+<p>​		2，For versions prior to 1.0.3, the Python task only supports the Python version of the system. It does not support specifying the Python version.</p>
 <h2>Q：Worker Task will generate a child process through sudo -u tenant sh xxx.command, will kill when kill</h2>
 <p>A：  We will add the kill task in 1.0.4 and kill all the various child processes generated by the task.</p>
 <h2>Q ： How to use the queue in DolphinScheduler, what does the user queue and tenant queue mean?</h2>
 <p>A ： The queue in the DolphinScheduler can be configured on the user or the tenant. <strong>The priority of the queue specified by the user is higher than the priority of the tenant queue.</strong> For example, to specify a queue for an MR task, the queue is specified by mapreduce.job.queuename.</p>
 <p>Note: When using the above method to specify the queue, the MR uses the following methods:</p>
-<pre><code>	Configuration conf = new Configuration();
+<pre><code>	      Configuration conf = new Configuration();
         GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
         String[] remainingArgs = optionParser.getRemainingArgs();
 </code></pre>

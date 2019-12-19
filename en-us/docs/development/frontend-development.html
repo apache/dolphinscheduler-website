@@ -61,7 +61,7 @@ API_BASE = http://192.168.xx.xx:12345
 <blockquote>
 <h5>! ! ! Special attention here. If the project reports a &quot;node-sass error&quot; error while pulling the dependency package, execute the following command again after execution.</h5>
 </blockquote>
-<pre><code>npm install node-sass --unsafe-perm //单独安装node-sass依赖
+<pre><code>npm install node-sass --unsafe-perm //Install node-sass dependency separately
 </code></pre>
 <ul>
 <li>
@@ -413,7 +413,7 @@ test.then(res =&gt; {
   msg:'success'
 }
 </code></pre>
-<p>错误返回</p>
+<p>Error return</p>
 <pre><code>{
   code:10000, 
   data:{}
@@ -469,7 +469,7 @@ test.then(res =&gt; {
 <p>(4) Common components used inside the node component are under<code>_source</code>, and <code>commcon.js</code> is used to configure public data.</p>
 <h5>2.Increase the status type</h5>
 <p>(1) Find the <code>tasksState</code> object in <code>src/js/conf/home/pages/dag/_source/config.js</code> and add it to it.</p>
-<pre><code> 'WAITTING_DEPEND': {  // 'WAITTING_DEPEND': {  //后端定义状态类型 前端用作key值
+<pre><code> 'WAITTING_DEPEND': {  // 'WAITTING_DEPEND': {  //Backend defines state type, frontend is used as key value
   id: 11,  // front-end definition id is used as a sort
   desc: `${i18n.$t('waiting for dependency')}`,  // tooltip desc
   color: '#5101be',  // The color represented is mainly used for tree and gantt

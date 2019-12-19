@@ -28,11 +28,11 @@
 <p><strong>Task type</strong>: Currently supports SHELL, SQL, SUB_PROCESS (sub-process), PROCEDURE, MR, SPARK, PYTHON, DEPENDENT (dependency), and plans to support dynamic plug-in extension, note: the sub-<strong>SUB_PROCESS</strong> is also A separate process definition that can be launched separately</p>
 <p><strong>Schedule mode</strong> :  The system supports timing schedule and manual schedule based on cron expressions. Command type support: start workflow, start execution from current node, resume fault-tolerant workflow, resume pause process, start execution from failed node, complement, timer, rerun, pause, stop, resume waiting thread. Where <strong>recovers the fault-tolerant workflow</strong> and <strong>restores the waiting thread</strong> The two command types are used by the scheduling internal control and cannot be called externally</p>
 <p><strong>Timed schedule</strong>: The system uses <strong>quartz</strong> distributed scheduler and supports the generation of cron expression visualization</p>
-<p><strong>Dependency</strong>: The system does not only support <strong>DAG</strong> Simple dependencies between predecessors and successor nodes, but also provides <strong>task dependencies</strong> nodes, support for custom task dependencies between processes**</p>
+<p><strong>Dependency</strong>: The system does not only support <strong>DAG</strong> Simple dependencies between predecessors and successor nodes, but also provides <strong>task dependencies</strong> nodes, support for <strong>custom task dependencies between processes</strong></p>
 <p><strong>Priority</strong>: Supports the priority of process instances and task instances. If the process instance and task instance priority are not set, the default is first in, first out.</p>
 <p><strong>Mail Alert</strong>: Support <strong>SQL Task</strong> Query Result Email Send, Process Instance Run Result Email Alert and Fault Tolerant Alert Notification</p>
 <p><strong>Failure policy</strong>: For tasks running in parallel, if there are tasks that fail, two failure policy processing methods are provided. <strong>Continue</strong> means that the status of the task is run in parallel until the end of the process failure. <strong>End</strong> means that once a failed task is found, Kill also drops the running parallel task and the process ends.</p>
-<p><strong>Complement</strong>: Complement historical data, support ** interval parallel and serial ** two complement methods</p>
+<p><strong>Complement</strong>: Complement historical data, support <strong>interval parallel and serial</strong> two complement methods</p>
 <h3>2.System architecture</h3>
 <h4>2.1 System Architecture Diagram</h4>
 <p align="center">
@@ -53,7 +53,7 @@ When the MasterServer service starts, it registers a temporary node with Zookeep
 <p><strong>Distributed Quartz</strong> distributed scheduling component, mainly responsible for the start and stop operation of the scheduled task. When the quartz picks up the task, the master internally has a thread pool to be responsible for the subsequent operations of the task.</p>
 </li>
 <li>
-<p><strong>MasterSchedulerThread</strong> is a scan thread that periodically scans the <strong>command</strong> table in the database for different business operations based on different ** command types**</p>
+<p><strong>MasterSchedulerThread</strong> is a scan thread that periodically scans the <strong>command</strong> table in the database for different business operations based on different <strong>command types</strong></p>
 </li>
 <li>
 <p><strong>MasterExecThread</strong> is mainly responsible for DAG task segmentation, task submission monitoring, logic processing of various command types</p>
@@ -191,7 +191,7 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <p>Here we must first distinguish between the concept of task failure retry, process failure recovery, and process failure rerun:</p>
 <ul>
 <li>Task failure Retry is task level, which is automatically performed by the scheduling system. For example, if a shell task sets the number of retries to 3 times, then the shell task will try to run up to 3 times after failing to run.</li>
-<li>Process failure recovery is process level, is done manually, recovery can only be performed from the failed node ** or ** from the current node **</li>
+<li>Process failure recovery is process level, is done manually, recovery can only be performed <strong>from the failed node</strong> or <strong>from the current node</strong></li>
 <li>Process failure rerun is also process level, is done manually, rerun is from the start node</li>
 </ul>
 <p>Next, let's talk about the topic, we divided the task nodes in the workflow into two types.</p>
@@ -199,16 +199,16 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <li>One is a business node, which corresponds to an actual script or processing statement, such as a Shell node, an MR node, a Spark node, a dependent node, and so on.</li>
 <li>There is also a logical node, which does not do the actual script or statement processing, but the logical processing of the entire process flow, such as sub-flow sections.</li>
 </ul>
-<p>Each ** service node** can configure the number of failed retries. When the task node fails, it will automatically retry until it succeeds or exceeds the configured number of retries. <strong>Logical node</strong> does not support failed retry. But the tasks in the logical nodes support retry.</p>
+<p>Each <strong>service node</strong> can configure the number of failed retries. When the task node fails, it will automatically retry until it succeeds or exceeds the configured number of retries. <strong>Logical node</strong> does not support failed retry. But the tasks in the logical nodes support retry.</p>
 <p>If there is a task failure in the workflow that reaches the maximum number of retries, the workflow will fail to stop, and the failed workflow can be manually rerun or process resumed.</p>
 <h5>V. Task priority design</h5>
 <p>In the early scheduling design, if there is no priority design and fair scheduling design, it will encounter the situation that the task submitted first may be completed simultaneously with the task submitted subsequently, but the priority of the process or task cannot be set. We have redesigned this, and we are currently designing it as follows:</p>
 <ul>
 <li>
-<p>According to ** different process instance priority ** prioritizes ** same process instance priority ** prioritizes ** task priority within the same process ** takes precedence over ** same process ** commit order from high Go to low for task processing.</p>
+<p>According to <strong>different process instance priority</strong> prioritizes <strong>same process instance priority</strong> prioritizes <strong>task priority within the same process</strong> takes precedence over <strong>same process</strong> commit order from high Go to low for task processing.</p>
 <ul>
 <li>
-<p>The specific implementation is to resolve the priority according to the json of the task instance, and then save the ** process instance priority _ process instance id_task priority _ task id** information in the ZooKeeper task queue, when obtained from the task queue, Through string comparison, you can get the task that needs to be executed first.</p>
+<p>The specific implementation is to resolve the priority according to the json of the task instance, and then save the <strong>process instance priority _ process instance id_task priority _ task id</strong> information in the ZooKeeper task queue, when obtained from the task queue, Through string comparison, you can get the task that needs to be executed first.</p>
 <ul>
 <li>
 <p>The priority of the process definition is that some processes need to be processed before other processes. This can be configured at the start of the process or at the time of scheduled start. There are 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below</p>
