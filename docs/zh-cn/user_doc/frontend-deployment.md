@@ -98,7 +98,16 @@ systemctl restart nginx
 在源码包`dolphinscheduler-ui`目录下执行
 
 ```
-npm run build:combined
+npm install
+```
+
+> #####  ！！！这里特别注意 项目如果在拉取依赖包的过程中报 " node-sass error " 错误，请在执行完后再次执行以下命令
+```
+npm install node-sass --unsafe-perm //单独安装node-sass依赖
+```
+
+```
+npm run build:release
 ```
 
 在后端二进制包目录下创建ui目录
@@ -106,7 +115,7 @@ npm run build:combined
 拷贝dolphinscheduler-ui/dist目录下所有的文件到后端二进制包ui目录下
 
 访问以下url,接口地址(自行修改)
-http://192.168.xx.xx:12345/dolphinscheduler/ui/index.html
+http://192.168.xx.xx:12345/dolphinscheduler
 
 
 

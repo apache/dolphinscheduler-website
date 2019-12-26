@@ -108,7 +108,16 @@ systemctl restart nginx
 Enter the source package `dolphinscheduler-ui` directory and execute
 
 ```
-npm run build:combined
+npm install
+```
+
+> #####  ! ! ! Special attention here. If the project reports a "node-sass error" error while pulling the dependency package, execute the following command again after execution.
+```
+npm install node-sass --unsafe-perm //Install node-sass dependency separately
+```
+
+```
+npm run build:release
 ```
 
 Create the ui directory under the backend binary package directory
@@ -116,7 +125,7 @@ Create the ui directory under the backend binary package directory
 Copy all files in the dolphinscheduler-ui/dist directory to the backend binary package ui directory
 
 Visit the following url, interface address (modify it yourself)
-http://192.168.xx.xx:12345/dolphinscheduler/ui/index.html
+http://192.168.xx.xx:12345/dolphinscheduler
 
 ## FAQ
 #### Upload file size limit
