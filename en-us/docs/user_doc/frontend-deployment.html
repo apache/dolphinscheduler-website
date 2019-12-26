@@ -98,12 +98,19 @@ esc_proxy_port=&quot;http://192.168.xx.xx:12345&quot;
 </ul>
 <h4>jetty deployment</h4>
 <p>Enter the source package <code>dolphinscheduler-ui</code> directory and execute</p>
-<pre><code>npm run build:combined
+<pre><code>npm install
+</code></pre>
+<blockquote>
+<h5>! ! ! Special attention here. If the project reports a &quot;node-sass error&quot; error while pulling the dependency package, execute the following command again after execution.</h5>
+</blockquote>
+<pre><code>npm install node-sass --unsafe-perm //Install node-sass dependency separately
+</code></pre>
+<pre><code>npm run build:release
 </code></pre>
 <p>Create the ui directory under the backend binary package directory</p>
 <p>Copy all files in the dolphinscheduler-ui/dist directory to the backend binary package ui directory</p>
 <p>Visit the following url, interface address (modify it yourself)
-<a href="http://192.168.xx.xx:12345/dolphinscheduler/ui/index.html">http://192.168.xx.xx:12345/dolphinscheduler/ui/index.html</a></p>
+<a href="http://192.168.xx.xx:12345/dolphinscheduler">http://192.168.xx.xx:12345/dolphinscheduler</a></p>
 <h2>FAQ</h2>
 <h4>Upload file size limit</h4>
 <p>Edit the configuration file <code>vi /etc/nginx/nginx.conf</code></p>
