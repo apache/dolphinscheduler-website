@@ -141,17 +141,39 @@ install.sh : 一键部署脚本
 
 将源码包release版本下载后，解压进入根目录
 
-* 执行编译命令：
+* 编译生成tar包
 
-```
- mvn -U clean package -Prelease -Dmaven.test.skip=true
-```
+    tar包的好处是解压即可安装
 
-* 查看目录
+    执行编译命令：
 
-正常编译完后，会在 `dolphinscheduler-dist/dolphinscheduler-backend/target`目录下生成
-       `apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz`
+    ```
+     mvn -U clean package -Prelease -Dmaven.test.skip=true
+    ```
 
+    查看目录
+
+    正常编译完后，会在 `dolphinscheduler-dist/dolphinscheduler-backend/target`目录下生成
+    `apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz`
+       
+       
+* 或者编译生成rpm包
+
+    rpm包可以在linux平台使用rpm命令或者yum命令来安装，rpm包可以用来帮助Dolphinscheduler更方便的集成到其它管理工具，比如Ambari,Cloudera Manager等。
+    
+    执行编译命令：
+    
+    ```
+     mvn -U clean package -Prpmbuild -Dmaven.test.skip=true
+    ```
+    
+    查看目录   
+    
+    正常编译完后，会在 `dolphinscheduler-dist/target/rpm/apache-dolphinscheduler-incubating/RPMS/noarch/`目录下生成
+   `apache-dolphinscheduler-incubating-${latest.release.version}-1.noarch.rpm`
+
+* 解压编译好的tar.gz包或者使用rpm命令安装后（rpm的安装方式会将dolphinscheduler安装在/opt/soft目录下）dolphinscheduler目录结构如下：           
+       
 ```查看目录
  ../
     ├── bin
