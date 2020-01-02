@@ -31,7 +31,7 @@ export default {
       {
         key: 'download',
         text: 'DOWNLOAD',
-        link: 'https://github.com/apache/incubator-dolphinscheduler/releases',
+        link: '/en-us/user_doc/download.html',
         target: '_blank',
       },
       {
