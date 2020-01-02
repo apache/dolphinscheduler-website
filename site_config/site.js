@@ -31,8 +31,7 @@ export default {
       {
         key: 'download',
         text: 'DOWNLOAD',
-        link: '/en-us/user_doc/download.html',
-        target: '_blank',
+        link: '/en-us/docs/user_doc/download.html',
       },
       {
         key: 'blog',
