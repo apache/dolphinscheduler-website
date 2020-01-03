@@ -114,7 +114,7 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.2.0(Upcoming release)',
+            text: '1.2.0',
             link: '/zh-cn/docs/user_doc/quick-start.html',
           },
           {
@@ -127,8 +127,7 @@ export default {
       {
         key: 'download',
         text: '下载',
-        link: 'https://github.com/apache/incubator-dolphinscheduler/releases',
-        target: '_blank',
+        link: '/en-us/docs/user_doc/download.html',
       },
       {
         key: 'blog',

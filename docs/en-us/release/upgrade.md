@@ -9,11 +9,11 @@
 
 ## 3. Download the new version of the installation package
 
-- [github](https://github.com/apache/incubator-dolphinscheduler/releases), download the latest version of the front and back installation packages (backend referred to as dolphinscheduler-backend, front end referred to as dolphinscheduler-ui)
+- [download](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html), download the latest version of the front and back installation packages (backend referred to as dolphinscheduler-backend, front end referred to as dolphinscheduler-front)
 - The following upgrade operations need to be performed in the new version of the directory
 
 ## 4. Database upgrade
-- Modify the following properties in conf/dao/data_source.properties
+- Modify the following properties in conf/application-dao.properties
 
 ```
     spring.datasource.url
