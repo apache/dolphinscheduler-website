@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*!
  * 
- * antd v3.26.5
+ * antd v3.26.6
  * 
  * Copyright 2015-present, Alipay, Inc.
  * All rights reserved.
@@ -6853,8 +6853,7 @@ a.ant-btn-sm {
   list-style: none;
   -webkit-font-feature-settings: 'tnum';
   font-feature-settings: 'tnum';
-  display: inline-block;
-  line-height: unset; }
+  display: inline-block; }
 
 .ant-radio-wrapper {
   -webkit-box-sizing: border-box;
@@ -20234,6 +20233,33 @@ textarea.ant-mentions {
 .ant-steps-navigation .ant-steps-item.ant-steps-item-active::before {
   left: 0;
   width: 100%; }
+
+@media (max-width: 480px) {
+  .ant-steps-navigation > .ant-steps-item {
+    margin-right: 0 !important; }
+  .ant-steps-navigation > .ant-steps-item::before {
+    display: none; }
+  .ant-steps-navigation > .ant-steps-item.ant-steps-item-active::before {
+    top: 0;
+    right: 0;
+    left: unset;
+    display: block;
+    width: 3px;
+    height: calc(100% - 24px); }
+  .ant-steps-navigation > .ant-steps-item::after {
+    position: relative;
+    top: -2px;
+    left: 50%;
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    -webkit-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    transform: rotate(135deg); }
+  .ant-steps-navigation > .ant-steps-item > .ant-steps-item-container > .ant-steps-item-tail {
+    visibility: hidden; } }
 
 .ant-steps-flex-not-supported.ant-steps-horizontal.ant-steps-label-horizontal .ant-steps-item {
   margin-left: -16px;
