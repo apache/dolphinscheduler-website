@@ -5,7 +5,7 @@
 ## 1、准备工作
 #### 下载安装包
 
-请下载最新版本的安装包，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
+请下载最新版本的安装包，下载地址： [下载](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html)
 
 下载 apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz 后，
 解压`tar -zxvf apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.g ./`后，进入`dolphinscheduler-ui`目录
