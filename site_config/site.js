@@ -18,7 +18,7 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.2.0(Upcoming release)',
+            text: '1.2.0',
             link: '/en-us/docs/user_doc/quick-start.html',
           },
           {
