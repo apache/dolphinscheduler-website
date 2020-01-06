@@ -19,7 +19,7 @@ export default {
           {
             key: 'docs1',
             text: '1.2.0',
-            link: '/en-us/docs/user_doc/quick-start.html',
+            link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
               key: 'docs2',
@@ -66,7 +66,7 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/user_doc/quick-start.html',
+          link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
         },
         {
           text: 'Developer guide',
@@ -115,7 +115,7 @@ export default {
           {
             key: 'docs1',
             text: '1.2.0',
-            link: '/zh-cn/docs/user_doc/quick-start.html',
+            link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
               key: 'docs2',
@@ -127,7 +127,7 @@ export default {
       {
         key: 'download',
         text: '下载',
-        link: '/en-us/docs/user_doc/download.html',
+        link: '/zh-cn/docs/user_doc/download.html',
       },
       {
         key: 'blog',
