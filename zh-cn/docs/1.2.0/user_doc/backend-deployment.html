@@ -93,7 +93,7 @@ install.sh : 一键部署脚本
 <p>修改部署参数(根据自己服务器及业务情况):</p>
 </li>
 <li>
-<p>修改 <strong><a href="http://install.sh">install.sh</a></strong>中的各参数，替换成自身业务所需的值</p>
+<p>修改 <code>install.sh</code>中的各参数，替换成自身业务所需的值</p>
 <ul>
 <li>
 <p>monitorServerState 开关变量,在1.0.3版本中增加，控制是否启动自启动脚本(监控master,worker状态,如果掉线会自动启动)
@@ -111,8 +111,8 @@ install.sh : 一键部署脚本
 </li>
 </ul>
 <h2>2、部署</h2>
-<p>以下两种方式任选其一部署即可，推荐自动化部署，有经验的小伙伴也可以使用源码部署</p>
-<h3>2.1 自动部署</h3>
+<p>以下两种方式任选其一部署即可，推荐二进制文件部署，有经验的小伙伴也可以使用源码部署</p>
+<h3>2.1 二进制文件部署</h3>
 <ul>
 <li>
 <p>安装zookeeper工具</p>
@@ -156,7 +156,7 @@ install.sh : 一键部署脚本
 <pre><code class="language-查看目录"> ../
     ├── bin
     ├── conf
-    |── DISCLAIMER
+    |── DISCLAIMER-WIP
     |—— install.sh
     |—— lib
     |—— LICENSE
@@ -165,6 +165,16 @@ install.sh : 一键部署脚本
     |—— script
     |—— sql
 </code></pre>
+<ul>
+<li>
+<p>安装zookeeper工具</p>
+<p><code>pip install kazoo</code></p>
+</li>
+<li>
+<p>切换到部署用户，一键部署</p>
+<p><code>sh install.sh</code></p>
+</li>
+</ul>
 <h3>2.3 系统常用启停服务(服务用途请具体参见《系统架构设计》小节)</h3>
 <ul>
 <li>

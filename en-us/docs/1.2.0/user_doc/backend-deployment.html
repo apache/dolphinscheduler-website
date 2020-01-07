@@ -76,7 +76,7 @@ Modify the following attributes in ./conf/application-dao.properties</p>
 <pre><code> instruction of dolphinscheduler-backend directory 
 </code></pre>
 <pre><code class="language-directory">bin : Basic service startup script
-DISCLAIMER : DISCLAIMER
+DISCLAIMER-WIP : DISCLAIMER-WIP
 conf : Project Profile
 lib : The project relies on jar packages, including individual module jars and third-party jars
 LICENSE : LICENSE
@@ -98,7 +98,7 @@ install.sh :  One-click deployment script
 <p>Modify deployment parameters (depending on your server and business situation):</p>
 </li>
 <li>
-<p>Modify the parameters in <strong><a href="http://install.sh">install.sh</a></strong> to replace the values required by your business</p>
+<p>Modify the parameters in <code>install.sh</code> to replace the values required by your business</p>
 <ul>
 <li>MonitorServerState switch variable, added in version 1.0.3, controls whether to start the self-start script (monitor master, worker status, if off-line will start automatically). The default value of &quot;false&quot; means that the self-start script is not started, and if it needs to start, it is changed to &quot;true&quot;.</li>
 <li>'hdfsStartupSate' switch variable controls whether to start hdfs
@@ -111,8 +111,8 @@ Change the variable to 'true' if you want to use hdfs, you also need to create t
 </li>
 </ul>
 <h2>Deployment</h2>
-<p>Either of the following two methods can be deployed,automated deployment is recommended, and experienced partners can use source deployment as well.</p>
-<h3>Automated Deployment</h3>
+<p>Either of the following two methods can be deployed,binary file deployment is recommended, and experienced partners can use source deployment as well.</p>
+<h3>Binary file Deployment</h3>
 <ul>
 <li>
 <p>Install zookeeper tools</p>
@@ -153,6 +153,16 @@ Change the variable to 'true' if you want to use hdfs, you also need to create t
 </ul>
 <p>After normal compilation, <code>apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz</code>
 is generated in the <code>./dolphinscheduler-dist/dolphinscheduler-backend/target</code> directory</p>
+<ul>
+<li>
+<p>Install zookeeper tools</p>
+<p><code>pip install kazoo</code></p>
+</li>
+<li>
+<p>Switch to deployment user, one-click deployment</p>
+<p><code>sh install.sh</code></p>
+</li>
+</ul>
 <h3>Start-and-stop services commonly used in systems (for service purposes, please refer to System Architecture Design for details)</h3>
 <ul>
 <li>
