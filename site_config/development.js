@@ -7,7 +7,7 @@ export default {
                     {
                         title: 'Subscribe mail list',
                         target: '_blank',
-                        link: '/en-us/docs/user_doc/subscribe.html',
+                        link: '/en-us/docs/1.2.0/user_doc/subscribe.html',
                     },
                     {
                         title: 'Participate in contributing',
@@ -60,7 +60,7 @@ export default {
                     {
                         title: '订阅邮件列表',
                         target: '_blank',
-                        link: '/zh-cn/docs/user_doc/subscribe.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/subscribe.html',
                     },
                     {
                         title: '参与贡献',
