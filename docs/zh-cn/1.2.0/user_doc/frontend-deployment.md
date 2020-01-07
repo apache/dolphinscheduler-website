@@ -17,18 +17,6 @@
 以下两种方式任选其一部署即可，推荐自动化部署
 ### 2.1 自动化部署
 
-在`dolphinscheduler-ui`目录下编辑安装文件`vi install-dolphinscheduler-ui.sh`
-
-更改前端访问端口和后端代理接口地址
-
-```
-# 配置前端访问端口
-esc_proxy="8888"
-
-# 配置代理后端接口
-esc_proxy_port="http://192.168.xx.xx:12345"
-```
-
 >前端自动部署基于linux系统`yum`操作，部署之前请先安装更新`yum`
 
 在该目录下执行`./install-dolphinscheduler-ui.sh`
