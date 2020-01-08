@@ -162,7 +162,7 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/user_doc/quick-start.html',
+          link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
         },
         {
           text: '开发者指南',
