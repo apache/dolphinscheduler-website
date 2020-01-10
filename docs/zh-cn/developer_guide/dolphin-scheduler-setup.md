@@ -146,11 +146,11 @@ System.setProperty("spring.profiles.active", "api");
 
 
 #### 资源中心
-  ds对于资源的存储在HDSF/S3中，HDFS的mac安装请参考:https://www.jianshu.com/p/935b4c5e4c25
+  ds对于资源的存储在HDFS/S3中，HDFS的mac安装请参考:https://www.jianshu.com/p/935b4c5e4c25
 mac的hdfs请下载:https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.8.5/hadoop-2.8.5.tar.gz
 安装好hdfs后，修改common.properties配置：
 ```
-res.upload.startup.type=HDSF
+res.upload.startup.type=HDFS
 ```
 修改hadoop.properties：
 ```
