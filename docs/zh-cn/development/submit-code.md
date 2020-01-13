@@ -42,12 +42,13 @@
 
 ```
 git checkout -b dev-1.0 upstream/dev-1.0
-git push --set-upstream origin dev1.0
+git push --set-upstream origin dev-1.0
 ```
 
 * 在本地修改代码以后，提交到自己仓库：
   
     `git commit -m 'commit content'`
+    
     `git push`
 
 * 将修改提交到远端仓库
