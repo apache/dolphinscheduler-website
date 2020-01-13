@@ -1,5 +1,4 @@
 #### how to submit code
-#### Submit code process
 
 * First from the remote repository * https: //github.com/apache/incubator-dolphinscheduler.git* fork a copy of the code into your own repository
 
