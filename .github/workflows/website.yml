@@ -15,7 +15,7 @@ jobs:
         node-version: 8.16.2
     - name: Build
       run: |
-        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r 404.html index.html en-us zh-cn build img download dist/
+        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r baidu_verify_*.html googleff48c3fa45891a20.html sitemap.xml 404.html .asf.yaml index.html en-us zh-cn build img download dist/
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.4.0
