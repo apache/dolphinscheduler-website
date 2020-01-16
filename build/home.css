@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*!
  * 
- * antd v3.26.6
+ * antd v3.26.7
  * 
  * Copyright 2015-present, Alipay, Inc.
  * All rights reserved.
@@ -5115,7 +5115,7 @@ a.ant-btn-sm {
   line-height: 1; }
 
 .ant-badge-count {
-  z-index: 10;
+  z-index: auto;
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
@@ -5138,7 +5138,7 @@ a.ant-btn-sm {
   padding: 0 8px; }
 
 .ant-badge-dot {
-  z-index: 10;
+  z-index: auto;
   width: 6px;
   height: 6px;
   background: #f5222d;
@@ -12184,7 +12184,7 @@ span.ant-radio + * {
   border-radius: 0 0 4px 4px; }
 
 .ant-collapse-borderless {
-  background-color: #fff;
+  background-color: #fafafa;
   border: 0; }
 
 .ant-collapse-borderless > .ant-collapse-item {
@@ -15744,10 +15744,13 @@ form .ant-input-group .ant-cascader-picker {
 
 form :not(.ant-input-group-wrapper) > .ant-input-group,
 form .ant-input-group-wrapper {
-  position: relative;
-  top: -1px;
   display: inline-block;
   vertical-align: middle; }
+
+form:not(.ant-form-vertical) :not(.ant-input-group-wrapper) > .ant-input-group,
+form:not(.ant-form-vertical) .ant-input-group-wrapper {
+  position: relative;
+  top: -1px; }
 
 .ant-form-vertical .ant-form-item-label,
 .ant-col-24.ant-form-item-label,
@@ -21036,6 +21039,9 @@ tr.ant-table-expanded-row td > .ant-table-wrapper {
   min-width: 100%; }
 
 .ant-table-scroll table .ant-table-fixed-columns-in-body:not([colspan]) {
+  color: transparent; }
+
+.ant-table-scroll table .ant-table-fixed-columns-in-body:not([colspan]) > * {
   visibility: hidden; }
 
 .ant-table-body-inner {
