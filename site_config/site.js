@@ -62,7 +62,7 @@ export default {
       list: [
         {
           text: 'Overview',
-          link: '/en-us/docs/developer_guide/architecture-design.html',
+          link: '/en-us/docs/1.2.0/user_doc/architecture-design.html',
         },
         {
           text: 'Quick start',
@@ -70,7 +70,7 @@ export default {
         },
         {
           text: 'Developer guide',
-          link: '/en-us/docs/development/developers.html',
+          link: '/en-us/docs/development/become a committer.html',
         },
       ],
     },
@@ -127,7 +127,7 @@ export default {
       {
         key: 'download',
         text: '下载',
-        link: '/zh-cn/docs/user_doc/download.html',
+        link: '/zh-cn/docs/release/download.html',
       },
       {
         key: 'blog',
@@ -137,7 +137,7 @@ export default {
       {
         key: 'development',
         text: '开发者',
-        link: '/zh-cn/docs/development/architecture-design.html',
+        link: '/zh-cn/docs/development/subscribe.html',
       },
       {
         key: 'community',
@@ -158,7 +158,7 @@ export default {
       list: [
         {
           text: '概览',
-          link: '/zh-cn/docs/developer_guide/architecture-design.html',
+          link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
         },
         {
           text: '快速开始',
@@ -166,7 +166,7 @@ export default {
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/development/developers.html',
+          link: '/zh-cn/docs/development/become a committer.html',
         },
       ],
     },
