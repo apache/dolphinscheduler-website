@@ -33,7 +33,7 @@ export default {
                     {
                         title: 'Api Document',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/doc.html?language=en&lang=en'
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=enn'
                     }
                 ]
             },
@@ -113,7 +113,7 @@ export default {
                     {
                         title: 'API文档',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=zh_CN&lang=zh'
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh'
                     }
                 ]
             },
