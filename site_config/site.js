@@ -166,7 +166,7 @@ export default {
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/development/become a committer.html',
+          link: '/zh-cn/docs/1.2.0/user_doc/backend-development.html',
         },
       ],
     },
