@@ -5,7 +5,7 @@ export default {
                 title: 'Contribution Guide',
                 children: [
                     {
-                        title: '如何成为Dolphinscheduler的committer',
+                        title: 'how to become a committer',
                         link: '/en-us/docs/development/become a committer.html',
                     },
                     {
