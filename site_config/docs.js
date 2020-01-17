@@ -6,11 +6,11 @@ export default {
                 children: [
                     {
                         title: 'Backend deploy',
-                        link: '/en-us/docs/user_doc/backend-deployment.html',
+                        link: '/en-us/docs/1.2.0/user_doc/backend-deployment.html',
                     },
                     {
                         title: 'Frontend deploy',
-                        link: '/en-us/docs/user_doc/frontend-deployment.html',
+                        link: '/en-us/docs/1.2.0/user_doc/frontend-deployment.html',
                     }
                 ]
             },
@@ -19,11 +19,11 @@ export default {
                 children: [
                     {
                         title: 'Quick Start',
-                        link: '/en-us/docs/user_doc/quick-start.html',
+                        link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
                     },
                     {
                         title: 'User Manual',
-                        link: '/en-us/docs/user_doc/system-manual.html',
+                        link: '/en-us/docs/1.2.0/user_doc/system-manual.html',
                     }
                 ]
             },
@@ -33,7 +33,7 @@ export default {
                     {
                         title: 'Api Document',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=en&lang=en'
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en'
                     }
                 ]
             },
@@ -42,7 +42,7 @@ export default {
                 children: [
                     {
                         title: 'Subscribe',
-                        link: '/en-us/docs/user_doc/subscribe.html',
+                        link: '/en-us/docs/1.2.0/user_doc/subscribe.html',
                     }
                 ]
             },
@@ -51,7 +51,7 @@ export default {
                 children: [
                     {
                         title: 'Upgrade',
-                        link: '/en-us/docs/release/upgrade.html',
+                        link: '/en-us/docs/1.2.0/release/upgrade.html',
                     }
                 ]
             },
@@ -60,7 +60,7 @@ export default {
                 children: [
                     {
                         title: 'FAQ',
-                        link: '/en-us/docs/faq.html',
+                        link: '/en-us/docs/1.2.0/faq.html',
                     }
                 ]
             }
@@ -74,11 +74,11 @@ export default {
                 children: [
                     {
                         title: '后端部署',
-                        link: '/zh-cn/docs/user_doc/backend-deployment.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/backend-deployment.html',
                     },
                     {
                         title: '前端部署',
-                        link: '/zh-cn/docs/user_doc/frontend-deployment.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/frontend-deployment.html',
                     }
                 ],
             },
@@ -87,11 +87,11 @@ export default {
                 children: [
                     {
                         title: '快速上手',
-                        link: '/zh-cn/docs/user_doc/quick-start.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
                     },
                     {
                         title: '用户手册',
-                        link: '/zh-cn/docs/user_doc/system-manual.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/system-manual.html',
                     },
                 ],
             },
@@ -101,7 +101,7 @@ export default {
                     {
                         title: 'API文档',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=zh_CN&lang=zh'
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh'
                     }
                 ]
             },
@@ -110,7 +110,7 @@ export default {
                 children: [
                     {
                         title: '订阅(强烈建议)',
-                        link: '/zh-cn/docs/user_doc/subscribe.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/subscribe.html',
                     }
                 ]
             },
@@ -119,7 +119,7 @@ export default {
                 children: [
                     {
                         title: '升级',
-                        link: '/zh-cn/docs/release/upgrade.html',
+                        link: '/zh-cn/docs/1.2.0/release/upgrade.html',
                     }
                 ],
             },
@@ -128,7 +128,7 @@ export default {
                 children: [
                     {
                         title: 'FAQ',
-                        link: '/zh-cn/docs/faq.html',
+                        link: '/zh-cn/docs/1.2.0/faq.html',
                     }
                 ]
             }

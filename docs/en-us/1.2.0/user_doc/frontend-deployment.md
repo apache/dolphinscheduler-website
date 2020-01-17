@@ -8,7 +8,7 @@ The front-end has three deployment modes: automated deployment, manual deploymen
 
 #### Download the installation package
 
-Please download the latest version of the installation package, download address： [download](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
+Please download the latest version of the installation package, download address： [download](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html)
 
 After downloading apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz，
 decompress`tar -zxvf apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz ./`and enter the`dolphinscheduler-ui`directory
@@ -21,18 +21,6 @@ decompress`tar -zxvf apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-f
 Automated deployment is recommended for either of the following two ways
 
 ### Automated Deployment
-
-Edit the installation file`vi install-dolphinscheduler-ui.sh` in the` dolphinscheduler-ui` directory
-
-Change the front-end access port and the back-end proxy interface address
-
-```
-# Configure the front-end access port
-esc_proxy="8888"
-
-# Configure proxy back-end interface
-esc_proxy_port="http://192.168.xx.xx:12345"
-```
 
 >Front-end automatic deployment based on Linux system `yum` operation, before deployment, please install and update`yum`
 

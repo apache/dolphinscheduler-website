@@ -18,8 +18,8 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.2.0(Upcoming release)',
-            link: '/en-us/docs/user_doc/quick-start.html',
+            text: '1.2.0',
+            link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
               key: 'docs2',
@@ -31,8 +31,7 @@ export default {
       {
         key: 'download',
         text: 'DOWNLOAD',
-        link: 'https://github.com/apache/incubator-dolphinscheduler/releases',
-        target: '_blank',
+        link: '/en-us/docs/user_doc/download.html',
       },
       {
         key: 'blog',
@@ -67,7 +66,7 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/user_doc/quick-start.html',
+          link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
         },
         {
           text: 'Developer guide',
@@ -115,8 +114,8 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.2.0(Upcoming release)',
-            link: '/zh-cn/docs/user_doc/quick-start.html',
+            text: '1.2.0',
+            link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
               key: 'docs2',
@@ -128,8 +127,7 @@ export default {
       {
         key: 'download',
         text: '下载',
-        link: 'https://github.com/apache/incubator-dolphinscheduler/releases',
-        target: '_blank',
+        link: '/zh-cn/docs/user_doc/download.html',
       },
       {
         key: 'blog',
@@ -164,7 +162,7 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/user_doc/quick-start.html',
+          link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
         },
         {
           text: '开发者指南',

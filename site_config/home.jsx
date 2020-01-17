@@ -8,7 +8,7 @@ export default {
       buttons: [
         {
           text: '立即开始',
-          link: '/zh-cn/docs/user_doc/quick-start.html',
+          link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           type: 'primary',
         },
         {
@@ -86,6 +86,7 @@ export default {
         '/img/users_yousukuaidi.jpg',
         '/img/users_yuxueyuan.jpg',
         '/img/users_zhongruanguoji.jpg',
+        '/img/users_changan.jpg',
       ],
     },
   },
@@ -96,7 +97,7 @@ export default {
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/user_doc/quick-start.html',
+          link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           type: 'primary',
         },
         {
@@ -174,6 +175,7 @@ export default {
         '/img/users_yousukuaidi.jpg',
         '/img/users_yuxueyuan.jpg',
         '/img/users_zhongruanguoji.jpg',
+        '/img/users_changan.jpg',
       ],
     },
   },

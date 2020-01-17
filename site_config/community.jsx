@@ -62,7 +62,7 @@ export default {
           img: '/img/twitter.png',
           imgHover: '/img/twitter_hover.png',
           title: '@ApacheDolphinScheduler',
-          link: 'https://twitter.com/dolphinschedule',
+          link: 'https://twitter.com/DolphinSched',
         },
       ],
     },
@@ -83,7 +83,7 @@ export default {
         {
           img: '/img/documents.png',
           title: 'Documents',
-          content: <span>Improve the <a href="/en-us/docs/user_doc/quick-start.html">documentation</a>.</span>,
+          content: <span>Improve the <a href="/en-us/docs/1.2.0/user_doc/quick-start.html">documentation</a>.</span>,
         },
         {
           img: '/img/pullrequest.png',
@@ -154,7 +154,7 @@ export default {
           img: '/img/twitter.png',
           imgHover: '/img/twitter_hover.png',
           title: '@ApacheDolphinScheduler',
-          link: 'https://twitter.com/dolphinschedule',
+          link: 'https://twitter.com/DolphinSched',
         },
       ],
     },
@@ -175,7 +175,7 @@ export default {
         {
           img: '/img/documents.png',
           title: '文档',
-          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/user_doc/quick-start.html"> 文档</a>。</span>,
+          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/1.2.0/user_doc/quick-start.html"> 文档</a>。</span>,
         },
         {
           img: '/img/pullrequest.png',

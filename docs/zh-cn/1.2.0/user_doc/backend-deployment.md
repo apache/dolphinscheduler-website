@@ -4,7 +4,7 @@
 
 ## 1、准备工作
 
-请下载最新版本的安装包，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
+请下载最新版本的安装包，下载地址： [下载](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html)
 
 #### 准备一: 基础软件安装(必装项请自行安装)
 
@@ -90,7 +90,7 @@ install.sh : 一键部署脚本
 
 - 修改部署参数(根据自己服务器及业务情况):
 
- - 修改 **install.sh**中的各参数，替换成自身业务所需的值
+ - 修改 `install.sh`中的各参数，替换成自身业务所需的值
    - monitorServerState 开关变量,在1.0.3版本中增加，控制是否启动自启动脚本(监控master,worker状态,如果掉线会自动启动)
    默认值为"false"表示不启动自启动脚本,如果需要启动改为"true"
 
@@ -102,9 +102,9 @@ install.sh : 一键部署脚本
 
 
 ## 2、部署
-以下两种方式任选其一部署即可，推荐自动化部署，有经验的小伙伴也可以使用源码部署
+以下两种方式任选其一部署即可，推荐二进制文件部署，有经验的小伙伴也可以使用源码部署
 
-### 2.1 自动部署
+### 2.1 二进制文件部署
 
 - 安装zookeeper工具 
 
@@ -178,7 +178,7 @@ install.sh : 一键部署脚本
  ../
     ├── bin
     ├── conf
-    |── DISCLAIMER
+    |── DISCLAIMER-WIP
     |—— install.sh
     |—— lib
     |—— LICENSE
@@ -187,7 +187,13 @@ install.sh : 一键部署脚本
     |—— script
     |—— sql
 ```
+- 安装zookeeper工具
 
+   `pip install kazoo`
+
+- 切换到部署用户，一键部署
+
+    `sh install.sh`
 
 ### 2.3 系统常用启停服务(服务用途请具体参见《系统架构设计》小节)
 

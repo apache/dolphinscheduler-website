@@ -7,7 +7,7 @@ There are two deployment modes for the backend:
 
 ## Preparations
 
-Download the latest version of the installation package, download address：  [download](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler),
+Download the latest version of the installation package, download address：  [download](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html),
 download apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-backend-bin.tar.gz
 
 
@@ -78,7 +78,7 @@ Configure SSH secret-free login on deployment machines and other installation ma
 
 ```directory
 bin : Basic service startup script
-DISCLAIMER : DISCLAIMER
+DISCLAIMER-WIP : DISCLAIMER-WIP
 conf : Project Profile
 lib : The project relies on jar packages, including individual module jars and third-party jars
 LICENSE : LICENSE
@@ -97,7 +97,7 @@ install.sh :  One-click deployment script
 
 - Modify deployment parameters (depending on your server and business situation):
 
- - Modify the parameters in **install.sh** to replace the values required by your business
+ - Modify the parameters in `install.sh` to replace the values required by your business
    - MonitorServerState switch variable, added in version 1.0.3, controls whether to start the self-start script (monitor master, worker status, if off-line will start automatically). The default value of "false" means that the self-start script is not started, and if it needs to start, it is changed to "true".
    - 'hdfsStartupSate' switch variable controls whether to start hdfs
       The default value of "false" means not to start hdfs
@@ -107,9 +107,9 @@ install.sh :  One-click deployment script
 
 
 ## Deployment
-Either of the following two methods can be deployed,automated deployment is recommended, and experienced partners can use source deployment as well.
+Either of the following two methods can be deployed,binary file deployment is recommended, and experienced partners can use source deployment as well.
 
-### Automated Deployment
+### Binary file Deployment
 
 - Install zookeeper tools
 
@@ -192,6 +192,14 @@ is generated in the `./dolphinscheduler-dist/dolphinscheduler-backend/target` di
          |—— sql
      ```
 
+
+- Install zookeeper tools
+
+   `pip install kazoo`
+
+- Switch to deployment user, one-click deployment
+
+    `sh install.sh`
 
 ### Start-and-stop services commonly used in systems (for service purposes, please refer to System Architecture Design for details)
 
