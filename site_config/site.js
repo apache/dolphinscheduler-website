@@ -31,7 +31,7 @@ export default {
       {
         key: 'download',
         text: 'DOWNLOAD',
-        link: '/en-us/docs/user_doc/download.html',
+        link: '/en-us/docs/release/download.html',
       },
       {
         key: 'blog',
@@ -41,7 +41,7 @@ export default {
       {
         key: 'development',
         text: 'DEVELOPMENT',
-        link: '/en-us/docs/development/architecture-design.html',
+        link: '/en-us/docs/development/subscribe.html',
       },
       {
         key: 'community',
