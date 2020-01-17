@@ -33,16 +33,7 @@ export default {
                     {
                         title: 'Api Document',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en'
-                    }
-                ]
-            },
-            {
-                title: 'Subscribe',
-                children: [
-                    {
-                        title: 'Subscribe',
-                        link: '/en-us/docs/1.2.0/user_doc/subscribe.html',
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=enn'
                     }
                 ]
             },
@@ -51,16 +42,37 @@ export default {
                 children: [
                     {
                         title: 'Upgrade',
-                        link: '/en-us/docs/1.2.0/release/upgrade.html',
+                        link: '/en-us/docs/1.2.0/user_doc/upgrade.html',
                     }
                 ]
+            },
+            {
+                title: 'Developer guide',
+                children: [
+                    {
+                        title: 'Architecture Design',
+                        link: '/en-us/docs/1.2.0/user_doc/architecture-design.html',
+                    },
+                    {
+                        title: 'Backend Development',
+                        link: '/en-us/docs/1.2.0/user_doc/backend-development.html',
+                    },
+                    {
+                        title: 'Frontend Development',
+                        link: '/en-us/docs/1.2.0/user_doc/frontend-development.html',
+                    },
+                    {
+                        title: 'plugin-development',
+                        link: '/en-us/docs/1.2.0/user_doc/plugin-development.html',
+                    },
+                ],
             },
             {
                 title: 'FAQ',
                 children: [
                     {
                         title: 'FAQ',
-                        link: '/en-us/docs/1.2.0/faq.html',
+                        link: '/en-us/docs/release/faq.html',
                     }
                 ]
             }
@@ -106,21 +118,33 @@ export default {
                 ]
             },
             {
-                title: '订阅',
-                children: [
-                    {
-                        title: '订阅(强烈建议)',
-                        link: '/zh-cn/docs/1.2.0/user_doc/subscribe.html',
-                    }
-                ]
-            },
-            {
                 title: '版本升级',
                 children: [
                     {
                         title: '升级',
-                        link: '/zh-cn/docs/1.2.0/release/upgrade.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/upgrade.html',
                     }
+                ],
+            },
+            {
+                title: '开发者指南',
+                children: [
+                    {
+                        title: '架构设计',
+                        link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
+                    },
+                    {
+                        title: '后端开发',
+                        link: '/zh-cn/docs/1.2.0/user_doc/backend-development.html',
+                    },
+                    {
+                        title: '前端开发',
+                        link: '/zh-cn/docs/1.2.0/user_doc/frontend-development.html',
+                    },
+                    {
+                        title: '插件开发',
+                        link: '/zh-cn/docs/1.2.0/user_doc/plugin-development.html',
+                    },
                 ],
             },
             {
