@@ -5,6 +5,10 @@ export default {
                 title: 'Contribution Guide',
                 children: [
                     {
+                        title: '如何成为Dolphinscheduler的committer',
+                        link: '/en-us/docs/development/become a committer.html',
+                    },
+                    {
                         title: 'Subscribe mail list',
                         link: '/en-us/docs/development/subscribe.html',
                     },
@@ -36,13 +40,13 @@ export default {
                 title: '贡献指南',
                 children: [
                     {
+                        title: '如何成为Dolphinscheduler的committer',
+                        link: '/zh-cn/docs/development/become a committer.html',
+                    },
+                    {
                         title: '订阅邮件列表',
                         target: '_blank',
                         link: '/zh-cn/docs/development/subscribe.html',
-                    },
-                    {
-                        title: '如何成为Dolphinscheduler的committer',
-                        link: '/zh-cn/docs/development/committer.html',
                     },
                     {
                         title: '参与贡献',
