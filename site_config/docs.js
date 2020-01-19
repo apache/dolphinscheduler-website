@@ -23,11 +23,11 @@ export default {
                     },
                     {
                         title: 'User Manual',
-                        link: '/en-us/docs/user_doc/system-manual.html',
+                        link: '/en-us/docs/1.2.0/user_doc/system-manual.html',
                     },
                     {
                         title: 'Metadata',
-                        link: '/en-us/docs/user_doc/metadata-1.2.html'
+                        link: '/en-us/docs/1.2.0/user_doc/metadata-1.2.html'
                     },
                 ]
             },
@@ -111,7 +111,7 @@ export default {
                     },
                     {
                         title: '元数据文档',
-                        link: '/zh-cn/docs/user_doc/metadata-1.2.html'
+                        link: '/zh-cn/docs/1.2.0/user_doc/metadata-1.2.html'
                     },
                 ],
             },
@@ -160,7 +160,7 @@ export default {
                 children: [
                     {
                         title: 'FAQ',
-                        link: '/zh-cn/docs/1.2.0/faq.html',
+                        link: '/zh-cn/docs/release/faq.html',
                     }
                 ]
             }
