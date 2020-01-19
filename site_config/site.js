@@ -18,8 +18,8 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.2.0(Upcoming release)',
-            link: '/en-us/docs/user_doc/quick-start.html',
+            text: '1.2.0',
+            link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
               key: 'docs2',
@@ -31,7 +31,7 @@ export default {
       {
         key: 'download',
         text: 'DOWNLOAD',
-        link: '/en-us/docs/user_doc/download.html',
+        link: '/en-us/docs/release/download.html',
       },
       {
         key: 'blog',
@@ -41,7 +41,7 @@ export default {
       {
         key: 'development',
         text: 'DEVELOPMENT',
-        link: '/en-us/docs/development/architecture-design.html',
+        link: '/en-us/docs/development/subscribe.html',
       },
       {
         key: 'community',
@@ -62,15 +62,15 @@ export default {
       list: [
         {
           text: 'Overview',
-          link: '/en-us/docs/developer_guide/architecture-design.html',
+          link: '/en-us/docs/1.2.0/user_doc/architecture-design.html',
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/user_doc/quick-start.html',
+          link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
         },
         {
           text: 'Developer guide',
-          link: '/en-us/docs/development/developers.html',
+          link: '/en-us/docs/1.2.0/user_doc/backend-development.html',
         },
       ],
     },
@@ -114,8 +114,8 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.2.0(Upcoming release)',
-            link: '/zh-cn/docs/user_doc/quick-start.html',
+            text: '1.2.0',
+            link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
               key: 'docs2',
@@ -127,8 +127,7 @@ export default {
       {
         key: 'download',
         text: '下载',
-        link: 'https://github.com/apache/incubator-dolphinscheduler/releases',
-        target: '_blank',
+        link: '/zh-cn/docs/release/download.html',
       },
       {
         key: 'blog',
@@ -138,7 +137,7 @@ export default {
       {
         key: 'development',
         text: '开发者',
-        link: '/zh-cn/docs/development/architecture-design.html',
+        link: '/zh-cn/docs/development/subscribe.html',
       },
       {
         key: 'community',
@@ -159,15 +158,15 @@ export default {
       list: [
         {
           text: '概览',
-          link: '/zh-cn/docs/developer_guide/architecture-design.html',
+          link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/user_doc/quick-start.html',
+          link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/development/developers.html',
+          link: '/zh-cn/docs/1.2.0/user_doc/backend-development.html',
         },
       ],
     },

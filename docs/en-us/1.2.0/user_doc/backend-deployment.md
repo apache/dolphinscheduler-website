@@ -7,7 +7,7 @@ There are two deployment modes for the backend:
 
 ## Preparations
 
-Download the latest version of the installation package, download address：  [download](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler),
+Download the latest version of the installation package, download address：  [download](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html),
 download apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-backend-bin.tar.gz
 
 
@@ -78,7 +78,7 @@ Configure SSH secret-free login on deployment machines and other installation ma
 
 ```directory
 bin : Basic service startup script
-DISCLAIMER : DISCLAIMER
+DISCLAIMER-WIP : DISCLAIMER-WIP
 conf : Project Profile
 lib : The project relies on jar packages, including individual module jars and third-party jars
 LICENSE : LICENSE
@@ -97,7 +97,7 @@ install.sh :  One-click deployment script
 
 - Modify deployment parameters (depending on your server and business situation):
 
- - Modify the parameters in **install.sh** to replace the values required by your business
+ - Modify the parameters in `install.sh` to replace the values required by your business
    - MonitorServerState switch variable, added in version 1.0.3, controls whether to start the self-start script (monitor master, worker status, if off-line will start automatically). The default value of "false" means that the self-start script is not started, and if it needs to start, it is changed to "true".
    - 'hdfsStartupSate' switch variable controls whether to start hdfs
       The default value of "false" means not to start hdfs
@@ -107,9 +107,9 @@ install.sh :  One-click deployment script
 
 
 ## Deployment
-Either of the following two methods can be deployed,automated deployment is recommended, and experienced partners can use source deployment as well.
+Either of the following two methods can be deployed,binary file deployment is recommended, and experienced partners can use source deployment as well.
 
-### Automated Deployment
+### Binary file Deployment
 
 - Install zookeeper tools
 
@@ -147,17 +147,59 @@ After successful deployment, the log can be viewed and stored in a specified fol
 
 After downloading the release version of the source package, unzip it into the root directory
 
-* Execute the compilation command：
+* Build a tar package
 
-```
- mvn -U clean package -Prelease -Dmaven.test.skip=true
-```
+    Execute the compilation command：
 
-* View directory
+    ```
+     mvn -U clean package -Prelease -Dmaven.test.skip=true
+    ```
 
-After normal compilation, `apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz`
+    View directory
+
+    After normal compilation, `apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz`
 is generated in the `./dolphinscheduler-dist/dolphinscheduler-backend/target` directory
 
+* OR build a rpm package 
+
+    The rpm package can be installed on the Linux platform using the rpm command or yum. The rpm package can be used to help Dolphinscheduler better integrate with other management tools, such as ambari, cloudera manager.
+
+    Execute the compilation command：
+
+    ```
+     mvn -U clean package -Prpmbuild -Dmaven.test.skip=true
+    ```
+
+    View directory
+
+    After normal compilation, `apache-dolphinscheduler-incubating-${latest.release.version}-1.noarch.rpm`
+    is generated in the `./dolphinscheduler-dist/target/rpm/apache-dolphinscheduler-incubating/RPMS/noarch/` directory
+
+
+* Decompress the compiled tar.gz package or use the rpm command to install (the rpm installation method will install dolphinscheduler in the /opt/soft directory) . The dolphinscheduler directory structure is like this:
+
+     ```
+      ../
+         ├── bin
+         ├── conf
+         |── DISCLAIMER
+         |—— install.sh
+         |—— lib
+         |—— LICENSE
+         |—— licenses
+         |—— NOTICE
+         |—— script
+         |—— sql
+     ```
+
+
+- Install zookeeper tools
+
+   `pip install kazoo`
+
+- Switch to deployment user, one-click deployment
+
+    `sh install.sh`
 
 ### Start-and-stop services commonly used in systems (for service purposes, please refer to System Architecture Design for details)
 

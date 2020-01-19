@@ -4,7 +4,7 @@
 
 ## 1、准备工作
 
-请下载最新版本的安装包，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
+请下载最新版本的安装包，下载地址： [下载](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html)
 
 #### 准备一: 基础软件安装(必装项请自行安装)
 
@@ -90,7 +90,7 @@ install.sh : 一键部署脚本
 
 - 修改部署参数(根据自己服务器及业务情况):
 
- - 修改 **install.sh**中的各参数，替换成自身业务所需的值
+ - 修改 `install.sh`中的各参数，替换成自身业务所需的值
    - monitorServerState 开关变量,在1.0.3版本中增加，控制是否启动自启动脚本(监控master,worker状态,如果掉线会自动启动)
    默认值为"false"表示不启动自启动脚本,如果需要启动改为"true"
 
@@ -102,9 +102,9 @@ install.sh : 一键部署脚本
 
 
 ## 2、部署
-以下两种方式任选其一部署即可，推荐自动化部署，有经验的小伙伴也可以使用源码部署
+以下两种方式任选其一部署即可，推荐二进制文件部署，有经验的小伙伴也可以使用源码部署
 
-### 2.1 自动部署
+### 2.1 二进制文件部署
 
 - 安装zookeeper工具 
 
@@ -141,22 +141,44 @@ install.sh : 一键部署脚本
 
 将源码包release版本下载后，解压进入根目录
 
-* 执行编译命令：
+* 编译生成tar包
 
-```
- mvn -U clean package -Prelease -Dmaven.test.skip=true
-```
+    tar包的好处是解压即可安装
 
-* 查看目录
+    执行编译命令：
 
-正常编译完后，会在 `dolphinscheduler-dist/dolphinscheduler-backend/target`目录下生成
-       `apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz`
+    ```
+     mvn -U clean package -Prelease -Dmaven.test.skip=true
+    ```
 
+    查看目录
+
+    正常编译完后，会在 `dolphinscheduler-dist/dolphinscheduler-backend/target`目录下生成
+    `apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz`
+       
+       
+* 或者编译生成rpm包
+
+    rpm包可以在linux平台使用rpm命令或者yum命令来安装，rpm包可以用来帮助Dolphinscheduler更方便的集成到其它管理工具，比如Ambari,Cloudera Manager等。
+    
+    执行编译命令：
+    
+    ```
+     mvn -U clean package -Prpmbuild -Dmaven.test.skip=true
+    ```
+    
+    查看目录   
+    
+    正常编译完后，会在 `dolphinscheduler-dist/target/rpm/apache-dolphinscheduler-incubating/RPMS/noarch/`目录下生成
+   `apache-dolphinscheduler-incubating-${latest.release.version}-1.noarch.rpm`
+
+* 解压编译好的tar.gz包或者使用rpm命令安装后（rpm的安装方式会将dolphinscheduler安装在/opt/soft目录下）dolphinscheduler目录结构如下：           
+       
 ```查看目录
  ../
     ├── bin
     ├── conf
-    |── DISCLAIMER
+    |── DISCLAIMER-WIP
     |—— install.sh
     |—— lib
     |—— LICENSE
@@ -165,7 +187,13 @@ install.sh : 一键部署脚本
     |—— script
     |—— sql
 ```
+- 安装zookeeper工具
 
+   `pip install kazoo`
+
+- 切换到部署用户，一键部署
+
+    `sh install.sh`
 
 ### 2.3 系统常用启停服务(服务用途请具体参见《系统架构设计》小节)
 

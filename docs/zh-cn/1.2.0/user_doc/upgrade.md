@@ -9,11 +9,11 @@
 
 ## 3. 下载新版本的安装包
 
-- [github](https://github.com/apache/incubator-dolphinscheduler/releases), 下载最新版本的前后端安装包(dolphinscheduler-backend、dolphinscheduler-ui)
+- [下载](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html), 下载最新版本的前后端安装包(dolphinscheduler-backend、dolphinscheduler-ui)
 - 以下升级操作都需要在新版本的目录进行
 
 ## 4. 数据库升级
-- 修改conf/dao/data_source.properties中的下列属性
+- 修改conf/application-dao.properties中的下列属性
 
 ```
     spring.datasource.url

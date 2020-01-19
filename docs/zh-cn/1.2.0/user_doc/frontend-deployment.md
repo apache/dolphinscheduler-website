@@ -5,7 +5,7 @@
 ## 1、准备工作
 #### 下载安装包
 
-请下载最新版本的安装包，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler)
+请下载最新版本的安装包，下载地址： [下载](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html)
 
 下载 apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz 后，
 解压`tar -zxvf apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.g ./`后，进入`dolphinscheduler-ui`目录
@@ -16,18 +16,6 @@
 ## 2、部署
 以下两种方式任选其一部署即可，推荐自动化部署
 ### 2.1 自动化部署
-
-在`dolphinscheduler-ui`目录下编辑安装文件`vi install-dolphinscheduler-ui.sh`
-
-更改前端访问端口和后端代理接口地址
-
-```
-# 配置前端访问端口
-esc_proxy="8888"
-
-# 配置代理后端接口
-esc_proxy_port="http://192.168.xx.xx:12345"
-```
 
 >前端自动部署基于linux系统`yum`操作，部署之前请先安装更新`yum`
 
