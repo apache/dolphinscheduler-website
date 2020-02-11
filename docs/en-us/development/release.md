@@ -221,7 +221,7 @@ mkdir -p ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 ```
 
-Add source code packages, binary packages and executable binary packages of sharding-proxy to SVN working directory.
+Add source code packages, binary packages and executable binary packages to SVN working directory.
 
 ```shell
 cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
