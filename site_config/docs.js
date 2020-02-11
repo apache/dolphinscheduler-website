@@ -138,6 +138,10 @@ export default {
                 title: '开发者指南',
                 children: [
                     {
+                        title: '环境搭建',
+                        link: '/zh-cn/docs/1.2.0/user_doc/development-environment-setup.html',
+                    },
+                    {
                         title: '架构设计',
                         link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
                     },
@@ -152,7 +156,8 @@ export default {
                     {
                         title: '插件开发',
                         link: '/zh-cn/docs/1.2.0/user_doc/plugin-development.html',
-                    },
+                    }
+                    
                 ],
             },
             {
