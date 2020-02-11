@@ -1,13 +1,13 @@
 #### 准备工作
 1. fork [dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler)
-2. git clone xxx，
-3. 安装好MySQL,Zookeeper,Nginx，Hadoop(可选)。
+2. git clone https://github.com/apache/incubator-dolphinscheduler.git
+3. 安装好MySQL,Zookeeper,Nginx,Hadoop(可选)
 4. git clone项目后，进入目录，执行以下命令。
 ```
 1. git branch -a    #查看分支
-2. git checkout dev-db #切换到dev-db分支
+2. git checkout dev #切换到dev分支
 3. git pull #同步分支
-4. mvn -U clean package assembly:assembly -Dmaven.test.skip=true   #编译项目。由于项目前端的日志模块，使用了gRPC调用后端，所以需要先编译项目。
+4. mvn -U clean package -Prelease -Dmaven.test.skip=true   #由于项目使用了gRPC，所以需要先编译项目生成需要的类。
 ```
 
 #### 搭建后端
@@ -50,8 +50,8 @@
 #### 搭建前端
 进入dolphinscheduler-ui的目录，执行ui项目的编译，由于是webpack和vue，所以需要以下命令：
 ```
-1. npm install.   #没有npm的，mac用brew安装一个。brew install npm。
-2. npm run build. #执行完build命令后，会生成dist文件夹，这个文件夹一定要和nginx配置文件的40行所指的目录相同。
+1. npm install    #没有npm的，mac用brew安装。brew install npm。
+2. npm run build  #执行完build命令后，会生成dist文件夹，这个文件夹一定要和nginx配置文件的40行所指的目录相同。
 ```
 
 保存以下内容到dolphinscheduler.conf文件：
@@ -146,8 +146,8 @@ System.setProperty("spring.profiles.active", "api");
 
 
 #### 资源中心
-  ds对于资源的存储在HDFS/S3中，HDFS的mac安装请参考:https://www.jianshu.com/p/935b4c5e4c25
-mac的hdfs请下载:https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.8.5/hadoop-2.8.5.tar.gz
+  ds对于资源的存储在本地文件系统/HDFS/S3/minio中，HDFS的mac安装请参考:https://www.jianshu.com/p/935b4c5e4c25
+hdfs下载:https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.8.5/hadoop-2.8.5.tar.gz
 安装好hdfs后，修改common.properties配置：
 ```
 res.upload.startup.type=HDFS
@@ -165,29 +165,6 @@ fs.defaultFS=hdfs://localhost:9000
 client_max_body_size    100m;
 ```
 
-## DS中概念解释
-#### 安全中心
-1. 租户管理
- -   作用：对应Linux的用户，当Linux没有对应用户时，将创建用户用于worker执行任务。
- -   创建：需要注意，创建租户时，【租户编码】为对应的Linux用户。
-2. 用户管理
- -   作用：创建不同的用户，赋予不同的模块权限。
- -   创建：新建的用户都为普通用户，需要设置租户，队列，邮件和手机。其中，邮件和手机为告警时使用。 
- -   更新：当更新用户的租户时，相应的资源文件也会更新到新的租户下。
-3. 告警组管理
- -   作用：创建不同的告警组，添加不同的组员。根据任务运行时的告警配置，当任务执行成功或失败等状态时，进行相应的告警。
-4. 队列管理
- -   作用：创建Spark，MapReduce，Flink需要用到队列。
- -   创建：队列的创建，必须名称和值都唯一才可以。
-5. Worker分组管理
- -   作用：任务只被组内所指定的worker执行。当新建任务时，选择的【Worker分组】为【Default】时，任务可在任何一台worker上执行。
-6. 令牌管理
- -   作用：访问后端接口，可以使用系统令牌。
- -   使用方式：
-```
-HttpPost httpPost = new HttpPost("http://127.0.0.1:12345/escheduler/projects/create");
-httpPost.setHeader("token", "123");
-```
 
 
 
