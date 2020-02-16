@@ -1,7 +1,10 @@
 #### 准备工作
-1. fork [dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler)
-2. git clone https://github.com/apache/incubator-dolphinscheduler.git
-3. 安装好MySQL,Zookeeper,Nginx,Hadoop(可选)
+1. 首先从远端仓库fork [dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler) 一份代码到自己的仓库中
+2. 安装好MySQL/PostgreSQL,Zookeeper,Nginx,Hadoop(可选)
+3. 把自己仓库clone到本地
+
+    ` git clone https://github.com/apache/incubator-dolphinscheduler.git`
+    
 4. git clone项目后，进入目录，执行以下命令。
 ```
 1. git branch -a    #查看分支
