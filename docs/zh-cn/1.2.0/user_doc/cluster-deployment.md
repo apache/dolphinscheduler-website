@@ -96,21 +96,24 @@ echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 
   ```shell
 su dolphinscheduler;
+  
   ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
   cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   chmod 600 ~/.ssh/authorized_keys
   ```
-
 ​      注意：*正常设置后，dolphinscheduler用户在执行命令`ssh localhost` 是不需要再输入密码的*
 
+
+
 - 在ds1上，配置部署用户dolphinscheduler ssh打通到其他待部署的机器
+
   ```shell
   su dolphinscheduler;
   for ip in ds2 ds3;     #请将此处ds2 ds3替换为自己要部署的机器的hostname
   do
       ssh-copy-id  $ip   #该操作执行过程中需要手动输入dolphinscheduler用户的密码
   done
-  # 当然 通过`sshpass -p xxx ssh-copy-id $ip`就可以省去输入密码了
+  # 当然 通过 sshpass -p xxx ssh-copy-id $ip 就可以省去输入密码了
   ```
 
 - 在ds1上，修改目录权限，使得部署用户对dolphinscheduler-backend目录有操作权限
@@ -128,27 +131,25 @@ mysql -uroot -p
 
 - 进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。**注: {user} 和 {password} 需要替换为具体的数据库用户名和密码** 
 
-``` mysql
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
-mysql> flush privileges;
-```
-
-
-
+ ``` mysql
+    mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
+    mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
+    mysql> flush privileges;
+  ```
 
 - 创建表和导入基础数据
 
     - 修改 conf 目录下 application-dao.properties 中的下列配置 
 
     ```shell
-    vi conf/application-dao.properties 
+      vi conf/application-dao.properties 
     ```
 
     - 如果选择 Mysql，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.mysql.com/archives/c-j/)] 包到 lib 目录下，这里下载的是mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息
+    
     ```properties
-      # postgre
+      #postgre
       #spring.datasource.driver-class-name=org.postgresql.Driver
       #spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler
       # mysql
@@ -496,3 +497,4 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 ```
 
 `注：服务用途请具体参见《系统架构设计》小节`
+
