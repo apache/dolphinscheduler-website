@@ -4,11 +4,13 @@
 
 **只有源码包属于Apache官方发布包，二进制发布包只是为了方便用户使用。**
 
-## 下载1.2.0最新版本
+## 下载1.2.1最新版本
 
 ### DolphinScheduler
 | 日期 | 版本| | 下载 |
 |:---:|:--:|:--:|:--:|
+| Feb. 24th, 2020 | 1.2.1 | Source code| [[src]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.1/apache-dolphinscheduler-incubating-1.2.1-src.zip) [[asc]](https://www.apache.org/dist/incubator/dolphinscheduler/1.2.1/apache-dolphinscheduler-incubating-1.2.1-src.zip.asc) [[sha512]](https://www.apache.org/dist/incubator/dolphinscheduler/1.2.1/apache-dolphinscheduler-incubating-1.2.1-src.zip.sha512)|
+| | | Binary Distribution| [[tar]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.1/apache-dolphinscheduler-incubating-1.2.1-dolphinscheduler-bin.tar.gz) [[asc]](https://www.apache.org/dist/incubator/dolphinscheduler/1.2.1/apache-dolphinscheduler-incubating-1.2.1-dolphinscheduler-bin.tar.gz.asc) [[sha512]](https://www.apache.org/dist/incubator/dolphinscheduler/1.2.1/apache-dolphinscheduler-incubating-1.2.1-dolphinscheduler-bin.tar.gz.sha512)|
 | Jan. 2th, 2020 | 1.2.0 | Source code| [[src]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-src.zip) [[asc]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-src.zip.asc) [[sha512]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-src.zip.sha512)|
 | | | Backend Binary Distribution| [[tar]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin.tar.gz) [[asc]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin.tar.gz.asc) [[sha512]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin.tar.gz.sha512)|
 | | | Frontend Binary Distribution| [[tar]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin.tar.gz) [[asc]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin.tar.gz.asc) [[sha512]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin.tar.gz.sha512)|
