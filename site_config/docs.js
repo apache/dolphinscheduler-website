@@ -89,12 +89,16 @@ export default {
                 title: '部署文档',
                 children: [
                     {
-                        title: '后端部署',
-                        link: '/zh-cn/docs/1.2.0/user_doc/backend-deployment.html',
+                        title: '软硬件环境建议配置',
+                        link: '/zh-cn/docs/1.2.0/user_doc/hardware-environment.html',
                     },
                     {
-                        title: '前端部署',
-                        link: '/zh-cn/docs/1.2.0/user_doc/frontend-deployment.html',
+                        title: '单机部署(Standalone)',
+                        link: '/zh-cn/docs/1.2.0/user_doc/standalone-deployment.html',
+                    },
+                    {
+                        title: '集群部署(Cluster)',
+                        link: '/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html',
                     }
                 ],
             },
