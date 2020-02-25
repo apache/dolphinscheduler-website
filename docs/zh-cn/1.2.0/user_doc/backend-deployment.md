@@ -2,21 +2,6 @@
 
 后端有2种部署方式，分别为自动化部署和编译源码部署
 
-
-部署：
-
-    软硬件环境需求
-    
-    单机部署(Standalone)
-
-    分布式部署(Cluster Mode)
-
-    Ambari插件部署
-
-    Docker部署(体验)
-    
-    配置项参数说明
-
 ## 1、准备工作
 
 请下载最新版本的安装包，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html)
