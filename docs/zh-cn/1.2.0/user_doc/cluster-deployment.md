@@ -20,7 +20,7 @@ DolphinScheduler集群部署分为后端部署和前端部署两部分：
 - 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
-# 创建部署目录,部署目录请不要创建在/root、/home等高权限目录
+# 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 # 解压缩
