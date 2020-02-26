@@ -20,7 +20,7 @@ DolphinScheduler集群部署分为后端部署和前端部署两部分：
 - 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
-# 创建部署目录
+# 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 # 解压缩
@@ -34,7 +34,7 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin  dolphi
 - 在**所有**部署调度的机器上创建部署用户，并且一定要配置sudo免密。假如我们计划在ds1,ds2,ds3,ds4这4台机器上部署调度，首先需要在每台机器上都创建部署用户
 
 ```shell
-# 设置用户名，请自行修改，后面以dolphinscheduler为例
+# 创建用户需使用root登录，设置部署用户名，请自行修改，后面以dolphinscheduler为例
 useradd dolphinscheduler;
 
 # 设置用户密码，请自行修改，后面以dolphinscheduler123为例
@@ -95,7 +95,7 @@ echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 - 在ds1上，切换到部署用户并配置ssh本机免密登录
 
   ```shell
-su dolphinscheduler;
+   su dolphinscheduler;
   
   ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
   cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
@@ -136,7 +136,7 @@ mysql -uroot -p
     mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
     mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
     mysql> flush privileges;
-  ```
+ ```
 
 - 创建表和导入基础数据
 
@@ -184,9 +184,9 @@ mysql -uroot -p
     
     ```
 
-     `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉`
+      `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到.dolphinscheduler_env.sh, 请运行 ls -a`
 
-- 将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)
+- ==将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)==
 
     ```shell
     sudo ln -s /opt/soft/java/bin/java /usr/bin/java

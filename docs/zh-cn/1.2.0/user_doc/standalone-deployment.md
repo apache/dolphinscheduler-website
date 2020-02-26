@@ -20,7 +20,7 @@ DolphinScheduler单机部署分为后端部署和前端部署两部分：
 - 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
-# 创建部署目录
+# 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 # 解压缩
@@ -34,10 +34,10 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin  dolphi
 - 创建部署用户，并且一定要配置sudo免密。以创建dolphinscheduler用户为例
 
 ```shell
-# add user dolphinscheduler
+# 创建用户需使用root登录
 useradd dolphinscheduler;
 
-# modify user password
+# 添加密码
 echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 
 # 配置sudo免密
@@ -76,12 +76,12 @@ mysql -uroot -p
 
 - 进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。**注: {user} 和 {password} 需要替换为具体的数据库用户名和密码** 
 
-``` mysql
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
-mysql> flush privileges;
-```
+    ``` mysql
+    mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
+    mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
+    mysql> flush privileges;
+    ```
 
 
 - 创建表和导入基础数据
@@ -93,6 +93,7 @@ mysql> flush privileges;
         ```
 
     - 如果选择 Mysql，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.mysql.com/archives/c-j/)] 包到 lib 目录下，这里下载的是mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息
+    
     ```properties
       # postgre
       #spring.datasource.driver-class-name=org.postgresql.Driver
@@ -129,9 +130,11 @@ mysql> flush privileges;
     
     ```
 
-     `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉`
+     `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到.dolphinscheduler_env.sh, 请运行 ls -a`
 
-- 将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)
+    
+
+- ==将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)==
 
     ```shell
     sudo ln -s /opt/soft/java/bin/java /usr/bin/java
@@ -449,3 +452,4 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 ```
 
 `注：服务用途请具体参见《系统架构设计》小节`
+
