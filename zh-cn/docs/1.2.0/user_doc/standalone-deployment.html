@@ -28,7 +28,7 @@
 <ul>
 <li>请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： <a href="https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html">下载</a> (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压</li>
 </ul>
-<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 创建部署目录</span>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 </span>
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 <span class="hljs-meta">#</span><span class="bash"> 解压缩</span>
@@ -40,10 +40,10 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin  dolphi
 <ul>
 <li>创建部署用户，并且一定要配置sudo免密。以创建dolphinscheduler用户为例</li>
 </ul>
-<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> add user dolphinscheduler</span>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 创建用户需使用root登录</span>
 useradd dolphinscheduler;
 <span class="hljs-meta">
-#</span><span class="bash"> modify user password</span>
+#</span><span class="bash"> 添加密码</span>
 echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 <span class="hljs-meta">
 #</span><span class="bash"> 配置sudo免密</span>
@@ -75,14 +75,14 @@ chmod 600 ~/.ssh/authorized_keys
 <pre><code>mysql -uroot -p
 </code></pre>
 <ul>
-<li>进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。<strong>注: {user} 和 {password} 需要替换为具体的数据库用户名和密码</strong></li>
-</ul>
+<li>
+<p>进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。<strong>注: {user} 和 {password} 需要替换为具体的数据库用户名和密码</strong></p>
 <pre><code class="language-mysql">mysql&gt; CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 mysql&gt; GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
 mysql&gt; GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
 mysql&gt; flush privileges;
 </code></pre>
-<ul>
+</li>
 <li>
 <p>创建表和导入基础数据</p>
 <ul>
@@ -131,10 +131,10 @@ export FLINK_HOME=/opt/soft/flink
 export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH:$FLINK_HOME/bin:$PATH
 
 </code></pre>
-<p><code>注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉</code></p>
+<p><code>注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到.dolphinscheduler_env.sh, 请运行 ls -a</code></p>
 </li>
 <li>
-<p>将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)</p>
+<p>==将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)==</p>
 <pre><code class="language-shell">sudo ln -s /opt/soft/java/bin/java /usr/bin/java
 </code></pre>
 </li>
