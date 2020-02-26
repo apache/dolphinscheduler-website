@@ -18,7 +18,7 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.2.0',
+            text: '1.2.1',
             link: '/en-us/docs/1.2.1/user_doc/quick-start.html',
           },
           {
@@ -123,12 +123,12 @@ export default {
             link: '/zh-cn/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs1',
+            key: 'docs2',
             text: '1.2.0',
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs2',
+              key: 'docs3',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
