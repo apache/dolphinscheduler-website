@@ -5,6 +5,10 @@ export default {
                 title: 'Deployment Document',
                 children: [
                     {
+                        title: 'Hareware Environment',
+                        link: '/en-us/docs/1.2.0/user_doc/hardware-environment.html',
+                    },
+                    {
                         title: 'Backend deploy',
                         link: '/en-us/docs/1.2.0/user_doc/backend-deployment.html',
                     },
@@ -161,7 +165,7 @@ export default {
                         title: '插件开发',
                         link: '/zh-cn/docs/1.2.0/user_doc/plugin-development.html',
                     }
-                    
+
                 ],
             },
             {
