@@ -34,18 +34,18 @@ class Home extends Language {
       }
     });
     // 写死协议，因github会做协议跳转，这种跳转会被Safari拦截
-    fetch('https://api.github.com/repos/apache/incubator-dolphinscheduler')
-        .then(res => res.json())
-        .then((data) => {
-          this.setState({
-            starCount: data.stargazers_count,
-            forkCount: data.forks_count,
-          });
-        });
+    // fetch('https://api.github.com/repos/apache/incubator-dolphinscheduler')
+    //     .then(res => res.json())
+    //     .then((data) => {
+    //       this.setState({
+    //         starCount: data.stargazers_count,
+    //         forkCount: data.forks_count,
+    //       });
+    //     });
   }
 
   render() {
-    const { starCount, forkCount } = this.state;
+    // const { starCount, forkCount } = this.state;
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;
@@ -75,13 +75,13 @@ class Home extends Language {
               <a href="https://github.com/apache/incubator-dolphinscheduler" target="_blank" rel="noopener noreferrer">
                 <div className="star">
                   <img src="https://img.alicdn.com/tfs/TB1FlB1JwHqK1RjSZFPXXcwapXa-32-32.png" />
-                  <span className="count">{starCount}</span>
+                  <span className="count">3470 </span>
                 </div>
               </a>
               <a href="https://github.com/apache/incubator-dolphinscheduler/fork" target="_blank" rel="noopener noreferrer">
                 <div className="fork">
                   <img src="https://img.alicdn.com/tfs/TB1zbxSJwDqK1RjSZSyXXaxEVXa-32-32.png" />
-                  <span className="count">{forkCount}</span>
+                  <span className="count">1068 </span>
                 </div>
               </a>
             </div>
