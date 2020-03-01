@@ -81,7 +81,7 @@ class Home extends Language {
               <a href="https://github.com/apache/incubator-dolphinscheduler/fork" target="_blank" rel="noopener noreferrer">
                 <div className="fork">
                   <img src="https://img.alicdn.com/tfs/TB1zbxSJwDqK1RjSZSyXXaxEVXa-32-32.png" />
-                  <span className="count">1068</span>
+                  <span className="count">1068 </span>
                 </div>
               </a>
             </div>
