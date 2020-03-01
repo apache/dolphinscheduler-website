@@ -134,7 +134,7 @@ mysql -uroot -p
 
     
 
-- ==将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)==
+- 将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)
 
     ```shell
     sudo ln -s /opt/soft/java/bin/java /usr/bin/java
