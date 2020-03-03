@@ -23,7 +23,7 @@ export default {
           },
           {
             key: 'docs2',
-            text: '1.2.0',
+            text: '1.2.0(Recommend)',
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
@@ -124,7 +124,7 @@ export default {
           },
           {
             key: 'docs2',
-            text: '1.2.0',
+            text: '1.2.0(推荐)',
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
