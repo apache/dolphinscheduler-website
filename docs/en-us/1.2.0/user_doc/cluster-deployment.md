@@ -6,7 +6,7 @@ DolphinScheduler Cluster deployment is divided into two parts: backend deploymen
 
 ### 1.1: Before you begin (please install requirement basic software by yourself)
 
- * PostgreSQL (8.2.15+) or Mysql (5.6 or 5.7): Choose One
+ * PostgreSQL (8.2.15+) or Mysql (5.7): Choose One
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+):  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
  * ZooKeeper (3.4.6+): Required
  * Hadoop (2.6+) or MinIO: Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.
@@ -31,7 +31,7 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin  dolphi
 
 ### 1.3：Create deployment user and hosts mapping
 
-- Create a deployment user on the ** all ** deployment machines, and be sure to configure sudo passwordless. If we plan to deploy scheduling on 4 machines: ds1, ds2, ds3, and ds4, we first need to create a deployment user on each machine.
+- Create a deployment user on the ** all ** deployment machines, and be sure to configure sudo passwordless. If we plan to deploy DolphinScheduler on 4 machines: ds1, ds2, ds3, and ds4, we first need to create a deployment user on each machine.
 
 ```shell
 # To create a user, you need to log in as root and set the deployment user name. Please modify it yourself. The following uses dolphinscheduler as an example.
@@ -53,7 +53,7 @@ echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 
 ### 1.4 : Configure hosts mapping and ssh access and modify directory permissions.
 
-- Use the first machine (hostname is ds1) as the deployment machine, configure the hosts of all the machines to be deployed on ds1, and login as root on ds1.
+- Use the first machine (hostname is ds1) as the deployment machine, configure the hosts of all machines to be deployed on ds1, and login as root on ds1.
 
   ```shell
   vi /etc/hosts
