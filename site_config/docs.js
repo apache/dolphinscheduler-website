@@ -9,13 +9,13 @@ export default {
                         link: '/en-us/docs/1.2.0/user_doc/hardware-environment.html',
                     },
                     {
-                        title: 'Backend deploy',
-                        link: '/en-us/docs/1.2.0/user_doc/backend-deployment.html',
+                        title: 'Standalone Deployment',
+                        link: '/en-us/docs/1.2.0/user_doc/standalone-deployment.html',
                     },
                     {
-                        title: 'Frontend deploy',
-                        link: '/en-us/docs/1.2.0/user_doc/frontend-deployment.html',
-                    }
+                        title: 'Cluster Deployment',
+                        link: '/en-us/docs/1.2.0/user_doc/cluster-deployment.html',
+                    },
                 ]
             },
             {
