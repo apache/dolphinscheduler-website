@@ -121,6 +121,10 @@ export default {
                         title: '元数据文档',
                         link: '/zh-cn/docs/1.2.0/user_doc/metadata-1.2.html'
                     },
+                    {
+                        title: '部署参数分析',
+                        link: '/zh-cn/docs/1.2.0/user_doc/deployparam.html'
+                    },
                 ],
             },
             {
