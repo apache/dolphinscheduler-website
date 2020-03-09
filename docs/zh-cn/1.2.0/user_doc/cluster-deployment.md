@@ -6,7 +6,7 @@ DolphinScheduler集群部署分为后端部署和前端部署两部分：
 
 ### 1.1 : 基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or Mysql (5.6或者5.7系列)  :  两者任选其一即可
+ * PostgreSQL (8.2.15+) or Mysql (5.7系列)  :  两者任选其一即可
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
  * ZooKeeper (3.4.6+) ：必装 
  * Hadoop (2.6+) or MinIO ：选装，如果需要用到资源上传功能，可以选择上传到Hadoop or MinIO上
@@ -186,7 +186,7 @@ mysql -uroot -p
 
       `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到.dolphinscheduler_env.sh, 请运行 ls -a`
 
-- ==将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)==
+-  将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)
 
     ```shell
     sudo ln -s /opt/soft/java/bin/java /usr/bin/java
