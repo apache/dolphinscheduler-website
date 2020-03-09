@@ -323,11 +323,9 @@ mysql -uroot -p
 
 - 访问前端页面地址: http://192.168.xx.xx:12345/dolphinscheduler ，出现前端登录页面，接口地址(自行修改)
 
-  ```html
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
-  ```
 
 
 # 2、启停服务

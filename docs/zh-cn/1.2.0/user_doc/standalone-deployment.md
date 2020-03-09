@@ -6,7 +6,7 @@ DolphinScheduler单机部署分为后端部署和前端部署两部分：
 
 ### 1.1 : 基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or Mysql (5.6或者5.7系列)  :  两者任选其一即可
+ * PostgreSQL (8.2.15+) or Mysql (5.7系列)  :  两者任选其一即可
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
  * ZooKeeper (3.4.6+) ：必装 
  * Hadoop (2.6+) or MinIO ：选装， 如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署Hadoop)；当然也可以选择上传到Hadoop or MinIO集群上
@@ -344,11 +344,9 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin dolphinsc
 
 - 访问前端页面地址: http://localhost:8888 ，出现前端登录页面，前端web也安装完成了
 
-  ```html
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
-  ```
 
 ### 2.2 手动部署
 - 自行安装nginx，去官网下载: http://nginx.org/en/download.html  或者 `yum install nginx -y` 
@@ -398,11 +396,9 @@ server {
 
 - 访问前端页面地址: http://localhost:8888 ，出现前端登录页面，前端web也安装完成了
 
-  ```html
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
-  ```
 
 
 

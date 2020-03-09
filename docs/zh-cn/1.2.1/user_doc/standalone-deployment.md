@@ -341,11 +341,9 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin dolphinsc
 
 - 访问前端页面地址: http://localhost:8888 ，出现前端登录页面，前端web也安装完成了
 
-  ```html
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
-  ```
 
 ### 2.2 手动部署
 - 自行安装nginx，去官网下载: http://nginx.org/en/download.html  或者 `yum install nginx -y` 
@@ -395,11 +393,9 @@ server {
 
 - 访问前端页面地址: http://localhost:8888 ，出现前端登录页面，前端web也安装完成了
 
-  ```html
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
-  ```
 
 
 
