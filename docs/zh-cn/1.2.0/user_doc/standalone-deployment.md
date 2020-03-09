@@ -29,7 +29,7 @@ tar -zxvf apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin.
 mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin  dolphinscheduler-backend
 ```
 
-###1.3：创建部署用户并赋予目录操作权限
+### 1.3：创建部署用户并赋予目录操作权限
 
 - 创建部署用户，并且一定要配置sudo免密。以创建dolphinscheduler用户为例
 
