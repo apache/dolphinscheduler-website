@@ -7,7 +7,7 @@ There are two deployment modes:
 
 ## Preparations
 
-Download the latest version of the installation package, download address：  [download](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.2.1/),
+Download the latest version of the installation package, [download address](https://downloads.apache.org/incubator/dolphinscheduler/1.2.1/),
 download apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-bin.tar.gz
 
 

@@ -9,7 +9,7 @@
 
 ## 3. Download the new version of the installation package
 
-- [download](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.2.1/), download the latest version of the installation packages
+- [download](https://downloads.apache.org/incubator/dolphinscheduler/1.2.1/), download the latest version of the installation packages
 - The following upgrade operations need to be performed in the new version of the directory
 
 ## 4. Database upgrade
