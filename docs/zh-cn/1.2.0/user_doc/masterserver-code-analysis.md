@@ -1,6 +1,7 @@
 这一篇主要讲解的是dolphinscheduler的master部分的源码，从主类MasterServer开始，从启动到运行，master主要做了以下三件事情
 - Zookeeper 节点初始化
 - 构建并提交工作流实例，跟踪运行状态
+- 监控其他MasterServer和WorkerServer的健康状态并容错
 - 维系心跳
 
 ```
