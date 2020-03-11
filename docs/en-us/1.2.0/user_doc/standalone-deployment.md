@@ -344,11 +344,9 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin dolphinsc
 
 - Visit the front page address: http://localhost:8888. If the front login page appears, the front web installation is complete.
 
-  ```html
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
-  ```
 
 ### 2.2 Manual Deployment
 - Install nginx by yourself, download it from the official website: Or `yum install nginx -y` 
@@ -398,11 +396,9 @@ server {
 
 - Visit the front page address: http://localhost:8888. If the front login page appears, the front web installation is complete.
 
-  ```html
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
-  ```
 
 
 
