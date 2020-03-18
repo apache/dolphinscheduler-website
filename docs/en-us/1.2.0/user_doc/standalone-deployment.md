@@ -319,7 +319,7 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin dolphinsc
   sh ./install-dolphinscheduler-ui.sh;
   ```
 
-  - After the execution, please type the frontend port during operation, the default port is 8888, if you choose the default, type 'y', or type another port.
+  - After the execution, please type the frontend port during operation, the default port is 8888, if you choose the default, please press enter directly, or type another port.
   - Then it will let you type the api-server ip that interacts with the frontend UI.
   - Next is the port of the api-server that lets you type to interact with the frontend UI.
   - Next is the operating system selection.
