@@ -319,7 +319,7 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin dolphinsc
   sh ./install-dolphinscheduler-ui.sh;
   ```
 
-  - 执行后，会在运行中请键入前端端口，默认端口是8888，如果选择默认，请键入y，或者键入其他端口
+  - 执行后，会在运行中请键入前端端口，默认端口是8888，如果选择默认，请直接回车，或者键入其他端口
   - 然后会让键入跟前端ui交互的api-server的ip
   - 接着是让键入跟前端ui交互的api-server的port
   - 接着是操作系统选择
