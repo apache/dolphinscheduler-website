@@ -29,7 +29,7 @@ http://maven.apache.org/install.html
 
 * 查看目录
 
-正常编译完后，会在当前目录生成 ./target/dolphinscheduler-{version}/
+正常编译完后，会在当前目录生成 ./dolphinscheduler-dist/dolphinscheduler-backend/target/apache-dolphinscheduler-incubating-{version}-SNAPSHOT-dolphinscheduler-backend-bin.tar.gz，解压该gz包得到以下目录：
 
 ```
     bin
