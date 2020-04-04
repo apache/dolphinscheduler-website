@@ -14,11 +14,6 @@ Note：**Due to the large number of services, it is recommended that the single-
 
 ---
 
-## Q: Why can't an administrator create a project?
-
-A: The administrator is currently "**pure management**". There is no tenant, that is, there is no corresponding user on linux, so there is no execution permission, **so there is no project, resource and data source,** so there is no permission to create. **But there are all viewing permissions**. If you need to create a business operation such as a project, **use the administrator to create a tenant and a normal user, and then use the normal user login to operate**. We will release the administrator's creation and execution permissions in version 1.1.0, and the administrator will have all permissions.
-
----
 
 ## Q: Which mailboxes does the system support?
 
