@@ -42,6 +42,7 @@ echo "dolphinscheduler123" | passwd --stdin dolphinscheduler
 
 # Configure sudo passwordless
 echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 ```
 
 ```
