@@ -42,6 +42,7 @@ echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 
 # setup sudo passwordless
 sed -i '$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
 # Modify the directory permissions so that the deployment user has operation permissions on the dolphinscheduler-backend directory 
 chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-backend
