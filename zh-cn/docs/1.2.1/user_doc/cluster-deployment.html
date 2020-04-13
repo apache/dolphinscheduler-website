@@ -48,6 +48,7 @@ echo "dolphinscheduler123" | passwd --stdin dolphinscheduler
 <span class="hljs-meta">
 #</span><span class="bash"> 配置sudo免密</span>
 echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' &gt;&gt; /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 </code></pre>
 <pre><code> 注意：
  - 因为是以 sudo -u {linux-user} 切换不同linux用户的方式来实现多租户运行作业，所以部署用户需要有 sudo 权限，而且是免密的。

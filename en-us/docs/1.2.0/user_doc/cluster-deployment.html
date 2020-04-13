@@ -48,6 +48,7 @@ echo "dolphinscheduler123" | passwd --stdin dolphinscheduler
 <span class="hljs-meta">
 #</span><span class="bash"> Configure sudo passwordless</span>
 echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' &gt;&gt; /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 </code></pre>
 <pre><code> Notes：
  - Because the task execution service is based on 'sudo -u {linux-user}' to switch between different Linux users to implement multi-tenant running jobs, the deployment user needs to have sudo permissions and is passwordless. The first-time learners who can ignore it if they don't understand.

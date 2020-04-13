@@ -48,6 +48,7 @@ echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 <span class="hljs-meta">
 #</span><span class="bash"> 配置sudo免密</span>
 sed -i '$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 <span class="hljs-meta">
 #</span><span class="bash"> 修改目录权限，使得部署用户对dolphinscheduler-backend目录有操作权限  </span>
 chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-backend
