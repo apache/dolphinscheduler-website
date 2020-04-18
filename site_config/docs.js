@@ -41,7 +41,7 @@ export default {
                     {
                         title: 'Api Document',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=enn'
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en'
                     }
                 ]
             },
@@ -105,6 +105,16 @@ export default {
                         link: '/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html',
                     }
                 ],
+            },
+            {
+                title: '在线试用',
+                children: [
+                    {
+                        title: '在线试用',
+                        target: '_blank',
+                        link: 'http://106.75.43.194:8888'
+                    }
+                ]
             },
             {
                 title: '用户手册',
