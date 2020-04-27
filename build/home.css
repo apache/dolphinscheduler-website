@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*!
  * 
- * antd v3.26.15
+ * antd v3.26.16
  * 
  * Copyright 2015-present, Alipay, Inc.
  * All rights reserved.
@@ -11422,8 +11422,16 @@ span.ant-radio + * {
 .ant-carousel .slick-list .slick-slide {
   pointer-events: none; }
 
+.ant-carousel .slick-list .slick-slide input.ant-radio-input,
+.ant-carousel .slick-list .slick-slide input.ant-checkbox-input {
+  visibility: hidden; }
+
 .ant-carousel .slick-list .slick-slide.slick-active {
   pointer-events: auto; }
+
+.ant-carousel .slick-list .slick-slide.slick-active input.ant-radio-input,
+.ant-carousel .slick-list .slick-slide.slick-active input.ant-checkbox-input {
+  visibility: visible; }
 
 .ant-carousel .slick-slider .slick-track,
 .ant-carousel .slick-slider .slick-list {
