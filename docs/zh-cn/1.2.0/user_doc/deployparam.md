@@ -105,7 +105,7 @@ install.sh部署脚本是ds部署中的重头戏，下面将参数分组进行�
 <a name="rYEds"></a>
 #### 数据库配置
 ```shell
-# for example postgresql or MySQL ...
+# for example postgresql or mysql ...
 dbtype="postgresql"
 
 # db config
@@ -123,7 +123,7 @@ username="xx"
 passowrd="xx"
 ```
 
-- dbtype参数可以设置postgresql和MySQL，这里指定了ds连接元数据库的jdbc相关信息
+- dbtype参数可以设置postgresql和mysql，这里指定了ds连接元数据库的jdbc相关信息
 <a name="K4u2S"></a>
 #### 部署用户&目录
 ```shell

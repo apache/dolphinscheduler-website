@@ -78,7 +78,7 @@ install.sh部署脚本是ds部署中的重头戏，下面将参数分组进行�
 <a name="rYEds"></a>
 #### 数据库配置
 ```shell
-# for example postgresql or MySQL ...
+# for example postgresql or mysql ...
 dbtype="postgresql"
 
 # db config
