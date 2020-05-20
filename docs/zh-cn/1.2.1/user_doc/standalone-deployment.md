@@ -162,7 +162,7 @@ mysql> flush privileges;
     #使用哪个用户部署，使用1.3小节创建的用户
     deployUser="dolphinscheduler"
     
-    #zookeeper地址，单机本机是localhost:2181，记得把2181端口带上
+    #Zookeeper地址，单机本机是localhost:2181，记得把2181端口带上
     zkQuorum="localhost:2181"
     
     #在哪些机器上部署DS服务，本机选localhost
@@ -238,9 +238,9 @@ mysql> flush privileges;
     sudo chown -R dolphinscheduler:dolphinscheduler /data/dolphinscheduler
     ```
 
-### 1.7 : 安装python的zookeeper工具kazoo
+### 1.7 : 安装python的Zookeeper工具kazoo
 
-- 安装python的 zookeeper 工具 ，`此步骤仅在一键部署时候用到`
+- 安装python的 Zookeeper 工具 ，`此步骤仅在一键部署时候用到`
 
 ```shell
 #安装pip

@@ -217,7 +217,7 @@ mysql -uroot -p
     #使用哪个用户部署，使用1.3小节创建的用户
     deployUser="dolphinscheduler"
     
-    #zookeeper地址
+    #Zookeeper地址
     zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
     
     #在哪些机器上部署DS服务

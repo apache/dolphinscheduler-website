@@ -165,7 +165,7 @@ mysql -uroot -p
     # The system user created in section 1.3.
     deployUser="dolphinscheduler"
     
-    # zookeeper connection address, standalone machine is localhost:2181, port must be provided.
+    # Zookeeper connection address, standalone machine is localhost:2181, port must be provided.
     zkQuorum="localhost:2181"
     
     # On machine which the DS service is deployed, set localhost
@@ -241,9 +241,9 @@ mysql -uroot -p
     sudo chown -R dolphinscheduler:dolphinscheduler /data/dolphinscheduler
     ```
 
-### 1.7: Install python's zookeeper tool kazoo
+### 1.7: Install python's Zookeeper tool kazoo
 
-- Install python's zookeeper tool. `This step is only used for one-click deployment.`
+- Install python's Zookeeper tool. `This step is only used for one-click deployment.`
 
 ```shell
 # Install pip

@@ -29,7 +29,7 @@ A：请参考 使用手册
 
 ## Q：pip install kazoo 这个安装报错。是必须安装的吗？
 
-A： 这个是python连接zookeeper需要使用到的，必须要安装
+A： 这个是python连接Zookeeper需要使用到的，必须要安装
 
 ---
 

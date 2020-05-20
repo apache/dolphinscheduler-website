@@ -216,7 +216,7 @@ mysql -uroot -p
     # The system user created in section 1.3.
     deployUser="dolphinscheduler"
     
-    # zookeeper cluster address
+    # Zookeeper cluster address
     zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
     
     # On machines which the DS service is deployed
@@ -285,9 +285,9 @@ mysql -uroot -p
     
     - If you need to upload resources to the Hadoop cluster, and the NameNode of the Hadoop cluster is configured with HA, you need to enable HDFS resource upload, and you need to copy the core-site.xml and hdfs-site.xml in the Hadoop cluster to /opt/ dolphinscheduler/conf. Non-NameNode HA skips the next step.
 
-### 1.7: Install python's zookeeper tool kazoo
+### 1.7: Install python's Zookeeper tool kazoo
 
-- Install python's zookeeper tool. `This step is only used for one-click deployment.`
+- Install python's Zookeeper tool. `This step is only used for one-click deployment.`
 
 ```shell
 # Install pip

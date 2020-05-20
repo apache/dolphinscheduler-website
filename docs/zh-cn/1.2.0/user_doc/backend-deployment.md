@@ -106,7 +106,7 @@ install.sh : 一键部署脚本
 
 ### 2.1 二进制文件部署
 
-- 安装zookeeper工具 
+- 安装Zookeeper工具 
 
    `pip install kazoo`
 
@@ -187,7 +187,7 @@ install.sh : 一键部署脚本
     |—— script
     |—— sql
 ```
-- 安装zookeeper工具
+- 安装Zookeeper工具
 
    `pip install kazoo`
 

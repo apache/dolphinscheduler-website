@@ -111,7 +111,7 @@ Either of the following two methods can be deployed,binary file deployment is re
 
 ### Binary file Deployment
 
-- Install zookeeper tools
+- Install Zookeeper tools
 
    `pip install kazoo`
 
@@ -193,7 +193,7 @@ is generated in the `./dolphinscheduler-dist/dolphinscheduler-backend/target` di
      ```
 
 
-- Install zookeeper tools
+- Install Zookeeper tools
 
    `pip install kazoo`
 

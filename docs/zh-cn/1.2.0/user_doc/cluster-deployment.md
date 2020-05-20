@@ -218,7 +218,7 @@ mysql -uroot -p
     #使用哪个用户部署，使用1.3小节创建的用户
     deployUser="dolphinscheduler"
     
-    #zookeeper地址
+    #Zookeeper地址
     zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
     
     #在哪些机器上部署DS服务
@@ -287,9 +287,9 @@ mysql -uroot -p
     
     - 如果需要用资源上传到Hadoop集群功能， 并且Hadoop集群的NameNode 配置了 HA的话 ，需要开启 HDFS类型的资源上传，同时需要将Hadoop集群下的core-site.xml和hdfs-site.xml复制到/opt/dolphinscheduler/conf，非NameNode HA跳过次步骤
 
-### 1.7 : 安装python的zookeeper工具kazoo
+### 1.7 : 安装python的Zookeeper工具kazoo
 
-- 安装python的 zookeeper 工具 ，`此步骤仅在一键部署时候用到`
+- 安装python的 Zookeeper 工具 ，`此步骤仅在一键部署时候用到`
 
 ```shell
 #安装pip

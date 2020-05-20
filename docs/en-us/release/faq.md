@@ -29,7 +29,7 @@ A: Please refer to 'System parameter' in the system-manual
 
 ## Q: pip install kazoo This installation gives an error. Is it necessary to install?
 
-A: This is the python connection zookeeper needs to use, must be installed
+A: This is the python connection Zookeeper needs to use, must be installed
 
 ---
 

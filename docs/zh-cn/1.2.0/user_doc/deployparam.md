@@ -34,7 +34,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 common目录包含：common.properties和hadoop/hadoop.properties
 
 - common.properies
-  - ds的task队列实现方式，默认是zookeeper
+  - ds的task队列实现方式，默认是Zookeeper
   - ds的task和资源的worker执行路径
   - 资源中心
     - 资源中心可选择HDFS和S3
@@ -89,7 +89,7 @@ config目录包含install_config.conf和run_config.conf
 - worker一次提交任务数
 - worker资源CPU和内存阈值，超出不会去task队列拉取task
 <a name="saeo8"></a>
-#### zookeeper.properties
+#### Zookeeper.properties
 
 - zk集群
 - ds所需zk的znode，包含dag和task的分布式锁和master和worker的容错
