@@ -562,8 +562,8 @@ conf/common/hadoop.properties
  
   - 待执行命令数：统计t_ds_command表的数据
   - 执行失败的命令数：统计t_ds_error_command表的数据
-  - 待运行任务数：统计zookeeper中task_queue的数据
-  - 待杀死任务数：统计zookeeper中task_kill的数据
+  - 待运行任务数：统计Zookeeper中task_queue的数据
+  - 待杀死任务数：统计Zookeeper中task_kill的数据
  
 ### 7. <span id=TaskParamers>任务节点类型和参数设置</span>
 

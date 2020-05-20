@@ -2,7 +2,7 @@
 
 ## Environmental requirements
 
- * Mysql (5.5+) :  Must be installed
+ * MySQL (5.5+) :  Must be installed
  * JDK (1.8+) :  Must be installed
  * ZooKeeper (3.4.6+) ：Must be installed
  * Maven (3.3+) ：Must be installed
