@@ -73,7 +73,7 @@ config目录包含install_config.conf和run_config.conf
 - apiserver端口，上下文，日志等
 <a name="IiX6U"></a>
 #### application-dao.properties
-敲黑板，重点！！！ds的元数据库配置，在ds-1.2.0中默认的数据库是pg，如果要使用mysql，需要将mysql的jdbc包放到lib目录下。
+敲黑板，重点！！！ds的元数据库配置，在ds-1.2.0中默认的数据库是pg，如果要使用MySQL，需要将MySQL的jdbc包放到lib目录下。
 
 - ds元数据库配置
 <a name="oomWN"></a>
@@ -105,7 +105,7 @@ install.sh部署脚本是ds部署中的重头戏，下面将参数分组进行�
 <a name="rYEds"></a>
 #### 数据库配置
 ```shell
-# for example postgresql or mysql ...
+# for example postgresql or MySQL ...
 dbtype="postgresql"
 
 # db config
@@ -123,7 +123,7 @@ username="xx"
 passowrd="xx"
 ```
 
-- dbtype参数可以设置postgresql和mysql，这里指定了ds连接元数据库的jdbc相关信息
+- dbtype参数可以设置postgresql和MySQL，这里指定了ds连接元数据库的jdbc相关信息
 <a name="K4u2S"></a>
 #### 部署用户&目录
 ```shell
