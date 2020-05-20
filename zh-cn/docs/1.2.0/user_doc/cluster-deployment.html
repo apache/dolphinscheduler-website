@@ -17,7 +17,7 @@
 <h1>1、后端部署</h1>
 <h3>1.1 : 基础软件安装(必装项请自行安装)</h3>
 <ul>
-<li>PostgreSQL (8.2.15+) or Mysql (5.7系列)  :  两者任选其一即可</li>
+<li>PostgreSQL (8.2.15+) or MySQL (5.7系列)  :  两者任选其一即可</li>
 <li><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a> (1.8+) :  必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量</li>
 <li>ZooKeeper (3.4.6+) ：必装</li>
 <li>Hadoop (2.6+) or MinIO ：选装，如果需要用到资源上传功能，可以选择上传到Hadoop or MinIO上</li>
@@ -123,7 +123,7 @@ done
 </ul>
 <h3>1.5 : 数据库初始化</h3>
 <ul>
-<li>进入数据库，默认数据库是PostgreSQL，如选择Mysql的话，后续需要添加mysql-connector-java驱动包到DolphinScheduler的lib目录下，这里以mysql为例</li>
+<li>进入数据库，默认数据库是PostgreSQL，如选择MySQL的话，后续需要添加mysql-connector-java驱动包到DolphinScheduler的lib目录下，这里以MySQL为例</li>
 </ul>
 <pre><code>mysql -uroot -p
 </code></pre>
@@ -144,7 +144,7 @@ done
 <pre><code class="language-shell">  vi conf/application-dao.properties 
 </code></pre>
 <ul>
-<li>如果选择 Mysql，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [<a href="https://downloads.mysql.com/archives/c-j/"> mysql-connector-java 驱动 jar </a>] 包到 lib 目录下，这里下载的是mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息</li>
+<li>如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [<a href="https://downloads.mysql.com/archives/c-j/"> mysql-connector-java 驱动 jar </a>] 包到 lib 目录下，这里下载的是mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息</li>
 </ul>
 <pre><code class="language-properties"><span class="hljs-comment">  #postgre</span>
 <span class="hljs-comment">  #spring.datasource.driver-class-name=org.postgresql.Driver</span>
@@ -209,7 +209,7 @@ installPath="/opt/soft/dolphinscheduler"
 #</span><span class="bash">使用哪个用户部署，使用1.3小节创建的用户</span>
 deployUser="dolphinscheduler"
 <span class="hljs-meta">
-#</span><span class="bash">zookeeper地址</span>
+#</span><span class="bash">Zookeeper地址</span>
 zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
 <span class="hljs-meta">
 #</span><span class="bash">在哪些机器上部署DS服务</span>
@@ -279,9 +279,9 @@ singleYarnIp="ark1"
 </ul>
 </li>
 </ul>
-<h3>1.7 : 安装python的zookeeper工具kazoo</h3>
+<h3>1.7 : 安装python的Zookeeper工具kazoo</h3>
 <ul>
-<li>安装python的 zookeeper 工具 ，<code>此步骤仅在一键部署时候用到</code></li>
+<li>安装python的 Zookeeper 工具 ，<code>此步骤仅在一键部署时候用到</code></li>
 </ul>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash">安装pip</span>
 sudo yum -y install python-pip;  #ubuntu请使用 sudo apt-get install python-pip

@@ -21,7 +21,7 @@
 </ul>
 <pre><code>@PostConstruct
 public void run(){
-        //详情见1.zookeeper初始化
+        //详情见1.Zookeeper初始化
         zkMasterClient.init(); 
         //详情见2.MasterSchedulerThread线程
         masterSchedulerService = ThreadUtils.newDaemonSingleThreadExecutor(&quot;Master-Scheduler-Thread&quot;);
@@ -29,8 +29,8 @@ public void run(){
         heartbeatMasterService = ThreadUtils.newDaemonThreadScheduledExecutor(&quot;Master-Main-Thread&quot;,Constants.DEFAULT_MASTER_HEARTBEAT_THREAD_NUM);
 }
 </code></pre>
-<h1>1. zookeeper初始化</h1>
-<p>创建DS在zookeeper的相关节点，并判断是否对系统做failover，恢复异常的工作流实例和任务实例。</p>
+<h1>1. Zookeeper初始化</h1>
+<p>创建DS在Zookeeper的相关节点，并判断是否对系统做failover，恢复异常的工作流实例和任务实例。</p>
 <ul>
 <li>用于master的failover /dolphinscheduler/lock/failover/master</li>
 <li>系统节点，保存master和worker的心跳信息 /dolphinscheduler/masters; /dolphinscheduler/workers；/dolphinscheduler/dead-servers</li>
@@ -255,7 +255,7 @@ public ProcessInstance handleCommand(Logger logger, String host, int validThread
 MasterBaseTaskExecThread线程有两个主要作用</p>
 <ul>
 <li>用于把任务实例信息提交到数据库中submitTask()</li>
-<li>把任务信息写进zookeeper队列 submitTaskToQueue()，后续worker会来认领任务。（节点命名方式：{processInstancePriority}_{processInstanceId}<em>{taskInstancePriority}_{taskInstanceId}</em><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi>t</mi><mi>a</mi><mi>s</mi><mi>k</mi><mi>e</mi><mi>x</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>t</mi><mi>e</mi><mi>d</mi><mi>b</mi><mi>y</mi><mi>i</mi><mi>p</mi><mn>1</mn></mrow><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">{task executed by ip1},</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathit">t</span><span class="mord mathit">a</span><span class="mord mathit">s</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">e</span><span class="mord mathit">x</span><span class="mord mathit">e</span><span class="mord mathit">c</span><span class="mord mathit">u</span><span class="mord mathit">t</span><span class="mord mathit">e</span><span class="mord mathit">d</span><span class="mord mathit">b</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mord mathit">i</span><span class="mord mathit">p</span><span class="mord mathrm">1</span></span><span class="mpunct">,</span></span></span></span>{ip2}...）</li>
+<li>把任务信息写进Zookeeper队列 submitTaskToQueue()，后续worker会来认领任务。（节点命名方式：{processInstancePriority}_{processInstanceId}<em>{taskInstancePriority}_{taskInstanceId}</em><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi>t</mi><mi>a</mi><mi>s</mi><mi>k</mi><mi>e</mi><mi>x</mi><mi>e</mi><mi>c</mi><mi>u</mi><mi>t</mi><mi>e</mi><mi>d</mi><mi>b</mi><mi>y</mi><mi>i</mi><mi>p</mi><mn>1</mn></mrow><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">{task executed by ip1},</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathit">t</span><span class="mord mathit">a</span><span class="mord mathit">s</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mord mathit">e</span><span class="mord mathit">x</span><span class="mord mathit">e</span><span class="mord mathit">c</span><span class="mord mathit">u</span><span class="mord mathit">t</span><span class="mord mathit">e</span><span class="mord mathit">d</span><span class="mord mathit">b</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mord mathit">i</span><span class="mord mathit">p</span><span class="mord mathrm">1</span></span><span class="mpunct">,</span></span></span></span>{ip2}...）</li>
 </ul>
 <p>另外MasterBaseTaskExecThread有两个子类，除了上面的两个作用外：</p>
 <ul>
@@ -347,7 +347,7 @@ endProcess();
 <h1>3. heartBeatThread线程</h1>
 <p>每30秒上报一次心跳信息，
 同时判断host是否在dead-servers节点下，即判断进程是否已经挂了。
-进程正常则更新zookeeper的/dolphinscheduler/masters/${host}/ 下的节点名称，包括以下信息
+进程正常则更新Zookeeper的/dolphinscheduler/masters/${host}/ 下的节点名称，包括以下信息
 ip, port ,cpUsage, memoryUsage, loadAverage, registerTIme, currentTime</p>
 <pre><code>    private Runnable heartBeatThread(){
         logger.info(&quot;start master heart beat thread...&quot;);
@@ -357,7 +357,7 @@ ip, port ,cpUsage, memoryUsage, loadAverage, registerTIme, currentTime</p>
                 if(Stopper.isRunning()) {
                     // send heartbeat to zk
                     if (StringUtils.isBlank(zkMasterClient.getMasterZNode())) {
-                        logger.error(&quot;master send heartbeat to zk failed: can't find zookeeper path of master server&quot;);
+                        logger.error(&quot;master send heartbeat to zk failed: can't find Zookeeper path of master server&quot;);
                         return;
                     }
 

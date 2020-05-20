@@ -17,7 +17,7 @@
 <h1>1、Backend Deployment</h1>
 <h3>1.1: Before you begin (please install requirement basic software by yourself)</h3>
 <ul>
-<li>PostgreSQL (8.2.15+) or Mysql (5.7): Choose One</li>
+<li>PostgreSQL (8.2.15+) or MySQL (5.7): Choose One</li>
 <li><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a> (1.8+):  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile</li>
 <li>ZooKeeper (3.4.6+): Required</li>
 <li>Hadoop (2.6+) or MinIO: Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.</li>
@@ -120,7 +120,7 @@ done
 </ul>
 <h3>1.5: Database initialization</h3>
 <ul>
-<li>Into the database. The default database is PostgreSQL. If you select Mysql, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.</li>
+<li>Into the database. The default database is PostgreSQL. If you select MySQL, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.</li>
 </ul>
 <pre><code>mysql -uroot -p
 </code></pre>
@@ -205,7 +205,7 @@ installPath="/opt/soft/dolphinscheduler"
 #</span><span class="bash"> The system user created <span class="hljs-keyword">in</span> section 1.3.</span>
 deployUser="dolphinscheduler"
 <span class="hljs-meta">
-#</span><span class="bash"> zookeeper cluster address</span>
+#</span><span class="bash"> Zookeeper cluster address</span>
 zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
 <span class="hljs-meta">
 #</span><span class="bash"> On machines <span class="hljs-built_in">which</span> the DS service is deployed</span>
@@ -275,9 +275,9 @@ singleYarnIp="ark1"
 </ul>
 </li>
 </ul>
-<h3>1.7: Install python's zookeeper tool kazoo</h3>
+<h3>1.7: Install python's Zookeeper tool kazoo</h3>
 <ul>
-<li>Install python's zookeeper tool. <code>This step is only used for one-click deployment.</code></li>
+<li>Install python's Zookeeper tool. <code>This step is only used for one-click deployment.</code></li>
 </ul>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> Install pip</span>
 sudo yum -y install python-pip;  # ubuntu: sudo apt-get install python-pip

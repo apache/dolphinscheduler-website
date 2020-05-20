@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*!
  * 
- * antd v3.26.16
+ * antd v3.26.17
  * 
  * Copyright 2015-present, Alipay, Inc.
  * All rights reserved.
@@ -5117,7 +5117,6 @@ a.ant-btn-sm {
   line-height: 1; }
 
 .ant-badge-count {
-  z-index: auto;
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
@@ -5140,7 +5139,6 @@ a.ant-btn-sm {
   padding: 0 8px; }
 
 .ant-badge-dot {
-  z-index: auto;
   width: 6px;
   height: 6px;
   background: #f5222d;
@@ -5154,6 +5152,7 @@ a.ant-btn-sm {
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 1;
   -webkit-transform: translate(50%, -50%);
   -ms-transform: translate(50%, -50%);
   transform: translate(50%, -50%);
@@ -7878,6 +7877,7 @@ span.ant-radio + * {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   width: 100%;
+  -webkit-backface-visibility: hidden;
   opacity: 1;
   -webkit-transition: opacity 0.45s;
   transition: opacity 0.45s; }
@@ -21099,7 +21099,7 @@ tr.ant-table-expanded-row td > .ant-table-wrapper {
 .ant-table-fixed-right {
   position: absolute;
   top: 0;
-  z-index: auto;
+  z-index: 1;
   overflow: hidden;
   border-radius: 0;
   -webkit-transition: -webkit-box-shadow 0.3s ease;

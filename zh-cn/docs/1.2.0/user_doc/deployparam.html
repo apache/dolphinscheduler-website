@@ -49,7 +49,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 <ul>
 <li>common.properies
 <ul>
-<li>ds的task队列实现方式，默认是zookeeper</li>
+<li>ds的task队列实现方式，默认是Zookeeper</li>
 <li>ds的task和资源的worker执行路径</li>
 <li>资源中心
 <ul>
@@ -115,7 +115,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 <a name="IiX6U"></a></li>
 </ul>
 <h4>application-dao.properties</h4>
-<p>敲黑板，重点！！！ds的元数据库配置，在ds-1.2.0中默认的数据库是pg，如果要使用mysql，需要将mysql的jdbc包放到lib目录下。</p>
+<p>敲黑板，重点！！！ds的元数据库配置，在ds-1.2.0中默认的数据库是pg，如果要使用MySQL，需要将MySQL的jdbc包放到lib目录下。</p>
 <ul>
 <li>ds元数据库配置
 <a name="oomWN"></a></li>
@@ -134,7 +134,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 <li>worker资源CPU和内存阈值，超出不会去task队列拉取task
 <a name="saeo8"></a></li>
 </ul>
-<h4>zookeeper.properties</h4>
+<h4>Zookeeper.properties</h4>
 <ul>
 <li>zk集群</li>
 <li>ds所需zk的znode，包含dag和task的分布式锁和master和worker的容错
