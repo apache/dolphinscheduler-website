@@ -6,7 +6,7 @@ DolphinScheduler Cluster deployment is divided into two parts: backend deploymen
 
 ### 1.1: Before you begin (please install requirement basic software by yourself)
 
- * PostgreSQL (8.2.15+) or Mysql (5.7): Choose One
+ * PostgreSQL (8.2.15+) or MySQL (5.7): Choose One
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+):  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
  * ZooKeeper (3.4.6+): Required
  * Hadoop (2.6+) or MinIO: Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.
@@ -125,7 +125,7 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
 ### 1.5: Database initialization
 
-- Into the database. The default database is PostgreSQL. If you select Mysql, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.
+- Into the database. The default database is PostgreSQL. If you select MySQL, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.
 ``` 
 mysql -uroot -p
 ```
@@ -216,7 +216,7 @@ mysql -uroot -p
     # The system user created in section 1.3.
     deployUser="dolphinscheduler"
     
-    # zookeeper cluster address
+    # Zookeeper cluster address
     zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
     
     # On machines which the DS service is deployed
@@ -285,9 +285,9 @@ mysql -uroot -p
     
     - If you need to upload resources to the Hadoop cluster, and the NameNode of the Hadoop cluster is configured with HA, you need to enable HDFS resource upload, and you need to copy the core-site.xml and hdfs-site.xml in the Hadoop cluster to /opt/ dolphinscheduler/conf. Non-NameNode HA skips the next step.
 
-### 1.7: Install python's zookeeper tool kazoo
+### 1.7: Install python's Zookeeper tool kazoo
 
-- Install python's zookeeper tool. `This step is only used for one-click deployment.`
+- Install python's Zookeeper tool. `This step is only used for one-click deployment.`
 
 ```shell
 # Install pip

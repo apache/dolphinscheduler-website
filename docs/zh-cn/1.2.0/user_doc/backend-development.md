@@ -2,7 +2,7 @@
 
 ## 环境要求
 
- * Mysql (5.5+) :  必装
+ * MySQL (5.5+) :  必装
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装
  * ZooKeeper(3.4.6+) ：必装 
  * [Maven](http://maven.apache.org/download.cgi)(3.3+) ：必装 

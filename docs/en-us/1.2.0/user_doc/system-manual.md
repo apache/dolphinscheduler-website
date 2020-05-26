@@ -502,8 +502,8 @@ conf/common/hadoop.properties
   
   -  Commands to be executed: statistics on t_ds_command table
   -  Number of commands that failed to execute: statistics on the t_ds_error_command table
-  -  Number of tasks to run: statistics of task_queue data in zookeeper
-  -  Number of tasks to be killed: statistics of task_kill in zookeeper
+  -  Number of tasks to run: statistics of task_queue data in Zookeeper
+  -  Number of tasks to be killed: statistics of task_kill in Zookeeper
 
 ## <span id=TaskNodeType>Task Node Type and Parameter Setting</span>
 
