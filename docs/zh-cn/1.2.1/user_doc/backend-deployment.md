@@ -187,7 +187,7 @@ install.sh : 一键部署脚本
     |—— script
     |—— sql
 ```
-- 安装Zookeeper工具
+- 安装ZooKeeper工具
 
    `pip install kazoo`
 
