@@ -25,28 +25,3 @@ Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线
 * QA
 
 
-
-
-
-**精彩时刻**
-
-![avatar](/img/2019-12-08/951576036704_.pic_hd.jpg)
-
-
-
-![avatar](/img/2019-12-08/961576036709_.pic_hd.jpg)
-
-
-
-![avatar](/img/2019-12-08/971576036713_.pic_hd.jpg)
-
-
-
-![avatar](/img/2019-12-08/981576036714_.pic.jpg)
-
-
-
-![avatar](/img/2019-12-08/991576036717_.pic_hd.jpg)
-
-
-
