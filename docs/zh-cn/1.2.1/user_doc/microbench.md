@@ -50,7 +50,7 @@ public class EnumBenchMark extends AbstractBaseBenchmark {
 ```
  这可以以方法级别或者类级别来运行基准测试，命令行的参数会覆盖annotation上的参数。
  
-```
+```java
     @Benchmark //方法注解，表示该方法是需要进行 benchmark 的对象。
     @BenchmarkMode(Mode.AverageTime) //可选基准测试模式通过枚举Mode得到
     @OutputTimeUnit(TimeUnit.MICROSECONDS) // 输出的时间单位
