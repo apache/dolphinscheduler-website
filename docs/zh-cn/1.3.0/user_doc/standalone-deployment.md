@@ -139,7 +139,7 @@ mysql -uroot -p
     sudo ln -s /opt/soft/java/bin/java /usr/bin/java
     ```
 
- - 修改一键部署脚本 `conf/config/install_config.conf`中的各参数，特别注意以下参数的配置
+ - 修改一键部署配置文件 `conf/config/install_config.conf`中的各参数，特别注意以下参数的配置
 
     ```shell
     # 这里填 mysql or postgresql
@@ -235,6 +235,7 @@ mysql -uroot -p
     #后端api服务部署在在哪台机器上
     apiServers="localhost"
 
+    ```
     
 
     
