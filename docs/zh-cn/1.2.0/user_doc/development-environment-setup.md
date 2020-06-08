@@ -16,7 +16,7 @@
 #### 搭建后端
 1. 创建ds数据库CREATE DATABASE dolphinscheduler。
 2. 创建表和初始化数据：
-  修改dao模块resource目录下application.properties文件中的数据库配置信息，然后执行org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler的类，运行完，刷新数据库，表和数据都有了。
+  修改dao模块resource目录下application.properties文件中的数据库配置信息，如果你使用MySQL作为数据库，那么还需要配置pom.xml中mysql-connector-java依赖的scope为compile，然后执行org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler的类，运行完，刷新数据库，表和数据都有了。
 3. 启动MasterServer
  org.apache.dolphinscheduler.server.master.MasterServer类main函数增加如下代码：
    ```
