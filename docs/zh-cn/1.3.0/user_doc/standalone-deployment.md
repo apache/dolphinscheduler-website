@@ -99,7 +99,7 @@ mysql -uroot -p
       #spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler
       # mysql
       spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-      spring.datasource.url=jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8     需要修改ip，本机localhost即可
+      spring.datasource.url=jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true     需要修改ip，本机localhost即可
       spring.datasource.username=xxx						需要修改为上面的{user}值
       spring.datasource.password=xxx						需要修改为上面的{password}值
     ```
