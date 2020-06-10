@@ -15,7 +15,7 @@ DolphinScheduler单机部署分为后端部署和前端部署两部分：
 
 # 2、下载二进制tar.gz包
 
-- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz)，下载后上传tar包到该目录中，并进行解压
+- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 # 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 

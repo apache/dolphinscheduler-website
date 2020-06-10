@@ -13,7 +13,7 @@
 
 # 2、下载二进制tar.gz包
 
-- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz)，下载后上传tar包到该目录中，并进行解压
+- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 # 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 
@@ -183,7 +183,7 @@ mysql -uroot -p
 
         ```
 
-     `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到dolphinscheduler_env.sh, 请运行 ls -a`
+     `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉`
 
 
 
@@ -200,7 +200,7 @@ mysql -uroot -p
     dbtype="mysql"
 
     # 数据库连接地址
-    dbhost="localhost:3306"
+    dbhost="192.168.xx.xx:3306"
 
     # 数据库名
     dbname="dolphinscheduler"
@@ -211,8 +211,8 @@ mysql -uroot -p
     # 数据库密码, 如果有特殊字符，请使用\转义，需要修改为上面设置的{passowrd}具体值
     passowrd="xxx"
 
-    #Zookeeper地址，单机本机是localhost:2181，记得把2181端口带上
-    zkQuorum="localhost:2181"
+    #Zookeeper地址
+    zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
 
     #将DS安装到哪个目录，如: /opt/soft/dolphinscheduler，不同于现在的目录
     installPath="/opt/soft/dolphinscheduler"
@@ -253,15 +253,15 @@ mysql -uroot -p
     # 业务用到的比如sql等资源文件上传到哪里，可以设置：HDFS,S3,NONE，单机如果想使用本地文件系统，请配置为HDFS，因为HDFS支持本地文件系统；如果不需要资源上传功能请选择NONE。强调一点：使用本地文件系统不需要部署hadoop
     resourceStorageType="HDFS"
 
-    # 这里以保存到本地文件系统为例
-    #注：但是如果你想上传到HDFS的话，NameNode启用了HA，则需要将hadoop的配置文件core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则修改为具体的ip或者主机名即可
-    defaultFS="file:///data/dolphinscheduler"    #hdfs://{具体的ip/主机名}:8020
+    #如果上传资源保存想保存在hadoop上，hadoop集群的NameNode启用了HA的话，需要将hadoop的配置文件core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则只需要将mycluster修改为具体的ip或者主机名即可
+    defaultFS="hdfs://mycluster:8020"
+
 
     # 如果ResourceManager是HA，则配置为ResourceManager节点的主备ip或者hostname,比如"192.168.xx.xx,192.168.xx.xx"，否则如果是单ResourceManager或者根本没用到yarn,请配置yarnHaIps=""即可，我这里没用到yarn，配置为""
     yarnHaIps=""
 
     # 如果是单ResourceManager，则配置为ResourceManager节点ip或主机名，否则保持默认值即可。我这里没用到yarn，保持默认
-    singleYarnIp="ark1"
+    singleYarnIp="yarnIp1"
 
     # 资源上传根路径,主持HDFS和S3,由于hdfs支持本地文件系统，需要确保本地文件夹存在且有读写权限
     resourceUploadPath="/data/dolphinscheduler"
@@ -272,7 +272,7 @@ mysql -uroot -p
 
 
     #在哪些机器上部署DS服务，本机选localhost
-    ips="ds1,ds2,ds3"
+    ips="ds1,ds2,ds3,ds4"
 
     #ssh端口,默认22
     sshPort="22"
@@ -281,22 +281,14 @@ mysql -uroot -p
     masters="ds1,ds2"
 
     #worker服务部署在哪台机器上,并指定此worker属于哪一个worker组,下面示例的default即为组名
-    workers="ds2:default,ds3:default"
+    workers="ds3:default,ds4:default"
 
     #报警服务部署在哪台机器上
-    alertServer="ds1"
+    alertServer="ds2"
 
     #后端api服务部署在在哪台机器上
     apiServers="ds1"
 
-    ```
-
-
-    *注：如果打算用到`资源中心`功能，请执行以下命令：*
-
-    ```shell
-    sudo mkdir /data/dolphinscheduler
-    sudo chown -R dolphinscheduler:dolphinscheduler /data/dolphinscheduler
     ```
     
     *特别注意：*
