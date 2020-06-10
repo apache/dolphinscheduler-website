@@ -203,11 +203,11 @@ mysql -uroot -p
     #注：但是如果你想上传到HDFS的话，NameNode启用了HA，则需要将hadoop的配置文件core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则修改为具体的ip或者主机名即可
     defaultFS="file:///data/dolphinscheduler"    #hdfs://{具体的ip/主机名}:8020
 
-    # 如果ResourceManager是HA，则配置为ResourceManager节点的主备ip或者hostname,比如"192.168.xx.xx,192.168.xx.xx"，否则如果是单ResourceManager或者根本没用到yarn,请配置yarnHaIps=""即可，我这里没用到yarn，配置为""
-    yarnHaIps=""
+    # 如果没有使用到Yarn,保持以下默认值即可；如果ResourceManager是HA，则配置为ResourceManager节点的主备ip或者hostname,比如"192.168.xx.xx,192.168.xx.xx";如果是单ResourceManager请配置yarnHaIps=""即可
+    yarnHaIps="192.168.xx.xx,192.168.xx.xx"
 
-    # 如果是单ResourceManager，则配置为ResourceManager节点ip或主机名，否则保持默认值即可。我这里没用到yarn，保持默认
-    singleYarnIp="ark1"
+    # 如果ResourceManager是HA或者没有使用到Yarn保持默认值即可；如果是单ResourceManager，请配置真实的ResourceManager主机名或者ip
+    singleYarnIp="yarnIp1"
 
     # 资源上传根路径,主持HDFS和S3,由于hdfs支持本地文件系统，需要确保本地文件夹存在且有读写权限
     resourceUploadPath="/data/dolphinscheduler"
