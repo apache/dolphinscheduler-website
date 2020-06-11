@@ -25,7 +25,7 @@
 </code></pre>
 <h1>2、下载二进制tar.gz包</h1>
 <ul>
-<li>请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： <a href="https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html">下载</a> (以1.3.0版本为例)，下载后上传tar包到该目录中，并进行解压</li>
+<li>请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： <a href="https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz">下载</a>，下载后上传tar包到该目录中，并进行解压</li>
 </ul>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 </span>
 mkdir -p /opt/dolphinscheduler;
@@ -87,10 +87,10 @@ mysql&gt; flush privileges;
 <p>创建表和导入基础数据</p>
 <ul>
 <li>
-<p>修改 conf 目录下 application-dao.properties 中的下列配置</p>
+<p>修改 conf 目录下 datasource.properties 中的下列配置</p>
 <ul>
 <li>
-<pre><code class="language-shell">vi conf/application-dao.properties 
+<pre><code class="language-shell">vi conf/datasource.properties
 </code></pre>
 </li>
 </ul>
@@ -104,7 +104,7 @@ mysql&gt; flush privileges;
 <span class="hljs-comment">  #spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler</span>
 <span class="hljs-comment">  # mysql</span>
   <span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span>
-  <span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8     需要修改ip，本机localhost即可</span>
+  <span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true     需要修改ip，本机localhost即可</span>
   <span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">xxx						需要修改为上面的{user}值</span>
   <span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">xxx						需要修改为上面的{password}值</span>
 </code></pre>
@@ -128,10 +128,10 @@ export PYTHON_HOME=/opt/soft/python
 export JAVA_HOME=/opt/soft/java
 export HIVE_HOME=/opt/soft/hive
 export FLINK_HOME=/opt/soft/flink
-export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH:$FLINK_HOME/bin:$PATH
-
+export DATAX_HOME=/opt/soft/datax/bin/datax.py
+export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH:$FLINK_HOME/bin:$DATAX_HOME:$PATH
 </code></pre>
-<p><code>注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到.dolphinscheduler_env.sh, 请运行 ls -a</code></p>
+<p><code>注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到dolphinscheduler_env.sh, 请运行 ls -a</code></p>
 </li>
 <li>
 <p>将jdk软链到/usr/bin/java下(仍以 JAVA_HOME=/opt/soft/java 为例)</p>
@@ -139,7 +139,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_
 </code></pre>
 </li>
 <li>
-<p>修改一键部署脚本 <code>install.sh</code>中的各参数，特别注意以下参数的配置</p>
+<p>修改一键部署配置文件 <code>conf/config/install_config.conf</code>中的各参数，特别注意以下参数的配置</p>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 这里填 mysql or postgresql</span>
 dbtype="mysql"
 <span class="hljs-meta">
@@ -155,40 +155,21 @@ username="xxx"
 #</span><span class="bash"> 数据库密码, 如果有特殊字符，请使用\转义，需要修改为上面设置的{passowrd}具体值</span>
 passowrd="xxx"
 <span class="hljs-meta">
-#</span><span class="bash">将DS安装到哪个目录，如: /opt/soft/dolphinscheduler，不同于现在的目录</span>
-installPath="/opt/soft/dolphinscheduler"
-<span class="hljs-meta">
-#</span><span class="bash">使用哪个用户部署，使用1.3小节创建的用户</span>
-deployUser="dolphinscheduler"
-<span class="hljs-meta">
 #</span><span class="bash">Zookeeper地址，单机本机是localhost:2181，记得把2181端口带上</span>
 zkQuorum="localhost:2181"
 <span class="hljs-meta">
-#</span><span class="bash">在哪些机器上部署DS服务，本机选localhost</span>
-ips="localhost"
+#</span><span class="bash">将DS安装到哪个目录，如: /opt/soft/dolphinscheduler，不同于现在的目录</span>
+installPath="/opt/soft/dolphinscheduler"
 <span class="hljs-meta">
-#</span><span class="bash">ssh端口,默认22</span>
-sshPort="22"
+#</span><span class="bash">使用哪个用户部署，使用第3节创建的用户</span>
+deployUser="dolphinscheduler"
 <span class="hljs-meta">
-#</span><span class="bash">master服务部署在哪台机器上</span>
-masters="localhost"
-<span class="hljs-meta">
-#</span><span class="bash">worker服务部署在哪台机器上,并指定此worker属于哪一个worker组</span>
-workers="localhost:default"
-<span class="hljs-meta">
-#</span><span class="bash">报警服务部署在哪台机器上</span>
-alertServer="localhost"
-<span class="hljs-meta">
-#</span><span class="bash">后端api服务部署在在哪台机器上</span>
-apiServers="localhost"
-<span class="hljs-meta">
-
 #</span><span class="bash"> 邮件配置，以qq邮箱为例</span>
 <span class="hljs-meta">#</span><span class="bash"> 邮件协议</span>
 mailProtocol="SMTP"
 <span class="hljs-meta">
 #</span><span class="bash"> 邮件服务地址</span>
-mailServerHost="smtp.exmail.qq.com"
+mailServerHost="smtp.qq.com"
 <span class="hljs-meta">
 #</span><span class="bash"> 邮件服务端口</span>
 mailServerPort="25"
@@ -206,41 +187,55 @@ mailPassword="xxx"
 #</span><span class="bash"> TLS协议的邮箱设置为<span class="hljs-literal">true</span>，否则设置为<span class="hljs-literal">false</span></span>
 starttlsEnable="true"
 <span class="hljs-meta">
-#</span><span class="bash"> 邮件服务地址值，参考上面 mailServerHost</span>
-sslTrust="smtp.exmail.qq.com"
-<span class="hljs-meta">
 #</span><span class="bash"> 开启SSL协议的邮箱配置为<span class="hljs-literal">true</span>，否则为<span class="hljs-literal">false</span>。注意: starttlsEnable和sslEnable不能同时为<span class="hljs-literal">true</span></span>
 sslEnable="false"
 <span class="hljs-meta">
-#</span><span class="bash"> excel下载路径</span>
-xlsFilePath="/tmp/xls"
+#</span><span class="bash"> 邮件服务地址值，参考上面 mailServerHost</span>
+sslTrust="smtp.qq.com"
 <span class="hljs-meta">
-#</span><span class="bash"> 业务用到的比如sql等资源文件上传到哪里，可以设置：HDFS,S3,NONE，单机如果想使用本地文件系统，请配置为HDFS，因为HDFS支持本地文件系统；如果不需要资源上传功能请选择NONE。强调一点：使用本地文件系统不需要部署hadoop </span>
+
+#</span><span class="bash"> 业务用到的比如sql等资源文件上传到哪里，可以设置：HDFS,S3,NONE，单机如果想使用本地文件系统，请配置为HDFS，因为HDFS支持本地文件系统；如果不需要资源上传功能请选择NONE。强调一点：使用本地文件系统不需要部署hadoop</span>
 resourceStorageType="HDFS"
 <span class="hljs-meta">
-#</span><span class="bash"> 资源上传根路径,主持HDFS和S3,由于hdfs支持本地文件系统，需要确保本地文件夹存在且有读写权限</span>
-    resourceUploadPath="/data/dolphinscheduler"
-<span class="hljs-meta">
-#</span><span class="bash"> 具备权限创建resourceUploadPath的用户</span>
-    hdfsRootUser="hdfs"
-<span class="hljs-meta">
 #</span><span class="bash"> 这里以保存到本地文件系统为例</span>
-<span class="hljs-meta">#</span><span class="bash">注：但是如果你想上传到HDFS的话，NameNode启用了HA，则需要将core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则修改为具体的ip或者主机名即可 </span>
+<span class="hljs-meta">#</span><span class="bash">注：但是如果你想上传到HDFS的话，NameNode启用了HA，则需要将hadoop的配置文件core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则修改为具体的ip或者主机名即可</span>
 defaultFS="file:///data/dolphinscheduler"    #hdfs://{具体的ip/主机名}:8020
 <span class="hljs-meta">
-
-#</span><span class="bash"> 如果ResourceManager是HA，则配置为ResourceManager节点的主备ip或者hostname,比如<span class="hljs-string">"192.168.xx.xx,192.168.xx.xx"</span>，否则如果是单ResourceManager或者根本没用到yarn,请配置yarnHaIps=<span class="hljs-string">""</span>即可，我这里没用到yarn，配置为<span class="hljs-string">""</span></span>
-yarnHaIps=""
+#</span><span class="bash"> 如果没有使用到Yarn,保持以下默认值即可；如果ResourceManager是HA，则配置为ResourceManager节点的主备ip或者hostname,比如<span class="hljs-string">"192.168.xx.xx,192.168.xx.xx"</span>;如果是单ResourceManager请配置yarnHaIps=<span class="hljs-string">""</span>即可</span>
+yarnHaIps="192.168.xx.xx,192.168.xx.xx"
 <span class="hljs-meta">
-#</span><span class="bash"> 如果是单ResourceManager，则配置为ResourceManager节点ip或主机名，否则保持默认值即可。我这里没用到yarn，保持默认</span>
-singleYarnIp="ark1"
+#</span><span class="bash"> 如果ResourceManager是HA或者没有使用到Yarn保持默认值即可；如果是单ResourceManager，请配置真实的ResourceManager主机名或者ip</span>
+singleYarnIp="yarnIp1"
+<span class="hljs-meta">
+#</span><span class="bash"> 资源上传根路径,主持HDFS和S3,由于hdfs支持本地文件系统，需要确保本地文件夹存在且有读写权限</span>
+resourceUploadPath="/data/dolphinscheduler"
+<span class="hljs-meta">
+#</span><span class="bash"> 具备权限创建resourceUploadPath的用户</span>
+hdfsRootUser="hdfs"
+<span class="hljs-meta">
 
 
+#</span><span class="bash">在哪些机器上部署DS服务，本机选localhost</span>
+ips="localhost"
+<span class="hljs-meta">
+#</span><span class="bash">ssh端口,默认22</span>
+sshPort="22"
+<span class="hljs-meta">
+#</span><span class="bash">master服务部署在哪台机器上</span>
+masters="localhost"
+<span class="hljs-meta">
+#</span><span class="bash">worker服务部署在哪台机器上,并指定此worker属于哪一个worker组,下面示例的default即为组名</span>
+workers="localhost:default"
+<span class="hljs-meta">
+#</span><span class="bash">报警服务部署在哪台机器上</span>
+alertServer="localhost"
+<span class="hljs-meta">
+#</span><span class="bash">后端api服务部署在在哪台机器上</span>
+apiServers="localhost"
 
-*注：如果打算用到`资源中心`功能，请执行以下命令：*
-
-```shell
-sudo mkdir /data/dolphinscheduler
+</code></pre>
+<p><em>注：如果打算用到<code>资源中心</code>功能，请执行以下命令：</em></p>
+<pre><code class="language-shell">sudo mkdir /data/dolphinscheduler
 sudo chown -R dolphinscheduler:dolphinscheduler /data/dolphinscheduler
 </code></pre>
 </li>
