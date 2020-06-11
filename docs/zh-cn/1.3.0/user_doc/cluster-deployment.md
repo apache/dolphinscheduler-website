@@ -13,7 +13,7 @@
 
 # 2、下载二进制tar.gz包
 
-- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
+- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 # 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 
@@ -138,10 +138,10 @@ mysql -uroot -p
 
 - 创建表和导入基础数据
 
-    - 修改 conf 目录下 application-dao.properties 中的下列配置 
+    - 修改 conf 目录下 datasource.properties 中的下列配置
 
     ```shell
-      vi conf/application-dao.properties 
+      vi conf/datasource.properties
     ```
 
     - 如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.mysql.com/archives/c-j/)] 包到 lib 目录下，这里下载的是mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息
@@ -152,7 +152,7 @@ mysql -uroot -p
       #spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler
       # mysql
       spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-      spring.datasource.url=jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8     需要修改ip
+      spring.datasource.url=jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true     需要修改ip
       spring.datasource.username=xxx						需要修改为上面的{user}值
       spring.datasource.password=xxx						需要修改为上面的{password}值
     ```
@@ -170,19 +170,20 @@ mysql -uroot -p
 - 修改 conf/env 目录下的 `dolphinscheduler_env.sh` 环境变量(以相关用到的软件都安装在/opt/soft下为例)
 
     ```shell
-    export HADOOP_HOME=/opt/soft/hadoop
-    export HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop
-    #export SPARK_HOME1=/opt/soft/spark1
-    export SPARK_HOME2=/opt/soft/spark2
-    export PYTHON_HOME=/opt/soft/python
-    export JAVA_HOME=/opt/soft/java
-    export HIVE_HOME=/opt/soft/hive
-    export FLINK_HOME=/opt/soft/flink
-    export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH:$FLINK_HOME/bin:$PATH
+        export HADOOP_HOME=/opt/soft/hadoop
+        export HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop
+        #export SPARK_HOME1=/opt/soft/spark1
+        export SPARK_HOME2=/opt/soft/spark2
+        export PYTHON_HOME=/opt/soft/python
+        export JAVA_HOME=/opt/soft/java
+        export HIVE_HOME=/opt/soft/hive
+        export FLINK_HOME=/opt/soft/flink
+        export DATAX_HOME=/opt/soft/datax/bin/datax.py
+        export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH:$FLINK_HOME/bin:$DATAX_HOME:$PATH
 
-    ```
+        ```
 
-     `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到.dolphinscheduler_env.sh, 请运行 ls -a`
+     `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉`
 
 
 
@@ -192,14 +193,14 @@ mysql -uroot -p
     sudo ln -s /opt/soft/java/bin/java /usr/bin/java
     ```
 
- - 修改一键部署脚本 `install.sh`中的各参数，特别注意以下参数的配置
+ - 修改一键部署配置文件 `conf/config/install_config.conf`中的各参数，特别注意以下参数的配置
 
     ```shell
     # 这里填 mysql or postgresql
     dbtype="mysql"
 
     # 数据库连接地址
-    dbhost="localhost:3306"
+    dbhost="192.168.xx.xx:3306"
 
     # 数据库名
     dbname="dolphinscheduler"
@@ -210,40 +211,21 @@ mysql -uroot -p
     # 数据库密码, 如果有特殊字符，请使用\转义，需要修改为上面设置的{passowrd}具体值
     passowrd="xxx"
 
+    #Zookeeper地址
+    zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
+
     #将DS安装到哪个目录，如: /opt/soft/dolphinscheduler，不同于现在的目录
     installPath="/opt/soft/dolphinscheduler"
 
-    #使用哪个用户部署，使用1.3小节创建的用户
+    #使用哪个用户部署，使用第3节创建的用户
     deployUser="dolphinscheduler"
-
-    #Zookeeper地址，单机本机是localhost:2181，记得把2181端口带上
-    zkQuorum="localhost:2181"
-
-    #在哪些机器上部署DS服务，本机选localhost
-    ips="localhost"
-
-    #ssh端口,默认22
-    sshPort="22"
-
-    #master服务部署在哪台机器上
-    masters="localhost"
-
-    #worker服务部署在哪台机器上,并指定此worker属于哪一个worker组
-    workers="localhost:default"
-
-    #报警服务部署在哪台机器上
-    alertServer="localhost"
-
-    #后端api服务部署在在哪台机器上
-    apiServers="localhost"
-
 
     # 邮件配置，以qq邮箱为例
     # 邮件协议
     mailProtocol="SMTP"
 
     # 邮件服务地址
-    mailServerHost="smtp.exmail.qq.com"
+    mailServerHost="smtp.qq.com"
 
     # 邮件服务端口
     mailServerPort="25"
@@ -261,42 +243,52 @@ mysql -uroot -p
     # TLS协议的邮箱设置为true，否则设置为false
     starttlsEnable="true"
 
-    # 邮件服务地址值，参考上面 mailServerHost
-    sslTrust="smtp.exmail.qq.com"
-
     # 开启SSL协议的邮箱配置为true，否则为false。注意: starttlsEnable和sslEnable不能同时为true
     sslEnable="false"
 
-    # excel下载路径
-    xlsFilePath="/tmp/xls"
+    # 邮件服务地址值，参考上面 mailServerHost
+    sslTrust="smtp.qq.com"
+
 
     # 业务用到的比如sql等资源文件上传到哪里，可以设置：HDFS,S3,NONE，单机如果想使用本地文件系统，请配置为HDFS，因为HDFS支持本地文件系统；如果不需要资源上传功能请选择NONE。强调一点：使用本地文件系统不需要部署hadoop
     resourceStorageType="HDFS"
 
+    #如果上传资源保存想保存在hadoop上，hadoop集群的NameNode启用了HA的话，需要将hadoop的配置文件core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则只需要将mycluster修改为具体的ip或者主机名即可
+    defaultFS="hdfs://mycluster:8020"
+
+
+    # 如果没有使用到Yarn,保持以下默认值即可;如果ResourceManager是HA，则配置为ResourceManager节点的主备ip或者hostname,比如"192.168.xx.xx,192.168.xx.xx";如果是单ResourceManager请配置yarnHaIps=""即可
+    yarnHaIps="192.168.xx.xx,192.168.xx.xx"
+
+    # 如果ResourceManager是HA或者没有使用到Yarn保持默认值即可；如果是单ResourceManager，请配置真实的ResourceManager主机名或者ip
+    singleYarnIp="yarnIp1"
+
     # 资源上传根路径,主持HDFS和S3,由于hdfs支持本地文件系统，需要确保本地文件夹存在且有读写权限
-        resourceUploadPath="/data/dolphinscheduler"
+    resourceUploadPath="/data/dolphinscheduler"
 
     # 具备权限创建resourceUploadPath的用户
-        hdfsRootUser="hdfs"
-
-    # 这里以保存到本地文件系统为例
-    #注：但是如果你想上传到HDFS的话，NameNode启用了HA，则需要将core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则修改为具体的ip或者主机名即可
-    defaultFS="file:///data/dolphinscheduler"    #hdfs://{具体的ip/主机名}:8020
-
-
-    # 如果ResourceManager是HA，则配置为ResourceManager节点的主备ip或者hostname,比如"192.168.xx.xx,192.168.xx.xx"，否则如果是单ResourceManager或者根本没用到yarn,请配置yarnHaIps=""即可，我这里没用到yarn，配置为""
-    yarnHaIps=""
-
-    # 如果是单ResourceManager，则配置为ResourceManager节点ip或主机名，否则保持默认值即可。我这里没用到yarn，保持默认
-    singleYarnIp="ark1"
+    hdfsRootUser="hdfs"
 
 
 
-    *注：如果打算用到`资源中心`功能，请执行以下命令：*
+    #在哪些机器上部署DS服务，本机选localhost
+    ips="ds1,ds2,ds3,ds4"
 
-    ```shell
-    sudo mkdir /data/dolphinscheduler
-    sudo chown -R dolphinscheduler:dolphinscheduler /data/dolphinscheduler
+    #ssh端口,默认22
+    sshPort="22"
+
+    #master服务部署在哪台机器上
+    masters="ds1,ds2"
+
+    #worker服务部署在哪台机器上,并指定此worker属于哪一个worker组,下面示例的default即为组名
+    workers="ds3:default,ds4:default"
+
+    #报警服务部署在哪台机器上
+    alertServer="ds2"
+
+    #后端api服务部署在在哪台机器上
+    apiServers="ds1"
+
     ```
     
     *特别注意：*
