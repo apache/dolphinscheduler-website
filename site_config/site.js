@@ -18,7 +18,7 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0',
+            text: '1.3.0(Incoming)',
             link: '/en-us/docs/1.3.0/user_doc/quick-start.html',
           },
           {
@@ -124,7 +124,7 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0',
+            text: '1.3.0(Incoming)',
             link: '/zh-cn/docs/1.3.0/user_doc/quick-start.html',
           },
           {
