@@ -5,13 +5,17 @@ export default {
                 title: 'Deployment Document',
                 children: [
                     {
-                        title: 'Backend deploy',
-                        link: '/en-us/docs/user_doc/backend-deployment.html',
+                        title: 'Hareware Environment',
+                        link: '/en-us/docs/1.2.0/user_doc/hardware-environment.html',
                     },
                     {
-                        title: 'Frontend deploy',
-                        link: '/en-us/docs/user_doc/frontend-deployment.html',
-                    }
+                        title: 'Standalone Deployment',
+                        link: '/en-us/docs/1.2.0/user_doc/standalone-deployment.html',
+                    },
+                    {
+                        title: 'Cluster Deployment',
+                        link: '/en-us/docs/1.2.0/user_doc/cluster-deployment.html',
+                    },
                 ]
             },
             {
@@ -19,12 +23,16 @@ export default {
                 children: [
                     {
                         title: 'Quick Start',
-                        link: '/en-us/docs/user_doc/quick-start.html',
+                        link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
                     },
                     {
                         title: 'User Manual',
-                        link: '/en-us/docs/user_doc/system-manual.html',
-                    }
+                        link: '/en-us/docs/1.2.0/user_doc/system-manual.html',
+                    },
+                    {
+                        title: 'Metadata',
+                        link: '/en-us/docs/1.2.0/user_doc/metadata-1.2.html'
+                    },
                 ]
             },
             {
@@ -33,16 +41,7 @@ export default {
                     {
                         title: 'Api Document',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=en&lang=en'
-                    }
-                ]
-            },
-            {
-                title: 'Subscribe',
-                children: [
-                    {
-                        title: 'Subscribe',
-                        link: '/en-us/docs/user_doc/subscribe.html',
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en'
                     }
                 ]
             },
@@ -51,16 +50,37 @@ export default {
                 children: [
                     {
                         title: 'Upgrade',
-                        link: '/en-us/docs/release/upgrade.html',
+                        link: '/en-us/docs/1.2.0/user_doc/upgrade.html',
                     }
                 ]
+            },
+            {
+                title: 'Developer guide',
+                children: [
+                    {
+                        title: 'Architecture Design',
+                        link: '/en-us/docs/1.2.0/user_doc/architecture-design.html',
+                    },
+                    {
+                        title: 'Backend Development',
+                        link: '/en-us/docs/1.2.0/user_doc/backend-development.html',
+                    },
+                    {
+                        title: 'Frontend Development',
+                        link: '/en-us/docs/1.2.0/user_doc/frontend-development.html',
+                    },
+                    {
+                        title: 'plugin-development',
+                        link: '/en-us/docs/1.2.0/user_doc/plugin-development.html',
+                    },
+                ],
             },
             {
                 title: 'FAQ',
                 children: [
                     {
                         title: 'FAQ',
-                        link: '/en-us/docs/faq.html',
+                        link: '/en-us/docs/release/faq.html',
                     }
                 ]
             }
@@ -73,25 +93,47 @@ export default {
                 title: '部署文档',
                 children: [
                     {
-                        title: '后端部署',
-                        link: '/zh-cn/docs/user_doc/backend-deployment.html',
+                        title: '软硬件环境建议配置',
+                        link: '/zh-cn/docs/1.2.0/user_doc/hardware-environment.html',
                     },
                     {
-                        title: '前端部署',
-                        link: '/zh-cn/docs/user_doc/frontend-deployment.html',
+                        title: '单机部署(Standalone)',
+                        link: '/zh-cn/docs/1.2.0/user_doc/standalone-deployment.html',
+                    },
+                    {
+                        title: '集群部署(Cluster)',
+                        link: '/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html',
                     }
                 ],
+            },
+            {
+                title: '在线试用',
+                children: [
+                    {
+                        title: '在线试用',
+                        target: '_blank',
+                        link: 'http://106.75.43.194:8888'
+                    }
+                ]
             },
             {
                 title: '用户手册',
                 children: [
                     {
                         title: '快速上手',
-                        link: '/zh-cn/docs/user_doc/quick-start.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
                     },
                     {
                         title: '用户手册',
-                        link: '/zh-cn/docs/user_doc/system-manual.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/system-manual.html',
+                    },
+                    {
+                        title: '元数据文档',
+                        link: '/zh-cn/docs/1.2.0/user_doc/metadata-1.2.html'
+                    },
+                    {
+                        title: '部署参数分析',
+                        link: '/zh-cn/docs/1.2.0/user_doc/deployparam.html'
                     },
                 ],
             },
@@ -101,16 +143,7 @@ export default {
                     {
                         title: 'API文档',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/easyscheduler/doc.html?language=zh_CN&lang=zh'
-                    }
-                ]
-            },
-            {
-                title: '订阅',
-                children: [
-                    {
-                        title: '订阅(强烈建议)',
-                        link: '/zh-cn/docs/user_doc/subscribe.html',
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh'
                     }
                 ]
             },
@@ -119,8 +152,34 @@ export default {
                 children: [
                     {
                         title: '升级',
-                        link: '/zh-cn/docs/release/upgrade.html',
+                        link: '/zh-cn/docs/1.2.0/user_doc/upgrade.html',
                     }
+                ],
+            },
+            {
+                title: '开发者指南',
+                children: [
+                    {
+                        title: '环境搭建',
+                        link: '/zh-cn/docs/1.2.0/user_doc/development-environment-setup.html',
+                    },
+                    {
+                        title: '架构设计',
+                        link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
+                    },
+                    {
+                        title: '后端开发',
+                        link: '/zh-cn/docs/1.2.0/user_doc/backend-development.html',
+                    },
+                    {
+                        title: '前端开发',
+                        link: '/zh-cn/docs/1.2.0/user_doc/frontend-development.html',
+                    },
+                    {
+                        title: '插件开发',
+                        link: '/zh-cn/docs/1.2.0/user_doc/plugin-development.html',
+                    }
+
                 ],
             },
             {
@@ -128,7 +187,7 @@ export default {
                 children: [
                     {
                         title: 'FAQ',
-                        link: '/zh-cn/docs/faq.html',
+                        link: '/zh-cn/docs/release/faq.html',
                     }
                 ]
             }

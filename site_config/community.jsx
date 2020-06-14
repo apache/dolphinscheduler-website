@@ -6,7 +6,14 @@ export default {
     events: {
       title: 'Events & News',
       list: [
-	{
+        {
+          img: '/img/2020-05-26/live_online_20200526.jpeg',
+          title: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap',
+          content: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap，more than 700 people online',
+          dateStr: '2020-05-26',
+          link: '/zh-cn/blog/live_online_2020_05_26.html',
+        },
+        {
           img: '/img/2019-12-08/941576036700_.pic_hd.jpg',
           title: 'Apache ShardingSphere & DolphinScheduler joint Meetup',
           content: 'Apache ShardingSphere & DolphinScheduler Meetup successfully held in Beijing on December 8, 2019',
@@ -62,7 +69,7 @@ export default {
           img: '/img/twitter.png',
           imgHover: '/img/twitter_hover.png',
           title: '@ApacheDolphinScheduler',
-          link: 'https://twitter.com/dolphinschedule',
+          link: 'https://twitter.com/DolphinSched',
         },
       ],
     },
@@ -83,7 +90,7 @@ export default {
         {
           img: '/img/documents.png',
           title: 'Documents',
-          content: <span>Improve the <a href="/en-us/docs/user_doc/quick-start.html">documentation</a>.</span>,
+          content: <span>Improve the <a href="/en-us/docs/1.2.0/user_doc/quick-start.html">documentation</a>.</span>,
         },
         {
           img: '/img/pullrequest.png',
@@ -98,7 +105,21 @@ export default {
     events: {
       title: '事件 & 新闻',
       list: [
-	{
+        {
+          img: '/img/2020-05-26/live_online_20200526.jpeg',
+          title: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线直播',
+          content: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线在线直播，700多人在线',
+          dateStr: '2020-05-26',
+          link: '/zh-cn/blog/live_online_2020_05_26.html',
+        },
+        {
+          img: '/img/2019-12-08/941576036700_.pic_hd.jpg',
+          title: 'Apache ShardingSphere & DolphinScheduler联合Meetup成功举行',
+          content: 'Apache ShardingSphere & DolphinScheduler联合Meetup 2019年12月8日在北京成功举行。',
+          dateStr: '2019-12-13',
+          link: '/zh-cn/blog/meetup_2019_12_08.html',
+        },
+        {
           img: '/img/2019-12-08/941576036700_.pic_hd.jpg',
           title: 'Apache ShardingSphere & DolphinScheduler联合Meetup成功举行',
           content: 'Apache ShardingSphere & DolphinScheduler联合Meetup 2019年12月8日在北京成功举行。',
@@ -154,7 +175,7 @@ export default {
           img: '/img/twitter.png',
           imgHover: '/img/twitter_hover.png',
           title: '@ApacheDolphinScheduler',
-          link: 'https://twitter.com/dolphinschedule',
+          link: 'https://twitter.com/DolphinSched',
         },
       ],
     },
@@ -175,7 +196,7 @@ export default {
         {
           img: '/img/documents.png',
           title: '文档',
-          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/user_doc/quick-start.html"> 文档</a>。</span>,
+          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/1.2.0/user_doc/quick-start.html"> 文档</a>。</span>,
         },
         {
           img: '/img/pullrequest.png',

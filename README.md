@@ -1,6 +1,6 @@
-# DolphinScheduler Official Website
+# Apache DolphinScheduler Official Website
 
-This project keeps all sources used for building up DolphinScheduler official website which's served at https://dolphinscheduler.incubator.apache.org/.
+This project keeps all sources used for building up DolphinScheduler official website which's served at https://dolphinscheduler.apache.org/.
 
 ## Prerequisite
 
@@ -72,3 +72,4 @@ description: some description
 3. Run docsite start locally to verify the article can be displayed correctly.
 4. Send the pull request contains the *.md and development.js only.
 
+Best Regards
