@@ -209,7 +209,7 @@ mysql -uroot -p
     # 如果ResourceManager是HA或者没有使用到Yarn保持默认值即可；如果是单ResourceManager，请配置真实的ResourceManager主机名或者ip
     singleYarnIp="yarnIp1"
 
-    # 资源上传根路径,主持HDFS和S3,由于hdfs支持本地文件系统，需要确保本地文件夹存在且有读写权限
+    # 资源上传根路径,支持HDFS和S3,由于hdfs支持本地文件系统，需要确保本地文件夹存在且有读写权限
     resourceUploadPath="/data/dolphinscheduler"
 
     # 具备权限创建resourceUploadPath的用户

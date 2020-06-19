@@ -73,6 +73,10 @@ export default {
                         title: 'plugin-development',
                         link: '/en-us/docs/1.2.0/user_doc/plugin-development.html',
                     },
+                    {
+                        title: 'download',
+                        link: '/en-us/docs/1.2.0/user_doc/download.html',
+                    }
                 ],
             },
             {
@@ -178,8 +182,11 @@ export default {
                     {
                         title: '插件开发',
                         link: '/zh-cn/docs/1.2.0/user_doc/plugin-development.html',
+                    },
+                    {
+                        title: '下载',
+                        link: '/zh-cn/docs/1.2.0/user_doc/download.html',
                     }
-
                 ],
             },
             {
