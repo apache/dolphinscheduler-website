@@ -1,7 +1,5 @@
 # 单机部署(Standalone)
 
-DolphinScheduler单机部署分为后端部署和前端部署两部分：
-
 # 1、基础软件安装(必装项请自行安装)
 
  * PostgreSQL (8.2.15+) or MySQL (5.7系列)  :  两者任选其一即可
