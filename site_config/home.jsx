@@ -132,7 +132,7 @@ export default {
         },
         {
           img: '/img/feature_service.png',
-          title: 'Rich Scanerios',
+          title: 'Rich Scenarios',
           content: 'Support pause, recover operation. Support multi-tenant. Support more task types e.g., spark, hive, mr, shell, python, sub_process',
         },
         {

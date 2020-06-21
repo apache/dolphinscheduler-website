@@ -41,7 +41,7 @@ export default {
                     {
                         title: 'Api Document',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=enn'
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en'
                     }
                 ]
             },
@@ -73,6 +73,10 @@ export default {
                         title: 'plugin-development',
                         link: '/en-us/docs/1.2.0/user_doc/plugin-development.html',
                     },
+                    {
+                        title: 'download',
+                        link: '/en-us/docs/1.2.0/user_doc/download.html',
+                    }
                 ],
             },
             {
@@ -105,6 +109,16 @@ export default {
                         link: '/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html',
                     }
                 ],
+            },
+            {
+                title: '在线试用',
+                children: [
+                    {
+                        title: '在线试用',
+                        target: '_blank',
+                        link: 'http://106.75.43.194:8888'
+                    }
+                ]
             },
             {
                 title: '用户手册',
@@ -168,8 +182,11 @@ export default {
                     {
                         title: '插件开发',
                         link: '/zh-cn/docs/1.2.0/user_doc/plugin-development.html',
+                    },
+                    {
+                        title: '下载',
+                        link: '/zh-cn/docs/1.2.0/user_doc/download.html',
                     }
-
                 ],
             },
             {

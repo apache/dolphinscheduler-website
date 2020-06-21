@@ -57,6 +57,15 @@ class Header extends React.Component {
     };
   }
   componentDidMount() {
+    if(localStorage.getItem("currents") == null) {
+      this.setState({
+        current: 'home'
+      });
+    } else {
+      this.setState({
+        current: localStorage.getItem("currents")
+      });
+    }
     window.addEventListener('scroll', () => {
       const scrollTop = getScrollTop();
       if (scrollTop > 66) {
@@ -80,6 +89,7 @@ class Header extends React.Component {
   
 
   handleClick = e => {
+    localStorage.setItem("currents",e.key); 
     this.setState({
       current: e.key,
     });
