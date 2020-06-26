@@ -51,10 +51,6 @@ export default {
                     {
                         title: '参与贡献',
                         link: '/zh-cn/docs/development/contribute.html',
-                    },
-                    {
-                        title: '参与贡献-License需知',
-                        link: '/zh-cn/docs/development/DS-License.html',
                     }
                 ],
             },
@@ -68,6 +64,11 @@ export default {
                     {
                         title: '开发人员',
                         link: '/zh-cn/docs/development/developers.html',
+                    }
+                    ,
+                    {
+                        title: '参与贡献-License需知',
+                        link: '/zh-cn/docs/development/DS-License.html',
                     }
                 ]
             }
