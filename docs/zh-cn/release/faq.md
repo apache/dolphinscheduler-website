@@ -33,7 +33,7 @@ A： 这个是python连接Zookeeper需要使用到的，必须要安装
 
 ---
 
-## Q: 怎么指定机器运行任务
+## Q：怎么指定机器运行任务
 
 A：使用 **管理员** 创建Worker分组，在 **流程定义启动** 的时候可**指定Worker分组**或者在**任务节点上指定Worker分组**。如果不指定，则使用Default，**Default默认是使用的集群里所有的Worker中随机选取一台来进行任务提交、执行**
 
@@ -81,7 +81,7 @@ A： 1，如果是node启动的查看dolphinscheduler-ui下的.env API_BASE配�
 
 ---
 
-## Q： 流程定义手动启动或调度启动之后，没有流程实例生成
+## Q：流程定义手动启动或调度启动之后，没有流程实例生成
 
 A： 1，首先通过**jps 查看MasterServer服务是否存在**，或者从服务监控直接查看zk中是否存在master服务
 
@@ -89,7 +89,7 @@ A： 1，首先通过**jps 查看MasterServer服务是否存在**，或者从服
 
 ---
 
-## Q ： 任务状态一直处于提交成功状态
+## Q：任务状态一直处于提交成功状态
 
 A： 1，首先通过**jps 查看WorkerServer服务是否存在**，或者从服务监控直接查看zk中是否存在worker服务
 
@@ -99,7 +99,7 @@ A： 1，首先通过**jps 查看WorkerServer服务是否存在**，或者从服
 
 ---
 
-## Q ： install.sh 中需要注意问题
+## Q：install.sh 中需要注意问题
 
 A：  1，如果替换变量中包含特殊字符，**请用 \ 转移符进行转移**
 
@@ -115,7 +115,7 @@ A：  1，如果替换变量中包含特殊字符，**请用 \ 转移符进行�
 
 ---
 
-## Q ： 流程定义和流程实例下线异常
+## Q：流程定义和流程实例下线异常
 
 A ： 对于 **1.0.4 以前的版本中**，修改dolphinscheduler-api cn.dolphinscheduler.api.quartz包下的代码即可
 
@@ -142,11 +142,11 @@ public boolean deleteJob(String jobName, String jobGroupName) {
 
 ---
 
-## Q ： HDFS启动之前创建的租户，能正常使用资源中心吗
+## Q：HDFS启动之前创建的租户，能正常使用资源中心吗
 
 A： 不能。因为在未启动HDFS创建的租户，不会在HDFS中注册租户目录。所以上次资源会报错
 
-## Q :  多Master和多Worker状态下，服务掉了，怎么容错
+## Q：多Master和多Worker状态下，服务掉了，怎么容错
 
 A：  **注意：Master监控Master及Worker服务。**
 
@@ -158,25 +158,25 @@ A：  **注意：Master监控Master及Worker服务。**
 
 ---
 
-## Q ： 对于Master和Worker一台机器伪分布式下的容错
+## Q：对于Master和Worker一台机器伪分布式下的容错
 
 A ： 1.0.3 版本只实现了Master启动流程容错，不走Worker容错。也就是说如果Worker挂掉的时候，没有Master存在。这流程将会出现问题。我们会在 **1.1.0** 版本中增加Master和Worker启动自容错，修复这个问题。如果想手动修改这个问题，需要针对 **跨重启正在运行流程** **并且已经掉的正在运行的Worker任务，需要修改为失败**，**同时跨重启正在运行流程设置为失败状态**。然后从失败节点进行流程恢复即可
 
 ---
 
-## Q ： 定时容易设置成每秒执行
+## Q：定时容易设置成每秒执行
 
 A ： 设置定时的时候需要注意，如果第一位（* * * * * ? *）设置成 \* ，则表示每秒执行。**我们将会在1.1.0版本中加入显示最近调度的时间列表** ，使用http://cron.qqe2.com/ 可以在线看近5次运行时间
 
 
 
-## Q： 定时有有效时间范围吗
+## Q：定时有有效时间范围吗
 
 A：有的，**如果定时的起止时间是同一个时间，那么此定时将是无效的定时**。**如果起止时间的结束时间比当前的时间小，很有可能定时会被自动删除**
 
 
 
-## Q ： 任务依赖有几种实现
+## Q：任务依赖有几种实现
 
 A：  1，**DAG** 之间的任务依赖关系，是从 **入度为零** 进行DAG切分的
 
@@ -184,7 +184,7 @@ A：  1，**DAG** 之间的任务依赖关系，是从 **入度为零** 进行DA
 
 ​	注意：**不支持跨项目的流程或任务依赖**
 
-## Q： 流程定义有几种启动方式
+## Q：流程定义有几种启动方式
 
 A： 1，在 **流程定义列表**，点击 **启动** 按钮
 
@@ -194,7 +194,7 @@ A： 1，在 **流程定义列表**，点击 **启动** 按钮
 
 ​		4，可以对流程定义 DAG 编辑，设置某些任务的运行标志位 **禁止运行**，则在启动流程定义的时候，将该节点的连线将从DAG中去掉
 
-## Q ： Python任务设置Python版本
+## Q：Python任务设置Python版本
 
 A：  1，对于**1.0.3之后的版本**只需要修改 conf/env/.dolphinscheduler_env.sh中的PYTHON_HOME
 
@@ -210,13 +210,13 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 
 ​		2，对 1.0.3 之前的版本，Python任务只能支持系统的Python版本，不支持指定Python版本
 
-## Q： Worker Task 通过sudo -u 租户 sh xxx.command会产生子进程，在kill的时候，是否会杀掉
+## Q：Worker Task 通过sudo -u 租户 sh xxx.command会产生子进程，在kill的时候，是否会杀掉
 
 A： 我们会在1.0.4中增加kill任务同时，kill掉任务产生的各种所有子进程
 
 
 
-## Q ： DolphinScheduler中的队列怎么用，用户队列和租户队列是什么意思
+## Q：DolphinScheduler中的队列怎么用，用户队列和租户队列是什么意思
 
 A ： DolphinScheduler 中的队列可以在用户或者租户上指定队列，**用户指定的队列优先级是高于租户队列的优先级的。**，例如：对MR任务指定队列，是通过 mapreduce.job.queuename 来指定队列的。
 
@@ -234,7 +234,7 @@ A ： DolphinScheduler 中的队列可以在用户或者租户上指定队列，
 
 
 
-## Q : Master 或者 Worker报如下告警
+## Q：Master 或者 Worker报如下告警
 
 <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/master_worker_lack_res.png" width="60%" />
@@ -248,7 +248,7 @@ worker.properties **worker.reserved.memory** 的值为更小的值，比如说0.
 
 
 
-## Q : hive版本是1.1.0+cdh5.15.0，SQL hive任务连接报错
+## Q：hive版本是1.1.0+cdh5.15.0，SQL hive任务连接报错
 
 <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/cdh_hive_error.png" width="60%" />
@@ -256,7 +256,7 @@ worker.properties **worker.reserved.memory** 的值为更小的值，比如说0.
 
 
 
-A ： 将 hive pom
+A： 将 hive pom
 
 ```
 <dependency>
@@ -275,3 +275,266 @@ A ： 将 hive pom
     <version>1.1.0</version>
 </dependency>
 ```
+
+---
+
+## Q：如何增加一台工作服务器
+A： 1，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html) 1.3 小节，创建部署用户和hosts映射
+
+​		2，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html) 1.4 小节，配置hosts映射和ssh打通及修改目录权限.
+          1.4小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限
+
+​		3，复制正在运行的服务器上的部署目录到新机器的同样的部署目录下
+
+​		4，到bin下，启动worker server 和 logger server
+```
+        ./dolphinscheduler-daemon.sh start worker-server
+        ./dolphinscheduler-daemon.sh start logger-server
+```
+
+---
+
+## Q：DolphinScheduler什么时候发布新版本，同时新旧版本区别，以及如何升级，版本号规范 
+A：1，Apache项目的发版流程是通过邮件列表完成的。 你可以订阅DolphinScheduler的邮件列表，订阅之后如果有发版，你就可以收到邮件。请参照这篇[指引](https://github.com/apache/incubator-dolphinscheduler#get-help)来订阅DolphinScheduler的邮件列表。
+
+   2，当项目发版的时候，会有发版说明告知具体的变更内容，同时也会有从旧版本升级到新版本的升级文档。
+   
+   3，版本号为x.y.z, 当x增加时代表全新架构的版本。当y增加时代表与y版本之前的不兼容需要升级脚本或其他人工处理才能升级。当z增加代表是bug修复，升级完全兼容。无需额外处理。之前有个问题1.0.2的升级不兼容1.0.1需要升级脚本。
+
+---
+
+## Q：后续任务在前置任务失败情况下仍旧可以执行
+A：在启动工作流的时候，你可以设置失败策略：继续还是失败。
+![设置任务失败策略](https://user-images.githubusercontent.com/15833811/80368215-ee378080-88be-11ea-9074-01a33d012b23.png)
+
+---
+
+## Q：工作流模板DAG、工作流实例、工作任务及实例之间是什么关系 工作流模板DAG、工作流实例、工作任务及实例之间是什么关系
+A：1，一个dag支持最大并发100？是指产生100个工作流实例并发运行吗？
+   ​ 2，一个dag中的任务节点，也有并发数的配置，是指任务也可以并发多个线程运行吗？最大数100吗？
+
+1.2.1 version
+```
+   master.properties
+   设置master节点并发执行的最大工作流数
+   master.exec.threads=100
+   
+   Control the number of parallel tasks in each workflow
+   设置每个工作流可以并发执行的最大任务数
+   master.exec.task.number=20
+   
+   worker.properties
+   设置workder节点并发执行的最大任务数
+   worker.exec.threads=100
+```
+
+---
+
+## Q：工作组管理页面没有展示按钮
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/39816903/81903776-d8cb9180-95f4-11ea-98cb-94ca1e6a1db5.png" width="60%" />
+</p>
+A：1.3.0版本，为了支持k8s，worker ip一直变动，因此我们不能在UI界面上配置，工作组可以配置在worker.properties上配置名称。
+
+---
+
+## Q：为什么不把mysql的jdbc连接包添加到docker镜像里面
+A：Mysql jdbc连接包的许可证和apache v2的许可证不兼容，因此它不能被加入到docker镜像里面。
+
+---
+
+## Q：当一个任务提交多个yarn程序的时候经常失败
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/16174111/81312485-476e9380-90b9-11ea-9aad-ed009db899b1.png" width="60%" />
+</p>
+A：这个Bug在dev分支已修复，并加入到需求/待做列表。
+
+---
+
+## Q：Master服务和Workder服务在运行几天之后停止了
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/18378986/81293969-c3101680-90a0-11ea-87e5-ac9f0dd53f5e.png" width="60%" />
+</p>
+A：会话超时时间太短了，只有0.3秒，修改zookeeper.properties的配置项：
+
+```
+   zookeeper.session.timeout=60000
+   zookeeper.connection.timeout=30000
+```
+
+---
+
+## Q：使用docker-compose默认配置启动，显示zookeeper错误
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/42579056/80374318-13c98780-88c9-11ea-8d5f-53448b957f02.png" width="60%" />
+ </p>
+A：这个问题在dev-1.3.0版本解决了。这个[pr](https://github.com/apache/incubator-dolphinscheduler/pull/2595) 已经解决了这个bug，主要的改动点：
+
+```
+    在docker-compose.yml文件中增加zookeeper的环境变量ZOO_4LW_COMMANDS_WHITELIST。
+    把minLatency,avgLatency and maxLatency的类型从int改成float。
+```
+
+---
+
+## Q：界面上显示任务一直运行，结束不了，从日志上看任务实例为空
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/51871547/80302626-b1478d00-87dd-11ea-97d4-08aa2244a6d0.jpg" width="60%" />
+ </p>
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/51871547/80302626-b1478d00-87dd-11ea-97d4-08aa2244a6d0.jpg" width="60%" />
+ </p>
+A：这个[bug](https://github.com/apache/incubator-dolphinscheduler/issues/1477) 描述了问题的详情。这个问题在1.2.1版本已经被修复了。
+对于1.2.1以下的版本，这种情况的一些提示：
+
+```
+1。清空zk下这个路径的任务：/dolphinscheduler/task_queue
+2. 修改任务状态为失败（int值6）
+3. 运行工作流来从失败中恢复
+```
+
+---
+
+## Q：zk中注册的master信息ip地址是127.0.0.1，而不是配置的域名所对应或者解析的ip地址，可能导致不能查看任务日志
+A：修复bug：
+```
+   1、confirm hostname
+   $hostname
+   hadoop1
+   2、hostname -i
+   127.0.0.1 10.3.57.15
+   3、edit /etc/hosts,delete hadoop1 from 127.0.0.1 record
+   $cat /etc/hosts
+   127.0.0.1 localhost
+   10.3.57.15 ds1 hadoop1
+   4、hostname -i
+   10.3.57.15
+```   
+   hostname命令返回服务器主机名，hostname -i返回的是服务器主机名在/etc/hosts中所有匹配的ip地址。所以我把/etc/hosts中127.0.01中的主机名删掉，只保留内网ip的解析就可以了，没必要把127.0.0.1整条注释掉, 只要hostname命令返回值 在/etc/hosts中对应的内网ip正确就可以，ds程序取了第一个值，我理解上ds程序不应该用hostname -i取值这样有点问题，因为好多公司服务器的主机名都是运维配置的，感觉还是直接取配置文件的域名解析的返回ip更准确，或者znode中存域名信息而不是/etc/hosts。
+
+---
+
+## Q：调度系统设置了一个秒级的任务，导致系统挂掉
+A：调度系统不支持秒级任务。
+
+---
+
+## Q：编译前后端代码(dolphinscheduler-ui)报错不能下载"https://github.com/sass/node-sass/releases/download/v4.13.1/darwin-x64-72_binding.node"
+A：1，cd dolphinscheduler-ui 然后删除node_modules目录 
+```
+sudo rm -rf node_modules
+```   
+   ​	2，通过npm.taobao.org下载node-sass
+ ```
+ sudo npm uninstall node-sass
+ sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
+ ``` 
+   3，如果步骤2报错，请重新构建node-saas [参考链接](https://dolphinscheduler.apache.org/zh-cn/docs/1.2.0/user_doc/frontend-development.html)
+```
+ sudo npm rebuild node-sass
+ ``` 
+当问题解决之后，如果你不想每次编译都下载这个node，你可以设置系统环境变量：SASS_BINARY_PATH= /xxx/xxx/xxx/xxx.node。
+
+---
+
+## Q：当使用mysql作为ds数据库需要如何配置
+A：1，修改项目根目录maven配置文件，移除scope的test属性，这样mysql的包就可以在其它阶段被加载
+```
+<dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+	<version>${mysql.connector.version}</version>
+	<scope>test<scope>
+</dependency>
+```   
+   ​	2，修改application-dao.properties和quzrtz.properties来使用mysql驱动
+   默认驱动是postgres主要由于许可证原因。
+   
+---
+
+## Q：shell任务是如何运行的
+A：1，被执行的服务器在哪里配置，以及实际执行的服务器是哪台? 要指定在某个worker上去执行，可以在worker分组中配置，固定IP，这样就可以把路径写死。如果配置的workder分组有多个workder，实际执行的服务器由调度决定的，具有随机性。
+
+   ​	2，如果是服务器上某个路径的一个shell文件，怎么指向这个路径？服务器上某个路径下的shell文件，涉及到权限问题，不建议这么做。建议你可以使用资源中心的存储功能，然后在shell编辑器里面使用资源引用就可以，系统会帮助你把脚本下载到执行目录下。如果以hdfs作为资源中心，在执行的时候，调度器会把依赖的jar包，文件等资源拉到worker的执行目录上，我这边是/tmp/escheduler/exec/process，该配置可以在install.sh中进行指定。
+   
+   3，以哪个用户来执行任务？ 执行任务的时候，调度器会采用sudo -u 租户的方式去执行，租户是一个linux用户。
+
+---
+   
+## Q：生产环境部署方式有推荐的最佳实践吗
+A：1，如果没有很多任务要运行，出于稳定性考虑我们建议使用3个节点，并且最好把Master/Worder服务部署在不同的节点。如果您只有一个节点，当然只能把所有的服务部署在同一个节点！通常来说，需要多少节点取决于您的业务，海豚调度系统本身不需要很多的资源。充分测试之后，你们将找到使用较少节点的合适的部署方式。
+
+---
+
+## Q：DEPENDENT节点
+A：1，DEPENDT节点实际是没有执行体的，是专门用来配置数据周期依赖逻辑，然后再把执行节点挂载后面，来实现任务间的周期依赖。
+
+---
+
+## Q：如何改变Master服务的启动端口
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/8263441/62352160-0f3e9100-b53a-11e9-95ba-3ae3dde49c72.png" width="60%" />
+ </p>
+A：1，修改application_master.properties配置文件，例如：server.port=12345。
+
+---
+
+## Q：调度任务不能上线
+A：1，我们可以成功创建调度任务，并且表t_scheduler_schedules中也成功加入了一条记录，但当我点击上线后，前端页面无反应且会把t_escheduler_schedules这张表锁定，我测试过将t_escheduler_schedules中的RELEASE_state字段手动更新为1这样前端会显示为上线状态。
+
+---
+
+## Q：请问swagger ui的地址是什么
+A：1，http://${api server ip}:${ api server port}/escheduler/doc.html?language=zh_CN&lang=cn。
+
+---
+
+## Q：前端安装包缺少文件
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/41460919/61437083-d960b080-a96e-11e9-87f1-297ba3aca5e3.png" width="60%" />
+ </p>
+ <p align="center">
+    <img src="https://user-images.githubusercontent.com/41460919/61437218-1b89f200-a96f-11e9-8e48-3fac47eb2389.png" width="60%" />
+  </p>
+A： 1，用户修改了api server配置文件中的![apiServerContextPath](https://user-images.githubusercontent.com/41460919/61678323-1b09a680-ad35-11e9-9707-3ba68bbc70d6.png)配置项，导致了这个问题，恢复成默认配置之后问题解决。
+
+---
+
+## Q：上传比较大的文件卡住
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/21357069/58231400-805b0e80-7d69-11e9-8107-7f37b06a95df.png" width="60%" />
+ </p>
+A：1，编辑ngnix配置文件 vi /etc/nginx/nginx.conf，更改上传大小client_max_body_size 1024m。
+     
+   ​	2，更新google chrome版本到最新版本。
+
+---
+   
+## Q：创建spark数据源，点击“测试连接”，系统回退回到登入页面
+A：1，edit /etc/nginx/conf.d/escheduler.conf
+```
+     proxy_connect_timeout 300s;
+     proxy_read_timeout 300s;
+     proxy_send_timeout 300s;
+```
+
+---
+
+## Q：欢迎订阅DolphinScheduler开发邮件列表
+A：在使用DolphinScheduler的过程中，如果您有任何问题或者想法、建议，都可以通过Apache邮件列表参与到DolphinScheduler的社区建设中来。
+   发送订阅邮件也非常简单，步骤如下:
+   
+   1，用自己的邮箱向dev-subscribe@dolphinscheduler.apache.org发送一封邮件，主题和内容任意。
+   
+   2， 接收确认邮件并回复。 完成步骤1后，您将收到一封来自dev-help@dolphinscheduler.apache.org的确认邮件（如未收到，请确认邮件是否被自动归入垃圾邮件、推广邮件、订阅邮件等文件夹）。然后直接回复该邮件，或点击邮件里的链接快捷回复即可，主题和内容任意。
+   
+   3， 接收欢迎邮件。 完成以上步骤后，您会收到一封主题为WELCOME to dev@dolphinscheduler.apache.org的欢迎邮件，至此您已成功订阅Apache DolphinScheduler（Incubating）的邮件列表。
+
+---
+
+## Q：工作流依赖
+A：1，目前是按照自然天来判断，上月末：判断时间是工作流A start_time/scheduler_time between '2019-05-31 00:00:00' and '2019-05-31 23:59:59'。上月：是判断上个月从1号到月末每天都要有完成的A实例。上周： 上周7天都要有完成的A实例。前两天： 判断昨天和前天，两天都要有完成的A实例。
+
+---
+
+我们会持续收集更多的FAQ。
