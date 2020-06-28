@@ -27,7 +27,7 @@ copyright notice that is included in or attached to the work.
 
 关于具体的各个开源协议使用协议，在此不做过多篇幅一一介绍，有兴趣可以自行查询了解。
 
-### -License 检测规则
+### DolphinScheduler-License 检测规则
 
 一般来讲，我们都会为自己的项目建立License-check脚本，DolphinScheduler-License是由[kezhenxu94](https://github.com/kezhenxu94)提供，其他开源软件略有不同，但最终结果都是为了确保我们在使用过程中能够第一时间避免License的问题。
 
