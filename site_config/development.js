@@ -52,7 +52,7 @@ export default {
                     },
                     {
                         title: 'download',
-                        link: '/en-us/development/download.html',
+                        link: '/en-us/docs/development/download.html',
                     }
                 ],
             }
@@ -117,7 +117,7 @@ export default {
                     },
                     {
                         title: '下载',
-                        link: '/zh-cn/development/download.html',
+                        link: '/zh-cn/docs/development/download.html',
                     }
                 ],
             }
