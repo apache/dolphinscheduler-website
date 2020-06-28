@@ -7,14 +7,14 @@ There are two deployment modes for the backend:
 
 ## Preparations
 
-Download the latest version of the installation package, download address：  [download](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html),
+Download the latest version of the installation package, download address：  [download](https://dolphinscheduler.apache.org/en-us/docs/release/download.html),
 download apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-backend-bin.tar.gz
 
 
 
 #### Preparations 1: Installation of basic software (self-installation of required items)
 
- * PostgreSQL (8.2.15+) or Mysql (5.5+) :  You can choose either PostgreSQL or Mysql.
+ * PostgreSQL (8.2.15+) or MySQL (5.5+) :  You can choose either PostgreSQL or MySQL.
  * JDK (1.8+) :  Mandatory
  * ZooKeeper(3.4.6+) ：Mandatory
  * Hadoop (2.6+) or MinIo ：Optionally, if you need to use the resource upload function, You can choose either Hadoop or MinIo.
@@ -111,7 +111,7 @@ Either of the following two methods can be deployed,binary file deployment is re
 
 ### Binary file Deployment
 
-- Install zookeeper tools
+- Install ZooKeeper tools
 
    `pip install kazoo`
 
@@ -193,7 +193,7 @@ is generated in the `./dolphinscheduler-dist/dolphinscheduler-backend/target` di
      ```
 
 
-- Install zookeeper tools
+- Install ZooKeeper tools
 
    `pip install kazoo`
 

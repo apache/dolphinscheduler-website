@@ -1,14 +1,14 @@
-# 后端部署文档
+# 后端部署文档(不久将被删除)
 
 后端有2种部署方式，分别为自动化部署和编译源码部署
 
 ## 1、准备工作
 
-请下载最新版本的安装包，下载地址： [下载](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html)
+请下载最新版本的安装包，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html)
 
 #### 准备一: 基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or Mysql (5.5+)  :  两者任选其一即可
+ * PostgreSQL (8.2.15+) or MySQL (5.5+)  :  两者任选其一即可
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装
  * ZooKeeper (3.4.6+) ：必装 
  * Hadoop (2.6+) or MinIo ：选装， 如果需要使用到资源上传功能，可以选择Hadoop or MinIo
@@ -106,7 +106,7 @@ install.sh : 一键部署脚本
 
 ### 2.1 二进制文件部署
 
-- 安装zookeeper工具 
+- 安装Zookeeper工具
 
    `pip install kazoo`
 
@@ -187,7 +187,7 @@ install.sh : 一键部署脚本
     |—— script
     |—— sql
 ```
-- 安装zookeeper工具
+- 安装ZooKeeper工具
 
    `pip install kazoo`
 

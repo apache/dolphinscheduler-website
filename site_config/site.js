@@ -18,11 +18,21 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.2.0',
+            text: '1.3.0(Incoming)',
+            link: '/en-us/docs/1.3.0/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs2',
+            text: '1.2.1',
+            link: '/en-us/docs/1.2.1/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs3',
+            text: '1.2.0(Recommend)',
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs2',
+              key: 'docs4',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
@@ -32,6 +42,12 @@ export default {
         key: 'download',
         text: 'DOWNLOAD',
         link: '/en-us/docs/release/download.html',
+      },
+      {
+        key: 'demo',
+        text: 'Online Demo',
+        target: '_blank',
+        link: 'http://106.75.43.194:8888'
       },
       {
         key: 'blog',
@@ -114,11 +130,21 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.2.0',
+            text: '1.3.0(Incoming)',
+            link: '/zh-cn/docs/1.3.0/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs2',
+            text: '1.2.1',
+            link: '/zh-cn/docs/1.2.1/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs3',
+            text: '1.2.0(推荐)',
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs2',
+              key: 'docs4',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
@@ -128,6 +154,12 @@ export default {
         key: 'download',
         text: '下载',
         link: '/zh-cn/docs/release/download.html',
+      },
+      {
+        key: 'demo',
+        text: '线上demo',
+        target: '_blank',
+        link: 'http://106.75.43.194:8888'
       },
       {
         key: 'blog',

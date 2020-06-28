@@ -5,13 +5,17 @@ export default {
                 title: 'Deployment Document',
                 children: [
                     {
-                        title: 'Backend deploy',
-                        link: '/en-us/docs/1.2.0/user_doc/backend-deployment.html',
+                        title: 'Hareware Environment',
+                        link: '/en-us/docs/1.2.0/user_doc/hardware-environment.html',
                     },
                     {
-                        title: 'Frontend deploy',
-                        link: '/en-us/docs/1.2.0/user_doc/frontend-deployment.html',
-                    }
+                        title: 'Standalone Deployment',
+                        link: '/en-us/docs/1.2.0/user_doc/standalone-deployment.html',
+                    },
+                    {
+                        title: 'Cluster Deployment',
+                        link: '/en-us/docs/1.2.0/user_doc/cluster-deployment.html',
+                    },
                 ]
             },
             {
@@ -24,7 +28,11 @@ export default {
                     {
                         title: 'User Manual',
                         link: '/en-us/docs/1.2.0/user_doc/system-manual.html',
-                    }
+                    },
+                    {
+                        title: 'Metadata',
+                        link: '/en-us/docs/1.2.0/user_doc/metadata-1.2.html'
+                    },
                 ]
             },
             {
@@ -33,7 +41,7 @@ export default {
                     {
                         title: 'Api Document',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=enn'
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en'
                     }
                 ]
             },
@@ -65,6 +73,10 @@ export default {
                         title: 'plugin-development',
                         link: '/en-us/docs/1.2.0/user_doc/plugin-development.html',
                     },
+                    {
+                        title: 'download',
+                        link: '/en-us/docs/1.2.0/user_doc/download.html',
+                    }
                 ],
             },
             {
@@ -85,14 +97,28 @@ export default {
                 title: '部署文档',
                 children: [
                     {
-                        title: '后端部署',
-                        link: '/zh-cn/docs/1.2.0/user_doc/backend-deployment.html',
+                        title: '软硬件环境建议配置',
+                        link: '/zh-cn/docs/1.2.0/user_doc/hardware-environment.html',
                     },
                     {
-                        title: '前端部署',
-                        link: '/zh-cn/docs/1.2.0/user_doc/frontend-deployment.html',
+                        title: '单机部署(Standalone)',
+                        link: '/zh-cn/docs/1.2.0/user_doc/standalone-deployment.html',
+                    },
+                    {
+                        title: '集群部署(Cluster)',
+                        link: '/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html',
                     }
                 ],
+            },
+            {
+                title: '在线试用',
+                children: [
+                    {
+                        title: '在线试用',
+                        target: '_blank',
+                        link: 'http://106.75.43.194:8888'
+                    }
+                ]
             },
             {
                 title: '用户手册',
@@ -104,6 +130,14 @@ export default {
                     {
                         title: '用户手册',
                         link: '/zh-cn/docs/1.2.0/user_doc/system-manual.html',
+                    },
+                    {
+                        title: '元数据文档',
+                        link: '/zh-cn/docs/1.2.0/user_doc/metadata-1.2.html'
+                    },
+                    {
+                        title: '部署参数分析',
+                        link: '/zh-cn/docs/1.2.0/user_doc/deployparam.html'
                     },
                 ],
             },
@@ -130,6 +164,10 @@ export default {
                 title: '开发者指南',
                 children: [
                     {
+                        title: '环境搭建',
+                        link: '/zh-cn/docs/1.2.0/user_doc/development-environment-setup.html',
+                    },
+                    {
                         title: '架构设计',
                         link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
                     },
@@ -145,6 +183,10 @@ export default {
                         title: '插件开发',
                         link: '/zh-cn/docs/1.2.0/user_doc/plugin-development.html',
                     },
+                    {
+                        title: '下载',
+                        link: '/zh-cn/docs/1.2.0/user_doc/download.html',
+                    }
                 ],
             },
             {
@@ -152,7 +194,7 @@ export default {
                 children: [
                     {
                         title: 'FAQ',
-                        link: '/zh-cn/docs/1.2.0/faq.html',
+                        link: '/zh-cn/docs/release/faq.html',
                     }
                 ]
             }
