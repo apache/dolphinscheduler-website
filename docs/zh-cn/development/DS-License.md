@@ -17,17 +17,17 @@
 
 ### 如何在DolphinScheduler合法的使用第三方开源软件
 
-当我们想要引入一个新的第三方软件至我们的项目中的时候，除了他们所遵从的协议是Apache允许的，另外一点很重要，就是合法的使用。您可以参考以下文章
+当我们想要引入一个新的第三方软件(包含但不限于第三方的jar、文本、css、js、图片、图标、音视频等及在第三方基础上做的修改)至我们的项目中的时候，除了他们所遵从的协议是Apache允许的，另外一点很重要，就是合法的使用。您可以参考以下文章
 
 * [COMMUNITY-LED DEVELOPMENT "THE APACHE WAY"](https://apache.org/dev/licensing-howto.html)
 
 
-以Apache为例，当我们使用了zookeeper，那么我们必须申明，我使用了当我们使用了zookeeper，那么关于当我们使用了zookeeper的NOTICE文件（每个开源项目都会有NOTICE文件，一般位于根目录），则必须在我们的项目中体现，用Apache的话来讲，就是"Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a
+以Apache为例，当我们使用了ZooKeeper，那么ZooKeeper的NOTICE文件（每个开源项目都会有NOTICE文件，一般位于根目录，则必须在我们的项目中体现，用Apache的话来讲，就是"Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a
 copyright notice that is included in or attached to the work.
 
 关于具体的各个开源协议使用协议，在此不做过多篇幅一一介绍，有兴趣可以自行查询了解。
 
-### DS-License 检测规则
+### -License 检测规则
 
 一般来讲，我们都会为自己的项目建立License-check脚本，DolphinScheduler-License是由[kezhenxu94](https://github.com/kezhenxu94)提供，其他开源软件略有不同，但最终结果都是为了确保我们在使用过程中能够第一时间避免License的问题。
 
