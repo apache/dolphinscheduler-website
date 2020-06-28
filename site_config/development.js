@@ -36,23 +36,23 @@ export default {
                 children: [
                     {
                         title: 'Architecture Design',
-                        link: '/en-us/docs/1.2.0/user_doc/architecture-design.html',
+                        link: '/en-us/docs/development/architecture-design.html',
                     },
                     {
                         title: 'Backend Development',
-                        link: '/en-us/docs/1.2.0/user_doc/backend-development.html',
+                        link: '/en-us/docs/development/backend-development.html',
                     },
                     {
                         title: 'Frontend Development',
-                        link: '/en-us/docs/1.2.0/user_doc/frontend-development.html',
+                        link: '/en-us/docs/development/frontend-development.html',
                     },
                     {
                         title: 'plugin-development',
-                        link: '/en-us/docs/1.2.0/user_doc/plugin-development.html',
+                        link: '/en-us/docs/development/plugin-development.html',
                     },
                     {
                         title: 'download',
-                        link: '/en-us/docs/1.2.0/user_doc/download.html',
+                        link: '/en-us/development/download.html',
                     }
                 ],
             }
@@ -97,27 +97,27 @@ export default {
                 children: [
                     {
                         title: '环境搭建',
-                        link: '/zh-cn/docs/1.2.0/user_doc/development-environment-setup.html',
+                        link: '/zh-cn/docs/development/development-environment-setup.html',
                     },
                     {
                         title: '架构设计',
-                        link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
+                        link: '/zh-cn/docs/development/architecture-design.html',
                     },
                     {
                         title: '后端开发',
-                        link: '/zh-cn/docs/1.2.0/user_doc/backend-development.html',
+                        link: '/zh-cn/docs/development/backend-development.html',
                     },
                     {
                         title: '前端开发',
-                        link: '/zh-cn/docs/1.2.0/user_doc/frontend-development.html',
+                        link: '/zh-cn/docs/development/frontend-development.html',
                     },
                     {
                         title: '插件开发',
-                        link: '/zh-cn/docs/1.2.0/user_doc/plugin-development.html',
+                        link: '/zh-cn/docs/development/plugin-development.html',
                     },
                     {
                         title: '下载',
-                        link: '/zh-cn/docs/1.2.0/user_doc/download.html',
+                        link: '/zh-cn/development/download.html',
                     }
                 ],
             }
