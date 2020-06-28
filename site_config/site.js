@@ -130,7 +130,7 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0(Incoming)',
+            text: '1.3.0',
             link: '/zh-cn/docs/1.3.0/user_doc/quick-start.html',
           },
           {
