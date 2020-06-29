@@ -63,7 +63,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |SHELL
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |rawScript |String| Shell脚本 |
 6| | localParams| Array|自定义参数||
@@ -140,7 +140,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |SQL
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |type |String | 数据库类型
 6| |datasource |Int | 数据源id
@@ -242,7 +242,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |SPARK
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |mainClass |String | 运行主类
 6| |mainArgs | String| 运行参数
@@ -342,7 +342,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |MR
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |mainClass |String | 运行主类
 6| |mainArgs | String| 运行参数
@@ -427,7 +427,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |PYTHON
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |rawScript |String| Python脚本 |
 6| | localParams| Array|自定义参数||
@@ -504,7 +504,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |FLINK
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |mainClass |String | 运行主类
 6| |mainArgs | String| 运行参数
@@ -599,7 +599,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |HTTP
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |url |String | 请求地址
 6| |httpMethod | String| 请求方式|GET,POST,HEAD,PUT,DELETE
@@ -686,7 +686,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |DATAX
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |customConfig |Int | 自定义类型| 0定制 , 1自定义
 6| |dsType |String | 源数据库类型
@@ -776,7 +776,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |SQOOP
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |JSON 格式
 5| | concurrency| Int|并发度
 6| | modelType|String |流向|import,export
@@ -854,7 +854,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |SHELL
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 | null
 5|description | |String|描述 | |
 6|runFlag | |String |运行标识| |
@@ -919,7 +919,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |SHELL
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |processDefinitionId |Int| 流程定义id
 6|description | |String|描述 | |
@@ -982,7 +982,7 @@
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| 任务编码|
 2|type ||String |类型 |DEPENDENT
-3| name| |String|名称 |
+3| name| |String|名称 |
 4| params| |Object| 自定义参数 |Json 格式
 5| |rawScript |String| Shell脚本 |
 6| | localParams| Array|自定义参数||
