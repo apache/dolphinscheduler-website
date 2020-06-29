@@ -6,7 +6,7 @@
 
 ### 1.1 : 基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or Mysql (5.6或者5.7系列)  :  两者任选其一即可
+ * PostgreSQL (8.2.15+) or MySQL (5.6或者5.7系列)  :  两者任选其一即可
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
  * ZooKeeper (3.4.6+) ：必装 
  * Hadoop (2.6+) or MinIO ：选装，如果需要用到资源上传功能，可以选择上传到Hadoop or MinIO上
@@ -42,6 +42,7 @@ echo "dolphinscheduler123" | passwd --stdin dolphinscheduler
 
 # 配置sudo免密
 echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 ```
 
 ```
@@ -124,7 +125,7 @@ echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 
 ### 1.5 : 数据库初始化
 
-- 进入数据库，默认数据库是PostgreSQL，如选择Mysql的话，后续需要添加mysql-connector-java驱动包到DolphinScheduler的lib目录下，这里以mysql为例
+- 进入数据库，默认数据库是PostgreSQL，如选择MySQL的话，后续需要添加mysql-connector-java驱动包到DolphinScheduler的lib目录下，这里以MySQL为例
 ``` 
 mysql -uroot -p
 ```
@@ -146,7 +147,7 @@ mysql -uroot -p
       vi conf/application-dao.properties 
     ```
 
-    - 如果选择 Mysql，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.mysql.com/archives/c-j/)] 包到 lib 目录下，这里下载的是mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息
+    - 如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.mysql.com/archives/c-j/)] 包到 lib 目录下，这里下载的是mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息
     
     ```properties
       #postgre
@@ -216,7 +217,7 @@ mysql -uroot -p
     #使用哪个用户部署，使用1.3小节创建的用户
     deployUser="dolphinscheduler"
     
-    #zookeeper地址
+    #Zookeeper地址
     zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
     
     #在哪些机器上部署DS服务

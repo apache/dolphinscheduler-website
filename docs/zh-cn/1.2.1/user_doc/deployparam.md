@@ -32,7 +32,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 ```
 
 - application.properties重要，记录了ds的元数据库配置，master和worker的配置。重要配置如下：
-  - 元数据库ds默认是pg，如果需要调整为mysql，需要在lib目录下放入mysql的jdbc-jar包
+  - 元数据库ds默认是pg，如果需要调整为MySQL，需要在lib目录下放入MySQL的jdbc-jar包
   - 这里配置了master和worker的执行线程数量，可以根据环境进行调整
   - worker.reserved.memory是worker的内存阈值，现在默认是0.1G，已经偏小不用再次修改
 ```shell
@@ -60,7 +60,7 @@ worker.reserved.memory=0.1
 ```
 
 - quartz.properties，记录了ds的quartz元数据
-  - 默认依然是pg，如果需要调整为mysql，需要在lib目录下放入mysql的jdbc-jar包
+  - 默认依然是pg，如果需要调整为MySQL，需要在lib目录下放入MySQL的jdbc-jar包
   - 数据库选型的修改不用在这里修改，参数统一在install.sh中进行修改，这里只是给出参数的影响范围
 ```shell
 #org.quartz.jobStore.driverDelegateClass = org.quartz.impl.jdbcjobstore.StdJDBCDelegate

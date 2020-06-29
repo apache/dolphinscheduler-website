@@ -6,7 +6,7 @@ DolphinScheduler Standalone deployment is divided into two parts: backend deploy
 
 ### 1.1: Before you begin (please install requirement basic software by yourself)
 
- * PostgreSQL (8.2.15+) or Mysql (5.6 or 5.7): Choose One
+ * PostgreSQL (8.2.15+) or MySQL (5.6 or 5.7): Choose One
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+):  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
  * ZooKeeper (3.4.6+): Required
  * Hadoop (2.6+) or MinIO: Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.
@@ -42,6 +42,7 @@ echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 
 # setup sudo passwordless
 sed -i '$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
 # Modify the directory permissions so that the deployment user has operation permissions on the dolphinscheduler-backend directory 
 chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-backend
@@ -70,7 +71,7 @@ Note: *If configure success, the dolphinscheduler user does not need to enter a 
 
 ### 1.5: Database initialization
 
-- Into the database. The default database is PostgreSQL. If you select Mysql, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.
+- Into the database. The default database is PostgreSQL. If you select MySQL, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.
 ``` 
 mysql -uroot -p
 ```
@@ -93,7 +94,7 @@ mysql -uroot -p
         vi conf/application-dao.properties 
         ```
 
-    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/)] package to lib under the directory, and then configure the database connection information correctly.
+    - If you choose MySQL, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.MySQL.com/archives/c-j/)] package to lib under the directory, and then configure the database connection information correctly.
     
     ```properties
       # postgre
@@ -164,7 +165,7 @@ mysql -uroot -p
     # The system user created in section 1.3.
     deployUser="dolphinscheduler"
     
-    # zookeeper connection address, standalone machine is localhost:2181, port must be provided.
+    # Zookeeper connection address, standalone machine is localhost:2181, port must be provided.
     zkQuorum="localhost:2181"
     
     # On machine which the DS service is deployed, set localhost
@@ -240,9 +241,9 @@ mysql -uroot -p
     sudo chown -R dolphinscheduler:dolphinscheduler /data/dolphinscheduler
     ```
 
-### 1.7: Install python's zookeeper tool kazoo
+### 1.7: Install python's Zookeeper tool kazoo
 
-- Install python's zookeeper tool. `This step is only used for one-click deployment.`
+- Install python's Zookeeper tool. `This step is only used for one-click deployment.`
 
 ```shell
 # Install pip

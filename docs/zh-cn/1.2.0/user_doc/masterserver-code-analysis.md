@@ -7,7 +7,7 @@
 ```
 @PostConstruct
 public void run(){
-        //详情见1.zookeeper初始化
+        //详情见1.Zookeeper初始化
         zkMasterClient.init(); 
         //详情见2.MasterSchedulerThread线程
         masterSchedulerService = ThreadUtils.newDaemonSingleThreadExecutor("Master-Scheduler-Thread");
@@ -16,8 +16,8 @@ public void run(){
 }
 ```
 
-# 1. zookeeper初始化
-创建DS在zookeeper的相关节点，并判断是否对系统做failover，恢复异常的工作流实例和任务实例。
+# 1. Zookeeper初始化
+创建DS在Zookeeper的相关节点，并判断是否对系统做failover，恢复异常的工作流实例和任务实例。
 - 用于master的failover /dolphinscheduler/lock/failover/master
 - 系统节点，保存master和worker的心跳信息 /dolphinscheduler/masters; /dolphinscheduler/workers；/dolphinscheduler/dead-servers
 ```
@@ -262,7 +262,7 @@ submitStandByTask()方法里面会遍历任务实例列表readyToSubmitTaskList�
 submitStandByTask()最终会调用submitTaskExec，这里有个MasterBaseTaskExecThread线程
 MasterBaseTaskExecThread线程有两个主要作用
 - 用于把任务实例信息提交到数据库中submitTask()
-- 把任务信息写进zookeeper队列 submitTaskToQueue()，后续worker会来认领任务。（节点命名方式：${processInstancePriority}_${processInstanceId}_${taskInstancePriority}_${taskInstanceId}_${task executed by ip1},${ip2}...）
+- 把任务信息写进Zookeeper队列 submitTaskToQueue()，后续worker会来认领任务。（节点命名方式：${processInstancePriority}_${processInstanceId}_${taskInstancePriority}_${taskInstanceId}_${task executed by ip1},${ip2}...）
 
 另外MasterBaseTaskExecThread有两个子类，除了上面的两个作用外：
 - MasterTaskExecThread 任务执行完成后会把需要kill的任务信息写入zk队列中等待worker来kill任务。
@@ -361,7 +361,7 @@ endProcess();
 # 3. heartBeatThread线程
 每30秒上报一次心跳信息，
 同时判断host是否在dead-servers节点下，即判断进程是否已经挂了。
-进程正常则更新zookeeper的/dolphinscheduler/masters/${host}/ 下的节点名称，包括以下信息
+进程正常则更新Zookeeper的/dolphinscheduler/masters/${host}/ 下的节点名称，包括以下信息
 ip, port ,cpUsage, memoryUsage, loadAverage, registerTIme, currentTime
 
 
@@ -374,7 +374,7 @@ ip, port ,cpUsage, memoryUsage, loadAverage, registerTIme, currentTime
                 if(Stopper.isRunning()) {
                     // send heartbeat to zk
                     if (StringUtils.isBlank(zkMasterClient.getMasterZNode())) {
-                        logger.error("master send heartbeat to zk failed: can't find zookeeper path of master server");
+                        logger.error("master send heartbeat to zk failed: can't find Zookeeper path of master server");
                         return;
                     }
 

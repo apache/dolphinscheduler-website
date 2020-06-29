@@ -14,6 +14,7 @@ Note：**Due to the large number of services, it is recommended that the single-
 
 ---
 
+
 ## Q: Which mailboxes does the system support?
 
 A: Support most mailboxes, qq, 163, 126, 139, outlook, aliyun, etc. are supported. Support TLS and SSL protocols, optionally configured in alert.properties
@@ -28,7 +29,7 @@ A: Please refer to 'System parameter' in the system-manual
 
 ## Q: pip install kazoo This installation gives an error. Is it necessary to install?
 
-A: This is the python connection zookeeper needs to use, must be installed
+A: This is the python connection Zookeeper needs to use, must be installed
 
 ---
 
