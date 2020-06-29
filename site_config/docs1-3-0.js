@@ -98,11 +98,11 @@ export default {
                     },
                     {
                         title: '元数据文档',
-                        link: '/zh-cn/docs/1.3.0/user_doc/metadata-1.2.html'
+                        link: '/zh-cn/docs/1.3.0/user_doc/metadata-1.3.html'
                     },
                     {
-                        title: '部署参数分析',
-                        link: '/zh-cn/docs/1.3.0/user_doc/deployparam.html'
+                        title: '架构设计',
+                        link: '/zh-cn/docs/1.3.0/user_doc/architecture-design.html'
                     },
                 ],
             },

@@ -44,6 +44,12 @@ export default {
         link: '/en-us/docs/release/download.html',
       },
       {
+        key: 'demo',
+        text: 'Online Demo',
+        target: '_blank',
+        link: 'http://106.75.43.194:8888'
+      },
+      {
         key: 'blog',
         text: 'BLOG',
         link: '/en-us/blog/index.html',
@@ -124,7 +130,7 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0(Incoming)',
+            text: '1.3.0',
             link: '/zh-cn/docs/1.3.0/user_doc/quick-start.html',
           },
           {
@@ -148,6 +154,12 @@ export default {
         key: 'download',
         text: '下载',
         link: '/zh-cn/docs/release/download.html',
+      },
+      {
+        key: 'demo',
+        text: '线上demo',
+        target: '_blank',
+        link: 'http://106.75.43.194:8888'
       },
       {
         key: 'blog',
