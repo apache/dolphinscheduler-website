@@ -18,21 +18,16 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0(Incoming)',
-            link: '/en-us/docs/1.3.0/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs2',
             text: '1.2.1',
             link: '/en-us/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs2',
             text: '1.2.0(Recommend)',
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs4',
+              key: 'docs3',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
@@ -130,21 +125,16 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0(Incoming)',
-            link: '/zh-cn/docs/1.3.0/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs2',
             text: '1.2.1',
             link: '/zh-cn/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs2',
             text: '1.2.0(推荐)',
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs4',
+              key: 'docs3',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
