@@ -65,4 +65,5 @@ Footer只适用于两种情况
 
 ### 参考文档
 [提交消息格式](https://cwiki.apache.org/confluence/display/GEODE/Commit+Message+Format)
+
 [On commit messages-Peter Hutterer](http://who-t.blogspot.com/2009/12/on-commit-messages.html)
