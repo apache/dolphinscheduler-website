@@ -1,18 +1,18 @@
 ## DolphinScheduler-Contributor-CommitMessage篇
 
 ### 前言
-  一个好的 commit msg 是够帮助其他的开发者（或者未来的开发者）快速理解相关变更的上下文，同时也可以帮助项目管理人员确定该提交是否适合包含在发行版中。但当我们在查看了很多开源项目的 commit log 后，发现一个有趣的问题，一部分开发者，代码质量很不错，但是 commit message 记录却比较混乱，当其他贡献者或者学习者在查看代码的时候，并不能通过 commit log 很直观的了解
-该提交前后变更的目的，正如 Peter Hutterer 所言：Re-establishing the context of a piece of code is wasteful. We can’t avoid it completely, so our efforts should go to reducing it as much as possible. Commit messages can do exactly that and as a result, a commit message shows whether a developer is a good collaborator.因此，DolphinScheduler 结合其他社区以及 Apache 官方文档制定了该规约。
+  一个好的 commit msg 是能够帮助其他的开发者（或者未来的开发者）快速理解相关变更的上下文，同时也可以帮助项目管理人员确定该提交是否适合包含在发行版中。但当我们在查看了很多开源项目的 commit log 后，发现一个有趣的问题，一部分开发者，代码质量很不错，但是 commit message 记录却比较混乱，当其他贡献者或者学习者在查看代码的时候，并不能通过 commit log 很直观的了解
+该提交前后变更的目的，正如 Peter Hutterer 所言：Re-establishing the context of a piece of code is wasteful. We can’t avoid it completely, so our efforts should go to reducing it as much as possible. Commit messages can do exactly that and as a result, a commit message shows whether a developer is a good collaborator. 因此，DolphinScheduler 结合其他社区以及 Apache 官方文档制定了该规约。
 
 ### Commit Message RIP
 
 #### 1：明确修改内容
 
-commit message应该明确说明该提交解决了哪些问题（bug修复、功能增强等），以便于用户开发者更好的跟踪问题，明确版本迭代过程中的优化情况。
+commit message 应该明确说明该提交解决了哪些问题（ bug 修复、功能增强等），以便于用户开发者更好的跟踪问题，明确版本迭代过程中的优化情况。
 
 #### 2：关联相应的Pull Request 或者Issue
 
-当我们的改动较大的时候，commit message最好能够关联Github上的相关Issue或者 Pull Request，这样，我们的开发者在查阅代码的时候能够通过关联信息较为迅速的了解改代码提交的上下文情景,如果当前 commit 针对某个 issue，那么可以在 Footer 部分关闭这个 issue 。
+当我们的改动较大的时候，commit message 最好能够关联 Github 上的相关 Issue 或者 Pull Request，这样，我们的开发者在查阅代码的时候能够通过关联信息较为迅速的了解改代码提交的上下文情景,如果当前 commit 针对某个 issue，那么可以在 Footer 部分关闭这个 issue 。
 
 #### 3：统一的格式
 
