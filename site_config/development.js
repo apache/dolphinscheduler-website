@@ -69,6 +69,10 @@ export default {
                     {
                         title: '参与贡献-License需知',
                         link: '/zh-cn/docs/development/DS-License.html',
+                    },
+                    {
+                        title: '参与贡献-CommitMessage需知',
+                        link: '/zh-cn/docs/development/commit_message.html',
                     }
                 ]
             }
