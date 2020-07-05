@@ -39,7 +39,7 @@ Header 部分只有一行，包括三个字段：type（必需）、scope（可�
 
 (2）scope
 
-scope 用于说明 commit 影响的范围，比如 server、remote 等。
+scope 用于说明 commit 影响的范围，比如 server、remote 等，如果没有更合适的范围，你可以用 *。
 
 (3) subject
 
@@ -48,6 +48,14 @@ subject 是 commit 目的的简短描述，不超过50个字符。
 ##### Body
 
 Body 部分是对本次 commit 的详细描述，可以分成多行，换行符将以72个字符换行，避免自动换行影响美观。
+
+Body 部分需要注意以下几点：
+
+* 使用动宾结构，注意使用现在时，比如使用 change 而非 changed 或 changes
+
+* 首字母不要大写
+
+* 语句最后不需要 ‘.’ (句号) 结尾
 
 
 ##### Footer
@@ -67,3 +75,5 @@ Footer只适用于两种情况
 [提交消息格式](https://cwiki.apache.org/confluence/display/GEODE/Commit+Message+Format)
 
 [On commit messages-Peter Hutterer](http://who-t.blogspot.com/2009/12/on-commit-messages.html)
+
+[RocketMQ Community Operation Conventions](https://mp.weixin.qq.com/s/LKM4IXAY-7dKhTzGu5-oug)
