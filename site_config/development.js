@@ -94,6 +94,14 @@ export default {
                     {
                         title: '参与贡献-License需知',
                         link: '/zh-cn/docs/development/DS-License.html',
+                    },
+                    {
+                        title: '参与贡献-Issue 需知',
+                        link: '/zh-cn/docs/development/issue.html',
+                    },
+                    {
+                        title: '参与贡献-Pull Request 需知',
+                        link: '/zh-cn/docs/development/pull-request.html',
                     }
                 ]
             },
