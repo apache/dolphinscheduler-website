@@ -2,7 +2,7 @@
 Pull Request 本质上是一种软件的合作方式，是将涉及不同功能的代码，纳入主干的一种流程。这个过程中，可以进行讨论、审核和修改代码。
 
 在 Pull Request 中尽量不讨论代码的实现方案，代码及其逻辑的大体实现方案应该尽量在
-Issue 中被确定，在 Pull Request 中我们尽量只关注代码的格式以及代码规范等信息，从而避免实现方式的意见不同而导致
+Issue 或者邮件列表中被讨论确定，在 Pull Request 中我们尽量只关注代码的格式以及代码规范等信息，从而避免实现方式的意见不同而导致
 waste time。
 
 ## 规范
@@ -29,8 +29,8 @@ waste time。
         </tr>
         <tr>
             <td style="text-align: center;">Bug</td>
-            <td style="text-align: center;">Hotfix</td>
-            <td style="text-align: center;">[Hotfix-3333][server] Fix xxx</td>
+            <td style="text-align: center;">Fix</td>
+            <td style="text-align: center;">[Fix-3333][server] Fix xxx</td>
         </tr>
         <tr>
             <td style="text-align: center;">Improvement</td>
@@ -50,4 +50,4 @@ waste time。
     </tbody>
 </table>
 
-其中 `Issue 号`是指当前 Pull Request 对应要解决的 Issue 号，其中`模块名`同 Issue 的模块名。
+其中 `Issue 号`是指当前 Pull Request 对应要解决的 Issue 号，`模块名`同 Issue 的模块名。

@@ -1,0 +1,51 @@
+## Preface
+Pull Request is a way of software cooperation, which is a process of bringing code involving different functions into the trunk. During this process, the code can be discussed, reviewed, and modified.
+
+In Pull Request, we try not to discuss the implementation of the code. The general implementation of the code and its logic should be determined in Issue. In the Pull Request, we only focus on the code format and code specification, so as to avoid wasting time caused by different opinions on implementation.
+
+## Specification
+
+### Pull Request title
+
+Title Format: [`Pull Request Type`-`Issue No`][`Module Name`] `Pull Request Description`
+
+The corresponding relationship between `Pull Request Type` and `Issue Type` is as follows:
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 10%; text-align: center;">Issue Type</th>
+            <th style="width: 20%; text-align: center;">Pull Request Type</th>
+            <th style="width: 20%; text-align: center;">Example(Suppose Issue No is 3333)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;">Feature</td>
+            <td style="text-align: center;">Feature</td>
+            <td style="text-align: center;">[Feature-3333][server] Implement xxx</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">Bug</td>
+            <td style="text-align: center;">Fix</td>
+            <td style="text-align: center;">[Fix-3333][server] Fix xxx</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">Improvement</td>
+            <td style="text-align: center;">Improvement</td>
+            <td style="text-align: center;">[Improvement-3333][alert] Improve the performance of xxx</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">Test</td>
+            <td style="text-align: center;">Test</td>
+            <td style="text-align: center;">[Test-3333][api] Add the e2e test of xxx</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">Sub-Task</td>
+            <td style="text-align: center;">(Parent type corresponding to Sub-Task)</td>
+            <td style="text-align: center;">[Feature-3333][server] Implement xxx</td>
+        </tr>
+    </tbody>
+</table>
+
+`Issue No` refers to the Issue number corresponding to the current Pull Request to be resolved, `Module Name` is the same as the `Module Name` of Issue.

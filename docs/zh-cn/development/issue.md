@@ -3,6 +3,7 @@ Issues 功能被用来追踪各种特性，Bug，功能 等。项目维护者可
 
 Issue 是引出一个 Feature 或 Bug 等的重要步骤，在单个
 Issue 中可以讨论的内容包括但不限于 Feature 的包含的功能，存在的 Bug 产生原因，以及其对应的实现方式或修复方式。
+
 并且只有当 Issue 被 approve 之后才需要有对应的 Pull Request 去实现。
 
 ## 规范
@@ -30,7 +31,7 @@ Issue 中可以讨论的内容包括但不限于 Feature 的包含的功能，�
         <tr>
             <td style="text-align: center;">Bug</td>
             <td style="text-align: center;">程序中存在的 Bug</td>
-            <td style="text-align: center;">[BUG][api] Throw exception when xxx</td>
+            <td style="text-align: center;">[Bug][api] Throw exception when xxx</td>
         </tr>
         <tr>
             <td style="text-align: center;">Improvement</td>
@@ -91,6 +92,14 @@ Issue 中可以讨论的内容包括但不限于 Feature 的包含的功能，�
         <tr>
             <td style="text-align: center;">ui</td>
             <td style="text-align: center;">前端界面模块</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">docs-zh</td>
+            <td style="text-align: center;">中文文档</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">docs</td>
+            <td style="text-align: center;">英文文档</td>
         </tr>
         <tr>
             <td style="text-align: center;">待补充...</td>
