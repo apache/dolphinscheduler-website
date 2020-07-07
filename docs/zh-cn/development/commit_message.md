@@ -25,7 +25,7 @@ Commit message 应该包括三个部分：Header，Body 和 Footer。
 ##### header
 Header 部分只有一行，包括三个字段：type（必需）、scope（可选）和 subject（必需）。
 
-[DS-PR编号][type] subject
+[DS-ISSUE编号][type] subject
 
 (1) type 用于说明 commit 的类别，只允许使用下面7个标识。
 
