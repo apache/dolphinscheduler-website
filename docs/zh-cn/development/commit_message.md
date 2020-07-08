@@ -73,9 +73,13 @@ Footer只适用于两种情况
 如果当前 commit 针对某个issue，那么可以在 Footer 部分关闭这个 issue,也可以一次关闭多个 issue 。
 
 ##### 举个例子
-[DS-001][docs] add commit message
+[DS-001][docs-zh] add commit message
 
 * commit message RIP
+* build some conventions 
+* help the commit messages become clean and tidy, 
+* help developers and release managers better track issues 
+and clarify the optimization in the version iteration.
 
 This closes #001
 
