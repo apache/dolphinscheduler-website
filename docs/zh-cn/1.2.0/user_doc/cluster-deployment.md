@@ -442,6 +442,8 @@ server {
   ```
 
 - 访问前端页面地址: http://localhost:8888 ，出现前端登录页面，前端web也安装完成了
+  
+  默认用户名密码：admin/dolphinscheduler123
 
   <p align="center">
      <img src="/img/login.png" width="60%" />
