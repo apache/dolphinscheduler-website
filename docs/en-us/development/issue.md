@@ -1,7 +1,8 @@
 ## Preface
 Issues function is used to track various Features, Bugs, Functions, etc. The project maintainer can organize the tasks to be completed through issues.
 
-Issue is an important step in drawing out a feature or bug, and the discussion in Issue is not only about how to implement the feature and how to fix the bug but also the way the feature should/could be implemented.
+Issue is an important step in drawing out a feature or bug,
+and the contents that can be discussed in an issue are not limited to the features, the causes of the existing bugs, the research on preliminary scheme, and the corresponding implementation design and code design.
 
 And only when the Issue is approved, the corresponding Pull Request should be implemented.
 
@@ -106,3 +107,13 @@ The `Module Name` is as follows:
         </tr>
     </tbody>
 </table>
+
+
+### Contributor
+
+Except for some special cases, it is recommended to discuss under issue or mailing list to determine the design scheme or provide the design scheme,
+as well as the code implementation design before completing the issue.
+
+If there are many different solutions, it is suggested to make a decision through mailing list or voting under issue.
+The issue can be implemented after final scheme and code implementation design being approved.
+The main purpose of this is to avoid wasting time caused by different opinions on implementation design or reconstruction in the pull request review stage.
