@@ -110,6 +110,10 @@ Issue 中可以讨论的内容包括但不限于 Feature 的包含的功能，�
     </tbody>
 </table>
 
+### Issue 模板
+
+https://github.com/apache/incubator-dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE
+
 ### Contributor
 
 除一些特殊情况之外，在开始完成
@@ -119,3 +123,11 @@ Issue 之前，建议先在 Issue 下或者邮件列表中和大家讨论确定�
 Issue 下进行投票决定，最终方案和代码实现思路被
 approve 之后，再去实现，这样做的主要目的是避免在
 Pull Request review 阶段针对实现思路的意见不同或需要重构而导致 waste time。
+
+### 相关问题
+
+- 当出现提出 Issue 的用户不清楚该 Issue 对应的模块时的处理方式。
+
+    确实存在大多数提出 Issue 用户不清楚这个 Issue 是属于哪个模块的，其实这在很多开源社区都是很常见的。在这种情况下，其实
+    committer/contributor 是知道这个 Issue 影响的模块的，如果之后这个 Issue 被 committer 和 contributor approve
+    确实有价值，那么 committer 就可以按照 Issue 涉及到的具体的模块去修改 Issue 标题，或者留言给提出 Issue 的用户去修改成对应的标题。
