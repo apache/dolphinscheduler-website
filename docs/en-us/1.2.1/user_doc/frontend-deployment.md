@@ -115,6 +115,8 @@ Copy all files in the dolphinscheduler-ui/dist directory to the backend binary p
 Visit the following url, interface address (modify it yourself)
 http://192.168.xx.xx:12345/dolphinscheduler
 
+default user password：admin/dolphinscheduler123
+
 ## FAQ
 #### Upload file size limit
 

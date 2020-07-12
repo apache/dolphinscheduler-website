@@ -102,7 +102,7 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
   cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   chmod 600 ~/.ssh/authorized_keys
   ```
-​ 注意：*正常设置后，dolphinscheduler用户在执行命令`ssh localhost` 是不需要再输入密码的*
+ 注意：*正常设置后，dolphinscheduler用户在执行命令`ssh localhost` 是不需要再输入密码的*
 
 
 
@@ -137,7 +137,7 @@ mysql -uroot -p
     mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
     mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
     mysql> flush privileges;
-  ```
+ ```
 
 - 创建表和导入基础数据
 
@@ -324,6 +324,8 @@ mysql -uroot -p
 
 - 访问前端页面地址: http://192.168.xx.xx:12345/dolphinscheduler ，出现前端登录页面，接口地址(自行修改)
 
+  默认用户名密码：admin/dolphinscheduler123
+  
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>

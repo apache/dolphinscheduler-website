@@ -18,21 +18,16 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0(Incoming)',
-            link: '/en-us/docs/1.3.0/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs2',
             text: '1.2.1',
             link: '/en-us/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs2',
             text: '1.2.0(Recommend)',
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs4',
+              key: 'docs3',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
@@ -78,7 +73,7 @@ export default {
       list: [
         {
           text: 'Overview',
-          link: '/en-us/docs/1.2.0/user_doc/architecture-design.html',
+          link: '/en-us/docs/development/architecture-design.html',
         },
         {
           text: 'Quick start',
@@ -115,7 +110,7 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2019 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2018-2020 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
   'zh-cn': {
     pageMenu: [
@@ -130,21 +125,16 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0',
-            link: '/zh-cn/docs/1.3.0/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs2',
             text: '1.2.1',
             link: '/zh-cn/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs2',
             text: '1.2.0(推荐)',
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs4',
+              key: 'docs3',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
@@ -190,7 +180,7 @@ export default {
       list: [
         {
           text: '概览',
-          link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
+          link: '/zh-cn/docs/development/architecture-design.html',
         },
         {
           text: '快速开始',
@@ -227,6 +217,6 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2019 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2018-2020 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
 };
