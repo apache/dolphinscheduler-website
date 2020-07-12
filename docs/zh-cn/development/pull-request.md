@@ -52,9 +52,9 @@ waste time。
 
 其中 `Issue 号`是指当前 Pull Request 对应要解决的 Issue 号，`模块名`同 Issue 的模块名。
 
-### Pull Request 模板
+### Pull Request 内容
 
-todo 关联到CommitMessage篇
+请参阅到 commit message 篇。
 
 ### 相关问题
 
