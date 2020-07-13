@@ -92,7 +92,7 @@ DEV_HOST = localhost
        -Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api
    ```
    
-5. 启动其它模块，那么去查询script/dolphinscheduler-daemon.sh文件,设置相应的VM Options  
+5. ,这里暂时不启动其它模块，如果启动其它模块，那么去查询script/dolphinscheduler-daemon.sh文件,设置相应的VM Options  
    ```
        if [ "$command" = "api-server" ]; then
          LOG_FILE="-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api"
