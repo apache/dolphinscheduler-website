@@ -56,44 +56,20 @@ cd dolphinscheduler-ui
 #### 搭建后端
 1. 将项目导入到idea中  
 file-->open
-2. 修改dao模块resource目录下datasource.properties文件中的数据库配置信息    
+2. 修改dao模块resource目录下datasource.properties文件中的数据库配置信息      
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler
 spring.datasource.username=ds_user
 spring.datasource.password=dolphinscheduler  
 
-3. 修改根项目中pom.xml，将mysql-connector-java依赖的scope修改为compile
+3. 修改根项目中pom.xml，将mysql-connector-java依赖的scope修改为compile  
 
 4. 刷新dao模块，运行org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler的类main方法，自动插入项目所需的表和数据  
 
-5. 修改server模块org.apache.dolphinscheduler.server.master.MasterServer类main函数，增加一行代码：
-   ```
-       public static void main(String[] args) {
-           System.setProperty("spring.profiles.active","master");
-           Thread.currentThread().setName(Constants.THREAD_NAME_MASTER_SERVER);
-           new SpringApplicationBuilder(MasterServer.class).web(WebApplicationType.NONE).run(args);
-       }
-   ```
-6. 修改service模块zookeeper.properties中链接信息(zookeeper.quorum)  
+5. 修改service模块zookeeper.properties中链接信息(zookeeper.quorum)    
  zookeeper.quorum=localhost:2181
-
-7. 修改server模块org.apache.dolphinscheduler.server.worker.WorkerServer类main函数，增加一行代码: 
-   ```
-       public static void main(String[] args) {
-           System.setProperty("spring.profiles.active","worker");
-           Thread.currentThread().setName(Constants.THREAD_NAME_WORKER_SERVER);
-           new SpringApplicationBuilder(WorkerServer.class).web(WebApplicationType.NONE).run(args);
-       }
-   ```
-8. 修改api模块org.apache.dolphinscheduler.api.ApiApplicationServer类main函数，增加一行代码: 
-   ```
-    public static void main(String[] args) {
-      System.setProperty("spring.profiles.active", "api");
-      SpringApplication.run(ApiApplicationServer.class, args);
-    }
-   ```
-
-9. 修改dolphinscheduler-ui模块的.env文件  
+ 
+6. 修改dolphinscheduler-ui模块的.env文件  
 ```
 API_BASE = http://localhost:12345
 DEV_HOST = localhost
@@ -101,17 +77,43 @@ DEV_HOST = localhost
 #### 启动项目
 1. 启动zookeeper   
 ./bin/zkServer.sh start
+2. 启动MasterServer，执行org.apache.dolphinscheduler.server.master.MasterServer的main方法,需要设置VM Options:  
+   ```
+       -Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false
+   ```
 
-2. 启动MasterServer  
-执行org.apache.dolphinscheduler.server.master.MasterServer的main方法
+3. 启动WorkerServer，执行org.apache.dolphinscheduler.server.worker.WorkerServer的main方法,需要设置VM Options:  
+   ```
+       -Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false
+   ```
 
-3. 启动WorkerServer  
-执行org.apache.dolphinscheduler.server.worker.WorkerServer的main方法
-
-4. 启动ApiApplicationServer  
-执行org.apache.dolphinscheduler.api.ApiApplicationServer的main方法
-
-5. 启动前端ui模块  
+4. 启动ApiApplicationServer，执行org.apache.dolphinscheduler.api.ApiApplicationServer的main方法,需要设置VM Options:   
+   ```
+       -Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api
+   ```
+   
+5. 启动其它模块，那么去查询script/dolphinscheduler-daemon.sh文件,设置相应的VM Options  
+   ```
+       if [ "$command" = "api-server" ]; then
+         LOG_FILE="-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api"
+         CLASS=org.apache.dolphinscheduler.api.ApiApplicationServer
+       elif [ "$command" = "master-server" ]; then
+         LOG_FILE="-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false"
+         CLASS=org.apache.dolphinscheduler.server.master.MasterServer
+       elif [ "$command" = "worker-server" ]; then
+         LOG_FILE="-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false"
+         CLASS=org.apache.dolphinscheduler.server.worker.WorkerServer
+       elif [ "$command" = "alert-server" ]; then
+         LOG_FILE="-Dlogback.configurationFile=conf/logback-alert.xml"
+         CLASS=org.apache.dolphinscheduler.alert.AlertServer
+       elif [ "$command" = "logger-server" ]; then
+         CLASS=org.apache.dolphinscheduler.server.log.LoggerServer
+       else
+         echo "Error: No command named \`$command' was found."
+         exit 1
+       fi
+   ```
+6. 启动前端ui模块  
 cd dolphinscheduler-ui目录，执行npm run start
 
 #### 访问项目
