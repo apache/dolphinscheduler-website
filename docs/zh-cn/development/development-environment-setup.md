@@ -57,14 +57,15 @@ cd dolphinscheduler-ui
 1. 将项目导入到idea中  
 file-->open
 2. 修改dao模块resource目录下datasource.properties文件中的数据库配置信息      
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler
-spring.datasource.username=ds_user
-spring.datasource.password=dolphinscheduler  
-
+   ```
+       spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+       spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler
+       spring.datasource.username=ds_user
+       spring.datasource.password=dolphinscheduler  
+   ```
 3. 修改根项目中pom.xml，将mysql-connector-java依赖的scope修改为compile  
 
-4. 刷新dao模块，运行org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler的类main方法，自动插入项目所需的表和数据  
+4. 刷新dao模块，运行org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler的main方法，自动插入项目所需的表和数据  
 
 5. 修改service模块zookeeper.properties中链接信息(zookeeper.quorum)    
  zookeeper.quorum=localhost:2181
