@@ -10,7 +10,7 @@ import Sidemenu from '../../components/sidemenu';
 import Footer from '../../components/footer';
 import docsConfig from '../../../site_config/docs';
 import docsConfig1 from '../../../site_config/docs1-2-1';
-import docsConfig2 from '../../../site_config/docs1-3-0';
+import docsConfig2 from '../../../site_config/docs1-3-1';
 import devConfig from '../../../site_config/development';
 import './index.scss';
 
