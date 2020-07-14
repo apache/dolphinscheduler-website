@@ -1,6 +1,22 @@
 ## 贡献
 
-您可以提交一个bug，一个Feature建议或者直接提交改进。
+首先非常感谢大家选择和使用 DolphinScheduler，非常欢迎大家加入 DolphinScheduler 大家庭，融入开源世界！
+
+我们鼓励任何形式的参与社区，最终成为 Committer 或 PPMC，如： 
+* 将遇到的问题通过 github 上 [issue](https://github.com/apache/incubator-dolphinscheduler/issues) 的形式反馈出来
+* 回答别人遇到的 issue 问题
+* 帮助完善文档
+* 帮助项目增加测试用例
+* 为代码添加注释
+* 提交修复 Bug 或者 Feature 的 PR
+* 发表应用案例实践、调度流程分析或者与调度相关的技术文章
+* 帮助推广 DolphinScheduler，参与技术大会或者meetup的分享等
+
+欢迎加入贡献的队伍，加入开源从提交第一个 PR 开始
+  - 比如添加代码注释或找到带有 ”easy to fix” 标记或一些非常简单的 issue(拼写错误等) 等等，先通过第一个简单的PR熟悉提交流程
+注：贡献不仅仅限于 PR 哈，对促进项目发展的都是贡献
+
+相信参与 DolphinScheduler，一定会让您从开源中受益！
 
 ### 1. 如何提交Bug
 

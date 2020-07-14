@@ -13,16 +13,16 @@
 
 # 2、下载二进制tar.gz包
 
-- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz)，下载后上传tar包到该目录中，并进行解压
+- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 # 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 # 解压缩
-tar -zxvf apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
+tar -zxvf apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
 
-mv apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin  dolphinscheduler-bin
+mv apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin  dolphinscheduler-bin
 ```
 
 # 3、创建部署用户和hosts映射

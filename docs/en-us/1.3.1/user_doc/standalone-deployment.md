@@ -1,4 +1,4 @@
-# Cluster Deployment
+# Standalone Deployment
 
 # 1、Before you begin (please install requirement basic software by yourself)
 
@@ -13,16 +13,16 @@
 
 # 2、Download the binary package.
 
-- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz)，Download the package and move to the installation and deployment directory. Then unzip it.
+- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](https://dolphinscheduler.apache.org/en-us/docs/release/download.html)，Download the package and move to the installation and deployment directory. Then unzip it.
 
 ```shell
 # Create the deployment directory. Do not choose a deployment directory with a high-privilege directory such as / root or / home.
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 # unzip
-tar -zxvf apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
+tar -zxvf apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
 
-mv apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin  dolphinscheduler-bin
+mv apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin  dolphinscheduler-bin
 ```
 
 # 3、Create deployment user and hosts mapping
@@ -200,7 +200,7 @@ mysql -uroot -p
     dbtype="mysql"
 
     # Database connection address and port
-    dbhost="192.168.xx.xx:3306"
+    dbhost="localhost:3306"
 
     # database name
     dbname="dolphinscheduler"
@@ -212,8 +212,8 @@ mysql -uroot -p
     # NOTICE: if there are special characters, please use the \ to escape, for example, `[` escape to `\[`
     passowrd="xxx"
 
-    #Zookeeper cluster
-    zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
+    # Zookeeper address, localhost:2181, remember the port 2181
+    zkQuorum="localhost:2181"
 
     # Note: the target installation path for dolphinscheduler, please not config as the same as the current path (pwd)
     installPath="/opt/soft/dolphinscheduler"
@@ -257,10 +257,9 @@ mysql -uroot -p
     # resource storage type：HDFS,S3,NONE
     resourceStorageType="HDFS"
 
-    # if resourceStorageType is HDFS，defaultFS write namenode address，HA you need to put core-site.xml and hdfs-site.xml in the conf directory.
-    # if S3，write S3 address，HA，for example ：s3a://dolphinscheduler，
-    # Note，s3 be sure to create the root directory /dolphinscheduler
-    defaultFS="hdfs://mycluster:8020"
+    # here is an example of saving to a local file system
+    # Note: If you want to upload to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the conf directory. In this example, it is placed under /opt/dolphinscheduler/conf, and Configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
+    defaultFS="file:///data/dolphinscheduler"
 
 
     # if not use hadoop resourcemanager, please keep default value; if resourcemanager HA enable, please type the HA ips ; if resourcemanager is single, make this value empty
@@ -270,37 +269,31 @@ mysql -uroot -p
     singleYarnIp="yarnIp1"
 
     # resource store on HDFS/S3 path, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。/dolphinscheduler is recommended
-    resourceUploadPath="/dolphinscheduler"
+    resourceUploadPath="/data/dolphinscheduler"
 
-    # who have permissions to create directory under HDFS/S3 root path
-    # Note: if kerberos is enabled, please config hdfsRootUser=
+    # specify the user who have permissions to create directory under HDFS/S3 root path
     hdfsRootUser="hdfs"
 
 
 
-    # install hosts
-    # Note: install the scheduled hostname list. If it is pseudo-distributed, just write a pseudo-distributed hostname
-    ips="ds1,ds2,ds3,ds4"
+    # On which machines to deploy the DS service, choose localhost for this machine
+    ips="localhost"
 
     # ssh port, default 22
     # Note: if ssh port is not default, modify here
     sshPort="22"
 
     # run master machine
-    # Note: list of hosts hostname for deploying master
-    masters="ds1,ds2"
+    masters="localhost"
 
     # run worker machine
-    # note: need to write the worker group name of each worker, the default value is "default"
-    workers="ds3:default,ds4:default"
+    workers="localhost"
 
     # run alert machine
-    # note: list of machine hostnames for deploying alert server
-    alertServer="ds2"
+    alertServer="localhost"
 
     # run api machine
-    # note: list of machine hostnames for deploying api server
-    apiServers="ds1"
+    apiServers="localhost"
 
     ```
 

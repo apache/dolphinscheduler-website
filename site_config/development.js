@@ -103,12 +103,16 @@ export default {
                         link: '/zh-cn/docs/development/DS-License.html',
                     },
                     {
-                        title: '参与贡献 Issue 需知',
+                        title: '参与贡献-Issue需知',
                         link: '/zh-cn/docs/development/issue.html',
                     },
                     {
-                        title: '参与贡献 Pull Request 需知',
+                        title: '参与贡献-Pull Request需知',
                         link: '/zh-cn/docs/development/pull-request.html',
+                    },
+                    {
+                        title: '参与贡献-CommitMessage需知',
+                        link: '/zh-cn/docs/development/commit_message.html',
                     }
                 ]
             },
