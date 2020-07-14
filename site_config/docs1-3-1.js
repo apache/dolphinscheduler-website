@@ -6,15 +6,15 @@ export default {
                 children: [
                     {
                         title: 'Hareware Environment',
-                        link: '/en-us/docs/1.3.0/user_doc/hardware-environment.html',
+                        link: '/en-us/docs/1.3.1/user_doc/hardware-environment.html',
                     },
                     {
                         title: 'Backend deploy',
-                        link: '/en-us/docs/1.3.0/user_doc/backend-deployment.html',
+                        link: '/en-us/docs/1.3.1/user_doc/backend-deployment.html',
                     },
                     {
                         title: 'Frontend deploy',
-                        link: '/en-us/docs/1.3.0/user_doc/frontend-deployment.html',
+                        link: '/en-us/docs/1.3.1/user_doc/frontend-deployment.html',
                     }
                 ]
             },
@@ -23,15 +23,15 @@ export default {
                 children: [
                     {
                         title: 'Quick Start',
-                        link: '/en-us/docs/1.3.0/user_doc/quick-start.html',
+                        link: '/en-us/docs/1.3.1/user_doc/quick-start.html',
                     },
                     {
                         title: 'User Manual',
-                        link: '/en-us/docs/1.3.0/user_doc/system-manual.html',
+                        link: '/en-us/docs/1.3.1/user_doc/system-manual.html',
                     },
                     {
                         title: 'Metadata',
-                        link: '/en-us/docs/1.3.0/user_doc/metadata-1.2.html'
+                        link: '/en-us/docs/1.3.1/user_doc/metadata-1.2.html'
                     },
                 ]
             },
@@ -50,7 +50,7 @@ export default {
                 children: [
                     {
                         title: 'Upgrade',
-                        link: '/en-us/docs/1.3.0/user_doc/upgrade.html',
+                        link: '/en-us/docs/1.3.1/user_doc/upgrade.html',
                     }
                 ]
             },
@@ -73,15 +73,15 @@ export default {
                 children: [
                     {
                         title: '软硬件环境建议配置',
-                        link: '/zh-cn/docs/1.3.0/user_doc/hardware-environment.html',
+                        link: '/zh-cn/docs/1.3.1/user_doc/hardware-environment.html',
                     },
                     {
                         title: '单机部署(Standalone)',
-                        link: '/zh-cn/docs/1.3.0/user_doc/standalone-deployment.html',
+                        link: '/zh-cn/docs/1.3.1/user_doc/standalone-deployment.html',
                     },
                     {
                         title: '集群部署(Cluster)',
-                        link: '/zh-cn/docs/1.3.0/user_doc/cluster-deployment.html',
+                        link: '/zh-cn/docs/1.3.1/user_doc/cluster-deployment.html',
                     }
                 ],
             },
@@ -90,19 +90,19 @@ export default {
                 children: [
                     {
                         title: '快速上手',
-                        link: '/zh-cn/docs/1.3.0/user_doc/quick-start.html',
+                        link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
                     },
                     {
                         title: '用户手册',
-                        link: '/zh-cn/docs/1.3.0/user_doc/system-manual.html',
+                        link: '/zh-cn/docs/1.3.1/user_doc/system-manual.html',
                     },
                     {
                         title: '元数据文档',
-                        link: '/zh-cn/docs/1.3.0/user_doc/metadata-1.3.html'
+                        link: '/zh-cn/docs/1.3.1/user_doc/metadata-1.3.html'
                     },
                     {
                         title: '架构设计',
-                        link: '/zh-cn/docs/1.3.0/user_doc/architecture-design.html'
+                        link: '/zh-cn/docs/1.3.1/user_doc/architecture-design.html'
                     },
                 ],
             },
@@ -121,7 +121,7 @@ export default {
                 children: [
                     {
                         title: '升级',
-                        link: '/zh-cn/docs/1.3.0/user_doc/upgrade.html',
+                        link: '/zh-cn/docs/1.3.1/user_doc/upgrade.html',
                     }
                 ],
             },
