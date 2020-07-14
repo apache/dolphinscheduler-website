@@ -188,7 +188,7 @@ master.reserved.memory|0.3|内存阈值限制,可用内存大于该值,master �
 ## 7.worker.properties [Worker服务配置]
 |参数 |默认值| 描述| 
 |--|--|--|
-worker.listen.port|5678|worker通讯端口
+worker.listen.port|1234|worker通讯端口
 worker.exec.threads|100|工作线程数量
 worker.heartbeat.interval|10|心跳间隔
 worker.max.cpuload.avg|-1|cpu小于该配置时,worker 服务才能工作. 默认值为-1 :  cpu cores * 2
