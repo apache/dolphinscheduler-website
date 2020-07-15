@@ -95,7 +95,7 @@ class Documentation extends Language {
     if (window.location.pathname.indexOf('/development/') >= 0) {
       dataSource = devConfig[language];
     }
-    if (window.location.pathname.indexOf('/1.3.0/') >= 0) {
+    if (window.location.pathname.indexOf('/1.3.1/') >= 0) {
       dataSource = docsConfig2[language];
     }
     if (window.location.pathname.indexOf('/1.2.1/') >= 0) {
