@@ -1,3 +1,9 @@
+## Q: What's the name of this project?
+
+A: Before version 1.2 project name is called escheduler, version 1.2 and later it's called dolphinScheduler.
+
+---
+
 ## Q: DolphinScheduler service introduction and recommended running memory
 
 A: DolphinScheduler consists of 5 services, MasterServer, WorkerServer, ApiServer, AlertServer, LoggerServer and UI.
@@ -411,16 +417,16 @@ For version under 1.2.1, some tips for this situation:
 ## Q : Zookeeper masters znode list ip address is 127.0.0.1, instead of wanted ip eth0 or eth1, and may can't see task log
 A: bug fix:
    ```
-      1、confirm hostname
+      1, confirm hostname
       $hostname
       hadoop1
-      2、hostname -i
+      2, hostname -i
       127.0.0.1 10.3.57.15
-      3、edit /etc/hosts,delete hadoop1 from 127.0.0.1 record
+      3, edit /etc/hosts,delete hadoop1 from 127.0.0.1 record
       $cat /etc/hosts
       127.0.0.1 localhost
       10.3.57.15 ds1 hadoop1
-      4、hostname -i
+      4, hostname -i
       10.3.57.15
    ```   
    
@@ -494,12 +500,12 @@ A: 1, modify application_master.properties, for example: server.port=12345.
 ---
 
 ## Q : Scheduled tasks cannot be online
-A: 1, We can successly create scheduled task and add one record into t_scheduler_schedules table, but when I click online, front page no reaction and will lock table t_scheduler_schedules, and tested set field release_state value to 1 in table t_scheduler_schedules, and task display online state.
+A: 1, We can successly create scheduled task and add one record into t_scheduler_schedules table, but when I click online, front page no reaction and will lock table t_scheduler_schedules, and tested set field release_state value to 1 in table t_scheduler_schedules, and task display online state. For DS version above 1.2 table name is t_ds_schedules, other version table name is t_scheduler_schedules.
 
 ---
 
 ## Q : What is the address of swagger ui
-A: 1，http://apiServerIp:apiServerPort/escheduler/doc.html.
+A: 1, For version 1.2+ is http://apiServerIp:apiServerPort/dolphinscheduler/doc.html others is http://apiServerIp:apiServerPort/escheduler/doc.html.
 
 ---
 
