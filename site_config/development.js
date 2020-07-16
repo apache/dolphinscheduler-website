@@ -28,8 +28,41 @@ export default {
                     {
                         title: 'Developers',
                         link: '/en-us/docs/development/developers.html',
+                    },
+                    {
+                        title: 'Issue Notice',
+                        link: '/en-us/docs/development/issue.html',
+                    },
+                    {
+                        title: 'Pull Request Notice',
+                        link: '/en-us/docs/development/pull-request.html',
                     }
                 ]
+            },
+            {
+                title: 'Developer guide',
+                children: [
+                    {
+                        title: 'Architecture Design',
+                        link: '/en-us/docs/development/architecture-design.html',
+                    },
+                    {
+                        title: 'Backend Development',
+                        link: '/en-us/docs/development/backend-development.html',
+                    },
+                    {
+                        title: 'Frontend Development',
+                        link: '/en-us/docs/development/frontend-development.html',
+                    },
+                    {
+                        title: 'plugin-development',
+                        link: '/en-us/docs/development/plugin-development.html',
+                    },
+                    {
+                        title: 'download',
+                        link: '/en-us/docs/development/download.html',
+                    }
+                ],
             }
         ],
         barText: 'Development'
@@ -64,8 +97,53 @@ export default {
                     {
                         title: '开发人员',
                         link: '/zh-cn/docs/development/developers.html',
+                    },
+                    {
+                        title: '参与贡献-License需知',
+                        link: '/zh-cn/docs/development/DS-License.html',
+                    },
+                    {
+                        title: '参与贡献-Issue需知',
+                        link: '/zh-cn/docs/development/issue.html',
+                    },
+                    {
+                        title: '参与贡献-Pull Request需知',
+                        link: '/zh-cn/docs/development/pull-request.html',
+                    },
+                    {
+                        title: '参与贡献-CommitMessage需知',
+                        link: '/zh-cn/docs/development/commit_message.html',
                     }
                 ]
+            },
+            {
+                title: '开发者指南',
+                children: [
+                    {
+                        title: '环境搭建',
+                        link: '/zh-cn/docs/development/development-environment-setup.html',
+                    },
+                    {
+                        title: '架构设计',
+                        link: '/zh-cn/docs/development/architecture-design.html',
+                    },
+                    {
+                        title: '后端开发',
+                        link: '/zh-cn/docs/development/backend-development.html',
+                    },
+                    {
+                        title: '前端开发',
+                        link: '/zh-cn/docs/development/frontend-development.html',
+                    },
+                    {
+                        title: '插件开发',
+                        link: '/zh-cn/docs/development/plugin-development.html',
+                    },
+                    {
+                        title: '下载',
+                        link: '/zh-cn/docs/development/download.html',
+                    }
+                ],
             }
         ],
         barText: '开发者'

@@ -18,8 +18,8 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0(Incoming)',
-            link: '/en-us/docs/1.3.0/user_doc/quick-start.html',
+            text: '1.3.1',
+            link: '/en-us/docs/1.3.1/user_doc/quick-start.html',
           },
           {
             key: 'docs2',
@@ -78,7 +78,7 @@ export default {
       list: [
         {
           text: 'Overview',
-          link: '/en-us/docs/1.2.0/user_doc/architecture-design.html',
+          link: '/en-us/docs/development/architecture-design.html',
         },
         {
           text: 'Quick start',
@@ -115,7 +115,7 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2019 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2018-2020 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
   'zh-cn': {
     pageMenu: [
@@ -130,8 +130,8 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0(Incoming)',
-            link: '/zh-cn/docs/1.3.0/user_doc/quick-start.html',
+            text: '1.3.1',
+            link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
           },
           {
             key: 'docs2',
@@ -190,7 +190,7 @@ export default {
       list: [
         {
           text: '概览',
-          link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
+          link: '/zh-cn/docs/development/architecture-design.html',
         },
         {
           text: '快速开始',
@@ -227,6 +227,6 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2019 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2018-2020 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
 };

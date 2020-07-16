@@ -75,13 +75,13 @@ class Home extends Language {
               <a href="https://github.com/apache/incubator-dolphinscheduler" target="_blank" rel="noopener noreferrer">
                 <div className="star">
                   <img src="https://img.alicdn.com/tfs/TB1FlB1JwHqK1RjSZFPXXcwapXa-32-32.png" />
-                  <span className="count">3.5K </span>
+                  <span className="count">4K </span>
                 </div>
               </a>
               <a href="https://github.com/apache/incubator-dolphinscheduler/fork" target="_blank" rel="noopener noreferrer">
                 <div className="fork">
                   <img src="https://img.alicdn.com/tfs/TB1zbxSJwDqK1RjSZSyXXaxEVXa-32-32.png" />
-                  <span className="count">1.1K </span>
+                  <span className="count">1.3K </span>
                 </div>
               </a>
             </div>

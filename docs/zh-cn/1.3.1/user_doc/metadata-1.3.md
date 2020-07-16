@@ -1,4 +1,4 @@
-# Dolphin Scheduler 1.2元数据文档
+# Dolphin Scheduler 1.3元数据文档
 
 <a name="25Ald"></a>
 ### 表概览
@@ -75,6 +75,8 @@
 | timeout | int | 超时时间 |
 | tenant_id | int | 租户id |
 | update_time | datetime | 更新时间 |
+| modify_by | varchar | 修改用户 |
+| resource_ids | varchar | 资源id集 |
 
 <a name="e6jfz"></a>
 #### t_ds_process_instance
@@ -109,7 +111,7 @@
 | history_cmd | text | 历史命令，记录所有对流程实例的操作 |
 | dependence_schedule_times | text | 依赖节点的预估时间 |
 | process_instance_priority | int | 流程实例优先级：0 Highest,1 High,2 Medium,3 Low,4 Lowest |
-| worker_group_id | int | 任务指定运行的worker分组 |
+| worker_group | varchar | 任务指定运行的worker分组 |
 | timeout | int | 超时时间 |
 | tenant_id | int | 租户id |
 
@@ -138,7 +140,7 @@
 | retry_interval | int | 重试间隔 |
 | max_retry_times | int | 最大重试次数 |
 | task_instance_priority | int | 任务实例优先级：0 Highest,1 High,2 Medium,3 Low,4 Lowest |
-| worker_group_id | int | 任务指定运行的worker分组 |
+| worker_group | varchar | 任务指定运行的worker分组 |
 
 <a name="pPQkU"></a>
 #### t_ds_schedules
@@ -155,7 +157,7 @@
 | warning_type | tinyint | 告警类型：0 不发,1 流程成功发,2 流程失败发,3 成功失败都发 |
 | warning_group_id | int | 告警组id |
 | process_instance_priority | int | 流程实例优先级：0 Highest,1 High,2 Medium,3 Low,4 Lowest |
-| worker_group_id | int | 任务指定运行的worker分组 |
+| worker_group | varchar | 任务指定运行的worker分组 |
 | create_time | datetime | 创建时间 |
 | update_time | datetime | 更新时间 |
 
@@ -177,7 +179,7 @@
 | dependence | varchar | 依赖字段 |
 | update_time | datetime | 更新时间 |
 | process_instance_priority | int | 流程实例优先级：0 Highest,1 High,2 Medium,3 Low,4 Lowest |
-| worker_group_id | int | 任务指定运行的worker分组 |
+| worker_group | varchar | 任务指定运行的worker分组 |
 
 
 
