@@ -327,10 +327,9 @@ A: When start the workflow, you can set the task failure strategy: contine or fa
 
 ---
 
-## Q : Workflow template DAG, workflow instance, work task and what is the relationship among them
-A: 1, A DAG supports a maximum concurrency of 100? Does it mean that 100 workflow instances are generated and run concurrently?
-   ​	2, A task node in a DAG also has a concurrent number configuration. Does it mean that tasks can run concurrently with multiple threads? Is the maximum number 100?
-   
+## Q : Workflow template DAG, workflow instance, work task and what is the relationship among them? A DAG supports a maximum concurrency of 100, does it mean that 100 workflow instances are generated and run concurrently? A task node in a DAG also has a concurrent number configuration. Does it mean that tasks can run concurrently with multiple threads? Is the maximum number 100?
+A: 
+
 1.2.1 version
 ```
 master.properties
@@ -487,7 +486,7 @@ A: 1, I suggest you use 3 nodes for stability if you don't have too many tasks t
 ---
 
 ## Q : DEPENDENT Task Node
-A: 1, DEPENDT task node actually does not have script, it used for config data cycle dependent logic, and then add task node after that to realize task cycle dependent.
+A: 1, DEPENDENT task node actually does not have script, it used for config data cycle dependent logic, and then add task node after that to realize task cycle dependent.
 
 ---
 
