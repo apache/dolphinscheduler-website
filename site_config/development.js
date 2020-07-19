@@ -30,6 +30,10 @@ export default {
                         link: '/en-us/docs/development/developers.html',
                     },
                     {
+                        title: 'Document Notice',
+                        link: '/en-us/docs/development/document.html',
+                    },
+                    {
                         title: 'Issue Notice',
                         link: '/en-us/docs/development/issue.html',
                     },
@@ -101,6 +105,10 @@ export default {
                     {
                         title: '参与贡献-License需知',
                         link: '/zh-cn/docs/development/DS-License.html',
+                    },
+                    {
+                        title: '参与贡献-文档需知',
+                        link: '/zh-cn/docs/development/document.html',
                     },
                     {
                         title: '参与贡献-Issue需知',

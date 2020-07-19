@@ -52,6 +52,10 @@ waste time。
 
 其中 `Issue 号`是指当前 Pull Request 对应要解决的 Issue 号，`模块名`同 Issue 的模块名。
 
+### Pull Request 分支名
+
+分支名格式：`Pull Request 类型`-`Issue 号`，举例：Feature-3333。
+
 ### Pull Request 内容
 
 请参阅到 commit message 篇。
