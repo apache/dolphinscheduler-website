@@ -115,6 +115,81 @@ Issue 中可以讨论的内容包括但不限于 Feature 的包含的功能，�
 </table>
 <h3>Issue 内容模板</h3>
 <p><a href="https://github.com/apache/incubator-dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE">https://github.com/apache/incubator-dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE</a></p>
+<h3>Bug 类 Issue</h3>
+<p>当您发现一个 Bug 时，请提交一个 Issue 类的 Bug，提交前：</p>
+<ul>
+<li>请先在 issue 列表里查找一下是否该 Bug 已经提交，如果已经有此 Bug，请在此 Bug 下接着回复。</li>
+<li>如果该 Bug 是可以复现的。请尽量提供完整的重现步骤。</li>
+</ul>
+<p>请在 issues 页面中提交 Bug。</p>
+<p>一个高质量的 Bug 通常有以下特征：</p>
+<ul>
+<li>使用一个清晰并有描述性的标题来定义 Bug。</li>
+<li>详细的描述复现 Bug 的步骤。包括您的配置情况，预计产生的结果，实际产生的结果。并附加详细的 TRACE 日志。</li>
+<li>如果程序抛出异常，请附加完整的堆栈日志。</li>
+<li>如有可能，请附上屏幕截图或动态的 GIF 图，这些图片能帮助演示整个问题的产生过程。</li>
+<li>哪个版本。</li>
+<li>需要修复的优先级(危急、重大、次要、细微)。</li>
+</ul>
+<p>下面是 <strong>Bug 的 Markdown 内容模板</strong>，请按照该模板填写 issue。</p>
+<pre><code class="language-shell">**标题** 
+标题格式: [BUG][Priority] bug标题
+Priority分为四级: Critical、Major、Minor、Trivial
+
+**问题描述**
+[清晰准确描述遇到的问题]
+
+**问题复现步骤:**
+1. [第一步]
+2. [第二步]
+3. [...]
+
+**期望的表现:**
+[在这里描述期望的表现]
+
+**观察到的表现:**
+[在这里描述观察到的表现]
+
+**屏幕截图和动态GIF图**
+![复现步骤的屏幕截图和动态GIF图](图片的url)
+
+**DolphinScheduler版本:(以1.1.0为例)** 
+ -[1.1.0]
+ 
+**补充的内容:**
+[请描述补充的内容，比如]
+
+**需求或者建议**
+[请描述你的需求或者建议]
+</code></pre>
+<h3>Feature 类 Issue</h3>
+<p>提交前：</p>
+<ul>
+<li>请确定这不是一个重复的功能增强建议。 查看 Issue Page 列表，搜索您要提交的功能增强建议是否已经被提交过。</li>
+</ul>
+<p>请在 issues 页面中提交 Feature。</p>
+<p>一个高质量的 Feature 通常有以下特征：</p>
+<ul>
+<li>一个清晰的标题来定义 Feature</li>
+<li>详细描述 Feature 的行为模式</li>
+<li>说明为什么该 Feature 对大多数用户是有用的。新功能应该具有广泛的适用性。</li>
+<li>尽量列出其他调度已经具备的类似功能。商用与开源软件均可。</li>
+</ul>
+<p>以下是 <strong>Feature 的 Markdown 内容模板</strong>，请按照该模板填写 issue 内容。</p>
+<pre><code class="language-shell">**标题** 
+标题格式: [Feature][Priority] feature标题
+Priority分为四级: Critical、Major、Minor、Trivial
+
+**Feature的描述**
+[描述新Feature应实现的功能]
+
+**为什么这个新功能是对大多数用户有用的**
+[解释这个功能为什么对大多数用户是有用的]
+
+**补充的内容**
+[列出其他的调度是否包含该功能，是如何实现的]
+
+</code></pre>
 <h3>Contributor</h3>
 <p>除一些特殊情况之外，在开始完成
 Issue 之前，建议先在 Issue 下或者邮件列表中和大家讨论确定设计方案或者提供设计方案，以及代码实现思路。</p>
