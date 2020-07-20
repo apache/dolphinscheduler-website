@@ -121,6 +121,10 @@ export default {
                     {
                         title: '参与贡献-CommitMessage需知',
                         link: '/zh-cn/docs/development/commit_message.html',
+                    },
+                    {
+                        title: '参与贡献-微基准测试',
+                        link: '/zh-cn/docs/development/microbench.html',
                     }
                 ]
             },
