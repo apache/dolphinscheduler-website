@@ -117,16 +117,6 @@ export default {
                 ]
             },
             {
-                title: '源码分析',
-                children: [
-                    {
-                        title: 'DS微基准测试',
-                        target: '_blank',
-                        link: '/zh-cn/docs/1.2.1/user_doc/microbench-1.2.html=zh_CN&lang=zh'
-                    }
-                ]
-            },
-            {
                 title: '版本升级',
                 children: [
                     {
