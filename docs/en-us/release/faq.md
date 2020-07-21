@@ -1,6 +1,6 @@
 ## Q: What's the name of this project?
 
-A: Before version 1.2 project name is called escheduler, version 1.2 and later it's called dolphinScheduler.
+A: Before version 1.2 project name is called EasyScheduler, version 1.2 and later it's called DolphinScheduler.
 
 ---
 
@@ -34,13 +34,14 @@ A: Please refer to 'System parameter' in the system-manual
 
 ## Q: pip install kazoo This installation gives an error. Is it necessary to install?
 
-A: This is the python connection Zookeeper needs to use, must be installed
+A: This is the python connection Zookeeper needs to use, it is used to delete the master/worker temporary node info in the Zookeeper. so you can ignore error if it's your first install. after version 1.3.0, kazoo is not been needed, we use program to replace what kazoo done 
 
 ---
 
 ## Q: How to specify the machine running task
 
-A: Use **the administrator** to create a Worker group, **specify the Worker group** when the **process definition starts**, or **specify the Worker group on the task node**. If not specified, use Default, **Default is to select one of all the workers in the cluster to use for task submission and execution.**
+A: version 1.2 and berfore, Use **the administrator** to create a Worker group, **specify the Worker group** when the **process definition starts**, or **specify the Worker group on the task node**. If not specified, use Default, **Default is to select one of all the workers in the cluster to use for task submission and execution.**
+version 1.3, you can set worker group for the worker
 
 ---
 
@@ -52,7 +53,8 @@ A: We also support **the priority of processes and tasks**. Priority We have fiv
 
 ## Q: dolphinscheduler-grpc gives an error
 
-A: Execute in the root directory: mvn -U clean package assembly:assembly -Dmaven.test.skip=true , then refresh the entire project
+A: Execute in the root directory: mvn -U clean package assembly:assembly -Dmaven.test.skip=true , then refresh the entire project.
+version 1.3 not use grpc, we use netty directly
 
 ---
 
@@ -80,7 +82,7 @@ A:   1, if it is node startup, check whether the .env API_BASE configuration und
 
 ​          if  Prompt cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null,   		  which proves that the Api Server service is normal.
 
-​		4, if there is no problem above, you need to check if **server.context-path and server.port configuration** in **application.properties** is correct
+​	4, if there is no problem above, you need to check if **server.context-path and server.port configuration** in **application.properties** is correct
 
 ---
 
