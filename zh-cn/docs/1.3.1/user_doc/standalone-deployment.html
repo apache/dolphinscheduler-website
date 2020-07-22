@@ -48,8 +48,8 @@ echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 sed -i '$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 <span class="hljs-meta">
-#</span><span class="bash"> 修改目录权限，使得部署用户对dolphinscheduler-backend目录有操作权限  </span>
-chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-backend
+#</span><span class="bash"> 修改目录权限，使得部署用户对dolphinscheduler-bin目录有操作权限</span>
+chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 </code></pre>
 <pre><code> 注意：
  - 因为任务执行服务是以 sudo -u {linux-user} 切换不同linux用户的方式来实现多租户运行作业，所以部署用户需要有 sudo 权限，而且是免密的。初学习者不理解的话，完全可以暂时忽略这一点
@@ -71,7 +71,7 @@ chmod 600 ~/.ssh/authorized_keys
 <ul>
 <li>进入数据库，默认数据库是PostgreSQL，如选择MySQL的话，后续需要添加mysql-connector-java驱动包到DolphinScheduler的lib目录下</li>
 </ul>
-<pre><code>mysql -uroot -p
+<pre><code>mysql -h192.168.xx.xx -P3306 -uroot -p
 </code></pre>
 <ul>
 <li>

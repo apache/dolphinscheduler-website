@@ -114,8 +114,8 @@ done
 </code></pre>
 </li>
 <li>
-<p>在ds1上，修改目录权限，使得部署用户对dolphinscheduler-backend目录有操作权限</p>
-<pre><code class="language-shell">sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-backend
+<p>在ds1上，修改目录权限，使得部署用户对dolphinscheduler-bin目录有操作权限</p>
+<pre><code class="language-shell">sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 </code></pre>
 </li>
 </ul>
@@ -123,7 +123,7 @@ done
 <ul>
 <li>进入数据库，默认数据库是PostgreSQL，如选择MySQL的话，后续需要添加mysql-connector-java驱动包到DolphinScheduler的lib目录下，这里以MySQL为例</li>
 </ul>
-<pre><code>mysql -uroot -p
+<pre><code>mysql -h192.168.xx.xx -P3306 -uroot -p
 </code></pre>
 <ul>
 <li>进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。<strong>注: {user} 和 {password} 需要替换为具体的数据库用户名和密码</strong></li>

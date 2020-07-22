@@ -114,8 +114,8 @@ done
 </code></pre>
 </li>
 <li>
-<p>On ds1, modify the directory permissions so that the deployment user has operation permissions on the dolphinscheduler-backend directory.</p>
-<pre><code class="language-shell">sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-backend
+<p>On ds1, modify the directory permissions so that the deployment user has operation permissions on the dolphinscheduler-bin directory.</p>
+<pre><code class="language-shell">sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 </code></pre>
 </li>
 </ul>
@@ -123,7 +123,7 @@ done
 <ul>
 <li>Into the database. The default database is PostgreSQL. If you select MySQL, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.</li>
 </ul>
-<pre><code>mysql -uroot -p
+<pre><code>mysql -h192.168.xx.xx -P3306 -uroot -p
 </code></pre>
 <ul>
 <li>After entering the database command line window, execute the database initialization command and set the user and password. <strong>Note: {user} and {password} need to be replaced with a specific database username and password</strong></li>
