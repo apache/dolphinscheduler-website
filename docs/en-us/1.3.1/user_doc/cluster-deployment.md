@@ -114,17 +114,17 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
   # can use `sshpass -p xxx ssh-copy-id $ip` to avoid type password.
   ```
 
-- On ds1, modify the directory permissions so that the deployment user has operation permissions on the dolphinscheduler-backend directory.
+- On ds1, modify the directory permissions so that the deployment user has operation permissions on the dolphinscheduler-bin directory.
 
   ```shell
-  sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-backend
+  sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
   ```
 
 # 5、Database initialization
 
 - Into the database. The default database is PostgreSQL. If you select MySQL, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.
 ```
-mysql -uroot -p
+mysql -h192.168.xx.xx -P3306 -uroot -p
 ```
 
 - After entering the database command line window, execute the database initialization command and set the user and password. **Note: {user} and {password} need to be replaced with a specific database username and password**

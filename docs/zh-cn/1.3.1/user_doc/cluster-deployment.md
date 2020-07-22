@@ -114,17 +114,17 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
   # 当然 通过 sshpass -p xxx ssh-copy-id $ip 就可以省去输入密码了
   ```
 
-- 在ds1上，修改目录权限，使得部署用户对dolphinscheduler-backend目录有操作权限
+- 在ds1上，修改目录权限，使得部署用户对dolphinscheduler-bin目录有操作权限
 
   ```shell
-  sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-backend
+  sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
   ```
 
 # 5、数据库初始化
 
 - 进入数据库，默认数据库是PostgreSQL，如选择MySQL的话，后续需要添加mysql-connector-java驱动包到DolphinScheduler的lib目录下，这里以MySQL为例
 ``` 
-mysql -uroot -p
+mysql -h192.168.xx.xx -P3306 -uroot -p
 ```
 
 - 进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。**注: {user} 和 {password} 需要替换为具体的数据库用户名和密码** 
