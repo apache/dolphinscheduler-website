@@ -124,7 +124,7 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
 - Into the database. The default database is PostgreSQL. If you select MySQL, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.
 ```
-mysql -h192.168.xx.xx -P3306 -uroot -p
+mysql -uroot -p
 ```
 
 - After entering the database command line window, execute the database initialization command and set the user and password. **Note: {user} and {password} need to be replaced with a specific database username and password**
