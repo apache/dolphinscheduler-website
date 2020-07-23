@@ -68,7 +68,7 @@ chmod 600 ~/.ssh/authorized_keys
 
 - 进入数据库，默认数据库是PostgreSQL，如选择MySQL的话，后续需要添加mysql-connector-java驱动包到DolphinScheduler的lib目录下
 ``` 
-mysql -h192.168.xx.xx -P3306 -uroot -p
+mysql -uroot -p
 ```
 
 - 进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。**注: {user} 和 {password} 需要替换为具体的数据库用户名和密码** 
