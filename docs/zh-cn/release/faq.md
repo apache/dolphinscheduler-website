@@ -1,6 +1,6 @@
 ## Q：项目的名称是？
 
-A：1.2 版本以前项目名称是 eschedule，1.2 以及之后的版本叫做 dolphinScheduler。
+A：1.2 版本以前项目名称是 EasyScheduler，1.2 以及之后的版本叫做 DolphinScheduler。
 
 ---
 
@@ -29,13 +29,13 @@ A：支持绝大多数邮箱，qq、163、126、139、outlook、aliyun 等皆支
 
 ## Q：常用的系统变量时间参数有哪些，如何使用？
 
-A：请参考使用手册
+A：请参考[使用手册](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.1/user_doc/system-manual.html) 第8小节
 
 ---
 
 ## Q：pip install kazoo 这个安装报错。是必须安装的吗？
 
-A： 这个是 python 连接 Zookeeper 需要使用到的，必须要安装
+A： 这个是 python 连接 Zookeeper 需要使用到的，用于删除Zookeeper中的master/worker临时节点信息。所以如果是第一次安装，就可以忽略错误。在1.3.0之后，kazoo不再需要了，我们用程序来代替kazoo所做的
 
 ---
 
@@ -53,7 +53,7 @@ A：我们同时 **支持流程和任务的优先级**。优先级我们有 **HI
 
 ## Q：dolphinscheduler-grpc 报错
 
-A：在根目录下执行：mvn -U clean package assembly:assembly -Dmaven.test.skip=true ， 然后刷新下整个项目
+A：在 1.2 及以前版本中，在根目录下执行：mvn -U clean package assembly:assembly -Dmaven.test.skip=true,然后刷新下整个项目就好，1.3版本中不再使用 GRPC 进行通信了
 
 ----
 
@@ -71,25 +71,26 @@ A：单独安装 **npm install node-sass --unsafe-perm**，之后再 **npm insta
 
 ## Q：UI 不能正常登陆访问
 
-A： 1，如果是 node 启动的查看 dolphinscheduler-ui 下的 .env API_BASE 配置是否是 Api Server 服务地址
+A：     1，如果是 node 启动的查看 dolphinscheduler-ui 下的 .env 文件里的 API_BASE 配置是否是 Api Server 服务地址
 
 ​       2，如果是 nginx 启动的并且是通过 **install-dolphinscheduler-ui.sh** 安装的，查看             
 
 ​              **/etc/nginx/conf.d/dolphinscheduler.conf** 中的 proxy_pass 配置是否是 Api Server 服务地址
 
-​        3，如果以上配置都是正确的，那么请查看 Api Server 服务是否是正常的，
+​       3，如果以上配置都是正确的，那么请查看 Api Server 服务是否是正常的，
 
 ​			curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info 查看 Api Server 日志，
 
 ​			如果提示 cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证明 Api Server 服务是正常的
 
-​        4，如果以上都没有问题，需要查看一下 **application.properties** 中的 **server.context-path 和 server.port 配置**是否正确
+​       4，如果以上都没有问题，需要查看一下 **application.properties** 中的 **server.context-path 和 server.port 配置**是否正确
+注意：1.3 版本直接使用 Jetty 进行前端代码的解析，无需再安装配置 nginx 了
 
 ---
 
 ## Q：流程定义手动启动或调度启动之后，没有流程实例生成
 
-A： 1，首先通过 **jps 查看MasterServer服务是否存在**，或者从服务监控直接查看 zk 中是否存在 master 服务
+A： 	  1，首先通过 **jps 查看MasterServer服务是否存在**，或者从服务监控直接查看 zk 中是否存在 master 服务
 
 ​	   2，如果存在 master 服务，查看 **命令状态统计** 或者 **t_ds_error_command** 中是否增加的新记录，如果增加了，**请查看 message 字段定位启动异常原因**
 
@@ -97,9 +98,9 @@ A： 1，首先通过 **jps 查看MasterServer服务是否存在**，或者从�
 
 ## Q：任务状态一直处于提交成功状态
 
-A： 1，首先通过 **jps 查看 WorkerServer 服务是否存在**，或者从服务监控直接查看 zk 中是否存在 worker 服务
+A：        1，首先通过 **jps 查看 WorkerServer 服务是否存在**，或者从服务监控直接查看 zk 中是否存在 worker 服务
 
-​       2，如果 **WorkerServer** 服务正常，需要 **查看 MasterServer 是否把 task 任务放到 zk 队列中** ，**需要查看 MasterServer 日志及 zk 队列中是否有任务阻塞**
+​          2，如果 **WorkerServer** 服务正常，需要 **查看 MasterServer 是否把 task 任务放到 zk 队列中** ，**需要查看 MasterServer 日志及 zk 队列中是否有任务阻塞**
 
 ​	   3，如果以上都没有问题，需要定位是否指定了 Worker 分组，但是 **Worker 分组的机器不是在线状态**
 
@@ -107,15 +108,15 @@ A： 1，首先通过 **jps 查看 WorkerServer 服务是否存在**，或者从
 
 ## Q：install.sh 中需要注意问题
 
-A：  1，如果替换变量中包含特殊字符，**请用 \ 转移符进行转移**
+A：  	   1，如果替换变量中包含特殊字符，**请用 \ 转移符进行转移**
 
 ​	    2，installPath="/data1_1T/dolphinscheduler"，**这个目录不能和当前要一键安装的 install.sh 目录是一样的**
 
 ​	    3，deployUser="dolphinscheduler"，**部署用户必须具有 sudo 权限**，因为 worker 是通过 sudo -u 租户 sh xxx.command 进行执行的
 
-​	   4，monitorServerState="false"，服务监控脚本是否启动，默认是不启动服务监控脚本的。**如果启动服务监控脚本，则每 5 分钟定时来监控 master 和 worker 的服务是否 down 机，如果 down 机则会自动重启**
+​	    4，monitorServerState="false"，服务监控脚本是否启动，默认是不启动服务监控脚本的。**如果启动服务监控脚本，则每 5 分钟定时来监控 master 和 worker 的服务是否 down 机，如果 down 机则会自动重启**
 
-​		5，hdfsStartupSate="false"，是否开启 HDFS 资源上传功能。默认是不开启的，**如果不开启则资源中心是不能使用的**。如果开启，需要 conf/common/hadoop/hadoop.properties 中配置 fs.defaultFS 和 yarn 的相关配置，如果使用 namenode HA，需要将 core-site.xml 和 hdfs-site.xml 复制到conf根目录下
+​	    5，hdfsStartupSate="false"，是否开启 HDFS 资源上传功能。默认是不开启的，**如果不开启则资源中心是不能使用的**。如果开启，需要 conf/common/hadoop/hadoop.properties 中配置 fs.defaultFS 和 yarn 的相关配置，如果使用 namenode HA，需要将 core-site.xml 和 hdfs-site.xml 复制到conf根目录下
 
 ​	注意：**1.0.x 版本是不会自动创建 hdfs 根目录的，需要自行创建，并且需要部署用户有hdfs的操作权限**
 
@@ -186,9 +187,8 @@ A：有的，**如果定时的起止时间是同一个时间，那么此定时�
 
 A：  1，**DAG** 之间的任务依赖关系，是从 **入度为零** 进行 DAG 切分的
 
-​	    2，有 **任务依赖节点** ，可以实现跨流程的任务或者流程依赖，具体请参考 依赖(DEPENDENT)节点：https://analysys.github.io/easyscheduler_docs_cn/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#%E4%BB%BB%E5%8A%A1%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE
+​	 2，有 **任务依赖节点** ，可以实现跨流程的任务或者流程依赖，具体请参考 依赖(DEPENDENT)节点：https://analysys.github.io/easyscheduler_docs_cn/%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.html#%E4%BB%BB%E5%8A%A1%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE
 
-​	注意：**不支持跨项目的流程或任务依赖**
 
 ## Q：流程定义有几种启动方式
 
@@ -202,7 +202,7 @@ A： 1，在 **流程定义列表**，点击 **启动** 按钮
 
 ## Q：Python 任务设置 Python 版本
 
-A：  1，对于 **1.0.3 之后的版本**只需要修改 conf/env/.dolphinscheduler_env.sh 中的 PYTHON_HOME
+A：  只需要修改 conf/env/dolphinscheduler_env.sh 中的 PYTHON_HOME
 
 ```
 export PYTHON_HOME=/bin/python
@@ -214,7 +214,6 @@ export PYTHON_HOME=/bin/python
 export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH
 ```
 
-​		2，对 1.0.3 之前的版本，Python 任务只能支持系统的 Python 版本，不支持指定 Python 版本
 
 ## Q：Worker Task 通过 sudo -u 租户 sh xxx.command 会产生子进程，在 kill 的时候，是否会杀掉
 
@@ -229,11 +228,10 @@ A ： DolphinScheduler 中的队列可以在用户或者租户上指定队列，
 注意：MR 在用以上方法指定队列的时候，传递参数请使用如下方式：
 
 ```
-				Configuration conf = new Configuration();
+	Configuration conf = new Configuration();
         GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
         String[] remainingArgs = optionParser.getRemainingArgs();
 ```
-
 
 
 如果是 Spark 任务 --queue 方式指定队列
@@ -245,7 +243,6 @@ A ： DolphinScheduler 中的队列可以在用户或者租户上指定队列，
 <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/master_worker_lack_res.png" width="60%" />
  </p>
-
 
 
 A ： 修改 conf 下的 master.properties **master.reserved.memory** 的值为更小的值，比如说 0.1 或者
@@ -287,12 +284,12 @@ A： 将 hive pom
 ## Q：如何增加一台工作服务器
 A： 1，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html) 1.3 小节，创建部署用户和 hosts 映射
 
-​		2，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html) 1.4 小节，配置 hosts 映射和 ssh 打通及修改目录权限.
+​	2，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html) 1.4 小节，配置 hosts 映射和 ssh 打通及修改目录权限.
           1.4 小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限
 
-​		3，复制正在运行的服务器上的部署目录到新机器的同样的部署目录下
+​	3，复制正在运行的服务器上的部署目录到新机器的同样的部署目录下
 
-​		4，到 bin 下，启动 worker server 和 logger server
+​	4，到 bin 下，启动 worker server 和 logger server
 ```
         ./dolphinscheduler-daemon.sh start worker-server
         ./dolphinscheduler-daemon.sh start logger-server
