@@ -210,7 +210,7 @@ mysql -uroot -p
 
     # database password
     # NOTICE: if there are special characters, please use the \ to escape, for example, `[` escape to `\[`
-    passowrd="xxx"
+    password="xxx"
 
     # Zookeeper address, localhost:2181, remember the port 2181
     zkQuorum="localhost:2181"

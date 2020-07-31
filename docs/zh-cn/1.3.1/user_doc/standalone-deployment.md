@@ -152,8 +152,8 @@ mysql -uroot -p
     # 数据库用户名，此处需要修改为上面设置的{user}具体值
     username="xxx"    
     
-    # 数据库密码, 如果有特殊字符，请使用\转义，需要修改为上面设置的{passowrd}具体值
-    passowrd="xxx"
+    # 数据库密码, 如果有特殊字符，请使用\转义，需要修改为上面设置的{password}具体值
+    password="xxx"
 
     #Zookeeper地址，单机本机是localhost:2181，记得把2181端口带上
     zkQuorum="localhost:2181"

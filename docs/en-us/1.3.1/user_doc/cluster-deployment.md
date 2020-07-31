@@ -210,7 +210,7 @@ mysql -h192.168.xx.xx -P3306 -uroot -p
 
     # database password
     # NOTICE: if there are special characters, please use the \ to escape, for example, `[` escape to `\[`
-    passowrd="xxx"
+    password="xxx"
 
     #Zookeeper cluster
     zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"

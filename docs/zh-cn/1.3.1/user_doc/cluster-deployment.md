@@ -208,8 +208,8 @@ mysql -h192.168.xx.xx -P3306 -uroot -p
     # 数据库用户名，此处需要修改为上面设置的{user}具体值
     username="xxx"
 
-    # 数据库密码, 如果有特殊字符，请使用\转义，需要修改为上面设置的{passowrd}具体值
-    passowrd="xxx"
+    # 数据库密码, 如果有特殊字符，请使用\转义，需要修改为上面设置的{password}具体值
+    password="xxx"
 
     #Zookeeper地址
     zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
