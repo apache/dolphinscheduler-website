@@ -86,7 +86,7 @@ export default {
         },
         {
           text: 'Developer guide',
-          link: '/en-us/docs/1.2.0/user_doc/backend-development.html',
+          link: '/en-us/docs/development/backend-development.html',
         },
       ],
     },
@@ -194,11 +194,11 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
+          link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/1.2.0/user_doc/backend-development.html',
+          link: '/zh-cn/docs/development/backend-development.html',
         },
       ],
     },
