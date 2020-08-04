@@ -86,7 +86,7 @@ export default {
         },
         {
           text: 'Developer guide',
-          link: '/en-us/docs/1.2.0/user_doc/backend-development.html',
+          link: '/en-us/docs/development/backend-development.html',
         },
       ],
     },
