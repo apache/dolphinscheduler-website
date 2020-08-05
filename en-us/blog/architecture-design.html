@@ -247,7 +247,7 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <pre><code class="language-java"> <span class="hljs-comment">/**
   * task log appender
   */</span>
- Public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogAppender</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FileAppender</span>&lt;<span class="hljs-title">ILoggingEvent</span> </span>{
+ Public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogAppender</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FileAppender</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
  
      ...
 
@@ -276,7 +276,7 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <pre><code class="language-java"> <span class="hljs-comment">/**
  * task log filter
  */</span>
-Public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Filter</span>&lt;<span class="hljs-title">ILoggingEvent</span> </span>{
+Public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Filter</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
 
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function">Public FilterReply <span class="hljs-title">decide</span><span class="hljs-params">(ILoggingEvent event)</span> </span>{
