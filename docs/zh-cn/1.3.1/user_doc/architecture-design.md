@@ -264,7 +264,7 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
  /**
   * task log appender
   */
- public class TaskLogAppender extends FileAppender<ILoggingEvent {
+ public class TaskLogAppender extends FileAppender<ILoggingEvent> {
  
      ...
 
@@ -297,7 +297,7 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
  /**
  *  task log filter
  */
-public class TaskLogFilter extends Filter<ILoggingEvent {
+public class TaskLogFilter extends Filter<ILoggingEvent> {
 
     @Override
     public FilterReply decide(ILoggingEvent event) {
