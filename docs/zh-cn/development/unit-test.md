@@ -1,5 +1,5 @@
 ## Unit Test覆盖率
-Unit Test编写参考[链接](https://github.com/apache/incubator-dolphinscheduler/blob/dev/escheduler-common/src/test/java/cn/escheduler/common/utils/CollectionUtilsTest.java)
+Unit Test编写参考[链接](https://github.com/apache/incubator-dolphinscheduler/blob/dev/dolphinscheduler-common/src/test/java/org/apache/dolphinscheduler/common/utils/CollectionUtilsTest.java)
 ### 1.写单元测试的收益 
   * 单元测试能帮助每个人深入代码细节，了解代码的功能。
   * 通过测试用例我们能发现bug，并提交代码的健壮性。
