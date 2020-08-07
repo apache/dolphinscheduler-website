@@ -24,7 +24,7 @@ Unit Test编写参考[链接](https://github.com/apache/incubator-dolphinschedul
 
 ### 2：自动性
 
-单元测试能够自动化进行。强制要求：所有的单元测试必须写在src/test下。基准测试除外。
+单元测试能够自动化进行。强制要求：所有的单元测试必须写在src/test下，同时方法命名应该符合规范。基准测试除外。
 
 ### 3：可重复性
 
@@ -45,7 +45,7 @@ Unit Test编写参考[链接](https://github.com/apache/incubator-dolphinschedul
 
 这么多年过去了，你所看到的mockito已经成长为mock界的NO.1了，但他依然不支持 mock 静态方法、构造方法等。甚至官网上一直写着： "Don’t mock everything" 。因此尽量少用静态方法。
 
-一般建议只在一些工具类提供静态方法，这种情况下也不需要mock，直接使用真实类即可。如果被依赖类不工具类，可以将静态方法重构为实例方法。这样更加符合面向对象的设计理念。
+一般建议只在一些工具类提供静态方法，这种情况下也不需要mock，直接使用真实类即可。如果被依赖类不是工具类，可以将静态方法重构为实例方法。这样更加符合面向对象的设计理念。
 
 ### 6： 完备性
 
@@ -63,8 +63,7 @@ Unit Test编写参考[链接](https://github.com/apache/incubator-dolphinschedul
 
 2:判断一个具有默认值的对象或者变量不为空。
 
-尽可能的减少这种判断，断言尽可能在一个预知结果范围内，除非你的代码只关心他是否为空。
-
+这本身显得毫无意义，因此，在进行相关判断的时候应该关注一下其本身是否含有默认值。
 
 3:断言尽可能采用肯定断言而非否定断言，断言尽可能在一个预知结果范围内,或者是准确的数值，（否则有可能会导致一些不符合你的实际预期但是通过了断言）除非你的代码只关心他是否为空。
 
@@ -80,5 +79,30 @@ Awaitility.await().atMost(…)
 @Ignore注解应该附上相关issue地址，方便后续开发者追踪了解该测试被忽略的历史原因。
 
 如 @Ignore("see #1")
+
+3: try-catch单元测试异常
+
+当单元测试中的代码引发异常的时候，测试将失败,因此，不需要使用try-catch捕获异常。
+
+```
+@Test
+public void testMethod() {
+  try {
+            // Some code
+  } catch (MyException e) {
+    Assert.fail(e.getMessage());  // Noncompliant
+  }
+}
+```
+你应该这样做：
+```
+@Test
+public void testMethod() throws MyException {
+    // Some code
+}
+```
+4:测试异常情况
+
+当你需要进行异常情况测试时，应该避免在测试代码中包含多个方法的调用（尤其是有多个可以引发相同异常的方法），同时应该明确说明你要测试什么。
 
 
