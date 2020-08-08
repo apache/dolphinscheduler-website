@@ -101,3 +101,8 @@ public void testMethod() throws MyException {
 4:测试异常情况
 
 当你需要进行异常情况测试时，应该避免在测试代码中包含多个方法的调用（尤其是有多个可以引发相同异常的方法），同时应该明确说明你要测试什么。
+
+5:拒绝使用 MockitoJUnitRunner.Silent.class
+
+当单测出现UnnecessaryStubbingException时，请不要第一时间考虑使用 @RunWith(MockitoJUnitRunner.Silent.class) 来解决它，这只是隐藏了问题，
+你应该根据异常提示解决相关问题，这并不是一个困难的工作。当完成更改时，你会发现，你的代码又简洁了许多。
