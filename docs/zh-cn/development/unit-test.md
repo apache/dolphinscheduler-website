@@ -1,5 +1,5 @@
 ## Unit Test覆盖率
-Unit Test编写参考[链接](https://github.com/apache/incubator-dolphinscheduler/blob/dev/dolphinscheduler-common/src/test/java/org/apache/dolphinscheduler/common/utils/CollectionUtilsTest.java)
+Unit Test 编写参考[链接](https://github.com/apache/incubator-dolphinscheduler/blob/dev/dolphinscheduler-common/src/test/java/org/apache/dolphinscheduler/common/utils/CollectionUtilsTest.java)
 ### 1.写单元测试的收益 
   * 单元测试能帮助每个人深入代码细节，了解代码的功能。
   * 通过测试用例我们能发现bug，并提交代码的健壮性。
@@ -24,32 +24,29 @@ Unit Test编写参考[链接](https://github.com/apache/incubator-dolphinschedul
 
 ### 2：自动性
 
-单元测试能够自动化进行。强制要求：所有的单元测试必须写在src/test下，同时方法命名应该符合规范。基准测试除外。
+单元测试能够自动化进行。强制要求：所有的单元测试必须写在 src/test 下，同时方法命名应该符合规范。基准测试除外。
 
 ### 3：可重复性
 
 多次执行（任何环境任何时间）结果唯一，且可以重复执行。
 
-
 ### 4：轻量型
 
 即任何环境都可快速执行。
 
-这要求我们尽可能不要依赖太多组件，如各种spring bean之类的。在单元测试中，这些都是可被mock的，增加这些，会加大我们单测的执行速度，同时也可能会传递污染。
+这要求我们尽可能不要依赖太多组件，如各种 spring bean 之类的。在单元测试中，这些都是可被 mock 的，增加这些，会加大我们单测的执行速度，同时也可能会传递污染。
 
 对于一些数据库、其他外部组件等。尽可能也采用模拟客户端的形式，即不依赖于外部环境，（任何外部依赖的存在都会极大的限制测试用例的可迁移性和稳定性以及结果正确性），这同时也方便开发者在任何环境都能够进行测试。
 
-
-
 ### 5： 可测性
 
-这么多年过去了，你所看到的mockito已经成长为mock界的NO.1了，但他依然不支持 mock 静态方法、构造方法等。甚至官网上一直写着： "Don’t mock everything" 。因此尽量少用静态方法。
+这么多年过去了，你所看到的 mockito 已经成长为 mock 界的 NO.1 了，但他依然不支持 mock 静态方法、构造方法等。甚至官网上一直写着： "Don’t mock everything" 。因此尽量少用静态方法。
 
-一般建议只在一些工具类提供静态方法，这种情况下也不需要mock，直接使用真实类即可。如果被依赖类不是工具类，可以将静态方法重构为实例方法。这样更加符合面向对象的设计理念。
+一般建议只在一些工具类提供静态方法，这种情况下也不需要 mock，直接使用真实类即可。如果被依赖类不是工具类，可以将静态方法重构为实例方法。这样更加符合面向对象的设计理念。
 
 ### 6： 完备性
 
-测试覆盖率，这是个非常费劲的问题，对于核心流程，我们是希望能够达到90%的覆盖率，非核心流程要求60%以上。
+测试覆盖率，这是个非常费劲的问题，对于核心流程，我们是希望能够达到 90% 的覆盖率，非核心流程要求 60% 以上。
 
 覆盖率足够高的情况下会减少足够多的bug出现的概率，同时也减少了我们回归测试的成本。这是一个长久的工作，每当开发者新增或者修改代码的时候，相关测试用例与此同时也需要完善。这一点，希望开发者以及相关代码reviewer都能足够重视。
 
@@ -70,19 +67,19 @@ Unit Test编写参考[链接](https://github.com/apache/incubator-dolphinschedul
 ### 8:一些单测的注意点
 1:Thread.sleep()
 
-测试代码中尽量不要使用Thread.sleep，这让测试变得不稳定，可能会因为环境或者负载而意外导致失败。建议采用以下方式：
+测试代码中尽量不要使用 Thread.sleep，这让测试变得不稳定，可能会因为环境或者负载而意外导致失败。建议采用以下方式：
 
 Awaitility.await().atMost(…)
 
 2:忽略某些测试类
 
-@Ignore注解应该附上相关issue地址，方便后续开发者追踪了解该测试被忽略的历史原因。
+@Ignore 注解应该附上相关 issue 地址，方便后续开发者追踪了解该测试被忽略的历史原因。
 
 如 @Ignore("see #1")
 
 3: try-catch单元测试异常
 
-当单元测试中的代码引发异常的时候，测试将失败,因此，不需要使用try-catch捕获异常。
+当单元测试中的代码引发异常的时候，测试将失败,因此，不需要使用 try-catch 捕获异常。
 
 ```
 @Test
@@ -104,5 +101,3 @@ public void testMethod() throws MyException {
 4:测试异常情况
 
 当你需要进行异常情况测试时，应该避免在测试代码中包含多个方法的调用（尤其是有多个可以引发相同异常的方法），同时应该明确说明你要测试什么。
-
-
