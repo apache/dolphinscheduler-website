@@ -60,6 +60,34 @@ waste time。
 
 请参阅到 commit message 篇。
 
+### Pull Request Code Style
+
+checkstyle [参考](https://checkstyle.sourceforge.io/)是一种帮助开发者编写遵循编码规范的 Java 代码开发工具。它可以自动化检查 Java 代码的方法以及格式，使得开发者不用再做这项无聊（但很重要）的任务。它非常适合于希望实施编码标准的项目。
+
+在 DolphinScheduler 中配置 checkstyle 和 code-style 的方式：
+
+1.checkstyle 和 code-style 配置文件
+
+checkstyle: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/checkstyle.xml
+
+code-style: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/intellij-java-code-style.xml
+
+2.checkstyle 配置过程
+
+ <p align="center">
+   <img src="/img/checkstyle-idea.png" alt="checkstyle idea 配置方式" />
+ </p>
+ 
+3.code-style 配置过程
+
+ <p align="center">
+   <img src="/img/code-style-idea.png" alt="code style idea 配置方式" />
+ </p>
+ 
+4.怎样使用 checkstyle 和 code-style
+
+当你配置完成后，在提交 Pull Request 前，在改动过后的代码文件中 `Ctrl+L`，checkstyle 工具就会自动帮你 format code 和 import 顺序。
+
 ### 相关问题
 
 - 怎样处理一个 Pull Request 对应多个 Issue 的场景。
