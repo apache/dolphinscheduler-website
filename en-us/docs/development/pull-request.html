@@ -58,6 +58,22 @@
 <p><code>Issue No</code> refers to the Issue number corresponding to the current Pull Request to be resolved, <code>Module Name</code> is the same as the <code>Module Name</code> of Issue.</p>
 <h3>Pull Request content</h3>
 <p>Please refer to the commit message section.</p>
+<h3>Pull Request Code Style</h3>
+<p><a href="https://checkstyle.sourceforge.io/">Checkstyle</a> is a development tool to help programmers write Java code that adheres to a coding standard. It automates the process of checking Java code to spare humans of this boring (but important) task. This makes it ideal for projects that want to enforce a coding standard.</p>
+<p>How to configure checkstyle and code style in dolphin scheduler:</p>
+<p>1.checkstyle and code-style configuration files</p>
+<p>checkstyle: <a href="https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/checkstyle.xml">https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/checkstyle.xml</a></p>
+<p>code-style: <a href="https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/intellij-java-code-style.xml">https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/intellij-java-code-style.xml</a></p>
+<p>2.checkstyle configuration</p>
+ <p align="center">
+   <img src="/img/checkstyle-idea.png" alt="checkstyle idea configuration" />
+ </p>
+<p>3.code-style configuration</p>
+ <p align="center">
+   <img src="/img/code-style-idea.png" alt="code style idea configuration" />
+ </p>
+<p>4.How to use checkstyle and code style</p>
+<p>After configuration, before submitting a Pull Request, the checkstyle tool will automatically help you format code and import order in the changed code file when you use <code>Ctrl+L</code>.</p>
 <h3>Question</h3>
 <ul>
 <li>

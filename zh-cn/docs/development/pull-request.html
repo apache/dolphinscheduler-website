@@ -62,6 +62,22 @@ waste time。</p>
 <p>分支名格式：<code>Pull Request 类型</code>-<code>Issue 号</code>，举例：Feature-3333。</p>
 <h3>Pull Request 内容</h3>
 <p>请参阅到 commit message 篇。</p>
+<h3>Pull Request Code Style</h3>
+<p>checkstyle <a href="https://checkstyle.sourceforge.io/">参考</a>是一种帮助开发者编写遵循编码规范的 Java 代码开发工具。它可以自动化检查 Java 代码的方法以及格式，使得开发者不用再做这项无聊（但很重要）的任务。它非常适合于希望实施编码标准的项目。</p>
+<p>在 DolphinScheduler 中配置 checkstyle 和 code-style 的方式：</p>
+<p>1.checkstyle 和 code-style 配置文件</p>
+<p>checkstyle: <a href="https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/checkstyle.xml">https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/checkstyle.xml</a></p>
+<p>code-style: <a href="https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/intellij-java-code-style.xml">https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/intellij-java-code-style.xml</a></p>
+<p>2.checkstyle 配置过程</p>
+ <p align="center">
+   <img src="/img/checkstyle-idea.png" alt="checkstyle idea 配置方式" />
+ </p>
+<p>3.code-style 配置过程</p>
+ <p align="center">
+   <img src="/img/code-style-idea.png" alt="code style idea 配置方式" />
+ </p>
+<p>4.怎样使用 checkstyle 和 code-style</p>
+<p>当你配置完成后，在提交 Pull Request 前，在改动过后的代码文件中 <code>Ctrl+L</code>，checkstyle 工具就会自动帮你 format code 和 import 顺序。</p>
 <h3>相关问题</h3>
 <ul>
 <li>
