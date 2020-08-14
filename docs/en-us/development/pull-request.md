@@ -54,6 +54,34 @@ The corresponding relationship between `Pull Request Type` and `Issue Type` is a
 
 Please refer to the commit message section.
 
+### Pull Request Code Style
+
+[Checkstyle](https://checkstyle.sourceforge.io/) is a development tool to help programmers write Java code that adheres to a coding standard. It automates the process of checking Java code to spare humans of this boring (but important) task. This makes it ideal for projects that want to enforce a coding standard.
+
+How to configure checkstyle and code style in dolphin scheduler:
+
+1.checkstyle and code-style configuration files
+
+checkstyle: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/checkstyle.xml
+
+code-style: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/intellij-java-code-style.xml
+
+2.checkstyle configuration
+
+ <p align="center">
+   <img src="/img/checkstyle-idea.png" alt="checkstyle idea configuration" />
+ </p>
+ 
+3.code-style configuration
+
+ <p align="center">
+   <img src="/img/code-style-idea.png" alt="code style idea configuration" />
+ </p>
+ 
+4.How to use checkstyle and code style
+
+After configuration, before submitting a Pull Request, the checkstyle tool will automatically help you format code and import order in the changed code file when you use `Ctrl+L`.
+
 ### Question
 
 - How to deal with one Pull Request to many Issues scenario.
