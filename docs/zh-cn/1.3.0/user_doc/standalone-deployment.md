@@ -195,7 +195,31 @@ mysql -uroot -p
     # 邮件服务地址值，参考上面 mailServerHost
     sslTrust="smtp.qq.com"
 
+      
+    # 设置企业微信告警功能是否开启：开启为true,否则为false。
+    enterprise.wechat.enable="true"
+   
+    # 设置corpid，每个企业都拥有唯一的corpid，获取此信息可在管理后台“我的企业”－“企业信息”下查看“企业ID”（需要有管理员权限）
+    enterprise.wechat.corp.id="xxx"
 
+    # 设置secret,secret是企业应用里面用于保障数据安全的“钥匙”，每一个应用都有一个独立的访问密钥。
+    enterprise.wechat.secret="xxx"
+   
+    # 设置agentid,每个应用都有唯一的agentid。在管理后台->“应用与小程序”->“应用”，点进某个应用，即可看到agentid。
+    enterprise.wechat.agent.id="xxxx"
+    
+    # 设置userid,多个用逗号分隔。每个成员都有唯一的userid，即所谓“帐号”。在管理后台->“通讯录”->点进某个成员的详情页，可以看到。
+    enterprise.wechat.users=zhangsan,lisi
+    
+    # 获取access_token的地址,使用如下例子无需修改。
+    enterprise.wechat.token.url=https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpId}&corpsecret={secret}
+   
+    # 发送应用消息地址，使用如下例子无需改动。
+    enterprise.wechat.push.url=https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}
+    
+    #发送消息格式,无需改动
+    enterprise.wechat.user.send.msg={\"touser\":\"{toUser}\",\"agentid\":\"{agentId}\",\"msgtype\":\"markdown\",\"markdown\":{\"content\":\"{msg}\"}}
+   
     # 业务用到的比如sql等资源文件上传到哪里，可以设置：HDFS,S3,NONE，单机如果想使用本地文件系统，请配置为HDFS，因为HDFS支持本地文件系统；如果不需要资源上传功能请选择NONE。强调一点：使用本地文件系统不需要部署hadoop
     resourceStorageType="HDFS"
 
