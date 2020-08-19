@@ -33,10 +33,10 @@ DolphinScheduler正常运行提供如下的网络端口配置：
 
 | 组件 | 默认端口 | 说明 |
 |  --- | --- | --- |
-| MasterServer |  5566  | 非通信端口，只需本机端口不冲突即可 |
-| WorkerServer | 7788  | 非通信端口，只需本机端口不冲突即可 |
+| MasterServer |  5678  | 非通信端口，只需本机端口不冲突即可 |
+| WorkerServer | 1234  | 非通信端口，只需本机端口不冲突即可 |
 | ApiApplicationServer |  12345 | 提供后端通信端口 |
-| nginx | 8888 | 提供 UI 端通信端口 |
+
 
 > **注意：**
 > - MasterServer 和 WorkerServer 不需要开启网络间通信，只需本机端口不冲突即可
