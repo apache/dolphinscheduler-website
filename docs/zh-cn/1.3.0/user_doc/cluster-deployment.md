@@ -294,7 +294,7 @@ mysql -uroot -p
     
     - 如果需要用资源上传到Hadoop集群功能， 并且Hadoop集群的NameNode 配置了 HA的话 ，需要开启 HDFS类型的资源上传，同时需要将Hadoop集群下的core-site.xml和hdfs-site.xml复制到/opt/dolphinscheduler/conf，非NameNode HA跳过次步骤
    
-    - 如果需要使用企业微信告警完,在安装完成后，修改alert.propertiesw文件，重启alert服务：
+    - 如果需要使用企业微信告警完，在安装完成后，修改 alert.properties 文件，重启 alert 服务：
    
     ```
     # 设置企业微信告警功能是否开启：开启为true,否则为false。
@@ -439,4 +439,3 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 ```
 
 `注：服务用途请具体参见《系统架构设计》小节`
-
