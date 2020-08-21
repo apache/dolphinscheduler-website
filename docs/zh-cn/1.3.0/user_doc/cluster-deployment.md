@@ -302,7 +302,7 @@ mysql -uroot -p
     ```
    
     ```
-    # 设置corpid，每个企业都拥有唯一的corpid，获取此信息可在管理后台“我的企业”－“企业信息”下查看“企业ID”（需要有管理员权限）
+    # 设置 corpid，每个企业都拥有唯一的 corpid，获取此信息可在管理后台“我的企业”－“企业信息”下查看“企业 ID”（需要有管理员权限）
     enterprise.wechat.corp.id="xxx"
     ```
     <p align="center">
