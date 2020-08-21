@@ -340,7 +340,7 @@ mysql -uroot -p
     # 发送应用消息地址，使用如下例子无需改动。
     enterprise.wechat.push.url=https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}
     
-    #发送消息格式,无需改动
+    #发送消息格式，无需改动
     enterprise.wechat.user.send.msg={\"touser\":\"{toUser}\",\"agentid\":\"{agentId}\",\"msgtype\":\"markdown\",\"markdown\":{\"content\":\"{msg}\"}}
    ```
 
