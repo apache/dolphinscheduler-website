@@ -318,7 +318,7 @@ mysql -uroot -p
     </p>
     
     ```
-    # 设置agentid,每个应用都有唯一的agentid。在管理后台->“应用与小程序”->“应用”，点进某个应用，即可看到agentid。
+    # 设置 agentid，每个应用都有唯一的 agentid。在管理后台->“应用与小程序”->“应用”，点进某个应用，即可看到 agentid。
     enterprise.wechat.agent.id="xxxx"
     ```
    <p align="center">
