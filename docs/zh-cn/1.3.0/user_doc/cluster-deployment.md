@@ -326,7 +326,7 @@ mysql -uroot -p
    </p>
    
     ```
-    # 设置userid,多个用逗号分隔。每个成员都有唯一的userid，即所谓“帐号”。在管理后台->“通讯录”->点进某个成员的详情页，可以看到。
+    # 设置 userid，多个用逗号分隔。每个成员都有唯一的 userid，即所谓“帐号”。在管理后台->“通讯录”->点进某个成员的详情页，可以看到。
     enterprise.wechat.users=zhangsan,lisi
     ```
       <p align="center">
