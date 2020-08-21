@@ -297,7 +297,7 @@ mysql -uroot -p
     - 如果需要使用企业微信告警完，在安装完成后，修改 alert.properties 文件，重启 alert 服务：
    
     ```
-    # 设置企业微信告警功能是否开启：开启为true,否则为false。
+    # 设置企业微信告警功能是否开启：开启为 true，否则为 false。
     enterprise.wechat.enable="true"
     ```
    
