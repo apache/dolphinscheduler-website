@@ -310,7 +310,7 @@ mysql -uroot -p
     </p>
     
     ```
-    # 设置secret,secret是企业应用里面用于保障数据安全的“钥匙”，每一个应用都有一个独立的访问密钥。
+    # 设置 secret，secret 是企业应用里面用于保障数据安全的“钥匙”，每一个应用都有一个独立的访问密钥。
     enterprise.wechat.secret="xxx"
     ```
     <p align="center">
