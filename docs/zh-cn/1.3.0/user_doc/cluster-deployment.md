@@ -334,7 +334,7 @@ mysql -uroot -p
       </p>
       
     ```
-    # 获取access_token的地址,使用如下例子无需修改。
+    # 获取 access_token 的地址，使用如下例子无需修改。
     enterprise.wechat.token.url=https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpId}&corpsecret={secret}
    
     # 发送应用消息地址，使用如下例子无需改动。
