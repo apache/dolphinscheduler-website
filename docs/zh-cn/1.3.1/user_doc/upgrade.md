@@ -9,7 +9,7 @@
 
 ## 3. 下载新版本的安装包
 
-- [下载](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html), 下载最新版本的前后端安装包(dolphinscheduler-backend、dolphinscheduler-ui)
+- [下载](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html), 下载最新版本的二进制安装包
 - 以下升级操作都需要在新版本的目录进行
 
 ## 4. 数据库升级
@@ -35,13 +35,14 @@
 ## 5. 服务升级
 
 ### 5.1 修改`conf/config/install_config.conf`配置内容
-参照
+单机部署请参照[单机部署(Standalone)](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.1/user_doc/standalone-deployment.html)中的`6.修改运行参数部分`
+集群部署请参照[集群部署(Cluster)](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.1/user_doc/cluster-deployment.html)中的`6.修改运行参数部分`
 
 ### 注意事项
-创建worker分组在1.3.0版本和之前版本有了不同的设计
+创建worker分组在1.3.1版本和之前版本有了不同的设计
 
-- worker分组在1.3.0版本之前是通过UI界面创建
-- worker分组在1.3.0版本是修改worker配置指定
+- worker分组在1.3.1版本之前是通过UI界面创建
+- worker分组在1.3.1版本是修改worker配置指定
 
 ### 升级时如何设置worker分组与之前一致
 
@@ -69,7 +70,7 @@ workers="ds1:service1,ds2:service2,ds3:service2"
 ```
 
   
-### 5.2 执行升级脚本
+### 5.2 执行部署脚本
 ```shell
 `sh install.sh`
 ```

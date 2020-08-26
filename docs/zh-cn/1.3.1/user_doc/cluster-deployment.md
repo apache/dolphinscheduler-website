@@ -13,16 +13,16 @@
 
 # 2、下载二进制tar.gz包
 
-- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/1.3.0/apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz)，下载后上传tar包到该目录中，并进行解压
+- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 # 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 # 解压缩
-tar -zxvf apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
+tar -zxvf apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
 
-mv apache-dolphinscheduler-incubating-1.3.0-dolphinscheduler-bin  dolphinscheduler-bin
+mv apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin  dolphinscheduler-bin
 ```
 
 # 3、创建部署用户和hosts映射
@@ -114,17 +114,17 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
   # 当然 通过 sshpass -p xxx ssh-copy-id $ip 就可以省去输入密码了
   ```
 
-- 在ds1上，修改目录权限，使得部署用户对dolphinscheduler-backend目录有操作权限
+- 在ds1上，修改目录权限，使得部署用户对dolphinscheduler-bin目录有操作权限
 
   ```shell
-  sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-backend
+  sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
   ```
 
 # 5、数据库初始化
 
 - 进入数据库，默认数据库是PostgreSQL，如选择MySQL的话，后续需要添加mysql-connector-java驱动包到DolphinScheduler的lib目录下，这里以MySQL为例
 ``` 
-mysql -uroot -p
+mysql -h192.168.xx.xx -P3306 -uroot -p
 ```
 
 - 进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。**注: {user} 和 {password} 需要替换为具体的数据库用户名和密码** 
@@ -208,8 +208,8 @@ mysql -uroot -p
     # 数据库用户名，此处需要修改为上面设置的{user}具体值
     username="xxx"
 
-    # 数据库密码, 如果有特殊字符，请使用\转义，需要修改为上面设置的{passowrd}具体值
-    passowrd="xxx"
+    # 数据库密码, 如果有特殊字符，请使用\转义，需要修改为上面设置的{password}具体值
+    password="xxx"
 
     #Zookeeper地址
     zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"

@@ -1,4 +1,4 @@
-# 如何成为Dolphinscheduler committer
+# 如何成为 DolphinScheduler committer
 
 
 每个人都可以成为Apache项目的贡献者。作为一个贡献者只是意味着你对项目感兴趣并以某种方式做出贡献，从提出合理的问题（这些问题记录了项目并向开发人员提供反馈）到提供新的特性作为补丁。

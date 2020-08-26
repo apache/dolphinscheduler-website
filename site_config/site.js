@@ -18,8 +18,8 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0',
-            link: '/en-us/docs/1.3.0/user_doc/quick-start.html',
+            text: '1.3.1(Recommend)',
+            link: '/en-us/docs/1.3.1/user_doc/quick-start.html',
           },
           {
             key: 'docs2',
@@ -28,7 +28,7 @@ export default {
           },
           {
             key: 'docs3',
-            text: '1.2.0(Recommend)',
+            text: '1.2.0',
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
@@ -42,6 +42,12 @@ export default {
         key: 'download',
         text: 'DOWNLOAD',
         link: '/en-us/docs/release/download.html',
+      },
+      {
+        key: 'demo',
+        text: 'Online Demo',
+        target: '_blank',
+        link: 'http://106.75.43.194:8888'
       },
       {
         key: 'blog',
@@ -72,7 +78,7 @@ export default {
       list: [
         {
           text: 'Overview',
-          link: '/en-us/docs/1.2.0/user_doc/architecture-design.html',
+          link: '/en-us/docs/development/architecture-design.html',
         },
         {
           text: 'Quick start',
@@ -80,7 +86,7 @@ export default {
         },
         {
           text: 'Developer guide',
-          link: '/en-us/docs/1.2.0/user_doc/backend-development.html',
+          link: '/en-us/docs/development/backend-development.html',
         },
       ],
     },
@@ -109,7 +115,7 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2019 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2018-2020 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
   'zh-cn': {
     pageMenu: [
@@ -124,8 +130,8 @@ export default {
         children: [
           {
             key: 'docs1',
-            text: '1.3.0',
-            link: '/zh-cn/docs/1.3.0/user_doc/quick-start.html',
+            text: '1.3.1(推荐)',
+            link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
           },
           {
             key: 'docs2',
@@ -134,7 +140,7 @@ export default {
           },
           {
             key: 'docs3',
-            text: '1.2.0(推荐)',
+            text: '1.2.0',
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
@@ -148,6 +154,12 @@ export default {
         key: 'download',
         text: '下载',
         link: '/zh-cn/docs/release/download.html',
+      },
+      {
+        key: 'demo',
+        text: '线上demo',
+        target: '_blank',
+        link: 'http://106.75.43.194:8888'
       },
       {
         key: 'blog',
@@ -178,15 +190,15 @@ export default {
       list: [
         {
           text: '概览',
-          link: '/zh-cn/docs/1.2.0/user_doc/architecture-design.html',
+          link: '/zh-cn/docs/development/architecture-design.html',
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
+          link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/1.2.0/user_doc/backend-development.html',
+          link: '/zh-cn/docs/development/backend-development.html',
         },
       ],
     },
@@ -215,6 +227,6 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2019 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2018-2020 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
 };

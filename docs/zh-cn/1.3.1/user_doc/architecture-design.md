@@ -17,7 +17,7 @@
 
 **任务实例**：任务实例是流程定义中任务节点的实例化，标识着具体的任务执行状态
 
-**任务类型**： 目前支持有SHELL、SQL、SUB_PROCESS(子流程)、PROCEDURE、MR、SPARK、PYTHON、DEPENDENT(依赖)，同时计划支持动态插件扩展，注意：其中子 **SUB_PROCESS**  也是一个单独的流程定义，是可以单独启动执行的
+**任务类型**： 目前支持有SHELL、SQL、SUB_PROCESS(子流程)、PROCEDURE、MR、SPARK、PYTHON、DEPENDENT(依赖)、，同时计划支持动态插件扩展，注意：其中子 **SUB_PROCESS**  也是一个单独的流程定义，是可以单独启动执行的
 
 **调度方式：** 系统支持基于cron表达式的定时调度和手动调度。命令类型支持：启动工作流、从当前节点开始执行、恢复被容错的工作流、恢复暂停流程、从失败节点开始执行、补数、定时、重跑、暂停、停止、恢复等待线程。其中 **恢复被容错的工作流** 和 **恢复等待线程** 两种命令类型是由调度内部控制使用，外部无法调用
 
@@ -37,18 +37,27 @@
 
 #### 2.1 系统架构图
 <p align="center">
-  <img src="/img/architecture.jpg" alt="系统架构图"  width="70%" />
+  <img src="/img/architecture-1.3.0.jpg" alt="系统架构图"  width="70%" />
   <p align="center">
         <em>系统架构图</em>
   </p>
 </p>
 
-#### 2.2 架构说明
+#### 2.2 启动流程活动图
+<p align="center">
+  <img src="/img/process-start-flow-1.3.0.png" alt="启动流程活动图"  width="70%" />
+  <p align="center">
+        <em>启动流程活动图</em>
+  </p>
+</p>
+
+#### 2.3 架构说明
 
 * **MasterServer** 
 
     MasterServer采用分布式无中心设计理念，MasterServer主要负责 DAG 任务切分、任务提交监控，并同时监听其它MasterServer和WorkerServer的健康状态。
     MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeeper临时节点变化来进行容错处理。
+    MasterServer基于netty提供监听服务。
 
     ##### 该服务内主要包含:
 
@@ -62,7 +71,9 @@
 
 * **WorkerServer** 
 
-     WorkerServer也采用分布式无中心设计理念，WorkerServer主要负责任务的执行和提供日志服务。WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
+     WorkerServer也采用分布式无中心设计理念，WorkerServer主要负责任务的执行和提供日志服务。
+     WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
+     Server基于netty提供监听服务。Worker
      ##### 该服务包含：
      - **FetchTaskThread**主要负责不断从**Task Queue**中领取任务，并根据不同任务类型调用**TaskScheduleThread**对应执行器。
 
@@ -233,11 +244,11 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
              </p>
 
 
-##### 六、Logback和gRPC实现日志访问
+##### 六、Logback和netty实现日志访问
 
 -  由于Web(UI)和Worker不一定在同一台机器上，所以查看日志不能像查询本地文件那样。有两种方案：
   -  将日志放到ES搜索引擎上
-  -  通过gRPC通信获取远程日志信息
+  -  通过netty通信获取远程日志信息
 
 -  介于考虑到尽可能的DolphinScheduler的轻量级性，所以选择了gRPC实现远程访问日志信息。
 
@@ -298,6 +309,22 @@ public class TaskLogFilter extends Filter<ILoggingEvent> {
 }
  ```
 
+### 3.模块介绍
+- dolphinscheduler-alert 告警模块，提供AlertServer服务。
+
+- dolphinscheduler-api   web应用模块，提供ApiServer服务。
+
+- dolphinscheduler-common 通用的常量枚举、工具类、数据结构或者基类
+
+- dolphinscheduler-dao 提供数据库访问等操作。
+
+- dolphinscheduler-remote 基于netty的客户端、服务端
+
+- dolphinscheduler-server MasterServer和WorkerServer服务
+
+- dolphinscheduler-service service模块，包含Quartz、Zookeeper、日志客户端访问服务，便于server模块和api模块调用
+
+- dolphinscheduler-ui 前端模块
 ### 总结
 本文从调度出发，初步介绍了大数据分布式工作流调度系统--DolphinScheduler的架构原理及实现思路。未完待续
 
