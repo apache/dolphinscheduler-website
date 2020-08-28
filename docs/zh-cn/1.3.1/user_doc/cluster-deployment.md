@@ -391,10 +391,11 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 
 `注：服务用途请具体参见《系统架构设计》小节`
 
+
 -----
 ### 附录：
 
- - 如果需要使用企业微信告警完，在安装完成后，修改 alert.properties 文件，重启 alert 服务：
+ - 如果您需要使用到企业微信进行告警，请在安装完成后，修改 alert.properties 文件，然后重启 alert 服务即可：
    
     ```
     # 设置企业微信告警功能是否开启：开启为 true，否则为 false。
