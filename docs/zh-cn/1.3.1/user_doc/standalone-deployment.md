@@ -193,7 +193,6 @@ mysql -uroot -p
     # 邮件服务地址值，参考上面 mailServerHost
     sslTrust="smtp.qq.com"
 
-
     # 业务用到的比如sql等资源文件上传到哪里，可以设置：HDFS,S3,NONE，单机如果想使用本地文件系统，请配置为HDFS，因为HDFS支持本地文件系统；如果不需要资源上传功能请选择NONE。强调一点：使用本地文件系统不需要部署hadoop
     resourceStorageType="HDFS"
 
@@ -213,8 +212,6 @@ mysql -uroot -p
     # 具备权限创建resourceUploadPath的用户
     hdfsRootUser="hdfs"
 
-
-    
     #在哪些机器上部署DS服务，本机选localhost
     ips="localhost"
 
