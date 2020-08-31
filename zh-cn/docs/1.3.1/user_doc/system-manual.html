@@ -527,15 +527,7 @@ conf/common/hadoop.properties
   <p align="center">
     <img src="/img/mail_edit.png" width="80%" />
   </p>
-<h4>5.5 创建worker分组</h4>
-<ul>
-<li>worker分组，提供了一种让任务在指定的worker上运行的机制。管理员创建worker分组，在任务节点和运行参数中设置中可以指定该任务运行的worker分组，如果指定的分组被删除或者没有指定分组，则该任务会在任一worker上运行。</li>
-<li>管理员进入安全中心-&gt;Worker分组管理页面，点击“创建Worker分组”按钮，创建Worker分组。worker分组内有多个ip地址（<strong>不能写别名</strong>），以<strong>英文逗号</strong>分隔。</li>
-</ul>
-  <p align="center">
-    <img src="/img/worker1.png" width="80%" />
-  </p>
-<h4>5.6 令牌管理</h4>
+<h4>5.5 令牌管理</h4>
 <blockquote>
 <p>由于后端接口有登录检查，令牌管理提供了一种可以通过调用接口的方式对系统进行各种操作。</p>
 </blockquote>
@@ -586,7 +578,7 @@ conf/common/hadoop.properties
         }
     }
 </code></pre>
-<h4>5.7 授予权限</h4>
+<h4>5.6 授予权限</h4>
 <pre><code>* 授予权限包括项目权限，资源权限，数据源权限，UDF函数权限。
 * 管理员可以对普通用户进行非其创建的项目、资源、数据源和UDF函数进行授权。因为项目、资源、数据源和UDF函数授权方式都是一样的，所以以项目授权为例介绍。
 * 注意：对于用户自己创建的项目，该用户拥有所有的权限。则项目列表和已选项目列表中不会显示。
