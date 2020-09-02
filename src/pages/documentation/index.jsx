@@ -11,6 +11,7 @@ import Footer from '../../components/footer';
 import docsConfig from '../../../site_config/docs';
 import docsConfig1 from '../../../site_config/docs1-2-1';
 import docsConfig2 from '../../../site_config/docs1-3-1';
+import docsConfig3 from '../../../site_config/docs1-3-2';
 import devConfig from '../../../site_config/development';
 import './index.scss';
 
@@ -94,6 +95,9 @@ class Documentation extends Language {
     let dataSource = docsConfig1[language];
     if (window.location.pathname.indexOf('/development/') >= 0) {
       dataSource = devConfig[language];
+    }
+    if (window.location.pathname.indexOf('/1.3.2/') >= 0) {
+      dataSource = docsConfig3[language];
     }
     if (window.location.pathname.indexOf('/1.3.1/') >= 0) {
       dataSource = docsConfig2[language];
