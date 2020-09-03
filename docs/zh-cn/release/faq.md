@@ -353,7 +353,7 @@ A：这个 Bug 在 dev 分支已修复，并加入到需求/待做列表。
 
 ---
 
-## Q：Master 服务和 Workder 服务在运行几天之后停止了
+## Q：Master 服务和 Worker 服务在运行几天之后停止了
 <p align="center">
    <img src="https://user-images.githubusercontent.com/18378986/81293969-c3101680-90a0-11ea-87e5-ac9f0dd53f5e.png" width="60%" />
 </p>
