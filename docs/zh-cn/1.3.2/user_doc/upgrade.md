@@ -30,7 +30,7 @@
 
 - 执行数据库升级脚本
 
-`sh ./script/upgrade-escheduler.sh`
+`sh ./script/upgrade-dolphinscheduler.sh`
 
 ## 5. 服务升级
 
