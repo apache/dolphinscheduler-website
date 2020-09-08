@@ -15,6 +15,7 @@ export default {
       {
         key: 'docs',
         text: 'DOCS',
+        link: '/en-us/docs/1.3.2/user_doc/quick-start.html',
         children: [
           {
             key: 'docs1',
@@ -132,6 +133,7 @@ export default {
       {
         key: 'docs',
         text: '文档',
+        link: '/zh-cn/docs/1.3.2/user_doc/quick-start.html',
         children: [
           {
             key: 'docs1',
