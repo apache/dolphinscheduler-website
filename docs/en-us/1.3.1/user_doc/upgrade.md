@@ -30,7 +30,7 @@
 
 - Execute database upgrade script
 
-`sh ./script/upgrade-escheduler.sh`
+`sh ./script/upgrade-dolphinscheduler.sh`
 
 ## 5. Service upgrade
 
