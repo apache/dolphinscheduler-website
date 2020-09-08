@@ -216,7 +216,7 @@ class Header extends React.Component {
               item.children ? <SubMenu
               title={
                 <span className="submenu-title-wrapper">
-                  {item.text}
+                  <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
                 </span>
               }
             >
