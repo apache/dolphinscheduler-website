@@ -9,12 +9,12 @@ export default {
                         link: '/en-us/docs/1.3.1/user_doc/hardware-environment.html',
                     },
                     {
-                        title: 'Backend deploy',
-                        link: '/en-us/docs/1.3.1/user_doc/backend-deployment.html',
+                        title: 'standalone deployment',
+                        link: '/en-us/docs/1.3.1/user_doc/standalone-deployment.html',
                     },
                     {
-                        title: 'Frontend deploy',
-                        link: '/en-us/docs/1.3.1/user_doc/frontend-deployment.html',
+                        title: 'cluster deployment',
+                        link: '/en-us/docs/1.3.1/user_doc/cluster-deployment.html',
                     }
                 ]
             },
@@ -31,8 +31,12 @@ export default {
                     },
                     {
                         title: 'Metadata',
-                        link: '/en-us/docs/1.3.1/user_doc/metadata-1.2.html'
+                        link: '/en-us/docs/1.3.1/user_doc/metadata-1.3.html'
                     },
+                    {
+                        title: 'architecture-design'
+                        link: '/en-us/docs/1.3.1/user_doc/architecture-design.html'
+                    }
                 ]
             },
             {
