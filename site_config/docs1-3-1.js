@@ -16,10 +16,10 @@ export default {
                         title: 'cluster deployment',
                         link: '/en-us/docs/1.3.1/user_doc/cluster-deployment.html',
                     }
-					{
-						title: 'Configuration file',
-						link: '/en-us/docs/1.3.1/user_doc/configuration-file.html',
-					}
+		    {
+			title: 'Configuration file',
+			link: '/en-us/docs/1.3.1/user_doc/configuration-file.html',
+		    }
                 ]
             },
             {
@@ -37,14 +37,14 @@ export default {
                         title: 'Metadata',
                         link: '/en-us/docs/1.3.1/user_doc/metadata-1.3.html'
                     },
-					{
-						title: 'Architecture design',
-						link: '/en-us/docs/1.3.1/user_doc/architecture-design.html'
-					}
-					{
-						title: 'task structure',
-						link: '/en-us/docs/1.3.1/user_doc/task-structure.html',
-					}
+		    {
+			title: 'Architecture design',
+			link: '/en-us/docs/1.3.1/user_doc/architecture-design.html'
+		    }
+	            {
+			title: 'task structure',
+			link: '/en-us/docs/1.3.1/user_doc/task-structure.html',
+	            }
                 ]
             },
             {
@@ -95,10 +95,10 @@ export default {
                         title: '集群部署(Cluster)',
                         link: '/zh-cn/docs/1.3.1/user_doc/cluster-deployment.html',
                     }
-					{
-						title: '配置文件',
-						link: '/zh-cn/docs/1.3.1/user_doc/configuration-file.html',
-					}
+		    {
+			title: '配置文件',
+			link: '/zh-cn/docs/1.3.1/user_doc/configuration-file.html',
+		    }
                 ],
             },
             {
@@ -120,10 +120,10 @@ export default {
                         title: '架构设计',
                         link: '/zh-cn/docs/1.3.1/user_doc/architecture-design.html'
                     },
-					{
-						title: '任务结构',
-						link: '/zh-cn/docs/1.3.1/user_doc/task-structure.html'
-					}
+		    {
+			title: '任务结构',
+			link: '/zh-cn/docs/1.3.1/user_doc/task-structure.html'
+		    }
                 ],
             },
             {
