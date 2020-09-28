@@ -8,6 +8,14 @@ export default {
                         title: 'Hareware Environment',
                         link: '/en-us/docs/1.3.1/user_doc/hardware-environment.html',
                     },
+		    {
+                        title: 'Backend deploy',
+                        link: '/en-us/docs/1.3.1/user_doc/backend-deployment.html',
+                    },
+                    {
+                        title: 'Frontend deploy',
+                        link: '/en-us/docs/1.3.1/user_doc/frontend-deployment.html',
+                    },
                     {
                         title: 'Standalone deployment',
                         link: '/en-us/docs/1.3.1/user_doc/standalone-deployment.html',
@@ -19,7 +27,7 @@ export default {
                     {
 			title: 'Configuration file',
 			link: '/en-us/docs/1.3.1/user_doc/configuration-file.html',
-		    },
+		    }
                 ]
             },
             {
@@ -35,16 +43,16 @@ export default {
                     },
                     {
                         title: 'Metadata',
-                        link: '/en-us/docs/1.3.1/user_doc/metadata-1.3.html'
+                        link: '/en-us/docs/1.3.1/user_doc/metadata-1.3.html',
                     },
                     {
 			title: 'Architecture design',
-			link: '/en-us/docs/1.3.1/user_doc/architecture-design.html'
+			link: '/en-us/docs/1.3.1/user_doc/architecture-design.html',
 		    },
 		    {
 			title: 'Task structure',
 			link: '/en-us/docs/1.3.1/user_doc/task-structure.html',
-		    },
+		    }
                 ]
             },
             {
@@ -98,7 +106,7 @@ export default {
                     {
 			title: '配置文件',
 			link: '/zh-cn/docs/1.3.1/user_doc/configuration-file.html',
-		    },
+		    }
                 ],
             },
             {
@@ -114,16 +122,16 @@ export default {
                     },
                     {
                         title: '元数据文档',
-                        link: '/zh-cn/docs/1.3.1/user_doc/metadata-1.3.html'
+                        link: '/zh-cn/docs/1.3.1/user_doc/metadata-1.3.html',
                     },
                     {
                         title: '架构设计',
-                        link: '/zh-cn/docs/1.3.1/user_doc/architecture-design.html'
+                        link: '/zh-cn/docs/1.3.1/user_doc/architecture-design.html',
                     },
                     {
 			title: '任务结构',
 			link: '/zh-cn/docs/1.3.1/user_doc/task-structure.html'
-		    },
+		    }
                 ],
             },
             {
