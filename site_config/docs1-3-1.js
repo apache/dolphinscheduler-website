@@ -15,6 +15,10 @@ export default {
                     {
                         title: 'Frontend deploy',
                         link: '/en-us/docs/1.3.1/user_doc/frontend-deployment.html',
+                    },
+                    {
+                        tltle: 'Configration file',
+                        link: '/en-us/docs/1.3.1/user_doc/configration-file.html'
                     }
                 ]
             },
@@ -33,6 +37,14 @@ export default {
                         title: 'Metadata',
                         link: '/en-us/docs/1.3.1/user_doc/metadata-1.3.html'
                     },
+                    {
+                        title: 'Architecture design',
+                        link: '/en-us/docs/1.3.1/user_doc/architecture-design.html'
+                    },
+                    {
+                        title: 'task structure',
+                        link: '/en-us/docs/1.3.1/user_doc/task-structure.html'
+                    }
                 ]
             },
             {
