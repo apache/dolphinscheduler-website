@@ -1,6 +1,6 @@
 # Apache DolphinScheduler Official Website
 
-This project keeps all sources used for building up DolphinScheduler official website which's served at https://dolphinscheduler.apache.org/.
+This project keeps all sources used for building up DolphinScheduler official website which is served at https://dolphinscheduler.apache.org/.
 
 ## Prerequisite
 
@@ -18,10 +18,10 @@ Please also make sure your node version is 8.x, versions higher than 8.x is not 
 
 If you have higher version of node installed, you may consider `nvm` to allow different versions of `node` coexisting on your machine.
 
-1. Follow the [instructions](http://nvm.sh) to install nvm
-2. Run `nvm install v8.16.0` to install node v8
-3. Run `nvm use v8.16.0` to switch the working environment to node v8
-4. Run `npm install docsite -g`
+1. Follow the [instructions](http://nvm.sh) to install nvm .
+2. Run `nvm install v8.16.0` to install node v8 .
+3. Run `nvm use v8.16.0` to switch the working environment to node v8 .
+4. Run `npm install docsite -g`.
 
 Then you are all set to run and build the website. Follow the build instruction above for the details.
 
@@ -70,6 +70,6 @@ description: some description
 1. Add new .md file under docs/en-us or docs/zh-cn.
 2. Update site_config/docs.js, add a new entry in either en-us or zh-cn.
 3. Run docsite start locally to verify the article can be displayed correctly.
-4. Send the pull request contains the *.md and development.js only.
+4. Send the pull request that contains the *.md and development.js only.
 
-Best Regards
+Best Regards from our community
