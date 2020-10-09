@@ -13,8 +13,8 @@ export default {
                         link: '/en-us/docs/1.3.2/user_doc/backend-deployment.html',
                     },
                     {
-                        title: 'Frontend deploy',
-                        link: '/en-us/docs/1.3.2/user_doc/frontend-deployment.html',
+                        title: 'Cluster deploy',
+                        link: '/en-us/docs/1.3.2/user_doc/cluster-deployment.html',
                     }
                 ]
             },
