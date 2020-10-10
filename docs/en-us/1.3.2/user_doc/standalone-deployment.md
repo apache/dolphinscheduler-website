@@ -1,133 +1,82 @@
 # Standalone Deployment
 
-# 1、Before you begin (please install requirement basic software by yourself)
+# 1、Install basic softwares (please install required softwares by yourself)
 
  * PostgreSQL (8.2.15+) or MySQL (5.7)  :  Choose One
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
  * ZooKeeper (3.4.6+) ：Required
- * Hadoop (2.6+) or MinIO ：Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.
+ * Hadoop (2.6+) or MinIO ：Optional. If you need resource function, for Standalone Deployment you can choose a local directory as the upload destination (this does not need Hadoop deployed). Of course, you can also choose to upload to Hadoop or MinIO.
 
 ```markdown
- Tips：DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients for the corresponding task of running.
+ Tips：DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients to run corresponding task.
 ```
 
-# 2、Download the binary package.
+# 2、Download the binary tar.gz package.
 
-- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](https://dolphinscheduler.apache.org/en-us/docs/release/download.html)，Download the package and move to the installation and deployment directory. Then unzip it.
+- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](https://dolphinscheduler.apache.org/en-us/docs/release/download.html), download package, move to deployment directory and unzip it.
 
 ```shell
-# Create the deployment directory. Do not choose a deployment directory with a high-privilege directory such as / root or / home.
+# Create the deployment directory. Please do not choose a high-privilege directory such as /root or /home.
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
-# unzip
-tar -zxvf apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
 
-mv apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin  dolphinscheduler-bin
+# unzip
+tar -zxvf apache-dolphinscheduler-incubating-1.3.2-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
+
+# rename
+mv apache-dolphinscheduler-incubating-1.3.2-dolphinscheduler-bin  dolphinscheduler-bin
 ```
 
-# 3、Create deployment user and hosts mapping
+# 3、Create deployment user and assign directory operation permissions
 
-- Create a deployment user on the ** all ** deployment machines, and be sure to configure sudo passwordless. If we plan to deploy DolphinScheduler on 4 machines: ds1, ds2, ds3, and ds4, we first need to create a deployment user on each machine.
+- Create a deployment user, and be sure to configure sudo secret-free. Here take the creation of a dolphinscheduler user as example.
 
 ```shell
-# To create a user, you need to log in as root and set the deployment user name. Please modify it yourself. The following uses dolphinscheduler as an example.
+# To create a user, you need to log in as root and set the deployment user name.
 useradd dolphinscheduler;
 
-# Set the user password, please modify it yourself. The following takes dolphinscheduler123 as an example.
+# Set the user password, please modify it yourself.
 echo "dolphinscheduler123" | passwd --stdin dolphinscheduler
 
-# Configure sudo passwordless
+# Configure sudo secret-free
 echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
+# Modify the directory permissions so that the deployment user has operation permissions on the dolphinscheduler-bin directory
+chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 ```
 
 ```
  Notes：
- - Because the task execution service is based on 'sudo -u {linux-user}' to switch between different Linux users to implement multi-tenant running jobs, the deployment user needs to have sudo permissions and is passwordless. The first-time learners who can ignore it if they don't understand.
- - If find the "Default requiretty" in the "/etc/sudoers" file, also comment out.
- - If you need to use resource upload, you need to assign the user of permission to operate the local file system, HDFS or MinIO.
+ - Because the task execution is based on 'sudo -u {linux-user}' to switch among different Linux users to implement multi-tenant job running, so the deployment user must have sudo permissions and is secret-free. If beginner learners don’t understand, you can ignore this point for now.
+ - Please comment out line "Default requiretty", if it present in "/etc/sudoers" file. 
+ - If you need to use resource upload, you need to assign user the permission to operate the local file system, HDFS or MinIO.
 ```
 
-# 4、Configure hosts mapping and ssh access and modify directory permissions.
+# 4、SSH secret-free configuration
 
-- Use the first machine (hostname is ds1) as the deployment machine, configure the hosts of all machines to be deployed on ds1, and login as root on ds1.
-
-  ```shell
-  vi /etc/hosts
-
-  #add ip hostname
-  192.168.xxx.xxx ds1
-  192.168.xxx.xxx ds2
-  192.168.xxx.xxx ds3
-  192.168.xxx.xxx ds4
-  ```
-
-  *Note: Please delete or comment out the line 127.0.0.1*
-
-- Sync /etc/hosts on ds1 to all deployment machines
+- Switch to the deployment user and configure SSH local secret-free login
 
   ```shell
-  for ip in ds2 ds3;     # Please replace ds2 ds3 here with the hostname of machines you want to deploy
-  do
-      sudo scp -r /etc/hosts  $ip:/etc/          # Need to enter root password during operation
-  done
-  ```
-
-  *Note: can use `sshpass -p xxx sudo scp -r /etc/hosts $ip:/etc/` to avoid type password.*
-
-  > Install sshpass in Centos：
-  >
-  > 1. Install epel
-  >
-  >    yum install -y epel-release
-  >
-  >    yum repolist
-  >
-  > 2. After installing epel, you can install sshpass
-  >
-  >    yum install -y sshpass
-  >
-  >
-
-- On ds1, switch to the deployment user and configure ssh passwordless login
-
-  ```shell
-   su dolphinscheduler;
+  su dolphinscheduler;
 
   ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
   cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   chmod 600 ~/.ssh/authorized_keys
   ```
-​      Note: *If configure success, the dolphinscheduler user does not need to enter a password when executing the command `ssh localhost`*
-
-
-
-- On ds1, configure the deployment user dolphinscheduler ssh to connect to other machines to be deployed.
-
-  ```shell
-  su dolphinscheduler;
-  for ip in ds2 ds3;     # Please replace ds2 ds3 here with the hostname of the machine you want to deploy.
-  do
-      ssh-copy-id  $ip   # You need to manually enter the password of the dolphinscheduler user during the operation.
-  done
-  # can use `sshpass -p xxx ssh-copy-id $ip` to avoid type password.
-  ```
-
-- On ds1, modify the directory permissions so that the deployment user has operation permissions on the dolphinscheduler-bin directory.
-
-  ```shell
-  sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
-  ```
+  
+​  Note: *If configure successed, the dolphinscheduler user does not need to enter a password when executing the command `ssh localhost`.*
 
 # 5、Database initialization
 
-- Into the database. The default database is PostgreSQL. If you select MySQL, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.
+- Log in to the database, the default database type is PostgreSQL. If you choose MySQL, you need to add the mysql-connector-java driver package to the lib directory of DolphinScheduler.
 ```
 mysql -uroot -p
 ```
 
-- After entering the database command line window, execute the database initialization command and set the user and password. **Note: {user} and {password} need to be replaced with a specific database username and password**
+- After log into the database command line window, execute the database initialization command and set the user and password. 
+
+**Note: {user} and {password} need to be replaced with a specific database username and password.**
 
  ``` mysql
     mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
@@ -138,13 +87,13 @@ mysql -uroot -p
 
 - Create tables and import basic data
 
-    - Modify the following configuration in datasource.properties under the conf directory
+    - Modify the following configuration in datasource.properties under the conf directory.
 
     ```shell
       vi conf/datasource.properties
     ```
 
-    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/)] package to lib under the directory, and then configure the database connection information correctly.
+    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/)] package to lib directory, and then configure the database connection information correctly.
 
     ```properties
       #postgre
@@ -153,21 +102,21 @@ mysql -uroot -p
       # mysql
       spring.datasource.driver-class-name=com.mysql.jdbc.Driver
       spring.datasource.url=jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true     # Replace the correct IP address
-      spring.datasource.username=xxx						# replace the correct {user} value
+      spring.datasource.username=xxx						# replace the correct {username} value
       spring.datasource.password=xxx						# replace the correct {password} value
     ```
 
-    - After modifying and saving, execute the create table and import data script in the script directory.
+    - After modifying and saving, execute **create-dolphinscheduler.sh** in the script directory.
 
     ```shell
     sh script/create-dolphinscheduler.sh
     ```
 
-​       *Note: If you execute the above script and report "/bin/java: No such file or directory" error, please configure JAVA_HOME and PATH variables in /etc/profile*
+​       *Note: If you execute the above script and report "/bin/java: No such file or directory" error, please configure JAVA_HOME and PATH variables in /etc/profile.*
 
 # 6、Modify runtime parameters.
 
-- Modify the environment variable in `dolphinscheduler_env.sh` file which on the 'conf/env' directory (take the relevant software installed under '/opt/soft' as an example)
+- Modify the environment variable in `dolphinscheduler_env.sh` file under 'conf/env' directory (take the relevant software installed under '/opt/soft' as example)
 
     ```shell
         export HADOOP_HOME=/opt/soft/hadoop
@@ -183,11 +132,9 @@ mysql -uroot -p
 
         ```
 
-     `Note: This step is very important. For example, JAVA_HOME and PATH must be configured. Those that are not used can be ignored or commented out.`
+     `Note: This step is very important. For example, JAVA_HOME and PATH must be configured. Those that are not used can be ignored or commented out. If you can not find dolphinscheduler_env.sh, please run ls -a.`
 
-
-
-- Create Soft link jdk to /usr/bin/java (still JAVA_HOME=/opt/soft/java as an example)
+- Create JDK soft link to /usr/bin/java (still JAVA_HOME=/opt/soft/java as an example)
 
     ```shell
     sudo ln -s /opt/soft/java/bin/java /usr/bin/java
@@ -212,10 +159,10 @@ mysql -uroot -p
     # NOTICE: if there are special characters, please use the \ to escape, for example, `[` escape to `\[`
     password="xxx"
 
-    # Zookeeper address, localhost:2181, remember the port 2181
+    # Zookeeper address, localhost:2181, remember port 2181
     zkQuorum="localhost:2181"
 
-    # Note: the target installation path for dolphinscheduler, please not config as the same as the current path (pwd)
+    # Note: the target installation path for dolphinscheduler, please do not use current path (pwd)
     installPath="/opt/soft/dolphinscheduler"
 
     # deployment user
@@ -230,7 +177,7 @@ mysql -uroot -p
     mailServerHost="smtp.qq.com"
 
     # mail server port
-    # note: Different protocols and encryption methods correspond to different ports, when SSL/TLS is enabled, make sure the port is correct.
+    # note: Different protocols and encryption methods correspond to different ports, when SSL/TLS is enabled, port may be different, make sure the port is correct.
     mailServerPort="25"
 
     # mail sender
@@ -253,14 +200,12 @@ mysql -uroot -p
     # note: sslTrust is the same as mailServerHost
     sslTrust="smtp.qq.com"
 
-
     # resource storage type：HDFS,S3,NONE
     resourceStorageType="HDFS"
 
     # here is an example of saving to a local file system
     # Note: If you want to upload to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the conf directory. In this example, it is placed under /opt/dolphinscheduler/conf, and Configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
     defaultFS="file:///data/dolphinscheduler"
-
 
     # if not use hadoop resourcemanager, please keep default value; if resourcemanager HA enable, please type the HA ips ; if resourcemanager is single, make this value empty
     yarnHaIps="192.168.xx.xx,192.168.xx.xx"
@@ -273,8 +218,6 @@ mysql -uroot -p
 
     # specify the user who have permissions to create directory under HDFS/S3 root path
     hdfsRootUser="hdfs"
-
-
 
     # On which machines to deploy the DS service, choose localhost for this machine
     ips="localhost"
@@ -297,9 +240,14 @@ mysql -uroot -p
 
     ```
 
-    *Attention:*
+    *Attention:* if you need upload resource function, please execute below command:
 
-    - If you need to upload resources to the Hadoop cluster, and the NameNode of the Hadoop cluster is configured with HA, you need to enable HDFS resource upload, and you need to copy the core-site.xml and hdfs-site.xml in the Hadoop cluster to /opt/ dolphinscheduler/conf. Non-NameNode HA skips the next step.
+    ```
+    
+    sudo mkdir /data/dolphinscheduler
+    sudo chown -R dolphinscheduler:dolphinscheduler /data/dolphinscheduler 
+    
+    ```
 
 # 7、Automated Deployment
 
@@ -313,7 +261,7 @@ mysql -uroot -p
    sh: bin/dolphinscheduler-daemon.sh: No such file or directory
    ```
 
-- After the script is completed, the following 5 services will be started. Use the `jps` command to check whether the services are started (` jps` comes with `java JDK`)
+- After script completed, the following 5 services will be started. Use `jps` command to check whether the services started (` jps` comes with `java JDK`)
 
 ```aidl
     MasterServer         ----- master service
@@ -322,10 +270,9 @@ mysql -uroot -p
     ApiApplicationServer ----- api service
     AlertServer          ----- alert service
 ```
-If the above services are started normally, the automatic deployment is successful.
+If the above services started normally, the automatic deployment is successful.
 
-
-After the deployment is successful, you can view the logs. The logs are stored in the logs folder.
+After the deployment is success, you can view logs. Logs stored in the logs folder.
 
 ```log path
  logs/
@@ -336,18 +283,14 @@ After the deployment is successful, you can view the logs. The logs are stored i
     |—— dolphinscheduler-logger-server.log
 ```
 
-
-
 # 8、login
 
-- Access the address of the front page, interface IP (self-modified)
+- Access the front page address, interface IP (self-modified)
 http://192.168.xx.xx:12345/dolphinscheduler
 
    <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
-
-
 
 # 9、Start and stop service
 
@@ -395,4 +338,3 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 ```
 
 ``Note: Please refer to the "Architecture Design" section for service usage``
-
