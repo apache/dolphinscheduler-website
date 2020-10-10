@@ -72,4 +72,5 @@ description: some description
 3. Run docsite start locally to verify the article can be displayed correctly.
 4. Send the pull request contains the *.md and development.js only.
 
-Best Regards
+Best Regards.  
+				Thanks for reading :)
