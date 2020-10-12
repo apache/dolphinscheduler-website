@@ -31,7 +31,7 @@ The home page contains task status statistics, process status statistics, and wo
      <img src="/img/project_home_en.png" width="80%" />
   </p>
 
-- Task status statistics: within the specified time range, count the number of tasks in the task instance as successful submission, running, ready to pause, pause, ready to stop, stop, failure, success, fault tolerance, kill, and waiting threads
+- Task status statistics: within the specified time range, count the number of task instances as successful submission, running, ready to pause, pause, ready to stop, stop, failure, success, fault tolerance, kill, and waiting threads
 - Process status statistics: within the specified time range, count the number of the status of the workflow instance as submission success, running, ready to pause, pause, ready to stop, stop, failure, success, fault tolerance, kill, and waiting threads
 - Workflow definition statistics: Count the workflow definitions created by users and the workflow definitions granted to this user by the administrator
 
