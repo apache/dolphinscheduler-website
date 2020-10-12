@@ -37,7 +37,7 @@ The home page contains task status statistics, process status statistics, and wo
 
 #### 2.3 Workflow definition
 
-#### <span id=creatDag>2.3.1 Create a workflow definition</span>
+#### <span id=creatDag>2.3.1 Create workflow definition</span>
 
 - Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, and click the "Create Workflow" button to enter the **workflow DAG edit** page, as shown in the following figure:
   <p align="center">
