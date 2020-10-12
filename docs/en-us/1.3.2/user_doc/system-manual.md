@@ -117,7 +117,8 @@ The operation functions of the workflow definition list are as follows:
       * Recipient: Select notification policy||Timeout alarm||When fault tolerance occurs, process information or alarm email will be sent to the recipient list.
       * Cc: Select the notification strategy||Timeout alarm||When fault tolerance occurs, the process information or warning email will be copied to the CC list.
       * Complement: Two modes including serial complement and parallel complement. Serial complement: within the specified time range, the complement is executed sequentially from the start date to the end date, and only one process instance is generated; parallel complement: within the specified time range, multiple days are complemented at the same time to generate N process instances.
-    * supplement the data from September 19 to October 16 
+    * supplement the data from September 19 to October 16
+
 ```date not the same as cn version
     <p align="center">
         <img src="/img/complement_en.png" width="80%" />
@@ -231,32 +232,23 @@ Click Project Management -> Workflow -> Workflow Instance to enter the Workflow 
 - Upload resource files and udf functions, all uploaded files and resources will be stored on hdfs, so the following configuration items are required:
 
 ```
-conf/common/common.properties
-    # Users who have permission to create directories under the HDFS root path
-    hdfs.root.user=hdfs
-    # data base dir, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/escheduler" is recommended
-    data.store2hdfs.basepath=/dolphinscheduler
-    # resource upload startup type : HDFS,S3,NONE
-    res.upload.startup.type=HDFS
-    # whether kerberos starts
-    hadoop.security.authentication.startup.state=false
-    # java.security.krb5.conf path
-    java.security.krb5.conf.path=/opt/krb5.conf
-    # loginUserFromKeytab user
-    login.user.keytab.username=hdfs-mycluster@ESZ.COM
-    # loginUserFromKeytab path
-    login.user.keytab.path=/opt/hdfs.headless.keytab
 
-conf/common/hadoop.properties
-    # ha or single namenode,If namenode ha needs to copy core-site.xml and hdfs-site.xml
-    # to the conf directory，support s3，for example : s3a://dolphinscheduler
-    fs.defaultFS=hdfs://mycluster:8020
-    #resourcemanager ha note this need ips , this empty if single
-    yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx
-    # If it is a single resourcemanager, you only need to configure one host name. If it is resourcemanager HA, the default configuration is fine
-    yarn.application.status.address=http://xxxx:8088/ws/v1/cluster/apps/%s
+conf/common/common.properties # Users who have permission to create directories under the HDFS root path
+hdfs.root.user=hdfs # data base dir, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/escheduler" is recommended
+data.store2hdfs.basepath=/dolphinscheduler # resource upload startup type : HDFS,S3,NONE
+res.upload.startup.type=HDFS # whether kerberos starts
+hadoop.security.authentication.startup.state=false # java.security.krb5.conf path
+java.security.krb5.conf.path=/opt/krb5.conf # loginUserFromKeytab user
+login.user.keytab.username=hdfs-mycluster@ESZ.COM # loginUserFromKeytab path
+login.user.keytab.path=/opt/hdfs.headless.keytab
 
-```
+conf/common/hadoop.properties # ha or single namenode,If namenode ha needs to copy core-site.xml and hdfs-site.xml # to the conf directory，support s3，for example : s3a://dolphinscheduler
+fs.defaultFS=hdfs://mycluster:8020
+#resourcemanager ha note this need ips , this empty if single
+yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx # If it is a single resourcemanager, you only need to configure one host name. If it is resourcemanager HA, the default configuration is fine
+yarn.application.status.address=http://xxxx:8088/ws/v1/cluster/apps/%s
+
+````
 
 - Only one address needs to be configured for yarn.resourcemanager.ha.rm.ids and yarn.application.status.address, and the other address is empty.
 - You need to copy core-site.xml and hdfs-site.xml from the conf directory of the Hadoop cluster to the conf directory of the dolphinscheduler project, and restart the api-server service.
@@ -517,7 +509,7 @@ Note: If you enable **kerberos**, you need to fill in **Principal**
             httpclient.close();
         }
     }
-```
+````
 
 #### 5.6 Granted permission
 
@@ -697,7 +689,7 @@ Note: If you enable **kerberos**, you need to fill in **Principal**
 > Drag in the toolbar![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SPARK.png)The task node to the drawing board, as shown in the following figure:
 
 <p align="center">
-   <img src="/img/spark_edit.png" width="80%" />
+   <img src="/img/spark-submit-en.png" width="80%" />
  </p>
 
 - Program type: supports JAVA, Scala and Python three languages
