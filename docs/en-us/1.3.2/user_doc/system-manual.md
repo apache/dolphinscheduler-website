@@ -117,16 +117,15 @@ The operation functions of the workflow definition list are as follows:
       * Recipient: Select notification policy||Timeout alarm||When fault tolerance occurs, process information or alarm email will be sent to the recipient list.
       * Cc: Select the notification strategy||Timeout alarm||When fault tolerance occurs, the process information or warning email will be copied to the CC list.
       * Complement: Two modes including serial complement and parallel complement. Serial complement: within the specified time range, the complement is executed sequentially from the start date to the end date, and only one process instance is generated; parallel complement: within the specified time range, multiple days are complemented at the same time to generate N process instances.
-    * supplement the data from September 19 to October 16
+    * For example, you need to fill in the data from May 1 to May 10.
 
-```date not the same as cn version
     <p align="center">
-        <img src="/img/complement_en.png" width="80%" />
+        <img src="/img/complement_en1.png" width="80%" />
     </p>
 
-  > Serial mode: The complement is executed sequentially from September 19 to October 16, and a process instance is generated on the process instance page;
+  > Serial mode: The complement is executed sequentially from May 1 to May 10, and a process instance is generated on the process instance page;
 
-  > Parallel mode: The tasks from September 19 to October 16 are executed simultaneously, and 28 process instances are generated on the process instance page.
+  > Parallel mode: The tasks from May 1 to may 10 are executed simultaneously, and 10 process instances are generated on the process instance page.
 
 #### <span id=creatTiming>2.3.4 Workflow timing</span>
 
@@ -150,9 +149,9 @@ The operation functions of the workflow definition list are as follows:
 
 Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, click the "Import Workflow" button to import the local workflow file, the workflow definition list displays the imported workflow, and the status is offline.
 
-#### 2.4 Workflow example
+#### 2.4 Workflow instance
 
-#### 2.4.1 View workflow example
+#### 2.4.1 View workflow instance
 
 - Click Project Management -> Workflow -> Workflow Instance to enter the Workflow Instance page, as shown in the figure below:
      <p align="center">
@@ -185,7 +184,7 @@ Click Project Management -> Workflow -> Workflow Definition to enter the workflo
 #### 2.4.4 View operating parameters
 
 - Click Project Management -> Workflow -> Workflow Instance to enter the workflow instance page, and click the workflow name to enter the workflow DAG page;
-- Click the icon in the upper left corner<img src="/img/run_params_button.png" width="35"/>，View the startup parameters of the workflow instance; click the icon<img src="/img/global_param.png" width="35"/>，View the global and local parameters of the workflow instance, as shown in the following figure:
+- Click the icon in the upper left corner <img src="/img/run_params_button.png" width="35"/>，View the startup parameters of the workflow instance; click the icon <img src="/img/global_param.png" width="35"/>，View the global and local parameters of the workflow instance, as shown in the following figure:
    <p align="center">
      <img src="/img/run_params_en.png" width="80%" />
    </p>
@@ -198,13 +197,13 @@ Click Project Management -> Workflow -> Workflow Instance to enter the Workflow 
     <img src="/img/instance-list-en.png" width="80%" />
   </p>
 
-- **Edit：** Only terminated processes can be edited. Click the "Edit" button or the name of the workflow instance to enter the DAG editing page. After editing, click the "Save" button to pop up the Save DAG pop-up box, as shown in the figure below. In the pop-up box, check "Whether to update to workflow definition" and save After that, the workflow definition will be updated; if it is not checked, the workflow definition will not be updated.
+- **Edit：** Only terminated processes can be edited. Click the "Edit" button or the name of the workflow instance to enter the DAG edit page. After edit, click the "Save" button to pop up the Save DAG pop-up box, as shown in the figure below. In the pop-up box, check "Whether to update to workflow definition" and save After that, the workflow definition will be updated; if it is not checked, the workflow definition will not be updated.
      <p align="center">
        <img src="/img/editDag-en.png" width="80%" />
      </p>
 - **Rerun：** Re-execute the terminated process.
 - **Recovery failed：** For failed processes, you can perform recovery operations, starting from the failed node.
-- **stop：** To **stop** the running process, the background will first `kill`worker process, and then execute `kill -9` operation
+- **Stop：** To **stop** the running process, the background will first `kill`worker process, and then execute `kill -9` operation
 - **Pause:** Perform a **pause** operation on the running process, the system status will change to **waiting for execution**, it will wait for the end of the task being executed, and pause the next task to be executed.
 - **Resume pause:** To resume the paused process, start running directly from the **paused node**
 - **Delete:** Delete the workflow instance and the task instance under the workflow instance
@@ -233,29 +232,39 @@ Click Project Management -> Workflow -> Workflow Instance to enter the Workflow 
 
 ```
 
-conf/common/common.properties # Users who have permission to create directories under the HDFS root path
-hdfs.root.user=hdfs # data base dir, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/escheduler" is recommended
-data.store2hdfs.basepath=/dolphinscheduler # resource upload startup type : HDFS,S3,NONE
-res.upload.startup.type=HDFS # whether kerberos starts
-hadoop.security.authentication.startup.state=false # java.security.krb5.conf path
-java.security.krb5.conf.path=/opt/krb5.conf # loginUserFromKeytab user
-login.user.keytab.username=hdfs-mycluster@ESZ.COM # loginUserFromKeytab path
-login.user.keytab.path=/opt/hdfs.headless.keytab
+conf/common/common.properties
+    # Users who have permission to create directories under the HDFS root path
+    hdfs.root.user=hdfs
+    # data base dir, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/escheduler" is recommended
+    data.store2hdfs.basepath=/dolphinscheduler
+    # resource upload startup type : HDFS,S3,NONE
+    res.upload.startup.type=HDFS
+    # whether kerberos starts
+    hadoop.security.authentication.startup.state=false
+    # java.security.krb5.conf path
+    java.security.krb5.conf.path=/opt/krb5.conf
+    # loginUserFromKeytab user
+    login.user.keytab.username=hdfs-mycluster@ESZ.COM
+    # loginUserFromKeytab path
+    login.user.keytab.path=/opt/hdfs.headless.keytab
 
-conf/common/hadoop.properties # ha or single namenode,If namenode ha needs to copy core-site.xml and hdfs-site.xml # to the conf directory，support s3，for example : s3a://dolphinscheduler
-fs.defaultFS=hdfs://mycluster:8020
-#resourcemanager ha note this need ips , this empty if single
-yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx # If it is a single resourcemanager, you only need to configure one host name. If it is resourcemanager HA, the default configuration is fine
-yarn.application.status.address=http://xxxx:8088/ws/v1/cluster/apps/%s
+conf/common/hadoop.properties
+    # ha or single namenode,If namenode ha needs to copy core-site.xml and hdfs-site.xml
+    # to the conf directory，support s3，for example : s3a://dolphinscheduler
+    fs.defaultFS=hdfs://mycluster:8020
+    #resourcemanager ha note this need ips , this empty if single
+    yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx
+    # If it is a single resourcemanager, you only need to configure one host name. If it is resourcemanager HA, the default configuration is fine
+    yarn.application.status.address=http://xxxx:8088/ws/v1/cluster/apps/%s
 
-````
+```
 
 - Only one address needs to be configured for yarn.resourcemanager.ha.rm.ids and yarn.application.status.address, and the other address is empty.
 - You need to copy core-site.xml and hdfs-site.xml from the conf directory of the Hadoop cluster to the conf directory of the dolphinscheduler project, and restart the api-server service.
 
 #### 3.2 File management
 
-> It is the management of various resource files, including creating basic txt/log/sh/conf/py/java and other files, uploading jar packages and other types of files, which can be edited, renamed, downloaded, deleted and other operations.
+> It is the management of various resource files, including creating basic txt/log/sh/conf/py/java and other files, uploading jar packages and other types of files, and can do edit, rename, download, delete and other operations.
 
   <p align="center">
    <img src="/img/file-manage-en.png" width="80%" />
@@ -470,13 +479,14 @@ Note: If you enable **kerberos**, you need to fill in **Principal**
 - The administrator enters the Security Center -> Token Management page, clicks the "Create Token" button, selects the expiration time and user, clicks the "Generate Token" button, and clicks the "Submit" button, then the selected user's token is created successfully.
 
   <p align="center">
-      <img src="/img/creat-token-en.png" width="80%" />
+      <img src="/img/create-token-en.png" width="80%" />
    </p>
 
   - After an ordinary user logs in, click the user information in the user name drop-down box, enter the token management page, select the expiration time, click the "generate token" button, and click the "submit" button, then the user creates a token successfully.
   - Call example:
 
-```Token call example
+```
+Token call example
     /**
      * test token
      */
@@ -509,7 +519,7 @@ Note: If you enable **kerberos**, you need to fill in **Principal**
             httpclient.close();
         }
     }
-````
+```
 
 #### 5.6 Granted permission
 
