@@ -258,7 +258,7 @@ mysql -uroot -p
     resourceStorageType="HDFS"
 
     # here is an example of saving to a local file system
-    # Note: If you want to upload to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the conf directory. In this example, it is placed under /opt/dolphinscheduler/conf, and Configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
+    # Note: If you want to upload resource files to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the installPath/conf directory. In this example, it is placed under /opt/soft/dolphinscheduler/conf, and Configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
     defaultFS="file:///data/dolphinscheduler"
 
 
