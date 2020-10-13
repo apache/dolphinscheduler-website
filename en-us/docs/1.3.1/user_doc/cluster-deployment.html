@@ -252,7 +252,7 @@ sslTrust="smtp.qq.com"
 #</span><span class="bash"> resource storage <span class="hljs-built_in">type</span>：HDFS,S3,NONE</span>
 resourceStorageType="HDFS"
 <span class="hljs-meta">
-#</span><span class="bash"> <span class="hljs-keyword">if</span> resourceStorageType is HDFS，defaultFS write namenode address，HA you need to put core-site.xml and hdfs-site.xml <span class="hljs-keyword">in</span> the conf directory.</span>
+#</span><span class="bash"> If resourceStorageType = HDFS, and your Hadoop Cluster NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml <span class="hljs-keyword">in</span> the installPath/conf directory. In this example, it is placed under /opt/soft/dolphinscheduler/conf, and configure the namenode cluster name; <span class="hljs-keyword">if</span> the NameNode is not HA, modify it to a specific IP or host name.</span>
 <span class="hljs-meta">#</span><span class="bash"> <span class="hljs-keyword">if</span> S3，write S3 address，HA，<span class="hljs-keyword">for</span> example ：s3a://dolphinscheduler，</span>
 <span class="hljs-meta">#</span><span class="bash"> Note，s3 be sure to create the root directory /dolphinscheduler</span>
 defaultFS="hdfs://mycluster:8020"
