@@ -261,7 +261,7 @@ xlsFilePath="/tmp/xls"
 #</span><span class="bash"> 业务用到的比如sql等资源文件上传到哪里，可以设置：HDFS,S3,NONE。如果想上传到HDFS，请配置为HDFS；如果不需要资源上传功能请选择NONE。</span>
 resUploadStartupType="HDFS"
 <span class="hljs-meta">
-#</span><span class="bash">如果上传资源保存想保存在hadoop上，hadoop集群的NameNode启用了HA的话，需要将core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则只需要将mycluster修改为具体的ip或者主机名即可 </span>
+#</span><span class="bash"> 如果上传资源保存想保存在hadoop上，hadoop集群的NameNode启用了HA的话，需要将hadoop的配置文件core-site.xml和hdfs-site.xml放到安装路径(上面的installPath)的conf目录下，本例即是放到/opt/soft/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则只需要将mycluster修改为具体的ip或者主机名即可</span>
 defaultFS="hdfs://mycluster:8020"
 <span class="hljs-meta">
 
