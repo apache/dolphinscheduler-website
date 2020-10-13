@@ -257,7 +257,7 @@ mysql -h192.168.xx.xx -P3306 -uroot -p
     # resource storage type：HDFS,S3,NONE
     resourceStorageType="HDFS"
 
-    # if resourceStorageType is HDFS，defaultFS write namenode address，HA you need to put core-site.xml and hdfs-site.xml in the conf directory.
+    # If resourceStorageType = HDFS, and your Hadoop Cluster NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the installPath/conf directory. In this example, it is placed under /opt/soft/dolphinscheduler/conf, and configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
     # if S3，write S3 address，HA，for example ：s3a://dolphinscheduler，
     # Note，s3 be sure to create the root directory /dolphinscheduler
     defaultFS="hdfs://mycluster:8020"
