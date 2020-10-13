@@ -259,7 +259,7 @@ xlsFilePath="/tmp/xls"
 #</span><span class="bash"> Where are some sql and other resource files used <span class="hljs-keyword">for</span> business uploaded. Can be <span class="hljs-built_in">set</span>: HDFS, S3, NONE. If a standalone wants to use the <span class="hljs-built_in">local</span> file system, please configure it as HDFS, because HDFS supports the <span class="hljs-built_in">local</span> file system; <span class="hljs-keyword">if</span> you <span class="hljs-keyword">do</span> not need the resource upload <span class="hljs-keyword">function</span>, select NONE. One important point: using a <span class="hljs-built_in">local</span> file system does not require the deployment of Hadoop.</span>
 resUploadStartupType="HDFS"
 <span class="hljs-meta">
-#</span><span class="bash"> Note: If you want to upload to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml <span class="hljs-keyword">in</span> the conf directory. In this example, it is placed under /opt/dolphinscheduler/conf, and Configure the namenode cluster name; <span class="hljs-keyword">if</span> the NameNode is not HA, modify it to a specific IP or host name.</span>
+#</span><span class="bash"> Note: If you want to upload to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml <span class="hljs-keyword">in</span> the installPath/conf directory. In this example, it is placed under /opt/soft/dolphinscheduler/conf, and Configure the namenode cluster name; <span class="hljs-keyword">if</span> the NameNode is not HA, modify it to a specific IP or host name.</span>
 defaultFS="hdfs://mycluster:8020"
 <span class="hljs-meta">
 
