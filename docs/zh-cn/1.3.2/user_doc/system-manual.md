@@ -516,6 +516,20 @@ conf/common/hadoop.properties
  </p>
   
   - 资源、数据源、UDF函数授权同项目授权。
+#### 5.7 Worker分组
+每个worker节点都会归属于自己的Worker分组,默认分组为default.
+
+在任务执行时,可以将任务分配给指定worker分组，最终由该组中的worker节点执行该任务.
+
+> 新增/更新 worker分组
+
+- 修改worker.properties中的参数worker.groups参数. 
+- worker.groups参数后面对应的为该worker节点对应的分组名称,默认为default.
+- 如果该worker节点对应多个分组,则以逗号[ , ]隔开.
+```
+示例: 
+worker.groups=default,test
+```
 
 ### 6. 监控中心
 
