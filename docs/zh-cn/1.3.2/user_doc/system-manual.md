@@ -207,7 +207,7 @@ conf/common.properties
     # Users who have permission to create directories under the HDFS root path
     hdfs.root.user=hdfs
     # data base dir, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/escheduler" is recommended
-    data.store2hdfs.basepath=/dolphinscheduler
+    resource.upload.path=/dolphinscheduler
     # resource upload startup type : HDFS,S3,NONE
     res.upload.startup.type=HDFS
     # whether kerberos starts
