@@ -219,19 +219,19 @@ conf/common/common.properties
     # loginUserFromKeytab path
     login.user.keytab.path=/opt/hdfs.headless.keytab
     
-    # if resource.storage.type=S3,the value like: s3a://dolphinscheduler ; if resource.storage.type=HDFS, When namenode HA is enabled, you need to copy core-site.xml and hdfs-site.xml to conf dir
-    fs.defaultFS=hdfs://mycluster:8020
-    
-    # if resource.storage.type=S3，s3 endpoint
-    fs.s3a.endpoint=http://192.168.xx.xx:9010
-    
-    # if resource.storage.type=S3，s3 access key
-    fs.s3a.access.key=A3DXS30FO22544RE
-    
-    # if resource.storage.type=S3，s3 secret key
-    fs.s3a.secret.key=OloCLq3n+8+sdPHUhJ21XrSxTC+JK
-    
+conf/common/hadoop.properties      
+    # ha or single namenode,If namenode ha needs to copy core-site.xml and hdfs-site.xml
+    # to the conf directory，support s3，for example : s3a://dolphinscheduler
+    fs.defaultFS=hdfs://mycluster:8020    
+    #resourcemanager ha note this need ips , this empty if single
+    yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx    
+    # If it is a single resourcemanager, you only need to configure one host name. If it is resourcemanager HA, the default configuration is fine
+    yarn.application.status.address=http://xxxx:8088/ws/v1/cluster/apps/%s
+
 ```
+* yarn.resourcemanager.ha.rm.ids与yarn.application.status.address只需配置其中一个地址，另一个地址配置为空。
+* 需要从Hadoop集群的conf目录下复制core-site.xml、hdfs-site.xml到dolphinscheduler项目的conf目录下，重启api-server服务。
+
 
 #### 3.2 文件管理
 
