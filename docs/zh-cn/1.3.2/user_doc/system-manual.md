@@ -521,7 +521,7 @@ conf/common.properties
 
 - 打开要设置分组的worker节点上的"conf/worker.properties"配置文件. 修改worker.groups参数. 
 - worker.groups参数后面对应的为该worker节点对应的分组名称,默认为default.
-- 如果该worker节点对应多个分组,则以逗号[ , ]隔开.
+- 如果该worker节点对应多个分组,则以逗号隔开.
 ```
 示例: 
 worker.groups=default,test
