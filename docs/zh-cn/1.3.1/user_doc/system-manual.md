@@ -204,6 +204,7 @@
   - 如果hdfs配置了HA需要把hadoop的配置文件core-site.xml和hdfs-site.xml放到conf目录中.
   - 如果开启了kerberos, 请设置hadoop.security.authentication.startup.state为ture,并调整相对应的配置如: java.security.krb5.conf.path , login.user.keytab.username,login.user.keytab.path
   - 如果配置的存储介质非hdfs,比如S3. 请自行调整resource.storage.type 以及相关的fs.s3a.xxx.xxx 参数.
+  - 对上传文件的扩展名有限制,仅支持resource.view.suffixs参数中指定类型的文件,如果有特殊需要可自行修正
   - 需要修改所有节点的common.properties文件,并重启服务
 ```  
 conf/common.properties 
@@ -213,9 +214,6 @@ conf/common.properties
 
     # resource store on HDFS/S3 path, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/dolphinscheduler" is recommended
     resource.upload.path=/dolphinscheduler
-
-    # user data local directory path, please make sure the directory exists and have read write permissions
-    #data.basedir.path=/tmp/dolphinscheduler
 
     # whether kerberos starts
     hadoop.security.authentication.startup.state=false
