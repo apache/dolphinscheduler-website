@@ -197,6 +197,7 @@
        <p align="center">
           <img src="/img/task-log2.png" width="80%" />
        </p>
+
 ### 3. 资源中心
 #### 3.1 hdfs资源配置
   - 上传资源文件和udf函数，所有上传的文件和资源都会被存储到hdfs上，所以需要以下配置项：
