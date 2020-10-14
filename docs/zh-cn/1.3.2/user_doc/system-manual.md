@@ -201,36 +201,32 @@
 ### 3. 资源中心
 #### 3.1 hdfs资源配置
   - 上传资源文件和udf函数，所有上传的文件和资源都会被存储到hdfs上，所以需要以下配置项：
-  
+  - 如果hdfs没有配置HA,只需要配置fs.defaultFS地址即可. 
+  - 如果hdfs配置了HA需要把hadoop的配置文件core-site.xml和hdfs-site.xml放到conf目录中.
+  - 如果配置的存储介质非hdfs,比如S3. 请自行调整resource.storage.type 以及相关的fs.s3a.xxx.xxx 参数.
+  - 需要修改所有节点的common.properties文件,并重启服务
 ```  
-conf/common/common.properties  
-    # Users who have permission to create directories under the HDFS root path
-    hdfs.root.user=hdfs
-    # data base dir, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/escheduler" is recommended
-    data.store2hdfs.basepath=/dolphinscheduler
-    # resource upload startup type : HDFS,S3,NONE
-    res.upload.startup.type=HDFS
-    # whether kerberos starts
-    hadoop.security.authentication.startup.state=false
-    # java.security.krb5.conf path
-    java.security.krb5.conf.path=/opt/krb5.conf
-    # loginUserFromKeytab user
-    login.user.keytab.username=hdfs-mycluster@ESZ.COM
-    # loginUserFromKeytab path
-    login.user.keytab.path=/opt/hdfs.headless.keytab
-    
-conf/common/hadoop.properties      
-    # ha or single namenode,If namenode ha needs to copy core-site.xml and hdfs-site.xml
-    # to the conf directory，support s3，for example : s3a://dolphinscheduler
-    fs.defaultFS=hdfs://mycluster:8020    
-    #resourcemanager ha note this need ips , this empty if single
-    yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx    
-    # If it is a single resourcemanager, you only need to configure one host name. If it is resourcemanager HA, the default configuration is fine
-    yarn.application.status.address=http://xxxx:8088/ws/v1/cluster/apps/%s
+conf/common.properties  
+            
+    # resource storage type : HDFS,S3,NONE
+    resource.storage.type=HDFS
 
+    # if resource.storage.type=HDFS, the user need to have permission to create directories under the HDFS root path
+    hdfs.root.user=hdfs
+    
+    # if resource.storage.type=S3,the value like: s3a://dolphinscheduler ; if resource.storage.type=HDFS, When namenode HA is enabled, you need to copy core-site.xml and hdfs-site.xml to conf dir
+    fs.defaultFS=hdfs://mycluster:8020
+    
+    # if resource.storage.type=S3，s3 endpoint
+    fs.s3a.endpoint=http://192.168.xx.xx:9010
+    
+    # if resource.storage.type=S3，s3 access key
+    fs.s3a.access.key=A3DXS30FO22544RE
+    
+    # if resource.storage.type=S3，s3 secret key
+    fs.s3a.secret.key=OloCLq3n+8+sdPHUhJ21XrSxTC+JK
+    
 ```
-* yarn.resourcemanager.ha.rm.ids与yarn.application.status.address只需配置其中一个地址，另一个地址配置为空。
-* 需要从Hadoop集群的conf目录下复制core-site.xml、hdfs-site.xml到dolphinscheduler项目的conf目录下，重启api-server服务。
 
 
 #### 3.2 文件管理
