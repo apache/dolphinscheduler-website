@@ -204,7 +204,7 @@
   - 如果hdfs配置了HA需要把hadoop的配置文件core-site.xml和hdfs-site.xml放到conf目录中.
   - 如果开启了kerberos, 请设置hadoop.security.authentication.startup.state为ture,并调整相对应的配置如: java.security.krb5.conf.path , login.user.keytab.username , login.user.keytab.path
   - 如果配置的存储介质非hdfs,比如S3. 请自行调整resource.storage.type 以及相关的fs.s3a.xxx.xxx 参数.
-  - 资源中心对上传文件的扩展名有限制,仅支持resource.view.suffixs参数中指定类型的文件,如果有特殊需要可自行修正
+  - 资源中心对上传文件的扩展名有限制,仅支持resource.view.suffixs参数中指定类型的文件,如果有特殊需要可自行调整
   - 需要修改所有节点的common.properties文件,并重启服务
 ```  
 conf/common.properties 
