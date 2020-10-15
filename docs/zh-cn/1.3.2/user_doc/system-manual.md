@@ -203,13 +203,13 @@
   - 上传资源文件和udf函数，所有上传的文件和资源都会被存储到hdfs上，所以需要以下配置项：
   
 ```  
-conf/common/common.properties  
+conf/common.properties  
     # Users who have permission to create directories under the HDFS root path
     hdfs.root.user=hdfs
-    # data base dir, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/escheduler" is recommended
-    data.store2hdfs.basepath=/dolphinscheduler
-    # resource upload startup type : HDFS,S3,NONE
-    res.upload.startup.type=HDFS
+    # data base dir, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。"/dolphinscheduler" is recommended
+    resource.upload.path=/dolphinscheduler
+    # resource storage type : HDFS,S3,NONE
+    resource.storage.type=HDFS
     # whether kerberos starts
     hadoop.security.authentication.startup.state=false
     # java.security.krb5.conf path
@@ -217,11 +217,10 @@ conf/common/common.properties
     # loginUserFromKeytab user
     login.user.keytab.username=hdfs-mycluster@ESZ.COM
     # loginUserFromKeytab path
-    login.user.keytab.path=/opt/hdfs.headless.keytab
-    
-conf/common/hadoop.properties      
-    # ha or single namenode,If namenode ha needs to copy core-site.xml and hdfs-site.xml
-    # to the conf directory，support s3，for example : s3a://dolphinscheduler
+    login.user.keytab.path=/opt/hdfs.headless.keytab    
+    # if resource.storage.type is HDFS，and your Hadoop Cluster NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the installPath/conf directory. In this example, it is placed under /opt/soft/dolphinscheduler/conf, and configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
+    # if resource.storage.type is S3，write S3 address，HA，for example ：s3a://dolphinscheduler，
+    # Note，s3 be sure to create the root directory /dolphinscheduler
     fs.defaultFS=hdfs://mycluster:8020    
     #resourcemanager ha note this need ips , this empty if single
     yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx    
@@ -229,8 +228,6 @@ conf/common/hadoop.properties
     yarn.application.status.address=http://xxxx:8088/ws/v1/cluster/apps/%s
 
 ```
-* yarn.resourcemanager.ha.rm.ids与yarn.application.status.address只需配置其中一个地址，另一个地址配置为空。
-* 需要从Hadoop集群的conf目录下复制core-site.xml、hdfs-site.xml到dolphinscheduler项目的conf目录下，重启api-server服务。
 
 
 #### 3.2 文件管理
