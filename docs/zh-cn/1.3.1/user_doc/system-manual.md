@@ -218,7 +218,7 @@ conf/common.properties
     login.user.keytab.username=hdfs-mycluster@ESZ.COM
     # loginUserFromKeytab path
     login.user.keytab.path=/opt/hdfs.headless.keytab    
-    # if resourceStorageType is HDFS，defaultFS write namenode address，HA you need to put core-site.xml and hdfs-site.xml in the conf directory.
+    # if resourceStorageType is HDFS，defaultFS write namenode address. If you use namenode HA, you need to put core-site.xml and hdfs-site.xml in the conf directory.
     # if S3，write S3 address，HA，for example ：s3a://dolphinscheduler，
     # Note，s3 be sure to create the root directory /dolphinscheduler
     fs.defaultFS=hdfs://mycluster:8020    
