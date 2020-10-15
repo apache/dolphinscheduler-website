@@ -218,8 +218,9 @@ conf/common.properties
     login.user.keytab.username=hdfs-mycluster@ESZ.COM
     # loginUserFromKeytab path
     login.user.keytab.path=/opt/hdfs.headless.keytab    
-    # ha or single namenode,If namenode ha needs to copy core-site.xml and hdfs-site.xml
-    # to the conf directory，support s3，for example : s3a://dolphinscheduler
+    # if resourceStorageType is HDFS，defaultFS write namenode address，HA you need to put core-site.xml and hdfs-site.xml in the conf directory.
+    # if S3，write S3 address，HA，for example ：s3a://dolphinscheduler，
+    # Note，s3 be sure to create the root directory /dolphinscheduler
     fs.defaultFS=hdfs://mycluster:8020    
     #resourcemanager ha note this need ips , this empty if single
     yarn.resourcemanager.ha.rm.ids=192.168.xx.xx,192.168.xx.xx    
