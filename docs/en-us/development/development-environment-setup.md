@@ -39,11 +39,12 @@ http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.
 cp conf/zoo_sample.cfg conf/zoo.cfg
 
 3. Modify zookepper cofig  
-vi conf/zoo.cfg
+vi conf/zoo.cfg  
 dataDir=./tmp/zookeeper
 
 4. Start/stop zookeeper  
-./bin/zkServer.sh start ./bin/zkServer.sh stop
+./bin/zkServer.sh start  
+./bin/zkServer.sh stop
 
 #### Create database
 
@@ -143,5 +144,5 @@ npm run start
 1. Visit http://localhost:8888
 
 2. Sign in with the administrator role  
-username: admin
+username: admin  
 password:dolphinscheduler123
