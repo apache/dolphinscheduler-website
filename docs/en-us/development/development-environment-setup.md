@@ -5,15 +5,15 @@
 2. Install MySQL/PostgreSQL, JDK and MAVEN in your own software development environment.
 
 3. Clone your forked repository to the local file system.
-
-`git clone https://github.com/apache/incubator-dolphinscheduler.git`
-
+```
+    git clone https://github.com/apache/incubator-dolphinscheduler.git`
+```
 4. After finished the clone, go into the project folder and execute the following commands:
 ```
-git branch -a  #check the branch
-git checkout dev #shift the dev branch
-git pull #sychronize the branch
-mvn -U clean package -Prelease -Dmaven.test.skip=true  #need to compile the necessary classes due to the project use gRPC dependencies
+    git branch -a  #check the branch
+    git checkout dev #shift the dev branch
+    git pull #sychronize the branch
+    mvn -U clean package -Prelease -Dmaven.test.skip=true  #need to compile the necessary classes due to the project use gRPC dependencies
 ```
 #### Install node
 
@@ -49,10 +49,10 @@ dataDir=./tmp/zookeeper
 
 Create user, user name: ds_user, password: dolphinscheduler
 ```
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO 'ds_user'@'%' IDENTIFIED BY 'dolphinscheduler';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO 'ds_user'@'localhost' IDENTIFIED BY 'dolphinscheduler';
-mysql> flush privileges;
+    mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO 'ds_user'@'%' IDENTIFIED BY 'dolphinscheduler';
+    mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO 'ds_user'@'localhost' IDENTIFIED BY 'dolphinscheduler';
+    mysql> flush privileges;
 ```
 
 #### Set up the front-end
@@ -140,7 +140,7 @@ And run
 npm run start
 
 #### Visit the project
-1. visit http://localhost:8888
+1. Visit http://localhost:8888
 
 2. Sign in with the administrator role  
 username: admin
