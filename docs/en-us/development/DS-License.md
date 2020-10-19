@@ -40,25 +40,3 @@ We need to follow the following steps when we need to add new jars or external r
 
 * [COMMUNITY-LED DEVELOPMENT "THE APACHE WAY"](https://apache.org/dev/licensing-howto.html)
 * [ASF 3RD PARTY LICENSE POLICY](https://apache.org/legal/resolved.html)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
