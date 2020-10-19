@@ -30,6 +30,10 @@ export default {
                         link: '/en-us/docs/development/developers.html',
                     },
                     {
+                        title: 'License Notice',
+                        link: '/en-us/docs/development/DS-License.html',
+                    },
+                    {
                         title: 'Document Notice',
                         link: '/en-us/docs/development/document.html',
                     },
