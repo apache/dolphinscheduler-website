@@ -1,6 +1,6 @@
 #### Preparation
 
-1. First, fork the dolphinscheduler code from the remote repository to your local repository.
+1. First, fork the [dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler) code from the remote repository to your local repository.
 
 2. Install MySQL/PostgreSQL, JDK and MAVEN in your own software development environment.
 
@@ -8,12 +8,12 @@
 ```
     git clone https://github.com/apache/incubator-dolphinscheduler.git`
 ```
-4. After finished the clone, go into the project folder and execute the following commands:
+4. After finished the clone, go into the project directory and execute the following commands:
 ```
     git branch -a  #check the branch
-    git checkout dev #shift the dev branch
-    git pull #sychronize the branch
-    mvn -U clean package -Prelease -Dmaven.test.skip=true  #need to compile the necessary classes due to the project use gRPC dependencies
+    git checkout dev #switch to the dev branch
+    git pull #sychronize the branch with the remote branch
+    mvn -U clean package -Prelease -Dmaven.test.skip=true  #because the project uses gRPC, you need to compile the project to generate the required classes
 ```
 #### Install node
 
@@ -58,18 +58,17 @@ Create user, user name: ds_user, password: dolphinscheduler
 
 #### Set up the front-end
 
-1. Enter the dolphinscheduler-ui folder  
+1. Enter the dolphinscheduler-ui directory  
 cd dolphinscheduler-ui
 
-2. Run command  
-npm install
+2. Run npm install
 
 #### Set up the back-end
 
 1. Import the project to IDEA  
 file-->open
 
-2. Modify the database configurations, the 'datasource.properties' under the resource folder which belongs to the dao module
+2. Modify the database configuration in the datasource.properties file in the resource directory of the dao module
 ```
     spring.datasource.driver-class-name=com.mysql.jdbc.Driver
     spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler
@@ -77,17 +76,15 @@ file-->open
     spring.datasource.password=dolphinscheduler  
 ```
 
-3. Modify the pom.xml under the root directory, change the scope of the mysql-connector-java to complie
+3. Modify pom.xml in the root directory and modify the scope of mysql-connector-java to complie
 
-4. Refresh the dao module  
-try to run the main method inside org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler to insert tables and data needed for the project.
+4. Refresh the dao module, run the main method of org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler to automatically insert the tables and data required by the project.
 
 5. Modify the service module  
 try to change the zookeeper.quorum part of the zookeeper.properties file
 zookeeper.quorum=localhost:2181
 
-6. Modify the dolphinscheduler-ui module  
-try to change the .env file
+6. Modify the .env file of the dolphinscheduler-ui module
 ```
     API_BASE = http://localhost:12345
     DEV_HOST = localhost
@@ -99,17 +96,17 @@ try to change the .env file
 ./bin/zkServer.sh start
 
 2. Start MasterServer  
-try to run the main method inside org.apache.dolphinscheduler.server.master.MasterServer and VM Options is needed:
+run the main method of org.apache.dolphinscheduler.server.master.MasterServer, you need to set the following VM options:
 ```
     -Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false
 ```
 3. Start WorkerServer  
-try to run the main method inside org.apache.dolphinscheduler.server.worker.WorkerServer and VM Options is needed:
+run the main method of org.apache.dolphinscheduler.server.worker.WorkerServer, you need to set the following VM options:
 ```
     -Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false
 ```
 4. Start ApiApplicationServer  
-try to run the main method inside org.apache.dolphinscheduler.api.ApiApplicationServer and VM Options is needed:
+run the main method of org.apache.dolphinscheduler.api.ApiApplicationServer, you need to set the following VM options:
 ```
     -Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api
 ```
@@ -135,14 +132,11 @@ try to run the main method inside org.apache.dolphinscheduler.api.ApiApplication
     fi
 ```
 
-6. Start the front-end ui modules  
-cd dolphinscheduler-ui directory
-And run 
-npm run start
+6. cd dolphinscheduler-ui directory and run npm run start
 
 #### Visit the project
 1. Visit http://localhost:8888
 
-2. Sign in with the administrator role  
+2. Sign in with the administrator account
 username: admin  
-password:dolphinscheduler123
+password: dolphinscheduler123
