@@ -40,6 +40,10 @@ export default {
                     {
                         title: 'Pull Request Notice',
                         link: '/en-us/docs/development/pull-request.html',
+                    },
+                    {
+                        title: 'Commit Message Notice',
+                        link: '/en-us/docs/development/commit_message.html'
                     }
                 ]
             },
