@@ -15,6 +15,10 @@ export default {
                     {
                         title: 'Participate in contributing',
                         link: '/en-us/docs/development/contribute.html',
+                    },
+                    {
+                        title: 'Code of Conduct',
+                        link: '/en-us/docs/development/code-conduct.html',
                     }
                 ],
             },
@@ -88,6 +92,10 @@ export default {
                     {
                         title: '参与贡献',
                         link: '/zh-cn/docs/development/contribute.html',
+                    },
+                    {
+                        title: '行为准则',
+                        link: '/zh-cn/docs/development/code-conduct.html',
                     }
                 ],
             },
