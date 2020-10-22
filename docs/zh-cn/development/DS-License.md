@@ -43,24 +43,3 @@ copyright notice that is included in or attached to the work.
 * [COMMUNITY-LED DEVELOPMENT "THE APACHE WAY"](https://apache.org/dev/licensing-howto.html)
 * [ASF 3RD PARTY LICENSE POLICY](https://apache.org/legal/resolved.html)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

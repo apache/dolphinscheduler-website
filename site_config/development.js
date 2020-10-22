@@ -51,6 +51,10 @@ export default {
                 title: 'Developer guide',
                 children: [
                     {
+                        title: 'Development Environment Setup',
+                        link: '/en-us/docs/development/development-environment-setup.html',
+                    },
+                    {
                         title: 'Architecture Design',
                         link: '/en-us/docs/development/architecture-design.html',
                     },
