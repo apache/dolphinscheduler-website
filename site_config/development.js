@@ -45,15 +45,15 @@ export default {
             title: 'Pull Request Notice',
             link: '/en-us/docs/development/pull-request.html',
           },
-          {
-            title: 'Micro BenchMark Notice',
-            link: '/en-us/docs/development/microbench.html',
-          },
         ],
       },
       {
         title: 'Developer guide',
         children: [
+          {
+            title: 'Development Environment Setup',
+            link: '/en-us/docs/development/development-environment-setup.html',
+          },
           {
             title: 'Architecture Design',
             link: '/en-us/docs/development/architecture-design.html',
@@ -77,7 +77,6 @@ export default {
         ],
       },
     ],
-    barText: 'Development',
   },
   'zh-cn': {
     sidemenu: [
