@@ -45,6 +45,14 @@ export default {
             title: 'Pull Request Notice',
             link: '/en-us/docs/development/pull-request.html',
           },
+          {
+            title: 'Commit Message Notice',
+            link: '/en-us/docs/development/commit-message.html',
+          },
+          {
+            title: 'Micro BenchMark Notice',
+            link: '/en-us/docs/development/microbench.html',
+          },
         ],
       },
       {
@@ -77,6 +85,7 @@ export default {
         ],
       },
     ],
+    barText: 'Development',
   },
   'zh-cn': {
     sidemenu: [
@@ -127,7 +136,7 @@ export default {
           },
           {
             title: '参与贡献-CommitMessage需知',
-            link: '/zh-cn/docs/development/commit_message.html',
+            link: '/zh-cn/docs/development/commit-message.html',
           },
           {
             title: '参与贡献-微基准测试',
