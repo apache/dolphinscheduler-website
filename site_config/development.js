@@ -30,6 +30,10 @@ export default {
             link: '/en-us/docs/development/developers.html',
           },
           {
+            title: 'License Notice',
+            link: '/en-us/docs/development/DS-License.html',
+          },
+          {
             title: 'Document Notice',
             link: '/en-us/docs/development/document.html',
           },
@@ -45,11 +49,19 @@ export default {
             title: 'Commit Message Notice',
             link: '/en-us/docs/development/commit-message.html',
           },
+          {
+            title: 'Micro BenchMark Notice',
+            link: '/en-us/docs/development/microbench.html',
+          },
         ],
       },
       {
         title: 'Developer guide',
         children: [
+          {
+            title: 'Development Environment Setup',
+            link: '/en-us/docs/development/development-environment-setup.html',
+          },
           {
             title: 'Architecture Design',
             link: '/en-us/docs/development/architecture-design.html',
