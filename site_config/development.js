@@ -16,6 +16,10 @@ export default {
             title: 'Participate in contributing',
             link: '/en-us/docs/development/contribute.html',
           },
+          {
+            title: 'Code of Conduct',
+            link: '/en-us/docs/development/code-conduct.html',
+          }
         ],
       },
       {
@@ -53,7 +57,7 @@ export default {
             title: 'Micro BenchMark Notice',
             link: '/en-us/docs/development/microbench.html',
           },
-        ],
+        ]
       },
       {
         title: 'Developer guide',
@@ -83,9 +87,9 @@ export default {
             link: '/en-us/docs/development/download.html',
           },
         ],
-      },
+      }
     ],
-    barText: 'Development',
+    barText: 'Development'
   },
   'zh-cn': {
     sidemenu: [
@@ -105,10 +109,14 @@ export default {
             title: '参与贡献',
             link: '/zh-cn/docs/development/contribute.html',
           },
+          {
+            title: '行为准则',
+            link: '/zh-cn/docs/development/code-conduct.html',
+          }
         ],
       },
       {
-        title: '提交者向导',
+        title: '提交者指南',
         children: [
           {
             title: '提交流程',
@@ -136,13 +144,13 @@ export default {
           },
           {
             title: '参与贡献-CommitMessage需知',
-            link: '/zh-cn/docs/development/commit-message.html',
+            link: '/zh-cn/docs/development/commit_message.html',
           },
           {
             title: '参与贡献-微基准测试',
             link: '/zh-cn/docs/development/microbench.html',
-          },
-        ],
+          }
+        ]
       },
       {
         title: '开发者指南',
@@ -170,10 +178,11 @@ export default {
           {
             title: '下载',
             link: '/zh-cn/docs/development/download.html',
-          },
+          }
         ],
-      },
+      }
     ],
     barText: '开发者',
   },
 };
+
