@@ -3,9 +3,9 @@
 Good documentation is critical for any type of software. Any contribution that can improve the Dolphin Scheduler documentation is welcome.
 
 
-###  Get the document item.
+###  Get the document project.
 
-Documentation for the Dolphin Scheduler project is maintained in a separate [git Warehouse](https://github.com/apache/incubator-dolphinscheduler-website).
+Documentation for the Dolphin Scheduler project is maintained in a separate [git repository](https://github.com/apache/incubator-dolphinscheduler-website).
 
 First you need to fork the document project into your own github repository, and then clone the document to your local computer.
 
@@ -17,7 +17,7 @@ git clone https://github.com/<your-github-user-name>/incubator-dolphinscheduler-
 
 The Dolphin Scheduler website is supported by [docsite](https://github.com/txd-team/docsite)
 
-If your docsite version is below "1.3.3," upgrade to "1.3.3".
+If your docsite version is below "1.3.3", upgrade to "1.3.3".
 
 Make sure that your node version is 8.x, docsite does not yet support versions higher than 8.x.
 
@@ -25,7 +25,7 @@ Make sure that your node version is 8.x, docsite does not yet support versions h
 
 1. Run the "npm install docsite-g" installation development tool.
 
-2. Run "npm i" in the root folder to install the dependency.
+2. Run "npm i" in the root directory to install the dependencies.
 
 3. Running "docsite start" under the root folder starts the local server, which will allow you to access http://127.0.0.1:8080.
 
@@ -43,17 +43,17 @@ If the latest version of node is installed locally, consider using "nvm" to allo
 
 4. Run `npm install docsite-g`
 
-Now you can run and build a website in your local environment.
+Now you can run and build the website in your local environment.
 
 ### The document specification.
 
-1. Between Chinese characters and English numbers ** Spaces are Required ** Between Chinese punctuation mark and English numbers ** Spaces are not required ** to enhance the aesthetics and readability of the Chinese-English mix.
+1. ** Spaces are Required ** between Chinese characters and English or numbers and ** Spaces are not required ** between Chinese punctuation marks and English or numbers, to enhance the aesthetics and readability of the Chinese-English mix.
 
-2. It is recommended that you use "you" in general. Of course, you can use the term "you" when necessary, such as when there is a warning prompt.
+2. It is recommended that you use "you" in general. Of course, you can use the term when necessary, such as when there is a warning prompt.
 
 ### How to submit a document Pull Request.
 
-1. Do not use "git add" to commit all changes.
+1. Do not use "git add." to commit all changes.
 
 2. Simply push the changed files, for example:
 
@@ -62,6 +62,6 @@ Now you can run and build a website in your local environment.
 
 3. Submit the Pull Request to the **master** branch.
 
-### Refer to the documentation.
+### Reference to the documentation.
 
 [Apache Flink Translation Specifications](https://cwiki.apache.org/confluence/display/FLINK/Flink+Translation+Specifications)

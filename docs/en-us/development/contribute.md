@@ -1,6 +1,6 @@
 ## Contribute
 
-First of all, thank you very much for choosing and using Dolphin Scheduler, and welcome to join the Dolphin Scheduler family and join the open source world!
+First of all, thank you very much for choosing and using Dolphin Scheduler, and welcome to join the Dolphin Scheduler family!
 
 We encourage any form of participation in the community that will eventually become Committer or PPMC Such as:
 * Problems will be encountered via github on the [issue](https://github.com/apache/incubator-dolphinscheduler/issues) form feedback out.
@@ -21,20 +21,20 @@ I'm sure you'll benefit from open source by participating in Dolphin Scheduler!
 
 ### 1. Participate in documentation contributions.
 
-Refer to the [Participate in Contributions To Documentation](document.md)
+Refer to the [Submit Guide-Document Notice](document.md)
 
 ### 2. Participate in code contributions.
 
-Refer to the [Participating in Contributions To Issue](issue.md), [What you need to know to make a Contribution Pull Request.](pull-request.md), [What you need to make a Contributing CommitMessage.](commit_message.md)
+Refer to the [Submit Guide-Issue Notice](issue.md), [Submit Guide-Pull Request Notice](pull-request.md), [Submit Guide-Commit Message Notice](commit_message.md)
 
 ### 3. How to pick up an Issue and submit a Pull Request.
 
-If you want to implement a Feature or fix a bug. Please refer to the following:
+If you want to implement a Feature or fix a Bug. Please refer to the following:
 
 * All Bugs and the new Features are recommended and managed using the Issues Page.
 * If you want to develop a Feature, first reply to the Issue associated with that feature, indicating that you are currently working on it. And set yourself a "deadline" when to Submit the Feature, and add it in the reply comment.
-* It's a good idea to find a mentor (mentor) in the core contributors who gives immediate feedback on design and functional implementation.
-* You should create a new branch to start your work, to get the name of the branch refer to the [What you need to know to make a Contribution Pull Request](pull-request.md). For example, if you want to complete the feature and submit Issue 111, your branch name should be feature-111. The feature name can be determined after discussion with the instructor.
-* When you're done, send a Pull Request to incubator-dolphinscheduler, please refer to the《[Submit Code Process Below for details](submit-code.md)》
+* It's a good idea to find a mentor (or an instructor) in the core contributors who gives immediate feedback on design and functional implementation.
+* You should create a new branch to start your work, to get the name of the branch refer to the [Submit Guide-Pull Request Notice](pull-request.md). For example, if you want to complete the feature and submit Issue 111, your branch name should be feature-111. The feature name can be determined after discussion with the instructor.
+* When you're done, send a Pull Request to incubator-dolphinscheduler, please refer to the《[Submit Guide-Submit Pull Request Process](submit-code.md)》
 
-If you want to submit a Pull Request to complete a Feature or fix a bug, it is recommended that you start small, complete a small function to submit, do not change too many files at a time, changing too many files will also put a lot of pressure on Reviewers, it is recommended to submit them through multiple Pull Requests, not all at once.
+If you want to submit a Pull Request to complete a Feature or fix a Bug, it is recommended that you start with the `good first issue`, `easy-to-fix` issues, complete a small function to submit, do not change too many files at a time, changing too many files will also put a lot of pressure on Reviewers, it is recommended to submit them through multiple Pull Requests, not all at once.
