@@ -1,6 +1,6 @@
 ## Contribute
 
-First of all, thank you very much for choosing and using DolphinScheduler, and welcome to join the Dolphin Scheduler family!
+First of all, thank you very much for choosing and using DolphinScheduler, and welcome to join the DolphinScheduler family!
 
 We encourage any form of participation in the community that will eventually become Committer or PPMC Such as:
 * Problems will be encountered via github on the [issue](https://github.com/apache/incubator-dolphinscheduler/issues) form feedback out.
@@ -10,14 +10,14 @@ We encourage any form of participation in the community that will eventually bec
 * Add comments to the code.
 * Submit a PR that fixes the bug or Feature.
 * Publish application case practice, scheduling process analysis, or technical articles related to scheduling.
-* Help promote Dolphin Scheduler, participate in technical conferences or meetup, sharing and more.
+* Help promote DolphinScheduler, participate in technical conferences or meetup, sharing and more.
 
 Welcome to the contributing team and join open source starting with submitting your first PR.
  - For example, add code comments or find "easy to fix" tags or some very simple issue (misspellings, etc.) and so on, first familiarize yourself with the submission process through the first simple PR.
  
 Note: Contributions are not limited to PR Only, but contribute to the development of the project.
 
-I'm sure you'll benefit from open source by participating in Dolphin Scheduler!
+I'm sure you'll benefit from open source by participating in DolphinScheduler!
 
 ### 1. Participate in documentation contributions.
 
