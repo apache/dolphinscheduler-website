@@ -1,11 +1,11 @@
 ## Contribute documentation.
 
-Good documentation is critical for any type of software. Any contribution that can improve the Dolphin Scheduler documentation is welcome.
+Good documentation is critical for any type of software. Any contribution that can improve the DolphinScheduler documentation is welcome.
 
 
 ###  Get the document project.
 
-Documentation for the Dolphin Scheduler project is maintained in a separate [git repository](https://github.com/apache/incubator-dolphinscheduler-website).
+Documentation for the DolphinScheduler project is maintained in a separate [git repository](https://github.com/apache/incubator-dolphinscheduler-website).
 
 First you need to fork the document project into your own github repository, and then clone the document to your local computer.
 
@@ -15,7 +15,7 @@ git clone https://github.com/<your-github-user-name>/incubator-dolphinscheduler-
 
 ### The document environment.
 
-The Dolphin Scheduler website is supported by [docsite](https://github.com/txd-team/docsite)
+The DolphinScheduler website is supported by [docsite](https://github.com/txd-team/docsite)
 
 If your docsite version is below "1.3.3", upgrade to "1.3.3".
 
