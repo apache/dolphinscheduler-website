@@ -270,7 +270,7 @@ mysql -uroot -p
     # Where are some sql and other resource files used for business uploaded. Can be set: HDFS, S3, NONE. If a standalone wants to use the local file system, please configure it as HDFS, because HDFS supports the local file system; if you do not need the resource upload function, select NONE. One important point: using a local file system does not require the deployment of Hadoop.
     resUploadStartupType="HDFS"
     
-    # Note: If you want to upload to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the conf directory. In this example, it is placed under /opt/dolphinscheduler/conf, and Configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
+    # Note: If you want to upload to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the installPath/conf directory. In this example, it is placed under /opt/soft/dolphinscheduler/conf, and Configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
     defaultFS="hdfs://mycluster:8020"
     
     
@@ -389,6 +389,8 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin dolphinsc
 
 - Visit the front page address: http://localhost:8888. If the front login page appears, the front web installation is complete.
 
+  default user password：admin/dolphinscheduler123
+  
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
@@ -441,6 +443,8 @@ server {
 
 - Visit the front page address: http://localhost:8888. If the front login page appears, the front web installation is complete.
 
+  default user password：admin/dolphinscheduler123
+  
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>

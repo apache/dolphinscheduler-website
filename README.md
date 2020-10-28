@@ -5,7 +5,7 @@ This project keeps all sources used for building up DolphinScheduler official we
 ## Prerequisite
 
 DolphinScheduler website is powered by [docsite](https://github.com/txd-team/docsite).
-If your version of docsite is less than `1.3.3`,please upgrade to `1.3.3`.
+If your version of docsite is lower than `1.3.3`,please upgrade to `1.3.3`.
 Please also make sure your node version is 8.x, versions higher than 8.x is not supported by docsite yet.
 
 ## Build instruction 
@@ -72,4 +72,5 @@ description: some description
 3. Run docsite start locally to verify the article can be displayed correctly.
 4. Send the pull request contains the *.md and development.js only.
 
-Best Regards
+Best Regards.  
+				Thanks for reading :)

@@ -102,7 +102,7 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
   cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   chmod 600 ~/.ssh/authorized_keys
   ```
-​ 注意：*正常设置后，dolphinscheduler用户在执行命令`ssh localhost` 是不需要再输入密码的*
+ 注意：*正常设置后，dolphinscheduler用户在执行命令`ssh localhost` 是不需要再输入密码的*
 
 
 
@@ -137,7 +137,7 @@ mysql -uroot -p
     mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
     mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
     mysql> flush privileges;
-  ```
+ ```
 
 - 创建表和导入基础数据
 
@@ -271,7 +271,7 @@ mysql -uroot -p
     # 业务用到的比如sql等资源文件上传到哪里，可以设置：HDFS,S3,NONE。如果想上传到HDFS，请配置为HDFS；如果不需要资源上传功能请选择NONE。
     resUploadStartupType="HDFS"
     
-    #如果上传资源保存想保存在hadoop上，hadoop集群的NameNode启用了HA的话，需要将core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则只需要将mycluster修改为具体的ip或者主机名即可 
+    # 如果上传资源保存想保存在hadoop上，hadoop集群的NameNode启用了HA的话，需要将hadoop的配置文件core-site.xml和hdfs-site.xml放到安装路径(上面的installPath)的conf目录下，本例即是放到/opt/soft/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则只需要将mycluster修改为具体的ip或者主机名即可
     defaultFS="hdfs://mycluster:8020"
     
     
@@ -324,6 +324,8 @@ mysql -uroot -p
 
 - 访问前端页面地址: http://192.168.xx.xx:12345/dolphinscheduler ，出现前端登录页面，接口地址(自行修改)
 
+  默认用户名密码：admin/dolphinscheduler123
+  
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
