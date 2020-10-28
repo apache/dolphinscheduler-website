@@ -1,6 +1,6 @@
 ## Contribute
 
-First of all, thank you very much for choosing and using Dolphin Scheduler, and welcome to join the Dolphin Scheduler family!
+First of all, thank you very much for choosing and using DolphinScheduler, and welcome to join the Dolphin Scheduler family!
 
 We encourage any form of participation in the community that will eventually become Committer or PPMC Such as:
 * Problems will be encountered via github on the [issue](https://github.com/apache/incubator-dolphinscheduler/issues) form feedback out.
