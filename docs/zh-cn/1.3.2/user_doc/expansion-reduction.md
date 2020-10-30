@@ -185,7 +185,8 @@ sh bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
 -----------------------------------------------------------------------------
 
 ## 2. 缩容
-缩容是针对减少master或者worker节点,缩容一共分两个步骤,执行完以下两步,即可完成缩容操作.
+缩容是针对现有的DolphinScheduler集群减少master或者worker服务,
+缩容一共分两个步骤,执行完以下两步,即可完成缩容操作.
 
 ### 2.1 停止缩容节点上的服务
  * 如果缩容master节点,要确定要缩容master服务所在的物理机,并在物理机上停止该master服务.
