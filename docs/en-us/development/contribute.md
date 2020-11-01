@@ -25,7 +25,7 @@ Refer to the [Submit Guide-Document Notice](document.md)
 
 ### 2. Participate in code contributions.
 
-Refer to the [Submit Guide-Issue Notice](issue.md), [Submit Guide-Pull Request Notice](pull-request.md), [Submit Guide-Commit Message Notice](commit-message.md)
+Refer to the [Submit Guide-Issue Notice](issue.md), [Submit Guide-Pull Request Notice](pull-request.md), [Submit Guide-Commit Message Notice](commit_message.md)
 
 ### 3. How to pick up an Issue and submit a Pull Request.
 
