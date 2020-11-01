@@ -25,7 +25,7 @@
 
 ### 2. 参与代码贡献
 
-参考[参与贡献 Issue 需知](issue.md)，[参与贡献 Pull Request 需知](pull-request.md)，[参与贡献 CommitMessage 需知](commit_message.md)
+参考[参与贡献 Issue 需知](issue.md)，[参与贡献 Pull Request 需知](pull-request.md)，[参与贡献 CommitMessage 需知](commit-message.md)
 
 
 ### 3. 如何领取 Issue，提交 Pull Request
