@@ -39,7 +39,7 @@
 - Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](https://dolphinscheduler.apache.org/en-us/docs/1.3.2/user_doc/cluster-deployment.html).
 
 #### Masters need attentions
-Create workder group in 1.3.1 version has different design: 
+Create worker group in 1.3.1 version has different design: 
 
 - Brfore version 1.3.1 worker group can be created through UI interface.
 - Since version 1.3.1 worker group can be created by modify the worker configuration. 
