@@ -329,7 +329,7 @@ sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass
 Default is postgresSql driver because of license problem.</p>
 <hr>
 <h2>Q : How does a shell task run</h2>
-<p>A: 1, Where is the executed server? Specify one worker to run the task, you can create worker group in Security Center, then the task can be send to the particular worker. If a workder group have multiple servers, which server actually execute is determined by scheduling and has randomness.</p>
+<p>A: 1, Where is the executed server? Specify one worker to run the task, you can create worker group in Security Center, then the task can be send to the particular worker. If a worker group have multiple servers, which server actually execute is determined by scheduling and has randomness.</p>
 <p>​	2, If it is a shell file of a path on the server, how to point to the path? The server shell file, involving permissions issues, it is not recommended to do so. It is recommended that you use the storage function of the resource center, and then use the resource reference in the shell editor. The system will help you download the script to the execution directory. If the task dependent on resource center files, worker use &quot;hdfs dfs -get&quot; to get the resource files in HDFS, then run the task in /tmp/escheduler/exec/process, this path can be customized when installtion dolphinscheduler.</p>
 <p>3, Which user execute the task? Task is run by the tenant through &quot;sudo -u ${tenant}&quot;, tenant is a linux user.</p>
 <hr>

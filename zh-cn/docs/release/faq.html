@@ -218,7 +218,7 @@
    master.exec.task.number=20
    
    worker.properties
-   设置 workder 节点并发执行的最大任务数
+   设置 worker 节点并发执行的最大任务数
    worker.exec.threads=100
 </code></pre>
 <hr>
@@ -314,7 +314,7 @@ sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass
 默认驱动是 postgres 主要由于许可证原因。</p>
 <hr>
 <h2>Q：shell 任务是如何运行的</h2>
-<p>A：1，被执行的服务器在哪里配置，以及实际执行的服务器是哪台? 要指定在某个 worker 上去执行，可以在 worker 分组中配置，固定 IP，这样就可以把路径写死。如果配置的 workder 分组有多个 workder，实际执行的服务器由调度决定的，具有随机性。</p>
+<p>A：1，被执行的服务器在哪里配置，以及实际执行的服务器是哪台? 要指定在某个 worker 上去执行，可以在 worker 分组中配置，固定 IP，这样就可以把路径写死。如果配置的 worker 分组有多个 worker，实际执行的服务器由调度决定的，具有随机性。</p>
 <p>​	2，如果是服务器上某个路径的一个 shell 文件，怎么指向这个路径？服务器上某个路径下的 shell 文件，涉及到权限问题，不建议这么做。建议你可以使用资源中心的存储功能，然后在 shell 编辑器里面使用资源引用就可以，系统会帮助你把脚本下载到执行目录下。如果以 hdfs 作为资源中心，在执行的时候，调度器会把依赖的 jar 包，文件等资源拉到 worker 的执行目录上，我这边是 /tmp/escheduler/exec/process，该配置可以在 <a href="http://install.sh">install.sh</a> 中进行指定。</p>
 <p>3，以哪个用户来执行任务？执行任务的时候，调度器会采用 sudo -u 租户的方式去执行，租户是一个 linux 用户。</p>
 <hr>
