@@ -41,7 +41,7 @@ export default {
                     {
                         title: 'Api Document',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=enn'
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en'
                     }
                 ]
             },
