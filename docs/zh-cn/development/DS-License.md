@@ -53,21 +53,29 @@ Error: Process completed with exit code 1.
 这种情况下，我们会在check里面得到 check dependency license fail的错误信息，如上，我们缺少了HikariCP-java6-2.3.13、c3p0等的license声明，
 按照添加jar的步骤补充即可，提示还是蛮友好的（哈哈）。
 ### 附件
-附件：新jar的邮件格式
-[VOTE][New Jar] jetcd-core(registry plugin support etcd3 ) 
+附件：新jar的邮件格式 
 ```
-Hi, the registry SPI will provide the implementation of etcd3. Therefore, we need to introduce a new jar (jetcd-core, jetcd-launcher (test)), which complies with the Apache-2.0 License. I checked his related dependencies to make sure it complies with the license of the Apache project.
+[VOTE][New Jar] jetcd-core(registry plugin support etcd3 ) 
 
 
-Mainly dependent jar:
-grpc-core
-grpc-netty
-grpc-protobuf
-grpc-stub
-grpc-grpclb
-netty-all
-failsafe
+（说明目的，以及需要添加的jar 是什么）Hi, the registry SPI will provide the implementation of etcd3. Therefore, we need to introduce a new jar (jetcd-core, jetcd-launcher (test)), which complies with the Apache-2.0 License. I checked his related dependencies to make sure it complies with the license of the Apache project.
 
+new jar : 
+
+jetcd-core             version -x.x.x
+
+jetcd-launcher (test)  version -x.x.x
+
+dependent jar（它依赖了哪些jar，最好附带版本）:
+grpc-core     version -x.x.x
+grpc-netty    version -x.x.x
+grpc-protobuf version -x.x.x
+grpc-stub     version -x.x.x
+grpc-grpclb   version -x.x.x
+netty-all     version -x.x.x
+failsafe      version -x.x.x
+
+相关地址：主要有github地址、license文件地址、notice 文件地址、maven中央仓库地址
 
 github address:https://github.com/etcd-io/jetcd
 
