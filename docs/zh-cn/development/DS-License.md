@@ -58,22 +58,22 @@ Error: Process completed with exit code 1.
 [VOTE][New Jar] jetcd-core(registry plugin support etcd3 ) 
 
 
-（说明目的，以及需要添加的jar 是什么）Hi, the registry SPI will provide the implementation of etcd3. Therefore, we need to introduce a new jar (jetcd-core, jetcd-launcher (test)), which complies with the Apache-2.0 License. I checked his related dependencies to make sure it complies with the license of the Apache project.
+（说明目的，以及需要添加的 jar 是什么）Hi, the registry SPI will provide the implementation of etcd3. Therefore, we need to introduce a new jar (jetcd-core, jetcd-launcher (test)), which complies with the Apache-2.0 License. I checked his related dependencies to make sure it complies with the license of the Apache project.
 
 new jar : 
 
-jetcd-core             version -x.x.x
+jetcd-core             version -x.x.x   license apache2.0
 
-jetcd-launcher (test)  version -x.x.x
+jetcd-launcher (test)  version -x.x.x   license apache2.0
 
-dependent jar（它依赖了哪些jar，最好附带版本）:
-grpc-core     version -x.x.x
-grpc-netty    version -x.x.x
-grpc-protobuf version -x.x.x
-grpc-stub     version -x.x.x
-grpc-grpclb   version -x.x.x
-netty-all     version -x.x.x
-failsafe      version -x.x.x
+dependent jar（它依赖了哪些jar，最好附带版本,以及相关采用的license协议）:
+grpc-core     version -x.x.x  license XXX
+grpc-netty    version -x.x.x  license XXX
+grpc-protobuf version -x.x.x  license XXX
+grpc-stub     version -x.x.x  license XXX
+grpc-grpclb   version -x.x.x  license XXX
+netty-all     version -x.x.x  license XXX
+failsafe      version -x.x.x  license XXX
 
 相关地址：主要有github地址、license文件地址、notice 文件地址、maven中央仓库地址
 
