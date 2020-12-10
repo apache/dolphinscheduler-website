@@ -126,6 +126,15 @@ export default {
                 ],
             },
             {
+                title: '扩/缩容',
+                children: [
+                    {
+                        title: '扩/缩容',
+                        link: 'https://github.com/apache/incubator-dolphinscheduler-website/blob/master/docs/zh-cn/1.3.3/user_doc/expansion-reduction.md',
+                    }
+                ],
+            },
+            {
                 title: 'FAQ',
                 children: [
                     {
