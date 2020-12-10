@@ -10,7 +10,7 @@
 ### 1. 首页
    首页包含用户所有项目的任务状态统计、流程状态统计、工作流定义统计。
     <p align="center">
-     <img src="/img/home.png" width="80%" />
+     <img src="/img/home.png" width="100%" />
     </p>
 
 ### 2. 项目管理
@@ -18,13 +18,13 @@
   - 点击"项目管理"进入项目管理页面，点击“创建项目”按钮，输入项目名称，项目描述，点击“提交”，创建新的项目。
   
     <p align="center">
-        <img src="/img/project.png" width="80%" />
+        <img src="/img/project.png" width="100%" />
     </p>
 
 #### 2.2 项目首页
    - 在项目管理页面点击项目名称链接，进入项目首页，如下图所示，项目首页包含该项目的任务状态统计、流程状态统计、工作流定义统计。
      <p align="center">
-        <img src="/img/project-home.png" width="80%" />
+        <img src="/img/project-home.png" width="100%" />
      </p>
  
  - 任务状态统计：在指定时间范围内，统计任务实例中状态为提交成功、正在运行、准备暂停、暂停、准备停止、停止、失败、成功、需要容错、kill、等待线程的个数
@@ -35,11 +35,11 @@
 #### <span id=creatDag>2.3.1 创建工作流定义</span>
   - 点击项目管理->工作流->工作流定义，进入工作流定义页面，点击“创建工作流”按钮，进入**工作流DAG编辑**页面，如下图所示：
     <p align="center">
-        <img src="/img/dag0.png" width="80%" />
+        <img src="/img/dag0.png" width="100%" />
     </p>  
   - 工具栏中拖拽<img src="/img/shell.png" width="35"/>到画板中，新增一个Shell任务,如下图所示：
     <p align="center">
-        <img src="/img/shell_dag.png" width="80%" />
+        <img src="/img/shell_dag.png" width="100%" />
     </p>  
   - **添加shell任务的参数设置：**
   1. 填写“节点名称”，“描述”，“脚本”字段；
@@ -53,23 +53,23 @@
   - **增加任务执行的先后顺序：** 点击右上角图标<img src="/img/line.png" width="35"/>连接任务；如下图所示，任务2和任务3并行执行，当任务1执行完，任务2、3会同时执行。
 
     <p align="center">
-       <img src="/img/dag2.png" width="80%" />
+       <img src="/img/dag2.png" width="100%" />
     </p>
 
   - **删除依赖关系：** 点击右上角"箭头"图标<img src="/img/arrow.png" width="35"/>，选中连接线，点击右上角"删除"图标<img src="/img/delete.png" width="35"/>，删除任务间的依赖关系。
     <p align="center">
-       <img src="/img/dag3.png" width="80%" />
+       <img src="/img/dag3.png" width="100%" />
     </p>
 
   - **保存工作流定义：** 点击”保存“按钮，弹出"设置DAG图名称"弹框，如下图所示，输入工作流定义名称，工作流定义描述，设置全局参数（选填，参考[自定义参数](#UserDefinedParameters)），点击"添加"按钮，工作流定义创建成功。
     <p align="center">
-       <img src="/img/dag4.png" width="80%" />
+       <img src="/img/dag4.png" width="100%" />
      </p>
   > 其他类型任务，请参考 [任务节点类型和参数设置](#TaskParamers)。
 #### 2.3.2  工作流定义操作功能
   点击项目管理->工作流->工作流定义，进入工作流定义页面，如下图所示:
       <p align="center">
-          <img src="/img/work_list.png" width="80%" />
+          <img src="/img/work_list.png" width="100%" />
       </p>
   工作流定义列表的操作功能如下：
   - **编辑：** 只能编辑"下线"的工作流定义。工作流DAG编辑同[创建工作流定义](#creatDag)。
@@ -82,18 +82,18 @@
   - **下载：** 下载工作流定义到本地。
   - **树形图：** 以树形结构展示任务节点的类型及任务状态，如下图所示：
     <p align="center">
-        <img src="/img/tree.png" width="80%" />
+        <img src="/img/tree.png" width="100%" />
     </p>  
 
 #### <span id=runWorkflow>2.3.3 运行工作流</span>
   - 点击项目管理->工作流->工作流定义，进入工作流定义页面，如下图所示，点击"上线"按钮<img src="/img/online.png" width="35"/>，上线工作流。
     <p align="center">
-        <img src="/img/work_list.png" width="80%" />
+        <img src="/img/work_list.png" width="100%" />
     </p>
 
   - 点击”运行“按钮，弹出启动参数设置弹框，如下图所示，设置启动参数，点击弹框中的"运行"按钮，工作流开始运行，工作流实例页面生成一条工作流实例。
      <p align="center">
-       <img src="/img/run-work.png" width="80%" />
+       <img src="/img/run-work.png" width="100%" />
      </p>  
   <span id=runParamers>工作流运行参数说明：</span> 
        
@@ -107,7 +107,7 @@
     * 补数：包括串行补数、并行补数2种模式。串行补数：指定时间范围内，从开始日期至结束日期依次执行补数，只生成一条流程实例；并行补数：指定时间范围内，多天同时进行补数，生成N条流程实例。 
   * 补数： 执行指定日期的工作流定义，可以选择补数时间范围（目前只支持针对连续的天进行补数)，比如需要补5月1号到5月10号的数据，如下图所示： 
     <p align="center">
-        <img src="/img/complement.png" width="80%" />
+        <img src="/img/complement.png" width="100%" />
     </p>
 
     >串行模式：补数从5月1号到5月10号依次执行，流程实例页面生成一条流程实例；
@@ -117,18 +117,18 @@
 #### <span id=creatTiming>2.3.4 工作流定时</span>
   - 创建定时：点击项目管理->工作流->工作流定义，进入工作流定义页面，上线工作流，点击"定时"按钮<img src="/img/timing.png" width="35"/>,弹出定时参数设置弹框，如下图所示：
     <p align="center">
-        <img src="/img/time-schedule.png" width="80%" />
+        <img src="/img/time-schedule.png" width="100%" />
     </p>
   - 选择起止时间。在起止时间范围内，定时运行工作流；不在起止时间范围内，不再产生定时工作流实例。
   - 添加一个每天凌晨5点执行一次的定时，如下图所示：
     <p align="center">
-        <img src="/img/time-schedule2.png" width="80%" />
+        <img src="/img/time-schedule2.png" width="100%" />
     </p>
   - 失败策略、通知策略、流程优先级、Worker分组、通知组、收件人、抄送人同[工作流运行参数](#runParamers)。
   - 点击"创建"按钮，创建定时成功，此时定时状态为"**下线**"，定时需**上线**才生效。
   - 定时上线：点击"定时管理"按钮<img src="/img/timeManagement.png" width="35"/>，进入定时管理页面，点击"上线"按钮，定时状态变为"上线"，如下图所示，工作流定时生效。
     <p align="center">
-        <img src="/img/time-schedule3.png" width="80%" />
+        <img src="/img/time-schedule3.png" width="100%" />
     </p>
 #### 2.3.5 导入工作流
   点击项目管理->工作流->工作流定义，进入工作流定义页面，点击"导入工作流"按钮，导入本地工作流文件，工作流定义列表显示导入的工作流，状态为下线。
@@ -137,44 +137,44 @@
 #### 2.4.1 查看工作流实例
    - 点击项目管理->工作流->工作流实例，进入工作流实例页面，如下图所示：
         <p align="center">
-           <img src="/img/instance-list.png" width="80%" />
+           <img src="/img/instance-list.png" width="100%" />
         </p>           
    -  点击工作流名称，进入DAG查看页面，查看任务执行状态，如下图所示。
       <p align="center">
-        <img src="/img/instance-detail.png" width="80%" />
+        <img src="/img/instance-detail.png" width="100%" />
       </p>
 #### 2.4.2 查看任务日志
    - 进入工作流实例页面，点击工作流名称，进入DAG查看页面，双击任务节点，如下图所示：
       <p align="center">
-        <img src="/img/instanceViewLog.png" width="80%" />
+        <img src="/img/instanceViewLog.png" width="100%" />
       </p>
    - 点击"查看日志"，弹出日志弹框，如下图所示,任务实例页面也可查看任务日志，参考[任务查看日志](#taskLog)。
       <p align="center">
-        <img src="/img/task-log.png" width="80%" />
+        <img src="/img/task-log.png" width="100%" />
       </p>
 #### 2.4.3 查看任务历史记录
    - 点击项目管理->工作流->工作流实例，进入工作流实例页面，点击工作流名称，进入工作流DAG页面;
    - 双击任务节点，如下图所示，点击"查看历史"，跳转到任务实例页面，并展示该工作流实例运行的任务实例列表
       <p align="center">
-        <img src="/img/task_history.png" width="80%" />
+        <img src="/img/task_history.png" width="100%" />
       </p>
       
 #### 2.4.4 查看运行参数
    - 点击项目管理->工作流->工作流实例，进入工作流实例页面，点击工作流名称，进入工作流DAG页面; 
    - 点击左上角图标<img src="/img/run_params_button.png" width="35"/>，查看工作流实例的启动参数；点击图标<img src="/img/global_param.png" width="35"/>，查看工作流实例的全局参数和局部参数，如下图所示：
       <p align="center">
-        <img src="/img/run_params.png" width="80%" />
+        <img src="/img/run_params.png" width="100%" />
       </p>      
  
 #### 2.4.4 工作流实例操作功能
    点击项目管理->工作流->工作流实例，进入工作流实例页面，如下图所示：          
       <p align="center">
-        <img src="/img/instance-list.png" width="80%" />
+        <img src="/img/instance-list.png" width="100%" />
       </p>
 
   - **编辑：** 只能编辑已终止的流程。点击"编辑"按钮或工作流实例名称进入DAG编辑页面，编辑后点击"保存"按钮，弹出保存DAG弹框，如下图所示，在弹框中勾选"是否更新到工作流定义"，保存后则更新工作流定义；若不勾选，则不更新工作流定义。
        <p align="center">
-         <img src="/img/editDag.png" width="80%" />
+         <img src="/img/editDag.png" width="100%" />
        </p>
   - **重跑：** 重新执行已经终止的流程。
   - **恢复失败：** 针对失败的流程，可以执行恢复失败操作，从失败的节点开始执行。
@@ -184,18 +184,18 @@
   - **删除：** 删除工作流实例及工作流实例下的任务实例
   - **甘特图：** Gantt图纵轴是某个工作流实例下的任务实例的拓扑排序，横轴是任务实例的运行时间,如图示：         
        <p align="center">
-           <img src="/img/gant-pic.png" width="80%" />
+           <img src="/img/gant-pic.png" width="100%" />
        </p>
 
 #### 2.5 任务实例
   - 点击项目管理->工作流->任务实例，进入任务实例页面，如下图所示，点击工作流实例名称，可跳转到工作流实例DAG图查看任务状态。
        <p align="center">
-          <img src="/img/task-list.png" width="80%" />
+          <img src="/img/task-list.png" width="100%" />
        </p>
 
   - <span id=taskLog>查看日志：</span>点击操作列中的“查看日志”按钮，可以查看任务执行的日志情况。
        <p align="center">
-          <img src="/img/task-log2.png" width="80%" />
+          <img src="/img/task-log2.png" width="100%" />
        </p>
 
 ### 3. 资源中心
@@ -234,14 +234,14 @@ conf/common.properties
 
   > 是对各种资源文件的管理，包括创建基本的txt/log/sh/conf/py/java等文件、上传jar包等各种类型文件，可进行编辑、重命名、下载、删除等操作。
   <p align="center">
-   <img src="/img/file-manage.png" width="80%" />
+   <img src="/img/file-manage.png" width="100%" />
  </p>
 
   * 创建文件
  > 文件格式支持以下几种类型：txt、log、sh、conf、cfg、py、java、sql、xml、hql、properties
 
 <p align="center">
-   <img src="/img/file_create.png" width="80%" />
+   <img src="/img/file_create.png" width="100%" />
  </p>
 
   * 上传文件
@@ -249,7 +249,7 @@ conf/common.properties
 > 上传文件：点击"上传文件"按钮进行上传，将文件拖拽到上传区域，文件名会自动以上传的文件名称补全
 
 <p align="center">
-   <img src="/img/file_upload.png" width="80%" />
+   <img src="/img/file_upload.png" width="100%" />
  </p>
 
 
@@ -258,7 +258,7 @@ conf/common.properties
 > 对可查看的文件类型，点击文件名称，可查看文件详情
 
 <p align="center">
-   <img src="/img/file_detail.png" width="80%" />
+   <img src="/img/file_detail.png" width="100%" />
  </p>
 
   * 下载文件
@@ -268,7 +268,7 @@ conf/common.properties
   * 文件重命名
 
 <p align="center">
-   <img src="/img/file_rename.png" width="80%" />
+   <img src="/img/file_rename.png" width="100%" />
  </p>
 
   * 删除
@@ -295,7 +295,7 @@ conf/common.properties
   - UDF资源：设置创建的UDF对应的资源文件
 
 <p align="center">
-   <img src="/img/udf_edit.png" width="80%" />
+   <img src="/img/udf_edit.png" width="100%" />
  </p>
 
 
@@ -317,7 +317,7 @@ conf/common.properties
   - Jdbc连接参数：用于MySQL连接的参数设置，以JSON形式填写
 
 <p align="center">
-   <img src="/img/mysql_edit.png" width="80%" />
+   <img src="/img/mysql_edit.png" width="100%" />
  </p>
 
   > 点击“测试连接”，测试数据源是否可以连接成功。
@@ -335,7 +335,7 @@ conf/common.properties
 - Jdbc连接参数：用于POSTGRESQL连接的参数设置，以JSON形式填写
 
 <p align="center">
-   <img src="/img/postgresql_edit.png" width="80%" />
+   <img src="/img/postgresql_edit.png" width="100%" />
  </p>
 
 #### 4.3 创建/编辑HIVE数据源
@@ -343,7 +343,7 @@ conf/common.properties
 1.使用HiveServer2方式连接
 
  <p align="center">
-    <img src="/img/hive_edit.png" width="80%" />
+    <img src="/img/hive_edit.png" width="100%" />
   </p>
 
   - 数据源：选择HIVE
@@ -359,13 +359,13 @@ conf/common.properties
 2.使用HiveServer2 HA Zookeeper方式连接
 
  <p align="center">
-    <img src="/img/hive_edit2.png" width="80%" />
+    <img src="/img/hive_edit2.png" width="100%" />
   </p>
 
 
 注意：如果开启了**kerberos**，则需要填写 **Principal**
 <p align="center">
-    <img src="/img/hive_kerberos.png" width="80%" />
+    <img src="/img/hive_kerberos.png" width="100%" />
   </p>
 
 
@@ -374,7 +374,7 @@ conf/common.properties
 #### 4.4 创建/编辑Spark数据源
 
 <p align="center">
-   <img src="/img/spark_datesource.png" width="80%" />
+   <img src="/img/spark_datesource.png" width="100%" />
  </p>
 
 - 数据源：选择Spark
@@ -392,7 +392,7 @@ conf/common.properties
 注意：如果开启了**kerberos**，则需要填写 **Principal**
 
 <p align="center">
-    <img src="/img/sparksql_kerberos.png" width="80%" />
+    <img src="/img/sparksql_kerberos.png" width="100%" />
   </p>
 
 
@@ -406,7 +406,7 @@ conf/common.properties
   - 队列是在执行spark、mapreduce等程序，需要用到“队列”参数时使用的。
   - 管理员进入安全中心->队列管理页面，点击“创建队列”按钮，创建队列。
  <p align="center">
-    <img src="/img/create-queue.png" width="80%" />
+    <img src="/img/create-queue.png" width="100%" />
   </p>
 
 
@@ -416,7 +416,7 @@ conf/common.properties
   - 管理员进入安全中心->租户管理页面，点击“创建租户”按钮，创建租户。
 
  <p align="center">
-    <img src="/img/addtenant.png" width="80%" />
+    <img src="/img/addtenant.png" width="100%" />
   </p>
 
 #### 5.3 创建普通用户
@@ -427,7 +427,7 @@ conf/common.properties
     * 注意：如果该用户切换了租户，则该用户所在租户下所有资源将复制到切换的新租户下。
   - 管理员进入安全中心->用户管理页面，点击“创建用户”按钮，创建用户。        
 <p align="center">
-   <img src="/img/useredit2.png" width="80%" />
+   <img src="/img/useredit2.png" width="100%" />
  </p>
   
   > **编辑用户信息** 
@@ -444,7 +444,7 @@ conf/common.properties
   - 管理员进入安全中心->告警组管理页面，点击“创建告警组”按钮，创建告警组。
 
   <p align="center">
-    <img src="/img/mail_edit.png" width="80%" />
+    <img src="/img/mail_edit.png" width="100%" />
   </p>
 
 
@@ -453,7 +453,7 @@ conf/common.properties
   - 管理员进入安全中心->令牌管理页面，点击“创建令牌”按钮，选择失效时间与用户，点击"生成令牌"按钮，点击"提交"按钮，则选择用户的token创建成功。
 
   <p align="center">
-      <img src="/img/creat_token.png" width="80%" />
+      <img src="/img/creat_token.png" width="100%" />
    </p>
   
   - 普通用户登录后，点击用户名下拉框中的用户信息，进入令牌管理页面，选择失效时间，点击"生成令牌"按钮，点击"提交"按钮，则该用户创建token成功。
@@ -503,13 +503,13 @@ conf/common.properties
  
   - 管理员进入安全中心->用户管理页面，点击需授权用户的“授权”按钮，如下图所示：
   <p align="center">
-   <img src="/img/auth_user.png" width="80%" />
+   <img src="/img/auth_user.png" width="100%" />
  </p>
 
   - 选择项目，进行项目授权。
 
 <p align="center">
-   <img src="/img/auth_project.png" width="80%" />
+   <img src="/img/auth_project.png" width="100%" />
  </p>
   
   - 资源、数据源、UDF函数授权同项目授权。
@@ -536,33 +536,33 @@ worker.groups=default,test
 #### 6.1.1 master监控
   - 主要是master的相关信息。
 <p align="center">
-   <img src="/img/master-jk.png" width="80%" />
+   <img src="/img/master-jk.png" width="100%" />
  </p>
 
 #### 6.1.2 worker监控
   - 主要是worker的相关信息。
 
 <p align="center">
-   <img src="/img/worker-jk.png" width="80%" />
+   <img src="/img/worker-jk.png" width="100%" />
  </p>
 
 #### 6.1.3 Zookeeper监控
   - 主要是zookpeeper中各个worker和master的相关配置信息。
 
 <p align="center">
-   <img src="/img/zk-jk.png" width="80%" />
+   <img src="/img/zk-jk.png" width="100%" />
  </p>
 
 #### 6.1.4 DB监控
   - 主要是DB的健康状况
 
 <p align="center">
-   <img src="/img/mysql-jk.png" width="80%" />
+   <img src="/img/mysql-jk.png" width="100%" />
  </p>
  
 #### 6.2 统计管理
 <p align="center">
-   <img src="/img/Statistics.png" width="80%" />
+   <img src="/img/Statistics.png" width="100%" />
  </p>
  
   - 待执行命令数：统计t_ds_command表的数据
@@ -578,7 +578,7 @@ worker.groups=default,test
   - 工具栏中拖动<img src="/img/shell.png" width="35"/>到画板中，如下图所示：
 
     <p align="center">
-        <img src="/img/shell_dag.png" width="80%" />
+        <img src="/img/shell_dag.png" width="100%" />
     </p> 
 
 - 节点名称：一个工作流定义中的节点名称是唯一的。
@@ -598,7 +598,7 @@ worker.groups=default,test
 > 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SUB_PROCESS.png)任务节点到画板中，如下图所示：
 
 <p align="center">
-   <img src="/img/subprocess_edit.png" width="80%" />
+   <img src="/img/subprocess_edit.png" width="100%" />
  </p>
 
 - 节点名称：一个工作流定义中的节点名称是唯一的
@@ -613,25 +613,25 @@ worker.groups=default,test
 > 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_DEPENDENT.png)任务节点到画板中，如下图所示：
 
 <p align="center">
-   <img src="/img/dependent_edit.png" width="80%" />
+   <img src="/img/dependent_edit.png" width="100%" />
  </p>
 
   > 依赖节点提供了逻辑判断功能，比如检查昨天的B流程是否成功，或者C流程是否执行成功。
 
   <p align="center">
-   <img src="/img/depend-node.png" width="80%" />
+   <img src="/img/depend-node.png" width="100%" />
  </p>
 
   > 例如，A流程为周报任务，B、C流程为天任务，A任务需要B、C任务在上周的每一天都执行成功，如图示：
 
  <p align="center">
-   <img src="/img/depend-node2.png" width="80%" />
+   <img src="/img/depend-node2.png" width="100%" />
  </p>
 
   > 假如，周报A同时还需要自身在上周二执行成功：
 
  <p align="center">
-   <img src="/img/depend-node3.png" width="80%" />
+   <img src="/img/depend-node3.png" width="100%" />
  </p>
 
 #### 7.4 存储过程节点
@@ -639,7 +639,7 @@ worker.groups=default,test
 > 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_PROCEDURE.png)任务节点到画板中，如下图所示：
 
 <p align="center">
-   <img src="/img/procedure_edit.png" width="80%" />
+   <img src="/img/procedure_edit.png" width="100%" />
  </p>
 
 - 数据源：存储过程的数据源类型支持MySQL和POSTGRESQL两种，选择对应的数据源
@@ -650,13 +650,13 @@ worker.groups=default,test
   - 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SQL.png)任务节点到画板中
   - 非查询SQL功能：编辑非查询SQL任务信息，sql类型选择非查询，如下图所示：
   <p align="center">
-   <img src="/img/sql-node.png" width="80%" />
+   <img src="/img/sql-node.png" width="100%" />
  </p>
 
   - 查询SQL功能：编辑查询SQL任务信息，sql类型选择查询，选择表格或附件形式发送邮件到指定的收件人，如下图所示。
 
 <p align="center">
-   <img src="/img/sql-node2.png" width="80%" />
+   <img src="/img/sql-node2.png" width="100%" />
  </p>
 
 - 数据源：选择对应的数据源
@@ -675,7 +675,7 @@ worker.groups=default,test
 > 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SPARK.png)任务节点到画板中，如下图所示：
 
 <p align="center">
-   <img src="/img/spark_edit.png" width="80%" />
+   <img src="/img/spark_edit.png" width="100%" />
  </p>
 
 - 程序类型：支持JAVA、Scala和Python三种语言
@@ -700,7 +700,7 @@ worker.groups=default,test
  1. JAVA程序
 
  <p align="center">
-   <img src="/img/mr_java.png" width="80%" />
+   <img src="/img/mr_java.png" width="100%" />
  </p>
  
 - 主函数的class：是MR程序的入口Main Class的全路径
@@ -714,7 +714,7 @@ worker.groups=default,test
 2. Python程序
 
 <p align="center">
-   <img src="/img/mr_edit.png" width="80%" />
+   <img src="/img/mr_edit.png" width="100%" />
  </p>
 
 - 程序类型：选择Python语言 
@@ -732,7 +732,7 @@ worker.groups=default,test
 > 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_PYTHON.png)任务节点到画板中，如下图所示：
 
 <p align="center">
-   <img src="/img/python_edit.png" width="80%" />
+   <img src="/img/python_edit.png" width="100%" />
  </p>
 
 - 脚本：用户开发的Python程序
@@ -743,7 +743,7 @@ worker.groups=default,test
   - 拖动工具栏中的<img src="/img/flink.png" width="35"/>任务节点到画板中，如下图所示：
 
 <p align="center">
-  <img src="/img/flink_edit.png" width="80%" />
+  <img src="/img/flink_edit.png" width="100%" />
 </p>
 
 
@@ -767,7 +767,7 @@ worker.groups=default,test
   - 拖动工具栏中的<img src="/img/http.png" width="35"/>任务节点到画板中，如下图所示：
 
 <p align="center">
-   <img src="/img/http_edit.png" width="80%" />
+   <img src="/img/http_edit.png" width="100%" />
  </p>
 
 - 节点名称：一个工作流定义中的节点名称是唯一的。
@@ -790,7 +790,7 @@ worker.groups=default,test
   - 拖动工具栏中的<img src="/img/datax.png" width="35"/>任务节点到画板中
 
   <p align="center">
-   <img src="/img/datax_edit.png" width="80%" />
+   <img src="/img/datax_edit.png" width="100%" />
   </p>
 
 - 自定义模板：打开自定义模板开关时，可以自定义datax节点的json配置文件内容（适用于控件配置不满足需求时）
@@ -851,13 +851,13 @@ worker.groups=default,test
     例如：
 
 <p align="center">
-   <img src="/img/local_parameter.png" width="80%" />
+   <img src="/img/local_parameter.png" width="100%" />
  </p>
 
   - global_bizdate为全局参数，引用的是系统参数。
 
 <p align="center">
-   <img src="/img/global_parameter.png" width="80%" />
+   <img src="/img/global_parameter.png" width="100%" />
  </p>
 
  - 任务中local_param_bizdate通过\${global_bizdate}来引用全局参数，对于脚本可以通过\${local_param_bizdate}来引全局变量global_bizdate的值，或通过JDBC直接将local_param_bizdate的值set进去
