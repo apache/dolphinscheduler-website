@@ -36,7 +36,7 @@ useradd dolphinscheduler;
 # 添加密码
 echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 
-# 配置sudo免密
+# 配置sudo免密 [1]
 sed -i '$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
@@ -334,3 +334,15 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 
 `注：服务用途请具体参见《系统架构设计》小节`
 
+-----
+### 附录：
+
+ - <font color=red >[1]</font>配置sudo免密，用于解决默认配置sudo权限过大或不能申请root权限的使用问题
+
+    配置dolphinscheduler OS账号的sudo权限为部分普通用户范围内的一个普通用户管理者，限制指定用户在指定主机上运行某些命令，详细配置请看sudo权限管理。
+    例如sudo权限管理配置dolphinscheduler OS账号只能操作用户userA,userB,userC的权限（其中用户userA,userB,userC用于多租户向大数据集群提交作业）
+    
+    ```shell
+    echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+    sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
+    ```
