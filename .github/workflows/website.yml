@@ -1,0 +1,25 @@
+name: Build and Deploy
+
+on: [push]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 8.16.2
+    - name: Build
+      run: |
+        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r sitemap.xml 404.html .asf.yaml index.html en-us zh-cn build img download dist/
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.4.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: asf-site
+        PUBLISH_DIR: ./dist
