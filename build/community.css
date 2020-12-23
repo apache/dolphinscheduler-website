@@ -23975,6 +23975,96 @@ div.ant-typography-edit-content {
     width: 100%;
     text-align: center;
     padding: 0; } }
+.sidemenu {
+  background: #F2F3F7;
+  width: 295px;
+  position: relative;
+  display: inline-block;
+  padding: 20px 0; }
+  .sidemenu .sidemenu-toggle {
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    width: 40px;
+    right: -40px;
+    height: 30px;
+    line-height: 30px;
+    background: #F2F3F7;
+    border-radius: 0 4px 4px 0;
+    display: none; }
+    .sidemenu .sidemenu-toggle img {
+      width: 16px;
+      text-align: center;
+      vertical-align: middle; }
+  .sidemenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+  .sidemenu li {
+    line-height: 0; }
+  .sidemenu span, .sidemenu a {
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .sidemenu .menu-item-selected a {
+    background: white; }
+  .sidemenu .menu-item-selected a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-image: linear-gradient(0deg, #2D303A 0%, #2D303A 51%, #41444C 100%); }
+  .sidemenu .menu-item-level-1 > span {
+    font-family: Avenir-Heavy;
+    font-size: 18px;
+    color: #333;
+    padding-left: 20px;
+    height: 40px;
+    line-height: 40px; }
+  .sidemenu .menu-item-level-2, .sidemenu .menu-item-level-3 {
+    cursor: pointer; }
+    .sidemenu .menu-item-level-2 > span, .sidemenu .menu-item-level-2 > a, .sidemenu .menu-item-level-3 > span, .sidemenu .menu-item-level-3 > a {
+      font-family: Avenir-Medium;
+      font-size: 14px;
+      color: #666; }
+      .sidemenu .menu-item-level-2 > span:hover, .sidemenu .menu-item-level-2 > a:hover, .sidemenu .menu-item-level-3 > span:hover, .sidemenu .menu-item-level-3 > a:hover {
+        background: white; }
+        .sidemenu .menu-item-level-2 > span:hover::before, .sidemenu .menu-item-level-2 > a:hover::before, .sidemenu .menu-item-level-3 > span:hover::before, .sidemenu .menu-item-level-3 > a:hover::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 4px;
+          height: 100%;
+          background-image: linear-gradient(0deg, #2D303A 0%, #2D303A 51%, #41444C 100%); }
+  .sidemenu .menu-item-level-2 > span, .sidemenu .menu-item-level-2 > a {
+    padding-left: 40px;
+    height: 36px;
+    line-height: 36px; }
+    .sidemenu .menu-item-level-2 > span img.menu-toggle, .sidemenu .menu-item-level-2 > a img.menu-toggle {
+      float: right;
+      width: 13px;
+      height: 8px;
+      margin: 14px 20px 14px 0; }
+  .sidemenu .menu-item-level-3 > a {
+    padding-left: 60px;
+    height: 36px;
+    line-height: 36px; }
+
+@media screen and (max-width: 640px) {
+  .sidemenu {
+    width: 0; }
+    .sidemenu .sidemenu-toggle {
+      display: inline-block; }
+    .sidemenu.sidemenu-open {
+      width: 295px; } }
 .slider {
   overflow: hidden; }
   .slider .slider-list {
@@ -25415,11 +25505,37 @@ a {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400; }
 
-.community-page .events-section {
+.community-page .content-section {
   max-width: 1280px;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 80px 40px 60px; }
+  padding: 40px 40px 60px;
+  position: relative;
+  min-height: 1100px; }
+  .community-page .content-section .doc-content {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 20px 6% 0;
+    width: calc(100% - 295px); }
+
+@media screen and (max-width: 640px) {
+  .community-page .content-section {
+    padding-left: 20px;
+    padding-right: 20px; }
+    .community-page .content-section .doc-content {
+      width: 100%; }
+  .community-page .sidemenu {
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 40px;
+    min-height: 510px; } }
+
+.community-page .events-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box; }
   @media screen and (max-width: 640px) {
     .community-page .events-section {
       padding: 0; } }
@@ -25470,7 +25586,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 1280px;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 60px 40px 40px; }
+  padding-top: 60px; }
   @media screen and (max-width: 640px) {
     .community-page .contact-section {
       padding-left: 20px;
@@ -25508,7 +25624,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 1280px;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 60px 40px 40px; }
+  padding-top: 60px; }
   .community-page .contributor-section h3 {
     font-family: Avenir-Heavy;
     font-size: 36px;
