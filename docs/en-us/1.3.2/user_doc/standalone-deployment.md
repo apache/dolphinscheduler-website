@@ -2,7 +2,7 @@
 
 # 1、Install basic softwares (please install required softwares by yourself)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7)  :  Choose One,<font color="#dd0000">If user MySQL,It is strongly recommended that MySQL version is 5.7 or higher</font>
+ * PostgreSQL (8.2.15+) or MySQL (5.7)  :  Choose One,<font color="#dd0000">If use MySQL,It is strongly recommended that MySQL version is 5.7 or higher</font>
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
  * ZooKeeper (3.4.6+) ：Required
  * Hadoop (2.6+) or MinIO ：Optional. If you need resource function, for Standalone Deployment you can choose a local directory as the upload destination (this does not need Hadoop deployed). Of course, you can also choose to upload to Hadoop or MinIO.
