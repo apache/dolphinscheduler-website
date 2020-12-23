@@ -3,6 +3,12 @@ import React from 'react';
 export default {
   'en-us': {
     barText: 'Community',
+    sidemenu: [
+      {
+        title: 'Community News',
+        children: []
+      }
+    ],
     events: {
       title: 'Events & News',
       list: [
@@ -102,6 +108,12 @@ export default {
   },
   'zh-cn': {
     barText: '社区',
+    sidemenu: [
+      {
+        title: '社区动态',
+        children: []
+      }
+    ],
     events: {
       title: '事件 & 新闻',
       list: [
