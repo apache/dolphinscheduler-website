@@ -564,7 +564,7 @@ https://dolphinscheduler.apache.org/zh-cn/docs/user_doc/download.html
 
 通知邮件模板：
 
-标题：
+标题： 
 
 ```
 [ANNOUNCE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
