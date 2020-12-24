@@ -64,8 +64,14 @@ You selected this USER-ID:
    "${输入的用户名} (${输入的注释}) <${输入的邮件地址}>"
 
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
-You need a Passphrase to protect your secret key. # 输入密码
+You need a Passphrase to protect your secret key. # 输入apache登录密码
 ```
+注意：如果遇到以下错误：
+```
+gpg: cancelled by user
+gpg: Key generation canceled.
+```
+需要使用自己的用户登录服务器，而不是root切到自己的账户
 
 ### 查看生成的key
 
@@ -92,6 +98,11 @@ gpg --keyserver hkp://pool.sks-keyservers.net --send-key 85E11560
 ```
 
 `pool.sks-keyservers.net`为随意挑选的[公钥服务器](https://sks-keyservers.net/status/)，每个服务器之间是自动同步的，选任意一个即可。
+
+注意：如果同步到公钥服务器，可以在服务器上查到新建的公钥
+http://keyserver.ubuntu.com:11371/pks/lookup?search=${用户名}&fingerprint=on&op=index 
+备用公钥服务器 gpg --keyserver hkp://keyserver.ubuntu.com --send-key ${公钥ID}
+
 
 ## 发布Apache Maven中央仓库
 
@@ -124,9 +135,10 @@ https://github.com/apache/incubator-dolphinscheduler/blob/dev/RELEASE-NOTES.md
 ```
 
 ### 创建发布分支
+从github下载的DolphinScheduler源代码到`~/incubator-dolphinscheduler/`目录，假设即将发布的版本为`${RELEASE.VERSION}`
+git clone -b ${RELEASE.VERSION}-release https://github.com/apache/incubator-dolphinscheduler.git
 
-假设从github下载的DolphinScheduler源代码在`~/incubator-dolphinscheduler/`目录；假设即将发布的版本为`${RELEASE.VERSION}`。
-创建`${RELEASE.VERSION}-release`分支，接下来的操作都在该分支进行。
+创建`${RELEASE.VERSION}-release`分支，接下来的操作都在该分支进行(如果在github官网上手动执行发版分支创建，下面操作可以忽略)。
 
 ```shell
 cd ~/incubator-dolphinscheduler/
@@ -164,8 +176,18 @@ mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=
 和上一步演练的命令基本相同，去掉了-DdryRun=true参数。
 
 -DpushChanges=false：不要将修改后的版本号和tag自动提交至Github。
+如果遇到以下错误，请配置git邮箱为自己的apache邮箱和apache账号名
+```shell
+[ERROR] *** Please tell me who you are.
+[ERROR] 
+[ERROR] Run
+[ERROR] 
+[ERROR]   git config --global user.email "you@example.com"
+[ERROR]   git config --global user.name "Your Name"
+```
 
 将本地文件检查无误后，提交至github。
+
 
 ```shell
 git push
@@ -221,25 +243,24 @@ cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 将源码包和二进制包添加至SVN工作目录。
 
 ```shell
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-src/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-src/target/*.zip.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-backend/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-backend/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-front/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-front/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+
 ```
 
 ### 生成文件签名
 
 ```shell
 shasum -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip >> apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
-shasum -b -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz >> apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz.sha512
-shasum -b -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz >> apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz.sha512
+shasum -b -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz >> apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
 ```
 
 ### 提交Apache SVN
 
 ```shell
+cd ~/ds_svn/dev/dolphinscheduler
 svn add *
 svn --username=${APACHE LDAP 用户名} commit -m "release ${RELEASE.VERSION}"
 ```
@@ -249,8 +270,7 @@ svn --username=${APACHE LDAP 用户名} commit -m "release ${RELEASE.VERSION}"
 
 ```shell
 shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
-shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz.sha512
-shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz.sha512
+shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
 ```
 
 ### 检查gpg签名
@@ -282,8 +302,7 @@ Your decision? 5
 
 ```shell
 gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip
-gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz
-gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz
+gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz
 ```
 
 ### 检查发布文件内容
@@ -313,7 +332,7 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 - 所有文本文件开头都有ASF许可证
 - 检查第三方依赖许可证：
   - 第三方依赖的许可证兼容
-  - 所有第三方依赖的许可证都在`LICENSE`文件中声名
+  - 所有第三方依赖的许可证都在`LICENSE`文件中声明
   - 依赖许可证的完整版全部在`license`目录
   - 如果依赖的是Apache许可证并且存在`NOTICE`文件，那么这些`NOTICE`文件也需要加入到版本的`NOTICE`文件中
 
