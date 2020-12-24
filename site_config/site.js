@@ -15,30 +15,35 @@ export default {
       {
         key: 'docs',
         text: 'DOCS',
-        link: '/en-us/docs/1.3.2/user_doc/quick-start.html',
+        link: '/en-us/docs/1.3.3/user_doc/quick-start.html',
         children: [
           {
             key: 'docs1',
-            text: '1.3.2(Recommend)',
-            link: '/en-us/docs/1.3.2/user_doc/quick-start.html',
+            text: '1.3.3(Recommend)',
+            link: '/en-us/docs/1.3.3/user_doc/quick-start.html',
           },
           {
             key: 'docs2',
+            text: '1.3.2',
+            link: '/en-us/docs/1.3.2/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs3',
             text: '1.3.1',
             link: '/en-us/docs/1.3.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs4',
             text: '1.2.1',
             link: '/en-us/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs4',
+            key: 'docs5',
             text: '1.2.0',
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs5',
+              key: 'docs6',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
@@ -69,7 +74,51 @@ export default {
         key: 'community',
         text: 'COMMUNITY',
         link: '/en-us/community/index.html',
-      }
+      },
+      {
+        key: 'ASF',
+        text: 'ASF',
+        target: '_blank',
+        link: 'https://www.apache.org/',
+        children: [
+          {
+            key: 'Foundation',
+            text: 'Foundation',
+            target: '_blank',
+            link: 'https://www.apache.org/',
+          },
+          {
+            key: 'License',
+            text: 'License',
+            target: '_blank',
+            link: 'https://www.apache.org/licenses/',
+          },
+          {
+            key: 'Events',
+            text: 'Events',
+            target: '_blank',
+            link: 'https://www.apache.org/events/current-event',
+          },
+          {
+            key: 'Security',
+            text: 'Security',
+            target: '_blank',
+            link: 'https://www.apache.org/security/',
+          },
+          {
+            key: 'Sponsorship',
+            text: 'Sponsorship',
+            target: '_blank',
+            link: 'https://www.apache.org/foundation/sponsorship.html',
+          },
+          {
+            key: 'Thanks',
+            text: 'Thanks',
+            target: '_blank',
+            link: 'https://www.apache.org/foundation/thanks.html',
+          }
+        ]
+      },
     ],
     disclaimer: {
       title: 'Disclaimer',
@@ -88,7 +137,7 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
+          link: '/en-us/docs/1.3.3/user_doc/quick-start.html',
         },
         {
           text: 'Developer guide',
@@ -133,30 +182,35 @@ export default {
       {
         key: 'docs',
         text: '文档',
-        link: '/zh-cn/docs/1.3.2/user_doc/quick-start.html',
+        link: '/zh-cn/docs/1.3.3/user_doc/quick-start.html',
         children: [
           {
             key: 'docs1',
-            text: '1.3.2(推荐)',
-            link: '/zh-cn/docs/1.3.2/user_doc/quick-start.html',
+            text: '1.3.3(推荐)',
+            link: '/zh-cn/docs/1.3.3/user_doc/quick-start.html',
           },
           {
             key: 'docs2',
+            text: '1.3.2',
+            link: '/zh-cn/docs/1.3.2/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs3',
             text: '1.3.1',
             link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs4',
             text: '1.2.1',
             link: '/zh-cn/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs4',
+            key: 'docs5',
             text: '1.2.0',
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs5',
+              key: 'docs6',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           }
@@ -187,6 +241,62 @@ export default {
         key: 'community',
         text: '社区',
         link: '/zh-cn/community/index.html',
+        children: [
+          {
+            key: 'community',
+            text: '社区动态',
+            link: '/zh-cn/community/index.html',
+          },
+          {
+            key: 'example',
+            text: '示例页面',
+            link: '/zh-cn/docs/community/example.html',
+          }
+        ]
+      },
+      {
+        key: 'ASF',
+        text: 'ASF',
+        target: '_blank',
+        link: 'https://www.apache.org/',
+        children: [
+          {
+            key: 'Foundation',
+            text: 'Foundation',
+            target: '_blank',
+            link: 'https://www.apache.org/',
+          },
+          {
+            key: 'License',
+            text: 'License',
+            target: '_blank',
+            link: 'https://www.apache.org/licenses/',
+          },
+          {
+            key: 'Events',
+            text: 'Events',
+            target: '_blank',
+            link: 'https://www.apache.org/events/current-event',
+          },
+          {
+            key: 'Security',
+            text: 'Security',
+            target: '_blank',
+            link: 'https://www.apache.org/security/',
+          },
+          {
+            key: 'Sponsorship',
+            text: 'Sponsorship',
+            target: '_blank',
+            link: 'https://www.apache.org/foundation/sponsorship.html',
+          },
+          {
+            key: 'Thanks',
+            text: 'Thanks',
+            target: '_blank',
+            link: 'https://www.apache.org/foundation/thanks.html',
+          }
+        ]
       },
     ],
     disclaimer: {
@@ -206,7 +316,7 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
+          link: '/zh-cn/docs/1.3.3/user_doc/quick-start.html',
         },
         {
           text: '开发者指南',
