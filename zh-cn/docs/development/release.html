@@ -61,8 +61,13 @@ You selected this USER-ID:
    "${输入的用户名} (${输入的注释}) &lt;${输入的邮件地址}&gt;"
 
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
-You need a Passphrase to protect your secret key. # 输入密码
+You need a Passphrase to protect your secret key. # 输入apache登录密码
 </code></pre>
+<p>注意：如果遇到以下错误：</p>
+<pre><code>gpg: cancelled by user
+gpg: Key generation canceled.
+</code></pre>
+<p>需要使用自己的用户登录服务器，而不是root切到自己的账户</p>
 <h3>查看生成的key</h3>
 <pre><code class="language-shell">gpg --list-keys
 </code></pre>
@@ -77,6 +82,9 @@ sub   4096R/A63BC462 2019-11-15
 <pre><code class="language-shell">gpg --keyserver hkp://pool.sks-keyservers.net --send-key 85E11560
 </code></pre>
 <p><code>pool.sks-keyservers.net</code>为随意挑选的<a href="https://sks-keyservers.net/status/">公钥服务器</a>，每个服务器之间是自动同步的，选任意一个即可。</p>
+<p>注意：如果同步到公钥服务器，可以在服务器上查到新建的公钥
+<a href="http://keyserver.ubuntu.com:11371/pks/lookup?search=$%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D&amp;fingerprint=on&amp;op=index">http://keyserver.ubuntu.com:11371/pks/lookup?search=${用户名}&amp;fingerprint=on&amp;op=index</a>
+备用公钥服务器 gpg --keyserver hkp://keyserver.ubuntu.com --send-key ${公钥ID}</p>
 <h2>发布Apache Maven中央仓库</h2>
 <h3>设置settings.xml文件</h3>
 <p>将以下模板添加到 <code>~/.m2/settings.xml</code>中，所有密码需要加密后再填入。
@@ -100,8 +108,9 @@ sub   4096R/A63BC462 2019-11-15
 <pre><code>https://github.com/apache/incubator-dolphinscheduler/blob/dev/RELEASE-NOTES.md
 </code></pre>
 <h3>创建发布分支</h3>
-<p>假设从github下载的DolphinScheduler源代码在<code>~/incubator-dolphinscheduler/</code>目录；假设即将发布的版本为<code>${RELEASE.VERSION}</code>。
-创建<code>${RELEASE.VERSION}-release</code>分支，接下来的操作都在该分支进行。</p>
+<p>从github下载的DolphinScheduler源代码到<code>~/incubator-dolphinscheduler/</code>目录，假设即将发布的版本为<code>${RELEASE.VERSION}</code>
+git clone -b ${RELEASE.VERSION}-release <a href="https://github.com/apache/incubator-dolphinscheduler.git">https://github.com/apache/incubator-dolphinscheduler.git</a></p>
+<p>创建<code>${RELEASE.VERSION}-release</code>分支，接下来的操作都在该分支进行(如果在github官网上手动执行发版分支创建，下面操作可以忽略)。</p>
 <pre><code class="language-shell">cd ~/incubator-dolphinscheduler/
 git pull
 git checkout -b ${RELEASE.VERSION}-release
@@ -121,7 +130,15 @@ git push origin ${RELEASE.VERSION}-release
 <pre><code class="language-shell">mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github用户名}
 </code></pre>
 <p>和上一步演练的命令基本相同，去掉了-DdryRun=true参数。</p>
-<p>-DpushChanges=false：不要将修改后的版本号和tag自动提交至Github。</p>
+<p>-DpushChanges=false：不要将修改后的版本号和tag自动提交至Github。
+如果遇到以下错误，请配置git邮箱为自己的apache邮箱和apache账号名</p>
+<pre><code class="language-shell">[ERROR] *** Please tell me who you are.
+[ERROR] 
+[ERROR] Run
+[ERROR] 
+[ERROR]   git config --global user.email "you@example.com"
+[ERROR]   git config --global user.name "Your Name"
+</code></pre>
 <p>将本地文件检查无误后，提交至github。</p>
 <pre><code class="language-shell">git push
 git push origin --tags
@@ -153,27 +170,25 @@ cd ~/ds_svn/dev/dolphinscheduler
 cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 </code></pre>
 <p>将源码包和二进制包添加至SVN工作目录。</p>
-<pre><code class="language-shell">cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-src/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-src/target/*.zip.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-backend/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-backend/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-front/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/dolphinscheduler-front/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+<pre><code class="language-shell">cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+
 </code></pre>
 <h3>生成文件签名</h3>
 <pre><code class="language-shell">shasum -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip &gt;&gt; apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
-shasum -b -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz &gt;&gt; apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz.sha512
-shasum -b -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz &gt;&gt; apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz.sha512
+shasum -b -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz &gt;&gt; apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
 </code></pre>
 <h3>提交Apache SVN</h3>
-<pre><code class="language-shell">svn add *
+<pre><code class="language-shell">cd ~/ds_svn/dev/dolphinscheduler
+svn add *
 svn --username=${APACHE LDAP 用户名} commit -m "release ${RELEASE.VERSION}"
 </code></pre>
 <h2>检查发布结果</h2>
 <h3>检查sha512哈希</h3>
 <pre><code class="language-shell">shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
-shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz.sha512
-shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz.sha512
+shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
 </code></pre>
 <h3>检查gpg签名</h3>
 <p>首先导入发布人公钥。从svn仓库导入KEYS到本地环境。（发布版本的人不需要再导入，帮助做验证的人需要导入，用户名填发版人的即可）</p>
@@ -198,8 +213,7 @@ Your decision? 5
 </code></pre>
 <p>然后进行gpg签名检查。</p>
 <pre><code class="language-shell">gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip
-gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz
-gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz
+gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz
 </code></pre>
 <h3>检查发布文件内容</h3>
 <h4>检查源码包的文件内容</h4>
@@ -226,7 +240,7 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 <li>检查第三方依赖许可证：
 <ul>
 <li>第三方依赖的许可证兼容</li>
-<li>所有第三方依赖的许可证都在<code>LICENSE</code>文件中声名</li>
+<li>所有第三方依赖的许可证都在<code>LICENSE</code>文件中声明</li>
 <li>依赖许可证的完整版全部在<code>license</code>目录</li>
 <li>如果依赖的是Apache许可证并且存在<code>NOTICE</code>文件，那么这些<code>NOTICE</code>文件也需要加入到版本的<code>NOTICE</code>文件中</li>
 </ul>
