@@ -7,6 +7,15 @@ export default {
       {
         title: 'Community News',
         children: []
+      },
+      {
+        title: 'example',
+        children: [
+          {
+            title: 'example page',
+            link: '/en-us/docs/community/example.html',
+          },
+        ]
       }
     ],
     events: {
@@ -111,7 +120,21 @@ export default {
     sidemenu: [
       {
         title: '社区动态',
-        children: []
+        children: [
+          {
+            title: '社区动态',
+            link: '/zh-cn/community/index.html',
+          },
+        ]
+      },
+      {
+        title: '示例',
+        children: [
+          {
+            title: '示例页面',
+            link: '/zh-cn/docs/community/example.html',
+          },
+        ]
       }
     ],
     events: {
