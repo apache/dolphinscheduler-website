@@ -10,6 +10,7 @@ import ContactItem from './contactItem';
 import ContributorItem from './contributorItem';
 import Footer from '../../components/footer';
 import communityConfig from '../../../site_config/community.jsx';
+import communityConfigs from '../../../site_config/community';
 
 import './index.scss';
 
@@ -17,7 +18,10 @@ class Community extends Language {
 
   render() {
     const language = this.getLanguage();
-    const dataSource = communityConfig[language];
+    let dataSource = communityConfig[language];
+    if (window.location.pathname.indexOf('/docs/community/') >= 0) {
+      dataSource = communityConfigs[language];
+    }
     return (
       <div className="community-page">
         <Header
@@ -28,29 +32,26 @@ class Community extends Language {
           onLanguageChange={this.onLanguageChange}
         />
         <Bar img="/img/system/community.png" text={dataSource.barText} />
-        <section className="content-section">
-          <Sidemenu dataSource={dataSource.sidemenu} />
-          <div className="doc-content markdown-body">
-            <section className="events-section">
-              <h3>{dataSource.events.title}</h3>
-              <Slider>
-                {dataSource.events.list.map((event, i) => (
-                  <EventCard event={event} key={i} />
-                ))}
-              </Slider>
-            </section>
-            <section className="contact-section">
-              <h3>{dataSource.contacts.title}</h3>
-              <p>{dataSource.contacts.desc}</p>
-              <div className="contact-list">
-              {
-                dataSource.contacts.list.map((contact, i) => (
-                  <ContactItem contact={contact} key={i} />
-                ))
-              }
-              </div>
-            </section>
-            <section className="contributor-section">
+        <section className="events-section">
+          <h3>{dataSource.events.title}</h3>
+          <Slider>
+            {dataSource.events.list.map((event, i) => (
+              <EventCard event={event} key={i} />
+            ))}
+          </Slider>
+        </section>
+        <section className="contact-section">
+          <h3>{dataSource.contacts.title}</h3>
+          <p>{dataSource.contacts.desc}</p>
+          <div className="contact-list">
+          {
+            dataSource.contacts.list.map((contact, i) => (
+              <ContactItem contact={contact} key={i} />
+            ))
+          }
+          </div>
+        </section>
+        <section className="contributor-section">
               <h3>{dataSource.contributorGuide.title}</h3>
               <p>{dataSource.contributorGuide.desc}</p>
               <div className="contributor-list">
@@ -61,8 +62,6 @@ class Community extends Language {
               }
               </div>
             </section>
-          </div>
-        </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
     );
