@@ -28,9 +28,10 @@
   </p>
 
  * 创建Worker分组
- <p align="center">
-    <img src="/img/worker_group.png" width="60%" />
-  </p>
+ 
+ 1.3.x版本为了支持docker,暂时不支持页面添加Worker分组,只能通过修改 **conf/worker.properties** 配置文件方式添加.
+ 参考[用户手册: 5.7 Worker分组](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.2/user_doc/system-manual.html?_blank) 
+ 
  
  * 创建token令牌
  <p align="center">
