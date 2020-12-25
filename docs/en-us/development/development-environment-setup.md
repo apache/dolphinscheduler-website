@@ -33,7 +33,7 @@ node --version
 #### Install zookeeper
 
 1. Download zookeeper  
-http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
+http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.2/apache-zookeeper-3.6.2-bin.tar.gz
 
 2. Copy the zookeeper config file  
 cp conf/zoo_sample.cfg conf/zoo.cfg

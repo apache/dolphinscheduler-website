@@ -23,7 +23,7 @@ DolphinScheduler 网站由 [docsite](https://github.com/txd-team/docsite) 提供
 
 ### 文档构建指南
 
-1. 运行 “npm install docsite-g” 安装开发工具。
+1. 运行 “npm install docsite -g” 安装开发工具。
 
 2. 在根目录中运行 “npm i” 以安装依赖项。
 
