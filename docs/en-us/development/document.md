@@ -41,7 +41,7 @@ If the latest version of node is installed locally, consider using "nvm" to allo
 
 3. Run “nvm use v8.16.0” to switch the current working environment to node v8.
 
-4. Run `npm install docsite-g`
+4. Run `npm install docsite -g`
 
 Now you can run and build the website in your local environment.
 
@@ -64,4 +64,4 @@ Now you can run and build the website in your local environment.
 
 ### Reference to the documentation.
 
-[Apache Flink Translation Specifications](https://cwiki.apache.org/confluence/display/FLINK/Flink+Translation+Specifications)
+[Apache Flink Translation Specifications](https://cwiki.apache.org/confluence/display/FLINK/Flink+Translation+Specifications)

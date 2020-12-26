@@ -129,9 +129,27 @@ sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler
 
 
 
-### 1.4. 重启集群&验证
+### 1.4. 启动服务&验证
 
-- 重启集群
+- 在扩容的机器上,直接启动对应的master/worker服务即可.不需要重启整个集群.(Dolphinscheduler采用分布式无中心的架构,可以自动感知新增/下线的服务)
+
+```shell
+启动命令:
+sh bin/dolphinscheduler-daemon.sh start master-server  启动 master 服务
+sh bin/dolphinscheduler-daemon.sh start worker-server  启动 worker 服务
+sh bin/dolphinscheduler-daemon.sh start logger-server  启动 logger  服务
+
+停止命令:
+sh bin/dolphinscheduler-daemon.sh stop master-server  停止 master 服务
+sh bin/dolphinscheduler-daemon.sh stop worker-server  停止 worker 服务
+sh bin/dolphinscheduler-daemon.sh stop logger-server  停止 logger  服务
+
+```
+
+
+- 当然如果想验证配置文件是否生效的话,可以重启整个集群.
+
+
 
 ```shell
 停止命令:
@@ -142,7 +160,6 @@ sh bin/dolphinscheduler-daemon.sh stop worker-server  停止 worker 服务
 sh bin/dolphinscheduler-daemon.sh stop logger-server  停止 logger  服务
 sh bin/dolphinscheduler-daemon.sh stop api-server     停止 api    服务
 sh bin/dolphinscheduler-daemon.sh stop alert-server   停止 alert  服务
-
 
 启动命令:
 bin/start-all.sh 启动所有服务

@@ -8,9 +8,18 @@ export default {
         title: 'Community News',
         children: [
           {
-            title: 'Home',
+            title: 'Community News',
             link: '/en-us/community/index.html',
-          }
+          },
+        ]
+      },
+      {
+        title: 'example',
+        children: [
+          {
+            title: 'example page',
+            link: '/en-us/docs/community/example.html',
+          },
         ]
       }
     ],
@@ -118,11 +127,20 @@ export default {
         title: '社区动态',
         children: [
           {
-            title: '首页',
+            title: '社区动态',
             link: '/zh-cn/community/index.html',
-          }
+          },
         ]
-      }
+      },
+      {
+        title: '示例',
+        children: [
+          {
+            title: '示例页面',
+            link: '/zh-cn/docs/community/example.html',
+          },
+        ]
+      },
     ],
     events: {
       title: '事件 & 新闻',

@@ -10,14 +10,17 @@ import ContactItem from './contactItem';
 import ContributorItem from './contributorItem';
 import Footer from '../../components/footer';
 import communityConfig from '../../../site_config/community.jsx';
-
+import communityConfigs from '../../../site_config/community';
 import './index.scss';
 
 class Community extends Language {
 
   render() {
     const language = this.getLanguage();
-    const dataSource = communityConfig[language];
+    let dataSource = communityConfig[language];
+    if (window.location.pathname.indexOf('/docs/community/') >= 0) {
+      dataSource = communityConfigs[language];
+    }
     return (
       <div className="community-page">
         <Header
@@ -61,8 +64,8 @@ class Community extends Language {
               }
               </div>
             </section>
-          </div>
-        </section>
+              </div>
+            </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
     );

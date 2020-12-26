@@ -27,7 +27,7 @@ nvm install v12.12.0
 
 #### 安装zookeeper  
 1. 下载zookeeper  
-http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.1/apache-zookeeper-3.6.1-bin.tar.gz
+http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.2/apache-zookeeper-3.6.2-bin.tar.gz
 2. 复制配置文件  
 cp conf/zoo_sample.cfg conf/zoo.cfg
 3. 修改配置  

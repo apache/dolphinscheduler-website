@@ -74,7 +74,51 @@ export default {
         key: 'community',
         text: 'COMMUNITY',
         link: '/en-us/community/index.html',
-      }
+      },
+      {
+        key: 'ASF',
+        text: 'ASF',
+        target: '_blank',
+        link: 'https://www.apache.org/',
+        children: [
+          {
+            key: 'Foundation',
+            text: 'Foundation',
+            target: '_blank',
+            link: 'https://www.apache.org/',
+          },
+          {
+            key: 'License',
+            text: 'License',
+            target: '_blank',
+            link: 'https://www.apache.org/licenses/',
+          },
+          {
+            key: 'Events',
+            text: 'Events',
+            target: '_blank',
+            link: 'https://www.apache.org/events/current-event',
+          },
+          {
+            key: 'Security',
+            text: 'Security',
+            target: '_blank',
+            link: 'https://www.apache.org/security/',
+          },
+          {
+            key: 'Sponsorship',
+            text: 'Sponsorship',
+            target: '_blank',
+            link: 'https://www.apache.org/foundation/sponsorship.html',
+          },
+          {
+            key: 'Thanks',
+            text: 'Thanks',
+            target: '_blank',
+            link: 'https://www.apache.org/foundation/thanks.html',
+          }
+        ]
+      },
     ],
     disclaimer: {
       title: 'Disclaimer',
@@ -197,6 +241,62 @@ export default {
         key: 'community',
         text: '社区',
         link: '/zh-cn/community/index.html',
+        children: [
+          {
+            key: 'community',
+            text: '社区动态',
+            link: '/zh-cn/community/index.html',
+          },
+          {
+            key: 'example',
+            text: '示例页面',
+            link: '/zh-cn/docs/community/example.html',
+          }
+        ]
+      },
+      {
+        key: 'ASF',
+        text: 'ASF',
+        target: '_blank',
+        link: 'https://www.apache.org/',
+        children: [
+          {
+            key: 'Foundation',
+            text: 'Foundation',
+            target: '_blank',
+            link: 'https://www.apache.org/',
+          },
+          {
+            key: 'License',
+            text: 'License',
+            target: '_blank',
+            link: 'https://www.apache.org/licenses/',
+          },
+          {
+            key: 'Events',
+            text: 'Events',
+            target: '_blank',
+            link: 'https://www.apache.org/events/current-event',
+          },
+          {
+            key: 'Security',
+            text: 'Security',
+            target: '_blank',
+            link: 'https://www.apache.org/security/',
+          },
+          {
+            key: 'Sponsorship',
+            text: 'Sponsorship',
+            target: '_blank',
+            link: 'https://www.apache.org/foundation/sponsorship.html',
+          },
+          {
+            key: 'Thanks',
+            text: 'Thanks',
+            target: '_blank',
+            link: 'https://www.apache.org/foundation/thanks.html',
+          }
+        ]
       },
     ],
     disclaimer: {
