@@ -6,7 +6,12 @@ export default {
     sidemenu: [
       {
         title: 'Community News',
-        children: []
+        children: [
+          {
+            title: 'Home',
+            link: '/en-us/community/index.html',
+          }
+        ]
       }
     ],
     events: {
@@ -111,7 +116,12 @@ export default {
     sidemenu: [
       {
         title: '社区动态',
-        children: []
+        children: [
+          {
+            title: '首页',
+            link: '/zh-cn/community/index.html',
+          }
+        ]
       }
     ],
     events: {

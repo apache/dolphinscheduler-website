@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { scroller } from 'react-scroll';
-import path from 'path';
-import 'whatwg-fetch'; // fetch polyfill
 import Language from '../../components/language';
 import Header from '../../components/header';
+import Bar from '../../components/bar';
+import Sidemenu from '../../components/sidemenu';
 import Footer from '../../components/footer';
-import './index.scss';
+import communityConfig from '../../../site_config/community.jsx';
+
+import './index.md.scss';
 
 // 锚点正则
 const anchorReg = /^#[^/]/;
 // 相对地址正则，包括./、../、直接文件夹名称开头、直接文件开头
 const relativeReg = /^((\.{1,2}\/)|([\w-]+[/.]))/;
-class BlogDetail extends Language {
+
+class Community extends Language {
 
   constructor(props) {
     super(props);
@@ -51,7 +53,7 @@ class BlogDetail extends Language {
   handleRelativeLink() {
     const language = this.getLanguage();
     // 获取当前文档所在文件系统中的路径
-    // rootPath/en-us/blog/dir/hello.html => /blog/en-us/dir
+    // rootPath/en-us/community/dir/hello.html => /community/en-us/dir
     const splitPart = window.location.pathname.replace(`${window.rootPath}/${language}`, '').split('/').slice(0, -1);
     const filePath = splitPart.join('/');
     const alinks = Array.from(this.markdownContainer.querySelectorAll('a'));
@@ -67,7 +69,7 @@ class BlogDetail extends Language {
   handleRelativeImg() {
     const language = this.getLanguage();
     // 获取当前文档所在文件系统中的路径
-    // rootPath/en-us/blog/dir/hello.html => /blog/en-us/dir
+    // rootPath/en-us/community/dir/hello.html => /community/en-us/dir
     const splitPart = window.location.pathname.replace(`${window.rootPath}/${language}`, '').split('/').slice(0, -1);
     splitPart.splice(2, 0, language);
     const filePath = splitPart.join('/');
@@ -83,27 +85,32 @@ class BlogDetail extends Language {
 
   render() {
     const language = this.getLanguage();
+    const dataSource = communityConfig[language];
     const __html = this.props.__html || this.state.__html;
     return (
-      <div className="blog-detail-page">
+      <div className="community-page">
         <Header
+          currentKey="community"
           type="normal"
-          currentKey="blog"
           logo="/img/hlogo_colorful.svg"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <section
-          className="blog-content markdown-body"
-          ref={(node) => { this.markdownContainer = node; }}
-          dangerouslySetInnerHTML={{ __html }}
-        />
+        <Bar img="/img/system/community.png" text={dataSource.barText} />
+        <section className="content-section">
+          <Sidemenu dataSource={dataSource.sidemenu} />
+          <div
+            className="doc-content markdown-body"
+            ref={(node) => { this.markdownContainer = node; }}
+            dangerouslySetInnerHTML={{ __html }}
+          />
+        </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
     );
   }
 }
 
-document.getElementById('root') && ReactDOM.render(<BlogDetail />, document.getElementById('root'));
+document.getElementById('root') && ReactDOM.render(<Community />, document.getElementById('root'));
 
-export default BlogDetail;
+export default Community;

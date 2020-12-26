@@ -14,7 +14,7 @@ import docsConfig2 from '../../../site_config/docs1-3-1';
 import docsConfig3 from '../../../site_config/docs1-3-2';
 import docsConfig4 from '../../../site_config/docs1-3-3';
 import devConfig from '../../../site_config/development';
-import './index.scss';
+import './index.md.scss';
 
 
 // 锚点正则
