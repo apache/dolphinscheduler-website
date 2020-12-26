@@ -11,16 +11,34 @@ export default {
           ],
         },
         {
-          title: 'example',
+          title: 'Team',
           children: [
             {
-              title: 'example page',
-              link: '/en-us/docs/community/example.html',
+              title: 'team introduce',
+              link: '/en-us/docs/community/team.html',
+            }
+          ]
+        },
+        {
+          title: 'Security',
+          children: [
+            {
+              title: 'security introduce',
+              link: '/en-us/docs/community/security.html',
+            }
+          ]
+        },
+        {
+          title: 'Release Guide',
+          children: [
+            {
+              title: 'release guide',
+              link: '/en-us/docs/community/release.html',
             }
           ]
         },
       ],
-      barText: 'Development'
+      barText: 'Community'
     },
     'zh-cn': {
       sidemenu: [
