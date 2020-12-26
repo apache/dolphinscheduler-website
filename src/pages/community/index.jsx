@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Language from '../../components/language';
 import Header from '../../components/header';
+import Footer from '../../components/footer';
 import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
 import Slider from '../../components/slider';
 import EventCard from './eventCard';
 import ContactItem from './contactItem';
 import ContributorItem from './contributorItem';
-import Footer from '../../components/footer';
 import communityConfig from '../../../site_config/community.jsx';
 import './index.scss';
 
