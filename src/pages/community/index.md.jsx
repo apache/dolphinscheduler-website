@@ -6,7 +6,6 @@ import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
 import Footer from '../../components/footer';
 import communityConfig from '../../../site_config/community.jsx';
-
 import './index.md.scss';
 
 // 锚点正则

@@ -10,18 +10,36 @@ export default {
           {
             title: 'Community News',
             link: '/en-us/community/index.html',
-          },
-        ]
+          }
+        ],
       },
       {
-        title: 'example',
+        title: 'Team',
         children: [
           {
-            title: 'example page',
-            link: '/en-us/docs/community/example.html',
-          },
-        ]
-      }
+            title: 'team introduce',
+            link: '/en-us/community/team.html',
+          }
+        ],
+      },
+      {
+        title: 'Security',
+        children: [
+          {
+            title: 'security introduce',
+            link: '/en-us/community/security.html',
+          }
+        ],
+      },
+      {
+        title: 'Release Guide',
+        children: [
+          {
+            title: 'release guide',
+            link: '/en-us/community/release.html',
+          }
+        ],
+      },
     ],
     events: {
       title: 'Events & News',
@@ -129,18 +147,18 @@ export default {
           {
             title: '社区动态',
             link: '/zh-cn/community/index.html',
-          },
-        ]
+          }
+        ],
       },
       {
         title: '示例',
         children: [
           {
             title: '示例页面',
-            link: '/zh-cn/docs/community/example.html',
-          },
-        ]
-      },
+            link: '/zh-cn/community/example.html',
+          }
+        ],
+      }
     ],
     events: {
       title: '事件 & 新闻',
