@@ -2,7 +2,7 @@
 
 # 1、基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7系列)  :  两者任选其一即可
+ * PostgreSQL (8.2.15+) or MySQL (5.7系列)  :  两者任选其一即可，<font color="#dd0000">如果使用MySQL，强烈建议，MySQL的版本为5.7或更高</font>
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
  * ZooKeeper (3.4.6+) ：必装 
  * Hadoop (2.6+) or MinIO ：选装，如果需要用到资源上传功能，可以选择上传到Hadoop or MinIO上
