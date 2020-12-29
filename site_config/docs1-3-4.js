@@ -31,7 +31,7 @@ export default {
                     },
                     {
                         title: 'Metadata',
-                        link: '/en-us/docs/1.3.4/user_doc/metadata-1.2.html'
+                        link: '/en-us/docs/1.3.4/user_doc/metadata-1.3.html'
                     },
                 ]
             },
