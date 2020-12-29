@@ -549,6 +549,7 @@ I will process to publish the release and send ANNOUNCE.
 
 ```shell
 svn mv https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION} https://dist.apache.org/repos/dist/release/incubator/dolphinscheduler/
+svn cp -m 'copy KEYS from dev to release' https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS https://dist.apache.org/repos/dist/release/incubator/dolphinscheduler/KEYS
 ```
 
 2. 在Apache Staging仓库找到DolphinScheduler并点击`Release`
