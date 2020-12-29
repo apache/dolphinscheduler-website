@@ -1,18 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { scroller } from 'react-scroll';
 import path from 'path';
 import 'whatwg-fetch'; // fetch polyfill
-import Language from '../../components/language';
-import Header from '../../components/header';
-import Footer from '../../components/footer';
 import './index.scss';
 
-// 锚点正则
 const anchorReg = /^#[^/]/;
 // 相对地址正则，包括./、../、直接文件夹名称开头、直接文件开头
 const relativeReg = /^((\.{1,2}\/)|([\w-]+[/.]))/;
-class BlogDetail extends Language {
+
+const Md2Html = ComposeComponent => class extends ComposeComponent {
 
   constructor(props) {
     super(props);
@@ -51,7 +46,7 @@ class BlogDetail extends Language {
   handleRelativeLink() {
     const language = this.getLanguage();
     // 获取当前文档所在文件系统中的路径
-    // rootPath/en-us/blog/dir/hello.html => /blog/en-us/dir
+    // rootPath/en-us/docs/dir/hello.html => /docs/en-us/dir
     const splitPart = window.location.pathname.replace(`${window.rootPath}/${language}`, '').split('/').slice(0, -1);
     const filePath = splitPart.join('/');
     const alinks = Array.from(this.markdownContainer.querySelectorAll('a'));
@@ -67,7 +62,7 @@ class BlogDetail extends Language {
   handleRelativeImg() {
     const language = this.getLanguage();
     // 获取当前文档所在文件系统中的路径
-    // rootPath/en-us/blog/dir/hello.html => /blog/en-us/dir
+    // rootPath/en-us/docs/dir/hello.html => /docs/en-us/dir
     const splitPart = window.location.pathname.replace(`${window.rootPath}/${language}`, '').split('/').slice(0, -1);
     splitPart.splice(2, 0, language);
     const filePath = splitPart.join('/');
@@ -81,29 +76,6 @@ class BlogDetail extends Language {
     });
   }
 
-  render() {
-    const language = this.getLanguage();
-    const __html = this.props.__html || this.state.__html;
-    return (
-      <div className="blog-detail-page">
-        <Header
-          type="normal"
-          currentKey="blog"
-          logo="/img/hlogo_colorful.svg"
-          language={language}
-          onLanguageChange={this.onLanguageChange}
-        />
-        <section
-          className="blog-content markdown-body"
-          ref={(node) => { this.markdownContainer = node; }}
-          dangerouslySetInnerHTML={{ __html }}
-        />
-        <Footer logo="/img/ds_gray.svg" language={language} />
-      </div>
-    );
-  }
 }
 
-document.getElementById('root') && ReactDOM.render(<BlogDetail />, document.getElementById('root'));
-
-export default BlogDetail;
+export default Md2Html;

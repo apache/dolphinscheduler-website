@@ -2,7 +2,7 @@
 
 # 1、基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7系列)  :  两者任选其一即可
+ * PostgreSQL (8.2.15+) or MySQL (5.7系列)  :  两者任选其一即可，<font color="#dd0000">如果使用MySQL，强烈建议，MySQL的版本为5.7或更高</font>
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
  * ZooKeeper (3.4.6+) ：必装 
  * Hadoop (2.6+) or MinIO ：选装，如果需要用到资源上传功能，可以选择上传到Hadoop or MinIO上
@@ -473,3 +473,14 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
        #dolphin.scheduler.network.priority.strategy=default
       ```
       以上配置修改后重启服务生效。                        
+
+
+ - 配置sudo免密，用于解决默认配置sudo权限过大或不能申请root权限的使用问题
+
+    配置dolphinscheduler OS账号的sudo权限为部分普通用户范围内的一个普通用户管理者，限制指定用户在指定主机上运行某些命令，详细配置请看sudo权限管理。
+    例如sudo权限管理配置dolphinscheduler OS账号只能操作用户userA,userB,userC的权限（其中用户userA,userB,userC用于多租户向大数据集群提交作业）
+    
+    ```shell
+    echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+    sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
+    ```

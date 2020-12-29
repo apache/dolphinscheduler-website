@@ -3,6 +3,44 @@ import React from 'react';
 export default {
   'en-us': {
     barText: 'Community',
+    sidemenu: [
+      {
+        title: 'Community News',
+        children: [
+          {
+            title: 'Community News',
+            link: '/en-us/community/index.html',
+          }
+        ],
+      },
+      {
+        title: 'Team',
+        children: [
+          {
+            title: 'team introduce',
+            link: '/en-us/community/team.html',
+          }
+        ],
+      },
+      {
+        title: 'Security',
+        children: [
+          {
+            title: 'security introduce',
+            link: '/en-us/community/security.html',
+          }
+        ],
+      },
+      {
+        title: 'Release Guide',
+        children: [
+          {
+            title: 'release guide',
+            link: '/en-us/community/release.html',
+          }
+        ],
+      },
+    ],
     events: {
       title: 'Events & News',
       list: [
@@ -102,6 +140,44 @@ export default {
   },
   'zh-cn': {
     barText: '社区',
+    sidemenu: [
+      {
+        title: '社区动态',
+        children: [
+          {
+            title: '社区动态',
+            link: '/zh-cn/community/index.html',
+          }
+        ],
+      },
+      {
+        title: '团队',
+        children: [
+          {
+            title: '团队介绍',
+            link: '/zh-cn/community/team.html',
+          }
+        ],
+      },
+      {
+        title: '安全',
+        children: [
+          {
+            title: '安全介绍',
+            link: '/zh-cn/community/security.html',
+          }
+        ],
+      },
+      {
+        title: '发版指南',
+        children: [
+          {
+            title: '发版指南',
+            link: '/zh-cn/community/release.html',
+          }
+        ],
+      },
+    ],
     events: {
       title: '事件 & 新闻',
       list: [
