@@ -13,6 +13,7 @@ import docsConfig1 from '../../../site_config/docs1-2-1';
 import docsConfig2 from '../../../site_config/docs1-3-1';
 import docsConfig3 from '../../../site_config/docs1-3-2';
 import docsConfig4 from '../../../site_config/docs1-3-3';
+import docsConfig5 from '../../../site_config/docs1-3-4';
 import devConfig from '../../../site_config/development';
 import './index.scss';
 
