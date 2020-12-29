@@ -15,7 +15,7 @@ jobs:
         node-version: 8.16.2
     - name: Build
       run: |
-        mkdir dist && npm install && npm i docsite-ext && node_modules/docsite-ext/bin/docsite.js build && cp -r sitemap.xml 404.html .asf.yaml index.html en-us zh-cn build img download dist/
+        mkdir dist && npm install && npm run build && cp -r sitemap.xml 404.html .asf.yaml index.html en-us zh-cn build img download dist/
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
