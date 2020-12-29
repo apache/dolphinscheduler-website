@@ -73,19 +73,7 @@ export default {
       {
         key: 'community',
         text: 'COMMUNITY',
-        link: '/en-us/community/index.html',
-        children: [
-          {
-            key: 'community',
-            text: 'COMMUNITY NEWS',
-            link: '/en-us/community/index.html',
-          },
-          {
-            key: 'example',
-            text: 'EXAMPLE',
-            link: '/en-us/community/example.html',
-          }
-        ]
+        link: '/en-us/community/index.html'
       },
       {
         key: 'ASF',
@@ -252,19 +240,7 @@ export default {
       {
         key: 'community',
         text: '社区',
-        link: '/zh-cn/community/index.html',
-        children: [
-          {
-            key: 'community',
-            text: '社区动态',
-            link: '/zh-cn/community/index.html',
-          },
-          {
-            key: 'example',
-            text: '示例页面',
-            link: '/zh-cn/community/example.html',
-          }
-        ]
+        link: '/zh-cn/community/index.html'
       },
       {
         key: 'ASF',
