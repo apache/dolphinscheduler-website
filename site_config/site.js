@@ -63,7 +63,7 @@ export default {
         key: 'demo',
         text: 'Online Demo',
         target: '_blank',
-        link: 'http://106.75.43.194:8888'
+        link: 'http://106.75.43.194:8888/dolphinscheduler/ui/view/login/index.html'
       },
       {
         key: 'blog',
@@ -235,7 +235,7 @@ export default {
         key: 'demo',
         text: '线上demo',
         target: '_blank',
-        link: 'http://106.75.43.194:8888'
+        link: 'http://106.75.43.194:8888/dolphinscheduler/ui/view/login/index.html'
       },
       {
         key: 'blog',
