@@ -19,6 +19,16 @@ export default {
                 ]
             },
             {
+                title: 'Online Demo',
+                children: [
+                    {
+                        title: 'Online Demo',
+                        target: '_blank',
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/ui/view/login/index.html'
+                    }
+                ]
+            },
+            {
                 title: 'User Manual',
                 children: [
                     {
@@ -32,6 +42,10 @@ export default {
                     {
                         title: 'Metadata',
                         link: '/en-us/docs/1.2.0/user_doc/metadata-1.2.html'
+                    },
+                    {
+                        title: 'Deploy Param',
+                        link: '/zh-cn/docs/1.2.0/user_doc/deployparam.html'
                     },
                 ]
             },
@@ -91,7 +105,7 @@ export default {
                     {
                         title: '在线试用',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888'
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/ui/view/login/index.html'
                     }
                 ]
             },
