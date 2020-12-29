@@ -151,14 +151,32 @@ export default {
         ],
       },
       {
-        title: '示例',
+        title: '团队',
         children: [
           {
-            title: '示例页面',
-            link: '/zh-cn/community/example.html',
+            title: '团队介绍',
+            link: '/zh-cn/community/team.html',
           }
         ],
-      }
+      },
+      {
+        title: '安全',
+        children: [
+          {
+            title: '安全介绍',
+            link: '/zh-cn/community/security.html',
+          }
+        ],
+      },
+      {
+        title: '发版指南',
+        children: [
+          {
+            title: '发版指南',
+            link: '/zh-cn/community/release.html',
+          }
+        ],
+      },
     ],
     events: {
       title: '事件 & 新闻',
