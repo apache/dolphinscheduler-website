@@ -11,6 +11,7 @@ import docsConfig1 from '../../../site_config/docs1-2-1';
 import docsConfig2 from '../../../site_config/docs1-3-1';
 import docsConfig3 from '../../../site_config/docs1-3-2';
 import docsConfig4 from '../../../site_config/docs1-3-3';
+import docsConfig5 from '../../../site_config/docs1-3-4';
 import devConfig from '../../../site_config/development';
 
 class Documentation extends Md2Html(Language) {
@@ -20,6 +21,9 @@ class Documentation extends Md2Html(Language) {
     let dataSource = docsConfig1[language];
     if (window.location.pathname.indexOf('/development/') >= 0) {
       dataSource = devConfig[language];
+    }
+    if (window.location.pathname.indexOf('/1.3.4/') >= 0) {
+      dataSource = docsConfig5[language];
     }
     if (window.location.pathname.indexOf('/1.3.3/') >= 0) {
       dataSource = docsConfig4[language];
