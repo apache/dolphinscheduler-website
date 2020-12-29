@@ -1,29 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { scroller } from 'react-scroll';
-import 'whatwg-fetch'; // fetch polyfill
 import path from 'path';
-import Language from '../../components/language';
-import Header from '../../components/header';
-import Bar from '../../components/bar';
-import Sidemenu from '../../components/sidemenu';
-import Footer from '../../components/footer';
-import docsConfig from '../../../site_config/docs';
-import docsConfig1 from '../../../site_config/docs1-2-1';
-import docsConfig2 from '../../../site_config/docs1-3-1';
-import docsConfig3 from '../../../site_config/docs1-3-2';
-import docsConfig4 from '../../../site_config/docs1-3-3';
-import devConfig from '../../../site_config/development';
-import communityConfig from '../../../site_config/community';
+import 'whatwg-fetch'; // fetch polyfill
 import './index.scss';
 
-
-// 锚点正则
 const anchorReg = /^#[^/]/;
 // 相对地址正则，包括./、../、直接文件夹名称开头、直接文件开头
 const relativeReg = /^((\.{1,2}\/)|([\w-]+[/.]))/;
 
-class Documentation extends Language {
+const Md2Html = ComposeComponent => class extends ComposeComponent {
 
   constructor(props) {
     super(props);
@@ -92,55 +76,6 @@ class Documentation extends Language {
     });
   }
 
-  render() {
-    const language = this.getLanguage();
-    let dataSource = docsConfig1[language];
-    if (window.location.pathname.indexOf('/docs/community/') >= 0) {
-      dataSource = communityConfig[language];
-    }
-    if (window.location.pathname.indexOf('/development/') >= 0) {
-      dataSource = devConfig[language];
-    }
-    if (window.location.pathname.indexOf('/1.3.3/') >= 0) {
-      dataSource = docsConfig4[language];
-    }
-    if (window.location.pathname.indexOf('/1.3.2/') >= 0) {
-      dataSource = docsConfig3[language];
-    }
-    if (window.location.pathname.indexOf('/1.3.1/') >= 0) {
-      dataSource = docsConfig2[language];
-    }
-    if (window.location.pathname.indexOf('/1.2.1/') >= 0) {
-      dataSource = docsConfig1[language];
-    }
-    if (window.location.pathname.indexOf('/1.2.0/') >= 0) {
-      dataSource = docsConfig[language];
-    }
-    const __html = this.props.__html || this.state.__html;
-    return (
-      <div className="documentation-page">
-        <Header
-          currentKey="docs"
-          type="normal"
-          logo="/img/hlogo_colorful.svg"
-          language={language}
-          onLanguageChange={this.onLanguageChange}
-        />
-        <Bar img="/img/system/docs.png" text={dataSource.barText} />
-        <section className="content-section">
-          <Sidemenu dataSource={dataSource.sidemenu} />
-          <div
-            className="doc-content markdown-body"
-            ref={(node) => { this.markdownContainer = node; }}
-            dangerouslySetInnerHTML={{ __html }}
-          />
-        </section>
-        <Footer logo="/img/ds_gray.svg" language={language} />
-      </div>
-    );
-  }
 }
 
-document.getElementById('root') && ReactDOM.render(<Documentation />, document.getElementById('root'));
-
-export default Documentation;
+export default Md2Html;
