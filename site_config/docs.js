@@ -19,16 +19,6 @@ export default {
                 ]
             },
             {
-                title: 'Online Demo',
-                children: [
-                    {
-                        title: 'Online Demo',
-                        target: '_blank',
-                        link: 'http://106.75.43.194:8888/dolphinscheduler/ui/view/login/index.html'
-                    }
-                ]
-            },
-            {
                 title: 'User Manual',
                 children: [
                     {
