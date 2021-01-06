@@ -60,12 +60,6 @@ export default {
         link: '/en-us/docs/release/download.html',
       },
       {
-        key: 'demo',
-        text: 'Online Demo',
-        target: '_blank',
-        link: 'http://106.75.43.194:8888/dolphinscheduler/ui/view/login/index.html'
-      },
-      {
         key: 'blog',
         text: 'BLOG',
         link: '/en-us/blog/index.html',

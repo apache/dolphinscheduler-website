@@ -90,16 +90,6 @@ export default {
                 ],
             },
             {
-                title: '在线试用',
-                children: [
-                    {
-                        title: '在线试用',
-                        target: '_blank',
-                        link: 'http://106.75.43.194:8888/dolphinscheduler/ui/view/login/index.html'
-                    }
-                ]
-            },
-            {
                 title: '用户手册',
                 children: [
                     {
