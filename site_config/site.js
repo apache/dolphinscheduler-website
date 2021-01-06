@@ -232,12 +232,6 @@ export default {
         link: '/zh-cn/docs/release/download.html',
       },
       {
-        key: 'demo',
-        text: '线上demo',
-        target: '_blank',
-        link: 'http://106.75.43.194:8888/dolphinscheduler/ui/view/login/index.html'
-      },
-      {
         key: 'blog',
         text: '博客',
         link: '/zh-cn/blog/index.html',
