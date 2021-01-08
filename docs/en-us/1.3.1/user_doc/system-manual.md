@@ -710,6 +710,7 @@ Note: If you enable **kerberos**, you need to fill in **Principal**
 - Script: Python program developed by the user
 - Resources: refers to the list of resource files that need to be called in the script
 - User-defined parameter: It is a local user-defined parameter of Python, which will replace the content with ${variable} in the script
+- Note: If you import the python file under the resource directory tree, you need to add the __init__.py file
 
 #### 7.9 Flink Node
   - Drag in the toolbar<img src="/img/flink.png" width="35"/>The task node to the drawing board, as shown in the following figure:
