@@ -56,7 +56,6 @@ class Header extends React.Component {
       inputVisible: false,
     };
   }
-
   componentDidMount() {
     if(localStorage.getItem("currents") == null) {
       this.setState({
@@ -147,7 +146,6 @@ class Header extends React.Component {
   render() {
     const { type, logo, onLanguageChange, currentKey } = this.props;
     const { menuBodyVisible, language, search, searchVisible } = this.state;
-    
     return (
       <header
         className={
@@ -213,165 +211,25 @@ class Header extends React.Component {
               src={type === 'primary' ? getLink('/img/system/menu_white.png') : getLink('/img/system/menu_gray.png')}
             />
             <div>
-              {/* {language==='zh-cn'? <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-                <Menu.Item key='home'>
-                  <a href={getLink('/zh-cn/index.html')}>首页</a>
-                </Menu.Item>
-                <SubMenu
-                  title={
-                    <span className="submenu-title-wrapper">
-                      <a href={getLink('/zh-cn/docs/1.3.4/user_doc/quick-start.html')}>文档</a>
-                    </span>
-                  }
-                >
-                  <Menu.ItemGroup>
-                    <Menu.Item key='docs1' ><a href={getLink('http://'+window.location.host+'/zh-cn/docs/1.3.4/user_doc/quick-start.html')}>1.3.4(推荐)</a></Menu.Item>
-                    <Menu.Item key='docs2' ><a href={getLink('http://'+window.location.host+'/zh-cn/docs/1.3.3/user_doc/quick-start.html')}>1.3.3</a></Menu.Item>
-                    <Menu.Item key='docs3' ><a href={getLink('http://'+window.location.host+'zh-cn/docs/1.3.2/user_doc/quick-start.html')}>1.3.2</a></Menu.Item>
-                    <Menu.Item key='docs4' ><a href={getLink('http://'+window.location.host+'zh-cn/docs/1.3.1/user_doc/quick-start.html')}>1.3.1</a></Menu.Item>
-                    <Menu.Item key='docs5' ><a href={getLink('http://'+window.location.host+'zh-cn/docs/1.2.1/user_doc/quick-start.html')}>1.2.1</a></Menu.Item>
-                    <Menu.Item key='docs6' ><a href={getLink('http://'+window.location.host+'zh-cn/docs/1.2.0/user_doc/quick-start.html')}>1.2.0</a></Menu.Item>
-                    <Menu.Item key='docs7' ><a href={getLink('https://analysys.github.io/easyscheduler_docs_cn/')}>1.1.0(Not Apache Release)</a></Menu.Item>
-                  </Menu.ItemGroup>
-                </SubMenu>
-                <Menu.Item key='download'>
-                  <a href={getLink('/zh-cn/docs/release/download.html')}>下载</a>
-                </Menu.Item>
-                <Menu.Item key='blog'>
-                  <a href={getLink('/zh-cn/blog/index.html')}>博客</a>
-                </Menu.Item>
-                <Menu.Item key='development'>
-                  <a href={getLink('/zh-cn/docs/development/subscribe.html')}>开发者</a>
-                </Menu.Item>
-                <Menu.Item key='community'>
-                  <a href={getLink('/zh-cn/community/index.html')}>社区</a>
-                </Menu.Item>
-                <SubMenu
-                  title={
-                    <span className="submenu-title-wrapper">
-                      <a href={getLink('https://www.apache.org/')} target='_blank'>ASF</a>
-                    </span>
-                  }
-                >
-                  <Menu.ItemGroup>
-                    <Menu.Item key='Foundation' ><a href='https://www.apache.org/' target='_blank'>Foundation</a></Menu.Item>
-                    <Menu.Item key='License' ><a href='https://www.apache.org/licenses/' target='_blank'>License</a></Menu.Item>
-                    <Menu.Item key='Events' ><a href='https://www.apache.org/events/current-event' target='_blank'>Events</a></Menu.Item>
-                    <Menu.Item key='Security' ><a href='https://www.apache.org/security/' target='_blank'>Security</a></Menu.Item>
-                    <Menu.Item key='Sponsorship' ><a href='https://www.apache.org/foundation/sponsorship.html' target='_blank'>Sponsorship</a></Menu.Item>
-                    <Menu.Item key='Thanks' ><a href='https://www.apache.org/foundation/thanks.html' target='_blank'>Thanks</a></Menu.Item>
-                  </Menu.ItemGroup>
-                </SubMenu>
-              </Menu> : <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-                <Menu.Item key='home'>
-                  <a href={getLink('/en-us/index.html')}>HOME</a>
-                </Menu.Item>
-                <SubMenu
-                  title={
-                    <span className="submenu-title-wrapper">
-                      <a href={getLink('/en-us/docs/1.3.4/user_doc/quick-start.html')}>DOCS</a>
-                    </span>
-                  }
-                >
-                  <Menu.ItemGroup>
-                    <Menu.Item key='docs1' ><a href={getLink('http://'+window.location.host+'/en-us/docs/1.3.4/user_doc/quick-start.html')}>1.3.4(Recommend)</a></Menu.Item>
-                    <Menu.Item key='docs2' ><a href={getLink('http://'+window.location.host+'/en-us/docs/1.3.3/user_doc/quick-start.html')}>1.3.3</a></Menu.Item>
-                    <Menu.Item key='docs3' ><a href={getLink('http://'+window.location.host+'en-us/docs/1.3.2/user_doc/quick-start.html')}>1.3.2</a></Menu.Item>
-                    <Menu.Item key='docs4' ><a href={getLink('http://'+window.location.host+'en-us/docs/1.3.1/user_doc/quick-start.html')}>1.3.1</a></Menu.Item>
-                    <Menu.Item key='docs5' ><a href={getLink('http://'+window.location.host+'en-us/docs/1.2.1/user_doc/quick-start.html')}>1.2.1</a></Menu.Item>
-                    <Menu.Item key='docs6' ><a href={getLink('http://'+window.location.host+'en-us/docs/1.2.0/user_doc/quick-start.html')}>1.2.0</a></Menu.Item>
-                    <Menu.Item key='docs7' ><a href={getLink('http://'+window.location.host+'https://analysys.github.io/easyscheduler_docs_cn/')}>1.1.0(Not Apache Release)</a></Menu.Item>
-                  </Menu.ItemGroup>
-                </SubMenu>
-                <Menu.Item key='download'>
-                  <a href={getLink('/en-us/docs/release/download.html')}>DOWNLOAD</a>
-                </Menu.Item>
-                <Menu.Item key='blog'>
-                  <a href={getLink('/en-us/blog/index.html')}>BLOG</a>
-                </Menu.Item>
-                <Menu.Item key='development'>
-                  <a href={getLink('/en-us/docs/development/subscribe.html')}>DEVELOPMENT</a>
-                </Menu.Item>
-                <Menu.Item key='community'>
-                  <a href={getLink('/en-us/community/index.html')}>COMMUNITY</a>
-                </Menu.Item>
-                <SubMenu
-                  title={
-                    <span className="submenu-title-wrapper">
-                      <a href={getLink('https://www.apache.org/')} target='_blank'>ASF</a>
-                    </span>
-                  }
-                >
-                  <Menu.ItemGroup>
-                    <Menu.Item key='Foundation' ><a href='https://www.apache.org/' target='_blank'>Foundation</a></Menu.Item>
-                    <Menu.Item key='License' ><a href='https://www.apache.org/licenses/' target='_blank'>License</a></Menu.Item>
-                    <Menu.Item key='Events' ><a href='https://www.apache.org/events/current-event' target='_blank'>Events</a></Menu.Item>
-                    <Menu.Item key='Security' ><a href='https://www.apache.org/security/' target='_blank'>Security</a></Menu.Item>
-                    <Menu.Item key='Sponsorship' ><a href='https://www.apache.org/foundation/sponsorship.html' target='_blank'>Sponsorship</a></Menu.Item>
-                    <Menu.Item key='Thanks' ><a href='https://www.apache.org/foundation/thanks.html' target='_blank'>Thanks</a></Menu.Item>
-                  </Menu.ItemGroup>
-                </SubMenu>
-              </Menu>} */}
-              {language==='zh-cn'?
-              <ul className="nav">
-                <li><a href={getLink('/zh-cn/index.html')}>首页</a></li>
-                <li>
-                  <a href={getLink('/zh-cn/docs/1.3.4/user_doc/quick-start.html')}>文档</a>
-                  <ul>
-                    <li><a href={getLink('/zh-cn/docs/1.3.4/user_doc/quick-start.html')}>1.3.4(推荐)</a></li>
-                    <li><a href={getLink('/zh-cn/docs/1.3.3/user_doc/quick-start.html')}>1.3.3</a></li>
-                    <li><a href={getLink('/zh-cn/docs/1.3.2/user_doc/quick-start.html')}>1.3.2</a></li>
-                    <li><a href={getLink('/zh-cn/docs/1.3.1/user_doc/quick-start.html')}>1.3.1</a></li>
-                    <li><a href={getLink('/zh-cn/docs/1.2.1/user_doc/quick-start.html')}>1.2.1</a></li>
-                    <li><a href={getLink('/zh-cn/docs/1.2.0/user_doc/quick-start.html')}>1.2.0</a></li>
-                    <li><a href="https://analysys.github.io/easyscheduler_docs_cn/">1.1.0(Not Apache Release)</a></li>
-                  </ul>
-                </li>
-                <li><a href={getLink('/zh-cn/docs/release/download.html')}>下载</a></li>
-                <li><a href={getLink('/zh-cn/blog/index.html')}>博客</a></li>
-                <li><a href={getLink('/zh-cn/docs/development/subscribe.html')}>开发者</a></li>
-                <li><a href={getLink('/zh-cn/community/index.html')}>社区</a></li>
-                <li>
-                  <a href="https://www.apache.org/" target='_blank'>ASF</a>
-                  <ul>
-                    <li><a href="https://www.apache.org/" target='_blank'>Foundation</a></li>
-                    <li><a href="https://www.apache.org/licenses/" target='_blank'>License</a></li>
-                    <li><a href="https://www.apache.org/events/current-event" target='_blank'>Events</a></li>
-                    <li><a href="https://www.apache.org/security/" target='_blank'>Security</a></li>
-                    <li><a href="https://www.apache.org/foundation/sponsorship.html" target='_blank'>Sponsorship</a></li>
-                    <li><a href="https://www.apache.org/foundation/thanks.html" target='_blank'>Thanks</a></li>
-                  </ul>
-                </li>
-              </ul>: <ul className="nav">
-                <li><a href={getLink('/en-us/index.html')}>HOME</a></li>
-                <li>
-                  <a href={getLink('/en-us/docs/1.3.4/user_doc/quick-start.html')}>DOCS</a>
-                  <ul>
-                    <li><a href={getLink('/en-us/docs/1.3.4/user_doc/quick-start.html')}>1.3.4(Recommend)</a></li>
-                    <li><a href={getLink('/en-us/docs/1.3.3/user_doc/quick-start.html')}>1.3.3</a></li>
-                    <li><a href={getLink('/en-us/docs/1.3.2/user_doc/quick-start.html')}>1.3.2</a></li>
-                    <li><a href={getLink('/en-us/docs/1.3.1/user_doc/quick-start.html')}>1.3.1</a></li>
-                    <li><a href={getLink('/en-us/docs/1.2.1/user_doc/quick-start.html')}>1.2.1</a></li>
-                    <li><a href={getLink('/en-us/docs/1.2.0/user_doc/quick-start.html')}>1.2.0</a></li>
-                    <li><a href="https://analysys.github.io/easyscheduler_docs_cn/">1.1.0(Not Apache Release)</a></li>
-                  </ul>
-                </li>
-                <li><a href={getLink('/en-us/docs/release/download.html')}>DOWNLOAD</a></li>
-                <li><a href={getLink('/en-us/blog/index.html')}>BLOG</a></li>
-                <li><a href={getLink('/en-us/docs/development/subscribe.html')}>DEVELOPMENT</a></li>
-                <li><a href={getLink('/en-us/community/index.html')}>COMMUNITY</a></li>
-                <li>
-                  <a href="https://www.apache.org/" target='_blank'>ASF</a>
-                  <ul>
-                    <li><a href="https://www.apache.org/" target='_blank'>Foundation</a></li>
-                    <li><a href="https://www.apache.org/licenses/" target='_blank'>License</a></li>
-                    <li><a href="https://www.apache.org/events/current-event" target='_blank'>Events</a></li>
-                    <li><a href="https://www.apache.org/security/" target='_blank'>Security</a></li>
-                    <li><a href="https://www.apache.org/foundation/sponsorship.html" target='_blank'>Sponsorship</a></li>
-                    <li><a href="https://www.apache.org/foundation/thanks.html" target='_blank'>Thanks</a></li>
-                  </ul>
-                </li>
-              </ul>}
+            <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+            {siteConfig[language].pageMenu.map(item => (
+              item.children ? <SubMenu
+              title={
+                <span className="submenu-title-wrapper">
+                  <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+                </span>
+              }
+            >
+            <Menu.ItemGroup>
+            {item.children.map(items => (
+              <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
+            ))}
+            </Menu.ItemGroup>
+          </SubMenu> : <Menu.Item key={item.key}>
+              <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+            </Menu.Item>
+            ))}
+          </Menu>
           </div>
           </div>
         </div>
