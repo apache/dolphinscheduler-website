@@ -762,6 +762,7 @@ Note: JAVA and Scala are only used for identification, there is no difference, i
 - Script: Python program developed by the user
 - Resources: refers to the list of resource files that need to be called in the script
 - User-defined parameter: It is a local user-defined parameter of Python, which will replace the content with \${variable} in the script
+- Note: If you import the python file under the resource directory tree, you need to add the __init__.py file
 
 #### 7.9 Flink Node
 

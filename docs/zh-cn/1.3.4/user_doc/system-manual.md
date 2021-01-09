@@ -738,6 +738,7 @@ worker.groups=default,test
 - 脚本：用户开发的Python程序
 - 资源：是指脚本中需要调用的资源文件列表
 - 自定义参数：是Python局部的用户自定义参数，会替换脚本中以${变量}的内容
+- 注意：若引入资源目录树下的python文件，需添加__init__.py文件
 
 #### 7.9 Flink节点
   - 拖动工具栏中的<img src="/img/flink.png" width="35"/>任务节点到画板中，如下图所示：
