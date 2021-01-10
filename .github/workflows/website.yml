@@ -18,10 +18,8 @@ jobs:
         mkdir dist && npm install && npm run build && cp -r sitemap.xml 404.html .asf.yaml index.html en-us zh-cn build img download dist/
 
     - name: Deploy
-      if: success()
-      uses: crazy-max/ghaction-github-pages@v2
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        target_branch: asf-site
-        build_dir: ./dist
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: asf-site
+        publish_dir: ./dist
