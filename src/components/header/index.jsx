@@ -211,26 +211,31 @@ class Header extends React.Component {
               src={type === 'primary' ? getLink('/img/system/menu_white.png') : getLink('/img/system/menu_gray.png')}
             />
             <div>
-            <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-            {siteConfig[language].pageMenu.map(item => (
-              item.children ? <SubMenu
-              title={
-                <span className="submenu-title-wrapper">
+              <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" forceSubMenuRender={true}>
+              {siteConfig[language].pageMenu.map(item => (
+                item.children ? <SubMenu
+                  title={
+                    <span className="submenu-title-wrapper">
+                      <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+                      <ul style={{display: 'none'}}>
+                      {item.children.map(items => (
+                        <li key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></li>
+                      ))}
+                      </ul>
+                    </span>
+                  }
+                >
+                  <Menu.ItemGroup>
+                  {item.children.map(items => (
+                    <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
+                  ))}
+                  </Menu.ItemGroup>
+                </SubMenu> : <Menu.Item key={item.key}>
                   <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                </span>
-              }
-            >
-            <Menu.ItemGroup>
-            {item.children.map(items => (
-              <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
-            ))}
-            </Menu.ItemGroup>
-          </SubMenu> : <Menu.Item key={item.key}>
-              <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-            </Menu.Item>
-            ))}
-          </Menu>
-          </div>
+                </Menu.Item>
+                ))}
+              </Menu>
+            </div>
           </div>
         </div>
       </header>
