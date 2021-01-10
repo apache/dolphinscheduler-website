@@ -24,7 +24,7 @@ class BlogDetail extends Md2Html(Language) {
           ref={(node) => { this.markdownContainer = node; }}
           dangerouslySetInnerHTML={{ __html }}
         />
-        <Footer logo="/img/dubbo_gray.png" language={language} />
+        <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
     );
   }

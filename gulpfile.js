@@ -3,7 +3,9 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 const webpack = require('webpack');
 const opn = require('opn');
+const path = require('path');
 const WebpackDevServer = require('webpack-dev-server');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const siteConfig = require('./site_config/site').default;
 const webpackConfig = require('./webpack.config.js');
 
@@ -43,7 +45,10 @@ gulp.task('webpack:build', callback => {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new CopyWebpackPlugin([
+      { from: path.join(__dirname, siteConfig.defaultLanguage, 'index.html'), to: path.join(__dirname, 'index.html') },
+    ])
   );
 
   // run webpack
