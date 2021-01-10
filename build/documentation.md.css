@@ -23695,6 +23695,12 @@ div.ant-typography-edit-content {
         margin-right: 20px;
         margin-top: 18px;
         cursor: pointer; }
+    .header-container .header-body ul {
+      padding: 0;
+      margin: 0; }
+    .header-container .header-body li {
+      display: inline-block;
+      margin-right: 20px; }
     .header-container .header-body .menu-item {
       font-family: Avenir-Heavy;
       font-size: 14px;
@@ -23811,50 +23817,6 @@ div.ant-typography-edit-content {
           height: 24px;
           vertical-align: middle; }
 
-.nav {
-  margin-top: -12px;
-  height: 60px;
-  line-height: 60px;
-  padding: 0;
-  list-style-type: none;
-  float: left; }
-  .nav a:hover {
-    color: #1890ff !important; }
-  .nav ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    float: left; }
-    .nav ul a:hover {
-      color: #1890ff !important; }
-  .nav li {
-    float: left;
-    width: 120px;
-    text-align: center; }
-    .nav li ul {
-      width: 150px;
-      position: absolute;
-      left: -99999px;
-      background-color: #fff; }
-    .nav li li {
-      float: none;
-      width: 150px;
-      height: 45px;
-      line-height: 45px; }
-      .nav li li a {
-        border-left: 0;
-        border-right: 0; }
-  .nav a {
-    display: block;
-    color: #333;
-    text-decoration: none;
-    padding: 5px 10px; }
-  .nav li:last-child a {
-    border-right: 0;
-    border-bottom: 0; }
-  .nav li:hover ul {
-    left: auto; }
-
 @media screen and (max-width: 640px) {
   .header-container .header-body .logo {
     margin-left: 20px; }
@@ -23877,7 +23839,17 @@ div.ant-typography-edit-content {
     display: list-item;
     padding-left: 30px;
     list-style: none;
+    line-height: 40px;
     margin-right: 20px; }
+    .header-container .header-body .header-menu-open li a {
+      color: #333;
+      display: inline-block;
+      width: 100%; }
+    .header-container .header-body .header-menu-open li:hover {
+      background: #41444C; }
+      .header-container .header-body .header-menu-open li:hover a {
+        color: #fff;
+        opacity: 1; }
   .header-container .header-body .header-menu-open .menu-item-primary-active, .header-container .header-body .header-menu-open .menu-item-normal-active {
     background: #41444C; }
     .header-container .header-body .header-menu-open .menu-item-primary-active a, .header-container .header-body .header-menu-open .menu-item-normal-active a {
