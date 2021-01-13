@@ -214,6 +214,7 @@ class Header extends React.Component {
               <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" forceSubMenuRender={true}>
               {siteConfig[language].pageMenu.map(item => (
                 item.children ? <SubMenu
+                  key={item.key}
                   title={
                     <span className="submenu-title-wrapper">
                       <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
