@@ -38,7 +38,7 @@
 │  ├─create                             创建SQL脚本目录
 │  ├─upgrade                            升级SQL脚本目录
 │  ├─dolphinscheduler-postgre.sql       postgre数据库初始化脚本
-│  ├─dolphinscheduler_mysql.sql         mysql数据库初始化版本
+│  ├─dolphinscheduler_mysql.sql         mysql数据库初始化脚本
 │  ├─soft_version                       当前DS版本标识文件
 ├─script                            DS服务部署,数据库创建/升级脚本目录
 │  ├─create-dolphinscheduler.sh         DS数据库初始化脚本      
@@ -68,7 +68,7 @@
 8|Alert 服务配置|alert.properties
 9|Quartz配置|quartz.properties
 10|DS环境变量配置脚本[用于DS安装/启动]|install_config.conf
-11|运行脚本加载环境变量配置文件 <br />[如: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...|dolphinscheduler_env.sh
+11|运行脚本加载环境变量配置文件 <br />[如: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]|dolphinscheduler_env.sh
 12|各服务日志配置文件|api服务日志配置文件 : logback-api.xml  <br /> master服务日志配置文件  : logback-master.xml    <br /> worker服务日志配置文件 : logback-worker.xml  <br /> alert服务日志配置文件 : logback-alert.xml 
 
 
@@ -397,7 +397,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 ```
 
 ## 12.各服务日志配置文件
-对应服务服务名成| 日志文件名 |
+对应服务服务名称| 日志文件名 |
 |--|--|--|
 api服务日志配置文件 |logback-api.xml|
 master服务日志配置文件|logback-master.xml |
