@@ -60,9 +60,9 @@ export default {
         link: '/en-us/docs/release/download.html',
       },
       {
-        key: 'blog',
-        text: 'BLOG',
-        link: '/en-us/blog/index.html',
+        key: 'development',
+        text: 'DEVELOPMENT',
+        link: '/en-us/docs/development/subscribe.html',
       },
       {
         key: 'community',
@@ -217,9 +217,9 @@ export default {
         link: '/zh-cn/docs/release/download.html',
       },
       {
-        key: 'blog',
-        text: '博客',
-        link: '/zh-cn/blog/index.html',
+        key: 'development',
+        text: '开发者',
+        link: '/zh-cn/docs/development/subscribe.html',
       },
       {
         key: 'community',

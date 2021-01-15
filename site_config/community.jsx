@@ -96,37 +96,8 @@ export default {
             title: 'Micro BenchMark Notice',
             link: '/en-us/community/development/microbench.html',
           },
-        ]
-      },
-      {
-        title: 'Developer guide',
-        children: [
-          {
-            title: 'Development Environment Setup',
-            link: '/en-us/docs/development/development-environment-setup.html',
-          },
-          {
-            title: 'Architecture Design',
-            link: '/en-us/docs/development/architecture-design.html',
-          },
-          {
-            title: 'Backend Development',
-            link: '/en-us/docs/development/backend-development.html',
-          },
-          {
-            title: 'Frontend Development',
-            link: '/en-us/docs/development/frontend-development.html',
-          },
-          {
-            title: 'plugin-development',
-            link: '/en-us/docs/development/plugin-development.html',
-          },
-          {
-            title: 'download',
-            link: '/en-us/docs/development/download.html',
-          },
         ],
-      }
+      },
     ],
     events: {
       title: 'Events & News',
@@ -320,38 +291,9 @@ export default {
           {
             title: '参与贡献-微基准测试',
             link: '/zh-cn/community/development/microbench.html',
-          }
-        ]
-      },
-      {
-        title: '开发者指南',
-        children: [
-          {
-            title: '环境搭建',
-            link: '/zh-cn/community/development/development-environment-setup.html',
           },
-          {
-            title: '架构设计',
-            link: '/zh-cn/community/development/architecture-design.html',
-          },
-          {
-            title: '后端开发',
-            link: '/zh-cn/community/development/backend-development.html',
-          },
-          {
-            title: '前端开发',
-            link: '/zh-cn/community/development/frontend-development.html',
-          },
-          {
-            title: '插件开发',
-            link: '/zh-cn/community/development/plugin-development.html',
-          },
-          {
-            title: '下载',
-            link: '/zh-cn/community/development/download.html',
-          }
         ],
-      }
+      },
     ],
     events: {
       title: '事件 & 新闻',
