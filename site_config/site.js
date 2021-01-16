@@ -60,12 +60,6 @@ export default {
         link: '/en-us/docs/release/download.html',
       },
       {
-        key: 'demo',
-        text: 'Online Demo',
-        target: '_blank',
-        link: 'http://106.75.43.194:8888'
-      },
-      {
         key: 'blog',
         text: 'BLOG',
         link: '/en-us/blog/index.html',
@@ -127,11 +121,7 @@ export default {
     ],
     disclaimer: {
       title: 'Disclaimer',
-      content: 'Apache DolphinScheduler (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. \n' +
-          'Incubation is required of all newly accepted projects until a further review indicates \n' +
-          'that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. \n' +
-          'While incubation status is not necessarily a reflection of the completeness or stability of the code, \n' +
-          'it does indicate that the project has yet to be fully endorsed by the ASF.',
+      content: 'Apache DolphinScheduler is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
     },
     documentation: {
       title: 'Documentation',
@@ -142,7 +132,7 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/1.3.3/user_doc/quick-start.html',
+          link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
         },
         {
           text: 'Developer guide',
@@ -175,7 +165,7 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2020 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
   'zh-cn': {
     pageMenu: [
@@ -230,12 +220,6 @@ export default {
         key: 'download',
         text: '下载',
         link: '/zh-cn/docs/release/download.html',
-      },
-      {
-        key: 'demo',
-        text: '线上demo',
-        target: '_blank',
-        link: 'http://106.75.43.194:8888'
       },
       {
         key: 'blog',
@@ -299,11 +283,7 @@ export default {
     ],
     disclaimer: {
       title: 'Disclaimer',
-      content: 'Apache DolphinScheduler (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. \n' +
-          'Incubation is required of all newly accepted projects until a further review indicates \n' +
-          'that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. \n' +
-          'While incubation status is not necessarily a reflection of the completeness or stability of the code, \n' +
-          'it does indicate that the project has yet to be fully endorsed by the ASF.',
+      content: 'Apache DolphinScheduler is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
     },
     documentation: {
       title: '文档',
@@ -314,7 +294,7 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/1.3.3/user_doc/quick-start.html',
+          link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
         },
         {
           text: '开发者指南',
@@ -347,6 +327,6 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2020 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
 };

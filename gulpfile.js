@@ -3,17 +3,13 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 const webpack = require('webpack');
 const opn = require('opn');
+const path = require('path');
 const WebpackDevServer = require('webpack-dev-server');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const siteConfig = require('./site_config/site').default;
 const webpackConfig = require('./webpack.config.js');
 
 const port = siteConfig.port || 8080;
-
-// The development server (the recommended option for development)
-gulp.task('default', ['webpack-dev-server']);
-
-// Production build
-gulp.task('build', ['webpack:build']);
 
 gulp.task('webpack-dev-server', () => {
   // modify some webpack config options
@@ -43,7 +39,10 @@ gulp.task('webpack:build', callback => {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new CopyWebpackPlugin([
+      { from: path.join(__dirname, siteConfig.defaultLanguage, 'index.html'), to: path.join(__dirname, 'index.html') },
+    ])
   );
 
   // run webpack
@@ -58,3 +57,9 @@ gulp.task('webpack:build', callback => {
     callback();
   });
 });
+
+// The development server (the recommended option for development)
+gulp.task('default', gulp.series('webpack-dev-server'));
+
+// Production build
+gulp.task('build', gulp.series('webpack:build'));

@@ -512,7 +512,7 @@
 8| |mainJar |Object | 程序 jar 包
 9| |deployMode |String | 部署模式  |local,client,cluster
 10| |slot | String| slot数量
-11| |taskManager |String | taskManage数量
+11| |taskManager |String | taskManager数量
 12| |taskManagerMemory |String | taskManager内存数
 13| |jobManagerMemory |String | jobManager内存数
 14| |programType | String| 程序类型|JAVA,SCALA,PYTHON
@@ -975,8 +975,6 @@
 
 
 ## 依赖(DEPENDENT)节点
-**节点数据结构如下:**
-
 **节点数据结构如下:**
 序号|参数名||类型|描述 |描述
 -------- | ---------| ---------| -------- | --------- | ---------

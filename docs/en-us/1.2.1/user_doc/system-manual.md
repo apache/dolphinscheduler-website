@@ -670,7 +670,7 @@ Note: JAVA and Scala are just used for identification, no difference. If it's a 
 > Drag the ![PNG](https://analysys.github.io/easyscheduler_docs/images/toolbar_PYTHON.png) task node in the toolbar onto the palette and double-click the task node as follows:
 
 <p align="center">
-   <img src="/img/python-en.png" width="80%" />
+   <img src="/img/python-en1-2.png" width="80%" />
  </p>
 
 - Script: User-developed Python program

@@ -34,3 +34,5 @@ export const parseJSONStr = (str) => {
     return str;
   }
 }
+
+export const getKiloUnit = (val) => typeof val === 'number' ? `${Math.round(val / 100) / 10}K` : val
