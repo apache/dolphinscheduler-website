@@ -1,23 +1,23 @@
 
 # Overall Tasks Storage Structure
-Dolphinscheduler persists all created tasks in the table 't_ds_process_definition'.
+All tasks created in Dolphinscheduler are saved in the t_ds_process_definition table.
 
 The following shows the 't_ds_process_definition' table structure:
 
 
-order | field  | type  |  description
+No. | field  | type  |  description
 -------- | ---------| -------- | ---------
 1|id|int(11)|primary key
-2|name|varchar(255)|define workflow name
-3|version|int(11)|define workflow version
-4|release_state|tinyint(4)|define workflow publish status：0 not yet launch, 1 launched
+2|name|varchar(255)|process definition name
+3|version|int(11)|process definition version
+4|release_state|tinyint(4)|release status of process definition: 0 not online, 1 online
 5|project_id|int(11)|project id
-6|user_id|int(11)|define workflow owner id
-7|process_definition_json|longtext|define workflow JSON
-8|description|text|define workflow description
+6|user_id|int(11)|user id of the process definition
+7|process_definition_json|longtext|process definition JSON
+8|description|text|process definition description
 9|global_params|text|global parameters
-10|flag|tinyint(4)|specify workflow availability：0 not available, 1 available
-11|locations|text|node location info
+10|flag|tinyint(4)|specify whether the process is available: 0 is not available, 1 is available
+11|locations|text|node location infomation
 12|connects|text|node connectivity info
 13|receivers|text|receivers
 14|receivers_cc|text|CC receivers
@@ -25,16 +25,16 @@ order | field  | type  |  description
 16|timeout|int(11) |timeout
 17|tenant_id|int(11) |tenant id
 18|update_time|datetime|update time
-19|modify_by|varchar(36)|specify users make modification
+19|modify_by|varchar(36)|specifics of the user that made the modification
 20|resource_ids|varchar(255)|resource ids
 
-In which 'process_definition_json' is the core field, defines task info in DAG and is stored in JSON format.
+The 'process_definition_json' field is the core field, which defines the task information in the DAG diagram, and it is stored in JSON format.
 
-Following table describes the common data structure
-order | field  | type  |  description
+The following table describes the common data structure.
+No. | field  | type  |  description
 -------- | ---------| -------- | ---------
 1|globalParams|Array|global parameters
-2|tasks|Array|task collections in the workflow[structures of each task type please check following sections]
+2|tasks|Array|task collections in the process [for the structure of each type, please refer to the following sections]
 3|tenantId|int|tenant ID
 4|timeout|int|timeout
 
@@ -55,11 +55,11 @@ Data example:
 }
 ```
 
-# Detailed Explanation About the Storage Structure of Each Task Type
+# The Detailed Explanation of The Storage Structure of Each Task Type
 
 ## Shell Nodes
-**Node data structure as follow:**
-order|parameter name||type|description |notes
+**The node data structure is as follows:**
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task Id|
 2|type ||String |task type |SHELL
@@ -133,10 +133,10 @@ order|parameter name||type|description |notes
 
 
 ## SQL Node
-Execute query/update SQL to specified datasource.
+Perform data query and update operations on the specified datasource through SQL.
 
-**Node data structure as follow:**
-order|parameter name||type|description |note
+**The node data structure is as follows:**
+No.|parameter name||type|description |note
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String|task id|
 2|type ||String |task type |SQL
@@ -144,9 +144,9 @@ order|parameter name||type|description |note
 4| params| |Object|customized parameters|Json format
 5| |type |String |database type
 6| |datasource |Int |datasource id
-7| |sql |String |query SQL sentence
-8| |udfs | String| udf functions|specify UDF function id, separate by comma
-9| |sqlType | String| SQL node type |0 for query and 1 for none query SQL
+7| |sql |String |query SQL statement
+8| |udfs | String| udf functions|specify UDF function ids, separate by comma
+9| |sqlType | String| SQL node type |0 for query and 1 for none-query SQL
 10| |title |String | mail title
 11| |receivers |String |receivers
 12| |receiversCc |String |CC receivers
@@ -232,13 +232,13 @@ order|parameter name||type|description |note
 
 
 ## PROCEDURE [stored procedures] Node
-**Node data structure as follow:**
+**The node data structure is as follows:**
 **Node data example:**
 
 ## SPARK Node
-**Node data structure as follow:**
+**The node data structure is as follows:**
 
-order|parameter name||type|description |notes
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task Id|
 2|type ||String |task type |SPARK
@@ -336,9 +336,9 @@ order|parameter name||type|description |notes
 
 
 ## MapReduce(MR) Node
-**Node data structure as follow:**
+**The node data structure is as follows:**
 
-order|parameter name||type|description |notes
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task Id|
 2|type ||String |task type |MR
@@ -422,8 +422,8 @@ order|parameter name||type|description |notes
 
 
 ## Python Node
-**Node data structure as follow:**
-order|parameter name||type|description |notes
+**The node data structure is as follows:**
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String|  task Id|
 2|type ||String |task type|PYTHON
@@ -498,9 +498,9 @@ order|parameter name||type|description |notes
 
 
 ## Flink Node
-**Node data structure as follow:**
+**The node data structure is as follows:**
 
-order|parameter name||type|description |notes
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String|task Id|
 2|type ||String |task type|FLINK
@@ -593,9 +593,9 @@ order|parameter name||type|description |notes
 ```
 
 ## HTTP Node
-**Node data structure as follow:**
+**The node data structure is as follows:**
 
-order|parameter name||type|description |notes
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String|task Id|
 2|type ||String |task type|HTTP
@@ -680,9 +680,8 @@ order|parameter name||type|description |notes
 
 
 ## DataX Node
-
-**Node data structure as follow:**
-order|parameter name||type|description |notes
+**The node data structure is as follows:**
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task Id|
 2|type ||String |task type|DATAX
@@ -770,9 +769,8 @@ order|parameter name||type|description |notes
 ```
 
 ## Sqoop Node
-
-**Node data structure as follow:**
-order|parameter name||type|description |notes
+**The node data structure is as follows:**
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String|task ID|
 2|type ||String |task type|SQOOP
@@ -848,9 +846,8 @@ order|parameter name||type|description |notes
 ```
 
 ## Condition Branch Node
-
-**Node data structure as follow:**
-order|parameter name||type|description |notes
+**The node data structure is as follows:**
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task ID|
 2|type ||String |task type |SHELL
@@ -914,8 +911,8 @@ order|parameter name||type|description |notes
 
 
 ## Subprocess Node
-**Node data structure as follow:**
-order|parameter name||type|description |notes
+**The node data structure is as follows:**
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task ID|
 2|type ||String |task type|SHELL
@@ -975,8 +972,8 @@ order|parameter name||type|description |notes
 
 
 ## DEPENDENT Node
-**Node data structure as follow:**
-order|parameter name||type|description |notes
+**The node data structure is as follows:**
+No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task ID|
 2|type ||String |task type|DEPENDENT
