@@ -73,7 +73,7 @@ serial number| service classification| config file|
 ## 1.dolphinscheduler-daemon.sh [startup/shutdown DS application]
 dolphinscheduler-daemon.sh is responsible for DS startup & shutdown. 
 Essentially, start-all.sh/stop-all.sh startup/shutdown the cluster via dolphinscheduler-daemon.sh.
-Currently, DS just make a basic config, please config further JVＭ options based on your practical situation of resources.
+Currently, DS just makes a basic config, please config further JVＭ options based on your practical situation of resources.
 
 Default simplified parameters are:
 ```bash
@@ -93,7 +93,7 @@ export DOLPHINSCHEDULER_OPTS="
 > "-XX:DisableExplicitGC" is not recommended due to may lead to memory link (DS dependent on Netty to communicate). 
 
 ## 2.datasource.properties [datasource config properties]
-DS use Druid to manage database connections and default simplified configs are:
+DS uses Druid to manage database connections and default simplified configs are:
 |Parameters | Default value| Description|
 |--|--|--|
 spring.datasource.driver-class-name||datasource driver
@@ -107,13 +107,13 @@ spring.datasource.maxWait|60000| max wait mili-seconds
 spring.datasource.timeBetweenEvictionRunsMillis|60000| idle connection check interval
 spring.datasource.timeBetweenConnectErrorMillis|60000| retry interval
 spring.datasource.minEvictableIdleTimeMillis|300000| connections over minEvictableIdleTimeMillis will be collect when idle check
-spring.datasource.validationQuery|SELECT 1| validate connection by run the SQL
+spring.datasource.validationQuery|SELECT 1| validate connection by running the SQL
 spring.datasource.validationQueryTimeout|3| validate connection timeout[seconds]
 spring.datasource.testWhileIdle|true| set whether the pool validates the allocated connection when a new connection request comes
-spring.datasource.testOnBorrow|true| validity check when program request new connection
-spring.datasource.testOnReturn|false| validity check when program recall a connection
+spring.datasource.testOnBorrow|true| validity check when the program requests a new connection
+spring.datasource.testOnReturn|false| validity check when the program recalls a connection
 spring.datasource.defaultAutoCommit|true| whether auto commit
-spring.datasource.keepAlive|true| runs validationQuery SQL to avoid the connection closed by pool when the connection idle over minEvictableIdleTimeMillis
+spring.datasource.keepAlive|true| runs validationQuery SQL to avoid the connection closed by pool when the connection idles over minEvictableIdleTimeMillis
 spring.datasource.poolPreparedStatements|true| Open PSCache
 spring.datasource.maxPoolPreparedStatementPerConnectionSize|20| specify the size of PSCache on each connection
 
@@ -131,7 +131,7 @@ zookeeper.retry.maxtime|10| maximum retry times
 
 
 ## 4.common.properties [hadoop、s3、yarn config properties]
-Currently, common.properties configure hadoop/s3a and related configs. 
+Currently, common.properties mainly configures hadoop/s3a related configurations. 
 |Parameters | Default value| Description|
 |--|--|--|
 resource.storage.type|NONE| type of resource files: HDFS, S3, NONE
@@ -143,7 +143,7 @@ login.user.keytab.username|hdfs-mycluster@ESZ.COM|kerberos username
 login.user.keytab.path|/opt/hdfs.headless.keytab|kerberos user keytab
 resource.view.suffixs| txt,log,sh,conf,cfg,py,java,sql,hql,xml,properties| file types supported by resource center
 hdfs.root.user|hdfs| configure users with corresponding permissions if storage type is HDFS
-fs.defaultFS|hdfs://mycluster:8020|If resource.storage.type=S3, then the request url would be similar as 's3a://dolphinscheduler'. Otherwise if resource.storage.type=HDFS and hadoop supports HA, please copy core-site.xml and hdfs-site.xml into 'conf' directory. 
+fs.defaultFS|hdfs://mycluster:8020|If resource.storage.type=S3, then the request url would be similar to 's3a://dolphinscheduler'. Otherwise if resource.storage.type=HDFS and hadoop supports HA, please copy core-site.xml and hdfs-site.xml into 'conf' directory. 
 fs.s3a.endpoint||s3 endpoint url
 fs.s3a.access.key||s3 access key
 fs.s3a.secret.key|     |s3 secret key
@@ -180,7 +180,7 @@ master.heartbeat.interval|10|heartbeat interval
 master.task.commit.retryTimes|5|task retry times
 master.task.commit.interval|1000|task commit interval|
 master.max.cpuload.avg|-1|master service operates when cpu load less than this number. (default -1: cpu cores * 2)
-master.reserved.memory|0.3|specify memory threshold value, master service operates when available memory greater than threshold
+master.reserved.memory|0.3|specify memory threshold value, master service operates when available memory greater than the threshold
 
 
 ## 7.worker.properties [worker-service log config]
@@ -246,10 +246,10 @@ org.quartz.dataSource.myDs.connectionProvider.class | org.apache.dolphinschedule
 
 
 ## 10.install_config.conf [DS environment variables configuration script[install/start DS]]
-install_config.conf is a bit complicated and is mainly use in the following two places.
+install_config.conf is a bit complicated and is mainly used in the following two places.
 * 1.DS cluster auto installation
 
-> System will load configs in the install_config.conf and auto-configure files below based on the file content when execute 'install.sh'.
+> System will load configs in the install_config.conf and auto-configure files below, based on the file content when executing 'install.sh'.
 > Files such as dolphinscheduler-daemon.sh、datasource.properties、zookeeper.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties and etc.
 
 
@@ -262,7 +262,7 @@ File content as follows:
 # Note:  please escape the character if the file contains special characters such as `.*[]^${}\+?|()@#&`.
 #   eg: `[` escape to `\[`
 
-# Database type (Currently only supports postgresql and mysql)
+# Database type (DS currently only supports postgresql and mysql)
 dbtype="mysql"
 
 # Database url & port
@@ -286,7 +286,7 @@ installPath="/data1_1T/dolphinscheduler"
 
 # Deployment user
 # Note: Deployment user needs 'sudo' privilege and has rights to operate HDFS
-#     Root directory must be created by the same user if using HDFS, or there will cause privilege relevant issues.
+#     Root directory must be created by the same user if using HDFS, otherwise permission related issues will be raised.
 deployUser="dolphinscheduler"
 
 
@@ -382,7 +382,7 @@ apiServers="ds1"
 
 ## 11.dolphinscheduler_env.sh [load environment variables configs]
 When using shell to commit tasks, DS will load environment variables inside dolphinscheduler_env.sh into the host.
-ypes of tasks involved are: Shell task、Python task、Spark task、Flink task、Datax task and etc.
+Types of tasks involved are: Shell task、Python task、Spark task、Flink task、Datax task and etc.
 ```bash
 export HADOOP_HOME=/opt/soft/hadoop
 export HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop
