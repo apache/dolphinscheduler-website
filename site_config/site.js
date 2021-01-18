@@ -59,6 +59,10 @@ export default {
         text: 'DOWNLOAD',
         link: '/en-us/docs/release/download.html',
       },
+      { key: 'blog',
+        text: 'BLOG',
+        link: '/en-us/blog/index.html',
+      },
       {
         key: 'development',
         text: 'DEVELOPMENT',
@@ -215,6 +219,11 @@ export default {
         key: 'download',
         text: '下载',
         link: '/zh-cn/docs/release/download.html',
+      },
+      {
+        key: 'blog',
+        text: '博客',
+        link: '/zh-cn/blog/index.html',
       },
       {
         key: 'development',
