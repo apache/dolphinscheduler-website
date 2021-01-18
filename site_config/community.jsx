@@ -69,10 +69,6 @@ export default {
             link: '/en-us/community/development/submit-code.html',
           },
           {
-            title: 'Developers',
-            link: '/en-us/community/development/developers.html',
-          },
-          {
             title: 'License Notice',
             link: '/en-us/community/development/DS-License.html',
           },
@@ -263,10 +259,6 @@ export default {
           {
             title: '提交流程',
             link: '/zh-cn/community/development/submit-code.html',
-          },
-          {
-            title: '开发人员',
-            link: '/zh-cn/community/development/developers.html',
           },
           {
             title: '参与贡献-License需知',
