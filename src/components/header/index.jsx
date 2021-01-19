@@ -48,7 +48,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: '',
+      current: props.currentKey,
       menuBodyVisible: false,
       language: props.language,
       search: siteConfig.defaultSearch,
@@ -59,7 +59,7 @@ class Header extends React.Component {
   componentDidMount() {
     if(localStorage.getItem("currents") == null) {
       this.setState({
-        current: 'home'
+        current: window.location.pathname.split('/')[2] || 'home'
       });
     } else {
       this.setState({
@@ -215,8 +215,9 @@ class Header extends React.Component {
               {siteConfig[language].pageMenu.map(item => (
                 item.children ? <SubMenu
                   key={item.key}
+                  className={this.state.current === item.key ? 'ant-menu-item-selected' : ''}
                   title={
-                    <span className="submenu-title-wrapper">
+                    <span className="submenu-title-wrapper" onClick={() => this.handleClick(item)}>
                       <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
                       <ul style={{display: 'none'}}>
                       {item.children.map(items => (
