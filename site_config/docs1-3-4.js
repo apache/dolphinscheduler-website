@@ -15,6 +15,10 @@ export default {
                     {
                         title: 'Cluster deploy',
                         link: '/en-us/docs/1.3.4/user_doc/cluster-deployment.html',
+                    },
+                    {
+                        title: 'Docker deploy',
+                        link: '/en-us/docs/1.3.4/user_doc/docker-deployment.html',
                     }
                 ]
             },
@@ -90,6 +94,10 @@ export default {
                     {
                         title: '集群部署(Cluster)',
                         link: '/zh-cn/docs/1.3.4/user_doc/cluster-deployment.html',
+                    },
+                    {
+                        title: 'Docker部署(Docker)',
+                        link: '/zh-cn/docs/1.3.4/user_doc/docker-deployment.html',
                     }
                 ],
             },
