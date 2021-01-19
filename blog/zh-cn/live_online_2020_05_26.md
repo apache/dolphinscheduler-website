@@ -21,7 +21,7 @@ Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线
 **直播资料下载**
 
 直播(回放)地址：[Apache DolphinScheduler新特性及Roadmap](https://www.slidestalk.com/w/182)
-* Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线（ PPMC & Committer 代立冬）[PPT](/download/2020-05-26/DolphinScheduler_Feature_Roadmap.pdf)
+* Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线（ PPMC & Committer 代立冬）[PPT](/file/2020-05-26/DolphinScheduler_Feature_Roadmap.pdf)
 
 * QA
 
