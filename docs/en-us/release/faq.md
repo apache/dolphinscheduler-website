@@ -450,7 +450,7 @@ sudo rm -rf node_modules
  sudo npm uninstall node-sass
  sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
  ``` 
-   3, if the 2nd step failure, please, [referer url](/zh-cn/docs/1.3.4/user_doc/frontend-development.html)
+   3, if the 2nd step failure, please, [referer url](/en-us/docs/1.3.4/user_doc/frontend-development.html)
 ```
  sudo npm rebuild node-sass
  ``` 

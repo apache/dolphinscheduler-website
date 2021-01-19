@@ -9,7 +9,7 @@
 
 ## 3. 下载新版本的安装包
 
-- [下载](/en-us/download/download.html), 下载最新版本的二进制安装包
+- [下载](/zh-cn/download/download.html), 下载最新版本的二进制安装包
 - 以下升级操作都需要在新版本的目录进行
 
 ## 4. 数据库升级
