@@ -42,7 +42,7 @@ gulp.task('webpack:build', callback => {
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new CopyWebpackPlugin((() => {
-      const entries = ['file', 'img'];
+      const entries = ['.asf.yaml', 'sitemap.xml', 'file', 'img'];
       const pages = fs.readdirSync(path.join(__dirname, './src/pages'));
       pages.forEach(page => {
         if (page === 'home') return;
