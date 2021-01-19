@@ -7,7 +7,7 @@ There are two deployment modes for the backend:
 
 ## Preparations
 
-Download the latest version of the installation package, download address：  [download](https://dolphinscheduler.apache.org/en-us/docs/release/download.html),
+Download the latest version of the installation package, download address：  [download](/en-us/download/download.html),
 download apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-backend-bin.tar.gz
 
 
