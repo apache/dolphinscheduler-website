@@ -51,16 +51,15 @@ export default {
               key: 'docs7',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
-          }
-        ]
+          },
+        ],
       },
       {
         key: 'download',
         text: 'DOWNLOAD',
         link: '/en-us/docs/release/download.html',
       },
-      {
-        key: 'blog',
+      { key: 'blog',
         text: 'BLOG',
         link: '/en-us/blog/index.html',
       },
@@ -72,7 +71,7 @@ export default {
       {
         key: 'community',
         text: 'COMMUNITY',
-        link: '/en-us/community/index.html'
+        link: '/en-us/community/index.html',
       },
       {
         key: 'ASF',
@@ -115,8 +114,8 @@ export default {
             text: 'Thanks',
             target: '_blank',
             link: 'https://www.apache.org/foundation/thanks.html',
-          }
-        ]
+          },
+        ],
       },
     ],
     disclaimer: {
@@ -234,7 +233,7 @@ export default {
       {
         key: 'community',
         text: '社区',
-        link: '/zh-cn/community/index.html'
+        link: '/zh-cn/community/index.html',
       },
       {
         key: 'ASF',
@@ -277,8 +276,8 @@ export default {
             text: 'Thanks',
             target: '_blank',
             link: 'https://www.apache.org/foundation/thanks.html',
-          }
-        ]
+          },
+        ],
       },
     ],
     disclaimer: {
