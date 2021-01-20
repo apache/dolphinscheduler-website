@@ -10,6 +10,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const siteConfig = require('./site_config/site').default;
 const webpackConfig = require('./webpack.config.js');
 
+const distdir = path.join(__dirname, 'dist');
 const port = siteConfig.port || 8080;
 
 gulp.task('webpack-dev-server', () => {
@@ -55,13 +56,13 @@ gulp.task('webpack:build', callback => {
       return entries.map(entry => {
         return {
           from: path.join(__dirname, entry),
-          to: path.join(__dirname, 'dist', entry),
+          to: path.join(distdir, entry),
           ignore: ['*.md', '*.markdown']
         }
       });
     })()),
     new CopyWebpackPlugin([
-      { from: path.join(__dirname, siteConfig.defaultLanguage, 'index.html'), to: path.join(__dirname, 'dist/index.html') },
+      { from: path.join(distdir, siteConfig.defaultLanguage, 'index.html'), to: path.join(distdir, 'index.html') },
     ])
   );
 
