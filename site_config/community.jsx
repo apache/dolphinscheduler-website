@@ -110,7 +110,7 @@ export default {
           title: 'Apache ShardingSphere & DolphinScheduler joint Meetup',
           content: 'Apache ShardingSphere & DolphinScheduler Meetup successfully held in Beijing on December 8, 2019',
           dateStr: '2019-12-13',
-          link: '/zh-cn/blog/meetup_2019_12_08.html',
+          link: '/en-us/blog/meetup_2019_12_08.html',
         },
         {
           img: '/img/meetup_20191026.jpg',
@@ -182,7 +182,7 @@ export default {
         {
           img: '/img/documents.png',
           title: 'Documents',
-          content: <span>Improve the <a href="/en-us/docs/1.2.0/user_doc/quick-start.html">documentation</a>.</span>,
+          content: <span>Improve the <a href="/en-us/docs/1.3.4/user_doc/quick-start.html">documentation</a>.</span>,
         },
         {
           img: '/img/pullrequest.png',
@@ -374,7 +374,7 @@ export default {
         {
           img: '/img/documents.png',
           title: '文档',
-          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/1.2.0/user_doc/quick-start.html"> 文档</a>。</span>,
+          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/1.3.4/user_doc/quick-start.html"> 文档</a>。</span>,
         },
         {
           img: '/img/pullrequest.png',
