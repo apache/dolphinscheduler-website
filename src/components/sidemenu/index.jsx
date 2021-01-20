@@ -37,8 +37,7 @@ class SideMenu extends React.Component {
         </div>
         <ul>
           {
-            dataSource.map((data, i) => {
-              return (
+            dataSource.map((data, i) => (
                 <li className={itemCls} key={i}>
                   <span>
                   {data.title}
@@ -47,8 +46,7 @@ class SideMenu extends React.Component {
                     {data.children.map((item, j) => <Item item={item} key={j} toggleMenuBody={this.toggleMenuBody} />)}
                   </ul>
                 </li>
-              );
-            })
+            ))
           }
         </ul>
       </div>

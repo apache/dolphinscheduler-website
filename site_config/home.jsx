@@ -8,7 +8,7 @@ export default {
       buttons: [
         {
           text: '立即开始',
-          link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
+          link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
           type: 'primary',
         },
         {
@@ -50,7 +50,7 @@ export default {
           img: '/img/feature_runtime.png',
           title: '高扩展性',
           content: '支持自定义任务类型，调度器使用分布式调度，调度能力随集群线性增长，Master和Worker支持动态上下线',
-        }
+        },
       ],
     },
     users: {
@@ -97,7 +97,7 @@ export default {
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
+          link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
           type: 'primary',
         },
         {
@@ -139,8 +139,8 @@ export default {
           img: '/img/feature_runtime.png',
           title: 'High Expansibility',
           content: 'Support custom task types, Distributed scheduling, and the overall scheduling capability will increase linearly with the scale of the cluster',
-        }
-      ]
+        },
+      ],
     },
     users: {
       title: 'Who Is Using DolphinScheduler',

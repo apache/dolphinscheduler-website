@@ -9,7 +9,7 @@
 
 ## 3. Download the new version's installation package.
 
-- [Download](https://dolphinscheduler.apache.org/en-us/docs/release/download.html) the latest version of the installation packages.
+- [Download](/en-us/download/download.html) the latest version of the installation packages.
 - The following upgrade operations need to be performed in the new version's directory.
 
 ## 4. Database upgrade
@@ -35,8 +35,8 @@
 ## 5. Backend service upgrade.
 
 ### 5.1 Modify the content in `conf/config/install_config.conf` file.
-- Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](https://dolphinscheduler.apache.org/en-us/docs/1.3.2/user_doc/standalone-deployment.html).
-- Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](https://dolphinscheduler.apache.org/en-us/docs/1.3.2/user_doc/cluster-deployment.html).
+- Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](/en-us/docs/1.3.2/user_doc/standalone-deployment.html).
+- Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](/en-us/docs/1.3.2/user_doc/cluster-deployment.html).
 
 #### Masters need attentions
 Create worker group in 1.3.1 version has different design: 

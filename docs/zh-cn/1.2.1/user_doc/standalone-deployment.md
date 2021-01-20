@@ -17,7 +17,7 @@ DolphinScheduler单机部署分为后端部署和前端部署两部分：
 
 ### 1.2 : 下载后端tar.gz包
 
-- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
+- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](/zh-cn/download/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 # 创建部署目录
@@ -294,7 +294,7 @@ sudo pip install kazoo;
 
 # 2、前端部署
 
-请下载最新版本的前端安装包至服务器部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
+请下载最新版本的前端安装包至服务器部署目录，下载地址： [下载](/zh-cn/download/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 cd /opt/dolphinscheduler;

@@ -4,7 +4,7 @@
 
 ## 1、准备工作
 
-请下载最新版本的安装包，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html)
+请下载最新版本的安装包，下载地址： [下载](/zh-cn/download/download.html)
 
 #### 准备一: 基础软件安装(必装项请自行安装)
 

@@ -29,9 +29,9 @@ export default {
             link: '/en-us/docs/development/download.html',
           },
         ],
-      }
+      },
     ],
-    barText: 'Development'
+    barText: 'Development',
   },
   'zh-cn': {
     sidemenu: [
@@ -61,9 +61,9 @@ export default {
           {
             title: '下载',
             link: '/zh-cn/docs/development/download.html',
-          }
+          },
         ],
-      }
+      },
     ],
     barText: '开发者',
   },

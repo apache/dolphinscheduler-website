@@ -13,7 +13,7 @@
 
 # 2、Download the binary package.
 
-- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](https://dolphinscheduler.apache.org/en-us/docs/release/download.html)，Download the package and move to the installation and deployment directory. Then unzip it.
+- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html)，Download the package and move to the installation and deployment directory. Then unzip it.
 
 ```shell
 # Create the deployment directory. Do not choose a deployment directory with a high-privilege directory such as / root or / home.

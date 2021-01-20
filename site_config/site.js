@@ -48,16 +48,16 @@ export default {
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs7',
-              text: '1.1.0(Not Apache Release)',
-              link: 'https://analysys.github.io/easyscheduler_docs_cn/',
+            key: 'docs7',
+            text: '1.1.0(Not Apache Release)',
+            link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           },
         ],
       },
       {
         key: 'download',
         text: 'DOWNLOAD',
-        link: '/en-us/docs/release/download.html',
+        link: '/en-us/download/download.html',
       },
       { key: 'blog',
         text: 'BLOG',
@@ -66,7 +66,7 @@ export default {
       {
         key: 'development',
         text: 'DEVELOPMENT',
-        link: '/en-us/docs/development/subscribe.html',
+        link: '/en-us/docs/development/development-environment-setup.html',
       },
       {
         key: 'community',
@@ -209,16 +209,16 @@ export default {
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs7',
-              text: '1.1.0(Not Apache Release)',
-              link: 'https://analysys.github.io/easyscheduler_docs_cn/',
-          }
-        ]
+            key: 'docs7',
+            text: '1.1.0(Not Apache Release)',
+            link: 'https://analysys.github.io/easyscheduler_docs_cn/',
+          },
+        ],
       },
       {
         key: 'download',
         text: '下载',
-        link: '/zh-cn/docs/release/download.html',
+        link: '/zh-cn/download/download.html',
       },
       {
         key: 'blog',
@@ -228,7 +228,7 @@ export default {
       {
         key: 'development',
         text: '开发者',
-        link: '/zh-cn/docs/development/subscribe.html',
+        link: '/zh-cn/docs/development/development-environment-setup.html',
       },
       {
         key: 'community',

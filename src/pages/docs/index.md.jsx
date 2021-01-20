@@ -6,7 +6,7 @@ import Footer from '../../components/footer';
 import Md2Html from '../../components/md2html';
 import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
-import docsConfig from '../../../site_config/docs';
+import docsConfig0 from '../../../site_config/docs1-2-0';
 import docsConfig1 from '../../../site_config/docs1-2-1';
 import docsConfig2 from '../../../site_config/docs1-3-1';
 import docsConfig3 from '../../../site_config/docs1-3-2';
@@ -14,35 +14,30 @@ import docsConfig4 from '../../../site_config/docs1-3-3';
 import docsConfig5 from '../../../site_config/docs1-3-4';
 import devConfig from '../../../site_config/development';
 
-class Documentation extends Md2Html(Language) {
+const docsSource = {
+  '1.2.0': docsConfig0,
+  '1.2.1': docsConfig1,
+  '1.3.1': docsConfig2,
+  '1.3.2': docsConfig3,
+  '1.3.3': docsConfig4,
+  '1.3.4': docsConfig5,
+};
 
+class Docs extends Md2Html(Language) {
   render() {
     const language = this.getLanguage();
-    let dataSource = docsConfig1[language];
+    let dataSource = docsConfig5[language];
     if (window.location.pathname.indexOf('/development/') >= 0) {
       dataSource = devConfig[language];
-    }
-    if (window.location.pathname.indexOf('/1.3.4/') >= 0) {
-      dataSource = docsConfig5[language];
-    }
-    if (window.location.pathname.indexOf('/1.3.3/') >= 0) {
-      dataSource = docsConfig4[language];
-    }
-    if (window.location.pathname.indexOf('/1.3.2/') >= 0) {
-      dataSource = docsConfig3[language];
-    }
-    if (window.location.pathname.indexOf('/1.3.1/') >= 0) {
-      dataSource = docsConfig2[language];
-    }
-    if (window.location.pathname.indexOf('/1.2.1/') >= 0) {
-      dataSource = docsConfig1[language];
-    }
-    if (window.location.pathname.indexOf('/1.2.0/') >= 0) {
-      dataSource = docsConfig[language];
+    } else {
+      let version = window.location.pathname.split('/')[3];
+      if (version && docsSource.hasOwnProperty(version)) {
+        dataSource = docsSource[version][language];
+      }
     }
     const __html = this.props.__html || this.state.__html;
     return (
-      <div className="md2html documentation-page">
+      <div className="md2html docs-page">
         <Header
           currentKey="docs"
           type="normal"
@@ -65,6 +60,6 @@ class Documentation extends Md2Html(Language) {
   }
 }
 
-document.getElementById('root') && ReactDOM.render(<Documentation />, document.getElementById('root'));
+document.getElementById('root') && ReactDOM.render(<Docs />, document.getElementById('root'));
 
-export default Documentation;
+export default Docs;

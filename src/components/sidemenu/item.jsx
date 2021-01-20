@@ -9,7 +9,7 @@ class Item extends React.Component {
     super(props);
     const { item } = props;
     const hasChildren = item.children && item.children.length;
-    let opened = props.item.opened;
+    let opened = item.opened;
     if (hasChildren) {
       if (opened === undefined) {
         // 未配置展开，则是否展开由是否选中决定
