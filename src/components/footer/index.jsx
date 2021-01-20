@@ -10,7 +10,6 @@ const propTypes = {
 };
 
 class Footer extends React.Component {
-
   render() {
     const { logo, language } = this.props;
     const dataSource = siteConfig[language];

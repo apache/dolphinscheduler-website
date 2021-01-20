@@ -50,7 +50,7 @@ export default {
           img: '/img/feature_runtime.png',
           title: '高扩展性',
           content: '支持自定义任务类型，调度器使用分布式调度，调度能力随集群线性增长，Master和Worker支持动态上下线',
-        }
+        },
       ],
     },
     users: {
@@ -139,8 +139,8 @@ export default {
           img: '/img/feature_runtime.png',
           title: 'High Expansibility',
           content: 'Support custom task types, Distributed scheduling, and the overall scheduling capability will increase linearly with the scale of the cluster',
-        }
-      ]
+        },
+      ],
     },
     users: {
       title: 'Who Is Using DolphinScheduler',

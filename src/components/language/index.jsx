@@ -5,7 +5,6 @@ import siteConfig from '../../../site_config/site';
 
 @autobind
 class Language extends React.Component {
-  
   onLanguageChange(language) {
     const pathname = window.location.pathname;
     let oldLang;
@@ -15,7 +14,7 @@ class Language extends React.Component {
       oldLang = 'zh-cn';
     }
     const newPathname = pathname.replace(`${window.rootPath}/${oldLang}`, `${window.rootPath}/${language}`);
-    cookie.set('docsite_language', language, { expires: 365});
+    cookie.set('docsite_language', language, { expires: 365 });
     window.location = newPathname;
   }
 

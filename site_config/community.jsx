@@ -10,7 +10,7 @@ export default {
           {
             title: 'Community News',
             link: '/en-us/community/index.html',
-          }
+          },
         ],
       },
       {
@@ -19,7 +19,7 @@ export default {
           {
             title: 'team introduce',
             link: '/en-us/community/team.html',
-          }
+          },
         ],
       },
       {
@@ -28,7 +28,7 @@ export default {
           {
             title: 'security introduce',
             link: '/en-us/community/security.html',
-          }
+          },
         ],
       },
       {
@@ -37,7 +37,7 @@ export default {
           {
             title: 'release guide',
             link: '/en-us/community/release.html',
-          }
+          },
         ],
       },
       {
@@ -58,7 +58,7 @@ export default {
           {
             title: 'Code of Conduct',
             link: '/en-us/community/development/code-conduct.html',
-          }
+          },
         ],
       },
       {
@@ -132,8 +132,8 @@ export default {
           content: 'DolphinScheduler beijing meetup has been held successfully',
           dateStr: 'May 12nd，2018',
           link: '/en-us/docs/developer_guide/architecture-design.html',
-        }
-      ]
+        },
+      ],
     },
     contacts: {
       title: 'Talk To Us',
@@ -143,7 +143,7 @@ export default {
           img: '/img/mailinglist.png',
           imgHover: '/img/mailinglist_hover.png',
           title: 'Mailing List',
-          link: 'mailto:dev-subscribe@dolphinscheduler.apache.org'
+          link: 'mailto:dev-subscribe@dolphinscheduler.apache.org',
         },
         // {
         //   img: '/img/alibaba.png',
@@ -201,7 +201,7 @@ export default {
           {
             title: '社区动态',
             link: '/zh-cn/community/index.html',
-          }
+          },
         ],
       },
       {
@@ -210,7 +210,7 @@ export default {
           {
             title: '团队介绍',
             link: '/zh-cn/community/team.html',
-          }
+          },
         ],
       },
       {
@@ -219,7 +219,7 @@ export default {
           {
             title: '安全介绍',
             link: '/zh-cn/community/security.html',
-          }
+          },
         ],
       },
       {
@@ -228,7 +228,7 @@ export default {
           {
             title: '发版指南',
             link: '/zh-cn/community/release.html',
-          }
+          },
         ],
       },
       {
@@ -250,8 +250,8 @@ export default {
           {
             title: '行为准则',
             link: '/zh-cn/community/development/code-conduct.html',
-          }
-        ]
+          },
+        ],
       },
       {
         title: '提交者指南',
@@ -324,8 +324,8 @@ export default {
           content: 'DolphinScheduler 开发者大会在北京成功举行',
           dateStr: 'May 12nd，2018',
           link: '/zh-cn/docs/developer_guide/architecture-design.html',
-        }
-      ]
+        },
+      ],
     },
     contacts: {
       title: '联系我们',
@@ -335,7 +335,7 @@ export default {
           img: '/img/mailinglist.png',
           imgHover: '/img/mailinglist_hover.png',
           title: '邮件列表',
-          link: 'mailto:dev-subscribe@dolphinscheduler.apache.org'
+          link: 'mailto:dev-subscribe@dolphinscheduler.apache.org',
         },
         // {
         //   img: '/img/alibaba.png',

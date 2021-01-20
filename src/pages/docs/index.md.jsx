@@ -20,11 +20,10 @@ const docsSource = {
   '1.3.1': docsConfig2,
   '1.3.2': docsConfig3,
   '1.3.3': docsConfig4,
-  '1.3.4': docsConfig5
+  '1.3.4': docsConfig5,
 };
 
 class Docs extends Md2Html(Language) {
-
   render() {
     const language = this.getLanguage();
     let dataSource = docsConfig5[language];
