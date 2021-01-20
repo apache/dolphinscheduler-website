@@ -22,7 +22,7 @@ class Development extends Md2Html(Language) {
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <Bar img="/img/system/docs.png" text={dataSource.barText} />
+        <Bar img="/img/system/development.png" text={dataSource.barText} />
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div
