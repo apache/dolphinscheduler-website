@@ -148,7 +148,7 @@ class Header extends React.Component {
           </a>
           {
             siteConfig.defaultSearch ?
-            (
+              (
               <div
                 className={classnames({
                   search: true,
@@ -158,19 +158,19 @@ class Header extends React.Component {
                 <span className="icon-search" onClick={this.toggleSearch} />
                 {
                   searchVisible ?
-                  (
+                    (
                     <div className="search-input">
                       <img src={searchSwitch[search].logo} onClick={this.switchSearch} />
                       <input autoFocus onChange={this.onInputChange} onKeyDown={this.onKeyDown} />
                     </div>
-                  ) : null
+                    ) : null
                 }
               </div>
-            ) : null
+              ) : null
           }
           {
             onLanguageChange !== noop ?
-            (<span
+              (<span
               className={
                 classnames({
                   'language-switch': true,
@@ -178,11 +178,11 @@ class Header extends React.Component {
                 })
               }
               onClick={this.switchLang}
-            >
+              >
               {languageSwitch.find(lang => lang.value === language).text}
-             </span>)
-            :
-            null
+               </span>)
+              :
+              null
           }
           <div
             className={
@@ -200,7 +200,8 @@ class Header extends React.Component {
             <div>
               <Menu className={type === 'primary' ? 'whiteClass' : 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" forceSubMenuRender>
               {siteConfig[language].pageMenu.map(item => (
-                item.children ? <SubMenu
+                item.children ?
+                <SubMenu
                   key={item.key}
                   className={this.state.current === item.key ? 'ant-menu-item-selected' : ''}
                   title={
@@ -219,10 +220,11 @@ class Header extends React.Component {
                     <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
                   ))}
                   </Menu.ItemGroup>
-                                </SubMenu> : <Menu.Item key={item.key}>
+                </SubMenu> :
+                <Menu.Item key={item.key}>
                   <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                                             </Menu.Item>
-                ))}
+                </Menu.Item>
+              ))}
               </Menu>
             </div>
           </div>

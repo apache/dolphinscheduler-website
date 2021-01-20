@@ -83,10 +83,10 @@ class pageSlider extends React.Component {
                     >
                       {child}
                     </div>
-                  ))
+                ))
               }
             </div>
-          ))}
+        ))}
       </div>
     );
   }

@@ -27,7 +27,7 @@ const Button = props => (
     >
       {props.children}
     </a>
-  );
+);
 
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;

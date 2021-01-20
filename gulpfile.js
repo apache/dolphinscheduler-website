@@ -54,10 +54,10 @@ gulp.task('webpack:build', (callback) => {
         }
       });
       return entries.map(entry => ({
-          from: path.join(__dirname, entry),
-          to: path.join(distdir, entry),
-          ignore: ['*.md', '*.markdown'],
-        }));
+        from: path.join(__dirname, entry),
+        to: path.join(distdir, entry),
+        ignore: ['*.md', '*.markdown'],
+      }));
     })()),
     new CopyWebpackPlugin([
       { from: path.join(distdir, siteConfig.defaultLanguage, 'index.html'), to: path.join(distdir, 'index.html') },

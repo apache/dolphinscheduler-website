@@ -46,7 +46,7 @@ class SideMenu extends React.Component {
                     {data.children.map((item, j) => <Item item={item} key={j} toggleMenuBody={this.toggleMenuBody} />)}
                   </ul>
                 </li>
-              ))
+            ))
           }
         </ul>
       </div>
