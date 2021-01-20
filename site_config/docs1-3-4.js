@@ -13,11 +13,11 @@ export default {
                         link: '/en-us/docs/1.3.4/user_doc/standalone-deployment.html',
                     },
                     {
-                        title: 'Cluster Deployment',
+                        title: 'Cluster deploy',
                         link: '/en-us/docs/1.3.4/user_doc/cluster-deployment.html',
                     },
                     {
-                        title: 'Docker Deployment',
+                        title: 'Docker deploy',
                         link: '/en-us/docs/1.3.4/user_doc/docker-deployment.html',
                     }
                 ]
@@ -37,6 +37,14 @@ export default {
                         title: 'Metadata',
                         link: '/en-us/docs/1.3.4/user_doc/metadata-1.3.html'
                     },
+                    {
+                        title: 'Configuration File',
+                        link: '/en-us/docs/1.3.4/user_doc/configuration-file.html'
+                    },
+                    {
+                        title: 'Task Structure',
+                        link: '/en-us/docs/1.3.4/user_doc/task-structure.html'
+                    }
                 ]
             },
             {
@@ -112,6 +120,14 @@ export default {
                         title: '架构设计',
                         link: '/zh-cn/docs/1.3.4/user_doc/architecture-design.html'
                     },
+                    {
+                        title: '配置文件',
+                        link: '/zh-cn/docs/1.3.4/user_doc/configuration-file.html'
+                    },
+                    {
+                        title: '任务结构',
+                        link: '/zh-cn/docs/1.3.4/user_doc/task-structure.html'
+                    }
                 ],
             },
             {
