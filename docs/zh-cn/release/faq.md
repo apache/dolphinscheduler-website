@@ -29,7 +29,7 @@ A：支持绝大多数邮箱，qq、163、126、139、outlook、aliyun 等皆支
 
 ## Q：常用的系统变量时间参数有哪些，如何使用？
 
-A：请参考[使用手册](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.1/user_doc/system-manual.html) 第8小节
+A：请参考[使用手册](/zh-cn/docs/1.3.4/user_doc/system-manual.html) 第8小节
 
 ---
 
@@ -282,9 +282,9 @@ A： 将 hive pom
 ---
 
 ## Q：如何增加一台工作服务器
-A： 1，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html) 1.3 小节，创建部署用户和 hosts 映射
+A： 1，参考官网[部署文档](/zh-cn/docs/1.3.4/user_doc/cluster-deployment.html) 1.3 小节，创建部署用户和 hosts 映射
 
-​	2，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/1.2.0/user_doc/cluster-deployment.html) 1.4 小节，配置 hosts 映射和 ssh 打通及修改目录权限.
+​	2，参考官网[部署文档](/zh-cn/docs/1.3.4/user_doc/cluster-deployment.html) 1.4 小节，配置 hosts 映射和 ssh 打通及修改目录权限.
           1.4 小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限
 
 ​	3，复制正在运行的服务器上的部署目录到新机器的同样的部署目录下
@@ -431,7 +431,7 @@ sudo rm -rf node_modules
  sudo npm uninstall node-sass
  sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
  ``` 
-   3，如果步骤 2 报错，请重新构建 node-saas [参考链接](https://dolphinscheduler.apache.org/zh-cn/docs/1.2.0/user_doc/frontend-development.html)
+   3，如果步骤 2 报错，请重新构建 node-saas [参考链接](/zh-cn/docs/1.3.4/user_doc/frontend-development.html)
 ```
  sudo npm rebuild node-sass
  ``` 

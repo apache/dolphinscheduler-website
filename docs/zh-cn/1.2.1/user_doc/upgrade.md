@@ -9,7 +9,7 @@
 
 ## 3. 下载新版本的安装包
 
-- [下载](https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html), 下载最新版本的前后端安装包(dolphinscheduler-backend、dolphinscheduler-ui)
+- [下载](/zh-cn/download/download.html), 下载最新版本的前后端安装包(dolphinscheduler-backend、dolphinscheduler-ui)
 - 以下升级操作都需要在新版本的目录进行
 
 ## 4. 数据库升级

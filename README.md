@@ -5,7 +5,7 @@ This project keeps all sources used for building up DolphinScheduler official we
 ## Prerequisite
 
 DolphinScheduler website is powered by [docsite](https://github.com/chengshiwen/docsite-ext).
-Please also make sure your node version is 8+, version lower than 8.x is not supported yet.
+Please also make sure your node version is 10+, version lower than 10.x is not supported yet.
 
 ## Build instruction 
 
@@ -17,8 +17,8 @@ Please also make sure your node version is 8+, version lower than 8.x is not sup
 If you have higher version of node installed, you may consider `nvm` to allow different versions of `node` coexisting on your machine.
 
 1. Follow the [instructions](http://nvm.sh) to install nvm
-2. Run `nvm install v8.16.2` to install node v8
-3. Run `nvm use v8.16.2` to switch the working environment to node v8
+2. Run `nvm install v10.23.1` to install node v10
+3. Run `nvm use v10.23.1` to switch the working environment to node v8
 
 Then you are all set to run and build the website. Follow the build instruction above for the details.
 
