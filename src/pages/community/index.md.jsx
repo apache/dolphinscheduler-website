@@ -9,7 +9,6 @@ import Sidemenu from '../../components/sidemenu';
 import communityConfig from '../../../site_config/community.jsx';
 
 class Community extends Md2Html(Language) {
-
   render() {
     const language = this.getLanguage();
     const dataSource = communityConfig[language];

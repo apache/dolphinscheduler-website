@@ -545,8 +545,8 @@ svn mv https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEA
 ###. Update the download page
 
 ```
-https://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html
-https://dolphinscheduler.apache.org/zh-cn/docs/user_doc/download.html
+https://dolphinscheduler.apache.org/en-us/download/download.html
+https://dolphinscheduler.apache.org/zh-cn/download/download.html
 ```
 
 ### Send e-mail to `general@incubator.apache.org` and `dev@dolphinscheduler.apache.org` to announce the release is finished
@@ -570,7 +570,7 @@ Dolphin Scheduler is a distributed and easy-to-expand visual DAG workflow schedu
 dedicated to solving the complex dependencies in data processing, making the scheduling system out of the box for data processing.
 
 
-Download Links: http://dolphinscheduler.apache.org/en-us/docs/user_doc/download.html
+Download Links: https://dolphinscheduler.apache.org/en-us/download/download.html
 
 Release Notes: https://github.com/apache/incubator-dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
 
