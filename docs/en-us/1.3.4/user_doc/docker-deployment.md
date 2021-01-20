@@ -16,7 +16,7 @@ cd /opt/soft/dolphinscheduler;
 wget https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip
 
 # unzip
-tar -zxvf apache-dolphinscheduler-incubating-1.3.4-src.zip
+unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
  
 mv apache-dolphinscheduler-incubating-1.3.4-src-release  dolphinscheduler-src
 ```
