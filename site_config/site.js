@@ -66,7 +66,7 @@ export default {
       {
         key: 'development',
         text: 'DEVELOPMENT',
-        link: '/en-us/docs/development/development-environment-setup.html',
+        link: '/en-us/development/development-environment-setup.html',
       },
       {
         key: 'community',
@@ -228,7 +228,7 @@ export default {
       {
         key: 'development',
         text: '开发者',
-        link: '/zh-cn/docs/development/development-environment-setup.html',
+        link: '/zh-cn/development/development-environment-setup.html',
       },
       {
         key: 'community',

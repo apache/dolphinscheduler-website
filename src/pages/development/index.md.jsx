@@ -6,35 +6,17 @@ import Footer from '../../components/footer';
 import Md2Html from '../../components/md2html';
 import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
-import docsConfig0 from '../../../site_config/docs1-2-0';
-import docsConfig1 from '../../../site_config/docs1-2-1';
-import docsConfig2 from '../../../site_config/docs1-3-1';
-import docsConfig3 from '../../../site_config/docs1-3-2';
-import docsConfig4 from '../../../site_config/docs1-3-3';
-import docsConfig5 from '../../../site_config/docs1-3-4';
+import developmentConfig from '../../../site_config/development';
 
-const docsSource = {
-  '1.2.0': docsConfig0,
-  '1.2.1': docsConfig1,
-  '1.3.1': docsConfig2,
-  '1.3.2': docsConfig3,
-  '1.3.3': docsConfig4,
-  '1.3.4': docsConfig5,
-};
-
-class Docs extends Md2Html(Language) {
+class Development extends Md2Html(Language) {
   render() {
     const language = this.getLanguage();
-    let dataSource = docsConfig5[language];
-    let version = window.location.pathname.split('/')[3];
-    if (version && docsSource.hasOwnProperty(version)) {
-      dataSource = docsSource[version][language];
-    }
+    let dataSource = developmentConfig[language];
     const __html = this.props.__html || this.state.__html;
     return (
-      <div className="md2html docs-page">
+      <div className="md2html development-page">
         <Header
-          currentKey="docs"
+          currentKey="development"
           type="normal"
           logo="/img/hlogo_colorful.svg"
           language={language}
@@ -55,6 +37,6 @@ class Docs extends Md2Html(Language) {
   }
 }
 
-document.getElementById('root') && ReactDOM.render(<Docs />, document.getElementById('root'));
+document.getElementById('root') && ReactDOM.render(<Development />, document.getElementById('root'));
 
-export default Docs;
+export default Development;
