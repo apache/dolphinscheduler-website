@@ -29,7 +29,7 @@ fs.readdirSync(targetPath).forEach(page => {
 module.exports = {
   entry,
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, 'dist/build'),
     filename: '[name].js',
   },
   externals: {
