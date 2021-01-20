@@ -14,7 +14,7 @@ import docsConfig4 from '../../../site_config/docs1-3-3';
 import docsConfig5 from '../../../site_config/docs1-3-4';
 import devConfig from '../../../site_config/development';
 
-class Documentation extends Md2Html(Language) {
+class Docs extends Md2Html(Language) {
 
   render() {
     const language = this.getLanguage();
@@ -42,7 +42,7 @@ class Documentation extends Md2Html(Language) {
     }
     const __html = this.props.__html || this.state.__html;
     return (
-      <div className="md2html documentation-page">
+      <div className="md2html docs-page">
         <Header
           currentKey="docs"
           type="normal"
@@ -65,6 +65,6 @@ class Documentation extends Md2Html(Language) {
   }
 }
 
-document.getElementById('root') && ReactDOM.render(<Documentation />, document.getElementById('root'));
+document.getElementById('root') && ReactDOM.render(<Docs />, document.getElementById('root'));
 
-export default Documentation;
+export default Docs;
