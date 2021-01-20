@@ -8,7 +8,6 @@ const anchorReg = /^#[^/]/;
 const relativeReg = /^((\.{1,2}\/)|([\w-]+[/.]))/;
 
 const Md2Html = ComposeComponent => class extends ComposeComponent {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -75,7 +74,6 @@ const Md2Html = ComposeComponent => class extends ComposeComponent {
       }
     });
   }
-
-}
+};
 
 export default Md2Html;

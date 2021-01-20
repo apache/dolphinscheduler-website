@@ -7,11 +7,11 @@ export default {
             {
               title: 'Download the release version of DolphinScheduler',
               link: '/en-us/download/download.html',
-            }
+            },
           ],
-        }
+        },
       ],
-      barText: 'download'
+      barText: 'download',
     },
     'zh-cn': {
       sidemenu: [
@@ -21,12 +21,11 @@ export default {
             {
               title: '下载DolphinScheduler发布版本',
               link: '/zh-cn/download/download.html',
-            }
+            },
           ],
-        }
+        },
       ],
       barText: '下载',
     },
   };
-  
-  
+

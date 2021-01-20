@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { autobind } from 'core-decorators';
 import siteConfig from '../../../site_config/site';
-import { getScrollTop,getLink } from '../../../utils';
+import { getLink } from '../../../utils';
 import 'antd/dist/antd.css';
 import './index.scss';
-import { Menu, Icon } from 'antd'
+import { Menu } from 'antd';
 
 const { SubMenu } = Menu;
 const languageSwitch = [
@@ -53,31 +53,19 @@ class Header extends React.Component {
       language: props.language,
       search: siteConfig.defaultSearch,
       searchValue: '',
-      inputVisible: false,
     };
   }
+
   componentDidMount() {
-    if(localStorage.getItem("currents") == null) {
+    if (localStorage.getItem('currents') == null) {
       this.setState({
-        current: window.location.pathname.split('/')[2] || 'home'
+        current: window.location.pathname.split('/')[2] || 'home',
       });
     } else {
       this.setState({
-        current: localStorage.getItem("currents")
+        current: localStorage.getItem('currents'),
       });
     }
-    window.addEventListener('scroll', () => {
-      const scrollTop = getScrollTop();
-      if (scrollTop > 66) {
-        this.setState({
-          type: 'normal',
-        });
-      } else {
-        this.setState({
-          type: 'primary',
-        });
-      }
-    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -86,10 +74,9 @@ class Header extends React.Component {
     });
   }
 
-  
 
-  handleClick = e => {
-    localStorage.setItem("currents",e.key); 
+  handleClick = (e) => {
+    localStorage.setItem('currents', e.key);
     this.setState({
       current: e.key,
     });
@@ -144,7 +131,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { type, logo, onLanguageChange, currentKey } = this.props;
+    const { type, logo, onLanguageChange } = this.props;
     const { menuBodyVisible, language, search, searchVisible } = this.state;
     return (
       <header
@@ -193,7 +180,7 @@ class Header extends React.Component {
               onClick={this.switchLang}
             >
               {languageSwitch.find(lang => lang.value === language).text}
-            </span>)
+             </span>)
             :
             null
           }
@@ -211,7 +198,7 @@ class Header extends React.Component {
               src={type === 'primary' ? getLink('/img/system/menu_white.png') : getLink('/img/system/menu_gray.png')}
             />
             <div>
-              <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" forceSubMenuRender={true}>
+              <Menu className={type === 'primary' ? 'whiteClass' : 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" forceSubMenuRender>
               {siteConfig[language].pageMenu.map(item => (
                 item.children ? <SubMenu
                   key={item.key}
@@ -219,7 +206,7 @@ class Header extends React.Component {
                   title={
                     <span className="submenu-title-wrapper" onClick={() => this.handleClick(item)}>
                       <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                      <ul style={{display: 'none'}}>
+                      <ul style={{ display: 'none' }}>
                       {item.children.map(items => (
                         <li key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></li>
                       ))}
@@ -232,9 +219,9 @@ class Header extends React.Component {
                     <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
                   ))}
                   </Menu.ItemGroup>
-                </SubMenu> : <Menu.Item key={item.key}>
+                                </SubMenu> : <Menu.Item key={item.key}>
                   <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                </Menu.Item>
+                                             </Menu.Item>
                 ))}
               </Menu>
             </div>

@@ -10,7 +10,6 @@ import homeConfig from '../../../site_config/home';
 import './index.scss';
 
 class Home extends Language {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -75,20 +74,20 @@ class Home extends Language {
               <a href="https://github.com/apache/incubator-dolphinscheduler" target="_blank" rel="noopener noreferrer">
                 <div className="star">
                   <img src="https://img.alicdn.com/tfs/TB1FlB1JwHqK1RjSZFPXXcwapXa-32-32.png" />
-                  <span className="count" style={{display:starCount?'inline-block':'none'}}>{getKiloUnit(starCount)}</span>
+                  <span className="count" style={{ display: starCount ? 'inline-block' : 'none' }}>{getKiloUnit(starCount)}</span>
                 </div>
               </a>
               <a href="https://github.com/apache/incubator-dolphinscheduler/fork" target="_blank" rel="noopener noreferrer">
                 <div className="fork">
                   <img src="https://img.alicdn.com/tfs/TB1zbxSJwDqK1RjSZSyXXaxEVXa-32-32.png" />
-                  <span className="count" style={{display:forkCount?'inline-block':'none'}}>{getKiloUnit(forkCount)}</span>
+                  <span className="count" style={{ display: forkCount ? 'inline-block' : 'none' }}>{getKiloUnit(forkCount)}</span>
                 </div>
               </a>
             </div>
-            {/*<div className="version-note">*/}
-            {/*  <a target="_blank" rel="noopener noreferrer" href={getLink(dataSource.brand.versionNote.link)}>{dataSource.brand.versionNote.text}</a>*/}
-            {/*</div>*/}
-            {/*<div className="release-date">{dataSource.brand.releaseDate}</div>*/}
+            {/* <div className="version-note"> */}
+            {/*  <a target="_blank" rel="noopener noreferrer" href={getLink(dataSource.brand.versionNote.link)}>{dataSource.brand.versionNote.text}</a> */}
+            {/* </div> */}
+            {/* <div className="release-date">{dataSource.brand.releaseDate}</div> */}
           </div>
           <div className="animation animation1" />
           <div className="animation animation2" />

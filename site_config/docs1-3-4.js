@@ -19,8 +19,8 @@ export default {
                     {
                         title: 'Docker Deployment',
                         link: '/en-us/docs/1.3.4/user_doc/docker-deployment.html',
-                    }
-                ]
+                    },
+                ],
             },
             {
                 title: 'User Manual',
@@ -35,17 +35,17 @@ export default {
                     },
                     {
                         title: 'Metadata',
-                        link: '/en-us/docs/1.3.4/user_doc/metadata-1.3.html'
+                        link: '/en-us/docs/1.3.4/user_doc/metadata-1.3.html',
                     },
                     {
                         title: 'Configuration File',
-                        link: '/en-us/docs/1.3.4/user_doc/configuration-file.html'
+                        link: '/en-us/docs/1.3.4/user_doc/configuration-file.html',
                     },
                     {
                         title: 'Task Structure',
-                        link: '/en-us/docs/1.3.4/user_doc/task-structure.html'
-                    }
-                ]
+                        link: '/en-us/docs/1.3.4/user_doc/task-structure.html',
+                    },
+                ],
             },
             {
                 title: 'Api Document',
@@ -53,9 +53,9 @@ export default {
                     {
                         title: 'Api Document',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en'
-                    }
-                ]
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en',
+                    },
+                ],
             },
             {
                 title: 'Upgrade',
@@ -63,8 +63,8 @@ export default {
                     {
                         title: 'Upgrade',
                         link: '/en-us/docs/1.3.4/user_doc/upgrade.html',
-                    }
-                ]
+                    },
+                ],
             },
             {
                 title: 'FAQ',
@@ -72,9 +72,9 @@ export default {
                     {
                         title: 'FAQ',
                         link: '/en-us/docs/release/faq.html',
-                    }
-                ]
-            }
+                    },
+                ],
+            },
         ],
         barText: 'Documentation',
     },
@@ -98,7 +98,7 @@ export default {
                     {
                         title: 'Docker部署(Docker)',
                         link: '/zh-cn/docs/1.3.4/user_doc/docker-deployment.html',
-                    }
+                    },
                 ],
             },
             {
@@ -114,20 +114,20 @@ export default {
                     },
                     {
                         title: '元数据文档',
-                        link: '/zh-cn/docs/1.3.4/user_doc/metadata-1.3.html'
+                        link: '/zh-cn/docs/1.3.4/user_doc/metadata-1.3.html',
                     },
                     {
                         title: '架构设计',
-                        link: '/zh-cn/docs/1.3.4/user_doc/architecture-design.html'
+                        link: '/zh-cn/docs/1.3.4/user_doc/architecture-design.html',
                     },
                     {
                         title: '配置文件',
-                        link: '/zh-cn/docs/1.3.4/user_doc/configuration-file.html'
+                        link: '/zh-cn/docs/1.3.4/user_doc/configuration-file.html',
                     },
                     {
                         title: '任务结构',
-                        link: '/zh-cn/docs/1.3.4/user_doc/task-structure.html'
-                    }
+                        link: '/zh-cn/docs/1.3.4/user_doc/task-structure.html',
+                    },
                 ],
             },
             {
@@ -136,9 +136,9 @@ export default {
                     {
                         title: 'API文档',
                         target: '_blank',
-                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh'
-                    }
-                ]
+                        link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh',
+                    },
+                ],
             },
             {
                 title: '版本升级',
@@ -146,7 +146,7 @@ export default {
                     {
                         title: '升级',
                         link: '/zh-cn/docs/1.3.4/user_doc/upgrade.html',
-                    }
+                    },
                 ],
             },
             {
@@ -155,10 +155,10 @@ export default {
                     {
                         title: 'FAQ',
                         link: '/zh-cn/docs/release/faq.html',
-                    }
-                ]
-            }
+                    },
+                ],
+            },
         ],
-        barText: '文档'
-    }
+        barText: '文档',
+    },
 };

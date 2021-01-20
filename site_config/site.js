@@ -212,8 +212,8 @@ export default {
               key: 'docs7',
               text: '1.1.0(Not Apache Release)',
               link: 'https://analysys.github.io/easyscheduler_docs_cn/',
-          }
-        ]
+          },
+        ],
       },
       {
         key: 'download',

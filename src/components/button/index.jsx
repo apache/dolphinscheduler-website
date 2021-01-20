@@ -14,8 +14,7 @@ const defaultProps = {
   link: '',
   target: '_self',
 };
-const Button = (props) => {
-  return (
+const Button = props => (
     <a
       className={
         classnames({
@@ -29,7 +28,6 @@ const Button = (props) => {
       {props.children}
     </a>
   );
-};
 
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
