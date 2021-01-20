@@ -56,7 +56,7 @@ class pageSlider extends React.Component {
     const len = React.Children.count(children);
     // 分成的屏数
     const splitNum = Math.ceil(len / pageSize);
-    /* eslint-disable no-plusplus*/
+    /* eslint-disable no-plusplus */
     for (let i = 0; i < splitNum; i++) {
       splitGroup.push(Array.from(children).slice(i * pageSize, (i + 1) * pageSize));
     }
@@ -69,8 +69,7 @@ class pageSlider extends React.Component {
           width: splitNum * pageWidth,
         }}
       >
-        {splitGroup.map((group, i) => {
-          return (
+        {splitGroup.map((group, i) => (
             <div
               className="slider-page"
               style={{ width: pageWidth }}
@@ -84,12 +83,10 @@ class pageSlider extends React.Component {
                     >
                       {child}
                     </div>
-                  )
-                )
+                ))
               }
             </div>
-          );
-        })}
+        ))}
       </div>
     );
   }

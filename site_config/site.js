@@ -48,9 +48,9 @@ export default {
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs7',
-              text: '1.1.0(Not Apache Release)',
-              link: 'https://analysys.github.io/easyscheduler_docs_cn/',
+            key: 'docs7',
+            text: '1.1.0(Not Apache Release)',
+            link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           },
         ],
       },
@@ -209,11 +209,11 @@ export default {
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-              key: 'docs7',
-              text: '1.1.0(Not Apache Release)',
-              link: 'https://analysys.github.io/easyscheduler_docs_cn/',
-          }
-        ]
+            key: 'docs7',
+            text: '1.1.0(Not Apache Release)',
+            link: 'https://analysys.github.io/easyscheduler_docs_cn/',
+          },
+        ],
       },
       {
         key: 'download',

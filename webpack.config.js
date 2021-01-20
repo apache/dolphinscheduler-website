@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const entry = {};
 const targetPath = path.join(__dirname, './src/pages');
-fs.readdirSync(targetPath).forEach(page => {
+fs.readdirSync(targetPath).forEach((page) => {
   const entries = [];
   const pagePath = path.join(targetPath, page);
   if (fs.statSync(pagePath).isDirectory()) {
@@ -13,9 +13,9 @@ fs.readdirSync(targetPath).forEach(page => {
       entries.push(path.join(pagePath, 'index.jsx'));
     }
     if (fs.existsSync(path.join(pagePath, 'index.md.jsx'))) {
-      entry[page+'.md'] = path.join(pagePath, 'index.md.jsx');
+      entry[`${page}.md`] = path.join(pagePath, 'index.md.jsx');
     }
-    fs.readdirSync(pagePath).forEach(subPage => {
+    fs.readdirSync(pagePath).forEach((subPage) => {
       const subPagePath = path.join(pagePath, subPage);
       if (fs.existsSync(path.join(subPagePath, 'index.jsx'))) {
         entries.push(path.join(subPagePath, 'index.jsx'));

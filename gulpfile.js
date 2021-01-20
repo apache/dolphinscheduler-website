@@ -10,6 +10,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const siteConfig = require('./site_config/site').default;
 const webpackConfig = require('./webpack.config.js');
 
+const distdir = path.join(__dirname, 'dist');
 const port = siteConfig.port || 8080;
 
 gulp.task('webpack-dev-server', () => {
@@ -22,14 +23,14 @@ gulp.task('webpack-dev-server', () => {
     stats: {
       colors: true,
     },
-  }).listen(port, '127.0.0.1', err => {
+  }).listen(port, '127.0.0.1', (err) => {
     if (err) throw new gutil.PluginError('webpack-dev-server', err);
     opn(`http://127.0.0.1:${port}/`);
     gutil.log('[webpack-dev-server]', `http://127.0.0.1:${port}/webpack-dev-server/index.html`);
   });
 });
 
-gulp.task('webpack:build', callback => {
+gulp.task('webpack:build', (callback) => {
   // modify some webpack config options
   const myConfig = Object.create(webpackConfig);
   myConfig.output.publicPath = `${siteConfig.rootPath}/build/`;
@@ -44,7 +45,7 @@ gulp.task('webpack:build', callback => {
     new CopyWebpackPlugin((() => {
       const entries = ['.asf.yaml', 'sitemap.xml', 'file', 'img'];
       const pages = fs.readdirSync(path.join(__dirname, './src/pages'));
-      pages.forEach(page => {
+      pages.forEach((page) => {
         if (page === 'home') return;
         if (fs.statSync(path.join(__dirname, './src/pages', page)).isDirectory()) {
           if (fs.existsSync(path.join(__dirname, page)) && fs.statSync(path.join(__dirname, page)).isDirectory()) {
@@ -52,16 +53,14 @@ gulp.task('webpack:build', callback => {
           }
         }
       });
-      return entries.map(entry => {
-        return {
-          from: path.join(__dirname, entry),
-          to: path.join(__dirname, 'dist', entry),
-          ignore: ['*.md', '*.markdown']
-        }
-      });
+      return entries.map(entry => ({
+        from: path.join(__dirname, entry),
+        to: path.join(distdir, entry),
+        ignore: ['*.md', '*.markdown'],
+      }));
     })()),
     new CopyWebpackPlugin([
-      { from: path.join(__dirname, siteConfig.defaultLanguage, 'index.html'), to: path.join(__dirname, 'dist/index.html') },
+      { from: path.join(distdir, siteConfig.defaultLanguage, 'index.html'), to: path.join(distdir, 'index.html') },
     ])
   );
 

@@ -11,7 +11,6 @@ import { getLink } from '../../../utils';
 import './index.scss';
 
 class Blog extends Language {
-
   render() {
     const language = this.getLanguage();
     const dataSource = blogConfig[language];

@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "docsite start",
-    "build": "docsite build"
+    "build": "docsite build",
+    "lint": "eslint --ext .js,.jsx ./src ./utils ./site_config ./gulpfile.js ./webpack.config.js",
+    "lint:fix": "eslint --ext .js,.jsx --fix ./src ./utils ./site_config ./gulpfile.js ./webpack.config.js"
   },
   "dependencies": {
     "antd": "^3.26.20",

@@ -9,7 +9,6 @@ import Sidemenu from '../../components/sidemenu';
 import downloadConfig from '../../../site_config/download';
 
 class Download extends Md2Html(Language) {
-
   render() {
     const language = this.getLanguage();
     let dataSource = downloadConfig[language];
