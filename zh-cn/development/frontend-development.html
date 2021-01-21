@@ -417,6 +417,14 @@ test.then(res =&gt; {
   msg:'失败'
 }
 </code></pre>
+<p>接口如果是post请求，Content-Type默认为application/x-www-form-urlencoded；如果Content-Type改成application/json，
+接口传参需要改成下面的方式</p>
+<pre><code>io.post('url', payload, null, null, { emulateJSON: false } res =&gt; {
+  resolve(res)
+}).catch(e =&gt; {
+  reject(e)
+})
+</code></pre>
 <h5>相关接口路径</h5>
 <p>dag 相关接口 <code>src/js/conf/home/store/dag/actions.js</code></p>
 <p>数据源中心 相关接口 <code>src/js/conf/home/store/datasource/actions.js</code></p>

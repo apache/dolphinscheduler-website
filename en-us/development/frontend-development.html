@@ -418,6 +418,14 @@ test.then(res =&gt; {
   msg:'failed'
 }
 </code></pre>
+<p>If the interface is a post request, the Content-Type defaults to application/x-www-form-urlencoded; if the Content-Type is changed to application/json,
+Interface parameter transfer needs to be changed to the following way</p>
+<pre><code>io.post('url', payload, null, null, { emulateJSON: false } res =&gt; {
+  resolve(res)
+}).catch(e =&gt; {
+  reject(e)
+})
+</code></pre>
 <h5>Related interface path</h5>
 <p>dag related interface <code>src/js/conf/home/store/dag/actions.js</code></p>
 <p>Data Source Center Related Interfaces  <code>src/js/conf/home/store/datasource/actions.js</code></p>
