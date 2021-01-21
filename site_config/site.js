@@ -66,7 +66,7 @@ export default {
       {
         key: 'development',
         text: 'DEVELOPMENT',
-        link: '/en-us/docs/development/development-environment-setup.html',
+        link: '/en-us/development/development-environment-setup.html',
       },
       {
         key: 'community',
@@ -127,7 +127,7 @@ export default {
       list: [
         {
           text: 'Overview',
-          link: '/en-us/docs/development/architecture-design.html',
+          link: '/en-us/development/architecture-design.html',
         },
         {
           text: 'Quick start',
@@ -135,7 +135,7 @@ export default {
         },
         {
           text: 'Developer guide',
-          link: '/en-us/docs/development/backend-development.html',
+          link: '/en-us/development/backend-development.html',
         },
       ],
     },
@@ -228,7 +228,7 @@ export default {
       {
         key: 'development',
         text: '开发者',
-        link: '/zh-cn/docs/development/development-environment-setup.html',
+        link: '/zh-cn/development/development-environment-setup.html',
       },
       {
         key: 'community',
@@ -289,7 +289,7 @@ export default {
       list: [
         {
           text: '概览',
-          link: '/zh-cn/docs/development/architecture-design.html',
+          link: '/zh-cn/development/architecture-design.html',
         },
         {
           text: '快速开始',
@@ -297,7 +297,7 @@ export default {
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/development/backend-development.html',
+          link: '/zh-cn/development/backend-development.html',
         },
       ],
     },

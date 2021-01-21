@@ -6,27 +6,27 @@ export default {
         children: [
           {
             title: 'Development Environment Setup',
-            link: '/en-us/docs/development/development-environment-setup.html',
+            link: '/en-us/development/development-environment-setup.html',
           },
           {
             title: 'Architecture Design',
-            link: '/en-us/docs/development/architecture-design.html',
+            link: '/en-us/development/architecture-design.html',
           },
           {
             title: 'Backend Development',
-            link: '/en-us/docs/development/backend-development.html',
+            link: '/en-us/development/backend-development.html',
           },
           {
             title: 'Frontend Development',
-            link: '/en-us/docs/development/frontend-development.html',
+            link: '/en-us/development/frontend-development.html',
           },
           {
             title: 'plugin-development',
-            link: '/en-us/docs/development/plugin-development.html',
+            link: '/en-us/development/plugin-development.html',
           },
           {
             title: 'download',
-            link: '/en-us/docs/development/download.html',
+            link: '/en-us/development/download.html',
           },
         ],
       },
@@ -40,27 +40,27 @@ export default {
         children: [
           {
             title: '环境搭建',
-            link: '/zh-cn/docs/development/development-environment-setup.html',
+            link: '/zh-cn/development/development-environment-setup.html',
           },
           {
             title: '架构设计',
-            link: '/zh-cn/docs/development/architecture-design.html',
+            link: '/zh-cn/development/architecture-design.html',
           },
           {
             title: '后端开发',
-            link: '/zh-cn/docs/development/backend-development.html',
+            link: '/zh-cn/development/backend-development.html',
           },
           {
             title: '前端开发',
-            link: '/zh-cn/docs/development/frontend-development.html',
+            link: '/zh-cn/development/frontend-development.html',
           },
           {
             title: '插件开发',
-            link: '/zh-cn/docs/development/plugin-development.html',
+            link: '/zh-cn/development/plugin-development.html',
           },
           {
             title: '下载',
-            link: '/zh-cn/docs/development/download.html',
+            link: '/zh-cn/development/download.html',
           },
         ],
       },
