@@ -510,6 +510,15 @@ Error return
   msg:'failed'
 }
 ```
+If the interface is a post request, the Content-Type defaults to application/x-www-form-urlencoded; if the Content-Type is changed to application/json,
+Interface parameter transfer needs to be changed to the following way
+```
+io.post('url', payload, null, null, { emulateJSON: false } res => {
+  resolve(res)
+}).catch(e => {
+  reject(e)
+})
+```
 
 ##### Related interface path
 
