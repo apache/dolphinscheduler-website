@@ -7,7 +7,7 @@ In this way, you need to install docker-compose first, please install it yoursel
 
 ##### 1、 Download the source code zip package
 
--Please download the latest version of the source code package and unzip it
+- Please download the latest version of the source code package and unzip it
 ```shell
 mkdir -p /opt/soft/dolphinscheduler;
 cd /opt/soft/dolphinscheduler;
@@ -29,7 +29,7 @@ docker-compose -f ./docker/docker-swarm/docker-compose.yml up -d
 ##### 3、 Login the system
 Visit the front-end UI: http://192.168.xx.xx:8888
   <p align="center">
-    <img src="/img/login.png" width="60%" />
+    <img src="/img/login_en.png" width="60%" />
   </p>
 Then refer to the `Quick Start` in the chapter of the user manual to use
 
