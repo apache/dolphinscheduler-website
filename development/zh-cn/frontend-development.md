@@ -507,6 +507,15 @@ test.then(res => {
   msg:'失败'
 }
 ```
+接口如果是post请求，Content-Type默认为application/x-www-form-urlencoded；如果Content-Type改成application/json，
+接口传参需要改成下面的方式
+```
+io.post('url', payload, null, null, { emulateJSON: false } res => {
+  resolve(res)
+}).catch(e => {
+  reject(e)
+})
+```
 
 ##### 相关接口路径
 
