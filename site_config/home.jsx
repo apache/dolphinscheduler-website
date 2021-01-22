@@ -93,7 +93,7 @@ export default {
   'en-us': {
     brand: {
       brandName: 'Apache DolphinScheduler',
-      briefIntroduction: 'A distributed and easy-to-expand visual DAG workflow scheduling system',
+      briefIntroduction: 'A distributed and easy-to-extend visual workflow scheduler system',
       buttons: [
         {
           text: 'Quick Start',
@@ -113,8 +113,8 @@ export default {
       releaseDate: 'Released on Aug 05, 2019',
     },
     introduction: {
-      title: 'A distributed and easy-to-expand visual DAG workflow scheduling system',
-      desc: 'Dedicated to solving the complex dependencies in data processing, making the scheduling system out of the box for data processing. Its main objectives are as follows:',
+      title: 'A distributed and easy-to-extend visual workflow scheduler system',
+      desc: 'Dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing. Its main objectives are as follows:',
       img: '/img/architecture.jpg',
     },
     features: {
