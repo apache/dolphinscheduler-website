@@ -121,8 +121,8 @@ export default {
         },
         {
           img: '/img/architecture.jpg',
-          title: 'A distributed and easy-to-expand visual DAG workflow scheduling system.',
-          content: 'A distributed and easy-to-expand visual DAG workflow scheduling system.',
+          title: 'A distributed and easy-to-extend visual workflow scheduler system.',
+          content: 'A distributed and easy-to-extend visual workflow scheduler system.',
           dateStr: 'May 12nd，2018',
           link: '/en-us/blog/architecture-design.html',
         },
