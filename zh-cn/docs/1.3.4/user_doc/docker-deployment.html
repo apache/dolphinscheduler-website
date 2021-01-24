@@ -64,25 +64,22 @@ docker-compose -f ./docker/docker-swarm/docker-compose.yml up -d
 -p 8888:8888 \
 dolphinscheduler all
 </code></pre>
-<h3>然后登录系统</h3>
-<ul>
-<li>访问前端页面地址,接口ip(自行修改)
-<a href="http://192.168.xx.xx:8888">http://192.168.xx.xx:8888</a></li>
-</ul>
+<h5>6、登录系统</h5>
+<p>访问前端界面： <a href="http://192.168.xx.xx:8888">http://192.168.xx.xx:8888</a></p>
  <p align="center">
    <img src="/img/login.png" width="60%" />
  </p>
 然后参考用户手册章节的`快速上手`即可进行使用
 <h2>附录</h2>
 <h3>在容器启动时，会自动启动以下服务：</h3>
-<pre><code class="language-aidl">    MasterServer         ----- master服务
+<pre><code>    MasterServer         ----- master服务
     WorkerServer         ----- worker服务
     LoggerServer         ----- logger服务
     ApiApplicationServer ----- api服务
     AlertServer          ----- alert服务
 </code></pre>
 <h3>如果你只是想运行 dolphinscheduler 中的部分服务</h3>
-<p>你能够运行dolphinscheduler中的部分服务。</p>
+<p>你能够通执行以下指令仅运行dolphinscheduler中的部分服务。</p>
 <ul>
 <li>启动一个 <strong>master server</strong>, 如下:</li>
 </ul>
