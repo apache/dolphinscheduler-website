@@ -1,11 +1,11 @@
-## Try DolphinScheduler quickly
+## QuickStart in Docker
 
-There are 2 ways to quickly intall DolphinScheduler 
+Here're 2 ways to quickly install DolphinScheduler 
 
-### The first way：Start with docker-compose (recommended)
-In this way, you need to install docker-compose first, please install it yourself
+### The First Way：Start With docker-compose (Recommended)
+In this way, you need to install docker-compose as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet
 
-##### 1、 Download the source code zip package
+##### 1、 Download the Source Code Zip Package
 
 - Please download the latest version of the source code package and unzip it
 ```shell
@@ -20,41 +20,38 @@ unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
  
 mv apache-dolphinscheduler-incubating-1.3.4-src-release  dolphinscheduler-src
 ```
-##### 2、 Install and start the service
+##### 2、 Install and Start the Service
 ```
 cd dolphinscheduler-src
 docker-compose -f ./docker/docker-swarm/docker-compose.yml up -d
 ```
 
-##### 3、 Login the system
+##### 3、 Login
 Visit the front-end UI: http://192.168.xx.xx:8888
   <p align="center">
     <img src="/img/login_en.png" width="60%" />
   </p>
-Then refer to the `Quick Start` in the chapter of the user manual to use
+Please refer to the `Quick Start` in the chapter 'User Manual' to explore how to use DolphinScheduler
 
+### The Second way: Start in the Docker Mode
 
-
-
-### The Second way: start in docker mode
-
-##### 1. Basic software installation (please install by yourself)
+##### 1. Basic Required Software (please install by yourself)
   * PostgreSQL (8.2.15+)
   * ZooKeeper (3.4.6+)
   * Docker
  
 ##### 2. Please login to the PostgreSQL database and create a database named `dolphinscheduler`
 
-##### 3. Initialize the database, import `sql/dolphinscheduler-postgre.sql` 
+##### 3. Initialize the database, import `sql/dolphinscheduler-postgre.sql` to create tables and initial data 
 
 ##### 4. Download the DolphinScheduler Image
+We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository and self-build image not needed: 
 ```
 docker pull apache/dolphinscheduler:latest
 ```
 
-##### 5. Run a DolphinScheduler instance
-
-start service: 
+##### 5. Run a DolphinScheduler Instance
+Check follows: 
 
 ```
 $ docker run -dit --name dolphinscheduler \
@@ -64,24 +61,29 @@ $ docker run -dit --name dolphinscheduler \
 -p 8888:8888 \
 dolphinscheduler all
 ```
-Note: {user} and {password} need to be replaced with your database user name and password)
+Note: {user} and {password} need to be replaced with your database user name and password
 
-
+##### 6. Login
+Visit the front-end UI: http://192.168.xx.xx:8888
+  <p align="center">
+    <img src="/img/login_en.png" width="60%" />
+  </p>
+Please refer to the `Quick Start` in the chapter 'User Manual' to explore how to use DolphinScheduler
 
 ## Appendix
 
-### When the container starts, the following services are automatically started:
+### The following services are automatically started when the container starts:
 
-```aidl
+```
      MasterServer ----- master service
      WorkerServer ----- worker service
      LoggerServer ----- logger service
-     ApiApplicationServer ----- api service
+     ApiApplicationServer ----- API service
      AlertServer ----- alert service
 ```
-### If you just want to run some services in dolphinscheduler
+### If you just want to run part of the services in the DolphinScheduler
 
-You can run some services in dolphinscheduler.
+You can start selected services in DolphinScheduler by run the following commands.
 
 * Start a **master server**, For example:
 
@@ -131,5 +133,5 @@ $ docker run -dit --name dolphinscheduler \
 dolphinscheduler frontend
 ```
 
-**Note**: You must be specify `DATABASE_HOST` `DATABASE_PORT` `DATABASE_DATABASE` `DATABASE_USERNAME` `DATABASE_PASSWORD` `ZOOKEEPER_QUORUM` when start a standalone dolphinscheduler server.
+**Note**: You must specify the following environment variables: `DATABASE_HOST` `DATABASE_PORT` `DATABASE_DATABASE` `DATABASE_USERNAME` `DATABASE_PASSWORD` `ZOOKEEPER_QUORUM` when start part of the DolphinScheduler services.
 
