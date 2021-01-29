@@ -118,5 +118,5 @@ DEV_HOST = localhost
 cd dolphinscheduler-ui目录，执行npm run start
 
 #### 访问项目
-1. 访问http://localhost:8888  
+1. 访问http://localhost:12345/dolphinscheduler  
 输入管理员账户admin,密码dolphinscheduler123进行登陆
