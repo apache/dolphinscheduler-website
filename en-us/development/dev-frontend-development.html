@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="keywords" content="frontend-development" />
-  <meta name="description" content="frontend-development" />
-  <title>frontend-development</title>
+  <meta name="keywords" content="dev-frontend-development" />
+  <meta name="description" content="dev-frontend-development" />
+  <title>dev-frontend-development</title>
   <link rel="shortcut icon" href="/img/favicon.ico"/>
   <link rel="stylesheet" href="/build/development.md.css" />
 </head>
@@ -16,7 +16,9 @@
 
 Es6 ECMAScript 6.0
 
-Ans-ui Analysys-ui
+Element-ui
+
+form-create JSON form generator
 
 D3  Visual Library Chart Library
 
@@ -30,28 +32,20 @@ Lodash high performance JavaScript utility library
 <h4>Node installation</h4>
 </li>
 </ul>
-<p>Node package download (note version 8.9.4) <code>https://nodejs.org/download/release/v8.9.4/</code></p>
+<p>Node package download (Note: The node version must be a long-term version, currently the highest version of Node supports 14+) <code>https://nodejs.org/en/</code>
+Node.js extension, you can install nvm management node version, install nrm management mirror source</p>
 <ul>
 <li>
 <h4>Front-end project construction</h4>
 </li>
 </ul>
-<p>Use the command line mode <code>cd</code>  enter the <code>dolphinscheduler-ui</code> project directory and execute <code>npm install</code> to pull the project dependency package.</p>
-<blockquote>
-<p>If <code>npm install</code> is very slow</p>
-</blockquote>
-<blockquote>
-<p>You can enter the Taobao image command line to enter <code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
-</blockquote>
-<blockquote>
-<p>Run <code>cnpm install</code></p>
-</blockquote>
+<p>Use the command line mode <code>cd</code> to enter the <code>dolphinscheduler-ui</code> project directory, check the usage status of the npm mirror source <code>npm get registry</code>, if it is not a Taobao mirror, set the mirror to Taobao mirror <code>npm config set registry http://registry.npm.taobao.org</code>, then execute <code>npm install</code> to pull project dependency packages</p>
 <ul>
-<li>Create a new <code>.env</code>  file or the interface that interacts with the backend</li>
+<li>Configure <code>.env</code> file for the interface to interact with the backend</li>
 </ul>
-<p>Create a new<code>.env</code> file in the <code>dolphinscheduler-ui</code>directory, add the ip address and port of the backend service to the file, and use it to interact with the backend. The contents of the<code>.env</code> file are as follows:</p>
+<p>Open the <code>.env</code> file in the <code>dolphinscheduler-ui</code> directory, and add the back-end service ip address and port to the file to interact with the back-end. The contents of the <code>.env</code> file are as follows:</p>
 <pre><code># Proxy interface address (modified by yourself)
-API_BASE = http://192.168.xx.xx:12345
+API_BASE = http://192.168.xx.xx:12345(Note: API interface must be written in the form of IP address, not http://localhost:12345)
 
 # If you need to access the project with ip, you can remove the &quot;#&quot; (example)
 #DEV_HOST = 192.168.xx.xx
@@ -109,8 +103,6 @@ API_BASE = http://192.168.xx.xx:12345
 <p><code>build</code> some webpack configurations for packaging and development environment projects</p>
 <p><code>node_modules</code> development environment node dependency package</p>
 <p><code>src</code> project required documents</p>
-<p><code>src =&gt; combo</code> project third-party resource localization <code>npm run combo</code> specific view <code>build/combo.js</code></p>
-<p><code>src =&gt; font</code> Font icon library can be added by visiting <a href="https://www.iconfont.cn">https://www.iconfont.cn</a> Note: The font library uses its own secondary development to reintroduce its own library <code>src/sass/common/_font.scss</code></p>
 <p><code>src =&gt; images</code> public image storage</p>
 <p><code>src =&gt; js</code> js/vue</p>
 <p><code>src =&gt; lib</code> internal components of the company (company component library can be deleted after open source)</p>
@@ -135,6 +127,7 @@ API_BASE = http://192.168.xx.xx:12345
 <p>Home  =&gt; <code>http://localhost:8888/#/home</code></p>
 <p>Project Management =&gt; <code>http://localhost:8888/#/projects/list</code></p>
 <pre><code>| Project Home
+| Workflow relationship
 | Workflow
   - Workflow definition
   - Workflow instance
@@ -150,12 +143,23 @@ API_BASE = http://192.168.xx.xx:12345
 
 </code></pre>
 <p>Data Source Management =&gt; <code>http://localhost:8888/#/datasource/list</code></p>
+<p>monitoring Center =&gt; <code>http://localhost:8888/#/monitor/servers/master</code></p>
+<pre><code>| Service management
+  - Master
+  - Worker
+  - Zookeeper
+  - DB
+| Statistics management
+  - Statistics
+</code></pre>
 <p>Security Center =&gt; <code>http://localhost:8888/#/security/tenant</code></p>
 <pre><code>| Tenant Management
 | User Management
 | Alarm Group Management
-  - master
-  - worker
+| Alarm instance management
+| Worker Group Management
+| Yarn queue management
+| Token Management
 </code></pre>
 <p>User Center =&gt; <code>http://localhost:8888/#/user/account</code></p>
 <h2>Routing and state management</h2>
@@ -180,6 +184,103 @@ state =&gt; mapState =&gt; Details：https://vuex.vuejs.org/zh/guide/state.html
 
 Specific action：https://vuex.vuejs.org/zh/
 
+</code></pre>
+<h2>Menu added</h2>
+<p>The public menu only needs to be in <code>/src/js/conf/home/router/index.js</code> Just add it，Such as: Home</p>
+<pre><code>  {
+    path: '/home',
+    name: 'home',
+    component: resolve =&gt; require(['../pages/home/index'], resolve),
+    meta: {
+      title: `${i18n.$t('Home')} - DolphinScheduler`,
+      refresh_in_switched_tab: true
+    }
+  }
+</code></pre>
+<h2>Exception handling</h2>
+<p>Intercept all request requests in the <code>/src/js/module/io/index.js file</code>, and analyze and handle the status code returned by the interface through the response interceptor. The code is as follows</p>
+<pre><code>import io from '@/module/axios/index'
+import cookies from 'js-cookie'
+
+const apiPrefix = '/dolphinscheduler'
+const reSlashPrefix = /^\/+/
+
+const resolveURL = (url) =&gt; {
+  if (url.indexOf('http') !== -1) {
+    return url
+  }
+  if (url.charAt(0) !== '/') {
+    return `${apiPrefix}/${url.replace(reSlashPrefix, '')}`
+  }
+
+  return url
+}
+
+/**
+ * Resolve backend api url
+ */
+export { resolveURL }
+
+/**
+ * Set io default instance resolveUrl globally
+ */
+io.config.resolveURL = resolveURL
+io.config.timeout = 0
+io.config.maxContentLength = 200000
+io.config.validateStatus = function (status) {
+  if (status === 401 || status === 504) {
+    window.location.href = `${PUBLIC_PATH}/view/login/index.html`
+    return
+  }
+  return status
+}
+
+// io.config.emulateJSON = false
+const _propRequest = io.request
+
+// Add a local request interceptor
+io.request = (spec) =&gt; {
+  return _propRequest.call(io, spec)
+}
+
+// Global response interceptor registion
+io.interceptors.response.use(
+  response =&gt; {
+    return response
+  }, error =&gt; {
+    // Do something with response error
+    return Promise.reject(error)
+  }
+)
+
+// Global request interceptor registion
+io.interceptors.request.use(
+  config =&gt; {
+    const sIdCookie = cookies.get('sessionId')
+    const sessionId = sessionStorage.getItem('sessionId')
+    const requstUrl = config.url.substring(config.url.lastIndexOf('/') + 1)
+    if ((!sIdCookie || (sessionId &amp;&amp; sessionId !== sIdCookie)) &amp;&amp; requstUrl !== 'login') {
+      window.location.href = `${PUBLIC_PATH}/view/login/index.html`
+    } else {
+      const { method } = config
+      if (method === 'get') {
+        config.params = Object.assign({}, config.params, {
+          _t: Math.random()
+        })
+      }
+      config.headers = config.headers || {}
+      const language = cookies.get('language')
+      if (language) config.headers.language = language
+      if (sIdCookie) config.headers.sessionId = sIdCookie
+      return config
+    }
+  }, error =&gt; {
+    // Do something with request error
+    return Promise.reject(error)
+  }
+)
+
+export default io
 </code></pre>
 <h2>specification</h2>
 <h2>Vue specification</h2>
@@ -431,6 +532,7 @@ Interface parameter transfer needs to be changed to the following way</p>
 <p>Data Source Center Related Interfaces  <code>src/js/conf/home/store/datasource/actions.js</code></p>
 <p>Project Management Related Interfaces <code>src/js/conf/home/store/projects/actions.js</code></p>
 <p>Resource Center Related Interfaces <code>src/js/conf/home/store/resource/actions.js</code></p>
+<p>Monitoring center Related Interface <code>src/js/conf/home/store/monitor/actions.js</code></p>
 <p>Security Center Related Interfaces <code>src/js/conf/home/store/security/actions.js</code></p>
 <p>User Center Related Interfaces <code>src/js/conf/home/store/user/actions.js</code></p>
 <h2>Extended development</h2>
