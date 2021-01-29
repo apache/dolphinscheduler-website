@@ -21,6 +21,10 @@ export default {
             link: '/en-us/development/frontend-development.html',
           },
           {
+            title: 'Dev Frontend Development',
+            link: '/en-us/development/dev-frontend-development.html',
+          },
+          {
             title: 'plugin-development',
             link: '/en-us/development/plugin-development.html',
           },
@@ -53,6 +57,10 @@ export default {
           {
             title: '前端开发',
             link: '/zh-cn/development/frontend-development.html',
+          },
+          {
+            title: 'dev前端开发',
+            link: '/zh-cn/development/dev-frontend-development.html',
           },
           {
             title: '插件开发',
