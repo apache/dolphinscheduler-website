@@ -5,7 +5,7 @@ export default {
         title: 'Deployment Document',
         children: [
           {
-            title: 'Hareware Environment',
+            title: 'Hardware Environment',
             link: '/en-us/docs/1.3.1/user_doc/hardware-environment.html',
           },
           {
@@ -17,8 +17,8 @@ export default {
             link: '/en-us/docs/1.3.1/user_doc/frontend-deployment.html',
           },
           {
-            tltle: 'Configration file',
-            link: '/en-us/docs/1.3.1/user_doc/configration-file.html',
+            title: 'Configuration file',
+            link: '/en-us/docs/1.3.1/user_doc/configuration-file.html',
           },
         ],
       },

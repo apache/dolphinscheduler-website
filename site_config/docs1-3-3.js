@@ -5,7 +5,7 @@ export default {
         title: 'Deployment Document',
         children: [
           {
-            title: 'Hareware Environment',
+            title: 'Hardware Environment',
             link: '/en-us/docs/1.3.3/user_doc/hardware-environment.html',
           },
           {
