@@ -5,7 +5,7 @@ export default {
         title: 'Deployment Document',
         children: [
           {
-            title: 'Hareware Environment',
+            title: 'Hardware Environment',
             link: '/en-us/docs/1.3.4/user_doc/hardware-environment.html',
           },
           {
@@ -112,6 +112,12 @@ export default {
             title: '用户手册',
             link: '/zh-cn/docs/1.3.4/user_doc/system-manual.html',
           },
+
+        ],
+      },
+      {
+        title: '架构设计',
+        children: [
           {
             title: '元数据文档',
             link: '/zh-cn/docs/1.3.4/user_doc/metadata-1.3.html',
@@ -127,6 +133,10 @@ export default {
           {
             title: '任务结构',
             link: '/zh-cn/docs/1.3.4/user_doc/task-structure.html',
+          },
+          {
+            title: '负载均衡',
+            link: '/zh-cn/docs/1.3.4/user_doc/load-balance.html',
           },
         ],
       },
