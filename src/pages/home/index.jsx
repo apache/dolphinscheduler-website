@@ -114,19 +114,6 @@ class Home extends Language {
           }
           </ul>
         </section>
-        <section className="users-section">
-          <h3>{dataSource.users.title}</h3>
-          <p>{dataSource.users.desc}</p>
-          <div>
-          {
-            dataSource.users.list.map((user, i) => (
-              <div className="users" key={i}>
-                <img src={getLink(user)} key={i} />
-              </div>
-            ))
-          }
-          </div>
-        </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
     );
