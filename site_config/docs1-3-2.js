@@ -36,16 +36,6 @@ export default {
         ],
       },
       {
-        title: 'Api Document',
-        children: [
-          {
-            title: 'Api Document',
-            target: '_blank',
-            link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en',
-          },
-        ],
-      },
-      {
         title: 'Upgrade',
         children: [
           {
@@ -103,16 +93,6 @@ export default {
           {
             title: '架构设计',
             link: '/zh-cn/docs/1.3.2/user_doc/architecture-design.html',
-          },
-        ],
-      },
-      {
-        title: 'API文档',
-        children: [
-          {
-            title: 'API文档',
-            target: '_blank',
-            link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh',
           },
         ],
       },
