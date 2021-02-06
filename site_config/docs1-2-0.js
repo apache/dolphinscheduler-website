@@ -40,16 +40,6 @@ export default {
         ],
       },
       {
-        title: 'Api Document',
-        children: [
-          {
-            title: 'Api Document',
-            target: '_blank',
-            link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en',
-          },
-        ],
-      },
-      {
         title: 'Upgrade',
         children: [
           {
@@ -107,16 +97,6 @@ export default {
           {
             title: '部署参数分析',
             link: '/zh-cn/docs/1.2.0/user_doc/deployparam.html',
-          },
-        ],
-      },
-      {
-        title: 'API文档',
-        children: [
-          {
-            title: 'API文档',
-            target: '_blank',
-            link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh',
           },
         ],
       },
