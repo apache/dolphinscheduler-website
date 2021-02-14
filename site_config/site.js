@@ -15,40 +15,45 @@ export default {
       {
         key: 'docs',
         text: 'DOCS',
-        link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
+        link: '/en-us/docs/1.3.5/user_doc/quick-start.html',
         children: [
           {
             key: 'docs1',
-            text: '1.3.4(Recommend)',
-            link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
+            text: '1.3.5(Recommend)',
+            link: '/en-us/docs/1.3.5/user_doc/quick-start.html',
           },
           {
             key: 'docs2',
+            text: '1.3.4',
+            link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs3',
             text: '1.3.3',
             link: '/en-us/docs/1.3.3/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs4',
             text: '1.3.2',
             link: '/en-us/docs/1.3.2/user_doc/quick-start.html',
           },
           {
-            key: 'docs4',
+            key: 'docs5',
             text: '1.3.1',
             link: '/en-us/docs/1.3.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs5',
+            key: 'docs6',
             text: '1.2.1',
             link: '/en-us/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs6',
+            key: 'docs7',
             text: '1.2.0',
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-            key: 'docs7',
+            key: 'docs8',
             text: '1.1.0(Not Apache Release)',
             link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           },
@@ -176,40 +181,45 @@ export default {
       {
         key: 'docs',
         text: '文档',
-        link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
+        link: '/zh-cn/docs/1.3.5/user_doc/quick-start.html',
         children: [
           {
             key: 'docs1',
-            text: '1.3.4(推荐)',
-            link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
+            text: '1.3.5(推荐)',
+            link: '/zh-cn/docs/1.3.5/user_doc/quick-start.html',
           },
           {
             key: 'docs2',
+            text: '1.3.4',
+            link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs3',
             text: '1.3.3',
             link: '/zh-cn/docs/1.3.3/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs4',
             text: '1.3.2',
             link: '/zh-cn/docs/1.3.2/user_doc/quick-start.html',
           },
           {
-            key: 'docs4',
+            key: 'docs5',
             text: '1.3.1',
             link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs5',
+            key: 'docs6',
             text: '1.2.1',
             link: '/zh-cn/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs6',
+            key: 'docs7',
             text: '1.2.0',
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-            key: 'docs7',
+            key: 'docs8',
             text: '1.1.0(Not Apache Release)',
             link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           },
