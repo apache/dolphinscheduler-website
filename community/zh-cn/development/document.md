@@ -19,7 +19,7 @@ DolphinScheduler 网站由 [docsite](https://github.com/txd-team/docsite) 提供
 
 如果你的 docsite 版本低于 “1.3.3”，请升级到 “1.3.3”。
 
-请确保你的 node 版本是 8.x，docsite 尚不支持高于 8.x 的版本。
+请确保你的 node 版本是 10.x，docsite 尚不支持高于 10.x 的版本。
 
 ### 文档构建指南
 
@@ -37,11 +37,11 @@ DolphinScheduler 网站由 [docsite](https://github.com/txd-team/docsite) 提供
 
 1. 参考[说明](http://nvm.sh)安装 nvm
 
-2. 运行 “nvm install v8.16.0” 安装 node v8
+2. 运行 “nvm install v10.23.1” 安装 node v10
 
-3. 运行 “nvm use v8.16.0” 将当前工作环境切换到 node v8
+3. 运行 “nvm use v10.23.1” 将当前工作环境切换到 node v10
 
-4. 运行`npm install docsite-g`
+4. 运行 “npm install docsite-g“
 
 然后你就可以在本地环境运行和建立网站了。
 

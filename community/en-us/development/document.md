@@ -19,7 +19,7 @@ The DolphinScheduler website is supported by [docsite](https://github.com/txd-te
 
 If your docsite version is below "1.3.3", upgrade to "1.3.3".
 
-Make sure that your node version is 8.x, docsite does not yet support versions higher than 8.x.
+Make sure that your node version is 10.x, docsite does not yet support versions higher than 10.x.
 
 ### Document build guide.
 
@@ -37,9 +37,9 @@ If the latest version of node is installed locally, consider using "nvm" to allo
 
 1. Refer to the [Instructions](http://nvm.sh) to install nvm.
 
-2. Run “nvm install v8.16.0” to install node v8.
+2. Run “nvm install v10.23.1” to install node v10.
 
-3. Run “nvm use v8.16.0” to switch the current working environment to node v8.
+3. Run “nvm use v10.23.1” to switch the current working environment to node v10.
 
 4. Run `npm install docsite -g`
 
@@ -64,4 +64,4 @@ Now you can run and build the website in your local environment.
 
 ### Reference to the documentation.
 
-[Apache Flink Translation Specifications](https://cwiki.apache.org/confluence/display/FLINK/Flink+Translation+Specifications)
+[Apache Flink Translation Specifications](https://cwiki.apache.org/confluence/display/FLINK/Flink+Translation+Specifications)
