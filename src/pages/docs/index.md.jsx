@@ -12,6 +12,7 @@ import docsConfig2 from '../../../site_config/docs1-3-1';
 import docsConfig3 from '../../../site_config/docs1-3-2';
 import docsConfig4 from '../../../site_config/docs1-3-3';
 import docsConfig5 from '../../../site_config/docs1-3-4';
+import docsConfig6 from '../../../site_config/docs1-3-5';
 
 const docsSource = {
   '1.2.0': docsConfig0,
@@ -20,6 +21,7 @@ const docsSource = {
   '1.3.2': docsConfig3,
   '1.3.3': docsConfig4,
   '1.3.4': docsConfig5,
+  '1.3.5': docsConfig6,
 };
 
 class Docs extends Md2Html(Language) {
