@@ -29,7 +29,7 @@ docker-compose -f ./docker/docker-swarm/docker-compose.yml up -d
 ```
 
 ##### 3、登录系统   
-访问前端界面： http://192.168.xx.xx:8888
+访问前端界面： http://192.168.xx.xx:12345/dolphinscheduler 
  <p align="center">
    <img src="/img/login.png" width="60%" />
  </p>
@@ -67,7 +67,7 @@ $ docker run -dit --name dolphinscheduler \
 dolphinscheduler all
 ```
 ##### 6、登录系统   
-访问前端界面： http://192.168.xx.xx:8888
+访问前端界面： http://192.168.xx.xx:12345/dolphinscheduler 
  <p align="center">
    <img src="/img/login.png" width="60%" />
  </p>
