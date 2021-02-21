@@ -4,9 +4,9 @@ import classnames from 'classnames';
 import { autobind } from 'core-decorators';
 import siteConfig from '../../../site_config/site';
 import { getLink } from '../../../utils';
-import 'antd/dist/antd.css';
+import Menu from 'antd/lib/menu';
+import 'antd/lib/menu/style/index.css';
 import './index.scss';
-import { Menu } from 'antd';
 
 const { SubMenu } = Menu;
 const languageSwitch = [

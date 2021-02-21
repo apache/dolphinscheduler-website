@@ -63,6 +63,5 @@ module.exports = {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new ExtractTextPlugin('[name].css'),
   ],
 };

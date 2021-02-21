@@ -17,7 +17,7 @@ const Md2Html = ComposeComponent => class extends ComposeComponent {
 
   componentDidMount() {
     // 通过请求获取生成好的json数据，静态页和json文件在同一个目录下
-    fetch(window.location.pathname.replace(/\.html$/i, '.json'))
+    fetch(`${window.location.pathname.replace(/\.html$/i, '.json')}?t=${new Date().getTime()}`)
       .then(res => res.json())
       .then((md) => {
         this.setState({
