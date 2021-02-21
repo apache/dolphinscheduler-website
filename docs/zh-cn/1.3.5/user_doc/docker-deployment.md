@@ -14,12 +14,12 @@ mkdir -p /opt/soft/dolphinscheduler;
 cd /opt/soft/dolphinscheduler;
 
 # 下载源码包
-wget https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
 
 # 解压缩
-unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
+unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
  
-mv apache-dolphinscheduler-incubating-1.3.4-src-release  dolphinscheduler-src
+mv apache-dolphinscheduler-incubating-1.3.5-src-release  dolphinscheduler-src
 ```
 
 ##### 2、安装并启动服务
@@ -63,9 +63,10 @@ $ docker run -dit --name dolphinscheduler \
 -e ZOOKEEPER_QUORUM="l92.168.x.x:2181"
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="{user}" -e DATABASE_PASSWORD="{password}" \
--p 8888:8888 \
-dolphinscheduler all
+-p 12345:12345 \
+apache/dolphinscheduler:latest all
 ```
+
 ##### 6、登录系统   
 访问前端界面： http://192.168.xx.xx:12345/dolphinscheduler 
  <p align="center">
@@ -87,57 +88,53 @@ dolphinscheduler all
 ### 如果你只是想运行 dolphinscheduler 中的部分服务
 
 你能够通执行以下指令仅运行dolphinscheduler中的部分服务。
+* 创建一个 **本地卷** 用于资源存储，如下:
+
+```
+docker volume create dolphinscheduler-resource-local
+```
 
 * 启动一个 **master server**, 如下:
 
 ```
 $ docker run -dit --name dolphinscheduler \
--e ZOOKEEPER_QUORUM="l92.168.x.x:2181"
+-e ZOOKEEPER_QUORUM="l92.168.x.x:2181" \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
-dolphinscheduler master-server
+apache/dolphinscheduler:latest master-server
 ```
 
 * 启动一个 **worker server**, 如下:
 
 ```
 $ docker run -dit --name dolphinscheduler \
--e ZOOKEEPER_QUORUM="l92.168.x.x:2181"
+-e ZOOKEEPER_QUORUM="l92.168.x.x:2181" \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
-dolphinscheduler worker-server
+-v dolphinscheduler-resource-local:/dolphinscheduler \
+apache/dolphinscheduler:latest worker-server
 ```
 
 * 启动一个 **api server**, 如下:
 
 ```
-$ docker run -dit --name dolphinscheduler \
+$ docker run -d --name dolphinscheduler-api \
+-e ZOOKEEPER_QUORUM="192.168.x.x:2181" \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
+-v dolphinscheduler-resource-local:/dolphinscheduler \
 -p 12345:12345 \
-dolphinscheduler api-server
+apache/dolphinscheduler:latest api-server
 ```
 
 * 启动一个 **alert server**, 如下:
 
 ```
-$ docker run -dit --name dolphinscheduler \
+$ docker run -d --name dolphinscheduler-alert \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
-dolphinscheduler alert-server
-```
-
-* 启动一个 **frontend**, 如下:
-
-```
-$ docker run -dit --name dolphinscheduler \
--e FRONTEND_API_SERVER_HOST="192.168.x.x" -e FRONTEND_API_SERVER_PORT="12345" \
--p 8888:8888 \
-dolphinscheduler frontend
+apache/dolphinscheduler:latest alert-server
 ```
 
 **注意**: 当你运行dolphinscheduler中的部分服务时，你必须指定这些环境变量 `DATABASE_HOST` `DATABASE_PORT` `DATABASE_DATABASE` `DATABASE_USERNAME` `DATABASE_PASSWORD` `ZOOKEEPER_QUORUM`。
-
-
-
 
