@@ -27,7 +27,7 @@ docker-compose -f ./docker/docker-swarm/docker-compose.yml up -d
 ```
 
 ##### 3、 Login
-Visit the front-end UI: http://192.168.xx.xx:8888
+Visit the front-end UI: http://{your host ip}:12345/dolphinscheduler
   <p align="center">
     <img src="/img/login_en.png" width="60%" />
   </p>
@@ -54,17 +54,17 @@ docker pull apache/dolphinscheduler:latest
 Check follows: 
 
 ```
-$ docker run -dit --name dolphinscheduler \
--e ZOOKEEPER_QUORUM="l92.168.x.x:2181"
+$ docker run -d --name dolphinscheduler \
+-e ZOOKEEPER_QUORUM="192.168.x.x:2181" \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
--e DATABASE_USERNAME="{user}" -e DATABASE_PASSWORD="{password}" \
--p 8888:8888 \
-dolphinscheduler all
+-e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
+-p 12345:12345 \
+apache/dolphinscheduler:latest all
 ```
-Note: {user} and {password} need to be replaced with your database user name and password
+Note: {user} and {password} need to be replaced with your database user name and password, 192.168.x.x need to be replaced with your relate zookeeper or database host IP
 
 ##### 6. Login
-Visit the front-end UI: http://192.168.xx.xx:8888
+Visit the front-end UI:  http://{your host ip}:12345/dolphinscheduler
   <p align="center">
     <img src="/img/login_en.png" width="60%" />
   </p>
@@ -85,53 +85,56 @@ Please refer to the `Quick Start` in the chapter 'User Manual' to explore how to
 
 You can start selected services in DolphinScheduler by run the following commands.
 
+* Create a **local volume** for resource storage, For example:
+
+```
+docker volume create dolphinscheduler-resource-local
+```
+
 * Start a **master server**, For example:
 
 ```
-$ docker run -dit --name dolphinscheduler \
--e ZOOKEEPER_QUORUM="l92.168.x.x:2181"
+$ docker run -d --name dolphinscheduler-master \
+-e ZOOKEEPER_QUORUM="192.168.x.x:2181" \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
-dolphinscheduler master-server
+apache/dolphinscheduler:latest master-server
 ```
 
 * Start a **worker server**, For example:
 
 ```
-$ docker run -dit --name dolphinscheduler \
--e ZOOKEEPER_QUORUM="l92.168.x.x:2181"
+$ docker run -d --name dolphinscheduler-worker \
+-e ZOOKEEPER_QUORUM="192.168.x.x:2181" \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
-dolphinscheduler worker-server
+-v dolphinscheduler-resource-local:/dolphinscheduler \
+apache/dolphinscheduler:latest worker-server
 ```
 
 * Start a **api server**, For example:
 
 ```
-$ docker run -dit --name dolphinscheduler \
+$ docker run -d --name dolphinscheduler-api \
+-e ZOOKEEPER_QUORUM="192.168.x.x:2181" \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
+-v dolphinscheduler-resource-local:/dolphinscheduler \
 -p 12345:12345 \
-dolphinscheduler api-server
+apache/dolphinscheduler:latest api-server
 ```
 
 * Start a **alert server**, For example:
 
 ```
-$ docker run -dit --name dolphinscheduler \
+$ docker run -d --name dolphinscheduler-alert \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
-dolphinscheduler alert-server
+apache/dolphinscheduler:latest alert-server
 ```
 
-* Start a **frontend**, For example:
-
-```
-$ docker run -dit --name dolphinscheduler \
--e FRONTEND_API_SERVER_HOST="192.168.x.x" -e FRONTEND_API_SERVER_PORT="12345" \
--p 8888:8888 \
-dolphinscheduler frontend
-```
 
 **Note**: You must specify the following environment variables: `DATABASE_HOST` `DATABASE_PORT` `DATABASE_DATABASE` `DATABASE_USERNAME` `DATABASE_PASSWORD` `ZOOKEEPER_QUORUM` when start part of the DolphinScheduler services.
+
+
 
