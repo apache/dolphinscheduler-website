@@ -240,7 +240,6 @@ export default {
           },
           {
             title: '订阅邮件列表',
-            target: '_blank',
             link: '/zh-cn/community/development/subscribe.html',
           },
           {
