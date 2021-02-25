@@ -93,6 +93,10 @@ export default {
             title: 'Docker部署(Docker)',
             link: '/zh-cn/docs/1.3.5/user_doc/docker-deployment.html',
           },
+          {
+            title: 'Skywalking-Agent部署',
+            link: '/zh-cn/docs/1.3.5/user_doc/skywalking-agent-deployment.html',
+          },
         ],
       },
       {
