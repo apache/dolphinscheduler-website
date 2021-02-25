@@ -2,15 +2,15 @@
 dolphinscheduler-skywalking
 =============================
 
-The dolphinscheduler-skywalking module provides skywalking monitor agent for the dolphinscheduler project.
+The dolphinscheduler-skywalking module provides [Skywalking](https://skywalking.apache.org/) monitor agent for the Dolphinscheduler project.
 
-This document describes how to enable skywalking support with this module.
+This document describes how to enable Skywalking support with this module.
 
 # Installation
 
-The following configuration is used to enable skywalking agent.
+The following configuration is used to enable Skywalking agent.
 
-Please make sure the skywalking oap-server is started.
+Please make sure the Skywalking oap-server is started.
 
 ### Through environment variable configuration (for Docker)
 
