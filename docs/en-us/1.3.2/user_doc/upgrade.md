@@ -62,7 +62,7 @@ Imaging bellow are the machine worker service to be deployed:
 | ds2   | 192.168.xx.11     |
 | ds3   | 192.168.xx.12     |
 
-To keep worker group config consistant with previous version, we need to modify workers config item as below:
+To keep worker group config consistent with previous version, we need to modify workers config item as below:
 
 ```shell
 #worker service is deployed on which machine, and also specify which worker group this worker belong to. 
