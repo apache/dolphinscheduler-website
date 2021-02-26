@@ -12,7 +12,7 @@ export default {
           type: 'primary',
         },
         {
-          text: '查看Github',
+          text: '查看GitHub',
           link: 'https://github.com/apache/incubator-dolphinscheduler',
           type: 'normal',
         },
@@ -65,7 +65,7 @@ export default {
           type: 'primary',
         },
         {
-          text: 'View on Github',
+          text: 'View on GitHub',
           link: 'https://github.com/apache/incubator-dolphinscheduler',
           type: 'normal',
         },

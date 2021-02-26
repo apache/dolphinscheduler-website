@@ -175,7 +175,7 @@ mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=
 
 和上一步演练的命令基本相同，去掉了-DdryRun=true参数。
 
--DpushChanges=false：不要将修改后的版本号和tag自动提交至Github。
+-DpushChanges=false：不要将修改后的版本号和tag自动提交至GitHub。
 如果遇到以下错误，请配置git邮箱为自己的apache邮箱和apache账号名
 ```shell
 [ERROR] *** Please tell me who you are.
@@ -318,7 +318,7 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 - 只存在文本文件，不存在二进制文件
 - 所有文件的开头都有ASF许可证
 - 能够正确编译，单元测试可以通过 (mvn install)
-- 版本内容与Github上tag的内容相符 (diff -r a verify_dir tag_dir)
+- 版本内容与GitHub上tag的内容相符 (diff -r a verify_dir tag_dir)
 - 检查是否有多余文件或文件夹，例如空文件夹等
 
 #### 检查二进制包的文件内容
