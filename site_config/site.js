@@ -143,7 +143,7 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/quick-start.html',
         },
         {
           text: 'Developer guide',
@@ -315,7 +315,7 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
+          link: '/zh-cn/docs/latest/user_doc/quick-start.html',
         },
         {
           text: '开发者指南',

@@ -110,7 +110,7 @@ export default {
         children: [
           {
             title: '扩/缩容',
-            link: 'https://github.com/apache/incubator-dolphinscheduler-website/blob/master/docs/zh-cn/1.3.3/user_doc/expansion-reduction.md',
+            link: '/zh-cn/docs/1.3.3/user_doc/expansion-reduction.html',
           },
         ],
       },

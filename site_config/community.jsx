@@ -131,7 +131,7 @@ export default {
           title: 'DolphinScheduler beijing meetup has been held successfully',
           content: 'DolphinScheduler beijing meetup has been held successfully',
           dateStr: 'May 12nd，2018',
-          link: '/en-us/docs/developer_guide/architecture-design.html',
+          link: '/en-us/development/architecture-design.html',
         },
       ],
     },
@@ -182,7 +182,7 @@ export default {
         {
           img: '/img/documents.png',
           title: 'Documents',
-          content: <span>Improve the <a href="/en-us/docs/1.3.4/user_doc/quick-start.html">documentation</a>.</span>,
+          content: <span>Improve the <a href="/en-us/docs/latest/user_doc/quick-start.html">documentation</a>.</span>,
         },
         {
           img: '/img/pullrequest.png',
@@ -322,7 +322,7 @@ export default {
           title: 'DolphinScheduler 开发者大会在北京成功举行',
           content: 'DolphinScheduler 开发者大会在北京成功举行',
           dateStr: 'May 12nd，2018',
-          link: '/zh-cn/docs/developer_guide/architecture-design.html',
+          link: '/zh-cn/development/architecture-design.html',
         },
       ],
     },
@@ -373,7 +373,7 @@ export default {
         {
           img: '/img/documents.png',
           title: '文档',
-          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/1.3.4/user_doc/quick-start.html"> 文档</a>。</span>,
+          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/latest/user_doc/quick-start.html"> 文档</a>。</span>,
         },
         {
           img: '/img/pullrequest.png',
