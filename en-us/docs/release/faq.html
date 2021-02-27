@@ -220,7 +220,7 @@ version 1.3 not use grpc, we use netty directly</p>
 <p>3, Version number is x.y.z, when x is increased, it represents the version of the new architecture. When y is increased, it means that it is incompatible with the y version before it needs to be upgraded by script or other manual processing. When the z increase represents a bug fix, the upgrade is fully compatible. No additional processing is required. Remaining problem, the 1.0.2 upgrade is not compatible with 1.0.1 and requires an upgrade script.</p>
 <hr>
 <h2>Q : Subsequent tasks can execute even front task failed</h2>
-<p>A: When start the workflow, you can set the task failure strategy: contine or failure.
+<p>A: When start the workflow, you can set the task failure strategy: continue or failure.
 <img src="https://user-images.githubusercontent.com/15833811/80368215-ee378080-88be-11ea-9074-01a33d012b23.png" alt="set task failure strategy"></p>
 <hr>
 <h2>Q : Workflow template DAG, workflow instance, work task and what is the relationship among them? A DAG supports a maximum concurrency of 100, does it mean that 100 workflow instances are generated and run concurrently? A task node in a DAG also has a concurrent number configuration. Does it mean that tasks can run concurrently with multiple threads? Is the maximum number 100?</h2>
@@ -245,7 +245,7 @@ worker.exec.threads=100
 A: For version 1.3.0, we want to support k8s, while the ip always will be changed, so can't config on the UI, worker can config group name in the worker.properties.
 <hr>
 <h2>Q : Why not add mysql jdbc connector to docker image</h2>
-<p>A: The license of mysql jdbc connector is not compitable with apache v2 license, so it can't be included by docker image.</p>
+<p>A: The license of mysql jdbc connector is not compatible with apache v2 license, so it can't be included by docker image.</p>
 <hr>
 <h2>Q : Allways fail when a task instance submit multiple yarn application</h2>
 <p align="center">
