@@ -12,7 +12,7 @@ commit message 应该明确说明该提交解决了哪些问题（bug 修复、�
 
 #### 2：关联相应的Pull Request 或者Issue
 
-当我们的改动较大的时候，commit message 最好能够关联 Github 上的相关 Issue 或者 Pull Request，这样，我们的开发者在查阅代码的时候能够通过关联信息较为迅速的了解改代码提交的上下文情景，如果当前 commit 针对某个 issue，那么可以在 Footer 部分关闭这个 issue。
+当我们的改动较大的时候，commit message 最好能够关联 GitHub 上的相关 Issue 或者 Pull Request，这样，我们的开发者在查阅代码的时候能够通过关联信息较为迅速的了解改代码提交的上下文情景，如果当前 commit 针对某个 issue，那么可以在 Footer 部分关闭这个 issue。
 
 #### 3：统一的格式
 
