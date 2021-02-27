@@ -6,6 +6,7 @@ import Footer from '../../components/footer';
 import Md2Html from '../../components/md2html';
 import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
+import siteConfig from '../../../site_config/site';
 import docsConfig0 from '../../../site_config/docs1-2-0';
 import docsConfig1 from '../../../site_config/docs1-2-1';
 import docsConfig2 from '../../../site_config/docs1-3-1';
@@ -27,10 +28,19 @@ const docsSource = {
 class Docs extends Md2Html(Language) {
   render() {
     const language = this.getLanguage();
-    let dataSource = docsConfig5[language];
+    let dataSource = {};
     let version = window.location.pathname.split('/')[3];
     if (version && docsSource.hasOwnProperty(version)) {
       dataSource = docsSource[version][language];
+    } else if (siteConfig.docsLatest && docsSource.hasOwnProperty(siteConfig.docsLatest)) {
+      dataSource = docsSource[siteConfig.docsLatest][language];
+      dataSource.sidemenu.forEach((menu) => {
+        menu.children.forEach((submenu) => {
+          submenu.link = submenu.link.replace(`docs/${siteConfig.docsLatest}`, 'docs/latest');
+        });
+      });
+    } else {
+      return null;
     }
     const __html = this.props.__html || this.state.__html;
     return (
