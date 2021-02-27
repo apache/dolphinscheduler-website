@@ -131,7 +131,7 @@ git push origin ${RELEASE.VERSION}-release
 <pre><code class="language-shell">mvn release:prepare -Prelease -Darguments=&quot;-DskipTests&quot; -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github用户名}
 </code></pre>
 <p>和上一步演练的命令基本相同，去掉了-DdryRun=true参数。</p>
-<p>-DpushChanges=false：不要将修改后的版本号和tag自动提交至Github。
+<p>-DpushChanges=false：不要将修改后的版本号和tag自动提交至GitHub。
 如果遇到以下错误，请配置git邮箱为自己的apache邮箱和apache账号名</p>
 <pre><code class="language-shell">[ERROR] *** Please tell me who you are.
 [ERROR]
@@ -227,7 +227,7 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 <li>只存在文本文件，不存在二进制文件</li>
 <li>所有文件的开头都有ASF许可证</li>
 <li>能够正确编译，单元测试可以通过 (mvn install)</li>
-<li>版本内容与Github上tag的内容相符 (diff -r a verify_dir tag_dir)</li>
+<li>版本内容与GitHub上tag的内容相符 (diff -r a verify_dir tag_dir)</li>
 <li>检查是否有多余文件或文件夹，例如空文件夹等</li>
 </ul>
 <h4>检查二进制包的文件内容</h4>
@@ -488,7 +488,7 @@ DolphinScheduler Resources:
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.b5d17d7.js"></script>
+  <script src="/build/vendor.9bf047a.js"></script>
   <script src="/build/community.md.6c396b8.js"></script>
   <script>
     var _hmt = _hmt || [];
