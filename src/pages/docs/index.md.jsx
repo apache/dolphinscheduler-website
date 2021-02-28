@@ -8,22 +8,22 @@ import Md2Html from '../../components/md2html';
 import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
 import siteConfig from '../../../site_config/site';
-import docsConfig0 from '../../../site_config/docs1-2-0';
-import docsConfig1 from '../../../site_config/docs1-2-1';
-import docsConfig2 from '../../../site_config/docs1-3-1';
-import docsConfig3 from '../../../site_config/docs1-3-2';
-import docsConfig4 from '../../../site_config/docs1-3-3';
-import docsConfig5 from '../../../site_config/docs1-3-4';
-import docsConfig6 from '../../../site_config/docs1-3-5';
+import docs120Config from '../../../site_config/docs1-2-0';
+import docs121Config from '../../../site_config/docs1-2-1';
+import docs131Config from '../../../site_config/docs1-3-1';
+import docs132Config from '../../../site_config/docs1-3-2';
+import docs133Config from '../../../site_config/docs1-3-3';
+import docs134Config from '../../../site_config/docs1-3-4';
+import docs135Config from '../../../site_config/docs1-3-5';
 
 const docsSource = {
-  '1.2.0': docsConfig0,
-  '1.2.1': docsConfig1,
-  '1.3.1': docsConfig2,
-  '1.3.2': docsConfig3,
-  '1.3.3': docsConfig4,
-  '1.3.4': docsConfig5,
-  '1.3.5': docsConfig6,
+  '1.2.0': docs120Config,
+  '1.2.1': docs121Config,
+  '1.3.1': docs131Config,
+  '1.3.2': docs132Config,
+  '1.3.3': docs133Config,
+  '1.3.4': docs134Config,
+  '1.3.5': docs135Config,
 };
 
 const isValidVersion = version => version && docsSource.hasOwnProperty(version);
