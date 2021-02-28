@@ -17,6 +17,8 @@ The following configuration is used to enable Skywalking agent.
 docker run -d --name dolphinscheduler \
     -e SKYWALKING_ENABLE=true \
     -e SW_AGENT_COLLECTOR_BACKEND_SERVICES="your.skywalking-oap-server.com:11800" \
+    -e SW_GRPC_LOG_SERVER_HOST="your.skywalking-log-reporter.com" \
+    -e SW_GRPC_LOG_SERVER_PORT="11800"
     ...
     apache/dolphinscheduler:latest all
 
@@ -33,6 +35,10 @@ Add the following configurations to `${workDir}/conf/config/install_config.conf`
 enableSkywalking="true"
 # note: configure skywalking backend service address
 skywalkingServers="your.skywalking-oap-server.com:11800"
+# note: configure skywalking log reporter host
+skywalkingLogReporterHost="your.skywalking-log-reporter.com"
+# note: configure skywalking log reporter port
+skywalkingLogReporterPort="11800"
 
 ```
 
