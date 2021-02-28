@@ -17,16 +17,16 @@ DolphinScheduler单机部署分为后端部署和前端部署两部分：
 
 ### 1.2 : 下载后端tar.gz包
 
-- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](/zh-cn/download/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
+- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](/zh-cn/download/download.html) (以1.2.1版本为例)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 # 创建部署目录
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 # 解压缩
-tar -zxvf apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin.tar.gz -C /opt/dolphinscheduler;
+tar -zxvf apache-dolphinscheduler-incubating-1.2.1-dolphinscheduler-backend-bin.tar.gz -C /opt/dolphinscheduler;
  
-mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin  dolphinscheduler-backend
+mv apache-dolphinscheduler-incubating-1.2.1-dolphinscheduler-backend-bin  dolphinscheduler-backend
 ```
 
 ### 1.3：创建部署用户并赋予目录操作权限
@@ -294,14 +294,14 @@ sudo pip install kazoo;
 
 # 2、前端部署
 
-请下载最新版本的前端安装包至服务器部署目录，下载地址： [下载](/zh-cn/download/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
+请下载最新版本的前端安装包至服务器部署目录，下载地址： [下载](/zh-cn/download/download.html) (以1.2.1版本为例)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 cd /opt/dolphinscheduler;
 
-tar -zxvf apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin.tar.gz -C /opt/dolphinscheduler;
+tar -zxvf apache-dolphinscheduler-incubating-1.2.1-dolphinscheduler-front-bin.tar.gz -C /opt/dolphinscheduler;
 
-mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin dolphinscheduler-ui
+mv apache-dolphinscheduler-incubating-1.2.1-dolphinscheduler-front-bin dolphinscheduler-ui
 ```
 
 
