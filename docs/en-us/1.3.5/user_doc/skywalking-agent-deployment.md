@@ -40,11 +40,11 @@ skywalkingServers="your.skywalking-oap-server.com:11800"
 
 ### Import dashboard
 
-#### 导入图表模板到 Skywalking server
+#### Import dolphinscheduler dashboard to skywalking sever
 
 Copy the `${dolphinscheduler.home}/skywalking-agent/dashboard/dolphinscheduler.yml` file into `${skywalking-oap-server.home}/config/ui-initialized-templates/` directory, and restart Skywalking oap- server.
 
-#### Import dolphinscheduler dashboard to skywalking website.
+#### Import dolphinscheduler dashboard to skywalking website
 
 ![img1](/img/skywalking/import-dashboard-1.jpg)
 
