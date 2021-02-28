@@ -57,14 +57,17 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem('currents') == null) {
-      this.setState({
-        current: window.location.pathname.split('/')[2] || 'home',
-      });
-    } else {
-      this.setState({
-        current: localStorage.getItem('currents'),
-      });
+    const parts = window.location.pathname.split('/');
+    if (!parts[2] || parts[2] === 'index.html') {
+      this.setCurrent('home');
+    } else if (siteConfig[this.state.language].pageMenu.some(menu => menu.key === parts[2]) && (parts[2] !== 'docs' || parts[3] === 'latest')) {
+      if (parts[2] !== 'docs') {
+        this.setCurrent(parts[2]);
+      } else if (parts[3] === 'latest') {
+        this.setCurrent('docs0');
+      }
+    } else if (localStorage.getItem('currents')) {
+      this.setCurrent(localStorage.getItem('currents'));
     }
   }
 
@@ -74,12 +77,16 @@ class Header extends React.Component {
     });
   }
 
+  setCurrent = (key) => {
+    localStorage.setItem('currents', key);
+    this.setState({
+      current: key,
+    });
+  }
 
   handleClick = (e) => {
-    localStorage.setItem('currents', e.key);
-    this.setState({
-      current: e.key,
-    });
+    const key = e.key === 'docs' ? 'docs0' : e.key;
+    this.setCurrent(key);
   }
 
   switchLang() {
@@ -205,7 +212,7 @@ class Header extends React.Component {
                   key={item.key}
                   className={this.state.current === item.key ? 'ant-menu-item-selected' : ''}
                   title={
-                    <span className="submenu-title-wrapper" onClick={() => this.handleClick(item)}>
+                    <span className="submenu-title-wrapper">
                       <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
                       <ul style={{ display: 'none' }}>
                       {item.children.map(items => (
