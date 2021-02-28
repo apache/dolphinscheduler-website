@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import cookie from 'js-cookie';
 import Language from '../../components/language';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
@@ -25,14 +26,21 @@ const docsSource = {
   '1.3.5': docsConfig6,
 };
 
+const isValidVersion = version => version && docsSource.hasOwnProperty(version);
+
 class Docs extends Md2Html(Language) {
   render() {
     const language = this.getLanguage();
     let dataSource = {};
     let version = window.location.pathname.split('/')[3];
-    if (version && docsSource.hasOwnProperty(version)) {
+    if ((isValidVersion(version) || version === 'latest')) {
+      cookie.set('docs_version', version);
+    }
+    if (isValidVersion(version)) {
       dataSource = docsSource[version][language];
-    } else if (siteConfig.docsLatest && docsSource.hasOwnProperty(siteConfig.docsLatest)) {
+    } else if (isValidVersion(cookie.get('docs_version'))) {
+      dataSource = docsSource[cookie.get('docs_version')][language];
+    } else if (isValidVersion(siteConfig.docsLatest)) {
       dataSource = docsSource[siteConfig.docsLatest][language];
       dataSource.sidemenu.forEach((menu) => {
         menu.children.forEach((submenu) => {
