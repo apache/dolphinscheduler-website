@@ -44,7 +44,7 @@ skywalkingServers="your.skywalking-oap-server.com:11800"
 
 导入 `${dolphinscheduler.home}/skywalking-agent/dashboard/dolphinscheduler.yml` 文件到 `${skywalking-oap-server.home}/config/ui-initialized-templates/` 目录下，并重启 Skywalking oap-server.
 
-#### 导入图表到 Skywalking web 站点.
+#### 导入图表到 Skywalking web 站点
 
 ![img1](/img/skywalking/import-dashboard-1.jpg)
 
