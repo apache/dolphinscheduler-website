@@ -45,7 +45,7 @@ export default {
         children: [
           {
             title: 'how to become a committer',
-            link: '/en-us/community/development/become a committer.html',
+            link: '/en-us/community/development/become-a-committer.html',
           },
           {
             title: 'Subscribe mail list',
@@ -236,7 +236,7 @@ export default {
         children: [
           {
             title: '如何成为Dolphinscheduler的committer',
-            link: '/zh-cn/community/development/become a committer.html',
+            link: '/zh-cn/community/development/become-a-committer.html',
           },
           {
             title: '订阅邮件列表',
