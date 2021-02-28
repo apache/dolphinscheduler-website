@@ -10,8 +10,6 @@ dolphinscheduler-skywalking 模块为 Dolphinscheduler 项目提供了 [Skywalki
 
 以下配置用于启用 Skywalking agent。
 
-请确保 Skywalking oap 服务已启动。
-
 ### 通过配置环境变量 (使用 Docker 部署时)
 
 ```shell
@@ -42,10 +40,14 @@ skywalkingServers="your.skywalking-oap-server.com:11800"
 
 ### 导入图表
 
-导入图表到 Skywalking web 站点.
+#### 导入图表模板到 Skywalking server
 
-![img1](./dashboard/import-dashboard-1.jpg)
+导入 `${dolphinscheduler.home}/skywalking-agent/dashboard/dolphinscheduler.yml` 文件到 `${skywalking-oap-server.home}/config/ui-initialized-templates/` 目录下，并重启 Skywalking oap-server.
 
-![img1](./dashboard/import-dashboard-2.jpg)
+#### 导入图表到 Skywalking web 站点.
 
-![img1](./dashboard/import-dashboard-3.jpg)
+![img1](/img/skywalking/import-dashboard-1.jpg)
+
+![img1](/img/skywalking/import-dashboard-2.jpg)
+
+![img1](/img/skywalking/import-dashboard-3.jpg)
