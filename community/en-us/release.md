@@ -165,7 +165,7 @@ mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=
 
 It is basically the same as the previous rehearsal command, but deleting -DdryRun=true parameter.
 
--DpushChanges=false：do not submit the edited version number and tag to Github automatically.
+-DpushChanges=false：do not submit the edited version number and tag to GitHub automatically.
 
 After making sure there is no mistake in local files, submit them to GitHub.
 

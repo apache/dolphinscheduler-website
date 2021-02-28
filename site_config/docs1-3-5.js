@@ -21,6 +21,10 @@ export default {
             link: '/en-us/docs/1.3.5/user_doc/docker-deployment.html',
           },
           {
+            title: 'Kubernetes Deployment',
+            link: '/en-us/docs/1.3.5/user_doc/kubernetes-deployment.html',
+          },
+          {
             title: 'Skywalking-Agent Deployment',
             link: '/en-us/docs/1.3.5/user_doc/skywalking-agent-deployment.html',
           },
@@ -94,7 +98,11 @@ export default {
             link: '/zh-cn/docs/1.3.5/user_doc/docker-deployment.html',
           },
           {
-            title: 'Skywalking-Agent部署',
+            title: 'Kubernetes部署(Kubernetes)',
+            link: '/zh-cn/docs/1.3.5/user_doc/kubernetes-deployment.html',
+          },
+          {
+            title: 'Skywalking-Agent部署(Skywalking)',
             link: '/zh-cn/docs/1.3.5/user_doc/skywalking-agent-deployment.html',
           },
         ],

@@ -17,7 +17,7 @@ No. | field  | type  |  description
 8|description|text|process definition description
 9|global_params|text|global parameters
 10|flag|tinyint(4)|specify whether the process is available: 0 is not available, 1 is available
-11|locations|text|node location infomation
+11|locations|text|node location information
 12|connects|text|node connectivity info
 13|receivers|text|receivers
 14|receivers_cc|text|CC receivers

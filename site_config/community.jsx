@@ -177,7 +177,7 @@ export default {
         {
           img: '/img/issue.png',
           title: 'Issue',
-          content: <span>Reporting issues via <a href="https://github.com/apache/incubator-dolphinscheduler/issues">Github issues</a>.</span>,
+          content: <span>Reporting issues via <a href="https://github.com/apache/incubator-dolphinscheduler/issues">GitHub issues</a>.</span>,
         },
         {
           img: '/img/documents.png',
@@ -368,7 +368,7 @@ export default {
         {
           img: '/img/issue.png',
           title: '报告缺陷',
-          content: <span>通过<a href="https://github.com/apache/incubator-dolphinscheduler/issues"> Github issues </a>报告缺陷。</span>,
+          content: <span>通过<a href="https://github.com/apache/incubator-dolphinscheduler/issues"> GitHub issues </a>报告缺陷。</span>,
         },
         {
           img: '/img/documents.png',
