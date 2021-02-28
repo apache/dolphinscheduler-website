@@ -10,8 +10,6 @@ This document describes how to enable Skywalking support with this module.
 
 The following configuration is used to enable Skywalking agent.
 
-Please make sure the Skywalking oap-server is started.
-
 ### Through environment variable configuration (for Docker)
 
 ```shell
@@ -42,7 +40,11 @@ skywalkingServers="your.skywalking-oap-server.com:11800"
 
 ### Import dashboard
 
-Import dolphinscheduler dashboard to skywalking website.
+#### 导入图表模板到 Skywalking server
+
+Copy the `${dolphinscheduler.home}/skywalking-agent/dashboard/dolphinscheduler.yml` file into `${skywalking-oap-server.home}/config/ui-initialized-templates/` directory, and restart Skywalking oap- server.
+
+#### Import dolphinscheduler dashboard to skywalking website.
 
 ![img1](/img/skywalking/import-dashboard-1.jpg)
 
