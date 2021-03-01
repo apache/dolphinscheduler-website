@@ -4,7 +4,7 @@ dolphinscheduler-skywalking
 
 The dolphinscheduler-skywalking module provides [Skywalking](https://skywalking.apache.org/) monitor agent for the Dolphinscheduler project.
 
-This document describes how to enable Skywalking support with this module.
+This document describes how to enable Skywalking 8.4+ support with this module.
 
 # Installation
 
