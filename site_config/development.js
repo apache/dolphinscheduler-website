@@ -28,10 +28,6 @@ export default {
             title: 'plugin-development',
             link: '/en-us/development/plugin-development.html',
           },
-          {
-            title: 'download',
-            link: '/en-us/development/download.html',
-          },
         ],
       },
     ],
@@ -65,10 +61,6 @@ export default {
           {
             title: '插件开发',
             link: '/zh-cn/development/plugin-development.html',
-          },
-          {
-            title: '下载',
-            link: '/zh-cn/development/download.html',
           },
         ],
       },

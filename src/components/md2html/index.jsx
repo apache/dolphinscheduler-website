@@ -1,6 +1,7 @@
 import { scroller } from 'react-scroll';
 import path from 'path';
 import 'whatwg-fetch'; // fetch polyfill
+import siteConfig from '../../../site_config/site';
 import './index.scss';
 
 const anchorReg = /^#[^/]/;
@@ -40,11 +41,11 @@ const Md2Html = ComposeComponent => class extends ComposeComponent {
   componentDidUpdate() {
     this.handleRelativeLink();
     this.handleRelativeImg();
+    this.handleDocsLatestLink();
   }
 
   handleRelativeLink() {
     const language = this.getLanguage();
-    // 获取当前文档所在文件系统中的路径
     // rootPath/en-us/docs/dir/hello.html => /docs/en-us/dir
     const splitPart = window.location.pathname.replace(`${window.rootPath}/${language}`, '').split('/').slice(0, -1);
     const filePath = splitPart.join('/');
@@ -60,7 +61,6 @@ const Md2Html = ComposeComponent => class extends ComposeComponent {
 
   handleRelativeImg() {
     const language = this.getLanguage();
-    // 获取当前文档所在文件系统中的路径
     // rootPath/en-us/docs/dir/hello.html => /docs/en-us/dir
     const splitPart = window.location.pathname.replace(`${window.rootPath}/${language}`, '').split('/').slice(0, -1);
     splitPart.splice(2, 0, language);
@@ -71,6 +71,18 @@ const Md2Html = ComposeComponent => class extends ComposeComponent {
       if (relativeReg.test(src)) {
         // 图片无中英文之分
         img.src = `${path.join(window.rootPath, filePath, src)}`;
+      }
+    });
+  }
+
+  handleDocsLatestLink() {
+    if (!siteConfig.docsLatest) return;
+    // rootPath/en-us/docs/1.3.5/user_doc/cluster-deployment.html => rootPath/en-us/docs/latest/user_doc/cluster-deployment.html
+    const alinks = Array.from(this.markdownContainer.querySelectorAll('a'));
+    alinks.forEach((alink) => {
+      const href = alink.getAttribute('href');
+      if (typeof href === 'string' && href.includes(`docs/${siteConfig.docsLatest}`)) {
+        alink.href = href.replace(`docs/${siteConfig.docsLatest}`, 'docs/latest');
       }
     });
   }

@@ -2,7 +2,6 @@
 
 Good documentation is critical for any type of software. Any contribution that can improve the DolphinScheduler documentation is welcome.
 
-
 ###  Get the document project.
 
 Documentation for the DolphinScheduler project is maintained in a separate [git repository](https://github.com/apache/incubator-dolphinscheduler-website).
@@ -15,33 +14,27 @@ git clone https://github.com/<your-github-user-name>/incubator-dolphinscheduler-
 
 ### The document environment.
 
-The DolphinScheduler website is supported by [docsite](https://github.com/txd-team/docsite)
+The DolphinScheduler website is supported by [docsite](https://github.com/chengshiwen/docsite-ext)
 
-If your docsite version is below "1.3.3", upgrade to "1.3.3".
-
-Make sure that your node version is 10.x, docsite does not yet support versions higher than 10.x.
+Make sure that your node version is 10+, docsite does not yet support versions higher than 10.x.
 
 ### Document build guide.
 
-1. Run the "npm install docsite-g" installation development tool.
+1. Run `npm install` in the root directory to install the dependencies.
 
-2. Run "npm i" in the root directory to install the dependencies.
+2. Run `npm run start` in the root directory to start a local server, you will see the website in 'http://127.0.0.1:8080'.
 
-3. Running "docsite start" under the root folder starts the local server, which will allow you to access http://127.0.0.1:8080.
+3. Run `npm run build` to build source code into dist directory.
 
-4. Run "docsite build" to generate the source code for the document site.
+4. Verify your change locally: `python -m SimpleHTTPServer 8000`, when your python version is 3 use :`python3 -m http.server 8000` instead.
 
-5. Verify your changes locally: `python -m SimpleHTTPServer 8000`, when python is version 3, use: `python3 - m http.server 8000`.
-
-If the latest version of node is installed locally, consider using "nvm" to allow different versions of node to run on your computer.
+If the latest version of node is installed locally, consider using `nvm` to allow different versions of `node` to run on your computer.
 
 1. Refer to the [Instructions](http://nvm.sh) to install nvm.
 
-2. Run “nvm install v10.23.1” to install node v10.
+2. Run `nvm install v10.23.1` to install node v10.
 
-3. Run “nvm use v10.23.1” to switch the current working environment to node v10.
-
-4. Run `npm install docsite -g`
+3. Run `nvm use v10.23.1` to switch the current working environment to node v10.
 
 Now you can run and build the website in your local environment.
 

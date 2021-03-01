@@ -5,6 +5,7 @@ This project keeps all sources used for building up DolphinScheduler official we
 ## Prerequisite
 
 DolphinScheduler website is powered by [docsite](https://github.com/chengshiwen/docsite-ext).
+
 Please also make sure your node version is 10+, version lower than 10.x is not supported yet.
 
 ## Build instruction 

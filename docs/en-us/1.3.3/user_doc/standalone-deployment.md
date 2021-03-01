@@ -21,10 +21,10 @@ mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 
 # unzip
-tar -zxvf apache-dolphinscheduler-incubating-1.3.2-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
+tar -zxvf apache-dolphinscheduler-incubating-1.3.3-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
 
 # rename
-mv apache-dolphinscheduler-incubating-1.3.2-dolphinscheduler-bin  dolphinscheduler-bin
+mv apache-dolphinscheduler-incubating-1.3.3-dolphinscheduler-bin  dolphinscheduler-bin
 ```
 
 # 3、Create deployment user and assign directory operation permissions

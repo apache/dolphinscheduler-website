@@ -148,6 +148,15 @@ export default {
         ],
       },
       {
+        title: '扩/缩容',
+        children: [
+          {
+            title: '扩/缩容',
+            link: '/zh-cn/docs/1.3.5/user_doc/expansion-reduction.html',
+          },
+        ],
+      },
+      {
         title: 'FAQ',
         children: [
           {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   'zh-cn': {
     brand: {
@@ -8,7 +6,7 @@ export default {
       buttons: [
         {
           text: '立即开始',
-          link: '/zh-cn/docs/1.3.5/user_doc/quick-start.html',
+          link: '/zh-cn/docs/latest/user_doc/quick-start.html',
           type: 'primary',
         },
         {
@@ -61,7 +59,7 @@ export default {
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/1.3.5/user_doc/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/quick-start.html',
           type: 'primary',
         },
         {
