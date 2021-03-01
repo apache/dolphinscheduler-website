@@ -4,7 +4,7 @@ dolphinscheduler-skywalking
 
 dolphinscheduler-skywalking 模块为 Dolphinscheduler 项目提供了 [Skywalking](https://skywalking.apache.org/) 监控代理。
 
-本文档介绍了如何通过此模块接入 Skywalking。
+本文档介绍了如何通过此模块接入 Skywalking 8.4+。
 
 # 安装
 
