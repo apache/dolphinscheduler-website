@@ -46,14 +46,12 @@ skywalkingLogReporterPort="11800"
 
 ### 导入图表
 
-#### 导入图表模板到 Skywalking server
+#### 导入图表到 Skywalking server
 
-导入 `${dolphinscheduler.home}/skywalking-agent/dashboard/dolphinscheduler.yml` 文件到 `${skywalking-oap-server.home}/config/ui-initialized-templates/` 目录下，并重启 Skywalking oap-server.
+复制 `${dolphinscheduler.home}/skywalking-agent/dashboard/dolphinscheduler.yml` 文件到 `${skywalking-oap-server.home}/config/ui-initialized-templates/` 目录下，并重启 Skywalking oap-server。
 
-#### 导入图表到 Skywalking web 站点
+#### 查看 dolphinscheduler 图表
+
+如果之前已经使用浏览器打开过 Skywalking，则需要清空浏览器缓存。
 
 ![img1](/img/skywalking/import-dashboard-1.jpg)
-
-![img1](/img/skywalking/import-dashboard-2.jpg)
-
-![img1](/img/skywalking/import-dashboard-3.jpg)
