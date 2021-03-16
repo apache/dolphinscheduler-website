@@ -460,8 +460,8 @@ Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}.
 
 We now kindly request the Incubator IPMC members review and vote on this incubator release.
 
-Dolphin Scheduler is a distributed and easy-to-expand visual DAG workflow scheduling system,
-dedicated to solving the complex dependencies in data processing, making the scheduling system out of the box for data processing.
+Dolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,
+dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.
 
 DolphinScheduler community vote and result threads:
 https://lists.apache.org/thread.html/xxxxxxxxxxxxxxxxxxxxxxx
@@ -577,8 +577,8 @@ Hi all,
 
 We are glad to announce the release of Apache DolphinScheduler(incubating) ${RELEASE.VERSION}. Once again I would like to express my thanks to your help.
 
-Dolphin Scheduler is a distributed and easy-to-expand visual DAG workflow scheduling system,
-dedicated to solving the complex dependencies in data processing, making the scheduling system out of the box for data processing.
+Dolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,
+dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.
 
 
 Download Links: https://dolphinscheduler.apache.org/en-us/download/download.html

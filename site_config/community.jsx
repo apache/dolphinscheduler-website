@@ -99,6 +99,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: '/img/2021-03-16/boyi.png',
+          title: '[ANNOUNCE] Welcome to our new committer: BoYiZhang',
+          content: '[ANNOUNCE] Welcome to our new committer: BoYiZhang',
+          dateStr: '2021-03-16',
+          link: 'https://lists.apache.org/thread.html/rbd018b05da88d98f403dcd18098fa622c0c4c6db8d2b28c84028a818%40%3Cdev.dolphinscheduler.apache.org%3E',
+        },
+        {
           img: '/img/2020-05-26/live_online_20200526.jpeg',
           title: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap',
           content: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap，more than 700 people online',
