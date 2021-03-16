@@ -112,7 +112,7 @@ COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 </blockquote>
 <ol>
 <li>
-<p>下载 Oracle 驱动包 <a href="https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/">ojdbc8.jar</a> (such as <code>ojdbc8-19.9.0.0.jar</code>)</p>
+<p>下载 Oracle 驱动包 <a href="https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/">ojdbc8.jar</a> (例如 <code>ojdbc8-19.9.0.0.jar</code>)</p>
 </li>
 <li>
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 Oracle 驱动包:</p>
@@ -131,7 +131,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <p>推送 docker 镜像 <code>apache/dolphinscheduler:oracle-driver</code> 到一个 docker registry 中</p>
 </li>
 <li>
-<p>修改 <code>values.yaml</code> 文件中 image 的 <code>registry</code> 和 <code>repository</code> 字段， 并更新 <code>oracle-driver</code></p>
+<p>修改 <code>values.yaml</code> 文件中 image 的 <code>registry</code> 和 <code>repository</code> 字段， 并更新 <code>tag</code> 为 <code>oracle-driver</code></p>
 </li>
 <li>
 <p>部署 dolphinscheduler (详见<strong>安装 dolphinscheduler</strong>)</p>
@@ -145,7 +145,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.5216c4d.js"></script>
+  <script src="/build/vendor.238ad22.js"></script>
   <script src="/build/docs.md.d75c507.js"></script>
   <script>
     var _hmt = _hmt || [];
