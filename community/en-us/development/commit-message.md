@@ -19,7 +19,7 @@ A commit message should clearly state what issues (bug fixes, function enhanceme
 
 #### 2：Associate the corresponding Pull Request or Issue
 
-When our changes are large, the commit message should best be associated with the relevant Issue or Pull Request on Github, so that our developers can quickly understand the context of the code submission through the associated information when reviewing the code. If the current commit is for an issue, then the issue can be closed in the Footer section.
+When our changes are large, the commit message should best be associated with the relevant Issue or Pull Request on GitHub, so that our developers can quickly understand the context of the code submission through the associated information when reviewing the code. If the current commit is for an issue, then the issue can be closed in the Footer section.
 
 #### 3：Unified format
 

@@ -5,7 +5,7 @@ export default {
         title: 'Deployment Document',
         children: [
           {
-            title: 'Hareware Environment',
+            title: 'Hardware Environment',
             link: '/en-us/docs/1.3.2/user_doc/hardware-environment.html',
           },
           {
@@ -32,16 +32,6 @@ export default {
           {
             title: 'Metadata',
             link: '/en-us/docs/1.3.2/user_doc/metadata-1.3.html',
-          },
-        ],
-      },
-      {
-        title: 'Api Document',
-        children: [
-          {
-            title: 'Api Document',
-            target: '_blank',
-            link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en',
           },
         ],
       },
@@ -107,21 +97,20 @@ export default {
         ],
       },
       {
-        title: 'API文档',
-        children: [
-          {
-            title: 'API文档',
-            target: '_blank',
-            link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh',
-          },
-        ],
-      },
-      {
         title: '版本升级',
         children: [
           {
             title: '升级',
             link: '/zh-cn/docs/1.3.2/user_doc/upgrade.html',
+          },
+        ],
+      },
+      {
+        title: '扩/缩容',
+        children: [
+          {
+            title: '扩/缩容',
+            link: '/zh-cn/docs/1.3.2/user_doc/expansion-reduction.html',
           },
         ],
       },

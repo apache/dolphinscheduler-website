@@ -3,6 +3,8 @@ export default {
   rootPath: '', // 发布到服务器的根目录，需以/开头但不能有尾/，如果只有/，请填写空字符串
   port: 8080, // 本地开发服务器的启动端口
   domain: 'dolphinscheduler.incubator.apache.org', // 站点部署域名，无需协议和path等
+  copyToDist: ['img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll'], // 当build发布时，需要额外复制到dist目录的资源，默认有：index.html, 404.html, en-us, zh-cn, build
+  docsLatest: '1.3.5', // docs的最新版本，当docs有多个版本时支持latest访问，空则不启用此特性
   defaultSearch: 'google', // 默认搜索引擎，baidu或者google
   defaultLanguage: 'en-us',
   'en-us': {
@@ -15,40 +17,50 @@ export default {
       {
         key: 'docs',
         text: 'DOCS',
-        link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
+        link: '/en-us/docs/latest/user_doc/quick-start.html',
         children: [
           {
-            key: 'docs1',
-            text: '1.3.4(Recommend)',
+            key: 'docs0',
+            text: 'latest(1.3.5)',
+            link: '/en-us/docs/latest/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs135',
+            text: '1.3.5',
+            link: '/en-us/docs/1.3.5/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs134',
+            text: '1.3.4',
             link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
           },
           {
-            key: 'docs2',
+            key: 'docs133',
             text: '1.3.3',
             link: '/en-us/docs/1.3.3/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs132',
             text: '1.3.2',
             link: '/en-us/docs/1.3.2/user_doc/quick-start.html',
           },
           {
-            key: 'docs4',
+            key: 'docs131',
             text: '1.3.1',
             link: '/en-us/docs/1.3.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs5',
+            key: 'docs121',
             text: '1.2.1',
             link: '/en-us/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs6',
+            key: 'docs120',
             text: '1.2.0',
             link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-            key: 'docs7',
+            key: 'docs110',
             text: '1.1.0(Not Apache Release)',
             link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           },
@@ -131,7 +143,7 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/quick-start.html',
         },
         {
           text: 'Developer guide',
@@ -176,40 +188,50 @@ export default {
       {
         key: 'docs',
         text: '文档',
-        link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
+        link: '/zh-cn/docs/latest/user_doc/quick-start.html',
         children: [
           {
-            key: 'docs1',
-            text: '1.3.4(推荐)',
+            key: 'docs0',
+            text: 'latest(1.3.5)',
+            link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs135',
+            text: '1.3.5',
+            link: '/zh-cn/docs/1.3.5/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs134',
+            text: '1.3.4',
             link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
           },
           {
-            key: 'docs2',
+            key: 'docs133',
             text: '1.3.3',
             link: '/zh-cn/docs/1.3.3/user_doc/quick-start.html',
           },
           {
-            key: 'docs3',
+            key: 'docs132',
             text: '1.3.2',
             link: '/zh-cn/docs/1.3.2/user_doc/quick-start.html',
           },
           {
-            key: 'docs4',
+            key: 'docs131',
             text: '1.3.1',
             link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs5',
+            key: 'docs121',
             text: '1.2.1',
             link: '/zh-cn/docs/1.2.1/user_doc/quick-start.html',
           },
           {
-            key: 'docs6',
+            key: 'docs120',
             text: '1.2.0',
             link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
           },
           {
-            key: 'docs7',
+            key: 'docs110',
             text: '1.1.0(Not Apache Release)',
             link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           },
@@ -293,7 +315,7 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
+          link: '/zh-cn/docs/latest/user_doc/quick-start.html',
         },
         {
           text: '开发者指南',

@@ -45,7 +45,7 @@ export default {
         children: [
           {
             title: 'how to become a committer',
-            link: '/en-us/community/development/become a committer.html',
+            link: '/en-us/community/development/become-a-committer.html',
           },
           {
             title: 'Subscribe mail list',
@@ -138,7 +138,7 @@ export default {
           title: 'DolphinScheduler beijing meetup has been held successfully',
           content: 'DolphinScheduler beijing meetup has been held successfully',
           dateStr: 'May 12nd，2018',
-          link: '/en-us/docs/developer_guide/architecture-design.html',
+          link: '/en-us/development/architecture-design.html',
         },
       ],
     },
@@ -184,12 +184,12 @@ export default {
         {
           img: '/img/issue.png',
           title: 'Issue',
-          content: <span>Reporting issues via <a href="https://github.com/apache/incubator-dolphinscheduler/issues">Github issues</a>.</span>,
+          content: <span>Reporting issues via <a href="https://github.com/apache/incubator-dolphinscheduler/issues">GitHub issues</a>.</span>,
         },
         {
           img: '/img/documents.png',
           title: 'Documents',
-          content: <span>Improve the <a href="/en-us/docs/1.3.4/user_doc/quick-start.html">documentation</a>.</span>,
+          content: <span>Improve the <a href="/en-us/docs/latest/user_doc/quick-start.html">documentation</a>.</span>,
         },
         {
           img: '/img/pullrequest.png',
@@ -243,11 +243,10 @@ export default {
         children: [
           {
             title: '如何成为Dolphinscheduler的committer',
-            link: '/zh-cn/community/development/become a committer.html',
+            link: '/zh-cn/community/development/become-a-committer.html',
           },
           {
             title: '订阅邮件列表',
-            target: '_blank',
             link: '/zh-cn/community/development/subscribe.html',
           },
           {
@@ -330,7 +329,7 @@ export default {
           title: 'DolphinScheduler 开发者大会在北京成功举行',
           content: 'DolphinScheduler 开发者大会在北京成功举行',
           dateStr: 'May 12nd，2018',
-          link: '/zh-cn/docs/developer_guide/architecture-design.html',
+          link: '/zh-cn/development/architecture-design.html',
         },
       ],
     },
@@ -376,12 +375,12 @@ export default {
         {
           img: '/img/issue.png',
           title: '报告缺陷',
-          content: <span>通过<a href="https://github.com/apache/incubator-dolphinscheduler/issues"> Github issues </a>报告缺陷。</span>,
+          content: <span>通过<a href="https://github.com/apache/incubator-dolphinscheduler/issues"> GitHub issues </a>报告缺陷。</span>,
         },
         {
           img: '/img/documents.png',
           title: '文档',
-          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/1.3.4/user_doc/quick-start.html"> 文档</a>。</span>,
+          content: <span>优化DolphinScheduler <a href="/zh-cn/docs/latest/user_doc/quick-start.html"> 文档</a>。</span>,
         },
         {
           img: '/img/pullrequest.png',

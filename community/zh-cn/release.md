@@ -1,36 +1,35 @@
-## GPG Settings
+## GPG设置
 
-### Install GPG
+### 安装GPG
 
-Download installation package on [official GnuPG website](https://www.gnupg.org/download/index.html).
-The command of GnuPG 1.x version can differ a little from that of 2.x version.
-The following instructions take `GnuPG-2.1.23` version for example.
+在[GnuPG官网](https://www.gnupg.org/download/index.html)下载安装包。
+GnuPG的1.x版本和2.x版本的命令有细微差别，下列说明以`GnuPG-2.1.23`版本为例。
 
-After the installation, execute the following command to check the version number.
+安装完成后，执行以下命令查看版本号。
 
 ```shell
 gpg --version
 ```
 
-### Create Key
+### 创建key
 
-After the installation, execute the following command to create key.
+安装完成后，执行以下命令创建key。
 
-This command indicates `GnuPG-2.x` can be used:
+`GnuPG-2.x`可使用：
 
 ```shell
 gpg --full-gen-key
 ```
 
-This command indicates `GnuPG-1.x` can be used:
+`GnuPG-1.x`可使用：
 
 ```shell
 gpg --gen-key
 ```
 
-Finish the key creation according to instructions:
+根据提示完成key：
 
-**Notice: Please use Apache mail for key creation.**
+**注意：请使用Apache mail生成GPG的Key。**
 
 ```shell
 gpg (GnuPG) 2.0.12; Copyright (C) 2009 Free Software Foundation, Inc.
@@ -58,77 +57,88 @@ Is this correct? (y/N) y
 
 GnuPG needs to construct a user ID to identify your key.
 
-Real name: ${Input username}
-Email address: ${Input email}
-Comment: ${Input comment}
+Real name: ${输入用户名}
+Email address: ${输入邮件地址}
+Comment: ${输入注释}
 You selected this USER-ID:
-   "${Inputed username} (${Inputed comment}) <${Inputed email}>"
+   "${输入的用户名} (${输入的注释}) <${输入的邮件地址}>"
 
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
-You need a Passphrase to protect your secret key. # Input passwords
+You need a Passphrase to protect your secret key. # 输入apache登录密码
 ```
+注意：如果遇到以下错误：
+```
+gpg: cancelled by user
+gpg: Key generation canceled.
+```
+需要使用自己的用户登录服务器，而不是root切到自己的账户
 
-### Check Generated Key
+### 查看生成的key
 
 ```shell
 gpg --list-keys
 ```
 
-Execution Result:
+执行结果：
 
 ```shell
 pub   4096R/85E11560 2019-11-15
-uid                  ${Username} (${Comment}) <{Email}>
+uid                  ${用户名} (${注释}) <{邮件地址}>
 sub   4096R/A63BC462 2019-11-15
 ```
 
-Among them, 85E11560 is public key ID.
+其中85E11560为公钥ID。
 
-### Upload the Public Key to Key Server
+### 将公钥同步到服务器
 
-The command is as follow:
+命令如下：
 
 ```shell
 gpg --keyserver hkp://pool.sks-keyservers.net --send-key 85E11560
 ```
 
-`pool.sks-keyservers.net` is randomly chosen from [public key server](https://sks-keyservers.net/status/).
-Each server will automatically synchronize with one another, so it would be okay to choose any one.
+`pool.sks-keyservers.net`为随意挑选的[公钥服务器](https://sks-keyservers.net/status/)，每个服务器之间是自动同步的，选任意一个即可。
 
-## Apache Maven Central Repository Release
+注意：如果同步到公钥服务器，可以在服务器上查到新建的公钥
+http://keyserver.ubuntu.com:11371/pks/lookup?search=${用户名}&fingerprint=on&op=index
+备用公钥服务器 gpg --keyserver hkp://keyserver.ubuntu.com --send-key ${公钥ID}
 
-### Set settings.xml
 
-Add the following template to `~/.m2/settings.xml`, all the passwords need to be filled in after encryption.
-For encryption settings, please see [here](http://maven.apache.org/guides/mini/guide-encryption.html).
+## 发布Apache Maven中央仓库
+
+### 设置settings.xml文件
+
+将以下模板添加到 `~/.m2/settings.xml`中，所有密码需要加密后再填入。
+加密设置可参考[这里](http://maven.apache.org/guides/mini/guide-encryption.html)。
 
 ```xml
 <settings>
   <servers>
     <server>
       <id>apache.snapshots.https</id>
-      <username> <!-- APACHE LDAP username --> </username>
-      <password> <!-- APACHE LDAP encrypted password --> </password>
+      <username> <!-- APACHE LDAP 用户名 --> </username>
+      <password> <!-- APACHE LDAP 加密后的密码 --> </password>
     </server>
     <server>
       <id>apache.releases.https</id>
-      <username> <!-- APACHE LDAP username --> </username>
-      <password> <!-- APACHE LDAP encrypted password --> </password>
+      <username> <!-- APACHE LDAP 用户名 --> </username>
+      <password> <!-- APACHE LDAP 加密后的密码 --> </password>
     </server>
   </servers>
 </settings>
 ```
 
-### Update Release Notes
+### 更新版本说明
 
 ```
 https://github.com/apache/incubator-dolphinscheduler/blob/dev/RELEASE-NOTES.md
 ```
 
-### Create Release Branch
+### 创建发布分支
+从github下载的DolphinScheduler源代码到`~/incubator-dolphinscheduler/`目录，假设即将发布的版本为`${RELEASE.VERSION}`
+git clone -b ${RELEASE.VERSION}-release https://github.com/apache/incubator-dolphinscheduler.git
 
-Suppose DolphinScheduler source codes downloaded from github is under `~/incubator-dolphinscheduler/` directory and the version to be released is `${RELEASE.VERSION}`.
-Create `${RELEASE.VERSION}-release` branch, where all the following operations are performed.
+创建`${RELEASE.VERSION}-release`分支，接下来的操作都在该分支进行(如果在github官网上手动执行发版分支创建，下面操作可以忽略)。
 
 ```shell
 cd ~/incubator-dolphinscheduler/
@@ -137,130 +147,140 @@ git checkout -b ${RELEASE.VERSION}-release
 git push origin ${RELEASE.VERSION}-release
 ```
 
-### Pre-Release Check
+### 发布预校验
 
 ```shell
-mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github username}
+mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github用户名}
 ```
 
--Prelease: choose release profile, which will pack all the source codes, jar files and executable binary packages.
+-Prelease: 选择release的profile，这个profile会打包所有源码、jar文件以及可执行二进制包。
 
--DautoVersionSubmodules=true：it can make the version number is inputted only once and not for each sub-module.
+-DautoVersionSubmodules=true：作用是发布过程中版本号只需要输入一次，不必为每个子模块都输入一次。
 
--DdryRun=true：rehearsal, which means not to generate or submit new version number and new tag.
+-DdryRun=true：演练，即不产生版本号提交，不生成新的tag。
 
-### Prepare for the Release
+### 准备发布
 
-First, clean local pre-release check information.
+首先清理发布预校验本地信息。
 
 ```shell
 mvn release:clean
 ```
 
-Then, prepare to execute the release.
+然后准备执行发布。
 
 ```shell
-mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github username}
+mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github用户名}
 ```
 
-It is basically the same as the previous rehearsal command, but deleting -DdryRun=true parameter.
+和上一步演练的命令基本相同，去掉了-DdryRun=true参数。
 
--DpushChanges=false：do not submit the edited version number and tag to Github automatically.
+-DpushChanges=false：不要将修改后的版本号和tag自动提交至GitHub。
+如果遇到以下错误，请配置git邮箱为自己的apache邮箱和apache账号名
+```shell
+[ERROR] *** Please tell me who you are.
+[ERROR]
+[ERROR] Run
+[ERROR]
+[ERROR]   git config --global user.email "you@example.com"
+[ERROR]   git config --global user.name "Your Name"
+```
 
-After making sure there is no mistake in local files, submit them to GitHub.
+将本地文件检查无误后，提交至github。
+
 
 ```shell
 git push
 git push origin --tags
 ```
 
-### Deploy the Release
+### 部署发布
 
 ```shell
-mvn release:perform -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -Dusername=${Github username}
+mvn release:perform -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -Dusername=${Github用户名}
 ```
 
-After that command is executed, the version to be released will be uploaded to Apache staging repository automatically.
-Visit [https://repository.apache.org/#stagingRepositories](https://repository.apache.org/#stagingRepositories) and use Apache LDAP account to log in; then you can see the uploaded version, the content of `Repository` column is the ${STAGING.REPOSITORY}.
-Click `Close` to tell Nexus that the construction is finished, because only in this way, this version can be usable.
-If there is any problem in gpg signature, `Close` will fail, but you can see the failure information through `Activity`.
+执行完该命令后，待发布版本会自动上传到Apache的临时筹备仓库(staging repository)。
+访问https://repository.apache.org/#stagingRepositories, 使用Apache的LDAP账户登录后，就会看到上传的版本，`Repository`列的内容即为${STAGING.REPOSITORY}。
+点击`Close`来告诉Nexus这个构建已经完成，只有这样该版本才是可用的。
+如果电子签名等出现问题，`Close`会失败，可以通过`Activity`查看失败信息。
 
-## Apache SVN Repository Release
+## 发布Apache SVN仓库
 
-### Checkout dolphinscheduler Release Directory
+### 检出dolphinscheduler发布目录
 
-If there is no local work directory, create one at first.
+如无本地工作目录，则先创建本地工作目录。
 
 ```shell
 mkdir -p ~/ds_svn/dev/
 cd ~/ds_svn/dev/
 ```
 
-After the creation, checkout dolphinscheduler release directory from Apache SVN.
+创建完毕后，从Apache SVN检出dolphinscheduler发布目录。
 
 ```shell
-svn --username=${APACHE LDAP username} co https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler
+svn --username=${APACHE LDAP 用户名} co https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler
 cd ~/ds_svn/dev/dolphinscheduler
 ```
 
-### Add gpg Public Key
+### 添加gpg公钥
 
-Only the account in its first deployment needs to add that.
-It is alright for `KEYS` to only include the public key of the deployed account.
+仅第一次部署的账号需要添加，只要`KEYS`中包含已经部署过的账户的公钥即可。
 
 ```shell
-gpg -a --export ${GPG username} >> KEYS
+gpg -a --export ${GPG用户名} >> KEYS
 ```
 
-### Add the Release Content to SVN Directory
+### 将待发布的内容添加至SVN目录
 
-Create folder by version number.
+创建版本号目录。
 
 ```shell
 mkdir -p ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 ```
 
-Add source code packages, binary packages and executable binary packages to SVN working directory.
+将源码包和二进制包添加至SVN工作目录。
 
 ```shell
 cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+
 ```
 
-### Generate sign files
+### 生成文件签名
 
 ```shell
 shasum -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip >> apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
 shasum -b -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz >> apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
 ```
 
-### Commit to Apache SVN
+### 提交Apache SVN
 
 ```shell
+cd ~/ds_svn/dev/dolphinscheduler
 svn add *
-svn --username=${APACHE LDAP username} commit -m "release ${RELEASE.VERSION}"
+svn --username=${APACHE LDAP 用户名} commit -m "release ${RELEASE.VERSION}"
 ```
-## Check Release
+## 检查发布结果
 
-### Check sha512 hash
+### 检查sha512哈希
 
 ```shell
 shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
 shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
 ```
 
-### Check gpg Signature
+### 检查gpg签名
 
-First, import releaser's public key.
-Import KEYS from SVN repository to local. (The releaser does not need to import again; the checking assistant needs to import it, with the user name filled as the releaser's. )
+首先导入发布人公钥。从svn仓库导入KEYS到本地环境。（发布版本的人不需要再导入，帮助做验证的人需要导入，用户名填发版人的即可）
 
 ```shell
 curl https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS >> KEYS
 gpg --import KEYS
-gpg --edit-key "${GPG username of releaser}"
+gpg --edit-key "${发布人的gpg用户名}"
   > trust
 
 Please decide how far you trust this user to correctly verify other users' keys
@@ -278,73 +298,70 @@ Your decision? 5
   > save
 ```
 
-Then, check the gpg signature.
+然后进行gpg签名检查。
 
 ```shell
 gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip
 gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz
 ```
 
-### Check Released Files
+### 检查发布文件内容
 
-#### Check source package
+#### 检查源码包的文件内容
 
-Decompress `apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip` and check the following items:
+解压缩`apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip`，进行如下检查:
 
-*   Check whether source tarball is oversized for including nonessential files
-*   The release files have the word `incubating` in their name
-*   `DISCLAIMER` file exists
-*   `LICENSE` and `NOTICE` files exist
-*   Correct year in `NOTICE` file
-*   There is only text files but no binary files
-*   All source files have ASF headers
-*   Codes can be compiled and pass the unit tests (mvn install)
-*   The contents of the release match with what's tagged in version control (diff -r a verify_dir tag_dir)
-*   Check if there is any extra files or folders, empty folders for example
+- 检查源码包是否包含由于包含不必要文件，致使tarball过于庞大
+- 文件夹包含单词`incubating`
+- 存在`DISCLAIMER`文件
+- 存在`LICENSE`和`NOTICE`文件
+- 只存在文本文件，不存在二进制文件
+- 所有文件的开头都有ASF许可证
+- 能够正确编译，单元测试可以通过 (mvn install)
+- 版本内容与GitHub上tag的内容相符 (diff -r a verify_dir tag_dir)
+- 检查是否有多余文件或文件夹，例如空文件夹等
 
-#### Check binary packages
+#### 检查二进制包的文件内容
 
-Decompress `apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz`
-to check the following items:
+解压缩`apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz`和`apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz`
+进行如下检查:
 
-- The release files have the word `incubating` in their name
-- `DISCLAIMER` file exists
-- `LICENSE` and `NOTICE` files exist
-- Correct year in `NOTICE` file
-- Check the third party dependency license:
-  - The software have a compatible license
-  - All software licenses mentioned in `LICENSE`
-  - All the third party dependency licenses are under `licenses` folder
-  - If it depends on Apache license and has a `NOTICE` file, that `NOTICE` file need to be added to `NOTICE` file of the release
+- 文件夹包含单词`incubating`
+- 存在`DISCLAIMER`文件
+- 存在`LICENSE`和`NOTICE`文件
+- 所有文本文件开头都有ASF许可证
+- 检查第三方依赖许可证：
+  - 第三方依赖的许可证兼容
+  - 所有第三方依赖的许可证都在`LICENSE`文件中声明
+  - 依赖许可证的完整版全部在`license`目录
+  - 如果依赖的是Apache许可证并且存在`NOTICE`文件，那么这些`NOTICE`文件也需要加入到版本的`NOTICE`文件中
 
-For the whole check list, please see [here](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist)。
+全部的检查列表参见[这里](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist)。
 
-## Call for a Vote
+## 发起投票
 
-### Vote procedure
+### 投票阶段
 
-1. DolphinScheduler community vote: send the vote e-mail to `dev@dolphinscheduler.apache.org`.
-PPMC needs to check the rightness of the version according to the document before they vote.
-After at least 72 hours and with at least 3 `+1 PPMC member` votes, it can come to the next stage of the vote.
+1. DolphinScheduler社区投票，发起投票邮件到`dev@dolphinscheduler.apache.org`。PPMC需要先按照文档检查版本的正确性，然后再进行投票。
+经过至少72小时并统计到3个`+1 PPMC member`票后，即可进入下一阶段的投票。
 
-2. Apache community vote: send the vote e-mail to `general@incubator.apache.org`。
-After at least 72 hours and with at least 3 `+1 binding` votes (only IPMC's votes are binding), it can be officially released.
+2. Apache社区投票，发起投票邮件到`general@incubator.apache.org`。经过至少72小时并统计到3个`+1 binding`票后（只有IPMC的票才是binding），即可进行正式发布。
 
-3. Announce the vote result: send the result vote e-mail to `general@incubator.apache.org`。
+3. 宣布投票结果,发起投票结果邮件到`general@incubator.apache.org`。
 
-### Vote Templates
+### 投票模板
 
-1. DolphinScheduler Community Vote Template
+1. DolphinScheduler社区投票模板
 
-NOTE: Must invite all mentors to vote during the community vote.
+注意： 在社区投票过程中，需要邀请所有mentor参加投票。
 
-Title：
+标题：
 
 ```
 [VOTE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
 ```
 
-Body：
+正文：
 
 ```
 Hello DolphinScheduler Community,
@@ -400,9 +417,9 @@ More detail checklist  please refer:
 https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
 ```
 
-2. Announce the vote result:
+2. 宣布投票结果模板：
 
-Body：
+正文：
 
 ```
 The vote to release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION} has passed.Here is the vote result,
@@ -423,15 +440,15 @@ xxx
 Thanks everyone for taking time to check this release and help us.
 ```
 
-3. Apache Community Vote Template：
+3. Apache社区投票邮件模板：
 
-Title：
+标题：
 
 ```
 [VOTE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
 ```
 
-Body：
+正文：
 
 ```
 Hello everyone,
@@ -507,15 +524,9 @@ The following votes are carried over from DolphinScheduler dev mailing list,
 +1 non-binding, xxx
 ```
 
-4. Announce the vote result:
+4. 宣布投票结果模板：
 
-**Notice: Please include the votes from DolphinScheduler community above.**
-
-Title：
-
-```
-[RESULT][VOTE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
-```
+**注意：计算投票结果时，社区投票结果也需要包含在内。**
 
 正文：
 
@@ -532,34 +543,34 @@ Thank you everyone for taking the time to review the release and help us.
 I will process to publish the release and send ANNOUNCE.
 ```
 
-## Finish the Release
+## 完成发布
 
-### Move source packages, binary packages and KEYS from the `dev` directory to `release` directory
+1. 将源码和二进制包从svn的dev目录移动到release目录
 
 ```shell
 svn mv https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION} https://dist.apache.org/repos/dist/release/incubator/dolphinscheduler/
 ```
 
-### Find DolphinScheduler in staging repository and click `Release`
+2. 在Apache Staging仓库找到DolphinScheduler并点击`Release`
 
-###. Update the download page
+3. 更新下载页面
 
 ```
 https://dolphinscheduler.apache.org/en-us/download/download.html
 https://dolphinscheduler.apache.org/zh-cn/download/download.html
 ```
 
-### Send e-mail to `general@incubator.apache.org` and `dev@dolphinscheduler.apache.org` to announce the release is finished
+4. 发送邮件到`general@incubator.apache.org`和`dev@dolphinscheduler.apache.org`通知完成版本发布。
 
-Announcement e-mail template：
+通知邮件模板：
 
-Title：
+标题：
 
 ```
 [ANNOUNCE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
 ```
 
-Body：
+正文：
 
 ```
 Hi all,

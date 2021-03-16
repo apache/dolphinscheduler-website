@@ -66,23 +66,18 @@ $ docker run -dit --name dolphinscheduler \
 -p 8888:8888 \
 dolphinscheduler all
 ```
-
-### 然后登录系统
-      
-- 访问前端页面地址,接口ip(自行修改)
-http://192.168.xx.xx:8888
-
+##### 6、登录系统   
+访问前端界面： http://192.168.xx.xx:8888
  <p align="center">
    <img src="/img/login.png" width="60%" />
  </p>
 然后参考用户手册章节的`快速上手`即可进行使用
 
-
 ## 附录
 
 ### 在容器启动时，会自动启动以下服务：
 
-```aidl
+```
     MasterServer         ----- master服务
     WorkerServer         ----- worker服务
     LoggerServer         ----- logger服务
@@ -91,7 +86,7 @@ http://192.168.xx.xx:8888
 ```
 ### 如果你只是想运行 dolphinscheduler 中的部分服务
 
-你能够运行dolphinscheduler中的部分服务。
+你能够通执行以下指令仅运行dolphinscheduler中的部分服务。
 
 * 启动一个 **master server**, 如下:
 

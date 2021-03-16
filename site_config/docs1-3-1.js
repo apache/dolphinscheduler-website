@@ -5,7 +5,7 @@ export default {
         title: 'Deployment Document',
         children: [
           {
-            title: 'Hareware Environment',
+            title: 'Hardware Environment',
             link: '/en-us/docs/1.3.1/user_doc/hardware-environment.html',
           },
           {
@@ -17,8 +17,8 @@ export default {
             link: '/en-us/docs/1.3.1/user_doc/frontend-deployment.html',
           },
           {
-            tltle: 'Configration file',
-            link: '/en-us/docs/1.3.1/user_doc/configration-file.html',
+            title: 'Configuration file',
+            link: '/en-us/docs/1.3.1/user_doc/configuration-file.html',
           },
         ],
       },
@@ -44,16 +44,6 @@ export default {
           {
             title: 'task structure',
             link: '/en-us/docs/1.3.1/user_doc/task-structure.html',
-          },
-        ],
-      },
-      {
-        title: 'Api Document',
-        children: [
-          {
-            title: 'Api Document',
-            target: '_blank',
-            link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en&lang=en',
           },
         ],
       },
@@ -115,16 +105,6 @@ export default {
           {
             title: '架构设计',
             link: '/zh-cn/docs/1.3.1/user_doc/architecture-design.html',
-          },
-        ],
-      },
-      {
-        title: 'API文档',
-        children: [
-          {
-            title: 'API文档',
-            target: '_blank',
-            link: 'http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh',
           },
         ],
       },

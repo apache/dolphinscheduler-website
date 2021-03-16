@@ -135,7 +135,7 @@ run the main method of org.apache.dolphinscheduler.api.ApiApplicationServer, you
 6. cd dolphinscheduler-ui directory and run npm run start
 
 #### Visit the project
-1. Visit http://localhost:8888
+1. Visit http://localhost:12345/dolphinscheduler
 
 2. Sign in with the administrator account
 username: admin  

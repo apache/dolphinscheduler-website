@@ -324,7 +324,7 @@ A: 1, The release process of Apache Project happens in the mailing list. You can
 ---
 
 ## Q : Subsequent tasks can execute even front task failed
-A: When start the workflow, you can set the task failure strategy: contine or failure.
+A: When start the workflow, you can set the task failure strategy: continue or failure.
 ![set task failure strategy](https://user-images.githubusercontent.com/15833811/80368215-ee378080-88be-11ea-9074-01a33d012b23.png)
 
 ---
@@ -357,7 +357,7 @@ A: For version 1.3.0, we want to support k8s, while the ip always will be change
 ---
 
 ## Q : Why not add mysql jdbc connector to docker image
-A: The license of mysql jdbc connector is not compitable with apache v2 license, so it can't be included by docker image.
+A: The license of mysql jdbc connector is not compatible with apache v2 license, so it can't be included by docker image.
 
 ---
 

@@ -88,7 +88,7 @@
 
 * **UI** 
 
-    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/user_doc/system-manual.html" target="_self">系统使用手册</a>部分。
+    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/latest/user_doc/system-manual.html" target="_self">系统使用手册</a>部分。
 
 #### 2.3 架构设计思想
 

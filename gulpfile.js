@@ -7,6 +7,10 @@ const path = require('path');
 const fs = require('fs-extra');
 const WebpackDevServer = require('webpack-dev-server');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WebpackManifestPlugin = require('webpack-manifest-plugin');
 const siteConfig = require('./site_config/site').default;
 const webpackConfig = require('./webpack.config.js');
 
@@ -16,12 +20,16 @@ const port = siteConfig.port || 8080;
 gulp.task('webpack-dev-server', () => {
   // modify some webpack config options
   const myConfig = Object.create(webpackConfig);
-  myConfig.plugins.push(new webpack.SourceMapDevToolPlugin({}));
+  myConfig.plugins = myConfig.plugins.concat(
+    new ExtractTextPlugin('[name].css'),
+    new webpack.SourceMapDevToolPlugin({})
+  );
   // Start a webpack-dev-server
   new WebpackDevServer(webpack(myConfig), {
     publicPath: `http://127.0.0.1:${port}/build/`,
     stats: {
       colors: true,
+      children: false,
     },
   }).listen(port, '127.0.0.1', (err) => {
     if (err) throw new gutil.PluginError('webpack-dev-server', err);
@@ -34,6 +42,7 @@ gulp.task('webpack:build', (callback) => {
   // modify some webpack config options
   const myConfig = Object.create(webpackConfig);
   myConfig.output.publicPath = `${siteConfig.rootPath}/build/`;
+  myConfig.output.filename = '[name].[chunkhash:7].js';
   myConfig.plugins = myConfig.plugins.concat(
     new webpack.DefinePlugin({
       'process.env': {
@@ -41,9 +50,25 @@ gulp.task('webpack:build', (callback) => {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: [distdir] }),
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash:7].css',
+      allChunks: true,
+    }),
+    new OptimizeCSSPlugin({ cssProcessorOptions: { safe: true } }),
+    new webpack.optimize.UglifyJsPlugin({
+      uglifyOptions: {
+        compress: { warnings: false },
+      },
+      parallel: true,
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: 2,
+    }),
+    new WebpackManifestPlugin({ publicPath: '' }),
     new CopyWebpackPlugin((() => {
-      const entries = ['.asf.yaml', 'sitemap.xml', 'file', 'img'];
+      const entries = [];
       const pages = fs.readdirSync(path.join(__dirname, './src/pages'));
       pages.forEach((page) => {
         if (page === 'home') return;
@@ -58,11 +83,12 @@ gulp.task('webpack:build', (callback) => {
         to: path.join(distdir, entry),
         ignore: ['*.md', '*.markdown'],
       }));
-    })()),
-    new CopyWebpackPlugin([
-      { from: path.join(distdir, siteConfig.defaultLanguage, 'index.html'), to: path.join(distdir, 'index.html') },
-    ])
+    })())
   );
+  if (process.env.report_analyzer) {
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+    myConfig.plugins.push(new BundleAnalyzerPlugin());
+  }
 
   // run webpack
   webpack(myConfig, (err, stats) => {
@@ -75,6 +101,17 @@ gulp.task('webpack:build', (callback) => {
     );
     callback();
   });
+});
+
+gulp.task('post-build', (callback) => {
+  fs.removeSync(path.join(distdir, 'build/manifest.json'), { force: true });
+  if (Array.isArray(siteConfig.copyToDist)) {
+    siteConfig.copyToDist.forEach((item) => {
+      fs.copySync(path.join(__dirname, item), path.join(distdir, item));
+    });
+  }
+  fs.copySync(path.join(distdir, siteConfig.defaultLanguage, 'index.html'), path.join(distdir, 'index.html'));
+  callback();
 });
 
 // The development server (the recommended option for development)
