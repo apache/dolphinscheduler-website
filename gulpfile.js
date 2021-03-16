@@ -107,7 +107,9 @@ gulp.task('post-build', (callback) => {
   fs.removeSync(path.join(distdir, 'build/manifest.json'), { force: true });
   if (Array.isArray(siteConfig.copyToDist)) {
     siteConfig.copyToDist.forEach((item) => {
-      fs.copySync(path.join(__dirname, item), path.join(distdir, item));
+      if (fs.existsSync(path.join(__dirname, item))) {
+        fs.copySync(path.join(__dirname, item), path.join(distdir, item));
+      }
     });
   }
   fs.copySync(path.join(distdir, siteConfig.defaultLanguage, 'index.html'), path.join(distdir, 'index.html'));
