@@ -208,6 +208,7 @@ mysql -uroot -p
     defaultFS="file:///data/dolphinscheduler"
 
     # if not use hadoop resourcemanager, please keep default value; if resourcemanager HA enable, please type the HA ips ; if resourcemanager is single, make this value empty
+    # Note: For tasks that depend on YARN to execute, you need to ensure that YARN information is configured correctly in order to ensure successful execution results.
     yarnHaIps="192.168.xx.xx,192.168.xx.xx"
 
     # if resourcemanager HA enable or not use resourcemanager, please skip this value setting; If resourcemanager is single, you only need to replace yarnIp1 to actual resourcemanager hostname.
