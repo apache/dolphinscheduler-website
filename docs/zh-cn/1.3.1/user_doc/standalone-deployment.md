@@ -201,6 +201,7 @@ mysql -uroot -p
     defaultFS="file:///data/dolphinscheduler"    #hdfs://{具体的ip/主机名}:8020
 
     # 如果没有使用到Yarn,保持以下默认值即可；如果ResourceManager是HA，则配置为ResourceManager节点的主备ip或者hostname,比如"192.168.xx.xx,192.168.xx.xx";如果是单ResourceManager请配置yarnHaIps=""即可
+    # 注：依赖于yarn执行的任务，为了保证执行结果判断成功,需要确保yarn信息配置正确。
     yarnHaIps="192.168.xx.xx,192.168.xx.xx"
 
     # 如果ResourceManager是HA或者没有使用到Yarn保持默认值即可；如果是单ResourceManager，请配置真实的ResourceManager主机名或者ip
