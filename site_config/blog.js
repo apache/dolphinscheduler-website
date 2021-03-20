@@ -4,12 +4,20 @@ export default {
     postsTitle: 'All posts',
     list: [
       {
+        title: 'FAQ of Apache DolphinScheduler',
+        author: 'LidongDai',
+        dateStr: '2021-03-20',
+        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to rigister.',
+        link: '/en-us/blog/FAQ.html',
+      },
+      {
         title: 'Apache Dolphin Scheduler(Incubating) Meetup 2019.10 Shanghai',
         author: 'William',
         dateStr: '2019-9-27',
         desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to rigister.',
         link: '/en-us/blog/meetup_2019_10_26.html',
       },
+
     ],
   },
   'zh-cn': {
