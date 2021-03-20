@@ -256,6 +256,7 @@ defaultFS=&quot;file:///data/dolphinscheduler&quot;
 <span class="hljs-meta">
 
 #</span><span class="bash"> <span class="hljs-keyword">if</span> not use hadoop resourcemanager, please keep default value; <span class="hljs-keyword">if</span> resourcemanager HA <span class="hljs-built_in">enable</span>, please <span class="hljs-built_in">type</span> the HA ips ; <span class="hljs-keyword">if</span> resourcemanager is single, make this value empty</span>
+<span class="hljs-meta">#</span><span class="bash"> Note: For tasks that depend on YARN to execute, you need to ensure that YARN information is configured correctly <span class="hljs-keyword">in</span> order to ensure successful execution results.</span>
 yarnHaIps=&quot;192.168.xx.xx,192.168.xx.xx&quot;
 <span class="hljs-meta">
 #</span><span class="bash"> <span class="hljs-keyword">if</span> resourcemanager HA <span class="hljs-built_in">enable</span> or not use resourcemanager, please skip this value setting; If resourcemanager is single, you only need to replace yarnIp1 to actual resourcemanager hostname.</span>
