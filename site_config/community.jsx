@@ -35,8 +35,16 @@ export default {
         title: 'Release Guide',
         children: [
           {
+            title: 'release preparation',
+            link: '/en-us/community/release-prepare.html',
+          },
+          {
             title: 'release guide',
             link: '/en-us/community/release.html',
+          },
+          {
+            title: 'release post',
+            link: '/en-us/community/release-post.html',
           },
         ],
       },
@@ -233,8 +241,16 @@ export default {
         title: '发版指南',
         children: [
           {
+            title: '发版准备',
+            link: '/zh-cn/community/release-prepare.html',
+          },
+          {
             title: '发版指南',
             link: '/zh-cn/community/release.html',
+          },
+          {
+            title: '发版后续',
+            link: '/zh-cn/community/release-post.html',
           },
         ],
       },

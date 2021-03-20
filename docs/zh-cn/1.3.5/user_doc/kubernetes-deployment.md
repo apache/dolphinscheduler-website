@@ -117,7 +117,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 >
 > 如果你要添加 Oracle 数据源, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
 
-1. 下载 Oracle 驱动包 [ojdbc8.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/) (such as `ojdbc8-19.9.0.0.jar`)
+1. 下载 Oracle 驱动包 [ojdbc8.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/) (例如 `ojdbc8-19.9.0.0.jar`)
 
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
@@ -134,7 +134,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 4. 推送 docker 镜像 `apache/dolphinscheduler:oracle-driver` 到一个 docker registry 中
 
-5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段， 并更新 `oracle-driver`
+5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段， 并更新 `tag` 为 `oracle-driver`
 
 6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
