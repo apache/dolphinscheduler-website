@@ -77,7 +77,7 @@ export default {
     introduction: {
       title: 'A distributed and easy-to-extend visual workflow scheduler system',
       desc: 'Dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing. Its main objectives are as follows:',
-      img: '/img/architecture.jpg',
+      img: '/img/architecture-en.jpg',
     },
     features: {
       title: 'Why DolphinScheduler',
