@@ -124,7 +124,7 @@ mysql -uroot -p
     export HIVE_HOME=/opt/soft/hive
     export FLINK_HOME=/opt/soft/flink
     export DATAX_HOME=/opt/soft/datax/bin/datax.py
-    export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH:$FLINK_HOME/bin:$DATAX_HOME:$PATH
+    export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME:$PATH
     ```
 
      `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到dolphinscheduler_env.sh, 请运行 ls -a`
