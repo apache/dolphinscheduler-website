@@ -67,7 +67,7 @@ class Slider extends React.Component {
     // const total = React.Children.count(this.props.children);
     if (i !== screenIndex) {
       this.setState({
-        screenIndex: i
+        screenIndex: i,
       });
     }
   }
@@ -79,7 +79,7 @@ class Slider extends React.Component {
     const len = React.Children.count(children);
     // 分成的屏数
     const splitNum = Math.ceil(len / visibleNum);
-    /* eslint-disable no-plusplus*/
+    /* eslint-disable no-plusplus */
     for (let i = 0; i < splitNum; i++) {
       splitGroup.push(Array.from(children).slice(i * visibleNum, (i + 1) * visibleNum));
     }
@@ -92,8 +92,7 @@ class Slider extends React.Component {
           width: this.getListWidth(),
         }}
       >
-        {splitGroup.map((group, i) => {
-          return (
+        {splitGroup.map((group, i) => (
             <div
               className="slider-screen"
               style={{ width: (this.container && this.container.getBoundingClientRect().width) || 0 }}
@@ -109,15 +108,13 @@ class Slider extends React.Component {
                       {React.cloneElement(child, {
                         ref: (node) => {
                           this[`sliderItemChild${(i * visibleNum) + j}`] = node;
-                        }
+                        },
                       })}
                     </div>
-                  )
-                )
+                ))
               }
             </div>
-          );
-        })}
+        ))}
       </div>
     );
   }

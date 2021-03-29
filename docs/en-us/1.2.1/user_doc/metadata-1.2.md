@@ -40,7 +40,7 @@
 ![image.png](/img/metadata-erd/user-queue-datasource.png)
 
 - Multiple users can belong to one tenant
-- The queue field in t_ds_user table stores the queue_name information in t_ds_queue table, but t_ds_tenant stores queue infomation using queue_id. During the execution of the process definition, the user queue has the highest priority. If the user queue is empty, the tenant queue is used.
+- The queue field in t_ds_user table stores the queue_name information in t_ds_queue table, but t_ds_tenant stores queue information using queue_id. During the execution of the process definition, the user queue has the highest priority. If the user queue is empty, the tenant queue is used.
 - The user_id field in the t_ds_datasource table indicates the user who created the data source. The user_id in t_ds_relation_datasource_user indicates the user who has permission to the data source.
 <a name="7euSN"></a>
 #### Project Resource Alert

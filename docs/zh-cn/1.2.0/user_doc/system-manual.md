@@ -727,7 +727,7 @@ conf/common/hadoop.properties
 > 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_PYTHON.png)任务节点到画板中，如下图所示：
 
 <p align="center">
-   <img src="/img/python_edit.png" width="80%" />
+   <img src="/img/python_edit1-2.png" width="80%" />
  </p>
 
 - 脚本：用户开发的Python程序

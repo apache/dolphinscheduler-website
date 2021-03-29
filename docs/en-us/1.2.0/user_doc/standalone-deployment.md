@@ -17,7 +17,7 @@ DolphinScheduler Standalone deployment is divided into two parts: backend deploy
 
 ### 1.2: Download the backend package.
 
-- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](https://dolphinscheduler.apache.org/en-us/docs/release/download.html) (Take 1.2.0 for an example). Download the package and move to the installation and deployment directory. Then unzip it.
+- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html) (Take 1.2.0 for an example). Download the package and move to the installation and deployment directory. Then unzip it.
 
 ```shell
 # Create the deployment directory. Do not choose a deployment directory with a high-privilege directory such as / root or / home.
@@ -220,7 +220,7 @@ mysql -uroot -p
     resUploadStartupType="HDFS"
     
     # Take the local file system as an example.
-    # Note: If you want to upload to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the conf directory. In this example, it is placed under /opt/dolphinscheduler/conf, and Configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
+    # Note: If you want to upload resource files to HDFS and the NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the installPath/conf directory. In this example, it is placed under /opt/soft/dolphinscheduler/conf, and Configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
     defaultFS="file:///data/dolphinscheduler"    # hdfs://{ip|hostname}:8020
     
     
@@ -297,7 +297,7 @@ After the deployment is successful, you can view the logs. The logs are stored i
 
 # 2. Frontend Deployment
 
-Please download the latest version of the frontend installation package to the server deployment directory, download address: [Download] (https://dolphinscheduler.apache.org/en-us/docs/release/download.html) (Take 1.2.0 version as an example ), Upload the tar.gz package to this directory after downloading and unzip it.
+Please download the latest version of the frontend installation package to the server deployment directory, download address: [Download] (/en-us/download/download.html) (Take 1.2.0 version as an example ), Upload the tar.gz package to this directory after downloading and unzip it.
 
 ```shell
 cd /opt/dolphinscheduler;
@@ -345,6 +345,8 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin dolphinsc
 
 - Visit the front page address: http://localhost:8888. If the front login page appears, the front web installation is complete.
 
+  default user password：admin/dolphinscheduler123
+  
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>
@@ -397,6 +399,8 @@ server {
 
 - Visit the front page address: http://localhost:8888. If the front login page appears, the front web installation is complete.
 
+  default user password：admin/dolphinscheduler123
+  
   <p align="center">
      <img src="/img/login.png" width="60%" />
    </p>

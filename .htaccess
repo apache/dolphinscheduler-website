@@ -1,0 +1,23 @@
+RedirectMatch 404 /\.htaccess
+
+<FilesMatch "\.html$">
+  FileETag None
+  Header unset ETag
+  Header unset Pragma
+  Header unset Cache-Control
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+  Header set Pragma "no-cache"
+  Header set Expires "Thu, 1 Jan 1970 00:00:00 GMT"
+</FilesMatch>
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresByType text/html                 "access plus 0 seconds"
+  ExpiresByType image/png                 "access plus 1 day"
+  ExpiresByType image/jpg                 "access plus 1 day"
+  ExpiresByType image/jpeg                "access plus 1 day"
+  ExpiresByType text/css                  "access plus 1 day"
+  ExpiresByType application/javascript    "access plus 1 day"
+  ExpiresByType application/json          "access plus 1 day"
+  ExpiresDefault                          "access plus 10 days"
+</IfModule>

@@ -98,7 +98,7 @@ Before explaining the architecture of the schedule system, let us first understa
 
      - **UI**
 
-       The front-end page of the system provides various visual operation interfaces of the system. For details, see the <a href="/en-us/docs/user_doc/system-manual.html" target="_self">System User Manual</a> section.
+       The front-end page of the system provides various visual operation interfaces of the system. For details, see the <a href="/en-us/docs/1.2.1/user_doc/system-manual.html" target="_self">System User Manual</a> section.
 
      
 
@@ -266,7 +266,7 @@ In the early scheduling design, if there is no priority design and fair scheduli
  /**
   * task log appender
   */
- Public class TaskLogAppender extends FileAppender<ILoggingEvent {
+ Public class TaskLogAppender extends FileAppender<ILoggingEvent> {
  
      ...
 
@@ -297,7 +297,7 @@ Generate a log in the form of /process definition id/process instance id/task in
  /**
  * task log filter
  */
-Public class TaskLogFilter extends Filter<ILoggingEvent {
+Public class TaskLogFilter extends Filter<ILoggingEvent> {
 
     @Override
     Public FilterReply decide(ILoggingEvent event) {

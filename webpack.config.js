@@ -5,18 +5,31 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const entry = {};
 const targetPath = path.join(__dirname, './src/pages');
-fs.readdirSync(targetPath).forEach(page => {
-  if (
-    fs.statSync(path.join(targetPath, page)).isDirectory() &&
-    fs.existsSync(path.join(targetPath, page, 'index.jsx'))
-  ) {
-    entry[page] = path.join(targetPath, page, 'index.jsx');
+fs.readdirSync(targetPath).forEach((page) => {
+  const entries = [];
+  const pagePath = path.join(targetPath, page);
+  if (fs.statSync(pagePath).isDirectory()) {
+    if (fs.existsSync(path.join(pagePath, 'index.jsx'))) {
+      entries.push(path.join(pagePath, 'index.jsx'));
+    }
+    if (fs.existsSync(path.join(pagePath, 'index.md.jsx'))) {
+      entry[`${page}.md`] = path.join(pagePath, 'index.md.jsx');
+    }
+    fs.readdirSync(pagePath).forEach((subPage) => {
+      const subPagePath = path.join(pagePath, subPage);
+      if (fs.existsSync(path.join(subPagePath, 'index.jsx'))) {
+        entries.push(path.join(subPagePath, 'index.jsx'));
+      }
+    });
+    if (entries.length) {
+      entry[page] = entries;
+    }
   }
 });
 module.exports = {
   entry,
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, 'dist/build'),
     filename: '[name].js',
   },
   externals: {
@@ -50,6 +63,5 @@ module.exports = {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new ExtractTextPlugin('[name].css'),
   ],
 };

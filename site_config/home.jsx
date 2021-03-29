@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   'zh-cn': {
     brand: {
@@ -8,11 +6,11 @@ export default {
       buttons: [
         {
           text: '立即开始',
-          link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
+          link: '/zh-cn/docs/latest/user_doc/quick-start.html',
           type: 'primary',
         },
         {
-          text: '查看Github',
+          text: '查看GitHub',
           link: 'https://github.com/apache/incubator-dolphinscheduler',
           type: 'normal',
         },
@@ -50,58 +48,22 @@ export default {
           img: '/img/feature_runtime.png',
           title: '高扩展性',
           content: '支持自定义任务类型，调度器使用分布式调度，调度能力随集群线性增长，Master和Worker支持动态上下线',
-        }
-      ],
-    },
-    users: {
-      title: '谁在使用DolphinScheduler',
-      desc: <span>请在 <a rel="noopener noreferrer" target="_blank" href="https://github.com/apache/incubator-dolphinscheduler/issues/57">Wanted: who's using DolphinScheduler</a> 上提供信息来帮助DolphinScheduler做的更好。</span>,
-      list: [
-        '/img/users_yiguan.jpg',
-        '/img/users_pingan.jpg',
-        '/img/users_aisino.jpg',
-        '/img/users_zhongshan.jpg',
-        '/img/users_meituan.jpg',
-        '/img/users_dida.jpg',
-        '/img/users_xueqiu.jpg',
-        '/img/users_fenghuang.jpg',
-        '/img/users_duodian.jpg',
-        '/img/users_shuidi.jpg',
-        '/img/users_huarunwanjia.jpg',
-        '/img/users_huanqiu.jpg',
-        '/img/users_xiaobangguihua.jpg',
-        '/img/users_shulidata.jpg',
-        '/img/users_tianchuang.jpg',
-        '/img/users_jiliguala.jpg',
-        '/img/users_banyunkeji.jpg',
-        '/img/users_cttc.jpg',
-        '/img/users_danyuanzi.jpg',
-        '/img/users_dongxinbeiyou.jpg',
-        '/img/users_hualala.jpg',
-        '/img/users_quanwai.jpg',
-        '/img/users_shulankeji.jpg',
-        '/img/users_sifangweiye.jpg',
-        '/img/users_weimo.jpg',
-        '/img/users_xinweisulian.jpg',
-        '/img/users_yousukuaidi.jpg',
-        '/img/users_yuxueyuan.jpg',
-        '/img/users_zhongruanguoji.jpg',
-        '/img/users_changan.jpg',
+        },
       ],
     },
   },
   'en-us': {
     brand: {
       brandName: 'Apache DolphinScheduler',
-      briefIntroduction: 'A distributed and easy-to-expand visual DAG workflow scheduling system',
+      briefIntroduction: 'A distributed and easy-to-extend visual workflow scheduler system',
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/quick-start.html',
           type: 'primary',
         },
         {
-          text: 'View on Github',
+          text: 'View on GitHub',
           link: 'https://github.com/apache/incubator-dolphinscheduler',
           type: 'normal',
         },
@@ -113,8 +75,8 @@ export default {
       releaseDate: 'Released on Aug 05, 2019',
     },
     introduction: {
-      title: 'A distributed and easy-to-expand visual DAG workflow scheduling system',
-      desc: 'Dedicated to solving the complex dependencies in data processing, making the scheduling system out of the box for data processing. Its main objectives are as follows:',
+      title: 'A distributed and easy-to-extend visual workflow scheduler system',
+      desc: 'Dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing. Its main objectives are as follows:',
       img: '/img/architecture.jpg',
     },
     features: {
@@ -139,43 +101,7 @@ export default {
           img: '/img/feature_runtime.png',
           title: 'High Expansibility',
           content: 'Support custom task types, Distributed scheduling, and the overall scheduling capability will increase linearly with the scale of the cluster',
-        }
-      ]
-    },
-    users: {
-      title: 'Who Is Using DolphinScheduler',
-      desc: <span>Providing your info on <a rel="noopener noreferrer" target="_blank" href="https://github.com/apache/incubator-dolphinscheduler/issues/57">Wanted: who's using DolphinScheduler</a> to help improving DolphinScheduler better.</span>,
-      list: [
-        '/img/users_yiguan.jpg',
-        '/img/users_pingan.jpg',
-        '/img/users_aisino.jpg',
-        '/img/users_zhongshan.jpg',
-        '/img/users_meituan.jpg',
-        '/img/users_dida.jpg',
-        '/img/users_xueqiu.jpg',
-        '/img/users_fenghuang.jpg',
-        '/img/users_duodian.jpg',
-        '/img/users_shuidi.jpg',
-        '/img/users_huarunwanjia.jpg',
-        '/img/users_huanqiu.jpg',
-        '/img/users_xiaobangguihua.jpg',
-        '/img/users_shulidata.jpg',
-        '/img/users_tianchuang.jpg',
-        '/img/users_jiliguala.jpg',
-        '/img/users_banyunkeji.jpg',
-        '/img/users_cttc.jpg',
-        '/img/users_danyuanzi.jpg',
-        '/img/users_dongxinbeiyou.jpg',
-        '/img/users_hualala.jpg',
-        '/img/users_quanwai.jpg',
-        '/img/users_shulankeji.jpg',
-        '/img/users_sifangweiye.jpg',
-        '/img/users_weimo.jpg',
-        '/img/users_xinweisulian.jpg',
-        '/img/users_yousukuaidi.jpg',
-        '/img/users_yuxueyuan.jpg',
-        '/img/users_zhongruanguoji.jpg',
-        '/img/users_changan.jpg',
+        },
       ],
     },
   },

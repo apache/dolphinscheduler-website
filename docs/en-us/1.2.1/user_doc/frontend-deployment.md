@@ -8,7 +8,7 @@ The front-end has three deployment modes: automated deployment, manual deploymen
 
 #### Download the installation package
 
-Please download the latest version of the installation package, download address： [download](https://dolphinscheduler.apache.org/en-us/docs/release/download.html)
+Please download the latest version of the installation package, download address： [download](/en-us/download/download.html)
 
 After downloading apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz，
 decompress`tar -zxvf apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-front-bin.tar.gz ./`and enter the`dolphinscheduler-ui`directory
@@ -114,6 +114,8 @@ Copy all files in the dolphinscheduler-ui/dist directory to the backend binary p
 
 Visit the following url, interface address (modify it yourself)
 http://192.168.xx.xx:12345/dolphinscheduler
+
+default user password：admin/dolphinscheduler123
 
 ## FAQ
 #### Upload file size limit

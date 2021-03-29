@@ -12,14 +12,16 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 8.16.2
+        node-version: 10.23.1
     - name: Build
-      run: |
-        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r sitemap.xml 404.html .asf.yaml index.html en-us zh-cn build img download dist/
+      run: npm install && npm run build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.4.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_BRANCH: asf-site
-        PUBLISH_DIR: ./dist
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: asf-site
+        publish_dir: ./dist
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: 'Automated deployment:'

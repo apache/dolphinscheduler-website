@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+  <title>Apache DolphinScheduler is a distributed and easy-to-extend visual workflow scheduler system, dedicated to solving the complex task dependencies in data processing, making the scheduling system out of the box for data processing.</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Apache DolphinScheduler is a distributed and easy-to-extend visual workflow scheduler system, dedicated to solving the complex task dependencies in data processing, making the scheduling system out of the box for data processing.">
+  <meta name="keywords" content="Apache DolphinScheduler Official Website,dolphinscheduler.apache.org">
+  <link rel="shortcut icon" href="<%= rootPath %>/img/favicon.ico">
 </head>
 <body>
   <script src="//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-	<script>
+  <script>
     window.rootPath = '<%= rootPath %>';
     window.defaultLanguage = '<%= defaultLanguage %>';
     var lang = Cookies.get('docsite_language');
@@ -13,6 +17,15 @@
       lang = '<%= defaultLanguage %>';
     }
     window.location = window.rootPath + '/' + lang;
+  </script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e7b4b400dd31fa015018a435c64d06f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
   </script>
 </body>
 </html>

@@ -17,7 +17,7 @@ DolphinScheduler集群部署分为后端部署和前端部署两部分：
 
 ### 1.2 : 下载后端tar.gz包
 
-- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
+- 请下载最新版本的后端安装包至服务器部署目录,比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](/zh-cn/download/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 # 创建部署目录,部署目录请不要创建在/root、/home等高权限目录 
@@ -272,7 +272,7 @@ mysql -uroot -p
     # 业务用到的比如sql等资源文件上传到哪里，可以设置：HDFS,S3,NONE。如果想上传到HDFS，请配置为HDFS；如果不需要资源上传功能请选择NONE。
     resUploadStartupType="HDFS"
     
-    #如果上传资源保存想保存在hadoop上，hadoop集群的NameNode启用了HA的话，需要将core-site.xml和hdfs-site.xml放到conf目录下，本例即是放到/opt/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则只需要将mycluster修改为具体的ip或者主机名即可 
+    # 如果上传资源保存想保存在hadoop上，hadoop集群的NameNode启用了HA的话，需要将hadoop的配置文件core-site.xml和hdfs-site.xml放到安装路径(上面的installPath)的conf目录下，本例即是放到/opt/soft/dolphinscheduler/conf下面，并配置namenode cluster名称；如果NameNode不是HA,则只需要将mycluster修改为具体的ip或者主机名即可
     defaultFS="hdfs://mycluster:8020"
     
     
@@ -343,7 +343,7 @@ sudo pip install kazoo;
 
 # 2、前端部署
 
-请下载最新版本的前端安装包至服务器部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/docs/release/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
+请下载最新版本的前端安装包至服务器部署目录，下载地址： [下载](/zh-cn/download/download.html) (以1.2.0版本为例)，下载后上传tar包到该目录中，并进行解压
 
 ```shell
 cd /opt/dolphinscheduler;
@@ -390,6 +390,8 @@ mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin dolphinsc
   ```
 
 - 访问前端页面地址: http://localhost:8888 ，出现前端登录页面，前端web也安装完成了
+
+  默认用户名密码：admin/dolphinscheduler123
 
   <p align="center">
      <img src="/img/login.png" width="60%" />
@@ -442,6 +444,8 @@ server {
   ```
 
 - 访问前端页面地址: http://localhost:8888 ，出现前端登录页面，前端web也安装完成了
+  
+  默认用户名密码：admin/dolphinscheduler123
 
   <p align="center">
      <img src="/img/login.png" width="60%" />

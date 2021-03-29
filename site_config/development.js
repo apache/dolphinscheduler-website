@@ -1,73 +1,71 @@
 export default {
-    'en-us': {
-        sidemenu: [
-            {
-                title: 'Contribution Guide',
-                children: [
-                    {
-                        title: 'how to become a committer',
-                        link: '/en-us/docs/development/become a committer.html',
-                    },
-                    {
-                        title: 'Subscribe mail list',
-                        link: '/en-us/docs/development/subscribe.html',
-                    },
-                    {
-                        title: 'Participate in contributing',
-                        link: '/en-us/docs/development/contribute.html',
-                    }
-                ],
-            },
-            {
-                title: 'Submit Guide',
-                children: [
-                    {
-                        title: 'Submit Pull Request Process',
-                        link: '/en-us/docs/development/submit-code.html',
-                    },
-                    {
-                        title: 'Developers',
-                        link: '/en-us/docs/development/developers.html',
-                    }
-                ]
-            }
+  'en-us': {
+    sidemenu: [
+      {
+        title: 'Developer guide',
+        children: [
+          {
+            title: 'Development Environment Setup',
+            link: '/en-us/development/development-environment-setup.html',
+          },
+          {
+            title: 'Architecture Design',
+            link: '/en-us/development/architecture-design.html',
+          },
+          {
+            title: 'Backend Development',
+            link: '/en-us/development/backend-development.html',
+          },
+          {
+            title: 'Frontend Development',
+            link: '/en-us/development/frontend-development.html',
+          },
+          {
+            title: 'Dev Frontend Development',
+            link: '/en-us/development/dev-frontend-development.html',
+          },
+          {
+            title: 'plugin-development',
+            link: '/en-us/development/plugin-development.html',
+          },
         ],
-        barText: 'Development'
-    },
-    'zh-cn': {
-        sidemenu: [
-            {
-                title: '贡献指南',
-                children: [
-                    {
-                        title: '如何成为Dolphinscheduler的committer',
-                        link: '/zh-cn/docs/development/become a committer.html',
-                    },
-                    {
-                        title: '订阅邮件列表',
-                        target: '_blank',
-                        link: '/zh-cn/docs/development/subscribe.html',
-                    },
-                    {
-                        title: '参与贡献',
-                        link: '/zh-cn/docs/development/contribute.html',
-                    }
-                ],
-            },
-            {
-                title: '提交者向导',
-                children: [
-                    {
-                        title: '提交流程',
-                        link: '/zh-cn/docs/development/submit-code.html',
-                    },
-                    {
-                        title: '开发人员',
-                        link: '/zh-cn/docs/development/developers.html',
-                    }
-                ]
-            }
+      },
+    ],
+    barText: 'Development',
+  },
+  'zh-cn': {
+    sidemenu: [
+      {
+        title: '开发者指南',
+        children: [
+          {
+            title: '环境搭建',
+            link: '/zh-cn/development/development-environment-setup.html',
+          },
+          {
+            title: '架构设计',
+            link: '/zh-cn/development/architecture-design.html',
+          },
+          {
+            title: '后端开发',
+            link: '/zh-cn/development/backend-development.html',
+          },
+          {
+            title: '前端开发',
+            link: '/zh-cn/development/frontend-development.html',
+          },
+          {
+            title: 'dev前端开发',
+            link: '/zh-cn/development/dev-frontend-development.html',
+          },
+          {
+            title: '插件开发',
+            link: '/zh-cn/development/plugin-development.html',
+          },
         ],
-        barText: '开发者'
-    }
+      },
+    ],
+    barText: '开发者',
+  },
 };
+

@@ -88,7 +88,7 @@
 
 * **UI** 
 
-    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/user_doc/system-manual.html" target="_self">系统使用手册</a>部分。
+    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/1.2.1/user_doc/system-manual.html" target="_self">系统使用手册</a>部分。
 
 #### 2.3 架构设计思想
 
@@ -253,7 +253,7 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
  /**
   * task log appender
   */
- public class TaskLogAppender extends FileAppender<ILoggingEvent {
+ public class TaskLogAppender extends FileAppender<ILoggingEvent> {
  
      ...
 
@@ -286,7 +286,7 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
  /**
  *  task log filter
  */
-public class TaskLogFilter extends Filter<ILoggingEvent {
+public class TaskLogFilter extends Filter<ILoggingEvent> {
 
     @Override
     public FilterReply decide(ILoggingEvent event) {

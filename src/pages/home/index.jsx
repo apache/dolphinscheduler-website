@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getScrollTop, getLink } from '../../../utils';
+import { getScrollTop, getLink, getKiloUnit } from '../../../utils';
 import Header from '../../components/header';
 import Button from '../../components/button';
 import Footer from '../../components/footer';
@@ -10,7 +10,6 @@ import homeConfig from '../../../site_config/home';
 import './index.scss';
 
 class Home extends Language {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -34,18 +33,18 @@ class Home extends Language {
       }
     });
     // 写死协议，因github会做协议跳转，这种跳转会被Safari拦截
-    // fetch('https://api.github.com/repos/apache/incubator-dolphinscheduler')
-    //     .then(res => res.json())
-    //     .then((data) => {
-    //       this.setState({
-    //         starCount: data.stargazers_count,
-    //         forkCount: data.forks_count,
-    //       });
-    //     });
+    fetch('https://api.github.com/repos/apache/incubator-dolphinscheduler')
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({
+          starCount: data.stargazers_count,
+          forkCount: data.forks_count,
+        });
+      });
   }
 
   render() {
-    // const { starCount, forkCount } = this.state;
+    const { starCount, forkCount } = this.state;
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;
@@ -75,20 +74,20 @@ class Home extends Language {
               <a href="https://github.com/apache/incubator-dolphinscheduler" target="_blank" rel="noopener noreferrer">
                 <div className="star">
                   <img src="https://img.alicdn.com/tfs/TB1FlB1JwHqK1RjSZFPXXcwapXa-32-32.png" />
-                  <span className="count">3.5K </span>
+                  <span className="count" style={{ display: starCount ? 'inline-block' : 'none' }}>{getKiloUnit(starCount)}</span>
                 </div>
               </a>
               <a href="https://github.com/apache/incubator-dolphinscheduler/fork" target="_blank" rel="noopener noreferrer">
                 <div className="fork">
                   <img src="https://img.alicdn.com/tfs/TB1zbxSJwDqK1RjSZSyXXaxEVXa-32-32.png" />
-                  <span className="count">1.1K </span>
+                  <span className="count" style={{ display: forkCount ? 'inline-block' : 'none' }}>{getKiloUnit(forkCount)}</span>
                 </div>
               </a>
             </div>
-            {/*<div className="version-note">*/}
-            {/*  <a target="_blank" rel="noopener noreferrer" href={getLink(dataSource.brand.versionNote.link)}>{dataSource.brand.versionNote.text}</a>*/}
-            {/*</div>*/}
-            {/*<div className="release-date">{dataSource.brand.releaseDate}</div>*/}
+            {/* <div className="version-note"> */}
+            {/*  <a target="_blank" rel="noopener noreferrer" href={getLink(dataSource.brand.versionNote.link)}>{dataSource.brand.versionNote.text}</a> */}
+            {/* </div> */}
+            {/* <div className="release-date">{dataSource.brand.releaseDate}</div> */}
           </div>
           <div className="animation animation1" />
           <div className="animation animation2" />
@@ -114,19 +113,6 @@ class Home extends Language {
             ))
           }
           </ul>
-        </section>
-        <section className="users-section">
-          <h3>{dataSource.users.title}</h3>
-          <p>{dataSource.users.desc}</p>
-          <div>
-          {
-            dataSource.users.list.map((user, i) => (
-              <div className="users">
-                <img src={getLink(user)} key={i} />
-              </div>
-            ))
-          }
-          </div>
         </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
