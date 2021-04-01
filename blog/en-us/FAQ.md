@@ -9,5 +9,5 @@ DolphinScheduler isn't an ETL tool. but it can helps you manage ETL pipelines an
 #### Q：What is DolphinScheduler used for?
 A: Apache DolphinScheduler is a workflow automation and scheduling platform that can be used to assemble and manage data pipelines. Similar systems such as oozie and Azkaban etc
 
-#### Q: Who is using Apache DolphinScheduelr?
+#### Q: Who is using Apache DolphinScheduler?
 A: more than 400+ companys are using DolphinScheduler as their scheduler platform, some user cases like IBM、Tencent、meituan、Lenovo、Nokia、SHEIN、Inspur、pingan、ICBC and so on

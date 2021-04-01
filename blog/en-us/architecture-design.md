@@ -124,7 +124,7 @@ Problems in the design of centralized :
 
 ###### Decentralization
 
- <p align="center"
+ <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="decentralized" width="50%" />
  </p>
 
