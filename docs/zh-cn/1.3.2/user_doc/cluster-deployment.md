@@ -464,7 +464,7 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
    
       1. default: 优先获取内网网卡获取ip地址，其次获取外网网卡获取ip地址，在前两项失效情况下，使用第一块可用网卡的地址。
       2. inner: 使用内网网卡获取ip地址，如果获取失败抛出异常信息。
-      3. outter: 使用外网网卡获取ip地址，如果获取失败抛出异常信息。
+      3. outer: 使用外网网卡获取ip地址，如果获取失败抛出异常信息。
       
       配置方式是在`common.properties`中修改相关配置：
       
