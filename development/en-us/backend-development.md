@@ -17,7 +17,7 @@ After importing the DolphinScheduler source code into the development tools such
 
 * Execute the compile command:
 
-when deploy version >= 1.2.0 , plese use:
+when deploy version >= 1.2.0 , please use:
 ```
  mvn -U clean package -Prelease -Dmaven.test.skip=true
 ```

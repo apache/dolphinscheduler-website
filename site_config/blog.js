@@ -7,14 +7,14 @@ export default {
         title: 'FAQ of Apache DolphinScheduler',
         author: 'LidongDai',
         dateStr: '2021-03-20',
-        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to rigister.',
+        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
         link: '/en-us/blog/FAQ.html',
       },
       {
         title: 'Apache Dolphin Scheduler(Incubating) Meetup 2019.10 Shanghai',
         author: 'William',
         dateStr: '2019-9-27',
-        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to rigister.',
+        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
         link: '/en-us/blog/meetup_2019_10_26.html',
       },
 
