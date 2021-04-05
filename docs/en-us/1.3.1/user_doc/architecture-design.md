@@ -126,7 +126,7 @@ Problems in centralized thought design:
 
 
 ###### Decentralized
- <p align="center"
+ <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="Decentralization"  width="50%" />
  </p>
 
