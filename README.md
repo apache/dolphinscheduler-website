@@ -45,7 +45,7 @@ description: some description
 ```
 
 
-## Guide for adding new document
+## Guide for adding a new document
 
 ### Add a new blog
 
