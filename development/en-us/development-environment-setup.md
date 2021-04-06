@@ -38,7 +38,7 @@ http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.2/apache-zookeeper-3.6.
 2. Copy the zookeeper config file  
 cp conf/zoo_sample.cfg conf/zoo.cfg
 
-3. Modify zookepper cofig  
+3. Modify zookepper config  
 vi conf/zoo.cfg  
 dataDir=./tmp/zookeeper
 
@@ -76,7 +76,7 @@ file-->open
     spring.datasource.password=dolphinscheduler  
 ```
 
-3. Modify pom.xml in the root directory and modify the scope of mysql-connector-java to complie
+3. Modify pom.xml in the root directory and modify the scope of mysql-connector-java to compile
 
 4. Refresh the dao module, run the main method of org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler to automatically insert the tables and data required by the project.
 
