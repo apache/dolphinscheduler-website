@@ -262,7 +262,7 @@ After the fault tolerance of ZooKeeper Master is completed, it is re-scheduled b
 <pre><code class="language-java"><span class="hljs-comment">/**
  * task log appender
  */</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogAppender</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FileAppender</span>&lt;<span class="hljs-title">ILoggingEvent</span> </span>{
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogAppender</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FileAppender</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
 
     ...
 
@@ -295,7 +295,7 @@ After the fault tolerance of ZooKeeper Master is completed, it is re-scheduled b
 <pre><code class="language-java"><span class="hljs-comment">/**
 *  task log filter
 */</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Filter</span>&lt;<span class="hljs-title">ILoggingEvent</span> </span>{
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Filter</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
 
    <span class="hljs-meta">@Override</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> FilterReply <span class="hljs-title">decide</span><span class="hljs-params">(ILoggingEvent event)</span> </span>{

@@ -245,12 +245,12 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <pre><code class="language-java"> <span class="hljs-comment">/**
   * task log appender
   */</span>
- Public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogAppender</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FileAppender</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
+ <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogAppender</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FileAppender</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
  
      ...
 
     <span class="hljs-meta">@Override</span>
-    <span class="hljs-function">Protected <span class="hljs-keyword">void</span> <span class="hljs-title">append</span><span class="hljs-params">(ILoggingEvent event)</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">append</span><span class="hljs-params">(ILoggingEvent event)</span> </span>{
 
         If (currentlyActiveFile == <span class="hljs-keyword">null</span>){
             currentlyActiveFile = getFile();
@@ -274,14 +274,14 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <pre><code class="language-java"> <span class="hljs-comment">/**
  * task log filter
  */</span>
-Public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Filter</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Filter</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
 
     <span class="hljs-meta">@Override</span>
-    <span class="hljs-function">Public FilterReply <span class="hljs-title">decide</span><span class="hljs-params">(ILoggingEvent event)</span> </span>{
-        If (event.getThreadName().startsWith(<span class="hljs-string">&quot;TaskLogInfo-&quot;</span>)){
-            Return FilterReply.ACCEPT;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> FilterReply <span class="hljs-title">decide</span><span class="hljs-params">(ILoggingEvent event)</span> </span>{
+        <span class="hljs-keyword">if</span> (event.getThreadName().startsWith(<span class="hljs-string">&quot;TaskLogInfo-&quot;</span>)){
+            <span class="hljs-keyword">return</span> FilterReply.ACCEPT;
         }
-        Return FilterReply.DENY;
+        <span class="hljs-keyword">return</span> FilterReply.DENY;
     }
 }
 </code></pre>
