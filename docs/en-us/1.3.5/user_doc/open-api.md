@@ -21,7 +21,7 @@ Generally, projects and processes are created through pages, but integration wit
 
 ### Use token
 1. Open the API documentation page
-    > Address：http://192.168.xx.xx:12345/dolphinscheduler/doc.html
+    > Address：http://{api server ip}:12345/dolphinscheduler/doc.html?language=en_US&lang=en
 <p align="center">
    <img src="/img/api-documentation-en.png" width="80%" />
  </p>
