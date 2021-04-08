@@ -48,6 +48,9 @@ export default {
           {
             title: 'Task Structure',
             link: '/en-us/docs/1.3.5/user_doc/task-structure.html',
+          },          {
+            title: 'Open API',
+            link: '/en-us/docs/1.3.5/user_doc/open-api.html',
           },
         ],
       },
@@ -109,6 +112,10 @@ export default {
           {
             title: '用户手册',
             link: '/zh-cn/docs/1.3.5/user_doc/system-manual.html',
+          },
+          {
+            title: 'API调用',
+            link: '/zh-cn/docs/1.3.5/user_doc/open-api.html',
           },
 
         ],
