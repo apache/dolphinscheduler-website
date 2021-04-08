@@ -21,7 +21,7 @@
 
 ### 使用 Token
 1. 打开 API文档页面
-    > 地址：http://192.168.xx.xx:12345/dolphinscheduler/doc.html
+    > 地址：http://{api server ip}:12345/dolphinscheduler/doc.html?language=zh_CN&lang=cn
 <p align="center">
    <img src="/img/api-documentation.png" width="80%" />
  </p>
