@@ -2,7 +2,7 @@
 # Open API
 
 ## Background
-Generally, projects and processes are created through pages, but integration with third-party systems requires API calls to manage projects and processes.
+Generally, projects and processes are created through pages, but integration with third-party systems requires API calls to manage projects and workflows.
 
 ## Operating steps
 
