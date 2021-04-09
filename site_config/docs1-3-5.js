@@ -64,6 +64,15 @@ export default {
         ],
       },
       {
+        title: 'Expansion/Reduction',
+        children: [
+          {
+            title: 'Capacity expansion and reduction',
+            link: '/en-us/docs/1.3.5/user_doc/expansion-reduction.html',
+          },
+        ],
+      },
+      {
         title: 'FAQ',
         children: [
           {
