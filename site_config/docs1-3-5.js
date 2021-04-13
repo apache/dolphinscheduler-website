@@ -48,7 +48,12 @@ export default {
           {
             title: 'Task Structure',
             link: '/en-us/docs/1.3.5/user_doc/task-structure.html',
-          },          {
+          },  
+          {
+            title: 'Load Balance',
+            link: '/en-us/docs/1.3.5/user_doc/load-balance.html',
+          },
+          {
             title: 'Open API',
             link: '/en-us/docs/1.3.5/user_doc/open-api.html',
           },
