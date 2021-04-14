@@ -1,6 +1,4 @@
-
 # DolphinScheduler Capacity Expansion and Reduction
-
 
 ## 1. Capacity expansion 
 This article is a description of the operation of adding a new master or worker node to an existing DolphinScheduler cluster.
@@ -250,7 +248,3 @@ masters="existing master01,existing master02,ds1,ds2"
 workers="existing worker01:default,existing worker02:default,ds3:default,ds4:default"
 
 ```
-
-
-
-
