@@ -1,5 +1,13 @@
 # Release Preparation
 
+## Check release-docs
+
+Compared with the last release, the `release-docs` of the current release needs to be updated to the latest, if there are dependencies and versions changes
+
+ - `dolphinscheduler-dist/release-docs/LICENSE`
+ - `dolphinscheduler-dist/release-docs/NOTICE`
+ - `dolphinscheduler-dist/release-docs/licenses`
+
 ## Update Version
 
 For example, to release `x.y.z`, the following updates are required:

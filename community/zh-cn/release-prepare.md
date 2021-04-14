@@ -1,5 +1,13 @@
 # 发版准备
 
+## 检查 release-docs
+
+和上一个版本比较，如果有依赖及版本发生了变化，当前版本的 `release-docs` 需要被更新到最新
+
+ - `dolphinscheduler-dist/release-docs/LICENSE`
+ - `dolphinscheduler-dist/release-docs/NOTICE`
+ - `dolphinscheduler-dist/release-docs/licenses`
+
 ## 更新版本
 
 例如要发版 `x.y.z`，需要先进行以下修改:
