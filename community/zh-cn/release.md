@@ -322,6 +322,16 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 - 能够正确编译，单元测试可以通过 (mvn install)
 - 版本内容与GitHub上tag的内容相符 (diff -r a verify_dir tag_dir)
 - 检查是否有多余文件或文件夹，例如空文件夹等
+- 检查License 合规性
+
+按照Apache基金会合规性规定，源码或者是二进制分发包中均不能包含Category X的依赖，其中就常见的是包含了GPL/LGPL的依赖，即使是传递依赖也不行。因此在发版的时候需要通过以下的命令进行检查：
+```
+mvn license:add-third-party -Dlicense.useMissingFile
+find . -name THIRD-PARTY.txt | xargs grep -E 'GPL|General Public License' | grep -v Apache | grep -v MIT | grep -v CDDL
+```
+如果一个依赖提供了双协议或多重协议，可以选择与Apache最兼容的一个协议。
+
+你可以参考此文章：[ASF第三方许可证策](https://apache.org/legal/resolved.html)
 
 #### 检查二进制包的文件内容
 

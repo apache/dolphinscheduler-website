@@ -303,6 +303,20 @@ Decompress `apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip` and c
 *   Codes can be compiled and pass the unit tests (mvn install)
 *   The contents of the release match with what's tagged in version control (diff -r a verify_dir tag_dir)
 *   Check if there is any extra files or folders, empty folders for example
+*   Check  dependencies
+
+According to ASF policy, any Category X dependency can not be included in ASF product, this includes common LGPL/GPL licensed dependencies. Even transitive dependencies are not allowed. Therefore we need to run the following command to ensure no such dependencies are included.
+
+```
+mvn license:add-third-party -Dlicense.useMissingFile
+find . -name THIRD-PARTY.txt | xargs grep -E 'GPL|General Public License' | grep -v Apache | grep -v MIT | grep -v CDDL
+```
+
+If one dependency is dual/multiple licensed, just choose the most permissive one.
+
+You can refer to this article : [ASF 3RD PARTY LICENSE POLICY](https://apache.org/legal/resolved.html)
+
+
 
 #### Check binary packages
 
