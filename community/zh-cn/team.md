@@ -23,8 +23,8 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Guo William       | guowei       | William-GuoWei |
 | Jun Gao           | gaojun2048   | gaojun2048     |
 | Kevin Ratnasekera | djkevincr    | djkevincr      |
-| Liang Chen        | chenliang613 | chenliang613   |
 | Leon Bao          | leonbao      | lenboo,leonbao |
+| Liang Chen        | chenliang613 | chenliang613   |
 | Lidong Dai        | lidongdai    | dailidong      |
 | Qiao Zhanwei      | journey      | qiaozhanwei    |
 | Shao Feng Shi     | shaofengshi  | shaofengshi    |
