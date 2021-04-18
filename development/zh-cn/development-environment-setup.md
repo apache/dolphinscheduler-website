@@ -1,6 +1,6 @@
 #### 准备工作
 
-1. 首先从远端仓库 fork [dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler) 一份代码到自己的仓库中
+1. 首先从远端仓库 fork [dolphinscheduler](https://github.com/apache/dolphinscheduler) 一份代码到自己的仓库中
 
 2. 在开发环境中安装好 MySQL/PostgreSQL、JDK、MAVEN
 
