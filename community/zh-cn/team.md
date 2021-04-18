@@ -58,9 +58,9 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 
 DolphinScheduler 有数百个贡献者，您可以在我们存储库的贡献列表中找到他们。
 
-- [DolphinScheduler main repository](https://github.com/apache/incubator-dolphinscheduler/graphs/contributors)
-- [DolphinScheduler website](https://github.com/apache/incubator-dolphinscheduler-website/graphs/contributors)
-- [DolphinScheduler maven plugin](https://github.com/apache/incubator-dolphinscheduler-maven-plugin/graphs/contributors)
+- [DolphinScheduler main repository](https://github.com/apache/dolphinscheduler/graphs/contributors)
+- [DolphinScheduler website](https://github.com/apache/dolphinscheduler-website/graphs/contributors)
+- [DolphinScheduler maven plugin](https://github.com/apache/dolphinscheduler-maven-plugin/graphs/contributors)
 
 ## 成为一个提交者
 
