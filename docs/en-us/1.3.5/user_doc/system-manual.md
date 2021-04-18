@@ -541,6 +541,23 @@ Token call example
 
 - Resources, data sources, and UDF function authorization are the same as project authorization.
 
+#### 5.7 Worker grouping
+
+Each worker node will belong to its own worker group, and the default group is "default".
+
+When the task is executed, the task can be assigned to the specified worker group, and the task will be executed by the worker node in the group.
+
+> Add/Update worker group
+
+- Open the "conf/worker.properties" configuration file on the worker node where you want to set the groups, and modify the "worker.groups" parameter
+- The "worker.groups" parameter is followed by the name of the group corresponding to the worker node, which is “default”.
+- If the worker node corresponds to more than one group, they are separated by commas
+
+```
+Example: 
+worker.groups=default,test
+```
+
 ### 6. monitoring Center
 
 #### 6.1 Service management
