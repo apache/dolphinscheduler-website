@@ -1,8 +1,7 @@
-# DolphinScheduler Capacity Expansion and Reduction
+# DolphinScheduler Expansion and Reduction
 
-## 1. Capacity expansion 
-This article is a description of the operation of adding a new master or worker node to an existing DolphinScheduler cluster.
-
+## 1. Expansion 
+This article describes how to add a new master service or worker service to an existing DolphinScheduler cluster.
 ```
  Attention: There cannot be more than one master service process or worker service process on a physical machine.
        If the physical machine where the expansion master or worker node is located has already installed the scheduled service, skip to [1.4 Modify configuration] Edit the configuration file `conf/config/install_config.conf` on **all ** nodes, add masters or workers parameter, and restart the scheduling cluster.
@@ -181,7 +180,7 @@ If the above services are started normally and the scheduling system page is nor
 
 -----------------------------------------------------------------------------
 
-## 2. Capacity reduction
+## 2. Reduction
 The reduction is to reduce the master or worker services for the existing DolphinScheduler cluster.
 There are two steps for shrinking. After performing the following two steps, the shrinking operation can be completed.
 
