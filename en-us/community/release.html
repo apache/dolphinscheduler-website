@@ -141,7 +141,7 @@ If there is any problem in gpg signature, <code>Close</code> will fail, but you 
 cd ~/ds_svn/dev/
 </code></pre>
 <p>After the creation, checkout dolphinscheduler release directory from Apache SVN.</p>
-<pre><code class="language-shell">svn --username=${APACHE LDAP username} co https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler
+<pre><code class="language-shell">svn --username=${APACHE LDAP username} co https://dist.apache.org/repos/dist/dev/dolphinscheduler
 cd ~/ds_svn/dev/dolphinscheduler
 </code></pre>
 <h3>Add gpg Public Key</h3>
@@ -159,8 +159,8 @@ cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 </code></pre>
 <h3>Generate sign files</h3>
-<pre><code class="language-shell">shasum -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip &gt;&gt; apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
-shasum -b -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz &gt;&gt; apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
+<pre><code class="language-shell">shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
+shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
 </code></pre>
 <h3>Commit to Apache SVN</h3>
 <pre><code class="language-shell">svn add *
@@ -168,8 +168,8 @@ svn --username=${APACHE LDAP username} commit -m &quot;release ${RELEASE.VERSION
 </code></pre>
 <h2>Check Release</h2>
 <h3>Check sha512 hash</h3>
-<pre><code class="language-shell">shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
-shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
+<pre><code class="language-shell">shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
+shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
 </code></pre>
 <h3>Check gpg Signature</h3>
 <p>First, import releaser's public key.
@@ -194,12 +194,12 @@ Your decision? 5
   &gt;</span><span class="bash"> save</span>
 </code></pre>
 <p>Then, check the gpg signature.</p>
-<pre><code class="language-shell">gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip
-gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz
+<pre><code class="language-shell">gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz
+gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz
 </code></pre>
 <h3>Check Released Files</h3>
 <h4>Check source package</h4>
-<p>Decompress <code>apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip</code> and check the following items:</p>
+<p>Decompress <code>apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz</code> and check the following items:</p>
 <ul>
 <li>Check whether source tarball is oversized for including nonessential files</li>
 <li><code>LICENSE</code> and <code>NOTICE</code> files exist</li>
@@ -211,7 +211,7 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 <li>Check if there is any extra files or folders, empty folders for example</li>
 </ul>
 <h4>Check binary packages</h4>
-<p>Decompress <code>apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz</code>
+<p>Decompress <code>apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz</code> and <code>apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz</code>
 to check the following items:</p>
 <ul>
 <li><code>LICENSE</code> and <code>NOTICE</code> files exist</li>
@@ -248,12 +248,12 @@ After at least 72 hours and with at least 3 <code>+1 binding</code> votes (only 
 </ol>
 <p>NOTE: Must invite all mentors to vote during the community vote.</p>
 <p>Title：</p>
-<pre><code>[VOTE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
+<pre><code>[VOTE] Release Apache DolphinScheduler ${RELEASE.VERSION}
 </code></pre>
 <p>Body：</p>
 <pre><code>Hello DolphinScheduler Community,
 
-This is a call for vote to release Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}
+This is a call for vote to release Apache DolphinScheduler version ${RELEASE.VERSION}
 
 Release notes:
 https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
@@ -307,7 +307,7 @@ https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklis
 <li>Announce the vote result:</li>
 </ol>
 <p>Body：</p>
-<pre><code>The vote to release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION} has passed.Here is the vote result,
+<pre><code>The vote to release Apache DolphinScheduler ${RELEASE.VERSION} has passed.Here is the vote result,
 
 7 PPMC member +1 votes:
 
@@ -328,17 +328,17 @@ Thanks everyone for taking time to check this release and help us.
 <li>Apache Community Vote Template：</li>
 </ol>
 <p>Title：</p>
-<pre><code>[VOTE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
+<pre><code>[VOTE] Release Apache DolphinScheduler ${RELEASE.VERSION}
 </code></pre>
 <p>Body：</p>
 <pre><code>Hello everyone,
 
-This is a call for vote to release Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}.
+This is a call for vote to release Apache DolphinScheduler version ${RELEASE.VERSION}.
 
 The Apache DolphinScheduler community has voted on and approved a proposal to release
-Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}.
+Apache DolphinScheduler version ${RELEASE.VERSION}.
 
-We now kindly request the Incubator IPMC members review and vote on this incubator release.
+We now kindly request the PMC members review and vote on this release.
 
 Dolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,
 dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.
@@ -408,7 +408,7 @@ The following votes are carried over from DolphinScheduler dev mailing list,
 </ol>
 <p><strong>Notice: Please include the votes from DolphinScheduler community above.</strong></p>
 <p>Title：</p>
-<pre><code>[RESULT][VOTE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
+<pre><code>[RESULT][VOTE] Release Apache DolphinScheduler ${RELEASE.VERSION}
 </code></pre>
 <p>正文：</p>
 <pre><code>We’ve received 3 +1 binding votes and one +1 non-binding vote:
@@ -424,7 +424,7 @@ I will process to publish the release and send ANNOUNCE.
 </code></pre>
 <h2>Finish the Release</h2>
 <h3>Move source packages, binary packages and KEYS from the <code>dev</code> directory to <code>release</code> directory</h3>
-<pre><code class="language-shell">svn mv https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION} https://dist.apache.org/repos/dist/release/incubator/dolphinscheduler/
+<pre><code class="language-shell">svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION} https://dist.apache.org/repos/dist/release/dolphinscheduler/
 </code></pre>
 <h3>Find DolphinScheduler in staging repository and click <code>Release</code></h3>
 <p>###. Update the download page</p>
@@ -434,12 +434,12 @@ https://dolphinscheduler.apache.org/zh-cn/download/download.html
 <h3>Send e-mail to <code>general@incubator.apache.org</code> and <code>dev@dolphinscheduler.apache.org</code> to announce the release is finished</h3>
 <p>Announcement e-mail template：</p>
 <p>Title：</p>
-<pre><code>[ANNOUNCE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
+<pre><code>[ANNOUNCE] Release Apache DolphinScheduler ${RELEASE.VERSION}
 </code></pre>
 <p>Body：</p>
 <pre><code>Hi all,
 
-We are glad to announce the release of Apache DolphinScheduler(incubating) ${RELEASE.VERSION}. Once again I would like to express my thanks to your help.
+We are glad to announce the release of Apache DolphinScheduler ${RELEASE.VERSION}. Once again I would like to express my thanks to your help.
 
 Dolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,
 dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.
