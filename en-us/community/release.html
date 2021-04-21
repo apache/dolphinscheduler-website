@@ -98,12 +98,12 @@ For encryption settings, please see <a href="http://maven.apache.org/guides/mini
 <span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span>
 </code></pre>
 <h3>Update Release Notes</h3>
-<pre><code>https://github.com/apache/incubator-dolphinscheduler/blob/dev/RELEASE-NOTES.md
+<pre><code>https://github.com/apache/dolphinscheduler/blob/dev/RELEASE-NOTES.md
 </code></pre>
 <h3>Create Release Branch</h3>
-<p>Suppose DolphinScheduler source codes downloaded from github is under <code>~/incubator-dolphinscheduler/</code> directory and the version to be released is <code>${RELEASE.VERSION}</code>.
+<p>Suppose DolphinScheduler source codes downloaded from github is under <code>~/dolphinscheduler/</code> directory and the version to be released is <code>${RELEASE.VERSION}</code>.
 Create <code>${RELEASE.VERSION}-release</code> branch, where all the following operations are performed.</p>
-<pre><code class="language-shell">cd ~/incubator-dolphinscheduler/
+<pre><code class="language-shell">cd ~/dolphinscheduler/
 git pull
 git checkout -b ${RELEASE.VERSION}-release
 git push origin ${RELEASE.VERSION}-release
@@ -155,10 +155,8 @@ It is alright for <code>KEYS</code> to only include the public key of the deploy
 cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 </code></pre>
 <p>Add source code packages, binary packages and executable binary packages to SVN working directory.</p>
-<pre><code class="language-shell">cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+<pre><code class="language-shell">cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 </code></pre>
 <h3>Generate sign files</h3>
 <pre><code class="language-shell">shasum -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip &gt;&gt; apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
@@ -176,7 +174,7 @@ shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler
 <h3>Check gpg Signature</h3>
 <p>First, import releaser's public key.
 Import KEYS from SVN repository to local. (The releaser does not need to import again; the checking assistant needs to import it, with the user name filled as the releaser's. )</p>
-<pre><code class="language-shell">curl https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS &gt;&gt; KEYS
+<pre><code class="language-shell">curl https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS &gt;&gt; KEYS
 gpg --import KEYS
 gpg --edit-key &quot;${GPG username of releaser}&quot;
 <span class="hljs-meta">  &gt;</span><span class="bash"> trust</span>
@@ -204,8 +202,6 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 <p>Decompress <code>apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip</code> and check the following items:</p>
 <ul>
 <li>Check whether source tarball is oversized for including nonessential files</li>
-<li>The release files have the word <code>incubating</code> in their name</li>
-<li><code>DISCLAIMER</code> file exists</li>
 <li><code>LICENSE</code> and <code>NOTICE</code> files exist</li>
 <li>Correct year in <code>NOTICE</code> file</li>
 <li>There is only text files but no binary files</li>
@@ -218,8 +214,6 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 <p>Decompress <code>apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz</code>
 to check the following items:</p>
 <ul>
-<li>The release files have the word <code>incubating</code> in their name</li>
-<li><code>DISCLAIMER</code> file exists</li>
 <li><code>LICENSE</code> and <code>NOTICE</code> files exist</li>
 <li>Correct year in <code>NOTICE</code> file</li>
 <li>Check the third party dependency license:
@@ -262,25 +256,25 @@ After at least 72 hours and with at least 3 <code>+1 binding</code> votes (only 
 This is a call for vote to release Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}
 
 Release notes:
-https://github.com/apache/incubator-dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
 
 The release candidates:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION}/
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/
 
 Maven 2 staging repository:
 https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
 
 Git tag for the release:
-https://github.com/apache/incubator-dolphinscheduler/tree/${RELEASE.VERSION}
+https://github.com/apache/dolphinscheduler/tree/${RELEASE.VERSION}
 
 Release Commit ID:
-https://github.com/apache/incubator-dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
+https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
 
 Keys to verify the Release Candidate:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
 
 Look at here for how to verify this release candidate:
-https://github.com/apache/incubator-dolphinscheduler/blob/1.2.0-release/README.md
+https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
 
 The vote will be open for at least 72 hours or until necessary number of votes are reached.
 
@@ -355,25 +349,25 @@ https://lists.apache.org/thread.html/xxxxxxxxxxxxxxxxxxxxxxx
 https://lists.apache.org/thread.html/xxxxxxxxxxxxxxxxxxxxxxx
 
 Release notes:
-https://github.com/apache/incubator-dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
 
 The release candidates:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION}/
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/
 
 Maven 2 staging repository:
 https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
 
 Git tag for the release:
-https://github.com/apache/incubator-dolphinscheduler/tree/${RELEASE.VERSION}
+https://github.com/apache/dolphinscheduler/tree/${RELEASE.VERSION}
 
 Release Commit ID:
-https://github.com/apache/incubator-dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
+https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
 
 Keys to verify the Release Candidate:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
 
 Look at here for how to verify this release candidate:
-https://github.com/apache/incubator-dolphinscheduler/blob/1.2.0-release/README.md
+https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
 
 The vote will be open for at least 72 hours or until necessary number of votes are reached.
 Please vote accordingly:
@@ -453,21 +447,21 @@ dedicated to solving the complex task dependencies in data processing, making th
 
 Download Links: https://dolphinscheduler.apache.org/en-us/download/download.html
 
-Release Notes: https://github.com/apache/incubator-dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
+Release Notes: https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
 
 Website: https://dolphinscheduler.apache.org/
 
 DolphinScheduler Resources:
-- Issue: https://github.com/apache/incubator-dolphinscheduler/issues/
+- Issue: https://github.com/apache/dolphinscheduler/issues/
 - Mailing list: dev@dolphinscheduler.apache.org
-- Documents: https://github.com/apache/incubator-dolphinscheduler/blob/${RELEASE.VERSION}/README.md
+- Documents: https://github.com/apache/dolphinscheduler/blob/${RELEASE.VERSION}/README.md
 
 </code></pre>
-</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/ds_gray.svg"/><div class="cols-container"><div class="col col-12"><h3>Disclaimer</h3><p>Apache DolphinScheduler is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div><div class="col col-6"><dl><dt>Documentation</dt><dd><a href="/en-us/development/architecture-design.html" target="_self">Overview</a></dd><dd><a href="/en-us/docs/latest/user_doc/quick-start.html" target="_self">Quick start</a></dd><dd><a href="/en-us/development/backend-development.html" target="_self">Developer guide</a></dd></dl></div><div class="col col-6"><dl><dt>ASF</dt><dd><a href="http://www.apache.org" target="_self">Foundation</a></dd><dd><a href="http://www.apache.org/licenses/" target="_self">License</a></dd><dd><a href="http://www.apache.org/events/current-event" target="_self">Events</a></dd><dd><a href="http://www.apache.org/foundation/sponsorship.html" target="_self">Sponsorship</a></dd><dd><a href="http://www.apache.org/foundation/thanks.html" target="_self">Thanks</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/ds_gray.svg"/><div class="cols-container"><div class="col col-12"></div><div class="col col-6"><dl><dt>Documentation</dt><dd><a href="/en-us/development/architecture-design.html" target="_self">Overview</a></dd><dd><a href="/en-us/docs/latest/user_doc/quick-start.html" target="_self">Quick start</a></dd><dd><a href="/en-us/development/backend-development.html" target="_self">Developer guide</a></dd></dl></div><div class="col col-6"><dl><dt>ASF</dt><dd><a href="http://www.apache.org" target="_self">Foundation</a></dd><dd><a href="http://www.apache.org/licenses/" target="_self">License</a></dd><dd><a href="http://www.apache.org/events/current-event" target="_self">Events</a></dd><dd><a href="http://www.apache.org/foundation/sponsorship.html" target="_self">Sponsorship</a></dd><dd><a href="http://www.apache.org/foundation/thanks.html" target="_self">Thanks</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.787cbad.js"></script>
+  <script src="/build/vendor.cc384b9.js"></script>
   <script src="/build/community.md.b67d9d8.js"></script>
   <script>
     var _hmt = _hmt || [];

@@ -20,9 +20,9 @@
 <h2>安装 dolphinscheduler</h2>
 <p>发布一个名为 <code>dolphinscheduler</code> 的版本(release)，请执行以下操作：</p>
 <pre><code class="language-bash"><span class="hljs-comment"># 通过wget下载源码包</span>
-$ wget https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
+$ wget https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
 <span class="hljs-comment"># 通过curl下载源码包</span>
-$ curl -O https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
+$ curl -O https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ mv apache-dolphinscheduler-incubating-1.3.5-src-release dolphinscheduler-src
 $ <span class="hljs-built_in">cd</span> dolphinscheduler-src/docker/kubernetes/dolphinscheduler
@@ -66,7 +66,7 @@ $ kubectl port-forward --address 0.0.0.0 -n <span class="hljs-built_in">test</sp
 <p><strong>注意</strong>: 删除PVC也会删除所有数据，请谨慎操作！</p>
 </blockquote>
 <h2>配置</h2>
-<p>配置文件为 <code>values.yaml</code>，<a href="https://github.com/apache/incubator-dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md">DolphinScheduler Kubernetes 配置</a> 列出了 DolphinScheduler 的可配置参数及其默认值</p>
+<p>配置文件为 <code>values.yaml</code>，<a href="https://github.com/apache/dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md">DolphinScheduler Kubernetes 配置</a> 列出了 DolphinScheduler 的可配置参数及其默认值</p>
 <h2>FAQ</h2>
 <h3>如何用 MySQL 替代 PostgreSQL 作为 DolphinScheduler 的数据库？</h3>
 <p>尚不支持，1.3.6 版本将支持</p>
@@ -140,12 +140,12 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <p>在数据源中心添加一个 Oracle 数据源</p>
 </li>
 </ol>
-<p>更多信息请查看 <a href="https://github.com/apache/incubator-dolphinscheduler.git">incubator-dolphinscheduler</a> 文档.</p>
-</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/ds_gray.svg"/><div class="cols-container"><div class="col col-12"><h3>Disclaimer</h3><p>Apache DolphinScheduler is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/development/architecture-design.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/latest/user_doc/quick-start.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/development/backend-development.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>ASF</dt><dd><a href="http://www.apache.org" target="_self">基金会</a></dd><dd><a href="http://www.apache.org/licenses/" target="_self">证书</a></dd><dd><a href="http://www.apache.org/events/current-event" target="_self">事件</a></dd><dd><a href="http://www.apache.org/foundation/sponsorship.html" target="_self">赞助</a></dd><dd><a href="http://www.apache.org/foundation/thanks.html" target="_self">致谢</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+<p>更多信息请查看 <a href="https://github.com/apache/dolphinscheduler.git">dolphinscheduler</a> 文档.</p>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/ds_gray.svg"/><div class="cols-container"><div class="col col-12"></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/development/architecture-design.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/latest/user_doc/quick-start.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/development/backend-development.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>ASF</dt><dd><a href="http://www.apache.org" target="_self">基金会</a></dd><dd><a href="http://www.apache.org/licenses/" target="_self">证书</a></dd><dd><a href="http://www.apache.org/events/current-event" target="_self">事件</a></dd><dd><a href="http://www.apache.org/foundation/sponsorship.html" target="_self">赞助</a></dd><dd><a href="http://www.apache.org/foundation/thanks.html" target="_self">致谢</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.787cbad.js"></script>
+  <script src="/build/vendor.cc384b9.js"></script>
   <script src="/build/docs.md.ed55679.js"></script>
   <script>
     var _hmt = _hmt || [];
