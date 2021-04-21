@@ -14,7 +14,7 @@ mkdir -p /opt/soft/dolphinscheduler;
 cd /opt/soft/dolphinscheduler;
 
 # 下载源码包
-wget https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip
 
 # 解压缩
 unzip apache-dolphinscheduler-incubating-1.3.4-src.zip

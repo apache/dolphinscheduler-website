@@ -112,7 +112,7 @@ The `Module Name` is as follows:
 
 ### Issue content template
 
-https://github.com/apache/incubator-dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE
+https://github.com/apache/dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE
 
 ### Contributor
 

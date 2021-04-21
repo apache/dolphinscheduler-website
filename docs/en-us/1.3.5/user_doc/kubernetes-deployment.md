@@ -74,7 +74,7 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 
 ## Configuration
 
-The Configuration file is `values.yaml`, and the [DolphinScheduler Kubernetes Configuration](https://github.com/apache/incubator-dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md) lists the configurable parameters of the DolphinScheduler chart and their default values.
+The Configuration file is `values.yaml`, and the [DolphinScheduler Kubernetes Configuration](https://github.com/apache/dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md) lists the configurable parameters of the DolphinScheduler chart and their default values.
 
 ## FAQ
 
@@ -140,4 +140,4 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 7. Add a Oracle datasource in `Datasource manage`
 
-For more information please refer to the [incubator-dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler.git) documentation.
+For more information please refer to the [dolphinscheduler](https://github.com/apache/dolphinscheduler.git) documentation.

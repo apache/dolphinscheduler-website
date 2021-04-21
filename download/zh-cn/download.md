@@ -25,7 +25,7 @@
 
 
 # 验证版本
-[PGP signatures KEYS](https://downloads.apache.org/incubator/dolphinscheduler/KEYS)
+[PGP signatures KEYS](https://downloads.apache.org/dolphinscheduler/KEYS)
 
 使用PGP或SHA签名验证下载文件的完整性至关重要。可以使用GPG或PGP验证PGP签名。请下载KEYS以及发布的asc签名文件。建议从主发布目录而不是镜像中获取这些文件。
 

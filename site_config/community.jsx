@@ -187,12 +187,12 @@ export default {
         {
           img: '/img/mailinglist.png',
           title: 'Mailing List',
-          content: <span>Subscribe <a href="https://github.com/apache/incubator-dolphinscheduler/issues/1278">mailing list </a>and discussion your ideas with us.</span>,
+          content: <span>Subscribe <a href="https://github.com/apache/dolphinscheduler/issues/1278">mailing list </a>and discussion your ideas with us.</span>,
         },
         {
           img: '/img/issue.png',
           title: 'Issue',
-          content: <span>Reporting issues via <a href="https://github.com/apache/incubator-dolphinscheduler/issues">GitHub issues</a>.</span>,
+          content: <span>Reporting issues via <a href="https://github.com/apache/dolphinscheduler/issues">GitHub issues</a>.</span>,
         },
         {
           img: '/img/documents.png',
@@ -202,7 +202,7 @@ export default {
         {
           img: '/img/pullrequest.png',
           title: 'Pull Request',
-          content: <span>Send your awesome enhancement via <a href="https://github.com/apache/incubator-dolphinscheduler/pulls">Pull requests.</a></span>,
+          content: <span>Send your awesome enhancement via <a href="https://github.com/apache/dolphinscheduler/pulls">Pull requests.</a></span>,
         },
       ],
     },
@@ -386,12 +386,12 @@ export default {
         {
           img: '/img/mailinglist.png',
           title: '邮件列表',
-          content: <span>订阅 <a href="https://github.com/apache/incubator-dolphinscheduler/issues/1278">邮件列表 </a>参与讨论。</span>,
+          content: <span>订阅 <a href="https://github.com/apache/dolphinscheduler/issues/1278">邮件列表 </a>参与讨论。</span>,
         },
         {
           img: '/img/issue.png',
           title: '报告缺陷',
-          content: <span>通过<a href="https://github.com/apache/incubator-dolphinscheduler/issues"> GitHub issues </a>报告缺陷。</span>,
+          content: <span>通过<a href="https://github.com/apache/dolphinscheduler/issues"> GitHub issues </a>报告缺陷。</span>,
         },
         {
           img: '/img/documents.png',
@@ -401,7 +401,7 @@ export default {
         {
           img: '/img/pullrequest.png',
           title: 'Pull Request',
-          content: <span>提交 <a href="https://github.com/apache/incubator-dolphinscheduler/pulls"> Pull requests </a>来修复问题。</span>,
+          content: <span>提交 <a href="https://github.com/apache/dolphinscheduler/pulls"> Pull requests </a>来修复问题。</span>,
         },
       ],
     },

@@ -33,7 +33,7 @@ class Home extends Language {
       }
     });
     // 写死协议，因github会做协议跳转，这种跳转会被Safari拦截
-    fetch('https://api.github.com/repos/apache/incubator-dolphinscheduler')
+    fetch('https://api.github.com/repos/apache/dolphinscheduler')
       .then(res => res.json())
       .then((data) => {
         this.setState({
@@ -61,7 +61,6 @@ class Home extends Language {
           />
           <div className="vertical-middle">
             <div className="product-name">
-              <div className="sub-corner">Incubating</div>
               <h2>{dataSource.brand.brandName}</h2>
             </div>
             <p className="product-desc">{dataSource.brand.briefIntroduction}</p>
@@ -71,13 +70,13 @@ class Home extends Language {
             }
             </div>
             <div className="github-buttons">
-              <a href="https://github.com/apache/incubator-dolphinscheduler" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/apache/dolphinscheduler" target="_blank" rel="noopener noreferrer">
                 <div className="star">
                   <img src="https://img.alicdn.com/tfs/TB1FlB1JwHqK1RjSZFPXXcwapXa-32-32.png" />
                   <span className="count" style={{ display: starCount ? 'inline-block' : 'none' }}>{getKiloUnit(starCount)}</span>
                 </div>
               </a>
-              <a href="https://github.com/apache/incubator-dolphinscheduler/fork" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/apache/dolphinscheduler/fork" target="_blank" rel="noopener noreferrer">
                 <div className="fork">
                   <img src="https://img.alicdn.com/tfs/TB1zbxSJwDqK1RjSZSyXXaxEVXa-32-32.png" />
                   <span className="count" style={{ display: forkCount ? 'inline-block' : 'none' }}>{getKiloUnit(forkCount)}</span>

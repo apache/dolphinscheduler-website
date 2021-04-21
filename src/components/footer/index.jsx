@@ -19,8 +19,6 @@ class Footer extends React.Component {
           <img src={getLink(logo)} />
           <div className="cols-container">
             <div className="col col-12">
-              <h3>{dataSource.disclaimer.title}</h3>
-              <p>{dataSource.disclaimer.content}</p>
             </div>
             <div className="col col-6">
               <dl>

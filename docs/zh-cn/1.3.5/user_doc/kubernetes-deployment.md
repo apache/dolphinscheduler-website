@@ -12,9 +12,9 @@
 
 ```bash
 # 通过wget下载源码包
-$ wget https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
+$ wget https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
 # 通过curl下载源码包
-$ curl -O https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
+$ curl -O https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ mv apache-dolphinscheduler-incubating-1.3.5-src-release dolphinscheduler-src
 $ cd dolphinscheduler-src/docker/kubernetes/dolphinscheduler
@@ -74,7 +74,7 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 
 ## 配置
 
-配置文件为 `values.yaml`，[DolphinScheduler Kubernetes 配置](https://github.com/apache/incubator-dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md) 列出了 DolphinScheduler 的可配置参数及其默认值
+配置文件为 `values.yaml`，[DolphinScheduler Kubernetes 配置](https://github.com/apache/dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md) 列出了 DolphinScheduler 的可配置参数及其默认值
 
 ## FAQ
 
@@ -140,4 +140,4 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 7. 在数据源中心添加一个 Oracle 数据源
 
-更多信息请查看 [incubator-dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler.git) 文档.
+更多信息请查看 [dolphinscheduler](https://github.com/apache/dolphinscheduler.git) 文档.

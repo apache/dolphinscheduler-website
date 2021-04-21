@@ -1,6 +1,6 @@
 #### How to submit
 
-* First from the remote repository *https://github.com/apache/incubator-dolphinscheduler.git* fork a copy of the code into your own repository
+* First from the remote repository *https://github.com/apache/dolphinscheduler.git* fork a copy of the code into your own repository
 
 * There are currently three branches in the remote repository:
     * master           normal delivery branch
@@ -11,10 +11,10 @@
 
 
 * Clone your repository to your local
-    `git clone https://github.com/apache/incubator-dolphinscheduler.git`
+    `git clone https://github.com/apache/dolphinscheduler.git`
 
 * Add remote repository address, named upstream
-    `git remote add upstream https://github.com/apache/incubator-dolphinscheduler.git`
+    `git remote add upstream https://github.com/apache/dolphinscheduler.git`
 
 * View repository
     `git remote -v`

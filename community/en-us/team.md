@@ -56,9 +56,9 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 
 DolphinScheduler have hundreds of contributors, you could find them in our repositories' contribution list.
 
-- [DolphinScheduler main repository](https://github.com/apache/incubator-dolphinscheduler/graphs/contributors)
-- [DolphinScheduler website](https://github.com/apache/incubator-dolphinscheduler-website/graphs/contributors)
-- [DolphinScheduler maven plugin](https://github.com/apache/incubator-dolphinscheduler-maven-plugin/graphs/contributors)
+- [DolphinScheduler main repository](https://github.com/apache/dolphinscheduler/graphs/contributors)
+- [DolphinScheduler website](https://github.com/apache/dolphinscheduler-website/graphs/contributors)
+- [DolphinScheduler maven plugin](https://github.com/apache/dolphinscheduler-maven-plugin/graphs/contributors)
 
 ## Becoming a Committer
 
