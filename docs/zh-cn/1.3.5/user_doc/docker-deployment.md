@@ -488,4 +488,4 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 6. 在数据源中心添加一个 Oracle 数据源
 
-更多信息请查看 [incubator-dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler.git) 文档.
+更多信息请查看 [dolphinscheduler](https://github.com/apache/dolphinscheduler.git) 文档.

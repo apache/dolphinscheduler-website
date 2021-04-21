@@ -62,9 +62,9 @@ How to configure checkstyle and code style in dolphin scheduler:
 
 1.checkstyle and code-style configuration files
 
-checkstyle: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/checkstyle.xml
+checkstyle: https://github.com/apache/dolphinscheduler/blob/dev/style/checkstyle.xml
 
-code-style: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/intellij-java-code-style.xml
+code-style: https://github.com/apache/dolphinscheduler/blob/dev/style/intellij-java-code-style.xml
 
 2.checkstyle configuration
 

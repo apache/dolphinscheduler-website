@@ -315,7 +315,7 @@ A: 1, Create deployment user and hosts mapping, please refer 1.3 part of [cluste
 ---
 
 ## Q : When DolphinScheduler release a new version, and the change between current version and latest, and how to upgrade, and version number specification
-A: 1, The release process of Apache Project happens in the mailing list. You can subscribe DolphinScheduler's mailing list and then when the release is in process, you'll receive release emails. Please follow this [introduction](https://github.com/apache/incubator-dolphinscheduler#get-help) to subscribe DolphinScheduler's mailing list.
+A: 1, The release process of Apache Project happens in the mailing list. You can subscribe DolphinScheduler's mailing list and then when the release is in process, you'll receive release emails. Please follow this [introduction](https://github.com/apache/dolphinscheduler#get-help) to subscribe DolphinScheduler's mailing list.
     
 2, When new version published, there would be release note which describe the change log, and there also have upgrade document for the previous version to new's.
 
@@ -386,7 +386,7 @@ A: Session timeout is too short, only 0.3 seconds. Change the config item in zoo
 <p align="center">
    <img src="https://user-images.githubusercontent.com/42579056/80374318-13c98780-88c9-11ea-8d5f-53448b957f02.png" width="60%" />
  </p>
-A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/incubator-dolphinscheduler/pull/2595) has solved this bug, brief change log:
+A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/dolphinscheduler/pull/2595) has solved this bug, brief change log:
 
 ```
     1. add zookeeper environment variable ZOO_4LW_COMMANDS_WHITELIST in docker-compose.yml file.
@@ -403,7 +403,7 @@ A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/incu
    <img src="https://user-images.githubusercontent.com/51871547/80302626-b1478d00-87dd-11ea-97d4-08aa2244a6d0.jpg" width="60%" />
  </p>
  
-A: This [bug](https://github.com/apache/incubator-dolphinscheduler/issues/1477) describe the problem detail and it has been been solved in version 1.2.1.
+A: This [bug](https://github.com/apache/dolphinscheduler/issues/1477) describe the problem detail and it has been been solved in version 1.2.1.
 
 For version under 1.2.1, some tips for this situation:
 

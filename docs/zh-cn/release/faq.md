@@ -298,7 +298,7 @@ A： 1，参考官网[部署文档](/zh-cn/docs/1.3.4/user_doc/cluster-deploymen
 ---
 
 ## Q：DolphinScheduler 什么时候发布新版本，同时新旧版本区别，以及如何升级，版本号规范 
-A：1，Apache 项目的发版流程是通过邮件列表完成的。 你可以订阅 DolphinScheduler 的邮件列表，订阅之后如果有发版，你就可以收到邮件。请参照这篇[指引](https://github.com/apache/incubator-dolphinscheduler#get-help)来订阅 DolphinScheduler 的邮件列表。
+A：1，Apache 项目的发版流程是通过邮件列表完成的。 你可以订阅 DolphinScheduler 的邮件列表，订阅之后如果有发版，你就可以收到邮件。请参照这篇[指引](https://github.com/apache/dolphinscheduler#get-help)来订阅 DolphinScheduler 的邮件列表。
 
    2，当项目发版的时候，会有发版说明告知具体的变更内容，同时也会有从旧版本升级到新版本的升级文档。
    
@@ -370,7 +370,7 @@ A：会话超时时间太短了，只有 0.3 秒，修改 zookeeper.properties �
 <p align="center">
    <img src="https://user-images.githubusercontent.com/42579056/80374318-13c98780-88c9-11ea-8d5f-53448b957f02.png" width="60%" />
  </p>
-A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/apache/incubator-dolphinscheduler/pull/2595) 已经解决了这个 bug，主要的改动点：
+A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/apache/dolphinscheduler/pull/2595) 已经解决了这个 bug，主要的改动点：
 
 ```
     在docker-compose.yml文件中增加zookeeper的环境变量ZOO_4LW_COMMANDS_WHITELIST。
@@ -386,7 +386,7 @@ A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/a
 <p align="center">
    <img src="https://user-images.githubusercontent.com/51871547/80302626-b1478d00-87dd-11ea-97d4-08aa2244a6d0.jpg" width="60%" />
  </p>
-A：这个 [bug](https://github.com/apache/incubator-dolphinscheduler/issues/1477)  描述了问题的详情。这个问题在 1.2.1 版本已经被修复了。
+A：这个 [bug](https://github.com/apache/dolphinscheduler/issues/1477)  描述了问题的详情。这个问题在 1.2.1 版本已经被修复了。
 对于 1.2.1 以下的版本，这种情况的一些提示：
 
 ```

@@ -5,14 +5,14 @@ You can build a docker image in A Unix-like operating system, You can also build
 In Unix-Like, Example:
 
 ```bash
-$ cd path/incubator-dolphinscheduler
+$ cd path/dolphinscheduler
 $ sh ./docker/build/hooks/build
 ```
 
 In Windows, Example:
 
 ```bat
-c:\incubator-dolphinscheduler>.\docker\build\hooks\build.bat
+c:\dolphinscheduler>.\docker\build\hooks\build.bat
 ```
 
 Please read `./docker/build/hooks/build` `./docker/build/hooks/build.bat` script files if you don't understand

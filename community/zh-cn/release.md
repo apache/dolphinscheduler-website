@@ -133,17 +133,17 @@ http://keyserver.ubuntu.com:11371/pks/lookup?search=${用户名}&fingerprint=on&
 ### 更新版本说明
 
 ```
-https://github.com/apache/incubator-dolphinscheduler/blob/dev/RELEASE-NOTES.md
+https://github.com/apache/dolphinscheduler/blob/dev/RELEASE-NOTES.md
 ```
 
 ### 创建发布分支
-从github下载的DolphinScheduler源代码到`~/incubator-dolphinscheduler/`目录，假设即将发布的版本为`${RELEASE.VERSION}`
-git clone -b ${RELEASE.VERSION}-release https://github.com/apache/incubator-dolphinscheduler.git
+从github下载的DolphinScheduler源代码到`~/dolphinscheduler/`目录，假设即将发布的版本为`${RELEASE.VERSION}`
+git clone -b ${RELEASE.VERSION}-release https://github.com/apache/dolphinscheduler.git
 
 创建`${RELEASE.VERSION}-release`分支，接下来的操作都在该分支进行(如果在github官网上手动执行发版分支创建，下面操作可以忽略)。
 
 ```shell
-cd ~/incubator-dolphinscheduler/
+cd ~/dolphinscheduler/
 git pull
 git checkout -b ${RELEASE.VERSION}-release
 git push origin ${RELEASE.VERSION}-release
@@ -245,10 +245,10 @@ cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 将源码包和二进制包添加至SVN工作目录。
 
 ```shell
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.zip.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/incubator-dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.zip.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 
 ```
 
@@ -369,7 +369,7 @@ Hello DolphinScheduler Community,
 This is a call for vote to release Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}
 
 Release notes:
-https://github.com/apache/incubator-dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
+https://github.com/apache/dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
 
 The release candidates:
 https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION}/
@@ -378,16 +378,16 @@ Maven 2 staging repository:
 https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
 
 Git tag for the release:
-https://github.com/apache/incubator-dolphinscheduler/tree/${RELEASE.VERSION}
+https://github.com/apache/dolphinscheduler/tree/${RELEASE.VERSION}
 
 Release Commit ID:
-https://github.com/apache/incubator-dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
+https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
 
 Keys to verify the Release Candidate:
 https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS
 
 Look at here for how to verify this release candidate:
-https://github.com/apache/incubator-dolphinscheduler/blob/1.2.0-release/README.md
+https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
 
 The vote will be open for at least 72 hours or until necessary number of votes are reached.
 
@@ -469,7 +469,7 @@ https://lists.apache.org/thread.html/xxxxxxxxxxxxxxxxxxxxxxx
 https://lists.apache.org/thread.html/xxxxxxxxxxxxxxxxxxxxxxx
 
 Release notes:
-https://github.com/apache/incubator-dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
+https://github.com/apache/dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
 
 The release candidates:
 https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION}/
@@ -478,16 +478,16 @@ Maven 2 staging repository:
 https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
 
 Git tag for the release:
-https://github.com/apache/incubator-dolphinscheduler/tree/${RELEASE.VERSION}
+https://github.com/apache/dolphinscheduler/tree/${RELEASE.VERSION}
 
 Release Commit ID:
-https://github.com/apache/incubator-dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
+https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
 
 Keys to verify the Release Candidate:
 https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS
 
 Look at here for how to verify this release candidate:
-https://github.com/apache/incubator-dolphinscheduler/blob/1.2.0-release/README.md
+https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
 
 The vote will be open for at least 72 hours or until necessary number of votes are reached.
 Please vote accordingly:
@@ -583,13 +583,13 @@ dedicated to solving the complex task dependencies in data processing, making th
 
 Download Links: https://dolphinscheduler.apache.org/en-us/download/download.html
 
-Release Notes: https://github.com/apache/incubator-dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
+Release Notes: https://github.com/apache/dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
 
 Website: https://dolphinscheduler.apache.org/
 
 DolphinScheduler Resources:
-- Issue: https://github.com/apache/incubator-dolphinscheduler/issues/
+- Issue: https://github.com/apache/dolphinscheduler/issues/
 - Mailing list: dev@dolphinscheduler.apache.org
-- Documents: https://github.com/apache/incubator-dolphinscheduler/blob/${RELEASE.VERSION}/README.md
+- Documents: https://github.com/apache/dolphinscheduler/blob/${RELEASE.VERSION}/README.md
 
 ```

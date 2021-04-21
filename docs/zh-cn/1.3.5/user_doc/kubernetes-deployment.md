@@ -74,7 +74,7 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 
 ## 配置
 
-配置文件为 `values.yaml`，[DolphinScheduler Kubernetes 配置](https://github.com/apache/incubator-dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md) 列出了 DolphinScheduler 的可配置参数及其默认值
+配置文件为 `values.yaml`，[DolphinScheduler Kubernetes 配置](https://github.com/apache/dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md) 列出了 DolphinScheduler 的可配置参数及其默认值
 
 ## FAQ
 
@@ -140,4 +140,4 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 7. 在数据源中心添加一个 Oracle 数据源
 
-更多信息请查看 [incubator-dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler.git) 文档.
+更多信息请查看 [dolphinscheduler](https://github.com/apache/dolphinscheduler.git) 文档.

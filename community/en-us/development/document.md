@@ -4,12 +4,12 @@ Good documentation is critical for any type of software. Any contribution that c
 
 ###  Get the document project.
 
-Documentation for the DolphinScheduler project is maintained in a separate [git repository](https://github.com/apache/incubator-dolphinscheduler-website).
+Documentation for the DolphinScheduler project is maintained in a separate [git repository](https://github.com/apache/dolphinscheduler-website).
 
 First you need to fork the document project into your own github repository, and then clone the document to your local computer.
 
 ```
-git clone https://github.com/<your-github-user-name>/incubator-dolphinscheduler-website
+git clone https://github.com/<your-github-user-name>/dolphinscheduler-website
 ```
 
 ### The document environment.

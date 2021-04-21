@@ -11,13 +11,13 @@ export default {
         },
         {
           text: '查看GitHub',
-          link: 'https://github.com/apache/incubator-dolphinscheduler',
+          link: 'https://github.com/apache/dolphinscheduler',
           type: 'normal',
         },
       ],
       versionNote: {
         text: 'V1.1.0 版本说明',
-        link: 'https://github.com/apache/incubator-dolphinscheduler/releases/tag/1.1.0',
+        link: 'https://github.com/apache/dolphinscheduler/releases/tag/1.1.0',
       },
       releaseDate: '2019年08月05日发布',
     },
@@ -64,13 +64,13 @@ export default {
         },
         {
           text: 'View on GitHub',
-          link: 'https://github.com/apache/incubator-dolphinscheduler',
+          link: 'https://github.com/apache/dolphinscheduler',
           type: 'normal',
         },
       ],
       versionNote: {
         text: 'Release Note of V1.1.0',
-        link: 'https://github.com/apache/incubator-dolphinscheduler/releases/tag/1.1.0',
+        link: 'https://github.com/apache/dolphinscheduler/releases/tag/1.1.0',
       },
       releaseDate: 'Released on Aug 05, 2019',
     },

@@ -1,6 +1,6 @@
 #### Preparation
 
-1. First, fork the [dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler) code from the remote repository to your local repository.
+1. First, fork the [dolphinscheduler](https://github.com/apache/dolphinscheduler) code from the remote repository to your local repository.
 
 2. Install MySQL/PostgreSQL, JDK and MAVEN in your own software development environment.
 

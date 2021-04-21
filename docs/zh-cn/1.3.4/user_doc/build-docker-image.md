@@ -5,14 +5,14 @@
 类 Unix 系统, 如下:
 
 ```bash
-$ cd path/incubator-dolphinscheduler
+$ cd path/dolphinscheduler
 $ sh ./docker/build/hooks/build
 ```
 
 Windows系统, 如下:
 
 ```bat
-c:\incubator-dolphinscheduler>.\docker\build\hooks\build.bat
+c:\dolphinscheduler>.\docker\build\hooks\build.bat
 ```
 
 如果你不理解这些脚本 `./docker/build/hooks/build` `./docker/build/hooks/build.bat`，请阅读里面的内容。

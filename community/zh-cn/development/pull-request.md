@@ -68,9 +68,9 @@ checkstyle [参考](https://checkstyle.sourceforge.io/)是一种帮助开发者�
 
 1.checkstyle 和 code-style 配置文件
 
-checkstyle: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/checkstyle.xml
+checkstyle: https://github.com/apache/dolphinscheduler/blob/dev/style/checkstyle.xml
 
-code-style: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/intellij-java-code-style.xml
+code-style: https://github.com/apache/dolphinscheduler/blob/dev/style/intellij-java-code-style.xml
 
 2.checkstyle 配置过程
 
