@@ -226,8 +226,6 @@ cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 Add source code packages, binary packages and executable binary packages to SVN working directory.
 
 ```shell
-cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.zip ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.zip.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 ```
@@ -294,7 +292,6 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 Decompress `apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip` and check the following items:
 
 *   Check whether source tarball is oversized for including nonessential files
-*   The release files have the word `incubating` in their name
 *   `LICENSE` and `NOTICE` files exist
 *   Correct year in `NOTICE` file
 *   There is only text files but no binary files
@@ -308,7 +305,6 @@ Decompress `apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip` and c
 Decompress `apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz`
 to check the following items:
 
-- The release files have the word `incubating` in their name
 - `LICENSE` and `NOTICE` files exist
 - Correct year in `NOTICE` file
 - Check the third party dependency license:
@@ -352,10 +348,10 @@ Hello DolphinScheduler Community,
 This is a call for vote to release Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}
 
 Release notes:
-https://github.com/apache/dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
 
 The release candidates:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION}/
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/
 
 Maven 2 staging repository:
 https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
@@ -452,10 +448,10 @@ https://lists.apache.org/thread.html/xxxxxxxxxxxxxxxxxxxxxxx
 https://lists.apache.org/thread.html/xxxxxxxxxxxxxxxxxxxxxxx
 
 Release notes:
-https://github.com/apache/dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
 
 The release candidates:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION}/
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/
 
 Maven 2 staging repository:
 https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
@@ -572,7 +568,7 @@ dedicated to solving the complex task dependencies in data processing, making th
 
 Download Links: https://dolphinscheduler.apache.org/en-us/download/download.html
 
-Release Notes: https://github.com/apache/dolphinscheduler/blob/${RELEASE.VERSION}/ReleaseNotes.md
+Release Notes: https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
 
 Website: https://dolphinscheduler.apache.org/
 
