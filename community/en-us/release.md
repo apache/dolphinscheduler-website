@@ -260,7 +260,7 @@ First, import releaser's public key.
 Import KEYS from SVN repository to local. (The releaser does not need to import again; the checking assistant needs to import it, with the user name filled as the releaser's. )
 
 ```shell
-curl https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS >> KEYS
+curl https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS >> KEYS
 gpg --import KEYS
 gpg --edit-key "${GPG username of releaser}"
   > trust
@@ -367,7 +367,7 @@ Release Commit ID:
 https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
 
 Keys to verify the Release Candidate:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
 
 Look at here for how to verify this release candidate:
 https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
@@ -467,7 +467,7 @@ Release Commit ID:
 https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
 
 Keys to verify the Release Candidate:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
 
 Look at here for how to verify this release candidate:
 https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md

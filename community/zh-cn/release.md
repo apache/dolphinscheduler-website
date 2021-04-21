@@ -280,7 +280,7 @@ shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler
 首先导入发布人公钥。从svn仓库导入KEYS到本地环境。（发布版本的人不需要再导入，帮助做验证的人需要导入，用户名填发版人的即可）
 
 ```shell
-curl https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS >> KEYS
+curl https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS >> KEYS
 gpg --import KEYS
 gpg --edit-key "${发布人的gpg用户名}"
   > trust
@@ -384,7 +384,7 @@ Release Commit ID:
 https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
 
 Keys to verify the Release Candidate:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
 
 Look at here for how to verify this release candidate:
 https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
@@ -484,7 +484,7 @@ Release Commit ID:
 https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
 
 Keys to verify the Release Candidate:
-https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/KEYS
+https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
 
 Look at here for how to verify this release candidate:
 https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md

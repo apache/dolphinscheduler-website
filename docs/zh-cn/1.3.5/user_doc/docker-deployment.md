@@ -14,10 +14,10 @@ mkdir -p /opt/soft/dolphinscheduler;
 cd /opt/soft/dolphinscheduler;
 
 # 通过wget下载源码包
-wget https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
 
 # 通过curl下载源码包
-curl -O https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
+curl -O https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
 
 # 解压缩
 unzip apache-dolphinscheduler-incubating-1.3.5-src.zip

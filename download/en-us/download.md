@@ -25,7 +25,7 @@ Use the links below to download the Apache DolphinScheduler from one of our mirr
 | | | Frontend Binary Distribution| [[tar]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin.tar.gz) [[asc]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin.tar.gz.asc) [[sha512]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.2.0/apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-front-bin.tar.gz.sha512)|
 
 # Verify the releases
-[PGP signatures KEYS](https://downloads.apache.org/incubator/dolphinscheduler/KEYS)
+[PGP signatures KEYS](https://downloads.apache.org/dolphinscheduler/KEYS)
 
 It is essential that you verify the integrity of the downloaded files using the PGP or SHA signatures. The PGP signatures can be verified using GPG or PGP. Please download the KEYS as well as the asc signature files for relevant distribution. It is recommended to get these files from the main distribution directory and not from the mirrors.
 
