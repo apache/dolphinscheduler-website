@@ -221,7 +221,7 @@ cd ~/ds_svn/dev/
 创建完毕后，从Apache SVN检出dolphinscheduler发布目录。
 
 ```shell
-svn --username=${APACHE LDAP 用户名} co https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler
+svn --username=${APACHE LDAP 用户名} co https://dist.apache.org/repos/dist/dev/dolphinscheduler
 cd ~/ds_svn/dev/dolphinscheduler
 ```
 
@@ -253,8 +253,8 @@ cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/
 ### 生成文件签名
 
 ```shell
-shasum -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip >> apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
-shasum -b -a 512 apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz >> apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
+shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
+shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
 ```
 
 ### 提交Apache SVN
@@ -269,8 +269,8 @@ svn --username=${APACHE LDAP 用户名} commit -m "release ${RELEASE.VERSION}"
 ### 检查sha512哈希
 
 ```shell
-shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.sha512
-shasum -c apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.sha512
+shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
+shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
 ```
 
 ### 检查gpg签名
@@ -301,15 +301,15 @@ Your decision? 5
 然后进行gpg签名检查。
 
 ```shell
-gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip
-gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz.asc apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-bin.tar.gz
+gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz
+gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz
 ```
 
 ### 检查发布文件内容
 
 #### 检查源码包的文件内容
 
-解压缩`apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip`，进行如下检查:
+解压缩`apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz`，进行如下检查:
 
 - 检查源码包是否包含由于包含不必要文件，致使tarball过于庞大
 - 存在`LICENSE`和`NOTICE`文件
@@ -321,7 +321,7 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 
 #### 检查二进制包的文件内容
 
-解压缩`apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-backend-bin.tar.gz`和`apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinscheduler-front-bin.tar.gz`
+解压缩`apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz`和`apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz`
 进行如下检查:
 
 - 存在`LICENSE`和`NOTICE`文件
@@ -354,7 +354,7 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 标题：
 
 ```
-[VOTE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
+[VOTE] Release Apache DolphinScheduler ${RELEASE.VERSION}
 ```
 
 正文：
@@ -362,7 +362,7 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 ```
 Hello DolphinScheduler Community,
 
-This is a call for vote to release Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}
+This is a call for vote to release Apache DolphinScheduler version ${RELEASE.VERSION}
 
 Release notes:
 https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
@@ -418,7 +418,7 @@ https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklis
 正文：
 
 ```
-The vote to release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION} has passed.Here is the vote result,
+The vote to release Apache DolphinScheduler ${RELEASE.VERSION} has passed.Here is the vote result,
 
 7 PPMC member +1 votes:
 
@@ -441,7 +441,7 @@ Thanks everyone for taking time to check this release and help us.
 标题：
 
 ```
-[VOTE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
+[VOTE] Release Apache DolphinScheduler ${RELEASE.VERSION}
 ```
 
 正文：
@@ -449,12 +449,12 @@ Thanks everyone for taking time to check this release and help us.
 ```
 Hello everyone,
 
-This is a call for vote to release Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}.
+This is a call for vote to release Apache DolphinScheduler version ${RELEASE.VERSION}.
 
 The Apache DolphinScheduler community has voted on and approved a proposal to release
-Apache DolphinScheduler (Incubating) version ${RELEASE.VERSION}.
+Apache DolphinScheduler version ${RELEASE.VERSION}.
 
-We now kindly request the Incubator IPMC members review and vote on this incubator release.
+We now kindly request the PMC members review and vote on this release.
 
 Dolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,
 dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.
@@ -544,7 +544,7 @@ I will process to publish the release and send ANNOUNCE.
 1. 将源码和二进制包从svn的dev目录移动到release目录
 
 ```shell
-svn mv https://dist.apache.org/repos/dist/dev/incubator/dolphinscheduler/${RELEASE.VERSION} https://dist.apache.org/repos/dist/release/incubator/dolphinscheduler/
+svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION} https://dist.apache.org/repos/dist/release/dolphinscheduler/
 ```
 
 2. 在Apache Staging仓库找到DolphinScheduler并点击`Release`
@@ -563,7 +563,7 @@ https://dolphinscheduler.apache.org/zh-cn/download/download.html
 标题：
 
 ```
-[ANNOUNCE] Release Apache DolphinScheduler (Incubating) ${RELEASE.VERSION}
+[ANNOUNCE] Release Apache DolphinScheduler ${RELEASE.VERSION}
 ```
 
 正文：
@@ -571,7 +571,7 @@ https://dolphinscheduler.apache.org/zh-cn/download/download.html
 ```
 Hi all,
 
-We are glad to announce the release of Apache DolphinScheduler(incubating) ${RELEASE.VERSION}. Once again I would like to express my thanks to your help.
+We are glad to announce the release of Apache DolphinScheduler ${RELEASE.VERSION}. Once again I would like to express my thanks to your help.
 
 Dolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,
 dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.
