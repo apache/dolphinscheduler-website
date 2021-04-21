@@ -71,4 +71,4 @@ description: some description
 4. Send the pull request contains the *.md and development.js only.
 
 Best Regards.  
-				Thanks for reading1 :)
+				Thanks for reading12 :)
