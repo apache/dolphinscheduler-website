@@ -398,7 +398,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 
 ## 12.Service log configuration files
 Correspondence service| Log file name |
-|--|--|--|
+--|--|
 api service log configuration file |logback-api.xml|
 Master service log configuration file|logback-master.xml |
 Worker service log configuration file|logback-worker.xml |
