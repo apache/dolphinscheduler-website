@@ -315,7 +315,6 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 
 - 检查源码包是否包含由于包含不必要文件，致使tarball过于庞大
 - 文件夹包含单词`incubating`
-- 存在`DISCLAIMER`文件
 - 存在`LICENSE`和`NOTICE`文件
 - 只存在文本文件，不存在二进制文件
 - 所有文件的开头都有ASF许可证
@@ -329,7 +328,6 @@ gpg --verify apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedu
 进行如下检查:
 
 - 文件夹包含单词`incubating`
-- 存在`DISCLAIMER`文件
 - 存在`LICENSE`和`NOTICE`文件
 - 所有文本文件开头都有ASF许可证
 - 检查第三方依赖许可证：

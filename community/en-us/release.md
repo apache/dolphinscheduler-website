@@ -295,7 +295,6 @@ Decompress `apache-dolphinscheduler-incubating-${RELEASE.VERSION}-src.zip` and c
 
 *   Check whether source tarball is oversized for including nonessential files
 *   The release files have the word `incubating` in their name
-*   `DISCLAIMER` file exists
 *   `LICENSE` and `NOTICE` files exist
 *   Correct year in `NOTICE` file
 *   There is only text files but no binary files
@@ -310,7 +309,6 @@ Decompress `apache-dolphinscheduler-incubating-${RELEASE.VERSION}-dolphinschedul
 to check the following items:
 
 - The release files have the word `incubating` in their name
-- `DISCLAIMER` file exists
 - `LICENSE` and `NOTICE` files exist
 - Correct year in `NOTICE` file
 - Check the third party dependency license:
