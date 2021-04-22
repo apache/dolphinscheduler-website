@@ -33,7 +33,7 @@ const noop = () => {};
 const propTypes = {
   currentKey: PropTypes.string,
   logo: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['primary', 'normal']),
+  type: PropTypes.oneOf(['primary', 'normal','dark']),
   language: PropTypes.oneOf(['en-us', 'zh-cn']),
   onLanguageChange: PropTypes.func,
 };
@@ -202,10 +202,10 @@ class Header extends React.Component {
             <img
               className="header-menu-toggle"
               onClick={this.toggleMenu}
-              src={type === 'primary' ? getLink('/img/system/menu_white.png') : getLink('/img/system/menu_gray.png')}
+              src={type === 'normal' ? getLink('/img/system/menu_gray.png') : getLink('/img/system/menu_white.png')}
             />
             <div>
-              <Menu className={type === 'primary' ? 'whiteClass' : 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" forceSubMenuRender>
+              <Menu className={type === 'normal' ? 'blackClass' : 'whiteClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" forceSubMenuRender>
               {siteConfig[language].pageMenu.map(item => (
                 item.children ?
                 <SubMenu
