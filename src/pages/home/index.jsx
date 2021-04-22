@@ -22,11 +22,16 @@ class Home extends Language {
   componentDidMount() {
     window.addEventListener('scroll', () => {
       const scrollTop = getScrollTop();
-      if (scrollTop > 66) {
+      if (scrollTop > 66 && scrollTop<=663) {
         this.setState({
           headerType: 'normal',
         });
-      } else {
+      } else if(scrollTop>663){
+        this.setState({
+          headerType: 'dark',
+        });
+      }
+      else {
         this.setState({
           headerType: 'primary',
         });
@@ -48,7 +53,7 @@ class Home extends Language {
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;
-    const headerLogo = headerType === 'primary' ? '/img/hlogo_white.svg' : '/img/hlogo_colorful.svg';
+    const headerLogo = headerType === 'normal' ? '/img/hlogo_colorful.svg' : '/img/hlogo_white.svg';
     return (
       <div className="home-page">
         <section className="top-section">
