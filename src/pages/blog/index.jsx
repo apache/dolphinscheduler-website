@@ -18,13 +18,13 @@ class Blog extends Language {
     return (
       <div className="blog-list-page">
         <Header
-          type="normal"
+          type="dark"
           currentKey="blog"
-          logo="/img/hlogo_colorful.svg"
+          logo="/img/hlogo_white.svg"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <Bar img="/img/system/blog.png" text={dataSource.barText} />
+        
         <section className="blog-container">
           <div className="col col-18 left-part">
             <PageSlider pageSize={5}>
