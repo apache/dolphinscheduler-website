@@ -20,12 +20,12 @@ class Community extends Language {
       <div className="community-page">
         <Header
           currentKey="community"
-          type="normal"
-          logo="/img/hlogo_colorful.svg"
+          type="dark"
+          logo="/img/hlogo_white.svg"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <Bar img="/img/system/community.png" text={dataSource.barText} />
+       
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div className="doc-content markdown-body">
