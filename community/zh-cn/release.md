@@ -338,18 +338,14 @@ gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-do
 
 ### 投票阶段
 
-1. DolphinScheduler社区投票，发起投票邮件到`dev@dolphinscheduler.apache.org`。PPMC需要先按照文档检查版本的正确性，然后再进行投票。
-经过至少72小时并统计到3个`+1 PPMC member`票后，即可进入下一阶段的投票。
+1. DolphinScheduler社区投票，发起投票邮件到`dev@dolphinscheduler.apache.org`。PMC需要先按照文档检查版本的正确性，然后再进行投票。
+经过至少72小时并统计到至少3个`+1 PMC member`票后，即可进入下一阶段。
 
-2. Apache社区投票，发起投票邮件到`general@incubator.apache.org`。经过至少72小时并统计到3个`+1 binding`票后（只有IPMC的票才是binding），即可进行正式发布。
-
-3. 宣布投票结果,发起投票结果邮件到`general@incubator.apache.org`。
+2. 宣布投票结果,发起投票结果邮件到`dev@dolphinscheduler.apache.org`。
 
 ### 投票模板
 
-1. DolphinScheduler社区投票模板
-
-注意： 在社区投票过程中，需要邀请所有mentor参加投票。
+ 1. DolphinScheduler社区投票模板
 
 标题：
 
@@ -413,21 +409,18 @@ More detail checklist  please refer:
 https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
 ```
 
-2. 宣布投票结果模板：
+2.宣布投票结果模板
 
 正文：
 
 ```
 The vote to release Apache DolphinScheduler ${RELEASE.VERSION} has passed.Here is the vote result,
 
-7 PPMC member +1 votes:
+4 PMC member +1 votes:
 
-xxx (mentor)
-xxx
-xxx (mentor)
+xxx 
 xxx
 xxx
-xxx (mentor)
 xxx
 
 1 community +1 vote:
@@ -436,127 +429,25 @@ xxx
 Thanks everyone for taking time to check this release and help us.
 ```
 
-3. Apache社区投票邮件模板：
-
-标题：
-
-```
-[VOTE] Release Apache DolphinScheduler ${RELEASE.VERSION}
-```
-
-正文：
-
-```
-Hello everyone,
-
-This is a call for vote to release Apache DolphinScheduler version ${RELEASE.VERSION}.
-
-The Apache DolphinScheduler community has voted on and approved a proposal to release
-Apache DolphinScheduler version ${RELEASE.VERSION}.
-
-We now kindly request the PMC members review and vote on this release.
-
-Dolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,
-dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.
-
-DolphinScheduler community vote and result threads:
-https://lists.apache.org/thread.html/xxxxxxxxxxxxxxxxxxxxxxx
-
-https://lists.apache.org/thread.html/xxxxxxxxxxxxxxxxxxxxxxx
-
-Release notes:
-https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
-
-The release candidates:
-https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/
-
-Maven 2 staging repository:
-https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
-
-Git tag for the release:
-https://github.com/apache/dolphinscheduler/tree/${RELEASE.VERSION}
-
-Release Commit ID:
-https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
-
-Keys to verify the Release Candidate:
-https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
-
-Look at here for how to verify this release candidate:
-https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
-
-The vote will be open for at least 72 hours or until necessary number of votes are reached.
-Please vote accordingly:
-
-[ ] +1 approve
-
-[ ] +0 no opinion
-
-[ ] -1 disapprove with the reason
-
-Checklist for reference:
-
-[ ] Download links are valid.
-
-[ ] Checksums and PGP signatures are valid.
-
-[ ] Source code artifacts have correct names matching the current release.
-
-[ ] LICENSE and NOTICE files are correct for each DolphinScheduler repo.
-
-[ ] All files have license headers if necessary.
-
-[ ] No compiled archives bundled in source archive.
-
-More detail checklist  please refer:
-https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
-
-The following votes are carried over from DolphinScheduler dev mailing list,
-
-+1 binding, xxx
-+1 binding, xxx
-
-+1 non-binding, xxx
-+1 non-binding, xxx
-```
-
-4. 宣布投票结果模板：
-
-**注意：计算投票结果时，社区投票结果也需要包含在内。**
-
-正文：
-
-```
-We’ve received 3 +1 binding votes and one +1 non-binding vote:
-
-+1 binding, xxx
-+1 binding, xxx
-+1 binding, xxx
-
-+1 non-binding, xxx
-
-Thank you everyone for taking the time to review the release and help us.
-I will process to publish the release and send ANNOUNCE.
-```
 
 ## 完成发布
 
-1. 将源码和二进制包从svn的dev目录移动到release目录
+1.将源码和二进制包从svn的dev目录移动到release目录
 
 ```shell
 svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION} https://dist.apache.org/repos/dist/release/dolphinscheduler/
 ```
 
-2. 在Apache Staging仓库找到DolphinScheduler并点击`Release`
+2.在Apache Staging仓库找到DolphinScheduler并点击`Release`
 
-3. 更新下载页面
+3.更新下载页面
 
 ```
 https://dolphinscheduler.apache.org/en-us/download/download.html
 https://dolphinscheduler.apache.org/zh-cn/download/download.html
 ```
 
-4. 发送邮件到`general@incubator.apache.org`和`dev@dolphinscheduler.apache.org`通知完成版本发布。
+4.发送邮件到`dev@dolphinscheduler.apache.org`通知完成版本发布。
 
 通知邮件模板：
 
