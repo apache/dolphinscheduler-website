@@ -332,14 +332,12 @@ gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-do
   - 依赖许可证的完整版全部在`license`目录
   - 如果依赖的是Apache许可证并且存在`NOTICE`文件，那么这些`NOTICE`文件也需要加入到版本的`NOTICE`文件中
 
-全部的检查列表参见[这里](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist)。
-
 ## 发起投票
 
 ### 投票阶段
 
 1. DolphinScheduler社区投票，发起投票邮件到`dev@dolphinscheduler.apache.org`。PMC需要先按照文档检查版本的正确性，然后再进行投票。
-经过至少72小时并统计到至少3个`+1 PMC member`票后，即可进入下一阶段。
+经过至少72小时并统计到至少3个`+1 并且没有-1 PMC member`票后，即可进入下一阶段。
 
 2. 宣布投票结果,发起投票结果邮件到`dev@dolphinscheduler.apache.org`。
 
@@ -405,8 +403,6 @@ Checklist for reference:
 
 [ ] No compiled archives bundled in source archive.
 
-More detail checklist  please refer:
-https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
 ```
 
 2.宣布投票结果模板

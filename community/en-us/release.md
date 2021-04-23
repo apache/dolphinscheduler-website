@@ -313,21 +313,19 @@ to check the following items:
   - All the third party dependency licenses are under `licenses` folder
   - If it depends on Apache license and has a `NOTICE` file, that `NOTICE` file need to be added to `NOTICE` file of the release
 
-For the whole check list, please see [here](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist)。
-
 ## Call for a Vote
 
 ### Vote procedure
 
 1. DolphinScheduler community vote: send the vote e-mail to `dev@dolphinscheduler.apache.org`.
 PMC needs to check the rightness of the version according to the document before they vote.
-After at least 72 hours and with at least 3 `+1 PMC member` votes, it can come to the next stage of the vote.
+After at least 72 hours and with at least 3 `+1 and no -1 PMC member` votes, it can come to the next stage of the vote.
 
 2. Announce the vote result: send the result vote e-mail to `dev@dolphinscheduler.apache.org`。
 
 ### Vote Templates
 
-1.DolphinScheduler Community Vote Template
+1. DolphinScheduler Community Vote Template
 
 Title：
 
@@ -387,11 +385,9 @@ Checklist for reference:
 
 [ ] No compiled archives bundled in source archive.
 
-More detail checklist  please refer:
-https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
 ```
 
-2.Announce the vote result:
+2. Announce the vote result:
 
 Body：
 
