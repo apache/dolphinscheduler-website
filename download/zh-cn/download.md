@@ -7,12 +7,12 @@
 ## DolphinScheduler
 | 日期 | 版本| | 下载 |
 |:---:|:--:|:--:|:--:|
-| Feb. 14th, 2021 | 1.3.5 | Source code| [[src]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip) [[asc]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip.asc) [[sha512]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip.sha512)|
-| | | Binary Distribution| [[tar]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz) [[asc]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz.asc) [[sha512]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz.sha512)|
-| Dec. 29th, 2020 | 1.3.4 | Source code| [[src]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip) [[asc]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip.asc) [[sha512]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip.sha512)|
-| | | Binary Distribution| [[tar]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-dolphinscheduler-bin.tar.gz) [[asc]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-dolphinscheduler-bin.tar.gz.asc) [[sha512]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-dolphinscheduler-bin.tar.gz.sha512)|
-| Nov. 9th, 2020 | 1.3.3 | Source code| [[src]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-src.zip) [[asc]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-src.zip.asc) [[sha512]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-src.zip.sha512)|
-| | | Binary Distribution| [[tar]](https://www.apache.org/dyn/closer.cgi/incubator/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-dolphinscheduler-bin.tar.gz) [[asc]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-dolphinscheduler-bin.tar.gz.asc) [[sha512]](https://downloads.apache.org/incubator/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-dolphinscheduler-bin.tar.gz.sha512)|
+| Feb. 14th, 2021 | 1.3.5 | Source code| [[src]](https://www.apache.org/dyn/closer.cgi/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip) [[asc]](https://downloads.apache.org/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip.sha512)|
+| | | Binary Distribution| [[tar]](https://www.apache.org/dyn/closer.cgi/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz) [[asc]](https://downloads.apache.org/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz.sha512)|
+| Dec. 29th, 2020 | 1.3.4 | Source code| [[src]](https://www.apache.org/dyn/closer.cgi/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip) [[asc]](https://downloads.apache.org/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip.sha512)|
+| | | Binary Distribution| [[tar]](https://www.apache.org/dyn/closer.cgi/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-dolphinscheduler-bin.tar.gz) [[asc]](https://downloads.apache.org/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-dolphinscheduler-bin.tar.gz.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-dolphinscheduler-bin.tar.gz.sha512)|
+| Nov. 9th, 2020 | 1.3.3 | Source code| [[src]](https://www.apache.org/dyn/closer.cgi/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-src.zip) [[asc]](https://downloads.apache.org/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-src.zip.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-src.zip.sha512)|
+| | | Binary Distribution| [[tar]](https://www.apache.org/dyn/closer.cgi/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-dolphinscheduler-bin.tar.gz) [[asc]](https://downloads.apache.org/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-dolphinscheduler-bin.tar.gz.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/1.3.3/apache-dolphinscheduler-incubating-1.3.3-dolphinscheduler-bin.tar.gz.sha512)|
 | Sep. 1st, 2020 | 1.3.2 | Source code| [[src]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.3.2/apache-dolphinscheduler-incubating-1.3.2-src.zip) [[asc]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.3.2/apache-dolphinscheduler-incubating-1.3.2-src.zip.asc) [[sha512]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.3.2/apache-dolphinscheduler-incubating-1.3.2-src.zip.sha512)|
 | | | Binary Distribution| [[tar]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.3.2/apache-dolphinscheduler-incubating-1.3.2-dolphinscheduler-bin.tar.gz) [[asc]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.3.2/apache-dolphinscheduler-incubating-1.3.2-dolphinscheduler-bin.tar.gz.asc) [[sha512]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.3.2/apache-dolphinscheduler-incubating-1.3.2-dolphinscheduler-bin.tar.gz.sha512)|
 | July. 13th, 2020 | 1.3.1 | Source code| [[src]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.3.1/apache-dolphinscheduler-incubating-1.3.1-src.zip) [[asc]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.3.1/apache-dolphinscheduler-incubating-1.3.1-src.zip.asc) [[sha512]](https://archive.apache.org/dist/incubator/dolphinscheduler/1.3.1/apache-dolphinscheduler-incubating-1.3.1-src.zip.sha512)|
@@ -44,15 +44,15 @@ pgp -ka KEYS
 要验证二进制文件/源，您可以从主发布目录下载相关的asc文件，并按照以下指南进行操作。
 
 ```
-gpg --verify apache-dolphinscheduler-incubating********.asc apache-dolphinscheduler-incubating*********
+gpg --verify apache-dolphinscheduler-********.asc apache-dolphinscheduler-incubating*********
 
 or
 
-pgpv apache-dolphinscheduler-incubating********.asc
+pgpv apache-dolphinscheduler-********.asc
 
 or
 
-pgp apache-dolphinscheduler-incubating********.asc
+pgp apache-dolphinscheduler-********.asc
 ```
 
 <br/>
