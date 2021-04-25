@@ -43,15 +43,15 @@ pgp -ka KEYS
 要验证二进制文件/源，您可以从主发布目录下载相关的asc文件，并按照以下指南进行操作。
 
 ```
-gpg --verify apache-dolphinscheduler-incubating********.asc apache-dolphinscheduler-incubating*********
+gpg --verify apache-dolphinscheduler-********.asc apache-dolphinscheduler-*********
 
 or
 
-pgpv apache-dolphinscheduler-incubating********.asc
+pgpv apache-dolphinscheduler-********.asc
 
 or
 
-pgp apache-dolphinscheduler-incubating********.asc
+pgp apache-dolphinscheduler-********.asc
 ```
 
 <br/>

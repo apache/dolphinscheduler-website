@@ -43,15 +43,15 @@ pgp -ka KEYS
 To verify the binaries/sources you can download the relevant asc files for it from main distribution directory and follow the below guide.
 
 ```
-gpg --verify apache-dolphinscheduler-incubating********.asc apache-dolphinscheduler-incubating*********
+gpg --verify apache-dolphinscheduler-********.asc apache-dolphinscheduler-*********
 
 or
 
-pgpv apache-dolphinscheduler-incubating********.asc
+pgpv apache-dolphinscheduler-********.asc
 
 or
 
-pgp apache-dolphinscheduler-incubating********.asc
+pgp apache-dolphinscheduler-********.asc
 ```
 
 <br/>
