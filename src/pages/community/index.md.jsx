@@ -17,12 +17,12 @@ class Community extends Md2Html(Language) {
       <div className="md2html community-page">
         <Header
           currentKey="community"
-          type="normal"
-          logo="/img/hlogo_colorful.svg"
+          type="dark"
+          logo="/img/hlogo_white.svg"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <Bar img="/img/system/community.png" text={dataSource.barText} />
+      
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div

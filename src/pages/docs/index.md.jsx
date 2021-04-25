@@ -5,7 +5,6 @@ import Language from '../../components/language';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Md2Html from '../../components/md2html';
-import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
 import siteConfig from '../../../site_config/site';
 import docs120Config from '../../../site_config/docs1-2-0';
@@ -55,12 +54,11 @@ class Docs extends Md2Html(Language) {
       <div className="md2html docs-page">
         <Header
           currentKey="docs"
-          type="normal"
-          logo="/img/hlogo_colorful.svg"
+          type="dark"
+          logo="/img/hlogo_white.svg"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <Bar img="/img/system/docs.png" text={dataSource.barText} />
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div
@@ -68,6 +66,7 @@ class Docs extends Md2Html(Language) {
             ref={(node) => { this.markdownContainer = node; }}
             dangerouslySetInnerHTML={{ __html }}
           />
+         
         </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>

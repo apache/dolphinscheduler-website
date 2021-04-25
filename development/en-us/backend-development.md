@@ -28,7 +28,7 @@ before 1.2.0, please use:
 
 * View directory
 
-After normal compilation, it will generate ./target/dolphinscheduler-{version}/ in the current directory.
+After normal compilation, it will generate `./dolphinscheduler-dist/target/apache-dolphinscheduler-{version}-bin.tar.gz` in the current directory.
 
 ```
     bin

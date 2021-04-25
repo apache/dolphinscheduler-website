@@ -8,13 +8,13 @@
 
 ## 安装 dolphinscheduler
 
-发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下操作：
+请下载最新版本的源码包，下载地址: [下载](/zh-cn/download/download.html)
+
+下载 apache-dolphinscheduler-incubating-1.3.5-src.zip 后，解压缩
+
+发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下命令：
 
 ```bash
-# 通过wget下载源码包
-$ wget https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
-# 通过curl下载源码包
-$ curl -O https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ mv apache-dolphinscheduler-incubating-1.3.5-src-release dolphinscheduler-src
 $ cd dolphinscheduler-src/docker/kubernetes/dolphinscheduler
