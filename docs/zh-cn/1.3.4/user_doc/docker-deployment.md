@@ -6,16 +6,11 @@
 
 ##### 1、下载源码 zip 包
 
-- 请下载最新版本的源码包并进行解压
+请下载最新版本的源码包，下载地址: [下载](/zh-cn/download/download.html)
+
+下载 apache-dolphinscheduler-incubating-1.3.4-src.zip 后，解压缩
 
 ```shell
-# 创建源码存放目录
-mkdir -p /opt/soft/dolphinscheduler;
-cd /opt/soft/dolphinscheduler;
-
-# 下载源码包
-wget https://mirrors.tuna.tsinghua.edu.cn/apache/dolphinscheduler/dolphinscheduler/1.3.4/apache-dolphinscheduler-incubating-1.3.4-src.zip
-
 # 解压缩
 unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
  
