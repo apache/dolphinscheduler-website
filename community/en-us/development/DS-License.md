@@ -1,6 +1,6 @@
 ##  DolphinScheduler-Contributor-License Policy
 
-As we know that DolphinScheduler is an open-source undergoing incubation project at The Apache Software Foundation (ASF), which means that you have to follow the Apache way to become the DolphinScheduler contributor. Furthermore, Apache has extremely strict rules according to the License. This passage will explain the ASF license and how to avoid License risks at the early stage when you participate in DolphinScheduler.
+As we know that DolphinScheduler is an open-source undergoing project at The Apache Software Foundation (ASF), which means that you have to follow the Apache way to become the DolphinScheduler contributor. Furthermore, Apache has extremely strict rules according to the License. This passage will explain the ASF license and how to avoid License risks at the early stage when you participate in DolphinScheduler.
 
 Note: This article only applies to the Apache projects.
 
