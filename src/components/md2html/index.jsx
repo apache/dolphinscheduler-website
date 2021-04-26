@@ -76,7 +76,8 @@ const Md2Html = ComposeComponent => class extends ComposeComponent {
   }
 
   handleDocsLatestLink() {
-    if (!siteConfig.docsLatest) return;
+    const language = this.getLanguage();
+    if (!siteConfig.docsLatest || !window.location.pathname.includes(`${language}/docs/latest`)) return;
     // rootPath/en-us/docs/1.3.5/user_doc/cluster-deployment.html => rootPath/en-us/docs/latest/user_doc/cluster-deployment.html
     const alinks = Array.from(this.markdownContainer.querySelectorAll('a'));
     alinks.forEach((alink) => {
