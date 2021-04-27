@@ -1,3 +1,5 @@
+# Subscribe Mailing Lists
+
 It is highly recommended to subscribe to the development mailing list to keep up-to-date with the community.
 
 In the process of using DolphinScheduler, if you have any questions or ideas, suggestions, you can participate in the DolphinScheduler community building through the Apache mailing list. Sending a subscription email is also very simple, the steps are as follows:

@@ -1,3 +1,5 @@
+# Issue Notice
+
 ## Preface
 Issues function is used to track various Features, Bugs, Functions, etc. The project maintainer can organize the tasks to be completed through issues.
 

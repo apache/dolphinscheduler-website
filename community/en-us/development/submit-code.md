@@ -1,4 +1,4 @@
-#### How to submit
+# Submit Code
 
 * First from the remote repository *https://github.com/apache/dolphinscheduler.git* fork a copy of the code into your own repository
 

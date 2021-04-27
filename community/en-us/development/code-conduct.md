@@ -1,22 +1,22 @@
-## Code of Conduct
+# Code of Conduct
 
 The following Code of Conduct is based on full compliance with the [Apache Software Foundation Code of Conduct](https://www.apache.org/foundation/policies/conduct.html).
 
-### Development philosophy.
+## Development philosophy
  - **Consistent** code style, naming, and usage are consistent.  
  - **Easy to read** code is obvious, easy to read and understand, when debugging one knows the intent of the code.
  - **Neat** agree with the concepts of《Refactoring》and《Code Cleanliness》and pursue clean and elegant code.
  - **Abstract** hierarchy is clear and the concepts are refined and reasonable. Keep methods, classes, packages, and modules at the same level of abstraction.
  - **Heart** Maintain a sense of responsibility and continue to be carved in the spirit of artisans.
  
-### Development specifications.
+## Development specifications
 
  - Executing `mvn -U clean package -Prelease` can compile and test through all test cases. 
  - The test coverage tool checks for no less than dev branch coverage.
  - In the root directory, use Checkstyle to check your code for special reasons for violating validation rules. The template location is located at ds_check_style.xml.
  - Follow the coding specifications.
 
-### Coding specifications.
+## Coding specifications
 
  - Use linux line breaks.
  - Indentation (including empty lines) is consistent with the last line.
@@ -42,7 +42,7 @@ The following Code of Conduct is based on full compliance with the [Apache Softw
  - Comments can only contain `javadoc`, `todo` and `fixme`.
  - Exposed classes and methods must have javadoc, other classes and methods and methods that override the parent class do not require javadoc.
 
-### Unit test specifications.
+## Unit test specifications
 
  - Test code and production code are subject to the same code specifications.
  - Unit tests are subject to AIR (Automatic, Independent, Repeatable) Design concept.

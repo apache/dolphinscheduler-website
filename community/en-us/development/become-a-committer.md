@@ -1,4 +1,4 @@
-# How to become DolphinScheduler committer
+# How to Become DolphinScheduler Committer
 
 Anyone can be a contributor to an Apache project. Being a contributor simply means that you take an interest in the project and contribute in some way, ranging from asking sensible questions (which documents the project and provides feedback to developers) through to providing new features as patches.
 

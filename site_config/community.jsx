@@ -17,7 +17,7 @@ export default {
         title: 'Team',
         children: [
           {
-            title: 'team introduce',
+            title: 'Team Introduction',
             link: '/en-us/community/team.html',
           },
         ],
@@ -26,7 +26,7 @@ export default {
         title: 'Security',
         children: [
           {
-            title: 'security introduce',
+            title: 'Security Introduction',
             link: '/en-us/community/security.html',
           },
         ],
@@ -35,15 +35,15 @@ export default {
         title: 'Release Guide',
         children: [
           {
-            title: 'release preparation',
+            title: 'Release Preparation',
             link: '/en-us/community/release-prepare.html',
           },
           {
-            title: 'release guide',
+            title: 'Release Guide',
             link: '/en-us/community/release.html',
           },
           {
-            title: 'release post',
+            title: 'Release Post',
             link: '/en-us/community/release-post.html',
           },
         ],
@@ -52,15 +52,15 @@ export default {
         title: 'Contribution Guide',
         children: [
           {
-            title: 'how to become a committer',
+            title: 'How to Become a Committer',
             link: '/en-us/community/development/become-a-committer.html',
           },
           {
-            title: 'Subscribe mail list',
+            title: 'Subscribe Mailing Lists',
             link: '/en-us/community/development/subscribe.html',
           },
           {
-            title: 'Participate in contributing',
+            title: 'Participate in Contributing',
             link: '/en-us/community/development/contribute.html',
           },
           {
@@ -73,7 +73,7 @@ export default {
         title: 'Submit Guide',
         children: [
           {
-            title: 'Submit Pull Request Process',
+            title: 'Submit Code',
             link: '/en-us/community/development/submit-code.html',
           },
           {
@@ -258,7 +258,7 @@ export default {
         title: '贡献指南',
         children: [
           {
-            title: '如何成为Dolphinscheduler的committer',
+            title: '如何成为DolphinScheduler Committer',
             link: '/zh-cn/community/development/become-a-committer.html',
           },
           {
@@ -279,31 +279,31 @@ export default {
         title: '提交者指南',
         children: [
           {
-            title: '提交流程',
+            title: '提交代码',
             link: '/zh-cn/community/development/submit-code.html',
           },
           {
-            title: '参与贡献-License需知',
+            title: 'License须知',
             link: '/zh-cn/community/development/DS-License.html',
           },
           {
-            title: '参与贡献-文档需知',
+            title: '文档须知',
             link: '/zh-cn/community/development/document.html',
           },
           {
-            title: '参与贡献-Issue需知',
+            title: 'Issue须知',
             link: '/zh-cn/community/development/issue.html',
           },
           {
-            title: '参与贡献-Pull Request需知',
+            title: 'Pull Request须知',
             link: '/zh-cn/community/development/pull-request.html',
           },
           {
-            title: '参与贡献-CommitMessage需知',
+            title: 'Commit Message须知',
             link: '/zh-cn/community/development/commit-message.html',
           },
           {
-            title: '参与贡献-微基准测试',
+            title: '微基准测试须知',
             link: '/zh-cn/community/development/microbench.html',
           },
         ],
