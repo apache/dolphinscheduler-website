@@ -1,10 +1,10 @@
-## 快速试用 Kubernetes 部署
+# 快速试用 Kubernetes 部署
 
-## 先决条件(请自行安装)
+## 先决条件
 
-- [Helm](https://helm.sh/) 3.1.0+
-- [Kubernetes](https://kubernetes.io/) 1.12+
-- PV 供应(需要基础设施支持)
+ - [Helm](https://helm.sh/) 3.1.0+
+ - [Kubernetes](https://kubernetes.io/) 1.12+
+ - PV 供应(需要基础设施支持)
 
 ## 安装 dolphinscheduler
 
@@ -16,8 +16,7 @@
 
 ```bash
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
-$ mv apache-dolphinscheduler-incubating-1.3.5-src-release dolphinscheduler-src
-$ cd dolphinscheduler-src/docker/kubernetes/dolphinscheduler
+$ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
 $ helm install dolphinscheduler .
@@ -54,6 +53,8 @@ $ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.5/user_doc/quick-start.html)查看如何使用DolphinScheduler
+
 ## 卸载 dolphinscheduler
 
 卸载名为 `dolphinscheduler` 的版本(release)，请执行：
@@ -74,7 +75,7 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 
 ## 配置
 
-配置文件为 `values.yaml`，[DolphinScheduler Kubernetes 配置](https://github.com/apache/dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md) 列出了 DolphinScheduler 的可配置参数及其默认值
+配置文件为 `values.yaml`，[DolphinScheduler Kubernetes 配置](https://github.com/apache/dolphinscheduler/blob/1.3.5/docker/kubernetes/dolphinscheduler/README.md#configuration) 列出了 DolphinScheduler 的可配置参数及其默认值
 
 ## FAQ
 
@@ -93,7 +94,7 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:latest
+FROM apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -122,7 +123,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:latest
+FROM apache/dolphinscheduler:1.3.5
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -139,5 +140,3 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
 7. 在数据源中心添加一个 Oracle 数据源
-
-更多信息请查看 [dolphinscheduler](https://github.com/apache/dolphinscheduler.git) 文档.
