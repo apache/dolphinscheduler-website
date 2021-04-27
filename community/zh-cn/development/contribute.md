@@ -1,4 +1,4 @@
-## 贡献
+# 参与贡献
 
 首先非常感谢大家选择和使用 DolphinScheduler，非常欢迎大家加入 DolphinScheduler 大家庭，融入开源世界！
 

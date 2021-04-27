@@ -1,3 +1,5 @@
+# Pull Request Notice
+
 ## Preface
 Pull Request is a way of software cooperation, which is a process of bringing code involving different functions into the trunk. During this process, the code can be discussed, reviewed, and modified.
 
