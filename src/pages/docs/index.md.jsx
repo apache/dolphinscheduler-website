@@ -33,9 +33,14 @@ class Docs extends Md2Html(Language) {
   render() {
     const language = this.getLanguage();
     let dataSource = {};
+    // from location path
     let version = window.location.pathname.split('/')[3];
-    if ((isValidVersion(version) || version === 'latest')) {
+    if (isValidVersion(version) || version === 'latest') {
       cookie.set('docs_version', version);
+    }
+    // from rendering html
+    if (!version && this.props.subdir) {
+      version = this.props.subdir.split('/')[0]
     }
     if (isValidVersion(version)) {
       dataSource = docsSource[version][language];
