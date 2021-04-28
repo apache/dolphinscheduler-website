@@ -139,24 +139,6 @@ apache/dolphinscheduler:1.3.5 alert-server
 
 **注意**: 当你运行dolphinscheduler中的部分服务时，你必须指定这些环境变量 `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_DATABASE`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`, `ZOOKEEPER_QUORUM`。
 
-## 如何构建一个 Docker 镜像
-
-你可以在类Unix系统和Windows系统中构建一个docker镜像。
-
-类Unix系统, 如下:
-
-```bash
-$ sh ./docker/build/hooks/build
-```
-
-Windows系统, 如下:
-
-```bat
-C:\dolphinscheduler>.\docker\build\hooks\build.bat
-```
-
-如果你不理解 `./docker/build/hooks/build` `./docker/build/hooks/build.bat` 这些脚本，请阅读里面的内容
-
 ## 环境变量
 
 Docker 容器通过环境变量进行配置，[DolphinScheduler Docker 环境变量](https://github.com/apache/dolphinscheduler/blob/1.3.5/docker/build/README_zh_CN.md#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F) 列出了 DolphinScheduler 的可配置环境变量及其默认值
@@ -193,6 +175,51 @@ docker stack deploy -c docker-stack.yml dolphinscheduler
 
 ```
 docker stack rm dolphinscheduler
+```
+
+### 如何构建一个 Docker 镜像？
+
+你可以在类Unix系统和Windows系统中构建一个docker镜像。
+
+类Unix系统, 如下:
+
+```bash
+$ sh ./docker/build/hooks/build
+```
+
+Windows系统, 如下:
+
+```bat
+C:\dolphinscheduler>.\docker\build\hooks\build.bat
+```
+
+如果你不理解 `./docker/build/hooks/build` `./docker/build/hooks/build.bat` 这些脚本，请阅读里面的内容
+
+### 如何为 Docker 添加一个环境变量？
+
+如果你想在编译的时候或者运行的时候附加一些其它的操作及新增一些环境变量，你可以在`/root/start-init-conf.sh`文件中进行修改，同时如果涉及到配置文件的修改，请在`/opt/dolphinscheduler/conf/*.tpl`中修改相应的配置文件
+
+例如，在`/root/start-init-conf.sh`添加一个环境变量`SECURITY_AUTHENTICATION_TYPE`：
+
+```
+export SECURITY_AUTHENTICATION_TYPE=PASSWORD
+```
+
+当添加以上环境变量后，你应该在相应的模板文件`application-api.properties.tpl`中添加这个环境变量配置:
+```
+security.authentication.type=${SECURITY_AUTHENTICATION_TYPE}
+```
+
+`/root/start-init-conf.sh`将根据模板文件动态的生成配置文件：
+
+```sh
+echo "generate dolphinscheduler config"
+ls ${DOLPHINSCHEDULER_HOME}/conf/ | grep ".tpl" | while read line; do
+eval "cat << EOF
+$(cat ${DOLPHINSCHEDULER_HOME}/conf/${line})
+EOF
+" > ${DOLPHINSCHEDULER_HOME}/conf/${line%.*}
+done
 ```
 
 ### 如何用 MySQL 替代 PostgreSQL 作为 DolphinScheduler 的数据库？
