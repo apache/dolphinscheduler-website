@@ -24,6 +24,10 @@ export default {
             title: 'Plugin Development',
             link: '/en-us/development/plugin-development.html',
           },
+          {
+            title: 'Questions and communication',
+            link: '/en-us/development/have-questions.html',
+          }
         ],
       },
     ],
@@ -53,6 +57,9 @@ export default {
           {
             title: '插件开发',
             link: '/zh-cn/development/plugin-development.html',
+          },{
+            title: '问题与交流',
+            link: '/zh-cn/development/have-questions.html',
           },
         ],
       },
