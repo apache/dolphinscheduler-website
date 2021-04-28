@@ -40,7 +40,7 @@ class Docs extends Md2Html(Language) {
     }
     // from rendering html
     if (!version && this.props.subdir) {
-      version = this.props.subdir.split('/')[0]
+      version = this.props.subdir.split('/')[0];
     }
     if (isValidVersion(version)) {
       dataSource = docsSource[version][language];
@@ -73,7 +73,7 @@ class Docs extends Md2Html(Language) {
             ref={(node) => { this.markdownContainer = node; }}
             dangerouslySetInnerHTML={{ __html }}
           />
-         
+
         </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>

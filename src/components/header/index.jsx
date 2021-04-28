@@ -33,7 +33,7 @@ const noop = () => {};
 const propTypes = {
   currentKey: PropTypes.string,
   logo: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['primary', 'normal','dark']),
+  type: PropTypes.oneOf(['primary', 'normal', 'dark']),
   language: PropTypes.oneOf(['en-us', 'zh-cn']),
   onLanguageChange: PropTypes.func,
 };
