@@ -1,4 +1,3 @@
-
 # DolphinScheduler扩容/缩容 文档
 
 
@@ -251,7 +250,3 @@ masters="现有master01,现有master02,ds1,ds2"
 workers="现有worker01:default,现有worker02:default,ds3:default,ds4:default"
 
 ```
-
-
-
-
