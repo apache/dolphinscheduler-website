@@ -17,7 +17,7 @@ In this way, you need to install [docker-compose](https://docs.docker.com/compos
 
 Please download the latest version of the source code package, download address: [download](/en-us/download/download.html)
 
-After downloading apache-dolphinscheduler-incubating-1.3.4-src.zip, unzip it
+After downloading apache-dolphinscheduler-incubating-1.3.4-src.zip, uncompress it
 
 ```shell
 $ unzip apache-dolphinscheduler-incubating-1.3.4-src.zip

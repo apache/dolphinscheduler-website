@@ -24,6 +24,10 @@ export default {
             title: 'Kubernetes Deployment',
             link: '/en-us/docs/1.3.6/user_doc/kubernetes-deployment.html',
           },
+          {
+            title: 'SkyWalking-Agent Deployment',
+            link: '/en-us/docs/1.3.6/user_doc/skywalking-agent-deployment.html',
+          },
         ],
       },
       {
@@ -122,6 +126,10 @@ export default {
           {
             title: 'Kubernetes部署(Kubernetes)',
             link: '/zh-cn/docs/1.3.6/user_doc/kubernetes-deployment.html',
+          },
+          {
+            title: 'SkyWalking-Agent部署(SkyWalking)',
+            link: '/zh-cn/docs/1.3.6/user_doc/skywalking-agent-deployment.html',
           },
         ],
       },

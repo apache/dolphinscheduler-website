@@ -10,7 +10,7 @@
 
 Please download the latest version of the source code package, download address: [download](/en-us/download/download.html)
 
-After downloading apache-dolphinscheduler-incubating-1.3.5-src.zip, unzip it
+After downloading apache-dolphinscheduler-incubating-1.3.5-src.zip, uncompress it
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
 
@@ -30,7 +30,7 @@ $ helm install dolphinscheduler . -n test
 
 > **Tip**: If a namespace named `test` is used, the option `-n test` needs to be added to the `helm` and `kubectl` command
 
-These commands deploy DolphinScheduler on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
+These commands deploy DolphinScheduler on the Kubernetes cluster in the default configuration. The [Configuration](#configuration) section lists the parameters that can be configured during installation.
 
 > **Tip**: List all releases using `helm list`
 
@@ -75,7 +75,7 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 
 ## Configuration
 
-The configuration file is `values.yaml`, and the [DolphinScheduler Kubernetes Configuration](https://github.com/apache/dolphinscheduler/blob/1.3.5/docker/kubernetes/dolphinscheduler/README.md#configuration) lists the configurable parameters of the DolphinScheduler chart and their default values.
+The configuration file is `values.yaml`, and the [DolphinScheduler Kubernetes Configuration](https://github.com/apache/dolphinscheduler/blob/1.3.5/docker/kubernetes/dolphinscheduler/README.md#configuration) lists the configurable parameters of the DolphinScheduler and their default values.
 
 ## FAQ
 

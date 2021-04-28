@@ -134,13 +134,14 @@ zookeeper.retry.maxtime|10| maximum retry times
 Currently, common.properties mainly configures hadoop/s3a related configurations. 
 |Parameters | Default value| Description|
 |--|--|--|
+data.basedir.path|/tmp/dolphinscheduler| local directory used to store temp files
 resource.storage.type|NONE| type of resource files: HDFS, S3, NONE
 resource.upload.path|/dolphinscheduler| storage path of resource files
-data.basedir.path|/tmp/dolphinscheduler| local directory used to store temp files
 hadoop.security.authentication.startup.state|false| whether hadoop grant kerberos permission
 java.security.krb5.conf.path|/opt/krb5.conf|kerberos config directory
 login.user.keytab.username|hdfs-mycluster@ESZ.COM|kerberos username
 login.user.keytab.path|/opt/hdfs.headless.keytab|kerberos user keytab
+kerberos.expire.time|2|kerberos expire time,integer,the unit is hour
 resource.view.suffixs| txt,log,sh,conf,cfg,py,java,sql,hql,xml,properties| file types supported by resource center
 hdfs.root.user|hdfs| configure users with corresponding permissions if storage type is HDFS
 fs.defaultFS|hdfs://mycluster:8020|If resource.storage.type=S3, then the request url would be similar to 's3a://dolphinscheduler'. Otherwise if resource.storage.type=HDFS and hadoop supports HA, please copy core-site.xml and hdfs-site.xml into 'conf' directory
@@ -151,7 +152,6 @@ yarn.resourcemanager.ha.rm.ids||specify the yarn resourcemanager url. if resourc
 yarn.application.status.address|http://ds1:8088/ws/v1/cluster/apps/%s|keep default if resourcemanager supports HA or not use resourcemanager. Or replace ds1 with corresponding hostname if resourcemanager in standalone mode
 dolphinscheduler.env.path|env/dolphinscheduler_env.sh|load environment variables configs [eg: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]
 development.state|false| specify whether in development state
-kerberos.expire.time|7|kerberos expire time,integer,the unit is day
 
 
 ## 5.application-api.properties [API-service log config]

@@ -17,7 +17,7 @@ In this way, you need to install [docker-compose](https://docs.docker.com/compos
 
 Please download the latest version of the source code package, download address: [download](/en-us/download/download.html)
 
-After downloading apache-dolphinscheduler-incubating-1.3.5-src.zip, unzip it
+After downloading apache-dolphinscheduler-incubating-1.3.5-src.zip, uncompress it
 
 ```shell
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
@@ -139,27 +139,9 @@ apache/dolphinscheduler:1.3.5 alert-server
 
 **Note**: You must be specify `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_DATABASE`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`, `ZOOKEEPER_QUORUM` when start a standalone dolphinscheduler server.
 
-## How to build a Docker image
-
-You can build a docker image in A Unix-like operating system, and you can also build it in Windows operating system.
-
-In Unix-Like, Example:
-
-```bash
-$ sh ./docker/build/hooks/build
-```
-
-In Windows, Example:
-
-```bat
-C:\dolphinscheduler>.\docker\build\hooks\build.bat
-```
-
-Please read `./docker/build/hooks/build` `./docker/build/hooks/build.bat` script files if you don't understand
-
 ## Environment Variables
 
-The Docker container is configured through environment variables, and the [DolphinScheduler Docker Environment Variables](https://github.com/apache/dolphinscheduler/blob/1.3.5/docker/build/README.md#environment-variables) lists the configurable environment variables of the DolphinScheduler chart and their default values
+The Docker container is configured through environment variables, and the [DolphinScheduler Docker Environment Variables](https://github.com/apache/dolphinscheduler/blob/1.3.5/docker/build/README.md#environment-variables) lists the configurable environment variables of the DolphinScheduler and their default values
 
 Especially, it can be configured through the environment variable configuration file `docker-compose.yml` and `docker-stack.yml` in Docker Compose and Docker Swarm separately
 
@@ -193,6 +175,51 @@ Stop and remove the stack named dolphinscheduler
 
 ```
 docker stack rm dolphinscheduler
+```
+
+### How to build a Docker image?
+
+You can build a docker image in A Unix-like operating system, and you can also build it in Windows operating system.
+
+In Unix-Like, Example:
+
+```bash
+$ sh ./docker/build/hooks/build
+```
+
+In Windows, Example:
+
+```bat
+C:\dolphinscheduler>.\docker\build\hooks\build.bat
+```
+
+Please read `./docker/build/hooks/build` `./docker/build/hooks/build.bat` script files if you don't understand
+
+### How to add an environment variable for Docker?
+
+If you would like to do additional initialization in an image derived from this one, add one or more environment variables under `/root/start-init-conf.sh`, and modify template files in `/opt/dolphinscheduler/conf/*.tpl`.
+
+For example, to add an environment variable `SECURITY_AUTHENTICATION_TYPE` in `/root/start-init-conf.sh`:
+
+```
+export SECURITY_AUTHENTICATION_TYPE=PASSWORD
+```
+
+and to modify `application-api.properties.tpl` template file, add the `SECURITY_AUTHENTICATION_TYPE`:
+```
+security.authentication.type=${SECURITY_AUTHENTICATION_TYPE}
+```
+
+`/root/start-init-conf.sh` will dynamically generate config file:
+
+```sh
+echo "generate dolphinscheduler config"
+ls ${DOLPHINSCHEDULER_HOME}/conf/ | grep ".tpl" | while read line; do
+eval "cat << EOF
+$(cat ${DOLPHINSCHEDULER_HOME}/conf/${line})
+EOF
+" > ${DOLPHINSCHEDULER_HOME}/conf/${line%.*}
+done
 ```
 
 ### How to use MySQL as the DolphinScheduler's database instead of PostgreSQL?

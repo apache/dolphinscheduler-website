@@ -18,8 +18,7 @@ class Footer extends React.Component {
         <div className="footer-body">
           <img src={getLink(logo)} />
           <div className="cols-container">
-            <div className="col col-12">
-            </div>
+            <div className="col col-12" />
             <div className="col col-6">
               <dl>
                 <dt>{dataSource.documentation.title}</dt>
