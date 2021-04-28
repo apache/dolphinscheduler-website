@@ -20,7 +20,7 @@ This article describes how to add a new master service or worker service to an e
 ### 1.2 Get installation package
 - Check which version of DolphinScheduler is used in your existing environment, and get the installation package of the corresponding version, if the versions are different, there may be compatibility problems.
 - Confirm the unified installation directory of other nodes, this article assumes that DolphinScheduler is installed in /opt/ directory, and the full path is /opt/dolphinscheduler.
-- Please download the corresponding version of the installation package to the server installation directory, unzip it and rename it to dolphinscheduler and store it in the /opt directory. 
+- Please download the corresponding version of the installation package to the server installation directory, uncompress it and rename it to dolphinscheduler and store it in the /opt directory. 
 - Add database dependency package, this article use Mysql database, add mysql-connector-java driver package to /opt/dolphinscheduler/lib directory.
 ```shell
 # create the installation directory, please do not create the installation directory in /root, /home and other high privilege directories 

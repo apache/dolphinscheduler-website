@@ -145,7 +145,7 @@ After successful deployment, the log can be viewed and stored in a specified fol
 
 ### Compile source code to deploy
 
-After downloading the release version of the source package, unzip it into the root directory
+After downloading the release version of the source package, uncompress it into the root directory
 
 * Build a tar package
 

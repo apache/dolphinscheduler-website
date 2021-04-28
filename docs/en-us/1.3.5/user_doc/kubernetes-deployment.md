@@ -10,7 +10,7 @@
 
 Please download the latest version of the source code package, download address: [download](/en-us/download/download.html)
 
-After downloading apache-dolphinscheduler-incubating-1.3.5-src.zip, unzip it
+After downloading apache-dolphinscheduler-incubating-1.3.5-src.zip, uncompress it
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
 
