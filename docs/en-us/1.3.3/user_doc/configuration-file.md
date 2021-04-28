@@ -194,7 +194,7 @@ worker.exec.threads|100|worker execute thread number to limit task instances in 
 worker.heartbeat.interval|10|worker heartbeat interval, the unit is second
 worker.max.cpuload.avg|-1|worker max cpuload avg, only higher than the system cpu load average, worker server can be dispatched tasks. default value -1: the number of cpu cores * 2
 worker.reserved.memory|0.3|worker reserved memory, only lower than system available memory, worker server can be dispatched tasks. default value 0.3, the unit is G
-worker.group|default|worker group config <br> worker will join corresponding group according to this config when startup
+worker.groups|default|worker groups separated by comma, like 'worker.groups=default,test' <br> worker will join corresponding group according to this config when startup
 
 
 ## 8.alert.properties [Alert alert service configuration]
