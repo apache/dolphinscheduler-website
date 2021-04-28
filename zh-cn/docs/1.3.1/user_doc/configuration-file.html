@@ -370,7 +370,7 @@
 <tr>
 <td>fs.defaultFS</td>
 <td>hdfs://mycluster:8020</td>
-<td>请求地址如果resource.storage.type=S3 ,该值类似为: s3a://dolphinscheduler. 如果resource.storage.type=HDFS, 如果 hadoop 配置了 HA ,需要复制core-site.xml 和 hdfs-site.xml 文件到conf目录</td>
+<td>请求地址如果resource.storage.type=S3,该值类似为: s3a://dolphinscheduler. 如果resource.storage.type=HDFS, 如果 hadoop 配置了 HA,需要复制core-site.xml 和 hdfs-site.xml 文件到conf目录</td>
 </tr>
 <tr>
 <td>fs.s3a.endpoint</td>
@@ -390,7 +390,7 @@
 <tr>
 <td>yarn.resourcemanager.ha.rm.ids</td>
 <td></td>
-<td>yarn resourcemanager 地址, 如果resourcemanager开启了HA, 输入HA的IP地址(以逗号分隔),如果resourcemanager为单节点, 该值为空即可.</td>
+<td>yarn resourcemanager 地址, 如果resourcemanager开启了HA, 输入HA的IP地址(以逗号分隔),如果resourcemanager为单节点, 该值为空即可</td>
 </tr>
 <tr>
 <td>yarn.application.status.address</td>
@@ -410,7 +410,7 @@
 <tr>
 <td>kerberos.expire.time</td>
 <td>7</td>
-<td>kerberos过期时间 [小时]</td>
+<td>kerberos过期时间,整数,单位为天</td>
 </tr>
 </tbody>
 </table>
@@ -489,27 +489,32 @@
 <tr>
 <td>master.listen.port</td>
 <td>5678</td>
-<td>master通讯端口</td>
+<td>master监听端口</td>
 </tr>
 <tr>
 <td>master.exec.threads</td>
 <td>100</td>
-<td>工作线程数量</td>
+<td>master工作线程数量,用于限制并行的流程实例数量</td>
 </tr>
 <tr>
 <td>master.exec.task.num</td>
 <td>20</td>
-<td>并行任务数量</td>
+<td>master每个流程实例的并行任务数量</td>
 </tr>
 <tr>
 <td>master.dispatch.task.num</td>
 <td>3</td>
-<td>分发任务数量</td>
+<td>master每个批次的派发任务数量</td>
+</tr>
+<tr>
+<td>master.host.selector</td>
+<td>LowerWeight</td>
+<td>master host选择器,用于选择合适的worker执行任务,可选值: Random, RoundRobin, LowerWeight</td>
 </tr>
 <tr>
 <td>master.heartbeat.interval</td>
 <td>10</td>
-<td>心跳间隔</td>
+<td>master心跳间隔,单位为秒</td>
 </tr>
 <tr>
 <td>master.task.commit.retryTimes</td>
@@ -519,17 +524,17 @@
 <tr>
 <td>master.task.commit.interval</td>
 <td>1000</td>
-<td>任务提交间隔</td>
+<td>任务提交间隔,单位为毫秒</td>
 </tr>
 <tr>
 <td>master.max.cpuload.avg</td>
 <td>-1</td>
-<td>cpu小于该配置时,master 服务才能工作.默认值为-1 :  cpu cores * 2</td>
+<td>master最大cpuload均值,只有高于系统cpuload均值时,master服务才能调度任务. 默认值为-1: cpu cores * 2</td>
 </tr>
 <tr>
 <td>master.reserved.memory</td>
 <td>0.3</td>
-<td>内存阈值限制,可用内存大于该值,master 服务才能工作.</td>
+<td>master预留内存,只有低于系统可用内存时,master服务才能调度任务,单位为G</td>
 </tr>
 </tbody>
 </table>
@@ -546,32 +551,32 @@
 <tr>
 <td>worker.listen.port</td>
 <td>1234</td>
-<td>worker通讯端口</td>
+<td>worker监听端口</td>
 </tr>
 <tr>
 <td>worker.exec.threads</td>
 <td>100</td>
-<td>工作线程数量</td>
+<td>worker工作线程数量,用于限制并行的任务实例数量</td>
 </tr>
 <tr>
 <td>worker.heartbeat.interval</td>
 <td>10</td>
-<td>心跳间隔</td>
+<td>worker心跳间隔,单位为秒</td>
 </tr>
 <tr>
 <td>worker.max.cpuload.avg</td>
 <td>-1</td>
-<td>cpu小于该配置时,worker 服务才能工作. 默认值为-1 :  cpu cores * 2</td>
+<td>worker最大cpuload均值,只有高于系统cpuload均值时,worker服务才能被派发任务. 默认值为-1: cpu cores * 2</td>
 </tr>
 <tr>
 <td>worker.reserved.memory</td>
 <td>0.3</td>
-<td>内存阈值限制,可用内存大于该值,worker 服务才能工作.</td>
+<td>worker预留内存,只有低于系统可用内存时,worker服务才能被派发任务,单位为G</td>
 </tr>
 <tr>
 <td>worker.group</td>
 <td>default</td>
-<td>workgroup分组配置. <br> worker启动时会根据该配置自动加入对应的分组.</td>
+<td>workgroup分组配置 <br> worker启动时会根据该配置自动加入对应的分组</td>
 </tr>
 </tbody>
 </table>
@@ -981,7 +986,7 @@ apiServers=<span class="hljs-string">&quot;ds1&quot;</span>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
   <script src="/build/vendor.d55c00d.js"></script>
-  <script src="/build/docs.md.19ad078.js"></script>
+  <script src="/build/docs.md.5632437.js"></script>
   <script>
     var _hmt = _hmt || [];
     (function() {
