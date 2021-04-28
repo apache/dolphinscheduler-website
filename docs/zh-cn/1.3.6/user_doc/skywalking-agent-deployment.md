@@ -1,5 +1,4 @@
-
-dolphinscheduler-skywalking
+SkyWalking Agent 部署
 =============================
 
 dolphinscheduler-skywalking 模块为 Dolphinscheduler 项目提供了 [Skywalking](https://skywalking.apache.org/) 监控代理。
@@ -10,18 +9,36 @@ dolphinscheduler-skywalking 模块为 Dolphinscheduler 项目提供了 [Skywalki
 
 以下配置用于启用 Skywalking agent。
 
+### 通过配置环境变量 (使用 Docker Compose 部署时)
+
+修改 `docker/docker-swarm/config.env.sh` 文件中的 SKYWALKING 环境变量:
+
+```
+SKYWALKING_ENABLE=true
+SW_AGENT_COLLECTOR_BACKEND_SERVICES=127.0.0.1:11800
+SW_GRPC_LOG_SERVER_HOST=127.0.0.1
+SW_GRPC_LOG_SERVER_PORT=11800
+```
+
+并且运行
+
+```shell
+$ docker-compose up -d
+```
+
 ### 通过配置环境变量 (使用 Docker 部署时)
 
 ```shell
-
-docker run -d --name dolphinscheduler \
-    -e SKYWALKING_ENABLE=true \
-    -e SW_AGENT_COLLECTOR_BACKEND_SERVICES="your.skywalking-oap-server.com:11800" \
-    -e SW_GRPC_LOG_SERVER_HOST="your.skywalking-log-reporter.com" \
-    -e SW_GRPC_LOG_SERVER_PORT="11800"
-    ...
-    apache/dolphinscheduler:latest all
-
+$ docker run -d --name dolphinscheduler \
+-e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
+-e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
+-e ZOOKEEPER_QUORUM="192.168.x.x:2181" \
+-e SKYWALKING_ENABLE="true" \
+-e SW_AGENT_COLLECTOR_BACKEND_SERVICES="your.skywalking-oap-server.com:11800" \
+-e SW_GRPC_LOG_SERVER_HOST="your.skywalking-log-reporter.com" \
+-e SW_GRPC_LOG_SERVER_PORT="11800" \
+-p 12345:12345 \
+apache/dolphinscheduler:1.3.6 all
 ```
 
 ### 通过配置 install_config.conf (使用 Dolphinscheduler install.sh 部署时)
