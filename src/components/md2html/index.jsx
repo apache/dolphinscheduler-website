@@ -86,6 +86,10 @@ const Md2Html = ComposeComponent => class extends ComposeComponent {
         alink.href = href.replace(`docs/${siteConfig.docsLatest}`, 'docs/latest');
       }
     });
+    // convert version to latest
+    let innerHTML = this.markdownContainer.innerHTML.replaceAll(`apache/dolphinscheduler:${siteConfig.docsLatest}`, 'apache/dolphinscheduler:latest');
+    innerHTML = innerHTML.replaceAll('$ docker tag apache/dolphinscheduler:latest apache/dolphinscheduler:latest\n', '').replaceAll(` --set image.tag=${siteConfig.docsLatest}`, '');
+    this.markdownContainer.innerHTML = innerHTML;
   }
 };
 

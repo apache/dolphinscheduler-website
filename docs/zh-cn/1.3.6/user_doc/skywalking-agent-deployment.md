@@ -65,7 +65,7 @@ skywalkingLogReporterPort="11800"
 
 #### 导入图表到 Skywalking server
 
-复制 `${dolphinscheduler.home}/skywalking-agent/dashboard/dolphinscheduler.yml` 文件到 `${skywalking-oap-server.home}/config/ui-initialized-templates/` 目录下，并重启 Skywalking oap-server。
+复制 `${dolphinscheduler.home}/ext/skywalking-agent/dashboard/dolphinscheduler.yml` 文件到 `${skywalking-oap-server.home}/config/ui-initialized-templates/` 目录下，并重启 Skywalking oap-server。
 
 #### 查看 dolphinscheduler 图表
 

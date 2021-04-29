@@ -19,14 +19,16 @@
 
 下载 apache-dolphinscheduler-incubating-1.3.5-src.zip 后，解压缩
 
-```shell
+```
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
 ```
 
-#### 2、安装并启动服务
+#### 2、拉取镜像并启动服务
 
-```shell
+```
 $ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/docker-swarm
+$ docker pull apache/dolphinscheduler:1.3.5
+$ docker tag apache/dolphinscheduler:1.3.5 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 
@@ -183,7 +185,7 @@ docker stack rm dolphinscheduler
 
 类Unix系统, 如下:
 
-```bash
+```sh
 $ sh ./docker/build/hooks/build
 ```
 

@@ -19,14 +19,16 @@ Please download the latest version of the source code package, download address:
 
 After downloading apache-dolphinscheduler-1.3.6-src.tar.gz, uncompress it
 
-```shell
+```
 $ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
 ```
 
-#### 2. Install and Start the Service
+#### 2. Pull Image and Start the Service
 
-```shell
+```
 $ cd apache-dolphinscheduler-1.3.6-src/docker/docker-swarm
+$ docker pull apache/dolphinscheduler:1.3.6
+$ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 
@@ -221,7 +223,7 @@ You can build a docker image in A Unix-like operating system, and you can also b
 
 In Unix-Like, Example:
 
-```bash
+```sh
 $ sh ./docker/build/hooks/build
 ```
 

@@ -19,14 +19,16 @@
 
 下载 apache-dolphinscheduler-1.3.6-src.tar.gz 后，解压缩
 
-```shell
+```
 $ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
 ```
 
-#### 2、安装并启动服务
+#### 2、拉取镜像并启动服务
 
-```shell
+```
 $ cd apache-dolphinscheduler-1.3.6-src/docker/docker-swarm
+$ docker pull apache/dolphinscheduler:1.3.6
+$ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 
@@ -221,7 +223,7 @@ docker stack rm dolphinscheduler
 
 类Unix系统, 如下:
 
-```bash
+```sh
 $ sh ./docker/build/hooks/build
 ```
 

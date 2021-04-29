@@ -14,12 +14,12 @@ After downloading apache-dolphinscheduler-1.3.6-src.tar.gz, uncompress it
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
 
-```bash
+```
 $ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.6-src/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
-$ helm install dolphinscheduler .
+$ helm install dolphinscheduler . --set image.tag=1.3.6
 ```
 
 To install the chart with a namespace named `test`:
