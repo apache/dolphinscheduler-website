@@ -33,7 +33,7 @@ class Home extends Language {
       }
       else {
         this.setState({
-          headerType: 'primary',
+          headerType: 'dark',
         });
       }
     });
@@ -107,7 +107,7 @@ class Home extends Language {
             </div>
             <img src={getLink(dataSource.introduction.img)} />
           </div>
-        </section>
+        </section>      
         <section className="feature-section">
           <h3>{dataSource.features.title}</h3>
           <ul>
@@ -118,6 +118,14 @@ class Home extends Language {
           }
           </ul>
         </section>
+        {/* <section className="news-section">
+          <div className="news-body">        
+            <div className="news">
+              <h3>{dataSource.news.title}</h3>
+              <p>{dataSource.news.desc}</p>
+            </div>
+          </div>
+        </section> */}
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
     );

@@ -12,7 +12,10 @@
   .top-section {
     position: relative;
     height: 720px;
-    background-image: linear-gradient(0deg, $startColor 0%, $intermediateColor 51%, $endColor 100%);
+    //background-image: linear-gradient(0deg, $startColor 0%, $intermediateColor 51%, $endColor 100%);
+    background-image: url(/img/banner.jpg);
+    background-position: center;
+    background-size: cover;
     .animation {
       position: absolute;
       width: 6px;
@@ -48,7 +51,7 @@
     .vertical-middle {
       position: absolute;
       left: 0;
-      top: 50%;
+      top: 40%;
       transform: translateY(-50%);
       box-sizing: border-box;
       width: 100%;
@@ -147,6 +150,36 @@
       text-align: center;
     }
   }
+  .news-section {
+    background: #F9FAFA;
+    position: relative;
+    .news-body {
+      height: 600px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    .news{
+      position: relative;
+      color: #333;
+      margin: 80px auto;
+      h3 {
+        font-family: Avenir-Heavy;
+        font-size: 36px;
+        color: #333;
+        width: 940px;
+        height: 54px;
+      }
+      p {
+        font-family: Avenir-Heavy;
+        font-size: 36px;
+        color: #333;
+        width: 940px;
+        height: 54px;
+      }
+    }
+    
+  }
   .introduction-section {
     background: #F9FAFA;
     .introduction-body {
@@ -154,50 +187,57 @@
       box-sizing: border-box;
       margin: 0 auto;
       min-height: 640px;
-      padding: 0 40px;
+      padding: 0 0px;
       position: relative;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      flex-direction: column;
       &::before {
         content: '';
-        position: absolute;
-        top: 0;
+        position: relative;
+        top: 102px;
         left: 40px;
         opacity: 0.3;
         border-right: 1px solid #666;
       }
       &::after {
         content: '';
-        position: absolute;
+        position: relative;
         left: 39px;
         top: 165px;
         height: 17px;
         background-image: linear-gradient(0deg, $startColor 0%, $intermediateColor 51%, $endColor 100%);
       }
       .introduction {
-        display: inline-block;
-        width: calc(100% - 726px);
+        //display: inline-block;
+        //width: calc(100% - 726px);
         min-width: 300px;
-        max-width: 590px;
+        //max-width: 790px;
+        margin: 80px auto 0px auto;
         h3 {
           font-family: Avenir-Heavy;
+          text-align: center;
           font-size: 36px;
           color: #333;
-          margin-bottom: 40px;
+          margin-bottom: 30px;
           word-break: break-word;
+          width: 940px;
+          height: 54px;
         }
         p {
           opacity: 0.56;
           font-family: Avenir-Medium;
-          font-size: 18px;
-          color: #999;
+          font-size: 22px;
+          width: 940px;
+          height: 64px;
+          color:#130e0e;
         }
       }
       img {
-        width: 562px;
-        margin: 0 82px;
+        width: 880px;
+        height: 425px;
+        margin: 40px 82px;
         max-width: 100%;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.05);
       }
@@ -250,30 +290,47 @@
       padding: 0;
       margin: 0;
       li {
+        width: 240px;
+        height: 430px;
+        text-align: center;
         vertical-align: top;
         display: inline-block;
         margin-bottom: 40px;
-        width: 50%;
+        width: 25%;
+        cursor: pointer;
+        &:hover {
+          box-shadow: 0px 0px 12px 0px rgba(0, 15, 32, 0.1);
+        }
         img {
-          vertical-align: top;
-          width: 60px;
-          height: 60px;
-          margin-right: 20px;
+          margin: 20px auto;
+          // vertical-align: top;
+          width: 74px;
+          height: 74px;
+          // margin-right: 20px;
+          display: block;
         }
         div {
           display: inline-block;
           width: 80%;
           h4 {
             font-family: Avenir-Heavy;
-            font-size: 20px;
+            font-size: 24px;
             color: #333;
             margin-top: 10px;
+            height: 32px;
+            font-weight: 400;
+            color: #333333;
+            line-height: 32px
           }
           p {
+            width: 200px;
+            height: 128px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #666666;
+            line-height: 32px;
+            margin: 30px auto;
             font-family: Avenir-Medium;
-            font-size: 14px;
-            line-height: 20px;
-            color: #999;
           }
         }
       }
