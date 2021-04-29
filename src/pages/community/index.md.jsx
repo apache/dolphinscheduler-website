@@ -21,8 +21,6 @@ class Community extends Md2Html(Language) {
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-      
-
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div

@@ -73,8 +73,6 @@ class Docs extends Md2Html(Language) {
             ref={(node) => { this.markdownContainer = node; }}
             dangerouslySetInnerHTML={{ __html }}
           />
-         
-
         </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>

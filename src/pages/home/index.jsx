@@ -106,7 +106,7 @@ class Home extends Language {
             </div>
             <img src={getLink(dataSource.introduction.img)} />
           </div>
-        </section>      
+        </section>
         <section className="feature-section">
           <h3>{dataSource.features.title}</h3>
           <ul>
