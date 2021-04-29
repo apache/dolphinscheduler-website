@@ -3,7 +3,7 @@ SkyWalking Agent Deployment
 
 The dolphinscheduler-skywalking module provides [Skywalking](https://skywalking.apache.org/) monitor agent for the Dolphinscheduler project.
 
-This document describes how to enable Skywalking 8.4+ support with this module.
+This document describes how to enable Skywalking 8.4+ support with this module (recommended to use SkyWalking 8.5.0).
 
 # Installation
 
@@ -41,7 +41,7 @@ $ docker run -d --name dolphinscheduler \
 apache/dolphinscheduler:1.3.6 all
 ```
 
-### Through install_config.conf configuration (for Dolphinscheduler install.sh)
+### Through install_config.conf configuration (for DolphinScheduler install.sh)
 
 Add the following configurations to `${workDir}/conf/config/install_config.conf`.
 
