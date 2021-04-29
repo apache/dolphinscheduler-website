@@ -13,6 +13,22 @@ Here're 3 ways to quickly install DolphinScheduler
 
 In this way, you need to install [docker-compose](https://docs.docker.com/compose/) as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet
 
+For Windows 10, you can install [Docker Desktop](https://docs.docker.com/docker-for-windows/install/). For Windows 7, 8 and 8.1, you can install [Docker Toolbox](https://github.com/docker/toolbox)
+
+#### 0. Requirements
+
+For Mac user, please configure memory not less than 4GB (Click `Docker Desktop -> Preferences -> Resources -> Memory`)
+
+For Windows Docker Toolbox user, three items need to be configured:
+
+ - Ensure that **hardware virtualization** is enabled which may need to set the BIOS
+ - Configure memory not less than 4G
+   - Open **Oracle VirtualBox Manager**, if you double-click **Docker Quickstart Terminal** and successfully run Docker Toolbox, you will see a Virtual Machine named `default`
+   - Click `Settings -> System -> Motherboard -> Base Memory`
+ - Configure port forwarding
+   - Click `Settings -> Network -> Advanced -> Port Forwarding -> Add`
+   - `Name`, `Host Port` and `Guest Port` all fill in `12345`, regardless of `Host IP` and `Guest IP`
+
 #### 1. Download the Source Code Package
 
 Please download the latest version of the source code package, download address: [download](/en-us/download/download.html)
@@ -31,6 +47,14 @@ $ docker pull apache/dolphinscheduler:1.3.6
 $ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
+
+##### 2.1 For Docker Toolbox on Windows
+
+Just double-click **Docker Quickstart Terminal** and type the above commands
+
+##### 2.2 For Docker Desktop on Windows
+
+Coming soon
 
 #### 3. Login
 
@@ -77,7 +101,7 @@ $ docker run -d --name dolphinscheduler \
 apache/dolphinscheduler:1.3.6 all
 ```
 
-Note: database username and password need to be replaced with your database username and password, 192.168.x.x need to be replaced with your relate zookeeper or database host IP
+Note: database username test and password test need to be replaced with your actual PostgreSQL username and password, 192.168.x.x need to be replaced with your relate PostgreSQL and ZooKeeper host IP
 
 #### 6. Login
 

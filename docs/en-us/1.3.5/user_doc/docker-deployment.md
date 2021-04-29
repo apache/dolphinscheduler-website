@@ -77,7 +77,7 @@ $ docker run -d --name dolphinscheduler \
 apache/dolphinscheduler:1.3.5 all
 ```
 
-Note: database username and password need to be replaced with your database username and password, 192.168.x.x need to be replaced with your relate zookeeper or database host IP
+Note: database username test and password test need to be replaced with your actual PostgreSQL username and password, 192.168.x.x need to be replaced with your relate PostgreSQL and ZooKeeper host IP
 
 #### 6. Login
 
