@@ -77,7 +77,7 @@ $ docker run -d --name dolphinscheduler \
 apache/dolphinscheduler:1.3.4 all
 ```
 
-注：数据库用户和密码需要替换为具体的数据库用户名和密码，192.168.x.x 需要替换为 zookeeper 和 数据库的主机 IP
+注：数据库用户 test 和密码 test 需要替换为实际的 PostgreSQL 用户和密码，192.168.x.x 需要替换为 PostgreSQL 和 ZooKeeper 的主机 IP
 
 #### 6、登录系统
 

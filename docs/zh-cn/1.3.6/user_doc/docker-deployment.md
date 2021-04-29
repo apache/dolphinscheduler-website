@@ -13,6 +13,22 @@
 
 这种方式需要先安装 [docker-compose](https://docs.docker.com/compose/) , docker-compose 的安装网上已经有非常多的资料，请自行安装即可
 
+对于 Windows 10，你可以安装 [Docker Desktop](https://docs.docker.com/docker-for-windows/install/)。对于 Windows 7, 8 和 8.1, 你可以安装 [Docker Toolbox](https://github.com/docker/toolbox)
+
+#### 0、要求
+
+对于 Mac 用户，请配置内存不少于 4GB (点击 `Docker Desktop -> Preferences -> Resources -> Memory`)
+
+对于 Windows Docker Toolbox 用户，有三项需要配置：
+
+ - 确保**硬件虚拟化**开启，它可能需要设置 BIOS
+ - 配置内存不少于 4GB
+   - 打开 **Oracle VirtualBox Manager**，如果你双击 **Docker Quickstart Terminal** 并成功运行 Docker Toolbox，你将会看到一个名为 `default` 的虚拟机
+   - 点击 `设置 -> 系统 -> 主板 -> 内存大小`
+ - 配置端口转发
+   - 点击 `设置 -> 网络 -> 高级 -> 端口转发 -> 添加`
+   - `名称`，`主机端口` 和 `子系统端口` 都填写 `12345`，不填 `主机IP` 和 `子系统IP`
+
 #### 1、下载源码包
 
 请下载最新版本的源码包，下载地址: [下载](/zh-cn/download/download.html)
@@ -31,6 +47,14 @@ $ docker pull apache/dolphinscheduler:1.3.6
 $ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
+
+##### 2.1 For Docker Toolbox on Windows
+
+双击 **Docker Quickstart Terminal** 并键入以上命令即可
+
+##### 2.2 For Docker Desktop on Windows
+
+即将到来
 
 #### 3、登录系统
 
@@ -77,7 +101,7 @@ $ docker run -d --name dolphinscheduler \
 apache/dolphinscheduler:1.3.6 all
 ```
 
-注：数据库用户和密码需要替换为具体的数据库用户名和密码，192.168.x.x 需要替换为 zookeeper 和 数据库的主机 IP
+注：数据库用户 test 和密码 test 需要替换为实际的 PostgreSQL 用户和密码，192.168.x.x 需要替换为 PostgreSQL 和 ZooKeeper 的主机 IP
 
 #### 6、登录系统
 
