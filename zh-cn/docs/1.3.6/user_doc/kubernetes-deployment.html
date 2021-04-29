@@ -306,7 +306,7 @@ COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 <p>推送 docker 镜像 <code>apache/dolphinscheduler:mysql-driver</code> 到一个 docker registry 中</p>
 </li>
 <li>
-<p>修改 <code>values.yaml</code> 文件中 image 的 <code>repository</code> 字段， 并更新 <code>tag</code> 为 <code>mysql-driver</code></p>
+<p>修改 <code>values.yaml</code> 文件中 image 的 <code>repository</code> 字段，并更新 <code>tag</code> 为 <code>mysql-driver</code></p>
 </li>
 <li>
 <p>修改 <code>values.yaml</code> 文件中 postgresql 的 <code>enabled</code> 为 <code>false</code></p>
@@ -354,7 +354,7 @@ COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 <p>推送 docker 镜像 <code>apache/dolphinscheduler:mysql-driver</code> 到一个 docker registry 中</p>
 </li>
 <li>
-<p>修改 <code>values.yaml</code> 文件中 image 的 <code>repository</code> 字段， 并更新 <code>tag</code> 为 <code>mysql-driver</code></p>
+<p>修改 <code>values.yaml</code> 文件中 image 的 <code>repository</code> 字段，并更新 <code>tag</code> 为 <code>mysql-driver</code></p>
 </li>
 <li>
 <p>部署 dolphinscheduler (详见<strong>安装 dolphinscheduler</strong>)</p>
@@ -389,7 +389,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <p>推送 docker 镜像 <code>apache/dolphinscheduler:oracle-driver</code> 到一个 docker registry 中</p>
 </li>
 <li>
-<p>修改 <code>values.yaml</code> 文件中 image 的 <code>repository</code> 字段， 并更新 <code>tag</code> 为 <code>oracle-driver</code></p>
+<p>修改 <code>values.yaml</code> 文件中 image 的 <code>repository</code> 字段，并更新 <code>tag</code> 为 <code>oracle-driver</code></p>
 </li>
 <li>
 <p>部署 dolphinscheduler (详见<strong>安装 dolphinscheduler</strong>)</p>
@@ -398,9 +398,9 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <p>在数据源中心添加一个 Oracle 数据源</p>
 </li>
 </ol>
-<h3>How to support Python 2 pip and custom requirements.txt?</h3>
+<h3>如何支持 Python 2 pip 以及自定义 requirements.txt？</h3>
 <ol>
-<li>Create a new <code>Dockerfile</code> to install pip:</li>
+<li>创建一个新的 <code>Dockerfile</code>，用于安装 pip:</li>
 </ol>
 <pre><code>FROM apache/dolphinscheduler:1.3.6
 COPY requirements.txt /tmp
@@ -409,84 +409,84 @@ RUN apt-get update &amp;&amp; \
     pip install --no-cache-dir -r /tmp/requirements.txt &amp;&amp; \
     rm -rf /var/lib/apt/lists/*
 </code></pre>
-<p>The command will install the default <strong>pip 18.1</strong>. If you upgrade the pip, just add one line</p>
+<p>这个命令会安装默认的 <strong>pip 18.1</strong>. 如果你想升级 pip, 只需添加一行</p>
 <pre><code>    pip install --no-cache-dir -U pip &amp;&amp; \
 </code></pre>
 <ol start="2">
-<li>Build a new docker image including pip:</li>
+<li>构建一个包含 pip 的新镜像:</li>
 </ol>
 <pre><code>docker build -t apache/dolphinscheduler:pip .
 </code></pre>
 <ol start="3">
 <li>
-<p>Push the docker image <code>apache/dolphinscheduler:pip</code> to a docker registry</p>
+<p>推送 docker 镜像 <code>apache/dolphinscheduler:pip</code> 到一个 docker registry 中</p>
 </li>
 <li>
-<p>Modify image <code>repository</code> and update <code>tag</code> to <code>pip</code> in <code>values.yaml</code></p>
+<p>修改 <code>values.yaml</code> 文件中 image 的 <code>repository</code> 字段，并更新 <code>tag</code> 为 <code>pip</code></p>
 </li>
 <li>
-<p>Run a DolphinScheduler release in Kubernetes (See <strong>Installing the Chart</strong>)</p>
+<p>部署 dolphinscheduler (详见<strong>安装 dolphinscheduler</strong>)</p>
 </li>
 <li>
-<p>Verify pip under a new Python task</p>
+<p>在一个新 Python 任务下验证 pip</p>
 </li>
 </ol>
-<h3>How to support Python 3?</h3>
+<h3>如何支持 Python 3？</h3>
 <ol>
-<li>Create a new <code>Dockerfile</code> to install Python 3:</li>
+<li>创建一个新的 <code>Dockerfile</code>，用于安装 Python 3:</li>
 </ol>
 <pre><code>FROM apache/dolphinscheduler:1.3.6
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python3 &amp;&amp; \
     rm -rf /var/lib/apt/lists/*
 </code></pre>
-<p>The command will install the default <strong>Python 3.7.3</strong>. If you also want to install <strong>pip3</strong>, just replace <code>python3</code> with <code>python3-pip</code> like</p>
+<p>这个命令会安装默认的 <strong>Python 3.7.3</strong>. 如果你也想安装 <strong>pip3</strong>, 将 <code>python3</code> 替换为 <code>python3-pip</code> 即可</p>
 <pre><code>    apt-get install -y --no-install-recommends python3-pip &amp;&amp; \
 </code></pre>
 <ol start="2">
-<li>Build a new docker image including Python 3:</li>
+<li>构建一个包含 Python 3 的新镜像:</li>
 </ol>
 <pre><code>docker build -t apache/dolphinscheduler:python3 .
 </code></pre>
 <ol start="3">
 <li>
-<p>Push the docker image <code>apache/dolphinscheduler:python3</code> to a docker registry</p>
+<p>推送 docker 镜像 <code>apache/dolphinscheduler:python3</code> 到一个 docker registry 中</p>
 </li>
 <li>
-<p>Modify image <code>repository</code> and update <code>tag</code> to <code>python3</code> in <code>values.yaml</code></p>
+<p>修改 <code>values.yaml</code> 文件中 image 的 <code>repository</code> 字段，并更新 <code>tag</code> 为 <code>python3</code></p>
 </li>
 <li>
-<p>Modify <code>PYTHON_HOME</code> to <code>/usr/bin/python3</code> in <code>values.yaml</code></p>
+<p>修改 <code>values.yaml</code> 文件中的 <code>PYTHON_HOME</code> 为 <code>/usr/bin/python3</code></p>
 </li>
 <li>
-<p>Run a DolphinScheduler release in Kubernetes (See <strong>Installing the Chart</strong>)</p>
+<p>部署 dolphinscheduler (详见<strong>安装 dolphinscheduler</strong>)</p>
 </li>
 <li>
-<p>Verify Python 3 under a new Python task</p>
+<p>在一个新 Python 任务下验证 Python 3</p>
 </li>
 </ol>
-<h3>How to support Hadoop, Spark, Flink, Hive or DataX?</h3>
-<p>Take Spark 2.4.7 as an example:</p>
+<h3>如何支持 Hadoop, Spark, Flink, Hive 或 DataX？</h3>
+<p>以 Spark 2.4.7 为例:</p>
 <ol>
 <li>
-<p>Download the Spark 2.4.7 release binary <code>spark-2.4.7-bin-hadoop2.7.tgz</code></p>
+<p>下载 Spark 2.4.7 发布的二进制包 <code>spark-2.4.7-bin-hadoop2.7.tgz</code></p>
 </li>
 <li>
-<p>Ensure that <code>common.sharedStoragePersistence.enabled</code> is turned on</p>
+<p>确保 <code>common.sharedStoragePersistence.enabled</code> 开启</p>
 </li>
 <li>
-<p>Run a DolphinScheduler release in Kubernetes (See <strong>Installing the Chart</strong>)</p>
+<p>部署 dolphinscheduler (详见<strong>安装 dolphinscheduler</strong>)</p>
 </li>
 <li>
-<p>Copy the Spark 2.4.7 release binary into Docker container</p>
+<p>复制 Spark 3.1.1 二进制包到 Docker 容器中</p>
 </li>
 </ol>
 <pre><code class="language-bash">kubectl cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
 kubectl cp -n <span class="hljs-built_in">test</span> spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft <span class="hljs-comment"># with test namespace</span>
 </code></pre>
-<p>Because the volume <code>sharedStoragePersistence</code> is mounted on <code>/opt/soft</code>, all files in <code>/opt/soft</code> will not be lost</p>
+<p>因为存储卷 <code>sharedStoragePersistence</code> 被挂载到 <code>/opt/soft</code>, 因此 <code>/opt/soft</code> 中的所有文件都不会丢失</p>
 <ol start="5">
-<li>Attach the container and ensure that <code>SPARK_HOME2</code> exists</li>
+<li>登录到容器并确保 <code>SPARK_HOME2</code> 存在</li>
 </ol>
 <pre><code class="language-bash">kubectl <span class="hljs-built_in">exec</span> -it dolphinscheduler-worker-0 bash
 kubectl <span class="hljs-built_in">exec</span> -n <span class="hljs-built_in">test</span> -it dolphinscheduler-worker-0 bash <span class="hljs-comment"># with test namespace</span>
@@ -496,51 +496,51 @@ rm -f spark-2.4.7-bin-hadoop2.7.tgz
 ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
 <span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
 </code></pre>
-<p>The last command will print Spark version if everything goes well</p>
+<p>如果一切执行正常，最后一条命令将会打印 Spark 版本信息</p>
 <ol start="6">
-<li>Verify Spark under a Shell task</li>
+<li>在一个 Shell 任务下验证 Spark</li>
 </ol>
 <pre><code>$SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.11-2.4.7.jar
 </code></pre>
-<p>Check whether the task log contains the output like <code>Pi is roughly 3.146015</code></p>
+<p>检查任务日志是否包含输出 <code>Pi is roughly 3.146015</code></p>
 <ol start="7">
-<li>Verify Spark under a Spark task</li>
+<li>在一个 Spark 任务下验证 Spark</li>
 </ol>
-<p>The file <code>spark-examples_2.11-2.4.7.jar</code> needs to be uploaded to the resources first, and then create a Spark task with:</p>
+<p>文件 <code>spark-examples_2.11-2.4.7.jar</code> 需要先被上传到资源中心，然后创建一个 Spark 任务并设置:</p>
 <ul>
-<li>Spark Version: <code>SPARK2</code></li>
-<li>Main Class: <code>org.apache.spark.examples.SparkPi</code></li>
-<li>Main Package: <code>spark-examples_2.11-2.4.7.jar</code></li>
-<li>Deploy Mode: <code>local</code></li>
+<li>Spark版本: <code>SPARK2</code></li>
+<li>主函数的Class: <code>org.apache.spark.examples.SparkPi</code></li>
+<li>主程序包: <code>spark-examples_2.11-2.4.7.jar</code></li>
+<li>部署方式: <code>local</code></li>
 </ul>
-<p>Similarly, check whether the task log contains the output like <code>Pi is roughly 3.146015</code></p>
+<p>同样地, 检查任务日志是否包含输出 <code>Pi is roughly 3.146015</code></p>
 <ol start="8">
-<li>Verify Spark on YARN</li>
+<li>验证 Spark on YARN</li>
 </ol>
-<p>Spark on YARN (Deploy Mode is <code>cluster</code> or <code>client</code>) requires Hadoop support. Similar to Spark support, the operation of supporting Hadoop is almost the same as the previous steps</p>
-<p>Ensure that <code>$HADOOP_HOME</code> and <code>$HADOOP_CONF_DIR</code> exists</p>
-<h3>How to support Spark 3?</h3>
-<p>In fact, the way to submit applications with <code>spark-submit</code> is the same, regardless of Spark 1, 2 or 3. In other words, the semantics of <code>SPARK_HOME2</code> is the second <code>SPARK_HOME</code> instead of <code>SPARK2</code>'s <code>HOME</code>, so just set <code>SPARK_HOME2=/path/to/spark3</code></p>
-<p>Take Spark 3.1.1 as an example:</p>
+<p>Spark on YARN (部署方式为 <code>cluster</code> 或 <code>client</code>) 需要 Hadoop 支持. 类似于 Spark 支持, 支持 Hadoop 的操作几乎和前面的步骤相同</p>
+<p>确保 <code>$HADOOP_HOME</code> 和 <code>$HADOOP_CONF_DIR</code> 存在</p>
+<h3>如何支持 Spark 3？</h3>
+<p>事实上，使用 <code>spark-submit</code> 提交应用的方式是相同的, 无论是 Spark 1, 2 或 3. 换句话说，<code>SPARK_HOME2</code> 的语义是第二个 <code>SPARK_HOME</code>, 而非 <code>SPARK2</code> 的 <code>HOME</code>, 因此只需设置 <code>SPARK_HOME2=/path/to/spark3</code> 即可</p>
+<p>以 Spark 3.1.1 为例:</p>
 <ol>
 <li>
-<p>Download the Spark 3.1.1 release binary <code>spark-3.1.1-bin-hadoop2.7.tgz</code></p>
+<p>下载 Spark 3.1.1 发布的二进制包 <code>spark-3.1.1-bin-hadoop2.7.tgz</code></p>
 </li>
 <li>
-<p>Ensure that <code>common.sharedStoragePersistence.enabled</code> is turned on</p>
+<p>确保 <code>common.sharedStoragePersistence.enabled</code> 开启</p>
 </li>
 <li>
-<p>Run a DolphinScheduler release in Kubernetes (See <strong>Installing the Chart</strong>)</p>
+<p>部署 dolphinscheduler (详见<strong>安装 dolphinscheduler</strong>)</p>
 </li>
 <li>
-<p>Copy the Spark 3.1.1 release binary into Docker container</p>
+<p>复制 Spark 3.1.1 二进制包到 Docker 容器中</p>
 </li>
 </ol>
 <pre><code class="language-bash">kubectl cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
 kubectl cp -n <span class="hljs-built_in">test</span> spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft <span class="hljs-comment"># with test namespace</span>
 </code></pre>
 <ol start="5">
-<li>Attach the container and ensure that <code>SPARK_HOME2</code> exists</li>
+<li>登录到容器并确保 <code>SPARK_HOME2</code> 存在</li>
 </ol>
 <pre><code class="language-bash">kubectl <span class="hljs-built_in">exec</span> -it dolphinscheduler-worker-0 bash
 kubectl <span class="hljs-built_in">exec</span> -n <span class="hljs-built_in">test</span> -it dolphinscheduler-worker-0 bash <span class="hljs-comment"># with test namespace</span>
@@ -550,17 +550,17 @@ rm -f spark-3.1.1-bin-hadoop2.7.tgz
 ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
 <span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
 </code></pre>
-<p>The last command will print Spark version if everything goes well</p>
+<p>如果一切执行正常，最后一条命令将会打印 Spark 版本信息</p>
 <ol start="6">
-<li>Verify Spark under a Shell task</li>
+<li>在一个 Shell 任务下验证 Spark</li>
 </ol>
 <pre><code>$SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.12-3.1.1.jar
 </code></pre>
-<p>Check whether the task log contains the output like <code>Pi is roughly 3.146015</code></p>
-<h3>How to support shared storage between Master, Worker and Api server?</h3>
-<p>For example, Master, Worker and Api server may use Hadoop at the same time</p>
+<p>检查任务日志是否包含输出 <code>Pi is roughly 3.146015</code></p>
+<h3>如何在 Master、Worker 和 Api 服务之间支持共享存储？</h3>
+<p>例如, Master、Worker 和 Api 服务可能同时使用 Hadoop</p>
 <ol>
-<li>Modify the following configurations in <code>values.yaml</code></li>
+<li>修改 <code>values.yaml</code> 文件中下面的配置项</li>
 </ol>
 <pre><code class="language-yaml"><span class="hljs-attr">common:</span>
   <span class="hljs-attr">sharedStoragePersistence:</span>
@@ -571,20 +571,20 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
     <span class="hljs-attr">storageClassName:</span> <span class="hljs-string">&quot;-&quot;</span>
     <span class="hljs-attr">storage:</span> <span class="hljs-string">&quot;20Gi&quot;</span>
 </code></pre>
-<p><code>storageClassName</code> and <code>storage</code> need to be modified to actual values</p>
+<p><code>storageClassName</code> 和 <code>storage</code> 需要被修改为实际值</p>
 <blockquote>
-<p><strong>Note</strong>: <code>storageClassName</code> must support the access mode: <code>ReadWriteMany</code></p>
+<p><strong>注意</strong>: <code>storageClassName</code> 必须支持访问模式: <code>ReadWriteMany</code></p>
 </blockquote>
 <ol start="2">
 <li>
-<p>Put the Hadoop into the nfs</p>
+<p>将 Hadoop 复制到目录 <code>/opt/soft</code></p>
 </li>
 <li>
-<p>Ensure that <code>$HADOOP_HOME</code> and <code>$HADOOP_CONF_DIR</code> are correct</p>
+<p>确保 <code>$HADOOP_HOME</code> 和 <code>$HADOOP_CONF_DIR</code> 正确</p>
 </li>
 </ol>
-<h3>How to support local file resource storage instead of HDFS and S3?</h3>
-<p>Modify the following configurations in <code>values.yaml</code></p>
+<h3>如何支持本地文件存储而非 HDFS 和 S3？</h3>
+<p>修改 <code>values.yaml</code> 文件中下面的配置项</p>
 <pre><code class="language-yaml"><span class="hljs-attr">common:</span>
   <span class="hljs-attr">configmap:</span>
     <span class="hljs-attr">RESOURCE_STORAGE_TYPE:</span> <span class="hljs-string">&quot;HDFS&quot;</span>
@@ -597,12 +597,12 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
     <span class="hljs-attr">storageClassName:</span> <span class="hljs-string">&quot;-&quot;</span>
     <span class="hljs-attr">storage:</span> <span class="hljs-string">&quot;20Gi&quot;</span>
 </code></pre>
-<p><code>storageClassName</code> and <code>storage</code> need to be modified to actual values</p>
+<p><code>storageClassName</code> 和 <code>storage</code> 需要被修改为实际值</p>
 <blockquote>
-<p><strong>Note</strong>: <code>storageClassName</code> must support the access mode: <code>ReadWriteMany</code></p>
+<p><strong>注意</strong>: <code>storageClassName</code> 必须支持访问模式: <code>ReadWriteMany</code></p>
 </blockquote>
-<h3>How to support S3 resource storage like MinIO?</h3>
-<p>Take MinIO as an example: Modify the following configurations in <code>values.yaml</code></p>
+<h3>如何支持 S3 资源存储，例如 MinIO？</h3>
+<p>以 MinIO 为例: 修改 <code>values.yaml</code> 文件中下面的配置项</p>
 <pre><code class="language-yaml"><span class="hljs-attr">common:</span>
   <span class="hljs-attr">configmap:</span>
     <span class="hljs-attr">RESOURCE_STORAGE_TYPE:</span> <span class="hljs-string">&quot;S3&quot;</span>
@@ -612,12 +612,12 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
     <span class="hljs-attr">FS_S3A_ACCESS_KEY:</span> <span class="hljs-string">&quot;MINIO_ACCESS_KEY&quot;</span>
     <span class="hljs-attr">FS_S3A_SECRET_KEY:</span> <span class="hljs-string">&quot;MINIO_SECRET_KEY&quot;</span>
 </code></pre>
-<p><code>BUCKET_NAME</code>, <code>MINIO_IP</code>, <code>MINIO_ACCESS_KEY</code> and <code>MINIO_SECRET_KEY</code> need to be modified to actual values</p>
+<p><code>BUCKET_NAME</code>, <code>MINIO_IP</code>, <code>MINIO_ACCESS_KEY</code> 和 <code>MINIO_SECRET_KEY</code> 需要被修改为实际值</p>
 <blockquote>
-<p><strong>Note</strong>: <code>MINIO_IP</code> can only use IP instead of domain name, because DolphinScheduler currently doesn't support S3 path style access</p>
+<p><strong>注意</strong>: <code>MINIO_IP</code> 只能使用 IP 而非域名, 因为 DolphinScheduler 尚不支持 S3 路径风格访问 (S3 path style access)</p>
 </blockquote>
-<h3>How to configure SkyWalking?</h3>
-<p>Modify SKYWALKING configurations in <code>values.yaml</code>:</p>
+<h3>如何配置 SkyWalking？</h3>
+<p>修改 <code>values.yaml</code> 文件中的 SKYWALKING 配置项</p>
 <pre><code class="language-yaml"><span class="hljs-attr">common:</span>
   <span class="hljs-attr">configmap:</span>
     <span class="hljs-attr">SKYWALKING_ENABLE:</span> <span class="hljs-string">&quot;true&quot;</span>
