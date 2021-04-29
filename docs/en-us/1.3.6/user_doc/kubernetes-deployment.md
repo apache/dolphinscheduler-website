@@ -468,7 +468,7 @@ common:
 
 > **Note**: `storageClassName` must support the access mode: `ReadWriteMany`
 
-2. Put the Hadoop into the nfs
+2. Copy the Hadoop into the directory `/opt/soft`
 
 3. Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` are correct
 
