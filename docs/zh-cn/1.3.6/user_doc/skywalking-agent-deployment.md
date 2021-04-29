@@ -3,7 +3,7 @@ SkyWalking Agent 部署
 
 dolphinscheduler-skywalking 模块为 Dolphinscheduler 项目提供了 [Skywalking](https://skywalking.apache.org/) 监控代理。
 
-本文档介绍了如何通过此模块接入 Skywalking 8.4+。
+本文档介绍了如何通过此模块接入 SkyWalking 8.4+ (推荐使用8.5.0)。
 
 # 安装
 
@@ -41,7 +41,7 @@ $ docker run -d --name dolphinscheduler \
 apache/dolphinscheduler:1.3.6 all
 ```
 
-### 通过配置 install_config.conf (使用 Dolphinscheduler install.sh 部署时)
+### 通过配置 install_config.conf (使用 DolphinScheduler install.sh 部署时)
 
 添加以下配置到 `${workDir}/conf/config/install_config.conf`.
 
