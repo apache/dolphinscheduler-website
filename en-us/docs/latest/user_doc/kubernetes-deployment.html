@@ -249,6 +249,37 @@ NODE_PORT=$(kubectl get svc {{ template <span class="hljs-string">&quot;dolphins
 </tbody>
 </table>
 <h2>FAQ</h2>
+<h3>How to view the logs of a pod container?</h3>
+<p>List all pods (aka <code>po</code>):</p>
+<pre><code>kubectl get po
+kubectl get po -n test # with test namespace
+</code></pre>
+<p>View the logs of a pod container named dolphinscheduler-master-0:</p>
+<pre><code>kubectl logs dolphinscheduler-master-0
+kubectl logs -f dolphinscheduler-master-0 # follow log output
+kubectl logs --tail 10 dolphinscheduler-master-0 -n test # show last 10 lines from the end of the logs
+</code></pre>
+<h3>How to scale api, master and worker on Kubernetes?</h3>
+<p>List all deployments (aka <code>deploy</code>):</p>
+<pre><code>kubectl get deploy
+kubectl get deploy -n test # with test namespace
+</code></pre>
+<p>Scale api to 3 replicas:</p>
+<pre><code>kubectl scale --replicas=3 deploy dolphinscheduler-api
+kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
+</code></pre>
+<p>List all statefulsets (aka <code>sts</code>):</p>
+<pre><code>kubectl get sts
+kubectl get sts -n test # with test namespace
+</code></pre>
+<p>Scale master to 2 replicas:</p>
+<pre><code>kubectl scale --replicas=2 sts dolphinscheduler-master
+kubectl scale --replicas=2 sts dolphinscheduler-master -n test # with test namespace
+</code></pre>
+<p>Scale worker to 6 replicas:</p>
+<pre><code>kubectl scale --replicas=6 sts dolphinscheduler-worker
+kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
+</code></pre>
 <h3>How to use MySQL as the DolphinScheduler's database instead of PostgreSQL?</h3>
 <blockquote>
 <p>Because of the commercial license, we cannot directly use the driver of MySQL.</p>
