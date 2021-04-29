@@ -11,7 +11,7 @@
 
 ### 一、以 docker-compose 的方式启动 DolphinScheduler (推荐)
 
-这种方式需要先安装 [docker-compose](https://docs.docker.com/compose/) , docker-compose 的安装网上已经有非常多的资料，请自行安装即可
+这种方式需要先安装 [docker-compose](https://docs.docker.com/compose/), docker-compose 的安装网上已经有非常多的资料，请自行安装即可
 
 #### 1、下载源码包
 
