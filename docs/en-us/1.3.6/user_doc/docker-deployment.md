@@ -187,12 +187,21 @@ Especially, it can be configured through the environment variable configuration 
 
 ## FAQ
 
-### How to stop DolphinScheduler by docker-compose?
+### How to manage DolphinScheduler by docker-compose?
 
-Stop containers:
+Start, restart, stop or list containers:
 
 ```
+docker-compose start
+docker-compose restart
 docker-compose stop
+docker-compose ps
+```
+
+Stop containers and remove containers, networks:
+
+```
+docker-compose down
 ```
 
 Stop containers and remove containers, networks and volumes:
@@ -201,20 +210,77 @@ Stop containers and remove containers, networks and volumes:
 docker-compose down -v
 ```
 
+### How to view the logs of a container?
+
+List all running containers:
+
+```
+docker ps
+docker ps --format "{{.Names}}" # only print names
+```
+
+View the logs of a container named docker-swarm_dolphinscheduler-api_1:
+
+```
+docker logs docker-swarm_dolphinscheduler-api_1
+docker logs -f docker-swarm_dolphinscheduler-api_1 # follow log output
+docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # show last 10 lines from the end of the logs
+```
+
+### How to scale master and worker by docker-compose?
+
+Scale master to 2 instances:
+
+```
+docker-compose up -d --scale dolphinscheduler-master=2 dolphinscheduler-master
+```
+
+Scale worker to 3 instances:
+
+```
+docker-compose up -d --scale dolphinscheduler-worker=3 dolphinscheduler-worker
+```
+
 ### How to deploy DolphinScheduler on Docker Swarm?
 
 Assuming that the Docker Swarm cluster has been created (If there is no Docker Swarm cluster, please refer to [create-swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/))
 
-Start a stack named dolphinscheduler
+Start a stack named dolphinscheduler:
 
 ```
 docker stack deploy -c docker-stack.yml dolphinscheduler
 ```
 
-Stop and remove the stack named dolphinscheduler
+List the services in the stack named dolphinscheduler:
+
+```
+docker stack services dolphinscheduler
+```
+
+Stop and remove the stack named dolphinscheduler:
 
 ```
 docker stack rm dolphinscheduler
+```
+
+Remove the volumes of the stack named dolphinscheduler:
+
+```
+docker volume rm -f $(docker volume ls --format "{{.Name}}" | grep -e "^dolphinscheduler")
+```
+
+### How to scale master and worker on Docker Swarm?
+
+Scale master of the stack named dolphinscheduler to 2 instances:
+
+```
+docker service scale dolphinscheduler_dolphinscheduler-master=2
+```
+
+Scale worker of the stack named dolphinscheduler to 3 instances:
+
+```
+docker service scale dolphinscheduler_dolphinscheduler-worker=3
 ```
 
 ### How to build a Docker image?

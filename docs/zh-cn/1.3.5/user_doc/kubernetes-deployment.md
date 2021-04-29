@@ -79,6 +79,60 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 
 ## FAQ
 
+### 如何查看一个 pod 容器的日志？
+
+列出所有 pods (别名 `po`):
+
+```
+kubectl get po
+kubectl get po -n test # with test namespace
+```
+
+查看名为 dolphinscheduler-master-0 的 pod 容器的日志:
+
+```
+kubectl logs dolphinscheduler-master-0
+kubectl logs -f dolphinscheduler-master-0 # 跟随日志输出
+kubectl logs --tail 10 dolphinscheduler-master-0 -n test # 显示倒数10行日志
+```
+
+### 如何在 Kubernetes 上扩缩容 api, master 和 worker？
+
+列出所有 deployments (别名 `deploy`):
+
+```
+kubectl get deploy
+kubectl get deploy -n test # with test namespace
+```
+
+扩缩容 api 至 3 个副本:
+
+```
+kubectl scale --replicas=3 deploy dolphinscheduler-api
+kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
+```
+
+列出所有 statefulsets (别名 `sts`):
+
+```
+kubectl get sts
+kubectl get sts -n test # with test namespace
+```
+
+扩缩容 master 至 2 个副本:
+
+```
+kubectl scale --replicas=2 sts dolphinscheduler-master
+kubectl scale --replicas=2 sts dolphinscheduler-master -n test # with test namespace
+```
+
+扩缩容 worker 至 6 个副本:
+
+```
+kubectl scale --replicas=6 sts dolphinscheduler-worker
+kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
+```
+
 ### 如何用 MySQL 替代 PostgreSQL 作为 DolphinScheduler 的数据库？
 
 尚不支持，1.3.6 版本将支持
