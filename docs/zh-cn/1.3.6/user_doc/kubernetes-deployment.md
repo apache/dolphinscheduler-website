@@ -204,7 +204,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 4. 推送 docker 镜像 `apache/dolphinscheduler:mysql-driver` 到一个 docker registry 中
 
-5. 修改 `values.yaml` 文件中 image 的 `repository` 字段， 并更新 `tag` 为 `mysql-driver`
+5. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `mysql-driver`
 
 6. 修改 `values.yaml` 文件中 postgresql 的 `enabled` 为 `false`
 
@@ -247,7 +247,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 4. 推送 docker 镜像 `apache/dolphinscheduler:mysql-driver` 到一个 docker registry 中
 
-5. 修改 `values.yaml` 文件中 image 的 `repository` 字段， 并更新 `tag` 为 `mysql-driver`
+5. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `mysql-driver`
 
 6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
@@ -276,15 +276,15 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 4. 推送 docker 镜像 `apache/dolphinscheduler:oracle-driver` 到一个 docker registry 中
 
-5. 修改 `values.yaml` 文件中 image 的 `repository` 字段， 并更新 `tag` 为 `oracle-driver`
+5. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `oracle-driver`
 
 6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
 7. 在数据源中心添加一个 Oracle 数据源
 
-### How to support Python 2 pip and custom requirements.txt?
+### 如何支持 Python 2 pip 以及自定义 requirements.txt？
 
-1. Create a new `Dockerfile` to install pip:
+1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
 FROM apache/dolphinscheduler:1.3.6
@@ -295,29 +295,29 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 ```
 
-The command will install the default **pip 18.1**. If you upgrade the pip, just add one line
+这个命令会安装默认的 **pip 18.1**. 如果你想升级 pip, 只需添加一行
 
 ```
     pip install --no-cache-dir -U pip && \
 ```
 
-2. Build a new docker image including pip:
+2. 构建一个包含 pip 的新镜像:
 
 ```
 docker build -t apache/dolphinscheduler:pip .
 ```
 
-3. Push the docker image `apache/dolphinscheduler:pip` to a docker registry
+3. 推送 docker 镜像 `apache/dolphinscheduler:pip` 到一个 docker registry 中
 
-4. Modify image `repository` and update `tag` to `pip` in `values.yaml`
+4. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `pip`
 
-5. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+5. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
-6. Verify pip under a new Python task
+6. 在一个新 Python 任务下验证 pip
 
-### How to support Python 3?
+### 如何支持 Python 3？
 
-1. Create a new `Dockerfile` to install Python 3:
+1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
 FROM apache/dolphinscheduler:1.3.6
@@ -326,48 +326,48 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 ```
 
-The command will install the default **Python 3.7.3**. If you also want to install **pip3**, just replace `python3` with `python3-pip` like
+这个命令会安装默认的 **Python 3.7.3**. 如果你也想安装 **pip3**, 将 `python3` 替换为 `python3-pip` 即可
 
 ```
     apt-get install -y --no-install-recommends python3-pip && \
 ```
 
-2. Build a new docker image including Python 3:
+2. 构建一个包含 Python 3 的新镜像:
 
 ```
 docker build -t apache/dolphinscheduler:python3 .
 ```
 
-3. Push the docker image `apache/dolphinscheduler:python3` to a docker registry
+3. 推送 docker 镜像 `apache/dolphinscheduler:python3` 到一个 docker registry 中
 
-4. Modify image `repository` and update `tag` to `python3` in `values.yaml`
+4. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `python3`
 
-5. Modify `PYTHON_HOME` to `/usr/bin/python3` in `values.yaml`
+5. 修改 `values.yaml` 文件中的 `PYTHON_HOME` 为 `/usr/bin/python3`
 
-6. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
-7. Verify Python 3 under a new Python task
+7. 在一个新 Python 任务下验证 Python 3
 
-### How to support Hadoop, Spark, Flink, Hive or DataX?
+### 如何支持 Hadoop, Spark, Flink, Hive 或 DataX？
 
-Take Spark 2.4.7 as an example:
+以 Spark 2.4.7 为例:
 
-1. Download the Spark 2.4.7 release binary `spark-2.4.7-bin-hadoop2.7.tgz`
+1. 下载 Spark 2.4.7 发布的二进制包 `spark-2.4.7-bin-hadoop2.7.tgz`
 
-2. Ensure that `common.sharedStoragePersistence.enabled` is turned on
+2. 确保 `common.sharedStoragePersistence.enabled` 开启
 
-3. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+3. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
-4. Copy the Spark 2.4.7 release binary into Docker container
+4. 复制 Spark 3.1.1 二进制包到 Docker 容器中
 
 ```bash
 kubectl cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
 kubectl cp -n test spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft # with test namespace
 ```
 
-Because the volume `sharedStoragePersistence` is mounted on `/opt/soft`, all files in `/opt/soft` will not be lost
+因为存储卷 `sharedStoragePersistence` 被挂载到 `/opt/soft`, 因此 `/opt/soft` 中的所有文件都不会丢失
 
-5. Attach the container and ensure that `SPARK_HOME2` exists
+5. 登录到容器并确保 `SPARK_HOME2` 存在
 
 ```bash
 kubectl exec -it dolphinscheduler-worker-0 bash
@@ -379,53 +379,53 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 # or just mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
-The last command will print Spark version if everything goes well
+如果一切执行正常，最后一条命令将会打印 Spark 版本信息
 
-6. Verify Spark under a Shell task
+6. 在一个 Shell 任务下验证 Spark
 
 ```
 $SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.11-2.4.7.jar
 ```
 
-Check whether the task log contains the output like `Pi is roughly 3.146015`
+检查任务日志是否包含输出 `Pi is roughly 3.146015`
 
-7. Verify Spark under a Spark task
+7. 在一个 Spark 任务下验证 Spark
 
-The file `spark-examples_2.11-2.4.7.jar` needs to be uploaded to the resources first, and then create a Spark task with:
+文件 `spark-examples_2.11-2.4.7.jar` 需要先被上传到资源中心，然后创建一个 Spark 任务并设置:
 
-- Spark Version: `SPARK2`
-- Main Class: `org.apache.spark.examples.SparkPi`
-- Main Package: `spark-examples_2.11-2.4.7.jar`
-- Deploy Mode: `local`
+- Spark版本: `SPARK2`
+- 主函数的Class: `org.apache.spark.examples.SparkPi`
+- 主程序包: `spark-examples_2.11-2.4.7.jar`
+- 部署方式: `local`
 
-Similarly, check whether the task log contains the output like `Pi is roughly 3.146015`
+同样地, 检查任务日志是否包含输出 `Pi is roughly 3.146015`
 
-8. Verify Spark on YARN
+8. 验证 Spark on YARN
 
-Spark on YARN (Deploy Mode is `cluster` or `client`) requires Hadoop support. Similar to Spark support, the operation of supporting Hadoop is almost the same as the previous steps
+Spark on YARN (部署方式为 `cluster` 或 `client`) 需要 Hadoop 支持. 类似于 Spark 支持, 支持 Hadoop 的操作几乎和前面的步骤相同
 
-Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` exists
+确保 `$HADOOP_HOME` 和 `$HADOOP_CONF_DIR` 存在
 
-### How to support Spark 3?
+### 如何支持 Spark 3？
 
-In fact, the way to submit applications with `spark-submit` is the same, regardless of Spark 1, 2 or 3. In other words, the semantics of `SPARK_HOME2` is the second `SPARK_HOME` instead of `SPARK2`'s `HOME`, so just set `SPARK_HOME2=/path/to/spark3`
+事实上，使用 `spark-submit` 提交应用的方式是相同的, 无论是 Spark 1, 2 或 3. 换句话说，`SPARK_HOME2` 的语义是第二个 `SPARK_HOME`, 而非 `SPARK2` 的 `HOME`, 因此只需设置 `SPARK_HOME2=/path/to/spark3` 即可
 
-Take Spark 3.1.1 as an example:
+以 Spark 3.1.1 为例:
 
-1. Download the Spark 3.1.1 release binary `spark-3.1.1-bin-hadoop2.7.tgz`
+1. 下载 Spark 3.1.1 发布的二进制包 `spark-3.1.1-bin-hadoop2.7.tgz`
 
-2. Ensure that `common.sharedStoragePersistence.enabled` is turned on
+2. 确保 `common.sharedStoragePersistence.enabled` 开启
 
-3. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+3. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
-4. Copy the Spark 3.1.1 release binary into Docker container
+4. 复制 Spark 3.1.1 二进制包到 Docker 容器中
 
 ```bash
 kubectl cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
 kubectl cp -n test spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft # with test namespace
 ```
 
-5. Attach the container and ensure that `SPARK_HOME2` exists
+5. 登录到容器并确保 `SPARK_HOME2` 存在
 
 ```bash
 kubectl exec -it dolphinscheduler-worker-0 bash
@@ -437,21 +437,21 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 # or just mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
-The last command will print Spark version if everything goes well
+如果一切执行正常，最后一条命令将会打印 Spark 版本信息
 
-6. Verify Spark under a Shell task
+6. 在一个 Shell 任务下验证 Spark
 
 ```
 $SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.12-3.1.1.jar
 ```
 
-Check whether the task log contains the output like `Pi is roughly 3.146015`
+检查任务日志是否包含输出 `Pi is roughly 3.146015`
 
-### How to support shared storage between Master, Worker and Api server?
+### 如何在 Master、Worker 和 Api 服务之间支持共享存储？
 
-For example, Master, Worker and Api server may use Hadoop at the same time
+例如, Master、Worker 和 Api 服务可能同时使用 Hadoop
 
-1. Modify the following configurations in `values.yaml`
+1. 修改 `values.yaml` 文件中下面的配置项
 
 ```yaml
 common:
@@ -464,17 +464,17 @@ common:
     storage: "20Gi"
 ```
 
-`storageClassName` and `storage` need to be modified to actual values
+`storageClassName` 和 `storage` 需要被修改为实际值
 
-> **Note**: `storageClassName` must support the access mode: `ReadWriteMany`
+> **注意**: `storageClassName` 必须支持访问模式: `ReadWriteMany`
 
-2. Put the Hadoop into the nfs
+2. 将 Hadoop 复制到目录 `/opt/soft`
 
-3. Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` are correct
+3. 确保 `$HADOOP_HOME` 和 `$HADOOP_CONF_DIR` 正确
 
-### How to support local file resource storage instead of HDFS and S3?
+### 如何支持本地文件存储而非 HDFS 和 S3？
 
-Modify the following configurations in `values.yaml`
+修改 `values.yaml` 文件中下面的配置项
 
 ```yaml
 common:
@@ -490,13 +490,13 @@ common:
     storage: "20Gi"
 ```
 
-`storageClassName` and `storage` need to be modified to actual values
+`storageClassName` 和 `storage` 需要被修改为实际值
 
-> **Note**: `storageClassName` must support the access mode: `ReadWriteMany`
+> **注意**: `storageClassName` 必须支持访问模式: `ReadWriteMany`
 
-### How to support S3 resource storage like MinIO?
+### 如何支持 S3 资源存储，例如 MinIO？
 
-Take MinIO as an example: Modify the following configurations in `values.yaml`
+以 MinIO 为例: 修改 `values.yaml` 文件中下面的配置项
 
 ```yaml
 common:
@@ -509,13 +509,13 @@ common:
     FS_S3A_SECRET_KEY: "MINIO_SECRET_KEY"
 ```
 
-`BUCKET_NAME`, `MINIO_IP`, `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY` need to be modified to actual values
+`BUCKET_NAME`, `MINIO_IP`, `MINIO_ACCESS_KEY` 和 `MINIO_SECRET_KEY` 需要被修改为实际值
 
-> **Note**: `MINIO_IP` can only use IP instead of domain name, because DolphinScheduler currently doesn't support S3 path style access
+> **注意**: `MINIO_IP` 只能使用 IP 而非域名, 因为 DolphinScheduler 尚不支持 S3 路径风格访问 (S3 path style access)
 
-### How to configure SkyWalking?
+### 如何配置 SkyWalking？
 
-Modify SKYWALKING configurations in `values.yaml`:
+修改 `values.yaml` 文件中的 SKYWALKING 配置项
 
 ```yaml
 common:

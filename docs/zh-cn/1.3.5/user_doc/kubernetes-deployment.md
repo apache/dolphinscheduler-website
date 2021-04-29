@@ -160,7 +160,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 4. 推送 docker 镜像 `apache/dolphinscheduler:mysql-driver` 到一个 docker registry 中
 
-5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段， 并更新 `tag` 为 `mysql-driver`
+5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段，并更新 `tag` 为 `mysql-driver`
 
 6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
@@ -189,7 +189,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 4. 推送 docker 镜像 `apache/dolphinscheduler:oracle-driver` 到一个 docker registry 中
 
-5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段， 并更新 `tag` 为 `oracle-driver`
+5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段，并更新 `tag` 为 `oracle-driver`
 
 6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
