@@ -40,11 +40,19 @@
 <li><code>src/pages/docs/index.md.jsx</code>: Add <code>'x.y.z': docsxyzConfig,</code></li>
 <li><code>download/en-us/download.md</code> and <code>download/zh-cn/download.md</code>: add the download of the x.y.z release package</li>
 </ul>
+<h2>Publish Image</h2>
+<p>Build docker image first, please refer to <a href="/en-us/docs/latest/user_doc/docker-deployment.html">How to build a Docker image?</a></p>
+<p>And then publish image</p>
+<pre><code class="language-bash">docker tag apache/dolphinscheduler:x.y.z apache/dolphinscheduler:latest
+docker login <span class="hljs-comment"># enter the username and password</span>
+docker push apache/dolphinscheduler:x.y.z
+docker push apache/dolphinscheduler:latest
+</code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/ds_gray.svg"/><div class="cols-container"><div class="col col-12"></div><div class="col col-6"><dl><dt>Documentation</dt><dd><a href="/en-us/development/architecture-design.html" target="_self">Overview</a></dd><dd><a href="/en-us/docs/latest/user_doc/quick-start.html" target="_self">Quick start</a></dd><dd><a href="/en-us/development/backend-development.html" target="_self">Developer guide</a></dd></dl></div><div class="col col-6"><dl><dt>ASF</dt><dd><a href="http://www.apache.org" target="_self">Foundation</a></dd><dd><a href="http://www.apache.org/licenses/" target="_self">License</a></dd><dd><a href="http://www.apache.org/events/current-event" target="_self">Events</a></dd><dd><a href="http://www.apache.org/foundation/sponsorship.html" target="_self">Sponsorship</a></dd><dd><a href="http://www.apache.org/foundation/thanks.html" target="_self">Thanks</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.11c7782.js"></script>
+  <script src="/build/vendor.3a7bc7e.js"></script>
   <script src="/build/community.md.3f47532.js"></script>
   <script>
     var _hmt = _hmt || [];

@@ -38,10 +38,16 @@
 <li><code>soft_version</code>: 版本更新为 x.y.z</li>
 </ul>
 </li>
-<li><code>docker/kubernetes/dolphinscheduler/Chart.yaml</code>:
+<li><code>docker/docker-swarm</code>:
 <ul>
-<li><code>version</code>: helm chart 版本更新，不要设置为 x.y.z</li>
-<li><code>appVersion</code>: 版本更新为 x.y.z</li>
+<li><code>docker-compose.yml</code>: <code>image: apache/dolphinscheduler</code> 版本更新为 x.y.z</li>
+<li><code>docker-stack.yml</code>: <code>image: apache/dolphinscheduler</code> 版本更新为 x.y.z</li>
+</ul>
+</li>
+<li><code>docker/kubernetes/dolphinscheduler</code>:
+<ul>
+<li><code>Chart.yaml</code>: <code>appVersion</code> 版本更新为 x.y.z (<code>version</code> 为 helm chart 版本, 增量更新但不要设置为 x.y.z)</li>
+<li><code>values.yaml</code>: <code>image.tag</code> 版本更新为 x.y.z</li>
 </ul>
 </li>
 </ul>
@@ -49,7 +55,7 @@
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.11c7782.js"></script>
+  <script src="/build/vendor.3a7bc7e.js"></script>
   <script src="/build/community.md.3f47532.js"></script>
   <script>
     var _hmt = _hmt || [];
