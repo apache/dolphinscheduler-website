@@ -13,7 +13,7 @@ Here're 3 ways to quickly install DolphinScheduler
 
 In this way, you need to install [docker-compose](https://docs.docker.com/compose/) as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet
 
-For Windows 10, you can install [Docker Desktop](https://docs.docker.com/docker-for-windows/install/). For Windows 7, 8 and 8.1, you can install [Docker Toolbox](https://github.com/docker/toolbox)
+For Windows 7-10, you can install [Docker Toolbox](https://github.com/docker/toolbox/releases). For Windows 10 64 bit, you can install [Docker Desktop](https://docs.docker.com/docker-for-windows/install/), and pay attention to the [system requirements](https://docs.docker.com/docker-for-windows/install/#system-requirements)
 
 #### 0. Requirements
 
