@@ -4,7 +4,6 @@ import Language from '../../components/language';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Md2Html from '../../components/md2html';
-import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
 import communityConfig from '../../../site_config/community.jsx';
 
@@ -23,6 +22,7 @@ class Community extends Md2Html(Language) {
           onLanguageChange={this.onLanguageChange}
         />
       
+
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div

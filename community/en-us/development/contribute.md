@@ -1,4 +1,4 @@
-## Contribute
+# Participate in Contributing
 
 First of all, thank you very much for choosing and using DolphinScheduler, and welcome to join the DolphinScheduler family!
 

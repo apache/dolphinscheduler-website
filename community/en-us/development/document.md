@@ -1,8 +1,8 @@
-## Contribute documentation.
+# Documentation Notice
 
 Good documentation is critical for any type of software. Any contribution that can improve the DolphinScheduler documentation is welcome.
 
-###  Get the document project.
+###  Get the document project
 
 Documentation for the DolphinScheduler project is maintained in a separate [git repository](https://github.com/apache/dolphinscheduler-website).
 
@@ -12,13 +12,13 @@ First you need to fork the document project into your own github repository, and
 git clone https://github.com/<your-github-user-name>/dolphinscheduler-website
 ```
 
-### The document environment.
+### The document environment
 
 The DolphinScheduler website is supported by [docsite](https://github.com/chengshiwen/docsite-ext)
 
 Make sure that your node version is 10+, docsite does not yet support versions higher than 10.x.
 
-### Document build guide.
+### Document build guide
 
 1. Run `npm install` in the root directory to install the dependencies.
 
@@ -38,13 +38,13 @@ If the latest version of node is installed locally, consider using `nvm` to allo
 
 Now you can run and build the website in your local environment.
 
-### The document specification.
+### The document specification
 
 1. ** Spaces are Required ** between Chinese characters and English or numbers and ** Spaces are not required ** between Chinese punctuation marks and English or numbers, to enhance the aesthetics and readability of the Chinese-English mix.
 
 2. It is recommended that you use "you" in general. Of course, you can use the term when necessary, such as when there is a warning prompt.
 
-### How to submit a document Pull Request.
+### How to submit a document Pull Request
 
 1. Do not use "git add." to commit all changes.
 
@@ -55,6 +55,6 @@ Now you can run and build the website in your local environment.
 
 3. Submit the Pull Request to the **master** branch.
 
-### Reference to the documentation.
+### Reference to the documentation
 
 [Apache Flink Translation Specifications](https://cwiki.apache.org/confluence/display/FLINK/Flink+Translation+Specifications)

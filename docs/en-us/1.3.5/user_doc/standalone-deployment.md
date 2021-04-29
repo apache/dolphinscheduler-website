@@ -13,14 +13,14 @@
 
 # 2、Download the binary tar.gz package.
 
-- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html), download package, move to deployment directory and unzip it.
+- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html), download package, move to deployment directory and uncompress it.
 
 ```shell
 # Create the deployment directory. Please do not choose a high-privilege directory such as /root or /home.
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 
-# unzip
+# uncompress
 tar -zxvf apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
 
 # rename

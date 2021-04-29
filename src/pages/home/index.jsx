@@ -22,16 +22,15 @@ class Home extends Language {
   componentDidMount() {
     window.addEventListener('scroll', () => {
       const scrollTop = getScrollTop();
-      if (scrollTop > 66 && scrollTop<=663) {
+      if (scrollTop > 66 && scrollTop <= 663) {
         this.setState({
           headerType: 'normal',
         });
-      } else if(scrollTop>663){
+      } else if (scrollTop > 663) {
         this.setState({
           headerType: 'dark',
         });
-      }
-      else {
+      } else {
         this.setState({
           headerType: 'dark',
         });

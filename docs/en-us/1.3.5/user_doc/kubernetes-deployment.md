@@ -1,26 +1,25 @@
-## QuickStart in Kubernetes
+# QuickStart in Kubernetes
 
 ## Prerequisites
 
-- [Helm](https://helm.sh/) 3.1.0+
-- [Kubernetes](https://kubernetes.io/) 1.12+
-- PV provisioner support in the underlying infrastructure
+ - [Helm](https://helm.sh/) 3.1.0+
+ - [Kubernetes](https://kubernetes.io/) 1.12+
+ - PV provisioner support in the underlying infrastructure
 
 ## Installing the Chart
 
-To install the chart with the release name `dolphinscheduler`:
+Please download the latest version of the source code package, download address: [download](/en-us/download/download.html)
 
-```bash
-# download source code package by wget
-$ wget https://apache.website-solution.net/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
-# download source code package by curl
-$ curl -O https://apache.website-solution.net/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
+After downloading apache-dolphinscheduler-incubating-1.3.5-src.zip, uncompress it
+
+To install the chart with the release name `dolphinscheduler`, please execute the following commands:
+
+```
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
-$ mv apache-dolphinscheduler-incubating-1.3.5-src-release dolphinscheduler-src
-$ cd dolphinscheduler-src/docker/kubernetes/dolphinscheduler
+$ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
-$ helm install dolphinscheduler .
+$ helm install dolphinscheduler . --set image.tag=1.3.5
 ```
 
 To install the chart with a namespace named `test`:
@@ -31,7 +30,7 @@ $ helm install dolphinscheduler . -n test
 
 > **Tip**: If a namespace named `test` is used, the option `-n test` needs to be added to the `helm` and `kubectl` command
 
-These commands deploy DolphinScheduler on the Kubernetes cluster in the default configuration. The [configuration](#configuration) section lists the parameters that can be configured during installation.
+These commands deploy DolphinScheduler on the Kubernetes cluster in the default configuration. The [Configuration](#configuration) section lists the parameters that can be configured during installation.
 
 > **Tip**: List all releases using `helm list`
 
@@ -54,6 +53,8 @@ And then access the web: http://192.168.xx.xx:12345/dolphinscheduler
 
 The default username is `admin` and the default password is `dolphinscheduler123`
 
+Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/1.3.5/user_doc/quick-start.html) to explore how to use DolphinScheduler
+
 ## Uninstalling the Chart
 
 To uninstall/delete the `dolphinscheduler` deployment:
@@ -74,9 +75,63 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 
 ## Configuration
 
-The Configuration file is `values.yaml`, and the [DolphinScheduler Kubernetes Configuration](https://github.com/apache/dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md) lists the configurable parameters of the DolphinScheduler chart and their default values.
+The configuration file is `values.yaml`, and the [DolphinScheduler Kubernetes Configuration](https://github.com/apache/dolphinscheduler/blob/1.3.5/docker/kubernetes/dolphinscheduler/README.md#configuration) lists the configurable parameters of the DolphinScheduler and their default values.
 
 ## FAQ
+
+### How to view the logs of a pod container?
+
+List all pods (aka `po`):
+
+```
+kubectl get po
+kubectl get po -n test # with test namespace
+```
+
+View the logs of a pod container named dolphinscheduler-master-0:
+
+```
+kubectl logs dolphinscheduler-master-0
+kubectl logs -f dolphinscheduler-master-0 # follow log output
+kubectl logs --tail 10 dolphinscheduler-master-0 -n test # show last 10 lines from the end of the logs
+```
+
+### How to scale api, master and worker on Kubernetes?
+
+List all deployments (aka `deploy`):
+
+```
+kubectl get deploy
+kubectl get deploy -n test # with test namespace
+```
+
+Scale api to 3 replicas:
+
+```
+kubectl scale --replicas=3 deploy dolphinscheduler-api
+kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
+```
+
+List all statefulsets (aka `sts`):
+
+```
+kubectl get sts
+kubectl get sts -n test # with test namespace
+```
+
+Scale master to 2 replicas:
+
+```
+kubectl scale --replicas=2 sts dolphinscheduler-master
+kubectl scale --replicas=2 sts dolphinscheduler-master -n test # with test namespace
+```
+
+Scale worker to 6 replicas:
+
+```
+kubectl scale --replicas=6 sts dolphinscheduler-worker
+kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
+```
 
 ### How to use MySQL as the DolphinScheduler's database instead of PostgreSQL?
 
@@ -93,7 +148,7 @@ Not yet supported, the version 1.3.6 will support
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:latest
+FROM apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -122,7 +177,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. Create a new `Dockerfile` to add Oracle driver:
 
 ```
-FROM apache/dolphinscheduler:latest
+FROM apache/dolphinscheduler:1.3.5
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -139,5 +194,3 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 6. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
 
 7. Add a Oracle datasource in `Datasource manage`
-
-For more information please refer to the [dolphinscheduler](https://github.com/apache/dolphinscheduler.git) documentation.

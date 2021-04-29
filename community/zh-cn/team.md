@@ -1,21 +1,12 @@
----
-标题：团队
-链接标题：团队
-描述：关于 DolphinScheduler 团队。
-
----
-
 # DolphinScheduler 团队
 
 DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 DolphinScheduler 项目的源代码并积极地开发代码库。 贡献者通过向成员提交补丁和建议来改善项目。 该项目的贡献者数量是无限的。 无论是琐碎的清理工作，重要的新功能还是其他重大的奖励，对 DolphinScheduler 所做的所有贡献都将受到极大的赞赏。
-
-
 
 ## 成员
 
 ### PMC
 
-| Public Name       | Apache ID    | GitHub         |
+| Public Name       | Apache ID    | GitHub ID      |
 | ----------------- | ------------ | -------------- |
 | Furkan Kamaci     | kamaci       | kamaci         |
 | Gang Li           | lgcareer     | lgcareer       |
@@ -36,10 +27,12 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 
 ### Committer
 
-| Public Name   | Apache ID    | GitHub           |
+| Public Name   | Apache ID    | GitHub ID        |
 | ------------- | ------------ | ---------------- |
+| BoYi Zhang    | zhangboyi    | BoYiZhang        |
 | Caibiao Xiang | break60      | break60          |
 | Calvin Kirs   | kirs         | CalvinKirs       |
+| Chong Zhuang  | kerwin       | zhuangchong      |
 | Cong Huang    | chongchongzi | chongchongzi     |
 | Hemin Wen     | wenhemin     | wen-hemin        |
 | Kai Zhu       | zhukai       | nauu             |
@@ -48,11 +41,11 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Lin Li        | lilin        | samz406          |
 | Shang Lou     | clay4megtr   | clay4444         |
 | Shaojie Wu    | gabrywu      | gabrywu          |
+| Shiwen Cheng  | chengshiwen  | chengshiwen      |
 | Wenhe Li      | liwenhe      | liwenhe1993      |
 | Xingchun Chen | chenxingchun | xingchun-chen    |
 | Yichao Yang   | yangyichao   | yangyichao-mango |
 | Zongyao Zhang | lfyee        | lfyee            |
-
 
 ## 贡献者
 
@@ -71,4 +64,3 @@ DolphinScheduler 社区在接受新提交者时遵循 [Apache 社区的流程](h
 1.开始讨论并在 @private 中投票。 只有当前 PMC 成员可以提名。
 2.如果投票通过，请发送邀请以成为 @private CC 的提交者。
 3.设置提交者权限
-

@@ -143,17 +143,17 @@ hadoop.security.authentication.startup.state|false|hadoop enable kerberos permis
 java.security.krb5.conf.path|/opt/krb5.conf|kerberos configuration directory
 login.user.keytab.username|hdfs-mycluster@ESZ.COM|kerberos login user
 login.user.keytab.path|/opt/hdfs.headless.keytab|kerberos login user keytab
-resource.view.suffixs| txt,log,sh,conf,cfg,py,java,sql,hql,xml,properties|File formats supported by the resource center
+resource.view.suffixs|txt,log,sh,conf,cfg,py,java,sql,hql,xml,properties|File formats supported by the resource center
 hdfs.root.user|hdfs|If the storage type is HDFS, you need to configure users with corresponding operation permissions
 fs.defaultFS|hdfs://mycluster:8020|Request address if resource.storage.type=S3 ,the value is similar to: s3a://dolphinscheduler. If resource.storage.type=HDFS, If hadoop configured HA, you need to copy the core-site.xml and hdfs-site.xml files to the conf directory
 fs.s3a.endpoint||s3 endpoint address
 fs.s3a.access.key||s3 access key
-fs.s3a.secret.key|     |s3 secret key
-yarn.resourcemanager.ha.rm.ids|     |yarn resourcemanager address, If the resourcemanager has HA turned on, enter the IP address of the HA (separated by commas). If the resourcemanager is a single node, the value can be empty.
+fs.s3a.secret.key||s3 secret key
+yarn.resourcemanager.ha.rm.ids||yarn resourcemanager address, If the resourcemanager has HA turned on, enter the IP address of the HA (separated by commas). If the resourcemanager is a single node, the value can be empty.
 yarn.application.status.address|http://ds1:8088/ws/v1/cluster/apps/%s|If resourcemanager has HA enabled or resourcemanager is not used, keep the default value. If resourcemanager is a single node, you need to configure ds1 as the hostname corresponding to resourcemanager
 dolphinscheduler.env.path|env/dolphinscheduler_env.sh|Run the script to load the environment variable configuration file [eg: JAVA_HOME, HADOOP_HOME, HIVE_HOME ...]
 development.state|false|Is it in development mode
-kerberos.expire.time|7|kerberos expiration time [hour]
+kerberos.expire.time|7|kerberos expire time,integer,the unit is day
 
 
 ## 5.application-api.properties [API service configuration]
@@ -174,26 +174,27 @@ security.authentication.type|PASSWORD|Permission verification type
 ## 6.master.properties [Master service configuration]
 |Parameter |Defaults| Description| 
 |--|--|--|
-master.listen.port|5678|master communication port
-master.exec.threads|100| Number of worker threads
-master.exec.task.num|20|Number of parallel tasks
-master.dispatch.task.num | 3|Number of distribution tasks
-master.heartbeat.interval|10|Heartbeat interval
-master.task.commit.retryTimes|5|Number of task retries
-master.task.commit.interval|1000|Task submission interval
-master.max.cpuload.avg|-1|When the CPU is less than this configuration, the master service can work. The default value is -1 :  cpu cores * 2
-master.reserved.memory|0.3|Memory threshold limit, the available memory is greater than this value, the master service can work.
+master.listen.port|5678|master listen port
+master.exec.threads|100|master execute thread number to limit process instances in parallel
+master.exec.task.num|20|master execute task number in parallel per process instance
+master.dispatch.task.num|3|master dispatch task number per batch
+master.host.selector|LowerWeight|master host selector to select a suitable worker, default value: LowerWeight. Optional values include Random, RoundRobin, LowerWeight
+master.heartbeat.interval|10|master heartbeat interval, the unit is second
+master.task.commit.retryTimes|5|master commit task retry times
+master.task.commit.interval|1000|master commit task interval, the unit is millisecond
+master.max.cpuload.avg|-1|master max cpuload avg, only higher than the system cpu load average, master server can schedule. default value -1: the number of cpu cores * 2
+master.reserved.memory|0.3|master reserved memory, only lower than system available memory, master server can schedule. default value 0.3, the unit is G
 
 
 ## 7.worker.properties [Worker service configuration]
 |Parameter |Defaults| Description| 
 |--|--|--|
-worker.listen.port|1234|worker communication port
-worker.exec.threads|100|Number of worker threads
-worker.heartbeat.interval|10|Heartbeat interval
-worker.max.cpuload.avg|-1|When the CPU is less than this configuration, the worker service can work. The default value is -1 :  cpu cores * 2
-worker.reserved.memory|0.3|Memory threshold limit, the available memory is greater than this value, the worker service can work.
-worker.group|default|Workgroup grouping configuration. <br> When the worker starts, it will automatically join the corresponding group according to the configuration.
+worker.listen.port|1234|worker listen port
+worker.exec.threads|100|worker execute thread number to limit task instances in parallel
+worker.heartbeat.interval|10|worker heartbeat interval, the unit is second
+worker.max.cpuload.avg|-1|worker max cpuload avg, only higher than the system cpu load average, worker server can be dispatched tasks. default value -1: the number of cpu cores * 2
+worker.reserved.memory|0.3|worker reserved memory, only lower than system available memory, worker server can be dispatched tasks. default value 0.3, the unit is G
+worker.group|default|worker group config <br> worker will join corresponding group according to this config when startup
 
 
 ## 8.alert.properties [Alert alert service configuration]
