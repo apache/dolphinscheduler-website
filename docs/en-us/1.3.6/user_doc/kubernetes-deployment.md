@@ -127,6 +127,60 @@ The configuration file is `values.yaml`, and the [Appendix-Configuration](#appen
 
 ## FAQ
 
+### How to view the logs of a pod container?
+
+List all pods (aka `po`):
+
+```
+kubectl get po
+kubectl get po -n test # with test namespace
+```
+
+View the logs of a pod container named dolphinscheduler-master-0:
+
+```
+kubectl logs dolphinscheduler-master-0
+kubectl logs -f dolphinscheduler-master-0 # follow log output
+kubectl logs --tail 10 dolphinscheduler-master-0 -n test # show last 10 lines from the end of the logs
+```
+
+### How to scale api, master and worker on Kubernetes?
+
+List all deployments (aka `deploy`):
+
+```
+kubectl get deploy
+kubectl get deploy -n test # with test namespace
+```
+
+Scale api to 3 replicas:
+
+```
+kubectl scale --replicas=3 deploy dolphinscheduler-api
+kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
+```
+
+List all statefulsets (aka `sts`):
+
+```
+kubectl get sts
+kubectl get sts -n test # with test namespace
+```
+
+Scale master to 2 replicas:
+
+```
+kubectl scale --replicas=2 sts dolphinscheduler-master
+kubectl scale --replicas=2 sts dolphinscheduler-master -n test # with test namespace
+```
+
+Scale worker to 6 replicas:
+
+```
+kubectl scale --replicas=6 sts dolphinscheduler-worker
+kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
+```
+
 ### How to use MySQL as the DolphinScheduler's database instead of PostgreSQL?
 
 > Because of the commercial license, we cannot directly use the driver of MySQL.
