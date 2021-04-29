@@ -187,34 +187,100 @@ Docker 容器通过环境变量进行配置，[附录-环境变量](#appendix-en
 
 ## FAQ
 
-### 如何通过 docker-compose 停止 DolphinScheduler？
+### 如何通过 docker-compose 管理 DolphinScheduler？
 
-停止所有容器:
+启动、重启、停止或列出所有容器:
 
 ```
+docker-compose start
+docker-compose restart
 docker-compose stop
+docker-compose ps
 ```
 
-停止所有容器并移除所有容器，网络和存储卷:
+停止所有容器并移除所有容器、网络:
+
+```
+docker-compose down
+```
+
+停止所有容器并移除所有容器、网络和存储卷:
 
 ```
 docker-compose down -v
+```
+
+### 如何查看一个容器的日志？
+
+列出所有运行的容器:
+
+```
+docker ps
+docker ps --format "{{.Names}}" # 只打印名字
+```
+
+查看名为 docker-swarm_dolphinscheduler-api_1 的容器的日志:
+
+```
+docker logs docker-swarm_dolphinscheduler-api_1
+docker logs -f docker-swarm_dolphinscheduler-api_1 # 跟随日志输出
+docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # 显示倒数10行日志
+```
+
+### 如何通过 docker-compose 扩缩容 master 和 worker？
+
+扩缩容 master 至 2 个实例:
+
+```
+docker-compose up -d --scale dolphinscheduler-master=2 dolphinscheduler-master
+```
+
+扩缩容 worker 至 3 个实例:
+
+```
+docker-compose up -d --scale dolphinscheduler-worker=3 dolphinscheduler-worker
 ```
 
 ### 如何在 Docker Swarm 上部署 DolphinScheduler？
 
 假设 Docker Swarm 集群已经部署（如果还没有创建 Docker Swarm 集群，请参考 [create-swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/)）
 
-启动名为 dolphinscheduler 的 stack
+启动名为 dolphinscheduler 的 stack:
 
 ```
 docker stack deploy -c docker-stack.yml dolphinscheduler
 ```
 
-启动并移除名为 dolphinscheduler 的 stack
+列出名为 dolphinscheduler 的 stack 的所有服务:
+
+```
+docker stack services dolphinscheduler
+```
+
+停止并移除名为 dolphinscheduler 的 stack:
 
 ```
 docker stack rm dolphinscheduler
+```
+
+移除名为 dolphinscheduler 的 stack 的所有存储卷:
+
+```
+docker volume rm -f $(docker volume ls --format "{{.Name}}" | grep -e "^dolphinscheduler")
+```
+
+### 如何在 Docker Swarm 上扩缩容 master 和 worker？
+
+扩缩容名为 dolphinscheduler 的 stack 的 master 至 2 个实例:
+
+```
+docker service scale dolphinscheduler_dolphinscheduler-master=2
+```
+
+扩缩容名为 dolphinscheduler 的 stack 的 worker 至 3 个实例:
+
+```
+docker service scale dolphinscheduler_dolphinscheduler-worker=3
 ```
 
 ### 如何构建一个 Docker 镜像？
