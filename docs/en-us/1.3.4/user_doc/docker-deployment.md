@@ -19,14 +19,16 @@ Please download the latest version of the source code package, download address:
 
 After downloading apache-dolphinscheduler-incubating-1.3.4-src.zip, uncompress it
 
-```shell
+```
 $ unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
 ```
 
-#### 2. Install and Start the Service
+#### 2. Pull Image and Start the Service
 
-```shell
+```
 $ cd apache-dolphinscheduler-incubating-1.3.4-src-release/docker/docker-swarm
+$ docker pull apache/dolphinscheduler:1.3.4
+$ docker tag apache/dolphinscheduler:1.3.4 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 

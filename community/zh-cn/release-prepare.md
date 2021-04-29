@@ -23,6 +23,9 @@
    - `dolphinscheduler_postgre.sql`: `t_ds_version` 版本更新为 x.y.z
    - `upgrade`: 是否新增 `x.y.z_schema`
    - `soft_version`: 版本更新为 x.y.z
- - `docker/kubernetes/dolphinscheduler/Chart.yaml`:
-   - `version`: helm chart 版本更新，不要设置为 x.y.z
-   - `appVersion`: 版本更新为 x.y.z
+ - `docker/docker-swarm`:
+   - `docker-compose.yml`: `image: apache/dolphinscheduler` 版本更新为 x.y.z
+   - `docker-stack.yml`: `image: apache/dolphinscheduler` 版本更新为 x.y.z
+ - `docker/kubernetes/dolphinscheduler`:
+   - `Chart.yaml`: `appVersion` 版本更新为 x.y.z (`version` 为 helm chart 版本, 增量更新但不要设置为 x.y.z)
+   - `values.yaml`: `image.tag` 版本更新为 x.y.z

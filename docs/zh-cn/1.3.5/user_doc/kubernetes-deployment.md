@@ -14,12 +14,12 @@
 
 发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下命令：
 
-```bash
+```
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
-$ helm install dolphinscheduler .
+$ helm install dolphinscheduler . --set image.tag=1.3.5
 ```
 
 将名为 `dolphinscheduler` 的版本(release) 发布到 `test` 的命名空间中：
