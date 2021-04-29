@@ -20,6 +20,25 @@
 <p>Here're 3 ways to quickly install DolphinScheduler</p>
 <h3>The First Way: Start a DolphinScheduler by docker-compose (recommended)</h3>
 <p>In this way, you need to install <a href="https://docs.docker.com/compose/">docker-compose</a> as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet</p>
+<p>For Windows 10, you can install <a href="https://docs.docker.com/docker-for-windows/install/">Docker Desktop</a>. For Windows 7, 8 and 8.1, you can install <a href="https://github.com/docker/toolbox">Docker Toolbox</a></p>
+<h4>0. Requirements</h4>
+<p>For Mac user, please configure memory not less than 4GB (Click <code>Docker Desktop -&gt; Preferences -&gt; Resources -&gt; Memory</code>)</p>
+<p>For Windows Docker Toolbox user, three items need to be configured:</p>
+<ul>
+<li>Ensure that <strong>hardware virtualization</strong> is enabled which may need to set the BIOS</li>
+<li>Configure memory not less than 4G
+<ul>
+<li>Open <strong>Oracle VirtualBox Manager</strong>, if you double-click <strong>Docker Quickstart Terminal</strong> and successfully run Docker Toolbox, you will see a Virtual Machine named <code>default</code></li>
+<li>Click <code>Settings -&gt; System -&gt; Motherboard -&gt; Base Memory</code></li>
+</ul>
+</li>
+<li>Configure port forwarding
+<ul>
+<li>Click <code>Settings -&gt; Network -&gt; Advanced -&gt; Port Forwarding -&gt; Add</code></li>
+<li><code>Name</code>, <code>Host Port</code> and <code>Guest Port</code> all fill in <code>12345</code>, regardless of <code>Host IP</code> and <code>Guest IP</code></li>
+</ul>
+</li>
+</ul>
 <h4>1. Download the Source Code Package</h4>
 <p>Please download the latest version of the source code package, download address: <a href="/en-us/download/download.html">download</a></p>
 <p>After downloading apache-dolphinscheduler-1.3.6-src.tar.gz, uncompress it</p>
@@ -31,6 +50,10 @@ $ docker pull apache/dolphinscheduler:1.3.6
 $ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 </code></pre>
+<h5>2.1 For Docker Toolbox on Windows</h5>
+<p>Just double-click <strong>Docker Quickstart Terminal</strong> and type the above commands</p>
+<h5>2.2 For Docker Desktop on Windows</h5>
+<p>Coming soon</p>
 <h4>3. Login</h4>
 <p>Visit the Web UI: <a href="http://192.168.xx.xx:12345/dolphinscheduler">http://192.168.xx.xx:12345/dolphinscheduler</a></p>
 <p>The default username is <code>admin</code> and the default password is <code>dolphinscheduler123</code></p>
@@ -60,7 +83,7 @@ $ docker-compose up -d
 -p 12345:12345 \
 apache/dolphinscheduler:1.3.6 all
 </code></pre>
-<p>Note: database username and password need to be replaced with your database username and password, 192.168.x.x need to be replaced with your relate zookeeper or database host IP</p>
+<p>Note: database username test and password test need to be replaced with your actual PostgreSQL username and password, 192.168.x.x need to be replaced with your relate PostgreSQL and ZooKeeper host IP</p>
 <h4>6. Login</h4>
 <p>Same as above</p>
 <h3>The Third Way: Start a standalone DolphinScheduler server</h3>
