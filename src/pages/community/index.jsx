@@ -24,7 +24,6 @@ class Community extends Language {
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div className="doc-content markdown-body">

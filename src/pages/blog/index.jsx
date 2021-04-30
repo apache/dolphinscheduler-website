@@ -23,7 +23,6 @@ class Blog extends Language {
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-
         <section className="blog-container">
           <div className="col col-18 left-part">
             <PageSlider pageSize={5}>

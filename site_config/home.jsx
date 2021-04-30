@@ -24,32 +24,35 @@ export default {
     introduction: {
       title: '分布式易扩展的可视化DAG工作流任务调度系统',
       desc: 'Apache DolphinScheduler是一个分布式去中心化，易扩展的可视化DAG工作流任务调度系统。致力于解决数据处理流程中错综复杂的依赖关系，使调度系统在数据处理流程中开箱即用。',
-      img: '/img/architecture.jpg',
+      img: '/img/framework.png',
     },
     features: {
       title: '特性一览',
       list: [
         {
-          img: '/img/feature_loadbalances.png',
+          img: '/img/ha.png',
           title: '高可靠性',
           content: '去中心化的多Master和多Worker, 自身支持HA功能, 采用任务队列来避免过载，不会造成机器卡死',
         },
         {
-          img: '/img/feature_hogh.png',
+          img: '/img/easyuse.png',
           title: '简单易用',
           content: 'DAG监控界面，所有流程定义都是可视化，通过拖拽任务定制DAG，通过API方式与第三方系统对接, 一键部署',
         },
         {
-          img: '/img/feature_service.png',
+          img: '/img/scene.png',
           title: '丰富的使用场景',
           content: '支持暂停恢复操作. 支持多租户，更好的应对大数据的使用场景. 支持更多的任务类型，如 spark, hive, mr, python, sub_process, shell',
         },
         {
-          img: '/img/feature_runtime.png',
+          img: '/img/scaleout.png',
           title: '高扩展性',
           content: '支持自定义任务类型，调度器使用分布式调度，调度能力随集群线性增长，Master和Worker支持动态上下线',
         },
       ],
+    },
+    news:{
+      title: '事件&新闻',
     },
   },
   'en-us': {
@@ -103,6 +106,10 @@ export default {
           content: 'Support custom task types, Distributed scheduling, and the overall scheduling capability will increase linearly with the scale of the cluster',
         },
       ],
+    },
+    news:{
+      title: '事件&新闻',
+      desc: 'Apache DolphinScheduler是一个分布式去中心化，易扩展的可视化DAG工作流任务调度系统。致力于解决数据处理流程中错综复杂的依赖关系，使调度系统在数据处理流程中开箱即用。',
     },
   },
 };
