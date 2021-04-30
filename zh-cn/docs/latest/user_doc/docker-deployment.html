@@ -362,14 +362,22 @@ docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # 显示倒数10行日
 <pre><code>docker service scale dolphinscheduler_dolphinscheduler-worker=3
 </code></pre>
 <h3>如何构建一个 Docker 镜像？</h3>
-<p>你可以在类Unix系统和Windows系统中构建一个docker镜像。</p>
-<p>类Unix系统, 如下:</p>
-<pre><code class="language-sh">$ sh ./docker/build/hooks/build
+<h4>1. 从源码构建 (需要 Maven 3.3+ &amp; JDK 1.8+)</h4>
+<p>类 Unix 系统，在 Terminal 中执行:</p>
+<pre><code>$ sh ./docker/build/hooks/build
 </code></pre>
-<p>Windows系统, 如下:</p>
-<pre><code class="language-bat"><span class="hljs-function">C:\<span class="hljs-title">dolphinscheduler</span>&gt;.\<span class="hljs-title">docker</span>\<span class="hljs-title">build</span>\<span class="hljs-title">hooks</span>\<span class="hljs-title">build.bat</span>
+<p>Windows 系统，在 cmd 或 PowerShell 中执行:</p>
+<pre><code class="language-bat"><span class="hljs-function">C:\<span class="hljs-title">dolphinscheduler</span>-<span class="hljs-title">src</span>&gt;.\<span class="hljs-title">docker</span>\<span class="hljs-title">build</span>\<span class="hljs-title">hooks</span>\<span class="hljs-title">build.bat</span>
 </span></code></pre>
 <p>如果你不理解 <code>./docker/build/hooks/build</code> <code>./docker/build/hooks/build.bat</code> 这些脚本，请阅读里面的内容</p>
+<h4>2. 从二进制包构建 (不需要 Maven 3.3+ &amp; JDK 1.8+)</h4>
+<p>请下载二进制包 apache-dolphinscheduler-1.3.6-bin.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a>. 然后将 apache-dolphinscheduler-1.3.6-bin.tar.gz 放到 <code>apache-dolphinscheduler-1.3.6-src/docker/build</code> 目录里，在 Terminal 或 PowerShell 中执行:</p>
+<pre><code>$ cd apache-dolphinscheduler-1.3.6-src/docker/build
+$ docker build --build-arg VERSION=1.3.6 -t apache/dolphinscheduler:1.3.6 .
+</code></pre>
+<blockquote>
+<p>PowerShell 应该使用 <code>cd apache-dolphinscheduler-1.3.6-src/docker/build</code></p>
+</blockquote>
 <h3>如何为 Docker 添加一个环境变量？</h3>
 <p>如果你想在编译的时候或者运行的时候附加一些其它的操作及新增一些环境变量，你可以在<code>/root/start-init-conf.sh</code>文件中进行修改，同时如果涉及到配置文件的修改，请在<code>/opt/dolphinscheduler/conf/*.tpl</code>中修改相应的配置文件</p>
 <p>例如，在<code>/root/start-init-conf.sh</code>添加一个环境变量<code>SECURITY_AUTHENTICATION_TYPE</code>：</p>
