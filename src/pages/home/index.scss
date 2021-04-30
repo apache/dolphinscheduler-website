@@ -148,36 +148,6 @@
       text-align: center;
     }
   }
-  .news-section {
-    background: #F9FAFA;
-    position: relative;
-    .news-body {
-      height: 600px;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-    }
-    .news{
-      position: relative;
-      color: #333;
-      margin: 80px auto;
-      h3 {
-        font-family: Avenir-Heavy;
-        font-size: 36px;
-        color: #333;
-        width: 940px;
-        height: 54px;
-      }
-      p {
-        font-family: Avenir-Heavy;
-        font-size: 36px;
-        color: #333;
-        width: 940px;
-        height: 54px;
-      }
-    }
-    
-  }
   .introduction-section {
     background: #F9FAFA;
     .introduction-body {
@@ -208,10 +178,7 @@
         background-image: linear-gradient(0deg, $startColor 0%, $intermediateColor 51%, $endColor 100%);
       }
       .introduction {
-        //display: inline-block;
-        //width: calc(100% - 726px);
         min-width: 300px;
-        //max-width: 790px;
         margin: 80px auto 0px auto;
         h3 {
           font-family: Avenir-Heavy;
@@ -289,7 +256,7 @@
       margin: 0;
       li {
         width: 240px;
-        height: 430px;
+        height: 360px;
         text-align: center;
         vertical-align: top;
         display: inline-block;
@@ -301,10 +268,8 @@
         }
         img {
           margin: 20px auto;
-          // vertical-align: top;
           width: 74px;
           height: 74px;
-          // margin-right: 20px;
           display: block;
         }
         div {
@@ -335,6 +300,65 @@
       @media screen and (max-width: 768px){
         li {
           width: 100%;
+        }
+      }
+    }
+  }
+  .events-section {
+    max-width: $contentWidth;
+    margin: 0 auto 50px;
+    box-sizing: border-box;
+    @media screen and (max-width: $mobileWidth) {
+      padding: 0;
+    }
+    h3 {
+      font-family: Avenir-Heavy;
+      font-size: 36px;
+      color: #333;
+      text-align: center;
+      margin: 0 0 80px;
+    }
+    .event-card {
+      width: 373px;
+      font-size: 0;
+      img {
+        width: 373px;
+        height: 209px;
+      }
+      @media screen and (max-width: $mobileWidth / 2) {
+        width: 320px;
+        img {
+          width: 320px;
+          height: 179px;
+        }
+      }
+      .event-introduction {
+        padding: 20px;
+        background: #F8F8F8;
+        h4 {
+          font-family: Avenir-Heavy;
+          font-size: 20px;
+          color: #333;
+          margin: 0 0 10px;
+        }
+        p {
+          font-family: Avenir-Medium;
+          font-size: 14px;
+          color: #666;
+          margin: 0;
+        }
+        a {
+          display: inline-block;
+          width: 100%;
+          font-family: Avenir-Medium;
+          font-size: 12px;
+          color: #999;
+          margin-top: 10px;
+          .arrow {
+            width: 8px;
+            height: 13px;
+            float: right;
+          }
         }
       }
     }

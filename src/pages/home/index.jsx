@@ -8,6 +8,8 @@ import Language from '../../components/language';
 import Item from './featureItem';
 import homeConfig from '../../../site_config/home';
 import './index.scss';
+import Slider from '../../components/slider';
+import EventCard from '../community/eventCard';
 
 class Home extends Language {
   constructor(props) {
@@ -119,14 +121,14 @@ class Home extends Language {
           }
           </ul>
         </section>
-        {/* <section className="news-section">
-          <div className="news-body">        
-            <div className="news">
-              <h3>{dataSource.news.title}</h3>
-              <p>{dataSource.news.desc}</p>
-            </div>
-          </div>
-        </section> */}
+        <section className="events-section">
+              <h3>{dataSource.events.title}</h3>
+              <Slider>
+                {dataSource.events.list.map((event, i) => (
+                  <EventCard event={event} key={i} />
+                ))}
+              </Slider>
+        </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
     );
