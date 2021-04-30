@@ -15,17 +15,12 @@
 
 #### 1、下载源码包
 
-请下载最新版本的源码包，下载地址: [下载](/zh-cn/download/download.html)
-
-下载 apache-dolphinscheduler-incubating-1.3.5-src.zip 后，解压缩
-
-```
-$ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
-```
+请下载源码包 apache-dolphinscheduler-incubating-1.3.5-src.zip，下载地址: [下载](/zh-cn/download/download.html)
 
 #### 2、拉取镜像并启动服务
 
 ```
+$ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/docker-swarm
 $ docker pull apache/dolphinscheduler:1.3.5
 $ docker tag apache/dolphinscheduler:1.3.5 apache/dolphinscheduler:latest
@@ -34,7 +29,7 @@ $ docker-compose up -d
 
 #### 3、登录系统
 
-访问前端页面： http://192.168.xx.xx:12345/dolphinscheduler
+访问前端页面： http://192.168.xx.xx:12345/dolphinscheduler (本地地址为 http://127.0.0.1:12345/dolphinscheduler)
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 

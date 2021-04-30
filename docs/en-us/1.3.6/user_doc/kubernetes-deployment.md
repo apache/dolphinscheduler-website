@@ -8,9 +8,7 @@
 
 ## Installing the Chart
 
-Please download the latest version of the source code package, download address: [download](/en-us/download/download.html)
-
-After downloading apache-dolphinscheduler-1.3.6-src.tar.gz, uncompress it
+Please download the source code package apache-dolphinscheduler-1.3.6-src.tar.gz, download address: [download](/en-us/download/download.html)
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
 
@@ -49,7 +47,7 @@ $ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:
 
 > **Tip**: If the error of `unable to do port forwarding: socat not found` appears, you need to install `socat` at first
 
-And then access the web: http://192.168.xx.xx:12345/dolphinscheduler
+And then access the web: http://192.168.xx.xx:12345/dolphinscheduler (The local address is http://127.0.0.1:12345/dolphinscheduler)
 
 Or when `api.service.type=NodePort` you need to execute the command:
 

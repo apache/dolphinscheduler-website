@@ -13,52 +13,44 @@ Here're 3 ways to quickly install DolphinScheduler
 
 In this way, you need to install [docker-compose](https://docs.docker.com/compose/) as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet
 
-For Windows 7-10, you can install [Docker Toolbox](https://github.com/docker/toolbox/releases). For Windows 10 64 bit, you can install [Docker Desktop](https://docs.docker.com/docker-for-windows/install/), and pay attention to the [system requirements](https://docs.docker.com/docker-for-windows/install/#system-requirements)
+For Windows 7-10, you can install [Docker Toolbox](https://github.com/docker/toolbox/releases). For Windows 10 64-bit, you can install [Docker Desktop](https://docs.docker.com/docker-for-windows/install/), and pay attention to the [system requirements](https://docs.docker.com/docker-for-windows/install/#system-requirements)
 
-#### 0. Requirements
+#### 0. Configure memory not less than 4GB
 
-For Mac user, please configure memory not less than 4GB (Click `Docker Desktop -> Preferences -> Resources -> Memory`)
+For Mac user, click `Docker Desktop -> Preferences -> Resources -> Memory`
 
-For Windows Docker Toolbox user, three items need to be configured:
+For Windows Docker Toolbox user, two items need to be configured:
 
- - Ensure that **hardware virtualization** is enabled which may need to set the BIOS
- - Configure memory not less than 4G
-   - Open **Oracle VirtualBox Manager**, if you double-click **Docker Quickstart Terminal** and successfully run Docker Toolbox, you will see a Virtual Machine named `default`
-   - Click `Settings -> System -> Motherboard -> Base Memory`
- - Configure port forwarding
-   - Click `Settings -> Network -> Advanced -> Port Forwarding -> Add`
-   - `Name`, `Host Port` and `Guest Port` all fill in `12345`, regardless of `Host IP` and `Guest IP`
+ - **Memory**: Open Oracle VirtualBox Manager, if you double-click Docker Quickstart Terminal and successfully run Docker Toolbox, you will see a Virtual Machine named `default`. And click `Settings -> System -> Motherboard -> Base Memory`
+ - **Port Forwarding**: Click `Settings -> Network -> Advanced -> Port forwarding -> Add`. `Name`, `Host Port` and `Guest Port` all fill in `12345`, regardless of `Host IP` and `Guest IP`
+
+For Windows Docker Desktop user
+ - **Hyper-V mode**: Click `Docker Desktop -> Settings -> Resources -> Memory`
+ - **WSL 2 mode**: Refer to [WSL 2 utility VM](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig)
 
 #### 1. Download the Source Code Package
 
-Please download the latest version of the source code package, download address: [download](/en-us/download/download.html)
-
-After downloading apache-dolphinscheduler-1.3.6-src.tar.gz, uncompress it
-
-```
-$ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
-```
+Please download the source code package apache-dolphinscheduler-1.3.6-src.tar.gz, download address: [download](/en-us/download/download.html)
 
 #### 2. Pull Image and Start the Service
 
+> For Mac and Linux user, open **Terminal**  
+> For Windows Docker Toolbox user, open **Docker Quickstart Terminal**  
+> For Windows Docker Desktop user, open **Windows PowerShell**
+
 ```
+$ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.6-src/docker/docker-swarm
 $ docker pull apache/dolphinscheduler:1.3.6
 $ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 
-##### 2.1 For Docker Toolbox on Windows
-
-Just double-click **Docker Quickstart Terminal** and type the above commands
-
-##### 2.2 For Docker Desktop on Windows
-
-Coming soon
+> PowerShell should use `cd apache-dolphinscheduler-1.3.6-src\docker\docker-swarm`
 
 #### 3. Login
 
-Visit the Web UI: http://192.168.xx.xx:12345/dolphinscheduler
+Visit the Web UI: http://192.168.xx.xx:12345/dolphinscheduler (The local address is http://127.0.0.1:12345/dolphinscheduler)
 
 The default username is `admin` and the default password is `dolphinscheduler123`
 

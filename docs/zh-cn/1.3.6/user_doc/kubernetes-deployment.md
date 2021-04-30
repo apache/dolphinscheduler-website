@@ -8,9 +8,7 @@
 
 ## 安装 dolphinscheduler
 
-请下载最新版本的源码包，下载地址: [下载](/zh-cn/download/download.html)
-
-下载 apache-dolphinscheduler-1.3.6-src.tar.gz 后，解压缩
+请下载源码包 apache-dolphinscheduler-1.3.6-src.tar.gz，下载地址: [下载](/zh-cn/download/download.html)
 
 发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下命令：
 
@@ -49,7 +47,7 @@ $ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:
 
 > **提示**: 如果出现 `unable to do port forwarding: socat not found` 错误, 需要先安装 `socat`
 
-然后访问前端页面: http://192.168.xx.xx:12345/dolphinscheduler
+然后访问前端页面: http://192.168.xx.xx:12345/dolphinscheduler (本地地址为 http://127.0.0.1:12345/dolphinscheduler)
 
 或者当 `api.service.type=NodePort` 时，你需要执行命令：
 
