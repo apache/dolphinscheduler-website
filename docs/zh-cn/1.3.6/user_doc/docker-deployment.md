@@ -13,52 +13,44 @@
 
 这种方式需要先安装 [docker-compose](https://docs.docker.com/compose/), docker-compose 的安装网上已经有非常多的资料，请自行安装即可
 
-对于 Windows 7-10，你可以安装 [Docker Toolbox](https://github.com/docker/toolbox/releases)。对于 Windows 10 64 位，你可以安装 [Docker Desktop](https://docs.docker.com/docker-for-windows/install/)，并且注意[系统要求](https://docs.docker.com/docker-for-windows/install/#system-requirements)
+对于 Windows 7-10，你可以安装 [Docker Toolbox](https://github.com/docker/toolbox/releases)。对于 Windows 10 64-bit，你可以安装 [Docker Desktop](https://docs.docker.com/docker-for-windows/install/)，并且注意[系统要求](https://docs.docker.com/docker-for-windows/install/#system-requirements)
 
-#### 0、要求
+#### 0、请配置内存不少于 4GB
 
-对于 Mac 用户，请配置内存不少于 4GB (点击 `Docker Desktop -> Preferences -> Resources -> Memory`)
+对于 Mac 用户，点击 `Docker Desktop -> Preferences -> Resources -> Memory`
 
-对于 Windows Docker Toolbox 用户，有三项需要配置：
+对于 Windows Docker Toolbox 用户，有两项需要配置：
 
- - 确保**硬件虚拟化**开启，它可能需要设置 BIOS
- - 配置内存不少于 4GB
-   - 打开 **Oracle VirtualBox Manager**，如果你双击 **Docker Quickstart Terminal** 并成功运行 Docker Toolbox，你将会看到一个名为 `default` 的虚拟机
-   - 点击 `设置 -> 系统 -> 主板 -> 内存大小`
- - 配置端口转发
-   - 点击 `设置 -> 网络 -> 高级 -> 端口转发 -> 添加`
-   - `名称`，`主机端口` 和 `子系统端口` 都填写 `12345`，不填 `主机IP` 和 `子系统IP`
+ - **内存**：打开 Oracle VirtualBox Manager，如果你双击 Docker Quickstart Terminal 并成功运行 Docker Toolbox，你将会看到一个名为 `default` 的虚拟机. 点击 `设置 -> 系统 -> 主板 -> 内存大小`
+ - **端口转发**：点击 `设置 -> 网络 -> 高级 -> 端口转发 -> 添加`. `名称`，`主机端口` 和 `子系统端口` 都填写 `12345`，不填 `主机IP` 和 `子系统IP`
+
+对于 Windows Docker Desktop 用户
+ - **Hyper-V 模式**：点击 `Docker Desktop -> Settings -> Resources -> Memory`
+ - **WSL 2 模式**：参考 [WSL 2 utility VM](https://docs.microsoft.com/zh-cn/windows/wsl/wsl-config#configure-global-options-with-wslconfig)
 
 #### 1、下载源码包
 
-请下载最新版本的源码包，下载地址: [下载](/zh-cn/download/download.html)
-
-下载 apache-dolphinscheduler-1.3.6-src.tar.gz 后，解压缩
-
-```
-$ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
-```
+请下载源码包 apache-dolphinscheduler-1.3.6-src.tar.gz，下载地址: [下载](/zh-cn/download/download.html)
 
 #### 2、拉取镜像并启动服务
 
+> 对于 Mac 和 Linux 用户，打开 **Terminal**  
+> 对于 Windows Docker Toolbox 用户，打开 **Docker Quickstart Terminal**  
+> 对于 Windows Docker Desktop 用户，打开 **Windows PowerShell**
+
 ```
+$ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.6-src/docker/docker-swarm
 $ docker pull apache/dolphinscheduler:1.3.6
 $ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 
-##### 2.1 For Docker Toolbox on Windows
-
-双击 **Docker Quickstart Terminal** 并键入以上命令即可
-
-##### 2.2 For Docker Desktop on Windows
-
-即将到来
+> PowerShell 应该使用 `cd apache-dolphinscheduler-1.3.6-src\docker\docker-swarm`
 
 #### 3、登录系统
 
-访问前端页面： http://192.168.xx.xx:12345/dolphinscheduler
+访问前端页面： http://192.168.xx.xx:12345/dolphinscheduler (本地地址为 http://127.0.0.1:12345/dolphinscheduler)
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 

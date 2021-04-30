@@ -15,17 +15,12 @@ In this way, you need to install [docker-compose](https://docs.docker.com/compos
 
 #### 1. Download the Source Code Package
 
-Please download the latest version of the source code package, download address: [download](/en-us/download/download.html)
-
-After downloading apache-dolphinscheduler-incubating-1.3.5-src.zip, uncompress it
-
-```
-$ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
-```
+Please download the source code package apache-dolphinscheduler-incubating-1.3.5-src.zip, download address: [download](/en-us/download/download.html)
 
 #### 2. Pull Image and Start the Service
 
 ```
+$ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/docker-swarm
 $ docker pull apache/dolphinscheduler:1.3.5
 $ docker tag apache/dolphinscheduler:1.3.5 apache/dolphinscheduler:latest
@@ -34,7 +29,7 @@ $ docker-compose up -d
 
 #### 3. Login
 
-Visit the Web UI: http://192.168.xx.xx:12345/dolphinscheduler
+Visit the Web UI: http://192.168.xx.xx:12345/dolphinscheduler (The local address is http://127.0.0.1:12345/dolphinscheduler)
 
 The default username is `admin` and the default password is `dolphinscheduler123`
 
