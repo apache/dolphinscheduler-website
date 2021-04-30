@@ -20,42 +20,38 @@
 <p>Here're 3 ways to quickly install DolphinScheduler</p>
 <h3>The First Way: Start a DolphinScheduler by docker-compose (recommended)</h3>
 <p>In this way, you need to install <a href="https://docs.docker.com/compose/">docker-compose</a> as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet</p>
-<p>For Windows 7-10, you can install <a href="https://github.com/docker/toolbox/releases">Docker Toolbox</a>. For Windows 10 64 bit, you can install <a href="https://docs.docker.com/docker-for-windows/install/">Docker Desktop</a>, and pay attention to the <a href="https://docs.docker.com/docker-for-windows/install/#system-requirements">system requirements</a></p>
-<h4>0. Requirements</h4>
-<p>For Mac user, please configure memory not less than 4GB (Click <code>Docker Desktop -&gt; Preferences -&gt; Resources -&gt; Memory</code>)</p>
-<p>For Windows Docker Toolbox user, three items need to be configured:</p>
+<p>For Windows 7-10, you can install <a href="https://github.com/docker/toolbox/releases">Docker Toolbox</a>. For Windows 10 64-bit, you can install <a href="https://docs.docker.com/docker-for-windows/install/">Docker Desktop</a>, and pay attention to the <a href="https://docs.docker.com/docker-for-windows/install/#system-requirements">system requirements</a></p>
+<h4>0. Configure memory not less than 4GB</h4>
+<p>For Mac user, click <code>Docker Desktop -&gt; Preferences -&gt; Resources -&gt; Memory</code></p>
+<p>For Windows Docker Toolbox user, two items need to be configured:</p>
 <ul>
-<li>Ensure that <strong>hardware virtualization</strong> is enabled which may need to set the BIOS</li>
-<li>Configure memory not less than 4G
-<ul>
-<li>Open <strong>Oracle VirtualBox Manager</strong>, if you double-click <strong>Docker Quickstart Terminal</strong> and successfully run Docker Toolbox, you will see a Virtual Machine named <code>default</code></li>
-<li>Click <code>Settings -&gt; System -&gt; Motherboard -&gt; Base Memory</code></li>
+<li><strong>Memory</strong>: Open Oracle VirtualBox Manager, if you double-click Docker Quickstart Terminal and successfully run Docker Toolbox, you will see a Virtual Machine named <code>default</code>. And click <code>Settings -&gt; System -&gt; Motherboard -&gt; Base Memory</code></li>
+<li><strong>Port Forwarding</strong>: Click <code>Settings -&gt; Network -&gt; Advanced -&gt; Port forwarding -&gt; Add</code>. <code>Name</code>, <code>Host Port</code> and <code>Guest Port</code> all fill in <code>12345</code>, regardless of <code>Host IP</code> and <code>Guest IP</code></li>
 </ul>
-</li>
-<li>Configure port forwarding
+<p>For Windows Docker Desktop user</p>
 <ul>
-<li>Click <code>Settings -&gt; Network -&gt; Advanced -&gt; Port Forwarding -&gt; Add</code></li>
-<li><code>Name</code>, <code>Host Port</code> and <code>Guest Port</code> all fill in <code>12345</code>, regardless of <code>Host IP</code> and <code>Guest IP</code></li>
-</ul>
-</li>
+<li><strong>Hyper-V mode</strong>: Click <code>Docker Desktop -&gt; Settings -&gt; Resources -&gt; Memory</code></li>
+<li><strong>WSL 2 mode</strong>: Refer to <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig">WSL 2 utility VM</a></li>
 </ul>
 <h4>1. Download the Source Code Package</h4>
-<p>Please download the latest version of the source code package, download address: <a href="/en-us/download/download.html">download</a></p>
-<p>After downloading apache-dolphinscheduler-1.3.6-src.tar.gz, uncompress it</p>
-<pre><code>$ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
-</code></pre>
+<p>Please download the source code package apache-dolphinscheduler-1.3.6-src.tar.gz, download address: <a href="/en-us/download/download.html">download</a></p>
 <h4>2. Pull Image and Start the Service</h4>
-<pre><code>$ cd apache-dolphinscheduler-1.3.6-src/docker/docker-swarm
+<blockquote>
+<p>For Mac and Linux user, open <strong>Terminal</strong><br>
+For Windows Docker Toolbox user, open <strong>Docker Quickstart Terminal</strong><br>
+For Windows Docker Desktop user, open <strong>Windows PowerShell</strong></p>
+</blockquote>
+<pre><code>$ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
+$ cd apache-dolphinscheduler-1.3.6-src/docker/docker-swarm
 $ docker pull apache/dolphinscheduler:1.3.6
 $ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 </code></pre>
-<h5>2.1 For Docker Toolbox on Windows</h5>
-<p>Just double-click <strong>Docker Quickstart Terminal</strong> and type the above commands</p>
-<h5>2.2 For Docker Desktop on Windows</h5>
-<p>Coming soon</p>
+<blockquote>
+<p>PowerShell should use <code>cd apache-dolphinscheduler-1.3.6-src\docker\docker-swarm</code></p>
+</blockquote>
 <h4>3. Login</h4>
-<p>Visit the Web UI: <a href="http://192.168.xx.xx:12345/dolphinscheduler">http://192.168.xx.xx:12345/dolphinscheduler</a></p>
+<p>Visit the Web UI: <a href="http://192.168.xx.xx:12345/dolphinscheduler">http://192.168.xx.xx:12345/dolphinscheduler</a> (The local address is <a href="http://127.0.0.1:12345/dolphinscheduler">http://127.0.0.1:12345/dolphinscheduler</a>)</p>
 <p>The default username is <code>admin</code> and the default password is <code>dolphinscheduler123</code></p>
 <p align="center">
   <img src="/img/login_en.png" width="60%" />

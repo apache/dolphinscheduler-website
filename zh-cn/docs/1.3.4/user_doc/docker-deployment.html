@@ -21,18 +21,16 @@
 <h3>一、以 docker-compose 的方式启动 DolphinScheduler (推荐)</h3>
 <p>这种方式需要先安装 <a href="https://docs.docker.com/compose/">docker-compose</a>, docker-compose 的安装网上已经有非常多的资料，请自行安装即可</p>
 <h4>1、下载源码包</h4>
-<p>请下载最新版本的源码包，下载地址: <a href="/zh-cn/download/download.html">下载</a></p>
-<p>下载 apache-dolphinscheduler-incubating-1.3.4-src.zip 后，解压缩</p>
-<pre><code>$ unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
-</code></pre>
+<p>请下载源码包 apache-dolphinscheduler-incubating-1.3.4-src.zip，下载地址: <a href="/zh-cn/download/download.html">下载</a></p>
 <h4>2、拉取镜像并启动服务</h4>
-<pre><code>$ cd apache-dolphinscheduler-incubating-1.3.4-src-release/docker/docker-swarm
+<pre><code>$ unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
+$ cd apache-dolphinscheduler-incubating-1.3.4-src-release/docker/docker-swarm
 $ docker pull apache/dolphinscheduler:1.3.4
 $ docker tag apache/dolphinscheduler:1.3.4 apache/dolphinscheduler:latest
 $ docker-compose up -d
 </code></pre>
 <h4>3、登录系统</h4>
-<p>访问前端页面： <a href="http://192.168.xx.xx:8888">http://192.168.xx.xx:8888</a></p>
+<p>访问前端页面： <a href="http://192.168.xx.xx:8888">http://192.168.xx.xx:8888</a> (本地地址为 <a href="http://127.0.0.1:8888">http://127.0.0.1:8888</a>)</p>
 <p>默认的用户是<code>admin</code>，默认的密码是<code>dolphinscheduler123</code></p>
 <p align="center">
   <img src="/img/login.png" width="60%" />

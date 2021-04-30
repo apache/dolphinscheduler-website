@@ -18,8 +18,7 @@
 <li>PV 供应(需要基础设施支持)</li>
 </ul>
 <h2>安装 dolphinscheduler</h2>
-<p>请下载最新版本的源码包，下载地址: <a href="/zh-cn/download/download.html">下载</a></p>
-<p>下载 apache-dolphinscheduler-1.3.6-src.tar.gz 后，解压缩</p>
+<p>请下载源码包 apache-dolphinscheduler-1.3.6-src.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a></p>
 <p>发布一个名为 <code>dolphinscheduler</code> 的版本(release)，请执行以下命令：</p>
 <pre><code>$ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.6-src/docker/kubernetes/dolphinscheduler
@@ -49,7 +48,7 @@ $ kubectl port-forward --address 0.0.0.0 -n <span class="hljs-built_in">test</sp
 <blockquote>
 <p><strong>提示</strong>: 如果出现 <code>unable to do port forwarding: socat not found</code> 错误, 需要先安装 <code>socat</code></p>
 </blockquote>
-<p>然后访问前端页面: <a href="http://192.168.xx.xx:12345/dolphinscheduler">http://192.168.xx.xx:12345/dolphinscheduler</a></p>
+<p>然后访问前端页面: <a href="http://192.168.xx.xx:12345/dolphinscheduler">http://192.168.xx.xx:12345/dolphinscheduler</a> (本地地址为 <a href="http://127.0.0.1:12345/dolphinscheduler">http://127.0.0.1:12345/dolphinscheduler</a>)</p>
 <p>或者当 <code>api.service.type=NodePort</code> 时，你需要执行命令：</p>
 <pre><code class="language-bash">NODE_IP=$(kubectl get no -n {{ .Release.Namespace }} -o jsonpath=<span class="hljs-string">&quot;{.items[0].status.addresses[0].address}&quot;</span>)
 NODE_PORT=$(kubectl get svc {{ template <span class="hljs-string">&quot;dolphinscheduler.fullname&quot;</span> . }}-api -n {{ .Release.Namespace }} -o jsonpath=<span class="hljs-string">&quot;{.spec.ports[0].nodePort}&quot;</span>)

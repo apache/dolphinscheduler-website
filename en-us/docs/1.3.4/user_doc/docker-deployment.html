@@ -21,18 +21,16 @@
 <h3>The First Way: Start a DolphinScheduler by docker-compose (recommended)</h3>
 <p>In this way, you need to install <a href="https://docs.docker.com/compose/">docker-compose</a> as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet</p>
 <h4>1. Download the Source Code Package</h4>
-<p>Please download the latest version of the source code package, download address: <a href="/en-us/download/download.html">download</a></p>
-<p>After downloading apache-dolphinscheduler-incubating-1.3.4-src.zip, uncompress it</p>
-<pre><code>$ unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
-</code></pre>
+<p>Please download the source code package apache-dolphinscheduler-incubating-1.3.4-src.zip, download address: <a href="/en-us/download/download.html">download</a></p>
 <h4>2. Pull Image and Start the Service</h4>
-<pre><code>$ cd apache-dolphinscheduler-incubating-1.3.4-src-release/docker/docker-swarm
+<pre><code>$ unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
+$ cd apache-dolphinscheduler-incubating-1.3.4-src-release/docker/docker-swarm
 $ docker pull apache/dolphinscheduler:1.3.4
 $ docker tag apache/dolphinscheduler:1.3.4 apache/dolphinscheduler:latest
 $ docker-compose up -d
 </code></pre>
 <h4>3. Login</h4>
-<p>Visit the Web UI: <a href="http://192.168.xx.xx:8888">http://192.168.xx.xx:8888</a></p>
+<p>Visit the Web UI: <a href="http://192.168.xx.xx:8888">http://192.168.xx.xx:8888</a> (The local address is <a href="http://127.0.0.1:8888">http://127.0.0.1:8888</a>)</p>
 <p>The default username is <code>admin</code> and the default password is <code>dolphinscheduler123</code></p>
 <p align="center">
   <img src="/img/login_en.png" width="60%" />
