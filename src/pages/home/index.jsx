@@ -22,17 +22,18 @@ class Home extends Language {
   componentDidMount() {
     window.addEventListener('scroll', () => {
       const scrollTop = getScrollTop();
-      if (scrollTop > 66 && scrollTop <= 663) {
+      const offsetHeight = document.querySelector('.top-section').offsetHeight - 66;
+      if (scrollTop > 66 && scrollTop <= offsetHeight) {
         this.setState({
           headerType: 'normal',
         });
-      } else if (scrollTop > 663) {
+      } else if (scrollTop > offsetHeight) {
         this.setState({
           headerType: 'dark',
         });
       } else {
         this.setState({
-          headerType: 'dark',
+          headerType: 'primary',
         });
       }
     });
@@ -56,6 +57,7 @@ class Home extends Language {
     return (
       <div className="home-page">
         <section className="top-section">
+          <img src="/img/banner.jpg" />
           <Header
             currentKey="home"
             type={headerType}
