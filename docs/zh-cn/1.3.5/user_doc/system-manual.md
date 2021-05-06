@@ -96,6 +96,7 @@
        <img src="/img/run-work.png" width="80%" />
      </p>  
     <span id=runParamers>工作流运行参数说明：</span> 
+
     
     * 失败策略：当某一个任务节点执行失败时，其他并行的任务节点需要执行的策略。”继续“表示：某一任务失败后，其他任务节点正常执行；”结束“表示：终止所有正在执行的任务，并终止整个流程。
     * 通知策略：当流程结束，根据流程状态发送流程执行信息通知邮件，包含任何状态都不发，成功发，失败发，成功或失败都发。
@@ -721,10 +722,11 @@ worker.groups=default,test
 - 程序类型：选择Python语言 
 - 主jar包：是运行MR的Python jar包
 - 其他参数：支持 –D、-mapper、-reducer、-input  -output格式，这里可以设置用户自定义参数的输入，比如：
-	- -mapper  "mapper.py 1"  -file mapper.py   -reducer reducer.py  -file reducer.py –input /journey/words.txt -output /journey/out/mr/${currentTimeMillis}
-	- 其中 -mapper 后的 mapper.py 1是两个参数，第一个参数是mapper.py，第二个参数是1
-	- 资源： 如果其他参数中引用了资源文件，需要在资源中选择指定
-	- 自定义参数：是MR局部的用户自定义参数，会替换脚本中以${变量}的内容
+  - -mapper  "mapper.py 1"  -file mapper.py   -reducer reducer.py  -file reducer.py –input /journey/words.txt -output /journey/out/mr/${currentTimeMillis}
+  - 其中 -mapper 后的 mapper.py 1是两个参数，第一个参数是mapper.py，第二个参数是1
+- 资源： 如果其他参数中引用了资源文件，需要在资源中选择指定
+- 自定义参数：是MR局部的用户自定义参数，会替换脚本中以${变量}的内容
+
 
 #### 7.8 Python节点
   - 使用python节点，可以直接执行python脚本，对于python节点，worker会使用`python **`方式提交任务。
