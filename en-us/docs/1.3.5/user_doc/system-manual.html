@@ -291,7 +291,8 @@ conf/common/hadoop.properties
    <img src="/img/file-manage-en.png" width="80%" />
  </p>
 <ul>
-<li>Create a file
+<li>
+<p>Create a file</p>
 <blockquote>
 <p>The file format supports the following types: txt, log, sh, conf, cfg, py, java, sql, xml, hql, properties</p>
 </blockquote>
@@ -331,7 +332,8 @@ conf/common/hadoop.properties
    <img src="/img/file_rename_en.png" width="80%" />
  </p>
 <ul>
-<li>delete
+<li>
+<p>delete</p>
 <blockquote>
 <p>File list -&gt; Click the &quot;Delete&quot; button to delete the specified file</p>
 </blockquote>
@@ -344,7 +346,8 @@ conf/common/hadoop.properties
 Operation function: rename, download, delete.</p>
 </blockquote>
 <ul>
-<li>Upload udf resources
+<li>
+<p>Upload udf resources</p>
 <blockquote>
 <p>Same as uploading files.</p>
 </blockquote>
@@ -352,7 +355,8 @@ Operation function: rename, download, delete.</p>
 </ul>
 <h4>3.3.2 Function management</h4>
 <ul>
-<li>Create UDF function
+<li>
+<p>Create UDF function</p>
 <blockquote>
 <p>Click &quot;Create UDF Function&quot;, enter the udf function parameters, select the udf resource, and click &quot;Submit&quot; to create the udf function.</p>
 </blockquote>
@@ -725,7 +729,8 @@ worker.groups=default,test
 </ul>
 <h4>7.2 Sub-process node</h4>
 <ul>
-<li>The sub-process node is to execute a certain external workflow definition as a task node.
+<li>
+<p>The sub-process node is to execute a certain external workflow definition as a task node.</p>
 <blockquote>
 <p>Drag the <img src="https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SUB_PROCESS.png" alt="PNG"> task node in the toolbar to the drawing board, as shown in the following figure:</p>
 </blockquote>
@@ -771,7 +776,8 @@ worker.groups=default,test
  </p>
 <h4>7.4 Stored procedure node</h4>
 <ul>
-<li>According to the selected data source, execute the stored procedure.
+<li>
+<p>According to the selected data source, execute the stored procedure.</p>
 <blockquote>
 <p>Drag in the toolbar<img src="https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_PROCEDURE.png" alt="PNG">The task node to the drawing board, as shown in the following figure:</p>
 </blockquote>
@@ -861,13 +867,25 @@ worker.groups=default,test
    <img src="/img/mr_edit_en.png" width="80%" />
  </p>
 <ul>
-<li>Program type: select Python language</li>
-<li>Main jar package: is the Python jar package for running MR</li>
-<li>Other parameters: support -D, -mapper, -reducer, -input -output format, here you can set the input of user-defined parameters, such as:</li>
+<li>
+<p>Program type: select Python language</p>
+</li>
+<li>
+<p>Main jar package: is the Python jar package for running MR</p>
+</li>
+<li>
+<p>Other parameters: support -D, -mapper, -reducer, -input -output format, here you can set the input of user-defined parameters, such as:</p>
+<ul>
 <li>-mapper &quot;<a href="http://mapper.py">mapper.py</a> 1&quot; -file <a href="http://mapper.py">mapper.py</a> -reducer <a href="http://reducer.py">reducer.py</a> -file <a href="http://reducer.py">reducer.py</a> –input /journey/words.txt -output /journey/out/mr/${currentTimeMillis}</li>
 <li>The <a href="http://mapper.py">mapper.py</a> 1 after -mapper is two parameters, the first parameter is <a href="http://mapper.py">mapper.py</a>, and the second parameter is 1</li>
-<li>Resource: If the resource file is referenced in other parameters, you need to select and specify in the resource</li>
-<li>User-defined parameter: It is a user-defined parameter of the MR part, which will replace the content with ${variable} in the script</li>
+</ul>
+</li>
+<li>
+<p>Resource: If the resource file is referenced in other parameters, you need to select and specify in the resource</p>
+</li>
+<li>
+<p>User-defined parameter: It is a user-defined parameter of the MR part, which will replace the content with ${variable} in the script</p>
+</li>
 </ul>
 <h4>7.8 Python Node</h4>
 <ul>
@@ -966,7 +984,7 @@ worker.groups=default,test
 <p>Custom parameters: SQL task type, and stored procedure is a custom parameter order to set values for the method. The custom parameter type and data type are the same as the stored procedure task type. The difference is that the SQL task type custom parameter will replace the ${variable} in the SQL statement.</p>
 </li>
 </ul>
-<h4>8. parameter</h4>
+<h3>8. parameter</h3>
 <h4>8.1 System parameters</h4>
 <table>
     <tr><th>variable</th><th>meaning</th></tr>
