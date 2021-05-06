@@ -16,28 +16,53 @@ class Footer extends React.Component {
     return (
       <footer className="footer-container">
         <div className="footer-body">
-          <img src={getLink(logo)} />
-          <div className="cols-container">
-            <div className="col col-12" />
-            <div className="col col-6">
-              <dl>
-                <dt>{dataSource.documentation.title}</dt>
-                {
-                  dataSource.documentation.list.map((d, i) => (
-                    <dd key={i}><a href={getLink(d.link)} target={d.target || '_self'}>{d.text}</a></dd>
-                  ))
-                }
-              </dl>
-            </div>
-            <div className="col col-6">
-            <dl>
-            <dt>{dataSource.asf.title}</dt>
+          <div>
+            <h3>{dataSource.contact.title}</h3>
+            <h4>{dataSource.contact.content}</h4>
+          </div>
+          <div className="contact-container">
+            <ul>
             {
-              dataSource.asf.list.map((d, i) => (
-                <dd key={i}><a href={getLink(d.link)} target={d.target || '_self'}>{d.text}</a></dd>
+              dataSource.contact.list.map((contact, i) => (
+                <li key={i}>
+                  <img className="img-base" src={contact.img1}></img>
+                  <img className="img-change" src={contact.img2}></img>
+                  <a href={getLink(contact.link)}>
+                    <p>{contact.name}</p></a>
+                </li>
               ))
             }
-            </dl>
+            </ul>
+          </div>
+          <div className="cols-container">
+            <div className="docu-container">
+              <h4>{dataSource.documentation.title}</h4>
+              <ul>
+                {
+                  dataSource.documentation.list.map((docu, i) => (
+                    <li key={i}>   
+                      <a href={getLink(docu.link)}>
+                      <p>{docu.text}</p></a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+            <div>
+
+            </div>
+            <div className="asf-container">
+              <h4>{dataSource.asf.title}</h4>
+              <ul>
+                {
+                  dataSource.asf.list.map((asf, i) => (
+                    <li key={i}>   
+                      <a href={getLink(asf.link)}>
+                      <p>{asf.text}</p></a>
+                    </li>
+                  ))
+                }
+              </ul>
             </div>
           </div>
           <div className="copyright"><span>{dataSource.copyright}</span></div>
