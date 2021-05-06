@@ -190,7 +190,7 @@ export default {
         {
           name:'@ApacheDolphinScheduler',
           img1:'/img/twittergray.png',
-          img2:'/img/twitterbule.png',
+          img2:'/img/twitterblue.png',
           link:'https://twitter.com/dolphinschedule',
         }
       ],
