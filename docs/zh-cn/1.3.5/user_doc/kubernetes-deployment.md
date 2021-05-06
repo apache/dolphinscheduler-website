@@ -1,26 +1,23 @@
-## 快速试用 Kubernetes 部署
+# 快速试用 Kubernetes 部署
 
-## 先决条件(请自行安装)
+## 先决条件
 
-- [Helm](https://helm.sh/) 3.1.0+
-- [Kubernetes](https://kubernetes.io/) 1.12+
-- PV 供应(需要基础设施支持)
+ - [Helm](https://helm.sh/) 3.1.0+
+ - [Kubernetes](https://kubernetes.io/) 1.12+
+ - PV 供应(需要基础设施支持)
 
 ## 安装 dolphinscheduler
 
-发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下操作：
+请下载源码包 apache-dolphinscheduler-incubating-1.3.5-src.zip，下载地址: [下载](/zh-cn/download/download.html)
 
-```bash
-# 通过wget下载源码包
-$ wget https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
-# 通过curl下载源码包
-$ curl -O https://mirrors.tuna.tsinghua.edu.cn/apache/incubator/dolphinscheduler/1.3.5/apache-dolphinscheduler-incubating-1.3.5-src.zip
+发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下命令：
+
+```
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
-$ mv apache-dolphinscheduler-incubating-1.3.5-src-release dolphinscheduler-src
-$ cd dolphinscheduler-src/docker/kubernetes/dolphinscheduler
+$ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
-$ helm install dolphinscheduler .
+$ helm install dolphinscheduler . --set image.tag=1.3.5
 ```
 
 将名为 `dolphinscheduler` 的版本(release) 发布到 `test` 的命名空间中：
@@ -50,9 +47,11 @@ $ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:
 
 > **提示**: 如果出现 `unable to do port forwarding: socat not found` 错误, 需要先安装 `socat`
 
-然后访问前端页面: http://192.168.xx.xx:12345/dolphinscheduler
+然后访问前端页面: http://192.168.xx.xx:12345/dolphinscheduler (本地地址为 http://127.0.0.1:12345/dolphinscheduler)
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
+
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.5/user_doc/quick-start.html)查看如何使用DolphinScheduler
 
 ## 卸载 dolphinscheduler
 
@@ -74,9 +73,63 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 
 ## 配置
 
-配置文件为 `values.yaml`，[DolphinScheduler Kubernetes 配置](https://github.com/apache/incubator-dolphinscheduler/blob/1.3.5-release/docker/kubernetes/dolphinscheduler/README.md) 列出了 DolphinScheduler 的可配置参数及其默认值
+配置文件为 `values.yaml`，[DolphinScheduler Kubernetes 配置](https://github.com/apache/dolphinscheduler/blob/1.3.5/docker/kubernetes/dolphinscheduler/README.md#configuration) 列出了 DolphinScheduler 的可配置参数及其默认值
 
 ## FAQ
+
+### 如何查看一个 pod 容器的日志？
+
+列出所有 pods (别名 `po`):
+
+```
+kubectl get po
+kubectl get po -n test # with test namespace
+```
+
+查看名为 dolphinscheduler-master-0 的 pod 容器的日志:
+
+```
+kubectl logs dolphinscheduler-master-0
+kubectl logs -f dolphinscheduler-master-0 # 跟随日志输出
+kubectl logs --tail 10 dolphinscheduler-master-0 -n test # 显示倒数10行日志
+```
+
+### 如何在 Kubernetes 上扩缩容 api, master 和 worker？
+
+列出所有 deployments (别名 `deploy`):
+
+```
+kubectl get deploy
+kubectl get deploy -n test # with test namespace
+```
+
+扩缩容 api 至 3 个副本:
+
+```
+kubectl scale --replicas=3 deploy dolphinscheduler-api
+kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
+```
+
+列出所有 statefulsets (别名 `sts`):
+
+```
+kubectl get sts
+kubectl get sts -n test # with test namespace
+```
+
+扩缩容 master 至 2 个副本:
+
+```
+kubectl scale --replicas=2 sts dolphinscheduler-master
+kubectl scale --replicas=2 sts dolphinscheduler-master -n test # with test namespace
+```
+
+扩缩容 worker 至 6 个副本:
+
+```
+kubectl scale --replicas=6 sts dolphinscheduler-worker
+kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
+```
 
 ### 如何用 MySQL 替代 PostgreSQL 作为 DolphinScheduler 的数据库？
 
@@ -93,7 +146,7 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:latest
+FROM apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -105,7 +158,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 4. 推送 docker 镜像 `apache/dolphinscheduler:mysql-driver` 到一个 docker registry 中
 
-5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段， 并更新 `tag` 为 `mysql-driver`
+5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段，并更新 `tag` 为 `mysql-driver`
 
 6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
@@ -122,7 +175,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:latest
+FROM apache/dolphinscheduler:1.3.5
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -134,10 +187,8 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 4. 推送 docker 镜像 `apache/dolphinscheduler:oracle-driver` 到一个 docker registry 中
 
-5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段， 并更新 `tag` 为 `oracle-driver`
+5. 修改 `values.yaml` 文件中 image 的 `registry` 和 `repository` 字段，并更新 `tag` 为 `oracle-driver`
 
 6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
 
 7. 在数据源中心添加一个 Oracle 数据源
-
-更多信息请查看 [incubator-dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler.git) 文档.

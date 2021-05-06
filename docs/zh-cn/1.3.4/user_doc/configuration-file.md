@@ -145,15 +145,15 @@ login.user.keytab.username|hdfs-mycluster@ESZ.COM|kerberos登录用户
 login.user.keytab.path|/opt/hdfs.headless.keytab|kerberos登录用户keytab
 resource.view.suffixs| txt,log,sh,conf,cfg,py,java,sql,hql,xml,properties|资源中心支持的文件格式
 hdfs.root.user|hdfs|如果存储类型为HDFS,需要配置拥有对应操作权限的用户
-fs.defaultFS|hdfs://mycluster:8020|请求地址如果resource.storage.type=S3 ,该值类似为: s3a://dolphinscheduler. 如果resource.storage.type=HDFS, 如果 hadoop 配置了 HA ,需要复制core-site.xml 和 hdfs-site.xml 文件到conf目录
+fs.defaultFS|hdfs://mycluster:8020|请求地址如果resource.storage.type=S3,该值类似为: s3a://dolphinscheduler. 如果resource.storage.type=HDFS, 如果 hadoop 配置了 HA,需要复制core-site.xml 和 hdfs-site.xml 文件到conf目录
 fs.s3a.endpoint||s3 endpoint地址
 fs.s3a.access.key||s3 access key
-fs.s3a.secret.key|     |s3 secret key
-yarn.resourcemanager.ha.rm.ids|     |yarn resourcemanager 地址, 如果resourcemanager开启了HA, 输入HA的IP地址(以逗号分隔),如果resourcemanager为单节点, 该值为空即可.
+fs.s3a.secret.key||s3 secret key
+yarn.resourcemanager.ha.rm.ids||yarn resourcemanager 地址, 如果resourcemanager开启了HA, 输入HA的IP地址(以逗号分隔),如果resourcemanager为单节点, 该值为空即可
 yarn.application.status.address|http://ds1:8088/ws/v1/cluster/apps/%s|如果resourcemanager开启了HA或者没有使用resourcemanager,保持默认值即可. 如果resourcemanager为单节点,你需要将ds1 配置为resourcemanager对应的hostname
 dolphinscheduler.env.path|env/dolphinscheduler_env.sh|运行脚本加载环境变量配置文件[如: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]
 development.state|false|是否处于开发模式
-kerberos.expire.time|7|kerberos过期时间 [小时]
+kerberos.expire.time|7|kerberos过期时间,整数,单位为天
 
 
 ## 5.application-api.properties [API服务配置]
@@ -174,26 +174,27 @@ security.authentication.type|PASSWORD|权限校验类型
 ## 6.master.properties [Master服务配置]
 |参数 |默认值| 描述| 
 |--|--|--|
-master.listen.port|5678|master通讯端口
-master.exec.threads|100| 工作线程数量
-master.exec.task.num|20|并行任务数量
-master.dispatch.task.num | 3|分发任务数量
-master.heartbeat.interval|10|心跳间隔
+master.listen.port|5678|master监听端口
+master.exec.threads|100|master工作线程数量,用于限制并行的流程实例数量
+master.exec.task.num|20|master每个流程实例的并行任务数量
+master.dispatch.task.num|3|master每个批次的派发任务数量
+master.host.selector|LowerWeight|master host选择器,用于选择合适的worker执行任务,可选值: Random, RoundRobin, LowerWeight
+master.heartbeat.interval|10|master心跳间隔,单位为秒
 master.task.commit.retryTimes|5|任务重试次数
-master.task.commit.interval|1000|任务提交间隔
-master.max.cpuload.avg|-1|cpu小于该配置时,master 服务才能工作.默认值为-1 :  cpu cores * 2
-master.reserved.memory|0.3|内存阈值限制,可用内存大于该值,master 服务才能工作.
+master.task.commit.interval|1000|任务提交间隔,单位为毫秒
+master.max.cpuload.avg|-1|master最大cpuload均值,只有高于系统cpuload均值时,master服务才能调度任务. 默认值为-1: cpu cores * 2
+master.reserved.memory|0.3|master预留内存,只有低于系统可用内存时,master服务才能调度任务,单位为G
 
 
 ## 7.worker.properties [Worker服务配置]
 |参数 |默认值| 描述| 
 |--|--|--|
-worker.listen.port|1234|worker通讯端口
-worker.exec.threads|100|工作线程数量
-worker.heartbeat.interval|10|心跳间隔
-worker.max.cpuload.avg|-1|cpu小于该配置时,worker 服务才能工作. 默认值为-1 :  cpu cores * 2
-worker.reserved.memory|0.3|内存阈值限制,可用内存大于该值,worker 服务才能工作.
-worker.group|default|workgroup分组配置. <br> worker启动时会根据该配置自动加入对应的分组.
+worker.listen.port|1234|worker监听端口
+worker.exec.threads|100|worker工作线程数量,用于限制并行的任务实例数量
+worker.heartbeat.interval|10|worker心跳间隔,单位为秒
+worker.max.cpuload.avg|-1|worker最大cpuload均值,只有高于系统cpuload均值时,worker服务才能被派发任务. 默认值为-1: cpu cores * 2
+worker.reserved.memory|0.3|worker预留内存,只有低于系统可用内存时,worker服务才能被派发任务,单位为G
+worker.groups|default|worker分组配置,逗号分隔,例如'worker.groups=default,test' <br> worker启动时会根据该配置自动加入对应的分组
 
 
 ## 8.alert.properties [Alert 告警服务配置]
@@ -398,7 +399,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 
 ## 12.各服务日志配置文件
 对应服务服务名称| 日志文件名 |
-|--|--|--|
+--|--|
 api服务日志配置文件 |logback-api.xml|
 master服务日志配置文件|logback-master.xml |
 worker服务日志配置文件|logback-worker.xml |

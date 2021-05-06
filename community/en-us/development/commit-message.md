@@ -1,10 +1,4 @@
----
-title: Commit Message
-keywords: DolphinScheduler, commit message, contibuting
-description: This documentation outlines the commit message format for contributing to dolphine scheduler
----
-
-## DolphinScheduler-Contributor-CommitMessage
+# Commit Message Notice
 
 ### Preface
 

@@ -8,6 +8,8 @@ import Language from '../../components/language';
 import Item from './featureItem';
 import homeConfig from '../../../site_config/home';
 import './index.scss';
+import Slider from '../../components/slider';
+import EventCard from '../community/eventCard';
 
 class Home extends Language {
   constructor(props) {
@@ -22,9 +24,14 @@ class Home extends Language {
   componentDidMount() {
     window.addEventListener('scroll', () => {
       const scrollTop = getScrollTop();
-      if (scrollTop > 66) {
+      const offsetHeight = document.querySelector('.top-section').offsetHeight - 66;
+      if (scrollTop > 66 && scrollTop <= offsetHeight) {
         this.setState({
           headerType: 'normal',
+        });
+      } else if (scrollTop > offsetHeight) {
+        this.setState({
+          headerType: 'dark',
         });
       } else {
         this.setState({
@@ -33,7 +40,7 @@ class Home extends Language {
       }
     });
     // 写死协议，因github会做协议跳转，这种跳转会被Safari拦截
-    fetch('https://api.github.com/repos/apache/incubator-dolphinscheduler')
+    fetch('https://api.github.com/repos/apache/dolphinscheduler')
       .then(res => res.json())
       .then((data) => {
         this.setState({
@@ -48,10 +55,11 @@ class Home extends Language {
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;
-    const headerLogo = headerType === 'primary' ? '/img/hlogo_white.svg' : '/img/hlogo_colorful.svg';
+    const headerLogo = headerType === 'normal' ? '/img/hlogo_colorful.svg' : '/img/hlogo_white.svg';
     return (
       <div className="home-page">
         <section className="top-section">
+          <img src="/img/banner.jpg" />
           <Header
             currentKey="home"
             type={headerType}
@@ -61,7 +69,6 @@ class Home extends Language {
           />
           <div className="vertical-middle">
             <div className="product-name">
-              <div className="sub-corner">Incubating</div>
               <h2>{dataSource.brand.brandName}</h2>
             </div>
             <p className="product-desc">{dataSource.brand.briefIntroduction}</p>
@@ -71,13 +78,13 @@ class Home extends Language {
             }
             </div>
             <div className="github-buttons">
-              <a href="https://github.com/apache/incubator-dolphinscheduler" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/apache/dolphinscheduler" target="_blank" rel="noopener noreferrer">
                 <div className="star">
                   <img src="https://img.alicdn.com/tfs/TB1FlB1JwHqK1RjSZFPXXcwapXa-32-32.png" />
                   <span className="count" style={{ display: starCount ? 'inline-block' : 'none' }}>{getKiloUnit(starCount)}</span>
                 </div>
               </a>
-              <a href="https://github.com/apache/incubator-dolphinscheduler/fork" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/apache/dolphinscheduler/fork" target="_blank" rel="noopener noreferrer">
                 <div className="fork">
                   <img src="https://img.alicdn.com/tfs/TB1zbxSJwDqK1RjSZSyXXaxEVXa-32-32.png" />
                   <span className="count" style={{ display: forkCount ? 'inline-block' : 'none' }}>{getKiloUnit(forkCount)}</span>
@@ -113,6 +120,14 @@ class Home extends Language {
             ))
           }
           </ul>
+        </section>
+        <section className="events-section">
+              <h3>{dataSource.events.title}</h3>
+              <Slider>
+                {dataSource.events.list.map((event, i) => (
+                  <EventCard event={event} key={i} />
+                ))}
+              </Slider>
         </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>

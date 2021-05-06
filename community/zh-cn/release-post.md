@@ -20,3 +20,16 @@
    - `docsxyz`: 两处 `en-us/zh-cn` 的 `children` 增加 `key` 为 `docsxyz`, `text` 为 `x.y.z` 的下拉菜单
  - `src/pages/docs/index.md.jsx`: 增加 `'x.y.z': docsxyzConfig,`
  - `download/en-us/download.md` 和 `download/zh-cn/download.md`: 增加 x.y.z 版本发布包的下载
+
+## 发布镜像
+
+构建 Docker 镜像，请参考 [如何构建一个 Docker 镜像？](/zh-cn/docs/latest/user_doc/docker-deployment.html)
+
+然后推送镜像
+
+```bash
+docker tag apache/dolphinscheduler:x.y.z apache/dolphinscheduler:latest
+docker login # 输入用户和密码
+docker push apache/dolphinscheduler:x.y.z
+docker push apache/dolphinscheduler:latest
+```

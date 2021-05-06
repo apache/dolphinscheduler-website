@@ -38,8 +38,21 @@ export default {
             link: '/en-us/docs/1.3.5/user_doc/system-manual.html',
           },
           {
+            title: 'Open API',
+            link: '/en-us/docs/1.3.5/user_doc/open-api.html',
+          },
+        ],
+      },
+      {
+        title: 'Architecture Design',
+        children: [
+          {
             title: 'Metadata',
             link: '/en-us/docs/1.3.5/user_doc/metadata-1.3.html',
+          },
+          {
+            title: 'Architecture Design',
+            link: '/en-us/docs/1.3.5/user_doc/architecture-design.html',
           },
           {
             title: 'Configuration File',
@@ -48,9 +61,10 @@ export default {
           {
             title: 'Task Structure',
             link: '/en-us/docs/1.3.5/user_doc/task-structure.html',
-          },          {
-            title: 'Open API',
-            link: '/en-us/docs/1.3.5/user_doc/open-api.html',
+          },
+          {
+            title: 'Load Balance',
+            link: '/en-us/docs/1.3.5/user_doc/load-balance.html',
           },
         ],
       },

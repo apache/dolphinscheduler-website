@@ -1,6 +1,6 @@
-#### 提交代码流程
+# 提交代码
 
-* 首先从远端仓库*https://github.com/apache/incubator-dolphinscheduler.git* fork一份代码到自己的仓库中
+* 首先从远端仓库*https://github.com/apache/dolphinscheduler.git* fork一份代码到自己的仓库中
 
 * 远端仓库中目前有三个分支：
     * master 正常交付分支
@@ -14,11 +14,11 @@
 
 * 把自己仓库clone到本地
   
-    ` git clone https://github.com/apache/incubator-dolphinscheduler.git`
+    ` git clone https://github.com/apache/dolphinscheduler.git`
 
 *  添加远端仓库地址，命名为upstream
 
-    ` git remote add upstream https://github.com/apache/incubator-dolphinscheduler.git `
+    ` git remote add upstream https://github.com/apache/dolphinscheduler.git `
 
 *  查看仓库：
 
