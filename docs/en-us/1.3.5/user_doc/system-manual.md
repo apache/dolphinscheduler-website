@@ -272,6 +272,7 @@ conf/common/hadoop.properties
  </p>
 
 - Create a file
+  
   > The file format supports the following types: txt, log, sh, conf, cfg, py, java, sql, xml, hql, properties
 
 <p align="center">
@@ -305,6 +306,7 @@ conf/common/hadoop.properties
  </p>
 
 - delete
+  
   > File list -> Click the "Delete" button to delete the specified file
 
 #### 3.3 UDF management
@@ -315,11 +317,13 @@ conf/common/hadoop.properties
 > Operation function: rename, download, delete.
 
 - Upload udf resources
+  
   > Same as uploading files.
 
 #### 3.3.2 Function management
 
 - Create UDF function
+  
   > Click "Create UDF Function", enter the udf function parameters, select the udf resource, and click "Submit" to create the udf function.
 
 > Currently only supports temporary UDF functions of HIVE
@@ -634,6 +638,7 @@ worker.groups=default,test
 #### 7.2 Sub-process node
 
 - The sub-process node is to execute a certain external workflow definition as a task node.
+  
   > Drag the ![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SUB_PROCESS.png) task node in the toolbar to the drawing board, as shown in the following figure:
 
 <p align="center">
@@ -677,6 +682,7 @@ worker.groups=default,test
 #### 7.4 Stored procedure node
 
 - According to the selected data source, execute the stored procedure.
+  
   > Drag in the toolbar![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_PROCEDURE.png)The task node to the drawing board, as shown in the following figure:
 
 <p align="center">
@@ -762,8 +768,9 @@ Note: JAVA and Scala are only used for identification, there is no difference, i
 - Program type: select Python language
 - Main jar package: is the Python jar package for running MR
 - Other parameters: support -D, -mapper, -reducer, -input -output format, here you can set the input of user-defined parameters, such as:
-- -mapper "mapper.py 1" -file mapper.py -reducer reducer.py -file reducer.py –input /journey/words.txt -output /journey/out/mr/\${currentTimeMillis}
-- The mapper.py 1 after -mapper is two parameters, the first parameter is mapper.py, and the second parameter is 1
+
+  - -mapper "mapper.py 1" -file mapper.py -reducer reducer.py -file reducer.py –input /journey/words.txt -output /journey/out/mr/\${currentTimeMillis}
+  - The mapper.py 1 after -mapper is two parameters, the first parameter is mapper.py, and the second parameter is 1
 - Resource: If the resource file is referenced in other parameters, you need to select and specify in the resource
 - User-defined parameter: It is a user-defined parameter of the MR part, which will replace the content with \${variable} in the script
 
@@ -846,7 +853,7 @@ Note: JAVA and Scala are only used for identification, there is no difference, i
 - json: json configuration file for datax synchronization
 - Custom parameters: SQL task type, and stored procedure is a custom parameter order to set values for the method. The custom parameter type and data type are the same as the stored procedure task type. The difference is that the SQL task type custom parameter will replace the \${variable} in the SQL statement.
 
-#### 8. parameter
+### 8. parameter
 
 #### 8.1 System parameters
 
