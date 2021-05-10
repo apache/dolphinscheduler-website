@@ -117,14 +117,14 @@ The operation functions of the workflow definition list are as follows:
       * Recipient: Select notification policy||Timeout alarm||When fault tolerance occurs, process information or alarm email will be sent to the recipient list.
       * Cc: Select the notification strategy||Timeout alarm||When fault tolerance occurs, the process information or warning email will be copied to the CC list.
       * Startup parameter: Set or overwrite global parameter values when starting a new process instance.
-      * Complement: Two modes including serial complement and parallel complement. Serial complement: within the specified time range, the complement is executed sequentially from the start date to the end date, and only one process instance is generated; parallel complement: within the specified time range, multiple days are complemented at the same time to generate N process instances.
+      * Complement: Two modes including serial complement and parallel complement. Serial complement: Within the specified time range, the complements are executed from the start date to the end date and N process instances are generated in turn; parallel complement: within the specified time range, multiple days are complemented at the same time to generate N process instances.
     * For example, you need to fill in the data from May 1 to May 10.
 
     <p align="center">
         <img src="/img/complement_en1.png" width="80%" />
     </p>
 
-  > Serial mode: The complement is executed sequentially from May 1 to May 10, and a process instance is generated on the process instance page;
+  > Serial mode: The complement is executed sequentially from May 1 to May 10, and ten process instances are generated on the process instance page;
 
   > Parallel mode: The tasks from May 1 to may 10 are executed simultaneously, and 10 process instances are generated on the process instance page.
 
