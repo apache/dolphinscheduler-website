@@ -192,7 +192,19 @@ export default {
           img1:'/img/twittergray.png',
           img2:'/img/twitterblue.png',
           link:'https://twitter.com/dolphinschedule',
-        }
+        },
+        {
+          name:'@Stack Overflow',
+          img1:'/img/stackoverflow.png',
+          img2:'/img/stackoverflow-selected.png',
+          link:'https://stackoverflow.com/questions/tagged/apache-dolphinscheduler',
+        },
+        {
+          name:'@SlackDolphinscheduler',
+          img1:'/img/slack.png',
+          img2:'/img/slack-selected.png',
+          link:'https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw',
+        },
       ],
     },
     copyright: 'Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
@@ -383,7 +395,19 @@ export default {
           img1:'/img/twittergray.png',
           img2:'/img/twitterblue.png',
           link:'https://twitter.com/dolphinschedule',
-        }
+        },
+        {
+          name:'@Stack Overflow',
+          img1:'/img/stackoverflow.png',
+          img2:'/img/stackoverflow-selected.png',
+          link:'https://stackoverflow.com/questions/tagged/apache-dolphinscheduler',
+        },   
+        {
+          name:'@SlackDolphinscheduler',
+          img1:'/img/slack.png',
+          img2:'/img/slack-selected.png',
+          link:'https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw',
+        },
       ],
     },
     copyright: 'Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
