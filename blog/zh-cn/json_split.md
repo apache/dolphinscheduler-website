@@ -13,7 +13,7 @@ json split项目从2021-01-12开始启动，到2021-04-25一期已完成。代�
 
 ### 拆分方案回顾
 
-![拆分方案](Json%20Split/%E6%8B%86%E5%88%86%E6%96%B9%E6%A1%88-1620304011852.png)
+![拆分方案](https://user-images.githubusercontent.com/42576980/117598604-b1ad8e80-b17a-11eb-9d99-d593fce7bab6.png)
 
 - [ ] api模块进行save操作时
 
@@ -28,7 +28,7 @@ json split项目从2021-01-12开始启动，到2021-04-25一期已完成。代�
 
 ### Json存取方案
 
-![json](Json%20Split/json.png)
+![json](https://user-images.githubusercontent.com/42576980/117598643-c9851280-b17a-11eb-9a6e-c81ee083b09c.png)
 
 - [ ] 当前一期拆分方案，api模块controller层整体未变动，传入的大json还是在service层映射为ProcessData对象。insert或update操作在公共Service模块通过ProcessService.saveProcessDefiniton()入口完成保存数据库操作，按照task_definition、process_task_relation、process_definition的顺序保存。保存时，如果该任务已经存在并且关联的工作流未上线，则更改任务；如果任务关联的工作流已上线，则不允许更改任务
 
@@ -53,5 +53,5 @@ json split项目从2021-01-12开始启动，到2021-04-25一期已完成。代�
 
 当前生成process_instance，是通过process_definition和schedules及command表生成，而生成taskInstance还是来源于MasterExecThread.readyToSubmitTaskQueue队列，而队列中数据来源于dag对象，此时，该队列及dag中保存taskInstance的所有信息，这种方式非常占用内存。可改造为如下图的数据流转方式，readyToSubmitTaskQueue队列及dag中保存任务code和版本信息，在生成task_instance前，查询task_definition
 
-![server](Json%20Split/server.png)
+![server](https://user-images.githubusercontent.com/42576980/117598659-d3a71100-b17a-11eb-8fe1-8725299510e6.png)
 
