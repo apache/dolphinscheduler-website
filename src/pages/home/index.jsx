@@ -18,7 +18,6 @@ class Home extends Language {
       headerType: 'primary',
       starCount: 0,
       forkCount: 0,
-      index: 0,
     };
   }
 
@@ -45,43 +44,14 @@ class Home extends Language {
       .then(res => res.json())
       .then((data) => {
         this.setState({
-          ...this.state,
           starCount: data.stargazers_count,
           forkCount: data.forks_count,
         });
       });
   }
-  addClick = (length) => {
-    if (this.state.index<length-1){
-      this.setState({
-        ...this.state,
-        index: this.state.index + 1,
-      })
-    }
-    else{
-      this.setState({
-        ...this.state,
-        index: 0,
-      })
-    }
-  } 
-
-  minusClick =(length) => {
-    if(this.state.index>0){
-      this.setState({
-        ...this.state,
-        index: this.state.index - 1,
-      })
-    }else{
-      this.setState({
-        ...this.state,
-        index: length - 1,
-      })
-    }
-  }
 
   render() {
-    const { starCount, forkCount, index } = this.state;
+    const { starCount, forkCount } = this.state;
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;
@@ -158,28 +128,6 @@ class Home extends Language {
                   <EventCard event={event} key={i} />
                 ))}
               </Slider>
-        </section>
-        <section className="review-section">
-          <h3>{dataSource.userreview.title}</h3>
-          <div className="button-section" id='buttonleft'> 
-            <button onClick={() => this.minusClick(dataSource.userreview.list.length)}><img src="/img/gotoleft.png"/></button> 
-            <div className="overflow-section">
-              <ul>
-                {
-                    dataSource.userreview.list.map((ureview,i) => (
-                      <li>
-                        <img src={ureview.img}></img>
-                        <div className="name-section">
-                          <p className="pr">{ureview.review}</p>
-                          <p className="pn">{ureview.name}</p>
-                        </div>
-                      </li>
-                    ))[index]
-                }
-              </ul>
-            </div>
-            <button onClick={() => this.addClick(dataSource.userreview.list.length)}><img src="/img/gotoright.png"/></button>
-          </div>
         </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
