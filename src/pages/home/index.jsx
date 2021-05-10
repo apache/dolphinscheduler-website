@@ -18,7 +18,6 @@ class Home extends Language {
       headerType: 'primary',
       starCount: 0,
       forkCount: 0,
-      index: 0,
     };
   }
 
@@ -45,13 +44,12 @@ class Home extends Language {
       .then(res => res.json())
       .then((data) => {
         this.setState({
-          ...this.state,
           starCount: data.stargazers_count,
           forkCount: data.forks_count,
         });
       });
   }
-
+  
   addClick = (length) => {
     if (this.state.index < length - 1) {
       this.setState({
@@ -80,8 +78,9 @@ class Home extends Language {
     }
   }
 
+
   render() {
-    const { starCount, forkCount, index } = this.state;
+    const { starCount, forkCount } = this.state;
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;

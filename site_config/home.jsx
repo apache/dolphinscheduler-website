@@ -55,7 +55,7 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
-          img: '/img/dailidong.png',
+          img: '/img/2020-05-26/live_online_20200526.jpeg',
           title: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线直播',
           content: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线在线直播，700多人在线',
           dateStr: '2020-05-26',
@@ -180,7 +180,7 @@ export default {
           link: 'https://lists.apache.org/thread.html/rbd018b05da88d98f403dcd18098fa622c0c4c6db8d2b28c84028a818%40%3Cdev.dolphinscheduler.apache.org%3E',
         },
         {
-          img: '/img/dailidong.png',
+          img: '/img/2020-05-26/live_online_20200526.jpeg',
           title: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap',
           content: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap，more than 700 people online',
           dateStr: '2020-05-26',
