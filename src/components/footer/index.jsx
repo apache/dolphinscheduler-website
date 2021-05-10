@@ -5,13 +5,13 @@ import { getLink } from '../../../utils';
 import './index.scss';
 
 const propTypes = {
-  logo: PropTypes.string.isRequired, // logo地址
+  // logo: PropTypes.string.isRequired, // logo地址
   language: PropTypes.oneOf(['zh-cn', 'en-us']),
 };
 
 class Footer extends React.Component {
   render() {
-    const { logo, language } = this.props;
+    const { language } = this.props;
     const dataSource = siteConfig[language];
     return (
       <footer className="footer-container">
@@ -25,10 +25,11 @@ class Footer extends React.Component {
             {
               dataSource.contact.list.map((contact, i) => (
                 <li key={i}>
-                  <img className="img-base" src={contact.img1}></img>
-                  <img className="img-change" src={contact.img2}></img>
+                  <img className="img-base" src={contact.img1} />
+                  <img className="img-change" src={contact.img2} />
                   <a href={getLink(contact.link)}>
-                    <p>{contact.name}</p></a>
+                    <p>{contact.name}</p>
+                  </a>
                 </li>
               ))
             }
@@ -40,25 +41,25 @@ class Footer extends React.Component {
               <ul>
                 {
                   dataSource.documentation.list.map((docu, i) => (
-                    <li key={i}>   
+                    <li key={i}>
                       <a href={getLink(docu.link)}>
-                      <p>{docu.text}</p></a>
+                      <p>{docu.text}</p>
+                      </a>
                     </li>
                   ))
                 }
               </ul>
             </div>
-            <div>
-
-            </div>
+            <div />
             <div className="asf-container">
               <h4>{dataSource.asf.title}</h4>
               <ul>
                 {
                   dataSource.asf.list.map((asf, i) => (
-                    <li key={i}>   
+                    <li key={i}>
                       <a href={getLink(asf.link)}>
-                      <p>{asf.text}</p></a>
+                      <p>{asf.text}</p>
+                      </a>
                     </li>
                   ))
                 }
