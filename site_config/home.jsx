@@ -217,7 +217,7 @@ export default {
       ],
     },
     userreview:{
-      title:"Users Review",
+      title:"User Comments",
       list:[
         {
           img:'/img/chinaunicom-logo.png',
