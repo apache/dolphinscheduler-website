@@ -55,7 +55,7 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
-          img: '/img/2020-05-26/live_online_20200526.jpeg',
+          img: '/img/dailidong.png',
           title: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线直播',
           content: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线在线直播，700多人在线',
           dateStr: '2020-05-26',
@@ -90,6 +90,31 @@ export default {
           link: '/zh-cn/development/architecture-design.html',
         },
       ],
+    },
+    userreview:{
+        title:"用户评论",
+        list:[
+          {
+            img:'/img/chinaunicom-logo.png',
+            review:'提供了一个优秀的调度产品，节省了近百人月的开发成本。友好的社区沟通环境，提供了强大的后援支持。',
+            name:'—— 联通数字科技 架构师 尹正军',
+          },
+          {
+            img:'/img/qianxin-logo.svg',
+            review:'小海豚已经是我们数据项目开发管理的利器，非常好用，希望保持初心，越来越好。',
+            name:'—— 奇安信 数据总监 姜旭',
+          },
+          {
+            img:'/img/changan-logo.png',
+            review:'从EasyScheduler到DolphinScheduler，有幸见证了小海豚的成长 —— 越来越简单，越来越易用。DS已作为数据平台的基础组件服务于整个长安汽车车联网的离线开发场景，非常稳定。希望DS社区生态越来越完善，每个用户都能得益于社区，贡献于社区!',
+            name:'—— 长安汽车 数据平台工程师 黄立',
+          },
+          {
+            img:'/img/xdf-logo.jpeg',
+            review:'祝贺DolphinScheduler成为Apache顶级项目。DolphinScheduler有强大的调度功能，方便快捷的可视化工具，可信赖的高可靠性，成为了行业同类工具中的领先者，是国产大数据软件之光。新东方通过使用DolphinScheduler，提高了任务调度效率，更加方便地进行系统性能分析，数据产出时间缩短。感谢DolphinScheduler!',
+            name:'—— 新东方教育科技集团技术VP（前当当网CTO）李海涛',
+          },
+        ],
     },
   },
   'en-us': {
@@ -155,7 +180,7 @@ export default {
           link: 'https://lists.apache.org/thread.html/rbd018b05da88d98f403dcd18098fa622c0c4c6db8d2b28c84028a818%40%3Cdev.dolphinscheduler.apache.org%3E',
         },
         {
-          img: '/img/2020-05-26/live_online_20200526.jpeg',
+          img: '/img/dailidong.png',
           title: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap',
           content: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap，more than 700 people online',
           dateStr: '2020-05-26',
@@ -188,6 +213,31 @@ export default {
           content: 'DolphinScheduler beijing meetup has been held successfully',
           dateStr: 'May 12nd，2018',
           link: '/en-us/development/architecture-design.html',
+        },
+      ],
+    },
+    userreview:{
+      title:"User Comments",
+      list:[
+        {
+          img:'/img/chinaunicom-logo.png',
+          review:'Apache DolphinScheduler is an excellent data workflow open-source product, Its community is very friendly and gives us strong support. We save the cost of hundreds of human months by using DolphinScheduler!',
+          name:'—— Software Architect at China Unicom -- Zhengjun Yin',
+        },
+        {
+          img:'/img/qianxin-logo.svg',
+          review:'DolphinScheduler is already a good tool for our data project development management, it works very well, hope to keep the original intention and get better and better~',
+          name:'—— Data Director of 360 --Jiang Xu',
+        },
+        {
+          img:'/img/changan-logo.png',
+          review:'From EasyScheduler to DolphinScheduler, we have the honor to witness the growth of Little Dolphin - it is getting simpler and easier to use. DS has served the whole Changan Auto Telematics offline development scenario as the basic component of data platform and is very stable. I hope the DS community ecology is getting better and better, and every user can benefit from and contribute to the community!',
+          name:'—— Changan Automobile Data Platform Engineer -- Huang Li',
+        },
+        {
+          img:'/img/xdf-logo.jpeg',
+          review:'Congratulations to DolphinScheduler for becoming an Apache top project. With powerful scheduling features, convenient and fast visualization tools, and reliable high reliability, DolphinScheduler has become a leader among similar tools in the industry, and is the light of big data software in China.By using DolphinScheduler, New Oriental has improved the efficiency of task scheduling, more convenient system performance analysis, and shorter data output time. Thanks to DolphinScheduler!',
+          name:'—— Technology VP of New Oriental Education & Technology Group (former CTO of Dangdang.com) -- Haitao Li',
         },
       ],
     },
