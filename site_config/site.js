@@ -177,22 +177,22 @@ export default {
         },
       ],
     },
-    contact:{
-      title :'About us',
-      content:'Do you need feedback? Please contact us through the following ways.',
-      list:[
+    contact: {
+      title: 'About us',
+      content: 'Do you need feedback? Please contact us through the following ways.',
+      list: [
         {
-          name:'Email List',
-          img1:'/img/emailgray.png',
-          img2:'/img/emailblue.png',
-          link:'/en-us/community/development/subscribe.html',
+          name: 'Email List',
+          img1: '/img/emailgray.png',
+          img2: '/img/emailblue.png',
+          link: '/en-us/community/development/subscribe.html',
         },
         {
-          name:'@ApacheDolphinScheduler',
-          img1:'/img/twittergray.png',
-          img2:'/img/twitterblue.png',
-          link:'https://twitter.com/dolphinschedule',
-        }
+          name: '@ApacheDolphinScheduler',
+          img1: '/img/twittergray.png',
+          img2: '/img/twitterblue.png',
+          link: 'https://twitter.com/dolphinschedule',
+        },
       ],
     },
     copyright: 'Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
@@ -368,22 +368,22 @@ export default {
         },
       ],
     },
-    contact:{
-      title :'联系我们',
-      content:'有问题需要反馈？请通过以下方式联系我们。',
-      list:[
+    contact: {
+      title: '联系我们',
+      content: '有问题需要反馈？请通过以下方式联系我们。',
+      list: [
         {
-          name:'邮件列表',
-          img1:'/img/emailgray.png',
-          img2:'/img/emailblue.png',
-          link:'/zh-cn/community/development/subscribe.html',
+          name: '邮件列表',
+          img1: '/img/emailgray.png',
+          img2: '/img/emailblue.png',
+          link: '/zh-cn/community/development/subscribe.html',
         },
         {
-          name:'@ApacheDolphinScheduler',
-          img1:'/img/twittergray.png',
-          img2:'/img/twitterblue.png',
-          link:'https://twitter.com/dolphinschedule',
-        }
+          name: '@ApacheDolphinScheduler',
+          img1: '/img/twittergray.png',
+          img2: '/img/twitterblue.png',
+          link: 'https://twitter.com/dolphinschedule',
+        },
       ],
     },
     copyright: 'Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
