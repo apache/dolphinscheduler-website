@@ -49,6 +49,35 @@ class Home extends Language {
         });
       });
   }
+  
+  addClick = (length) => {
+    if (this.state.index < length - 1) {
+      this.setState({
+        ...this.state,
+        index: this.state.index + 1,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        index: 0,
+      });
+    }
+  }
+
+  minusClick =(length) => {
+    if (this.state.index > 0) {
+      this.setState({
+        ...this.state,
+        index: this.state.index - 1,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        index: length - 1,
+      });
+    }
+  }
+
 
   render() {
     const { starCount, forkCount } = this.state;
@@ -128,6 +157,28 @@ class Home extends Language {
                   <EventCard event={event} key={i} />
                 ))}
               </Slider>
+        </section>
+        <section className="review-section">
+          <h3>{dataSource.userreview.title}</h3>
+          <div className="button-section" id="buttonleft">
+            <button onClick={() => this.minusClick(dataSource.userreview.list.length)}><img src="/img/gotoleft.png" /></button>
+            <div className="overflow-section">
+              <ul>
+                {
+                    dataSource.userreview.list.map((ureview, i) => (
+                      <li key={i}>
+                        <img src={ureview.img} />
+                        <div className="name-section">
+                          <p className="pr">{ureview.review}</p>
+                          <p className="pn">{ureview.name}</p>
+                        </div>
+                      </li>
+                    ))[index]
+                }
+              </ul>
+            </div>
+            <button onClick={() => this.addClick(dataSource.userreview.list.length)}><img src="/img/gotoright.png" /></button>
+          </div>
         </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
