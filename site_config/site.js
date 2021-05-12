@@ -8,6 +8,9 @@ export default {
   defaultSearch: 'google', // 默认搜索引擎，baidu或者google
   defaultLanguage: 'en-us',
   'en-us': {
+    meetup: {
+      text: '2021-05-15 14:00（PDT） Apache DolphinScheduler & Apache ShardingSphere Global Online co-Meetup is coming!',
+    },
     pageMenu: [
       {
         key: 'home', // 用作顶部菜单的选中
@@ -210,6 +213,9 @@ export default {
     copyright: 'Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
   'zh-cn': {
+    meetup: {
+      text: '2021-05-16 上午 5:00  Apache DolphinScheduler & Apache ShardingSphere 将联合举行全球线上沙龙!',
+    },
     pageMenu: [
       {
         key: 'home',
