@@ -140,6 +140,7 @@ class Header extends React.Component {
   render() {
     const { type, logo, onLanguageChange } = this.props;
     const { menuBodyVisible, language, search, searchVisible } = this.state;
+    const dataSource = siteConfig[language];
     return (
       <header
         className={
@@ -149,6 +150,18 @@ class Header extends React.Component {
           })
         }
       >
+        <div
+          className={
+            classnames({
+              'meetup-container': true,
+              [`meetup-container-${type}`]: true,
+            })
+          }
+        >
+          <a href="https://www.meetup.com/dolphinscheduler/events/277413098/">
+            <p>{dataSource.meetup.text}</p>
+          </a>
+        </div>
         <div className="header-body">
           <a href={getLink(`/${language}/index.html`)}>
             <img className="logo" alt={siteConfig.name} title={siteConfig.name} src={getLink(logo)} />
