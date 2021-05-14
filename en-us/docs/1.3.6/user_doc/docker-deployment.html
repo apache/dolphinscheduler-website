@@ -598,13 +598,13 @@ RUN apt-get update &amp;&amp; \
 <p>Copy the Spark 2.4.7 release binary into Docker container</p>
 </li>
 </ol>
-<pre><code class="language-bash">docker cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker:/opt/soft
+<pre><code class="language-bash">docker cp spark-2.4.7-bin-hadoop2.7.tgz docker-swarm_dolphinscheduler-worker_1:/opt/soft
 </code></pre>
 <p>Because the volume <code>dolphinscheduler-shared-local</code> is mounted on <code>/opt/soft</code>, all files in <code>/opt/soft</code> will not be lost</p>
 <ol start="4">
 <li>Attach the container and ensure that <code>SPARK_HOME2</code> exists</li>
 </ol>
-<pre><code class="language-bash">docker <span class="hljs-built_in">exec</span> -it dolphinscheduler-worker bash
+<pre><code class="language-bash">docker <span class="hljs-built_in">exec</span> -it docker-swarm_dolphinscheduler-worker_1 bash
 <span class="hljs-built_in">cd</span> /opt/soft
 tar zxf spark-2.4.7-bin-hadoop2.7.tgz
 rm -f spark-2.4.7-bin-hadoop2.7.tgz
@@ -648,12 +648,12 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <p>Copy the Spark 3.1.1 release binary into Docker container</p>
 </li>
 </ol>
-<pre><code class="language-bash">docker cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker:/opt/soft
+<pre><code class="language-bash">docker cp spark-3.1.1-bin-hadoop2.7.tgz docker-swarm_dolphinscheduler-worker_1:/opt/soft
 </code></pre>
 <ol start="4">
 <li>Attach the container and ensure that <code>SPARK_HOME2</code> exists</li>
 </ol>
-<pre><code class="language-bash">docker <span class="hljs-built_in">exec</span> -it dolphinscheduler-worker bash
+<pre><code class="language-bash">docker <span class="hljs-built_in">exec</span> -it docker-swarm_dolphinscheduler-worker_1 bash
 <span class="hljs-built_in">cd</span> /opt/soft
 tar zxf spark-3.1.1-bin-hadoop2.7.tgz
 rm -f spark-3.1.1-bin-hadoop2.7.tgz
@@ -668,6 +668,9 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </code></pre>
 <p>Check whether the task log contains the output like <code>Pi is roughly 3.146015</code></p>
 <h3>How to support shared storage between Master, Worker and Api server?</h3>
+<blockquote>
+<p><strong>Note</strong>: If it is deployed on a single machine by <code>docker-compose</code>, step 1 and 2 can be skipped directly, and execute the command like <code>docker cp hadoop-3.2.2.tar.gz docker-swarm_dolphinscheduler-worker_1:/opt/soft</code> to put Hadoop into the shared directory <code>/opt/soft</code> in the container</p>
+</blockquote>
 <p>For example, Master, Worker and Api server may use Hadoop at the same time</p>
 <ol>
 <li>Modify the volume <code>dolphinscheduler-shared-local</code> to support nfs in <code>docker-compose.yml</code></li>
@@ -691,6 +694,9 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </li>
 </ol>
 <h3>How to support local file resource storage instead of HDFS and S3?</h3>
+<blockquote>
+<p><strong>Note</strong>: If it is deployed on a single machine by <code>docker-compose</code>, step 2 can be skipped directly</p>
+</blockquote>
 <ol>
 <li>Modify the following environment variables in <code>config.env.sh</code>:</li>
 </ol>

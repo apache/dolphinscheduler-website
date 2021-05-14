@@ -598,17 +598,17 @@ RUN apt-get update &amp;&amp; \
 <p>复制 Spark 2.4.7 二进制包到 Docker 容器中</p>
 </li>
 </ol>
-<pre><code class="language-bash">docker cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker:/opt/soft
+<pre><code class="language-bash">docker cp spark-2.4.7-bin-hadoop2.7.tgz docker-swarm_dolphinscheduler-worker_1:/opt/soft
 </code></pre>
 <p>因为存储卷 <code>dolphinscheduler-shared-local</code> 被挂载到 <code>/opt/soft</code>, 因此 <code>/opt/soft</code> 中的所有文件都不会丢失</p>
 <ol start="4">
 <li>登录到容器并确保 <code>SPARK_HOME2</code> 存在</li>
 </ol>
-<pre><code class="language-bash">docker <span class="hljs-built_in">exec</span> -it dolphinscheduler-worker bash
+<pre><code class="language-bash">docker <span class="hljs-built_in">exec</span> -it docker-swarm_dolphinscheduler-worker_1 bash
 <span class="hljs-built_in">cd</span> /opt/soft
 tar zxf spark-2.4.7-bin-hadoop2.7.tgz
 rm -f spark-2.4.7-bin-hadoop2.7.tgz
-ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
+ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># 或者 mv</span>
 <span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
 </code></pre>
 <p>如果一切执行正常，最后一条命令将会打印 Spark 版本信息</p>
@@ -648,16 +648,16 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <p>复制 Spark 3.1.1 二进制包到 Docker 容器中</p>
 </li>
 </ol>
-<pre><code class="language-bash">docker cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker:/opt/soft
+<pre><code class="language-bash">docker cp spark-3.1.1-bin-hadoop2.7.tgz docker-swarm_dolphinscheduler-worker_1:/opt/soft
 </code></pre>
 <ol start="4">
 <li>登录到容器并确保 <code>SPARK_HOME2</code> 存在</li>
 </ol>
-<pre><code class="language-bash">docker <span class="hljs-built_in">exec</span> -it dolphinscheduler-worker bash
+<pre><code class="language-bash">docker <span class="hljs-built_in">exec</span> -it docker-swarm_dolphinscheduler-worker_1 bash
 <span class="hljs-built_in">cd</span> /opt/soft
 tar zxf spark-3.1.1-bin-hadoop2.7.tgz
 rm -f spark-3.1.1-bin-hadoop2.7.tgz
-ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
+ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># 或者 mv</span>
 <span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
 </code></pre>
 <p>如果一切执行正常，最后一条命令将会打印 Spark 版本信息</p>
@@ -668,6 +668,9 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </code></pre>
 <p>检查任务日志是否包含输出 <code>Pi is roughly 3.146015</code></p>
 <h3>如何在 Master、Worker 和 Api 服务之间支持共享存储？</h3>
+<blockquote>
+<p><strong>注意</strong>: 如果是在单机上通过 docker-compose 部署，则步骤 1 和 2 可以直接跳过，并且执行命令如 <code>docker cp hadoop-3.2.2.tar.gz docker-swarm_dolphinscheduler-worker_1:/opt/soft</code> 将 Hadoop 放到容器中的共享目录 /opt/soft 下</p>
+</blockquote>
 <p>例如, Master、Worker 和 Api 服务可能同时使用 Hadoop</p>
 <ol>
 <li>修改 <code>docker-compose.yml</code> 文件中的 <code>dolphinscheduler-shared-local</code> 存储卷，以支持 nfs</li>
@@ -691,6 +694,9 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </li>
 </ol>
 <h3>如何支持本地文件存储而非 HDFS 和 S3？</h3>
+<blockquote>
+<p><strong>注意</strong>: 如果是在单机上通过 docker-compose 部署，则步骤 2 可以直接跳过</p>
+</blockquote>
 <ol>
 <li>修改 <code>config.env.sh</code> 文件中下面的环境变量:</li>
 </ol>
