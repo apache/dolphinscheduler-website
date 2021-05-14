@@ -536,7 +536,7 @@ Take Spark 2.4.7 as an example:
 3. Copy the Spark 2.4.7 release binary into Docker container
 
 ```bash
-docker cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker:/opt/soft
+docker cp spark-2.4.7-bin-hadoop2.7.tgz docker-swarm_dolphinscheduler-worker_1:/opt/soft
 ```
 
 Because the volume `dolphinscheduler-shared-local` is mounted on `/opt/soft`, all files in `/opt/soft` will not be lost
@@ -544,7 +544,7 @@ Because the volume `dolphinscheduler-shared-local` is mounted on `/opt/soft`, al
 4. Attach the container and ensure that `SPARK_HOME2` exists
 
 ```bash
-docker exec -it dolphinscheduler-worker bash
+docker exec -it docker-swarm_dolphinscheduler-worker_1 bash
 cd /opt/soft
 tar zxf spark-2.4.7-bin-hadoop2.7.tgz
 rm -f spark-2.4.7-bin-hadoop2.7.tgz
@@ -592,13 +592,13 @@ Take Spark 3.1.1 as an example:
 3. Copy the Spark 3.1.1 release binary into Docker container
 
 ```bash
-docker cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker:/opt/soft
+docker cp spark-3.1.1-bin-hadoop2.7.tgz docker-swarm_dolphinscheduler-worker_1:/opt/soft
 ```
 
 4. Attach the container and ensure that `SPARK_HOME2` exists
 
 ```bash
-docker exec -it dolphinscheduler-worker bash
+docker exec -it docker-swarm_dolphinscheduler-worker_1 bash
 cd /opt/soft
 tar zxf spark-3.1.1-bin-hadoop2.7.tgz
 rm -f spark-3.1.1-bin-hadoop2.7.tgz
@@ -617,6 +617,8 @@ $SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_H
 Check whether the task log contains the output like `Pi is roughly 3.146015`
 
 ### How to support shared storage between Master, Worker and Api server?
+
+> **Note**: If it is deployed on a single machine by `docker-compose`, step 1 and 2 can be skipped directly, and execute the command like `docker cp hadoop-3.2.2.tar.gz docker-swarm_dolphinscheduler-worker_1:/opt/soft` to put Hadoop into the shared directory `/opt/soft` in the container
 
 For example, Master, Worker and Api server may use Hadoop at the same time
 
@@ -638,6 +640,8 @@ volumes:
 3. Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` are correct
 
 ### How to support local file resource storage instead of HDFS and S3?
+
+> **Note**: If it is deployed on a single machine by `docker-compose`, step 2 can be skipped directly
 
 1. Modify the following environment variables in `config.env.sh`:
 
