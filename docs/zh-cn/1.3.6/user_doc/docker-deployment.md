@@ -536,7 +536,7 @@ docker build -t apache/dolphinscheduler:python3 .
 3. 复制 Spark 2.4.7 二进制包到 Docker 容器中
 
 ```bash
-docker cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker:/opt/soft
+docker cp spark-2.4.7-bin-hadoop2.7.tgz docker-swarm_dolphinscheduler-worker_1:/opt/soft
 ```
 
 因为存储卷 `dolphinscheduler-shared-local` 被挂载到 `/opt/soft`, 因此 `/opt/soft` 中的所有文件都不会丢失
@@ -544,11 +544,11 @@ docker cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker:/opt/soft
 4. 登录到容器并确保 `SPARK_HOME2` 存在
 
 ```bash
-docker exec -it dolphinscheduler-worker bash
+docker exec -it docker-swarm_dolphinscheduler-worker_1 bash
 cd /opt/soft
 tar zxf spark-2.4.7-bin-hadoop2.7.tgz
 rm -f spark-2.4.7-bin-hadoop2.7.tgz
-ln -s spark-2.4.7-bin-hadoop2.7 spark2 # or just mv
+ln -s spark-2.4.7-bin-hadoop2.7 spark2 # 或者 mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
@@ -592,17 +592,17 @@ Spark on YARN (部署方式为 `cluster` 或 `client`) 需要 Hadoop 支持. 类
 3. 复制 Spark 3.1.1 二进制包到 Docker 容器中
 
 ```bash
-docker cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker:/opt/soft
+docker cp spark-3.1.1-bin-hadoop2.7.tgz docker-swarm_dolphinscheduler-worker_1:/opt/soft
 ```
 
 4. 登录到容器并确保 `SPARK_HOME2` 存在
 
 ```bash
-docker exec -it dolphinscheduler-worker bash
+docker exec -it docker-swarm_dolphinscheduler-worker_1 bash
 cd /opt/soft
 tar zxf spark-3.1.1-bin-hadoop2.7.tgz
 rm -f spark-3.1.1-bin-hadoop2.7.tgz
-ln -s spark-3.1.1-bin-hadoop2.7 spark2 # or just mv
+ln -s spark-3.1.1-bin-hadoop2.7 spark2 # 或者 mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
@@ -617,6 +617,8 @@ $SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_H
 检查任务日志是否包含输出 `Pi is roughly 3.146015`
 
 ### 如何在 Master、Worker 和 Api 服务之间支持共享存储？
+
+> **注意**: 如果是在单机上通过 docker-compose 部署，则步骤 1 和 2 可以直接跳过，并且执行命令如 `docker cp hadoop-3.2.2.tar.gz docker-swarm_dolphinscheduler-worker_1:/opt/soft` 将 Hadoop 放到容器中的共享目录 /opt/soft 下
 
 例如, Master、Worker 和 Api 服务可能同时使用 Hadoop
 
@@ -638,6 +640,8 @@ volumes:
 3. 确保 `$HADOOP_HOME` 和 `$HADOOP_CONF_DIR` 正确
 
 ### 如何支持本地文件存储而非 HDFS 和 S3？
+
+> **注意**: 如果是在单机上通过 docker-compose 部署，则步骤 2 可以直接跳过
 
 1. 修改 `config.env.sh` 文件中下面的环境变量:
 
