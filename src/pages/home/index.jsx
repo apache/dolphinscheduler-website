@@ -51,6 +51,35 @@ class Home extends Language {
         });
       });
   }
+  
+  addClick = (length) => {
+    if (this.state.index < length - 1) {
+      this.setState({
+        ...this.state,
+        index: this.state.index + 1,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        index: 0,
+      });
+    }
+  }
+
+  minusClick =(length) => {
+    if (this.state.index > 0) {
+      this.setState({
+        ...this.state,
+        index: this.state.index - 1,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        index: length - 1,
+      });
+    }
+  }
+
 
   addClick = (length) => {
     if (this.state.index < length - 1) {
