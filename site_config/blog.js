@@ -68,7 +68,6 @@ export default {
         author: '代立冬',
         translator: '王福政',
         dateStr: '2021-05-19',
-        target: '_blank',
         desc: 'DAG：全称是Directed Acyclic Graph，简称DAG。工作流中的任务以有向无环图的形式组合，从拓扑上看，这些节点的入口度为零，直到没有后续节点为止。',
         link: '/zh-ch/blog/DAG.html',
       },
