@@ -22,7 +22,7 @@ The basic idea: first visit a starting vertex v in the graph, then from v, visit
 
 In the diagram below, if the breadth first search (BFS) is used, the traversal is as follows: `1 2 5 3 4 6 7`. If the depth first search (DFS) is used, the traversal is as follows `1 2 3 4 5 6 7`.
 
-![DAG01](https://github.com/QuakeWang/incubator-dolphinscheduler-website/blob/patch-1/img/DAG/DAG01.png?raw=true)
+![DAG01](https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG01.png?raw=true)
 
 ### Topological Sorting
 
@@ -51,7 +51,7 @@ Out-degree: Assuming that there is a node V in the directed graph, the out-degre
 
 **For example, the following DAG graph :**
 
-![DAG02](https://github.com/QuakeWang/incubator-dolphinscheduler-website/blob/patch-1/img/DAG/DAG02.png?raw=true)
+![DAG02](https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG02.png?raw=true)
 
 In degree of node 1: 0, out degree: 2
 
@@ -65,13 +65,13 @@ In degree of node 5: 2, out degree: 0
 
 **Its topological sorting process is:**
 
-![DAG03](https://github.com/QuakeWang/incubator-dolphinscheduler-website/blob/patch-1/img/DAG/DAG03.png?raw=true)
+![DAG03](https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG03.png?raw=true)
 
 Therefore, the result of topological sorting is: {1,2,4,3,5}.
 
 If there is no node 2 —> the arrow of node 4, then it is as follows:
 
-![DAG04](https://github.com/QuakeWang/incubator-dolphinscheduler-website/blob/patch-1/img/DAG/DAG04.png?raw=true)
+![DAG04](https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG04.png?raw=true)
 
 We can get its topological sort as: {1,2,4,3,5} or {1,4,2,3,5}, that is, for the same DAG graph, there may be multiple topological sort results .
 
