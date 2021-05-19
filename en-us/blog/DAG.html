@@ -23,7 +23,7 @@
 <p>The basic idea: first visit a starting vertex v in the graph, then from v, visit any vertex w~1~ that is adjacent to v and has not been visited, then visit any vertex w~2~ that is adjacent to w~1~ and has not been visited ...... Repeat the above process. When it is no longer possible to go down the graph, go back to the most recently visited vertex, and if it has adjacent vertices that have not been visited, continue the search process from that point until all vertices in the graph have been visited.</p>
 <h4>Example</h4>
 <p>In the diagram below, if the breadth first search (BFS) is used, the traversal is as follows: <code>1 2 5 3 4 6 7</code>. If the depth first search (DFS) is used, the traversal is as follows <code>1 2 3 4 5 6 7</code>.</p>
-<p><img src="https://github.com/QuakeWang/incubator-dolphinscheduler-website/blob/patch-1/img/DAG/DAG01.png?raw=true" alt="DAG01"></p>
+<p><img src="https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG01.png?raw=true" alt="DAG01"></p>
 <h3>Topological Sorting</h3>
 <p>The definition of topological ordering on Wikipedia is :</p>
 <p>For any Directed Acyclic Graph (DAG), the topological sorting is a linear sorting of all its nodes (there may be multiple such node sorts in the same directed graph). This sorting satisfies the condition that for any two nodes U and V in the graph, if there is a directed edge pointing from U to V, then U must appear ahead of V in the topological sorting.</p>
@@ -43,17 +43,17 @@
 <li>Repeat 1 and 2 until the current DAG graph is empty or there are no vertices of degree 0 in the current graph. The latter case indicates that a ring must exist in the directed graph.</li>
 </ol>
 <p><strong>For example, the following DAG graph :</strong></p>
-<p><img src="https://github.com/QuakeWang/incubator-dolphinscheduler-website/blob/patch-1/img/DAG/DAG02.png?raw=true" alt="DAG02"></p>
+<p><img src="https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG02.png?raw=true" alt="DAG02"></p>
 <p>In degree of node 1: 0, out degree: 2</p>
 <p>In degree of node 2: 1, out degree: 2</p>
 <p>In degree of node 3: 2, out degree: 1</p>
 <p>In degree of node 4: 2, out degree: 2</p>
 <p>In degree of node 5: 2, out degree: 0</p>
 <p><strong>Its topological sorting process is:</strong></p>
-<p><img src="https://github.com/QuakeWang/incubator-dolphinscheduler-website/blob/patch-1/img/DAG/DAG03.png?raw=true" alt="DAG03"></p>
+<p><img src="https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG03.png?raw=true" alt="DAG03"></p>
 <p>Therefore, the result of topological sorting is: {1,2,4,3,5}.</p>
 <p>If there is no node 2 —&gt; the arrow of node 4, then it is as follows:</p>
-<p><img src="https://github.com/QuakeWang/incubator-dolphinscheduler-website/blob/patch-1/img/DAG/DAG04.png?raw=true" alt="DAG04"></p>
+<p><img src="https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG04.png?raw=true" alt="DAG04"></p>
 <p>We can get its topological sort as: {1,2,4,3,5} or {1,4,2,3,5}, that is, for the same DAG graph, there may be multiple topological sort results .</p>
 <p>Topological sorting is mainly used to solve the dependency problem in directed graphs.</p>
 <p>**When talking about the implementation, it is necessary to insert the following : **</p>
