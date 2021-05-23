@@ -2,9 +2,9 @@
 export default {
   rootPath: '', // 发布到服务器的根目录，需以/开头但不能有尾/，如果只有/，请填写空字符串
   port: 8080, // 本地开发服务器的启动端口
-  domain: 'dolphinscheduler.incubator.apache.org', // 站点部署域名，无需协议和path等
+  domain: 'dolphinscheduler.apache.org', // 站点部署域名，无需协议和path等
   copyToDist: ['img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess'], // 当build发布时，需要额外复制到dist目录的资源，默认有：index.html, 404.html, en-us, zh-cn, build
-  docsLatest: '1.3.5', // docs的最新版本，当docs有多个版本时支持latest访问，空则不启用此特性
+  docsLatest: '1.3.6', // docs的最新版本，当docs有多个版本时支持latest访问，空则不启用此特性
   defaultSearch: 'google', // 默认搜索引擎，baidu或者google
   defaultLanguage: 'en-us',
   'en-us': {
@@ -21,8 +21,13 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.5)',
+            text: 'latest(1.3.6)',
             link: '/en-us/docs/latest/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs136',
+            text: '1.3.6',
+            link: '/en-us/docs/1.3.6/user_doc/quick-start.html',
           },
           {
             key: 'docs135',
@@ -130,10 +135,6 @@ export default {
         ],
       },
     ],
-    disclaimer: {
-      title: 'Disclaimer',
-      content: 'Apache DolphinScheduler is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
-    },
     documentation: {
       title: 'Documentation',
       list: [
@@ -176,6 +177,36 @@ export default {
         },
       ],
     },
+    contact: {
+      title: 'About us',
+      content: 'Do you need feedback? Please contact us through the following ways.',
+      list: [
+        {
+          name: 'Email List',
+          img1: '/img/emailgray.png',
+          img2: '/img/emailblue.png',
+          link: '/en-us/community/development/subscribe.html',
+        },
+        {
+          name: 'Twitter',
+          img1: '/img/twittergray.png',
+          img2: '/img/twitterblue.png',
+          link: 'https://twitter.com/dolphinschedule',
+        },
+        {
+          name: 'Stack Overflow',
+          img1: '/img/stackoverflow.png',
+          img2: '/img/stackoverflow-selected.png',
+          link: 'https://stackoverflow.com/questions/tagged/apache-dolphinscheduler',
+        },
+        {
+          name: 'Slack',
+          img1: '/img/slack.png',
+          img2: '/img/slack-selected.png',
+          link: 'https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw',
+        },
+      ],
+    },
     copyright: 'Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.',
   },
   'zh-cn': {
@@ -192,8 +223,13 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.5)',
+            text: 'latest(1.3.6)',
             link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs136',
+            text: '1.3.6',
+            link: '/zh-cn/docs/1.3.6/user_doc/quick-start.html',
           },
           {
             key: 'docs135',
@@ -302,10 +338,6 @@ export default {
         ],
       },
     ],
-    disclaimer: {
-      title: 'Disclaimer',
-      content: 'Apache DolphinScheduler is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
-    },
     documentation: {
       title: '文档',
       list: [
@@ -345,6 +377,36 @@ export default {
         {
           text: '致谢',
           link: 'http://www.apache.org/foundation/thanks.html',
+        },
+      ],
+    },
+    contact: {
+      title: '联系我们',
+      content: '有问题需要反馈？请通过以下方式联系我们。',
+      list: [
+        {
+          name: '邮件列表',
+          img1: '/img/emailgray.png',
+          img2: '/img/emailblue.png',
+          link: '/zh-cn/community/development/subscribe.html',
+        },
+        {
+          name: 'Twitter',
+          img1: '/img/twittergray.png',
+          img2: '/img/twitterblue.png',
+          link: 'https://twitter.com/dolphinschedule',
+        },
+        {
+          name: 'Stack Overflow',
+          img1: '/img/stackoverflow.png',
+          img2: '/img/stackoverflow-selected.png',
+          link: 'https://stackoverflow.com/questions/tagged/apache-dolphinscheduler',
+        },
+        {
+          name: 'Slack',
+          img1: '/img/slack.png',
+          img2: '/img/slack-selected.png',
+          link: 'https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw',
         },
       ],
     },

@@ -143,15 +143,15 @@ login.user.keytab.username|hdfs-mycluster@ESZ.COM|kerberos username
 login.user.keytab.path|/opt/hdfs.headless.keytab|kerberos user keytab
 resource.view.suffixs| txt,log,sh,conf,cfg,py,java,sql,hql,xml,properties| file types supported by resource center
 hdfs.root.user|hdfs| configure users with corresponding permissions if storage type is HDFS
-fs.defaultFS|hdfs://mycluster:8020|If resource.storage.type=S3, then the request url would be similar to 's3a://dolphinscheduler'. Otherwise if resource.storage.type=HDFS and hadoop supports HA, please copy core-site.xml and hdfs-site.xml into 'conf' directory. 
+fs.defaultFS|hdfs://mycluster:8020|If resource.storage.type=S3, then the request url would be similar to 's3a://dolphinscheduler'. Otherwise if resource.storage.type=HDFS and hadoop supports HA, please copy core-site.xml and hdfs-site.xml into 'conf' directory
 fs.s3a.endpoint||s3 endpoint url
 fs.s3a.access.key||s3 access key
-fs.s3a.secret.key|     |s3 secret key
-yarn.resourcemanager.ha.rm.ids|     | specify the yarn resourcemanager url. if resourcemanager supports HA, input HA IP addresses (separated by comma), or input null for standalone
-yarn.application.status.address|http://ds1:8088/ws/v1/cluster/apps/%s| keep default if resourcemanager supports HA or not use resourcemanager. Or replace ds1 with corresponding hostname if resourcemanager in standalone mode.
-dolphinscheduler.env.path|env/dolphinscheduler_env.sh| load environment variables configs [eg: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]
+fs.s3a.secret.key||s3 secret key
+yarn.resourcemanager.ha.rm.ids||specify the yarn resourcemanager url. if resourcemanager supports HA, input HA IP addresses (separated by comma), or input null for standalone
+yarn.application.status.address|http://ds1:8088/ws/v1/cluster/apps/%s|keep default if resourcemanager supports HA or not use resourcemanager. Or replace ds1 with corresponding hostname if resourcemanager in standalone mode
+dolphinscheduler.env.path|env/dolphinscheduler_env.sh|load environment variables configs [eg: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]
 development.state|false| specify whether in development state
-kerberos.expire.time|7|kerberos expire time [hour]
+kerberos.expire.time|7|kerberos expire time,integer,the unit is day
 
 
 ## 5.application-api.properties [API-service log config]
@@ -172,26 +172,27 @@ security.authentication.type|PASSWORD| authentication type
 ## 6.master.properties [master-service log config]
 |Parameters | Default value| Description|
 |--|--|--|
-master.listen.port|5678|master communication port
-master.exec.threads|100|work threads count
-master.exec.task.num|20|parallel task count
-master.dispatch.task.num | 3|dispatch task count
-master.heartbeat.interval|10|heartbeat interval
-master.task.commit.retryTimes|5|task retry times
-master.task.commit.interval|1000|task commit interval|
-master.max.cpuload.avg|-1|master service operates when cpu load less than this number. (default -1: cpu cores * 2)
-master.reserved.memory|0.3|specify memory threshold value, master service operates when available memory greater than the threshold
+master.listen.port|5678|master listen port
+master.exec.threads|100|master execute thread number to limit process instances in parallel
+master.exec.task.num|20|master execute task number in parallel per process instance
+master.dispatch.task.num|3|master dispatch task number per batch
+master.host.selector|LowerWeight|master host selector to select a suitable worker, default value: LowerWeight. Optional values include Random, RoundRobin, LowerWeight
+master.heartbeat.interval|10|master heartbeat interval, the unit is second
+master.task.commit.retryTimes|5|master commit task retry times
+master.task.commit.interval|1000|master commit task interval, the unit is millisecond
+master.max.cpuload.avg|-1|master max cpuload avg, only higher than the system cpu load average, master server can schedule. default value -1: the number of cpu cores * 2
+master.reserved.memory|0.3|master reserved memory, only lower than system available memory, master server can schedule. default value 0.3, the unit is G
 
 
 ## 7.worker.properties [worker-service log config]
 |Parameters | Default value| Description|
 |--|--|--|
-worker.listen.port|1234|worker communication port
-worker.exec.threads|100|work threads count
-worker.heartbeat.interval|10|heartbeat interval
-worker.max.cpuload.avg|-1|worker service operates when CPU load less than this number. (default -1: CPU cores * 2)
-worker.reserved.memory|0.3|specify memory threshold value, worker service operates when available memory greater than threshold
-worker.group|default|workgroup grouping config. <br> worker will join corresponding group according to this config when startup
+worker.listen.port|1234|worker listen port
+worker.exec.threads|100|worker execute thread number to limit task instances in parallel
+worker.heartbeat.interval|10|worker heartbeat interval, the unit is second
+worker.max.cpuload.avg|-1|worker max cpuload avg, only higher than the system cpu load average, worker server can be dispatched tasks. default value -1: the number of cpu cores * 2
+worker.reserved.memory|0.3|worker reserved memory, only lower than system available memory, worker server can be dispatched tasks. default value 0.3, the unit is G
+worker.groups|default|worker groups separated by comma, like 'worker.groups=default,test' <br> worker will join corresponding group according to this config when startup
 
 
 ## 8.alert.properties [alert-service log config]
@@ -400,7 +401,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 
 ## 12. Services logback configs
 Services name| logback config name |
-|--|--|--|
+--|--|
 API-service logback config |logback-api.xml|
 master-service logback config|logback-master.xml |
 worker-service logback config|logback-worker.xml |

@@ -4,6 +4,14 @@ export default {
     postsTitle: 'All posts',
     list: [
       {
+        title: ' Big Data Workflow Task Scheduling - Directed Acyclic Graph (DAG) for Topological Sorting',
+        author: 'LidongDai',
+        translator: 'QuakeWang',
+        dateStr: '2021-05-06',
+        desc: 'DAG: Full name Directed Acyclic Graph，referred to as DAG。Tasks in the workflow are assembled in the form of directed acyclic graphs, which are topologically traversed from nodes with zero indegrees of ingress until there are no successor nodes.',
+        link: '/en-us/blog/DAG.html',
+      },
+      {
         title: 'FAQ of Apache DolphinScheduler',
         author: 'LidongDai',
         dateStr: '2021-03-20',
@@ -54,6 +62,14 @@ export default {
         target: '_blank',
         desc: '本文档为dolphinscheduler配置文件指南,针对版本为 dolphinscheduler-1.3.x 版本',
         link: 'https://mp.weixin.qq.com/s/gJUsGBHuMxw79VGH2ziZtg',
+      },
+      {
+        title: '大数据工作流任务调度--有向无环图(DAG)之拓扑排序',
+        author: '代立冬',
+        translator: '王福政',
+        dateStr: '2021-05-19',
+        desc: 'DAG：全称是Directed Acyclic Graph，简称DAG。工作流中的任务以有向无环图的形式组合，从拓扑上看，这些节点的入口度为零，直到没有后续节点为止。',
+        link: '/zh-ch/blog/DAG.html',
       },
     ],
   },

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Language from '../../components/language';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
 import Slider from '../../components/slider';
 import EventCard from './eventCard';
@@ -20,12 +19,11 @@ class Community extends Language {
       <div className="community-page">
         <Header
           currentKey="community"
-          type="normal"
-          logo="/img/hlogo_colorful.svg"
+          type="dark"
+          logo="/img/hlogo_white.svg"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <Bar img="/img/system/community.png" text={dataSource.barText} />
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div className="doc-content markdown-body">

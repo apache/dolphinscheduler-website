@@ -1,10 +1,4 @@
----
-title: Micro BenchMark Notice
-keywords: dolphinscheduler, microbenchmark
-description: This file describes several points of benchmark testing
----
-
-## DolphinSchedulerMicroBench Microbenchmark
+# Micro BenchMark Notice
 
 All optimization must be based on data verification, and blind optimization is rejected. Based on this, we provide the MicroBench module.
 

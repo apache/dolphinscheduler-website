@@ -1,6 +1,7 @@
 # 快速上手
 
 * 管理员用户登录
+  
   >地址：http://192.168.xx.xx:12345/dolphinscheduler 用户名密码：admin/dolphinscheduler123
 
 <p align="center">
@@ -31,7 +32,7 @@
  <p align="center">
     <img src="/img/worker_group.png" width="60%" />
   </p>
- 
+
  * 创建token令牌
  <p align="center">
     <img src="/img/creat_token.png" width="60%" />

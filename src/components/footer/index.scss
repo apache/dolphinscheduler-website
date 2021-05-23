@@ -18,55 +18,132 @@
       margin-bottom: 10px;
       vertical-align: middle;
     }
-    .cols-container {
-      margin-bottom: 60px;
-      .col {
-        display: inline-block;
-        box-sizing: border-box;
-        vertical-align: top;
-      }
-      .col-12 {
-        width: 50%;
-        padding-right: 125px;
-      }
-      .col-6 {
-        width: 25%;
-      }
-      h3 {
-        font-family: Avenir-Heavy;
-        font-size: 18px;
-        color: #333;
-        line-height: 18px;
-        margin-bottom: 20px;
-      }
-      p {
-        font-family: Avenir-Medium;
-        font-size: 12px;
-        color: #999;
-        line-height: 18px;
-      }
-      dl {
-        font-family: Avenir-Heavy;
-        line-height: 18px;
-      }
-      dt {
-        font-weight: bold;
-        font-size: 18px;
-        color: #333;
-        margin-bottom: 20px;
-      }
-      dd {
-        padding: 0;
-        margin: 0;
-        a {
-          text-decoration: none;
-          display: block;
-          font-size: 14px;
-          color: #999;
-          margin: 10px 0;
+    h3 {
+      font-family: Avenir-Heavy;
+      text-align: center;
+      font-size: 36px;
+      color: #000F20;
+      margin-bottom: 20px;
+      word-break: break-word;
+      height: 54px;
+    }
+    h4 {
+      font-family: Avenir-Heavy;
+      text-align: center;
+      font-size: 22px;
+      color: #666666;
+      margin-bottom: 40px;
+      word-break: break-word;
+      height: 32px;
+    }
+    .contact-container{
+      ul{
+        display: flex;
+        margin-top:80px;
+        margin-bottom: 40px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        // margin-left: 200px;
+        // margin-right: 200px;
+        li {
+          list-style: none;
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+          p{
+            font-family: Avenir-Heavy;
+            font-size: 22px;
+            color: #000F20;
+            width: 280px;
+            text-align: center;
+          }
+          &:hover p{
+            color: #288FFF;
+          }
+          img{
+            width: 80px;
+            height: 80px;
+          }
+          .img-base{
+            display: block;
+          }
+          .img-change{
+            display: none;
+          }
+          &:hover .img-base{
+            display: none;
+          }
+          &:hover .img-change{
+            display: block;
+          }
         }
-        a:hover {
-          color: $brandColor;
+      }
+      
+    }
+    .cols-container {
+      margin-top: 100px;
+      margin-bottom: 60px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .docu-container{
+        margin-left: 100px;
+        h4{
+          color: #000F20;
+          font-family: Avenir-Heavy;
+          font-size: 22px;
+          text-align: left;
+          margin-bottom: 10px;
+          
+        }
+        ul{
+          display: flex;
+          flex-direction: row;
+          border-top: 1px solid #ccc;
+          li{
+            margin-top: 10px;
+            list-style: none;
+            margin-right: 35px;
+            p{
+              font-family: Avenir-Heavy;
+              font-size: 16px;
+              color: #000F20;
+            }
+            &:hover p{
+              color: #288FFF;
+            }
+          }
+        }
+      }
+      .asf-container{
+        margin-left: 200px;
+        h4{
+          color: #000F20;
+          font-family: Avenir-Heavy;
+          font-size: 22px;
+          text-align: left;
+          margin-bottom: 10px;
+          
+        }
+        ul{
+          display: flex;
+          flex-direction: row;
+          border-top: 1px solid #ccc;
+          li{
+            margin-top: 10px;
+            list-style: none;
+            margin-right: 30px;
+            p{
+              font-family: Avenir-Heavy;
+              font-size: 16px;
+              color: #000F20;
+            }
+            &:hover p{
+              color: #288FFF;
+            }
+          }
         }
       }
     }

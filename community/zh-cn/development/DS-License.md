@@ -1,4 +1,4 @@
-## DolphinScheduler-Contributor-LICENSE篇
+# License 须知
 
 如您所知，DolphinScheduler现属于ASF(Apache基金会)下的开源项目，这意味着当您想要成为DolphinScheduler的贡献者的时候，就必须按照Apache的规则来，而Apache对于License有着极其严苛的规则，为了避免贡献者在License上浪费过多的时间，
 本文将为您讲解ASF—License以及参与DolphinScheduler如何过早的规避掉License风险。
