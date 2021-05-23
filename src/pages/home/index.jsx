@@ -51,7 +51,7 @@ class Home extends Language {
         });
       });
   }
-  
+
   addClick = (length) => {
     if (this.state.index < length - 1) {
       this.setState({

@@ -10,7 +10,7 @@ export default {
         dateStr: '2021-05-06',
         desc: 'DAG: Full name Directed Acyclic Graph，referred to as DAG。Tasks in the workflow are assembled in the form of directed acyclic graphs, which are topologically traversed from nodes with zero indegrees of ingress until there are no successor nodes.',
         link: '/en-us/blog/DAG.html',
-      }, 
+      },
       {
         title: 'FAQ of Apache DolphinScheduler',
         author: 'LidongDai',
