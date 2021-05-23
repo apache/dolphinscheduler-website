@@ -24,7 +24,7 @@ export default {
     introduction: {
       title: '分布式易扩展的可视化DAG工作流任务调度系统',
       desc: 'Apache DolphinScheduler是一个分布式去中心化，易扩展的可视化DAG工作流任务调度系统。致力于解决数据处理流程中错综复杂的依赖关系，使调度系统在数据处理流程中开箱即用。',
-      img: '/img/framework.png',
+      img: '/img/archdiagram_zh.svg',
     },
     features: {
       title: '特性一览',
@@ -142,7 +142,7 @@ export default {
     introduction: {
       title: 'A distributed and easy-to-extend visual workflow scheduler system',
       desc: 'Dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing. Its main objectives are as follows:',
-      img: '/img/architecture-en.jpg',
+      img: '/img/archdiagram_es.svg',
     },
     features: {
       title: 'Why DolphinScheduler',
