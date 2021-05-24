@@ -307,8 +307,8 @@ docker service scale dolphinscheduler_dolphinscheduler-worker=3
 
 In Unix-Like, execute in Terminal:
 
-```
-$ sh ./docker/build/hooks/build
+```bash
+$ bash ./docker/build/hooks/build
 ```
 
 In Windows, execute in cmd or PowerShell:
