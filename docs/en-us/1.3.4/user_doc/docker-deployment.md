@@ -27,6 +27,8 @@ $ docker tag apache/dolphinscheduler:1.3.4 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 
+The **PostgreSQL** (with username `root`, password `root` and database `dolphinscheduler`) and **ZooKeeper** services will start by default
+
 #### 3. Login
 
 Visit the Web UI: http://192.168.xx.xx:8888 (The local address is http://127.0.0.1:8888)
