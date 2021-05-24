@@ -652,7 +652,7 @@ RESOURCE_STORAGE_TYPE=HDFS
 FS_DEFAULT_FS=file:///
 ```
 
-2. 修改 `docker-compose.yml` 文件中的 `dolphinscheduler-shared-local` 存储卷，以支持 nfs
+2. 修改 `docker-compose.yml` 文件中的 `dolphinscheduler-resource-local` 存储卷，以支持 nfs
 
 > 如果你想在 Docker Swarm 上部署 dolphinscheduler，你需要修改 `docker-stack.yml`
 
