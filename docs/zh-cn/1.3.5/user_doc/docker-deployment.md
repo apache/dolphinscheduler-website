@@ -27,6 +27,8 @@ $ docker tag apache/dolphinscheduler:1.3.5 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 
+**PostgreSQL** (用户 `root`, 密码 `root`, 数据库 `dolphinscheduler`) 和 **ZooKeeper** 服务将会默认启动
+
 #### 3、登录系统
 
 访问前端页面： http://192.168.xx.xx:12345/dolphinscheduler (本地地址为 http://127.0.0.1:12345/dolphinscheduler)

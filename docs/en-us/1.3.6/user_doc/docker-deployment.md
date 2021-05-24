@@ -48,6 +48,8 @@ $ docker-compose up -d
 
 > PowerShell should use `cd apache-dolphinscheduler-1.3.6-src\docker\docker-swarm`
 
+The **PostgreSQL** (with username `root`, password `root` and database `dolphinscheduler`) and **ZooKeeper** services will start by default
+
 #### 3. Login
 
 Visit the Web UI: http://192.168.xx.xx:12345/dolphinscheduler (The local address is http://127.0.0.1:12345/dolphinscheduler)
