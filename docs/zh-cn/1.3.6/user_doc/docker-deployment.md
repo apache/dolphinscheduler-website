@@ -307,8 +307,8 @@ docker service scale dolphinscheduler_dolphinscheduler-worker=3
 
 类 Unix 系统，在 Terminal 中执行:
 
-```
-$ sh ./docker/build/hooks/build
+```bash
+$ bash ./docker/build/hooks/build
 ```
 
 Windows 系统，在 cmd 或 PowerShell 中执行:

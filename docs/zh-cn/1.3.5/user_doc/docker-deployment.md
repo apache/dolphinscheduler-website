@@ -248,21 +248,32 @@ docker service scale dolphinscheduler_dolphinscheduler-worker=3
 
 ### 如何构建一个 Docker 镜像？
 
-你可以在类Unix系统和Windows系统中构建一个docker镜像。
+#### 1. 从源码构建 (需要 Maven 3.3+ & JDK 1.8+)
 
-类Unix系统, 如下:
+类 Unix 系统，在 Terminal 中执行:
 
-```sh
-$ sh ./docker/build/hooks/build
+```bash
+$ bash ./docker/build/hooks/build
 ```
 
-Windows系统, 如下:
+Windows 系统，在 cmd 或 PowerShell 中执行:
 
 ```bat
-C:\dolphinscheduler>.\docker\build\hooks\build.bat
+C:\dolphinscheduler-src>.\docker\build\hooks\build.bat
 ```
 
 如果你不理解 `./docker/build/hooks/build` `./docker/build/hooks/build.bat` 这些脚本，请阅读里面的内容
+
+#### 2. 从二进制包构建 (不需要 Maven 3.3+ & JDK 1.8+)
+
+请下载二进制包 apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz，下载地址: [下载](/zh-cn/download/download.html). 然后将 apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz 放到 `apache-dolphinscheduler-incubating-1.3.5-src-release/docker/build` 目录里，在 Terminal 或 PowerShell 中执行:
+
+```
+$ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/build
+$ docker build --build-arg VERSION=1.3.5 -t apache/dolphinscheduler:1.3.5 .
+```
+
+> PowerShell 应该使用 `cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/build`
 
 ### 如何为 Docker 添加一个环境变量？
 
