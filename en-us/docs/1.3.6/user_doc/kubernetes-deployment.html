@@ -36,6 +36,7 @@ $ helm install dolphinscheduler . --set image.tag=1.3.6
 <blockquote>
 <p><strong>Tip</strong>: List all releases using <code>helm list</code></p>
 </blockquote>
+<p>The <strong>PostgreSQL</strong> (with username <code>root</code>, password <code>root</code> and database <code>dolphinscheduler</code>) and <strong>ZooKeeper</strong> services will start by default</p>
 <h2>Access DolphinScheduler UI</h2>
 <p>If <code>ingress.enabled</code> in <code>values.yaml</code> is set to <code>true</code>, you just access <code>http://${ingress.host}/dolphinscheduler</code> in browser.</p>
 <blockquote>
