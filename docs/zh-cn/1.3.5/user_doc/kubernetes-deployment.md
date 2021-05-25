@@ -32,6 +32,8 @@ $ helm install dolphinscheduler . -n test
 
 > **提示**: 列出所有已发布的版本，使用 `helm list`
 
+**PostgreSQL** (用户 `root`, 密码 `root`, 数据库 `dolphinscheduler`) 和 **ZooKeeper** 服务将会默认启动
+
 ## 访问 DolphinScheduler 前端页面
 
 如果 `values.yaml` 文件中的 `ingress.enabled` 被设置为 `true`, 在浏览器中访问 `http://${ingress.host}/dolphinscheduler` 即可

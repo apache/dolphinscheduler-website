@@ -48,6 +48,8 @@ $ docker-compose up -d
 
 > PowerShell 应该使用 `cd apache-dolphinscheduler-1.3.6-src\docker\docker-swarm`
 
+**PostgreSQL** (用户 `root`, 密码 `root`, 数据库 `dolphinscheduler`) 和 **ZooKeeper** 服务将会默认启动
+
 #### 3、登录系统
 
 访问前端页面： http://192.168.xx.xx:12345/dolphinscheduler (本地地址为 http://127.0.0.1:12345/dolphinscheduler)
@@ -305,8 +307,8 @@ docker service scale dolphinscheduler_dolphinscheduler-worker=3
 
 类 Unix 系统，在 Terminal 中执行:
 
-```
-$ sh ./docker/build/hooks/build
+```bash
+$ bash ./docker/build/hooks/build
 ```
 
 Windows 系统，在 cmd 或 PowerShell 中执行:
@@ -650,7 +652,7 @@ RESOURCE_STORAGE_TYPE=HDFS
 FS_DEFAULT_FS=file:///
 ```
 
-2. 修改 `docker-compose.yml` 文件中的 `dolphinscheduler-shared-local` 存储卷，以支持 nfs
+2. 修改 `docker-compose.yml` 文件中的 `dolphinscheduler-resource-local` 存储卷，以支持 nfs
 
 > 如果你想在 Docker Swarm 上部署 dolphinscheduler，你需要修改 `docker-stack.yml`
 

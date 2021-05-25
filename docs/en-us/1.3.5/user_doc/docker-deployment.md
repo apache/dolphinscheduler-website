@@ -27,6 +27,8 @@ $ docker tag apache/dolphinscheduler:1.3.5 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 
+The **PostgreSQL** (with username `root`, password `root` and database `dolphinscheduler`) and **ZooKeeper** services will start by default
+
 #### 3. Login
 
 Visit the Web UI: http://192.168.xx.xx:12345/dolphinscheduler (The local address is http://127.0.0.1:12345/dolphinscheduler)
@@ -246,21 +248,32 @@ docker service scale dolphinscheduler_dolphinscheduler-worker=3
 
 ### How to build a Docker image?
 
-You can build a docker image in A Unix-like operating system, and you can also build it in Windows operating system.
+#### 1. Build from the source code (Require Maven 3.3+ & JDK 1.8+)
 
-In Unix-Like, Example:
+In Unix-Like, execute in Terminal:
 
-```sh
-$ sh ./docker/build/hooks/build
+```bash
+$ bash ./docker/build/hooks/build
 ```
 
-In Windows, Example:
+In Windows, execute in cmd or PowerShell:
 
 ```bat
-C:\dolphinscheduler>.\docker\build\hooks\build.bat
+C:\dolphinscheduler-src>.\docker\build\hooks\build.bat
 ```
 
 Please read `./docker/build/hooks/build` `./docker/build/hooks/build.bat` script files if you don't understand
+
+#### 2. Build from the binary distribution (Not require Maven 3.3+ & JDK 1.8+)
+
+Please download the binary distribution package apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz, download address: [download](/en-us/download/download.html). And put apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz into the `apache-dolphinscheduler-incubating-1.3.5-src-release/docker/build` directory, execute in Terminal or PowerShell:
+
+```
+$ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/build
+$ docker build --build-arg VERSION=1.3.5 -t apache/dolphinscheduler:1.3.5 .
+```
+
+> PowerShell should use `cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/build`
 
 ### How to add an environment variable for Docker?
 

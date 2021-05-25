@@ -32,6 +32,8 @@ These commands deploy DolphinScheduler on the Kubernetes cluster in the default 
 
 > **Tip**: List all releases using `helm list`
 
+The **PostgreSQL** (with username `root`, password `root` and database `dolphinscheduler`) and **ZooKeeper** services will start by default
+
 ## Access DolphinScheduler UI
 
 If `ingress.enabled` in `values.yaml` is set to `true`, you just access `http://${ingress.host}/dolphinscheduler` in browser.
