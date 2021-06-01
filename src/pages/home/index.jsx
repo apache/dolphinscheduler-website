@@ -180,6 +180,7 @@ class Home extends Language {
           }
           </ul>
         </section>
+
         <section className="events-section">
               <h3>{dataSource.events.title}</h3>
               <Slider>
@@ -187,6 +188,25 @@ class Home extends Language {
                   <EventCard event={event} key={i} />
                 ))}
               </Slider>
+        </section>
+
+        <section className="ourusers-section">
+          <h3>{dataSource.ourusers.title}</h3>
+          <div className="button1-section" id="buttonleft">
+            {/* <button onClick={() => this.minusClick(dataSource.ourusers.list.length)}><img src="/img/gotoleft.png" /></button> */}
+            <div className="overflow-section">
+              <ul>
+                {
+                    dataSource.ourusers.list.map((ureview, i) => (
+                      <li key={i}>
+                        <img src={ureview.img} />
+                      </li>
+                    ))
+                }
+              </ul>
+            </div>
+            {/* <button onClick={() => this.addClick(dataSource.userreview.list.length)}><img src="/img/gotoright.png" /></button> */}
+          </div>
         </section>
         <section className="review-section">
           <h3>{dataSource.userreview.title}</h3>

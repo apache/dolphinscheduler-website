@@ -91,6 +91,152 @@ export default {
         },
       ],
     },
+    ourusers: {
+      title: '我们的用户',
+      list: [
+        {
+          img: '/img/ourusers/IBM@2x.png',
+        },
+        {
+          img: '/img/ourusers/tencent@2x.png',
+        },
+        {
+          img: '/img/ourusers/qianxin@2x.png',
+        },
+        {
+          img: '/img/ourusers/chinaunicom@2x.png',
+        },
+        {
+          img: '/img/ourusers/chinatelecom@2x.png',
+        },
+        {
+          img: '/img/ourusers/migu@2x.png',
+        },
+        {
+          img: '/img/ourusers/zhaoshangyinhang@2x.png',
+        },
+        {
+          img: '/img/ourusers/icbc@2x.png',
+        },
+        {
+          img: '/img/ourusers/pingan@2x.png',
+        },
+        {
+          img: '/img/ourusers/asiainfo@2x.png',
+        },
+        {
+          img: '/img/ourusers/inspur@2x.png',
+        },
+        {
+          img: '/img/ourusers/lenovo@2x.png',
+        },
+        {
+          img: '/img/ourusers/nokia@2x.png',
+        },
+        // {
+        //   img: '/img/ourusers/bonc@2x.png',
+        // },
+        {
+          img: '/img/ourusers/accenture@2x.png',
+        },
+        {
+          img: '/img/ourusers/changan@2x.png',
+        },
+        {
+          img: '/img/ourusers/yiguanshuju@2x.png',
+        },
+        {
+          img: '/img/ourusers/duodian@2x.png',
+        },
+        {
+          img: '/img/ourusers/edaijia@2x.png',
+        },
+        {
+          img: '/img/ourusers/energymonst@2x.png',
+        },
+        {
+          img: '/img/ourusers/iflytek@2x.png',
+        },
+        {
+          img: '/img/ourusers/kingsoft@2x.png',
+        },
+        {
+          img: '/img/ourusers/mangguotv@2x.png',
+        },
+        {
+          img: '/img/ourusers/fenghuangjinrong@2x.png',
+        },
+        {
+          img: '/img/ourusers/meituan@2x.png',
+        },
+        {
+          img: '/img/ourusers/shunfeng@2x.png',
+        },
+        {
+          img: '/img/ourusers/JD@2x.png',
+        },
+        {
+          img: '/img/ourusers/walmart@2x.png',
+        },
+        {
+          img: '/img/ourusers/xindongfang@2x.png',
+        },
+        {
+          img: '/img/ourusers/xueqiu@2x.png',
+        },
+        {
+          img: '/img/ourusers/2345@2x.png',
+        },
+        {
+          img: '/img/ourusers/baiwangyun@2x.png',
+        },
+        {
+          img: '/img/ourusers/belle@2x.png',
+        },
+        {
+          img: '/img/ourusers/erweihuo@2x.png',
+        },
+        {
+          img: '/img/ourusers/guanyuanshuju@2x.png',
+        },
+        {
+          img: '/img/ourusers/shein@2x.png',
+        },
+        {
+          img: '/img/ourusers/shenmachuxing@2x.png',
+        },
+        {
+          img: '/img/ourusers/yiqixiu@2x.png',
+        },
+        {
+          img: '/img/ourusers/yuanfudao@2x.png',
+        },
+        {
+          img: '/img/ourusers/yuanguanruanjian@2x.png',
+        },
+        {
+          img: '/img/ourusers/yuxueyuan@2x.png',
+        },
+        {
+          img: '/img/ourusers/zhongshandaxue@2x.png',
+        },
+        {
+          img: '/img/ourusers/ucloud@2x.png',
+        },
+        {
+          img: '/img/ourusers/xinlangweibo@2x.png',
+        },
+        {
+          img: '/img/ourusers/maidanglao@2x.png',
+        },
+        {
+          img: '/img/ourusers/zhengcaiyun@2x.png',
+        },
+        {
+          img: '/img/ourusers/fordeal@2x.png',
+        },
+      ],
+    },
     userreview: {
       title: '用户评论',
       list: [
@@ -166,6 +312,152 @@ export default {
           img: '/img/feature_runtime.png',
           title: 'High Expansibility',
           content: 'Support custom task types, Distributed scheduling, and the overall scheduling capability will increase linearly with the scale of the cluster',
+        },
+      ],
+    },
+    ourusers: {
+      title: 'Our Users',
+      list: [
+        {
+          img: '/img/ourusers/IBM@2x.png',
+        },
+        {
+          img: '/img/ourusers/tencent@2x.png',
+        },
+        {
+          img: '/img/ourusers/qianxin@2x.png',
+        },
+        {
+          img: '/img/ourusers/chinaunicom@2x.png',
+        },
+        {
+          img: '/img/ourusers/chinatelecom@2x.png',
+        },
+        {
+          img: '/img/ourusers/migu@2x.png',
+        },
+        {
+          img: '/img/ourusers/zhaoshangyinhang@2x.png',
+        },
+        {
+          img: '/img/ourusers/icbc@2x.png',
+        },
+        {
+          img: '/img/ourusers/pingan@2x.png',
+        },
+        {
+          img: '/img/ourusers/asiainfo@2x.png',
+        },
+        {
+          img: '/img/ourusers/inspur@2x.png',
+        },
+        {
+          img: '/img/ourusers/lenovo@2x.png',
+        },
+        {
+          img: '/img/ourusers/nokia@2x.png',
+        },
+        // {
+        //   img: '/img/ourusers/bonc@2x.png',
+        // },
+        {
+          img: '/img/ourusers/accenture@2x.png',
+        },
+        {
+          img: '/img/ourusers/changan@2x.png',
+        },
+        {
+          img: '/img/ourusers/yiguanshuju@2x.png',
+        },
+        {
+          img: '/img/ourusers/duodian@2x.png',
+        },
+        {
+          img: '/img/ourusers/edaijia@2x.png',
+        },
+        {
+          img: '/img/ourusers/energymonst@2x.png',
+        },
+        {
+          img: '/img/ourusers/iflytek@2x.png',
+        },
+        {
+          img: '/img/ourusers/kingsoft@2x.png',
+        },
+        {
+          img: '/img/ourusers/mangguotv@2x.png',
+        },
+        {
+          img: '/img/ourusers/fenghuangjinrong@2x.png',
+        },
+        {
+          img: '/img/ourusers/meituan@2x.png',
+        },
+        {
+          img: '/img/ourusers/shunfeng@2x.png',
+        },
+        {
+          img: '/img/ourusers/JD@2x.png',
+        },
+        {
+          img: '/img/ourusers/walmart@2x.png',
+        },
+        {
+          img: '/img/ourusers/xindongfang@2x.png',
+        },
+        {
+          img: '/img/ourusers/xueqiu@2x.png',
+        },
+        {
+          img: '/img/ourusers/2345@2x.png',
+        },
+        {
+          img: '/img/ourusers/baiwangyun@2x.png',
+        },
+        {
+          img: '/img/ourusers/belle@2x.png',
+        },
+        {
+          img: '/img/ourusers/erweihuo@2x.png',
+        },
+        {
+          img: '/img/ourusers/guanyuanshuju@2x.png',
+        },
+        {
+          img: '/img/ourusers/shein@2x.png',
+        },
+        {
+          img: '/img/ourusers/shenmachuxing@2x.png',
+        },
+        {
+          img: '/img/ourusers/yiqixiu@2x.png',
+        },
+        {
+          img: '/img/ourusers/yuanfudao@2x.png',
+        },
+        {
+          img: '/img/ourusers/yuanguanruanjian@2x.png',
+        },
+        {
+          img: '/img/ourusers/yuxueyuan@2x.png',
+        },
+        {
+          img: '/img/ourusers/zhongshandaxue@2x.png',
+        },
+        {
+          img: '/img/ourusers/ucloud@2x.png',
+        },
+        {
+          img: '/img/ourusers/xinlangweibo@2x.png',
+        },
+        {
+          img: '/img/ourusers/maidanglao@2x.png',
+        },
+        {
+          img: '/img/ourusers/zhengcaiyun@2x.png',
+        },
+        {
+          img: '/img/ourusers/fordeal@2x.png',
         },
       ],
     },
