@@ -86,6 +86,14 @@ export default {
         desc: 'Apache Dolphin Scheduler(Incubating) 将于2019年10月26日在上海组织一次会议，欢迎踊跃报名。 ',
         link: '/zh-cn/blog/meetup_2019_10_26.html',
       },
+      {
+        title: 'DolphinScheduler json详解',
+        author: '进勇',
+        editor: '小P',
+        dateStr: '2021-05-29',
+        desc: 'DolphinScheduler json拆解详细说明',
+        link: '/zh-cn/blog/dolphinscheduler_json.html',
+      },      
     ],
   },
 };
