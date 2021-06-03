@@ -116,7 +116,7 @@ export default {
           img: '/img/ourusers/zhaoshangyinhang@2x.png',
         },
         {
-          img: '/img/ourusers/icbc@2x.png',
+          img: '/img/ourusers/ICBC@2x.png',
         },
         {
           img: '/img/ourusers/pingan@2x.png',
@@ -340,7 +340,7 @@ export default {
           img: '/img/ourusers/zhaoshangyinhang@2x.png',
         },
         {
-          img: '/img/ourusers/icbc@2x.png',
+          img: '/img/ourusers/ICBC@2x.png',
         },
         {
           img: '/img/ourusers/pingan@2x.png',
