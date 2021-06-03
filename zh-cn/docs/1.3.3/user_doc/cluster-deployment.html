@@ -412,28 +412,17 @@ enterprise.wechat.user.send.msg={\&quot;touser\&quot;:\&quot;{toUser}\&quot;,\&q
 </code></pre>
 </li>
 <li>
-<p>关于dolphinscheduler 在运行过程中，网卡使用说明：</p>
+<p>关于 dolphinscheduler 在运行过程中，ip地址获取错误的问题：</p>
 <blockquote>
-<p>master服务，worker服务在zookeeper注册时，会以ip:port的形式创建相关信息。</p>
+<p>master服务、worker服务在zookeeper注册时，会以ip:port的形式创建相关信息。</p>
 </blockquote>
-<p>在明确通信网卡情况下，可以指定网卡名称的方式获取ip地址，配置方式是在<code>common.properties</code>中修改配置：</p>
-<pre><code>dolphin.scheduler.network.interface.preferred=eth0
+<p>如果ip地址获取错误，请检查网络信息，如linux系统通过<code>ifconfig</code>命令查看网络信息，以下图为例：</p>
+ <p align="center">
+   <img src="/img/network/network_config.png" width="60%" />
+ </p>
+<p>如果ip地址获取依然错误，请下载<a href="/asset/dolphinscheduler-netutils.jar">dolphinscheduler-netutils.jar</a>到相应机器，执行以下命令以进一步排障，并反馈给社区开发人员：</p>
+<pre><code>java -jar target/dolphinscheduler-netutils.jar
 </code></pre>
-<p>如linux系统通过<code>ifconfig</code>命令查看网络信息,以下图为例，配置eth0就是使用图中eth0的网卡作为通信网卡：</p>
-   <p align="center">
-        <img src="/img/network/network_config.png" width="60%" />
-   </p>
-<p>还可以使用dolphinscheduler提供的三种策略，获取可用ip：</p>
-<ol>
-<li>default: 优先获取内网网卡获取ip地址，其次获取外网网卡获取ip地址，在前两项失效情况下，使用第一块可用网卡的地址。</li>
-<li>inner: 使用内网网卡获取ip地址，如果获取失败抛出异常信息。</li>
-<li>outer: 使用外网网卡获取ip地址，如果获取失败抛出异常信息。</li>
-</ol>
-<p>配置方式是在<code>common.properties</code>中修改相关配置：</p>
-<pre><code> # Network IP gets priority, default inner outer
- #dolphin.scheduler.network.priority.strategy=default
-</code></pre>
-<p>以上配置修改后重启服务生效。</p>
 </li>
 <li>
 <p>配置sudo免密，用于解决默认配置sudo权限过大或不能申请root权限的使用问题</p>
@@ -448,7 +437,7 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.98926a5.js"></script>
+  <script src="/build/vendor.d44685f.js"></script>
   <script src="/build/docs.md.e13b103.js"></script>
   <script>
     var _hmt = _hmt || [];
