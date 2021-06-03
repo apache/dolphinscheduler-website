@@ -17,7 +17,7 @@ export default {
         desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
         link: '/en-us/blog/FAQ.html',
       },          
-       {
+      {
         title: 'Big Data Workflow Task Scheduling - Directed Acyclic Graph (DAG) for Topological Sorting',
         author: 'LidongDai',
         translator: 'QuakeWang',
@@ -53,7 +53,7 @@ export default {
         editor: '王福政',
         dateStr: '2021-05-25',
         desc: '当前 DolphinScheduler 的工作流中的任务及关系保存时是以大 json 的方式保存到数据库中 process_definiton 表的 process_definition_json 字段，如果某个工作流很大比如有 1000 个任务，这个 json 字段也就随之变得非常大，在使用时需要解析 json，非常耗费性能，且任务没法重用，故社区计划启动 json 拆分项目。',
-        link: '/zh-cn/blog/json_split.htmldolphinscheduler_json.html',
+        link: '/zh-cn/blog/json_split.html',
       },
       {
         title: '大数据工作流任务调度--有向无环图(DAG)之拓扑排序',
