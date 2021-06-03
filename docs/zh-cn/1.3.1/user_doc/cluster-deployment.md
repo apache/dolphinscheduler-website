@@ -444,32 +444,19 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
     #发送消息格式，无需改动
     enterprise.wechat.user.send.msg={\"touser\":\"{toUser}\",\"agentid\":\"{agentId}\",\"msgtype\":\"markdown\",\"markdown\":{\"content\":\"{msg}\"}}
    ```
- - 关于dolphinscheduler 在运行过程中，网卡使用说明：
+
+ - 关于 dolphinscheduler 在运行过程中，ip地址获取错误的问题：
  
-   > master服务，worker服务在zookeeper注册时，会以ip:port的形式创建相关信息。
+   > master服务、worker服务在zookeeper注册时，会以ip:port的形式创建相关信息。
      
-      在明确通信网卡情况下，可以指定网卡名称的方式获取ip地址，配置方式是在`common.properties`中修改配置：
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-      ```
-      dolphin.scheduler.network.interface.preferred=eth0
-      ```  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-     如linux系统通过`ifconfig`命令查看网络信息,以下图为例，配置eth0就是使用图中eth0的网卡作为通信网卡：
+   如果ip地址获取错误，请检查网络信息，如linux系统通过`ifconfig`命令查看网络信息，以下图为例：
      
-      <p align="center">
-           <img src="/img/network/network_config.png" width="60%" />
-      </p>
-                                       
-     还可以使用dolphinscheduler提供的三种策略，获取可用ip：
+    <p align="center">
+      <img src="/img/network/network_config.png" width="60%" />
+    </p>
    
-      1. default: 优先获取内网网卡获取ip地址，其次获取外网网卡获取ip地址，在前两项失效情况下，使用第一块可用网卡的地址。
-      2. inner: 使用内网网卡获取ip地址，如果获取失败抛出异常信息。
-      3. outer: 使用外网网卡获取ip地址，如果获取失败抛出异常信息。
-      
-      配置方式是在`common.properties`中修改相关配置：
-      
-      ```
-       # Network IP gets priority, default inner outer
-       #dolphin.scheduler.network.priority.strategy=default
-      ```
-      以上配置修改后重启服务生效。                         
+   如果ip地址获取依然错误，请下载[dolphinscheduler-netutils.jar](/asset/dolphinscheduler-netutils.jar)到相应机器，执行以下命令以进一步排障，并反馈给社区开发人员：
+
+   ```
+   java -jar target/dolphinscheduler-netutils.jar
+   ```
