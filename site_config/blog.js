@@ -4,11 +4,20 @@ export default {
     postsTitle: 'All posts',
     list: [
       {
-        title: 'Apache Dolphin Scheduler(Incubating) Meetup 2019.10 Shanghai',
-        author: 'William',
-        dateStr: '2019-9-27',
-        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
-        link: '/en-us/blog/meetup_2019_10_26.html',
+        title: 'Why did we split the big json of DAG in workflow definition?',
+        author: 'JinyLeeChina',
+        translator: 'QuakeWang',
+        dateStr: '2021-06-03',
+        desc: 'The task and relationship in the workflow of Dolphinscheduler is saved as the process_definition_json field that saves the process_definiton table in the database in a large JSON. If a workflow is large, this JSON field has become a result. Very big, you need to analyze JSON when using it, it costs very much, and the task cannot be reused, so the community plan launches the JSON split project.',
+        link: '/en-us/blog/Json_Split.html',
+      },
+      {
+        title: ' Big Data Workflow Task Scheduling - Directed Acyclic Graph (DAG) for Topological Sorting',
+        author: 'LidongDai',
+        translator: 'QuakeWang',
+        dateStr: '2021-05-06',
+        desc: 'DAG: Full name Directed Acyclic Graph，referred to as DAG。Tasks in the workflow are assembled in the form of directed acyclic graphs, which are topologically traversed from nodes with zero indegrees of ingress until there are no successor nodes.',
+        link: '/en-us/blog/DAG.html',
       },
       {
         title: 'FAQ of Apache DolphinScheduler',
@@ -16,23 +25,15 @@ export default {
         dateStr: '2021-03-20',
         desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
         link: '/en-us/blog/FAQ.html',
-      },          
+      },  
       {
-        title: 'Big Data Workflow Task Scheduling - Directed Acyclic Graph (DAG) for Topological Sorting',
-        author: 'LidongDai',
-        translator: 'QuakeWang',
-        dateStr: '2021-05-06',
-        desc: 'DAG: Full name Directed Acyclic Graph，referred to as DAG。Tasks in the workflow are assembled in the form of directed acyclic graphs, which are topologically traversed from nodes with zero indegrees of ingress until there are no successor nodes.',
-        link: '/en-us/blog/DAG.html',
+        title: 'Apache Dolphin Scheduler(Incubating) Meetup 2019.10 Shanghai',
+        author: 'William',
+        dateStr: '2019-9-27',
+        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
+        link: '/en-us/blog/meetup_2019_10_26.html',
       },
-         {
-        title: 'Why did we split the big json that holds the tasks and relationships in the DolphinScheduler workflow definition?',
-        author: 'JinyLeeChina',
-        translator: 'QuakeWang',
-        dateStr: '2021-06-03',
-        desc: 'The task and relationship in the workflow of Dolphinscheduler is saved as the process_definition_json field that saves the process_definiton table in the database in a large JSON. If a workflow is large, this JSON field has become a result. Very big, you need to analyze JSON when using it, it costs very much, and the task cannot be reused, so the community plan launches the JSON split project.',
-        link: '/en-us/blog/Json_Split.html',
-      },
+
     ],
   },
   'zh-cn': {
@@ -40,13 +41,13 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
-        title: 'DolphinScheduler json详解',
+        title: 'DolphinScheduler 核心之 DAG 大 JSON 拆分详解',
         author: '进勇',
         editor: '小P',
         dateStr: '2021-05-29',
-        desc: 'DolphinScheduler json拆解详细说明',
+        desc: 'DolphinScheduler 核心之 DAG 大 JSON 拆分始末',
         link: '/zh-cn/blog/dolphinscheduler_json.html',
-      },  
+      },    
       {
         title: '为什么要把 DolphinScheduler 工作流定义中保存任务及关系的大 json 给拆了?',
         author: '进勇',
@@ -94,14 +95,7 @@ export default {
         desc: 'Apache Dolphin Scheduler(Incubating) 将于2019年10月26日在上海组织一次会议，欢迎踊跃报名。 ',
         link: '/zh-cn/blog/meetup_2019_10_26.html',
       },
-      {
-        title: 'DolphinScheduler json详解',
-        author: '进勇',
-        editor: '小P',
-        dateStr: '2021-05-29',
-        desc: 'DolphinScheduler json拆解详细说明',
-        link: '/zh-cn/blog/dolphinscheduler_json.html',
-      },      
+  
     ],
   },
 };
