@@ -2,7 +2,7 @@
 
 ### The Background
 
-Currently DolphinScheduler saves tasks and relationships in workflows as big json to the process_definition_json field in the process_definiton table in the database. If a workflow is large, for example, with 1000 tasks, the json field becomes very large and needs to be parsed when using the json, which is very performance intensive and the tasks cannot be reused, so the community plans to start a json splitting project. Encouragingly, we have now completed most of this work, so a summary is provided for your reference and learning.
+Currently DolphinScheduler saves tasks and relationships in process as big json to the process_definition_json field in the process_definiton table in the database. If a process is large, for example, with 1000 tasks, the json field becomes very large and needs to be parsed when using the json, which is very performance intensive and the tasks cannot be reused, so the community plans to start a json splitting project. Encouragingly, we have now completed most of this work, so a summary is provided for your reference and learning.
 
 ### Summarization
 
@@ -21,19 +21,19 @@ The main changes, as well as the contributions, are as follows:
 
 - [ ] When the api module performs a save operation
 
-1. The workflow definition is saved to process_definition (main table) and process_definition_log (log table), both tables hold the same data and the workflow definition version is 1
+1. The process definition is saved to process_definition (main table) and process_definition_log (log table), both tables hold the same data and the process definition version is 1
 2. The task definition table is saved to task_definition (main table) and task_definition_log (log table), also saving the same data, with task definition version 1
-3. Workflow task relationships are stored in the process_task_relation (main table) and process_task_relation_log (log table), which holds the code and version of the workflow, as tasks are organised through the workflow and the dag is drawn in terms of the workflow. The current node of the dag is also known by its post_task_code and post_task_version, the predecessor dependency of this node is identified by pre_task_code and pre_task_version, if there is no dependency, the pre_task_code and pre_task_version are and pre_task_version are 0 if there is no dependency
+3. process task relationships are stored in the process_task_relation (main table) and process_task_relation_log (log table), which holds the code and version of the process, as tasks are organised through the process and the dag is drawn in terms of the process. The current node of the dag is also known by its post_task_code and post_task_version, the predecessor dependency of this node is identified by pre_task_code and pre_task_version, if there is no dependency, the pre_task_code and pre_task_version are and pre_task_version are 0 if there is no dependency
 
-- [ ] When the api module performs an update operation, the workflow definition and task definition update the main table data directly, and the updated data is inserted into the log table. The main table is deleted and then inserted into the new relationship, and the log table is inserted directly into the new relationship.
-- [ ] When the api module performs a delete operation, the workflow definition, task definition and relationship table are deleted directly from the master table, leaving the log table data unchanged.
+- [ ] When the api module performs an update operation, the process definition and task definition update the main table data directly, and the updated data is inserted into the log table. The main table is deleted and then inserted into the new relationship, and the log table is inserted directly into the new relationship.
+- [ ] When the api module performs a delete operation, the process definition, task definition and relationship table are deleted directly from the master table, leaving the log table data unchanged.
 - [ ] When the api module performs a switch operation, the corresponding version data in the log table is overwritten directly into the main table.
 
 ###  Json Access Solutions
 
 ![json](https://user-images.githubusercontent.com/42576980/117598643-c9851280-b17a-11eb-9a6e-c81ee083b09c.png)
 
-- [ ] In the current phase of the splitting scheme, the api module controller layer remains unchanged and the incoming big json is still mapped to ProcessData objects in the service layer. insert or update operations are done in the public Service module through the ProcessService. saveProcessDefiniton() entry in the public Service module, which saves the database operations in the order of task_definition, process_task_relation, process_definition. When saving, the task is changed if it already exists and the associated workflow is not online; if the task is associated with a workflow that is already online, the task is not allowed to be changed
+- [ ] In the current phase of the splitting scheme, the api module controller layer remains unchanged and the incoming big json is still mapped to ProcessData objects in the service layer. insert or update operations are done in the public Service module through the ProcessService. saveProcessDefiniton() entry in the public Service module, which saves the database operations in the order of task_definition, process_task_relation, process_definition. When saving, the task is changed if it already exists and the associated process is not online; if the task is associated with a process that is already online, the task is not allowed to be changed
 
 - [ ] The data is assembled in the public Service module through the ProcessService.genTaskNodeList() entry, or assembled into a ProcessData object, which in turn generates a json to return
 - [ ] The Server module (Master) also gets the TaskNodeList through the public Service module ProcessService.genTaskNodeList() to generate the dispatch dag, which puts all the information about the current task into the MasterExecThread. readyToSubmitTaskQueue queue in order to generate taskInstance, dispatch to worker
