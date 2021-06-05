@@ -15,7 +15,7 @@ The main changes, as well as the contributions, are as follows:
 - 145 Commits in total
 - There were 85 PRs
 
-### 拆分方案回顾
+### Review of the split programme
 
 ![拆分方案](https://user-images.githubusercontent.com/42576980/117598604-b1ad8e80-b17a-11eb-9d99-d593fce7bab6.png)
 
