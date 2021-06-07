@@ -35,7 +35,7 @@ Currently, all the configuration files are under [conf ] directory. Please check
 ├─sql                                   DS metadata to create/upgrade .sql directory
 │  ├─create                             create SQL scripts directory
 │  ├─upgrade                            upgrade SQL scripts directory
-│  ├─dolphinscheduler-postgre.sql       postgre database init script
+│  ├─dolphinscheduler_postgre.sql       postgre database init script
 │  ├─dolphinscheduler_mysql.sql         mysql database init script
 │  ├─soft_version                       current DS version-id file
 ├─script                            DS services deployment, database create/upgrade scripts directory

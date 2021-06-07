@@ -74,7 +74,7 @@ In this way, you need to install [docker](https://docs.docker.com/engine/install
 
 #### 2. Please login to the PostgreSQL database and create a database named `dolphinscheduler`
 
-#### 3. Initialize the database, import `sql/dolphinscheduler-postgre.sql` to create tables and initial data
+#### 3. Initialize the database, import `sql/dolphinscheduler_postgre.sql` to create tables and initial data
 
 #### 4. Download the DolphinScheduler Image
 

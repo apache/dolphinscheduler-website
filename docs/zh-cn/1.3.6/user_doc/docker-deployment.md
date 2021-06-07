@@ -74,7 +74,7 @@ $ docker-compose up -d
 
 #### 2、请登录 PostgreSQL 数据库，创建名为 `dolphinscheduler` 数据库
 
-#### 3、初始化数据库，导入 `sql/dolphinscheduler-postgre.sql` 进行创建表及基础数据导入
+#### 3、初始化数据库，导入 `sql/dolphinscheduler_postgre.sql` 进行创建表及基础数据导入
 
 #### 4、下载 DolphinScheduler 镜像
 
