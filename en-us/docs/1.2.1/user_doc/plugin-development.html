@@ -15,8 +15,8 @@
 <h3>Shell-based tasks</h3>
 <h4>YARN-based calculations (see MapReduceTask)</h4>
 <ul>
-<li>Need to be <strong>cn.dolphinscheduler.server.worker.task</strong> Down <strong>TaskManager</strong> Create a custom task in the class (also need to register the corresponding task type in TaskType)</li>
-<li>Need to inherit<strong>cn.dolphinscheduler.server.worker.task</strong> Down <strong>AbstractYarnTask</strong></li>
+<li>Need to be <strong>org.apache.dolphinscheduler.server.worker.task</strong> Down <strong>TaskManager</strong> Create a custom task in the class (also need to register the corresponding task type in TaskType)</li>
+<li>Need to inherit<strong>org.apache.dolphinscheduler.server.worker.task</strong> Down <strong>AbstractYarnTask</strong></li>
 <li>Constructor Scheduling <strong>AbstractYarnTask</strong> Construction method</li>
 <li>Inherit <strong>AbstractParameters</strong> Custom task parameter entity</li>
 <li>Rewrite <strong>AbstractTask</strong> of <strong>init</strong> Parsing in method<strong>Custom task parameters</strong></li>
@@ -25,10 +25,10 @@
 <h4>Non-YARN-based calculations (see ShellTask)</h4>
 <ul>
 <li>
-<p>Need to be <strong>cn.dolphinscheduler.server.worker.task</strong> Down <strong>TaskManager</strong> A custom task</p>
+<p>Need to be <strong>org.apache.dolphinscheduler.server.worker.task</strong> Down <strong>TaskManager</strong> A custom task</p>
 </li>
 <li>
-<p>Need to inherit<strong>cn.dolphinscheduler.server.worker.task</strong> Down <strong>AbstractTask</strong></p>
+<p>Need to inherit<strong>org.apache.dolphinscheduler.server.worker.task</strong> Down <strong>AbstractTask</strong></p>
 </li>
 <li>
 <p>Instantiation in constructor <strong>ShellCommandExecutor</strong></p>
@@ -58,8 +58,8 @@
 </ul>
 <h3>Non-SHELL-based tasks (see SqlTask)</h3>
 <ul>
-<li>Need to be <strong>cn.dolphinscheduler.server.worker.task</strong> Down <strong>TaskManager</strong> A custom task</li>
-<li>Need to inherit<strong>cn.dolphinscheduler.server.worker.task</strong> Down <strong>AbstractTask</strong></li>
+<li>Need to be <strong>org.apache.dolphinscheduler.server.worker.task</strong> Down <strong>TaskManager</strong> A custom task</li>
+<li>Need to inherit<strong>org.apache.dolphinscheduler.server.worker.task</strong> Down <strong>AbstractTask</strong></li>
 <li>Inherit <strong>AbstractParameters</strong> Custom task parameter entity</li>
 <li>Constructor or override <strong>AbstractTask</strong> of <strong>init</strong> in the method, parse the custom task parameter entity</li>
 <li>Rewrite <strong>handle</strong> Methods to implement business logic and set the corresponding<strong>exitStatusCode</strong></li>
