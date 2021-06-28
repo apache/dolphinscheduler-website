@@ -69,6 +69,11 @@ export default {
             text: '1.1.0(Not Apache Release)',
             link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           },
+          {
+            key: 'docsdev',
+            text: 'development-doc',
+            link: '/en-us/docs/dev/user_doc/alert_spi.html',
+          },
         ],
       },
       {
@@ -270,6 +275,11 @@ export default {
             key: 'docs110',
             text: '1.1.0(Not Apache Release)',
             link: 'https://analysys.github.io/easyscheduler_docs_cn/',
+          },
+          {
+            key: 'docsDev',
+            text: 'development-doc',
+            link: '/zh-cn/docs/dev/user_doc/alert_spi.html',
           },
         ],
       },
