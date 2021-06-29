@@ -35,7 +35,7 @@
 5. Initializes the database information
 
    ```
-   -- Create the database for the Dolphin Scheduler：dolphinscheduler
+   -- Create the database for the DolphinScheduler：dolphinscheduler
    CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE
    utf8_general_ci;
    
