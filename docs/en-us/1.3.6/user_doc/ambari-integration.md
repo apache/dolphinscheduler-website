@@ -3,7 +3,7 @@
 #### Note
 
 1. This document is intended for users with a basic understanding of Ambari
-2. This document is a description of adding the Dolphin Scheduler service to the installed Ambari service
+2. This document is a description of adding the DolphinScheduler service to the installed Ambari service
 3. This document is based on version 2.5.2 of Ambari 
 
 ####   Installation preparation
