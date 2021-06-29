@@ -2,7 +2,7 @@ export default {
   'zh-cn': {
     brand: {
       brandName: 'Apache DolphinScheduler',
-      briefIntroduction: '分布式易扩展的可视化DAG工作流任务调度系统',
+      briefIntroduction: '分布式易扩展的可视化工作流任务调度平台',
       buttons: [
         {
           text: '立即开始',
@@ -22,8 +22,8 @@ export default {
       releaseDate: '2019年08月05日发布',
     },
     introduction: {
-      title: '分布式易扩展的可视化DAG工作流任务调度系统',
-      desc: 'Apache DolphinScheduler是一个分布式去中心化，易扩展的可视化DAG工作流任务调度系统。致力于解决数据处理流程中错综复杂的依赖关系，使调度系统在数据处理流程中开箱即用。',
+      title: '分布式易扩展的可视化工作流任务调度平台',
+      desc: 'Apache DolphinScheduler是一个分布式去中心化，易扩展的可视化DAG工作流任务调度平台。致力于解决数据处理流程中错综复杂的依赖关系，使调度系统在数据处理流程中开箱即用。',
       img: '/img/archdiagram_zh.svg',
     },
     features: {
@@ -234,6 +234,15 @@ export default {
         },
         {
           img: '/img/ourusers/fordeal@2x.png',
+        },
+        {
+          img: '/img/ourusers/yunda@2x.png',
+        },
+        {
+          img: '/img/ourusers/huawei@2x.png',
+        },
+        {
+          img: '/img/ourusers/vmware@2x.png',
         },
       ],
     },
@@ -458,6 +467,15 @@ export default {
         },
         {
           img: '/img/ourusers/fordeal@2x.png',
+        },
+        {
+          img: '/img/ourusers/yunda@2x.png',
+        },
+        {
+          img: '/img/ourusers/huawei@2x.png',
+        },
+        {
+          img: '/img/ourusers/vmware@2x.png',
         },
       ],
     },
