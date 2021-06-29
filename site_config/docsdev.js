@@ -6,11 +6,11 @@ export default {
         children: [
           {
             title: 'Alert-SPI',
-            link: '/en-us/docs/0.0.0/user_doc/alert_spi.html',
+            link: '/en-us/docs/dev/user_doc/alert_spi.html',
           },
           {
             title: 'Registry-SPI',
-            link: '/en-us/docs/0.0.0/user_doc/registry_spi.html',
+            link: '/en-us/docs/dev/user_doc/registry_spi.html',
           },
         ],
       },
@@ -25,11 +25,11 @@ export default {
         children: [
           {
             title: 'Alert-SPI',
-            link: '/zh-cn/docs/0.0.0/user_doc/alert_spi.html',
+            link: '/zh-cn/docs/dev/user_doc/alert_spi.html',
           },
           {
             title: 'Registry-SPI',
-            link: '/zh-cn/docs/0.0.0/user_doc/registry_spi.html',
+            link: '/zh-cn/docs/dev/user_doc/registry_spi.html',
           },
         ],
       },

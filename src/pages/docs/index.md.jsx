@@ -15,7 +15,7 @@ import docs133Config from '../../../site_config/docs1-3-3';
 import docs134Config from '../../../site_config/docs1-3-4';
 import docs135Config from '../../../site_config/docs1-3-5';
 import docs136Config from '../../../site_config/docs1-3-6';
-import docs000Config from '../../../site_config/docs0-0-0';
+import docsDevConfig from '../../../site_config/docsdev';
 
 const docsSource = {
   '1.2.0': docs120Config,
@@ -26,7 +26,7 @@ const docsSource = {
   '1.3.4': docs134Config,
   '1.3.5': docs135Config,
   '1.3.6': docs136Config,
-  '0.0.0': docs000Config,
+  'dev': docsDevConfig,
 };
 
 const isValidVersion = version => version && docsSource.hasOwnProperty(version);
