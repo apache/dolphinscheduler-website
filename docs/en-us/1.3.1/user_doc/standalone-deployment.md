@@ -13,13 +13,13 @@
 
 # 2、Download the binary package.
 
-- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html)，Download the package and move to the installation and deployment directory. Then unzip it.
+- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html)，Download the package and move to the installation and deployment directory. Then uncompress it.
 
 ```shell
 # Create the deployment directory. Do not choose a deployment directory with a high-privilege directory such as / root or / home.
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
-# unzip
+# uncompress
 tar -zxvf apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin.tar.gz -C /opt/dolphinscheduler;
 
 mv apache-dolphinscheduler-incubating-1.3.1-dolphinscheduler-bin  dolphinscheduler-bin
@@ -263,6 +263,7 @@ mysql -uroot -p
 
 
     # if not use hadoop resourcemanager, please keep default value; if resourcemanager HA enable, please type the HA ips ; if resourcemanager is single, make this value empty
+    # Note: For tasks that depend on YARN to execute, you need to ensure that YARN information is configured correctly in order to ensure successful execution results.
     yarnHaIps="192.168.xx.xx,192.168.xx.xx"
 
     # if resourcemanager HA enable or not use resourcemanager, please skip this value setting; If resourcemanager is single, you only need to replace yarnIp1 to actual resourcemanager hostname.

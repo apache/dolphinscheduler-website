@@ -1,3 +1,5 @@
+# Issue Notice
+
 ## Preface
 Issues function is used to track various Features, Bugs, Functions, etc. The project maintainer can organize the tasks to be completed through issues.
 
@@ -112,7 +114,7 @@ The `Module Name` is as follows:
 
 ### Issue content template
 
-https://github.com/apache/incubator-dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE
+https://github.com/apache/dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE
 
 ### Contributor
 

@@ -1,3 +1,5 @@
+# Issue 须知
+
 ## 前言
 Issues 功能被用来追踪各种特性，Bug，功能等。项目维护者可以通过 Issues 来组织需要完成的任务。
 
@@ -112,7 +114,7 @@ Issue 中可以讨论的内容包括但不限于 Feature 的包含的功能，�
 
 ### Issue 内容模板
 
-https://github.com/apache/incubator-dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE
+https://github.com/apache/dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE
 
 ### Bug 类 Issue
 

@@ -21,12 +21,12 @@ export default {
             link: '/en-us/development/frontend-development.html',
           },
           {
-            title: 'Dev Frontend Development',
-            link: '/en-us/development/dev-frontend-development.html',
+            title: 'Plugin Development',
+            link: '/en-us/development/plugin-development.html',
           },
           {
-            title: 'plugin-development',
-            link: '/en-us/development/plugin-development.html',
+            title: 'Questions & Communications',
+            link: '/en-us/development/have-questions.html',
           },
         ],
       },
@@ -55,12 +55,12 @@ export default {
             link: '/zh-cn/development/frontend-development.html',
           },
           {
-            title: 'dev前端开发',
-            link: '/zh-cn/development/dev-frontend-development.html',
-          },
-          {
             title: '插件开发',
             link: '/zh-cn/development/plugin-development.html',
+          },
+          {
+            title: '问题与交流',
+            link: '/zh-cn/development/have-questions.html',
           },
         ],
       },

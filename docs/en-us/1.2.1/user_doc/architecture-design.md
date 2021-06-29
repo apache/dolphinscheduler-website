@@ -124,7 +124,7 @@ Problems in the design of centralized :
 
 ###### Decentralization
 
- <p align="center"
+ <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="decentralized" width="50%" />
  </p>
 
@@ -266,12 +266,12 @@ In the early scheduling design, if there is no priority design and fair scheduli
  /**
   * task log appender
   */
- Public class TaskLogAppender extends FileAppender<ILoggingEvent> {
+ public class TaskLogAppender extends FileAppender<ILoggingEvent> {
  
      ...
 
     @Override
-    Protected void append(ILoggingEvent event) {
+    protected void append(ILoggingEvent event) {
 
         If (currentlyActiveFile == null){
             currentlyActiveFile = getFile();
@@ -297,14 +297,14 @@ Generate a log in the form of /process definition id/process instance id/task in
  /**
  * task log filter
  */
-Public class TaskLogFilter extends Filter<ILoggingEvent> {
+public class TaskLogFilter extends Filter<ILoggingEvent> {
 
     @Override
-    Public FilterReply decide(ILoggingEvent event) {
-        If (event.getThreadName().startsWith("TaskLogInfo-")){
-            Return FilterReply.ACCEPT;
+    public FilterReply decide(ILoggingEvent event) {
+        if (event.getThreadName().startsWith("TaskLogInfo-")){
+            return FilterReply.ACCEPT;
         }
-        Return FilterReply.DENY;
+        return FilterReply.DENY;
     }
 }
 ```

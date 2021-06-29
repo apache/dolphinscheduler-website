@@ -126,7 +126,7 @@ Problems in centralized thought design:
 
 
 ###### Decentralized
- <p align="center"
+ <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="Decentralization"  width="50%" />
  </p>
 
@@ -265,7 +265,7 @@ In the early scheduling design, if there is no priority design and the fair sche
  /**
   * task log appender
   */
- public class TaskLogAppender extends FileAppender<ILoggingEvent {
+ public class TaskLogAppender extends FileAppender<ILoggingEvent> {
  
      ...
 
@@ -298,7 +298,7 @@ Generate logs in the form of /process definition id/process instance id/task ins
  /**
  *  task log filter
  */
-public class TaskLogFilter extends Filter<ILoggingEvent {
+public class TaskLogFilter extends Filter<ILoggingEvent> {
 
     @Override
     public FilterReply decide(ILoggingEvent event) {

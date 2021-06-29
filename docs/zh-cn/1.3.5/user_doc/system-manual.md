@@ -26,7 +26,7 @@
      <p align="center">
         <img src="/img/project-home.png" width="80%" />
      </p>
- 
+
  - 任务状态统计：在指定时间范围内，统计任务实例中状态为提交成功、正在运行、准备暂停、暂停、准备停止、停止、失败、成功、需要容错、kill、等待线程的个数
  - 流程状态统计：在指定时间范围内，统计工作流实例中状态为提交成功、正在运行、准备暂停、暂停、准备停止、停止、失败、成功、需要容错、kill、等待线程的个数
  - 工作流定义统计：统计用户创建的工作流定义及管理员授予该用户的工作流定义
@@ -49,7 +49,7 @@
   1. 资源（非必选）。资源文件是资源中心->文件管理页面创建或上传的文件，如文件名为`test.sh`，脚本中调用资源命令为`sh test.sh`；
   1. 自定义参数（非必填），参考[自定义参数](#UserDefinedParameters)；
   1. 点击"确认添加"按钮，保存任务设置。
-  
+
   - **增加任务执行的先后顺序：** 点击右上角图标<img src="/img/line.png" width="35"/>连接任务；如下图所示，任务2和任务3并行执行，当任务1执行完，任务2、3会同时执行。
 
     <p align="center">
@@ -95,8 +95,9 @@
      <p align="center">
        <img src="/img/run-work.png" width="80%" />
      </p>  
-  <span id=runParamers>工作流运行参数说明：</span> 
-       
+    <span id=runParamers>工作流运行参数说明：</span> 
+
+    
     * 失败策略：当某一个任务节点执行失败时，其他并行的任务节点需要执行的策略。”继续“表示：某一任务失败后，其他任务节点正常执行；”结束“表示：终止所有正在执行的任务，并终止整个流程。
     * 通知策略：当流程结束，根据流程状态发送流程执行信息通知邮件，包含任何状态都不发，成功发，失败发，成功或失败都发。
     * 流程优先级：流程运行的优先级，分五个等级：最高（HIGHEST），高(HIGH),中（MEDIUM）,低（LOW），最低（LOWEST）。当master线程数不足时，级别高的流程在执行队列中会优先执行，相同优先级的流程按照先进先出的顺序执行。
@@ -166,7 +167,7 @@
       <p align="center">
         <img src="/img/run_params.png" width="80%" />
       </p>      
- 
+
 #### 2.4.4 工作流实例操作功能
    点击项目管理->工作流->工作流实例，进入工作流实例页面，如下图所示：          
       <p align="center">
@@ -202,7 +203,7 @@
 ### 3. 资源中心
 #### 3.1 hdfs资源配置
   - 上传资源文件和udf函数，所有上传的文件和资源都会被存储到hdfs上，所以需要以下配置项：
-  
+
 ```  
 conf/common.properties  
     # Users who have permission to create directories under the HDFS root path
@@ -282,7 +283,7 @@ conf/common.properties
 
   * 上传udf资源
   > 和上传文件相同。
-  
+
 
 #### 3.3.2 函数管理
 
@@ -430,15 +431,15 @@ conf/common.properties
 <p align="center">
    <img src="/img/useredit2.png" width="80%" />
  </p>
-  
+
   > **编辑用户信息** 
    - 管理员进入安全中心->用户管理页面，点击"编辑"按钮，编辑用户信息。
    - 普通用户登录后，点击用户名下拉框中的用户信息，进入用户信息页面，点击"编辑"按钮，编辑用户信息。
-  
+
   > **修改用户密码** 
    - 管理员进入安全中心->用户管理页面，点击"编辑"按钮，编辑用户信息时，输入新密码修改用户密码。
    - 普通用户登录后，点击用户名下拉框中的用户信息，进入修改密码页面，输入密码并确认密码后点击"编辑"按钮，则修改密码成功。
-   
+
 
 #### 5.4 创建告警组
   * 告警组是在启动时设置的参数，在流程结束以后会将流程的状态和其他信息以邮件形式发送给告警组。
@@ -456,11 +457,11 @@ conf/common.properties
   <p align="center">
       <img src="/img/creat_token.png" width="80%" />
    </p>
-  
+
   - 普通用户登录后，点击用户名下拉框中的用户信息，进入令牌管理页面，选择失效时间，点击"生成令牌"按钮，点击"提交"按钮，则该用户创建token成功。
     
   - 调用示例：
-  
+
 ```令牌调用示例
     /**
      * test token
@@ -501,7 +502,7 @@ conf/common.properties
     * 授予权限包括项目权限，资源权限，数据源权限，UDF函数权限。
     * 管理员可以对普通用户进行非其创建的项目、资源、数据源和UDF函数进行授权。因为项目、资源、数据源和UDF函数授权方式都是一样的，所以以项目授权为例介绍。
     * 注意：对于用户自己创建的项目，该用户拥有所有的权限。则项目列表和已选项目列表中不会显示。
- 
+
   - 管理员进入安全中心->用户管理页面，点击需授权用户的“授权”按钮，如下图所示：
   <p align="center">
    <img src="/img/auth_user.png" width="80%" />
@@ -512,7 +513,7 @@ conf/common.properties
 <p align="center">
    <img src="/img/auth_project.png" width="80%" />
  </p>
-  
+
   - 资源、数据源、UDF函数授权同项目授权。
 #### 5.7 Worker分组
 每个worker节点都会归属于自己的Worker分组,默认分组为default.
@@ -560,17 +561,17 @@ worker.groups=default,test
 <p align="center">
    <img src="/img/mysql-jk.png" width="80%" />
  </p>
- 
+
 #### 6.2 统计管理
 <p align="center">
    <img src="/img/Statistics.png" width="80%" />
  </p>
- 
+
   - 待执行命令数：统计t_ds_command表的数据
   - 执行失败的命令数：统计t_ds_error_command表的数据
   - 待运行任务数：统计Zookeeper中task_queue的数据
   - 待杀死任务数：统计Zookeeper中task_kill的数据
- 
+
 ### 7. <span id=TaskParamers>任务节点类型和参数设置</span>
 
 #### 7.1 Shell节点
@@ -703,7 +704,7 @@ worker.groups=default,test
  <p align="center">
    <img src="/img/mr_java.png" width="80%" />
  </p>
- 
+
 - 主函数的class：是MR程序的入口Main Class的全路径
 - 程序类型：选择JAVA语言 
 - 主jar包：是MR的jar包
@@ -721,10 +722,11 @@ worker.groups=default,test
 - 程序类型：选择Python语言 
 - 主jar包：是运行MR的Python jar包
 - 其他参数：支持 –D、-mapper、-reducer、-input  -output格式，这里可以设置用户自定义参数的输入，比如：
-- -mapper  "mapper.py 1"  -file mapper.py   -reducer reducer.py  -file reducer.py –input /journey/words.txt -output /journey/out/mr/${currentTimeMillis}
-- 其中 -mapper 后的 mapper.py 1是两个参数，第一个参数是mapper.py，第二个参数是1
+  - -mapper  "mapper.py 1"  -file mapper.py   -reducer reducer.py  -file reducer.py –input /journey/words.txt -output /journey/out/mr/${currentTimeMillis}
+  - 其中 -mapper 后的 mapper.py 1是两个参数，第一个参数是mapper.py，第二个参数是1
 - 资源： 如果其他参数中引用了资源文件，需要在资源中选择指定
 - 自定义参数：是MR局部的用户自定义参数，会替换脚本中以${变量}的内容
+
 
 #### 7.8 Python节点
   - 使用python节点，可以直接执行python脚本，对于python节点，worker会使用`python **`方式提交任务。
@@ -805,7 +807,7 @@ worker.groups=default,test
 - json：datax同步的json配置文件
 - 自定义参数：SQL任务类型，而存储过程是自定义参数顺序的给方法设置值自定义参数类型和数据类型同存储过程任务类型一样。区别在于SQL任务类型自定义参数会替换sql语句中${变量}。
 
-#### 8. 参数
+### 8. 参数
 #### 8.1 系统参数
 
 <table>
@@ -832,7 +834,7 @@ worker.groups=default,test
   - 我们定义这种基准变量为 $[...] 格式的，$[yyyyMMddHHmmss] 是可以任意分解组合的，比如：$[yyyyMMdd], $[HHmmss], $[yyyy-MM-dd] 等
 
   - 也可以使用以下格式：
-  
+
 
         * 后 N 年：$[add_months(yyyyMMdd,12*N)]
         * 前 N 年：$[add_months(yyyyMMdd,-12*N)]

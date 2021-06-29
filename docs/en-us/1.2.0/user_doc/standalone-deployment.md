@@ -17,13 +17,13 @@ DolphinScheduler Standalone deployment is divided into two parts: backend deploy
 
 ### 1.2: Download the backend package.
 
-- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html) (Take 1.2.0 for an example). Download the package and move to the installation and deployment directory. Then unzip it.
+- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html) (Take 1.2.0 for an example). Download the package and move to the installation and deployment directory. Then uncompress it.
 
 ```shell
 # Create the deployment directory. Do not choose a deployment directory with a high-privilege directory such as / root or / home.
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
-# unzip
+# uncompress
 tar -zxvf apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin.tar.gz -C /opt/dolphinscheduler;
  
 mv apache-dolphinscheduler-incubating-1.2.0-dolphinscheduler-backend-bin  dolphinscheduler-backend
@@ -297,7 +297,7 @@ After the deployment is successful, you can view the logs. The logs are stored i
 
 # 2. Frontend Deployment
 
-Please download the latest version of the frontend installation package to the server deployment directory, download address: [Download] (/en-us/download/download.html) (Take 1.2.0 version as an example ), Upload the tar.gz package to this directory after downloading and unzip it.
+Please download the latest version of the frontend installation package to the server deployment directory, download address: [Download] (/en-us/download/download.html) (Take 1.2.0 version as an example ), Upload the tar.gz package to this directory after downloading and uncompress it.
 
 ```shell
 cd /opt/dolphinscheduler;
@@ -365,7 +365,7 @@ server {
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
     location / {
-        root   /opt/soft/dolphinscheduler-ui/dist;      # Your dist directory which you unzip
+        root   /opt/soft/dolphinscheduler-ui/dist;      # Your dist directory which you uncompress
         index  index.html index.html;
     }
     location /dolphinscheduler {

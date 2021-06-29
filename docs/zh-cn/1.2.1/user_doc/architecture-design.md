@@ -114,7 +114,7 @@
 
 
 ###### 去中心化
- <p align="center"
+ <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="去中心化"  width="50%" />
  </p>
 

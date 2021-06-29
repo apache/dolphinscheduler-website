@@ -14,8 +14,8 @@ class BlogDetail extends Md2Html(Language) {
       <div className="blog-detail-page">
         <Header
           currentKey="blog"
-          type="normal"
-          logo="/img/hlogo_colorful.svg"
+          type="dark"
+          logo="/img/hlogo_white.svg"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />

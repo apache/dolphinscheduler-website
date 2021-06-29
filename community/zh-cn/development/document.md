@@ -1,15 +1,15 @@
-## 贡献文档
+# 文档须知
 
 良好的使用文档对任何类型的软件都是至关重要的。欢迎任何可以改进 DolphinScheduler 文档的贡献。
 
 ### 获取文档项目
 
-DolphinScheduler 项目的文档维护在独立的 [git 仓库](https://github.com/apache/incubator-dolphinscheduler-website)中。
+DolphinScheduler 项目的文档维护在独立的 [git 仓库](https://github.com/apache/dolphinscheduler-website)中。
 
 首先你需要先将文档项目 fork 到自己的 github 仓库中，然后将 fork 的文档克隆到本地计算机中。
 
 ```
-git clone https://github.com/<your-github-user-name>/incubator-dolphinscheduler-website
+git clone https://github.com/<your-github-user-name>/dolphinscheduler-website
 ```
 
 ### 文档环境

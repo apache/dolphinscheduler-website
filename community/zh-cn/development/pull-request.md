@@ -1,3 +1,5 @@
+# Pull Request 须知
+
 ## 前言
 Pull Request 本质上是一种软件的合作方式，是将涉及不同功能的代码，纳入主干的一种流程。这个过程中，可以进行讨论、审核和修改代码。
 
@@ -68,9 +70,9 @@ checkstyle [参考](https://checkstyle.sourceforge.io/)是一种帮助开发者�
 
 1.checkstyle 和 code-style 配置文件
 
-checkstyle: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/checkstyle.xml
+checkstyle: https://github.com/apache/dolphinscheduler/blob/dev/style/checkstyle.xml
 
-code-style: https://github.com/apache/incubator-dolphinscheduler/blob/dev/style/intellij-java-code-style.xml
+code-style: https://github.com/apache/dolphinscheduler/blob/dev/style/intellij-java-code-style.xml
 
 2.checkstyle 配置过程
 

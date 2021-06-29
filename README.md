@@ -1,6 +1,6 @@
 # Apache DolphinScheduler Official Website
 
-This project keeps all sources used for building up DolphinScheduler official website which's served at https://dolphinscheduler.apache.org/.
+This project keeps all sources used for building up DolphinScheduler official website which is served at https://dolphinscheduler.apache.org/.
 
 ## Prerequisite
 
@@ -45,7 +45,7 @@ description: some description
 ```
 
 
-## Guide for adding new document
+## Guide for adding a new document
 
 ### Add a new blog
 

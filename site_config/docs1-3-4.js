@@ -33,9 +33,18 @@ export default {
             title: 'User Manual',
             link: '/en-us/docs/1.3.4/user_doc/system-manual.html',
           },
+        ],
+      },
+      {
+        title: 'Architecture Design',
+        children: [
           {
             title: 'Metadata',
             link: '/en-us/docs/1.3.4/user_doc/metadata-1.3.html',
+          },
+          {
+            title: 'Architecture Design',
+            link: '/en-us/docs/1.3.4/user_doc/architecture-design.html',
           },
           {
             title: 'Configuration File',
@@ -45,6 +54,10 @@ export default {
             title: 'Task Structure',
             link: '/en-us/docs/1.3.4/user_doc/task-structure.html',
           },
+          {
+            title: 'Load Balance',
+            link: '/en-us/docs/1.3.4/user_doc/load-balance.html',
+          },
         ],
       },
       {
@@ -53,6 +66,15 @@ export default {
           {
             title: 'Upgrade',
             link: '/en-us/docs/1.3.4/user_doc/upgrade.html',
+          },
+        ],
+      },
+      {
+        title: 'Expansion/Reduction',
+        children: [
+          {
+            title: 'Capacity expansion and reduction',
+            link: '/en-us/docs/1.3.4/user_doc/expansion-reduction.html',
           },
         ],
       },
