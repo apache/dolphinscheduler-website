@@ -212,6 +212,9 @@ mysql -uroot -p
 
     # 具备权限创建resourceUploadPath的用户
     hdfsRootUser="hdfs"
+    
+     # 配置 api server port
+    apiServerPort="12345"
 
     #在哪些机器上部署DS服务，本机选localhost
     ips="localhost"
