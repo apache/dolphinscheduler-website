@@ -9,7 +9,7 @@ DolphinScheduler 正在处于微内核+插件化的架构更改之中，所有�
 
 当您需要扩展的时候，事实上您只需要关注扩展接口即可，比如告警服务，您只需要关注 AlertChannelFactory 以及 AlertChannel 即可。底层相关逻辑 DolphinScheduler 已经帮我们实现，这让我们的开发更加专注且简单。
 
-顺便提一句，我们采用了一款优秀的前端组件 form-create，它支持基于json生成前端ui组件，如果插件开发牵扯到前端，我们会通过 json 来生成相关前端UI组件，org.apache.dolphinscheduler.spi.params 里面对插件的参数做了封装，它会将相关参数全部全部转化为对应的 json，这意味这你完全可以通过 Java 代码的方式完成前端组件的绘制（这里主要是表单，我们只关心前后端交互的数据）。
+顺便提一句，我们采用了一款优秀的前端组件 form-create，它支持基于 json 生成前端 ui 组件，如果插件开发牵扯到前端，我们会通过 json 来生成相关前端UI组件，org.apache.dolphinscheduler.spi.params 里面对插件的参数做了封装，它会将相关参数全部全部转化为对应的 json，这意味这你完全可以通过 Java 代码的方式完成前端组件的绘制（这里主要是表单，我们只关心前后端交互的数据）。
 
 本文主要着重讲解 Alert 告警相关设计以及开发，
 
