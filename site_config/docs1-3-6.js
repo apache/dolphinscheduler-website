@@ -73,6 +73,15 @@ export default {
         ],
       },
       {
+        title: "Integration",
+        children: [
+          {
+            title: 'Ambari Integration',
+            link: '/en-us/docs/1.3.6/user_doc/ambari-integration.html',
+          },
+        ],
+      },
+      {
         title: 'Upgrade',
         children: [
           {
