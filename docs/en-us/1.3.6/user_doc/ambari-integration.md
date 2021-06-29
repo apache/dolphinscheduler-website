@@ -24,7 +24,7 @@
         If you use mysql as the database, you need add it manually.
       
    - Automatic installation with ambari
-      - Each node of the cluster needs to configure the local yum source
+      - Each node of the cluster needs to be configured the local yum source
       - Copy the prepared RPM packages to each node local yum source
 
 4. Copy plug-in directory
