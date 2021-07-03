@@ -1,7 +1,7 @@
 ## 环境搭建
 
 如果您对本地开发的视频教程感兴趣的话，也可以跟着视频来一步一步操作
-<iframe src="//player.bilibili.com/player.html?aid=291443952&bvid=BV1hf4y1b7sX&cid=363873488&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=291443952&bvid=BV1hf4y1b7sX&cid=363873488&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height=600 width=800> </iframe>
 
 
 #### 准备工作
