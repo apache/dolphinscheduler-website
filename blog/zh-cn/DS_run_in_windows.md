@@ -1,4 +1,7 @@
-# DolphinScheduler本地启动源码
+# DolphinScheduler 在 Windows 本地搭建开发环境，源码启动
+
+如果您对本地开发的视频教程感兴趣的话，也可以跟着视频来一步一步操作:
+[![ DolphinScheduler 本地开发搭建 ](/img/build_dev_video.png)](https://www.bilibili.com/video/BV1hf4y1b7sX)
 
 1. ## 下载源码
 
