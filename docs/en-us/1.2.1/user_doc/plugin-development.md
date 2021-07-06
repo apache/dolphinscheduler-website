@@ -6,8 +6,8 @@ Remind:Currently, task plugin development does not support hot deployment.
 
 #### YARN-based calculations (see MapReduceTask)
 
-- Need to be **cn.dolphinscheduler.server.worker.task** Down **TaskManager** Create a custom task in the class (also need to register the corresponding task type in TaskType)
-- Need to inherit**cn.dolphinscheduler.server.worker.task** Down **AbstractYarnTask**
+- Need to be **org.apache.dolphinscheduler.server.worker.task** Down **TaskManager** Create a custom task in the class (also need to register the corresponding task type in TaskType)
+- Need to inherit**org.apache.dolphinscheduler.server.worker.task** Down **AbstractYarnTask**
 - Constructor Scheduling **AbstractYarnTask** Construction method
 - Inherit **AbstractParameters** Custom task parameter entity
 - Rewrite **AbstractTask** of **init** Parsing in method**Custom task parameters**
@@ -16,9 +16,9 @@ Remind:Currently, task plugin development does not support hot deployment.
 
 
 #### Non-YARN-based calculations (see ShellTask)
-- Need to be **cn.dolphinscheduler.server.worker.task** Down **TaskManager** A custom task
+- Need to be **org.apache.dolphinscheduler.server.worker.task** Down **TaskManager** A custom task
 
-- Need to inherit**cn.dolphinscheduler.server.worker.task** Down **AbstractTask**
+- Need to inherit**org.apache.dolphinscheduler.server.worker.task** Down **AbstractTask**
 
 - Instantiation in constructor **ShellCommandExecutor**
 
@@ -46,8 +46,8 @@ Remind:Currently, task plugin development does not support hot deployment.
 
 ### Non-SHELL-based tasks (see SqlTask)
 
-- Need to be **cn.dolphinscheduler.server.worker.task** Down **TaskManager** A custom task
-- Need to inherit**cn.dolphinscheduler.server.worker.task** Down **AbstractTask**
+- Need to be **org.apache.dolphinscheduler.server.worker.task** Down **TaskManager** A custom task
+- Need to inherit**org.apache.dolphinscheduler.server.worker.task** Down **AbstractTask**
 - Inherit **AbstractParameters** Custom task parameter entity
 - Constructor or override **AbstractTask** of **init** in the method, parse the custom task parameter entity
 - Rewrite **handle** Methods to implement business logic and set the corresponding**exitStatusCode**

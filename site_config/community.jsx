@@ -306,6 +306,10 @@ export default {
             title: '微基准测试须知',
             link: '/zh-cn/community/development/microbench.html',
           },
+          {
+            title: '单元测试编写指南',
+            link: '/zh-cn/community/development/unit-test.html',
+          },
         ],
       },
     ],

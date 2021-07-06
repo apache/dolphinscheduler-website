@@ -219,6 +219,9 @@ mysql -uroot -p
 
     # specify the user who have permissions to create directory under HDFS/S3 root path
     hdfsRootUser="hdfs"
+    
+    # api server port
+    apiServerPort="12345"
 
     # On which machines to deploy the DS service, choose localhost for this machine
     ips="localhost"

@@ -37,7 +37,7 @@
 ├─sql                               DS的元数据创建升级sql文件
 │  ├─create                             创建SQL脚本目录
 │  ├─upgrade                            升级SQL脚本目录
-│  ├─dolphinscheduler-postgre.sql       postgre数据库初始化脚本
+│  ├─dolphinscheduler_postgre.sql       postgre数据库初始化脚本
 │  ├─dolphinscheduler_mysql.sql         mysql数据库初始化脚本
 │  ├─soft_version                       当前DS版本标识文件
 ├─script                            DS服务部署,数据库创建/升级脚本目录

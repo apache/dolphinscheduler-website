@@ -69,7 +69,7 @@ json split 项目从 2021-01-12 开始启动，到 2021-04-25 初步完成主要
 
 **雪花算法的结构：**
 
-![snowflake](https://github.com/QuakeWang/incubator-dolphinscheduler-website/blob/add-blog/img/JsonSplit/snowflake.png?raw=true)
+![snowflake](https://github.com/apache/dolphinscheduler-website/blob/master/img/JsonSplit/snowflake.png?raw=true)
 
 主要分为 5 个部分：
 
@@ -102,5 +102,5 @@ SnowFlake 的特点是：
 
 1.   毫秒数在高位，自增序列在低位，整个 ID 都是趋势递增的。
 2.   不依赖数据库等第三方系统，以服务的方式部署，稳定性更高，生成 ID 的性能也是非常高的。
-3.   可以根据自身业务特性分配 bi t位，非常灵活。
+3.   可以根据自身业务特性分配 bit 位，非常灵活。
 

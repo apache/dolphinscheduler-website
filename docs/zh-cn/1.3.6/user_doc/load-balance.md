@@ -41,7 +41,7 @@ eg：master.host.selector=random（不区分大小写）
 
 加权轮询算法一个明显的缺陷。即在某些特殊的权重下，加权轮询调度会生成不均匀的实例序列，这种不平滑的负载可能会使某些实例出现瞬时高负载的现象，导致系统存在宕机的风险。为了解决这个调度缺陷，我们提供了平滑加权轮询算法。
 
-每台 worker 都有两个权重，即 weight（预热完成后保持不变），current_weight（动态变化），每次路由。都会遍历所有的 worker，使其 current_weight+weight，同时累加所有 worker 的 weight，计为  total_weight，然后挑选 current_weight 最大的作为本次执行任务的 worker，于此同时，将这台 worker 的 current_weight-total_weight。
+每台 worker 都有两个权重，即 weight（预热完成后保持不变），current_weight（动态变化），每次路由。都会遍历所有的 worker，使其 current_weight+weight，同时累加所有 worker 的 weight，计为  total_weight，然后挑选 current_weight 最大的作为本次执行任务的 worker，与此同时，将这台 worker 的 current_weight-total_weight。
 
 #### 线性加权(默认算法)
 
