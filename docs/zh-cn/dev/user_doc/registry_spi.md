@@ -1,7 +1,7 @@
 ### DolphinScheduler Registry SPI 主要设计
 
 #### 如何使用？
-首先你需要执行 mvn install 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry
+首先你需要执行 `mvn -U install package -Prelease -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry
 
 其次进行以下配置（以 zookeeper 为例）
 
@@ -20,7 +20,7 @@ registry.servers|127.0.0.1:2181|zk 连接地址
 #### FAQ
 1: not found registry plugin
 
-请检查是否有执行 mvn install，此外，请检查配置文件中的 registry.plugin.dir 中配置的目录是否有相关插件。
+请检查是否有执行 `mvn -U install package -Prelease -Dmaven.test.skip=true` ，此外，请检查配置文件中的 registry.plugin.dir 中配置的目录是否有相关插件。
 
 2：registry connect timeout
 
