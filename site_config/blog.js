@@ -41,6 +41,14 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
+        title: '伴鱼数据质量平台实践',
+        author: '伴鱼技术团队',
+        editor: '太空人',
+        dateStr: '2021-07-06',
+        desc: '伴鱼基础架构数据团队在应对该类问题时推出的平台化产品 - 数据质量中心（Data Quality Center, DQC）的设计与实现',
+        link: '/zh-cn/blog/ipalfish_tech_platform.html',
+      },
+      {
         title: 'DolphinScheduler 核心之 DAG 大 JSON 拆分详解',
         author: '进勇',
         editor: '小P',
