@@ -49,6 +49,13 @@ export default {
         link: '/zh-cn/blog/ipalfish_tech_platform.html',
       },
       {
+        title: 'DolphinScheduler在Windows环境启动源码',
+        author: '寇文皓',
+        dateStr: '2021-07-05',
+        desc: '在Windows环境下启动DolphinScheduler的代码进行开发调试',
+        link: '/zh-cn/blog/DS_run_in_windows.html',
+      },
+      {
         title: 'DolphinScheduler 核心之 DAG 大 JSON 拆分详解',
         author: '进勇',
         editor: '小P',
