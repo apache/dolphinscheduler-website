@@ -7,7 +7,6 @@
 
 |参数 |默认值| 描述|
 |--|--|--|
-zookeeper.quorum|localhost:2181| zk 集群连接信息
 registry.plugin.dir|/Users/用户名/workspaces/dolphinscheduler/dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry/zookeeper | 注册中心插件目录
 registry.plugin.name|zookeeper|注册中心具体插件名称
 registry.plugin.binding|registry|DolphinScheduler 插件类别
