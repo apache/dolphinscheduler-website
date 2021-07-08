@@ -1,8 +1,8 @@
-### Dolphinscheduler Registry SPI main design
+### DolphinScheduler Registry SPI main design
 
-#### How to use？
+#### How to use it？
 
-First you need to execute the `mvn -U install package -Prelease -Dmaven.test.skip=true` installation plugin to generate the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry
+First you need to execute the `mvn -U install package -Prelease -Dmaven.test.skip=true` to install the plugin for generating the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry.
 
 Next, do the following configuration (using zookeeper as an example)
 
@@ -14,14 +14,14 @@ Next, do the following configuration (using zookeeper as an example)
 | registry.plugin.binding | registry                                                     | Dolphinscheduler plugin category         |
 |    registry.servers     | 127.0.0.1:2181                                               | ZK connection address                    |
 
-For specific configuration information, please refer to the parameter information that provided by the specific plugin, for example zk: org/apache/dolphinscheduler/plugin/registry/zookeeper/ZookeeperConfiguration.java All configuration information should be prefixed with +registry. For example, base.sleep.time.ms should be configured in the registry like this: registry.base.sleep.time.ms=100.
+For the specific configuration information, please refer to the parameter information that provided by the specific plugin. Taking zk as an example, all the parameters of this configuration information about zk are in the class org/apache/dolphinscheduler/plugin/registry/zookeeper/ZookeeperConfiguration.java. If a parameter is needed to be changed to a specific value instead of the default, it can be configured directly in the registry. However, the prefix should be added to indicate this is a parameter of the registry. For example, "base.sleep.time.ms" should be configured in the registry as: "registry.base.sleep.time.ms=100".
 
 #### FAQ
 
 1: not found registry plugin
 
-Please check that `mvn -U install package -Prelease -Dmaven.test.skip=true` is executed, and that the directory configured in registry.plugin.dir in the configuration file contains the relevant plugins.
+Please check if `mvn -U install package -Prelease -Dmaven.test.skip=true` is executed. Besides, please check if the directory is configured in registry.plugin.dir in the configuration file contains the relevant plugins.
 
 2：registry connect timeout
 
-You can increase the relevant timeout parameters.
+You can add the relevant timeout parameters.
