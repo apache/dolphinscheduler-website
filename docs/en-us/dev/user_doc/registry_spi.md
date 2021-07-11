@@ -8,7 +8,7 @@ Next, do the following configuration (using zookeeper as an example)
 
 |        Parameter        | Default                                                      | Description                              |
 | :---------------------: | ------------------------------------------------------------ | ---------------------------------------- |
-|   registry.plugin.dir   | /Users/username/workspaces/dolphinscheduler/dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry/zookeeper | Registration Center Plugin Directory     |
+|   registry.plugin.dir   | /Users/username/workspaces/dolphinscheduler/dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry | Registration Center Plugin Directory     |
 | registry.plugin.name\|  | zookeeper                                                    | Registration Center specific plugin name |
 | registry.plugin.binding | registry                                                     | Dolphinscheduler plugin category         |
 |    registry.servers     | 127.0.0.1:2181                                               | ZK connection address                    |
