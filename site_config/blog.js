@@ -41,6 +41,13 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
+        title: 'Apache DolphinScheduler 架构演进及开源经验分享',
+        author: '徐玮毅',
+        dateStr: '2021-07-18',
+        desc: 'DolphinScheduler 1.2.x/1.3.x/2.0架构演进及开源经验分享（阮文俊）',
+        link: '/zh-cn/blog/DS_architecture_evolution.html',
+      },
+      {
         title: '伴鱼数据质量平台实践',
         author: '伴鱼技术团队',
         editor: '太空人',
