@@ -1,12 +1,14 @@
 # Apache DolphinScheduler 架构演进及开源经验分享 
 
-[toc]
+## 引言
+来自 eBay 的文俊同学在近期的上海开源大数据 Meetup 上做了十分精彩的 “Apache DolphinScheduler 的架构演进” 分享。本次分享有近 200 人参与，在线观看次数超过 2,500 次
 
 ## 演讲者介绍
 
-阮文俊，eBay开发工程师，DolphinScheduler贡献者。
+阮文俊，eBay 开发工程师，DolphinScheduler 贡献者。
 
-视频分享参见https://www.bilibili.com/video/BV11M4y1T7VT?from=search&seid=4448322552403036491
+视频分享参见
+[![ DolphinScheduler 架构演进及如何参与开源经验分享 ](https://user-images.githubusercontent.com/15833811/126284089-249f1084-f1bf-40b2-bbd8-892f2ff28a31.png)](https://www.bilibili.com/video/BV11M4y1T7VT)
 
 
 
@@ -16,13 +18,17 @@ Apache DolphinScheduler是一个分布式去中心化，易扩展的可视化DAG
 
 DolphinScheduler具有以下几个优良功能特性：
 
-- **简单易用**，提供可视化的工作流编排能力，可通过拖拉拽任务定制DAG，支持一键部署
-- **高可靠性**，整个调度系统高度可用，各个组件具备自我容错能力
-- **高可扩展性**，采用去中心化的多master+多worker的设计框架，集群可用横向扩展，并支持节点的动态上下线
-- **丰富的使用场景**，DolphinScheduler为面向复杂的使用场景，所有扩展点都采用插件化的实现方式
+- **Cloud Native** — 支持多云/数据中心工作流管理，也支持 Kubernetes、Docker 部署和自定义任务类型，分布式调度，整体调度能力随集群规模线性增长
+
+- **高可靠与高可扩展性** — 去中心化的多 Master 多 Worker 设计架构，支持服务动态上下线，自我容错与调节能力
+
+- **支持多租户**
+
+- **丰富的使用场景** — 包括流、暂停、恢复操作，以及额外的任务类型，如 Spark、Hive、MR、Shell、Python、Flink 以及 DS 独有的子工作流、任务依赖设计，扩展点采用插件化的实现方式
+
+- **简单易用** — 所有流程定义操作可视化编排，定义关键信息一目了然，一键部署
 
 关于DolphinSheduler更多功能介绍和开发文档请查阅官网详细信息https://dolphinscheduler.apache.org/zh-cn/。
-
 
 
 ## 架构演进过程
@@ -66,8 +72,6 @@ DolphinScheduler最初进入Apache孵化器的版本是1.2，在这一版本中�
 
 
 
-
-
 **2.0架构**
 
 针对1.3版本的缺陷，2.0架构进一步做出改进：
@@ -78,8 +82,35 @@ DolphinScheduler最初进入Apache孵化器的版本是1.2，在这一版本中�
 - **彻底的插件化**，所有扩展点都采用插件化实现
 - **数据血缘关系分析**
 
+#### 1 去分布式锁
+![image](https://user-images.githubusercontent.com/15833811/126285801-ae58d9c6-e1fe-4cba-b7fd-26098824caf9.png)
 
+#### 2 重构 master 中的线程模型
+![image](https://user-images.githubusercontent.com/15833811/126285993-a4130bed-7eb2-4af1-a728-8b06a7b51089.png)
+SchedulerThread 负责从数据库中查询 Command 并提交到 Command Queue
 
+DagExecuteThreadPool 从 Command Queue 中取 command，并构造 DAG实例添加到 DAG 队列，进行处理，当前 DAG 没有未执行的任务，则当前 DAG 执行结束
+
+TaskExecuteThreadPool 提交任务给 Worker
+
+TaskEventThread 监听任务事件队列，修改任务状态
+
+#### 3 彻底的插件化
+![image](https://user-images.githubusercontent.com/15833811/126286101-d8003d09-df84-4fe5-a92c-f733da450b33.png)
+
+所有扩展点都采用插件化实现
+
+告警SPI
+
+注册中心SPI
+
+资源存储SPI
+
+任务插件SPI
+
+数据源SPI
+
+……
 
 
 ## Apache DolphinScheduler发展方向
@@ -89,7 +120,7 @@ DolphinScheduler最初进入Apache孵化器的版本是1.2，在这一版本中�
 - 系统更稳、速度更快（高吞吐、低延迟、智能化运维、高可用）
 - 支持更多的任务集成（深度学习任务、CI/CD等其它系统集成、存储过程和数据质量任务、容器调度任务、复杂调度场景等）
 - 轻量化dolphinscheduler内核，提供基础调度服务
-
+![image](https://user-images.githubusercontent.com/15833811/126286160-8987ccf8-a2c6-4e3d-a2ee-881e66e527e6.png)
 
 
 ## 如何参与开源贡献
@@ -100,3 +131,5 @@ DolphinScheduler最初进入Apache孵化器的版本是1.2，在这一版本中�
 - 关注社区动态，积极参与讨论，更好融入社区
 - 坚持开源精神，乐于帮助他人
 - 持之以恒
+
+![现场图](https://user-images.githubusercontent.com/15833811/126285232-152b8b7f-5d43-439f-ae7f-77b4ece50fe6.png)
