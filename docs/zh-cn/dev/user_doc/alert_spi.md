@@ -33,7 +33,7 @@ DolphinScheduler 正在处于微内核 + 插件化的架构更改之中，所有
   当你处于开发调试阶段的时候，你可以采用该配置，相关设计原理参照 [dolphinscheduler-maven-plugin](https://github.com/apache/incubator-dolphinscheduler-maven-plugin)
 
 
- * 3：打包插件
+ * 打包插件
 
   插件打包我们使用了 [provisio](https://github.com/jvanzyl/provisio)，这是一款优秀的打包工具，你需要在完成插件开发后将其添加到 dolphinscheduler-dist/src/main/provisio/dolphinscheduler.xml，它会在执行的时候将插件打包至指定目录。
 
