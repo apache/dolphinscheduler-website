@@ -34,7 +34,7 @@ If you don't care about its internal design, and just want to know how to develo
 
      
 
- * 3: Packaging plugins
+ * Packaging plugins
 
  We use provisio, an excellent packaging tool, for packaging plugins. Please add it to dolphinscheduler-dist/src/main/provisio/dolphinscheduler.xml, and it will package plugins to the specified directory when processed.
 
