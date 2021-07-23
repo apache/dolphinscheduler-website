@@ -1,13 +1,14 @@
 ### DolphinScheduler Registry SPI 主要设计
 
 #### 如何使用？
+
 首先你需要执行 `mvn -U install package -Prelease -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry
 
 其次进行以下配置（以 zookeeper 为例）
 
 |参数 |默认值| 描述|
 |--|--|--|
-registry.plugin.dir|./dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry | 注册中心插件目录
+registry.plugin.dir|./dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry/zookeeper | 注册中心插件目录
 registry.plugin.name|zookeeper|注册中心具体插件名称
 registry.plugin.binding|registry|DolphinScheduler 插件类别
 registry.servers|127.0.0.1:2181|zk 连接地址
@@ -17,6 +18,7 @@ registry.servers|127.0.0.1:2181|zk 连接地址
 
 
 #### FAQ
+
 1: registry plugin not found
 
 请检查是否有执行 `mvn -U install package -Prelease -Dmaven.test.skip=true` ，此外，请检查配置文件中的 registry.plugin.dir 中配置的目录是否有相关插件。
@@ -24,3 +26,119 @@ registry.servers|127.0.0.1:2181|zk 连接地址
 2：registry connect timeout
 
 可以增加相关超时参数。
+
+----
+
+#### 搭建 dev 分支开发环境
+
+>    参考：[DolphinScheduler 在 Windows 本地搭建开发环境，源码启动](https://dolphinscheduler.apache.org/zh-cn/blog/DS_run_in_windows.html)
+
+1.   **下载源码**
+
+     GitHub ：https://github.com/apache/dolphinscheduler
+
+     ```shell
+     mkdir dolphinscheduler
+     cd dolphinscheduler
+     git clone git@github.com:apache/dolphinscheduler.git
+     ```
+
+     这里选用 dev 分支。
+
+2.   **Windows 安装 zk**
+
+     1.   下载 zk https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.6.3/apache-zookeeper-3.6.3-bin.tar.gz
+
+     2.   解压 apache-zookeeper-3.6.3-bin.tar.gz
+
+     3.   在 zk 的目录下新建 zkData、zkLog文件夹
+
+     4.   将 conf 目录下的 zoo_sample.cfg 文件，复制一份，重命名为 zoo.cfg，修改其中数据和日志的配置，如：
+
+          ```shell
+          dataDir=D:\\code\\apache-zookeeper-3.6.3-bin\\zkData ## 此处使用绝对路径
+          dataLogDir=D:\\code\\apache-zookeeper-3.6.3-bin\\zkLog
+          ```
+
+     5.   在 bin 中运行 zkServer.cmd，然后运行 zkCli.cmd 查看 zk 运行状态，可以查看 zk 节点信息即代表安装成功。
+
+3.   **搭建后端环境**
+
+     1.   新建一个自我调试的mysql库，库名可为 ：dolphinscheduler；
+
+     2.   把代码导入 IDEA，修改根项目中 pom.xml，将 mysql-connector-java 依赖的 scope 修改为 compile；
+
+     3.   在 terminal 中执行 `mvn -U install package -Prelease -Dmaven.test.skip=true`，安装所需要的注册插件；
+
+     4.   修改 dolphinscheduler-dao 模块的 datasource.properties；
+
+          ```properties
+          # mysql
+          spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+          spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8
+          spring.datasource.username=root
+          spring.datasource.password=123456
+          ```
+
+     5.   刷新 dao 模块，运行 org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler 的 main 方法，自动插入项目所需的表和数据；
+
+     6.   修改 dolphinscheduler-service 模块的 registry.properties；
+
+          ```properties
+          #registry.plugin.dir config the Registry Plugin dir.
+          registry.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry/zookeeper
+          
+          registry.plugin.name=zookeeper
+          registry.servers=127.0.0.1:2181
+          ```
+
+     7.   在 logback-worker.xml、logback-master.xml、logback-api.xml 中添加控制台输出；
+
+          ```xml
+          <root level="INFO">
+              <appender-ref ref="STDOUT"/>  <!-- 添加控制台输出 -->
+              <appender-ref ref="APILOGFILE"/>
+              <appender-ref ref="SKYWALKING-LOG"/>
+          </root>
+          ```
+
+     8.   启动 MasterServer，执行 org.apache.dolphinscheduler.server.master.MasterServer 的 main 方法，需要设置 VM Options:
+
+          ```java
+          -Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false
+          ```
+
+     9.   启动 WorkerServer，执行org.apache.dolphinscheduler.server.worker.WorkerServer的 main方法，需要设置 VM Options:
+
+          ```java
+          -Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false
+          ```
+
+     10.   启动 ApiApplicationServer，执行 org.apache.dolphinscheduler.api.ApiApplicationServer 的 main 方法，需要设置 VM Options:
+
+           ```java
+           -Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api
+           ```
+
+     11.   如果需要用到日志功能，执行 org.apache.dolphinscheduler.server.log.LoggerServer 的 main 方法。
+
+     12.   后端 swagger 地址 ：http://localhost:12345/dolphinscheduler/doc.html?language=zh_CN&lang=cn
+
+4.   **搭建前端环境** 
+
+     1.   本机安装 node（不再赘述）
+
+     2.   进入 dolphinscheduler-ui，运行
+
+          ```shell
+          npm install
+          npm run start
+          ```
+
+     3.   访问 [http://localhost:8888](http://localhost:8888/)
+
+     4.   登录管理员账号
+
+          >    用户：admin
+          >
+          >    密码：dolphinscheduler123
