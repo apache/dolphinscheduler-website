@@ -14,7 +14,7 @@
 
      这里选用 dev 分支。
 
-2.   **Windows 安装 zk**
+2.   **Windows 安装 zookeeper**
 
      1.   下载 zk https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.6.3/apache-zookeeper-3.6.3-bin.tar.gz
 
@@ -33,7 +33,7 @@
 
 3.   **搭建后端环境**
 
-     1.   新建一个自我调试的mysql库，库名可为 ：dolphinscheduler；
+     1.   在本地新建一个数据库用于调试，DolphinScheduler 支持 mysql 和 postgresql，这里使用 mysql 进行配置，库名可为 ：dolphinscheduler；
 
      2.   把代码导入 IDEA，修改根项目中 pom.xml，将 mysql-connector-java 依赖的 scope 修改为 compile；
 
@@ -95,7 +95,16 @@
 
 4.   **搭建前端环境** 
 
-     1.   本机安装 node（不再赘述）
+     1.   #### 安装 node
+
+          1.   安装 nvm
+               curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+          2.   刷新环境变量
+               source ~/.bash_profile
+          3.   安装 node
+               nvm install v12.20.2 备注: Mac 用户还可以通过 brew 安装 npm: brew install npm
+          4.   验证 node 安装成功
+               node --version
 
      2.   进入 dolphinscheduler-ui，运行
 
