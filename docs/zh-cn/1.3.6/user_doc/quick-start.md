@@ -1,4 +1,7 @@
 # 快速上手
+* 喜欢看视频的伙伴可以参见手把手教你如何《快速上手 Apache DolphinScheduler 教程》
+[![image](https://user-images.githubusercontent.com/15833811/126286960-dfb3bfee-c8fb-4bdf-a717-d3be221c9711.png)](https://www.bilibili.com/video/BV1d64y1s7eZ)
+
 
 * 管理员用户登录
   >地址：http://192.168.xx.xx:12345/dolphinscheduler 用户名密码：admin/dolphinscheduler123
