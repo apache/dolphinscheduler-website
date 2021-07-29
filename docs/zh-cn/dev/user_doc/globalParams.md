@@ -20,21 +20,21 @@ Dolphinscheduler中所涉及的变量部分包含三种类型
 
 1：先以shell节点解释第一种情况
 
-<img src="C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723102938239.png" alt="image-20210723102938239" style="zoom:50%;" />
+<img src="/img/globalParam/image-20210723102938239.png" alt="image-20210723102938239" style="zoom:50%;" />
 
 节点 【useParam】可以使用到节点【createParam】中设置的变量。而节点 【useParam】与节点【noUseParam】中并没有依赖关系，所以并不会获取到节点【noUseParam】的变量。上图中只是以shell节点作为例子，其他类型节点具有相同的使用规则。
 
-<img src="C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723103316896.png" alt="image-20210723103316896" style="zoom:50%;" />
+<img src="/img/globalParam/image-20210723103316896.png" alt="image-20210723103316896" style="zoom:50%;" />
 
 其中节点【createParam】在使用变量时直接使用即可。另外该节点设置了"key"和"key1"两个变量，这里用户用定义了一个与上游节点传递的变量名相同的变量key1，并且复制了值为"12"，但是由于我们设置的优先级的关系，这里的值"12"会被抛弃，最终使用上游节点设置的变量值。
 
 2：我们再以sql节点来解释另外一种情况
 
-<img src="C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723103937052.png" alt="image-20210723103937052" style="zoom:50%;" />
+<img src="/img/globalParam/image-20210723103937052.png" alt="image-20210723103937052" style="zoom:50%;" />
 
 节点【use_create】的定义如下：
 
-![image-20210723104411489](C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723104411489.png)
+![image-20210723104411489](/img/globalParam/image-20210723104411489.png)
 
 "status"是当前节点设置的节点的自有变量。但是用户在保存时也同样设置了"status"变量，并且赋值为-1。那在该SQL执行时，status的值为优先级更高的-1。抛弃了节点的自有变量的值。
 
@@ -58,23 +58,23 @@ prop为用户指定；方向选择为OUT，只有当方向为OUT时才会被定�
 
 上图中节点【createParam1】的定义如下：
 
-<img src="C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723104957031.png" alt="image-20210723104957031" style="zoom:50%;" />
+<img src="/img/globalParam/image-20210723104957031.png" alt="image-20210723104957031" style="zoom:50%;" />
 
 节点【createParam2】的定义如下：
 
-<img src="C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723105026924.png" alt="image-20210723105026924" style="zoom:50%;" />
+<img src="/img/globalParam/image-20210723105026924.png" alt="image-20210723105026924" style="zoom:50%;" />
 
 您可以在【工作流实例】页面，找到对应的节点实例，便可以查看该变量的值。
 
 节点实例【createParam1】如下：
 
-<img src="C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723105131381.png" alt="image-20210723105131381" style="zoom:50%;" />
+<img src="/img/globalParam/image-20210723105131381.png" alt="image-20210723105131381" style="zoom:50%;" />
 
 这里当然"id"的值会等于12.
 
 我们再来看节点实例【createParam2】的情况。
 
-<img src="C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723105255850.png" alt="image-20210723105255850" style="zoom:50%;" />
+<img src="/img/globalParam/image-20210723105255850.png" alt="image-20210723105255850" style="zoom:50%;" />
 
 这里只有"id"的值。尽管用户定义的sql查到的是"id"和"database_name"两个字段，但是由于只定义了一个为out的变量"id"，所以只会设置一个变量。由于显示的原因，这里已经替您查好了该list的长度为10。
 
@@ -86,11 +86,11 @@ prop为用户指定；方向选择为OUT，只有当方向为OUT时才会被定�
 
 例如下图中：
 
-<img src="C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723101242216.png" alt="image-20210723101242216" style="zoom:50%;" />
+<img src="/img/globalParam/image-20210723101242216.png" alt="image-20210723101242216" style="zoom:50%;" />
 
 shell节点定义时当日志检测到${setValue(key=value1)}的格式时，会将value1赋值给key，下游节点便可以直接使用变量 key的值。同样，您可以在【工作流实例】页面，找到对应的节点实例，便可以查看该变量的值。
 
-<img src="C:\Users\86186\AppData\Roaming\Typora\typora-user-images\image-20210723102522383.png" alt="image-20210723102522383" style="zoom:50%;" />
+<img src="/img/globalParam/image-20210723102522383.png" alt="image-20210723102522383" style="zoom:50%;" />
 
 
 
