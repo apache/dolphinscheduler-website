@@ -82,7 +82,7 @@ prop为用户指定；方向选择为OUT，只有当方向为OUT时才会被定�
 
 prop为用户指定；方向选择为OUT，只有当方向为OUT时才会被定义为变量输出；数据类型可以根据需要选择不同数据结构；value部分不需要填写。
 
-用户需要传递参数，在定义shell脚本时，需要输出格式为$setVaule(key=value)的语句，key为对应参数的prop，value为该参数的值。
+用户需要传递参数，在定义shell脚本时，需要输出格式为$setValue(key=value)的语句，key为对应参数的prop，value为该参数的值。
 
 例如下图中：
 
@@ -144,9 +144,9 @@ Worker收到后将varPool解析为Map<String,Property> 的格式，其中map的k
 
 processor执行后的结果返回为Map<String,String>
 
-用户在定义shell脚本时需要在输出中定义$setVaule(key=value)
+用户在定义shell脚本时需要在输出中定义$setValue(key=value)
 
-在参数处理时去掉$setVaule()，按照“=”进行拆分，第0个为key，第1个为value。
+在参数处理时去掉$setValue()，按照“=”进行拆分，第0个为key，第1个为value。
 
 同样匹配用户定义task时定义的OUT参数名与key，将value作为该参数的值。
 
