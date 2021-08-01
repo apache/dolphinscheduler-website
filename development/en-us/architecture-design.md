@@ -6,7 +6,7 @@ Before explaining the architecture of the schedule system, let us first understa
 **DAG：** Full name Directed Acyclic Graph，referred to as DAG。Tasks in the workflow are assembled in the form of directed acyclic graphs, which are topologically traversed from nodes with zero indegrees of ingress until there are no successor nodes. For example, the following picture:
 
 <p align="center">
-  <img src="/img/architecture-design/dag_examples_en_us.PNG" alt="dag示例"  width="60%" />
+  <img src="/img/architecture-design/dag_examples_en_us.png" alt="dag示例"  width="60%" />
   <p align="center">
         <em>dag example</em>
   </p>
@@ -239,13 +239,13 @@ In the early scheduling design, if there is no priority design and fair scheduli
     - The priority of the process definition is that some processes need to be processed before other processes. This can be configured at the start of the process or at the time of scheduled start. There are 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below
 
       <p align="center">
-         <img src="/img/architecture-design/process_priority_en_us.PNG" alt="Process Priority Configuration" width="40%" />
+         <img src="/img/architecture-design/process_priority_en_us.png" alt="Process Priority Configuration" width="40%" />
        </p>
 
     - The priority of the task is also divided into 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below
 
-      <p align="center">
-         <img src="/img/architecture-design/task_priority_en_us.PNG" alt="task priority configuration" width="35%" />
+      <p align="center">`
+         <img src="/img/architecture-design/task_priority_en_us.png" alt="task priority configuration" width="35%" />
        </p>
 
 ##### VI. Logback and gRPC implement log access

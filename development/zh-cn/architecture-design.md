@@ -5,7 +5,7 @@
 **DAG：** 全称Directed Acyclic Graph，简称DAG。工作流中的Task任务以有向无环图的形式组装起来，从入度为零的节点进行拓扑遍历，直到无后继节点为止。举例如下图：
 
 <p align="center">
-  <img src="/img/architecture-design/dag_examples_ch_zn.PNG" alt="dag示例"  width="60%" />
+  <img src="/img/architecture-design/dag_examples_ch_zn.png" alt="dag示例"  width="60%" />
   <p align="center">
         <em>dag示例</em>
   </p>
@@ -131,7 +131,7 @@
 DolphinScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Master执行Scheduler，或者只有一台Worker执行任务的提交。
 1. 获取分布式锁的核心流程算法如下
  <p align="center">
-   <img src="/img/architecture-design/distributed_lock_zh_cn.png" alt="获取分布式锁流程"  width="55%" />
+   <img src="/img/architecture-design/distributed_lock_ch_zn.png" alt="获取分布式锁流程"  width="55%" />
  </p>
 
 2. DolphinScheduler中Scheduler线程分布式锁实现流程图：
