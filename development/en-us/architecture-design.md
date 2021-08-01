@@ -6,7 +6,7 @@ Before explaining the architecture of the schedule system, let us first understa
 **DAG：** Full name Directed Acyclic Graph，referred to as DAG。Tasks in the workflow are assembled in the form of directed acyclic graphs, which are topologically traversed from nodes with zero indegrees of ingress until there are no successor nodes. For example, the following picture:
 
 <p align="center">
-  <img src="/img/architecture-design/dag_examples_en_us.png" alt="dag示例"  width="60%" />
+  <img src="/img/architecture-design/dag_examples_en_us.png" alt="dag示例"  width="80%" />
   <p align="center">
         <em>dag example</em>
   </p>
@@ -141,13 +141,13 @@ DolphinScheduler uses ZooKeeper distributed locks to implement only one Master t
 1. The core process algorithm for obtaining distributed locks is as follows
 
  <p align="center">
-   <img src="/img/architecture-design/distributed_lock_en-us.png" alt="Get Distributed Lock Process" width="55%" />
+   <img src="/img/architecture-design/distributed_lock_en_us.png" alt="Get Distributed Lock Process" width="70%" />
  </p>
 
 2. Scheduler thread distributed lock implementation flow chart in DolphinScheduler:
 
  <p align="center">
-   <img src="/img/architecture-design/distributed_lock_procss_en_us.png" alt="Get Distributed Lock Process" width="70%" />
+   <img src="/img/architecture-design/distributed_lock_procss_en_us.png" alt="Get Distributed Lock Process" />
  </p>
 
 ##### Third, the thread is insufficient loop waiting problem
@@ -156,7 +156,7 @@ DolphinScheduler uses ZooKeeper distributed locks to implement only one Master t
 - If a large number of sub-processes are nested in a large DAG, the following figure will result in a "dead" state:
 
  <p align="center">
-   <img src="/img/architecture-design/lack_thread_en_us.png" alt="Thread is not enough to wait for loop" width="50%" />
+   <img src="/img/architecture-design/lack_thread_en_us.png" alt="Thread is not enough to wait for loop" width="70%" />
  </p>
 
 In the above figure, MainFlowThread waits for SubFlowThread1 to end, SubFlowThread1 waits for SubFlowThread2 to end, SubFlowThread2 waits for SubFlowThread3 to end, and SubFlowThread3 waits for a new thread in the thread pool, then the entire DAG process cannot end, and thus the thread cannot be released. This forms the state of the child parent process loop waiting. At this point, the scheduling cluster will no longer be available unless a new Master is started to add threads to break such a "stuck."
@@ -180,7 +180,7 @@ Fault tolerance is divided into service fault tolerance and task retry. Service 
 Service fault tolerance design relies on ZooKeeper's Watcher mechanism. The implementation principle is as follows:
 
  <p align="center">
-   <img src="/img/architecture-design/fault-tolerant_en_us.png" alt="DolphinScheduler Fault Tolerant Design" width="60%" />
+   <img src="/img/architecture-design/fault-tolerant_en_us.png" alt="DolphinScheduler Fault Tolerant Design" width="70%" />
  </p>
 
 The Master monitors the directories of other Masters and Workers. If the remove event is detected, the process instance is fault-tolerant or the task instance is fault-tolerant according to the specific business logic.
@@ -190,7 +190,7 @@ The Master monitors the directories of other Masters and Workers. If the remove 
 - Master fault tolerance flow chart:
 
  <p align="center">
-   <img src="/img/architecture-design/fault-tolerant_master_en_us.png" alt="Master Fault Tolerance Flowchart" width="50%" />
+   <img src="/img/architecture-design/fault-tolerant_master_en_us.png" alt="Master Fault Tolerance Flowchart" width="70%" />
  </p>
 
 After the ZooKeeper Master is fault-tolerant, it is rescheduled by the Scheduler thread in DolphinScheduler. It traverses the DAG to find the "Running" and "Submit Successful" tasks, and monitors the status of its task instance for the "Running" task. You need to determine whether the Task Queue already exists. If it exists, monitor the status of the task instance. If it does not exist, resubmit the task instance.
@@ -200,7 +200,7 @@ After the ZooKeeper Master is fault-tolerant, it is rescheduled by the Scheduler
 - Worker fault tolerance flow chart:
 
  <p align="center">
-   <img src="/img/architecture-design/fault-tolerant_worker_en_us.png" alt="Worker Fault Tolerance Flowchart" width="40%" />
+   <img src="/img/architecture-design/fault-tolerant_worker_en_us.png" alt="Worker Fault Tolerance Flowchart" width="70%" />
  </p>
 
 Once the Master Scheduler thread finds the task instance as "need to be fault tolerant", it takes over the task and resubmits.
