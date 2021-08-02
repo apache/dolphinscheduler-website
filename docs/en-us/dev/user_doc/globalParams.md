@@ -6,7 +6,7 @@ DolphinScheduler contains the following three types of parameters:
 
 ② Parameters passed by upstream nodes
 
-③ The node's own parameters. The parameters defined by the user in [Custom Parameters] and the user can define the value of this part of the parameters at the time of workflow definition.
+③ The node's own parameters, which is the parameters defined by the user in [Custom Parameters]. The user can define the value of this part of the parameters at the time of workflow definition.
 
 The global parameters described in this article refer to the parameters passed by the ② upstream nodes.
 
@@ -14,13 +14,13 @@ The global parameters described in this article refer to the parameters passed b
 
 ##### The use of parameters:
 
-When you are defining a node, that node may use all three of these parameters, such as ${parameter name}. The priority of three parameters is ①>②>③, that is, when three parameter names are repeated, prioritize the value of ①, followed by ②, and the last is ③. The parameters currently can apply to all nodes.
+When you are defining a node, the node may use all three of these parameters, such as ${parameter name}. The priority of three parameters is ①>②>③, that is, when three parameter names are repeated, the value of ① is preferred, followed by ②, and the last is ③. The parameters currently can apply to all nodes.
 
-It should be noted that the partial parameter may exist the same name when using the upstream node to pass the parameters. If this happens, the program will use the non-null value of it. If more than one non-null value exists, the value passed by the upstream node that ends first is selected. Users need this in advance when defining the process.
+It should be noted that the partial parameters may exist the same name when using the upstream node to pass the parameters. If this happens, the program will use the non-null value of them. If more than one non-null value exists, the value passed by the upstream node that ends first is selected. The user needs to know this in advance when defining the process.
 
-For example, the relationship in the figure below: 
+For example, the relationships are shown in the figures below:
 
-1: The first case is explained by shell node first
+1: The first case is explained by the shell nodes.
 
 ![png01](https://dolphinscheduler.apache.org/img/globalParam/image-20210723102938239.png)
 
@@ -28,7 +28,7 @@ The [useParam] node can use the parameters which is set in the [createParam] nod
 
 ![png02](https://dolphinscheduler.apache.org/img/globalParam/image-20210723103316896.png)
 
-Among all, the [createParam] node can use parameters directly. In addition, the node sets two parameters "key" and "key1". Here the user defines a parameter key1 with the same name as the one passed by the upstream node and copies the value "12". However, due to the priority we set, the value "12" here is discarded and the parameter value set by the upstream node is finally used.
+Among all, the [createParam] node can use parameters directly. In addition, the node sets two parameters named "key" and "key1". Here the user defines a parameter named "key1" with the same name as the one passed by the upstream node and copies the value "12". However, due to the priority we set, the value "12" here would be discarded and the parameter value set by the upstream node would be finally used.
 
 2: Let's explain another situation in SQL nodes.
 
@@ -38,15 +38,13 @@ The definition of the [use_create] node is as follows:
 
 ![png04](https://dolphinscheduler.apache.org/img/globalParam/image-20210723104411489.png)
 
-"status" is the own parameters of the node set by the current node. However, the user also sets the "status" parameter when saving, and assigns a value of -1. Then the value of status will be -1 with higher priority when the SQL is executed. The value of the node's own variable is discarded.
+"status" is the own parameters of the node set by the current node. However, the user also sets the "status" parameter when saving, assigning its value to -1. Then the value of status will be -1 with higher priority when the SQL is executed. The value of the node's own variable is discarded.
 
-The "ID" here is the parameter set by the upstream node, the user sets the parameters of the same parameter name "ID" in the [createparam1] node, [createparam2] node. And the [use_create] node uses the value of [createParam1] which is finished first.
+The "ID" here is the parameter set by the upstream node. The user sets the parameters of the same parameter name "ID" for the [createparam1] node and [createparam2] node. And the [use_create] node uses the value of [createParam1] which is finished first.
 
 ##### Parameter setting:
 
-When defining an upstream node, if there is a need to transmit the result of that node to a downstream node that has a dependency. You need to set a parameter whose direction is OUT in [Custom Parameters] of [Current Node Settings]. At present, we mainly do it for SQL and SHELL nodes to pass parameters downward.
-
-###### SQL node
+When defining an upstream node, if there is a need to transmit the result of that node to a downstream node that has a dependency. You need to set a parameter whose direction is OUT in [Custom Parameters] of [Current Node Settings]. At present, we mainly focus on the function of SQL and SHELL nodes that can input parameters.
 
 prop is user-specified; the direction is selected as OUT, and will be defined as parameter output only when the direction is OUT. The data type can be chosen from different data structures as needed; the value part is not required.
 
@@ -80,7 +78,7 @@ There is only the value of "id". Although the user-defined sql looks up the fiel
 
 ###### SHELL node
 
-prop is user-specified. The direction is selected as OUT. The output is defined as a parameter only when the direction is OUT. Data type can choose different data structure as needed; the value part is not required to be filled. The user needs to pass the parameter, and when defining the shell script, the output format of $setValue(key=value) statement is required, key is the prop of the corresponding parameter, and value is the value of the parameter.
+prop is user-specified. The direction is selected as OUT. The output is defined as a parameter only when the direction is OUT. Data type can choose different data structures as needed; the value part is not required to be filled. The user needs to pass the parameter, and when defining the shell script, the output format of $setValue(key=value) statement is required, key is the prop of the corresponding parameter, and value is the value of the parameter.
 
 For example, in the figure below:
 
@@ -96,11 +94,11 @@ After the user defines the parameter with the direction OUT, it is saved in the 
 
 ##### The use of parameters:
 
-Getting the direct predecessor node preTasks of the current taskInstance to be created from the DAG, get the varPool of preTasks, merge this varPool (List) into one varPool, and in the merging process, if parameters with the same parameter name are found, handle them according to the following logic:
+Getting the direct predecessor node preTasks of the current taskInstance to be created from the DAG, get the varPool of preTasks, merge this varPool (List) into one varPool, and in the merging process, if parameters with the same parameter name are found, they will be handled according to the following logics:
 
 1.   If all the values are null, the merged value is null
 2.   If one and only one value is non-null, then the merged value is the non-null value
-3.   If all the values are not null, according to the earliest of the endtime of taskInstance taken by VarPool
+3.   If all the values are not null, it would be the earliest value of the endtime of taskInstance taken by VarPool.
 
 The direction of all the merged properties is updated to IN during the merge process.
 
@@ -124,9 +122,7 @@ Currently, only SQL and SHELL nodes are supported to get parameters.
 
 ###### SQL node:
 
-The structure returned by the parameter is List<Map<String,String>>.
-
-Where the elements of List are each row of data, the key of Map is the column name, and the value is the value corresponding to the column.
+The structure returned by the parameter is List<Map<String,String>>, where the elements of List are each row of data, the key of Map is the column name, and the value is the value corresponding to the column.
 
     (1) If the SQL statement returns one row of data, match the OUT parameter name based on the OUT parameter name defined by the user when defining the task, or discard it if it does not match.
     
@@ -158,11 +154,6 @@ Assign the parameters with matching values to varPool (List, which contains the 
 
 -    Format the varPool as json and pass it to master.
 
--    The master receives the varPool and writes back the parameters that are OUT to the localParam.
+-    The parameters that are OUT would be written into the localParam after the master has received the varPool.
 
      
-
-     
-
-     
-
