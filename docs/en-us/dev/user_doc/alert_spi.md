@@ -18,7 +18,7 @@ If you don't care about its internal design, and just want to know how to develo
 
 * dolphinscheduler-spi
 
-     This module is the core SPI module and provides the basic SPI relevant behaviour,where dolphinschedulerplugin is the plugin top-layer interface, all DolphinsCheduler's plugins must implement the interface, and the module also provides some universal tool classes (if you can detach it again Some will something will be better? For example, the UI, we currently use the parameter part) and some UI related basic information.
+     This module is the core SPI module and provides the basic SPI relevant behaviour, where dolphinschedulerplugin is the plugin top-layer interface, all DolphinsCheduler's plugins must implement the interface, and the module also provides some universal tool classes (if you can detach it again Some will something will be better? For example, the UI, we currently use the parameter part) and some UI related basic information.
 
 * dolphinscheduler-alert
 
@@ -46,7 +46,7 @@ AlertChannelFactory
 All alert plugins need to implement this interface. The interface is used to define the name of the alert plugin and the required parameters.
 
 AlertChannel
-The interface of the alarm plug-in. The alarm plugin needs to implement the interface. It only has one method process. The upper alarm system calls the method and gets the return information of the alert by the AlertResult retured by this method.
+The interface of the alarm plug-in. The alarm plugin needs to implement the interface. It only has one method process. The upper alarm system calls the method and gets the return information of the alert by the AlertResult returned by this method.
 
 AlertData
 Alert content information. It includes id, title, content and log. 
