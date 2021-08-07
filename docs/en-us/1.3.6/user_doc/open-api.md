@@ -5,7 +5,7 @@ Generally, projects and processes are created through pages, but integration wit
 
 ## The Operation Steps of DS API Calls
 
-### Create token
+### Create a token
 1. Log in to the scheduling system, click "Security", then click "Token manage" on the left, and click "Create token" to create a token.
 
 <p align="center">
