@@ -2,7 +2,7 @@
 
 >    Reference: [DolphinScheduler builds the development environment on Windows local.](https://dolphinscheduler.apache.org/zh-cn/blog/DS_run_in_windows.html)
 
-#### 1. Download source code
+#### 1. Download the source code
 
 GitHub ：https://github.com/apache/dolphinscheduler
 
@@ -14,7 +14,7 @@ git clone git@github.com:apache/dolphinscheduler.git
 
 We use the dev branch here.
 
-#### 2. Windows install of zookeeper.
+#### 2. The zookeeper installation for Windows
 
 i. Download [zookeeper](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.6.3/apache-zookeeper-3.6.3-bin.tar.gz)
 
@@ -29,7 +29,7 @@ dataDir=D:\\code\\apache-zookeeper-3.6.3-bin\\zkData
 dataLogDir=D:\\code\\apache-zookeeper-3.6.3-bin\\zkLog
 ```
 
-v. Run zkServer.cmd in the bin, and then run zkCli.cmd to view the running status of zk. You can view the zk node information, which means the installation is successful.
+v. Run zkServer.cmd in the bin, and then run zkCli.cmd to view the running status of zk. If you can view the zk node information, it means the installation is successful.
 
 #### 3. Set up the back-end
 
@@ -61,35 +61,35 @@ registry.plugin.name=zookeeper
 registry.servers=127.0.0.1:2181
 ```
 
-vii. Add console output to logback-worker.xml, logback-master.xml, and logback-api.xml.
+vii. Add the console output to logback-worker.xml, logback-master.xml, and logback-api.xml.
 
 ```xml
 <root level="INFO">
-    <appender-ref ref="STDOUT"/>  <!-- 添加控制台输出 -->
+    <appender-ref ref="STDOUT"/>  <!-- Add the console output -->
     <appender-ref ref="APILOGFILE"/>
     <appender-ref ref="SKYWALKING-LOG"/>
 </root>
 ```
 
-viii. Start MasterServer
+viii. Start the MasterServer
 
- Run the main method of org.apache.dolphinscheduler.server.master.MasterServer, you need to set the following VM options:
+ Run the main method of org.apache.dolphinscheduler.server.master.MasterServer. You need to set the following VM options:
 
 ```
 -Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false
 ```
 
-ix. Start WorkerServer 
+ix. Start the WorkerServer 
 
-run the main method of org.apache.dolphinscheduler.server.worker.WorkerServer, you need to set the following VM options:
+Run the main method of org.apache.dolphinscheduler.server.worker.WorkerServer. You need to set the following VM options:
 
 ```
 -Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false
 ```
 
-x. Start ApiApplicationServer
+x. Start the ApiApplicationServer
 
-run the main method of org.apache.dolphinscheduler.api.ApiApplicationServer, you need to set the following VM options:
+Run the main method of org.apache.dolphinscheduler.api.ApiApplicationServer. You need to set the following VM options:
 
 ```
 -Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api
@@ -113,7 +113,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
 ​	c. Install node
 
-​	nvm install v12.20.2 note: Mac users could install npm through brew: brew install npm
+​	nvm install v12.20.2 
+
+note: Mac users could install npm through brew: brew install npm
 
 d. Validate the node installation
 
