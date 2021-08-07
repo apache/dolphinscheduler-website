@@ -5,7 +5,7 @@
 
 ## 操作步骤
 
-### 创建token
+### 创建 token
 
 1. 登录调度系统，点击 "安全中心"，再点击左侧的 "令牌管理"，点击 "令牌管理" 创建令牌
 
@@ -61,7 +61,7 @@
    <img src="/img/api/create_source2.png" width="80%" />
  </p>
 
-### 查询token
+### 查询 token
 
 <p align="center">
    <img src="/img/api/search_token1.png" width="80%" />
