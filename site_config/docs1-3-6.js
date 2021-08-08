@@ -73,7 +73,7 @@ export default {
         ],
       },
       {
-        title: "Integration",
+        title: 'Integration',
         children: [
           {
             title: 'Ambari Integration',

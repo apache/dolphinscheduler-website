@@ -25,7 +25,7 @@ export default {
         dateStr: '2021-03-20',
         desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
         link: '/en-us/blog/FAQ.html',
-      },  
+      },
       {
         title: 'Apache Dolphin Scheduler(Incubating) Meetup 2019.10 Shanghai',
         author: 'William',
@@ -62,7 +62,7 @@ export default {
         dateStr: '2021-05-29',
         desc: 'DolphinScheduler 核心之 DAG 大 JSON 拆分始末',
         link: '/zh-cn/blog/dolphinscheduler_json.html',
-      },    
+      },
       {
         title: '为什么要把 DolphinScheduler 工作流定义中保存任务及关系的大 json 给拆了?',
         author: '进勇',
@@ -110,7 +110,7 @@ export default {
         desc: 'Apache Dolphin Scheduler(Incubating) 将于2019年10月26日在上海组织一次会议，欢迎踊跃报名。 ',
         link: '/zh-cn/blog/meetup_2019_10_26.html',
       },
-  
+
     ],
   },
 };

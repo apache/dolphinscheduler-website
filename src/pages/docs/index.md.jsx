@@ -26,7 +26,7 @@ const docsSource = {
   '1.3.4': docs134Config,
   '1.3.5': docs135Config,
   '1.3.6': docs136Config,
-  'dev': docsDevConfig,
+  dev: docsDevConfig,
 };
 
 const isValidVersion = version => version && docsSource.hasOwnProperty(version);

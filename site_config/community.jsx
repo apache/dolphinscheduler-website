@@ -4,15 +4,15 @@ export default {
   'en-us': {
     barText: 'Community',
     sidemenu: [
-      {
-        title: 'Community News',
-        children: [
-          {
-            title: 'Community News',
-            link: '/en-us/community/index.html',
-          },
-        ],
-      },
+      // {
+      //   title: 'Community News',
+      //   children: [
+      //     {
+      //       title: 'Community News',
+      //       link: '/en-us/community/index.html',
+      //     },
+      //   ],
+      // },
       {
         title: 'Team',
         children: [
@@ -66,6 +66,10 @@ export default {
           {
             title: 'Code of Conduct',
             link: '/en-us/community/development/code-conduct.html',
+          },
+          {
+            title: 'Contributor Guide',
+            link: '/en-us/community/contributor-guide.html',
           },
         ],
       },
@@ -210,15 +214,15 @@ export default {
   'zh-cn': {
     barText: '社区',
     sidemenu: [
-      {
-        title: '社区动态',
-        children: [
-          {
-            title: '社区动态',
-            link: '/zh-cn/community/index.html',
-          },
-        ],
-      },
+      // {
+      //   title: '社区动态',
+      //   children: [
+      //     {
+      //       title: '社区动态',
+      //       link: '/zh-cn/community/team.html',
+      //     },
+      //   ],
+      // },
       {
         title: '团队',
         children: [
@@ -272,6 +276,10 @@ export default {
           {
             title: '行为准则',
             link: '/zh-cn/community/development/code-conduct.html',
+          },
+          {
+            title: '贡献者指南',
+            link: '/zh-cn/community/contributor-guide.html',
           },
         ],
       },
