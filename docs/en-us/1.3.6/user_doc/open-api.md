@@ -37,7 +37,7 @@ Generally, projects and processes are created through pages, but integration wit
  </p>  
 
 ### Create a project
-
+Here is an example of creating a project named "wudl-flink-test"：
 <p align="center">
    <img src="/img/api/create_project1.png" width="80%" />
  </p>
@@ -49,25 +49,16 @@ Generally, projects and processes are created through pages, but integration wit
 <p align="center">
    <img src="/img/api/create_project3.png" width="80%" />
  </p>
+The returned msg information is "success", indicating that we have successfully created the project through API.
 
-### The source code of creating a project
-
+If you are interested in the source code of the project, please continue to read the following：
+### Appendix：The source code of creating a project
 <p align="center">
    <img src="/img/api/create_source1.png" width="80%" />
  </p>
 
 <p align="center">
    <img src="/img/api/create_source2.png" width="80%" />
- </p>
-
-### Search for a token
-
-<p align="center">
-   <img src="/img/api/search_token1.png" width="80%" />
- </p>
-
-<p align="center">
-   <img src="/img/api/search_token2.png" width="80%" />
  </p>
 
 
