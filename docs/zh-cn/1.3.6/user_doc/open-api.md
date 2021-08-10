@@ -62,13 +62,4 @@
    <img src="/img/api/create_source2.png" width="80%" />
  </p>
 
-### 查询 token
-
-<p align="center">
-   <img src="/img/api/search_token1.png" width="80%" />
- </p>
-
-<p align="center">
-   <img src="/img/api/search_token2.png" width="80%" />
- </p>
 
