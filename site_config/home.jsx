@@ -254,6 +254,27 @@ export default {
         {
           img: '/img/ourusers/weipinhui@2x.png',
         },
+        {
+          img: '/img/ourusers/jdt.png',
+        },
+        {
+          img: '/img/ourusers/hundsun.png',
+        },
+        {
+          img: '/img/ourusers/zhaopin.png',
+        },
+        {
+          img: '/img/ourusers/dell.png',
+        },        
+        {
+          img: '/img/ourusers/shansong.png',
+        },
+        {
+          img: '/img/ourusers/189.png',
+        },        
+        {
+          img: '/img/ourusers/360.png',
+        },   
       ],
     },
     userreview: {
@@ -490,6 +511,27 @@ export default {
         {
           img: '/img/ourusers/weipinhui@2x.png',
         },
+        {
+          img: '/img/ourusers/jdt.png',
+        },
+        {
+          img: '/img/ourusers/hundsun.png',
+        },
+        {
+          img: '/img/ourusers/zhaopin.png',
+        },
+        {
+          img: '/img/ourusers/dell.png',
+        },        
+        {
+          img: '/img/ourusers/shansong.png',
+        },
+        {
+          img: '/img/ourusers/189.png',
+        },        
+        {
+          img: '/img/ourusers/360.png',
+        },           
       ],
     },
     events: {
