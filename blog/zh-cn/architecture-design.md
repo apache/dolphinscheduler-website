@@ -45,9 +45,9 @@
 
 #### 2.2 架构说明
 
-* **MasterServer** 
+* **MasterServer**
 
-    MasterServer采用分布式无中心设计理念，MasterServer主要负责 DAG 任务切分、任务提交监控，并同时监听其它MasterServer和WorkerServer的健康状态。
+    MasterServer采用分布式无中心设计理念并且职能更加丰富，MasterServer主要负责 DAG 任务切分、任务提交监控，并同时监听其它MasterServer和WorkerServer的健康状态，直接通信进行任务分配，降低延时。
     MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeeper临时节点变化来进行容错处理。
 
     ##### 该服务内主要包含:
@@ -60,39 +60,34 @@
 
     - **MasterTaskExecThread**主要负责任务的持久化
 
-* **WorkerServer** 
+* **WorkerServer**
 
-     WorkerServer也采用分布式无中心设计理念，WorkerServer主要负责任务的执行和提供日志服务。WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
+     WorkerServer也采用分布式无中心设计理念并且更加专注于执行，WorkerServer去数据库操作，只负责任务的运行，职责更单一。WorkerServer节点负载均衡策略是随机、循环及CPU和内存的线性加权负载均衡。WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
      ##### 该服务包含：
-     - **FetchTaskThread**主要负责不断从**Task Queue**中领取任务，并根据不同任务类型调用**TaskScheduleThread**对应执行器。
+     - **TaskPriorityQueueConsumer**主要负责不断从**dispatcher**中领取对应任务，并根据不同任务类型调用**Worker-TaskScheduleThread**对应执行器，ack在worker拿到任务后给master发送确认信息，response显示worker拿到任务的结果状态。
 
-     - **LoggerServer**是一个RPC服务，提供日志分片查看、刷新和下载等功能
+     - **LoggerServer**是一个RPC服务，提供日志分片查看、刷新和下载等功能。
 
-* **ZooKeeper** 
+* **ZooKeeper**
 
-    ZooKeeper服务，系统中的MasterServer和WorkerServer节点都通过ZooKeeper来进行集群管理和容错。另外系统还基于ZooKeeper进行事件监听和分布式锁。
-    我们也曾经基于Redis实现过队列，不过我们希望EasyScheduler依赖到的组件尽量地少，所以最后还是去掉了Redis实现。
+    ZooKeeper服务，系统中的MasterServer和WorkerServer节点都通过ZooKeeper来进行集群管理和容错。另外系统还基于ZooKeeper进行事件监听、服务注册、心跳、分布式锁。
 
-* **Task Queue** 
-
-    提供任务队列的操作，目前队列也是基于Zookeeper来实现。由于队列中存的信息较少，不必担心队列里数据过多的情况，实际上我们压测过百万级数据存队列，对系统稳定性和性能没影响。
-
-* **Alert** 
+* **Alert**
 
     提供告警相关接口，接口主要包括**告警**两种类型的告警数据的存储、查询和通知功能。其中通知功能又有**邮件通知**和**SNMP(暂未实现)**两种。
 
-* **API** 
+* **API**
 
     API接口层，主要负责处理前端UI层的请求。该服务统一提供RESTful api向外部提供请求服务。
     接口包括工作流的创建、定义、查询、修改、发布、下线、手工启动、停止、暂停、恢复、从该节点开始执行等等。
 
-* **UI** 
+* **UI**
 
     系统的前端页面，提供系统的各种可视化操作界面，详见**[系统使用手册](系统使用手册.md)**部分。
 
 #### 2.3 架构设计思想
 
-##### 一、去中心化vs中心化 
+##### 一、去中心化vs中心化
 
 ###### 中心化思想
 
@@ -100,7 +95,7 @@
 <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/master_slave.png" alt="master-slave角色"  width="50%" />
  </p>
- 
+
 - Master的角色主要负责任务分发并监督Slave的健康状态，可以动态的将任务均衡到Slave上，以致Slave节点不至于“忙死”或”闲死”的状态。
 - Worker的角色主要负责任务的执行工作并维护和Master的心跳，以便Master可以分配任务给Slave。
 
@@ -117,7 +112,7 @@
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="去中心化"  width="50%" />
  </p>
- 
+
 - 在去中心化设计里，通常没有Master/Slave的概念，所有的角色都是一样的，地位是平等的，全球互联网就是一个典型的去中心化的分布式系统，联网的任意节点设备down机，都只会影响很小范围的功能。
 - 去中心化设计的核心设计在于整个分布式系统中不存在一个区别于其他节点的”管理者”，因此不存在单点故障问题。但由于不存在” 管理者”节点所以每个节点都需要跟其他节点通信才得到必须要的机器信息，而分布式系统通信的不可靠行，则大大增加了上述功能的实现难度。
 - 实际上，真正去中心化的分布式系统并不多见。反而动态中心化分布式系统正在不断涌出。在这种架构下，集群中的管理者是被动态选择出来的，而不是预置的，并且集群在发生故障的时候，集群的节点会自发的举行"会议"来选举新的"管理者"去主持工作。最典型的案例就是ZooKeeper及Go语言实现的Etcd。
@@ -152,7 +147,7 @@ EasyScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Master�
 
 对于启动新Master来打破僵局，似乎有点差强人意，于是我们提出了以下三种方案来降低这种风险：
 
-1. 计算所有Master的线程总和，然后对每一个DAG需要计算其需要的线程数，也就是在DAG流程执行之前做预计算。因为是多Master线程池，所以总线程数不太可能实时获取。 
+1. 计算所有Master的线程总和，然后对每一个DAG需要计算其需要的线程数，也就是在DAG流程执行之前做预计算。因为是多Master线程池，所以总线程数不太可能实时获取。
 2. 对单Master线程池进行判断，如果线程池已经满了，则让线程直接失败。
 3. 增加一种资源不足的Command类型，如果线程池不足，则将主流程挂起。这样线程池就有了新的线程，可以让资源不足挂起的流程重新唤醒执行。
 
@@ -254,7 +249,7 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
   * task log appender
   */
  public class TaskLogAppender extends FileAppender<ILoggingEvent> {
- 
+
      ...
 
     @Override
@@ -300,5 +295,3 @@ public class TaskLogFilter extends Filter<ILoggingEvent> {
 
 ### 总结
 本文从调度出发，初步介绍了大数据分布式工作流调度系统--EasyScheduler的架构原理及实现思路。未完待续
-
-
