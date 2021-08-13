@@ -47,8 +47,7 @@
 
 * **MasterServer**
 
-    MasterServer采用分布式无中心设计理念并且可以实现功能化，MasterServer主要负责 DAG 任务切分、任务提交监控，并同时监听其它MasterServer和WorkerServer的健康状态，直接通信进行任务分配，降低。
-    MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeeper临时节点变化来进行容错处理。
+    MasterServer采用无中心设计，Master多种策略分发任务，Master和Worker直接通信进行任务分配，降低延时。
 
     ##### 该服务内主要包含:
 
@@ -62,7 +61,9 @@
 
 * **WorkerServer**
 
-     WorkerServer也采用分布式无中心设计理念并且更加专注于执行，WorkerServer去数据库操作，只负责任务的运行，职责更单一。WorkerServer节点负载均衡策略是随机、循环及CPU和内存的线性加权负载均衡。WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
+     WorkerServer采用无中心设计，Worker去数据库操作，只负责任务运行，职责更加单一。
+     Worker节点负责均衡策略：随机、循环及cpu和内存的线性加权负载均衡。
+     
      ##### 该服务包含：
      - **TaskPriorityQueueConsumer**主要负责不断从**dispatcher**中领取对应任务，并根据不同任务类型调用**Worker-TaskScheduleThread**对应执行器，ack在worker拿到任务后给master发送确认信息，response显示worker拿到任务的结果状态。
 
