@@ -98,14 +98,11 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 | Hadoop3                                                      | 尚未确定 | 尚未测试                |
 | Spark-Local(client)                                          | 间接支持 | 详见 FAQ               |
 | Spark-YARN(cluster)                                          | 间接支持 | 详见 FAQ               |
-| Spark-Mesos(cluster)                                         | 尚不    |                        |
 | Spark-Standalone(cluster)                                    | 尚不    |                        |
 | Spark-Kubernetes(cluster)                                    | 尚不    |                        |
 | Flink-Local(local>=1.11)                                     | 尚不    | Generic CLI 模式尚未支持 |
 | Flink-YARN(yarn-cluster)                                     | 间接支持 | 详见 FAQ               |
 | Flink-YARN(yarn-session/yarn-per-job/yarn-application>=1.11) | 尚不    | Generic CLI 模式尚未支持 |
-| Flink-Mesos(default)                                         | 尚不    |                        |
-| Flink-Mesos(remote>=1.11)                                    | 尚不    | Generic CLI 模式尚未支持 |
 | Flink-Standalone(default)                                    | 尚不    |                        |
 | Flink-Standalone(remote>=1.11)                               | 尚不    | Generic CLI 模式尚未支持 |
 | Flink-Kubernetes(default)                                    | 尚不    |                        |

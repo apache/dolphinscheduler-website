@@ -1,4 +1,3 @@
-
 # API 调用
 
 ## 背景
@@ -6,7 +5,7 @@
 
 ## 操作步骤
 
-### 创建token
+### 创建 token
 
 1. 登录调度系统，点击 "安全中心"，再点击左侧的 "令牌管理"，点击 "令牌管理" 创建令牌
 
@@ -36,3 +35,31 @@
 <p align="center">
    <img src="/img/test-api.png" width="80%" />
  </p>
+ 
+### 创建项目
+这里以创建名为 "wudl-flink-test" 的项目为例
+<p align="center">
+   <img src="/img/api/create_project1.png" width="80%" />
+ </p>
+
+<p align="center">
+   <img src="/img/api/create_project2.png" width="80%" />
+ </p>
+ 
+<p align="center">
+   <img src="/img/api/create_project3.png" width="80%" />
+ </p>
+返回 msg 信息为 "success"，说明我们已经成功通过 API 的方式创建了项目。
+
+如果您对创建项目的源码感兴趣，欢迎继续阅读下面内容
+### 附:创建项目源码
+
+<p align="center">
+   <img src="/img/api/create_source1.png" width="80%" />
+ </p>
+
+<p align="center">
+   <img src="/img/api/create_source2.png" width="80%" />
+ </p>
+
+
