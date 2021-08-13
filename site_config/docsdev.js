@@ -18,7 +18,7 @@ export default {
           },
           {
             title: 'Dev-Run',
-            link: '/en-us/docs/dev/user_doc/dev_run.html',
+            link: '/en-us/docs/dev/user_doc/dev-run.html',
           },
         ],
       },
