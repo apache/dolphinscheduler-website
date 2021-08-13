@@ -16,6 +16,10 @@ export default {
             title: 'Global-Params',
             link: '/en-us/docs/dev/user_doc/globalParams.html',
           },
+          {
+            title: 'Dev-Run',
+            link: '/en-us/docs/dev/user_doc/dev_run.html',
+          },
         ],
       },
 
