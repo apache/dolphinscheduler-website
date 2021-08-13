@@ -52,9 +52,7 @@ Before explaining the architecture of the schedule system, let us first understa
 
 * **MasterServer**
 
-    MasterServer also adopt distributed de-psychology and have more functional.
-    MasterServer is mainly responsible for DAG task segmentation, task submission monitoring, and monitoring the health status of other MasterServer and WorkerServer at the same time ,direct communication for task assignment,reduce the delay.
-    when the MasterServer service starts, register a temporary node with Zookeeper, and perform fault tolerance by monitoring changes in the temporary node of Zookeeper. MasterServer provides monitoring services based on netty.
+    MasterServer uses a centerless design, Master distributes tasks with multiple strategies, and Master and Worker communicate directly to assign tasks to reduce latency
 
 
 
@@ -72,7 +70,8 @@ Before explaining the architecture of the schedule system, let us first understa
 
 * **WorkerServer**
 
-     - WorkerServer also adopts a distributed and decentralized design concept. WorkerServer is mainly responsible for task execution and providing log services.WorkerServer go to the databaseo peration,only responsible for task running,a single responsibility.WorkerServer the node load balancing policy is random,loops,CPU and linear weighted load balancing of memory.
+     - WorkerServer has a centerless design, and Worker goes to the database to operate, only for task operations and for a more single responsibility.
+     The Worker node is responsible for balancing strategies: random, looping, and linear weighted load balancing of cpu and memory
 
        ##### This service contains:
 
