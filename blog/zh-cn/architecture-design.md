@@ -47,7 +47,7 @@
 
 * **MasterServer**
 
-    MasterServer采用分布式无中心设计理念并且职能更加丰富，MasterServer主要负责 DAG 任务切分、任务提交监控，并同时监听其它MasterServer和WorkerServer的健康状态，直接通信进行任务分配，降低延时。
+    MasterServer采用分布式无中心设计理念并且可以实现功能化，MasterServer主要负责 DAG 任务切分、任务提交监控，并同时监听其它MasterServer和WorkerServer的健康状态，直接通信进行任务分配，降低。
     MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeeper临时节点变化来进行容错处理。
 
     ##### 该服务内主要包含:
@@ -84,6 +84,7 @@
 * **UI**
 
     系统的前端页面，提供系统的各种可视化操作界面，详见**[系统使用手册](系统使用手册.md)**部分。
+
 
 #### 2.3 架构设计思想
 
