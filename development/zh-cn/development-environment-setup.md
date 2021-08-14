@@ -1,5 +1,8 @@
 ## 环境搭建
 
+如果您对本地开发的视频教程感兴趣的话，也可以跟着视频来一步一步操作:
+[![ DolphinScheduler 本地开发搭建 ](/img/build_dev_video.png)](https://www.bilibili.com/video/BV1hf4y1b7sX)
+
 #### 准备工作
 
 1. 首先从远端仓库 fork [dolphinscheduler](https://github.com/apache/dolphinscheduler) 一份代码到自己的仓库中

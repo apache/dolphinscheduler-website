@@ -306,12 +306,23 @@ export default {
             title: '微基准测试须知',
             link: '/zh-cn/community/development/microbench.html',
           },
+          {
+            title: '单元测试编写指南',
+            link: '/zh-cn/community/development/unit-test.html',
+          },
         ],
       },
     ],
     events: {
       title: '事件 & 新闻',
       list: [
+        {
+          img: '/img/apache.jpg',
+          title: 'Wenjun Ruan：如何成为Apache DolphinScheduler Committer',
+          content: '7.29,Wenjun 同学正式成为Apache DolphinSchedulerCommitter,此文将为大家分享他的开源旅程，以及他是如何成为DolphinScheduler的Committer',
+          dateStr: '2021-07-29',
+          link: '/zh-cn/blog/new_committer_wenjun.html',
+        },
         {
           img: '/img/2020-05-26/live_online_20200526.jpeg',
           title: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线直播',
