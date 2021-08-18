@@ -4,7 +4,7 @@ export default {
   port: 8080, // 本地开发服务器的启动端口
   domain: 'dolphinscheduler.apache.org', // 站点部署域名，无需协议和path等
   copyToDist: ['asset', 'img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess'], // 当build发布时，需要额外复制到dist目录的资源，默认有：index.html, 404.html, en-us, zh-cn, build
-  docsLatest: '1.3.6', // docs的最新版本，当docs有多个版本时支持latest访问，空则不启用此特性
+  docsLatest: '1.3.7', // docs的最新版本，当docs有多个版本时支持latest访问，空则不启用此特性
   defaultSearch: 'google', // 默认搜索引擎，baidu或者google
   defaultLanguage: 'en-us',
   'en-us': {
@@ -21,8 +21,13 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.6)',
+            text: 'latest(1.3.7)',
             link: '/en-us/docs/latest/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs137',
+            text: '1.3.7',
+            link: '/en-us/docs/1.3.7/user_doc/quick-start.html',
           },
           {
             key: 'docs136',
@@ -228,8 +233,13 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.6)',
+            text: 'latest(1.3.7)',
             link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs137',
+            text: '1.3.7',
+            link: '/zh-cn/docs/1.3.7/user_doc/quick-start.html',
           },
           {
             key: 'docs136',
