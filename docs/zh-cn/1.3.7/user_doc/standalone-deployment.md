@@ -291,12 +291,12 @@ http://192.168.xx.xx:12345/dolphinscheduler
 
 # 9、启停服务
 
-* 一键停止集群所有服务
+* 一键停止所有服务
 ```shell
 sh ./bin/stop-all.sh
 ```
 
-* 一键开启集群所有服务
+* 一键开启所有服务
 
 ```shell
 sh ./bin/start-all.sh
