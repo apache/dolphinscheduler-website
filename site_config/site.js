@@ -98,7 +98,7 @@ export default {
       {
         key: 'community',
         text: 'COMMUNITY',
-        link: '/en-us/community/index.html',
+        link: '/en-us/community/team.html',
       },
       {
         key: 'ASF',
@@ -311,7 +311,7 @@ export default {
       {
         key: 'community',
         text: '社区',
-        link: '/zh-cn/community/index.html',
+        link: '/zh-cn/community/team.html',
       },
       {
         key: 'ASF',
