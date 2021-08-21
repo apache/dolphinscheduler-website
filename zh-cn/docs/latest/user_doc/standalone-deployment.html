@@ -53,7 +53,7 @@ chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 <p>注意：</p>
 <ul>
 <li>因为任务执行服务是以 sudo -u {linux-user} 切换不同 linux 用户的方式来实现多租户运行作业，所以部署用户需要有 sudo 权限，而且是免密的。初学习者不理解的话，完全可以暂时忽略这一点</li>
-<li>如果发现 /etc/sudoers 文件中有 &quot;Default requiretty&quot; 这行，也请注释掉</li>
+<li>如果发现 /etc/sudoers 文件中有 &quot;Defaults requirett&quot; 这行，也请注释掉</li>
 <li>如果用到资源上传的话，还需要给该部署用户分配操作<code>本地文件系统或者 HDFS 或者 MinIO</code>的权限</li>
 </ul>
 <h1>4、ssh免密配置</h1>
@@ -97,9 +97,9 @@ chmod 600 ~/.ssh/authorized_keys
 <span class="hljs-comment">  # spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler</span>
 <span class="hljs-comment">  # mysql</span>
   <span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span>
-  <span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true     需要修改ip，本机localhost即可</span>
-  <span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">xxx						需要修改为上面的{user}值</span>
-  <span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">xxx						需要修改为上面的{password}值</span>
+  <span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true     # 需要修改ip，本机localhost即可</span>
+  <span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">xxx						# 需要修改为上面的{user}值</span>
+  <span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">xxx						# 需要修改为上面的{password}值</span>
 </code></pre>
 <ul>
 <li>修改并保存完后，执行 script 目录下的创建表及导入基础数据脚本</li>
@@ -126,7 +126,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_
 </code></pre>
 <p><em>注意: 这一步非常重要，例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到 dolphinscheduler_env.sh，请运行 <code>ls -a</code></em></p>
 <ul>
-<li>将jdk软链到 /usr/bin/java 下(仍以 JAVA_HOME=/opt/soft/java 为例)</li>
+<li>将 jdk 软链到 /usr/bin/java 下(仍以 JAVA_HOME=/opt/soft/java 为例)</li>
 </ul>
 <pre><code class="language-shell">sudo ln -s /opt/soft/java/bin/java /usr/bin/java
 </code></pre>
@@ -202,12 +202,12 @@ singleYarnIp=&quot;yarnIp1&quot;
 <span class="hljs-meta">
 #</span><span class="bash"> 资源上传根路径，支持 HDFS 和 S3，由于 hdfs 支持本地文件系统，需要确保本地文件夹存在且有读写权限</span>
 resourceUploadPath=&quot;/data/dolphinscheduler&quot;
-
-    # 具备权限创建 resourceUploadPath的用户
-    hdfsRootUser=&quot;hdfs&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 具备权限创建 resourceUploadPath的用户</span>
+hdfsRootUser=&quot;hdfs&quot;
     
-     # 配置 api server port
-    apiServerPort=&quot;12345&quot;
+<span class="hljs-meta">#</span><span class="bash"> 配置 api server port</span>
+apiServerPort=&quot;12345&quot;
 <span class="hljs-meta">
 #</span><span class="bash"> 在哪些机器上部署 DS 服务，本机选 localhost</span>
 ips=&quot;localhost&quot;

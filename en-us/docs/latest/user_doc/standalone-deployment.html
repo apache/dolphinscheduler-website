@@ -53,7 +53,7 @@ chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 </code></pre>
 <pre><code> Notes：
  - Because the task execution is based on 'sudo -u {linux-user}' to switch among different Linux users to implement multi-tenant job running, so the deployment user must have sudo permissions and is secret-free. If beginner learners don’t understand, you can ignore this point for now.
- - Please comment out line &quot;Default requiretty&quot;, if it present in &quot;/etc/sudoers&quot; file. 
+ - Please comment out line &quot;Defaults requirett&quot;, if it present in &quot;/etc/sudoers&quot; file. 
  - If you need to use resource upload, you need to assign user the permission to operate the local file system, HDFS or MinIO.
 </code></pre>
 <h1>4、SSH secret-free configuration</h1>
