@@ -47,7 +47,7 @@ chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 
 注意：
 - 因为任务执行服务是以 sudo -u {linux-user} 切换不同 linux 用户的方式来实现多租户运行作业，所以部署用户需要有 sudo 权限，而且是免密的。初学习者不理解的话，完全可以暂时忽略这一点
-- 如果发现 /etc/sudoers 文件中有 "Default requiretty" 这行，也请注释掉
+- 如果发现 /etc/sudoers 文件中有 "Defaults requirett" 这行，也请注释掉
 - 如果用到资源上传的话，还需要给该部署用户分配操作`本地文件系统或者 HDFS 或者 MinIO `的权限
 
 # 4、ssh免密配置
@@ -96,9 +96,9 @@ mysql -uroot -p
       # spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler
       # mysql
       spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-      spring.datasource.url=jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true     需要修改ip，本机localhost即可
-      spring.datasource.username=xxx						需要修改为上面的{user}值
-      spring.datasource.password=xxx						需要修改为上面的{password}值
+      spring.datasource.url=jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true     # 需要修改ip，本机localhost即可
+      spring.datasource.username=xxx						# 需要修改为上面的{user}值
+      spring.datasource.password=xxx						# 需要修改为上面的{password}值
     ```
 
     - 修改并保存完后，执行 script 目录下的创建表及导入基础数据脚本
@@ -130,7 +130,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_
 
     
 
-- 将jdk软链到 /usr/bin/java 下(仍以 JAVA_HOME=/opt/soft/java 为例)
+- 将 jdk 软链到 /usr/bin/java 下(仍以 JAVA_HOME=/opt/soft/java 为例)
 
 ```shell
 sudo ln -s /opt/soft/java/bin/java /usr/bin/java
@@ -209,11 +209,11 @@ singleYarnIp="yarnIp1"
 # 资源上传根路径，支持 HDFS 和 S3，由于 hdfs 支持本地文件系统，需要确保本地文件夹存在且有读写权限
 resourceUploadPath="/data/dolphinscheduler"
 
-    # 具备权限创建 resourceUploadPath的用户
-    hdfsRootUser="hdfs"
+# 具备权限创建 resourceUploadPath的用户
+hdfsRootUser="hdfs"
     
-     # 配置 api server port
-    apiServerPort="12345"
+# 配置 api server port
+apiServerPort="12345"
 
 # 在哪些机器上部署 DS 服务，本机选 localhost
 ips="localhost"
