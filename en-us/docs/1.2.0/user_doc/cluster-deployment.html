@@ -15,12 +15,13 @@
 <h1>1、Backend Deployment</h1>
 <h3>1.1: Before you begin (please install requirement basic software by yourself)</h3>
 <ul>
-<li>PostgreSQL (8.2.15+) or MySQL (5.7): Choose One</li>
-<li><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a> (1.8+):  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile</li>
-<li>ZooKeeper (3.4.6+): Required</li>
-<li>Hadoop (2.6+) or MinIO: Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.</li>
+<li>PostgreSQL (8.2.15+) or MySQL (5.7) : Choose One</li>
+<li><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a> (1.8+) : Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile</li>
+<li>ZooKeeper (3.4.6+) : Required</li>
+<li>pstree or psmisc : &quot;pstree&quot; is required for Mac OS and &quot;psmisc&quot; is required for Fedora/Red/Hat/CentOS/Ubuntu/Debian</li>
+<li>Hadoop (2.6+) or MinIO : Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.</li>
 </ul>
-<pre><code class="language-markdown"> Tips：DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients for the corresponding task of running.
+<pre><code class="language-markdown"> Tips: DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients for the corresponding task of running.
 </code></pre>
 <h3>1.2: Download the backend package.</h3>
 <ul>
