@@ -18,7 +18,7 @@ download apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-backend-bin.t
  * JDK (1.8+) : Mandatory
  * ZooKeeper(3.4.6+) : Mandatory
  * pstree or psmisc : "pstree" is required for Mac OS and "psmisc" is required for Fedora/Red/Hat/CentOS/Ubuntu/Debian
- * Hadoop (2.6+) or MinIo : Optionally, if you need to use the resource upload function, You can choose either Hadoop or MinIo.
+ * Hadoop (2.6+) or MinIo : Optional, if you need to use the resource upload function, You can choose either Hadoop or MinIo.
  * Hive (1.2.1) : Optional, hive task submission needs to be installed
  * Spark(1.x,2.x) : Optional, Spark task submission needs to be installed
 
