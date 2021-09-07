@@ -22,9 +22,9 @@ mkdir -p /opt/dolphinscheduler
 cd /opt/dolphinscheduler
 
 # 解压缩
-tar -zxvf apache-dolphinscheduler-1.3.6-bin.tar.gz -C /opt/dolphinscheduler
+tar -zxvf apache-dolphinscheduler-1.3.8-bin.tar.gz -C /opt/dolphinscheduler
  
-mv apache-dolphinscheduler-1.3.6-bin  dolphinscheduler-bin
+mv apache-dolphinscheduler-1.3.8-bin  dolphinscheduler-bin
 ```
 
 # 3、创建部署用户并赋予目录操作权限

@@ -21,9 +21,9 @@
 mkdir -p /opt/dolphinscheduler;
 cd /opt/dolphinscheduler;
 # uncompress
-tar -zxvf apache-dolphinscheduler-1.3.6-bin.tar.gz -C /opt/dolphinscheduler;
+tar -zxvf apache-dolphinscheduler-1.3.8-bin.tar.gz -C /opt/dolphinscheduler;
 
-mv apache-dolphinscheduler-1.3.6-bin  dolphinscheduler-bin
+mv apache-dolphinscheduler-1.3.8-bin  dolphinscheduler-bin
 ```
 
 # 3、Create deployment user and hosts mapping
