@@ -108,7 +108,7 @@
 
    ![DS2_AMBARI_013](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_013.png)
 
-4. After adding DS Worker and DS Logger components
+4. After adding DolphinScheduler Worker and DolphinScheduler Logger components
 
    ![DS2_AMBARI_015](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_015.png)
 
