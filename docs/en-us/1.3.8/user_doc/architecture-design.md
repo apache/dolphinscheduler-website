@@ -138,7 +138,7 @@ Problems in centralized thought design:
 
 - The decentralization of DolphinScheduler is that the Master/Worker is registered in Zookeeper, and the Master cluster and Worker cluster are centerless, and the Zookeeper distributed lock is used to elect one of the Master or Worker as the "manager" to perform the task.
 
-#####  Two、Distributed lock practice
+##### Two、Distributed lock practice
 
 DolphinScheduler uses ZooKeeper distributed lock to realize that only one Master executes Scheduler at the same time, or only one Worker executes the submission of tasks.
 1. The core process algorithm for acquiring distributed locks is as follows:
