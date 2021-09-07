@@ -92,7 +92,7 @@
 
 
 
-#### Add components to the node through Ambari -- for example, add a DS Worker
+#### Add components to the node through Ambari -- for example, add a DolphinScheduler Worker
 
 ***NOTE***: DS Logger is the installation dependent component of DS Worker in Dolphin's Ambari installation (need to add installation first; Prevent the Job log on the corresponding Worker from being checked)
 
