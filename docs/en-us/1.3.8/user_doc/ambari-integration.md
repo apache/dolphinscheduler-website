@@ -23,7 +23,7 @@
       - The RPM package was packaged in the project with the installation path of /opt/soft. 
         If you use mysql as the database, you need add it manually.
       
-   - Automatic installation with ambari
+   - Automatic installation with Ambari
       - Each node of the cluster needs to be configured the local yum source
       - Copy the prepared RPM packages to each node local yum source
 
