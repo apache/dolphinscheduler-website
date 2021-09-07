@@ -41,8 +41,7 @@
    -- Initialize the user and password for the dolphinscheduler database and assign permissions
    -- Replace the {user} in the SQL statement below with the user of the dolphinscheduler database
    GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
-   GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY
-   '{password}';
+   GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
    flush privileges;
    ```
 
