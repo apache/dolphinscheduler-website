@@ -285,7 +285,6 @@ In the early scheduling design, if there is no priority design and the fair sche
         super.subAppend(event);
     }
 }
- ```
 
 
 Generate logs in the form of /process definition id/process instance id/task instance id.log
