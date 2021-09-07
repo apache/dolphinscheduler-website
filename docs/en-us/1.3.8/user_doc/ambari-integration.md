@@ -18,7 +18,7 @@
 
    - Manual installation (recommended）：
       - Copy the prepared RPM packages to each node of the cluster.
-      - Execute with DS installation user: ```rpm -ivh apache-dolphinscheduler-xxx.noarch.rpm```
+      - Execute with DolphinScheduler installation user: `rpm -ivh apache-dolphinscheduler-xxx.noarch.rpm`
       - Mysql-connector-java packaged using the default POM file will not be included.
       - The RPM package was packaged in the project with the installation path of /opt/soft. 
         If you use mysql as the database, you need add it manually.
