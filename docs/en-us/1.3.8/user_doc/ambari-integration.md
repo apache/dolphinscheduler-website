@@ -36,8 +36,7 @@
 
    ```sql
    -- Create the database for the DolphinScheduler：dolphinscheduler
-   CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE
-   utf8_general_ci;
+   CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
    
    -- Initialize the user and password for the dolphinscheduler database and assign permissions
    -- Replace the {user} in the SQL statement below with the user of the dolphinscheduler database
