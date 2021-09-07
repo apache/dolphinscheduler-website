@@ -46,7 +46,7 @@
    ```
 
 #### Ambari Install DolphinScheduler
-- **NOTE: You have to install zookeeper first**
+- **NOTE: You have to install Zookeeper first**
 
 1. Install DolphinScheduler on Ambari web interface
 
