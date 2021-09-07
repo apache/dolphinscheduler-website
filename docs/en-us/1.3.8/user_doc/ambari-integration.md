@@ -45,8 +45,6 @@
    flush privileges;
    ```
 
- 
-
 #### Ambari Install DolphinScheduler
 - **NOTE: You have to install zookeeper first**
 
