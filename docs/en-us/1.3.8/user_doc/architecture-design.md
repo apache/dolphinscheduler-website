@@ -17,7 +17,7 @@ Before explaining the architecture of the scheduling system, let's first underst
 
 **Task instance**：The task instance is the instantiation of the task node in the process definition, which identifies the specific task execution status
 
-**Task type**： Currently supports SHELL, SQL, SUB_PROCESS (sub-process), PROCEDURE, MR, SPARK, PYTHON, DEPENDENT (depends), and plans to support dynamic plug-in expansion, note: 其中子 **SUB_PROCESS**  It is also a separate process definition that can be started and executed separately
+**Task type**： Currently supports SHELL, SQL, SUB_PROCESS (sub-process), PROCEDURE, MR, SPARK, PYTHON, DEPENDENT (depends), and plans to support dynamic plug-in expansion, note: **SUB_PROCESS**  It is also a separate process definition that can be started and executed separately
 
 **Scheduling method：** The system supports scheduled scheduling and manual scheduling based on cron expressions. Command type support: start workflow, start execution from current node, resume fault-tolerant workflow, resume pause process, start execution from failed node, complement, timing, rerun, pause, stop, resume waiting thread。Among them **Resume fault-tolerant workflow** 和 **Resume waiting thread** The two command types are used by the internal control of scheduling, and cannot be called from the outside
 
