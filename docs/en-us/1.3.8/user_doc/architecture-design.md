@@ -324,6 +324,7 @@ public class TaskLogFilter extends Filter<ILoggingEvent> {
 - dolphinscheduler-service service module, including Quartz, Zookeeper, log client access service, easy to call server module and api module
 
 - dolphinscheduler-ui front-end module
+
 ### Sum up
 From the perspective of scheduling, this article preliminarily introduces the architecture principles and implementation ideas of the big data distributed workflow scheduling system-DolphinScheduler. To be continued
 
