@@ -25,7 +25,7 @@ export default {
         dateStr: '2021-03-20',
         desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
         link: '/en-us/blog/FAQ.html',
-      },  
+      },
       {
         title: 'Apache Dolphin Scheduler(Incubating) Meetup 2019.10 Shanghai',
         author: 'William',
@@ -41,13 +41,35 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
+        title: 'Apache DolphinScheduler 架构演进及开源经验分享',
+        author: '徐玮毅',
+        dateStr: '2021-07-18',
+        desc: 'DolphinScheduler 1.2.x/1.3.x/2.0架构演进及开源经验分享（阮文俊）',
+        link: '/zh-cn/blog/DS_architecture_evolution.html',
+      },
+      {
+        title: '伴鱼数据质量平台实践',
+        author: '伴鱼技术团队',
+        editor: '太空人',
+        dateStr: '2021-07-06',
+        desc: '伴鱼基础架构数据团队在应对该类问题时推出的平台化产品 - 数据质量中心（Data Quality Center, DQC）的设计与实现',
+        link: '/zh-cn/blog/ipalfish_tech_platform.html',
+      },
+      {
+        title: 'DolphinScheduler在Windows环境启动源码',
+        author: '寇文皓',
+        dateStr: '2021-07-05',
+        desc: '在Windows环境下启动DolphinScheduler的代码进行开发调试',
+        link: '/zh-cn/blog/DS_run_in_windows.html',
+      },
+      {
         title: 'DolphinScheduler 核心之 DAG 大 JSON 拆分详解',
         author: '进勇',
         editor: '小P',
         dateStr: '2021-05-29',
         desc: 'DolphinScheduler 核心之 DAG 大 JSON 拆分始末',
         link: '/zh-cn/blog/dolphinscheduler_json.html',
-      },    
+      },
       {
         title: '为什么要把 DolphinScheduler 工作流定义中保存任务及关系的大 json 给拆了?',
         author: '进勇',
@@ -95,7 +117,7 @@ export default {
         desc: 'Apache Dolphin Scheduler(Incubating) 将于2019年10月26日在上海组织一次会议，欢迎踊跃报名。 ',
         link: '/zh-cn/blog/meetup_2019_10_26.html',
       },
-  
+
     ],
   },
 };
