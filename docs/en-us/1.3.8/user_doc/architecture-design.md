@@ -308,7 +308,6 @@ public class TaskLogFilter extends Filter<ILoggingEvent> {
         return FilterReply.DENY;
     }
 }
- ```
 
 ### 3.Module introduction
 - dolphinscheduler-alert alarm module, providing AlertServer service.
