@@ -300,7 +300,7 @@ docker service scale dolphinscheduler_dolphinscheduler-worker=3
 
 ### 如何构建一个 Docker 镜像？
 
-#### 1. 从源码构建 (需要 Maven 3.3+ & JDK 1.8+)
+#### 从源码构建 (需要 Maven 3.3+ & JDK 1.8+)
 
 类 Unix 系统，在 Terminal 中执行:
 
@@ -316,7 +316,7 @@ C:\dolphinscheduler-src>.\docker\build\hooks\build.bat
 
 如果你不理解 `./docker/build/hooks/build` `./docker/build/hooks/build.bat` 这些脚本，请阅读里面的内容
 
-#### 2. 从二进制包构建 (不需要 Maven 3.3+ & JDK 1.8+)
+#### 从二进制包构建 (不需要 Maven 3.3+ & JDK 1.8+)
 
 请下载二进制包 apache-dolphinscheduler-1.3.8-bin.tar.gz，下载地址: [下载](/zh-cn/download/download.html). 然后将 apache-dolphinscheduler-1.3.8-bin.tar.gz 放到 `apache-dolphinscheduler-1.3.8-src/docker/build` 目录里，在 Terminal 或 PowerShell 中执行:
 
@@ -326,6 +326,20 @@ $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
 ```
 
 > PowerShell 应该使用 `cd apache-dolphinscheduler-1.3.8-src/docker/build`
+
+#### 构建多平台架构镜像
+
+目前支持构建 `linux/amd64` 和 `linux/arm64` 平台架构的镜像，要求：
+
+1. 支持 [docker buildx](https://docs.docker.com/engine/reference/commandline/buildx/)
+2. 具有 https://hub.docker.com/r/apache/dolphinscheduler 的 push 权限（**务必谨慎**: 构建命令默认会自动将多平台架构镜像推送到 apache/dolphinscheduler 的 docker hub）
+
+执行:
+
+```bash
+$ docker login # 登录, 用于推送 apache/dolphinscheduler
+$ bash ./docker/build/hooks/build x
+```
 
 ### 如何为 Docker 添加一个环境变量？
 
