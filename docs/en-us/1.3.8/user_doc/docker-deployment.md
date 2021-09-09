@@ -300,7 +300,7 @@ docker service scale dolphinscheduler_dolphinscheduler-worker=3
 
 ### How to build a Docker image?
 
-#### 1. Build from the source code (Require Maven 3.3+ & JDK 1.8+)
+#### Build from the source code (Require Maven 3.3+ & JDK 1.8+)
 
 In Unix-Like, execute in Terminal:
 
@@ -316,7 +316,7 @@ C:\dolphinscheduler-src>.\docker\build\hooks\build.bat
 
 Please read `./docker/build/hooks/build` `./docker/build/hooks/build.bat` script files if you don't understand
 
-#### 2. Build from the binary distribution (Not require Maven 3.3+ & JDK 1.8+)
+#### Build from the binary distribution (Not require Maven 3.3+ & JDK 1.8+)
 
 Please download the binary distribution package apache-dolphinscheduler-1.3.8-bin.tar.gz, download address: [download](/en-us/download/download.html). And put apache-dolphinscheduler-1.3.8-bin.tar.gz into the `apache-dolphinscheduler-1.3.8-src/docker/build` directory, execute in Terminal or PowerShell:
 
@@ -326,6 +326,20 @@ $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
 ```
 
 > PowerShell should use `cd apache-dolphinscheduler-1.3.8-src/docker/build`
+
+#### Build multi-platform images
+
+Currently support to build images including `linux/amd64` and `linux/arm64` platform architecture, requirements:
+
+1. Support [docker buildx](https://docs.docker.com/engine/reference/commandline/buildx/)
+2. Own the push permission of https://hub.docker.com/r/apache/dolphinscheduler (**Be cautious**: The build command will automatically push the multi-platform architecture images to the docker hub of apache/dolphinscheduler by default)
+
+Execute:
+
+```bash
+$ docker login # login to push apache/dolphinscheduler
+$ bash ./docker/build/hooks/build
+```
 
 ### How to add an environment variable for Docker?
 
