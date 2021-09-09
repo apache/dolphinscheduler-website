@@ -348,7 +348,7 @@ docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # 显示倒数10行日
 <pre><code>docker service scale dolphinscheduler_dolphinscheduler-worker=3
 </code></pre>
 <h3>如何构建一个 Docker 镜像？</h3>
-<h4>1. 从源码构建 (需要 Maven 3.3+ &amp; JDK 1.8+)</h4>
+<h4>从源码构建 (需要 Maven 3.3+ &amp; JDK 1.8+)</h4>
 <p>类 Unix 系统，在 Terminal 中执行:</p>
 <pre><code class="language-bash">$ bash ./docker/build/hooks/build
 </code></pre>
@@ -356,7 +356,7 @@ docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # 显示倒数10行日
 <pre><code class="language-bat"><span class="hljs-function">C:\<span class="hljs-title">dolphinscheduler</span>-<span class="hljs-title">src</span>&gt;.\<span class="hljs-title">docker</span>\<span class="hljs-title">build</span>\<span class="hljs-title">hooks</span>\<span class="hljs-title">build.bat</span>
 </span></code></pre>
 <p>如果你不理解 <code>./docker/build/hooks/build</code> <code>./docker/build/hooks/build.bat</code> 这些脚本，请阅读里面的内容</p>
-<h4>2. 从二进制包构建 (不需要 Maven 3.3+ &amp; JDK 1.8+)</h4>
+<h4>从二进制包构建 (不需要 Maven 3.3+ &amp; JDK 1.8+)</h4>
 <p>请下载二进制包 apache-dolphinscheduler-1.3.8-bin.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a>. 然后将 apache-dolphinscheduler-1.3.8-bin.tar.gz 放到 <code>apache-dolphinscheduler-1.3.8-src/docker/build</code> 目录里，在 Terminal 或 PowerShell 中执行:</p>
 <pre><code>$ cd apache-dolphinscheduler-1.3.8-src/docker/build
 $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
@@ -364,6 +364,16 @@ $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
 <blockquote>
 <p>PowerShell 应该使用 <code>cd apache-dolphinscheduler-1.3.8-src/docker/build</code></p>
 </blockquote>
+<h4>构建多平台架构镜像</h4>
+<p>目前支持构建 <code>linux/amd64</code> 和 <code>linux/arm64</code> 平台架构的镜像，要求：</p>
+<ol>
+<li>支持 <a href="https://docs.docker.com/engine/reference/commandline/buildx/">docker buildx</a></li>
+<li>具有 <a href="https://hub.docker.com/r/apache/dolphinscheduler">https://hub.docker.com/r/apache/dolphinscheduler</a> 的 push 权限（<strong>务必谨慎</strong>: 构建命令默认会自动将多平台架构镜像推送到 apache/dolphinscheduler 的 docker hub）</li>
+</ol>
+<p>执行:</p>
+<pre><code class="language-bash">$ docker login <span class="hljs-comment"># 登录, 用于推送 apache/dolphinscheduler</span>
+$ bash ./docker/build/hooks/build x
+</code></pre>
 <h3>如何为 Docker 添加一个环境变量？</h3>
 <p>如果你想在编译的时候或者运行的时候附加一些其它的操作及新增一些环境变量，你可以在<code>/root/start-init-conf.sh</code>文件中进行修改，同时如果涉及到配置文件的修改，请在<code>/opt/dolphinscheduler/conf/*.tpl</code>中修改相应的配置文件</p>
 <p>例如，在<code>/root/start-init-conf.sh</code>添加一个环境变量<code>SECURITY_AUTHENTICATION_TYPE</code>：</p>

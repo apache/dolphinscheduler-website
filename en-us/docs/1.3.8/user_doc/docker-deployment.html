@@ -348,7 +348,7 @@ docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # show last 10 lines f
 <pre><code>docker service scale dolphinscheduler_dolphinscheduler-worker=3
 </code></pre>
 <h3>How to build a Docker image?</h3>
-<h4>1. Build from the source code (Require Maven 3.3+ &amp; JDK 1.8+)</h4>
+<h4>Build from the source code (Require Maven 3.3+ &amp; JDK 1.8+)</h4>
 <p>In Unix-Like, execute in Terminal:</p>
 <pre><code class="language-bash">$ bash ./docker/build/hooks/build
 </code></pre>
@@ -356,7 +356,7 @@ docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # show last 10 lines f
 <pre><code class="language-bat"><span class="hljs-function">C:\<span class="hljs-title">dolphinscheduler</span>-<span class="hljs-title">src</span>&gt;.\<span class="hljs-title">docker</span>\<span class="hljs-title">build</span>\<span class="hljs-title">hooks</span>\<span class="hljs-title">build.bat</span>
 </span></code></pre>
 <p>Please read <code>./docker/build/hooks/build</code> <code>./docker/build/hooks/build.bat</code> script files if you don't understand</p>
-<h4>2. Build from the binary distribution (Not require Maven 3.3+ &amp; JDK 1.8+)</h4>
+<h4>Build from the binary distribution (Not require Maven 3.3+ &amp; JDK 1.8+)</h4>
 <p>Please download the binary distribution package apache-dolphinscheduler-1.3.8-bin.tar.gz, download address: <a href="/en-us/download/download.html">download</a>. And put apache-dolphinscheduler-1.3.8-bin.tar.gz into the <code>apache-dolphinscheduler-1.3.8-src/docker/build</code> directory, execute in Terminal or PowerShell:</p>
 <pre><code>$ cd apache-dolphinscheduler-1.3.8-src/docker/build
 $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
@@ -364,6 +364,16 @@ $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
 <blockquote>
 <p>PowerShell should use <code>cd apache-dolphinscheduler-1.3.8-src/docker/build</code></p>
 </blockquote>
+<h4>Build multi-platform images</h4>
+<p>Currently support to build images including <code>linux/amd64</code> and <code>linux/arm64</code> platform architecture, requirements:</p>
+<ol>
+<li>Support <a href="https://docs.docker.com/engine/reference/commandline/buildx/">docker buildx</a></li>
+<li>Own the push permission of <a href="https://hub.docker.com/r/apache/dolphinscheduler">https://hub.docker.com/r/apache/dolphinscheduler</a> (<strong>Be cautious</strong>: The build command will automatically push the multi-platform architecture images to the docker hub of apache/dolphinscheduler by default)</li>
+</ol>
+<p>Execute:</p>
+<pre><code class="language-bash">$ docker login <span class="hljs-comment"># login to push apache/dolphinscheduler</span>
+$ bash ./docker/build/hooks/build
+</code></pre>
 <h3>How to add an environment variable for Docker?</h3>
 <p>If you would like to do additional initialization in an image derived from this one, add one or more environment variables under <code>/root/start-init-conf.sh</code>, and modify template files in <code>/opt/dolphinscheduler/conf/*.tpl</code>.</p>
 <p>For example, to add an environment variable <code>SECURITY_AUTHENTICATION_TYPE</code> in <code>/root/start-init-conf.sh</code>:</p>
