@@ -5,15 +5,6 @@ export default {
     barText: 'Community',
     sidemenu: [
       {
-        title: 'Community News',
-        children: [
-          {
-            title: 'Community News',
-            link: '/en-us/community/index.html',
-          },
-        ],
-      },
-      {
         title: 'Team',
         children: [
           {
@@ -210,15 +201,6 @@ export default {
   'zh-cn': {
     barText: '社区',
     sidemenu: [
-      {
-        title: '社区动态',
-        children: [
-          {
-            title: '社区动态',
-            link: '/zh-cn/community/index.html',
-          },
-        ],
-      },
       {
         title: '团队',
         children: [
