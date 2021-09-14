@@ -3,15 +3,14 @@
 如需测试插件，可自行修改StandaloneServer中plugin.bind，亦或修改配置文件。具体请查看插件说明。
 #### 1.下载源码
 
-     GitHub ：https://github.com/apache/dolphinscheduler
+GitHub ：https://github.com/apache/dolphinscheduler
 
-     ```shell
-     mkdir dolphinscheduler
-     cd dolphinscheduler
-     git clone git@github.com:apache/dolphinscheduler.git
-     ```
-
-     这里选用 dev 分支。
+```shell
+mkdir dolphinscheduler
+cd dolphinscheduler
+git clone git@github.com:apache/dolphinscheduler.git
+```
+这里选用 dev 分支。
 #### 2: 启动后端
 ```
 mvn install -DskipTests
