@@ -32,6 +32,10 @@ export default {
         title: '开发文档',
         children: [
           {
+            title: 'Dev-Quick-Start',
+            link: '/zh-cn/docs/dev/user_doc/dev_quick_start.html',
+          },
+          {
             title: 'Alert-SPI',
             link: '/zh-cn/docs/dev/user_doc/alert_spi.html',
           },
