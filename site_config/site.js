@@ -289,7 +289,7 @@ export default {
           {
             key: 'docsdev',
             text: 'dev',
-            link: '/zh-cn/docs/dev/user_doc/registry_spi.html',
+            link: '/zh-cn/docs/dev/user_doc/dev_quick_start.html',
           },
         ],
       },
