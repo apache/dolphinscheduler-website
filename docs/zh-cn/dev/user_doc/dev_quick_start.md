@@ -11,6 +11,7 @@ cd dolphinscheduler
 git clone git@github.com:apache/dolphinscheduler.git
 ```
 这里选用 dev 分支。
+
 #### 2: 启动后端
 ```
 mvn install -DskipTests
