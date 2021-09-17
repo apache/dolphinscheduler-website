@@ -21,10 +21,10 @@
 
    4. 将conf目录下的zoo_sample.cfg文件，复制一份，重命名为zoo.cfg，修改其中数据和日志的配置，如：
 
-      ```shell
+      ~~~properties
       dataDir=D:\\code\\apache-zookeeper-3.6.3-bin\\data
       dataLogDir=D:\\code\\apache-zookeeper-3.6.3-bin\\log
-      ```
+      ~~~
 
    5. 在bin中运行 zkServer.cmd，然后运行zkCli.cmd 查看zk运行状态，可以查看zk节点信息即代表安装成功。
 
@@ -36,7 +36,7 @@
 
    3. 修改 dolphinscheduler-dao 模块的 datasource.properties
 
-      ~~~java
+      ~~~properties
       # mysql
       spring.datasource.driver-class-name=com.mysql.jdbc.Driver
       spring.datasource.url=jdbc:mysql://192.168.2.227:3306/dolphinschedulerKou?useUnicode=true&characterEncoding=UTF-8
@@ -48,7 +48,7 @@
 
    5. 修改 dolphinscheduler-service 模块的 zookeeper.properties
 
-      ~~~java
+      ~~~properties
       zookeeper.quorum=localhost:2181
       ~~~
 
@@ -66,19 +66,19 @@
 
    7. 启动 MasterServer，执行 org.apache.dolphinscheduler.server.master.MasterServer 的 main 方法，需要设置 VM Options:
 
-      ~~~java
+      ~~~
       -Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false
       ~~~
 
    8. 启动WorkerServer，执行org.apache.dolphinscheduler.server.worker.WorkerServer的 main方法，需要设置 VM Options:
 
-      ~~~java
+      ~~~
       -Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false
       ~~~
 
    9. 启动 ApiApplicationServer，执行 org.apache.dolphinscheduler.api.ApiApplicationServer 的 main 方法，需要设置 VM Options:
 
-      ~~~java
+      ~~~
       -Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api
       ~~~
 
