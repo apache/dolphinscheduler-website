@@ -14,7 +14,7 @@ git clone git@github.com:apache/dolphinscheduler.git
 
 #### 2: 启动后端
 ```
-mvn -U install package -Prelease -Dmaven.test.skip=true
+mvn install -DskipTests
 ```
 直接启动 org.apache.dolphinscheduler.server.StandaloneServer 即可
 
