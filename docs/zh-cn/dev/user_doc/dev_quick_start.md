@@ -1,6 +1,11 @@
 注意：仅供单机开发调试使用，默认使用H2 Database,Zookeeper Testing Server。
 
 如需测试插件，可自行修改StandaloneServer中plugin.bind，亦或修改配置文件。具体请查看插件说明。
+
+#### 前言
+本次配置需要安装curl、mvn、git等工具，以ubuntu为例，使用命令sudo apt install [软件包]即可
+同时还需要配置jdk和JAVA_HOME环境变量，配置方法可参考博客：https://blog.csdn.net/u010993514/article/details/82926514
+
 #### 1.下载源码
 
 GitHub ：https://github.com/apache/dolphinscheduler
