@@ -1,5 +1,4 @@
-Note: Only for standalone development debugging use, the default use of H2 Database, Zookeeper Testing Server.
-
+Note: Only for standalone development debugging use. The default option is H2 Database and Zookeeper Testing Server.
 For testing the plugin, you can modify the plugin.bind in StandaloneServer or modify the configuration file. Please check the plugin description for details.
 
 #### 1. Download the source Code
@@ -44,7 +43,7 @@ note: Mac users could install npm through brew: brew install npm
 
  node --version
 
-##### ii. cd dolphinscheduler-ui and run the following command:
+##### ii. cd dolphinscheduler-ui and run the following commands:
 
 ```shell
 npm install
