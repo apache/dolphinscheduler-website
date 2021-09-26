@@ -16,7 +16,7 @@ We use the dev branch here.
 #### 2. Start backend
 
 ```shell
-mvn -U install package -Prelease -Dmaven.test.skip=true
+mvn install -DskipTests
 ```
 
 Just start org.apache.dolphinscheduler.server.StandaloneServer directly.
