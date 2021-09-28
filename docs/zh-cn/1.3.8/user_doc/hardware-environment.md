@@ -45,3 +45,40 @@ DolphinScheduler正常运行提供如下的网络端口配置：
 ## 4. 客户端 Web 浏览器要求
 
 DolphinScheduler 推荐 Chrome 以及使用 Chromium 内核的较新版本浏览器访问前端可视化操作界面
+
+## 5. Java环境配置
+可通过以下脚本下载最新jdk并自动配置环境变量：
+```shell
+\#!/bin/bash
+
+
+
+echo "download jdk v17"
+
+curl -o jdk-17.tar.gz https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+
+tar -xzvf jdk-17.tar.gz
+
+rm jdk-17.tar.gz
+
+mv jdk-17 /usr/local/java
+
+
+
+echo "export JAVA_HOME=/usr/local/java" >> /etc/profile
+
+echo "export PATH=\$PATH:\$JAVA_HOME/bin" >> /etc/profile
+
+echo "export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar" >> /etc/profile
+
+echo "export JRE_HOME=\$JAVA_HOME/jre" >> /etc/profile
+
+
+
+echo "java enviroment successful init"
+```
+运行步骤：
+1. vim init_java.sh 随后将上面的脚本复制到打开的文件中
+2. sh ./init_java.sh
+3. source /etc/profile (考虑到ubuntu用户无法在shell中运行source命令，此步骤需要手动执行)
+4. java -version 验证安装是否成功以及查看jdk版本
