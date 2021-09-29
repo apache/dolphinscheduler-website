@@ -20,7 +20,7 @@ CD 指持续交付/持续部署。持续交付代表将完成的代码自动交�
 基于现有的ds功能，我们找到一个小型项目当作此次尝试的范例。被选中的项目Spring-boot-vuejs 具有前端和后端，可以较为直观的看到部署的结果，它的CI/CD流程也比较简明。这个实例中，我们采用的部署形式是本地部署/单机部署，不考虑到多台机器或者集群的影响。在为项目工作流配置完全局变量和本地变量后，便可以使其上线运行，完成的工作流如下。
 
 ##### Packaging
-这个工作流共包含6个shell节点，用于CI/CD流程中的代码获取，构建，测试，打包，预发布（staging）。
+这个工作流共包含6个shell节点，用于CI/CD流程中的代码获取，构建，测试，打包，预发布（staging）。详见导出的[工作流文件](/img/cicd_workflow/feature_release.json)
 
 ![avatar](/img/cicd_workflow/7A715483-ABF1-44C1-AC6F-CDED1623CC07_4_5005_c.jpeg)
 
@@ -54,6 +54,9 @@ else
 fi
 echo End of repo checkout/update
 ```
+如果节点运行成功，本地已存在目标代码库，此时可以执行git pull (前提保证本地更新已经提交) 。
+
+![avatar](/img/cicd_workflow/6A1478C7-3824-47F5-9E48-5BC04FB20B3E.jpeg)
 
 - 节点2: build with java8
 这个节点基于项目使用java的maven框架，进行构建。因为此实例使用的java版本为8和16。以本地默认java版本java8执行命令。
@@ -147,7 +150,7 @@ echo END
 ![avatar](/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
 
 ##### Rollback
-这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。
+这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](/img/cicd_workflow/rollback.json)
 
 ![avatar](/img/cicd_workflow/12D3F0CE-18FE-4163-951A-4E0734A42EC2_4_5005_c.jpeg)
 
@@ -209,7 +212,7 @@ echo END
 ![](/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
 
 ##### Feature Release
-这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。
+这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](/img/cicd_workflow/feature_release.json)
 
 ![avatar](/img/cicd_workflow/5162B6A2-67C8-4EAD-BE7A-992D0AE90CD1_4_5005_c.jpeg)
 
