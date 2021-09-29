@@ -11,7 +11,7 @@ Currently, all the configuration files are under [conf ] directory. Please check
 
 ├─bin                               DS application commands directory
 │  ├─dolphinscheduler-daemon.sh         startup/shutdown DS application 
-│  ├─start-all.sh                       startup all DS services with configurations
+│  ├─start-all.sh                  A     startup all DS services with configurations
 │  ├─stop-all.sh                        shutdown all DS services with configurations
 ├─conf                              configurations directory
 │  ├─application-api.properties         API-service config properties
@@ -180,7 +180,7 @@ master.host.selector|LowerWeight|master host selector to select a suitable worke
 master.heartbeat.interval|10|master heartbeat interval, the unit is second
 master.task.commit.retryTimes|5|master commit task retry times
 master.task.commit.interval|1000|master commit task interval, the unit is millisecond
-master.max.cpuload.avg|-1|master max cpuload avg, only higher than the system cpu load average, master server can schedule. default value -1: the number of cpu cores * 2
+master.max.cpuload.avg|-1|master max CPU load avg, only higher than the system CPU load average, master server can schedule. default value -1: the number of CPU cores * 2
 master.reserved.memory|0.3|master reserved memory, only lower than system available memory, master server can schedule. default value 0.3, the unit is G
 
 
@@ -190,7 +190,7 @@ master.reserved.memory|0.3|master reserved memory, only lower than system availa
 worker.listen.port|1234|worker listen port
 worker.exec.threads|100|worker execute thread number to limit task instances in parallel
 worker.heartbeat.interval|10|worker heartbeat interval, the unit is second
-worker.max.cpuload.avg|-1|worker max cpuload avg, only higher than the system cpu load average, worker server can be dispatched tasks. default value -1: the number of cpu cores * 2
+worker.max.cpuload.avg|-1|worker max CPU load avg, only higher than the system CPU load average, worker server can be dispatched tasks. default value -1: the number of CPU cores * 2
 worker.reserved.memory|0.3|worker reserved memory, only lower than system available memory, worker server can be dispatched tasks. default value 0.3, the unit is G
 worker.groups|default|worker groups separated by comma, like 'worker.groups=default,test' <br> worker will join corresponding group according to this config when startup
 
@@ -263,7 +263,7 @@ File content as follows:
 # Note:  please escape the character if the file contains special characters such as `.*[]^${}\+?|()@#&`.
 #   eg: `[` escape to `\[`
 
-# Database type (DS currently only supports postgresql and mysql)
+# Database type (DS currently only supports PostgreSQL and MySQL)
 dbtype="mysql"
 
 # Database url & port
@@ -342,9 +342,9 @@ resourceUploadPath="/dolphinscheduler"
 # HDFS/S3 root user
 hdfsRootUser="hdfs"
 
-# Followings are kerberos configs
+# Followings are Kerberos configs
 
-# Spicify kerberos enable or not
+# Spicify Kerberos enable or not
 kerberosStartUp="false"
 
 # Kdc krb5 config file path

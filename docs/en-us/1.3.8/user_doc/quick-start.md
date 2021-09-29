@@ -2,7 +2,7 @@
 
 * Administrator user login
 
-  > Address：http://192.168.xx.xx:12345/dolphinscheduler  Username and password：admin/dolphinscheduler123
+  > Address：http://192.168.xx.xx:12345/dolphinscheduler  Username and password: admin/dolphinscheduler123
 
 <p align="center">
    <img src="/img/login_en.png" width="60%" />
@@ -31,20 +31,20 @@
   </p>
 
   
-  * Create an worker group
+  * Create a worker group
   
    <p align="center">
       <img src="/img/worker-group-en.png" width="60%" />
     </p>
     
- * Create an token
+ * Create a token
   
    <p align="center">
       <img src="/img/token-en.png" width="60%" />
     </p>
      
   
-  * Log in with regular users
+  * Login with regular users
   > Click on the user name in the upper right corner to "exit" and re-use the normal user login.
 
   * Project Management - > Create Project - > Click on Project Name
