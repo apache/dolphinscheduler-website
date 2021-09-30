@@ -6,10 +6,10 @@ DolphinScheduler Cluster deployment is divided into two parts: backend deploymen
 
 ### 1.1: Before you begin (please install requirement basic software by yourself)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7): Choose One
+ * [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+) or [MySQL](https://dev.mysql.com/downloads/mysql/) (5.7): Choose One
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+):  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
- * ZooKeeper (3.4.6+): Required
- * Hadoop (2.6+) or MinIO: Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.
+ * [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+): Required
+ * [Hadoop](https://hadoop.apache.org/releases.html) (2.6+) or [MinIO](https://min.io/download): Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.
 
 ```markdown
  Tips：DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients for the corresponding task of running.

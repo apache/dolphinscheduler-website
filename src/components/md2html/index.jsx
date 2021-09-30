@@ -50,6 +50,8 @@ const Md2Html = ComposeComponent => class extends ComposeComponent {
     const splitPart = window.location.pathname.replace(`${window.rootPath}/${language}`, '').split('/').slice(0, -1);
     const filePath = splitPart.join('/');
     const alinks = Array.from(this.markdownContainer.querySelectorAll('a'));
+    console.log(this.markdownContainer);
+    console.log(alinks);
     alinks.forEach((alink) => {
       const href = alink.getAttribute('href');
       if (relativeReg.test(href)) {

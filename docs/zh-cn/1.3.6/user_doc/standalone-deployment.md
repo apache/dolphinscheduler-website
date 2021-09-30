@@ -2,10 +2,10 @@
 
 # 1、基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7系列)：两者任选其一即可，如 MySQL 则需要 JDBC Driver 5.1.47+
+ * [PostgreSQL](https://dev.mysql.com/downloads/mysql/) (8.2.15+) or [MySQL](https://dev.mysql.com/downloads/mysql/) (5.7系列)：两者任选其一即可，如 MySQL 则需要 JDBC Driver 5.1.47+
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+)：必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
- * ZooKeeper (3.4.6+)：必装 
- * Hadoop (2.6+) or MinIO：选装， 如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署 Hadoop )；当然也可以选择上传到 Hadoop or MinIO 集群上
+ * [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+)：必装 
+ * [Hadoop](https://hadoop.apache.org/releases.html) (2.6+) or [MinIO](https://min.io/download)：选装， 如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署 Hadoop )；当然也可以选择上传到 Hadoop or MinIO 集群上
 
 ```markdown
  注意：DolphinScheduler 本身不依赖 Hadoop、Hive、Spark，仅会调用它们的 Client，用于运行对应的任务
