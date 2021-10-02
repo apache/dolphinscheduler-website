@@ -2,7 +2,7 @@
 
 #### 如何使用？
 
-首先你需要执行 `mvn -U install package -Prelease -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry
+首先你需要执行 `mvn -U install package -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry
 
 其次进行以下配置（以 zookeeper 为例）
 

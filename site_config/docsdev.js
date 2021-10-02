@@ -44,6 +44,10 @@ export default {
             link: '/zh-cn/docs/dev/user_doc/registry_spi.html',
           },
           {
+            title: 'Task-SPI',
+            link: '/zh-cn/docs/dev/user_doc/task_spi.html',
+          },
+          {
             title: 'Global-Params',
             link: '/zh-cn/docs/dev/user_doc/globalParams.html',
           },
