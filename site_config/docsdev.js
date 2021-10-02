@@ -5,6 +5,10 @@ export default {
         title: 'Deployment Document',
         children: [
           {
+            title: 'Dev-Quick-Start',
+            link: '/en-us/docs/dev/user_doc/dev_quick_start.html',
+          },
+          {
             title: 'Alert-SPI',
             link: '/en-us/docs/dev/user_doc/alert_spi.html',
           },
