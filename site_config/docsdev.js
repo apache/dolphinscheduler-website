@@ -48,10 +48,13 @@ export default {
             link: '/zh-cn/docs/dev/user_doc/globalParams.html',
           },
           {
+            title: 'Switch-Node',
+            link: '/zh-cn/docs/dev/user_doc/switch_node.html',
+          },
+          {
             title: 'Dev-Run',
             link: '/zh-cn/docs/dev/user_doc/dev_run.html',
-          },
-        ],
+          },        ],
       },
     ],
     barText: '文档',
