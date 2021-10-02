@@ -84,7 +84,9 @@ prop 为用户指定；方向选择为 OUT，只有当方向为 OUT 时才会被
 
 prop 为用户指定；方向选择为 OUT，只有当方向为 OUT 时才会被定义为变量输出；数据类型可以根据需要选择不同数据结构；value 部分不需要填写。
 
+
 用户需要传递参数，在定义 shell 脚本时，需要输出格式为 $setValue(key=value) 的语句，key 为对应参数的 prop，value 为该参数的值。
+
 
 例如下图中：
 
@@ -144,6 +146,7 @@ Worker 收到后将 varPool 解析为 Map<String,Property> 的格式，其中 ma
 ###### SHELL 节点：
 
 processor 执行后的结果返回为 Map<String,String>
+
 
 用户在定义 shell 脚本时需要在输出中定义 $setValue(key=value)
 
