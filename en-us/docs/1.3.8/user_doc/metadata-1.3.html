@@ -127,7 +127,7 @@
 <p><img src="/img/metadata-erd/user-queue-datasource.png" alt="image.png"></p>
 <ul>
 <li>Multiple users can belong to one tenant</li>
-<li>The queue field in t_ds_user table stores the queue_name information in t_ds_queue table, but t_ds_tenant stores queue information using queue_id. During the execution of the process definition, the user queue has the highest priority. If the user queue is empty, the tenant queue is used.</li>
+<li>The queue field in the t_ds_user table stores the queue_name information in the t_ds_queue table, but t_ds_tenant stores queue information using queue_id. During the execution of the process definition, the user queue has the highest priority. If the user queue is empty, the tenant queue is used.</li>
 <li>The user_id field in the t_ds_datasource table indicates the user who created the data source. The user_id in t_ds_relation_datasource_user indicates the user who has permission to the data source.
 <a name="7euSN"></a></li>
 </ul>
@@ -363,7 +363,7 @@
 <tr>
 <td>process_instance_json</td>
 <td>longtext</td>
-<td>process instance json(copy的process definition 的json)</td>
+<td>process instance json</td>
 </tr>
 <tr>
 <td>flag</td>
@@ -378,7 +378,7 @@
 <tr>
 <td>is_sub_process</td>
 <td>int</td>
-<td>whether the process is sub process:  1 sub-process，0 not sub-process</td>
+<td>whether the process is sub process: 1 sub-process, 0 not sub-process</td>
 </tr>
 <tr>
 <td>executor_id</td>

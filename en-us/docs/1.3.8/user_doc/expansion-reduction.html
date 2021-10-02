@@ -28,7 +28,7 @@
 <li>Check which version of DolphinScheduler is used in your existing environment, and get the installation package of the corresponding version, if the versions are different, there may be compatibility problems.</li>
 <li>Confirm the unified installation directory of other nodes, this article assumes that DolphinScheduler is installed in /opt/ directory, and the full path is /opt/dolphinscheduler.</li>
 <li>Please download the corresponding version of the installation package to the server installation directory, uncompress it and rename it to dolphinscheduler and store it in the /opt directory.</li>
-<li>Add database dependency package, this article use Mysql database, add mysql-connector-java driver package to /opt/dolphinscheduler/lib directory.</li>
+<li>Add database dependency package, this article uses Mysql database, add mysql-connector-java driver package to /opt/dolphinscheduler/lib directory.</li>
 </ul>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> create the installation directory, please <span class="hljs-keyword">do</span> not create the installation directory <span class="hljs-keyword">in</span> /root, /home and other high privilege directories</span> 
 mkdir -p /opt
@@ -56,7 +56,7 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 
 </code></pre>
 <pre><code class="language-markdown"> Attention:
-<span class="hljs-bullet"> -</span> Since it is sudo -u {linux-user} to switch between different linux users to run multi-tenant jobs, the deploying user needs to have sudo privileges and be password free.
+<span class="hljs-bullet"> -</span> Since it is sudo -u {linux-user} to switch between different Linux users to run multi-tenant jobs, the deploying user needs to have sudo privileges and be password free.
 <span class="hljs-bullet"> -</span> If you find the line &quot;Default requiretty&quot; in the /etc/sudoers file, please also comment it out.
 <span class="hljs-bullet"> -</span> If resource uploads are used, you also need to assign read and write permissions to the deployment user on <span class="hljs-code">`HDFS or MinIO`</span>.
 </code></pre>

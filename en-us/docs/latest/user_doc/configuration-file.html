@@ -18,7 +18,7 @@
 <pre><code>
 ├─bin                               DS application commands directory
 │  ├─dolphinscheduler-daemon.sh         startup/shutdown DS application 
-│  ├─start-all.sh                       startup all DS services with configurations
+│  ├─start-all.sh                  A     startup all DS services with configurations
 │  ├─stop-all.sh                        shutdown all DS services with configurations
 ├─conf                              configurations directory
 │  ├─application-api.properties         API-service config properties
@@ -527,7 +527,7 @@ Currently, DS just makes a basic config, please config further JVＭ options bas
 <tr>
 <td>master.max.cpuload.avg</td>
 <td>-1</td>
-<td>master max cpuload avg, only higher than the system cpu load average, master server can schedule. default value -1: the number of cpu cores * 2</td>
+<td>master max CPU load avg, only higher than the system CPU load average, master server can schedule. default value -1: the number of CPU cores * 2</td>
 </tr>
 <tr>
 <td>master.reserved.memory</td>
@@ -564,7 +564,7 @@ Currently, DS just makes a basic config, please config further JVＭ options bas
 <tr>
 <td>worker.max.cpuload.avg</td>
 <td>-1</td>
-<td>worker max cpuload avg, only higher than the system cpu load average, worker server can be dispatched tasks. default value -1: the number of cpu cores * 2</td>
+<td>worker max CPU load avg, only higher than the system CPU load average, worker server can be dispatched tasks. default value -1: the number of CPU cores * 2</td>
 </tr>
 <tr>
 <td>worker.reserved.memory</td>
@@ -823,7 +823,7 @@ Files such as <a href="http://dolphinscheduler-daemon.sh">dolphinscheduler-daemo
 <span class="hljs-comment"># Note:  please escape the character if the file contains special characters such as `.*[]^${}\+?|()@#&amp;`.</span>
 <span class="hljs-comment">#   eg: `[` escape to `\[`</span>
 
-<span class="hljs-comment"># Database type (DS currently only supports postgresql and mysql)</span>
+<span class="hljs-comment"># Database type (DS currently only supports PostgreSQL and MySQL)</span>
 dbtype=<span class="hljs-string">&quot;mysql&quot;</span>
 
 <span class="hljs-comment"># Database url &amp; port</span>
@@ -902,9 +902,9 @@ resourceUploadPath=<span class="hljs-string">&quot;/dolphinscheduler&quot;</span
 <span class="hljs-comment"># HDFS/S3 root user</span>
 hdfsRootUser=<span class="hljs-string">&quot;hdfs&quot;</span>
 
-<span class="hljs-comment"># Followings are kerberos configs</span>
+<span class="hljs-comment"># Followings are Kerberos configs</span>
 
-<span class="hljs-comment"># Spicify kerberos enable or not</span>
+<span class="hljs-comment"># Spicify Kerberos enable or not</span>
 kerberosStartUp=<span class="hljs-string">&quot;false&quot;</span>
 
 <span class="hljs-comment"># Kdc krb5 config file path</span>

@@ -253,7 +253,7 @@ kubectl get deploy -n test # with test namespace
 <pre><code>kubectl scale --replicas=3 deploy dolphinscheduler-api
 kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
 </code></pre>
-<p>List all statefulsets (aka <code>sts</code>):</p>
+<p>List all stateful sets (aka <code>sts</code>):</p>
 <pre><code>kubectl get sts
 kubectl get sts -n test # with test namespace
 </code></pre>
@@ -380,7 +380,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <p>Run a DolphinScheduler release in Kubernetes (See <strong>Installing the Chart</strong>)</p>
 </li>
 <li>
-<p>Add a Oracle datasource in <code>Datasource manage</code></p>
+<p>Add an Oracle datasource in <code>Datasource manage</code></p>
 </li>
 </ol>
 <h3>How to support Python 2 pip and custom requirements.txt?</h3>
@@ -463,7 +463,7 @@ RUN apt-get update &amp;&amp; \
 <p>Run a DolphinScheduler release in Kubernetes (See <strong>Installing the Chart</strong>)</p>
 </li>
 <li>
-<p>Copy the Spark 2.4.7 release binary into Docker container</p>
+<p>Copy the Spark 2.4.7 release binary into the Docker container</p>
 </li>
 </ol>
 <pre><code class="language-bash">kubectl cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
@@ -481,7 +481,7 @@ rm -f spark-2.4.7-bin-hadoop2.7.tgz
 ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
 <span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
 </code></pre>
-<p>The last command will print Spark version if everything goes well</p>
+<p>The last command will print the Spark version if everything goes well</p>
 <ol start="6">
 <li>Verify Spark under a Shell task</li>
 </ol>
@@ -518,7 +518,7 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <p>Run a DolphinScheduler release in Kubernetes (See <strong>Installing the Chart</strong>)</p>
 </li>
 <li>
-<p>Copy the Spark 3.1.1 release binary into Docker container</p>
+<p>Copy the Spark 3.1.1 release binary into the Docker container</p>
 </li>
 </ol>
 <pre><code class="language-bash">kubectl cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
@@ -535,7 +535,7 @@ rm -f spark-3.1.1-bin-hadoop2.7.tgz
 ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
 <span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
 </code></pre>
-<p>The last command will print Spark version if everything goes well</p>
+<p>The last command will print the Spark version if everything goes well</p>
 <ol start="6">
 <li>Verify Spark under a Shell task</li>
 </ol>
@@ -543,7 +543,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </code></pre>
 <p>Check whether the task log contains the output like <code>Pi is roughly 3.146015</code></p>
 <h3>How to support shared storage between Master, Worker and Api server?</h3>
-<p>For example, Master, Worker and Api server may use Hadoop at the same time</p>
+<p>For example, Master, Worker and API server may use Hadoop at the same time</p>
 <ol>
 <li>Modify the following configurations in <code>values.yaml</code></li>
 </ol>

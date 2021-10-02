@@ -49,7 +49,7 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 
 </code></pre>
 <pre><code> Notes：
- - Because the task execution service is based on 'sudo -u {linux-user}' to switch between different Linux users to implement multi-tenant running jobs, the deployment user needs to have sudo permissions and is passwordless. The first-time learners who can ignore it if they don't understand.
+ - Because the task execution service is based on 'sudo -u {linux-user}' to switch between different Linux users to implement multi-tenant running jobs, the deployment user needs to have sudo permissions and is passwordless. The first-time learners can ignore it if they don't understand.
  - If find the &quot;Default requiretty&quot; in the &quot;/etc/sudoers&quot; file, also comment out.
  - If you need to use resource upload, you need to assign the user of permission to operate the local file system, HDFS or MinIO.
 </code></pre>
@@ -213,7 +213,7 @@ zkQuorum=&quot;192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181&quot;
 installPath=&quot;/opt/soft/dolphinscheduler&quot;
 <span class="hljs-meta">
 #</span><span class="bash"> deployment user</span>
-<span class="hljs-meta">#</span><span class="bash"> Note: the deployment user needs to have sudo privileges and permissions to operate hdfs. If hdfs is enabled, the root directory needs to be created by itself</span>
+<span class="hljs-meta">#</span><span class="bash"> Note: the deployment user needs to have sudo privileges and permissions to operate HDFS. If HDFS is enabled, the root directory needs to be created by itself</span>
 deployUser=&quot;dolphinscheduler&quot;
 <span class="hljs-meta">
 #</span><span class="bash"> alert config，take QQ email <span class="hljs-keyword">for</span> example</span>
@@ -237,10 +237,10 @@ mailUser=&quot;xxx@qq.com&quot;
 <span class="hljs-meta">#</span><span class="bash"> note: The mail.passwd is email service authorization code, not the email login password.</span>
 mailPassword=&quot;xxx&quot;
 <span class="hljs-meta">
-#</span><span class="bash"> Whether TLS mail protocol is supported,<span class="hljs-literal">true</span> is supported and <span class="hljs-literal">false</span> is not supported</span>
+#</span><span class="bash"> Whether TLS mail protocol is supported, <span class="hljs-literal">true</span> is supported and <span class="hljs-literal">false</span> is not supported</span>
 starttlsEnable=&quot;true&quot;
 <span class="hljs-meta">
-#</span><span class="bash"> Whether TLS mail protocol is supported,<span class="hljs-literal">true</span> is supported and <span class="hljs-literal">false</span> is not supported。</span>
+#</span><span class="bash"> Whether TLS mail protocol is supported, <span class="hljs-literal">true</span> is supported and <span class="hljs-literal">false</span> is not supported.</span>
 <span class="hljs-meta">#</span><span class="bash"> note: only one of TLS and SSL can be <span class="hljs-keyword">in</span> the <span class="hljs-literal">true</span> state.</span>
 sslEnable=&quot;false&quot;
 <span class="hljs-meta">
@@ -252,18 +252,18 @@ sslTrust=&quot;smtp.qq.com&quot;
 resourceStorageType=&quot;HDFS&quot;
 <span class="hljs-meta">
 #</span><span class="bash"> If resourceStorageType = HDFS, and your Hadoop Cluster NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml <span class="hljs-keyword">in</span> the installPath/conf directory. In this example, it is placed under /opt/soft/dolphinscheduler/conf, and configure the namenode cluster name; <span class="hljs-keyword">if</span> the NameNode is not HA, modify it to a specific IP or host name.</span>
-<span class="hljs-meta">#</span><span class="bash"> <span class="hljs-keyword">if</span> S3，write S3 address，HA，<span class="hljs-keyword">for</span> example ：s3a://dolphinscheduler，</span>
+<span class="hljs-meta">#</span><span class="bash"> <span class="hljs-keyword">if</span> S3，write S3 address，HA，<span class="hljs-keyword">for</span> example: s3a://dolphinscheduler，</span>
 <span class="hljs-meta">#</span><span class="bash"> Note，s3 be sure to create the root directory /dolphinscheduler</span>
 defaultFS=&quot;hdfs://mycluster:8020&quot;
 <span class="hljs-meta">
 
-#</span><span class="bash"> <span class="hljs-keyword">if</span> not use hadoop resourcemanager, please keep default value; <span class="hljs-keyword">if</span> resourcemanager HA <span class="hljs-built_in">enable</span>, please <span class="hljs-built_in">type</span> the HA ips ; <span class="hljs-keyword">if</span> resourcemanager is single, make this value empty</span>
+#</span><span class="bash"> <span class="hljs-keyword">if</span> not use Hadoop resourcemanager, please keep default value; <span class="hljs-keyword">if</span> resourcemanager HA <span class="hljs-built_in">enable</span>, please <span class="hljs-built_in">type</span> the HA ips ; <span class="hljs-keyword">if</span> resourcemanager is single, make this value empty</span>
 yarnHaIps=&quot;192.168.xx.xx,192.168.xx.xx&quot;
 <span class="hljs-meta">
-#</span><span class="bash"> <span class="hljs-keyword">if</span> resourcemanager HA <span class="hljs-built_in">enable</span> or not use resourcemanager, please skip this value setting; If resourcemanager is single, you only need to replace yarnIp1 to actual resourcemanager hostname.</span>
+#</span><span class="bash"> <span class="hljs-keyword">if</span> resourcemanager HA <span class="hljs-built_in">enable</span> or not use resourcemanager, please skip this value setting; If resourcemanager is single, you only need to replace yarnIp1 with actual resourcemanager hostname.</span>
 singleYarnIp=&quot;yarnIp1&quot;
 <span class="hljs-meta">
-#</span><span class="bash"> resource store on HDFS/S3 path, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have <span class="hljs-built_in">read</span> write permissions。/dolphinscheduler is recommended</span>
+#</span><span class="bash"> resource store on HDFS/S3 path, resource file will store to this Hadoop HDFS path, self configuration, please make sure the directory exists on HDFS and have read-write permissions. /dolphinscheduler is recommended</span>
 resourceUploadPath=&quot;/dolphinscheduler&quot;
 <span class="hljs-meta">
 #</span><span class="bash"> who have permissions to create directory under HDFS/S3 root path</span>

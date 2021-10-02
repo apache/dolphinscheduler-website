@@ -416,14 +416,14 @@ COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 <li>Modify all <code>image</code> fields to <code>apache/dolphinscheduler:mysql-driver</code> in <code>docker-compose.yml</code></li>
 </ol>
 <blockquote>
-<p>If you want to deploy dolphinscheduler on Docker Swarm, you need modify <code>docker-stack.yml</code></p>
+<p>If you want to deploy dolphinscheduler on Docker Swarm, you need to modify <code>docker-stack.yml</code></p>
 </blockquote>
 <ol start="5">
 <li>
 <p>Comment the <code>dolphinscheduler-postgresql</code> block in <code>docker-compose.yml</code></p>
 </li>
 <li>
-<p>Add <code>dolphinscheduler-mysql</code> service in <code>docker-compose.yml</code> (<strong>Optional</strong>, you can directly use a external MySQL database)</p>
+<p>Add <code>dolphinscheduler-mysql</code> service in <code>docker-compose.yml</code> (<strong>Optional</strong>, you can directly use an external MySQL database)</p>
 </li>
 <li>
 <p>Modify DATABASE environment variables in <code>config.env.sh</code></p>
@@ -469,7 +469,7 @@ COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 <li>Modify all <code>image</code> fields to <code>apache/dolphinscheduler:mysql-driver</code> in <code>docker-compose.yml</code></li>
 </ol>
 <blockquote>
-<p>If you want to deploy dolphinscheduler on Docker Swarm, you need modify <code>docker-stack.yml</code></p>
+<p>If you want to deploy dolphinscheduler on Docker Swarm, you need to modify <code>docker-stack.yml</code></p>
 </blockquote>
 <ol start="5">
 <li>
@@ -504,14 +504,14 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <li>Modify all <code>image</code> fields to <code>apache/dolphinscheduler:oracle-driver</code> in <code>docker-compose.yml</code></li>
 </ol>
 <blockquote>
-<p>If you want to deploy dolphinscheduler on Docker Swarm, you need modify <code>docker-stack.yml</code></p>
+<p>If you want to deploy dolphinscheduler on Docker Swarm, you need to modify <code>docker-stack.yml</code></p>
 </blockquote>
 <ol start="5">
 <li>
 <p>Run a dolphinscheduler (See <strong>How to use this docker image</strong>)</p>
 </li>
 <li>
-<p>Add a Oracle datasource in <code>Datasource manage</code></p>
+<p>Add an Oracle datasource in <code>Datasource manage</code></p>
 </li>
 </ol>
 <h3>How to support Python 2 pip and custom requirements.txt?</h3>
@@ -537,7 +537,7 @@ RUN apt-get update &amp;&amp; \
 <li>Modify all <code>image</code> fields to <code>apache/dolphinscheduler:pip</code> in <code>docker-compose.yml</code></li>
 </ol>
 <blockquote>
-<p>If you want to deploy dolphinscheduler on Docker Swarm, you need modify <code>docker-stack.yml</code></p>
+<p>If you want to deploy dolphinscheduler on Docker Swarm, you need to modify <code>docker-stack.yml</code></p>
 </blockquote>
 <ol start="4">
 <li>
@@ -568,7 +568,7 @@ RUN apt-get update &amp;&amp; \
 <li>Modify all <code>image</code> fields to <code>apache/dolphinscheduler:python3</code> in <code>docker-compose.yml</code></li>
 </ol>
 <blockquote>
-<p>If you want to deploy dolphinscheduler on Docker Swarm, you need modify <code>docker-stack.yml</code></p>
+<p>If you want to deploy dolphinscheduler on Docker Swarm, you need to modify <code>docker-stack.yml</code></p>
 </blockquote>
 <ol start="4">
 <li>
@@ -607,7 +607,7 @@ rm -f spark-2.4.7-bin-hadoop2.7.tgz
 ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
 <span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
 </code></pre>
-<p>The last command will print Spark version if everything goes well</p>
+<p>The last command will print the Spark version if everything goes well</p>
 <ol start="5">
 <li>Verify Spark under a Shell task</li>
 </ol>
@@ -656,7 +656,7 @@ rm -f spark-3.1.1-bin-hadoop2.7.tgz
 ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
 <span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
 </code></pre>
-<p>The last command will print Spark version if everything goes well</p>
+<p>The last command will print the Spark version if everything goes well</p>
 <ol start="5">
 <li>Verify Spark under a Shell task</li>
 </ol>
@@ -669,10 +669,10 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </blockquote>
 <p>For example, Master, Worker and Api server may use Hadoop at the same time</p>
 <ol>
-<li>Modify the volume <code>dolphinscheduler-shared-local</code> to support nfs in <code>docker-compose.yml</code></li>
+<li>Modify the volume <code>dolphinscheduler-shared-local</code> to support NFS in <code>docker-compose.yml</code></li>
 </ol>
 <blockquote>
-<p>If you want to deploy dolphinscheduler on Docker Swarm, you need modify <code>docker-stack.yml</code></p>
+<p>If you want to deploy dolphinscheduler on Docker Swarm, you need to modify <code>docker-stack.yml</code></p>
 </blockquote>
 <pre><code class="language-yaml"><span class="hljs-attr">volumes:</span>
   <span class="hljs-attr">dolphinscheduler-shared-local:</span>
@@ -683,7 +683,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </code></pre>
 <ol start="2">
 <li>
-<p>Put the Hadoop into the nfs</p>
+<p>Put the Hadoop into the NFS</p>
 </li>
 <li>
 <p>Ensure that <code>$HADOOP_HOME</code> and <code>$HADOOP_CONF_DIR</code> are correct</p>
@@ -700,10 +700,10 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 FS_DEFAULT_FS=file:///
 </code></pre>
 <ol start="2">
-<li>Modify the volume <code>dolphinscheduler-resource-local</code> to support nfs in <code>docker-compose.yml</code></li>
+<li>Modify the volume <code>dolphinscheduler-resource-local</code> to support NFS in <code>docker-compose.yml</code></li>
 </ol>
 <blockquote>
-<p>If you want to deploy dolphinscheduler on Docker Swarm, you need modify <code>docker-stack.yml</code></p>
+<p>If you want to deploy dolphinscheduler on Docker Swarm, you need to modify <code>docker-stack.yml</code></p>
 </blockquote>
 <pre><code class="language-yaml"><span class="hljs-attr">volumes:</span>
   <span class="hljs-attr">dolphinscheduler-resource-local:</span>
@@ -723,10 +723,10 @@ FS_S3A_SECRET_KEY=MINIO_SECRET_KEY
 </code></pre>
 <p><code>BUCKET_NAME</code>, <code>MINIO_IP</code>, <code>MINIO_ACCESS_KEY</code> and <code>MINIO_SECRET_KEY</code> need to be modified to actual values</p>
 <blockquote>
-<p><strong>Note</strong>: <code>MINIO_IP</code> can only use IP instead of domain name, because DolphinScheduler currently doesn't support S3 path style access</p>
+<p><strong>Note</strong>: <code>MINIO_IP</code> can only use IP instead of the domain name, because DolphinScheduler currently doesn't support S3 path style access</p>
 </blockquote>
 <h3>How to configure SkyWalking?</h3>
-<p>Modify SKYWALKING environment variables in <code>config.env.sh</code>:</p>
+<p>Modify SkyWalking environment variables in <code>config.env.sh</code>:</p>
 <pre><code>SKYWALKING_ENABLE=true
 SW_AGENT_COLLECTOR_BACKEND_SERVICES=127.0.0.1:11800
 SW_GRPC_LOG_SERVER_HOST=127.0.0.1
@@ -735,42 +735,42 @@ SW_GRPC_LOG_SERVER_PORT=11800
 <h2>Appendix-Environment Variables</h2>
 <h3>Database</h3>
 <p><strong><code>DATABASE_TYPE</code></strong></p>
-<p>This environment variable sets the type for database. The default value is <code>postgresql</code>.</p>
+<p>This environment variable sets the type for the database. The default value is <code>postgresql</code>.</p>
 <p><strong>Note</strong>: You must be specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
 <p><strong><code>DATABASE_DRIVER</code></strong></p>
-<p>This environment variable sets the type for database. The default value is <code>org.postgresql.Driver</code>.</p>
-<p><strong>Note</strong>: You must be specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
+<p>This environment variable sets the type for the database. The default value is <code>org.postgresql.Driver</code>.</p>
+<p><strong>Note</strong>: You must specify it when starting a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
 <p><strong><code>DATABASE_HOST</code></strong></p>
-<p>This environment variable sets the host for database. The default value is <code>127.0.0.1</code>.</p>
-<p><strong>Note</strong>: You must be specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
+<p>This environment variable sets the host for the database. The default value is <code>127.0.0.1</code>.</p>
+<p><strong>Note</strong>: You must specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
 <p><strong><code>DATABASE_PORT</code></strong></p>
-<p>This environment variable sets the port for database. The default value is <code>5432</code>.</p>
-<p><strong>Note</strong>: You must be specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
+<p>This environment variable sets the port for the database. The default value is <code>5432</code>.</p>
+<p><strong>Note</strong>: You must specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
 <p><strong><code>DATABASE_USERNAME</code></strong></p>
-<p>This environment variable sets the username for database. The default value is <code>root</code>.</p>
-<p><strong>Note</strong>: You must be specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
+<p>This environment variable sets the username for the database. The default value is <code>root</code>.</p>
+<p><strong>Note</strong>: You must specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
 <p><strong><code>DATABASE_PASSWORD</code></strong></p>
-<p>This environment variable sets the password for database. The default value is <code>root</code>.</p>
-<p><strong>Note</strong>: You must be specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
+<p>This environment variable sets the password for the database. The default value is <code>root</code>.</p>
+<p><strong>Note</strong>: You must specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
 <p><strong><code>DATABASE_DATABASE</code></strong></p>
-<p>This environment variable sets the database for database. The default value is <code>dolphinscheduler</code>.</p>
-<p><strong>Note</strong>: You must be specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
+<p>This environment variable sets the database for the database. The default value is <code>dolphinscheduler</code>.</p>
+<p><strong>Note</strong>: You must specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
 <p><strong><code>DATABASE_PARAMS</code></strong></p>
-<p>This environment variable sets the database for database. The default value is <code>characterEncoding=utf8</code>.</p>
-<p><strong>Note</strong>: You must be specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
+<p>This environment variable sets the database for the database. The default value is <code>characterEncoding=utf8</code>.</p>
+<p><strong>Note</strong>: You must specify it when starting a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
 <h3>ZooKeeper</h3>
 <p><strong><code>ZOOKEEPER_QUORUM</code></strong></p>
 <p>This environment variable sets zookeeper quorum. The default value is <code>127.0.0.1:2181</code>.</p>
-<p><strong>Note</strong>: You must be specify it when start a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>.</p>
+<p><strong>Note</strong>: You must specify it when starting a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>.</p>
 <p><strong><code>ZOOKEEPER_ROOT</code></strong></p>
 <p>This environment variable sets zookeeper root directory for dolphinscheduler. The default value is <code>/dolphinscheduler</code>.</p>
 <h3>Common</h3>
 <p><strong><code>DOLPHINSCHEDULER_OPTS</code></strong></p>
-<p>This environment variable sets jvm options for dolphinscheduler, suitable for <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>, <code>logger-server</code>. The default value is empty.</p>
+<p>This environment variable sets JVM options for dolphinscheduler, suitable for <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>, <code>logger-server</code>. The default value is empty.</p>
 <p><strong><code>DATA_BASEDIR_PATH</code></strong></p>
-<p>User data directory path, self configuration, please make sure the directory exists and have read write permissions. The default value is <code>/tmp/dolphinscheduler</code></p>
+<p>User data directory path, self configuration, please make sure the directory exists and have read-write permissions. The default value is <code>/tmp/dolphinscheduler</code></p>
 <p><strong><code>RESOURCE_STORAGE_TYPE</code></strong></p>
-<p>This environment variable sets resource storage type for dolphinscheduler like <code>HDFS</code>, <code>S3</code>, <code>NONE</code>. The default value is <code>HDFS</code>.</p>
+<p>This environment variable sets resource storage types for dolphinscheduler like <code>HDFS</code>, <code>S3</code>, <code>NONE</code>. The default value is <code>HDFS</code>.</p>
 <p><strong><code>RESOURCE_UPLOAD_PATH</code></strong></p>
 <p>This environment variable sets resource store path on HDFS/S3 for resource storage. The default value is <code>/dolphinscheduler</code>.</p>
 <p><strong><code>FS_DEFAULT_FS</code></strong></p>
@@ -782,31 +782,31 @@ SW_GRPC_LOG_SERVER_PORT=11800
 <p><strong><code>FS_S3A_SECRET_KEY</code></strong></p>
 <p>This environment variable sets s3 secret key for resource storage. The default value is <code>xxxxxxx</code>.</p>
 <p><strong><code>HADOOP_SECURITY_AUTHENTICATION_STARTUP_STATE</code></strong></p>
-<p>This environment variable sets whether to startup kerberos. The default value is <code>false</code>.</p>
+<p>This environment variable sets whether to startup Kerberos. The default value is <code>false</code>.</p>
 <p><strong><code>JAVA_SECURITY_KRB5_CONF_PATH</code></strong></p>
 <p>This environment variable sets java.security.krb5.conf path. The default value is <code>/opt/krb5.conf</code>.</p>
 <p><strong><code>LOGIN_USER_KEYTAB_USERNAME</code></strong></p>
-<p>This environment variable sets login user from keytab username. The default value is <code>hdfs@HADOOP.COM</code>.</p>
+<p>This environment variable sets login user from the keytab username. The default value is <code>hdfs@HADOOP.COM</code>.</p>
 <p><strong><code>LOGIN_USER_KEYTAB_PATH</code></strong></p>
-<p>This environment variable sets login user from keytab path. The default value is <code>/opt/hdfs.keytab</code>.</p>
+<p>This environment variable sets login user from the keytab path. The default value is <code>/opt/hdfs.keytab</code>.</p>
 <p><strong><code>KERBEROS_EXPIRE_TIME</code></strong></p>
-<p>This environment variable sets kerberos expire time, the unit is hour. The default value is <code>2</code>.</p>
+<p>This environment variable sets Kerberos expire time, the unit is hour. The default value is <code>2</code>.</p>
 <p><strong><code>HDFS_ROOT_USER</code></strong></p>
-<p>This environment variable sets hdfs root user when resource.storage.type=HDFS. The default value is <code>hdfs</code>.</p>
+<p>This environment variable sets HDFS root user when resource.storage.type=HDFS. The default value is <code>hdfs</code>.</p>
 <p><strong><code>RESOURCE_MANAGER_HTTPADDRESS_PORT</code></strong></p>
-<p>This environment variable sets resource manager httpaddress port. The default value is <code>8088</code>.</p>
+<p>This environment variable sets resource manager HTTP address port. The default value is <code>8088</code>.</p>
 <p><strong><code>YARN_RESOURCEMANAGER_HA_RM_IDS</code></strong></p>
 <p>This environment variable sets yarn resourcemanager ha rm ids. The default value is empty.</p>
 <p><strong><code>YARN_APPLICATION_STATUS_ADDRESS</code></strong></p>
 <p>This environment variable sets yarn application status address. The default value is <code>http://ds1:%s/ws/v1/cluster/apps/%s</code>.</p>
 <p><strong><code>SKYWALKING_ENABLE</code></strong></p>
-<p>This environment variable sets whether to enable skywalking. The default value is <code>false</code>.</p>
+<p>This environment variable sets whether to enable SkyWalking. The default value is <code>false</code>.</p>
 <p><strong><code>SW_AGENT_COLLECTOR_BACKEND_SERVICES</code></strong></p>
-<p>This environment variable sets agent collector backend services for skywalking. The default value is <code>127.0.0.1:11800</code>.</p>
+<p>This environment variable sets agent collector backend services for SkyWalking. The default value is <code>127.0.0.1:11800</code>.</p>
 <p><strong><code>SW_GRPC_LOG_SERVER_HOST</code></strong></p>
-<p>This environment variable sets grpc log server host for skywalking. The default value is <code>127.0.0.1</code>.</p>
+<p>This environment variable sets gRPC log server host for SkyWalking. The default value is <code>127.0.0.1</code>.</p>
 <p><strong><code>SW_GRPC_LOG_SERVER_PORT</code></strong></p>
-<p>This environment variable sets grpc log server port for skywalking. The default value is <code>11800</code>.</p>
+<p>This environment variable sets gRPC log server port for SkyWalking. The default value is <code>11800</code>.</p>
 <p><strong><code>HADOOP_HOME</code></strong></p>
 <p>This environment variable sets <code>HADOOP_HOME</code>. The default value is <code>/opt/soft/hadoop</code>.</p>
 <p><strong><code>HADOOP_CONF_DIR</code></strong></p>
@@ -827,7 +827,7 @@ SW_GRPC_LOG_SERVER_PORT=11800
 <p>This environment variable sets <code>DATAX_HOME</code>. The default value is <code>/opt/soft/datax</code>.</p>
 <h3>Master Server</h3>
 <p><strong><code>MASTER_SERVER_OPTS</code></strong></p>
-<p>This environment variable sets jvm options for <code>master-server</code>. The default value is <code>-Xms1g -Xmx1g -Xmn512m</code>.</p>
+<p>This environment variable sets JVM options for <code>master-server</code>. The default value is <code>-Xms1g -Xmx1g -Xmn512m</code>.</p>
 <p><strong><code>MASTER_EXEC_THREADS</code></strong></p>
 <p>This environment variable sets exec thread number for <code>master-server</code>. The default value is <code>100</code>.</p>
 <p><strong><code>MASTER_EXEC_TASK_NUM</code></strong></p>
@@ -843,25 +843,25 @@ SW_GRPC_LOG_SERVER_PORT=11800
 <p><strong><code>MASTER_TASK_COMMIT_INTERVAL</code></strong></p>
 <p>This environment variable sets task commit interval for <code>master-server</code>. The default value is <code>1</code>.</p>
 <p><strong><code>MASTER_MAX_CPULOAD_AVG</code></strong></p>
-<p>This environment variable sets max cpu load avg for <code>master-server</code>. The default value is <code>-1</code>.</p>
+<p>This environment variable sets max CPU load avg for <code>master-server</code>. The default value is <code>-1</code>.</p>
 <p><strong><code>MASTER_RESERVED_MEMORY</code></strong></p>
 <p>This environment variable sets reserved memory for <code>master-server</code>, the unit is G. The default value is <code>0.3</code>.</p>
 <h3>Worker Server</h3>
 <p><strong><code>WORKER_SERVER_OPTS</code></strong></p>
-<p>This environment variable sets jvm options for <code>worker-server</code>. The default value is <code>-Xms1g -Xmx1g -Xmn512m</code>.</p>
+<p>This environment variable sets JVM options for <code>worker-server</code>. The default value is <code>-Xms1g -Xmx1g -Xmn512m</code>.</p>
 <p><strong><code>WORKER_EXEC_THREADS</code></strong></p>
 <p>This environment variable sets exec thread number for <code>worker-server</code>. The default value is <code>100</code>.</p>
 <p><strong><code>WORKER_HEARTBEAT_INTERVAL</code></strong></p>
 <p>This environment variable sets heartbeat interval for <code>worker-server</code>. The default value is <code>10</code>.</p>
 <p><strong><code>WORKER_MAX_CPULOAD_AVG</code></strong></p>
-<p>This environment variable sets max cpu load avg for <code>worker-server</code>. The default value is <code>-1</code>.</p>
+<p>This environment variable sets max CPU load avg for <code>worker-server</code>. The default value is <code>-1</code>.</p>
 <p><strong><code>WORKER_RESERVED_MEMORY</code></strong></p>
 <p>This environment variable sets reserved memory for <code>worker-server</code>, the unit is G. The default value is <code>0.3</code>.</p>
 <p><strong><code>WORKER_GROUPS</code></strong></p>
 <p>This environment variable sets groups for <code>worker-server</code>. The default value is <code>default</code>.</p>
 <h3>Alert Server</h3>
 <p><strong><code>ALERT_SERVER_OPTS</code></strong></p>
-<p>This environment variable sets jvm options for <code>alert-server</code>. The default value is <code>-Xms512m -Xmx512m -Xmn256m</code>.</p>
+<p>This environment variable sets JVM options for <code>alert-server</code>. The default value is <code>-Xms512m -Xmx512m -Xmn256m</code>.</p>
 <p><strong><code>XLS_FILE_PATH</code></strong></p>
 <p>This environment variable sets xls file path for <code>alert-server</code>. The default value is <code>/tmp/xls</code>.</p>
 <p><strong><code>MAIL_SERVER_HOST</code></strong></p>
@@ -892,10 +892,10 @@ SW_GRPC_LOG_SERVER_PORT=11800
 <p>This environment variable sets enterprise wechat users for <code>alert-server</code>. The default value is empty.</p>
 <h3>Api Server</h3>
 <p><strong><code>API_SERVER_OPTS</code></strong></p>
-<p>This environment variable sets jvm options for <code>api-server</code>. The default value is <code>-Xms512m -Xmx512m -Xmn256m</code>.</p>
+<p>This environment variable sets JVM options for <code>api-server</code>. The default value is <code>-Xms512m -Xmx512m -Xmn256m</code>.</p>
 <h3>Logger Server</h3>
 <p><strong><code>LOGGER_SERVER_OPTS</code></strong></p>
-<p>This environment variable sets jvm options for <code>logger-server</code>. The default value is <code>-Xms512m -Xmx512m -Xmn256m</code>.</p>
+<p>This environment variable sets JVM options for <code>logger-server</code>. The default value is <code>-Xms512m -Xmx512m -Xmn256m</code>.</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><a href="/en-us/community/development/subscribe.html"><p>Email List</p></a></li><li><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><a href="https://twitter.com/dolphinschedule"><p>Twitter</p></a></li><li><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><p>Stack Overflow</p></a></li><li><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/backend-development.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
