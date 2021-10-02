@@ -49,9 +49,9 @@ spring.datasource.username=root
 spring.datasource.password=123456
 ```
 
-v. Refresh the dao module and run the main method of org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler to automatically insert the tables and data which are required by the project.
+v. Refresh the dao module and run the main method of org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler to automatically insert the tables and data which are required by the project.If you encounter problems such as non-existent database fields, you can try to solve them by running the sql file of the corresponding database under `dolphinscheduler\sql`.
 
-vi. Modify the registry.properties of the dolphinscheduler-service module:
+vi. Modify registry.properties for dolphinscheduler-service module and worker.properties for dolphinscheduler-server module respectively, note: `1.3.6-SNAPSHOT` here is based on the actual generated file
 
 ```properties
 #registry.plugin.dir config the Registry Plugin dir.
@@ -59,6 +59,11 @@ registry.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-S
 
 registry.plugin.name=zookeeper
 registry.servers=127.0.0.1:2181
+```
+
+```properties
+#task.plugin.dir config the #task.plugin.dir config the Task Plugin dir . WorkerServer while find and load the Task Plugin Jar from this dir when deploy and start WorkerServer on the server .
+task.plugin.dir=./dolphinscheduler-task-plugin/dolphinscheduler-task-shell/target/dolphinscheduler-task-shell-1.3.6-SNAPSHOT
 ```
 
 vii. Add the console output to logback-worker.xml, logback-master.xml, and logback-api.xml.
