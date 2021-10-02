@@ -39,7 +39,7 @@
 ![image.png](/img/metadata-erd/user-queue-datasource.png)
 
 - Multiple users can belong to one tenant
-- The queue field in t_ds_user table stores the queue_name information in t_ds_queue table, but t_ds_tenant stores queue information using queue_id. During the execution of the process definition, the user queue has the highest priority. If the user queue is empty, the tenant queue is used.
+- The queue field in the t_ds_user table stores the queue_name information in the t_ds_queue table, but t_ds_tenant stores queue information using queue_id. During the execution of the process definition, the user queue has the highest priority. If the user queue is empty, the tenant queue is used.
 - The user_id field in the t_ds_datasource table indicates the user who created the data source. The user_id in t_ds_relation_datasource_user indicates the user who has permission to the data source.
 <a name="7euSN"></a>
 #### Project Resource Alert
@@ -108,10 +108,10 @@
 | schedule_time | datetime | schedule time |
 | command_start_time | datetime | command start time |
 | global_params | text | global parameters |
-| process_instance_json | longtext | process instance json(copy的process definition 的json) |
+| process_instance_json | longtext | process instance json |
 | flag | tinyint | process instance is available: 0 not available, 1 available |
 | update_time | timestamp | update time |
-| is_sub_process | int | whether the process is sub process:  1 sub-process，0 not sub-process |
+| is_sub_process | int | whether the process is sub process: 1 sub-process, 0 not sub-process |
 | executor_id | int | executor id |
 | locations | text | Node location information |
 | connects | text | Node connection information |

@@ -30,7 +30,7 @@ Generally, projects and processes are created through pages, but integration wit
                                                                              >
 3. Open Postman, fill in the API address, and enter the Token in Headers, and then send the request to view the result
     ```
-    token:The Token just generated
+    token: The Token just generated
     ```
 <p align="center">
    <img src="/img/test-api.png" width="80%" />
