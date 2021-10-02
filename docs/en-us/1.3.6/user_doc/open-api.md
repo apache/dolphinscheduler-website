@@ -1,12 +1,11 @@
-
 # Open API
 
 ## Background
 Generally, projects and processes are created through pages, but integration with third-party systems requires API calls to manage projects and workflows.
 
-## Operating steps
+## The Operation Steps of DS API Calls
 
-### Create token
+### Create a token
 1. Log in to the scheduling system, click "Security", then click "Token manage" on the left, and click "Create token" to create a token.
 
 <p align="center">
@@ -36,3 +35,30 @@ Generally, projects and processes are created through pages, but integration wit
 <p align="center">
    <img src="/img/test-api.png" width="80%" />
  </p>  
+
+### Create a project
+Here is an example of creating a project named "wudl-flink-test"：
+<p align="center">
+   <img src="/img/api/create_project1.png" width="80%" />
+ </p>
+
+<p align="center">
+   <img src="/img/api/create_project2.png" width="80%" />
+ </p>
+
+<p align="center">
+   <img src="/img/api/create_project3.png" width="80%" />
+ </p>
+The returned msg information is "success", indicating that we have successfully created the project through API.
+
+If you are interested in the source code of the project, please continue to read the following：
+### Appendix：The source code of creating a project
+<p align="center">
+   <img src="/img/api/create_source1.png" width="80%" />
+ </p>
+
+<p align="center">
+   <img src="/img/api/create_source2.png" width="80%" />
+ </p>
+
+

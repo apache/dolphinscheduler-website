@@ -45,6 +45,10 @@ export default {
             title: 'Open API',
             link: '/en-us/docs/1.3.6/user_doc/open-api.html',
           },
+          {
+            title: 'Flink',
+            link: '/en-us/docs/1.3.6/user_doc/flink-call.html',
+          },
         ],
       },
       {
@@ -73,7 +77,7 @@ export default {
         ],
       },
       {
-        title: "Integration",
+        title: 'Integration',
         children: [
           {
             title: 'Ambari Integration',
@@ -157,7 +161,10 @@ export default {
             title: 'API调用',
             link: '/zh-cn/docs/1.3.6/user_doc/open-api.html',
           },
-
+          {
+            title: 'Flink调用',
+            link: '/zh-cn/docs/1.3.6/user_doc/flink-call.html',
+          },
         ],
       },
       {
