@@ -77,7 +77,7 @@ export default {
           {
             key: 'docsdev',
             text: 'dev',
-            link: '/en-us/docs/dev/user_doc/alert_spi.html',
+            link: '/en-us/docs/dev/user_doc/dev_quick_start.html',
           },
         ],
       },
