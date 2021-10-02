@@ -57,7 +57,7 @@ The home page contains task status statistics, process status statistics, and wo
 6. Custom parameters (optional), refer to [Custom Parameters](#UserDefinedParameters);
 7. Click the "Confirm Add" button to save the task settings.
 
-- **Increase the order of task execution:** Click the icon in the upper right corner <img src="/img/line.png" width="35"/> to connect the task; as shown in the figure below, task 2 and task 3 are executed in parallel, When task 1 finished execute, tasks 2 and 3 will be executed simultaneously.
+- **Increase the order of task execution:** Click the icon in the upper right corner <img src="/img/line.png" width="35"/> to connect the task; as shown in the figure below, task 2 and task 3 are executed in parallel, When task 1 finished executing, tasks 2 and 3 will be executed simultaneously.
 
   <p align="center">
      <img src="/img/dag6.png" width="80%" />
@@ -581,9 +581,9 @@ worker.groups=default,test
 
 #### 6.1.3 Zookeeper monitoring
 
-- Mainly related configuration information of each worker and master in zookpeeper.
+- Mainly related configuration information of each worker and master in ZooKeeper.
 
-<p align="center">
+<p alignlinux ="center">
    <img src="/img/zookeeper-monitor-en.png" width="80%" />
  </p>
 
@@ -610,7 +610,7 @@ worker.groups=default,test
 
 #### 7.1 Shell node
 
-> Shell node, when the worker is executed, a temporary shell script is generated, and the linux user with the same name as the tenant executes the script.
+> Shell node, when the worker is executed, a temporary shell script is generated, and the Linux user with the same name as the tenant executes the script.
 
 - Click Project Management-Project Name-Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
 - Drag <img src="/img/shell.png" width="35"/> from the toolbar to the drawing board, as shown in the figure below:

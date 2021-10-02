@@ -3,7 +3,7 @@
 ### Create a queue
 
 1. Log in to the scheduling system, click "Security", then click "Queue manage" on the left, and click "Create queue" to create a queue.
-2. Fill in the name and value of queue, and click "Submit" 
+2. Fill in the name and value of the queue, and click "Submit" 
 
 <p align="center">
    <img src="/img/api/create_queue.png" width="80%" />
@@ -15,9 +15,9 @@
 ### Create a tenant 
 
 ```
-1.The tenant corresponds to a Linux user, which the user worker uses to submit jobs. If Linux OS environment does not have this user, the worker will create this user when executing the script.
-2.Both the tenant and the tenant code are unique and cannot be repeated, just like a person has a name and id number.  
-3.After creating a tenant, there will be a folder in the HDFS relevant directory.  
+1. The tenant corresponds to a Linux user, which the user worker uses to submit jobs. If Linux OS environment does not have this user, the worker will create this user when executing the script.
+2. Both the tenant and the tenant code are unique and cannot be repeated, just like a person has a name and id number.  
+3. After creating a tenant, there will be a folder in the HDFS relevant directory.  
 ```
 
 <p align="center">
@@ -71,7 +71,7 @@
 3. Open Postman, fill in the API address, and enter the Token in Headers, and then send the request to view the result
 
    ```
-   token:The Token just generated
+   token: The Token just generated
    ```
 
 <p align="center">

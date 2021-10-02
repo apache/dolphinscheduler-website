@@ -1,6 +1,6 @@
 
 # Overall Tasks Storage Structure
-All tasks created in Dolphinscheduler are saved in the t_ds_process_definition table.
+All tasks created in DolphinScheduler are saved in the t_ds_process_definition table.
 
 The following shows the 't_ds_process_definition' table structure:
 

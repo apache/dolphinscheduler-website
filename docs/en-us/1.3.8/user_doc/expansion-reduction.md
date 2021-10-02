@@ -21,7 +21,7 @@ This article describes how to add a new master service or worker service to an e
 - Check which version of DolphinScheduler is used in your existing environment, and get the installation package of the corresponding version, if the versions are different, there may be compatibility problems.
 - Confirm the unified installation directory of other nodes, this article assumes that DolphinScheduler is installed in /opt/ directory, and the full path is /opt/dolphinscheduler.
 - Please download the corresponding version of the installation package to the server installation directory, uncompress it and rename it to dolphinscheduler and store it in the /opt directory. 
-- Add database dependency package, this article use Mysql database, add mysql-connector-java driver package to /opt/dolphinscheduler/lib directory.
+- Add database dependency package, this article uses Mysql database, add mysql-connector-java driver package to /opt/dolphinscheduler/lib directory.
 ```shell
 # create the installation directory, please do not create the installation directory in /root, /home and other high privilege directories 
 mkdir -p /opt
@@ -55,7 +55,7 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
 ```markdown
  Attention:
- - Since it is sudo -u {linux-user} to switch between different linux users to run multi-tenant jobs, the deploying user needs to have sudo privileges and be password free.
+ - Since it is sudo -u {linux-user} to switch between different Linux users to run multi-tenant jobs, the deploying user needs to have sudo privileges and be password free.
  - If you find the line "Default requiretty" in the /etc/sudoers file, please also comment it out.
  - If resource uploads are used, you also need to assign read and write permissions to the deployment user on `HDFS or MinIO`.
 ```
