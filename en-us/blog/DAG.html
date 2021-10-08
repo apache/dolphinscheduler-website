@@ -44,11 +44,54 @@
 </ol>
 <p><strong>For example, the following DAG graph :</strong></p>
 <p><img src="https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG02.png?raw=true" alt="DAG02"></p>
-<p>In degree of node 1: 0, out degree: 2</p>
-<p>In degree of node 2: 1, out degree: 2</p>
-<p>In degree of node 3: 2, out degree: 1</p>
-<p>In degree of node 4: 2, out degree: 2</p>
-<p>In degree of node 5: 2, out degree: 0</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>in degree</th>
+<th>out degree</th>
+<th>count of in degree</th>
+<th>count of out degree</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node 1</td>
+<td>0</td>
+<td>Node 2,Node 4</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Node 2</td>
+<td>Node 1</td>
+<td>Node 3,Node 4</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Node 3</td>
+<td>Node 2,Node 4</td>
+<td>Node 5</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Node 4</td>
+<td>Node 1,Node 2</td>
+<td>Node 3,Node 5</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Node 5</td>
+<td>Node 3,Node 4</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Its topological sorting process is:</strong></p>
 <p><img src="https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG03.png?raw=true" alt="DAG03"></p>
 <p>Therefore, the result of topological sorting is: {1,2,4,3,5}.</p>

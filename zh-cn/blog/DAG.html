@@ -57,11 +57,54 @@
 </ol>
 <p><strong>例如下面这个 DAG 图：</strong></p>
 <p><img src="https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG02.png?raw=true" alt="DAG02"></p>
-<p>结点1的入度：0，出度：2</p>
-<p>结点2的入度：1，出度：2</p>
-<p>结点3的入度：2，出度：1</p>
-<p>结点4的入度：2，出度：2</p>
-<p>结点5的入度：2，出度：0</p>
+<table>
+<thead>
+<tr>
+<th>结点</th>
+<th>入度结点</th>
+<th>出度结点</th>
+<th>入度结点个数</th>
+<th>出度结点个数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>结点1</td>
+<td>0</td>
+<td>结点2,结点4</td>
+<td>0个</td>
+<td>2个</td>
+</tr>
+<tr>
+<td>结点2</td>
+<td>结点1</td>
+<td>结点3,结点4</td>
+<td>1个</td>
+<td>2个</td>
+</tr>
+<tr>
+<td>结点3</td>
+<td>结点2,结点4</td>
+<td>结点5</td>
+<td>2个</td>
+<td>1个</td>
+</tr>
+<tr>
+<td>结点4</td>
+<td>结点1,结点2</td>
+<td>结点3,结点5</td>
+<td>2个</td>
+<td>2个</td>
+</tr>
+<tr>
+<td>结点5</td>
+<td>结点3,结点4</td>
+<td>0</td>
+<td>2个</td>
+<td>0个</td>
+</tr>
+</tbody>
+</table>
 <p>它的拓扑排序流程为：<img src="https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG03.png?raw=true" alt="DAG03"></p>
 <p>于是，得到拓扑排序后的结果是: {1,2,4,3,5} 。</p>
 <p>如果没有结点 2  —&gt; 结点 4 的这个箭头，那么如下：</p>
