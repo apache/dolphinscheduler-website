@@ -53,15 +53,17 @@
 
 ![DAG02](https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG02.png?raw=true)
 
-结点1的入度：0，出度：2
 
-结点2的入度：1，出度：2
+|结点|入度结点|出度结点|入度结点个数|出度结点个数|
+|----|----|----|----|----|
+|结点1|0|结点2,结点4|0个|2个|
+|结点2|结点1|结点3,结点4|1个|2个|
+|结点3|结点2,结点4|结点5|2个|1个|
+|结点4|结点1,结点2|结点3,结点5|2个|2个|
+|结点5|结点3,结点4|0|2个|0个|
 
-结点3的入度：2，出度：1
 
-结点4的入度：2，出度：2
 
-结点5的入度：2，出度：0
 
 它的拓扑排序流程为：![DAG03](https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG03.png?raw=true)
 
