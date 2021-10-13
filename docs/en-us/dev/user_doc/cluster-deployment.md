@@ -2,7 +2,7 @@
 
 # 1、Before you begin (please install requirement basic software by yourself)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7) : Choose One, JDBC Driver 5.1.47+ is required if MySQL is used
+ * PostgreSQL (8.2.15+) or MySQL (5.7) : Choose One, JDBC Driver 8.0.16+ is required if MySQL is used. If you upgrade from version 1.x to 2.x, remember update mysql connector by yourself.
  * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) : Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
  * ZooKeeper (3.4.6+) : Required
  * pstree or psmisc : "pstree" is required for Mac OS and "psmisc" is required for Fedora/Red/Hat/CentOS/Ubuntu/Debian
@@ -145,7 +145,7 @@ mysql -h192.168.xx.xx -P3306 -uroot -p
       vi conf/datasource.properties
     ```
 
-    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/)] package to lib under the directory, and then configure the database connection information correctly.
+    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/)](make sure download version 8.0.16+, 8.0.16 is be recommended) package to lib under the directory, and then configure the database connection information correctly.
 
     ```properties
       #postgre
