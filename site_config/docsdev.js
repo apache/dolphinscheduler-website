@@ -133,23 +133,23 @@ export default {
         children: [
           {
             title: 'Metadata',
-            link: '/en-us/docs/dev/user_doc/metadata-1.3.html',
+            link: '/en-us/docs/dev/user_doc/architecture/metadata.html',
           },
           {
             title: 'Architecture Design',
-            link: '/en-us/docs/dev/user_doc/architecture-design.html',
+            link: '/en-us/docs/dev/user_doc/architecture/design.html',
           },
           {
             title: 'Configuration File',
-            link: '/en-us/docs/dev/user_doc/configuration-file.html',
+            link: '/en-us/docs/dev/user_doc/architecture/configuration.html',
           },
           {
             title: 'Task Structure',
-            link: '/en-us/docs/dev/user_doc/task-structure.html',
+            link: '/en-us/docs/dev/user_doc/architecture/task-structure.html',
           },
           {
             title: 'Load Balance',
-            link: '/en-us/docs/dev/user_doc/load-balance.html',
+            link: '/en-us/docs/dev/user_doc/architecture/load-balance.html',
           },
         ],
       },
@@ -351,23 +351,23 @@ export default {
         children: [
           {
             title: '元数据文档',
-            link: '/zh-cn/docs/dev/user_doc/metadata-1.3.html',
+            link: '/zh-cn/docs/dev/user_doc/architecture/metadata-1.3.html',
           },
           {
             title: '架构设计',
-            link: '/zh-cn/docs/dev/user_doc/architecture-design.html',
+            link: '/zh-cn/docs/dev/user_doc/architecture/design.html',
           },
           {
             title: '配置文件',
-            link: '/zh-cn/docs/dev/user_doc/configuration-file.html',
+            link: '/zh-cn/docs/dev/user_doc/architecture/configuration.html',
           },
           {
             title: '任务结构',
-            link: '/zh-cn/docs/dev/user_doc/task-structure.html',
+            link: '/zh-cn/docs/dev/user_doc/architecture/task-structure.html',
           },
           {
             title: '负载均衡',
-            link: '/zh-cn/docs/dev/user_doc/load-balance.html',
+            link: '/zh-cn/docs/dev/user_doc/architecture/load-balance.html',
           },
         ],
       },
