@@ -34,12 +34,89 @@ export default {
         title: 'User Manual',
         children: [
           {
+            title: 'Introduction',
+            link: '/en-us/docs/dev/user_doc/user_guide/introduction.html',
+          },
+          {
             title: 'Quick Start',
             link: '/en-us/docs/dev/user_doc/quick-start.html',
           },
           {
-            title: 'User Manual',
-            link: '/en-us/docs/dev/user_doc/system-manual.html',
+            title: 'Homepage',
+            link: '/en-us/docs/dev/user_doc/user_guide/homepage.html',
+          },
+          {
+            title: 'Project',
+            link: '/en-us/docs/dev/user_doc/user_guide/project.html',
+          },
+          {
+            title: 'Resource',
+            link: '/en-us/docs/dev/user_doc/user_guide/resource.html',
+          },
+          {
+            title: 'Data Source',
+            link: '/en-us/docs/dev/user_doc/user_guide/data-source.html',
+          },
+          {
+            title: 'Security',
+            link: '/en-us/docs/dev/user_doc/user_guide/security.html',
+          },
+          {
+            title: 'Monitor',
+            link: '/en-us/docs/dev/user_doc/user_guide/monitor.html',
+          },
+          {
+            title: 'Task',
+            children: [
+              {
+                title: 'Shell',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/shell.html',
+              },
+              {
+                title: 'SubProcess',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/sub-process.html',
+              },
+              {
+                title: 'Dependent',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/dependent.html',
+              },
+              {
+                title: 'Stored Procedure',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/stored-procedure.html',
+              },
+              {
+                title: 'SQL',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/sql.html',
+              },
+              {
+                title: 'Spark',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/spark.html',
+              },
+              {
+                title: 'MapReduce',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/map-reduce.html',
+              },
+              {
+                title: 'Python',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/python.html',
+              },
+              {
+                title: 'Flink',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/flink.html',
+              },
+              {
+                title: 'HTTP',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/http.html',
+              },
+              {
+                title: 'DataX',
+                link: '/en-us/docs/dev/user_doc/user_guide/task/datax.html',
+              },
+            ],
+          },
+          {
+            title: 'Parameter',
+            link: '/en-us/docs/dev/user_doc/user_guide/parameter.html',
           },
           {
             title: 'Open API',
@@ -50,7 +127,7 @@ export default {
             link: '/en-us/docs/dev/user_doc/flink-call.html',
           },
           {
-            title: 'Parameter Introduction',
+            title: 'Parameter Intro',
             link: '/en-us/docs/dev/user_doc/parameters-introduction.html',
           },
         ],
@@ -179,12 +256,89 @@ export default {
         title: '用户手册',
         children: [
           {
+            title: '简介',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/introduction.html',
+          },
+          {
             title: '快速上手',
             link: '/zh-cn/docs/dev/user_doc/quick-start.html',
           },
           {
-            title: '用户手册',
-            link: '/zh-cn/docs/dev/user_doc/system-manual.html',
+            title: '首页',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/homepage.html',
+          },
+          {
+            title: '项目管理',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/project.html',
+          },
+          {
+            title: '资源中心',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/resource.html',
+          },
+          {
+            title: '数据源',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/data-source.html',
+          },
+          {
+            title: '安全中心',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/security.html',
+          },
+          {
+            title: '监控中心',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/monitor.html',
+          },
+          {
+            title: '任务类型',
+            children: [
+              {
+                title: 'Shell',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/shell.html',
+              },
+              {
+                title: 'SubProcess',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/sub-process.html',
+              },
+              {
+                title: 'Dependent',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/dependent.html',
+              },
+              {
+                title: 'Stored Procedure',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/stored-procedure.html',
+              },
+              {
+                title: 'SQL',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/sql.html',
+              },
+              {
+                title: 'Spark',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/spark.html',
+              },
+              {
+                title: 'MapReduce',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/map-reduce.html',
+              },
+              {
+                title: 'Python',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/python.html',
+              },
+              {
+                title: 'Flink',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/flink.html',
+              },
+              {
+                title: 'HTTP',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/http.html',
+              },
+              {
+                title: 'DataX',
+                link: '/zh-cn/docs/dev/user_doc/user_guide/task/datax.html',
+              },
+            ],
+          },
+          {
+            title: '参数',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/parameter.html',
           },
           {
             title: 'API调用',
