@@ -21,23 +21,23 @@ export default {
               },
               {
                 title: 'Standalone Deployment',
-                link: 'en-us/docs/dev/user_doc/guide/installation/standalone.html',
+                link: '/en-us/docs/dev/user_doc/guide/installation/standalone.html',
               },
               {
                 title: 'Cluster Deployment',
-                link: 'en-us/docs/dev/user_doc/guide/installation/cluster.html',
+                link: '/en-us/docs/dev/user_doc/guide/installation/cluster.html',
               },
               {
                 title: 'Docker Deployment',
-                link: 'en-us/docs/dev/user_doc/guide/installation/docker.html',
+                link: '/en-us/docs/dev/user_doc/guide/installation/docker.html',
               },
               {
                 title: 'Kubernetes Deployment',
-                link: 'en-us/docs/dev/user_doc/guide/installation/kubernetes.html',
+                link: '/en-us/docs/dev/user_doc/guide/installation/kubernetes.html',
               },
               {
                 title: 'SkyWalking-Agent Deployment',
-                link: 'en-us/docs/dev/user_doc/guide/installation/skywalking-agent.html',
+                link: '/en-us/docs/dev/user_doc/guide/installation/skywalking-agent.html',
               },
             ],
           },
