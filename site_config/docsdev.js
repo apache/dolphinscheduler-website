@@ -39,7 +39,7 @@ export default {
           },
           {
             title: 'Quick Start',
-            link: '/en-us/docs/dev/user_doc/quick-start.html',
+            link: '/en-us/docs/dev/user_doc/user_guide/quick-start.html',
           },
           {
             title: 'Homepage',
@@ -120,11 +120,11 @@ export default {
           },
           {
             title: 'Open API',
-            link: '/en-us/docs/dev/user_doc/open-api.html',
+            link: '/en-us/docs/dev/user_doc/user_guide/open-api.html',
           },
           {
             title: 'Flink',
-            link: '/en-us/docs/dev/user_doc/flink-call.html',
+            link: '/en-us/docs/dev/user_doc/user_guide/flink-call.html',
           },
         ],
       },
@@ -257,7 +257,7 @@ export default {
           },
           {
             title: '快速上手',
-            link: '/zh-cn/docs/dev/user_doc/quick-start.html',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/quick-start.html',
           },
           {
             title: '首页',
@@ -338,11 +338,11 @@ export default {
           },
           {
             title: 'API调用',
-            link: '/zh-cn/docs/dev/user_doc/open-api.html',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/open-api.html',
           },
           {
             title: 'Flink调用',
-            link: '/zh-cn/docs/dev/user_doc/flink-call.html',
+            link: '/zh-cn/docs/dev/user_doc/user_guide/flink-call.html',
           },
         ],
       },
