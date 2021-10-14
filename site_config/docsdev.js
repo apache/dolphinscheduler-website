@@ -158,7 +158,7 @@ export default {
         children: [
           {
             title: 'Ambari Integration',
-            link: '/en-us/docs/dev/user_doc/ambari-integration.html',
+            link: '/en-us/docs/dev/user_doc/integration/ambari.html',
           },
         ],
       },
