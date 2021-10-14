@@ -2,35 +2,6 @@ export default {
   'en-us': {
     sidemenu: [
       {
-        title: 'Deployment Document',
-        children: [
-          {
-            title: 'Hardware Environment',
-            link: '/en-us/docs/dev/user_doc/hardware-environment.html',
-          },
-          {
-            title: 'Standalone Deployment',
-            link: '/en-us/docs/dev/user_doc/standalone-deployment.html',
-          },
-          {
-            title: 'Cluster Deployment',
-            link: '/en-us/docs/dev/user_doc/cluster-deployment.html',
-          },
-          {
-            title: 'Docker Deployment',
-            link: '/en-us/docs/dev/user_doc/docker-deployment.html',
-          },
-          {
-            title: 'Kubernetes Deployment',
-            link: '/en-us/docs/dev/user_doc/kubernetes-deployment.html',
-          },
-          {
-            title: 'SkyWalking-Agent Deployment',
-            link: '/en-us/docs/dev/user_doc/skywalking-agent-deployment.html',
-          },
-        ],
-      },
-      {
         title: 'User Manual',
         children: [
           {
@@ -40,6 +11,35 @@ export default {
           {
             title: 'Quick Start',
             link: '/en-us/docs/dev/user_doc/guide/quick-start.html',
+          },
+          {
+            title: 'Installation',
+            children: [
+              {
+                title: 'Hardware Environment',
+                link: '/en-us/docs/dev/user_doc/guide/installation/hardware.html',
+              },
+              {
+                title: 'Standalone Deployment',
+                link: 'en-us/docs/dev/user_doc/guide/installation/standalone.html',
+              },
+              {
+                title: 'Cluster Deployment',
+                link: 'en-us/docs/dev/user_doc/guide/installation/cluster.html',
+              },
+              {
+                title: 'Docker Deployment',
+                link: 'en-us/docs/dev/user_doc/guide/installation/docker.html',
+              },
+              {
+                title: 'Kubernetes Deployment',
+                link: 'en-us/docs/dev/user_doc/guide/installation/kubernetes.html',
+              },
+              {
+                title: 'SkyWalking-Agent Deployment',
+                link: 'en-us/docs/dev/user_doc/guide/installation/skywalking-agent.html',
+              },
+            ],
           },
           {
             title: 'Homepage',
@@ -220,35 +220,6 @@ export default {
   'zh-cn': {
     sidemenu: [
       {
-        title: '部署文档',
-        children: [
-          {
-            title: '软硬件环境建议配置',
-            link: '/zh-cn/docs/dev/user_doc/hardware-environment.html',
-          },
-          {
-            title: '单机部署(Standalone)',
-            link: '/zh-cn/docs/dev/user_doc/standalone-deployment.html',
-          },
-          {
-            title: '集群部署(Cluster)',
-            link: '/zh-cn/docs/dev/user_doc/cluster-deployment.html',
-          },
-          {
-            title: 'Docker部署(Docker)',
-            link: '/zh-cn/docs/dev/user_doc/docker-deployment.html',
-          },
-          {
-            title: 'Kubernetes部署(Kubernetes)',
-            link: '/zh-cn/docs/dev/user_doc/kubernetes-deployment.html',
-          },
-          {
-            title: 'SkyWalking-Agent部署(SkyWalking)',
-            link: '/zh-cn/docs/dev/user_doc/skywalking-agent-deployment.html',
-          },
-        ],
-      },
-      {
         title: '用户手册',
         children: [
           {
@@ -258,6 +229,35 @@ export default {
           {
             title: '快速上手',
             link: '/zh-cn/docs/dev/user_doc/guide/quick-start.html',
+          },
+          {
+            title: '部署文档',
+            children: [
+              {
+                title: '软硬件环境建议配置',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/hardware.html',
+              },
+              {
+                title: '单机部署(Standalone)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/standalone.html',
+              },
+              {
+                title: '集群部署(Cluster)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/cluster.html',
+              },
+              {
+                title: 'Docker部署(Docker)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/docker.html',
+              },
+              {
+                title: 'Kubernetes部署(Kubernetes)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/kubernetes.html',
+              },
+              {
+                title: 'SkyWalking-Agent部署(SkyWalking)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/skywalking-agent.html',
+              },
+            ],
           },
           {
             title: '首页',
