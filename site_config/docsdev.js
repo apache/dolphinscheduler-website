@@ -126,10 +126,6 @@ export default {
             title: 'Flink',
             link: '/en-us/docs/dev/user_doc/flink-call.html',
           },
-          {
-            title: 'Parameter Intro',
-            link: '/en-us/docs/dev/user_doc/parameters-introduction.html',
-          },
         ],
       },
       {
@@ -347,10 +343,6 @@ export default {
           {
             title: 'Flink调用',
             link: '/zh-cn/docs/dev/user_doc/flink-call.html',
-          },
-          {
-            title: '参数介绍',
-            link: '/zh-cn/docs/dev/user_doc/parameters-introduction.html',
           },
         ],
       },
