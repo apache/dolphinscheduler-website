@@ -100,7 +100,28 @@ export default {
           },
           {
             title: 'Parameter',
-            link: '/en-us/docs/dev/user_doc/guide/parameter.html',
+            children: [
+              {
+                title: 'Built-in Parameter',
+                link: '/en-us/docs/dev/user_doc/guide/parameter/built-in.html',
+              },
+              {
+                title: 'Global Parameter',
+                link: '/en-us/docs/dev/user_doc/guide/parameter/global.html',
+              },
+              {
+                title: 'Local Parameter',
+                link: '/en-us/docs/dev/user_doc/guide/parameter/local.html',
+              },
+              {
+                title: 'Parameter Context',
+                link: '/en-us/docs/dev/user_doc/guide/parameter/context.html',
+              },
+              {
+                title: 'Parameter Priority',
+                link: '/en-us/docs/dev/user_doc/guide/parameter/priority.html',
+              },
+            ],
           },
           {
             title: 'Data Source',
@@ -339,7 +360,28 @@ export default {
           },
           {
             title: '参数',
-            link: '/zh-cn/docs/dev/user_doc/guide/parameter.html',
+            children: [
+              {
+                title: '内置参数',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/built-in.html',
+              },
+              {
+                title: '全局参数',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/global.html',
+              },
+              {
+                title: '本地参数',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/local.html',
+              },
+              {
+                title: '参数传递',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/context.html',
+              },
+              {
+                title: '参数优先级',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/priority.html',
+              },
+            ],
           },
           {
             title: '数据源中心',
