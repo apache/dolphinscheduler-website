@@ -100,6 +100,10 @@ export default {
                 title: 'Conditions',
                 link: '/en-us/docs/dev/user_doc/guide/task/conditions.html',
               },
+              {
+                title: 'Pigeon',
+                link: '/en-us/docs/dev/user_doc/guide/task/pigeon.html',
+              },
             ],
           },
           {
@@ -363,6 +367,10 @@ export default {
               {
                 title: 'Conditions',
                 link: '/zh-cn/docs/dev/user_doc/guide/task/conditions.html',
+              },
+              {
+                title: 'Pigeon',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/pigeon.html',
               },
             ],
           },
