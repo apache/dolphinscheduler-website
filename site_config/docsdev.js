@@ -96,6 +96,10 @@ export default {
                 title: 'DataX',
                 link: '/en-us/docs/dev/user_doc/guide/task/datax.html',
               },
+              {
+                title: 'Conditions',
+                link: '/en-us/docs/dev/user_doc/guide/task/conditions.html',
+              },
             ],
           },
           {
@@ -355,6 +359,10 @@ export default {
               {
                 title: 'DataX',
                 link: '/zh-cn/docs/dev/user_doc/guide/task/datax.html',
+              },
+              {
+                title: 'Conditions',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/conditions.html',
               },
             ],
           },
