@@ -42,49 +42,12 @@ export default {
             ],
           },
           {
-            title: 'Homepage',
+            title: 'Workflow Overview',
             link: '/en-us/docs/dev/user_doc/guide/homepage.html',
           },
           {
             title: 'Project',
             link: '/en-us/docs/dev/user_doc/guide/project.html',
-          },
-          {
-            title: 'Resource',
-            link: '/en-us/docs/dev/user_doc/guide/resource.html',
-          },
-          {
-            title: 'Data Source',
-            children: [
-              {
-                title: 'Introduction',
-                link: '/en-us/docs/dev/user_doc/guide/datasource/introduction.html',
-              },
-              {
-                title: 'MySQL',
-                link: '/en-us/docs/dev/user_doc/guide/datasource/mysql.html',
-              },
-              {
-                title: 'PostgreSQL',
-                link: '/en-us/docs/dev/user_doc/guide/datasource/postgresql.html',
-              },
-              {
-                title: 'HIVE',
-                link: '/en-us/docs/dev/user_doc/guide/datasource/hive.html',
-              },
-              {
-                title: 'Spark',
-                link: '/en-us/docs/dev/user_doc/guide/datasource/spark.html',
-              },
-            ],
-          },
-          {
-            title: 'Security',
-            link: '/en-us/docs/dev/user_doc/guide/security.html',
-          },
-          {
-            title: 'Monitor',
-            link: '/en-us/docs/dev/user_doc/guide/monitor.html',
           },
           {
             title: 'Task',
@@ -138,6 +101,43 @@ export default {
           {
             title: 'Parameter',
             link: '/en-us/docs/dev/user_doc/guide/parameter.html',
+          },
+          {
+            title: 'Data Source',
+            children: [
+              {
+                title: 'Introduction',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/introduction.html',
+              },
+              {
+                title: 'MySQL',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/mysql.html',
+              },
+              {
+                title: 'PostgreSQL',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/postgresql.html',
+              },
+              {
+                title: 'HIVE',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/hive.html',
+              },
+              {
+                title: 'Spark',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/spark.html',
+              },
+            ],
+          },
+          {
+            title: 'Resource',
+            link: '/en-us/docs/dev/user_doc/guide/resource.html',
+          },
+          {
+            title: 'Monitor',
+            link: '/en-us/docs/dev/user_doc/guide/monitor.html',
+          },
+          {
+            title: 'Security',
+            link: '/en-us/docs/dev/user_doc/guide/security.html',
           },
           {
             title: 'Open API',
@@ -252,7 +252,7 @@ export default {
             link: '/zh-cn/docs/dev/user_doc/guide/quick-start.html',
           },
           {
-            title: '部署文档',
+            title: '部署',
             children: [
               {
                 title: '软硬件环境建议配置',
@@ -281,49 +281,12 @@ export default {
             ],
           },
           {
-            title: '首页',
+            title: '指标总览',
             link: '/zh-cn/docs/dev/user_doc/guide/homepage.html',
           },
           {
             title: '项目管理',
             link: '/zh-cn/docs/dev/user_doc/guide/project.html',
-          },
-          {
-            title: '资源中心',
-            link: '/zh-cn/docs/dev/user_doc/guide/resource.html',
-          },
-          {
-            title: '数据源',
-            children: [
-              {
-                title: '简介',
-                link: '/zh-cn/docs/dev/user_doc/guide/datasource/introduction.html',
-              },
-              {
-                title: 'MySQL',
-                link: '/zh-cn/docs/dev/user_doc/guide/datasource/mysql.html',
-              },
-              {
-                title: 'PostgreSQL',
-                link: '/zh-cn/docs/dev/user_doc/guide/datasource/postgresql.html',
-              },
-              {
-                title: 'HIVE',
-                link: '/zh-cn/docs/dev/user_doc/guide/datasource/hive.html',
-              },
-              {
-                title: 'Spark',
-                link: '/zh-cn/docs/dev/user_doc/guide/datasource/spark.html',
-              },
-            ],
-          },
-          {
-            title: '安全中心',
-            link: '/zh-cn/docs/dev/user_doc/guide/security.html',
-          },
-          {
-            title: '监控中心',
-            link: '/zh-cn/docs/dev/user_doc/guide/monitor.html',
           },
           {
             title: '任务类型',
@@ -377,6 +340,43 @@ export default {
           {
             title: '参数',
             link: '/zh-cn/docs/dev/user_doc/guide/parameter.html',
+          },
+          {
+            title: '数据源中心',
+            children: [
+              {
+                title: '简介',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/introduction.html',
+              },
+              {
+                title: 'MySQL',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/mysql.html',
+              },
+              {
+                title: 'PostgreSQL',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/postgresql.html',
+              },
+              {
+                title: 'HIVE',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/hive.html',
+              },
+              {
+                title: 'Spark',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/spark.html',
+              },
+            ],
+          },
+          {
+            title: '资源中心',
+            link: '/zh-cn/docs/dev/user_doc/guide/resource.html',
+          },
+          {
+            title: '监控中心',
+            link: '/zh-cn/docs/dev/user_doc/guide/monitor.html',
+          },
+          {
+            title: '安全中心',
+            link: '/zh-cn/docs/dev/user_doc/guide/security.html',
           },
           {
             title: 'API调用',
