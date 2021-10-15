@@ -1,7 +1,7 @@
 # 单机体验版极速部署(Standalone)
 
 ## NOTICE:
-注意：仅供单机体验使用（切勿生产使用），采用 H2 Database,Zookeeper Testing Server。
+仅供单机体验使用（切勿生产使用），采用 H2 Database,Zookeeper Testing Server。
 
 # 1、基础软件安装(必装项请自行安装)
 
