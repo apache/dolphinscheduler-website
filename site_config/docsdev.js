@@ -55,7 +55,28 @@ export default {
           },
           {
             title: 'Data Source',
-            link: '/en-us/docs/dev/user_doc/guide/data-source.html',
+            children: [
+              {
+                title: 'Introduction',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/introduction.html',
+              },
+              {
+                title: 'MySQL',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/mysql.html',
+              },
+              {
+                title: 'PostgreSQL',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/postgresql.html',
+              },
+              {
+                title: 'HIVE',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/hive.html',
+              },
+              {
+                title: 'Spark',
+                link: '/en-us/docs/dev/user_doc/guide/datasource/spark.html',
+              },
+            ],
           },
           {
             title: 'Security',
@@ -273,7 +294,28 @@ export default {
           },
           {
             title: '数据源',
-            link: '/zh-cn/docs/dev/user_doc/guide/data-source.html',
+            children: [
+              {
+                title: '简介',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/introduction.html',
+              },
+              {
+                title: 'MySQL',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/mysql.html',
+              },
+              {
+                title: 'PostgreSQL',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/postgresql.html',
+              },
+              {
+                title: 'HIVE',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/hive.html',
+              },
+              {
+                title: 'Spark',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/spark.html',
+              },
+            ],
           },
           {
             title: '安全中心',
