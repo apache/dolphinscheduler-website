@@ -77,7 +77,7 @@ export default {
           {
             key: 'docsdev',
             text: 'dev',
-            link: '/en-us/docs/dev/user_doc/quick-start.html',
+            link: '/en-us/docs/dev/user_doc/guide/quick-start.html',
           },
         ],
       },
@@ -289,7 +289,7 @@ export default {
           {
             key: 'docsdev',
             text: 'dev',
-            link: '/zh-cn/docs/dev/user_doc/quick-start.html',
+            link: '/zh-cn/docs/dev/user_doc/guide/quick-start.html',
           },
         ],
       },
