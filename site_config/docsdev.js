@@ -104,6 +104,10 @@ export default {
                 title: 'Pigeon',
                 link: '/en-us/docs/dev/user_doc/guide/task/pigeon.html',
               },
+              {
+                title: 'Switch',
+                link: '/en-us/docs/dev/user_doc/guide/task/switch.html',
+              },
             ],
           },
           {
@@ -371,6 +375,10 @@ export default {
               {
                 title: 'Pigeon',
                 link: '/zh-cn/docs/dev/user_doc/guide/task/pigeon.html',
+              },
+              {
+                title: 'Switch',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/switch.html',
               },
             ],
           },

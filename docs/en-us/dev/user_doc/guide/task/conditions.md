@@ -22,3 +22,7 @@ Drag in the toolbar<img src="/img/conditions.png" width="20"/>The task node to t
 - Upstream condition selection: one or more upstream tasks can be selected for conditions
   - Add the upstream dependency: Use the first parameter to choose task name, and the second parameter for status of the upsteam task.
   - Upstream task relationship: we use `and` and `or` operators to handle complex relationship of upstream when multiple upstream tasks for Conditions task
+
+## Related task
+
+[switch](switch.md): [Condition](conditions.md)task mainly executes the corresponding branch based on the execution status (success, failure) of the upstream node. The [Switch](switch.md) task mainly executes the corresponding branch based on the value of the [global parameter](../parameter/global.md) and the judgment expression result written by the user.
