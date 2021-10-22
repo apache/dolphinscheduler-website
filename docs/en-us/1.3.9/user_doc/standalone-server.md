@@ -3,7 +3,7 @@
 
 
 # NOTICE:
-Recommended for less than 20 workflows, Using embedded technology, using embedded H2 Database,Zookeeper Testing Server.
+Recommended for less than 20 workflows, Using embedded technology, including H2 Database,Zookeeper Testing Server.
 
 # 1. Preparation
 

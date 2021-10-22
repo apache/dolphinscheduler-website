@@ -3,7 +3,7 @@
 
 
 ## NOTICE:
-建议 20 个以下工作流使用，采用嵌入式技术，使用嵌入式 H2 Database, Zookeeper Testing Server。
+建议 20 个以下工作流使用，采用嵌入式技术，包含 H2 Database, Zookeeper Testing Server。
 
 # 1、准备工作
 
