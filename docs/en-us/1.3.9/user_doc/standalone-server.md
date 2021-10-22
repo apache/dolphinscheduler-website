@@ -27,6 +27,11 @@ sh . /bin/dolphinscheduler-daemon.sh start standalone-server
 <p align="center">
 <img src="/img/login.png" width="60%" />
 </p>
+<p>
+Sign in with the administrator account<br>
+username: admin<br>
+password: dolphinscheduler123
+</p>
 
 # 4. Start/Stop Service
 

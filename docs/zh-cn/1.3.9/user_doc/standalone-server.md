@@ -28,6 +28,12 @@ sh ./bin/dolphinscheduler-daemon.sh start standalone-server
 <img src="/img/login.png" width="60%" />
 </p>
 
+<p>
+登入系统<br>
+用户名: admin <br>
+密码: dolphinscheduler123
+</p>
+
 # 4、启停服务
 
 * 一键启停服务
