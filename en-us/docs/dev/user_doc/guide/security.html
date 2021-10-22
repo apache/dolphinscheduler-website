@@ -158,6 +158,39 @@
 </ul>
 <pre><code class="language-conf">worker.groups=default,test
 </code></pre>
+<h2>Environmental Management</h2>
+<ul>
+<li>
+<p>Configure the Worker operating environment online. A Worker can specify multiple environments, and each environment is equivalent to the dolphinscheduler_env.sh file.</p>
+</li>
+<li>
+<p>The default environment is the dolphinscheduler_env.sh file.</p>
+</li>
+<li>
+<p>When the task is executed, the task can be assigned to the designated worker group, and the corresponding environment can be selected according to the worker group. Finally, the worker node executes the environment first and then executes the task.</p>
+</li>
+</ul>
+<blockquote>
+<p>Add/Update environment</p>
+</blockquote>
+<ul>
+<li>
+<p>The environment configuration is equivalent to the configuration in the dolphinscheduler_env.sh file.</p>
+<p align="center">
+    <img src="/img/create-environment.png" width="80%" />
+</p>
+</li>
+</ul>
+<blockquote>
+<p>Use environment</p>
+</blockquote>
+<ul>
+<li>
+<p>Create a task node in the workflow definition and select the environment corresponding to the Worker group and the Worker group. When the task is executed, the Worker will execute the environment first before executing the task.</p>
+  <p align="center">
+      <img src="/img/use-environment.png" width="80%" />
+  </p></li>
+</ul>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><a href="/en-us/community/development/subscribe.html"><p>Email List</p></a></li><li><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><a href="https://twitter.com/dolphinschedule"><p>Twitter</p></a></li><li><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><p>Stack Overflow</p></a></li><li><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/backend-development.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>

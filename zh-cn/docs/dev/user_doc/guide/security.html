@@ -157,6 +157,40 @@
 <pre><code class="language-conf">示例: 
 worker.groups=default,test
 </code></pre>
+<h2>环境管理</h2>
+<ul>
+<li>
+<p>在线配置Worker运行环境，一个Worker可以指定多个环境，每个环境等价于dolphinscheduler_env.sh文件.</p>
+</li>
+<li>
+<p>默认环境为dolphinscheduler_env.sh文件.</p>
+</li>
+<li>
+<p>在任务执行时,可以将任务分配给指定worker分组，根据worker分组选择对应的环境，最终由该组中的worker节点执行环境后执行该任务.</p>
+</li>
+</ul>
+<blockquote>
+<p>创建/更新 环境</p>
+</blockquote>
+<ul>
+<li>
+<p>环境配置等价于dolphinscheduler_env.sh文件内配置</p>
+<p align="center">
+    <img src="/img/create-environment.png" width="80%" />
+</p>
+</li>
+</ul>
+<blockquote>
+<p>使用 环境</p>
+</blockquote>
+<ul>
+<li>
+<p>在工作流定义中创建任务节点选择Worker分组和Worker分组对应的环境，任务执行时Worker会先执行环境在执行任务.</p>
+  <p align="center">
+      <img src="/img/use-environment.png" width="80%" />
+  </p>
+</li>
+</ul>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><a href="/zh-cn/community/development/subscribe.html"><p>邮件列表</p></a></li><li><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><a href="https://twitter.com/dolphinschedule"><p>Twitter</p></a></li><li><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><p>Stack Overflow</p></a></li><li><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/backend-development.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
