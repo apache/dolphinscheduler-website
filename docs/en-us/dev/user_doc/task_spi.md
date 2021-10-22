@@ -2,7 +2,7 @@
 
 #### How to use development environment?
 
-First you need to execute the `mvn -U install package -Prelease -Dmaven.test.skip=true` to install the plugin for generating the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/task (The version number will follow the change of the main version number)
+First you need to execute the `mvn -U install package -Dmaven.test.skip=true` to install the plugin for generating the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/task (The version number will follow the change of the main version number)
 
 Executing this command will generate all plugins provided by default for all modules.
 
