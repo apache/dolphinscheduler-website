@@ -16,6 +16,7 @@ import docs134Config from '../../../site_config/docs1-3-4';
 import docs135Config from '../../../site_config/docs1-3-5';
 import docs136Config from '../../../site_config/docs1-3-6';
 import docs138Config from '../../../site_config/docs1-3-8';
+import docs139Config from '../../../site_config/docs1-3-9';
 import docsDevConfig from '../../../site_config/docsdev';
 
 const docsSource = {
@@ -28,6 +29,7 @@ const docsSource = {
   '1.3.5': docs135Config,
   '1.3.6': docs136Config,
   '1.3.8': docs138Config,
+  '1.3.9': docs139Config,
   'dev': docsDevConfig,
 };
 

@@ -4,7 +4,7 @@ export default {
   port: 8080,
   domain: 'dolphinscheduler.apache.org',
   copyToDist: ['asset', 'img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess'],
-  docsLatest: '1.3.8',
+  docsLatest: '1.3.9',
   defaultSearch: 'google', // default search engine
   defaultLanguage: 'en-us',
   'en-us': {
@@ -21,8 +21,13 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.8)',
+            text: 'latest(1.3.9)',
             link: '/en-us/docs/latest/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs139',
+            text: '1.3.9',
+            link: '/en-us/docs/1.3.9/user_doc/quick-start.html',
           },
           {
             key: 'docs138',
@@ -233,8 +238,13 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.8)',
+            text: 'latest(1.3.9)',
             link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+          },
+          {
+            key: 'docs139',
+            text: '1.3.9',
+            link: '/zh-cn/docs/1.3.9/user_doc/quick-start.html',
           },
           {
             key: 'docs138',
