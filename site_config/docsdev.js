@@ -97,12 +97,16 @@ export default {
                 link: '/en-us/docs/dev/user_doc/guide/task/datax.html',
               },
               {
+                title: 'Pigeon',
+                link: '/en-us/docs/dev/user_doc/guide/task/pigeon.html',
+              },
+              {
                 title: 'Conditions',
                 link: '/en-us/docs/dev/user_doc/guide/task/conditions.html',
               },
               {
-                title: 'Pigeon',
-                link: '/en-us/docs/dev/user_doc/guide/task/pigeon.html',
+                title: 'Switch',
+                link: '/en-us/docs/dev/user_doc/guide/task/switch.html',
               },
             ],
           },
@@ -357,12 +361,16 @@ export default {
                 link: '/zh-cn/docs/dev/user_doc/guide/task/datax.html',
               },
               {
+                title: 'Pigeon',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/pigeon.html',
+              },
+              {
                 title: 'Conditions',
                 link: '/zh-cn/docs/dev/user_doc/guide/task/conditions.html',
               },
               {
-                title: 'Pigeon',
-                link: '/zh-cn/docs/dev/user_doc/guide/task/pigeon.html',
+                title: 'Switch',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/switch.html',
               },
             ],
           },
