@@ -42,9 +42,9 @@ The structure returned by the parameter is List<Map<String,String>>, where the e
 
 The result of the processor execution is returned as Map<String,String>.
 
-The user needs to define $setValue(key=value) in the output when defining the shell script.
+The user needs to define ${setValue(key=value)} in the output when defining the shell script.
 
-Remove $setValue() when processing parameters, split by "=", with the 0th being the key and the 1st being the value.
+Remove ${setValue()} when processing parameters, split by "=", with the 0th being the key and the 1st being the value.
 
 Similarly match the OUT parameter name and key defined by the user when defining the task, and use value as the value of that parameter.
 

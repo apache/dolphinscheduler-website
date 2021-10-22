@@ -48,9 +48,9 @@ Worker 收到后将 varPool 解析为 Map<String,Property> 的格式，其中 ma
 processor 执行后的结果返回为 Map<String,String>
 
 
-用户在定义 shell 脚本时需要在输出中定义 $setValue(key=value)
+用户在定义 shell 脚本时需要在输出中定义 ${setValue(key=value)}
 
-在参数处理时去掉 $setValue()，按照 “=” 进行拆分，第 0 个为 key，第 1 个为 value。
+在参数处理时去掉 ${setValue()}，按照 “=” 进行拆分，第 0 个为 key，第 1 个为 value。
 
 同样匹配用户定义 task 时定义的 OUT 参数名与 key，将 value 作为该参数的值。
 
