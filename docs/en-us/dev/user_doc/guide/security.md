@@ -136,8 +136,28 @@ When the task is executed, the task can be assigned to the specified worker grou
 ```conf
 worker.groups=default,test
 ```
-- You can also modify the worker group to which the worker belongs during operation:
+- You can also modify the worker group to which the worker belongs during operation: Open "security center - worker group management" and "new worker group", enter "group name", and select an existing worker to change the worker to a new worker group. If the modification is successful, the worker will use the new group and ignore the configuration in worker.properties
 
-Open "security center - worker group management" and "new worker group", enter "group name", and select an existing worker to change the worker group.
+## Environmental Management
 
-If the modification is successful, the worker will use the new group and ignore the configuration in worker.properties
+* Configure the Worker operating environment online. A Worker can specify multiple environments, and each environment is equivalent to the dolphinscheduler_env.sh file.
+
+* The default environment is the dolphinscheduler_env.sh file.
+
+* When the task is executed, the task can be assigned to the designated worker group, and the corresponding environment can be selected according to the worker group. Finally, the worker node executes the environment first and then executes the task.
+
+> Add/Update environment
+
+- The environment configuration is equivalent to the configuration in the dolphinscheduler_env.sh file.
+
+  <p align="center">
+      <img src="/img/create-environment.png" width="80%" />
+  </p>
+
+> Use environment
+
+- Create a task node in the workflow definition and select the environment corresponding to the Worker group and the Worker group. When the task is executed, the Worker will execute the environment first before executing the task.
+
+    <p align="center">
+        <img src="/img/use-environment.png" width="80%" />
+    </p>

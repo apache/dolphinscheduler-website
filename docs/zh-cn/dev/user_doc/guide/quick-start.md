@@ -34,6 +34,11 @@
  <p align="center">
     <img src="/img/worker_group.png" width="60%" />
   </p>
+
+* 创建环境
+ <p align="center">
+    <img src="/img/create-environment.png" width="60%" />
+  </p>
  
  * 创建token令牌
  <p align="center">

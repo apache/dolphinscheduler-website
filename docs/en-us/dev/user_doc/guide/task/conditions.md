@@ -4,7 +4,15 @@ Conditions is a condition node, determining which downstream task should be run 
 
 ## Create
 
-Drag in the toolbar<img src="/img/conditions.png" width="20"/>The task node to the drawing board to create a new Conditions task
+Drag in the toolbar<img src="/img/conditions.png" width="20"/>The task node to the drawing board to create a new Conditions task, as shown in the figure below:
+
+  <p align="center">
+   <img src="/img/condition_dag_en.png" width="80%" />
+  </p>
+
+  <p align="center">
+   <img src="/img/condition_task_en.png" width="80%" />
+  </p>
 
 ## Parameter
 
