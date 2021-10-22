@@ -2,11 +2,11 @@
 
 # 1、基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7系列)：两者任选其一即可，如 MySQL 则需要 JDBC Driver 5.1.47+
- * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+)：必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
- * ZooKeeper (3.4.6+)：必装 
- * pstree or psmisc：Mac OS必装pstree，Fedora/Red/Hat/CentOS/Ubuntu/Debian必装psmisc
- * Hadoop (2.6+) or MinIO：选装，如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署 Hadoop )；当然也可以选择上传到 Hadoop or MinIO 集群上
+* PostgreSQL (8.2.15+) or MySQL (5.7系列)：两者任选其一即可，如 MySQL 则需要 JDBC Driver 5.1.47+
+* [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+)：必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
+* ZooKeeper (3.4.6+)：必装
+* pstree or psmisc：Mac OS必装pstree，Fedora/Red/Hat/CentOS/Ubuntu/Debian必装psmisc
+* Hadoop (2.6+) or MinIO：选装，如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署 Hadoop )；当然也可以选择上传到 Hadoop or MinIO 集群上
 
 ```markdown
  注意：DolphinScheduler 本身不依赖 Hadoop、Hive、Spark，仅会调用它们的 Client，用于运行对应的任务
@@ -22,9 +22,9 @@ mkdir -p /opt/dolphinscheduler
 cd /opt/dolphinscheduler
 
 # 解压缩
-tar -zxvf apache-dolphinscheduler-1.3.8-bin.tar.gz -C /opt/dolphinscheduler
+tar -zxvf apache-dolphinscheduler-1.3.9-bin.tar.gz -C /opt/dolphinscheduler
  
-mv apache-dolphinscheduler-1.3.8-bin  dolphinscheduler-bin
+mv apache-dolphinscheduler-1.3.9-bin  dolphinscheduler-bin
 ```
 
 # 3、创建部署用户并赋予目录操作权限
@@ -71,7 +71,7 @@ chmod 600 ~/.ssh/authorized_keys
 mysql -uroot -p
 ```
 
-- 进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。**注: {user} 和 {password} 需要替换为具体的数据库用户名和密码** 
+- 进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。**注: {user} 和 {password} 需要替换为具体的数据库用户名和密码**
 
 ``` mysql
    mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
@@ -83,14 +83,14 @@ mysql -uroot -p
 
 - 创建表和导入基础数据
 
-    - 修改 conf 目录下 datasource.properties 中的下列配置
+  - 修改 conf 目录下 datasource.properties 中的下列配置
 
     ```shell
     vi conf/datasource.properties
     ```
 
-    - 如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理)，还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.MySQL.com/archives/c-j/)] 包到 lib 目录下，这里下载的是 mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息
-    
+  - 如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理)，还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.MySQL.com/archives/c-j/)] 包到 lib 目录下，这里下载的是 mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息
+
     ```properties
       # postgre
       # spring.datasource.driver-class-name=org.postgresql.Driver
@@ -102,13 +102,13 @@ mysql -uroot -p
       spring.datasource.password=xxx						# 需要修改为上面的{password}值
     ```
 
-    - 修改并保存完后，执行 script 目录下的创建表及导入基础数据脚本
+  - 修改并保存完后，执行 script 目录下的创建表及导入基础数据脚本
 
     ```shell
     sh script/create-dolphinscheduler.sh
     ```
 
-    *注意: 如果执行上述脚本提示 “/bin/java: No such file or directory” 错误，请在 /etc/profile 下配置 JAVA_HOME 及 PATH 变量*
+  *注意: 如果执行上述脚本提示 “/bin/java: No such file or directory” 错误，请在 /etc/profile 下配置 JAVA_HOME 及 PATH 变量*
 
 # 6、修改运行参数
 
@@ -129,7 +129,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_
 
 *注意: 这一步非常重要，例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉；如果找不到 dolphinscheduler_env.sh，请运行 `ls -a`*
 
-    
+
 
 - 将 jdk 软链到 /usr/bin/java 下(仍以 JAVA_HOME=/opt/soft/java 为例)
 
@@ -137,7 +137,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_
 sudo ln -s /opt/soft/java/bin/java /usr/bin/java
 ```
 
- - 修改一键部署配置文件 `conf/config/install_config.conf` 中的各参数，特别注意以下参数的配置
+- 修改一键部署配置文件 `conf/config/install_config.conf` 中的各参数，特别注意以下参数的配置
 
 ```shell
 # 这里填 mysql or postgresql
@@ -235,9 +235,9 @@ alertServer="localhost"
 apiServers="localhost"
 
 ```
-    
 
-    
+
+
 *注：如果打算用到 `资源中心` 功能，请执行以下命令：*
 
 ```shell
@@ -284,7 +284,7 @@ sh: bin/dolphinscheduler-daemon.sh: No such file or directory
 # 8、登录系统
 
 - 访问前端页面地址，接口 ip (自行修改)
-http://192.168.xx.xx:12345/dolphinscheduler
+  http://192.168.xx.xx:12345/dolphinscheduler
 
    <p align="center">
      <img src="/img/login.png" width="60%" />
