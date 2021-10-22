@@ -138,3 +138,10 @@
 示例: 
 worker.groups=default,test
 ```
+
+- 也可以在运行中修改worker所属的worker分组：
+
+打开”安全中心-worker分组管理“, "新建worker分组"，输入‘组名称’， 选择已有worker，即可更改worker的分组。
+
+如果修改成功，worker就会使用这个新建的分组，忽略worker.properties中的配置
+
