@@ -10,7 +10,7 @@ Recommended for less than 20 workflows, Using embedded technology, using embedde
 * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+), please configure JAVA_HOME and PATH variables under /etc/profile
 
 
-# 2. one key start
+# 2. One key start
 
 - Switch to a user with sudo privileges and run the script
 

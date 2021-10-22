@@ -3,16 +3,16 @@
 
 
 ## NOTICE:
-建议20个以下工作流使用，采用嵌入式技术，使用嵌入式H2 Database, Zookeeper Testing Server。
+建议 20 个以下工作流使用，采用嵌入式技术，使用嵌入式 H2 Database, Zookeeper Testing Server。
 
 # 1、准备工作
 
-* [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+)，请配置/etc/profile下 JAVA_HOME 及 PATH 变量
+* [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+)，请配置 /etc/profile下 JAVA_HOME 及 PATH 变量
 
 
 # 2、一键启动
 
-- 切换到有sudo权限的用户，运行脚本
+- 切换到有 sudo 权限的用户，运行脚本
 
 ```shell
 sh ./bin/dolphinscheduler-daemon.sh start standalone-server
