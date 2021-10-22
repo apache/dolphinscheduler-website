@@ -4,7 +4,15 @@ Conditions是一个条件节点，根据上游任务运行状态，判断应该�
 
 ## 创建任务
 
-拖动工具栏中的<img src="/img/conditions.png" width="20"/>任务节点到画板中即能完成任务创建
+拖动工具栏中的<img src="/img/conditions.png" width="20"/>任务节点到画板中即能完成任务创建，如下图所示：
+
+  <p align="center">
+   <img src="/img/condition_dag_en.png" width="80%" />
+  </p>
+
+  <p align="center">
+   <img src="/img/condition_task_zh.png" width="80%" />
+  </p>
 
 ## 任务参数
 
@@ -23,8 +31,7 @@ Conditions是一个条件节点，根据上游任务运行状态，判断应该�
   - 增加上游依赖：通过选择第一个参数选择对应的任务名称，通过第二个参数选择触发的conditions任务的状态
   - 上游任务关系选择：当有多个上游任务时，可以通过`且`以及`或`操作符实现任务的复杂关系。
 
-<!-- TODO 缺少condintions任务的截图，分别需要一个简单任务和一个复杂任务 -->
-
 ## 相关任务
 
 [switch](switch.md)：Condition节点主要依据上游节点的执行状态（成功、失败）执行对应分支。[Switch](switch.md)节点主要依据全局变量的值和用户所编写的表达式判断结果执行对应分支
+=======
