@@ -36,6 +36,12 @@
    <p align="center">
       <img src="/img/worker-group-en.png" width="60%" />
     </p>
+
+   * Create environment
+
+   <p align="center">
+    <img src="/img/create-environment.png" width="60%" />
+   </p>
     
  * Create a token
   
