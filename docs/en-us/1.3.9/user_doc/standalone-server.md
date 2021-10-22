@@ -3,14 +3,14 @@
 
 
 # NOTICE:
-Recommended for less than 20 workflows, Use H2 Database, Zookeeper Testing Server.
+Recommended for less than 20 workflows, Using embedded technology, including H2 Database,Zookeeper Testing Server.
 
 # 1. Preparation
 
 * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+), please configure JAVA_HOME and PATH variables under /etc/profile
 
 
-# 2, one key start
+# 2. One key start
 
 - Switch to a user with sudo privileges and run the script
 
@@ -26,6 +26,11 @@ sh . /bin/dolphinscheduler-daemon.sh start standalone-server
 
 <p align="center">
 <img src="/img/login.png" width="60%" />
+</p>
+<p>
+Sign in with the administrator account<br>
+username: admin<br>
+password: dolphinscheduler123
 </p>
 
 # 4. Start/Stop Service
