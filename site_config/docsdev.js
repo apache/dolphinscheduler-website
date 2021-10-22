@@ -247,14 +247,6 @@ export default {
             link: '/en-us/docs/dev/user_doc/dev_quick_start.html',
           },
           {
-            title: 'Alert-SPI',
-            link: '/en-us/docs/dev/user_doc/alert_spi.html',
-          },
-          {
-            title: 'Registry-SPI',
-            link: '/en-us/docs/dev/user_doc/registry_spi.html',
-          },
-          {
             title: 'Global-Params',
             link: '/en-us/docs/dev/user_doc/globalParams.html',
           },
@@ -504,18 +496,6 @@ export default {
           {
             title: 'Dev-Quick-Start',
             link: '/zh-cn/docs/dev/user_doc/dev_quick_start.html',
-          },
-          {
-            title: 'Alert-SPI',
-            link: '/zh-cn/docs/dev/user_doc/alert_spi.html',
-          },
-          {
-            title: 'Registry-SPI',
-            link: '/zh-cn/docs/dev/user_doc/registry_spi.html',
-          },
-          {
-            title: 'Task-SPI',
-            link: '/zh-cn/docs/dev/user_doc/task_spi.html',
           },
           {
             title: 'Global-Params',
