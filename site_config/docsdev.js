@@ -260,10 +260,6 @@ export default {
         title: 'To be Classification',
         children: [
           {
-            title: 'Dev-Quick-Start',
-            link: '/en-us/docs/dev/user_doc/dev_quick_start.html',
-          },
-          {
             title: 'Global-Params',
             link: '/en-us/docs/dev/user_doc/globalParams.html',
           },
@@ -527,10 +523,6 @@ export default {
       {
         title: '待分类文档',
         children: [
-          {
-            title: 'Dev-Quick-Start',
-            link: '/zh-cn/docs/dev/user_doc/dev_quick_start.html',
-          },
           {
             title: 'Global-Params',
             link: '/zh-cn/docs/dev/user_doc/globalParams.html',
