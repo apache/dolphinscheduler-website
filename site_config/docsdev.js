@@ -24,6 +24,10 @@ export default {
                 link: '/en-us/docs/dev/user_doc/guide/installation/standalone.html',
               },
               {
+                title: 'Pseudo Cluster Deployment',
+                link: '/en-us/docs/dev/user_doc/guide/installation/pseudo-cluster.html',
+              },
+              {
                 title: 'Cluster Deployment',
                 link: '/en-us/docs/dev/user_doc/guide/installation/cluster.html',
               },
@@ -161,6 +165,15 @@ export default {
             ],
           },
           {
+            title: 'Alert',
+            children: [
+              {
+                title: 'Enterprise Wechat',
+                link: '/en-us/docs/dev/user_doc/guide/alert/enterprise-wechat.html',
+              },
+            ],
+          },
+          {
             title: 'Resource',
             link: '/en-us/docs/dev/user_doc/guide/resource.html',
           },
@@ -286,6 +299,10 @@ export default {
               {
                 title: '单机部署(Standalone)',
                 link: '/zh-cn/docs/dev/user_doc/guide/installation/standalone.html',
+              },
+              {
+                title: '伪集群部署(Pseudo-Cluster)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/pseudo-cluster.html',
               },
               {
                 title: '集群部署(Cluster)',
@@ -421,6 +438,15 @@ export default {
               {
                 title: 'Spark',
                 link: '/zh-cn/docs/dev/user_doc/guide/datasource/spark.html',
+              },
+            ],
+          },
+          {
+            title: '告警',
+            children: [
+              {
+                title: '企业微信',
+                link: '/zh-cn/docs/dev/user_doc/guide/alert/enterprise-wechat.html',
               },
             ],
           },

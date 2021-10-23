@@ -1,5 +1,9 @@
 # QuickStart in Kubernetes
 
+Kubernetes deployment is deploy DolphinScheduler in a Kubernetes cluster, which can schedule a large number of tasks and can be used in production.
+
+If you are a green hand and want to experience DolphinScheduler, we recommended you install follow [Standalone](standalone.md). If you want to experience more complete functions or schedule large tasks number, we recommended you install follow [pseudo-cluster deployment](pseudo-cluster.md). If you want to using DolphinScheduler in production, we recommended you follow [cluster deployment](cluster.md) or [kubernetes](kubernetes.md)
+
 ## Prerequisites
 
  - [Helm](https://helm.sh/) 3.1.0+
