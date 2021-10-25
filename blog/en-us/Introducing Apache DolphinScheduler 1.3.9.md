@@ -1,10 +1,10 @@
-#Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!
+# Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!
 
 [![_5fc2f5f0697d2457db591583571c1a50_25072.md.jpg](https://imgpp.com/images/2021/10/25/_5fc2f5f0697d2457db591583571c1a50_25072.md.jpg)](https://imgpp.com/image/OQFd4)
 
 On October 22, 2021, we are excited to announce the release of Apache DolphinScheduler 1.3.9. After a month and a half，Apache DolphinScheduler 1.3.9 brings StandaloneServer to users with the joint efforts of the community. StandaloneServer is a major update of this version, which means a huge leap in ease of use, and the details will be introduced below. In addition, this upgrade also fixes two critical bugs in 1.3.8.
 
-## 1.3.9 Download：[https://dolphinscheduler.apache.org/zh-cn/download/download.html](https://dolphinscheduler.apache.org/zh-cn/download/download.html)
+## 1.3.9 Download：[1.3.9 Download Link](https://dolphinscheduler.apache.org/zh-cn/download/download.html)
 
 In 1.3.9, the main updates include:
 
@@ -24,7 +24,7 @@ sh ./bin/dolphinscheduler-daemon.sh start standalone-server
 
 It shows that 1.3.9 reduces the configuration cost through built-in components. You only need to configure the jdk environment to start the DolphinScheduler system with one click, thereby improving the efficiency of research and development. For detailed usage documents, please refer to: link to be added.
 
-https://imgpp.com/images/2021/10/25/1151635131488_.pic.md.jpg
+ <img src="/img/login_en.png" width="60%" />
 
 Access the front page address, interface IP (self-modified) [http://192.168.xx.xx:12345/dolphinscheduler](http://192.168.xx.xx:12345/dolphinscheduler), with the default name and password:admin/dolphinscheduler123.
 
@@ -53,7 +53,7 @@ Apache DolphinScheduler is a distributed and extensible workflow scheduler platf
 
 DolphinScheduler assembles Tasks in the form of DAG (Directed Acyclic Graph), which can monitor the running status of tasks in real time. At the same time, it supports operations such as retry, recovery from designated nodes, suspend and Kill tasks, and focuses on the following 6 capabilities :
 
-https://imgpp.com/images/2021/10/25/WechatIMG89.md.jpg
+<img src="https://imgpp.com/images/2021/10/25/WechatIMG89.md.jpg" width="60%" />
 
 
 ## 2 Partial User Cases
