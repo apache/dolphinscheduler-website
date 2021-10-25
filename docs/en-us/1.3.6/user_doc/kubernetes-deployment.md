@@ -98,14 +98,11 @@ The configuration file is `values.yaml`, and the [Appendix-Configuration](#appen
 | Hadoop3                                                      | Not Sure     | Not tested                            |
 | Spark-Local(client)                                          | Indirect Yes | Refer to FAQ                          |
 | Spark-YARN(cluster)                                          | Indirect Yes | Refer to FAQ                          |
-| Spark-Mesos(cluster)                                         | Not Yet      |                                       |
 | Spark-Standalone(cluster)                                    | Not Yet      |                                       |
 | Spark-Kubernetes(cluster)                                    | Not Yet      |                                       |
 | Flink-Local(local>=1.11)                                     | Not Yet      | Generic CLI mode is not yet supported |
 | Flink-YARN(yarn-cluster)                                     | Indirect Yes | Refer to FAQ                          |
 | Flink-YARN(yarn-session/yarn-per-job/yarn-application>=1.11) | Not Yet      | Generic CLI mode is not yet supported |
-| Flink-Mesos(default)                                         | Not Yet      |                                       |
-| Flink-Mesos(remote>=1.11)                                    | Not Yet      | Generic CLI mode is not yet supported |
 | Flink-Standalone(default)                                    | Not Yet      |                                       |
 | Flink-Standalone(remote>=1.11)                               | Not Yet      | Generic CLI mode is not yet supported |
 | Flink-Kubernetes(default)                                    | Not Yet      |                                       |

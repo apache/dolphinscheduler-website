@@ -53,15 +53,14 @@ Out-degree: Assuming that there is a node V in the directed graph, the out-degre
 
 ![DAG02](https://github.com/apache/dolphinscheduler-website/blob/master/img/DAG/DAG02.png?raw=true)
 
-In degree of node 1: 0, out degree: 2
 
-In degree of node 2: 1, out degree: 2
-
-In degree of node 3: 2, out degree: 1
-
-In degree of node 4: 2, out degree: 2
-
-In degree of node 5: 2, out degree: 0
+|Node|in degree|out degree|count of in degree|count of out degree|
+|----|----|----|----|----|
+|Node 1|0|Node 2,Node 4|0|2|
+|Node 2|Node 1|Node 3,Node 4|1|2|
+|Node 3|Node 2,Node 4|Node 5|2|1|
+|Node 4|Node 1,Node 2|Node 3,Node 5|2|2|
+|Node 5|Node 3,Node 4|0|2|0|
 
 **Its topological sorting process is:**
 
