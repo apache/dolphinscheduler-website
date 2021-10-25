@@ -18,6 +18,13 @@ export default {
         link: '/en-us/blog/Introducing Apache DolphinScheduler 1.3.9.html',
       },
       {
+        title: 'Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!',
+        author: 'Debar Chen',
+        dateStr: '2021-10-22',
+        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
+        link: '/en-us/blog/Introducing Apache DolphinScheduler 1.3.9.html',
+      },
+      {
         title: 'Why did we split the big json of DAG in workflow definition?',
         author: 'JinyLeeChina',
         translator: 'QuakeWang',

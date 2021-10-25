@@ -6,7 +6,7 @@
 
 然后选择告警组管理，创建告警组，选择相应的告警实例即可。
 
-<img src="img/alert/alert_step_1.png">
-<img src="img/alert/alert_step_2.png">
-<img src="img/alert/alert_step_3.png">
-<img src="img/alert/alert_step_4.png">
+<img src="/img/alert/alert_step_1.png">
+<img src="/img/alert/alert_step_2.png">
+<img src="/img/alert/alert_step_3.png">
+<img src="/img/alert/alert_step_4.png">
