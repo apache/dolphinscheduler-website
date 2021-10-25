@@ -3,6 +3,13 @@ export default {
     barText: 'Blog',
     postsTitle: 'All posts',
     list: [
+     {
+        title: 'Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!',
+        author: 'Debar Chen',
+        dateStr: '2021-10-22',
+        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
+        link: '/en-us/blog/Introducing Apache DolphinScheduler 1.3.9.html',
+      },
       {
         title: 'Apache Dolphin Scheduler(Incubating) Meetup 2019.10 Shanghai',
         author: 'William',
@@ -85,15 +92,7 @@ export default {
         dateStr: '2019-9-27',
         desc: 'Apache Dolphin Scheduler(Incubating) 将于2019年10月26日在上海组织一次会议，欢迎踊跃报名。 ',
         link: '/zh-cn/blog/meetup_2019_10_26.html',
-      },
-      {
-        title: 'DolphinScheduler json详解',
-        author: '进勇',
-        editor: '小P',
-        dateStr: '2021-05-29',
-        desc: 'DolphinScheduler json拆解详细说明',
-        link: '/zh-cn/blog/dolphinscheduler_json.html',
-      },      
+      },    
     ],
   },
 };
