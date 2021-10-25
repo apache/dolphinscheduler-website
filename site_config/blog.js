@@ -4,6 +4,13 @@ export default {
     postsTitle: 'All posts',
     list: [
       {
+        title: 'Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!',
+        author: 'Debar Chen',
+        dateStr: '2021-10-22',
+        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
+        link: '/en-us/blog/Introducing Apache DolphinScheduler 1.3.9.html',
+      },
+      {
         title: 'Why did we split the big json of DAG in workflow definition?',
         author: 'JinyLeeChina',
         translator: 'QuakeWang',
@@ -117,7 +124,6 @@ export default {
         desc: 'Apache Dolphin Scheduler(Incubating) 将于2019年10月26日在上海组织一次会议，欢迎踊跃报名。 ',
         link: '/zh-cn/blog/meetup_2019_10_26.html',
       },
-
     ],
   },
 };
