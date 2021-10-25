@@ -28,7 +28,7 @@ It shows that 1.3.9 reduces the configuration cost through built-in components. 
 
 Access the front page address, interface IP (self-modified) [http://192.168.xx.xx:12345/dolphinscheduler](http://192.168.xx.xx:12345/dolphinscheduler), with the default name and password:admin/dolphinscheduler123.
 
-The detailed user docs for Standalone, please refer to:[1.3.9 standalone-server](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.9/user_doc/standalone-server.html)
+The detailed user docs for Standalone, please refer to:[1.3.9 standalone-server](https://dolphinscheduler.apache.org/en-us/docs/1.3.9/user_doc/standalone-server.html)
 
 ## Optimization and Fix
 
