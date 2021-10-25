@@ -384,14 +384,40 @@ A: 1, Edit ngnix config file, edit upload max size client_max_body_size 1024m.
 <hr>
 <h2>Q : DS Backend Inteface Document</h2>
 <p>A: 1, <a href="http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en">http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en</a>.</p>
+<h2>During the operation of dolphinscheduler, the ip address is obtained incorrectly</h2>
+<p>When the master service and worker service are registered with zookeeper, relevant information will be created in the form of ip:port</p>
+<p>If the ip address is obtained incorrectly, please check the network information. For example, in the Linux system, use the <code>ifconfig</code> command to view the network information. The following figure is an example:</p>
+<p align="center">
+  <img src="/img/network/network_config.png" width="60%" />
+</p>
+<p>You can use the three strategies provided by dolphinscheduler to get the available ip:</p>
+<ul>
+<li>default: First using internal network card to obtain the IP address, and then using external network card. If all above fail, use the address of the first available network card</li>
+<li>inner: Use the internal network card to obtain the ip address, if fails thrown an exception.</li>
+<li>outer: Use the external network card to obtain the ip address, if fails thrown an exception.</li>
+</ul>
+<p>Modify the configuration in <code>common.properties</code>:</p>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> network IP gets priority, default: inner outer</span>
+<span class="hljs-meta">#</span><span class="bash"> dolphin.scheduler.network.priority.strategy=default</span>
+</code></pre>
+<p>After configuration is modified, restart the service to activation</p>
+<p>If the ip address is still wrong, please download <a href="/asset/dolphinscheduler-netutils.jar">dolphinscheduler-netutils.jar</a> to the machine, execute the following commands and feedback the output to the community developers:</p>
+<pre><code class="language-shell">java -jar target/dolphinscheduler-netutils.jar
+</code></pre>
+<h2>Configure sudo to be secret free, which is used to solve the problem of using the default configuration sudo authority to be too large or unable to apply for root authority</h2>
+<p>Configure the sudo permission of the dolphinscheduler account to be an ordinary user manager within the scope of some ordinary users, and restrict specified users to run certain commands on the specified host. For detailed configuration, please see sudo rights management
+For example, sudo permission management configuration dolphinscheduler OS account can only operate the permissions of users userA, userB, userC (users userA, userB, and userC are used for multi-tenant submitting jobs to the big data cluster)</p>
+<pre><code class="language-shell">echo &#x27;dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL&#x27; &gt;&gt; /etc/sudoers
+sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
+</code></pre>
 <hr>
-<h2>We will collect more FAQ later.</h2>
+<h2>We will collect more FAQ later</h2>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><a href="/en-us/community/development/subscribe.html"><p>Email List</p></a></li><li><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><a href="https://twitter.com/dolphinschedule"><p>Twitter</p></a></li><li><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><p>Stack Overflow</p></a></li><li><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/backend-development.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
   <script src="/build/vendor.e6fe67a.js"></script>
-  <script src="/build/docs.md.88d23cb.js"></script>
+  <script src="/build/docs.md.be16291.js"></script>
   <script>
     var _hmt = _hmt || [];
     (function() {
