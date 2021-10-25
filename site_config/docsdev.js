@@ -168,6 +168,10 @@ export default {
             title: 'Alert',
             children: [
               {
+                title: 'Alert Component User Guide ',
+                link: '/en-us/docs/dev/user_doc/guide/alert/alert_plugin_user_guide.html',
+              },
+              {
                 title: 'Enterprise Wechat',
                 link: '/en-us/docs/dev/user_doc/guide/alert/enterprise-wechat.html',
               },
@@ -440,6 +444,10 @@ export default {
           {
             title: '告警',
             children: [
+              {
+                title: '告警组件向导 ',
+                link: '/zh-cn/docs/dev/user_doc/guide/alert/alert_plugin_user_guide.html',
+              },
               {
                 title: '企业微信',
                 link: '/zh-cn/docs/dev/user_doc/guide/alert/enterprise-wechat.html',
