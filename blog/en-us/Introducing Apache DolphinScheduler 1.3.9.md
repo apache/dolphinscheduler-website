@@ -1,6 +1,6 @@
 #Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!
 
-[![_5fc2f5f0697d2457db591583571c1a50_25072.md.jpg](https://imgpp.com/images/2021/10/25/_5fc2f5f0697d2457db591583571c1a50_25072.md.jpg)](https://imgpp.com/image/OQFd4)
+[![_5fc2f5f0697d2457db591583571c1a50_25072.md.jpg](https://imgpp.com/image/1.Oe9ej)](https://imgpp.com/image/1.Oe9ej)
 
 On October 22, 2021, we are excited to announce the release of Apache DolphinScheduler 1.3.9. After a month and a half，Apache DolphinScheduler 1.3.9 brings StandaloneServer to users with the joint efforts of the community. StandaloneServer is a major update of this version, which means a huge leap in ease of use, and the details will be introduced below. In addition, this upgrade also fixes two critical bugs in 1.3.8.
 
