@@ -1,5 +1,12 @@
 # Resource Center
 
+If you want to use the resource upload function, you can select the local file directory for a single machine(this operation does not need to deploy Hadoop). Or you can also upload to a Hadoop or MinIO cluster, at this time, you need to have Hadoop (2.6+) or MinIO and other related environments
+
+> **_Note:_**
+>
+> * If the resource upload function is used, the deployment user in [installation and deployment](installation/standalone.md) must to have operation authority
+> * If you using Hadoop cluster with HA, you need to enable HDFS resource upload, and you need to copy the `core-site.xml` and `hdfs-site.xml` under the Hadoop cluster to `/opt/dolphinscheduler/conf`, otherwise Skip step
+
 ## hdfs resource configuration
 
 - Upload resource files and udf functions, all uploaded files and resources will be stored on hdfs, so the following configuration items are required:
