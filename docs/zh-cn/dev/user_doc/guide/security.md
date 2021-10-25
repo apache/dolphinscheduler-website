@@ -139,6 +139,8 @@
 worker.groups=default,test
 ```
 
+- 也可以在运行中修改worker所属的worker分组，如果修改成功，worker就会使用这个新建的分组，忽略`worker.properties`中的配置。修改步骤为"安全中心 -> worker分组管理 -> 点击 '新建worker分组' -> 输入'组名称' -> 选择已有worker -> 点击'提交'"
+
 ## 环境管理
 
 * 在线配置Worker运行环境，一个Worker可以指定多个环境，每个环境等价于dolphinscheduler_env.sh文件.
