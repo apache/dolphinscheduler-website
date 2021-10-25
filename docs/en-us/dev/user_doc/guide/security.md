@@ -136,7 +136,7 @@ When the task is executed, the task can be assigned to the specified worker grou
 ```conf
 worker.groups=default,test
 ```
-- You can also modify the worker group to which the worker belongs during operation: Open "security center - worker group management" and "new worker group", enter "group name", and select an existing worker to change the worker to a new worker group. If the modification is successful, the worker will use the new group and ignore the configuration in worker.properties
+- You can also modify the worker group for worker which be assigned to specific worker group, and if the modification is successful, the worker will use the new group and ignore the configuration in `worker.properties`. The step to modify it as below: "security center -> worker group management -> click 'new worker group' -> click 'new worker group' ->  enter 'group name' -> select exists worker -> click submit". 
 
 ## Environmental Management
 
