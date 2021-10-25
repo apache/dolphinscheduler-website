@@ -4,7 +4,7 @@
 
 On October 22, 2021, we are excited to announce the release of Apache DolphinScheduler 1.3.9. After a month and a half，Apache DolphinScheduler 1.3.9 brings StandaloneServer to users with the joint efforts of the community. StandaloneServer is a major update of this version, which means a huge leap in ease of use, and the details will be introduced below. In addition, this upgrade also fixes two critical bugs in 1.3.8.
 
-## 1.3.9 Download：[1.3.9 Download Link](https://dolphinscheduler.apache.org/zh-cn/download/download.html)
+## 1.3.9 Download：[1.3.9 Download Link](https://dolphinscheduler.apache.org/en-us/download/download.html)
 
 In 1.3.9, the main updates include:
 
