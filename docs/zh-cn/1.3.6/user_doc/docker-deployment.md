@@ -34,8 +34,8 @@
 
 #### 2、拉取镜像并启动服务
 
-> 对于 Mac 和 Linux 用户，打开 **Terminal**  
-> 对于 Windows Docker Toolbox 用户，打开 **Docker Quickstart Terminal**  
+> 对于 Mac 和 Linux 用户，打开 **Terminal**
+> 对于 Windows Docker Toolbox 用户，打开 **Docker Quickstart Terminal**
 > 对于 Windows Docker Desktop 用户，打开 **Windows PowerShell**
 
 ```
@@ -74,7 +74,7 @@ $ docker-compose up -d
 
 #### 2、请登录 PostgreSQL 数据库，创建名为 `dolphinscheduler` 数据库
 
-#### 3、初始化数据库，导入 `sql/dolphinscheduler-postgre.sql` 进行创建表及基础数据导入
+#### 3、初始化数据库，导入 `sql/dolphinscheduler_postgre.sql` 进行创建表及基础数据导入
 
 #### 4、下载 DolphinScheduler 镜像
 
@@ -176,14 +176,11 @@ Docker 容器通过环境变量进行配置，[附录-环境变量](#appendix-en
 | Hadoop3                                                      | 尚未确定 | 尚未测试                |
 | Spark-Local(client)                                          | 间接支持 | 详见 FAQ               |
 | Spark-YARN(cluster)                                          | 间接支持 | 详见 FAQ               |
-| Spark-Mesos(cluster)                                         | 尚不    |                        |
 | Spark-Standalone(cluster)                                    | 尚不    |                        |
 | Spark-Kubernetes(cluster)                                    | 尚不    |                        |
 | Flink-Local(local>=1.11)                                     | 尚不    | Generic CLI 模式尚未支持 |
 | Flink-YARN(yarn-cluster)                                     | 间接支持 | 详见 FAQ               |
 | Flink-YARN(yarn-session/yarn-per-job/yarn-application>=1.11) | 尚不    | Generic CLI 模式尚未支持 |
-| Flink-Mesos(default)                                         | 尚不    |                        |
-| Flink-Mesos(remote>=1.11)                                    | 尚不    | Generic CLI 模式尚未支持 |
 | Flink-Standalone(default)                                    | 尚不    |                        |
 | Flink-Standalone(remote>=1.11)                               | 尚不    | Generic CLI 模式尚未支持 |
 | Flink-Kubernetes(default)                                    | 尚不    |                        |

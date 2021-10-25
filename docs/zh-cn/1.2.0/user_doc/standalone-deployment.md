@@ -6,10 +6,11 @@ DolphinScheduler单机部署分为后端部署和前端部署两部分：
 
 ### 1.1 : 基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7系列)  :  两者任选其一即可
- * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
- * ZooKeeper (3.4.6+) ：必装 
- * Hadoop (2.6+) or MinIO ：选装， 如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署Hadoop)；当然也可以选择上传到Hadoop or MinIO集群上
+ * PostgreSQL (8.2.15+) or MySQL (5.7系列)：两者任选其一即可
+ * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+)：必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
+ * ZooKeeper (3.4.6+)：必装 
+ * pstree or psmisc：Mac OS必装pstree，Fedora/Red/Hat/CentOS/Ubuntu/Debian必装psmisc
+ * Hadoop (2.6+) or MinIO：选装， 如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署Hadoop)；当然也可以选择上传到Hadoop or MinIO集群上
 
 ```markdown
  注意：DolphinScheduler本身不依赖Hadoop、Hive、Spark,仅是会调用他们的Client，用于对应任务的运行。

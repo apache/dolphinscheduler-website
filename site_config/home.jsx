@@ -2,7 +2,7 @@ export default {
   'zh-cn': {
     brand: {
       brandName: 'Apache DolphinScheduler',
-      briefIntroduction: '分布式易扩展的可视化DAG工作流任务调度系统',
+      briefIntroduction: '分布式易扩展的可视化工作流任务调度平台',
       buttons: [
         {
           text: '立即开始',
@@ -22,8 +22,8 @@ export default {
       releaseDate: '2019年08月05日发布',
     },
     introduction: {
-      title: '分布式易扩展的可视化DAG工作流任务调度系统',
-      desc: 'Apache DolphinScheduler是一个分布式去中心化，易扩展的可视化DAG工作流任务调度系统。致力于解决数据处理流程中错综复杂的依赖关系，使调度系统在数据处理流程中开箱即用。',
+      title: '分布式易扩展的可视化工作流任务调度平台',
+      desc: 'Apache DolphinScheduler是一个分布式去中心化，易扩展的可视化DAG工作流任务调度平台。致力于解决数据处理流程中错综复杂的依赖关系，使调度系统在数据处理流程中开箱即用。',
       img: '/img/archdiagram_zh.svg',
     },
     features: {
@@ -32,7 +32,7 @@ export default {
         {
           img: '/img/ha.png',
           title: '高可靠性',
-          content: '去中心化的多Master和多Worker, 自身支持HA功能, 采用任务队列来避免过载，不会造成机器卡死',
+          content: '去中心化的多Master和多Worker服务对等架构, 避免单Master压力过大，另外采用任务缓冲队列来避免过载',
         },
         {
           img: '/img/easyuse.png',
@@ -42,7 +42,7 @@ export default {
         {
           img: '/img/scene.png',
           title: '丰富的使用场景',
-          content: '支持暂停恢复操作. 支持多租户，更好的应对大数据的使用场景. 支持更多的任务类型，如:Spark, Hive, M/R, Python, Sub_process, Shell',
+          content: '支持多租户，支持暂停恢复操作. 紧密贴合大数据生态，提供Spark, Hive, M/R, Python, Sub_process, Shell等近20种任务类型',
         },
         {
           img: '/img/scaleout.png',
@@ -54,6 +54,13 @@ export default {
     events: {
       title: '事件 & 新闻',
       list: [
+        {
+          img: '/img/apache.jpg',
+          title: 'Wenjun Ruan：如何成为Apache DolphinScheduler Committer',
+          content: '7.29,来自 eBay 的 Wenjun 同学正式成为Apache DolphinSchedulerCommitter,此文将为大家分享他的开源旅程，以及他是如何成为DolphinScheduler的Committer',
+          dateStr: '2021-07-29',
+          link: '/zh-cn/blog/new_committer_wenjun.html',
+        },
         {
           img: '/img/dailidong.png',
           title: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线直播',
@@ -116,7 +123,7 @@ export default {
           img: '/img/ourusers/zhaoshangyinhang@2x.png',
         },
         {
-          img: '/img/ourusers/icbc@2x.png',
+          img: '/img/ourusers/ICBC@2x.png',
         },
         {
           img: '/img/ourusers/pingan@2x.png',
@@ -235,6 +242,39 @@ export default {
         {
           img: '/img/ourusers/fordeal@2x.png',
         },
+        {
+          img: '/img/ourusers/yunda@2x.png',
+        },
+        {
+          img: '/img/ourusers/huawei@2x.png',
+        },
+        {
+          img: '/img/ourusers/vmware@2x.png',
+        },
+        {
+          img: '/img/ourusers/weipinhui@2x.png',
+        },
+        {
+          img: '/img/ourusers/jdt.png',
+        },
+        {
+          img: '/img/ourusers/hundsun.png',
+        },
+        {
+          img: '/img/ourusers/zhaopin.png',
+        },
+        {
+          img: '/img/ourusers/dell.png',
+        },        
+        {
+          img: '/img/ourusers/shansong.png',
+        },
+        {
+          img: '/img/ourusers/189.png',
+        },        
+        {
+          img: '/img/ourusers/360.png',
+        },   
       ],
     },
     userreview: {
@@ -306,7 +346,7 @@ export default {
         {
           img: '/img/feature_service.png',
           title: 'Rich Scenarios',
-          content: 'Support pause, recover operation. Support multi-tenant. Support more task types e.g., spark, hive, mr, shell, python, sub_process',
+          content: 'Support multi-tenant. Support many task types e.g., spark,flink,hive, mr, shell, python, sub_process',
         },
         {
           img: '/img/feature_runtime.png',
@@ -340,7 +380,7 @@ export default {
           img: '/img/ourusers/zhaoshangyinhang@2x.png',
         },
         {
-          img: '/img/ourusers/icbc@2x.png',
+          img: '/img/ourusers/ICBC@2x.png',
         },
         {
           img: '/img/ourusers/pingan@2x.png',
@@ -459,6 +499,39 @@ export default {
         {
           img: '/img/ourusers/fordeal@2x.png',
         },
+        {
+          img: '/img/ourusers/yunda@2x.png',
+        },
+        {
+          img: '/img/ourusers/huawei@2x.png',
+        },
+        {
+          img: '/img/ourusers/vmware@2x.png',
+        },
+        {
+          img: '/img/ourusers/weipinhui@2x.png',
+        },
+        {
+          img: '/img/ourusers/jdt.png',
+        },
+        {
+          img: '/img/ourusers/hundsun.png',
+        },
+        {
+          img: '/img/ourusers/zhaopin.png',
+        },
+        {
+          img: '/img/ourusers/dell.png',
+        },        
+        {
+          img: '/img/ourusers/shansong.png',
+        },
+        {
+          img: '/img/ourusers/189.png',
+        },        
+        {
+          img: '/img/ourusers/360.png',
+        },           
       ],
     },
     events: {

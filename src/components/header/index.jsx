@@ -222,7 +222,7 @@ class Header extends React.Component {
                     </span>
                   }
                 >
-                  <Menu.ItemGroup>
+                  <Menu.ItemGroup className="showUL">
                   {item.children.map(items => (
                     <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
                   ))}

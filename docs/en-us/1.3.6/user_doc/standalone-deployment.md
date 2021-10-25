@@ -2,13 +2,14 @@
 
 # 1、Install basic softwares (please install required softwares by yourself)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7)  :  Choose One, JDBC Driver 5.1.47+ is required if MySQL is used
- * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
- * ZooKeeper (3.4.6+) ：Required
- * Hadoop (2.6+) or MinIO ：Optional. If you need resource function, for Standalone Deployment you can choose a local directory as the upload destination (this does not need Hadoop deployed). Of course, you can also choose to upload to Hadoop or MinIO.
+ * PostgreSQL (8.2.15+) or MySQL (5.7) : Choose One, JDBC Driver 5.1.47+ is required if MySQL is used
+ * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) : Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
+ * ZooKeeper (3.4.6+) : Required
+ * pstree or psmisc : "pstree" is required for Mac OS and "psmisc" is required for Fedora/Red/Hat/CentOS/Ubuntu/Debian
+ * Hadoop (2.6+) or MinIO : Optional. If you need resource function, for Standalone Deployment you can choose a local directory as the upload destination (this does not need Hadoop deployed). Of course, you can also choose to upload to Hadoop or MinIO.
 
 ```markdown
- Tips：DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients to run corresponding task.
+ Tips: DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients to run corresponding task.
 ```
 
 # 2、Download the binary tar.gz package.
@@ -49,7 +50,7 @@ chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 ```
  Notes：
  - Because the task execution is based on 'sudo -u {linux-user}' to switch among different Linux users to implement multi-tenant job running, so the deployment user must have sudo permissions and is secret-free. If beginner learners don’t understand, you can ignore this point for now.
- - Please comment out line "Default requiretty", if it present in "/etc/sudoers" file. 
+ - Please comment out line "Defaults requirett", if it present in "/etc/sudoers" file. 
  - If you need to use resource upload, you need to assign user the permission to operate the local file system, HDFS or MinIO.
 ```
 
@@ -219,6 +220,9 @@ mysql -uroot -p
 
     # specify the user who have permissions to create directory under HDFS/S3 root path
     hdfsRootUser="hdfs"
+    
+    # api server port
+    apiServerPort="12345"
 
     # On which machines to deploy the DS service, choose localhost for this machine
     ips="localhost"
