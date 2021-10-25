@@ -1,5 +1,12 @@
 # 资源中心
 
+如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署 Hadoop)。当然也可以选择上传到 Hadoop or MinIO 集群上，此时则需要有Hadoop (2.6+) 或者 MinIO 等相关环境
+
+> **_注意:_**
+>
+> * 如果用到资源上传的功能，那么 [安装部署](installation/standalone.md)中，部署用户需要有这部分的操作权限
+> * 如果 Hadoop 集群的 NameNode 配置了 HA 的话，需要开启 HDFS 类型的资源上传，同时需要将 Hadoop 集群下的 `core-site.xml` 和 `hdfs-site.xml` 复制到 `/opt/dolphinscheduler/conf`，非 NameNode HA 跳过次步骤
+
 ## hdfs资源配置
 
 - 上传资源文件和udf函数，所有上传的文件和资源都会被存储到hdfs上，所以需要以下配置项：
