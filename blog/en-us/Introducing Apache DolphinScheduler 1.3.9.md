@@ -34,9 +34,6 @@ The detailed user docs for Standalone, please refer to:[1.3.9 standalone-server]
 
 **☆[Fix #6337][Task] Sql limit param no default value**
 
-
-
-
 When the SqlTask ​​is executed, if the limit parameter is not set, the displayed result is empty. Based on this, the default parameters have been added in 1.3.9, and relevant instructions have been made on the log to allow users to track the problem more clearly.
 
 **☆[Bug#6429] [ui] sub_process node open sub_task show empty page #6429**
