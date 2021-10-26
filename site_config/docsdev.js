@@ -260,19 +260,6 @@ export default {
           },
         ],
       },
-      {
-        title: 'To be Classification',
-        children: [
-          {
-            title: 'Global-Params',
-            link: '/en-us/docs/dev/user_doc/globalParams.html',
-          },
-          {
-            title: 'Dev-Run',
-            link: '/en-us/docs/dev/user_doc/dev_run.html',
-          },
-        ],
-      },
     ],
     barText: 'Documentation',
   },
@@ -525,23 +512,6 @@ export default {
           {
             title: 'FAQ',
             link: '/zh-cn/docs/release/faq.html',
-          },
-        ],
-      },
-      {
-        title: '待分类文档',
-        children: [
-          {
-            title: 'Global-Params',
-            link: '/zh-cn/docs/dev/user_doc/globalParams.html',
-          },
-          {
-            title: 'Switch-Node',
-            link: '/zh-cn/docs/dev/user_doc/switch_node.html',
-          },
-          {
-            title: 'Dev-Run',
-            link: '/zh-cn/docs/dev/user_doc/dev_run.html',
           },
         ],
       },

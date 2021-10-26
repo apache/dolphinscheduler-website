@@ -15,10 +15,6 @@ export default {
           {
             title: 'Backend Development',
             children: [
-              {
-                title: 'Overview',
-                link: '/en-us/development/back/backend-development.html',
-              },
               // TODO not suppor multiply level for now
               // {
                 // title: 'SPI',
@@ -41,6 +37,10 @@ export default {
                   },
                 // ],
               // }
+              {
+                title: 'Mechanism Design',
+                link: '/en-us/development/backend/mechanism/overview.html',
+              },
             ],
           },
           {
@@ -72,10 +72,6 @@ export default {
           {
             title: '后端开发',
             children: [
-              {
-                title: '综述',
-                link: '/zh-cn/development/backend/backend-development.html',
-              },
               // TODO not suppor multiply level for now
               // {
                 // title: 'SPI相关',
@@ -98,6 +94,10 @@ export default {
                   },
                 // ],
               // },
+              {
+                title: '组件设计',
+                link: '/zh-cn/development/backend/mechanism/overview.html',
+              },
             ],
           },
           {
