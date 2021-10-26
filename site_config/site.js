@@ -4,7 +4,7 @@ export default {
   port: 8080,
   domain: 'dolphinscheduler.apache.org',
   copyToDist: ['asset', 'img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess'],
-  docsLatest: '1.3.9',
+  docsLatest: '2.0.0',
   defaultSearch: 'google', // default search engine
   defaultLanguage: 'en-us',
   'en-us': {
@@ -17,12 +17,17 @@ export default {
       {
         key: 'docs',
         text: 'DOCS',
-        link: '/en-us/docs/latest/user_doc/quick-start.html',
+        link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.9)',
-            link: '/en-us/docs/latest/user_doc/quick-start.html',
+            text: 'latest(2.0.0)',
+            link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
+          },
+          {
+            key: 'docs200',
+            text: '2.0.0',
+            link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
             key: 'docs139',
@@ -234,12 +239,17 @@ export default {
       {
         key: 'docs',
         text: '文档',
-        link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+        link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.9)',
-            link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+            text: 'latest(2.0.0)',
+            link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
+          },
+          {
+            key: 'docs200',
+            text: '2.0.0',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
             key: 'docs139',
