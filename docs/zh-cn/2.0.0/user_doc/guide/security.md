@@ -13,7 +13,7 @@
 
 ## 添加租户
 
-- 租户对应的是Linux的用户，用于worker提交作业所使用的用户。如果linux没有这个用户，worker会在执行脚本的时候创建这个用户。
+- 租户对应的是Linux的用户，用于worker提交作业所使用的用户。如果linux没有这个用户，则会导致任务运行失败。你可以通过修改 `worker.properties` 配置文件中参数 `worker.tenant.auto.create=true` 实现当 linux 用户不存在时自动创建该用户。`worker.tenant.auto.create=true` 参数会要求 worker 可以免密运行 `sudo` 命令。
 - 租户编码：**租户编码是Linux上的用户，唯一，不能重复**
 - 管理员进入安全中心->租户管理页面，点击“创建租户”按钮，创建租户。
 

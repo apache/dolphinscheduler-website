@@ -433,7 +433,7 @@ Note: If you enable **kerberos**, you need to fill in **Principal**
 
 #### 5.2 Add tenant
 
-- The tenant corresponds to the Linux user, which is used by the worker to submit the job. If Linux does not have this user, the worker will create this user when executing the script.
+- The tenant corresponds to the Linux user, which is used by the worker to submit the job. Task will fail if Linux does not exists this user. You can set the parameter `worker.tenant.auto.create` as `true` in configuration file `worker.properties`. After that DolphinScheduler would create user if not exists, The property `worker.tenant.auto.create=true` requests worker run `sudo` command without password.
 - Tenant Code: **Tenant Code is the only user on Linux and cannot be repeated**
 - The administrator enters the Security Center->Tenant Management page and clicks the "Create Tenant" button to create a tenant.
 
