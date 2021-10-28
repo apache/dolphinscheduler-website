@@ -84,7 +84,23 @@ dataLogDir=/data/zookeeper/datalog
 <p>打开项目：使用开发工具打开项目，这里以 Intellij IDEA 为例，打开后需要一段时间，让 Intellij IDEA 完成以依赖的下载。</p>
 </li>
 <li>
-<p>插件的安装（<strong>仅 2.0 及以后的版本需要</strong>）：编译对应的插件，在项目目录执行 <code>mvn -U clean install package -Prelease -Dmaven.test.skip=true</code> 完成注册插件的安装</p>
+<p>插件的配置（<strong>仅 2.0 及以后的版本需要</strong>）：编译对应的插件，在项目目录执行 <code>mvn -U clean install -Dmaven.test.skip=true</code> 完成注册插件的安装</p>
+<p>注意：${VERSION} 需要根据当前版本手动修改</p>
+<ul>
+<li>告警插件配置</li>
+</ul>
+<pre><code class="language-alert.properties"> alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
+</code></pre>
+<ul>
+<li>注册中心插件配置</li>
+</ul>
+<pre><code class="language-registry.properties"> alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
+</code></pre>
+<ul>
+<li>任务插件配置</li>
+</ul>
+<pre><code class="language-worker.properties">   task.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
+</code></pre>
 </li>
 <li>
 <p>必要的修改</p>

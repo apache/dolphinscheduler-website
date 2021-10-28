@@ -86,7 +86,23 @@ dataLogDir=/data/zookeeper/datalog
 <p>Open project: Use IDE open the project, here we use Intellij IDEA as an example, after opening it will take a while for Intellij IDEA to complete the dependent download</p>
 </li>
 <li>
-<p>Plugin installation(<strong>Only required for 2.0 or later</strong>): Compile plugin by command <code>mvn -U clean install package -Prelease -Dmaven.test.skip=true</code></p>
+<p>Plugin installation(<strong>Only required for 2.0 or later</strong>): Compile plugin by command <code>mvn -U clean install -Dmaven.test.skip=true</code></p>
+<p>Note: ${VERSION} needs to be manually modified according to the current version</p>
+<ul>
+<li>alert plugin config</li>
+</ul>
+<pre><code class="language-alert.properties"> alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
+</code></pre>
+<ul>
+<li>registry plugin config</li>
+</ul>
+<pre><code class="language-registry.properties"> alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
+</code></pre>
+<ul>
+<li>task plugin config</li>
+</ul>
+<pre><code class="language-worker.properties">   task.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
+</code></pre>
 </li>
 <li>
 <p>File change</p>
