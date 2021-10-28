@@ -468,7 +468,7 @@ export default {
         children: [
           {
             title: '元数据文档',
-            link: '/zh-cn/docs/2.0.0/user_doc/architecture/metadata-1.3.html',
+            link: '/zh-cn/docs/2.0.0/user_doc/architecture/metadata.html',
           },
           {
             title: '架构设计',
