@@ -29,7 +29,7 @@ There are two ways to configure the DolphinScheduler development environment, st
 
 ## DolphinScheduler Standalone Quick Start
 
-> **_Note:_**: Standalone server only for development and debugging, cause it use H2 Database, Zookeeper Testing Server which may not stable in production
+> **_Note:_** Standalone server only for development and debugging, cause it use H2 Database, Zookeeper Testing Server which may not stable in production
 > If you want to test plugin, you can modify `plugin.bind` in StandaloneServer class or modify the configuration file by yourself.
 > Standalone is only supported in DolphinScheduler 1.3.9 and later versions
 
