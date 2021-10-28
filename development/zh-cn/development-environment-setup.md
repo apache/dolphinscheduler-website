@@ -94,6 +94,8 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
 * 打开项目：使用开发工具打开项目，这里以 Intellij IDEA 为例，打开后需要一段时间，让 Intellij IDEA 完成以依赖的下载。
   
 * 插件的配置（**仅 2.0 及以后的版本需要**）：编译对应的插件，在项目目录执行 `mvn -U clean install -Dmaven.test.skip=true` 完成注册插件的安装
+
+  注意：${VERSION} 需要根据当前版本手动修改
   
   * 告警插件配置
   ```alert.properties
