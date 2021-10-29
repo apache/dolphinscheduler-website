@@ -2,13 +2,15 @@
 
 #### How to use it？
 
-First you need to execute the `mvn -U install package -Prelease -Dmaven.test.skip=true` to install the plugin for generating the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry.
+Note: ${VERSION} needs to be manually modified according to the current version.
+
+First you need to execute the `mvn -U install -Prelease -Dmaven.test.skip=true` to install the plugin for generating the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry.
 
 Next,  please follow the configuration below (using zookeeper as an example).
 
 |        parameter        | default                                                     | description                             |
 | :---------------------: | :----------------------------------------------------------: | :--------------------------------------: |
-|   registry.plugin.dir   | ./dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/registry | Registration Center Plugin Directory     |
+|   registry.plugin.dir   | ./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry | Registration Center Plugin Directory     |
 | registry.plugin.name  | zookeeper                                                    | Registration Center specific plugin name |
 | registry.plugin.binding | registry                                                     | Dolphinscheduler plugin category         |
 |    registry.servers     | 127.0.0.1:2181                                               | ZK connection address                    |
@@ -19,7 +21,7 @@ For the specific configuration information, please refer to the parameter inform
 
 1: registry plugin not found
 
-Please check if `mvn -U install package -Prelease -Dmaven.test.skip=true` is executed. Besides, please check if the directory is configured in registry.plugin.dir in the configuration file contains the relevant plugins.
+Please check if `mvn -U install -Dmaven.test.skip=true` is executed. Besides, please check if the directory is configured in registry.plugin.dir in the configuration file contains the relevant plugins.
 
 2：registry connect timeout
 
