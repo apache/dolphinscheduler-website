@@ -531,7 +531,7 @@ dag 相关接口 `src/js/conf/home/store/dag/actions.js`
 }
 ```
 
-(3) 在 `src/js/conf/home/pages/dag/_source/formModel/tasks` 增加一个 `${节点类型（小写）}`.vue 文件，跟当前节点相关的组件内容都在这里写。 属于节点组件内的必须拥有一个函数 `_verification()` 验证成功后讲当前组件的相关数据往父组件抛。
+(3) 在 `src/js/conf/home/pages/dag/_source/formModel/tasks` 增加一个 `${节点类型（小写）}`.vue 文件，跟当前节点相关的组件内容都在这里写。 属于节点组件内的必须拥有一个函数 `_verification()` 验证成功后将当前组件的相关数据往父组件抛。
 ```
 /**
  * 验证
@@ -563,7 +563,7 @@ dag 相关接口 `src/js/conf/home/store/dag/actions.js`
   }
 ``` 
 
-(4) 节点组件内部所用到公共的组件都在`_source`下，`commcon.js`用与配置公共数据
+(4) 节点组件内部所用到公共的组件都在`_source`下，`commcon.js`用于配置公共数据
 
 ##### 2.增加状态类型
 
