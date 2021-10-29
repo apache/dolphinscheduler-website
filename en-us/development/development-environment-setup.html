@@ -89,17 +89,17 @@ dataLogDir=/data/zookeeper/datalog
 <p>Plugin installation(<strong>Only required for 2.0 or later</strong>): Compile plugin by command <code>mvn -U clean install -Dmaven.test.skip=true</code></p>
 <p>Note: ${VERSION} needs to be manually modified according to the current version</p>
 <ul>
-<li>alert plugin config</li>
+<li>alert plugin config (alert.properties)</li>
 </ul>
 <pre><code class="language-alert.properties"> alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
 </code></pre>
 <ul>
-<li>registry plugin config</li>
+<li>registry plugin config  (registry.properties)</li>
 </ul>
 <pre><code class="language-registry.properties"> alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
 </code></pre>
 <ul>
-<li>task plugin config</li>
+<li>task plugin config (worker.properties)</li>
 </ul>
 <pre><code class="language-worker.properties">   task.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
 </code></pre>
