@@ -97,18 +97,15 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
 
   注意：${VERSION} 需要根据当前版本手动修改
 
-  alert.properties
-  * 告警插件配置
+  * 告警插件配置 (alert.properties)
   ```alert.properties
    alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
   ```
-  registry.properties
-  * 注册中心插件配置
+  * 注册中心插件配置 (registry.properties)
   ```registry.properties
    alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
   ```
-  worker.properties
-  * 任务插件配置
+  * 任务插件配置 (worker.properties)
   ```worker.properties
      task.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
   ```
