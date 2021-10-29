@@ -11,7 +11,7 @@
 其次在（dolphinscheduler-server/src/main/resources/worker.properties）进行配置插件目录
 ```
 task.plugin.dir config the #task.plugin.dir config the Task Plugin dir . WorkerServer while find and load the Task Plugin Jar from this dir when deploy and start WorkerServer on the server .
-task.plugin.dir=dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task
+task.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task
 ```
 本地开发调试也可采用以下方式进行配置，例如：
 ```

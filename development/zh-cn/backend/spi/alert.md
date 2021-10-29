@@ -95,9 +95,10 @@ alert_spi 具体设计可见 issue：[Alert Plugin Design](https://github.com/ap
 注意：**${VERSION}** 需要根据当前版本手动修改。
 
 当你完成相关代码开发的时候, 你需要执行 `mvn -U install -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert（版本号会跟随主版本号变更）
-alert.properties 配置
+
+alert.properties 配置，对于 alert.plugin.binding,maven.local.repository 这两个参数则无需做修改。
 ```
-alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert
+alert.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert
 ```
 然后，接下来就可以开始愉快的使用你自己的插件了。
 
