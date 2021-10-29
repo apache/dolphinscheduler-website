@@ -2,7 +2,7 @@
 
 #### How to use it？
 
-Note: ${VERSION} needs to be manually modified according to the current version.
+Note: **${VERSION}** needs to be manually modified according to the current version.
 
 First you need to execute the `mvn -U install -Prelease -Dmaven.test.skip=true` to install the plugin for generating the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry.
 

@@ -96,7 +96,7 @@ Following steps will guide how to start the DolphinScheduler backend service.
 * Open project: Use IDE open the project, here we use Intellij IDEA as an example, after opening it will take a while for Intellij IDEA to complete the dependent download
 * Plugin installation(**Only required for 2.0 or later**): Compile plugin by command `mvn -U clean install  -Dmaven.test.skip=true`
   
-  Note: ${VERSION} needs to be manually modified according to the current version
+  Note: **${VERSION}** needs to be manually modified according to the current version
 
   * alert plugin config (alert.properties)
   ```alert.properties

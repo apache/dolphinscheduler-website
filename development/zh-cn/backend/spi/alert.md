@@ -92,7 +92,7 @@ alert_spi 具体设计可见 issue：[Alert Plugin Design](https://github.com/ap
 
 事实上，自我实现一款插件及其简单，仅仅关心插件扩展接口即可，Alert 中你只需要关心 AlertChannelFactory 以及 AlertChannel。我们更建议你按照其他内置插件的设计规范来去开发，这样当你的idea足够好的时候，你无需做过多更改即可捐献给社区。
 
-注意：${VERSION} 需要根据当前版本手动修改。
+注意：**${VERSION}** 需要根据当前版本手动修改。
 
 当你完成相关代码开发的时候, 你需要执行 `mvn -U install -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert（版本号会跟随主版本号变更）
 alert.properties 配置
