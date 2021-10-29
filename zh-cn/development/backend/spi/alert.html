@@ -80,9 +80,9 @@
 <h4>告警自定义插件开发</h4>
 <p>事实上，自我实现一款插件及其简单，仅仅关心插件扩展接口即可，Alert 中你只需要关心 AlertChannelFactory 以及 AlertChannel。我们更建议你按照其他内置插件的设计规范来去开发，这样当你的idea足够好的时候，你无需做过多更改即可捐献给社区。</p>
 <p>注意：<strong>${VERSION}</strong> 需要根据当前版本手动修改。</p>
-<p>当你完成相关代码开发的时候, 你需要执行 <code>mvn -U install -Dmaven.test.skip=true</code> 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert（版本号会跟随主版本号变更）
-alert.properties 配置</p>
-<pre><code>alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert
+<p>当你完成相关代码开发的时候, 你需要执行 <code>mvn -U install -Dmaven.test.skip=true</code> 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert（版本号会跟随主版本号变更）</p>
+<p>alert.properties 配置，对于 alert.plugin.binding,maven.local.repository 这两个参数则无需做修改。</p>
+<pre><code>alert.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert
 </code></pre>
 <p>然后，接下来就可以开始愉快的使用你自己的插件了。</p>
 <p>事实上，自定义插件化开发确实如同我们描绘的那么简单，并没有想象中的多么困难。</p>
