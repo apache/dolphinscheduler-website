@@ -133,7 +133,7 @@ http://keyserver.ubuntu.com:11371/pks/lookup?search=${用户名}&fingerprint=on&
 ### 更新版本说明
 
 ```
-https://github.com/apache/dolphinscheduler/blob/dev/RELEASE-NOTES.md
+https://github.com/apache/dolphinscheduler/releases
 ```
 
 ### 创建发布分支

@@ -59,7 +59,7 @@ npm install
 npm run start
 ```
 
-截止目前，前后端以成功运行起来，浏览器访问[http://localhost:8888](http://localhost:8888)，并使用默认账户密码 **admin/dolphinscheduler123** 即可完成登录
+截止目前，前后端已成功运行起来，浏览器访问[http://localhost:8888](http://localhost:8888)，并使用默认账户密码 **admin/dolphinscheduler123** 即可完成登录
 
 ## DolphinScheduler 普通开发模式
 
@@ -131,7 +131,7 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
   </root>
   ```
 
-> **_注意：_**：上述准备工作中，插件的安装仅 DolphinScheduler 2.0 及以后的版本需要运行，2.0 之前的版本不需要运行该命令
+> **_注意：_** 上述准备工作中，插件的安装仅 DolphinScheduler 2.0 及以后的版本需要运行，2.0 之前的版本不需要运行该命令
 
 ##### 启动服务
 
@@ -152,4 +152,4 @@ npm install
 npm run start
 ```
 
-截止目前，前后端以成功运行起来，浏览器访问[http://localhost:8888](http://localhost:8888)，并使用默认账户密码 **admin/dolphinscheduler123** 即可完成登录
+截止目前，前后端已成功运行起来，浏览器访问[http://localhost:8888](http://localhost:8888)，并使用默认账户密码 **admin/dolphinscheduler123** 即可完成登录

@@ -124,7 +124,7 @@ For encryption settings, please see [here](http://maven.apache.org/guides/mini/g
 ### Update Release Notes
 
 ```
-https://github.com/apache/dolphinscheduler/blob/dev/RELEASE-NOTES.md
+https://github.com/apache/dolphinscheduler/releases
 ```
 
 ### Create Release Branch
