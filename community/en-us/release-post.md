@@ -23,7 +23,7 @@ For example, after the release of `x.y.z`, the following updates are required:
 
 ## Publish Image
 
-Build docker image first, please refer to [How to build a Docker image?](/zh-cn/docs/latest/user_doc/guide/installation/docker.html)
+Build docker image first, please refer to [How to build a Docker image?](/en-us/docs/latest/user_doc/guide/installation/docker.html)
 
 And then publish image
 
