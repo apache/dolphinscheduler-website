@@ -23,7 +23,7 @@
 
 ## 发布镜像
 
-构建 Docker 镜像，请参考 [如何构建一个 Docker 镜像？](/zh-cn/docs/latest/user_doc/docker-deployment.html)
+构建 Docker 镜像，请参考 [如何构建一个 Docker 镜像？](/zh-cn/docs/latest/user_doc/guide/installation/docker.html)
 
 然后推送镜像
 

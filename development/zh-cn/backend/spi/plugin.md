@@ -36,7 +36,7 @@
   }
   ```
 
-  传入自定义任务的 **TaskProps**和自定义**Logger**，TaskProps 封装了任务的信息，Logger分装了自定义日志信息
+  传入自定义任务的 **TaskProps**和自定义**Logger**，TaskProps 封装了任务的信息，Logger封装了自定义日志信息
 
 - 继承 **AbstractParameters** 自定义任务参数实体
 
