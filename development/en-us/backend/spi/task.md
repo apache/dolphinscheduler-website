@@ -12,7 +12,7 @@ Next, configure the plugin directory in (dolphinscheduler-server/src/main/resour
 
 ```
 task.plugin.dir config the #task.plugin.dir config the Task Plugin dir . WorkerServer while find and load the Task Plugin Jar from this dir when deploy and start WorkerServer on the server .
-task.plugin.dir=dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task
+task.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task
 ```
 
 The following configurations can be used for local development debugging, for example:

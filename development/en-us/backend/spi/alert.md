@@ -98,11 +98,11 @@ In fact, it's very easy to implement a plugin by yourself, you only need to care
 
 When you complete the development of the relevant code, you need to execute `mvn -U install -Dmaven.test.skip=true` to install the plug-in and generate the plug-in jar of the alert. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert (the version number will change with the main version number)
 
-Note: **${VERSION}** needs to be manually modified according to the current version.
+Note: **${VERSION}** needs to be manually modified according to the current version. regarding alert.plugin.binding, maven.local.repository does not need to be modified.
 
 alert.properties configuration
 ```
-alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert
+alert.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert
 ```
 
 Then, you can happily start using your own plugins.
