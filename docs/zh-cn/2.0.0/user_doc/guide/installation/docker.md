@@ -374,7 +374,7 @@ done
 >
 > 如果你要使用 MySQL, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
 
-1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (要求 `>=8.0.16`)
+1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
@@ -420,7 +420,7 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 >
 > 如果你要添加 MySQL 数据源, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
 
-1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (要求 `>=8.0.16`)
+1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
