@@ -104,7 +104,7 @@ Following steps will guide how to start the DolphinScheduler backend service.
   ```
   * registry plugin config  (registry.properties)
   ```registry.properties
-   alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
+   registry.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
   ```
   * task plugin config (worker.properties)
   ```worker.properties
