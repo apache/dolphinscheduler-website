@@ -81,16 +81,27 @@ mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHA
 <span class="hljs-meta">
 mysql&gt;</span><span class="bash"> flush privileges;</span>
 </code></pre>
-<p>Modify the database configuration and initialize</p>
-<pre><code class="language-properties"><span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span>
-<span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true</span>
-<span class="hljs-comment"># Modify it if you are not using dolphinscheduler/dolphinscheduler as your username and password</span>
-<span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">dolphinscheduler</span>
-<span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">dolphinscheduler</span>
-</code></pre>
-<p>After modifying and saving, execute the following command to create database table and inti basic data.</p>
-<pre><code class="language-shell">sh script/create-dolphinscheduler.sh
-</code></pre>
+<p>Run the latest schema file manually in <code>sql/dolphinscheudler_*.sql</code> to initialization you database. If you use mysql, please run <code>sql/dolphinscheudler_mysql.sql</code>, for postgresql run <code>sql/dolphinscheudler_postgre.sql</code>.</p>
+<blockquote>
+<p><strong><em>NOTICE:</em></strong> In the latest version, the way running command <code>sh script/create-dolphinscheduler.sh</code> initialization database is broken, We have created a <a href="https://github.com/apache/dolphinscheduler/issues/6597">issue-6597</a> to track and fix this problem</p>
+</blockquote>
+<!--
+Modify the database configuration and initialize
+
+```properties
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+# Modify it if you are not using dolphinscheduler/dolphinscheduler as your username and password
+spring.datasource.username=dolphinscheduler
+spring.datasource.password=dolphinscheduler
+```
+
+After modifying and saving, execute the following command to create database table and inti basic data.
+
+```shell
+sh script/create-dolphinscheduler.sh
+```
+-->
 <h2>Modify configuration</h2>
 <p>After completing the preparation of the basic environment, you need to modify the configuration file according to your environment. The configuration file is in the path of <code>conf/config/install_config.conf</code>. Generally, you just needs to modify the <strong>INSTALL MACHINE, DolphinScheduler ENV, Database, Registry Server</strong> part to complete the deployment, the following describes the parameters that must be modified</p>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> ---------------------------------------------------------</span>
