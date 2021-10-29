@@ -83,6 +83,11 @@ mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTI
 mysql> flush privileges;
 ```
 
+运行对应数据库的最新定义文件，位置在 `sql/dolphinscheudler_*.sql` 。例如你是 mysql ，运行 `sql/dolphinscheudler_mysql.sql` ，是 postgresql 则运行 `sql/dolphinscheudler_postgre.sql`。
+
+> **_NOTICE:_** 最新版本目前通过运行命令 `sh script/create-dolphinscheduler.sh` 初始化数据库的方式暂不可用，我们创建了一个[issue-6597][issue] 去追踪并修复这个问题。
+
+<!--
 修改数据库配置，并初始化
 
 ```properties
@@ -98,6 +103,7 @@ spring.datasource.password=dolphinscheduler
 ```shell
 sh script/create-dolphinscheduler.sh
 ```
+-->
 
 ## 修改相关配置
 
