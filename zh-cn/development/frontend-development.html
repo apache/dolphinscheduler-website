@@ -432,7 +432,7 @@ test.then(res =&gt; {
   color: '#2FBFD8'  // 代表的颜色主要用于 tree和gantt 两张图
 }
 </code></pre>
-<p>(3) 在 <code>src/js/conf/home/pages/dag/_source/formModel/tasks</code> 增加一个 <code>${节点类型（小写）}</code>.vue 文件，跟当前节点相关的组件内容都在这里写。 属于节点组件内的必须拥有一个函数 <code>_verification()</code> 验证成功后讲当前组件的相关数据往父组件抛。</p>
+<p>(3) 在 <code>src/js/conf/home/pages/dag/_source/formModel/tasks</code> 增加一个 <code>${节点类型（小写）}</code>.vue 文件，跟当前节点相关的组件内容都在这里写。 属于节点组件内的必须拥有一个函数 <code>_verification()</code> 验证成功后将当前组件的相关数据往父组件抛。</p>
 <pre><code>/**
  * 验证
 */
@@ -462,7 +462,7 @@ test.then(res =&gt; {
     return true
   }
 </code></pre>
-<p>(4) 节点组件内部所用到公共的组件都在<code>_source</code>下，<code>commcon.js</code>用与配置公共数据</p>
+<p>(4) 节点组件内部所用到公共的组件都在<code>_source</code>下，<code>commcon.js</code>用于配置公共数据</p>
 <h5>2.增加状态类型</h5>
 <p>(1) 找到 <code>src/js/conf/home/pages/dag/_source/config.js</code> 里的 <code>tasksState</code> 对象，往里增加</p>
 <pre><code>'WAITTING_DEPEND': {  //后端定义状态类型 前端用作key值
