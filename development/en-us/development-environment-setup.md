@@ -97,16 +97,16 @@ Following steps will guide how to start the DolphinScheduler backend service.
 * Plugin installation(**Only required for 2.0 or later**): Compile plugin by command `mvn -U clean install  -Dmaven.test.skip=true`
   
   Note: ${VERSION} needs to be manually modified according to the current version
-  
-  * alert plugin config
+
+  * alert plugin config (alert.properties)
   ```alert.properties
    alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
   ```
-  * registry plugin config
+  * registry plugin config  (registry.properties)
   ```registry.properties
    alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
   ```
-  * task plugin config
+  * task plugin config (worker.properties)
   ```worker.properties
      task.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
   ```
