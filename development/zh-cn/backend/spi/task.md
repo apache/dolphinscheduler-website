@@ -4,7 +4,7 @@
 
 首先你需要执行 `mvn -U install -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task（版本号会跟随主版本号变更）
 
-注意：${VERSION} 需要根据当前版本手动修改
+注意：**${VERSION}** 需要根据当前版本手动修改
 
 执行此命令会生成所有模块默认提供的所有插件。
 

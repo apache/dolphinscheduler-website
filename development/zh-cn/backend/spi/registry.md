@@ -4,7 +4,7 @@
 
 首先你需要执行 `mvn -U install -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry
 
-注意：${VERSION} 需要根据当前版本手动修改
+注意：**${VERSION}** 需要根据当前版本手动修改
 
 其次进行以下配置（以 zookeeper 为例）
 
