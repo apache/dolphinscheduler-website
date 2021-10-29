@@ -96,8 +96,14 @@ The specific design of alert_spi can be found in issue: [Alert Plugin Design](ht
 
 In fact, it's very easy to implement a plugin by yourself, you only need to care about the plugin extension interface. In Alert you only need to care about the AlertChannelFactory and AlertChannel. We would recommend that you follow the design specifications of other built-in plugins so that when your idea is good enough, you can donate it to the community without having to change it too much.
 
-When you have finished developing the relevant code, configure the relevant plug-ins in alert.properties (or just configure a plug-in directory and it will load all the plug-ins in that directory).
+When you complete the development of the relevant code, you need to execute `mvn -U install -Dmaven.test.skip=true` to install the plug-in and generate the plug-in jar of the alert. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert (the version number will change with the main version number)
 
+Note: ${VERSION} needs to be manually modified according to the current version.
+
+alert.properties configuration
+```
+alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert
+```
 
 Then, you can happily start using your own plugins.
 

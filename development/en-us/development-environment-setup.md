@@ -132,7 +132,7 @@ Following steps will guide how to start the DolphinScheduler backend service.
   </root>
   ```
 
-> **_Note:_**: Only DolphinScheduler 2.0 and later versions need to inatall plugin before start server. It not need before version 2.0.
+> **_Note:_** Only DolphinScheduler 2.0 and later versions need to inatall plugin before start server. It not need before version 2.0.
 
 ##### Server start
 

@@ -2,7 +2,9 @@
 
 #### How to use development environment?
 
-First you need to execute the `mvn -U install package -Dmaven.test.skip=true` to install the plugin for generating the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/task (The version number will follow the change of the main version number)
+Note: ${VERSION} needs to be manually modified according to the current version.
+
+First you need to execute the `mvn -U install -Dmaven.test.skip=true` to install the plugin for generating the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task (The version number will follow the change of the main version number)
 
 Executing this command will generate all plugins provided by default for all modules.
 
@@ -10,7 +12,7 @@ Next, configure the plugin directory in (dolphinscheduler-server/src/main/resour
 
 ```
 task.plugin.dir config the #task.plugin.dir config the Task Plugin dir . WorkerServer while find and load the Task Plugin Jar from this dir when deploy and start WorkerServer on the server .
-task.plugin.dir=dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/task
+task.plugin.dir=dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task
 ```
 
 The following configurations can be used for local development debugging, for example:
