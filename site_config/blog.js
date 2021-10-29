@@ -3,6 +3,27 @@ export default {
     barText: 'Blog',
     postsTitle: 'All posts',
     list: [
+          {
+        title: 'DolphinScheduler Vulnerability Explanation',
+        author: 'Debar Chen',
+        dateStr: '2021-10-26',
+        desc: 'DolphinScheduler Vulnerability Explanation',
+        link: '/en-us/blog/DolphinScheduler Vulnerability Explanation.html',
+      },
+      {
+        title: 'Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!',
+        author: 'Debar Chen',
+        dateStr: '2021-10-22',
+        desc: 'Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!',
+        link: '/en-us/blog/Introducing Apache DolphinScheduler 1.3.9.html',
+      },
+      {
+        title: 'Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!',
+        author: 'Debar Chen',
+        dateStr: '2021-10-22',
+        desc: 'Apache Dolphin Scheduler(Incubating) will organize a meetup in Shanghai  2019.10.26. Welcome to register.',
+        link: '/en-us/blog/Introducing Apache DolphinScheduler 1.3.9.html',
+      },
       {
         title: 'Why did we split the big json of DAG in workflow definition?',
         author: 'JinyLeeChina',
@@ -40,6 +61,13 @@ export default {
     barText: '博客',
     postsTitle: '所有文章',
     list: [
+     {
+        title: 'DolphinScheduler漏洞情况说明',
+        author: '徐玮毅',
+        dateStr: '2021-10-26',
+        desc: 'DolphinScheduler漏洞情况说明',
+        link: '/zh-cn/blog/DolphinScheduler漏洞情况说明.html',
+      },
       {
         title: 'Apache DolphinScheduler 架构演进及开源经验分享',
         author: '徐玮毅',
@@ -117,7 +145,6 @@ export default {
         desc: 'Apache Dolphin Scheduler(Incubating) 将于2019年10月26日在上海组织一次会议，欢迎踊跃报名。 ',
         link: '/zh-cn/blog/meetup_2019_10_26.html',
       },
-
     ],
   },
 };

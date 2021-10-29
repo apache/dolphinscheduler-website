@@ -55,7 +55,7 @@
 
 在任何环境、任何时间，多次执行后的结果一致，且可以重复执行。
 
-3. **轻量型**
+3. **轻量性**
 
 测试应当是秒级甚至是毫秒级的，不应占用过多时间。
 
@@ -185,7 +185,7 @@
 
 Controller UT 架构如下：
 
-![](/home/shenke/Desktop/开源之夏/dolphinscheduler/210290131/img/12.png)
+![ut-controller-architecture](/img/unit-test/ut-controller-architecture.png)
 
 对于新增的 controller，其测试代码编写步骤如下：
 

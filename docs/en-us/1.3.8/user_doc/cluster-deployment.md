@@ -45,7 +45,7 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
 ```
  Notes：
- - Because the task execution service is based on 'sudo -u {linux-user}' to switch between different Linux users to implement multi-tenant running jobs, the deployment user needs to have sudo permissions and is passwordless. The first-time learners who can ignore it if they don't understand.
+ - Because the task execution service is based on 'sudo -u {linux-user}' to switch between different Linux users to implement multi-tenant running jobs, the deployment user needs to have sudo permissions and is passwordless. The first-time learners can ignore it if they don't understand.
  - If find the "Default requiretty" in the "/etc/sudoers" file, also comment out.
  - If you need to use resource upload, you need to assign the user of permission to operate the local file system, HDFS or MinIO.
 ```
@@ -220,7 +220,7 @@ mysql -h192.168.xx.xx -P3306 -uroot -p
     installPath="/opt/soft/dolphinscheduler"
 
     # deployment user
-    # Note: the deployment user needs to have sudo privileges and permissions to operate hdfs. If hdfs is enabled, the root directory needs to be created by itself
+    # Note: the deployment user needs to have sudo privileges and permissions to operate HDFS. If HDFS is enabled, the root directory needs to be created by itself
     deployUser="dolphinscheduler"
 
     # alert config，take QQ email for example
@@ -244,10 +244,10 @@ mysql -h192.168.xx.xx -P3306 -uroot -p
     # note: The mail.passwd is email service authorization code, not the email login password.
     mailPassword="xxx"
 
-    # Whether TLS mail protocol is supported,true is supported and false is not supported
+    # Whether TLS mail protocol is supported, true is supported and false is not supported
     starttlsEnable="true"
 
-    # Whether TLS mail protocol is supported,true is supported and false is not supported。
+    # Whether TLS mail protocol is supported, true is supported and false is not supported.
     # note: only one of TLS and SSL can be in the true state.
     sslEnable="false"
 
@@ -259,18 +259,18 @@ mysql -h192.168.xx.xx -P3306 -uroot -p
     resourceStorageType="HDFS"
 
     # If resourceStorageType = HDFS, and your Hadoop Cluster NameNode has HA enabled, you need to put core-site.xml and hdfs-site.xml in the installPath/conf directory. In this example, it is placed under /opt/soft/dolphinscheduler/conf, and configure the namenode cluster name; if the NameNode is not HA, modify it to a specific IP or host name.
-    # if S3，write S3 address，HA，for example ：s3a://dolphinscheduler，
+    # if S3，write S3 address，HA，for example: s3a://dolphinscheduler，
     # Note，s3 be sure to create the root directory /dolphinscheduler
     defaultFS="hdfs://mycluster:8020"
 
 
-    # if not use hadoop resourcemanager, please keep default value; if resourcemanager HA enable, please type the HA ips ; if resourcemanager is single, make this value empty
+    # if not use Hadoop resourcemanager, please keep default value; if resourcemanager HA enable, please type the HA ips ; if resourcemanager is single, make this value empty
     yarnHaIps="192.168.xx.xx,192.168.xx.xx"
 
-    # if resourcemanager HA enable or not use resourcemanager, please skip this value setting; If resourcemanager is single, you only need to replace yarnIp1 to actual resourcemanager hostname.
+    # if resourcemanager HA enable or not use resourcemanager, please skip this value setting; If resourcemanager is single, you only need to replace yarnIp1 with actual resourcemanager hostname.
     singleYarnIp="yarnIp1"
 
-    # resource store on HDFS/S3 path, resource file will store to this hadoop hdfs path, self configuration, please make sure the directory exists on hdfs and have read write permissions。/dolphinscheduler is recommended
+    # resource store on HDFS/S3 path, resource file will store to this Hadoop HDFS path, self configuration, please make sure the directory exists on HDFS and have read-write permissions. /dolphinscheduler is recommended
     resourceUploadPath="/dolphinscheduler"
 
     # who have permissions to create directory under HDFS/S3 root path

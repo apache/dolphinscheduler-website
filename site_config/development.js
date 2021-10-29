@@ -14,15 +14,38 @@ export default {
           },
           {
             title: 'Backend Development',
-            link: '/en-us/development/backend-development.html',
+            children: [
+              // TODO not suppor multiply level for now
+              // {
+                // title: 'SPI',
+                // children: [
+                  {
+                    title: 'Plugin',
+                    link: '/en-us/development/backend/spi/plugin.html',
+                  },
+                  {
+                    title: 'Alert SPI',
+                    link: '/en-us/development/backend/spi/alert.html',
+                  },
+                  {
+                    title: 'Registry SPI',
+                    link: '/en-us/development/backend/spi/registry.html',
+                  },
+                  {
+                    title: 'Task SPI',
+                    link: '/en-us/development/backend/spi/task.html',
+                  },
+                // ],
+              // }
+              {
+                title: 'Mechanism Design',
+                link: '/en-us/development/backend/mechanism/overview.html',
+              },
+            ],
           },
           {
             title: 'Frontend Development',
             link: '/en-us/development/frontend-development.html',
-          },
-          {
-            title: 'Plugin Development',
-            link: '/en-us/development/plugin-development.html',
           },
           {
             title: 'Questions & Communications',
@@ -48,15 +71,38 @@ export default {
           },
           {
             title: '后端开发',
-            link: '/zh-cn/development/backend-development.html',
+            children: [
+              // TODO not suppor multiply level for now
+              // {
+                // title: 'SPI相关',
+                // children: [
+                  {
+                    title: '插件开发',
+                    link: '/zh-cn/development/backend/spi/plugin.html',
+                  },
+                  {
+                    title: 'Alert SPI',
+                    link: '/zh-cn/development/backend/spi/alert.html',
+                  },
+                  {
+                    title: 'Registry SPI',
+                    link: '/zh-cn/development/backend/spi/registry.html',
+                  },
+                  {
+                    title: 'Task SPI',
+                    link: '/zh-cn/development/backend/spi/task.html',
+                  },
+                // ],
+              // },
+              {
+                title: '组件设计',
+                link: '/zh-cn/development/backend/mechanism/overview.html',
+              },
+            ],
           },
           {
             title: '前端开发',
             link: '/zh-cn/development/frontend-development.html',
-          },
-          {
-            title: '插件开发',
-            link: '/zh-cn/development/plugin-development.html',
           },
           {
             title: '问题与交流',

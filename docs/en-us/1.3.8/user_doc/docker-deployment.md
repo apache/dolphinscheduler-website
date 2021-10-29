@@ -391,11 +391,11 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 4. Modify all `image` fields to `apache/dolphinscheduler:mysql-driver` in `docker-compose.yml`
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you need modify `docker-stack.yml`
+> If you want to deploy dolphinscheduler on Docker Swarm, you need to modify `docker-stack.yml`
 
 5. Comment the `dolphinscheduler-postgresql` block in `docker-compose.yml`
 
-6. Add `dolphinscheduler-mysql` service in `docker-compose.yml` (**Optional**, you can directly use a external MySQL database)
+6. Add `dolphinscheduler-mysql` service in `docker-compose.yml` (**Optional**, you can directly use an external MySQL database)
 
 7. Modify DATABASE environment variables in `config.env.sh`
 
@@ -437,7 +437,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 4. Modify all `image` fields to `apache/dolphinscheduler:mysql-driver` in `docker-compose.yml`
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you need modify `docker-stack.yml`
+> If you want to deploy dolphinscheduler on Docker Swarm, you need to modify `docker-stack.yml`
 
 5. Run a dolphinscheduler (See **How to use this docker image**)
 
@@ -466,11 +466,11 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 4. Modify all `image` fields to `apache/dolphinscheduler:oracle-driver` in `docker-compose.yml`
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you need modify `docker-stack.yml`
+> If you want to deploy dolphinscheduler on Docker Swarm, you need to modify `docker-stack.yml`
 
 5. Run a dolphinscheduler (See **How to use this docker image**)
 
-6. Add a Oracle datasource in `Datasource manage`
+6. Add an Oracle datasource in `Datasource manage`
 
 ### How to support Python 2 pip and custom requirements.txt?
 
@@ -499,7 +499,7 @@ docker build -t apache/dolphinscheduler:pip .
 
 3. Modify all `image` fields to `apache/dolphinscheduler:pip` in `docker-compose.yml`
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you need modify `docker-stack.yml`
+> If you want to deploy dolphinscheduler on Docker Swarm, you need to modify `docker-stack.yml`
 
 4. Run a dolphinscheduler (See **How to use this docker image**)
 
@@ -530,7 +530,7 @@ docker build -t apache/dolphinscheduler:python3 .
 
 3. Modify all `image` fields to `apache/dolphinscheduler:python3` in `docker-compose.yml`
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you need modify `docker-stack.yml`
+> If you want to deploy dolphinscheduler on Docker Swarm, you need to modify `docker-stack.yml`
 
 4. Modify `PYTHON_HOME` to `/usr/bin/python3` in `config.env.sh`
 
@@ -565,7 +565,7 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 # or just mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
-The last command will print Spark version if everything goes well
+The last command will print the Spark version if everything goes well
 
 5. Verify Spark under a Shell task
 
@@ -619,7 +619,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 # or just mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
-The last command will print Spark version if everything goes well
+The last command will print the Spark version if everything goes well
 
 5. Verify Spark under a Shell task
 
@@ -635,9 +635,9 @@ Check whether the task log contains the output like `Pi is roughly 3.146015`
 
 For example, Master, Worker and Api server may use Hadoop at the same time
 
-1. Modify the volume `dolphinscheduler-shared-local` to support nfs in `docker-compose.yml`
+1. Modify the volume `dolphinscheduler-shared-local` to support NFS in `docker-compose.yml`
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you need modify `docker-stack.yml`
+> If you want to deploy dolphinscheduler on Docker Swarm, you need to modify `docker-stack.yml`
 
 ```yaml
 volumes:
@@ -648,7 +648,7 @@ volumes:
       device: ":/path/to/shared/dir"
 ```
 
-2. Put the Hadoop into the nfs
+2. Put the Hadoop into the NFS
 
 3. Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` are correct
 
@@ -663,9 +663,9 @@ RESOURCE_STORAGE_TYPE=HDFS
 FS_DEFAULT_FS=file:///
 ```
 
-2. Modify the volume `dolphinscheduler-resource-local` to support nfs in `docker-compose.yml`
+2. Modify the volume `dolphinscheduler-resource-local` to support NFS in `docker-compose.yml`
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you need modify `docker-stack.yml`
+> If you want to deploy dolphinscheduler on Docker Swarm, you need to modify `docker-stack.yml`
 
 ```yaml
 volumes:
@@ -691,11 +691,11 @@ FS_S3A_SECRET_KEY=MINIO_SECRET_KEY
 
 `BUCKET_NAME`, `MINIO_IP`, `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY` need to be modified to actual values
 
-> **Note**: `MINIO_IP` can only use IP instead of domain name, because DolphinScheduler currently doesn't support S3 path style access
+> **Note**: `MINIO_IP` can only use IP instead of the domain name, because DolphinScheduler currently doesn't support S3 path style access
 
 ### How to configure SkyWalking?
 
-Modify SKYWALKING environment variables in `config.env.sh`:
+Modify SkyWalking environment variables in `config.env.sh`:
 
 ```
 SKYWALKING_ENABLE=true
@@ -710,51 +710,51 @@ SW_GRPC_LOG_SERVER_PORT=11800
 
 **`DATABASE_TYPE`**
 
-This environment variable sets the type for database. The default value is `postgresql`.
+This environment variable sets the type for the database. The default value is `postgresql`.
 
 **Note**: You must be specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
 
 **`DATABASE_DRIVER`**
 
-This environment variable sets the type for database. The default value is `org.postgresql.Driver`.
+This environment variable sets the type for the database. The default value is `org.postgresql.Driver`.
 
-**Note**: You must be specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
+**Note**: You must specify it when starting a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
 
 **`DATABASE_HOST`**
 
-This environment variable sets the host for database. The default value is `127.0.0.1`.
+This environment variable sets the host for the database. The default value is `127.0.0.1`.
 
-**Note**: You must be specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
+**Note**: You must specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
 
 **`DATABASE_PORT`**
 
-This environment variable sets the port for database. The default value is `5432`.
+This environment variable sets the port for the database. The default value is `5432`.
 
-**Note**: You must be specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
+**Note**: You must specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
 
 **`DATABASE_USERNAME`**
 
-This environment variable sets the username for database. The default value is `root`.
+This environment variable sets the username for the database. The default value is `root`.
 
-**Note**: You must be specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
+**Note**: You must specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
 
 **`DATABASE_PASSWORD`**
 
-This environment variable sets the password for database. The default value is `root`.
+This environment variable sets the password for the database. The default value is `root`.
 
-**Note**: You must be specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
+**Note**: You must specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
 
 **`DATABASE_DATABASE`**
 
-This environment variable sets the database for database. The default value is `dolphinscheduler`.
+This environment variable sets the database for the database. The default value is `dolphinscheduler`.
 
-**Note**: You must be specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
+**Note**: You must specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
 
 **`DATABASE_PARAMS`**
 
-This environment variable sets the database for database. The default value is `characterEncoding=utf8`.
+This environment variable sets the database for the database. The default value is `characterEncoding=utf8`.
 
-**Note**: You must be specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
+**Note**: You must specify it when starting a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`, `alert-server`.
 
 ### ZooKeeper
 
@@ -762,7 +762,7 @@ This environment variable sets the database for database. The default value is `
 
 This environment variable sets zookeeper quorum. The default value is `127.0.0.1:2181`.
 
-**Note**: You must be specify it when start a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`.
+**Note**: You must specify it when starting a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`.
 
 **`ZOOKEEPER_ROOT`**
 
@@ -772,15 +772,15 @@ This environment variable sets zookeeper root directory for dolphinscheduler. Th
 
 **`DOLPHINSCHEDULER_OPTS`**
 
-This environment variable sets jvm options for dolphinscheduler, suitable for `master-server`, `worker-server`, `api-server`, `alert-server`, `logger-server`. The default value is empty.
+This environment variable sets JVM options for dolphinscheduler, suitable for `master-server`, `worker-server`, `api-server`, `alert-server`, `logger-server`. The default value is empty.
 
 **`DATA_BASEDIR_PATH`**
 
-User data directory path, self configuration, please make sure the directory exists and have read write permissions. The default value is `/tmp/dolphinscheduler`
+User data directory path, self configuration, please make sure the directory exists and have read-write permissions. The default value is `/tmp/dolphinscheduler`
 
 **`RESOURCE_STORAGE_TYPE`**
 
-This environment variable sets resource storage type for dolphinscheduler like `HDFS`, `S3`, `NONE`. The default value is `HDFS`.
+This environment variable sets resource storage types for dolphinscheduler like `HDFS`, `S3`, `NONE`. The default value is `HDFS`.
 
 **`RESOURCE_UPLOAD_PATH`**
 
@@ -804,7 +804,7 @@ This environment variable sets s3 secret key for resource storage. The default v
 
 **`HADOOP_SECURITY_AUTHENTICATION_STARTUP_STATE`**
 
-This environment variable sets whether to startup kerberos. The default value is `false`.
+This environment variable sets whether to startup Kerberos. The default value is `false`.
 
 **`JAVA_SECURITY_KRB5_CONF_PATH`**
 
@@ -812,23 +812,23 @@ This environment variable sets java.security.krb5.conf path. The default value i
 
 **`LOGIN_USER_KEYTAB_USERNAME`**
 
-This environment variable sets login user from keytab username. The default value is `hdfs@HADOOP.COM`.
+This environment variable sets login user from the keytab username. The default value is `hdfs@HADOOP.COM`.
 
 **`LOGIN_USER_KEYTAB_PATH`**
 
-This environment variable sets login user from keytab path. The default value is `/opt/hdfs.keytab`.
+This environment variable sets login user from the keytab path. The default value is `/opt/hdfs.keytab`.
 
 **`KERBEROS_EXPIRE_TIME`**
 
-This environment variable sets kerberos expire time, the unit is hour. The default value is `2`.
+This environment variable sets Kerberos expire time, the unit is hour. The default value is `2`.
 
 **`HDFS_ROOT_USER`**
 
-This environment variable sets hdfs root user when resource.storage.type=HDFS. The default value is `hdfs`.
+This environment variable sets HDFS root user when resource.storage.type=HDFS. The default value is `hdfs`.
 
 **`RESOURCE_MANAGER_HTTPADDRESS_PORT`**
 
-This environment variable sets resource manager httpaddress port. The default value is `8088`.
+This environment variable sets resource manager HTTP address port. The default value is `8088`.
 
 **`YARN_RESOURCEMANAGER_HA_RM_IDS`**
 
@@ -840,19 +840,19 @@ This environment variable sets yarn application status address. The default valu
 
 **`SKYWALKING_ENABLE`**
 
-This environment variable sets whether to enable skywalking. The default value is `false`.
+This environment variable sets whether to enable SkyWalking. The default value is `false`.
 
 **`SW_AGENT_COLLECTOR_BACKEND_SERVICES`**
 
-This environment variable sets agent collector backend services for skywalking. The default value is `127.0.0.1:11800`.
+This environment variable sets agent collector backend services for SkyWalking. The default value is `127.0.0.1:11800`.
 
 **`SW_GRPC_LOG_SERVER_HOST`**
 
-This environment variable sets grpc log server host for skywalking. The default value is `127.0.0.1`.
+This environment variable sets gRPC log server host for SkyWalking. The default value is `127.0.0.1`.
 
 **`SW_GRPC_LOG_SERVER_PORT`**
 
-This environment variable sets grpc log server port for skywalking. The default value is `11800`.
+This environment variable sets gRPC log server port for SkyWalking. The default value is `11800`.
 
 **`HADOOP_HOME`**
 
@@ -894,7 +894,7 @@ This environment variable sets `DATAX_HOME`. The default value is `/opt/soft/dat
 
 **`MASTER_SERVER_OPTS`**
 
-This environment variable sets jvm options for `master-server`. The default value is `-Xms1g -Xmx1g -Xmn512m`.
+This environment variable sets JVM options for `master-server`. The default value is `-Xms1g -Xmx1g -Xmn512m`.
 
 **`MASTER_EXEC_THREADS`**
 
@@ -926,7 +926,7 @@ This environment variable sets task commit interval for `master-server`. The def
 
 **`MASTER_MAX_CPULOAD_AVG`**
 
-This environment variable sets max cpu load avg for `master-server`. The default value is `-1`.
+This environment variable sets max CPU load avg for `master-server`. The default value is `-1`.
 
 **`MASTER_RESERVED_MEMORY`**
 
@@ -936,7 +936,7 @@ This environment variable sets reserved memory for `master-server`, the unit is 
 
 **`WORKER_SERVER_OPTS`**
 
-This environment variable sets jvm options for `worker-server`. The default value is `-Xms1g -Xmx1g -Xmn512m`.
+This environment variable sets JVM options for `worker-server`. The default value is `-Xms1g -Xmx1g -Xmn512m`.
 
 **`WORKER_EXEC_THREADS`**
 
@@ -948,7 +948,7 @@ This environment variable sets heartbeat interval for `worker-server`. The defau
 
 **`WORKER_MAX_CPULOAD_AVG`**
 
-This environment variable sets max cpu load avg for `worker-server`. The default value is `-1`.
+This environment variable sets max CPU load avg for `worker-server`. The default value is `-1`.
 
 **`WORKER_RESERVED_MEMORY`**
 
@@ -962,7 +962,7 @@ This environment variable sets groups for `worker-server`. The default value is 
 
 **`ALERT_SERVER_OPTS`**
 
-This environment variable sets jvm options for `alert-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.
+This environment variable sets JVM options for `alert-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.
 
 **`XLS_FILE_PATH`**
 
@@ -1024,10 +1024,10 @@ This environment variable sets enterprise wechat users for `alert-server`. The d
 
 **`API_SERVER_OPTS`**
 
-This environment variable sets jvm options for `api-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.
+This environment variable sets JVM options for `api-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.
 
 ### Logger Server
 
 **`LOGGER_SERVER_OPTS`**
 
-This environment variable sets jvm options for `logger-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.
+This environment variable sets JVM options for `logger-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.

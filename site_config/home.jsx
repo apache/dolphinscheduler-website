@@ -6,7 +6,7 @@ export default {
       buttons: [
         {
           text: '立即开始',
-          link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+          link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
           type: 'primary',
         },
         {
@@ -310,7 +310,7 @@ export default {
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/latest/user_doc/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
           type: 'primary',
         },
         {
