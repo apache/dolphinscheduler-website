@@ -144,6 +144,11 @@ export default {
           },
         ],
       },
+      {
+        key: 'user',
+        text: 'USER',
+        link: '/en-us/user/index.html',
+      },
     ],
     documentation: {
       title: 'Documentation',
@@ -356,6 +361,12 @@ export default {
             link: 'https://www.apache.org/foundation/thanks.html',
           },
         ],
+      },
+      {
+        key: 'user',
+        text: '用户',
+        // link: '',
+        link: '/zh-cn/user/index.html',
       },
     ],
     documentation: {

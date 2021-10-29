@@ -66,7 +66,7 @@ class Home extends Language {
     }
   }
 
-  minusClick =(length) => {
+  minusClick = (length) => {
     if (this.state.index > 0) {
       this.setState({
         ...this.state,
@@ -95,7 +95,7 @@ class Home extends Language {
     }
   }
 
-  minusClick =(length) => {
+  minusClick = (length) => {
     if (this.state.index > 0) {
       this.setState({
         ...this.state,
@@ -110,7 +110,7 @@ class Home extends Language {
   }
 
   render() {
-    const { starCount, forkCount, index } = this.state;
+    const { starCount, forkCount } = this.state;
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;
@@ -132,9 +132,9 @@ class Home extends Language {
             </div>
             <p className="product-desc">{dataSource.brand.briefIntroduction}</p>
             <div className="button-area">
-            {
-              dataSource.brand.buttons.map(b => <Button type={b.type} key={b.type} link={b.link} target={b.target}>{b.text}</Button>)
-            }
+              {
+                dataSource.brand.buttons.map(b => <Button type={b.type} key={b.type} link={b.link} target={b.target}>{b.text}</Button>)
+              }
             </div>
             <div className="github-buttons">
               <a href="https://github.com/apache/dolphinscheduler" target="_blank" rel="noopener noreferrer">
@@ -173,62 +173,21 @@ class Home extends Language {
         <section className="feature-section">
           <h3>{dataSource.features.title}</h3>
           <ul>
-          {
-            dataSource.features.list.map((feature, i) => (
-              <Item feature={feature} key={i} />
-            ))
-          }
+            {
+              dataSource.features.list.map((feature, i) => (
+                <Item feature={feature} key={i} />
+              ))
+            }
           </ul>
         </section>
 
         <section className="events-section">
-              <h3>{dataSource.events.title}</h3>
-              <Slider>
-                {dataSource.events.list.map((event, i) => (
-                  <EventCard event={event} key={i} />
-                ))}
-              </Slider>
-        </section>
-
-        <section className="ourusers-section">
-          <h3>{dataSource.ourusers.title}</h3>
-          <div className="button1-section" id="buttonleft">
-            {/* <button onClick={() => this.minusClick(dataSource.ourusers.list.length)}><img src="/img/gotoleft.png" /></button> */}
-            <div className="overflow-section">
-              <ul>
-                {
-                    dataSource.ourusers.list.map((ureview, i) => (
-                      <li key={i}>
-                        <img src={ureview.img} />
-                      </li>
-                    ))
-                }
-              </ul>
-            </div>
-            {/* <button onClick={() => this.addClick(dataSource.userreview.list.length)}><img src="/img/gotoright.png" /></button> */}
-          </div>
-        </section>
-        <section className="review-section">
-          <h3>{dataSource.userreview.title}</h3>
-          <div className="button-section" id="buttonleft">
-            <button onClick={() => this.minusClick(dataSource.userreview.list.length)}><img src="/img/gotoleft.png" /></button>
-            <div className="overflow-section">
-              <ul>
-                {
-                    dataSource.userreview.list.map((ureview, i) => (
-                      <li key={i}>
-                        <img src={ureview.img} />
-                        <div className="name-section">
-                          <p className="pr">{ureview.review}</p>
-                          <p className="pn">{ureview.name}</p>
-                        </div>
-                      </li>
-                    ))[index]
-                }
-              </ul>
-            </div>
-            <button onClick={() => this.addClick(dataSource.userreview.list.length)}><img src="/img/gotoright.png" /></button>
-          </div>
+          <h3>{dataSource.events.title}</h3>
+          <Slider>
+            {dataSource.events.list.map((event, i) => (
+              <EventCard event={event} key={i} />
+            ))}
+          </Slider>
         </section>
         <Footer logo="/img/ds_gray.svg" language={language} />
       </div>

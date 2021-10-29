@@ -265,16 +265,16 @@ export default {
         },
         {
           img: '/img/ourusers/dell.png',
-        },        
+        },
         {
           img: '/img/ourusers/shansong.png',
         },
         {
           img: '/img/ourusers/189.png',
-        },        
+        },
         {
           img: '/img/ourusers/360.png',
-        },   
+        },
       ],
     },
     userreview: {
@@ -522,16 +522,16 @@ export default {
         },
         {
           img: '/img/ourusers/dell.png',
-        },        
+        },
         {
           img: '/img/ourusers/shansong.png',
         },
         {
           img: '/img/ourusers/189.png',
-        },        
+        },
         {
           img: '/img/ourusers/360.png',
-        },           
+        },
       ],
     },
     events: {
