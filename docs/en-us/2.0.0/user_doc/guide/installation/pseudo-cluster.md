@@ -83,6 +83,11 @@ mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTI
 mysql> flush privileges;
 ```
 
+Run the latest schema file manually in `sql/dolphinscheudler_*.sql` to initialization you database. If you use mysql, please run `sql/dolphinscheudler_mysql.sql`, for postgresql run `sql/dolphinscheudler_postgre.sql`.
+
+> **_NOTICE:_** In the latest version, the way running command `sh script/create-dolphinscheduler.sh` initialization database is broken, We have created a [issue-6597][issue] to track and fix this problem
+
+<!--
 Modify the database configuration and initialize
 
 ```properties
@@ -98,6 +103,7 @@ After modifying and saving, execute the following command to create database tab
 ```shell
 sh script/create-dolphinscheduler.sh
 ```
+-->
 
 ## Modify configuration
 
@@ -194,3 +200,4 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 [jdk]: https://www.oracle.com/technetwork/java/javase/downloads/index.html
 [zookeeper]: https://zookeeper.apache.org/releases.html
 [mysql]: https://downloads.MySQL.com/archives/c-j/
+[issue]: https://github.com/apache/dolphinscheduler/issues/6597
