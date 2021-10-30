@@ -489,7 +489,7 @@ export default {
         ],
       },
       {
-        title: 'Integration',
+        title: '集成',
         children: [
           {
             title: 'Ambari集成',
