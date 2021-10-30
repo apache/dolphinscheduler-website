@@ -9,7 +9,7 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
 Pseudo-cluster deployment of DolphinScheduler requires external software support
 
 * JDK：Download [JDK][jdk] (1.8+), and configure `JAVA_HOME` to and `PATH` variable. You can skip this step, if it already exists in your environment.
-* Binary package: Download the DolphinScheduler binary package at [download page](../../../../../../download/en-us/download.md)
+* Binary package: Download the DolphinScheduler binary package at [download page](../../../../../../en-us/download/download.md)
 * Database: PostgreSQL (8.2.15+) or MySQL (5.7+), you can choose one of the two, such as MySQL requires JDBC Driver 5.1.47+
 * Registry Center: ZooKeeper (3.4.6+)，[download link][zookeeper]
 * Process tree analysis
@@ -83,6 +83,11 @@ mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTI
 mysql> flush privileges;
 ```
 
+Run the latest schema file manually in `sql/dolphinscheudler_*.sql` to initialization you database. If you use mysql, please run `sql/dolphinscheudler_mysql.sql`, for postgresql run `sql/dolphinscheudler_postgre.sql`.
+
+> **_NOTICE:_** In the latest version, the way running command `sh script/create-dolphinscheduler.sh` initialization database is broken, We have created a [issue-6597][issue] to track and fix this problem
+
+<!--
 Modify the database configuration and initialize
 
 ```properties
@@ -98,6 +103,7 @@ After modifying and saving, execute the following command to create database tab
 ```shell
 sh script/create-dolphinscheduler.sh
 ```
+-->
 
 ## Modify configuration
 
@@ -194,3 +200,4 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 [jdk]: https://www.oracle.com/technetwork/java/javase/downloads/index.html
 [zookeeper]: https://zookeeper.apache.org/releases.html
 [mysql]: https://downloads.MySQL.com/archives/c-j/
+[issue]: https://github.com/apache/dolphinscheduler/issues/6597

@@ -9,7 +9,7 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
 ## Prepare
 
 * JDK：Download [JDK][jdk] (1.8+), and configure `JAVA_HOME` to and `PATH` variable. You can skip this step, if it already exists in your environment.
-* Binary package: Download the DolphinScheduler binary package at [download page](../../../../../../download/en-us/download.md)
+* Binary package: Download the DolphinScheduler binary package at [download page](../../../../../../en-us/download/download.md)
 
 ## Start DolphinScheduler Standalone Server
 

@@ -2,14 +2,16 @@
 
 #### 开发环境如何使用？
 
-首先你需要执行 `mvn -U install package -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/task（版本号会跟随主版本号变更）
+首先你需要执行 `mvn -U install -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task（版本号会跟随主版本号变更）
+
+注意：**${VERSION}** 需要根据当前版本手动修改
 
 执行此命令会生成所有模块默认提供的所有插件。
 
 其次在（dolphinscheduler-server/src/main/resources/worker.properties）进行配置插件目录
 ```
 task.plugin.dir config the #task.plugin.dir config the Task Plugin dir . WorkerServer while find and load the Task Plugin Jar from this dir when deploy and start WorkerServer on the server .
-task.plugin.dir=dolphinscheduler-dist/target/dolphinscheduler-dist-1.3.6-SNAPSHOT/lib/plugin/task
+task.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task
 ```
 本地开发调试也可采用以下方式进行配置，例如：
 ```

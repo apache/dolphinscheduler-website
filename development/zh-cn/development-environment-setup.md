@@ -95,19 +95,19 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
   
 * 插件的配置（**仅 2.0 及以后的版本需要**）：编译对应的插件，在项目目录执行 `mvn -U clean install -Dmaven.test.skip=true` 完成注册插件的安装
 
-  注意：${VERSION} 需要根据当前版本手动修改
-  
-  * 告警插件配置
+  注意：**${VERSION}** 需要根据当前版本手动修改,关于 ***.plugin.binding, maven.local.repository 则无需做任何修改。
+
+  * 告警插件配置 (alert.properties)
   ```alert.properties
-   alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
+   alert.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
   ```
-  * 注册中心插件配置
+  * 注册中心插件配置 (registry.properties)
   ```registry.properties
-   alert.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
+   registry.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
   ```
-  * 任务插件配置
+  * 任务插件配置 (worker.properties)
   ```worker.properties
-     task.plugin.dir=../../../../dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
+     task.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
   ```
 * 必要的修改
   * 如果使用 mysql 作为元数据库，需要先修改 `dolphinscheduler/pom.xml`，将 `mysql-connector-java` 依赖从 `scope` 改为 `compile`，使用 postgresql 则不需要。

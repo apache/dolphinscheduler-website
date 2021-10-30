@@ -21,12 +21,12 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: 'latest(2.0.0)',
+            text: 'latest(2.0.0-alpha)',
             link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
           },
           {
             key: 'docs200',
-            text: '2.0.0',
+            text: '2.0.0-alpha',
             link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
@@ -243,12 +243,12 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: 'latest(2.0.0)',
+            text: 'latest(2.0.0-alpha)',
             link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
           },
           {
             key: 'docs200',
-            text: '2.0.0',
+            text: '2.0.0-alpha',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
