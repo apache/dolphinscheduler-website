@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="cluster-deployment">
+  <meta name="description" content="cluster-deployment">
+  <title>cluster-deployment</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/build/vendor.e328afe.css">
+</head>
+<body>
+  <div id="root"><div class="md2html docs-page" data-reactroot=""><header class="header-container header-container-dark"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/hlogo_white.svg"/></a><div class="search search-dark"><span class="icon-search"></span></div><span class="language-switch language-switch-dark">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_white.png"/><div><ul class="ant-menu whiteClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-item-selected" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html" target="_self">文档</a><ul style="display:none"><li><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html" target="_self">latest(2.0.0-alpha)</a></li><li><a href="/zh-cn/docs/2.0.0/user_doc/guide/quick-start.html" target="_self">2.0.0-alpha</a></li><li><a href="/zh-cn/docs/1.3.9/user_doc/quick-start.html" target="_self">1.3.9</a></li><li><a href="/zh-cn/docs/1.3.8/user_doc/quick-start.html" target="_self">1.3.8</a></li><li><a href="/zh-cn/docs/1.3.6/user_doc/quick-start.html" target="_self">1.3.6</a></li><li><a href="/zh-cn/docs/1.3.5/user_doc/quick-start.html" target="_self">1.3.5</a></li><li><a href="/zh-cn/docs/1.3.4/user_doc/quick-start.html" target="_self">1.3.4</a></li><li><a href="/zh-cn/docs/1.3.3/user_doc/quick-start.html" target="_self">1.3.3</a></li><li><a href="/zh-cn/docs/1.3.2/user_doc/quick-start.html" target="_self">1.3.2</a></li><li><a href="/zh-cn/docs/1.3.1/user_doc/quick-start.html" target="_self">1.3.1</a></li><li><a href="/zh-cn/docs/1.2.1/user_doc/quick-start.html" target="_self">1.2.1</a></li><li><a href="/zh-cn/docs/1.2.0/user_doc/quick-start.html" target="_self">1.2.0</a></li><li><a href="https://analysys.github.io/easyscheduler_docs_cn/" target="_self">1.1.0(Not Apache Release)</a></li><li><a href="/zh-cn/docs/dev/user_doc/guide/quick-start.html" target="_self">dev</a></li></ul></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/download/download.html" target="_self">下载</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/blog/index.html" target="_self">博客</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/development/development-environment-setup.html" target="_self">开发者</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/community/team.html" target="_self">社区</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="https://www.apache.org/" target="_blank">ASF</a><ul style="display:none"><li><a href="https://www.apache.org/" target="_blank">Foundation</a></li><li><a href="https://www.apache.org/licenses/" target="_blank">License</a></li><li><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></li><li><a href="https://www.apache.org/security/" target="_blank">Security</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></li><li><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></li></ul></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/user/index.html" target="_self">用户</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div></div></header><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>部署文档</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/hardware-environment.html" target="_self">软硬件环境建议配置</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/standalone-deployment.html" target="_self">单机部署(Standalone)</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/cluster-deployment.html" target="_self">集群部署(Cluster)</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/docker-deployment.html" target="_self">Docker部署(Docker)</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/kubernetes-deployment.html" target="_self">Kubernetes部署(Kubernetes)</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/skywalking-agent-deployment.html" target="_self">SkyWalking-Agent部署(SkyWalking)</a></li></ul></li><li class="menu-item menu-item-level-1"><span>用户手册</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/quick-start.html" target="_self">快速上手</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/system-manual.html" target="_self">用户手册</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/open-api.html" target="_self">API调用</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/flink-call.html" target="_self">Flink调用</a></li></ul></li><li class="menu-item menu-item-level-1"><span>架构设计</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/metadata-1.3.html" target="_self">元数据文档</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/architecture-design.html" target="_self">架构设计</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/configuration-file.html" target="_self">配置文件</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/task-structure.html" target="_self">任务结构</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/load-balance.html" target="_self">负载均衡</a></li></ul></li><li class="menu-item menu-item-level-1"><span>版本升级</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/upgrade.html" target="_self">升级</a></li></ul></li><li class="menu-item menu-item-level-1"><span>扩/缩容</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/1.3.6/user_doc/expansion-reduction.html" target="_self">扩/缩容</a></li></ul></li><li class="menu-item menu-item-level-1"><span>FAQ</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/release/faq.html" target="_self">FAQ</a></li></ul></li></ul></div><div class="doc-content markdown-body"><h1>集群部署(Cluster)</h1>
+<h1>1、基础软件安装(必装项请自行安装)</h1>
+<ul>
+<li>PostgreSQL (8.2.15+) or MySQL (5.7系列)：两者任选其一即可，如 MySQL 则需要 JDBC Driver 5.1.47+</li>
+<li><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a> (1.8+)：必装，请安装好后在 /etc/profile 下配置 JAVA_HOME 及 PATH 变量</li>
+<li>ZooKeeper (3.4.6+)：必装</li>
+<li>pstree or psmisc：Mac OS必装pstree，Fedora/Red/Hat/CentOS/Ubuntu/Debian必装psmisc</li>
+<li>Hadoop (2.6+) or MinIO：选装，如果需要用到资源上传功能，可以选择上传到 Hadoop or MinIO 上</li>
+</ul>
+<pre><code class="language-markdown"> 注意：DolphinScheduler本身不依赖 Hadoop、Hive、Spark，仅是会调用他们的 Client，用于提交对应的任务
+</code></pre>
+<h1>2、下载二进制tar.gz包</h1>
+<ul>
+<li>请下载最新版本的后端安装包至服务器部署目录，比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： <a href="/zh-cn/download/download.html">下载</a>，下载后上传 tar 包到该目录中，并进行解压</li>
+</ul>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 创建部署目录，部署目录请不要创建在 /root、/home 等高权限目录</span> 
+mkdir -p /opt/dolphinscheduler
+cd /opt/dolphinscheduler
+<span class="hljs-meta">
+#</span><span class="bash"> 解压缩</span>
+tar -zxvf apache-dolphinscheduler-1.3.6-bin.tar.gz -C /opt/dolphinscheduler
+
+mv apache-dolphinscheduler-1.3.6-bin  dolphinscheduler-bin
+</code></pre>
+<h1>3、创建部署用户和hosts映射</h1>
+<ul>
+<li>在<strong>所有</strong>部署调度的机器上创建部署用户，并且一定要配置 sudo 免密。假如我们计划在 ds1,ds2,ds3,ds4 这 4 台机器上部署调度，首先需要在每台机器上都创建部署用户</li>
+</ul>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 创建用户需使用root登录，设置部署用户名，请自行修改，后面以 dolphinscheduler 为例</span>
+useradd dolphinscheduler
+<span class="hljs-meta">
+#</span><span class="bash"> 设置用户密码，请自行修改，后面以 dolphinscheduler123 为例</span>
+echo &quot;dolphinscheduler123&quot; | passwd --stdin dolphinscheduler
+<span class="hljs-meta">
+#</span><span class="bash"> 配置 sudo 免密</span>
+echo &#x27;dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; &gt;&gt; /etc/sudoers
+sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
+
+</code></pre>
+<p>注意：</p>
+<ul>
+<li>因为是以 sudo -u {linux-user} 切换不同 linux 用户的方式来实现多租户运行作业，所以部署用户需要有 sudo 权限，而且是免密的</li>
+<li>如果发现 /etc/sudoers 文件中有 &quot;Default requiretty&quot; 这行，也请注释掉</li>
+<li>如果用到资源上传的话，还需要在 <code>HDFS或者MinIO</code> 上给该部署用户分配读写的权限</li>
+</ul>
+<h1>4、配置hosts映射和ssh打通及修改目录权限</h1>
+<ul>
+<li>以第一台机器( hostname 为 ds1 )作为部署机，在 ds1 上配置所有待部署机器的 hosts，在 ds1 以 root 登录</li>
+</ul>
+<pre><code class="language-shell">vi /etc/hosts
+<span class="hljs-meta">
+#</span><span class="bash"> add ip hostname</span>
+192.168.xxx.xxx ds1
+192.168.xxx.xxx ds2
+192.168.xxx.xxx ds3
+192.168.xxx.xxx ds4
+</code></pre>
+<p><em>注意：请删掉或者注释掉 127.0.0.1 这行</em></p>
+<ul>
+<li>同步 ds1 上的 /etc/hosts 到所有部署机器</li>
+</ul>
+<pre><code class="language-shell">for ip in ds2 ds3;     # 请将此处 ds2 ds3 替换为自己要部署的机器的 hostname
+do
+  sudo scp -r /etc/hosts  $ip:/etc/          # 在运行中需要输入 root 密码
+done
+</code></pre>
+<p><em>备注：当然 通过 <code>sshpass -p xxx sudo scp -r /etc/hosts $ip:/etc/</code> 就可以省去输入密码了</em></p>
+<blockquote>
+<p>centos 下 sshpass的安装：</p>
+<ol>
+<li>
+<p>先安装 epel</p>
+<p>yum install -y epel-release</p>
+<p>yum repolist</p>
+</li>
+<li>
+<p>安装完成 epel 之后，就可以按照 sshpass 了</p>
+<p>yum install -y sshpass</p>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li>在 ds1 上，切换到部署用户并配置 ssh 本机免密登录</li>
+</ul>
+<pre><code class="language-shell">su dolphinscheduler;
+
+ssh-keygen -t rsa -P &#x27;&#x27; -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+</code></pre>
+<p>​      <em>注意：正常设置后，dolphinscheduler 用户在执行命令 <code>ssh localhost</code> 是不需要再输入密码</em></p>
+<ul>
+<li>在 ds1 上，配置部署用户 dolphinscheduler ssh 打通到其他待部署的机器</li>
+</ul>
+<pre><code class="language-shell">su dolphinscheduler;
+for ip in ds2 ds3;     # 请将此处 ds2 ds3 替换为自己要部署的机器的 hostname
+do
+  ssh-copy-id  $ip   # 该操作执行过程中需要手动输入 dolphinscheduler 用户的密码
+done
+<span class="hljs-meta">
+#</span><span class="bash"> 当然 通过 sshpass -p xxx ssh-copy-id <span class="hljs-variable">$ip</span> 就可以省去输入密码了</span>
+</code></pre>
+<ul>
+<li>在 ds1 上，修改目录权限，使得部署用户对 dolphinscheduler-bin 目录有操作权限</li>
+</ul>
+<pre><code class="language-shell">sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
+</code></pre>
+<h1>5、数据库初始化</h1>
+<ul>
+<li>进入数据库，默认数据库是 PostgreSQL，如选择 MySQL 的话，后续需要添加 mysql-connector-java 驱动包到 DolphinScheduler 的 lib 目录下，这里以 MySQL 为例</li>
+</ul>
+<pre><code>mysql -h192.168.xx.xx -P3306 -uroot -p
+</code></pre>
+<ul>
+<li>进入数据库命令行窗口后，执行数据库初始化命令，设置访问账号和密码。<strong>注: {user} 和 {password} 需要替换为具体的数据库用户名和密码</strong></li>
+</ul>
+<pre><code class="language-mysql">   mysql&gt; CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+   mysql&gt; GRANT ALL PRIVILEGES ON dolphinscheduler.* TO &#x27;{user}&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;{password}&#x27;;
+   mysql&gt; GRANT ALL PRIVILEGES ON dolphinscheduler.* TO &#x27;{user}&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;{password}&#x27;;
+   mysql&gt; flush privileges;
+</code></pre>
+<ul>
+<li>
+<p>创建表和导入基础数据</p>
+<ul>
+<li>修改 conf 目录下 datasource.properties 中的下列配置</li>
+</ul>
+<pre><code class="language-shell">  vi conf/datasource.properties
+</code></pre>
+<ul>
+<li>如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理)，还需要手动添加 [<a href="https://downloads.mysql.com/archives/c-j/"> mysql-connector-java 驱动 jar </a>] 包到 lib 目录下，这里下载的是 mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息</li>
+</ul>
+<pre><code class="language-properties"><span class="hljs-comment">  # postgre</span>
+<span class="hljs-comment">  # spring.datasource.driver-class-name=org.postgresql.Driver</span>
+<span class="hljs-comment">  # spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler</span>
+<span class="hljs-comment">  # mysql</span>
+  <span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span>
+  <span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true     需要修改ip</span>
+  <span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">xxx						需要修改为上面的{user}值</span>
+  <span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">xxx						需要修改为上面的{password}值</span>
+</code></pre>
+<ul>
+<li>修改并保存完后，执行 script 目录下的创建表及导入基础数据脚本</li>
+</ul>
+<pre><code class="language-shell">sh script/create-dolphinscheduler.sh
+</code></pre>
+<p><em>注意: 如果执行上述脚本报 “/bin/java: No such file or directory” 错误，请在/etc/profile 下配置 JAVA_HOME 及 PATH 变量</em></p>
+</li>
+</ul>
+<h1>6、修改运行参数</h1>
+<ul>
+<li>修改 conf/env 目录下的 <code>dolphinscheduler_env.sh</code> 环境变量(以相关用到的软件都安装在 /opt/soft 下为例)</li>
+</ul>
+<pre><code class="language-shell">    export HADOOP_HOME=/opt/soft/hadoop
+    export HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop
+    # export SPARK_HOME1=/opt/soft/spark1
+    export SPARK_HOME2=/opt/soft/spark2
+    export PYTHON_HOME=/opt/soft/python
+    export JAVA_HOME=/opt/soft/java
+    export HIVE_HOME=/opt/soft/hive
+    export FLINK_HOME=/opt/soft/flink
+    export DATAX_HOME=/opt/soft/datax/bin/datax.py
+    export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME:$PATH
+
+</code></pre>
+<p><code>注: 这一步非常重要，例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉</code></p>
+<ul>
+<li>将 JDK 软链到 /usr/bin/java 下(仍以 JAVA_HOME=/opt/soft/java 为例)</li>
+</ul>
+<pre><code class="language-shell">sudo ln -s /opt/soft/java/bin/java /usr/bin/java
+</code></pre>
+<ul>
+<li>修改一键部署配置文件 <code>conf/config/install_config.conf</code> 中的各参数，特别注意以下参数的配置</li>
+</ul>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 这里填 mysql or postgresql</span>
+dbtype=&quot;mysql&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 数据库连接地址</span>
+dbhost=&quot;192.168.xx.xx:3306&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 数据库名</span>
+dbname=&quot;dolphinscheduler&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 数据库用户名，此处需要修改为上面设置的 {user} 具体值</span>
+username=&quot;xxx&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 数据库密码，如果有特殊字符，请使用 \ 转义，需要修改为上面设置的 {password} 具体值</span>
+password=&quot;xxx&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> Zookeeper 地址</span>
+zkQuorum=&quot;192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 将 DS 安装到哪个目录，如: /opt/soft/dolphinscheduler，不同于现在的目录</span>
+installPath=&quot;/opt/soft/dolphinscheduler&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 使用哪个用户部署，使用第 3 节创建的用户</span>
+deployUser=&quot;dolphinscheduler&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 邮件配置，以 qq 邮箱为例</span>
+<span class="hljs-meta">#</span><span class="bash"> 邮件协议</span>
+mailProtocol=&quot;SMTP&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 邮件服务地址</span>
+mailServerHost=&quot;smtp.qq.com&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 邮件服务端口</span>
+mailServerPort=&quot;25&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> mailSender和 mailUser 配置成一样即可</span>
+<span class="hljs-meta">
+#</span><span class="bash"> 发送者</span>
+mailSender=&quot;xxx@qq.com&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 发送用户</span>
+mailUser=&quot;xxx@qq.com&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 邮箱密码</span>
+mailPassword=&quot;xxx&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> TLS 协议的邮箱设置为 <span class="hljs-literal">true</span>，否则设置为 <span class="hljs-literal">false</span></span>
+starttlsEnable=&quot;true&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 开启 SSL 协议的邮箱配置为 <span class="hljs-literal">true</span>，否则为 <span class="hljs-literal">false</span>。注意: starttlsEnable 和 sslEnable 不能同时为 <span class="hljs-literal">true</span></span>
+sslEnable=&quot;false&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 邮件服务地址值，参考上面 mailServerHost</span>
+sslTrust=&quot;smtp.qq.com&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 业务用到的比如 sql 等资源文件上传到哪里，可以设置：HDFS,S3,NONE，单机如果想使用本地文件系统，请配置为 HDFS，因为 HDFS 支持本地文件系统；如果不需要资源上传功能请选择 NONE。强调一点：使用本地文件系统不需要部署 hadoop</span>
+resourceStorageType=&quot;HDFS&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 如果上传资源保存想保存在 hadoop 上，hadoop 集群的 NameNode 启用了 HA 的话，需要将 hadoop 的配置文件 core-site.xml 和 hdfs-site.xml 放到安装路径的 conf 目录下，本例即是放到 /opt/soft/dolphinscheduler/conf 下面，并配置 namenode cluster 名称；如果 NameNode 不是 HA，则只需要将 mycluster 修改为具体的 ip 或者主机名即可</span>
+defaultFS=&quot;hdfs://mycluster:8020&quot;
+<span class="hljs-meta">
+
+#</span><span class="bash"> 如果没有使用到 Yarn，保持以下默认值即可;如果 ResourceManager 是 HA，则配置为 ResourceManager 节点的主备 ip 或者 hostname，比如 <span class="hljs-string">&quot;192.168.xx.xx,192.168.xx.xx&quot;</span>;如果是单 ResourceManager 请配置 yarnHaIps=<span class="hljs-string">&quot;&quot;</span> 即可</span>
+yarnHaIps=&quot;192.168.xx.xx,192.168.xx.xx&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 如果 ResourceManager 是 HA 或者没有使用到 Yarn 保持默认值即可；如果是单 ResourceManager，请配置真实的 ResourceManager 主机名或者 ip</span>
+singleYarnIp=&quot;yarnIp1&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 资源上传根路径，主持 HDFS 和 S3，由于 hdfs支持本地文件系统，需要确保本地文件夹存在且有读写权限</span>
+resourceUploadPath=&quot;/data/dolphinscheduler&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 具备权限创建 resourceUploadPath的用户</span>
+hdfsRootUser=&quot;hdfs&quot;
+<span class="hljs-meta">
+
+#</span><span class="bash"> 在哪些机器上部署 DS 服务，本机选 localhost</span>
+ips=&quot;ds1,ds2,ds3,ds4&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> ssh 端口，默认22</span>
+sshPort=&quot;22&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> master 服务部署在哪台机器上</span>
+masters=&quot;ds1,ds2&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> worker 服务部署在哪台机器上，并指定此 worker 属于哪一个 worker 组，下面示例的 default 即为组名</span>
+workers=&quot;ds3:default,ds4:default&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 报警服务部署在哪台机器上</span>
+alertServer=&quot;ds2&quot;
+<span class="hljs-meta">
+#</span><span class="bash"> 后端 api 服务部署在在哪台机器上</span>
+apiServers=&quot;ds1&quot;
+
+</code></pre>
+<p><em>特别注意：如果需要用资源上传到 Hadoop 集群功能， 并且 Hadoop 集群的 NameNode 配置了 HA 的话 ，需要开启 HDFS 类型的资源上传，同时需要将 Hadoop 集群下的 core-site.xml 和 hdfs-site.xml 复制到 /opt/dolphinscheduler/conf，非 NameNode HA 跳过次步骤</em></p>
+<h1>7、一键部署</h1>
+<ul>
+<li>切换到部署用户 dolphinscheduler，然后执行一键部署脚本</li>
+</ul>
+<pre><code class="language-bash">sh install.sh
+</code></pre>
+<p>注意：第一次部署的话，在运行中第 3 步 <code>3,stop server</code> 出现 5 次以下信息，此信息可以忽略</p>
+<pre><code class="language-shell">sh: bin/dolphinscheduler-daemon.sh: No such file or directory
+</code></pre>
+<ul>
+<li>脚本完成后，会启动以下 5 个服务，使用 <code>jps</code> 命令查看服务是否启动( <code>jps</code> 为 <code>JDK</code> 自带)</li>
+</ul>
+<pre><code class="language-aidl">    MasterServer         ----- master服务
+    WorkerServer         ----- worker服务
+    LoggerServer         ----- logger服务
+    ApiApplicationServer ----- api服务
+    AlertServer          ----- alert服务
+</code></pre>
+<p>如果以上服务都正常启动，说明自动部署成功</p>
+<p>部署成功后，可以进行日志查看，日志统一存放于 logs 文件夹内</p>
+<pre><code class="language-日志路径"> logs/
+    ├── dolphinscheduler-alert-server.log
+    ├── dolphinscheduler-master-server.log
+    |—— dolphinscheduler-worker-server.log
+    |—— dolphinscheduler-api-server.log
+    |—— dolphinscheduler-logger-server.log
+</code></pre>
+<h1>8、登录系统</h1>
+<ul>
+<li>
+<p>访问前端页面地址，接口 ip (自行修改)
+<a href="http://192.168.xx.xx:12345/dolphinscheduler">http://192.168.xx.xx:12345/dolphinscheduler</a></p>
+ <p align="center">
+   <img src="/img/login.png" width="60%" />
+ </p>
+</li>
+</ul>
+<h1>9、启停服务</h1>
+<ul>
+<li>一键停止集群所有服务</li>
+</ul>
+<pre><code class="language-shell">sh ./bin/stop-all.sh
+</code></pre>
+<ul>
+<li>一键开启集群所有服务</li>
+</ul>
+<pre><code class="language-shell">sh ./bin/start-all.sh
+</code></pre>
+<ul>
+<li>启停 Master</li>
+</ul>
+<pre><code class="language-shell">sh ./bin/dolphinscheduler-daemon.sh start master-server
+sh ./bin/dolphinscheduler-daemon.sh stop master-server
+</code></pre>
+<ul>
+<li>启停 Worker</li>
+</ul>
+<pre><code class="language-shell">sh ./bin/dolphinscheduler-daemon.sh start worker-server
+sh ./bin/dolphinscheduler-daemon.sh stop worker-server
+</code></pre>
+<ul>
+<li>启停 Api</li>
+</ul>
+<pre><code class="language-shell">sh ./bin/dolphinscheduler-daemon.sh start api-server
+sh ./bin/dolphinscheduler-daemon.sh stop api-server
+</code></pre>
+<ul>
+<li>启停 Logger</li>
+</ul>
+<pre><code class="language-shell">sh ./bin/dolphinscheduler-daemon.sh start logger-server
+sh ./bin/dolphinscheduler-daemon.sh stop logger-server
+</code></pre>
+<ul>
+<li>启停 Alert</li>
+</ul>
+<pre><code class="language-shell">sh ./bin/dolphinscheduler-daemon.sh start alert-server
+sh ./bin/dolphinscheduler-daemon.sh stop alert-server
+</code></pre>
+<p><code>注：服务用途请具体参见《系统架构设计》小节</code></p>
+<hr>
+<h3>附录</h3>
+<ul>
+<li>如果您需要使用到企业微信进行告警，请在安装完成后，修改 alert.properties 文件，然后重启 alert 服务即可</li>
+</ul>
+<pre><code># 设置企业微信告警功能是否开启：开启为 true，否则为 false
+enterprise.wechat.enable=&quot;true&quot;
+</code></pre>
+<pre><code># 设置 corpid，每个企业都拥有唯一的 corpid，获取此信息可在管理后台 “我的企业” － “企业信息” 下查看 “企业 ID”（需要有管理员权限）
+enterprise.wechat.corp.id=&quot;xxx&quot;
+</code></pre>
+<p align="center">
+  <img src="/img/alert/corpid.png" width="60%" />
+</p>
+<pre><code># 设置 secret，secret 是企业应用里面用于保障数据安全的 “钥匙”，每一个应用都有一个独立的访问密钥
+enterprise.wechat.secret=&quot;xxx&quot;
+</code></pre>
+<p align="center">
+ <img src="/img/alert/secret.png" width="60%" />
+</p>
+<pre><code># 设置 agentid，每个应用都有唯一的 agentid。在管理后台 -&gt; “应用与小程序” -&gt; “应用”，点进某个应用，即可看到 agentid
+enterprise.wechat.agent.id=&quot;xxxx&quot;
+</code></pre>
+<p align="center">
+<img src="/img/alert/agentid.png" width="60%" />
+</p>
+<pre><code># 设置 userid，多个用逗号分隔。每个成员都有唯一的 userid，即所谓 “帐号”。在管理后台 -&gt; “通讯录” -&gt; 点进某个成员的详情页，可以看到
+enterprise.wechat.users=zhangsan,lisi
+</code></pre>
+  <p align="center">
+   <img src="/img/alert/userid.png" width="60%" />
+  </p>
+<pre><code># 获取 access_token 的地址，使用如下例子无需修改
+enterprise.wechat.token.url=https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpId}&amp;corpsecret={secret}
+
+# 发送应用消息地址，使用如下例子无需改动
+enterprise.wechat.push.url=https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}
+
+# 发送消息格式，无需改动
+enterprise.wechat.user.send.msg={\&quot;touser\&quot;:\&quot;{toUser}\&quot;,\&quot;agentid\&quot;:\&quot;{agentId}\&quot;,\&quot;msgtype\&quot;:\&quot;markdown\&quot;,\&quot;markdown\&quot;:{\&quot;content\&quot;:\&quot;{msg}\&quot;}}
+</code></pre>
+<ul>
+<li>关于 dolphinscheduler 在运行过程中，ip 地址获取错误的问题：</li>
+</ul>
+<blockquote>
+<p>master 服务、worker 服务在 zookeeper 注册时，会以 ip:port 的形式创建相关信息</p>
+</blockquote>
+<p>如果 ip 地址获取错误，请检查网络信息，如 Linux 系统通过 <code>ifconfig</code> 命令查看网络信息，以下图为例：</p>
+<p align="center">
+  <img src="/img/network/network_config.png" width="60%" />
+</p>
+<p>可以使用 dolphinscheduler 提供的三种策略，获取可用 ip：</p>
+<ol>
+<li>default: 优先获取内网网卡获取 ip 地址，其次获取外网网卡获取 ip 地址，在前两项失效情况下，使用第一块可用网卡的地址</li>
+<li>inner: 使用内网网卡获取 ip地址，如果获取失败抛出异常信息</li>
+<li>outer: 使用外网网卡获取 ip地址，如果获取失败抛出异常信息</li>
+</ol>
+<p>配置方式是在 <code>common.properties</code> 中修改相关配置：</p>
+<pre><code> # network IP gets priority, default: inner outer
+ # dolphin.scheduler.network.priority.strategy=default
+</code></pre>
+<p>以上配置修改后重启服务生效</p>
+<p>如果 ip 地址获取依然错误，请下载 <a href="/asset/dolphinscheduler-netutils.jar">dolphinscheduler-netutils.jar</a> 到相应机器，执行以下命令以进一步排障，并反馈给社区开发人员：</p>
+<pre><code>java -jar target/dolphinscheduler-netutils.jar
+</code></pre>
+<ul>
+<li>配置 sudo 免密，用于解决默认配置 sudo 权限过大或不能申请 root 权限的使用问题</li>
+</ul>
+<p>配置 dolphinscheduler OS 账号的 sudo 权限为部分普通用户范围内的一个普通用户管理者，限制指定用户在指定主机上运行某些命令，详细配置请看 sudo 权限管理
+例如 sudo 权限管理配置 dolphinscheduler OS 账号只能操作用户 userA,userB,userC 的权限（其中用户 userA,userB,userC 用于多租户向大数据集群提交作业）</p>
+<pre><code class="language-shell">echo &#x27;dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL&#x27; &gt;&gt; /etc/sudoers
+sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
+</code></pre>
+</div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><a href="/zh-cn/community/development/subscribe.html"><p>邮件列表</p></a></li><li><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><a href="https://twitter.com/dolphinschedule"><p>Twitter</p></a></li><li><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><p>Stack Overflow</p></a></li><li><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/backend-development.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+  <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
+  <script>window.rootPath = '';</script>
+  <script src="/build/vendor.a4fc0e8.js"></script>
+  <script src="/build/docs.md.e58a9e6.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e7b4b400dd31fa015018a435c64d06f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</body>
+</html>
