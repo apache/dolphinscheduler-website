@@ -274,7 +274,15 @@ export default {
   },
   'zh-cn': {
     sidemenu: [
-      {
+      { 
+        title: '关于DolphinScheduler',
+        children: [
+          {
+            title: '简介',
+            link: '/zh-cn/About_DolphinScheduler/About_DolphinScheduler.html',
+          },
+        ],
+      },
         title: '用户手册',
         children: [
           {
