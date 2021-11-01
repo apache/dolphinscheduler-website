@@ -168,10 +168,6 @@ export default {
             title: 'Alert',
             children: [
               {
-                title: 'Alert Component User Guide ',
-                link: '/en-us/docs/dev/user_doc/guide/alert/alert_plugin_user_guide.html',
-              },
-              {
                 title: 'Enterprise Wechat',
                 link: '/en-us/docs/dev/user_doc/guide/alert/enterprise-wechat.html',
               },
@@ -260,12 +256,33 @@ export default {
           },
         ],
       },
+      {
+        title: 'To be Classification',
+        children: [
+          {
+            title: 'Global-Params',
+            link: '/en-us/docs/dev/user_doc/globalParams.html',
+          },
+          {
+            title: 'Dev-Run',
+            link: '/en-us/docs/dev/user_doc/dev_run.html',
+          },
+        ],
+      },
     ],
     barText: 'Documentation',
   },
   'zh-cn': {
     sidemenu: [
-      {
+      { 
+        title: '关于DolphinScheduler',
+        children: [
+          {
+            title: '简介',
+            link: '/zh-cn/About_DolphinScheduler/About_DolphinScheduler.html',
+          },
+        ],
+      },
         title: '用户手册',
         children: [
           {
@@ -432,10 +449,6 @@ export default {
             title: '告警',
             children: [
               {
-                title: '告警组件向导 ',
-                link: '/zh-cn/docs/dev/user_doc/guide/alert/alert_plugin_user_guide.html',
-              },
-              {
                 title: '企业微信',
                 link: '/zh-cn/docs/dev/user_doc/guide/alert/enterprise-wechat.html',
               },
@@ -468,7 +481,7 @@ export default {
         children: [
           {
             title: '元数据文档',
-            link: '/zh-cn/docs/dev/user_doc/architecture/metadata.html',
+            link: '/zh-cn/docs/dev/user_doc/architecture/metadata-1.3.html',
           },
           {
             title: '架构设计',
@@ -512,6 +525,23 @@ export default {
           {
             title: 'FAQ',
             link: '/zh-cn/docs/release/faq.html',
+          },
+        ],
+      },
+      {
+        title: '待分类文档',
+        children: [
+          {
+            title: 'Global-Params',
+            link: '/zh-cn/docs/dev/user_doc/globalParams.html',
+          },
+          {
+            title: 'Switch-Node',
+            link: '/zh-cn/docs/dev/user_doc/switch_node.html',
+          },
+          {
+            title: 'Dev-Run',
+            link: '/zh-cn/docs/dev/user_doc/dev_run.html',
           },
         ],
       },
