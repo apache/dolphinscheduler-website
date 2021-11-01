@@ -264,7 +264,8 @@ export default {
     barText: 'Documentation',
   },
   'zh-cn': {
-    sidemenu: [
+    sidemenu: 
+    [
       { 
         title: '关于Apache DolphinScheduler',
         children: 
@@ -274,7 +275,8 @@ export default {
             link: '/zh-cn/docs/About_DolphinScheduler/About_DolphinScheduler.html',
           },
          ],
-      },          
+      }, 
+    ],
         title: '用户手册',
         children: [
           {
