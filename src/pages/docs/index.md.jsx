@@ -32,7 +32,7 @@ const docsSource = {
   '1.3.8': docs138Config,
   '1.3.9': docs139Config,
   '2.0.0': docs200Config,
-  'dev': docsDevConfig,
+  dev: docsDevConfig,
 };
 
 const isValidVersion = version => version && docsSource.hasOwnProperty(version);
@@ -63,7 +63,7 @@ class Docs extends Md2Html(Language) {
           } else {
             submenu.children.forEach((menuLevel3) => {
               menuLevel3.link = menuLevel3.link.replace(`docs/${siteConfig.docsLatest}`, 'docs/latest');
-            })
+            });
           }
         });
       });
