@@ -489,6 +489,15 @@ export default {
         ],
       },
       {
+        title: '集成',
+        children: [
+          {
+            title: 'Ambari集成',
+            link: '/zh-cn/docs/2.0.0/user_doc/integration/ambari.html',
+          },
+        ],
+      },
+      {
         title: '版本升级',
         children: [
           {
