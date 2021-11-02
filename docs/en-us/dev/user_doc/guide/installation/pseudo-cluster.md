@@ -10,7 +10,7 @@ Pseudo-cluster deployment of DolphinScheduler requires external software support
 
 * JDK：Download [JDK][jdk] (1.8+), and configure `JAVA_HOME` to and `PATH` variable. You can skip this step, if it already exists in your environment.
 * Binary package: Download the DolphinScheduler binary package at [download page](../../../../../../en-us/download/download.md)
-* Database: PostgreSQL (8.2.15+) or MySQL (5.7+), you can choose one of the two, such as MySQL requires JDBC Driver 5.1.47+
+* Database: PostgreSQL (8.2.15+) or MySQL (5.7+), you can choose one of the two, such as MySQL requires JDBC Driver 8.0.16
 * Registry Center: ZooKeeper (3.4.6+)，[download link][zookeeper]
 * Process tree analysis
   * `pstree` for macOS
