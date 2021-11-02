@@ -188,7 +188,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 >
 > If you want to use MySQL, you can build a new image based on the `apache/dolphinscheduler` image as follows.
 
-1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (require `>=8.0.16`)
+1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. Create a new `Dockerfile` to add MySQL driver:
 
@@ -231,7 +231,7 @@ externalDatabase:
 >
 > If you want to add MySQL datasource, you can build a new image based on the `apache/dolphinscheduler` image as follows.
 
-1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (require `>=8.0.16`)
+1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. Create a new `Dockerfile` to add MySQL driver:
 
