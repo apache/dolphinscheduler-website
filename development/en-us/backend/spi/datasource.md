@@ -1,5 +1,11 @@
 ## DolphinScheduler Datasource SPI main design
 
+#### How do I use data sources?
+
+The data source center supports PostgreSQL, hive / impala, spark, Clickhouse and sqlserver data sources by default.
+
+If MySQL and Oracle data sources are used, the corresponding driver package needs to be placed in the plug-in installation directory
+
 #### How to use development environment?
 
 Note: **${VERSION}** needs to be manually modified according to the current version.

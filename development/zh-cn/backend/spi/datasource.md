@@ -1,5 +1,12 @@
 ## DolphinScheduler Datasource SPI 主要设计
 
+#### 如何使用数据源？
+
+数据源中心默认支持POSTGRESQL、HIVE/IMPALA、SPARK、CLICKHOUSE、SQLSERVER数据源。
+
+如果使用的是MySQL、ORACLE数据源则需要、把对应的驱动包放置到插件的安装目录
+
+
 #### 开发环境如何使用？
 
 首先你需要执行 `mvn -U install -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/datasource（版本号会跟随主版本号变更）
