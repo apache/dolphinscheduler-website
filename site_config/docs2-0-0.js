@@ -274,6 +274,7 @@ export default {
           },
         ],
       },
+      {
         title: '用户手册',
         children: [
           {
