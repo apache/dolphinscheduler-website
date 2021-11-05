@@ -272,50 +272,52 @@ export default {
             title: '简介',
             link: '/zh-cn/docs/About_DolphinScheduler/About_DolphinScheduler.html',
           },
+          {
+            title: '软硬件环境建议配置',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/hardware.html',
+          },          
         ],
       },
-        title: '用户手册',
+      {
+        title: '快速上手',
         children: [
-          {
-            title: '简介',
-            link: '/zh-cn/docs/2.0.0/user_doc/guide/introduction.html',
-          },
           {
             title: '快速上手',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
-            title: '部署',
-            children: [
-              {
-                title: '软硬件环境建议配置',
-                link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/hardware.html',
-              },
-              {
-                title: '单机部署(Standalone)',
-                link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/standalone.html',
-              },
-              {
-                title: '伪集群部署(Pseudo-Cluster)',
-                link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/pseudo-cluster.html',
-              },
-              {
-                title: '集群部署(Cluster)',
-                link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/cluster.html',
-              },
-              {
-                title: 'Docker部署(Docker)',
-                link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/docker.html',
-              },
-              {
-                title: 'Kubernetes部署(Kubernetes)',
-                link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
-              },
-              {
-                title: 'SkyWalking-Agent部署(SkyWalking)',
-                link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
-              },
-            ],
+            title: 'Docker部署(Docker)',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/docker.html',
+          },
+        ],
+      }, 
+      {
+        title: '部署指南',
+        children: [
+          {
+            title: '单机部署(Standalone)',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/standalone.html',
+          },          
+          {
+            title: '伪集群部署(Pseudo-Cluster)',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/pseudo-cluster.html',
+          },
+          {
+            title: '集群部署(Cluster)',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/cluster.html',
+          },
+          {
+            title: 'Kubernetes部署(Kubernetes)',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
+          },
+          {
+            title: 'SkyWalking-Agent部署(SkyWalking)',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
+          },
+        ],
+      },           
+        title: '功能介绍',
+        children: [
           },
           {
             title: '指标总览',
