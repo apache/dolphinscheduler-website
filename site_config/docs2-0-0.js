@@ -315,7 +315,8 @@ export default {
             link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
           },
         ],
-      },           
+      }, 
+      {          
         title: '功能介绍',
         children: [
           {
