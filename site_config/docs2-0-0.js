@@ -318,7 +318,6 @@ export default {
       },           
         title: '功能介绍',
         children: [
-          },
           {
             title: '指标总览',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/homepage.html',
