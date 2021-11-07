@@ -45,7 +45,7 @@
 
 #### 2.2 启动流程活动图
 <p align="center">
-  <img src="/img/process-start-flow-1.3.0.png" alt="启动流程活动图"  width="70%" />
+  <img src="/img/master-process-2.0-zh_cn.png" alt="Start process activity diagram"  width="70%" />
   <p align="center">
         <em>启动流程活动图</em>
   </p>
@@ -141,7 +141,7 @@
 1. DolphinScheduler使用分片算法将command取模，根据master的排序id分配，master将拿到的command转换成工作流实例，使用线程池处理工作流实例
 
 
-2. dolphinscheduler对工作流的处理流程:
+2. DolphinScheduler对工作流的处理流程:
 
   - 通过UI或者API调用，启动工作流，持久化一条command到数据库中
   - Master通过分片算法，扫描Command表，生成工作流实例ProcessInstance，同时删除Command数据
@@ -150,9 +150,6 @@
   - Master收到任务信息，持久化到数据库，并且将状态变化事件存入EventExecuteService事件队列
   - EventExecuteService根据事件队列调用WorkflowExecuteThread进行后续任务的提交和工作流状态的修改
 
- <p align="center">
-   <img src="/img/master-process-2.0-zh_cn.png" alt="master执行流程"  width="50%" />
- </p>
 
 ##### 三、容错设计
 容错分为服务宕机容错和任务重试，服务宕机容错又分为Master容错和Worker容错两种情况
