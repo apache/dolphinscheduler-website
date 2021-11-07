@@ -63,34 +63,34 @@
 
     - **Distributed Quartz**分布式调度组件，主要负责定时任务的启停操作，当quartz调起任务后，Master内部会有线程池具体负责处理任务的后续操作
 
-    - **MasterSchedulerThread**是一个扫描线程，定时扫描数据库中的 **command** 表，根据不同的**命令类型**进行不同的业务操作
+    - **MasterSchedulerService**是一个扫描线程，定时扫描数据库中的 **command** 表，生成工作流实例，根据不同的**命令类型**进行不同的业务操作
 
-    - **MasterExecThread**主要是负责DAG任务切分、任务提交监控、各种不同命令类型的逻辑处理
+    - **WorkflowExecuteThread**主要是负责DAG任务切分、任务提交、各种不同命令类型的逻辑处理，处理任务状态和工作流状态事件
 
-    - **MasterTaskExecThread**主要负责任务的持久化
+    - **EventExecuteService**处理master负责的工作流实例所有的状态变化事件，使用线程池处理工作流的状态事件
+    
+    - **StateWheelExecuteThread**处理依赖任务和超时任务的定时状态更新
 
 * **WorkerServer** 
 
-     WorkerServer也采用分布式无中心设计理念，WorkerServer主要负责任务的执行和提供日志服务。
+     WorkerServer也采用分布式无中心设计理念，支持自定义任务插件，主要负责任务的执行和提供日志服务。
      WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
-     Server基于netty提供监听服务。Worker
+     
      ##### 该服务包含：
-     - **FetchTaskThread**主要负责不断从**Task Queue**中领取任务，并根据不同任务类型调用**TaskScheduleThread**对应执行器。
+     
+     - **WorkerManagerThread**主要通过netty领取master发送过来的任务，并根据不同任务类型调用**TaskExecuteThread**对应执行器。
+     
+     - **RetryReportTaskStatusThread**主要通过netty向master汇报任务状态，如果汇报失败，会一直重试汇报
 
-     - **LoggerServer**是一个RPC服务，提供日志分片查看、刷新和下载等功能
+     - **LoggerServer**是一个日志服务，提供日志分片查看、刷新和下载等功能
+     
+* **Registry** 
 
-* **ZooKeeper** 
-
-    ZooKeeper服务，系统中的MasterServer和WorkerServer节点都通过ZooKeeper来进行集群管理和容错。另外系统还基于ZooKeeper进行事件监听和分布式锁。
-    我们也曾经基于Redis实现过队列，不过我们希望DolphinScheduler依赖到的组件尽量地少，所以最后还是去掉了Redis实现。
-
-* **Task Queue** 
-
-    提供任务队列的操作，目前队列也是基于Zookeeper来实现。由于队列中存的信息较少，不必担心队列里数据过多的情况，实际上我们压测过百万级数据存队列，对系统稳定性和性能没影响。
-
+    注册中心，使用插件化实现，默认支持Zookeeper, 系统中的MasterServer和WorkerServer节点通过注册中心来进行集群管理和容错。另外系统还基于注册中心进行事件监听和分布式锁。
+    
 * **Alert** 
 
-    提供告警相关接口，接口主要包括**告警**两种类型的告警数据的存储、查询和通知功能。其中通知功能又有**邮件通知**和**SNMP(暂未实现)**两种。
+    提供告警相关功能，仅支持单机服务。支持自定义告警插件。
 
 * **API** 
 
@@ -134,45 +134,27 @@
 - 实际上，真正去中心化的分布式系统并不多见。反而动态中心化分布式系统正在不断涌出。在这种架构下，集群中的管理者是被动态选择出来的，而不是预置的，并且集群在发生故障的时候，集群的节点会自发的举行"会议"来选举新的"管理者"去主持工作。最典型的案例就是ZooKeeper及Go语言实现的Etcd。
 
 
+- DolphinScheduler的去中心化是Master/Worker注册到Zookeeper中，实现Master集群和Worker集群无中心，使用分片机制，公平分配工作流在master上执行，并通过不同的发送策略将任务发送给worker执行具体的任务
 
-- DolphinScheduler的去中心化是Master/Worker注册到Zookeeper中，实现Master集群和Worker集群无中心，并使用Zookeeper分布式锁来选举其中的一台Master或Worker为“管理者”来执行任务。
+#####  二、Master执行流程
 
-#####  二、分布式锁实践
-
-DolphinScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Master执行Scheduler，或者只有一台Worker执行任务的提交。
-1. 获取分布式锁的核心流程算法如下
- <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock.png" alt="获取分布式锁流程"  width="50%" />
- </p>
-
-2. DolphinScheduler中Scheduler线程分布式锁实现流程图：
- <p align="center">
-   <img src="/img/distributed_lock_procss.png" alt="获取分布式锁流程"  width="50%" />
- </p>
+1. DolphinScheduler使用分片算法将command取模，根据master的排序id分配，master将拿到的command转换成工作流实例，使用线程池处理工作流实例
 
 
-##### 三、线程不足循环等待问题
+2. dolphinscheduler对工作流的处理流程:
 
--  如果一个DAG中没有子流程，则如果Command中的数据条数大于线程池设置的阈值，则直接流程等待或失败。
--  如果一个大的DAG中嵌套了很多子流程，如下图则会产生“死等”状态：
+  - 通过UI或者API调用，启动工作流，持久化一条command到数据库中
+  - Master通过分片算法，扫描Command表，生成工作流实例ProcessInstance，同时删除Command数据
+  - Master使用线程池运行WorkflowExecuteThread，执行工作流实例的流程，包括构建DAG，创建任务实例TaskInstance，将TaskInstance通过netty发送给worker
+  - Worker收到任务以后，修改任务状态，并将执行信息返回Master
+  - Master收到任务信息，持久化到数据库，并且将状态变化事件存入EventExecuteService事件队列
+  - EventExecuteService根据事件队列调用WorkflowExecuteThread进行后续任务的提交和工作流状态的修改
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/lack_thread.png" alt="线程不足循环等待问题"  width="50%" />
+   <img src="/img/master-process-2.0-zh_cn.png" alt="master执行流程"  width="50%" />
  </p>
-上图中MainFlowThread等待SubFlowThread1结束，SubFlowThread1等待SubFlowThread2结束， SubFlowThread2等待SubFlowThread3结束，而SubFlowThread3等待线程池有新线程，则整个DAG流程不能结束，从而其中的线程也不能释放。这样就形成的子父流程循环等待的状态。此时除非启动新的Master来增加线程来打破这样的”僵局”，否则调度集群将不能再使用。
 
-对于启动新Master来打破僵局，似乎有点差强人意，于是我们提出了以下三种方案来降低这种风险：
-
-1. 计算所有Master的线程总和，然后对每一个DAG需要计算其需要的线程数，也就是在DAG流程执行之前做预计算。因为是多Master线程池，所以总线程数不太可能实时获取。 
-2. 对单Master线程池进行判断，如果线程池已经满了，则让线程直接失败。
-3. 增加一种资源不足的Command类型，如果线程池不足，则将主流程挂起。这样线程池就有了新的线程，可以让资源不足挂起的流程重新唤醒执行。
-
-注意：Master Scheduler线程在获取Command的时候是FIFO的方式执行的。
-
-于是我们选择了第三种方式来解决线程不足的问题。
-
-
-##### 四、容错设计
+##### 三、容错设计
 容错分为服务宕机容错和任务重试，服务宕机容错又分为Master容错和Worker容错两种情况
 
 ###### 1. 宕机容错
@@ -221,13 +203,13 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
 
 - 还有一种是逻辑节点，这种节点不做实际的脚本或语句处理，只是整个流程流转的逻辑处理，比如子流程节等。
 
-每一个**业务节点**都可以配置失败重试的次数，当该任务节点失败，会自动重试，直到成功或者超过配置的重试次数。**逻辑节点**不支持失败重试。但是逻辑节点里的任务支持重试。
+所有任务都可以配置失败重试的次数，当该任务节点失败，会自动重试，直到成功或者超过配置的重试次数。
 
 如果工作流中有任务失败达到最大重试次数，工作流就会失败停止，失败的工作流可以手动进行重跑操作或者流程恢复操作
 
 
 
-##### 五、任务优先级设计
+##### 四、任务优先级设计
 在早期调度设计中，如果没有优先级设计，采用公平调度设计的话，会遇到先行提交的任务可能会和后继提交的任务同时完成的情况，而不能做到设置流程或者任务的优先级，因此我们对此进行了重新设计，目前我们设计如下：
 
 -  按照**不同流程实例优先级**优先于**同一个流程实例优先级**优先于**同一流程内任务优先级**优先于**同一流程内任务**提交顺序依次从高到低进行任务处理。
@@ -244,7 +226,7 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
              </p>
 
 
-##### 六、Logback和netty实现日志访问
+##### 五、Logback和netty实现日志访问
 
 -  由于Web(UI)和Worker不一定在同一台机器上，所以查看日志不能像查询本地文件那样。有两种方案：
   -  将日志放到ES搜索引擎上
@@ -325,7 +307,5 @@ public class TaskLogFilter extends Filter<ILoggingEvent> {
 - dolphinscheduler-service service模块，包含Quartz、Zookeeper、日志客户端访问服务，便于server模块和api模块调用
 
 - dolphinscheduler-ui 前端模块
-### 总结
-本文从调度出发，初步介绍了大数据分布式工作流调度系统--DolphinScheduler的架构原理及实现思路。未完待续
 
 
