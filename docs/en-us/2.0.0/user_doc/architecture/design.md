@@ -60,39 +60,34 @@ Before explaining the architecture of the scheduling system, let's first underst
     MasterServer provides monitoring services based on netty.
 
     ##### The service mainly includes:
+     - **MasterSchedulerService** is a scanning thread that scans the **command** table in the database regularly, generates workflow instances, and performs different business operations according to different **command types**
 
-    - **Distributed Quartz** distributed scheduling component, which is mainly responsible for the start and stop operations of scheduled tasks. When Quartz starts the task, there will be a thread pool inside the Master that is specifically responsible for the follow-up operation of the processing task
+     - **WorkflowExecuteThread** is mainly responsible for DAG task segmentation, task submission, logical processing of various command types, processing task status and workflow status events
 
-    - **MasterSchedulerThread** is a scanning thread that regularly scans the **command** table in the database and performs different business operations according to different **command types**
-
-    - **MasterExecThread** is mainly responsible for DAG task segmentation, task submission monitoring, and logical processing of various command types
-
-    - **MasterTaskExecThread** is mainly responsible for the persistence of tasks
+     - **EventExecuteService** handles all state change events of the workflow instance that the master is responsible for, and uses the thread pool to process the state events of the workflow
+    
+     - **StateWheelExecuteThread** handles timing state updates of dependent tasks and timeout tasks
 
 * **WorkerServer** 
 
-     WorkerServer also adopts a distributed and decentralized design concept. WorkerServer is mainly responsible for task execution and providing log services.
+      WorkerServer also adopts a distributed centerless design concept, supports custom task plug-ins, and is mainly responsible for task execution and log services.
+      When the WorkerServer service starts, it registers a temporary node with Zookeeper and maintains a heartbeat.
+      
+##### The service mainly includes
+     
+    - **WorkerManagerThread** mainly receives tasks sent by the master through netty, and calls **TaskExecuteThread** corresponding executors according to different task types.
+     
+    - **RetryReportTaskStatusThread** mainly reports the task status to the master through netty. If the report fails, the report will always be retried.
 
-     When the WorkerServer service starts, register a temporary node with Zookeeper and maintain a heartbeat.
-     Server provides monitoring services based on netty. Worker
-     ##### The service mainly includes:
-     - **Fetch TaskThread** is mainly responsible for continuously getting tasks from **Task Queue**, and calling **TaskScheduleThread** corresponding executor according to different task types.
+    - **LoggerServer** is a log service that provides log fragment viewing, refreshing and downloading functions
 
-     - **LoggerServer** is an RPC service that provides functions such as log fragment viewing, refreshing and downloading
+* **Registry** 
 
-* **ZooKeeper** 
-
-    ZooKeeper service, MasterServer and WorkerServer nodes in the system all use ZooKeeper for cluster management and fault tolerance. In addition, the system is based on ZooKeeper for event monitoring and distributed locks.
-
-    We have also implemented queues based on Redis, but we hope that DolphinScheduler depends on as few components as possible, so we finally removed the Redis implementation.
-
-* **Task Queue** 
-
-    Provide task queue operation, the current queue is also implemented based on Zookeeper. Because there is less information stored in the queue, there is no need to worry about too much data in the queue. In fact, we have tested the millions of data storage queues, which has no impact on system stability and performance.
+    The registry is implemented as a plug-in, and Zookeeper is supported by default. The MasterServer and WorkerServer nodes in the system use the registry for cluster management and fault tolerance. In addition, the system also performs event monitoring and distributed locks based on the registry.
 
 * **Alert** 
 
-    Provide alarm related interface, the interface mainly includes **alarm** two types of alarm data storage, query and notification functions. Among them, there are **email notification** and **SNMP (not yet implemented)**.
+    Provide alarm-related functions and only support stand-alone service. Support custom alarm plug-ins.
 
 * **API** 
 
@@ -135,22 +130,21 @@ Problems in centralized thought design:
 - In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly pouring out. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will automatically hold "meetings" to elect new "managers" To preside over the work. The most typical case is Etcd implemented by ZooKeeper and Go language.
 
 
+-The decentralization of DolphinScheduler is that the Master/Worker is registered in Zookeeper to realize the non-centralization of the Master cluster and the Worker cluster. The sharding mechanism is used to fairly distribute the workflow for execution on the master, and tasks are sent to the workers for execution through different sending strategies. Specific task
 
-- The decentralization of DolphinScheduler is that the Master/Worker is registered in Zookeeper, and the Master cluster and Worker cluster are centerless, and the Zookeeper distributed lock is used to elect one of the Master or Worker as the "manager" to perform the task.
+##### Second, the master execution process
 
-##### Two、Distributed lock practice
+1. DolphinScheduler uses the sharding algorithm to modulate the command and assigns it according to the sort id of the master. The master converts the received command into a workflow instance, and uses the thread pool to process the workflow instance
 
-DolphinScheduler uses ZooKeeper distributed lock to realize that only one Master executes Scheduler at the same time, or only one Worker executes the submission of tasks.
-1. The core process algorithm for acquiring distributed locks is as follows:
- <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock.png" alt="Obtain distributed lock process"  width="50%" />
- </p>
 
-2. Flow chart of implementation of Scheduler thread distributed lock in DolphinScheduler:
- <p align="center">
-   <img src="/img/distributed_lock_procss.png" alt="Obtain distributed lock process"  width="50%" />
- </p>
+2. Dolphinscheduler's process of workflow:
 
+  -Start the workflow through UI or API calls, and persist a command to the database
+  -The Master scans the Command table through the sharding algorithm, generates a workflow instance ProcessInstance, and deletes the Command data at the same time
+  -The Master uses the thread pool to run WorkflowExecuteThread to execute the process of the workflow instance, including building DAG, creating task instance TaskInstance, and sending TaskInstance to worker through netty
+  -After the worker receives the task, it modifies the task status and returns the execution information to the Master
+  -The Master receives the task information, persists it to the database, and stores the state change event in the EventExecuteService event queue
+  -EventExecuteService calls WorkflowExecuteThread according to the event queue to submit subsequent tasks and modify workflow status
 
 ##### Three、Insufficient thread loop waiting problem
 
