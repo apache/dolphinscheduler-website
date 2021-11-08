@@ -278,7 +278,7 @@ export default {
           },
           {
             title: '架构设计',
-            link: '/zh-cn/docs/2.0.0/user_doc/architecture/design.html',
+            link: '/zh-cn/docs/2.0.0/user_doc/architecture/designplus.html',
           },          
         ],
       },
