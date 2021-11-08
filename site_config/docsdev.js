@@ -525,6 +525,312 @@ export default {
                 ],
             },
         ],
+<<<<<<< Updated upstream
         barText: '文档',
     },
+=======
+      },
+      {
+        title: 'Integration',
+        children: [
+          {
+            title: 'Ambari Integration',
+            link: '/en-us/docs/dev/user_doc/integration/ambari.html',
+          },
+        ],
+      },
+      {
+        title: 'Upgrade',
+        children: [
+          {
+            title: 'Upgrade',
+            link: '/en-us/docs/dev/user_doc/upgrade.html',
+          },
+        ],
+      },
+      {
+        title: 'Expansion/Reduction',
+        children: [
+          {
+            title: 'Capacity expansion and reduction',
+            link: '/en-us/docs/dev/user_doc/expansion-reduction.html',
+          },
+        ],
+      },
+      {
+        title: 'FAQ',
+        children: [
+          {
+            title: 'FAQ',
+            link: '/en-us/docs/release/faq.html',
+          },
+        ],
+      },
+    ],
+    barText: 'Documentation',
+  },
+  'zh-cn': {
+    sidemenu: [
+   { 
+        title: '关于DolphinScheduler',
+        children: [
+          {
+            title: '简介',
+            link: '/zh-cn/About_DolphinScheduler/About_DolphinScheduler.html',
+          },
+        ],
+   },
+        title: '用户手册',
+        children: [
+          {
+            title: '简介',
+            link: '/zh-cn/docs/dev/user_doc/guide/introduction.html',
+          },
+          {
+            title: '快速上手',
+            link: '/zh-cn/docs/dev/user_doc/guide/quick-start.html',
+          },
+          {
+            title: '部署',
+            children: [
+              {
+                title: '软硬件环境建议配置',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/hardware.html',
+              },
+              {
+                title: '单机部署(Standalone)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/standalone.html',
+              },
+              {
+                title: '伪集群部署(Pseudo-Cluster)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/pseudo-cluster.html',
+              },
+              {
+                title: '集群部署(Cluster)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/cluster.html',
+              },
+              {
+                title: 'Docker部署(Docker)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/docker.html',
+              },
+              {
+                title: 'Kubernetes部署(Kubernetes)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/kubernetes.html',
+              },
+              {
+                title: 'SkyWalking-Agent部署(SkyWalking)',
+                link: '/zh-cn/docs/dev/user_doc/guide/installation/skywalking-agent.html',
+              },
+            ],
+          },
+          {
+            title: '指标总览',
+            link: '/zh-cn/docs/dev/user_doc/guide/homepage.html',
+          },
+          {
+            title: '项目管理',
+            link: '/zh-cn/docs/dev/user_doc/guide/project.html',
+          },
+          {
+            title: '任务类型',
+            children: [
+              {
+                title: 'Shell',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/shell.html',
+              },
+              {
+                title: 'SubProcess',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/sub-process.html',
+              },
+              {
+                title: 'Dependent',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/dependent.html',
+              },
+              {
+                title: 'Stored Procedure',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/stored-procedure.html',
+              },
+              {
+                title: 'SQL',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/sql.html',
+              },
+              {
+                title: 'Spark',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/spark.html',
+              },
+              {
+                title: 'MapReduce',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/map-reduce.html',
+              },
+              {
+                title: 'Python',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/python.html',
+              },
+              {
+                title: 'Flink',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/flink.html',
+              },
+              {
+                title: 'HTTP',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/http.html',
+              },
+              {
+                title: 'DataX',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/datax.html',
+              },
+              {
+                title: 'Pigeon',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/pigeon.html',
+              },
+              {
+                title: 'Conditions',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/conditions.html',
+              },
+              {
+                title: 'Switch',
+                link: '/zh-cn/docs/dev/user_doc/guide/task/switch.html',
+              },
+            ],
+          },
+          {
+            title: '参数',
+            children: [
+              {
+                title: '内置参数',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/built-in.html',
+              },
+              {
+                title: '全局参数',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/global.html',
+              },
+              {
+                title: '本地参数',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/local.html',
+              },
+              {
+                title: '参数传递',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/context.html',
+              },
+              {
+                title: '参数优先级',
+                link: '/zh-cn/docs/dev/user_doc/guide/parameter/priority.html',
+              },
+            ],
+          },
+          {
+            title: '数据源中心',
+            children: [
+              {
+                title: '简介',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/introduction.html',
+              },
+              {
+                title: 'MySQL',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/mysql.html',
+              },
+              {
+                title: 'PostgreSQL',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/postgresql.html',
+              },
+              {
+                title: 'HIVE',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/hive.html',
+              },
+              {
+                title: 'Spark',
+                link: '/zh-cn/docs/dev/user_doc/guide/datasource/spark.html',
+              },
+            ],
+          },
+          {
+            title: '告警',
+            children: [
+              {
+                title: '告警组件向导 ',
+                link: '/zh-cn/docs/dev/user_doc/guide/alert/alert_plugin_user_guide.html',
+              },
+              {
+                title: '企业微信',
+                link: '/zh-cn/docs/dev/user_doc/guide/alert/enterprise-wechat.html',
+              },
+            ],
+          },
+          {
+            title: '资源中心',
+            link: '/zh-cn/docs/dev/user_doc/guide/resource.html',
+          },
+          {
+            title: '监控中心',
+            link: '/zh-cn/docs/dev/user_doc/guide/monitor.html',
+          },
+          {
+            title: '安全中心',
+            link: '/zh-cn/docs/dev/user_doc/guide/security.html',
+          },
+          {
+            title: 'API调用',
+            link: '/zh-cn/docs/dev/user_doc/guide/open-api.html',
+          },
+          {
+            title: 'Flink调用',
+            link: '/zh-cn/docs/dev/user_doc/guide/flink-call.html',
+          },
+        ],
+      },
+      {
+        title: '架构设计',
+        children: [
+          {
+            title: '元数据文档',
+            link: '/zh-cn/docs/dev/user_doc/architecture/metadata.html',
+          },
+          {
+            title: '架构设计',
+            link: '/zh-cn/docs/dev/user_doc/architecture/design.html',
+          },
+          {
+            title: '配置文件',
+            link: '/zh-cn/docs/dev/user_doc/architecture/configuration.html',
+          },
+          {
+            title: '任务结构',
+            link: '/zh-cn/docs/dev/user_doc/architecture/task-structure.html',
+          },
+          {
+            title: '负载均衡',
+            link: '/zh-cn/docs/dev/user_doc/architecture/load-balance.html',
+          },
+        ],
+      },
+      {
+        title: '版本升级',
+        children: [
+          {
+            title: '升级',
+            link: '/zh-cn/docs/dev/user_doc/upgrade.html',
+          },
+        ],
+      },
+      {
+        title: '扩/缩容',
+        children: [
+          {
+            title: '扩/缩容',
+            link: '/zh-cn/docs/dev/user_doc/expansion-reduction.html',
+          },
+        ],
+      },
+      {
+        title: 'FAQ',
+        children: [
+          {
+            title: 'FAQ',
+            link: '/zh-cn/docs/release/faq.html',
+          },
+        ],
+      },
+    ],
+    barText: '文档',
+  },
+>>>>>>> Stashed changes
 };
