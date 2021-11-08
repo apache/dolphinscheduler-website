@@ -273,8 +273,12 @@ export default {
             link: '/zh-cn/docs/About_DolphinScheduler/About_DolphinScheduler.html',
           },
           {
-            title: '软硬件环境建议配置',
+            title: '建议配置',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/hardware.html',
+          },
+          {
+            title: '架构设计',
+            link: '/zh-cn/docs/2.0.0/user_doc/architecture/design.html',
           },          
         ],
       },
@@ -474,15 +478,11 @@ export default {
         ],
       },
       {
-        title: '架构设计',
+        title: '高级指南',
         children: [
           {
             title: '元数据文档',
             link: '/zh-cn/docs/2.0.0/user_doc/architecture/metadata.html',
-          },
-          {
-            title: '架构设计',
-            link: '/zh-cn/docs/2.0.0/user_doc/architecture/design.html',
           },
           {
             title: '配置文件',
@@ -496,20 +496,10 @@ export default {
             title: '负载均衡',
             link: '/zh-cn/docs/2.0.0/user_doc/architecture/load-balance.html',
           },
-        ],
-      },
-      {
-        title: '版本升级',
-        children: [
           {
             title: '升级',
             link: '/zh-cn/docs/2.0.0/user_doc/upgrade.html',
           },
-        ],
-      },
-      {
-        title: '扩/缩容',
-        children: [
           {
             title: '扩/缩容',
             link: '/zh-cn/docs/2.0.0/user_doc/expansion-reduction.html',
