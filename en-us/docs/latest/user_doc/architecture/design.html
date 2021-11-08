@@ -41,7 +41,7 @@
 </p>
 <h4>2.2 Start process activity diagram</h4>
 <p align="center">
-  <img src="/img/process-start-flow-1.3.0.png" alt="Start process activity diagram"  width="70%" />
+  <img src="/img/master-process-2.0-en.png" alt="Start process activity diagram"  width="70%" />
   <p align="center">
         <em>Start process activity diagram</em>
   </p>
@@ -122,26 +122,36 @@ When the WorkerServer service starts, it registers a temporary node with Zookeep
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="Decentralization"  width="50%" />
  </p>
 <ul>
-<li>In the decentralized design, there is usually no concept of Master/Slave, all roles are the same, the status is equal, the global Internet is a typical decentralized distributed system, any node equipment connected to the network is down, All will only affect a small range of functions.</li>
-<li>The core design of decentralized design is that there is no &quot;manager&quot; different from other nodes in the entire distributed system, so there is no single point of failure. However, because there is no &quot;manager&quot; node, each node needs to communicate with other nodes to obtain the necessary machine information, and the unreliability of distributed system communication greatly increases the difficulty of implementing the above functions.</li>
-<li>In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly pouring out. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will automatically hold &quot;meetings&quot; to elect new &quot;managers&quot; To preside over the work. The most typical case is Etcd implemented by ZooKeeper and Go language.</li>
+<li>
+<p>In the decentralized design, there is usually no concept of Master/Slave, all roles are the same, the status is equal, the global Internet is a typical decentralized distributed system, any node equipment connected to the network is down, All will only affect a small range of functions.</p>
+</li>
+<li>
+<p>The core design of decentralized design is that there is no &quot;manager&quot; different from other nodes in the entire distributed system, so there is no single point of failure. However, because there is no &quot;manager&quot; node, each node needs to communicate with other nodes to obtain the necessary machine information, and the unreliability of distributed system communication greatly increases the difficulty of implementing the above functions.</p>
+</li>
+<li>
+<p>In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly pouring out. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will automatically hold &quot;meetings&quot; to elect new &quot;managers&quot; To preside over the work. The most typical case is Etcd implemented by ZooKeeper and Go language.</p>
+</li>
+<li>
+<p>The decentralization of DolphinScheduler is that the Master/Worker is registered in Zookeeper to realize the non-centralization of the Master cluster and the Worker cluster. The sharding mechanism is used to fairly distribute the workflow for execution on the master, and tasks are sent to the workers for execution through different sending strategies. Specific task</p>
+</li>
 </ul>
-<p>-The decentralization of DolphinScheduler is that the Master/Worker is registered in Zookeeper to realize the non-centralization of the Master cluster and the Worker cluster. The sharding mechanism is used to fairly distribute the workflow for execution on the master, and tasks are sent to the workers for execution through different sending strategies. Specific task</p>
 <h5>Second, the master execution process</h5>
 <ol>
 <li>
 <p>DolphinScheduler uses the sharding algorithm to modulate the command and assigns it according to the sort id of the master. The master converts the received command into a workflow instance, and uses the thread pool to process the workflow instance</p>
 </li>
 <li>
-<p>Dolphinscheduler's process of workflow:</p>
+<p>DolphinScheduler's process of workflow:</p>
 </li>
 </ol>
-<p>-Start the workflow through UI or API calls, and persist a command to the database
--The Master scans the Command table through the sharding algorithm, generates a workflow instance ProcessInstance, and deletes the Command data at the same time
--The Master uses the thread pool to run WorkflowExecuteThread to execute the process of the workflow instance, including building DAG, creating task instance TaskInstance, and sending TaskInstance to worker through netty
--After the worker receives the task, it modifies the task status and returns the execution information to the Master
--The Master receives the task information, persists it to the database, and stores the state change event in the EventExecuteService event queue
--EventExecuteService calls WorkflowExecuteThread according to the event queue to submit subsequent tasks and modify workflow status</p>
+<ul>
+<li>Start the workflow through UI or API calls, and persist a command to the database</li>
+<li>The Master scans the Command table through the sharding algorithm, generates a workflow instance ProcessInstance, and deletes the Command data at the same time</li>
+<li>The Master uses the thread pool to run WorkflowExecuteThread to execute the process of the workflow instance, including building DAG, creating task instance TaskInstance, and sending TaskInstance to worker through netty</li>
+<li>After the worker receives the task, it modifies the task status and returns the execution information to the Master</li>
+<li>The Master receives the task information, persists it to the database, and stores the state change event in the EventExecuteService event queue</li>
+<li>EventExecuteService calls WorkflowExecuteThread according to the event queue to submit subsequent tasks and modify workflow status</li>
+</ul>
 <h5>Three、Insufficient thread loop waiting problem</h5>
 <ul>
 <li>If there is no sub-process in a DAG, if the number of data in the Command is greater than the threshold set by the thread pool, the process directly waits or fails.</li>
