@@ -1,7 +1,9 @@
 ## 名词解释
+
 在对Apache DolphinScheduler了解之前，我们先来认识一下调度系统常用的名词
 
 ### 1.名词解释
+
 **DAG：** 全称Directed Acyclic Graph，简称DAG。工作流中的Task任务以有向无环图的形式组装起来，从入度为零的节点进行拓扑遍历，直到无后继节点为止。举例如下图：
 
 <p align="center">
@@ -17,9 +19,11 @@
 
 **任务实例**：任务实例是流程定义中任务节点的实例化，标识着具体的任务执行状态
 
-**任务类型**： 目前支持有SHELL、SQL、SUB_PROCESS(子流程)、PROCEDURE、MR、SPARK、PYTHON、DEPENDENT(依赖)、，同时计划支持动态插件扩展，注意：其中子 **SUB_PROCESS**  也是一个单独的流程定义，是可以单独启动执行的
+**任务类型**： 目前支持有SHELL、SQL、SUB_PROCESS(子流程)、PROCEDURE、MR、SPARK、PYTHON、DEPENDENT(依赖)、，同时计划支持动态插件扩展，注意：其中子 **SUB_PROCESS**
+也是一个单独的流程定义，是可以单独启动执行的
 
-**调度方式：** 系统支持基于cron表达式的定时调度和手动调度。命令类型支持：启动工作流、从当前节点开始执行、恢复被容错的工作流、恢复暂停流程、从失败节点开始执行、补数、定时、重跑、暂停、停止、恢复等待线程。其中 **恢复被容错的工作流** 和 **恢复等待线程** 两种命令类型是由调度内部控制使用，外部无法调用
+**调度方式：** 系统支持基于cron表达式的定时调度和手动调度。命令类型支持：启动工作流、从当前节点开始执行、恢复被容错的工作流、恢复暂停流程、从失败节点开始执行、补数、定时、重跑、暂停、停止、恢复等待线程。其中 **
+恢复被容错的工作流** 和 **恢复等待线程** 两种命令类型是由调度内部控制使用，外部无法调用
 
 **定时调度**：系统采用 **quartz** 分布式调度器，并同时支持cron表达式可视化的生成
 
@@ -34,9 +38,10 @@
 **补数**：补历史数据，支持**区间并行和串行**两种补数方式
 
 ### 2.模块介绍
-- dolphinscheduler-alert 告警模块，提供AlertServer服务。
 
-- dolphinscheduler-api   web应用模块，提供ApiServer服务。
+- dolphinscheduler-alert 告警模块，提供 AlertServer 服务。
+
+- dolphinscheduler-api web应用模块，提供ApiServer服务。
 
 - dolphinscheduler-common 通用的常量枚举、工具类、数据结构或者基类
 
