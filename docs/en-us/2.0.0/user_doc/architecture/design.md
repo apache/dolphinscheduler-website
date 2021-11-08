@@ -45,7 +45,7 @@ Before explaining the architecture of the scheduling system, let's first underst
 
 #### 2.2 Start process activity diagram
 <p align="center">
-  <img src="/img/process-start-flow-1.3.0.png" alt="Start process activity diagram"  width="70%" />
+  <img src="/img/master-process-2.0-en.png" alt="Start process activity diagram"  width="70%" />
   <p align="center">
         <em>Start process activity diagram</em>
   </p>
@@ -104,6 +104,7 @@ Before explaining the architecture of the scheduling system, let's first underst
 ###### Centralized thinking
 
 The centralized design concept is relatively simple. The nodes in the distributed cluster are divided into roles according to roles, which are roughly divided into two roles:
+
 <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/master_slave.png" alt="master-slave character"  width="50%" />
  </p>
@@ -130,21 +131,20 @@ Problems in centralized thought design:
 - In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly pouring out. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will automatically hold "meetings" to elect new "managers" To preside over the work. The most typical case is Etcd implemented by ZooKeeper and Go language.
 
 
--The decentralization of DolphinScheduler is that the Master/Worker is registered in Zookeeper to realize the non-centralization of the Master cluster and the Worker cluster. The sharding mechanism is used to fairly distribute the workflow for execution on the master, and tasks are sent to the workers for execution through different sending strategies. Specific task
+- The decentralization of DolphinScheduler is that the Master/Worker is registered in Zookeeper to realize the non-centralization of the Master cluster and the Worker cluster. The sharding mechanism is used to fairly distribute the workflow for execution on the master, and tasks are sent to the workers for execution through different sending strategies. Specific task
 
 ##### Second, the master execution process
 
 1. DolphinScheduler uses the sharding algorithm to modulate the command and assigns it according to the sort id of the master. The master converts the received command into a workflow instance, and uses the thread pool to process the workflow instance
 
+2. DolphinScheduler's process of workflow:
 
-2. Dolphinscheduler's process of workflow:
-
-  -Start the workflow through UI or API calls, and persist a command to the database
-  -The Master scans the Command table through the sharding algorithm, generates a workflow instance ProcessInstance, and deletes the Command data at the same time
-  -The Master uses the thread pool to run WorkflowExecuteThread to execute the process of the workflow instance, including building DAG, creating task instance TaskInstance, and sending TaskInstance to worker through netty
-  -After the worker receives the task, it modifies the task status and returns the execution information to the Master
-  -The Master receives the task information, persists it to the database, and stores the state change event in the EventExecuteService event queue
-  -EventExecuteService calls WorkflowExecuteThread according to the event queue to submit subsequent tasks and modify workflow status
+  - Start the workflow through UI or API calls, and persist a command to the database
+  - The Master scans the Command table through the sharding algorithm, generates a workflow instance ProcessInstance, and deletes the Command data at the same time
+  - The Master uses the thread pool to run WorkflowExecuteThread to execute the process of the workflow instance, including building DAG, creating task instance TaskInstance, and sending TaskInstance to worker through netty
+  - After the worker receives the task, it modifies the task status and returns the execution information to the Master
+  - The Master receives the task information, persists it to the database, and stores the state change event in the EventExecuteService event queue
+  - EventExecuteService calls WorkflowExecuteThread according to the event queue to submit subsequent tasks and modify workflow status
 
 ##### Three、Insufficient thread loop waiting problem
 
