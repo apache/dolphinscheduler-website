@@ -277,7 +277,7 @@ export default {
             link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/hardware.html',
           },
           {
-            title: '架构设计',
+            title: '名称解释',
             link: '/zh-cn/docs/2.0.0/user_doc/architecture/designplus.html',
           },          
         ],

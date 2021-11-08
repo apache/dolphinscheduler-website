@@ -41,15 +41,15 @@
 
 - dolphinscheduler-alert 告警模块，提供 AlertServer 服务。
 
-- dolphinscheduler-api web应用模块，提供ApiServer服务。
+- dolphinscheduler-api web应用模块，提供 ApiServer 服务。
 
 - dolphinscheduler-common 通用的常量枚举、工具类、数据结构或者基类
 
 - dolphinscheduler-dao 提供数据库访问等操作。
 
-- dolphinscheduler-remote 基于netty的客户端、服务端
+- dolphinscheduler-remote 基于 netty 的客户端、服务端
 
-- dolphinscheduler-server MasterServer和WorkerServer服务
+- dolphinscheduler-server MasterServer 和 WorkerServer 服务
 
 - dolphinscheduler-service service模块，包含Quartz、Zookeeper、日志客户端访问服务，便于server模块和api模块调用
 
