@@ -518,10 +518,10 @@ export default {
             link: '/zh-cn/docs/release/faq.html',
           },
           {
-            title: '历史文档',
+            title: '历史版本',
             children: [
               {
-                title: '历史文档',
+                title: '历史版本',
                 link: '/zh-cn/docs/2.0.0/user_doc/listdocs.html',
               },
         ],
