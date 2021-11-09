@@ -517,6 +517,13 @@ export default {
             title: 'FAQ',
             link: '/zh-cn/docs/release/faq.html',
           },
+          {
+            title: '历史文档',
+            children: [
+              {
+                title: '历史文档',
+                link: '/zh-cn/docs/2.0.0/user_doc/listdocs.html',
+              },
         ],
       },
     ],
