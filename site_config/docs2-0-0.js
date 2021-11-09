@@ -525,6 +525,7 @@ export default {
                 link: '/zh-cn/docs/2.0.0/user_doc/listdocs.html',
               },
         ],
+          },
       },
     ],
     barText: '文档',
