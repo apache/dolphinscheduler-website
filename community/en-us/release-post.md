@@ -21,6 +21,12 @@ For example, after the release of `x.y.z`, the following updates are required:
  - `src/pages/docs/index.md.jsx`: Add `'x.y.z': docsxyzConfig,`
  - `download/en-us/download.md` and `download/zh-cn/download.md`: add the download of the x.y.z release package
 
+## Add New Version To GitHub's bug-report.yml
+
+DolphinScheduler's GitHub [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)
+issue template have **Version** selection bottom. So after we release DolphinScheduler we should and the new version to
+bug-report.yml
+
 ## Publish Image
 
 Build docker image first, please refer to [How to build a Docker image?](/en-us/docs/latest/user_doc/guide/installation/docker.html)
