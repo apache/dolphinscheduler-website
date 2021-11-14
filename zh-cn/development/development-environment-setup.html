@@ -28,13 +28,13 @@ git clone git@github.com:apache/dolphinscheduler.git
 <h2>开发者须知</h2>
 <p>DolphinScheduler 开发环境配置有两个方式，分别是standalone模式，以及普通模式</p>
 <ul>
-<li><a href="#dolphinscheduler-standalone%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F">standalone模式</a>：<strong>推荐使用，但仅支持 1.3.9 及以后的版本</strong>，方便快速的开发环境搭建，能解决大部分场景的开发。</li>
-<li><a href="#dolphinscheduler-%E6%99%AE%E9%80%9A%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F">普通模式</a>：master、worker、api、logger等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多。</li>
+<li><a href="#dolphinscheduler-standalone%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F">standalone模式</a>：<strong>推荐使用，但仅支持 1.3.9 及以后的版本</strong>，方便快速的开发环境搭建，能解决大部分场景的开发</li>
+<li><a href="#dolphinscheduler-%E6%99%AE%E9%80%9A%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F">普通模式</a>：master、worker、api、logger等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多</li>
 </ul>
 <h2>DolphinScheduler Standalone快速开发模式</h2>
 <blockquote>
-<p><strong><em>注意：</em></strong> 仅供单机开发调试使用，默认使用 H2 Database,Zookeeper Testing Server。
-如需测试插件，可自行修改 StandaloneServer中<code>plugin.bind</code>，亦或修改配置文件。具体请查看插件说明。
+<p><strong><em>注意：</em></strong> 仅供单机开发调试使用，默认使用 H2 Database,Zookeeper Testing Server
+如需测试插件，可自行修改 StandaloneServer中 <code>plugin.bind</code>，亦或修改配置文件，具体请查看插件说明
 Standalone 仅在 DolphinScheduler 1.3.9 及以后的版本支持</p>
 </blockquote>
 <h3>分支选择</h3>
@@ -70,22 +70,22 @@ dataLogDir=/data/zookeeper/datalog
 </code></pre>
 </li>
 <li>
-<p>运行 <code>./bin/zkServer.sh</code>。</p>
+<p>运行 <code>./bin/zkServer.sh</code></p>
 </li>
 </ul>
 <h4>数据库</h4>
-<p>DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关系型数据库包括 MySQL 以及 Postgresql。下面以MySQL为例，启动数据库并创建新database作为 DolphinScheduler 元数据库，这里以数据库名 dolphinscheduler 为例。</p>
-<p>创建完新数据库后，将 <code>dolphinscheduler/sql/dolphinscheduler_mysql.sql</code> 下的 sql 文件直接在mysql中运行，完成数据库初始化。</p>
+<p>DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关系型数据库包括 MySQL 以及 PostgreSQL。下面以MySQL为例，启动数据库并创建新 database 作为 DolphinScheduler 元数据库，这里以数据库名 dolphinscheduler 为例</p>
+<p>创建完新数据库后，将 <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql</code> 下的 sql 文件直接在 MySQL 中运行，完成数据库初始化</p>
 <h4>启动后端</h4>
-<p>下面步骤将引导如何启动 DolphinScheduler 后端服务。</p>
+<p>下面步骤将引导如何启动 DolphinScheduler 后端服务</p>
 <h5>必要的准备工作</h5>
 <ul>
 <li>
-<p>打开项目：使用开发工具打开项目，这里以 Intellij IDEA 为例，打开后需要一段时间，让 Intellij IDEA 完成以依赖的下载。</p>
+<p>打开项目：使用开发工具打开项目，这里以 Intellij IDEA 为例，打开后需要一段时间，让 Intellij IDEA 完成以依赖的下载</p>
 </li>
 <li>
 <p>插件的配置（<strong>仅 2.0 及以后的版本需要</strong>）：编译对应的插件，在项目目录执行 <code>mvn -U clean install -Dmaven.test.skip=true</code> 完成注册插件的安装</p>
-<p>注意：<strong>${VERSION}</strong> 需要根据当前版本手动修改,关于 ***.plugin.binding, maven.local.repository 则无需做任何修改。</p>
+<p>注意：<strong>${VERSION}</strong> 需要根据当前版本手动修改，关于 ***.plugin.binding, maven.local.repository 则无需做任何修改</p>
 <ul>
 <li>告警插件配置 (alert.properties)</li>
 </ul>
@@ -105,7 +105,7 @@ dataLogDir=/data/zookeeper/datalog
 <li>
 <p>必要的修改</p>
 <ul>
-<li>如果使用 mysql 作为元数据库，需要先修改 <code>dolphinscheduler/pom.xml</code>，将 <code>mysql-connector-java</code> 依赖从 <code>scope</code> 改为 <code>compile</code>，使用 postgresql 则不需要。</li>
+<li>如果使用 MySQL 作为元数据库，需要先修改 <code>dolphinscheduler/pom.xml</code>，将 <code>mysql-connector-java</code> 依赖的 <code>scope</code> 改为 <code>compile</code>，使用 PostgreSQL 则不需要</li>
 <li>修改数据库配置，修改 <code>dolphinscheduler/dolphinscheduler-dao/datasource.properties</code> 文件中的数据库配置</li>
 </ul>
 <pre><code class="language-properties"><span class="hljs-comment"># 本样例以 MySQL 为例，其中数据库名为 dolphinscheduler，账户名密码均为 dolphinscheduler</span>
@@ -116,7 +116,11 @@ dataLogDir=/data/zookeeper/datalog
 </code></pre>
 </li>
 <li>
-<p>修改日志级别：修改一下文件，增加一行内容 <code>&lt;appender-ref ref=&quot;STDOUT&quot;/&gt;</code> 使日志能在命令行中显示 <code>dolphinscheduler-server/src/main/resources/logback-worker.xml</code>，<code>dolphinscheduler-server/src/main/resources/logback-master.xml</code>，<code>dolphinscheduler-api/src/main/resources/logback-api.xml</code> 修改后的结果如下</p>
+<p>修改日志级别：为以下配置增加一行内容 <code>&lt;appender-ref ref=&quot;STDOUT&quot;/&gt;</code> 使日志能在命令行中显示</p>
+<p><code>dolphinscheduler-server/src/main/resources/logback-worker.xml</code></p>
+<p><code>dolphinscheduler-server/src/main/resources/logback-master.xml</code></p>
+<p><code>dolphinscheduler-api/src/main/resources/logback-api.xml</code></p>
+<p>修改后的结果如下：</p>
 <pre><code class="language-diff">&lt;root level=&quot;INFO&quot;&gt;
 <span class="hljs-addition">+  &lt;appender-ref ref=&quot;STDOUT&quot;/&gt;</span>
   &lt;appender-ref ref=&quot;APILOGFILE&quot;/&gt;

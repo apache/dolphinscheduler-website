@@ -76,10 +76,10 @@ dataLogDir=/data/zookeeper/datalog
 </li>
 </ul>
 <h4>Database</h4>
-<p>The DolphinScheduler's metadata is stored in relational database. Currently supported MySQL and Postgresql. We use MySQL as an example. Start the database and create a new database named dolphinscheduler as DolphinScheduler metabase.</p>
-<p>After creating the new database, run the sql file under <code>dolphinscheduler/sql/dolphinscheduler_mysql.sql</code> directly in mysql to complete the database initialization.</p>
+<p>The DolphinScheduler's metadata is stored in relational database. Currently supported MySQL and Postgresql. We use MySQL as an example. Start the database and create a new database named dolphinscheduler as DolphinScheduler metabase</p>
+<p>After creating the new database, run the sql file under <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql</code> directly in MySQL to complete the database initialization</p>
 <h4>Start Backend Server</h4>
-<p>Following steps will guide how to start the DolphinScheduler backend service.</p>
+<p>Following steps will guide how to start the DolphinScheduler backend service</p>
 <h5>Backend Start Prepare</h5>
 <ul>
 <li>
@@ -107,7 +107,7 @@ dataLogDir=/data/zookeeper/datalog
 <li>
 <p>File change</p>
 <ul>
-<li>If you use mysql as your metadata database, you need to modify <code>dolphinscheduler/pom.xml</code> and change the dependency <code>mysql-connector-java</code> from <code>scope</code> to <code>compile</code>. This step is not necessary to use postgresql.</li>
+<li>If you use MySQL as your metadata database, you need to modify <code>dolphinscheduler/pom.xml</code> and change the <code>scope</code> of the <code>mysql-connector-java</code> dependency to <code>compile</code>. This step is not necessary to use PostgreSQL</li>
 <li>Modify database configuration, modify the database configuration in the <code>dolphinscheduler/dolphinscheduler-dao/datasource.properties</code></li>
 </ul>
 <pre><code class="language-properties"><span class="hljs-comment"># We here use MySQL with database, username, password named dolphinscheduler as an example</span>
@@ -118,7 +118,11 @@ dataLogDir=/data/zookeeper/datalog
 </code></pre>
 </li>
 <li>
-<p>Log level: Add one single line <code>&lt;appender-ref ref=&quot;STDOUT&quot;/&gt;</code> in file <code>dolphinscheduler-server/src/main/resources/logback-worker.xml</code>, <code>dolphinscheduler-server/src/main/resources/logback-master.xml</code>, <code>dolphinscheduler-api/src/main/resources/logback-api.xml</code> to show log in console, here we add  the result after modify as below</p>
+<p>Log level: add a line <code>&lt;appender-ref ref=&quot;STDOUT&quot;/&gt;</code> to the following configuration to enable the log to be displayed on the command line</p>
+<p><code>dolphinscheduler-server/src/main/resources/logback-worker.xml</code></p>
+<p><code>dolphinscheduler-server/src/main/resources/logback-master.xml</code></p>
+<p><code>dolphinscheduler-api/src/main/resources/logback-api.xml</code></p>
+<p>here we add the result after modify as below:</p>
 <pre><code class="language-diff">&lt;root level=&quot;INFO&quot;&gt;
 <span class="hljs-addition">+  &lt;appender-ref ref=&quot;STDOUT&quot;/&gt;</span>
   &lt;appender-ref ref=&quot;APILOGFILE&quot;/&gt;
