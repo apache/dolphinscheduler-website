@@ -3,7 +3,7 @@
 
 # 重构、插件化、性能提升 20 倍，Apache DolphinScheduler 2.0 alpha 发布亮点太多！
 
-
+<center/>[![a920be6733a3d99af38d1cdebfcbb3ff.md.png](https://imgpp.com/images/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png)](https://imgpp.com/image/kPSX0)<center/>
 社区的小伙伴们，好消息！经过 100 多位社区贡献者近 10 个月的共同努力，我们很高兴地宣布 Apache DolphinScheduler 2.0 alpha 发布。这是 DolphinScheduler 自进入 Apache 以来的首个大版本，进行了多项关键更新和优化，是 DolphinScheduler 发展中的里程碑。
 
 DolphinScheduler 2.0 alpha 主要重构了 Master 的实现，大幅优化了元数据结构和处理流程，增加了 SPI 插件化等能力，在性能上提升 20 倍。同时，新版本设计了全新的 UI 界面，带来更好的用户体验。另外，2.0 alpha 还新添加和优化了一些社区呼声极高的功能，如参数传递、版本控制、导入导出等功能。
@@ -29,11 +29,11 @@ DolphinScheduler 2.0 alpha 主要重构了 Master 的实现，大幅优化了元
 
 ## 优化 UI 组件，全新的 UI 界面
 
-<a href="https://imgpp.com/image/kPtPW"><img src="https://imgpp.com/images/2021/11/16/4e4024cbddbe3113f730c5e67f083c4f.md.png" alt="4e4024cbddbe3113f730c5e67f083c4f.md.png" border="0"></a>
+<center/><a href="https://imgpp.com/image/kPtPW"><img src="https://imgpp.com/images/2021/11/16/4e4024cbddbe3113f730c5e67f083c4f.md.png" alt="4e4024cbddbe3113f730c5e67f083c4f.md.png" border="0"></a>
 
-[![75e002b21d827aee9aeaa3922c20c13f.md.png](https://imgpp.com/images/2021/11/16/75e002b21d827aee9aeaa3922c20c13f.md.png)](https://imgpp.com/image/kPwiu)
+[![75e002b21d827aee9aeaa3922c20c13f.md.png](https://imgpp.com/images/2021/11/16/75e002b21d827aee9aeaa3922c20c13f.md.png)](https://imgpp.com/image/kPwiu)<center/>
 
-UI 界面对比：1.3.9（上） VS. 2.0 alpha（下）
+<center/>UI 界面对比：1.3.9（上） VS. 2.0 alpha（下）<center/>
 
 
 
@@ -51,15 +51,15 @@ UI 界面对比：1.3.9（上） VS. 2.0 alpha（下）
 
 ## 新功能列表
 
-[![WX20211116-164031.md.png](https://imgpp.com/images/2021/11/16/WX20211116-164031.md.png)](https://imgpp.com/image/kPBNs)
+<center/>[![WX20211116-164031.md.png](https://imgpp.com/images/2021/11/16/WX20211116-164031.md.png)](https://imgpp.com/image/kPBNs)<center/>
 
 ## 优化项
 
-[![WX20211116-164042.md.png](https://imgpp.com/images/2021/11/16/WX20211116-164042.md.png)](https://imgpp.com/image/kPOgt)
+<center/>[![WX20211116-164042.md.png](https://imgpp.com/images/2021/11/16/WX20211116-164042.md.png)](https://imgpp.com/image/kPOgt)<center/>
 
 ## Bug 修复
 
-[![WX20211116-164059.md.png](https://imgpp.com/images/2021/11/16/WX20211116-164059.md.png)](https://imgpp.com/image/kPYYl)
+<center/>[![WX20211116-164059.md.png](https://imgpp.com/images/2021/11/16/WX20211116-164059.md.png)](https://imgpp.com/image/kPYYl)<center/>
 
 
 
@@ -71,8 +71,9 @@ DolphinScheduler 2.0 alpha 的发布凝聚了众多社区贡献者的智慧和�
 非常感谢 100+ 位（GitHub ID）社区小伙伴的贡献，期待更多人能够加入 DolphinScheduler 社
 区共建，为打造一个更好用的大数据工作流调度平台贡献自己的力量！
 
-[![8926d45ead1f735e8cfca0e8142b315f.md.png](https://imgpp.com/images/2021/11/16/8926d45ead1f735e8cfca0e8142b315f.md.png)](https://imgpp.com/image/kPGqd)
-2.0 alpha 贡献者名单
+<center/>[![8926d45ead1f735e8cfca0e8142b315f.md.png](https://imgpp.com/images/2021/11/16/8926d45ead1f735e8cfca0e8142b315f.md.png)](https://imgpp.com/image/kPGqd)<center/>
+
+<center/>2.0 alpha 贡献者名单<center/>
 
 ## 加入我们
 
