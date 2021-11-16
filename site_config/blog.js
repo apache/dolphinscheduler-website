@@ -3,7 +3,19 @@ export default {
     barText: 'Blog',
     postsTitle: 'All posts',
     list: [
-          {
+        
+      {
+        title: 'DS-2.0-alpha-release(En)',
+        author: 'Debbra Chen',
+        dateStr: '2021-10-29',
+        desc: 'DolphinScheduler 2.0 alpha release',
+        link: '/en-us/blog/DS-2.0-alpha-release(En).html',
+      },  
+      
+      
+      
+      
+      {
         title: 'DolphinScheduler Vulnerability Explanation',
         author: 'Debar Chen',
         dateStr: '2021-10-26',
