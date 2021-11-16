@@ -3,13 +3,13 @@
 
 # 重构、插件化、性能提升 20 倍，Apache DolphinScheduler 2.0 alpha 发布亮点太多！
 
-、、、
+
 社区的小伙伴们，好消息！经过 100 多位社区贡献者近 10 个月的共同努力，我们很高兴地宣布 Apache DolphinScheduler 2.0 alpha 发布。这是 DolphinScheduler 自进入 Apache 以来的首个大版本，进行了多项关键更新和优化，是 DolphinScheduler 发展中的里程碑。
 
 DolphinScheduler 2.0 alpha 主要重构了 Master 的实现，大幅优化了元数据结构和处理流程，增加了 SPI 插件化等能力，在性能上提升 20 倍。同时，新版本设计了全新的 UI 界面，带来更好的用户体验。另外，2.0 alpha 还新添加和优化了一些社区呼声极高的功能，如参数传递、版本控制、导入导出等功能。
 
 注意：当前 alpha 版本还未支持自动升级，我们将在下个版本中支持这一功能。
-、、、
+
 
 
 **2.0 alpha 下载地址：https://dolphinscheduler.apache.org/en-us/download/download.html**
