@@ -3,6 +3,8 @@
 
 # 重构、插件化、性能提升 20 倍，Apache DolphinScheduler 2.0 alpha 发布亮点太多！
 
+<center>https://imgpp.com/images/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png</center>
+
 <center>[![a920be6733a3d99af38d1cdebfcbb3ff.md.png](https://imgpp.com/images/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png)](https://imgpp.com/image/kPSX0)</center>
 
   
