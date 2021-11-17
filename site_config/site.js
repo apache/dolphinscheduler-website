@@ -27,7 +27,7 @@ export default {
           {
             key: 'docs200',
             text: 'Older Versions',
-            link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
+            link: '/en-us/docs/latest/user_doc/architecture/listdocs.html',
           },
           {
             key: 'docsdev',
