@@ -23,13 +23,13 @@ git clone git@github.com:apache/dolphinscheduler.git
 
 DolphinScheduler 开发环境配置有两个方式，分别是standalone模式，以及普通模式
 
-* [standalone模式](#dolphinscheduler-standalone快速开发模式)：**推荐使用，但仅支持 1.3.9 及以后的版本**，方便快速的开发环境搭建，能解决大部分场景的开发。
-* [普通模式](#dolphinscheduler-普通开发模式)：master、worker、api、logger等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多。
+* [standalone模式](#dolphinscheduler-standalone快速开发模式)：**推荐使用，但仅支持 1.3.9 及以后的版本**，方便快速的开发环境搭建，能解决大部分场景的开发
+* [普通模式](#dolphinscheduler-普通开发模式)：master、worker、api、logger等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多
 
 ## DolphinScheduler Standalone快速开发模式
 
-> **_注意：_** 仅供单机开发调试使用，默认使用 H2 Database,Zookeeper Testing Server。
-> 如需测试插件，可自行修改 StandaloneServer中`plugin.bind`，亦或修改配置文件。具体请查看插件说明。
+> **_注意：_** 仅供单机开发调试使用，默认使用 H2 Database,Zookeeper Testing Server
+> 如需测试插件，可自行修改 StandaloneServer中 `plugin.bind`，亦或修改配置文件，具体请查看插件说明
 > Standalone 仅在 DolphinScheduler 1.3.9 及以后的版本支持
 
 ### 分支选择
@@ -77,25 +77,25 @@ npm run start
     dataLogDir=/data/zookeeper/datalog
     ```
 
-* 运行 `./bin/zkServer.sh`。
+* 运行 `./bin/zkServer.sh`
 
 #### 数据库
 
-DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关系型数据库包括 MySQL 以及 Postgresql。下面以MySQL为例，启动数据库并创建新database作为 DolphinScheduler 元数据库，这里以数据库名 dolphinscheduler 为例。
+DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关系型数据库包括 MySQL 以及 PostgreSQL。下面以MySQL为例，启动数据库并创建新 database 作为 DolphinScheduler 元数据库，这里以数据库名 dolphinscheduler 为例
 
-创建完新数据库后，将 `dolphinscheduler/sql/dolphinscheduler_mysql.sql` 下的 sql 文件直接在mysql中运行，完成数据库初始化。
+创建完新数据库后，将 `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql` 下的 sql 文件直接在 MySQL 中运行，完成数据库初始化
 
 #### 启动后端
 
-下面步骤将引导如何启动 DolphinScheduler 后端服务。
+下面步骤将引导如何启动 DolphinScheduler 后端服务
 
 ##### 必要的准备工作
 
-* 打开项目：使用开发工具打开项目，这里以 Intellij IDEA 为例，打开后需要一段时间，让 Intellij IDEA 完成以依赖的下载。
+* 打开项目：使用开发工具打开项目，这里以 Intellij IDEA 为例，打开后需要一段时间，让 Intellij IDEA 完成以依赖的下载
   
 * 插件的配置（**仅 2.0 及以后的版本需要**）：编译对应的插件，在项目目录执行 `mvn -U clean install -Dmaven.test.skip=true` 完成注册插件的安装
 
-  注意：**${VERSION}** 需要根据当前版本手动修改,关于 ***.plugin.binding, maven.local.repository 则无需做任何修改。
+  注意：**${VERSION}** 需要根据当前版本手动修改，关于 ***.plugin.binding, maven.local.repository 则无需做任何修改
 
   * 告警插件配置 (alert.properties)
   ```alert.properties
@@ -110,7 +110,7 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
      task.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
   ```
 * 必要的修改
-  * 如果使用 mysql 作为元数据库，需要先修改 `dolphinscheduler/pom.xml`，将 `mysql-connector-java` 依赖从 `scope` 改为 `compile`，使用 postgresql 则不需要。
+  * 如果使用 MySQL 作为元数据库，需要先修改 `dolphinscheduler/pom.xml`，将 `mysql-connector-java` 依赖的 `scope` 改为 `compile`，使用 PostgreSQL 则不需要
   * 修改数据库配置，修改 `dolphinscheduler/dolphinscheduler-dao/datasource.properties` 文件中的数据库配置
 
   ```properties
@@ -121,7 +121,15 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
   spring.datasource.password=dolphinscheduler
   ```
 
-* 修改日志级别：修改一下文件，增加一行内容 `<appender-ref ref="STDOUT"/>` 使日志能在命令行中显示 `dolphinscheduler-server/src/main/resources/logback-worker.xml`，`dolphinscheduler-server/src/main/resources/logback-master.xml`，`dolphinscheduler-api/src/main/resources/logback-api.xml` 修改后的结果如下
+* 修改日志级别：为以下配置增加一行内容 `<appender-ref ref="STDOUT"/>` 使日志能在命令行中显示
+  
+  `dolphinscheduler-server/src/main/resources/logback-worker.xml`
+  
+  `dolphinscheduler-server/src/main/resources/logback-master.xml`
+  
+  `dolphinscheduler-api/src/main/resources/logback-api.xml` 
+  
+  修改后的结果如下：
 
   ```diff
   <root level="INFO">

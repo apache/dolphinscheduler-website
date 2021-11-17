@@ -61,6 +61,14 @@ export default {
     barText: '博客',
     postsTitle: '所有文章',
     list: [
+      
+      {
+        title: '重构、插件化、性能提升 20 倍，Apache DolphinScheduler 2.0 alpha 发布亮点太多!',
+        author: 'DolphinScheduler',
+        dateStr: '2021-10-29',
+        desc: 'DolphinScheduler 2.0 alpha发布',
+        link: '/zh-cn/blog/DS-2.0-alpha-release.html',
+      },
      {
         title: 'DolphinScheduler漏洞情况说明',
         author: '徐玮毅',

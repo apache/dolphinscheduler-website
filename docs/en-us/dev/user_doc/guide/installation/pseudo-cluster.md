@@ -83,7 +83,7 @@ mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTI
 mysql> flush privileges;
 ```
 
-Run the latest schema file manually in `sql/dolphinscheudler_*.sql` to initialization you database. If you use mysql, please run `sql/dolphinscheudler_mysql.sql`, for postgresql run `sql/dolphinscheudler_postgre.sql`.
+Run the latest schema file manually in `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_*.sql` to initialization you database. If you use MySQL, please run `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql`, for PostgreSQL run `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_postgre.sql`
 
 > **_NOTICE:_** In the latest version, the way running command `sh script/create-dolphinscheduler.sh` initialization database is broken, We have created a [issue-6597][issue] to track and fix this problem
 
