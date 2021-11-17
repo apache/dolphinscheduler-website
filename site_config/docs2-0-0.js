@@ -260,6 +260,15 @@ export default {
           },
         ],
       },
+      {
+        title: 'Older Versions',
+        children: [
+          {
+            title: 'Older Versions',
+            link: '/en-us/docs/2.0.0/user_doc/architecture/listdocs.html',
+          },
+        ],
+      },
     ],
     barText: 'Documentation',
   },
