@@ -26,63 +26,8 @@ export default {
           },
           {
             key: 'docs200',
-            text: '2.0.0-alpha',
+            text: 'Older Versions',
             link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
-          },
-          {
-            key: 'docs139',
-            text: '1.3.9',
-            link: '/en-us/docs/1.3.9/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs138',
-            text: '1.3.8',
-            link: '/en-us/docs/1.3.8/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs136',
-            text: '1.3.6',
-            link: '/en-us/docs/1.3.6/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs135',
-            text: '1.3.5',
-            link: '/en-us/docs/1.3.5/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs134',
-            text: '1.3.4',
-            link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs133',
-            text: '1.3.3',
-            link: '/en-us/docs/1.3.3/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs132',
-            text: '1.3.2',
-            link: '/en-us/docs/1.3.2/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs131',
-            text: '1.3.1',
-            link: '/en-us/docs/1.3.1/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs121',
-            text: '1.2.1',
-            link: '/en-us/docs/1.2.1/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs120',
-            text: '1.2.0',
-            link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs110',
-            text: '1.1.0(Not Apache Release)',
-            link: 'https://analysys.github.io/easyscheduler_docs_cn/',
           },
           {
             key: 'docsdev',
