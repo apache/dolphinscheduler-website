@@ -2,6 +2,23 @@ export default {
   'en-us': {
     sidemenu: [
       {
+        title: 'About Apache DolphinScheduler',
+        children: [
+          {
+            title: 'Introduction',
+            link: '/en-us/docs/About_DolphinScheduler/About_DolphinScheduler.html',
+          },
+          {
+            title: 'Hardware Environment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/hardware.html',
+          },
+          {
+            title: 'Glossary',
+            link: '/en-us/docs/2.0.0/user_doc/About_DolphinScheduler/designplus.html',
+          },
+        ],
+      },
+      {
         title: 'User Manual',
         children: [
           {
@@ -15,10 +32,6 @@ export default {
           {
             title: 'Installation',
             children: [
-              {
-                title: 'Hardware Environment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/hardware.html',
-              },
               {
                 title: 'Standalone Deployment',
                 link: '/en-us/docs/2.0.0/user_doc/guide/installation/standalone.html',
