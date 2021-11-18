@@ -6,7 +6,7 @@ export default {
         children: [
           {
             title: 'Introduction',
-            link: '/en-us/docs/About_DolphinScheduler/About_DolphinScheduler.html',
+            link: '/en-us/docs/2.0.0/user_doc/About_DolphinScheduler/About_DolphinScheduler.html',
           },
           {
             title: 'Hardware Environment',
