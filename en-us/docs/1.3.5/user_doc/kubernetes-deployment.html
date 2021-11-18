@@ -112,7 +112,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 <p>Create a new <code>Dockerfile</code> to add MySQL driver:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:1.3.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -147,7 +147,7 @@ COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 <p>Create a new <code>Dockerfile</code> to add Oracle driver:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:1.3.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">

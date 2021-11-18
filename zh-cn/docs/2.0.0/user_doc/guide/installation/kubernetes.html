@@ -276,7 +276,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 <li>下载 MySQL 驱动包 <a href="https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar">mysql-connector-java-8.0.16.jar</a></li>
 <li>创建一个新的 <code>Dockerfile</code>，用于添加 MySQL 的驱动包:</li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -324,7 +324,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 MySQL 驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -359,7 +359,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 Oracle 驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -385,7 +385,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <ol>
 <li>创建一个新的 <code>Dockerfile</code>，用于安装 pip:</li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY requirements.txt /tmp
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python-pip &amp;&amp; \
@@ -418,7 +418,7 @@ RUN apt-get update &amp;&amp; \
 <ol>
 <li>创建一个新的 <code>Dockerfile</code>，用于安装 Python 3:</li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python3 &amp;&amp; \
     rm -rf /var/lib/apt/lists/*

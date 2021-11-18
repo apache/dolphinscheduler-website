@@ -43,7 +43,7 @@
 </blockquote>
 <pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.0-src.tar.gz
 $ cd apache-dolphinscheduler-2.0.0-src/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:2.0.0
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 $ docker tag apache/dolphinscheduler:2.0.0 apache/dolphinscheduler:latest
 $ docker-compose up -d
 </code></pre>
@@ -70,7 +70,7 @@ $ docker-compose up -d
 <h4>3、初始化数据库，导入 <code>sql/dolphinscheduler_postgre.sql</code> 进行创建表及基础数据导入</h4>
 <h4>4、下载 DolphinScheduler 镜像</h4>
 <p>我们已将面向用户的 DolphinScheduler 镜像上传至 docker 仓库，用户无需在本地构建镜像，直接执行以下命令从 docker 仓库 pull 镜像：</p>
-<pre><code>docker pull apache/dolphinscheduler:2.0.0
+<pre><code>docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 </code></pre>
 <h4>5、运行一个 DolphinScheduler 实例</h4>
 <pre><code>$ docker run -d --name dolphinscheduler \
@@ -404,7 +404,7 @@ EOF
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 MySQL 的驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -457,7 +457,7 @@ DATABASE_PARAMS=useUnicode=true&amp;characterEncoding=UTF-8
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 MySQL 驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -492,7 +492,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 Oracle 驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -518,7 +518,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <ol>
 <li>创建一个新的 <code>Dockerfile</code>，用于安装 pip:</li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY requirements.txt /tmp
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python-pip &amp;&amp; \
@@ -551,7 +551,7 @@ RUN apt-get update &amp;&amp; \
 <ol>
 <li>创建一个新的 <code>Dockerfile</code>，用于安装 Python 3:</li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:2.0.0
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python3 &amp;&amp; \
     rm -rf /var/lib/apt/lists/*

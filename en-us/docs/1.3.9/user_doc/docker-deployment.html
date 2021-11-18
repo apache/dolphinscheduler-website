@@ -43,7 +43,7 @@ For Windows Docker Desktop user, open <strong>Windows PowerShell</strong></p>
 </blockquote>
 <pre><code>$ tar -zxvf apache-dolphinscheduler-1.3.9-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.9-src/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.9
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 $ docker tag apache/dolphinscheduler:1.3.9 apache/dolphinscheduler:latest
 $ docker-compose up -d
 </code></pre>
@@ -70,7 +70,7 @@ $ docker-compose up -d
 <h4>3. Initialize the database, import <code>sql/dolphinscheduler_postgre.sql</code> to create tables and initial data</h4>
 <h4>4. Download the DolphinScheduler Image</h4>
 <p>We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository:</p>
-<pre><code>docker pull apache/dolphinscheduler:1.3.9
+<pre><code>docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 </code></pre>
 <h4>5. Run a DolphinScheduler Instance</h4>
 <pre><code>$ docker run -d --name dolphinscheduler \
@@ -404,7 +404,7 @@ EOF
 <p>Create a new <code>Dockerfile</code> to add MySQL driver:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:1.3.9
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -457,7 +457,7 @@ DATABASE_PARAMS=useUnicode=true&amp;characterEncoding=UTF-8
 <p>Create a new <code>Dockerfile</code> to add MySQL driver:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:1.3.9
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -492,7 +492,7 @@ COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 <p>Create a new <code>Dockerfile</code> to add Oracle driver:</p>
 </li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:1.3.9
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -518,7 +518,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <ol>
 <li>Create a new <code>Dockerfile</code> to install pip:</li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:1.3.9
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 COPY requirements.txt /tmp
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python-pip &amp;&amp; \
@@ -551,7 +551,7 @@ RUN apt-get update &amp;&amp; \
 <ol>
 <li>Create a new <code>Dockerfile</code> to install Python 3:</li>
 </ol>
-<pre><code>FROM apache/dolphinscheduler:1.3.9
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python3 &amp;&amp; \
     rm -rf /var/lib/apt/lists/*
