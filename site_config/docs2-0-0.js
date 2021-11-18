@@ -14,7 +14,7 @@ export default {
           },
           {
             title: 'Glossary',
-            link: '/en-us/docs/2.0.0/user_doc/About_DolphinScheduler/designplus.html',
+            link: '/en-us/docs/2.0.0/user_doc/architecture/designplus.html',
           },
         ],
       },
