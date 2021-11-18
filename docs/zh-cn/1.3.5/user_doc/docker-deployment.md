@@ -22,7 +22,7 @@
 ```
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.5
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 $ docker tag apache/dolphinscheduler:1.3.5 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
@@ -60,7 +60,7 @@ $ docker-compose up -d
 我们已将面向用户的 DolphinScheduler 镜像上传至 docker 仓库，用户无需在本地构建镜像，直接执行以下命令从 docker 仓库 pull 镜像：
 
 ```
-docker pull apache/dolphinscheduler:1.3.5
+docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 ```
 
 #### 5、运行一个 DolphinScheduler 实例
@@ -313,7 +313,7 @@ done
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包和客户端:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 RUN apk add --update --no-cache mysql-client
 ```
@@ -360,7 +360,7 @@ DATABASE_PARAMS: useUnicode=true&characterEncoding=UTF-8
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -389,7 +389,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
