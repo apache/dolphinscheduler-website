@@ -41,7 +41,7 @@
 ```
 $ tar -zxvf apache-dolphinscheduler-1.3.9-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.9-src/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.9
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 $ docker tag apache/dolphinscheduler:1.3.9 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
@@ -81,7 +81,7 @@ $ docker-compose up -d
 我们已将面向用户的 DolphinScheduler 镜像上传至 docker 仓库，用户无需在本地构建镜像，直接执行以下命令从 docker 仓库 pull 镜像：
 
 ```
-docker pull apache/dolphinscheduler:1.3.9
+docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 ```
 
 #### 5、运行一个 DolphinScheduler 实例
@@ -379,7 +379,7 @@ done
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.9
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -425,7 +425,7 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.9
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -454,7 +454,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.9
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -477,7 +477,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.9
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -510,7 +510,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.9
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.9
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*

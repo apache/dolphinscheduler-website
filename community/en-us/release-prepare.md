@@ -24,8 +24,8 @@ For example, to release `x.y.z`, the following updates are required:
    - `upgrade`: whether to add`x.y.z_schema`
    - `soft_version`: need to be updated to x.y.z
  - `docker/docker-swarm`:
-   - `docker-compose.yml`: `image: apache/dolphinscheduler` needs to be updated to x.y.z
-   - `docker-stack.yml`: `image: apache/dolphinscheduler` needs to be updated to x.y.z
+   - `docker-compose.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler` needs to be updated to x.y.z
+   - `docker-stack.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler` needs to be updated to x.y.z
  - `docker/kubernetes/dolphinscheduler`:
    - `Chart.yaml`: `appVersion` needs to be updated to x.y.z (`version` is helm chart version，incremented and different from x.y.z)
    - `values.yaml`: `image.tag` needs to be updated to x.y.z
