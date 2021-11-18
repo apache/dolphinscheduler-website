@@ -194,7 +194,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM apache/dolphinscheduler:dev
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
@@ -237,7 +237,7 @@ externalDatabase:
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM apache/dolphinscheduler:dev
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
@@ -266,7 +266,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM apache/dolphinscheduler:dev
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -289,7 +289,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM apache/dolphinscheduler:dev
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -322,7 +322,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM apache/dolphinscheduler:dev
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*

@@ -30,7 +30,7 @@ For Windows Docker Desktop user
 
 #### 1. Download the Source Code Package
 
-Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: [download](/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-dev-src.tar.gz, download address: [download](/en-us/download/download.html)
 
 #### 2. Pull Image and Start the Service
 
@@ -39,14 +39,14 @@ Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz
 > For Windows Docker Desktop user, open **Windows PowerShell**
 
 ```
-$ tar -zxvf apache-dolphinscheduler-1.3.8-src.tar.gz
-$ cd apache-dolphinscheduler-1.3.8-src/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.8
-$ docker tag apache/dolphinscheduler:1.3.8 apache/dolphinscheduler:latest
+$ tar -zxvf apache-dolphinscheduler-dev-src.tar.gz
+$ cd apache-dolphinscheduler-dev-src/docker/docker-swarm
+$ docker pull apache/dolphinscheduler:dev
+$ docker tag apache/dolphinscheduler:dev apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
 
-> PowerShell should use `cd apache-dolphinscheduler-1.3.8-src\docker\docker-swarm`
+> PowerShell should use `cd apache-dolphinscheduler-dev-src\docker\docker-swarm`
 
 The **PostgreSQL** (with username `root`, password `root` and database `dolphinscheduler`) and **ZooKeeper** services will start by default
 
@@ -81,7 +81,7 @@ In this way, you need to install [docker](https://docs.docker.com/engine/install
 We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository:
 
 ```
-docker pull apache/dolphinscheduler:1.3.8
+docker pull apache/dolphinscheduler:dev
 ```
 
 #### 5. Run a DolphinScheduler Instance

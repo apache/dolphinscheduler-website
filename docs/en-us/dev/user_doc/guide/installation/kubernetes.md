@@ -12,16 +12,16 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
 
 ## Installing the Chart
 
-Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: [download](/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-dev-src.tar.gz, download address: [download](/en-us/download/download.html)
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
 
 ```
-$ tar -zxvf apache-dolphinscheduler-1.3.8-src.tar.gz
-$ cd apache-dolphinscheduler-1.3.8-src/docker/kubernetes/dolphinscheduler
+$ tar -zxvf apache-dolphinscheduler-dev-src.tar.gz
+$ cd apache-dolphinscheduler-dev-src/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
-$ helm install dolphinscheduler . --set image.tag=1.3.8
+$ helm install dolphinscheduler . --set image.tag=dev
 ```
 
 To install the chart with a namespace named `test`:
@@ -193,7 +193,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM apache/dolphinscheduler:dev
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 

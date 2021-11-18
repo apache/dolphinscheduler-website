@@ -29,9 +29,9 @@
 mkdir -p /opt
 cd /opt
 # 解压缩
-tar -zxvf apache-dolphinscheduler-1.3.8-bin.tar.gz -C /opt 
+tar -zxvf apache-dolphinscheduler-dev-bin.tar.gz -C /opt 
 cd /opt
-mv apache-dolphinscheduler-1.3.8-bin  dolphinscheduler
+mv apache-dolphinscheduler-dev-bin  dolphinscheduler
 ```
 
 ```markdown
@@ -118,7 +118,7 @@ masters="现有master01,现有master02,ds1,ds2"
 workers="现有worker01:default,现有worker02:default,ds3:default,ds4:default"
 
 ```
-- 如果扩容的是worker节点,需要设置worker分组.请参考用户手册[5.7 创建worker分组 ](/zh-cn/docs/1.3.8/user_doc/system-manual.html)
+- 如果扩容的是worker节点,需要设置worker分组.请参考用户手册[5.7 创建worker分组 ](/zh-cn/docs/dev/user_doc/system-manual.html)
 
 - 在所有的新增节点上，修改目录权限，使得部署用户对dolphinscheduler目录有操作权限
 
