@@ -15,42 +15,35 @@ Jsplumb connection plugin library
 Lodash high performance JavaScript utility library
 ```
 
-
 ### Development environment
 
 - #### Node installation
-Node package download (note version 8.9.4) `https://nodejs.org/download/release/v8.9.4/` 
-
+Node package download (note version v12.20.2) `https://nodejs.org/download/release/v12.20.2/` 
 
 - #### Front-end project construction
 Use the command line mode `cd`  enter the `dolphinscheduler-ui` project directory and execute `npm install` to pull the project dependency package.
 
-> If `npm install` is very slow
+> If `npm install` is very slow, you can set the taobao mirror
 
-> You can enter the Taobao image command line to enter `npm install -g cnpm --registry=https://registry.npm.taobao.org`
-
-> Run `cnpm install` 
-
-
-- Create a new `.env`  file or the interface that interacts with the backend
-
-Create a new` .env` file in the `dolphinscheduler-ui `directory, add the ip address and port of the backend service to the file, and use it to interact with the backend. The contents of the` .env` file are as follows:
 ```
-# Proxy interface address (modified by yourself)
-API_BASE = http://192.168.xx.xx:12345
+npm config set registry http://registry.npm.taobao.org/
+```
 
-# If you need to access the project with ip, you can remove the "#" (example)
-#DEV_HOST = 192.168.xx.xx
+- Modify `API_BASE` in the file `dolphinscheduler-ui/.env` to interact with the backend:
+
+```
+# back end interface address
+API_BASE = http://127.0.0.1:12345
 ```
 
 > #####  ! ! ! Special attention here. If the project reports a "node-sass error" error while pulling the dependency package, execute the following command again after execution.
-```
-npm install node-sass --unsafe-perm //Install node-sass dependency separately
+
+```bash
+npm install node-sass --unsafe-perm #Install node-sass dependency separately
 ```
 
 - #### Development environment operation
-- `npm start` project development environment (after startup address http://localhost:8888/#/)
-
+- `npm start` project development environment (after startup address http://localhost:8888)
 
 #### Front-end project release
 
@@ -60,8 +53,7 @@ Run the `npm run build` command to generate a package file (dist) package
 
 Copy it to the corresponding directory of the server (front-end service static page storage directory)
 
-Visit address` http://localhost:8888/#/`
-
+Visit address` http://localhost:8888`
 
 #### Start with node and daemon under Linux
 
@@ -93,7 +85,6 @@ Execute `pm2 start npm -- run dev` to start the project in the project `dolphins
  Use `pm2 show <id|name>` to get more details about an app
 
 ```
-
 
 ### Project directory structure
 
@@ -144,7 +135,6 @@ Public module and utill `src/js/module`
 
 `util` => tool
 
-
 ### System function module
 
 Home  => `http://localhost:8888/#/home`
@@ -164,9 +154,6 @@ Resource Management => `http://localhost:8888/#/resource/file`
 | udf Management
   - Resource Management
   - Function management
-
-
-
 ```
 
 Data Source Management => `http://localhost:8888/#/datasource/list`
@@ -181,7 +168,6 @@ Security Center => `http://localhost:8888/#/security/tenant`
 ```
 
 User Center => `http://localhost:8888/#/user/account`
-
 
 ## Routing and state management
 
@@ -206,14 +192,13 @@ actions => mapActions => Details：https://vuex.vuejs.org/zh/guide/actions.html
 getters => mapGetters => Details：https://vuex.vuejs.org/zh/guide/getters.html
 
 index => entrance
+
 mutations => mapMutations => Details：https://vuex.vuejs.org/zh/guide/mutations.html
 
 state => mapState => Details：https://vuex.vuejs.org/zh/guide/state.html
 
 Specific action：https://vuex.vuejs.org/zh/
-
 ```
-
 
 ## specification
 ## Vue specification
@@ -243,7 +228,8 @@ The internal common component of the `src/js/module/components` project writes t
 ```
 
 ##### 3.Prop
-When you define Prop, you should always name it in camel format (camelCase) and use the connection line (-) when assigning values to the parent component.This follows the characteristics of each language, because it is case-insensitive in HTML tags, and the use of links is more friendly; in JavaScript, the more natural is the hump name.
+When you define Prop, you should always name it in camel format (camelCase) and use the connection line (-) when assigning values to the parent component.
+This follows the characteristics of each language, because it is case-insensitive in HTML tags, and the use of links is more friendly; in JavaScript, the more natural is the hump name.
 
 ```
 // Vue
@@ -368,7 +354,6 @@ For uniformity and ease of reading, they should be placed in the order of  `<tem
 
 ```
 
-
 ## JavaScript specification
 
 ##### 1.var / let / const
@@ -454,7 +439,6 @@ border: 1px solid #ccc;
 ```
 
 ##### 4.Document type
-
 The HTML5 standard should always be used.
 
 ```
@@ -470,7 +454,6 @@ A block comment should be written to a module file.
 * @description test.
 * */
 ```
-
 
 ## interface
 
@@ -534,8 +517,6 @@ Security Center Related Interfaces `src/js/conf/home/store/security/actions.js`
 
 User Center Related Interfaces `src/js/conf/home/store/user/actions.js`
 
-
-
 ## Extended development
 
 ##### 1.Add node
@@ -585,7 +566,6 @@ User Center Related Interfaces `src/js/conf/home/store/user/actions.js`
 (4) Common components used inside the node component are under` _source`, and `commcon.js` is used to configure public data.
 
 ##### 2.Increase the status type
-
 (1) Find the `tasksState` object in `src/js/conf/home/pages/dag/_source/config.js` and add it to it.
 
 ```

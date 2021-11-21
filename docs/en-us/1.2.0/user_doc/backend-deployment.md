@@ -14,12 +14,13 @@ download apache-dolphinscheduler-incubating-x.x.x-dolphinscheduler-backend-bin.t
 
 #### Preparations 1: Installation of basic software (self-installation of required items)
 
- * PostgreSQL (8.2.15+) or MySQL (5.5+) :  You can choose either PostgreSQL or MySQL.
- * JDK (1.8+) :  Mandatory
- * ZooKeeper(3.4.6+) ：Mandatory
- * Hadoop (2.6+) or MinIo ：Optionally, if you need to use the resource upload function, You can choose either Hadoop or MinIo.
- * Hive (1.2.1) :   Optional, hive task submission needs to be installed
- * Spark(1.x,2.x) :  Optional, Spark task submission needs to be installed
+ * PostgreSQL (8.2.15+) or MySQL (5.5+) : You can choose either PostgreSQL or MySQL.
+ * JDK (1.8+) : Mandatory
+ * ZooKeeper(3.4.6+) : Mandatory
+ * pstree or psmisc : "pstree" is required for Mac OS and "psmisc" is required for Fedora/Red/Hat/CentOS/Ubuntu/Debian
+ * Hadoop (2.6+) or MinIo : Optional, if you need to use the resource upload function, You can choose either Hadoop or MinIo.
+ * Hive (1.2.1) : Optional, hive task submission needs to be installed
+ * Spark(1.x,2.x) : Optional, Spark task submission needs to be installed
 
 ```
  Note: DolphinScheduler itself does not rely on Hadoop, Hive, Spark, PostgreSQL, but only calls their Client to run the corresponding tasks.
@@ -145,7 +146,7 @@ After successful deployment, the log can be viewed and stored in a specified fol
 
 ### Compile source code to deploy
 
-After downloading the release version of the source package, unzip it into the root directory
+After downloading the release version of the source package, uncompress it into the root directory
 
 * Build a tar package
 
@@ -158,7 +159,7 @@ After downloading the release version of the source package, unzip it into the r
     View directory
 
     After normal compilation, `apache-dolphinscheduler-incubating-${latest.release.version}-dolphinscheduler-backend-bin.tar.gz`
-is generated in the `./dolphinscheduler-dist/dolphinscheduler-backend/target` directory
+    is generated in the `./dolphinscheduler-dist/dolphinscheduler-backend/target` directory
 
 * OR build a rpm package 
 

@@ -4,7 +4,6 @@ import Language from '../../components/language';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import Md2Html from '../../components/md2html';
-import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
 import developmentConfig from '../../../site_config/development';
 
@@ -17,12 +16,12 @@ class Development extends Md2Html(Language) {
       <div className="md2html development-page">
         <Header
           currentKey="development"
-          type="normal"
-          logo="/img/hlogo_colorful.svg"
+          type="dark"
+          logo="/img/hlogo_white.svg"
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <Bar img="/img/system/development.png" text={dataSource.barText} />
+
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div

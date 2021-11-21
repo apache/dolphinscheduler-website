@@ -315,7 +315,7 @@ A: 1, Create deployment user and hosts mapping, please refer 1.3 part of [cluste
 ---
 
 ## Q : When DolphinScheduler release a new version, and the change between current version and latest, and how to upgrade, and version number specification
-A: 1, The release process of Apache Project happens in the mailing list. You can subscribe DolphinScheduler's mailing list and then when the release is in process, you'll receive release emails. Please follow this [introduction](https://github.com/apache/incubator-dolphinscheduler#get-help) to subscribe DolphinScheduler's mailing list.
+A: 1, The release process of Apache Project happens in the mailing list. You can subscribe DolphinScheduler's mailing list and then when the release is in process, you'll receive release emails. Please follow this [introduction](https://github.com/apache/dolphinscheduler#get-help) to subscribe DolphinScheduler's mailing list.
     
 2, When new version published, there would be release note which describe the change log, and there also have upgrade document for the previous version to new's.
 
@@ -386,7 +386,7 @@ A: Session timeout is too short, only 0.3 seconds. Change the config item in zoo
 <p align="center">
    <img src="https://user-images.githubusercontent.com/42579056/80374318-13c98780-88c9-11ea-8d5f-53448b957f02.png" width="60%" />
  </p>
-A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/incubator-dolphinscheduler/pull/2595) has solved this bug, brief change log:
+A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/dolphinscheduler/pull/2595) has solved this bug, brief change log:
 
 ```
     1. add zookeeper environment variable ZOO_4LW_COMMANDS_WHITELIST in docker-compose.yml file.
@@ -403,7 +403,7 @@ A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/incu
    <img src="https://user-images.githubusercontent.com/51871547/80302626-b1478d00-87dd-11ea-97d4-08aa2244a6d0.jpg" width="60%" />
  </p>
  
-A: This [bug](https://github.com/apache/incubator-dolphinscheduler/issues/1477) describe the problem detail and it has been been solved in version 1.2.1.
+A: This [bug](https://github.com/apache/dolphinscheduler/issues/1477) describe the problem detail and it has been been solved in version 1.2.1.
 
 For version under 1.2.1, some tips for this situation:
 
@@ -551,7 +551,7 @@ A: In the process of using DolphinScheduler, if you have any questions or ideas,
 
 2, Receive confirmation email and reply. After completing step 1, you will receive a confirmation email from dev-help@dolphinscheduler.apache.org (if not received, please confirm whether the email is automatically classified as spam, promotion email, subscription email, etc.) . Then reply directly to the email, or click on the link in the email to reply quickly, the subject and content are arbitrary.
 
-3, Receive a welcome email. After completing the above steps, you will receive a welcome email with the subject WELCOME to dev@dolphinscheduler.apache.org, and you have successfully subscribed to the Apache DolphinScheduler (Incubating) mailing list.
+3, Receive a welcome email. After completing the above steps, you will receive a welcome email with the subject WELCOME to dev@dolphinscheduler.apache.org, and you have successfully subscribed to the Apache DolphinScheduler mailing list.
 
 ---
 
@@ -563,6 +563,47 @@ A: 1, It is currently judged according to natural days, at the end of last month
 ## Q : DS Backend Inteface Document
 A: 1, http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en.
 
+## During the operation of dolphinscheduler, the ip address is obtained incorrectly
+
+When the master service and worker service are registered with zookeeper, relevant information will be created in the form of ip:port
+
+If the ip address is obtained incorrectly, please check the network information. For example, in the Linux system, use the `ifconfig` command to view the network information. The following figure is an example:
+
+<p align="center">
+  <img src="/img/network/network_config.png" width="60%" />
+</p>
+
+You can use the three strategies provided by dolphinscheduler to get the available ip:
+
+* default: First using internal network card to obtain the IP address, and then using external network card. If all above fail, use the address of the first available network card
+* inner: Use the internal network card to obtain the ip address, if fails thrown an exception.
+* outer: Use the external network card to obtain the ip address, if fails thrown an exception.
+
+Modify the configuration in `common.properties`:
+
+```shell
+# network IP gets priority, default: inner outer
+# dolphin.scheduler.network.priority.strategy=default
+```
+
+After configuration is modified, restart the service to activation
+
+If the ip address is still wrong, please download [dolphinscheduler-netutils.jar](/asset/dolphinscheduler-netutils.jar) to the machine, execute the following commands and feedback the output to the community developers:
+
+```shell
+java -jar target/dolphinscheduler-netutils.jar
+```
+
+## Configure sudo to be secret free, which is used to solve the problem of using the default configuration sudo authority to be too large or unable to apply for root authority
+
+Configure the sudo permission of the dolphinscheduler account to be an ordinary user manager within the scope of some ordinary users, and restrict specified users to run certain commands on the specified host. For detailed configuration, please see sudo rights management
+For example, sudo permission management configuration dolphinscheduler OS account can only operate the permissions of users userA, userB, userC (users userA, userB, and userC are used for multi-tenant submitting jobs to the big data cluster)
+
+```shell
+echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
+```
+
 ---
 
-## We will collect more FAQ later.
+## We will collect more FAQ later

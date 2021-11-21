@@ -1,11 +1,12 @@
-#### DolphinSchedulerMicroBench 微基准测试
+# 微基准测试须知
+
 所有的优化必须建立在数据印证的基础上，拒绝盲目优化。基于此，我们提供了MicroBench模块。
 
 MicroBench模块是基于OpenJDK JMH构件的（HotSpot的推荐基准测试方案）。当你开始基准测试时，你不需要额外的依赖。
 
 JMH，即Java MicroBenchmark Harness，是专门用于代码微基准测试的工具套件。何谓Micro Benchmark呢？简单的来说就是基于方法层面的基准测试，精度可以达到微秒级。当你定位到热点方法，希望进一步优化方法性能的时候，就可以使用JMH对优化的结果进行量化的分析。
 
-##### Java基准测试需要注意的几个点：
+### Java基准测试需要注意的几个点：
 
 * 防止无用代码进入测试方法中。
 
@@ -13,7 +14,7 @@ JMH，即Java MicroBenchmark Harness，是专门用于代码微基准测试的�
 
 * 测试结果呈现。
 
-##### JMH比较典型的应用场景有：
+### JMH比较典型的应用场景有：
 
 * 1:定量分析某个热点函数的优化效果
 
@@ -24,7 +25,7 @@ JMH，即Java MicroBenchmark Harness，是专门用于代码微基准测试的�
 
 DolphinScheduler-MicroBench提供了AbstractBaseBenchmark,你可以在其基础上继承，编写你的基准测试代码，AbstractMicroBenchmark能保证以JUnit的方式运行。
 
-##### 定制运行参数
+### 定制运行参数
  
  默认的AbstractMicrobenchmark配置是
  
@@ -36,7 +37,7 @@ DolphinScheduler-MicroBench提供了AbstractBaseBenchmark,你可以在其基础�
  
  你可以在启动的时候指定这些参数，-DmeasureIterations、-DperfReportDir（输出基准测试结果文件目录）、-DwarmupIterations、-DforkCount
  
-##### DolphinScheduler-MicroBench 介绍
+### DolphinScheduler-MicroBench 介绍
 
 
  通常并不建议跑测试时，用较少的循环次数，但是较少的次数有助于确认基准测试时工作的，在确认结束后，再运行大量的基准测试。

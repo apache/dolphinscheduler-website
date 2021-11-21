@@ -298,7 +298,7 @@ A： 1，参考官网[部署文档](/zh-cn/docs/1.3.4/user_doc/cluster-deploymen
 ---
 
 ## Q：DolphinScheduler 什么时候发布新版本，同时新旧版本区别，以及如何升级，版本号规范 
-A：1，Apache 项目的发版流程是通过邮件列表完成的。 你可以订阅 DolphinScheduler 的邮件列表，订阅之后如果有发版，你就可以收到邮件。请参照这篇[指引](https://github.com/apache/incubator-dolphinscheduler#get-help)来订阅 DolphinScheduler 的邮件列表。
+A：1，Apache 项目的发版流程是通过邮件列表完成的。 你可以订阅 DolphinScheduler 的邮件列表，订阅之后如果有发版，你就可以收到邮件。请参照这篇[指引](https://github.com/apache/dolphinscheduler#get-help)来订阅 DolphinScheduler 的邮件列表。
 
    2，当项目发版的时候，会有发版说明告知具体的变更内容，同时也会有从旧版本升级到新版本的升级文档。
    
@@ -370,7 +370,7 @@ A：会话超时时间太短了，只有 0.3 秒，修改 zookeeper.properties �
 <p align="center">
    <img src="https://user-images.githubusercontent.com/42579056/80374318-13c98780-88c9-11ea-8d5f-53448b957f02.png" width="60%" />
  </p>
-A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/apache/incubator-dolphinscheduler/pull/2595) 已经解决了这个 bug，主要的改动点：
+A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/apache/dolphinscheduler/pull/2595) 已经解决了这个 bug，主要的改动点：
 
 ```
     在docker-compose.yml文件中增加zookeeper的环境变量ZOO_4LW_COMMANDS_WHITELIST。
@@ -386,7 +386,7 @@ A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/a
 <p align="center">
    <img src="https://user-images.githubusercontent.com/51871547/80302626-b1478d00-87dd-11ea-97d4-08aa2244a6d0.jpg" width="60%" />
  </p>
-A：这个 [bug](https://github.com/apache/incubator-dolphinscheduler/issues/1477)  描述了问题的详情。这个问题在 1.2.1 版本已经被修复了。
+A：这个 [bug](https://github.com/apache/dolphinscheduler/issues/1477)  描述了问题的详情。这个问题在 1.2.1 版本已经被修复了。
 对于 1.2.1 以下的版本，这种情况的一些提示：
 
 ```
@@ -530,7 +530,7 @@ A：在使用 DolphinScheduler 的过程中，如果您有任何问题或者想�
    
    2， 接收确认邮件并回复。 完成步骤1后，您将收到一封来自 dev-help@dolphinscheduler.apache.org 的确认邮件（如未收到，请确认邮件是否被自动归入垃圾邮件、推广邮件、订阅邮件等文件夹）。然后直接回复该邮件，或点击邮件里的链接快捷回复即可，主题和内容任意。
    
-   3， 接收欢迎邮件。 完成以上步骤后，您会收到一封主题为 WELCOME to dev@dolphinscheduler.apache.org 的欢迎邮件，至此您已成功订阅 Apache DolphinScheduler（Incubating） 的邮件列表。
+   3， 接收欢迎邮件。 完成以上步骤后，您会收到一封主题为 WELCOME to dev@dolphinscheduler.apache.org 的欢迎邮件，至此您已成功订阅 Apache DolphinScheduler的邮件列表。
 
 ---
 
@@ -541,6 +541,48 @@ A：1，目前是按照自然天来判断，上月末：判断时间是工作流
 
 ## Q：DS 后端接口文档
 A：1，http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh。
+
+
+## dolphinscheduler 在运行过程中，ip 地址获取错误的问题
+
+master 服务、worker 服务在 zookeeper 注册时，会以 ip:port 的形式创建相关信息
+
+如果 ip 地址获取错误，请检查网络信息，如 Linux 系统通过 `ifconfig` 命令查看网络信息，以下图为例：
+
+<p align="center">
+  <img src="/img/network/network_config.png" width="60%" />
+</p>
+
+可以使用 dolphinscheduler 提供的三种策略，获取可用 ip：
+
+* default: 优先获取内网网卡获取 ip 地址，其次获取外网网卡获取 ip 地址，在前两项失效情况下，使用第一块可用网卡的地址
+* inner: 使用内网网卡获取 ip地址，如果获取失败抛出异常信息
+* outer: 使用外网网卡获取 ip地址，如果获取失败抛出异常信息
+
+配置方式是在 `common.properties` 中修改相关配置：
+
+```shell
+# network IP gets priority, default: inner outer
+# dolphin.scheduler.network.priority.strategy=default
+```
+
+以上配置修改后重启服务生效
+
+如果 ip 地址获取依然错误，请下载 [dolphinscheduler-netutils.jar](/asset/dolphinscheduler-netutils.jar) 到相应机器，执行以下命令以进一步排障，并反馈给社区开发人员：
+
+```shell
+java -jar target/dolphinscheduler-netutils.jar
+```
+
+## 配置 sudo 免密，用于解决默认配置 sudo 权限过大或不能申请 root 权限的使用问题
+
+配置 dolphinscheduler OS 账号的 sudo 权限为部分普通用户范围内的一个普通用户管理者，限制指定用户在指定主机上运行某些命令，详细配置请看 sudo 权限管理
+例如 sudo 权限管理配置 dolphinscheduler OS 账号只能操作用户 userA,userB,userC 的权限（其中用户 userA,userB,userC 用于多租户向大数据集群提交作业）
+
+```shell
+echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
+```
 
 ---
 

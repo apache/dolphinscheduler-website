@@ -8,7 +8,9 @@
 .ant-menu-submenu-title {
   padding: 0 15px !important;
 }
-
+.ant-menu-submenu-hidden {
+  display: none;
+}
 .header-container {
   position: fixed;
   left: 0;
@@ -18,6 +20,9 @@
   background-color: #fff;
   &-primary {
     background-color: transparent;
+  }
+  &-dark {
+    background-color:#000F20;
   }
   &-normal {
     background-color: #fff;
@@ -85,9 +90,10 @@
         .submenu-title-wrapper {
           a {
             color: #fff;
+            opacity:0.6;
             font-family: Avenir-Medium;
           }
-        }
+        } 
       }
     }
     .blackClass {
@@ -101,6 +107,25 @@
       }
     }
     .menu-item-primary {
+      a {
+        color: #fff;
+        opacity: 0.6;
+        font-family: Avenir-Medium;
+      }
+      &:hover {
+        a {
+          // font-family: Avenir-Heavy;
+          opacity: 1;
+        }
+      }
+      &-active {
+        a {
+          // font-family: Avenir-Heavy;
+          opacity: 1;
+        }
+      }
+    }
+    .menu-item-dark {
       a {
         color: #fff;
         opacity: 0.6;
@@ -160,6 +185,10 @@
       border: 1px solid #FFF;
       color: #FFF;
     }
+    .language-switch-dark {
+      border: 1px solid #FFF;
+      color: #FFF;
+    }
     .language-switch-normal {
       border: 1px solid #333;
       color: #333;
@@ -191,6 +220,18 @@
         }
       }
       &-primary {
+        .icon-search {
+          border-color: #fff;
+          opacity: 0.6;
+          &::before {
+            background-color: #fff;
+          }
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+      &-dark {
         .icon-search {
           border-color: #fff;
           opacity: 0.6;
@@ -241,6 +282,7 @@
   }
 }
 
+
 @media screen and (max-width: $mobileWidth) {
   .header-container {
     .header-body {
@@ -288,7 +330,7 @@
             }
           }
         }
-        .menu-item-primary-active, .menu-item-normal-active {
+        .menu-item-primary-active, .menu-item-normal-active, .menu-item-dark-active {
           background: $endColor;
           a {
             color: #fff;

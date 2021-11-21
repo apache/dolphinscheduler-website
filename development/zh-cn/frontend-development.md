@@ -2,7 +2,7 @@
 
 ### 技术选型
 ```
-Vue mvvm框架
+Vue mvvm 框架
 
 Es6 ECMAScript 6.0
 
@@ -15,42 +15,35 @@ Jsplumb 连线插件库
 Lodash 高性能的 JavaScript 实用工具库
 ```
 
-
 ### 开发环境搭建
    
 - #### Node安装
-Node包下载 (注意版本 8.9.4) `https://nodejs.org/download/release/v8.9.4/` 
-
+Node包下载 (注意版本 v12.20.2) `https://nodejs.org/download/release/v12.20.2/` 
 
 - #### 前端项目构建
 用命令行模式 `cd`  进入 `dolphinscheduler-ui`项目目录并执行 `npm install` 拉取项目依赖包
 
-> 如果 `npm install` 速度非常慢 
+> 如果 `npm install` 速度非常慢，你可以设置淘宝镜像
 
-> 可以转淘宝镜像命令行输入 `npm install -g cnpm --registry=https://registry.npm.taobao.org`
+```
+npm config set registry http://registry.npm.taobao.org/
+```
 
-> 运行 `cnpm install` 
+- 修改 `dolphinscheduler-ui/.env` 文件中的 `API_BASE`，用于跟后端交互：
 
-
-- 新建一个`.env`文件，用于跟后端交互的接口
-
-在`dolphinscheduler-ui`目录下新建一个`.env`文件，在文件里添加后端服务的ip地址和端口，用于跟后端交互，`.env`文件内容如下：
 ```
 # 代理的接口地址（自行修改）
-API_BASE = http://192.168.xx.xx:12345
-
-# 如果您需要用ip访问项目可以把 "#" 号去掉（例）
-#DEV_HOST = 192.168.xx.xx
+API_BASE = http://127.0.0.1:12345
 ```
 
 > #####  ！！！这里特别注意 项目如果在拉取依赖包的过程中报 " node-sass error " 错误，请在执行完后再次执行以下命令
-```
-npm install node-sass --unsafe-perm //单独安装node-sass依赖
+
+```bash
+npm install node-sass --unsafe-perm #单独安装node-sass依赖
 ```
 
 - #### 开发环境运行
-- `npm start` 项目开发环境 (启动后访问地址 http://localhost:8888/#/)
-
+- `npm start` 项目开发环境 (启动后访问地址 http://localhost:8888)
 
 #### 前端项目发布
 
@@ -60,9 +53,7 @@ npm install node-sass --unsafe-perm //单独安装node-sass依赖
 
 再拷贝到服务器对应的目录下（前端服务静态页面存放目录）
 
-
-访问地址 `http://localhost:8888/#/` 
-
+访问地址 `http://localhost:8888` 
 
 #### Linux下使用node启动并且守护进程
 
@@ -94,7 +85,6 @@ npm install node-sass --unsafe-perm //单独安装node-sass依赖
  Use `pm2 show <id|name>` to get more details about an app
 
 ```
-
 
 ### 项目目录结构
 
@@ -145,7 +135,6 @@ npm install node-sass --unsafe-perm //单独安装node-sass依赖
 
 `util` => 工具
 
-
 ### 系统功能模块
 
 首页 => `http://localhost:8888/#/home`
@@ -180,7 +169,6 @@ npm install node-sass --unsafe-perm //单独安装node-sass依赖
 
 用户中心 => `http://localhost:8888/#/user/account`
 
-
 ## 路由和状态管理
 
 项目 `src/js/conf/home` 下分为
@@ -210,9 +198,7 @@ mutations => mapMutations => 详情：https://vuex.vuejs.org/zh/guide/mutations.
 state => mapState => 详情：https://vuex.vuejs.org/zh/guide/state.html
 
 具体操作：https://vuex.vuejs.org/zh/
-
 ```
-
 
 ## 规范
 ## Vue规范
@@ -244,6 +230,7 @@ export default {
 ##### 3.Prop
 定义 Prop 的时候应该始终以驼峰格式（camelCase）命名，在父组件赋值的时候使用连接线（-）。
 这里遵循每个语言的特性，因为在 HTML 标记中对大小写是不敏感的，使用连接线更加友好；而在 JavaScript 中更自然的是驼峰命名。
+
 ```
 // Vue
 props: {
@@ -367,7 +354,6 @@ v-for 应该避免与 v-if 在同一个元素（`例如：<li>`）上使用，�
 
 ```
 
-
 ## JavaScript规范
 
 ##### 1.var / let / const
@@ -454,6 +440,7 @@ border: 1px solid #ccc;
 
 ##### 4.文档类型
 应该总是使用 HTML5 标准。
+
 ```
 <!DOCTYPE html>
 ```
@@ -467,7 +454,6 @@ border: 1px solid #ccc;
 * @description test.
 * */
 ```
-
 
 ## 接口
 
@@ -531,13 +517,12 @@ dag 相关接口 `src/js/conf/home/store/dag/actions.js`
 
 用户中心 相关接口 `src/js/conf/home/store/user/actions.js`
 
-
-
 ## 扩展开发
 
 ##### 1.增加节点
 
 (1) 先将节点的icon小图标放置`src/js/conf/home/pages/dag/img`文件夹内，注意 `toolbar_${后台定义的节点的英文名称 例如:SHELL}.png`
+
 (2) 找到 `src/js/conf/home/pages/dag/_source/config.js` 里的 `tasksType` 对象，往里增加
 ```
 'DEPENDENT': {  // 后台定义节点类型英文名称用作key值
@@ -546,7 +531,7 @@ dag 相关接口 `src/js/conf/home/store/dag/actions.js`
 }
 ```
 
-(3) 在 `src/js/conf/home/pages/dag/_source/formModel/tasks` 增加一个 `${节点类型（小写）}`.vue 文件，跟当前节点相关的组件内容都在这里写。 属于节点组件内的必须拥有一个函数 `_verification()` 验证成功后讲当前组件的相关数据往父组件抛。
+(3) 在 `src/js/conf/home/pages/dag/_source/formModel/tasks` 增加一个 `${节点类型（小写）}`.vue 文件，跟当前节点相关的组件内容都在这里写。 属于节点组件内的必须拥有一个函数 `_verification()` 验证成功后将当前组件的相关数据往父组件抛。
 ```
 /**
  * 验证
@@ -578,9 +563,10 @@ dag 相关接口 `src/js/conf/home/store/dag/actions.js`
   }
 ``` 
 
-(4) 节点组件内部所用到公共的组件都在`_source`下，`commcon.js`用与配置公共数据
+(4) 节点组件内部所用到公共的组件都在`_source`下，`commcon.js`用于配置公共数据
 
 ##### 2.增加状态类型
+
 (1) 找到 `src/js/conf/home/pages/dag/_source/config.js` 里的 `tasksState` 对象，往里增加
 ```
 'WAITTING_DEPEND': {  //后端定义状态类型 前端用作key值

@@ -1,5 +1,13 @@
 # Release Preparation
 
+## Check release-docs
+
+Compared with the last release, the `release-docs` of the current release needs to be updated to the latest, if there are dependencies and versions changes
+
+ - `dolphinscheduler-dist/release-docs/LICENSE`
+ - `dolphinscheduler-dist/release-docs/NOTICE`
+ - `dolphinscheduler-dist/release-docs/licenses`
+
 ## Update Version
 
 For example, to release `x.y.z`, the following updates are required:
@@ -15,6 +23,9 @@ For example, to release `x.y.z`, the following updates are required:
    - `dolphinscheduler_postgre.sql`: `t_ds_version` needs to be updated to x.y.z
    - `upgrade`: whether to add`x.y.z_schema`
    - `soft_version`: need to be updated to x.y.z
- - `docker/kubernetes/dolphinscheduler/Chart.yaml`:
-   - `version`: helm chart version needs to be updated, different from x.y.z
-   - `appVersion`: need to be updated to x.y.z
+ - `docker/docker-swarm`:
+   - `docker-compose.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler` needs to be updated to x.y.z
+   - `docker-stack.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler` needs to be updated to x.y.z
+ - `docker/kubernetes/dolphinscheduler`:
+   - `Chart.yaml`: `appVersion` needs to be updated to x.y.z (`version` is helm chart version，incremented and different from x.y.z)
+   - `values.yaml`: `image.tag` needs to be updated to x.y.z

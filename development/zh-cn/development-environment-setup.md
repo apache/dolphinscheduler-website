@@ -1,122 +1,163 @@
-#### 准备工作
-1. 首先从远端仓库fork [dolphinscheduler](https://github.com/apache/incubator-dolphinscheduler) 一份代码到自己的仓库中
-2. 在开发环境中安装好MySQL/PostgreSQL、JDK、MAVEN
-3. 把自己仓库clone到本地
+# DolphinScheduler 开发手册
 
-    ` git clone https://github.com/apache/incubator-dolphinscheduler.git`
-    
-4. git clone项目后，进入项目目录，执行以下命令。
-```
-1. git branch -a    #查看分支
-2. git checkout dev #切换到dev分支
-3. git pull #同步分支
-4. mvn -U clean package -Prelease -Dmaven.test.skip=true   #由于项目使用了gRPC，所以需要先编译项目生成需要的类。
-```
-#### 安装node
-1. 安装nvm  
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-2. 刷新环境变量  
- source ~/.bash_profile
-3. 安装node  
-nvm install v12.12.0  
-备注:mac用户还可以通过brew安装npm:brew install npm
-4. 验证node安装成功  
- node --version  
- 
+## 前置条件
 
+在搭建 DolphinScheduler 开发环境之前请确保你已经安装一下软件
 
-#### 安装zookeeper  
-1. 下载zookeeper  
-http://apache.mirrors.hoobly.com/zookeeper/zookeeper-3.6.2/apache-zookeeper-3.6.2-bin.tar.gz
-2. 复制配置文件  
-cp conf/zoo_sample.cfg conf/zoo.cfg
-3. 修改配置  
-vi conf/zoo.cfg  
-dataDir=./tmp/zookeeper
-4. 启动/停止zookeeper  
-./bin/zkServer.sh start
-./bin/zkServer.sh stop
+* [Git](https://git-scm.com/downloads): 版本控制系统
+* [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html): 后端开发
+* [Maven](http://maven.apache.org/download.cgi): Java包管理系统
+* [Node](https://nodejs.org/en/download): 前端开发
 
-#### 创建数据库
-1. 创建用户名为ds_user,密码为dolphinscheduler的用户  
-```
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO 'ds_user'@'%' IDENTIFIED BY 'dolphinscheduler';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO 'ds_user'@'localhost' IDENTIFIED BY 'dolphinscheduler';
-mysql> flush privileges;
+### 克隆代码库
 
+通过你 git 管理工具下载 git 代码，下面以 git-core 为例
+
+```shell
+mkdir dolphinscheduler
+cd dolphinscheduler
+git clone git@github.com:apache/dolphinscheduler.git
 ```
 
-#### 搭建前端
-1. 进入dolphinscheduler-ui的目录  
+## 开发者须知
+
+DolphinScheduler 开发环境配置有两个方式，分别是standalone模式，以及普通模式
+
+* [standalone模式](#dolphinscheduler-standalone快速开发模式)：**推荐使用，但仅支持 1.3.9 及以后的版本**，方便快速的开发环境搭建，能解决大部分场景的开发
+* [普通模式](#dolphinscheduler-普通开发模式)：master、worker、api、logger等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多
+
+## DolphinScheduler Standalone快速开发模式
+
+> **_注意：_** 仅供单机开发调试使用，默认使用 H2 Database,Zookeeper Testing Server
+> 如需测试插件，可自行修改 StandaloneServer中 `plugin.bind`，亦或修改配置文件，具体请查看插件说明
+> Standalone 仅在 DolphinScheduler 1.3.9 及以后的版本支持
+
+### 分支选择
+
+开发不同的代码需要基于不同的分支
+
+* 如果想基于二进制包开发，切换到对应版本的代码，如 1.3.9 则是 `1.3.9-release`
+* 如果想要开发最新代码，切换到 `dev` 分支
+
+### 启动后端
+
+编译后端相关依赖
+
+```shell
+mvn install -DskipTests
+```
+
+在 Intellij IDEA 找到并启动类 `org.apache.dolphinscheduler.server.StandaloneServer` 即可完成后端启动
+
+### 启动前端
+
+安装前端依赖并运行前端组件
+
+```shell
 cd dolphinscheduler-ui
-2. 执行npm install  
-
-
-#### 搭建后端
-1. 将项目导入到idea中  
-file-->open
-2. 修改dao模块resource目录下datasource.properties文件中的数据库配置信息      
-   ```
-       spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-       spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler
-       spring.datasource.username=ds_user
-       spring.datasource.password=dolphinscheduler  
-   ```
-3. 修改根项目中pom.xml，将mysql-connector-java依赖的scope修改为compile  
-
-4. 刷新dao模块，运行org.apache.dolphinscheduler.dao.upgrade.shell.CreateDolphinScheduler的main方法，自动插入项目所需的表和数据  
-
-5. 修改service模块zookeeper.properties中链接信息(zookeeper.quorum)    
- zookeeper.quorum=localhost:2181
- 
-6. 修改dolphinscheduler-ui模块的.env文件  
+npm install
+npm run start
 ```
-API_BASE = http://localhost:12345
-DEV_HOST = localhost
-``` 
-#### 启动项目
-1. 启动zookeeper   
-./bin/zkServer.sh start
-2. 启动MasterServer，执行org.apache.dolphinscheduler.server.master.MasterServer的main方法,需要设置VM Options:  
-   ```
-       -Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false
-   ```
 
-3. 启动WorkerServer，执行org.apache.dolphinscheduler.server.worker.WorkerServer的main方法,需要设置VM Options:  
-   ```
-       -Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false
-   ```
+截止目前，前后端已成功运行起来，浏览器访问[http://localhost:8888](http://localhost:8888)，并使用默认账户密码 **admin/dolphinscheduler123** 即可完成登录
 
-4. 启动ApiApplicationServer，执行org.apache.dolphinscheduler.api.ApiApplicationServer的main方法,需要设置VM Options:   
-   ```
-       -Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api
-   ```
-   
-5. ,这里暂时不启动其它模块，如果启动其它模块，那么去查询script/dolphinscheduler-daemon.sh文件,设置相应的VM Options  
-   ```
-       if [ "$command" = "api-server" ]; then
-         LOG_FILE="-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api"
-         CLASS=org.apache.dolphinscheduler.api.ApiApplicationServer
-       elif [ "$command" = "master-server" ]; then
-         LOG_FILE="-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false"
-         CLASS=org.apache.dolphinscheduler.server.master.MasterServer
-       elif [ "$command" = "worker-server" ]; then
-         LOG_FILE="-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false"
-         CLASS=org.apache.dolphinscheduler.server.worker.WorkerServer
-       elif [ "$command" = "alert-server" ]; then
-         LOG_FILE="-Dlogback.configurationFile=conf/logback-alert.xml"
-         CLASS=org.apache.dolphinscheduler.alert.AlertServer
-       elif [ "$command" = "logger-server" ]; then
-         CLASS=org.apache.dolphinscheduler.server.log.LoggerServer
-       else
-         echo "Error: No command named \`$command' was found."
-         exit 1
-       fi
-   ```
-6. 启动前端ui模块  
-cd dolphinscheduler-ui目录，执行npm run start
+## DolphinScheduler 普通开发模式
 
-#### 访问项目
-1. 访问http://localhost:12345/dolphinscheduler  
-输入管理员账户admin,密码dolphinscheduler123进行登陆
+### 必要软件安装
+
+#### zookeeper
+
+下载 [ZooKeeper](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.6.3)，解压
+
+* 在 ZooKeeper 的目录下新建 zkData、zkLog文件夹
+* 将 conf 目录下的 `zoo_sample.cfg` 文件，复制一份，重命名为 `zoo.cfg`，修改其中数据和日志的配置，如：
+
+    ```shell
+    dataDir=/data/zookeeper/data ## 此处使用绝对路径
+    dataLogDir=/data/zookeeper/datalog
+    ```
+
+* 运行 `./bin/zkServer.sh`
+
+#### 数据库
+
+DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关系型数据库包括 MySQL 以及 PostgreSQL。下面以MySQL为例，启动数据库并创建新 database 作为 DolphinScheduler 元数据库，这里以数据库名 dolphinscheduler 为例
+
+创建完新数据库后，将 `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql` 下的 sql 文件直接在 MySQL 中运行，完成数据库初始化
+
+#### 启动后端
+
+下面步骤将引导如何启动 DolphinScheduler 后端服务
+
+##### 必要的准备工作
+
+* 打开项目：使用开发工具打开项目，这里以 Intellij IDEA 为例，打开后需要一段时间，让 Intellij IDEA 完成以依赖的下载
+  
+* 插件的配置（**仅 2.0 及以后的版本需要**）：编译对应的插件，在项目目录执行 `mvn -U clean install -Dmaven.test.skip=true` 完成注册插件的安装
+
+  注意：**${VERSION}** 需要根据当前版本手动修改，关于 ***.plugin.binding, maven.local.repository 则无需做任何修改
+
+  * 告警插件配置 (alert.properties)
+  ```alert.properties
+   alert.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
+  ```
+  * 注册中心插件配置 (registry.properties)
+  ```registry.properties
+   registry.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
+  ```
+  * 任务插件配置 (worker.properties)
+  ```worker.properties
+     task.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
+  ```
+* 必要的修改
+  * 如果使用 MySQL 作为元数据库，需要先修改 `dolphinscheduler/pom.xml`，将 `mysql-connector-java` 依赖的 `scope` 改为 `compile`，使用 PostgreSQL 则不需要
+  * 修改数据库配置，修改 `dolphinscheduler/dolphinscheduler-dao/datasource.properties` 文件中的数据库配置
+
+  ```properties
+  # 本样例以 MySQL 为例，其中数据库名为 dolphinscheduler，账户名密码均为 dolphinscheduler
+  spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+  spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+  spring.datasource.username=dolphinscheduler
+  spring.datasource.password=dolphinscheduler
+  ```
+
+* 修改日志级别：为以下配置增加一行内容 `<appender-ref ref="STDOUT"/>` 使日志能在命令行中显示
+  
+  `dolphinscheduler-server/src/main/resources/logback-worker.xml`
+  
+  `dolphinscheduler-server/src/main/resources/logback-master.xml`
+  
+  `dolphinscheduler-api/src/main/resources/logback-api.xml` 
+  
+  修改后的结果如下：
+
+  ```diff
+  <root level="INFO">
+  +  <appender-ref ref="STDOUT"/>
+    <appender-ref ref="APILOGFILE"/>
+    <appender-ref ref="SKYWALKING-LOG"/>
+  </root>
+  ```
+
+> **_注意：_** 上述准备工作中，插件的安装仅 DolphinScheduler 2.0 及以后的版本需要运行，2.0 之前的版本不需要运行该命令
+
+##### 启动服务
+
+我们需要启动三个必须服务，包括 MasterServer，WorkerServer，ApiApplicationServer，如果有需求可以启动可选服务 LoggerServer
+
+* MasterServer：在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.server.master.MasterServer` 中的 `main` 方法，并配置 *VM Options* `-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false`
+* WorkerServer：在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.server.worker.WorkerServer` 中的 `main` 方法，并配置 *VM Options* `-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false`
+* ApiApplicationServer：在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.api.ApiApplicationServer` 中的 `main` 方法，并配置 *VM Options* `-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api`。启动完成可以浏览 Open API 文档，地址为 http://localhost:12345/dolphinscheduler/doc.html
+* LoggerServer：**这是非必须功能，可以不开启**，在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.server.log.LoggerServer` 中的 `main` 方法
+
+### 启动前端
+
+安装前端依赖并运行前端组件
+
+```shell
+cd dolphinscheduler-ui
+npm install
+npm run start
+```
+
+截止目前，前后端已成功运行起来，浏览器访问[http://localhost:8888](http://localhost:8888)，并使用默认账户密码 **admin/dolphinscheduler123** 即可完成登录
