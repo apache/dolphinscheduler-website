@@ -3,7 +3,7 @@ export default {
   rootPath: '',
   port: 8080,
   domain: 'dolphinscheduler.apache.org',
-  copyToDist: ['asset', 'img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess'],
+  copyToDist: ['asset', 'img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess', 'googled0df7b96f277a143.html'],
   docsLatest: '2.0.0',
   defaultSearch: 'google', // default search engine
   defaultLanguage: 'en-us',
