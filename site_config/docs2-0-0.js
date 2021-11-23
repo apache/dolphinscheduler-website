@@ -54,7 +54,8 @@ export default {
             title: 'SkyWalking-Agent Deployment',
             link: '/en-us/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
           },
-        ],,
+        ],
+      },
       {
         title: 'User Manual',
         children: [
