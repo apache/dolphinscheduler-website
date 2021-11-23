@@ -68,7 +68,13 @@ export default {
     barText: '博客',
     postsTitle: '所有文章',
     list: [
-      
+    {
+        title: '荔枝机器学习平台与大数据调度系统“双剑合璧”，打造未来数据处理新模式!',
+        author: 'Debra Chen',
+        dateStr: '2021-11-23',
+        desc: 'Lizhi case study',
+        link: '/zh-cn/blog/Lizhi-case-study.html',
+      },   
       {
         title: '重构、插件化、性能提升 20 倍，Apache DolphinScheduler 2.0 alpha 发布亮点太多!',
         author: 'DolphinScheduler',
