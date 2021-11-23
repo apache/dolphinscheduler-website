@@ -19,6 +19,44 @@ export default {
         ],
       },
       {
+        title: 'Quick Start',
+        children: [
+          {
+            title: 'Quick Start',
+            link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
+          },
+          {
+            title: 'Docker Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/docker.html',
+           },
+            ],
+          },
+      {
+        title: 'Installation',
+        children: [
+          {
+            title: 'Standalone Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/standalone.html',
+          },
+          {
+            title: 'Pseudo Cluster Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/pseudo-cluster.html',
+          },
+          {
+            title: 'Cluster Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/cluster.html',
+          },
+          {
+            title: 'Kubernetes Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
+          },
+          {
+            title: 'SkyWalking-Agent Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
+          },
+        ],
+      },
+      {
         title: 'User Manual',
         children: [
           {
@@ -28,35 +66,6 @@ export default {
           {
             title: 'Quick Start',
             link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
-          },
-          {
-            title: 'Installation',
-            children: [
-              {
-                title: 'Standalone Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/standalone.html',
-              },
-              {
-                title: 'Pseudo Cluster Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/pseudo-cluster.html',
-              },
-              {
-                title: 'Cluster Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/cluster.html',
-              },
-              {
-                title: 'Docker Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/docker.html',
-              },
-              {
-                title: 'Kubernetes Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
-              },
-              {
-                title: 'SkyWalking-Agent Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
-              },
-            ],
           },
           {
             title: 'Workflow Overview',
