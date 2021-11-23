@@ -57,7 +57,7 @@ export default {
         ],
       },
       {
-        title: 'User Manual',
+        title: 'Introduction to Functions',
         children: [
           {
             title: 'Introduction',
@@ -222,7 +222,7 @@ export default {
         ],
       },
       {
-        title: 'Architecture Design',
+        title: 'Advanced Guide',
         children: [
           {
             title: 'Metadata',
