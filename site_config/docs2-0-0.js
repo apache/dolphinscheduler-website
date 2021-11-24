@@ -60,14 +60,6 @@ export default {
         title: 'Introduction to Functions',
         children: [
           {
-            title: 'Introduction',
-            link: '/en-us/docs/2.0.0/user_doc/guide/introduction.html',
-          },
-          {
-            title: 'Quick Start',
-            link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
-          },
-          {
             title: 'Workflow Overview',
             link: '/en-us/docs/2.0.0/user_doc/guide/homepage.html',
           },
@@ -243,23 +235,6 @@ export default {
           {
             title: 'Load Balance',
             link: '/en-us/docs/2.0.0/user_doc/architecture/load-balance.html',
-          },
-          {
-            title: 'Upgrade',
-            link: '/en-us/docs/2.0.0/user_doc/upgrade.html',
-          },
-          {
-            title: 'Capacity expansion and reduction',
-            link: '/en-us/docs/2.0.0/user_doc/expansion-reduction.html',
-          },
-        ],
-      },
-      {
-        title: 'Integration',
-        children: [
-          {
-            title: 'Ambari Integration',
-            link: '/en-us/docs/2.0.0/user_doc/integration/ambari.html',
           },
         ],
       },
