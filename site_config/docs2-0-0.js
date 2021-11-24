@@ -225,12 +225,12 @@ export default {
         title: 'Advanced Guide',
         children: [
           {
-            title: 'Metadata',
-            link: '/en-us/docs/2.0.0/user_doc/architecture/metadata.html',
-          },
-          {
             title: 'Architecture Design',
             link: '/en-us/docs/2.0.0/user_doc/architecture/design.html',
+          },
+          {
+            title: 'Metadata',
+            link: '/en-us/docs/2.0.0/user_doc/architecture/metadata.html',
           },
           {
             title: 'Configuration File',
