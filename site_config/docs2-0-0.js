@@ -244,6 +244,14 @@ export default {
             title: 'Load Balance',
             link: '/en-us/docs/2.0.0/user_doc/architecture/load-balance.html',
           },
+          {
+            title: 'Upgrade',
+            link: '/en-us/docs/2.0.0/user_doc/upgrade.html',
+          },
+          {
+            title: 'Capacity expansion and reduction',
+            link: '/en-us/docs/2.0.0/user_doc/expansion-reduction.html',
+          },
         ],
       },
       {
@@ -252,24 +260,6 @@ export default {
           {
             title: 'Ambari Integration',
             link: '/en-us/docs/2.0.0/user_doc/integration/ambari.html',
-          },
-        ],
-      },
-      {
-        title: 'Upgrade',
-        children: [
-          {
-            title: 'Upgrade',
-            link: '/en-us/docs/2.0.0/user_doc/upgrade.html',
-          },
-        ],
-      },
-      {
-        title: 'Expansion/Reduction',
-        children: [
-          {
-            title: 'Capacity expansion and reduction',
-            link: '/en-us/docs/2.0.0/user_doc/expansion-reduction.html',
           },
         ],
       },
