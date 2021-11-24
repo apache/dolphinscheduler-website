@@ -4,6 +4,13 @@ export default {
     postsTitle: 'All posts',
     list: [
       {
+        title: 'Lizhi-case-study(En)',
+        author: 'Debra Chen',
+        dateStr: '2021-11-24',
+        desc: 'Lizhi case study(En)',
+        link: '/en-us/blog/Lizhi-case-study(En).html',
+      },
+      {
         title: 'DS-2.0-alpha-release(En)',
         author: 'Debbra Chen',
         dateStr: '2021-10-29',
