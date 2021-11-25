@@ -566,6 +566,7 @@ export default {
           link: '/en-us/blog/Lizhi-case-study(En).html',
         },
         {
+
           img: 'https://imgpp.com/images/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png',
           title: 'Refactoring, Plug-in, Performance Improves By 20 times, Apache DolphinScheduler 2.0 alpha Release Highlights Check!',
           content: 'ello community, good news! After nearly 10 months of joint efforts ...',
