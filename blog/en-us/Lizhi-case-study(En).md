@@ -1,8 +1,4 @@
-# A Formidable Combination of Lizhi Machine Learning Platform& DolphinScheduler Creates New Paradigm for Data Process in the Future!
-
-<div align=center>
-<img src="https://imgpp.com/images/2021/11/23/1637566412753.md.png"/>
-</div>
+# A Formidable Combination of Lizhi Machine Learning Platform& DolphinScheduler Creates New Paradigm for Data Process in the Future
 
 >Editor's word: The online audio industry is a blue ocean market in China nowadays. According to CIC data, the market size of China’s online audio industry has grown from 1.6 billion yuan in 2016 to 13.1 billion yuan in 2020, with a compound annual growth rate of 69.4%. With the popularity of the Internet of Things, audio has permeated into various terminals mobiles, vehicles, smart hardware, home equipment, and other various scenarios, sequentially to maximize the accompanying advantages of audio carriers.
 
