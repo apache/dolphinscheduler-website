@@ -1,6 +1,6 @@
 ## Q: What's the name of this project?
 
-A: Before version 1.2 project name is called EasyScheduler, version 1.2 and later it's called DolphinScheduler.
+A: DolphinScheduler
 
 ---
 
