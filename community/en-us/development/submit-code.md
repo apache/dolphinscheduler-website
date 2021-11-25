@@ -46,15 +46,9 @@ git push --set-upstream origin dev-1.0
 
 * Submit changes to the remote repository
 
-* On the github page, click New pull request.
-  <p align = "center">
-  <img src = "http://geek.analysys.cn/static/upload/221/2019-04-02/90f3abbf-70ef-4334-b8d6-9014c9cf4c7f.png" width = "60%" />
-  </p>
+* On the github page, click "New pull request".
 
-* Select the modified local branch and the branch you want to merge with the past, Create pull request.
-<p align = "center">
-<img src = "http://geek.analysys.cn/static/upload/221/2019-04-02/fe7eecfe-2720-4736-951b-b3387cf1ae41.png" width = "60%" />
-</p>
+* Select the modified local branch and the branch you want to merge with the past, click "Create pull request".
 
 * Then the community Committers will do CodeReview, and then he will discuss some details (including design, implementation, performance, etc.) with you. When everyone on the team is satisfied with this modification, the commit will be merged into the dev branch
 
