@@ -55,6 +55,27 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: 'https://imgpp.com/images/2021/11/23/1637566412753.md.png',
+          title: '荔枝机器学习平台与大数据调度系统“双剑合璧”，打造未来数据处理新模式！',
+          content: '在线音频行业在中国仍是蓝海一片。根据 CIC 数据显示...',
+          dateStr: '2021-11-23',
+          link: '/zh-cn/blog/Lizhi-case-study.html',
+        },
+        {
+          img: 'https://imgpp.com/images/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png',
+          title: '重构、插件化、性能提升 20 倍，Apache DolphinScheduler 2.0 alpha 发布亮点太多!',
+          content: '社区的小伙伴们，好消息！经过 100 多位社区贡献者近 10 个月的共同努力...',
+          dateStr: '2021-10-29',
+          link: '/zh-cn/blog/DS-2.0-alpha-release.html',
+        },
+        {
+          img: '/img/apache.jpg',
+          title: 'DolphinScheduler漏洞情况说明',
+          content: 'DolphinScheduler漏洞情况说明...',
+          dateStr: '2021-10-26',
+          link: '/zh-cn/blog/DolphinScheduler漏洞情况说明.html',
+        },
+        {
           img: '/img/apache.jpg',
           title: 'Wenjun Ruan：如何成为Apache DolphinScheduler Committer',
           content: '7.29,来自 eBay 的 Wenjun 同学正式成为Apache DolphinSchedulerCommitter,此文将为大家分享他的开源旅程，以及他是如何成为DolphinScheduler的Committer',
@@ -538,11 +559,32 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: 'https://imgpp.com/images/2021/11/23/1637566412753.md.png',
+          title: 'A Formidable Combination of Lizhi Machine Learning Platform& DolphinScheduler Creates New Paradigm for Data Process in the Future!',
+          content: 'The online audio industry is a blue ocean market in China nowadays...',
+          dateStr: '2021-11-24',
+          link: '/en-us/blog/Lizhi-case-study(En).html',
+        },
+        {
+          img: 'https://imgpp.com/images/2021/11/23/1637566412753.md.png',
+          title: 'Refactoring, Plug-in, Performance Improves By 20 times, Apache DolphinScheduler 2.0 alpha Release Highlights Check!',
+          content: 'ello community, good news! After nearly 10 months of joint efforts ...',
+          dateStr: '2021-10-29',
+          link: '/en-us/blog/DS-2.0-alpha-release(En).html',
+        },
+        {
+          img: 'https://imgpp.com/images/2021/11/23/1637566412753.md.png',
+          title: 'Refactoring, Plug-in, Performance Improves By 20 times, Apache DolphinScheduler 2.0 alpha Release Highlights Check!',
+          content: 'ello community, good news! After nearly 10 months of joint efforts ...',
+          dateStr: '2021-10-29',
+          link: '/en-us/blog/DS-2.0-alpha-release(En).html',
+        },
+        {
           img: '/img/2021-03-16/boyi.png',
-          title: '[ANNOUNCE] Welcome to our new committer: BoYiZhang',
-          content: '[ANNOUNCE] Welcome to our new committer: BoYiZhang',
-          dateStr: '2021-03-16',
-          link: 'https://lists.apache.org/thread.html/rbd018b05da88d98f403dcd18098fa622c0c4c6db8d2b28c84028a818%40%3Cdev.dolphinscheduler.apache.org%3E',
+          title: 'DolphinScheduler Vulnerability Explanation',
+          content: 'DolphinScheduler Vulnerability Explanation',
+          dateStr: '2021-10-26',
+          link: '/en-us/blog/DolphinScheduler Vulnerability Explanation.html',
         },
         {
           img: '/img/dailidong.png',
