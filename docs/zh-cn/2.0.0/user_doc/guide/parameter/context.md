@@ -60,10 +60,10 @@ prop 为用户指定；方向选择为 OUT，只有当方向为 OUT 时才会被
 用户需要传递参数，在定义 shell 脚本时，需要输出格式为 ${setValue(key=value)} 的语句，key 为对应参数的 prop，value 为该参数的值。
 
 
-例如下图中：
+例如下图中, 通过 `echo '${setValue(trans=hello trans)}'`, 将'trans'设置为"hello trans", 在下游任务中就可以使用trans这个变量了：
 
-<img src="/img/globalParam/image-20210723101242216.png" alt="image-20210723101242216" style="zoom:50%;" />
+<img src="/img/globalParam/trans-shell.png" alt="trans-shell" style="zoom:50%;" />
 
 shell 节点定义时当日志检测到 ${setValue(key=value1)} 的格式时，会将 value1 赋值给 key，下游节点便可以直接使用变量 key 的值。同样，您可以在【工作流实例】页面，找到对应的节点实例，便可以查看该变量的值。
 
-<img src="/img/globalParam/image-20210723102522383.png" alt="image-20210723102522383" style="zoom:50%;" />
+<img src="/img/globalParam/use-parameter-shell.png" alt="use-parameter-shell" style="zoom:50%;" />
