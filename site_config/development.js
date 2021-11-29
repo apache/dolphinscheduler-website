@@ -13,6 +13,10 @@ export default {
             link: '/en-us/development/architecture-design.html',
           },
           {
+            title: 'API Standard',
+            link: '/en-us/development/api-standard.html',
+          },
+          {
             title: 'Backend Development',
             children: [
               // TODO not suppor multiply level for now
@@ -68,6 +72,10 @@ export default {
           {
             title: '架构设计',
             link: '/zh-cn/development/architecture-design.html',
+          },
+          {
+            title: 'API规范',
+            link: '/zh-cn/development/api-standard.html',
           },
           {
             title: '后端开发',
