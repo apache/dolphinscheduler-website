@@ -1,7 +1,7 @@
-# Dolphin Scheduler 1.3 MetaData
+# Dolphin Scheduler 2.0.0 MetaData
 
 <a name="V5KOl"></a>
-### Dolphin Scheduler 1.2 DB Table Overview
+### Dolphin Scheduler 2.0 DB Table Overview
 | Table Name | Comment |
 | :---: | :---: |
 | t_ds_access_token | token for access ds backend |
