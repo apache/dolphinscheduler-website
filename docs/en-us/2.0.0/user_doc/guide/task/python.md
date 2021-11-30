@@ -9,6 +9,7 @@
  </p>
 
 - Script: Python program developed by the user
+- Environment Name: Specific which Python interpreter would be use and run `Script`. If you want to use Python virtualenv, you should create multiply environments for each virtualenv.
 - Resources: refers to the list of resource files that need to be called in the script
 - User-defined parameter: It is a local user-defined parameter of Python, which will replace the content with \${variable} in the script
-- Note: If you import the python file under the resource directory tree, you need to add the __init__.py file
+- Note: If you import the python file under the resource directory tree, you need to add the `__init__.py` file
