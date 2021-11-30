@@ -107,8 +107,8 @@ sh script/create-dolphinscheduler.sh
 
 ## 修改相关配置
 
-完成了基础环境的准备后，在运行部署命令前，还需要根据环境修改配置文件。配置文件在路径在`conf/config/install_config.conf`下，一般部署只需要修改**INSTALL MACHINE、DolphinScheduler ENV、Database、Registry Server**部分即可完成部署，下面对必须修改参数进行说明
-
+完成了基础环境的准备后，在运行部署命令前，还需要根据环境修改配置文件。配置文件在路径在`conf/config/install_config.conf`和`conf/env/dolphinscheduler_env.sh`，一般部署只需要修改**INSTALL MACHINE、DolphinScheduler ENV、Database、Registry Server**部分即可完成部署，下面对必须修改参数进行说明
+* 修改`conf/config/install_config.conf`
 ```shell
 # ---------------------------------------------------------
 # INSTALL MACHINE
@@ -148,6 +148,19 @@ dbname="dolphinscheduler"
 # ---------------------------------------------------------
 # 注册中心地址，zookeeper服务的地址
 registryServers="localhost:2181"
+```
+* 修改`conf/env/dolphinscheduler_env.sh`环境变量(以相关用到的软件都安装在 /opt/soft 下为例)
+```shell
+export HADOOP_HOME=/opt/soft/hadoop
+export HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop
+# export SPARK_HOME1=/opt/soft/spark1
+export SPARK_HOME2=/opt/soft/spark2
+export PYTHON_HOME=/opt/soft/python
+export JAVA_HOME=/opt/soft/java
+export HIVE_HOME=/opt/soft/hive
+export FLINK_HOME=/opt/soft/flink
+export DATAX_HOME=/opt/soft/datax/bin/datax.py
+export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME:$PATH
 ```
 
 ## 启动 DolphinScheduler
