@@ -73,7 +73,7 @@ At present, Lizhi does not directly select data from Hive, and joins the union, 
 Transformer& custom preprocessing configuration file, use the same configuration for online training, and feature preprocessing is performed after the feature is obtained. It contains the itemType and its feature set to be predicted, the user’s userType and its feature set, as well as the associated and crossed itemType and its feature set. Define the transformer function for each feature preprocessing, supports custom transformer and hot update, xgboost, and tf model feature preprocessing. After the node process, the data format that is needed for model training is prepared. This configuration file will also be brought along when the model is released to keep training and online prediction consistent. This file is maintained in the resource center of DolphinScheduler.
 
 <p align="center">
-  <img src="/img/present1.jpg" alt="present 1"  width="60%" />
+  <img src="/img/present1.jpg" alt="training data preprocess"  width="60%" />
   <p align="center">
         <em>Training data preprocess</em>
   </p>
@@ -88,7 +88,7 @@ It supports w2v, xgboost, tf model training modules. The training modules are fi
 For example, in the xgboost training process, use Python to package the xgboost training script into the xgboost training node of DolphinScheduler, and show the parameters required for training on the interface. The file exported by “training set data preprocessing” is input to the training node through HDFS.
 
 <p align="center">
-  <img src="/img/present3.jpg" alt="dag示例"  width="60%" />
+  <img src="/img/present3.jpg" alt="Xgboost training"  width="60%" />
   <p align="center">
         <em>Xgboost training</em>
   </p>
@@ -100,7 +100,7 @@ For example, in the xgboost training process, use Python to package the xgboost 
 The release model will send the model and preprocessing configuration files to HDFS and insert records into the model release table. The model service will automatically identify the new model, update the model, and provide online prediction services to the external.
 
 <p align="center">
-  <img src="/img/present2.jpg" alt="dag示例"  width="60%" />
+  <img src="/img/present2.jpg" alt="Model release"  width="60%" />
   <p align="center">
         <em>model release</em>
   </p>
