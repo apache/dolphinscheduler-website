@@ -53,9 +53,14 @@ At the technical level of the platform, Lizhi optimizes the extended modules for
 
 A simple xgboost case:
 
-<div align=center>
-<img src="https://imgpp.com/images/2021/11/30/32db43420c7c44e28ff2fb7be27ec79c.md.png"/>
-</div>
+<p align="center">
+  <img src="/img/streamline.png" alt="streamline"  width="60%" />
+  <p align="center">
+        <em>streamline</em>
+  </p>
+</p>
+
+
 
 ### 1. Obtaining training samples
 
@@ -67,9 +72,14 @@ At present, Lizhi does not directly select data from Hive, and joins the union, 
 
 Transformer& custom preprocessing configuration file, use the same configuration for online training, and feature preprocessing is performed after the feature is obtained. It contains the itemType and its feature set to be predicted, the user’s userType and its feature set, as well as the associated and crossed itemType and its feature set. Define the transformer function for each feature preprocessing, supports custom transformer and hot update, xgboost, and tf model feature preprocessing. After the node process, the data format that is needed for model training is prepared. This configuration file will also be brought along when the model is released to keep training and online prediction consistent. This file is maintained in the resource center of DolphinScheduler.
 
-<div align=center>
-<img src="https://imgpp.com/images/2021/11/30/1afaee9a4142648f0.md.jpg"/>
-</div>
+<p align="center">
+  <img src="/img/present1.jpg" alt="present 1"  width="60%" />
+  <p align="center">
+        <em>Training data preprocess</em>
+  </p>
+</p>
+
+
 
 
 ### 3. Xgboost training
@@ -77,18 +87,24 @@ Transformer& custom preprocessing configuration file, use the same configuration
 It supports w2v, xgboost, tf model training modules. The training modules are first packaged with TensorFlow or PyTorch and then packaged into DolphinScheduler modules.
 For example, in the xgboost training process, use Python to package the xgboost training script into the xgboost training node of DolphinScheduler, and show the parameters required for training on the interface. The file exported by “training set data preprocessing” is input to the training node through HDFS.
 
-<div align=center>
-<img src="https://imgpp.com/images/2021/11/23/3.md.png"/>
-</div>
+<p align="center">
+  <img src="/img/present3.jpg" alt="dag示例"  width="60%" />
+  <p align="center">
+        <em>Xgboost training</em>
+  </p>
+</p>
 
 ### 4. Model release
 
 
 The release model will send the model and preprocessing configuration files to HDFS and insert records into the model release table. The model service will automatically identify the new model, update the model, and provide online prediction services to the external.
 
-<div align=center>
-<img src="https://imgpp.com/images/2021/11/30/2c4b9ff8072e348ee.md.jpg"/>
-</div>
+<p align="center">
+  <img src="/img/present2.jpg" alt="dag示例"  width="60%" />
+  <p align="center">
+        <em>model release</em>
+  </p>
+</p>
 
 
 Haibin Yu said that due to historical and technical limitations, Lizhi has not yet built a machine learning platform like Ali PAI, but the practice has proved that similar platform functions can be achieved based on DolphinScheduler.
