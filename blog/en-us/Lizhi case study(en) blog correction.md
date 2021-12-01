@@ -54,23 +54,21 @@ At the technical level of the platform, Lizhi optimizes the extended modules for
 A simple xgboost case:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/1.md.png"/>
+<img src="https://imgpp.com/images/2021/11/30/32db43420c7c44e28ff2fb7be27ec79c.md.png"/>
 </div>
 
 ### 1. Obtaining training samples
 
 At present, Lizhi does not directly select data from Hive, and joins the union, splitting the sample afterward, but directly processes the sample by shell nodes.
 
-<div align=center>
-<img src="https://imgpp.com/images/2021/11/23/2.md.png"/>
-</div>
+
 
 ### 2. Data preprocessing
 
 Transformer& custom preprocessing configuration file, use the same configuration for online training, and feature preprocessing is performed after the feature is obtained. It contains the itemType and its feature set to be predicted, the user’s userType and its feature set, as well as the associated and crossed itemType and its feature set. Define the transformer function for each feature preprocessing, supports custom transformer and hot update, xgboost, and tf model feature preprocessing. After the node process, the data format that is needed for model training is prepared. This configuration file will also be brought along when the model is released to keep training and online prediction consistent. This file is maintained in the resource center of DolphinScheduler.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/2.md.png"/>
+<img src="https://imgpp.com/images/2021/11/30/1afaee9a4142648f0.md.jpg"/>
 </div>
 
 
@@ -89,7 +87,7 @@ For example, in the xgboost training process, use Python to package the xgboost 
 The release model will send the model and preprocessing configuration files to HDFS and insert records into the model release table. The model service will automatically identify the new model, update the model, and provide online prediction services to the external.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/4.md.png"/>
+<img src="https://imgpp.com/images/2021/11/30/2c4b9ff8072e348ee.md.jpg"/>
 </div>
 
 

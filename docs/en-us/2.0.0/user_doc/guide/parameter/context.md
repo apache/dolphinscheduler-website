@@ -54,10 +54,10 @@ There is only the value of "id". Although the user-defined sql looks up the fiel
 
 prop is user-specified. The direction is selected as OUT. The output is defined as a parameter only when the direction is OUT. Data type can choose different data structures as needed; the value part is not required to be filled. The user needs to pass the parameter, and when defining the shell script, the output format of ${setValue(key=value)} statement is required, key is the prop of the corresponding parameter, and value is the value of the parameter.
 
-For example, in the figure below:
+For example, ` echo '${setValue (trans = Hello trans)}' `, set "trans" to "Hello trans", and the variable trans can be used in downstream tasks:
 
-![png09](https://dolphinscheduler.apache.org/img/globalParam/image-20210723101242216.png)
+<img src="/img/globalParam/trans-shell.png" alt="trans-shell" style="zoom:50%;" />
 
-When the log detects the ${setValue(key=value1)} format in the shell node definition, it will assign value1 to key, and the downstream node can use the value of the variable key directly. Similarly, you can find the corresponding node instance on the [Workflow Instance] page to see the value of the variable.
+When the shell node is defined, when the log detects the format of ${setValue (key = value1)}, value1 will be assigned to the key, and the downstream node can directly use the value of the variable key. Similarly, you can find the corresponding node instance on the workflow instance page to view the value of the variable.
 
-![png10](https://dolphinscheduler.apache.org/img/globalParam/image-20210723102522383.png)
+<img src="/img/globalParam/use-parameter-shell.png" alt="use-parameter-shell" style="zoom:50%;" />

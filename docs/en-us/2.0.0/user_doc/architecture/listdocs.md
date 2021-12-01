@@ -2,9 +2,9 @@
 
 #### Setup instructions,  are available for each stable version of Apache DolphinScheduler below:
 
-### Versions：2.0.0-alpha
+### Versions: 2.0.0
 
-#### Links：[2.0.0-alpha Document](https://dolphinscheduler.apache.org/en-us/docs/2.0.0/user_doc/guide/quick-start.html)
+#### Links：[2.0.0 Document](https://dolphinscheduler.apache.org/en-us/docs/2.0.0/user_doc/guide/quick-start.html)
 
 ### Versions：1.3.9
 
