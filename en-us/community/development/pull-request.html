@@ -15,7 +15,7 @@
 <p>Pull Request is a way of software cooperation, which is a process of bringing code involving different functions into the trunk. During this process, the code can be discussed, reviewed, and modified.</p>
 <p>In Pull Request, we try not to discuss the implementation of the code. The general implementation of the code and its logic should be determined in Issue. In the Pull Request, we only focus on the code format and code specification, so as to avoid wasting time caused by different opinions on implementation.</p>
 <h2>Specification</h2>
-<h3>Pull Request title</h3>
+<h3>Pull Request Title</h3>
 <p>Title Format: [<code>Pull Request Type</code>-<code>Issue No</code>][<code>Module Name</code>] <code>Pull Request Description</code></p>
 <p>The corresponding relationship between <code>Pull Request Type</code> and <code>Issue Type</code> is as follows:</p>
 <table>
@@ -55,7 +55,9 @@
     </tbody>
 </table>
 <p><code>Issue No</code> refers to the Issue number corresponding to the current Pull Request to be resolved, <code>Module Name</code> is the same as the <code>Module Name</code> of Issue.</p>
-<h3>Pull Request content</h3>
+<h3>Pull Request Branch</h3>
+<p>Branch name format: <code>Pull Request type</code>-<code>Issue number</code>. e.g. Feature-3333</p>
+<h3>Pull Request Content</h3>
 <p>Please refer to the commit message section.</p>
 <h3>Pull Request Code Style</h3>
 <p>Code style is the thing you have to consider when you submit pull request for DolphinScheduler. We using <a href="https://checkstyle.sourceforge.io">Checkstyle</a>, a development tool to help programmers write Java code that adheres to a coding standard, in CI to keep DolphinScheduler codebase in the same style. Your pull request could not be merged if your code style checker failed. You could format your code by <em>Checkstyle</em> in your local environment before you submit your pull request to check code style. The activation step as below:</p>
