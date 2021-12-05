@@ -7,7 +7,7 @@ In Pull Request, we try not to discuss the implementation of the code. The gener
 
 ## Specification
 
-### Pull Request title
+### Pull Request Title
 
 Title Format: [`Pull Request Type`-`Issue No`][`Module Name`] `Pull Request Description`
 
@@ -52,7 +52,11 @@ The corresponding relationship between `Pull Request Type` and `Issue Type` is a
 
 `Issue No` refers to the Issue number corresponding to the current Pull Request to be resolved, `Module Name` is the same as the `Module Name` of Issue.
 
-### Pull Request content
+### Pull Request Branch
+
+Branch name format: `Pull Request type`-`Issue number`. e.g. Feature-3333
+
+### Pull Request Content
 
 Please refer to the commit message section.
 
@@ -82,9 +86,9 @@ For now your Checkstyle plugins are setup, it would show codes and files which o
 
 - How to deal with one Pull Request to many Issues scenario.
 
-    First of all, there are fewer scenarios for one Pull Request to many Issues. 
-    The root cause is that multiple issues need to do the same thing.
-    Usually, there are two solutions to this scenario: the first is to merge multiple issues with into the same issue, and then close the other issues;
-    the second is multiple issues have subtle differences.
-    In this scenario, the responsibilities of each issue can be clearly divided. The type of each issue is marked as Sub-Task, and then these sub task type issues are associated with one issue.
-    And each Pull Request is submitted should be associated with only one issue of a sub task.
+  First of all, there are fewer scenarios for one Pull Request to many Issues.
+  The root cause is that multiple issues need to do the same thing.
+  Usually, there are two solutions to this scenario: the first is to merge multiple issues with into the same issue, and then close the other issues;
+  the second is multiple issues have subtle differences.
+  In this scenario, the responsibilities of each issue can be clearly divided. The type of each issue is marked as Sub-Task, and then these sub task type issues are associated with one issue.
+  And each Pull Request is submitted should be associated with only one issue of a sub task.
