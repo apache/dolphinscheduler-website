@@ -19,45 +19,46 @@ export default {
         ],
       },
       {
-        title: 'User Manual',
+        title: 'Quick Start',
         children: [
-          {
-            title: 'Introduction',
-            link: '/en-us/docs/2.0.0/user_doc/guide/introduction.html',
-          },
           {
             title: 'Quick Start',
             link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
-            title: 'Installation',
-            children: [
-              {
-                title: 'Standalone Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/standalone.html',
-              },
-              {
-                title: 'Pseudo Cluster Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/pseudo-cluster.html',
-              },
-              {
-                title: 'Cluster Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/cluster.html',
-              },
-              {
-                title: 'Docker Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/docker.html',
-              },
-              {
-                title: 'Kubernetes Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
-              },
-              {
-                title: 'SkyWalking-Agent Deployment',
-                link: '/en-us/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
-              },
+            title: 'Docker Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/docker.html',
+           },
             ],
           },
+      {
+        title: 'Installation',
+        children: [
+          {
+            title: 'Standalone Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/standalone.html',
+          },
+          {
+            title: 'Pseudo Cluster Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/pseudo-cluster.html',
+          },
+          {
+            title: 'Cluster Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/cluster.html',
+          },
+          {
+            title: 'Kubernetes Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
+          },
+          {
+            title: 'SkyWalking-Agent Deployment',
+            link: '/en-us/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
+          },
+        ],
+      },
+      {
+        title: 'Introduction to Functions',
+        children: [
           {
             title: 'Workflow Overview',
             link: '/en-us/docs/2.0.0/user_doc/guide/homepage.html',
@@ -213,15 +214,15 @@ export default {
         ],
       },
       {
-        title: 'Architecture Design',
+        title: 'Advanced Guide',
         children: [
-          {
-            title: 'Metadata',
-            link: '/en-us/docs/2.0.0/user_doc/architecture/metadata.html',
-          },
           {
             title: 'Architecture Design',
             link: '/en-us/docs/2.0.0/user_doc/architecture/design.html',
+          },
+          {
+            title: 'Metadata',
+            link: '/en-us/docs/2.0.0/user_doc/architecture/metadata.html',
           },
           {
             title: 'Configuration File',
@@ -234,33 +235,6 @@ export default {
           {
             title: 'Load Balance',
             link: '/en-us/docs/2.0.0/user_doc/architecture/load-balance.html',
-          },
-        ],
-      },
-      {
-        title: 'Integration',
-        children: [
-          {
-            title: 'Ambari Integration',
-            link: '/en-us/docs/2.0.0/user_doc/integration/ambari.html',
-          },
-        ],
-      },
-      {
-        title: 'Upgrade',
-        children: [
-          {
-            title: 'Upgrade',
-            link: '/en-us/docs/2.0.0/user_doc/upgrade.html',
-          },
-        ],
-      },
-      {
-        title: 'Expansion/Reduction',
-        children: [
-          {
-            title: 'Capacity expansion and reduction',
-            link: '/en-us/docs/2.0.0/user_doc/expansion-reduction.html',
           },
         ],
       },
