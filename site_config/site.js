@@ -114,11 +114,11 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/latest/user_doc/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
         },
         {
           text: 'Developer guide',
-          link: '/en-us/development/backend-development.html',
+          link: '/en-us/development/development-environment-setup.html',
         },
       ],
     },
@@ -288,11 +288,11 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+          link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/development/backend-development.html',
+          link: '/zh-cn/development/development-environment-setup.html',
         },
       ],
     },
