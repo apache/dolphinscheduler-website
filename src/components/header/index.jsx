@@ -29,7 +29,7 @@ const searchSwitch = {
     url: 'https://www.google.com/search?q=',
   },
 };
-const noop = () => { };
+const noop = () => {};
 const propTypes = {
   currentKey: PropTypes.string,
   logo: PropTypes.string.isRequired,
@@ -49,7 +49,7 @@ class Header extends React.Component {
     super(props);
     this.state = {
       current: props.currentKey,
-      mobileMemuVisible: false,
+      menuBodyVisible: false,
       language: props.language,
       search: siteConfig.defaultSearch,
       searchValue: '',
@@ -137,15 +137,9 @@ class Header extends React.Component {
     }
   }
 
-  toggleMenu() {
-    this.setState({
-      mobileMemuVisible: !this.state.mobileMemuVisible,
-    });
-  }
-
   render() {
     const { type, logo, onLanguageChange } = this.props;
-    const { mobileMemuVisible, language, search, searchVisible } = this.state;
+    const { menuBodyVisible, language, search, searchVisible } = this.state;
     return (
       <header
         className={
@@ -156,80 +150,88 @@ class Header extends React.Component {
         }
       >
         <div className="header-body">
-          <span className={classnames({
-            'mobile-menu-btn': true,
-            [`mobile-menu-btn-${type}`]: true,
-          })}
-          />
           <a href={getLink(`/${language}/index.html`)}>
             <img className="logo" alt={siteConfig.name} title={siteConfig.name} src={getLink(logo)} />
           </a>
           {
             siteConfig.defaultSearch ?
               (
-                <div
-                  className={classnames({
-                    search: true,
-                    [`search-${type}`]: true,
-                  })}
-                >
-                  <span className="icon-search" onClick={this.toggleSearch} />
-                  {
-                    searchVisible ?
-                      (
-                        <div className="search-input">
-                          <img src={searchSwitch[search].logo} onClick={this.switchSearch} />
-                          <input autoFocus onChange={this.onInputChange} onKeyDown={this.onKeyDown} />
-                        </div>
-                      ) : null
-                  }
-                </div>
+              <div
+                className={classnames({
+                  search: true,
+                  [`search-${type}`]: true,
+                })}
+              >
+                <span className="icon-search" onClick={this.toggleSearch} />
+                {
+                  searchVisible ?
+                    (
+                    <div className="search-input">
+                      <img src={searchSwitch[search].logo} onClick={this.switchSearch} />
+                      <input autoFocus onChange={this.onInputChange} onKeyDown={this.onKeyDown} />
+                    </div>
+                    ) : null
+                }
+              </div>
               ) : null
           }
           {
             onLanguageChange !== noop ?
-              (
-                <span
-                  className={
-                    classnames({
-                      'language-switch': true,
-                      [`language-switch-${type}`]: true,
-                    })
-                  }
-                  onClick={this.switchLang}
-                >
-                  {languageSwitch.find(lang => lang.value === language).text}
-                </span>
-              )
+              (<span
+              className={
+                classnames({
+                  'language-switch': true,
+                  [`language-switch-${type}`]: true,
+                })
+              }
+              onClick={this.switchLang}
+              >
+              {languageSwitch.find(lang => lang.value === language).text}
+               </span>)
               :
               null
           }
           <div
-            className="header-menu"
+            className={
+              classnames({
+                'header-menu': true,
+                'header-menu-open': menuBodyVisible,
+              })
+            }
           >
+            <img
+              className="header-menu-toggle"
+              onClick={this.toggleMenu}
+              src={type === 'normal' ? getLink('/img/system/menu_gray.png') : getLink('/img/system/menu_white.png')}
+            />
             <div>
               <Menu className={type === 'normal' ? 'blackClass' : 'whiteClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" forceSubMenuRender>
-                {siteConfig[language].pageMenu.map(item => (
-                  item.children ?
-                    <SubMenu
-                      key={item.key}
-                      className={this.state.current === item.key ? 'ant-menu-item-selected' : ''}
-                      title={
-                        <span className="submenu-title-wrapper">
-                          <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                        </span>
-                      }
-                    >
-                      <Menu.ItemGroup className="showUL">
-                        {item.children.map(items => (
-                          <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
-                        ))}
-                      </Menu.ItemGroup>
-                    </SubMenu> :
-                    <Menu.Item key={item.key}>
+              {siteConfig[language].pageMenu.map(item => (
+                item.children ?
+                <SubMenu
+                  key={item.key}
+                  className={this.state.current === item.key ? 'ant-menu-item-selected' : ''}
+                  title={
+                    <span className="submenu-title-wrapper">
                       <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                    </Menu.Item>
-                ))}
+                      <ul style={{ display: 'none' }}>
+                      {item.children.map(items => (
+                        <li key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></li>
+                      ))}
+                      </ul>
+                    </span>
+                  }
+                >
+                  <Menu.ItemGroup className="showUL">
+                  {item.children.map(items => (
+                    <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
+                  ))}
+                  </Menu.ItemGroup>
+                </SubMenu> :
+                <Menu.Item key={item.key}>
+                  <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+                </Menu.Item>
+              ))}
               </Menu>
             </div>
           </div>

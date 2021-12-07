@@ -4,9 +4,6 @@ import Header from '../../components/header';
 import Language from '../../components/language';
 import homeConfig from '../../../site_config/home';
 import './user.scss';
-import Footer from '../../components/footer';
-import Swiper from 'swiper/swiper-bundle';
-import 'swiper/swiper-bundle.css';
 
 class User extends Language {
   constructor(props) {
@@ -16,25 +13,39 @@ class User extends Language {
       starCount: 0,
       forkCount: 0,
       index: 0,
-      swiper: null,
     };
   }
 
-  componentDidMount() {
-    this.swiper = new Swiper('.swiper-container', {
-      loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
+  addClick = (length) => {
+    if (this.state.index < length - 1) {
+      this.setState({
+        ...this.state,
+        index: this.state.index + 1,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        index: 0,
+      });
+    }
+  }
+
+  minusClick = (length) => {
+    if (this.state.index > 0) {
+      this.setState({
+        ...this.state,
+        index: this.state.index - 1,
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        index: length - 1,
+      });
+    }
   }
 
   render() {
+    const { index } = this.state;
     const language = this.getLanguage();
     const { headerType } = this.state;
     const headerLogo = headerType === 'normal' ? '/img/hlogo_colorful.svg' : '/img/hlogo_white.svg';
@@ -54,7 +65,7 @@ class User extends Language {
           <h3>
             {dataSource.ourusers.title}
           </h3>
-          <div className="button1-section">
+          <div className="button1-section" id="buttonleft">
             <div className="overflow-section">
               <ul>
                 {
@@ -70,30 +81,30 @@ class User extends Language {
         </section>
         <section className="review-section">
           <h3>{dataSource.userreview.title}</h3>
-          <div className="swiper-container">
-            <div className="swiper-wrapper">
-              {
-                dataSource.userreview.list.map((ureview, i) => (
-                  <div key={i} className="swiper-slide">
-                    <div className="slide-content">
-                      <div className="img-box">
-                        <img src={ureview.img} />
-                      </div>
+          <div className="button-section" id="buttonleft">
+            <button onClick={() => this.minusClick(dataSource.userreview.list.length)} >
+              <img src="/img/gotoleft.png" />
+            </button>
+            <div className="overflow-section">
+              <ul>
+                {
+                  dataSource.userreview.list.map((ureview, i) => (
+                    <li key={i}>
+                      <img src={ureview.img} />
                       <div className="name-section">
                         <p className="pr">{ureview.review} </p>
                         <p className="pn">{ureview.name} </p>
                       </div>
-                    </div>
-                  </div>
-                ))
-              }
+                    </li>
+                  ))[index]
+                }
+              </ul>
             </div>
-            <div className="swiper-button-next" />
-            <div className="swiper-button-prev" />
-            <div className="swiper-pagination" />
+            <button onClick={() => this.addClick(dataSource.userreview.list.length)}>
+              <img src="/img/gotoright.png" />
+            </button>
           </div>
         </section>
-        <Footer logo="/img/ds_gray.svg" language={language} />
       </div>
     );
   }

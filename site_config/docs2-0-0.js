@@ -2,7 +2,7 @@ export default {
   'en-us': {
     sidemenu: [
       {
-        title: 'About',
+        title: 'About Apache DolphinScheduler',
         children: [
           {
             title: 'Introduction',
