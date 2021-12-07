@@ -149,7 +149,7 @@ dbname="dolphinscheduler"
 # 注册中心地址，zookeeper服务的地址
 registryServers="localhost:2181"
 ```
-* 修改`conf/env/dolphinscheduler_env.sh`环境变量(以相关用到的软件都安装在 /opt/soft 下为例)
+* 修改 conf/env 目录下的`conf/env/dolphinscheduler_env.sh`环境变量(以相关用到的软件都安装在 /opt/soft 下为例)
 ```shell
 export HADOOP_HOME=/opt/soft/hadoop
 export HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop

@@ -107,8 +107,8 @@ sh script/create-dolphinscheduler.sh
 
 ## Modify configuration
 
-After completing the preparation of the basic environment, you need to modify the configuration file according to your environment. The configuration file is in the path of `conf/config/install_config.conf`. Generally, you just needs to modify the **INSTALL MACHINE, DolphinScheduler ENV, Database, Registry Server** part to complete the deployment, the following describes the parameters that must be modified
-
+After completing the preparation of the basic environment, you need to modify the configuration file according to your environment. The configuration file is in the path of `conf/config/install_config.conf` and `conf/env/dolphinscheduler_env.sh`. Generally, you just needs to modify the **INSTALL MACHINE, DolphinScheduler ENV, Database, Registry Server** part to complete the deployment, the following describes the parameters that must be modified
+* Modify `conf/config/install_config.conf`
 ```shell
 # ---------------------------------------------------------
 # INSTALL MACHINE
@@ -148,6 +148,19 @@ dbname="dolphinscheduler"
 # ---------------------------------------------------------
 # Registration center address, the address of zookeeper service
 registryServers="localhost:2181"
+```
+* Modify the environment variable in `dolphinscheduler_env.sh` file which on the 'conf/env' directory (take the relevant software installed under '/opt/soft' as an example)
+```shell
+export HADOOP_HOME=/opt/soft/hadoop
+export HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop
+# export SPARK_HOME1=/opt/soft/spark1
+export SPARK_HOME2=/opt/soft/spark2
+export PYTHON_HOME=/opt/soft/python
+export JAVA_HOME=/opt/soft/java
+export HIVE_HOME=/opt/soft/hive
+export FLINK_HOME=/opt/soft/flink
+export DATAX_HOME=/opt/soft/datax/bin/datax.py
+export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME:$PATH
 ```
 
 ## Start DolphinScheduler
