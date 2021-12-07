@@ -22,17 +22,17 @@ class Footer extends React.Component {
           </div>
           <div className="contact-container">
             <ul>
-              {
-                dataSource.contact.list.map((contact, i) => (
-                  <li key={i}>
-                    <a href={getLink(contact.link)}>
-                      <img className="img-base" src={contact.img1} />
-                      <img className="img-change" src={contact.img2} />
-                      <p>{contact.name}</p>
-                    </a>
-                  </li>
-                ))
-              }
+            {
+              dataSource.contact.list.map((contact, i) => (
+                <li key={i}>
+                  <img className="img-base" src={contact.img1} />
+                  <img className="img-change" src={contact.img2} />
+                  <a href={getLink(contact.link)}>
+                    <p>{contact.name}</p>
+                  </a>
+                </li>
+              ))
+            }
             </ul>
           </div>
           <div className="cols-container">
@@ -43,7 +43,7 @@ class Footer extends React.Component {
                   dataSource.documentation.list.map((docu, i) => (
                     <li key={i}>
                       <a href={getLink(docu.link)}>
-                        <p>{docu.text}</p>
+                      <p>{docu.text}</p>
                       </a>
                     </li>
                   ))
@@ -58,7 +58,7 @@ class Footer extends React.Component {
                   dataSource.asf.list.map((asf, i) => (
                     <li key={i}>
                       <a href={getLink(asf.link)}>
-                        <p>{asf.text}</p>
+                      <p>{asf.text}</p>
                       </a>
                     </li>
                   ))

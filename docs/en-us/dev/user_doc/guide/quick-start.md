@@ -14,11 +14,10 @@
    <img src="/img/create-queue-en.png" width="60%" />
  </p>
 
-* Create tenant
-
-<p align="center">
-  <img src="/img/create-tenant-en.png" width="60%" />
-</p>
+  * Create tenant
+      <p align="center">
+    <img src="/img/create-tenant-en.png" width="60%" />
+  </p>
 
   * Creating Ordinary Users
 <p align="center">
@@ -44,11 +43,11 @@
     <img src="/img/create-environment.png" width="60%" />
    </p>
     
-* Create a token
+ * Create a token
   
-<p align="center">
-  <img src="/img/token-en.png" width="60%" />
-</p>
+   <p align="center">
+      <img src="/img/token-en.png" width="60%" />
+    </p>
      
   
   * Login with regular users
