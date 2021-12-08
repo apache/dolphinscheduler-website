@@ -69,7 +69,3 @@ alert_spi 具体设计可见 issue：[Alert Plugin Design](https://github.com/ap
 * Script
 
   我们实现了 Shell 脚本告警，我们会将相关告警参数透传给脚本，你可以在 Shell 中实现你的相关告警逻辑，如果你需要对接内部告警应用，这是一种不错的方法。
-
-* SMS
-
-  短信告警
