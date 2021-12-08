@@ -296,6 +296,12 @@ export default {
         {
           img: '/img/ourusers/360.png',
         },
+        {
+          img: '/img/ourusers/fankewang.png',
+        },
+        {
+          img: '/img/ourusers/yueyunkeji.png',
+        },
       ],
     },
     userreview: {
@@ -552,6 +558,12 @@ export default {
         },
         {
           img: '/img/ourusers/360.png',
+        },
+        {
+          img: '/img/ourusers/fankewang.png',
+        },
+        {
+          img: '/img/ourusers/yueyunkeji.png',
         },
       ],
     },
