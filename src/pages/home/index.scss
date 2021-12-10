@@ -307,7 +307,12 @@
     }
     .swiper-pagination {
       position: absolute;
-      bottom: -50px;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      .swiper-pagination-bullet:not(:last-child){
+        margin-right: 10px;
+      }
     }
     .swiper-button-prev {
       position: absolute;
@@ -614,7 +619,8 @@
         margin: 20px 0 40px 0;
       }
       padding: 0 10px;
-      .swiper-button-next, .swiper-button-prev{
+      .swiper-button-next,
+      .swiper-button-prev {
         display: none;
       }
     }

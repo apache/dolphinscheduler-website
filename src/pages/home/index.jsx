@@ -10,8 +10,12 @@ import homeConfig from '../../../site_config/home';
 import './index.scss';
 import EventCard from '../community/eventCard';
 import debounce from 'lodash/debounce';
-import Swiper from 'swiper/swiper-bundle';
-import 'swiper/swiper-bundle.css';
+import Swiper, { Navigation, Pagination } from 'swiper/core';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+
+Swiper.use([Navigation, Pagination]);
 
 const MOBILE_WIDTH = 640;
 
@@ -32,12 +36,7 @@ class Home extends Language {
   componentDidMount() {
     window.addEventListener('scroll', () => {
       const scrollTop = getScrollTop();
-      const offsetHeight = document.querySelector('.top-section').offsetHeight - 66;
-      if (scrollTop > 66 && scrollTop <= offsetHeight) {
-        this.setState({
-          headerType: 'normal',
-        });
-      } else if (scrollTop > offsetHeight) {
+      if (scrollTop > 66) {
         this.setState({
           headerType: 'dark',
         });

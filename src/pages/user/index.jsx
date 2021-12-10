@@ -5,9 +5,12 @@ import Language from '../../components/language';
 import homeConfig from '../../../site_config/home';
 import './user.scss';
 import Footer from '../../components/footer';
-import Swiper from 'swiper/swiper-bundle';
-import 'swiper/swiper-bundle.css';
+import Swiper, { Navigation, Pagination } from 'swiper/core';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
 
+Swiper.use([Navigation, Pagination]);
 class User extends Language {
   constructor(props) {
     super(props);
