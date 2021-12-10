@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: 'https://imgpp.com/images/2021/12/10/15ede237ae3ba0f78.md.png',
+          title: '从 Airflow 到 Apache DolphinScheduler，有赞大数据开发平台的调度系统演进,
+          content: '在不久前的 Apache DolphinScheduler Meetup 2021 上...',
+          dateStr: '2021-12-10',
+          link: '/zh-cn/blog/YouZan-case-study.html',
+        },
+        {
           img: 'https://imgpp.com/images/2021/11/23/1637566412753.md.png',
           title: '荔枝机器学习平台与大数据调度系统“双剑合璧”，打造未来数据处理新模式！',
           content: '在线音频行业在中国仍是蓝海一片。根据 CIC 数据显示...',
