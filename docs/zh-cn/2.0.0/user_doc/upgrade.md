@@ -13,9 +13,12 @@
 - 以下升级操作都需要在新版本的目录进行
 
 ## 4. 数据库升级
+
+- **请先备份现有数据库**
+
 - 修改conf/datasource.properties中的下列属性
 
-- 如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.MySQL.com/archives/c-j/)] 包到 lib 目录下，这里下载的是mysql-connector-java-5.1.47.jar，然后正确配置数据库连接相关信息
+- 如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.MySQL.com/archives/c-j/)] 包到 lib 目录下，这里下载的是mysql-connector-java-8.0.16.jar，然后正确配置数据库连接相关信息
 
     ```properties
       # postgre
@@ -30,7 +33,7 @@
 
 - 执行数据库升级脚本
 
-`sh ./script/upgrade-dolphinscheduler.sh`
+`sh ./script/create-dolphinscheduler.sh`
 
 ## 5. 服务升级
 
@@ -39,21 +42,8 @@
 集群部署请参照[集群部署(Cluster)](/zh-cn/docs/2.0.0/user_doc/cluster-deployment.html)中的`6.修改运行参数部分`
 
 ### 注意事项
-创建worker分组在1.3.1版本和之前版本有了不同的设计
 
-- worker分组在1.3.1版本之前是通过UI界面创建
-- worker分组在1.3.1版本是修改worker配置指定
-
-### 1.3.1之前的版本升级1.3.2时如何设置worker分组与之前一致
-
-1、查询已备份的数据库,查看t_ds_worker_group表记录，重点看下id、name和ip_list三个字段
-
-| id | name | ip_list    |
-| :---         |     :---:      |          ---: |
-| 1   | service1     | 192.168.xx.10    |
-| 2   | service2     | 192.168.xx.11,192.168.xx.12      |
-
-2、修改conf/config/install_config.conf中的workers参数
+1、修改conf/config/install_config.conf中的workers参数
 
 假设以下为要部署的worker主机名和ip的对应关系
 | 主机名 | ip |
@@ -69,11 +59,6 @@
 workers="ds1:service1,ds2:service2,ds3:service2"
 ```
 
-### 1.3.2的worker分组进行了增强
-1.3.1版本的worker不能同时属于多个worker分组，1.3.2是可以支持的
-所以在1.3.1里面的workers="ds1:service1,ds1:service2"是不支持的，
-在1.3.2可以设置workers="ds1:service1,ds1:service2"
-  
 ### 5.2 执行部署脚本
 ```shell
 `sh install.sh`

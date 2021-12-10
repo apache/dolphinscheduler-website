@@ -10,7 +10,7 @@
 
 * JDK：下载[JDK][jdk] (1.8+)，并将 JAVA_HOME 配置到以及 PATH 变量中。如果你的环境中已存在，可以跳过这步。
 * 二进制包：在[下载页面](../../../../../../zh-cn/download/download.md)下载 DolphinScheduler 二进制包
-* 数据库：PostgreSQL (8.2.15+) 或者 MySQL (5.7+)，两者任选其一即可，如 MySQL 则需要 JDBC Driver 5.1.47+
+* 数据库：PostgreSQL (8.2.15+) 或者 MySQL (5.7+)，两者任选其一即可，如 MySQL 则需要 JDBC Driver 8.0.16
 * 注册中心：ZooKeeper (3.4.6+)，[下载地址][zookeeper]
 * 进程树分析
   * macOS安装`pstree`
@@ -83,7 +83,7 @@ mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTI
 mysql> flush privileges;
 ```
 
-运行对应数据库的最新定义文件，位置在 `sql/dolphinscheudler_*.sql` 。例如你是 mysql ，运行 `sql/dolphinscheudler_mysql.sql` ，是 postgresql 则运行 `sql/dolphinscheudler_postgre.sql`。
+运行对应数据库的最新定义文件，位置在 `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_*.sql` 。例如你是 MySQL ，运行 `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql` ，是 PostgreSQL 则运行 `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_postgre.sql`
 
 > **_NOTICE:_** 最新版本目前通过运行命令 `sh script/create-dolphinscheduler.sh` 初始化数据库的方式暂不可用，我们创建了一个[issue-6597][issue] 去追踪并修复这个问题。
 

@@ -83,13 +83,13 @@ Download [ZooKeeper](https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3
 
 #### Database
 
-The DolphinScheduler's metadata is stored in relational database. Currently supported MySQL and Postgresql. We use MySQL as an example. Start the database and create a new database named dolphinscheduler as DolphinScheduler metabase.
+The DolphinScheduler's metadata is stored in relational database. Currently supported MySQL and Postgresql. We use MySQL as an example. Start the database and create a new database named dolphinscheduler as DolphinScheduler metabase
 
-After creating the new database, run the sql file under `dolphinscheduler/sql/dolphinscheduler_mysql.sql` directly in mysql to complete the database initialization.
+After creating the new database, run the sql file under `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql` directly in MySQL to complete the database initialization
 
 #### Start Backend Server
 
-Following steps will guide how to start the DolphinScheduler backend service.
+Following steps will guide how to start the DolphinScheduler backend service
 
 ##### Backend Start Prepare
 
@@ -111,7 +111,7 @@ Following steps will guide how to start the DolphinScheduler backend service.
      task.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
   ```
 * File change
-  * If you use mysql as your metadata database, you need to modify `dolphinscheduler/pom.xml` and change the dependency `mysql-connector-java` from `scope` to `compile`. This step is not necessary to use postgresql.
+  * If you use MySQL as your metadata database, you need to modify `dolphinscheduler/pom.xml` and change the `scope` of the `mysql-connector-java` dependency to `compile`. This step is not necessary to use PostgreSQL
   * Modify database configuration, modify the database configuration in the `dolphinscheduler/dolphinscheduler-dao/datasource.properties`
 
   ```properties
@@ -122,7 +122,15 @@ Following steps will guide how to start the DolphinScheduler backend service.
   spring.datasource.password=dolphinscheduler
   ```
 
-* Log level: Add one single line `<appender-ref ref="STDOUT"/>` in file `dolphinscheduler-server/src/main/resources/logback-worker.xml`, `dolphinscheduler-server/src/main/resources/logback-master.xml`, `dolphinscheduler-api/src/main/resources/logback-api.xml` to show log in console, here we add  the result after modify as below
+* Log level: add a line `<appender-ref ref="STDOUT"/>` to the following configuration to enable the log to be displayed on the command line
+
+  `dolphinscheduler-server/src/main/resources/logback-worker.xml`
+  
+  `dolphinscheduler-server/src/main/resources/logback-master.xml` 
+  
+  `dolphinscheduler-api/src/main/resources/logback-api.xml` 
+
+  here we add the result after modify as below:
 
   ```diff
   <root level="INFO">

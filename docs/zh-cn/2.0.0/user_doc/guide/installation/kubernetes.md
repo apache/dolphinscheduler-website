@@ -68,7 +68,7 @@ echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/2.0.0/user_doc/quick-start.html)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/2.0.0/user_doc/guide/quick-start.html)查看如何使用DolphinScheduler
 
 ## 卸载 dolphinscheduler
 
@@ -189,13 +189,12 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 >
 > 如果你要使用 MySQL, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
 
-1. 下载 MySQL 驱动包 [mysql-connector-java-5.1.49.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar) (要求 `>=5.1.47`)
-
+1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
-COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
+COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
 3. 构建一个包含 MySQL 驱动包的新镜像:
@@ -232,13 +231,13 @@ externalDatabase:
 >
 > 如果你要添加 MySQL 数据源, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
 
-1. 下载 MySQL 驱动包 [mysql-connector-java-5.1.49.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar) (要求 `>=5.1.47`)
+1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (要求 `>=8.0.1`)
 
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
-COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
+COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
 3. 构建一个包含 MySQL 驱动包的新镜像:
@@ -266,7 +265,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -289,7 +288,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -322,7 +321,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*

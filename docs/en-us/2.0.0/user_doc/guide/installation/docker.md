@@ -41,7 +41,7 @@ Please download the source code package apache-dolphinscheduler-2.0.0-src.tar.gz
 ```
 $ tar -zxvf apache-dolphinscheduler-2.0.0-src.tar.gz
 $ cd apache-dolphinscheduler-2.0.0-src/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:2.0.0
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 $ docker tag apache/dolphinscheduler:2.0.0 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
@@ -60,7 +60,7 @@ The default username is `admin` and the default password is `dolphinscheduler123
   <img src="/img/login_en.png" width="60%" />
 </p>
 
-Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/2.0.0/user_doc/quick-start.html) to explore how to use DolphinScheduler
+Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/2.0.0/user_doc/guide/quick-start.html) to explore how to use DolphinScheduler
 
 ### The Second Way: Start via specifying the existing PostgreSQL and ZooKeeper service
 
@@ -81,7 +81,7 @@ In this way, you need to install [docker](https://docs.docker.com/engine/install
 We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository:
 
 ```
-docker pull apache/dolphinscheduler:2.0.0
+docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 ```
 
 #### 5. Run a DolphinScheduler Instance
@@ -374,12 +374,12 @@ done
 >
 > If you want to use MySQL, you can build a new image based on the `apache/dolphinscheduler` image as follows.
 
-1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (require `>=8.0.16`)
+1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
@@ -420,12 +420,12 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 >
 > If you want to add MySQL datasource, you can build a new image based on the `apache/dolphinscheduler` image as follows.
 
-1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (require `>=8.0.16`)
+1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
@@ -454,7 +454,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. Create a new `Dockerfile` to add Oracle driver:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -477,7 +477,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. Create a new `Dockerfile` to install pip:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -510,7 +510,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. Create a new `Dockerfile` to install Python 3:
 
 ```
-FROM apache/dolphinscheduler:2.0.0
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.0
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*

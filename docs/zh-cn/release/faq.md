@@ -1,6 +1,6 @@
 ## Q：项目的名称是？
 
-A：1.2 版本以前项目名称是 EasyScheduler，1.2 以及之后的版本叫做 DolphinScheduler。
+A：DolphinScheduler
 
 ---
 
