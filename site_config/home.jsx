@@ -56,6 +56,7 @@ export default {
       list: [
         {
           img: 'https://imgpp.com/images/2021/12/10/15ede237ae3ba0f78.md.png',
+
           title: '从 Airflow 到 Apache DolphinScheduler，有赞大数据开发平台的调度系统演进,',
           content: '在不久前的 Apache DolphinScheduler Meetup 2021 上...',
           dateStr: '2021-12-10',
