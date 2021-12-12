@@ -29,7 +29,7 @@ const searchSwitch = {
     url: 'https://www.google.com/search?q=',
   },
 };
-const noop = () => {};
+const noop = () => { };
 const propTypes = {
   currentKey: PropTypes.string,
   logo: PropTypes.string.isRequired,
@@ -49,10 +49,11 @@ class Header extends React.Component {
     super(props);
     this.state = {
       current: props.currentKey,
-      menuBodyVisible: false,
+      mobileMemuVisible: false,
       language: props.language,
       search: siteConfig.defaultSearch,
       searchValue: '',
+      submenuVisibleMap: {},
     };
   }
 
@@ -68,6 +69,17 @@ class Header extends React.Component {
       }
     } else if (localStorage.getItem('currents')) {
       this.setCurrent(localStorage.getItem('currents'));
+    }
+    if (siteConfig[this.state.language].pageMenu) {
+      const map = {};
+      siteConfig[this.state.language].pageMenu.forEach((menu) => {
+        if (menu.children && menu.children.length > 0) {
+          map[menu.key] = false;
+        }
+      });
+      this.setState({
+        submenuVisibleMap: map,
+      });
     }
   }
 
@@ -137,9 +149,37 @@ class Header extends React.Component {
     }
   }
 
+  preventScroll(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  toggleMenu() {
+    this.setState({
+      mobileMemuVisible: !this.state.mobileMemuVisible,
+    }, () => {
+      if (this.state.mobileMemuVisible) {
+        document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
+      } else {
+        document.body.removeEventListener('touchmove', this.preventScroll);
+      }
+    });
+  }
+
+  toggoleSubMenu(key) {
+    const { submenuVisibleMap } = this.state;
+    if (!submenuVisibleMap.hasOwnProperty(key)) return;
+    this.setState({
+      submenuVisibleMap: {
+        ...submenuVisibleMap,
+        [key]: !submenuVisibleMap[key],
+      },
+    });
+  }
+
   render() {
     const { type, logo, onLanguageChange } = this.props;
-    const { menuBodyVisible, language, search, searchVisible } = this.state;
+    const { mobileMemuVisible, language, search, searchVisible, submenuVisibleMap } = this.state;
     return (
       <header
         className={
@@ -150,91 +190,117 @@ class Header extends React.Component {
         }
       >
         <div className="header-body">
+          <span
+            className={classnames({
+              'mobile-menu-btn': true,
+              [`mobile-menu-btn-${type}`]: true,
+            })}
+            onClick={this.toggleMenu}
+          />
           <a href={getLink(`/${language}/index.html`)}>
             <img className="logo" alt={siteConfig.name} title={siteConfig.name} src={getLink(logo)} />
           </a>
           {
             siteConfig.defaultSearch ?
               (
-              <div
-                className={classnames({
-                  search: true,
-                  [`search-${type}`]: true,
-                })}
-              >
-                <span className="icon-search" onClick={this.toggleSearch} />
-                {
-                  searchVisible ?
-                    (
-                    <div className="search-input">
-                      <img src={searchSwitch[search].logo} onClick={this.switchSearch} />
-                      <input autoFocus onChange={this.onInputChange} onKeyDown={this.onKeyDown} />
-                    </div>
-                    ) : null
-                }
-              </div>
+                <div
+                  className={classnames({
+                    search: true,
+                    [`search-${type}`]: true,
+                  })}
+                >
+                  <span className="icon-search" onClick={this.toggleSearch} />
+                  {
+                    searchVisible ?
+                      (
+                        <div className="search-input">
+                          <img src={searchSwitch[search].logo} onClick={this.switchSearch} />
+                          <input autoFocus onChange={this.onInputChange} onKeyDown={this.onKeyDown} />
+                        </div>
+                      ) : null
+                  }
+                </div>
               ) : null
           }
           {
             onLanguageChange !== noop ?
-              (<span
-              className={
-                classnames({
-                  'language-switch': true,
-                  [`language-switch-${type}`]: true,
-                })
-              }
-              onClick={this.switchLang}
-              >
-              {languageSwitch.find(lang => lang.value === language).text}
-               </span>)
+              (
+                <span
+                  className={
+                    classnames({
+                      'language-switch': true,
+                      [`language-switch-${type}`]: true,
+                    })
+                  }
+                  onClick={this.switchLang}
+                >
+                  {languageSwitch.find(lang => lang.value === language).text}
+                </span>
+              )
               :
               null
           }
           <div
-            className={
-              classnames({
-                'header-menu': true,
-                'header-menu-open': menuBodyVisible,
-              })
-            }
+            className="header-menu"
           >
-            <img
-              className="header-menu-toggle"
-              onClick={this.toggleMenu}
-              src={type === 'normal' ? getLink('/img/system/menu_gray.png') : getLink('/img/system/menu_white.png')}
-            />
             <div>
               <Menu className={type === 'normal' ? 'blackClass' : 'whiteClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" forceSubMenuRender>
-              {siteConfig[language].pageMenu.map(item => (
-                item.children ?
-                <SubMenu
-                  key={item.key}
-                  className={this.state.current === item.key ? 'ant-menu-item-selected' : ''}
-                  title={
-                    <span className="submenu-title-wrapper">
+                {siteConfig[language].pageMenu.map(item => (
+                  item.children ?
+                    <SubMenu
+                      key={item.key}
+                      className={this.state.current === item.key ? 'ant-menu-item-selected' : ''}
+                      title={
+                        <span className="submenu-title-wrapper">
+                          <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+                        </span>
+                      }
+                    >
+                      <Menu.ItemGroup className="showUL">
+                        {item.children.map(items => (
+                          <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
+                        ))}
+                      </Menu.ItemGroup>
+                    </SubMenu> :
+                    <Menu.Item key={item.key}>
                       <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                      <ul style={{ display: 'none' }}>
-                      {item.children.map(items => (
-                        <li key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></li>
-                      ))}
-                      </ul>
-                    </span>
-                  }
-                >
-                  <Menu.ItemGroup className="showUL">
-                  {item.children.map(items => (
-                    <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
-                  ))}
-                  </Menu.ItemGroup>
-                </SubMenu> :
-                <Menu.Item key={item.key}>
-                  <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                </Menu.Item>
-              ))}
+                    </Menu.Item>
+                ))}
               </Menu>
             </div>
           </div>
+          <div className={mobileMemuVisible ? 'mobile-menu visible' : 'mobile-menu'} onScroll={this.preventScroll}>
+            <div className="mobile-menu-content">
+              <div className="mobile-menu-list">
+                {
+                  siteConfig[language].pageMenu.map(item => (
+                    <div className="mobile-menu-item" onClick={() => this.toggoleSubMenu(item.key)} >
+                      <a className="mobile-menu-title" href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+                      {
+                        item.children && item.children.length > 0 ?
+                          <em className={submenuVisibleMap[item.key] ? 'mobile-menu-icon open' : 'mobile-menu-icon'} /> :
+                          null
+                      }
+                      {
+                        item.children && item.children.length > 0 ?
+                          <div className={submenuVisibleMap[item.key] ? 'mobile-sub-menus open' : 'mobile-sub-menus'}>
+                            {
+                              item.children && item.children.map(sub => (
+                                <div className="mobile-sub-menu-item"><a href={getLink(sub.link)} target={sub.target || '_self'}>{sub.text}</a></div>
+                              ))
+                            }
+                          </div>
+                          :
+                          null
+                      }
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+            <div className="mobile-menu-dummy" onClick={this.toggleMenu} />
+          </div>
+          }
         </div>
       </header>
     );
