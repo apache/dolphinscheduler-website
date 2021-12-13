@@ -1,0 +1,6 @@
+{
+  "filename": "datasource.md",
+  "__html": "<h2>DolphinScheduler Datasource SPI 主要设计</h2>\n<h4>如何使用数据源？</h4>\n<p>数据源中心默认支持POSTGRESQL、HIVE/IMPALA、SPARK、CLICKHOUSE、SQLSERVER数据源。</p>\n<p>如果使用的是MySQL、ORACLE数据源则需要、把对应的驱动包放置lib目录下</p>\n<h4>如何进行数据源插件开发？</h4>\n<p>org.apache.dolphinscheduler.spi.datasource.DataSourceChannel\norg.apache.dolphinscheduler.spi.datasource.DataSourceChannelFactory\norg.apache.dolphinscheduler.plugin.datasource.api.client.CommonDataSourceClient</p>\n<ol>\n<li>第一步数据源插件实现以上接口和继承通用client即可，具体可以参考sqlserver、mysql等数据源插件实现，所有RDBMS插件的添加方式都是一样的。</li>\n<li>在数据源插件pom.xml添加驱动配置</li>\n</ol>\n<p>我们在 dolphinscheduler-datasource-api 模块提供了所有数据源对外访问的 API</p>\n<h4><strong>未来计划</strong></h4>\n<p>支持kafka、http、文件、sparkSQL、FlinkSQL等数据源</p>\n",
+  "link": "/dist/zh-cn/development/backend/spi/datasource.html",
+  "meta": {}
+}
