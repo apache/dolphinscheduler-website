@@ -99,7 +99,7 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
   * 修改数据库配置，修改 `dolphinscheduler-dao/src/main/resources/application-mysql.yaml` 文件中的数据库配置
 
 
-  # 本样例以 MySQL 为例，其中数据库名为 dolphinscheduler，账户名密码均为 dolphinscheduler
+  本样例以 MySQL 为例，其中数据库名为 dolphinscheduler，账户名密码均为 dolphinscheduler
   ```application-mysql.yaml
    spring:
      datasource:
