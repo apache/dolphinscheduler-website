@@ -25,6 +25,11 @@ export default {
             link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
           },
           {
+            key: 'docs1',
+            text: '1.3.9',
+            link: '/en-us/docs/1.3.9/user_doc/quick-start.html',
+          },
+          {
             key: 'docs200',
             text: 'Older Versions',
             link: '/en-us/docs/latest/user_doc/architecture/listdocs.html',
@@ -195,6 +200,11 @@ export default {
             key: 'docs0',
             text: '最新版本latest(2.0.0)',
             link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
+          },
+          {
+            key: 'docs1',
+            text: '1.3.9',
+            link: '/zh-cn/docs/1.3.9/user_doc/quick-start.html',
           },
           {
             key: 'docs200',
