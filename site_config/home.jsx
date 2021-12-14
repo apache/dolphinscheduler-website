@@ -91,7 +91,7 @@ export default {
           link: '/zh-cn/blog/new_committer_wenjun.html',
         },
         {
-          img: '/img/dailidong.png',
+          img: '/img/dailidong.jpg',
           title: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线直播',
           content: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线在线直播，700多人在线',
           dateStr: '2020-05-26',
@@ -608,7 +608,7 @@ export default {
           link: '/en-us/blog/DolphinScheduler Vulnerability Explanation.html',
         },
         {
-          img: '/img/dailidong.png',
+          img: '/img/dailidong.jpg',
           title: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap',
           content: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap，more than 700 people online',
           dateStr: '2020-05-26',
