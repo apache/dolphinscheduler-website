@@ -35,7 +35,6 @@ git clone git@github.com:apache/dolphinscheduler.git
 <h2>DolphinScheduler Standalone Quick Start</h2>
 <blockquote>
 <p><strong><em>Note:</em></strong> Standalone server only for development and debugging, cause it use H2 Database, Zookeeper Testing Server which may not stable in production
-If you want to test plugin, you can modify <code>plugin.bind</code> in StandaloneServer class or modify the configuration file by yourself.
 Standalone is only supported in DolphinScheduler 1.3.9 and later versions</p>
 </blockquote>
 <h3>Git Branch Choose</h3>
@@ -45,9 +44,6 @@ Standalone is only supported in DolphinScheduler 1.3.9 and later versions</p>
 <li>If you want to develop the latest code, choose branch branch <code>dev</code>.</li>
 </ul>
 <h3>Start backend server</h3>
-<p>Compile backend code</p>
-<pre><code class="language-shell">mvn install -DskipTests
-</code></pre>
 <p>Find the class <code>org.apache.dolphinscheduler.server.StandaloneServer</code> in Intellij IDEA and clikc run main function to startup.</p>
 <h3>Start frontend server</h3>
 <p>Install frontend dependencies and run it</p>
@@ -86,35 +82,30 @@ dataLogDir=/data/zookeeper/datalog
 <p>Open project: Use IDE open the project, here we use Intellij IDEA as an example, after opening it will take a while for Intellij IDEA to complete the dependent download</p>
 </li>
 <li>
-<p>Plugin installation(<strong>Only required for 2.0 or later</strong>): Compile plugin by command <code>mvn -U clean install -Dmaven.test.skip=true</code></p>
-<p>Note: <strong>${VERSION}</strong> needs to be manually modified according to the current version, regarding ***.plugin.binding, maven.local.repository does not need to be modified.</p>
-<ul>
-<li>alert plugin config (alert.properties)</li>
-</ul>
-<pre><code class="language-alert.properties"> alert.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
-</code></pre>
-<ul>
-<li>registry plugin config  (registry.properties)</li>
-</ul>
-<pre><code class="language-registry.properties"> registry.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
-</code></pre>
-<ul>
-<li>task plugin config (worker.properties)</li>
-</ul>
-<pre><code class="language-worker.properties">   task.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
-</code></pre>
+<p>Plugin installation(<strong>Only required for 2.0 or later</strong>)</p>
 </li>
+<li>
+<p>Registry plug-in configuration, take Zookeeper as an example (registry.properties)
+dolphinscheduler-service/src/main/resources/registry.properties</p>
+</li>
+</ul>
+<pre><code class="language-registry.properties"> registry.plugin.name=zookeeper
+ registry.servers=127.0.0.1:2181
+</code></pre>
+<ul>
 <li>
 <p>File change</p>
 <ul>
 <li>If you use MySQL as your metadata database, you need to modify <code>dolphinscheduler/pom.xml</code> and change the <code>scope</code> of the <code>mysql-connector-java</code> dependency to <code>compile</code>. This step is not necessary to use PostgreSQL</li>
-<li>Modify database configuration, modify the database configuration in the <code>dolphinscheduler/dolphinscheduler-dao/datasource.properties</code></li>
+<li>Modify database configuration, modify the database configuration in the <code>dolphinscheduler-dao/src/main/resources/application-mysql.yaml</code></li>
 </ul>
-<pre><code class="language-properties"><span class="hljs-comment"># We here use MySQL with database, username, password named dolphinscheduler as an example</span>
-<span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span>
-<span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true</span>
-<span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">dolphinscheduler</span>
-<span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">dolphinscheduler</span>
+<p>We here use MySQL with database, username, password named dolphinscheduler as an example</p>
+<pre><code class="language-application-mysql.yaml"> spring:
+   datasource:
+     driver-class-name: com.mysql.jdbc.Driver
+     url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8
+     username: ds_user
+     password: dolphinscheduler
 </code></pre>
 </li>
 <li>
