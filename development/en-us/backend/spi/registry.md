@@ -1,28 +1,27 @@
-### DolphinScheduler Registry SPI main design
+### DolphinScheduler Registry SPI Extension
 
-#### How to use it？
+#### how to use?
 
-Note: **${VERSION}** needs to be manually modified according to the current version.
+Make the following configuration (take zookeeper as an example)
 
-First you need to execute the `mvn -U install -Prelease -Dmaven.test.skip=true` to install the plugin for generating the plugin JAR of the registry. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry.
+* Registry plug-in configuration, take Zookeeper as an example (registry.properties)
+  dolphinscheduler-service/src/main/resources/registry.properties
+  ```registry.properties
+   registry.plugin.name=zookeeper
+   registry.servers=127.0.0.1:2181
+  ```
 
-Next,  please follow the configuration below (using zookeeper as an example).
+For specific configuration information, please refer to the parameter information provided by the specific plug-in, for example zk: `org/apache/dolphinscheduler/plugin/registry/zookeeper/ZookeeperConfiguration.java`
+All configuration information prefixes need to be +registry, such as base.sleep.time.ms, which should be configured in the registry as follows: registry.base.sleep.time.ms=100
 
-|        parameter        | default                                                     | description                             |
-| :---------------------: | :----------------------------------------------------------: | :--------------------------------------: |
-|   registry.plugin.dir   | ./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry | Registration Center Plugin Directory     |
-| registry.plugin.name  | zookeeper                                                    | Registration Center specific plugin name |
-| registry.plugin.binding | registry                                                     | Dolphinscheduler plugin category         |
-|    registry.servers     | 127.0.0.1:2181                                               | ZK connection address                    |
+#### How to expand
 
-For the specific configuration information, please refer to the parameter information that provided by the specific plugin. Taking zk as an example, all the parameters of this configuration information about zk are in the class org/apache/dolphinscheduler/plugin/registry/zookeeper/ZookeeperConfiguration.java. If a parameter is needed to be changed to a specific value instead of the default, it can be configured directly in the registry. However, the prefix should be added to indicate this is a parameter of the registry. For example, "base.sleep.time.ms" should be configured in the registry as: "registry.base.sleep.time.ms=100".
+`dolphinscheduler-registry-api` defines the standard for implementing plugins. When you need to extend plugins, you only need to implement `org.apache.dolphinscheduler.registry.api.RegistryFactory`.
+
+Under the `dolphinscheduler-registry-plugin` module is the registry plugin we currently provide.
 
 #### FAQ
 
-1: registry plugin not found
+1: registry connect timeout
 
-Please check if `mvn -U install -Dmaven.test.skip=true` is executed. Besides, please check if the directory is configured in registry.plugin.dir in the configuration file contains the relevant plugins.
-
-2：registry connect timeout
-
-You can add the relevant timeout parameters.
+You can increase the relevant timeout parameters.

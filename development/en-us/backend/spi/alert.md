@@ -2,71 +2,53 @@
 
 #### DolphinScheduler SPI Design
 
-The architecture of microkernel & plug-in of DolphinScheduler is changing. All core capabilities such as tasks, resource storage, registry, etc. will be designed to be extensions, and we want to improve the flexibility as well as the friendliness (extensibility) of DolphinScheduler itself through SPI.
+DolphinScheduler is undergoing a microkernel + plug-in architecture change. All core capabilities such as tasks, resource storage, registration centers, etc. will be designed as extension points. We hope to use SPI to improve DolphinScheduler’s own flexibility and friendliness (extended sex).
 
-You can read the relevant code under the dolphinscheduler-spi module as a reference. The extended interface of the associated plug-in is under the module, and when we need to implement the relevant function plug-in, it is recommended to read this code block first. Of course, you are welcomed to read the documentation, which will save a lot less time. However, the documentation has a certain lag and when it is missing, it is suggested to take the source code as the reference (If you are interested, we also welcome you to submit relevant documents).  In addition, we rarely change the extension (excluding additions) to the extension interface, except for major architectural changes where there is an incompatible upgrade version. Hence, the existing documentation is generally adequate.
+For alarm-related codes, please refer to the `dolphinscheduler-alert-api` module. This module defines the extension interface of the alarm plug-in and some basic codes. When we need to realize the plug-inization of related functions, it is recommended to read the code of this block first. Of course, it is recommended that you read the document. This will reduce a lot of time, but the document There is a certain degree of lag. When the document is missing, it is recommended to take the source code as the standard (if you are interested, we also welcome you to submit related documents). In addition, we will hardly make changes to the extended interface (excluding new additions) , Unless there is a major structural adjustment, there is an incompatible upgrade version, so the existing documents can generally be satisfied.
 
-When you need to extend, you actually only need to focus on the extension interface. For example, for the alert service you only need to focus on the AlertChannelFactory and the AlertChannel. The underlying logic is already implemented by DolphinScheduler, which makes our development much more focused and simpler.
+We use the native JAVA-SPI, when you need to extend, in fact, you only need to pay attention to the extension of the `org.apache.dolphinscheduler.alert.api.AlertChannelFactory` interface, the underlying logic such as plug-in loading, and other kernels have been implemented, Which makes our development more focused and simple.
 
-By the way, we use an excellent front-end component, form-create, which supports the generation of front-end ui components based on json. If plugin development involves a front-end, we will use json to generate the relevant front-end UI components. The parameters of the plugin are wrapped in org.apache.dolphinscheduler.spi.params, which converts all the relevant parameters into json, meaning that you can draw the front-end components (mainly forms here, we only care about the data of front and back-end interaction) in Java code.
+By the way, we have adopted an excellent front-end component form-create, which supports the generation of front-end UI components based on JSON. If plug-in development involves the front-end, we will use JSON to generate related front-end UI components, org.apache.dolphinscheduler. The parameters of the plug-in are encapsulated in spi.params, which will convert all the relevant parameters into the corresponding JSON, which means that you can complete the drawing of the front-end components by way of Java code (here is mainly the form, we only care Data exchanged between the front and back ends).
 
-This article focuses on the design and development of Alert alerts.
+This article mainly focuses on the design and development of Alert.
 
 #### Main Modules
 
-If you don't care about its internal design, and just want to know how to develop your own alarm plugin, you can skip this section.
+If you don't care about its internal design, but simply want to know how to develop your own alarm plug-in, you can skip this content.
 
-* dolphinscheduler-spi
+* dolphinscheduler-alert-api
 
-     This module is the core SPI module and provides the basic SPI relevant behaviour, where dolphinschedulerplugin is the plugin top-layer interface, all DolphinsCheduler's plugins must implement the interface, and the module also provides some universal tool classes (if you can detach it again Some will something will be better? For example, the UI, we currently use the parameter part) and some UI related basic information.
+  This module is the core module of ALERT SPI. This module defines the interface of the alarm plug-in extension and some basic codes. The extension plug-in must implement the interface defined by this module: `org.apache.dolphinscheduler.alert.api.AlertChannelFactory`
 
-* dolphinscheduler-alert
+* dolphinscheduler-alert-plugins
 
-     In this module, we have implemented the load of the associated plugin when the Alert-Server starts. Alert provides a variety of plug-in configuration methods that can be enabled by simple configurations after you have done the development. The configuration file is located at dolphinscheduler-alert/src/main/resources/alert.properties .
-
-     It provides two methods of configuration.
-
-     1: Configure the jar directory specified by the plugin, eg: alert.plugin.dir=/root/dolphinscheduler/lib/plugin/alert . When alert-server starts, it will load the jar of the relevant plugin from the specified directory.
-
-     2: IDE development mode
-
-     You can use this configuration when you are in the debugging phase of development, see [dolphinscheduler-maven-plugin](https://github.com/apache/incubator-dolphinscheduler-maven-plugin) for design principles.
-
-     
-
- * Packaging plugins
-
- We use provisio, an excellent packaging tool, for packaging plugins. Please add it to dolphinscheduler-dist/src/main/provisio/dolphinscheduler.xml, and it will package plugins to the specified directory when processed.
-
+  This module is currently a plug-in provided by us, such as Email, DingTalk, Script, etc.
 
 
 #### Alert SPI Main class information.
-
 AlertChannelFactory
-All alert plugins need to implement this interface. The interface is used to define the name of the alert plugin and the required parameters.
+Alarm plug-in factory interface. All alarm plug-ins need to implement this interface. This interface is used to define the name of the alarm plug-in and the required parameters. The create method is used to create a specific alarm plug-in instance.
 
 AlertChannel
-The interface of the alarm plug-in. The alarm plugin needs to implement the interface. It only has one method process. The upper alarm system calls the method and gets the return information of the alert by the AlertResult returned by this method.
+The interface of the alert plug-in. The alert plug-in needs to implement this interface. There is only one method process in this interface. The upper-level alert system will call this method and obtain the return information of the alert through the AlertResult returned by this method.
 
 AlertData
-Alert content information. It includes id, title, content and log. 
+Alarm content information, including id, title, content, log.
 
 AlertInfo
-Alarm-related information. When the upper system calls the alarm plug-in instance, the instance of this class is incorporated into the specific alarm plugin through the Process method. It contains the parameter information filled in the front end of the alarm content AlertData and the called alarm plugin instance.
+For alarm-related information, when the upper-level system calls an instance of the alarm plug-in, the instance of this class is passed to the specific alarm plug-in through the process method. It contains the alert content AlertData and the parameter information filled in by the front end of the called alert plug-in instance.
 
 AlertResult
-The alert plugin sends an alert return message.
+The alarm plug-in sends alarm return information.
 
-org.apache.dolphinscheduler.spi.params 
-This package contains the plug-in parameter definitions. We use alpacajs, a front-end library http://www.form-create.com, which dynamically generates the front-end ui based on the parameter list json returned by the plug-in definition, so we don't need to care about the front-end when doing SPI plug-in development.
+org.apache.dolphinscheduler.spi.params
+This package is a plug-in parameter definition. Our front-end uses the from-create front-end library http://www.form-create.com, which can dynamically generate the front-end UI based on the parameter list json returned by the plug-in definition, so We don't need to care about the front end when we are doing SPI plug-in development.
 
-Inside this package we currently only wrap RadioParam, TextParam and PasswordParam, which are used to define parameters of text, radio and password respectively.
+Under this package, we currently only encapsulate RadioParam, TextParam, and PasswordParam, which are used to define text type parameters, radio parameters and password type parameters, respectively.
 
-AbsPluginParams 
+AbsPluginParams This class is the base class of all parameters, RadioParam these classes all inherit this class. Each DS alert plug-in will return a list of AbsPluginParams in the implementation of AlertChannelFactory.
 
-This class is the base class for all parameters and is inherited by the RadioParam classes. Each DS alert plugin returns a list of AbsPluginParams in the AlertChannelFactory implementation.
-
-The specific design of alert_spi can be found in issue: [Alert Plugin Design](https://github.com/apache/incubator-dolphinscheduler/issues/3049)
+The specific design of alert_spi can be seen in the issue: [Alert Plugin Design](https://github.com/apache/incubator-dolphinscheduler/issues/3049)
 
 #### Alert SPI built-in implementation
 
@@ -91,20 +73,3 @@ The specific design of alert_spi can be found in issue: [Alert Plugin Design](ht
 * SMS
 
      SMS alerts
-
-#### Alarm Custom Plugin Development
-
-In fact, it's very easy to implement a plugin by yourself, you only need to care about the plugin extension interface. In Alert you only need to care about the AlertChannelFactory and AlertChannel. We would recommend that you follow the design specifications of other built-in plugins so that when your idea is good enough, you can donate it to the community without having to change it too much.
-
-When you complete the development of the relevant code, you need to execute `mvn -U install -Dmaven.test.skip=true` to install the plug-in and generate the plug-in jar of the alert. The directory is: dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert (the version number will change with the main version number)
-
-Note: **${VERSION}** needs to be manually modified according to the current version. regarding alert.plugin.binding, maven.local.repository does not need to be modified.
-
-alert.properties configuration
-```
-alert.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert
-```
-
-Then, you can happily start using your own plugins.
-
-In fact, custom plug-in development is as easy as we described, and not as difficult as you imagined.
