@@ -126,7 +126,7 @@ mvn -B verify --no-transfer-progress
 ![avatar](/img/cicd_workflow/B5B15323-7379-4332-AEAC-7E70DBE2F924.jpeg)
 
 - 节点6: staging
-这个节点在项目预发布的模拟环境中部署，本地部署到端口 http:localhost:5000。
+这个节点在项目预发布的模拟环境中部署，本地部署到端口 http://localhost:5000。
 
 ```sh
 pwd 
