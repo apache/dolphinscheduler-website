@@ -30,7 +30,7 @@ A：支持绝大多数邮箱，qq、163、126、139、outlook、aliyun 等皆支
 
 ## Q：常用的系统变量时间参数有哪些，如何使用？
 
-A：请参考[使用手册](/zh-cn/docs/1.3.4/user_doc/system-manual.html) 第8小节
+A：请参考[使用手册](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.4/user_doc/system-manual.html) 第8小节
 
 ---
 
