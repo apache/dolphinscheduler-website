@@ -8,7 +8,7 @@
 
 ## 安装 dolphinscheduler
 
-请下载源码包 apache-dolphinscheduler-incubating-1.3.5-src.zip，下载地址: [下载](/zh-cn/download/download.html)
+请下载源码包 apache-dolphinscheduler-incubating-1.3.5-src.zip，下载地址: [下载](https://dolphinscheduler.apache.org/zh-cn/download/download.html)
 
 发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下命令：
 

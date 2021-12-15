@@ -9,7 +9,7 @@
 
 ## 3. Download the new version's installation package.
 
-- [Download](/en-us/download/download.html) the latest version of the installation packages.
+- [download](https://dolphinscheduler.apache.org/en-us/download/download.html) the latest version of the installation packages.
 - The following upgrade operations need to be performed in the new version's directory.
 
 ## 4. Database upgrade

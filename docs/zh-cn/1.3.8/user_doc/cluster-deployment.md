@@ -14,7 +14,7 @@
 
 # 2、下载二进制tar.gz包
 
-- 请下载最新版本的后端安装包至服务器部署目录，比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](/zh-cn/download/download.html)，下载后上传 tar 包到该目录中，并进行解压
+- 请下载最新版本的后端安装包至服务器部署目录，比如创建 /opt/dolphinscheduler 做为安装部署目录，下载地址： [下载](https://dolphinscheduler.apache.org/zh-cn/download/download.html)，下载后上传 tar 包到该目录中，并进行解压
 
 ```shell
 # 创建部署目录，部署目录请不要创建在 /root、/home 等高权限目录 

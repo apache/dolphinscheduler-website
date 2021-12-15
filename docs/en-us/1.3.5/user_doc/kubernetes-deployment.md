@@ -8,7 +8,7 @@
 
 ## Installing the Chart
 
-Please download the source code package apache-dolphinscheduler-incubating-1.3.5-src.zip, download address: [download](/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-incubating-1.3.5-src.zip, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html)
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
 

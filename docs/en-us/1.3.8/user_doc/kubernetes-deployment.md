@@ -8,7 +8,7 @@
 
 ## Installing the Chart
 
-Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: [download](/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html)
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
 

@@ -30,7 +30,7 @@
 
 #### 1、下载源码包
 
-请下载源码包 apache-dolphinscheduler-1.3.6-src.tar.gz，下载地址: [下载](/zh-cn/download/download.html)
+请下载源码包 apache-dolphinscheduler-1.3.6-src.tar.gz，下载地址: [下载](https://dolphinscheduler.apache.org/zh-cn/download/download.html)
 
 #### 2、拉取镜像并启动服务
 
@@ -318,7 +318,7 @@ C:\dolphinscheduler-src>.\docker\build\hooks\build.bat
 
 #### 2. 从二进制包构建 (不需要 Maven 3.3+ & JDK 1.8+)
 
-请下载二进制包 apache-dolphinscheduler-1.3.6-bin.tar.gz，下载地址: [下载](/zh-cn/download/download.html). 然后将 apache-dolphinscheduler-1.3.6-bin.tar.gz 放到 `apache-dolphinscheduler-1.3.6-src/docker/build` 目录里，在 Terminal 或 PowerShell 中执行:
+请下载二进制包 apache-dolphinscheduler-1.3.6-bin.tar.gz，下载地址: [下载](https://dolphinscheduler.apache.org/zh-cn/download/download.html). 然后将 apache-dolphinscheduler-1.3.6-bin.tar.gz 放到 `apache-dolphinscheduler-1.3.6-src/docker/build` 目录里，在 Terminal 或 PowerShell 中执行:
 
 ```
 $ cd apache-dolphinscheduler-1.3.6-src/docker/build

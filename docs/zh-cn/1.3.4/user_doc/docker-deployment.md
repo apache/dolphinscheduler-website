@@ -15,7 +15,7 @@
 
 #### 1、下载源码包
 
-请下载源码包 apache-dolphinscheduler-incubating-1.3.4-src.zip，下载地址: [下载](/zh-cn/download/download.html)
+请下载源码包 apache-dolphinscheduler-incubating-1.3.4-src.zip，下载地址: [下载](https://dolphinscheduler.apache.org/zh-cn/download/download.html)
 
 #### 2、拉取镜像并启动服务
 

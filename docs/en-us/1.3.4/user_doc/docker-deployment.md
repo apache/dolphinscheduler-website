@@ -15,7 +15,7 @@ In this way, you need to install [docker-compose](https://docs.docker.com/compos
 
 #### 1. Download the Source Code Package
 
-Please download the source code package apache-dolphinscheduler-incubating-1.3.4-src.zip, download address: [download](/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-incubating-1.3.4-src.zip, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html)
 
 #### 2. Pull Image and Start the Service
 
