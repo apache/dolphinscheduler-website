@@ -2,7 +2,7 @@
 
 DolphinScheduler, as an open-source distributed workflow task scheduling system, can be well deployed and run in Intel architecture server environments and mainstream virtualization environments, and supports mainstream Linux operating system environments.
 
-## 1. Linux operating system version requirements
+## 1. Linux Operating System Version Requirements
 
 | OS       | Version         |
 | :----------------------- | :----------: |
