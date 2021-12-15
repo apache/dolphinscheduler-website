@@ -28,7 +28,7 @@ DolphinScheduler具有以下几个优良功能特性：
 
 - **简单易用** — 所有流程定义操作可视化编排，定义关键信息一目了然，一键部署
 
-关于DolphinSheduler更多功能介绍和开发文档请查阅官网详细信息https://dolphinscheduler.apache.org/zh-cn/
+关于DolphinSheduler更多功能介绍和开发文档请查阅官网详细信息 https://dolphinscheduler.apache.org
 
 
 ## 架构演进过程
