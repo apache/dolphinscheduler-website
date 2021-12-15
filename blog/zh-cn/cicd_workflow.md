@@ -150,7 +150,7 @@ echo END
 ![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
 
 ##### Rollback
-这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](/img/cicd_workflow/rollback.json)
+这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](https://dolphinscheduler.apache.org//img/cicd_workflow/rollback.json)
 
 ![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/12D3F0CE-18FE-4163-951A-4E0734A42EC2_4_5005_c.jpeg)
 
@@ -212,7 +212,7 @@ echo END
 ![](https://dolphinscheduler.apache.org/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
 
 ##### Feature Release
-这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](/img/cicd_workflow/feature_release.json)
+这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](https://dolphinscheduler.apache.org//img/cicd_workflow/feature_release.json)
 
 ![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/5162B6A2-67C8-4EAD-BE7A-992D0AE90CD1_4_5005_c.jpeg)
 
