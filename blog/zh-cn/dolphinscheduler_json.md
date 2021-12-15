@@ -16,7 +16,7 @@
 
 1、比如在当前1.3.6版本创建个a-->b的工作流
 
-![image-20210524102618970](/img/dolphinscheduler_json_20210601/image-20210524102618970.png)
+![image-20210524102618970](https://dolphinscheduler.apache.org/img/dolphinscheduler_json_20210601/image-20210524102618970.png)
 
 以下是processDefiniton save 接口在controller入口打印的入参日志
 
@@ -26,7 +26,7 @@ create  process definition, project name: hadoop, process definition name: ab, p
 
 2、依赖节点的工作流，dep是依赖节点
 
-![image-20210524104503423](/img/dolphinscheduler_json_20210601/image-20210524104503423.png)
+![image-20210524104503423](https://dolphinscheduler.apache.org/img/dolphinscheduler_json_20210601/image-20210524104503423.png)
 
 
 
@@ -40,7 +40,7 @@ create  process definition, project name: hadoop, process definition name: ab, p
 
 3、条件判断的工作流
 
-![image-20210524104218236](/img/dolphinscheduler_json_20210601/image-20210524104218236.png)
+![image-20210524104218236](https://dolphinscheduler.apache.org/img/dolphinscheduler_json_20210601/image-20210524104218236.png)
 
 以下是processDefiniton save 接口在controller入口打印的入参日志
 
@@ -50,7 +50,7 @@ create  process definition, project name: hadoop, process definition name: condi
 
 从以上三个案例中，我们知道controller的入口参数的每个参数都可以在t_ds_process_definition表中找到对应，故表中数据如下图
 
-![image-20210524104838911](/img/dolphinscheduler_json_20210601/image-20210524104838911.png)
+![image-20210524104838911](https://dolphinscheduler.apache.org/img/dolphinscheduler_json_20210601/image-20210524104838911.png)
 
 ### 2、拆解后的表设计思路
 
@@ -646,13 +646,13 @@ CREATE TABLE `t_ds_process_task_relation_log` (
 
 对于依赖关系复杂的场景
 
-![image-20210524144950185](/img/dolphinscheduler_json_20210601/image-20210524144950185.png)
+![image-20210524144950185](https://dolphinscheduler.apache.org/img/dolphinscheduler_json_20210601/image-20210524144950185.png)
 
 
 
 ## 3、API模块如何改造
 
-![拆分方案-1620304011852](/img/dolphinscheduler_json_20210601/1620304011852-1621754591271.png)
+![拆分方案-1620304011852](https://dolphinscheduler.apache.org/img/dolphinscheduler_json_20210601/1620304011852-1621754591271.png)
 
 - [ ] api模块进行save操作时
 
@@ -669,7 +669,7 @@ CREATE TABLE `t_ds_process_task_relation_log` (
 
 ## 4、数据交互如何改造
 
-![json](/img/dolphinscheduler_json_20210601/json.png)
+![json](https://dolphinscheduler.apache.org/img/dolphinscheduler_json_20210601/json.png)
 
 
 
