@@ -13,7 +13,7 @@
  * ZooKeeper (3.4.6+)：必装 
  * pstree or psmisc：Mac OS必装pstree，Fedora/Red/Hat/CentOS/Ubuntu/Debian必装psmisc
  * Hadoop (2.6+) or MinIo：选装， 如果需要使用到资源上传功能，可以选择Hadoop or MinIo
- * [Hive](1.2.1)：选装，hive任务提交需要安装
+ * Hive (1.2.1)：选装，hive任务提交需要安装
  * Spark (1.x,2.x)：选装，Spark任务提交需要安装
  
 ```
