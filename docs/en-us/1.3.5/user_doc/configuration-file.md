@@ -1,4 +1,4 @@
-
+<!-- markdown-link-check-disable -->
 
 # Preface
 This document explains the DolphinScheduler application configurations according to DolphinScheduler-1.3.x versions.
