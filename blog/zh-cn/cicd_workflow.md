@@ -126,7 +126,7 @@ mvn -B verify --no-transfer-progress
 ![avatar](/img/cicd_workflow/B5B15323-7379-4332-AEAC-7E70DBE2F924.jpeg)
 
 - 节点6: staging
-这个节点在项目预发布的模拟环境中部署，本地部署到端口 http://localhost:5000。
+这个节点在项目预发布的模拟环境中部署，本地部署到端口 http://localhost:5000 。
 
 ```sh
 pwd 
@@ -145,7 +145,7 @@ echo END
 
 ![avatar](/img/cicd_workflow/1989B620-63EC-45C8-B148-22CD5F2AB528.jpeg)
 
-同时，因为staging_port变量在此处被设置为 localhost:5000，所以在本地也可以看到部署完成的页面如下
+同时，因为staging_port变量在此处被设置为 localhost:5000 ，所以在本地也可以看到部署完成的页面如下
 
 ![avatar](/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
 
