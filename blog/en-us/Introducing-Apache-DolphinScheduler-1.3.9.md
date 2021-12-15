@@ -72,7 +72,7 @@ There are many ways to participate in and contribute to the Apache DolphinSchedu
 
 Apache DolphinScheduler Community needs you! Even if a small piece of tile will make a big differnce.
 
-If you are interested in contributing code we created [Good First Issues ](https://github.com/apache/dolphinscheduler/issues/5689) to get you started. If you have any questions about [code](https://github.com/apache/dolphinscheduler), [installation](https://dolphinscheduler.apache.org/en-us/download/download.html), and [docs](https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/quick-start.html) please do not hesitate to reach out to us on [slack](https://app.slack.com/client/T01L3LB96V7/C01LUG59GPR).
+If you are interested in contributing code we created [Good First Issues ](https://github.com/apache/dolphinscheduler/issues/5689) to get you started. If you have any questions about [code](https://github.com/apache/dolphinscheduler), [installation](https://dolphinscheduler.apache.org/en-us/download/download.html), and [docs](https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/quick-start.html) please do not hesitate to reach out to us on [slack](https://app.slack.com/client/T01L3LB96V7/C01LUG59GPR).
 
 **Community Official Website**
 
