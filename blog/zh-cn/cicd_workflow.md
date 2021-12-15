@@ -269,7 +269,7 @@ echo END
 
 ![](/img/cicd_workflow/BFE0DB23-148B-4D0E-8C4D-C7DB51570593.jpeg)
 
-同时，因为port_number变量在此处被设置为localhost：8098，所以在本地也可以看到部署完成的页面如下
+同时，因为port_number变量在此处被设置为 localhost:8098，所以在本地也可以看到部署完成的页面如下
 
 ![](/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
 
