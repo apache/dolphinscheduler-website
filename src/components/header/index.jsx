@@ -300,7 +300,6 @@ class Header extends React.Component {
             </div>
             <div className="mobile-menu-dummy" onClick={this.toggleMenu} />
           </div>
-          }
         </div>
       </header>
     );
