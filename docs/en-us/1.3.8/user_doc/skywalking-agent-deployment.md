@@ -71,4 +71,4 @@ Copy the `${dolphinscheduler.home}/ext/skywalking-agent/dashboard/dolphinschedul
 
 If you have opened SkyWalking dashboard with a browser before, you need to clear the browser cache.
 
-![img1](/img/skywalking/import-dashboard-1.jpg)
+![img1](https://dolphinscheduler.apache.org/img/skywalking/import-dashboard-1.jpg)

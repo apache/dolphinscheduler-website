@@ -71,4 +71,4 @@ skywalkingLogReporterPort="11800"
 
 如果之前已经使用浏览器打开过 Skywalking，则需要清空浏览器缓存。
 
-![img1](/img/skywalking/import-dashboard-1.jpg)
+![img1](https://dolphinscheduler.apache.org/img/skywalking/import-dashboard-1.jpg)
