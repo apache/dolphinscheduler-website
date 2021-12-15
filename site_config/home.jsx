@@ -598,14 +598,14 @@ export default {
           title: 'DolphinScheduler Vulnerability Explanation',
           content: 'The Apache DolphinScheduler community mailing list recently ...',
           dateStr: '2021-10-26',
-          link: '/en-us/blog/DolphinScheduler Vulnerability Explanation.html',
+          link: '/en-us/blog/DolphinScheduler-Vulnerability-Explanation.html',
         },
         {
           img: '/img/2021-03-16/boyi.png',
           title: 'DolphinScheduler Vulnerability Explanation',
           content: 'DolphinScheduler Vulnerability Explanation',
           dateStr: '2021-10-26',
-          link: '/en-us/blog/DolphinScheduler Vulnerability Explanation.html',
+          link: '/en-us/blog/DolphinScheduler-Vulnerability-Explanation.html',
         },
         {
           img: '/img/dailidong.jpg',
