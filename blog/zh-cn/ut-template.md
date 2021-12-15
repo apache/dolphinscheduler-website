@@ -185,7 +185,7 @@
 
 Controller UT 架构如下：
 
-![ut-controller-architecture](/img/unit-test/ut-controller-architecture.png)
+![ut-controller-architecture](https://dolphinscheduler.apache.org//img/unit-test/ut-controller-architecture.png)
 
 对于新增的 controller，其测试代码编写步骤如下：
 
