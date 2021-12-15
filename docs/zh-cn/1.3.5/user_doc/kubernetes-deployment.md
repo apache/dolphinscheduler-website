@@ -8,7 +8,7 @@
 
 ## 安装 dolphinscheduler
 
-请下载源码包 apache-dolphinscheduler-incubating-1.3.5-src.zip，下载地址: [下载](https://dolphinscheduler.apache.org/zh-cn/download/download.html)
+请下载源码包 apache-dolphinscheduler-incubating-1.3.5-src.zip，下载地址: [下载](/zh-cn/download/download.html)
 
 发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下命令：
 
@@ -53,7 +53,7 @@ $ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
-请参考用户手册章节的[快速上手](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.5/user_doc/quick-start.html) 查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.5/user_doc/quick-start.html) 查看如何使用DolphinScheduler
 
 ## 卸载 dolphinscheduler
 

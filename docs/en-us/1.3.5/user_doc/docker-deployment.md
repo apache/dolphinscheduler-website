@@ -15,7 +15,7 @@ In this way, you need to install [docker-compose](https://docs.docker.com/compos
 
 #### 1. Download the Source Code Package
 
-Please download the source code package apache-dolphinscheduler-incubating-1.3.5-src.zip, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-incubating-1.3.5-src.zip, download address: [download](/en-us/download/download.html)
 
 #### 2. Pull Image and Start the Service
 
@@ -39,7 +39,7 @@ The default username is `admin` and the default password is `dolphinscheduler123
   <img src="/img/login_en.png" width="60%" />
 </p>
 
-Please refer to the `Quick Start` in the chapter [User Manual](https://dolphinscheduler.apache.org/en-us/docs/1.3.5/user_doc/quick-start.html) to explore how to use DolphinScheduler
+Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/1.3.5/user_doc/quick-start.html) to explore how to use DolphinScheduler
 
 ### The Second Way: Start via specifying the existing PostgreSQL and ZooKeeper service
 
@@ -266,7 +266,7 @@ Please read `./docker/build/hooks/build` `./docker/build/hooks/build.bat` script
 
 #### 2. Build from the binary distribution (Not require Maven 3.3+ & JDK 1.8+)
 
-Please download the binary distribution package apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html). And put apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz into the `apache-dolphinscheduler-incubating-1.3.5-src-release/docker/build` directory, execute in Terminal or PowerShell:
+Please download the binary distribution package apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz, download address: [download](/en-us/download/download.html). And put apache-dolphinscheduler-incubating-1.3.5-dolphinscheduler-bin.tar.gz into the `apache-dolphinscheduler-incubating-1.3.5-src-release/docker/build` directory, execute in Terminal or PowerShell:
 
 ```
 $ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/build

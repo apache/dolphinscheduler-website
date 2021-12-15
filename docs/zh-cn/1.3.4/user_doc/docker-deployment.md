@@ -15,7 +15,7 @@
 
 #### 1、下载源码包
 
-请下载源码包 apache-dolphinscheduler-incubating-1.3.4-src.zip，下载地址: [下载](https://dolphinscheduler.apache.org/zh-cn/download/download.html)
+请下载源码包 apache-dolphinscheduler-incubating-1.3.4-src.zip，下载地址: [下载](/zh-cn/download/download.html)
 
 #### 2、拉取镜像并启动服务
 
@@ -39,7 +39,7 @@ $ docker-compose up -d
   <img src="/img/login.png" width="60%" />
 </p>
 
-请参考用户手册章节的[快速上手](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.4/user_doc/quick-start.html) 查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.4/user_doc/quick-start.html) 查看如何使用DolphinScheduler
 
 ### 二、通过指定已存在的 PostgreSQL 和 ZooKeeper 服务
 

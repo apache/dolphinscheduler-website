@@ -48,7 +48,7 @@ DolphinScheduler最初进入Apache孵化器的版本是1.2，在这一版本中�
 - 异步派发任务会导致**任务执行延迟**
 - 由于masker和worker都需要依赖数据库，导致数据库压力大
 
-[![archdiagram_zh.svg](https://dolphinscheduler.apache.org/img/archdiagram_zh.svg)]
+[![archdiagram_zh.svg](/img/archdiagram_zh.svg)]
 
 
 
@@ -68,7 +68,7 @@ DolphinScheduler最初进入Apache孵化器的版本是1.2，在这一版本中�
 - master轮询数据库，仍然导致**数据库压力大**
 - 各组件存在**耦合**情况
 
-![系统架构图](https://dolphinscheduler.apache.org/img/architecture-1.3.0.jpg)
+![系统架构图](/img/architecture-1.3.0.jpg)
 
 
 

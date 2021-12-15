@@ -8,7 +8,7 @@
 
 ## Installing the Chart
 
-Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: [download](/en-us/download/download.html)
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
 
@@ -63,7 +63,7 @@ And then access the web: http://$NODE_IP:$NODE_PORT/dolphinscheduler
 
 The default username is `admin` and the default password is `dolphinscheduler123`
 
-Please refer to the `Quick Start` in the chapter [User Manual](https://dolphinscheduler.apache.org/en-us/docs/1.3.8/user_doc/quick-start.html) to explore how to use DolphinScheduler
+Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/1.3.8/user_doc/quick-start.html) to explore how to use DolphinScheduler
 
 ## Uninstalling the Chart
 

@@ -20,9 +20,9 @@ CD 指持续交付/持续部署。持续交付代表将完成的代码自动交�
 基于现有的ds功能，我们找到一个小型项目当作此次尝试的范例。被选中的项目[spring-boot-vuejs](https://github.com/jonashackt/spring-boot-vuejs) 具有前端和后端，可以较为直观的看到部署的结果，它的CI/CD流程也比较简明。这个实例中，我们采用的部署形式是本地部署/单机部署，不考虑到多台机器或者集群的影响。在为项目工作流配置完全局变量和本地变量后，便可以使其上线运行，完成的工作流如下。
 
 ##### Packaging
-这个工作流共包含6个shell节点，用于CI/CD流程中的代码获取，构建，测试，打包，预发布（staging）。详见导出的[工作流文件](https://dolphinscheduler.apache.org/img/cicd_workflow/feature_release.json)
+这个工作流共包含6个shell节点，用于CI/CD流程中的代码获取，构建，测试，打包，预发布（staging）。详见导出的[工作流文件](/img/cicd_workflow/feature_release.json)
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/7A715483-ABF1-44C1-AC6F-CDED1623CC07_4_5005_c.jpeg)
+![avatar](/img/cicd_workflow/7A715483-ABF1-44C1-AC6F-CDED1623CC07_4_5005_c.jpeg)
 
 - 节点1: check repo
 这个节点的目的是检查本地是否已经有最新的代码版本，分别通过git clone和git pull获取代码库和更新。环节的开始和结束，均会在日志中有提醒。
@@ -56,7 +56,7 @@ echo End of repo checkout/update
 ```
 如果节点运行成功，本地已存在目标代码库，此时可以执行git pull (前提保证本地更新已经提交) 。
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/6A1478C7-3824-47F5-9E48-5BC04FB20B3E.jpeg)
+![avatar](/img/cicd_workflow/6A1478C7-3824-47F5-9E48-5BC04FB20B3E.jpeg)
 
 - 节点2: build with java8
 这个节点基于项目使用java的maven框架，进行构建。因为此实例使用的java版本为8和16。以本地默认java版本java8执行命令。
@@ -74,7 +74,7 @@ mvn -B install --no-transfer-progress
 ```
 如果节点运行成功，日志中会出现“BUILD SUCCESS”，显示构建完成并且成功。
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/D48B0EAD-D0A0-40D3-AD19-0A19F83DD39E.jpeg)
+![avatar](/img/cicd_workflow/D48B0EAD-D0A0-40D3-AD19-0A19F83DD39E.jpeg)
 
 - 节点3: test with java8
 这个节点在同一个java版本下运行单元测试。
@@ -88,7 +88,7 @@ mvn -B verify --no-transfer-progress
 
 如果节点运行成功，日志中会出现“BUILD SUCCESS”，显示测试成功。
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/CB12C170-A17C-4C1A-8078-2CC67B8BAB31.jpeg)
+![avatar](/img/cicd_workflow/CB12C170-A17C-4C1A-8078-2CC67B8BAB31.jpeg)
 
 - 节点4: build with java16
 这个节点基于项目使用java的maven框架，进行构建。因为已经用java8进行了构建，所以这里更换为java16后执行构建命令。
@@ -110,7 +110,7 @@ mvn -B install --no-transfer-progress
 
 如果节点运行成功，日志中会出现”BUILD SUCCESS“，显示构建成功。
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/29CAB894-5281-4740-8E39-897E96571D6A.jpeg)
+![avatar](/img/cicd_workflow/29CAB894-5281-4740-8E39-897E96571D6A.jpeg)
 
 - 节点5: test with java16
 这个节点在同一个java版本下运行单元测试。
@@ -123,7 +123,7 @@ mvn -B verify --no-transfer-progress
 ```
 如果节点运行成功，日志中会出现”BUILD SUCCESS“，显示测试成功。
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/B5B15323-7379-4332-AEAC-7E70DBE2F924.jpeg)
+![avatar](/img/cicd_workflow/B5B15323-7379-4332-AEAC-7E70DBE2F924.jpeg)
 
 - 节点6: staging
 这个节点在项目预发布的模拟环境中部署，本地部署到端口localhost：5000。
@@ -143,16 +143,16 @@ echo END
 
 如果节点运行成功，因为使用nohup命令，部署至本地端口的命令在后台进行，日志中会出现“START”和“END”代表此命令的执行情况。日志显示如下
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/1989B620-63EC-45C8-B148-22CD5F2AB528.jpeg)
+![avatar](/img/cicd_workflow/1989B620-63EC-45C8-B148-22CD5F2AB528.jpeg)
 
 同时，因为staging_port变量在此处被设置为localhost：5000，所以在本地也可以看到部署完成的页面如下
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
+![avatar](/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
 
 ##### Rollback
-这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](https://dolphinscheduler.apache.org//img/cicd_workflow/rollback.json)
+这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](//img/cicd_workflow/rollback.json)
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/12D3F0CE-18FE-4163-951A-4E0734A42EC2_4_5005_c.jpeg)
+![avatar](/img/cicd_workflow/12D3F0CE-18FE-4163-951A-4E0734A42EC2_4_5005_c.jpeg)
 
 - 节点1: kill process on port
 这个节点用于关闭要部署的端口的现有进程，为节点3作准备。
@@ -170,7 +170,7 @@ if [[ $(lsof -ti:${port_number} | wc -l) -gt 0 ]];
 
 如果节点运行成功，要检查的端口的确有进程，日志中会显示如下图“process found”，之后这些进程会被关闭。
 
-![](https://dolphinscheduler.apache.org/img/cicd_workflow/962BFAD9-5695-4369-B2D5-F4185C229CCB.jpeg)
+![](/img/cicd_workflow/962BFAD9-5695-4369-B2D5-F4185C229CCB.jpeg)
 
 - 节点2: display available version
 这个节点用于展示本地所有可以被调用的发布版本。假定所有的发布版本都遵循命名格式backend-X.0.0-RELEASE.jar，那么所有包含关键字“RELEASE ”的版本都会被筛选并显示出来，供下一步使用。
@@ -185,7 +185,7 @@ find /opt/repo/spring-boot-vuejs/backend/target -iname '*${keyword}*'
 
 如果节点运行成功，本地所有发布版本都会被列举出来，以供选择调用。
 
-![](https://dolphinscheduler.apache.org/img/cicd_workflow/51656174-4F3A-4A73-94FA-7E12D5B6FF27.jpeg)
+![](/img/cicd_workflow/51656174-4F3A-4A73-94FA-7E12D5B6FF27.jpeg)
 
 - 节点3: roll back
 这个节点用于选定回滚的目标版本，并且本地部署到端口。部署成功则可以在本地8098端口显示页面。
@@ -205,16 +205,16 @@ echo END
 ```
 如果节点运行成功，部署至本地端口的nohup命令在后台进行，日志中出现“START”和“END”代表此命令的执行情况。日志显示如下
 
-![](https://dolphinscheduler.apache.org/img/cicd_workflow/902CAC66-44A6-457E-BF87-534010FE6585.jpeg)
+![](/img/cicd_workflow/902CAC66-44A6-457E-BF87-534010FE6585.jpeg)
 
 同时，因为port_number变量在此处被设置为localhost：8098，所以在本地也可以看到部署完成的页面如下
 
-![](https://dolphinscheduler.apache.org/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
+![](/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
 
 ##### Feature Release
-这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](https://dolphinscheduler.apache.org//img/cicd_workflow/feature_release.json)
+这个工作流共包含三个shell节点，用于完成项目版本回滚，也相当于CI/CD流程中的生产部署环节。详见导出的[工作流文件](//img/cicd_workflow/feature_release.json)
 
-![avatar](https://dolphinscheduler.apache.org/img/cicd_workflow/5162B6A2-67C8-4EAD-BE7A-992D0AE90CD1_4_5005_c.jpeg)
+![avatar](/img/cicd_workflow/5162B6A2-67C8-4EAD-BE7A-992D0AE90CD1_4_5005_c.jpeg)
 
 - 节点1: kill process on port
 这个节点用于关闭要部署的端口的现有进程，为节点3作准备。
@@ -232,7 +232,7 @@ if [[ $(lsof -ti:${port_number} | wc -l) -gt 0 ]];
 
 如果要检查的端口的确有进程，日志中会显示如下图“process found”，之后这些进程会被关闭。
 
-![](https://dolphinscheduler.apache.org/img/cicd_workflow/00282F58-D216-470A-A65D-90EE09C76DED.jpeg)
+![](/img/cicd_workflow/00282F58-D216-470A-A65D-90EE09C76DED.jpeg)
 
 - 节点2: display available version
 这个节点用于展示本地所有可以被调用的特性发布版本。假定所有的特性发布版本都遵循命名格式backend-0.0.1-SNAPSHOT.jar，那么所有包含关键字“SNAPSHOT”的版本都会被筛选并显示出来，供下一步使用。
@@ -247,7 +247,7 @@ find /opt/repo/spring-boot-vuejs/backend/target -iname '*${keyword}*'
 
 如果节点运行成功，本地所有特性发布版本都会被列举出来，以供选择调用。
 
-![](https://dolphinscheduler.apache.org/img/cicd_workflow/F595066F-EE0B-4086-AD92-5BAF081792F9.jpeg)
+![](/img/cicd_workflow/F595066F-EE0B-4086-AD92-5BAF081792F9.jpeg)
 
 - 节点3: release
 这个节点用于选定特性发布的目标版本，并且本地部署到端口。部署成功则可以在本地8098端口显示页面。
@@ -267,11 +267,11 @@ echo END
 ```
 如果节点运行成功，部署至本地端口的nohup命令在后台进行，日志中出现“START”和“END”代表此命令的执行情况。日志显示如下
 
-![](https://dolphinscheduler.apache.org/img/cicd_workflow/BFE0DB23-148B-4D0E-8C4D-C7DB51570593.jpeg)
+![](/img/cicd_workflow/BFE0DB23-148B-4D0E-8C4D-C7DB51570593.jpeg)
 
 同时，因为port_number变量在此处被设置为localhost：8098，所以在本地也可以看到部署完成的页面如下
 
-![](https://dolphinscheduler.apache.org/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
+![](/img/cicd_workflow/3AB6D6CE-CDB2-451E-9524-BF2224C947C0.jpeg)
 
 ### 使用DS构建工作流不足之处
 

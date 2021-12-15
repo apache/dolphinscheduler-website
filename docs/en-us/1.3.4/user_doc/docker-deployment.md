@@ -15,7 +15,7 @@ In this way, you need to install [docker-compose](https://docs.docker.com/compos
 
 #### 1. Download the Source Code Package
 
-Please download the source code package apache-dolphinscheduler-incubating-1.3.4-src.zip, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-incubating-1.3.4-src.zip, download address: [download](/en-us/download/download.html)
 
 #### 2. Pull Image and Start the Service
 
@@ -39,7 +39,7 @@ The default username is `admin` and the default password is `dolphinscheduler123
   <img src="/img/login_en.png" width="60%" />
 </p>
 
-Please refer to the `Quick Start` in the chapter [User Manual](https://dolphinscheduler.apache.org/en-us/docs/1.3.4/user_doc/quick-start.html) to explore how to use DolphinScheduler
+Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/1.3.4/user_doc/quick-start.html) to explore how to use DolphinScheduler
 
 ### The Second Way: Start via specifying the existing PostgreSQL and ZooKeeper service
 

@@ -30,7 +30,7 @@ For Windows Docker Desktop user
 
 #### 1. Download the Source Code Package
 
-Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: [download](/en-us/download/download.html)
 
 #### 2. Pull Image and Start the Service
 
@@ -318,7 +318,7 @@ Please read `./docker/build/hooks/build` `./docker/build/hooks/build.bat` script
 
 #### Build from the binary distribution (Not require Maven 3.3+ & JDK 1.8+)
 
-Please download the binary distribution package apache-dolphinscheduler-1.3.8-bin.tar.gz, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html). And put apache-dolphinscheduler-1.3.8-bin.tar.gz into the `apache-dolphinscheduler-1.3.8-src/docker/build` directory, execute in Terminal or PowerShell:
+Please download the binary distribution package apache-dolphinscheduler-1.3.8-bin.tar.gz, download address: [download](/en-us/download/download.html). And put apache-dolphinscheduler-1.3.8-bin.tar.gz into the `apache-dolphinscheduler-1.3.8-src/docker/build` directory, execute in Terminal or PowerShell:
 
 ```
 $ cd apache-dolphinscheduler-1.3.8-src/docker/build

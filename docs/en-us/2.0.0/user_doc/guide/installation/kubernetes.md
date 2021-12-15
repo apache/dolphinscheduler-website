@@ -12,7 +12,7 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
 
 ## Installing the Chart
 
-Please download the source code package apache-dolphinscheduler-2.0.0-src.tar.gz, download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html)
+Please download the source code package apache-dolphinscheduler-2.0.0-src.tar.gz, download address: [download](/en-us/download/download.html)
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
 

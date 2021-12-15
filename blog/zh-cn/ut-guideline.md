@@ -46,7 +46,7 @@ public class CalculatorTest {
 
 #### 1.1.2 避免多重 Arrage, Act, Assert 嵌套
 
-![nested-3a](https://dolphinscheduler.apache.org/img/unit-test/ut-nested-3a.png)
+![nested-3a](/img/unit-test/ut-nested-3a.png)
 
 多重 Arrange, Act, Assert 意味着该测试正在验证多个行为单元，那么它就不再是单元测试，而是集成测试了。此时应当将这种测试分解成多个测试，使单元测试更加简单、快速且易于理解。
 
@@ -120,7 +120,7 @@ isAdult_LessThan0_ThrowIllegalArgumentException	// 小于 0 岁 => 非法输入
 
 该测试风格如下图所示，在输入参数之后对业务代码的输出结果进行验证。该测试风格只适用于测试不会改变全局或内部状态的业务代码，因此只需验证其返回值即可。
 
-![output-based-style](https://dolphinscheduler.apache.org/img/unit-test/ut-output-based-style.png)
+![output-based-style](/img/unit-test/ut-output-based-style.png)
 
 示例：
 
@@ -158,7 +158,7 @@ public class PriceEngineTest {
 
 该测试风格如下图所示，在操作完成后验证系统的最终状态。其中，“状态”一词可以指单元测试本身，也可以指数据库、文件系统等外部依赖。
 
-![state-based-style](https://dolphinscheduler.apache.org/img/unit-test/ut-state-based-style.png)
+![state-based-style](/img/unit-test/ut-state-based-style.png)
 
 示例：
 
@@ -198,7 +198,7 @@ public class OrderTest {
 
 该测试风格如下图所示，使用 mock 验证待测部分是否能够正确调用其他模块。
 
-![ut-communication-based-style](https://dolphinscheduler.apache.org/img/unit-test/ut-communication-based-style.png)
+![ut-communication-based-style](/img/unit-test/ut-communication-based-style.png)
 
 示例：
 

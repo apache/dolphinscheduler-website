@@ -15,7 +15,7 @@
 
 [Apache Griffin](https://github.com/apache/griffin)是 eBay 开源的一款基于 Apache Hadoop 和 Apache Spark 的数据质量服务平台。其架构图如下：
 
-![Griffin](https://dolphinscheduler.apache.org/img/ipalfish_platform/Griffin-framework.png)
+![Griffin](/img/ipalfish_platform/Griffin-framework.png)
 
 架构图从 High Level 层面清晰地展示了数据质量平台的三个核心流程：
 
@@ -64,7 +64,7 @@ Griffin 是一个完全闭环的平台化产品。其质检任务的执行依赖
 
 伴鱼离线调度开发平台是基于 Apache DolphinScheduler 实现的。它是一个分布式去中心化，易扩展的可视化 DAG 调度系统，支持包括 Shell、Python、Spark、Flink 等多种类型的 Task 任务，并具有很好的扩展性。架构如下图所示：
 
-![DolphinScheduler](https://dolphinscheduler.apache.org/img/ipalfish_platform/DS-framework.png)
+![DolphinScheduler](/img/ipalfish_platform/DS-framework.png)
 
 Master 节点负责任务的监听和调度，Worker 节点则负责任务的执行。值得注意的是，每一个需要被调度的任务必然需要设置一个调度时间的表达式（cron 表达式），由 Quartz 定时为任务生成待执行的 DAG Command，有且仅有一个 Master 节点获得执行权，掌管该 DAG 各任务节点的调度执行。
 
@@ -72,7 +72,7 @@ Master 节点负责任务的监听和调度，Worker 节点则负责任务的执
 
 以下是数据质量平台整体的架构图：
 
-![Data_quality_platform](https://dolphinscheduler.apache.org/img/ipalfish_platform/Data_quality_platform.png)
+![Data_quality_platform](/img/ipalfish_platform/Data_quality_platform.png)
 
 由以下几部分组成：
 
@@ -144,13 +144,13 @@ Master 节点负责任务的监听和调度，Worker 节点则负责任务的执
 
 规则模板是为了规则复用抽象出的一个概念，模板中包含规则的 SQL 定义、规则的比较方式、参数定义（注：SQL 中包含一些占位符，这些占位符将以参数的形式被定义，在规则实体定义时需要用户明确具体含义）以及其他的一些元信息。下图为「字段空值的行数」模板的示例：
 
-![Rule_Template](https://dolphinscheduler.apache.org/img/ipalfish_platform/Rule_Template.png)
+![Rule_Template](/img/ipalfish_platform/Rule_Template.png)
 
 #### **规则实体**
 
 规则实体是基于规则模板构建的，是规则的具象表达。在规则实体中将明确规则的 Expected Value、比较方式中具体的比较算子、参数的含义以及其他的一些元信息。基于同一个规则模板，可以构造多个规则实体。下图为「某表 user_id 唯一性校验」规则的示例：
 
-![Rule_entity](https://dolphinscheduler.apache.org/img/ipalfish_platform/Rule_entity.png)
+![Rule_entity](/img/ipalfish_platform/Rule_entity.png)
 
 值得一提的是，规则可能不仅仅只是针对单表的校验，对于多表的情况我们这套规则模板同样是适用的，只要我们可以将逻辑使用 SQL 表达。
 
@@ -168,7 +168,7 @@ Master 节点负责任务的监听和调度，Worker 节点则负责任务的执
 
 我们选择了后者，ID List 方式可以使对 DolphinScheduler 的侵入降到最低。
 
-![ID_List_Bind](https://dolphinscheduler.apache.org/img/ipalfish_platform/ID_List_Bind.png)
+![ID_List_Bind](/img/ipalfish_platform/ID_List_Bind.png)
 
 ### **规则执行**
 
@@ -228,7 +228,7 @@ DQC Task 继承自 DolphinScheduler 中的抽象类 AbstractTask，只需要实�
 
 单条规则的质检结果将在平台上直接展现，目前我们还未对任务级的规则进行聚合汇总，这是接下来需要完善的。对于质检失败的任务将向报警接收人发送报警。
 
-![results_of_enforcement](https://dolphinscheduler.apache.org/img/ipalfish_platform/results_of_enforcement.png)
+![results_of_enforcement](/img/ipalfish_platform/results_of_enforcement.png)
 
 
 ### **实践中的问题**
