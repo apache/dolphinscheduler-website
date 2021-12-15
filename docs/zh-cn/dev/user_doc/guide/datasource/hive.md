@@ -24,7 +24,7 @@
 
 
 注意：如果没有开启kerberos,请保证参数 `hadoop.security.authentication.startup.state` 值为 `false`,
-参数java.security.krb5.conf.path值为空. 开启了**kerberos**，则需要在common.properties配置以下参数
+参数 `java.security.krb5.conf.path` 值为空. 开启了**kerberos**，则需要在 `common.properties` 配置以下参数
 
 ```
 # whether to startup kerberos
