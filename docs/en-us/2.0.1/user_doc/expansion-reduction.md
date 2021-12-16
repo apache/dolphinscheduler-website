@@ -1,3 +1,5 @@
+<!-- markdown-link-check-disable -->
+
 # DolphinScheduler Expansion and Reduction
 
 ## 1. Expansion 
