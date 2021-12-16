@@ -1,3 +1,5 @@
+<!-- markdown-link-check-disable -->
+
 # Foreword
 This document is a description of the dolphinscheduler configuration file, and the version is for dolphinscheduler-1.3.x.
 

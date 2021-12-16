@@ -30,23 +30,23 @@ Let's take another example of the process that contains the SQL node in the abov
 
 The [createParam1] node in the above figure is defined as follows:
 
-![png05](https://dolphinscheduler.apache.org/img/globalParam/image-20210723104957031.png)
+![png05](/img/globalParam/image-20210723104957031.png)
 
  [createParam2] node is defined as follows:
 
-![png06](https://dolphinscheduler.apache.org/img/globalParam/image-20210723105026924.png)
+![png06](/img/globalParam/image-20210723105026924.png)
 
 You can find the value of the variable in the [Workflow Instance] page to find the corresponding node instance.
 
 Node instance [createparam1] is as follows:
 
-![png07](https://dolphinscheduler.apache.org/img/globalParam/image-20210723105131381.png)
+![png07](/img/globalParam/image-20210723105131381.png)
 
 Here, the value of "id" is equal to 12.
 
 Let's see the case of the node instance [createparam2].
 
-![png08](https://dolphinscheduler.apache.org/img/globalParam/image-20210723105255850.png)
+![png08](/img/globalParam/image-20210723105255850.png)
 
 There is only the value of "id". Although the user-defined sql looks up the fields "id" and "database_name", only one parameter is set because only one parameter "id" is defined for out. For display reasons, the length of the list is already checked for you here as 10.
 
