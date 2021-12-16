@@ -583,7 +583,7 @@ export default {
           title: 'From Airflow to Apache DolphinScheduler, the Roadmap of Scheduling System On Youzan Big Data Development Platform',
           content: 'At the recent Apache DolphinScheduler Meetup 2021, Zheqi Song,...',
           dateStr: '2021-12-16',
-          link: '/en-us/blog/youzan-case-study(En).html',
+          link: '/en-us/blog/YouZan-case-study.html',
         },
         {
           img: 'https://imgpp.com/images/2021/11/23/1637566412753.md.png',
