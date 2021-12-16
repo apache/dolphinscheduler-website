@@ -26,6 +26,10 @@ export default {
             link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
+            title: 'User Manual',
+            link: '/en-us/docs/2.0.0/user_doc/guide/system-manual.html',
+          },
+          {
             title: 'Docker Deployment',
             link: '/en-us/docs/2.0.0/user_doc/guide/installation/docker.html',
            },
@@ -284,6 +288,10 @@ export default {
           {
             title: '快速上手',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/quick-start.html',
+          },
+          {
+            title: '用户手册',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/system-manual.html',
           },
           {
             title: 'Docker部署(Docker)',
