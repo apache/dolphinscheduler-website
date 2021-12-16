@@ -94,7 +94,7 @@ mysql -uroot -p
       vi conf/datasource.properties
     ```
 
-    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/)] package to lib directory, and then configure the database connection information correctly.
+    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/) package to lib directory, and then configure the database connection information correctly.
 
     ```properties
       #postgre
