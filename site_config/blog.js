@@ -8,7 +8,7 @@ export default {
                 author: 'Debra Chen',
                 dateStr: '2021-12-16',
                 desc: 'Youzan case study(En)',
-                link: '/en-us/blog/youzan-case-study(En).html',
+                link: '/en-us/blog/YouZan-case-study.html',
             },
             {
                 title: 'A Formidable Combination of Lizhi Machine Learning Platform& DolphinScheduler Creates New Paradigm for Data Process in the Future!',
