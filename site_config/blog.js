@@ -7,7 +7,7 @@ export default {
                 title: 'From Airflow to Apache DolphinScheduler, the Roadmap of Scheduling System On Youzan Big Data Development Platform',
                 author: 'Debra Chen',
                 dateStr: '2021-12-16',
-                desc: 'Lizhi case study(En)',
+                desc: 'Youzan case study(En)',
                 link: '/en-us/blog/youzan-case-study(En).html',
             },
             {
