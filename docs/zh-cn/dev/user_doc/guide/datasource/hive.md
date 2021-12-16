@@ -23,7 +23,20 @@
   </p>
 
 
-注意：如果开启了**kerberos**，则需要填写 **Principal**
-<p align="center">
-    <img src="/img/hive_kerberos.png" width="80%" />
-  </p>
+注意：如果没有开启kerberos,请保证参数 `hadoop.security.authentication.startup.state` 值为 `false`,
+参数 `java.security.krb5.conf.path` 值为空. 开启了**kerberos**，则需要在 `common.properties` 配置以下参数
+
+```conf
+# whether to startup kerberos
+hadoop.security.authentication.startup.state=true
+
+# java.security.krb5.conf path
+java.security.krb5.conf.path=/opt/krb5.conf
+
+# login user from keytab username
+login.user.keytab.username=hdfs-mycluster@ESZ.COM
+
+# login user from keytab path
+login.user.keytab.path=/opt/hdfs.headless.keytab
+```
+
