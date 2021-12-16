@@ -14,7 +14,7 @@ In the process of using DolphinScheduler, if you have any questions or ideas, su
 
 If you no longer need to know about DolphinScheduler's dynamics, you can unsubscribe from the mailing list
 
-unsubscribe from the mailing list steps are as follows:
+Unsubscribe from the mailing list steps are as follows:
 
 1. Send an email to dev-unsubscribe@dolphinscheduler.apache.org with your own email address, subject and content are arbitrary.
 
