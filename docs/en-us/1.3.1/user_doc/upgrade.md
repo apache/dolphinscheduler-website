@@ -15,7 +15,7 @@
 ## 4. Database upgrade
 - Modify the following properties in conf/datasource.properties
 
-- If you choose MySQL, please comment out the PostgreSQL related configuration (the same is true for the reverse), and you also need to manually add the [[ mysql-connector-java driver jar](https://downloads.MySQL.com/archives/cj/) package to lib In the directory, here is mysql-connector-java-5.1.47.jar, and then correctly configure the database connection related information
+- If you choose MySQL, please comment out the PostgreSQL related configuration (the same is true for the reverse), and you also need to manually add the [[ mysql-connector-java driver jar](https://downloads.MySQL.com/archives/) package to lib In the directory, here is mysql-connector-java-5.1.47.jar, and then correctly configure the database connection related information
 
     ```properties
       # postgre
