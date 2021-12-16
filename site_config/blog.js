@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'From Airflow to Apache DolphinScheduler, the Roadmap of Scheduling System On Youzan Big Data Development Platform',
+                author: 'Debra Chen',
+                dateStr: '2021-12-16',
+                desc: 'Lizhi case study(En)',
+                link: '/en-us/blog/youzan-case-study(En).html',
+            },
+            {
                 title: 'A Formidable Combination of Lizhi Machine Learning Platform& DolphinScheduler Creates New Paradigm for Data Process in the Future!',
                 author: 'Debra Chen',
                 dateStr: '2021-11-24',
