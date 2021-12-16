@@ -14,7 +14,7 @@
 
 # 2、Download the Binary tar.gz Package
 
-- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [download](/en-us/download/download.html), download package, move to deployment directory and uncompress it.
+- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html), download package, move to deployment directory and uncompress it.
 
 ```shell
 # Create the deployment directory. Please do not choose a high-privilege directory such as /root or /home.
@@ -94,7 +94,7 @@ mysql -uroot -p
       vi conf/datasource.properties
     ```
 
-    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/)] package to lib directory, and then configure the database connection information correctly.
+    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/) package to lib directory, and then configure the database connection information correctly.
 
     ```properties
       #postgre
