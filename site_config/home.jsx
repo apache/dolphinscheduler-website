@@ -55,6 +55,14 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: 'https://imgpp.com/images/2021/12/17/1639647220322.md.png',
+
+          title: 'Apache DolphinScheduler 2.0.1 来了，备受期待的一键升级、插件化终于实现！',
+          content: '2.0.1 版本通过优化内核增强了系统处理能力，从而在性能上得到较大提升...',
+          dateStr: '2021-12-17',
+          link: '/zh-cn/blog/YouZan-case-study.html',
+        },
+        {
           img: 'https://imgpp.com/images/2021/12/10/15ede237ae3ba0f78.md.png',
 
           title: '从 Airflow 到 Apache DolphinScheduler，有赞大数据开发平台的调度系统演进,',
@@ -68,62 +76,6 @@ export default {
           content: '在线音频行业在中国仍是蓝海一片。根据 CIC 数据显示...',
           dateStr: '2021-11-23',
           link: '/zh-cn/blog/Lizhi-case-study.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png',
-          title: '重构、插件化、性能提升 20 倍，Apache DolphinScheduler 2.0 alpha 发布亮点太多!',
-          content: '社区的小伙伴们，好消息！经过 100 多位社区贡献者近 10 个月的共同努力...',
-          dateStr: '2021-10-29',
-          link: '/zh-cn/blog/DS-2.0-alpha-release.html',
-        },
-        {
-          img: '/img/apache.jpg',
-          title: 'DolphinScheduler漏洞情况说明',
-          content: 'DolphinScheduler漏洞情况说明...',
-          dateStr: '2021-10-26',
-          link: '/zh-cn/blog/DolphinScheduler漏洞情况说明.html',
-        },
-        {
-          img: '/img/apache.jpg',
-          title: 'Wenjun Ruan：如何成为Apache DolphinScheduler Committer',
-          content: '7.29,来自 eBay 的 Wenjun 同学正式成为Apache DolphinSchedulerCommitter,此文将为大家分享他的开源旅程，以及他是如何成为DolphinScheduler的Committer',
-          dateStr: '2021-07-29',
-          link: '/zh-cn/blog/new_committer_wenjun.html',
-        },
-        {
-          img: '/img/dailidong.jpg',
-          title: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线直播',
-          content: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线在线直播，700多人在线',
-          dateStr: '2020-05-26',
-          link: '/zh-cn/blog/live_online_2020_05_26.html',
-        },
-        {
-          img: '/img/2019-12-08/941576036700_.pic_hd.jpg',
-          title: 'Apache ShardingSphere & DolphinScheduler联合Meetup成功举行',
-          content: 'Apache ShardingSphere & DolphinScheduler联合Meetup 2019年12月8日在北京成功举行。',
-          dateStr: '2019-12-13',
-          link: '/zh-cn/blog/meetup_2019_12_08.html',
-        },
-        {
-          img: '/img/meetup_20191026.jpg',
-          title: 'Apache Dolphin Scheduler(Incubating) Meetup 成功举行',
-          content: 'Apache Dolphin Scheduler(Incubating) Meetup 2019年10月26日在上海成功举行。',
-          dateStr: '2019-9-27',
-          link: '/zh-cn/blog/meetup_2019_10_26.html',
-        },
-        {
-          img: '/img/architecture.jpg',
-          title: '一个分布式易扩展的可视化DAG工作流任务调度系统',
-          content: '一个分布式易扩展的可视化DAG工作流任务调度系统',
-          dateStr: 'May 12nd，2018',
-          link: '/zh-cn/blog/architecture-design.html',
-        },
-        {
-          img: '/img/review_img4.png',
-          title: 'DolphinScheduler 开发者大会在北京成功举行',
-          content: 'DolphinScheduler 开发者大会在北京成功举行',
-          dateStr: 'May 12nd，2018',
-          link: '/zh-cn/development/architecture-design.html',
         },
       ],
     },
