@@ -310,6 +310,12 @@ export default {
         {
           img: '/img/ourusers/yueyunkeji.png',
         },
+        {
+          img: '/img/ourusers/yiyunxinxi.png',
+        },
+        {
+          img: '/img/ourusers/zhihuiqice.png',
+        },
       ],
     },
     userreview: {
@@ -572,6 +578,12 @@ export default {
         },
         {
           img: '/img/ourusers/yueyunkeji.png',
+        },
+        {
+          img: '/img/ourusers/yiyunxinxi.png',
+        },
+        {
+          img: '/img/ourusers/zhihuiqice.png',
         },
       ],
     },
