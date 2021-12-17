@@ -60,7 +60,7 @@ export default {
           title: 'Apache DolphinScheduler 2.0.1 来了，备受期待的一键升级、插件化终于实现！',
           content: '2.0.1 版本通过优化内核增强了系统处理能力，从而在性能上得到较大提升...',
           dateStr: '2021-12-17',
-          link: '/zh-cn/blog/YouZan-case-study.html',
+          link: '/zh-cn/blog/Apache-DolphinScheduler-2.0.1.html',
         },
         {
           img: 'https://imgpp.com/images/2021/12/10/15ede237ae3ba0f78.md.png',
