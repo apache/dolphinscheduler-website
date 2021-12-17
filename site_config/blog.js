@@ -15,14 +15,14 @@ export default {
                 author: 'Debra Chen',
                 dateStr: '2021-11-24',
                 desc: 'Lizhi case study(En)',
-                link: '/en-us/blog/Lizhi-case-study(En).html',
+                link: '/en-us/blog/Lizhi-case-study.html',
             },
             {
                 title: 'Refactoring, Plug-in, Performance Improves By 20 times, Apache DolphinScheduler 2.0 alpha Release Highlights Check!',
                 author: 'Debra Chen',
                 dateStr: '2021-10-29',
                 desc: 'DolphinScheduler 2.0 alpha release',
-                link: '/en-us/blog/DS-2.0-alpha-release(En).html',
+                link: '/en-us/blog/DS-2.0-alpha-release.html',
             },
             {
                 title: 'DolphinScheduler Vulnerability Explanation',

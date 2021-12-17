@@ -598,7 +598,7 @@ export default {
           title: 'Refactoring, Plug-in, Performance Improves By 20 times, Apache DolphinScheduler 2.0 alpha Release Highlights Check!',
           content: 'ello community, good news! After nearly 10 months of joint efforts ...',
           dateStr: '2021-10-29',
-          link: '/en-us/blog/DS-2.0-alpha-release(En).html',
+          link: '/en-us/blog/DS-2.0-alpha-release.html',
         },
       ],
     },
