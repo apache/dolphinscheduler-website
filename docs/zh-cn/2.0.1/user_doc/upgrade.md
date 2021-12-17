@@ -21,9 +21,6 @@
 - 如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.MySQL.com/archives/c-j/)] 包到 lib 目录下，这里下载的是mysql-connector-java-8.0.16.jar，然后正确配置数据库连接相关信息
 
 ```conf
-# ---------------------------------------------------------
-# Database
-# ---------------------------------------------------------
 # 数据库的类型，用户名，密码，IP，端口，元数据库db。其中 DATABASE_TYPE 目前支持 mysql, postgresql, H2
 # 请确保配置的值使用双引号引用，否则配置可能不生效
 DATABASE_TYPE="mysql"
