@@ -8,7 +8,7 @@
 
 #### 缓存设置
 
-```
+```yaml
 spring:
   cache:
     # default enable cache, you can disable by `type: none`
@@ -23,17 +23,17 @@ spring:
       spec: maximumSize=100,expireAfterWrite=300s,recordStats
 ```
 
-缓存模块采用[spring-cache](https://spring.io/guides/gs/caching/ )机制，可直接在spring配置文件中配置是否开启缓存（默认none关闭）, 缓存类型；
+缓存模块采用[spring-cache](https://spring.io/guides/gs/caching/)机制，可直接在spring配置文件中配置是否开启缓存（默认`none`关闭）, 缓存类型；
 
-目前采用[caffeine](https://github.com/ben-manes/caffeine )进行缓存管理，可自由设置缓存相关配置，如缓存大小、过期时间等；
+目前采用[caffeine](https://github.com/ben-manes/caffeine)进行缓存管理，可自由设置缓存相关配置，如缓存大小、过期时间等；
 
 #### 缓存读取
 
-缓存采用spring-cache的注解，配置在相关的mapper层，可参考如：TenantMapper.
+缓存采用spring-cache的注解，配置在相关的mapper层，可参考如：`TenantMapper`.
 
 #### 缓存更新
 
-业务数据的更新来自于api-server, 而缓存端在master-server, 故需要对api-server的数据更新做监听(aspect切面拦截@CacheEvict)，当需要进行缓存驱逐时会通知master-server，master-server接收到cacheEvictCommand后进行缓存驱逐；
+业务数据的更新来自于api-server, 而缓存端在master-server, 故需要对api-server的数据更新做监听(aspect切面拦截`@CacheEvict`)，当需要进行缓存驱逐时会通知master-server，master-server接收到cacheEvictCommand后进行缓存驱逐；
 
 需要注意的是：缓存更新的兜底策略来自于用户在caffeine中的过期策略配置，请结合业务进行配置；
 
