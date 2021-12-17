@@ -5,5 +5,5 @@ If you need to use Enterprise WeChat to alert, please create alarm Instance in w
 <img src="enterprise-wechat-plugin.png">
 
 Where send Type corresponds to app and appchat respectively:
-应用: https://work.weixin.qq.com/api/doc/90000/90135/90236
-群聊: https://work.weixin.qq.com/api/doc/90000/90135/90248
+APP: https://work.weixin.qq.com/api/doc/90000/90135/90236
+APPCHAT: https://work.weixin.qq.com/api/doc/90000/90135/90248
