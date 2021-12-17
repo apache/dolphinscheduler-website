@@ -13,20 +13,19 @@
 - The following upgrade operations need to be performed in the new version's directory.
 
 ## 4. Database Upgrade
-- Modify the following properties in conf/datasource.properties.
+- Modify the following properties in `conf/config/install_config.conf`.
 
 - If you use MySQL as the database to run DolphinScheduler, please comment out PostgreSQL related configurations, and add mysql connector jar into lib dir, here we download mysql-connector-java-8.0.16.jar, and then correctly config database connect information. You can download mysql connector jar [here](https://downloads.MySQL.com/archives/c-j/). Alternatively, if you use Postgres as database, you just need to comment out Mysql related configurations, and correctly config database connect information.
 
-    ```properties
-      # postgre
-      #spring.datasource.driver-class-name=org.postgresql.Driver
-      #spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler
-      # mysql
-      spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-      spring.datasource.url=jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-      spring.datasource.username=xxx
-      spring.datasource.password=xxx
-    ```
+```conf
+# Database type, username, password, IP, port, metadata. For now dbtype supports `mysql` and `postgresql`, `H2`
+# Please make sure that the value of configuration is quoted in double quotation marks, otherwise may not take effect
+DATABASE_TYPE="mysql"
+SPRING_DATASOURCE_URL="jdbc:mysql://ds1:3306/ds_201_doc?useUnicode=true&characterEncoding=UTF-8"
+# Have to modify if you are not using dolphinscheduler/dolphinscheduler as your username and password
+SPRING_DATASOURCE_USERNAME="dolphinscheduler"
+SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
+```
 
 - Execute database upgrade script
 
