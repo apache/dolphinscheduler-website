@@ -50,41 +50,41 @@
 
 1. Install DolphinScheduler on Ambari web interface
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_001.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_001.png)
 
 2. Select the nodes for the DolphinScheduler's Master installation
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_002.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_002.png)
 
 3. Configure the DolphinScheduler's nodes for Worker, Api, Logger, Alert installation
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_003.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_003.png)
 
 4. Set the installation users of the DolphinScheduler service (created in step 1) and the user groups they belong to
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_004.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_004.png)
 
 5. System Env Optimization will export some system environment config. Modify according to the actual situation
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_020.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_020.png)
    
 6. Configure the database information (same as in the initialization database in step 1)
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_005.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_005.png)
 
 7. Configure additional information if needed
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_006.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_006.png)
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_007.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_007.png)
 
 8. Perform the next steps as normal
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_008.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_008.png)
 
 9. The interface after successful installation
 
-   ![](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_009.png)
+   ![](/img/ambari-plugin/DS2_AMBARI_009.png)
    
    
 
@@ -98,31 +98,31 @@
 
 1. Locate the component node to add -- for example, node ark3
 
-   ![DS2_AMBARI_011](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_011.png)
+   ![DS2_AMBARI_011](/img/ambari-plugin/DS2_AMBARI_011.png)
 
 2. Add components -- the drop-down list is all addable
 
-   ![DS2_AMBARI_012](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_012.png)
+   ![DS2_AMBARI_012](/img/ambari-plugin/DS2_AMBARI_012.png)
 
 3. Confirm component addition
 
-   ![DS2_AMBARI_013](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_013.png)
+   ![DS2_AMBARI_013](/img/ambari-plugin/DS2_AMBARI_013.png)
 
 4. After adding DolphinScheduler Worker and DolphinScheduler Logger components
 
-   ![DS2_AMBARI_015](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_015.png)
+   ![DS2_AMBARI_015](/img/ambari-plugin/DS2_AMBARI_015.png)
 
 5. Start the component
 
-   ![DS2_AMBARI_016](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_016.png)
+   ![DS2_AMBARI_016](/img/ambari-plugin/DS2_AMBARI_016.png)
 
 
 #### Remove the component from the node with Ambari
 
 1. Stop the component in the corresponding node
 
-   ![DS2_AMBARI_018](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_018.png)
+   ![DS2_AMBARI_018](/img/ambari-plugin/DS2_AMBARI_018.png)
 
 2. Remove components
 
-   ![DS2_AMBARI_019](https://dolphinscheduler.apache.org/img/ambari-plugin/DS2_AMBARI_019.png)
+   ![DS2_AMBARI_019](/img/ambari-plugin/DS2_AMBARI_019.png)

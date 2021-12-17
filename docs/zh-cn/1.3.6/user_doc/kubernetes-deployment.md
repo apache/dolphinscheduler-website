@@ -63,7 +63,7 @@ echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.6/user_doc/quick-start.html)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.6/user_doc/quick-start.html) 查看如何使用DolphinScheduler
 
 ## 卸载 dolphinscheduler
 
