@@ -83,6 +83,13 @@ export default {
         postsTitle: '所有文章',
         list: [
             {
+                title: 'Apache DolphinScheduler 2.0.1 来了，备受期待的一键升级、插件化终于实现！',
+                author: 'Debra Chen',
+                dateStr: '2021-12-17',
+                desc: 'Apache DolphinScheduler 2.0.1',
+                link: '/zh-cn/blog/Apache-DolphinScheduler-2.0.1.html',
+            },
+            {
                 title: '从 Airflow 到 Apache DolphinScheduler，有赞大数据开发平台的调度系统演进',
                 author: 'Debra Chen',
                 dateStr: '2021-12-10',
