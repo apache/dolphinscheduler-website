@@ -244,7 +244,7 @@ export default {
             link: '/zh-cn/community/development/become-a-committer.html',
           },
           {
-            title: '订阅邮件列表',
+            title: '订阅/取消订阅邮件列表',
             link: '/zh-cn/community/development/subscribe.html',
           },
           {
