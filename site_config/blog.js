@@ -22,7 +22,7 @@ export default {
                 author: 'Debra Chen',
                 dateStr: '2021-10-29',
                 desc: 'DolphinScheduler 2.0 alpha release',
-                link: '/en-us/blog/DS-2.0-alpha-release(En).html',
+                link: '/en-us/blog/DS-2.0-alpha-release.html',
             },
             {
                 title: 'DolphinScheduler Vulnerability Explanation',
@@ -101,7 +101,7 @@ export default {
                 author: 'DolphinScheduler',
                 dateStr: '2021-10-29',
                 desc: 'DolphinScheduler 2.0 alpha发布',
-                link: '/zh-cn/blog/DS-2.0-alpha-release(En).html',
+                link: '/zh-cn/blog/DS-2.0-alpha-release.html',
             },
             {
                 title: 'DolphinScheduler漏洞情况说明',
