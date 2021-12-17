@@ -101,7 +101,7 @@ export default {
                 author: 'DolphinScheduler',
                 dateStr: '2021-10-29',
                 desc: 'DolphinScheduler 2.0 alpha发布',
-                link: '/zh-cn/blog/DS-2.0-alpha-release.html',
+                link: '/zh-cn/blog/DS-2.0-alpha-release(En).html',
             },
             {
                 title: 'DolphinScheduler漏洞情况说明',
