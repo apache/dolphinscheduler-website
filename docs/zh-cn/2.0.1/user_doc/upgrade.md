@@ -16,20 +16,22 @@
 
 - **请先备份现有数据库**
 
-- 修改conf/datasource.properties中的下列属性
+- 修改 `conf/config/install_config.conf` 中的下列属性
 
 - 如果选择 MySQL，请注释掉 PostgreSQL 相关配置(反之同理), 还需要手动添加 [[ mysql-connector-java 驱动 jar ](https://downloads.MySQL.com/archives/c-j/)] 包到 lib 目录下，这里下载的是mysql-connector-java-8.0.16.jar，然后正确配置数据库连接相关信息
 
-    ```properties
-      # postgre
-      #spring.datasource.driver-class-name=org.postgresql.Driver
-      #spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler
-      # mysql
-      spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-      spring.datasource.url=jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true     需要修改ip，本机localhost即可
-      spring.datasource.username=xxx						需要修改为上面的{user}值
-      spring.datasource.password=xxx						需要修改为上面的{password}值
-    ```
+```conf
+# ---------------------------------------------------------
+# Database
+# ---------------------------------------------------------
+# 数据库的类型，用户名，密码，IP，端口，元数据库db。其中 DATABASE_TYPE 目前支持 mysql, postgresql, H2
+# 请确保配置的值使用双引号引用，否则配置可能不生效
+DATABASE_TYPE="mysql"
+SPRING_DATASOURCE_URL="jdbc:mysql://ds1:3306/ds_201_doc?useUnicode=true&characterEncoding=UTF-8"
+# 如果你不是以 dolphinscheduler/dolphinscheduler 作为用户名和密码的，需要进行修改
+SPRING_DATASOURCE_USERNAME="dolphinscheduler"
+SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
+```
 
 - 执行数据库升级脚本
 
