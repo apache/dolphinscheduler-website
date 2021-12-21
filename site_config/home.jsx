@@ -551,15 +551,8 @@ export default {
         },
         {
           img: 'https://imgpp.com/images/2021/12/16/1639383815755.md.png',
-          title: 'Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!',
-          content: 'Good news! Apache DolphinScheduler 2.0.1 version is officially released today!...',
-          dateStr: '2021-12-20',
-          link: '/en-us/blog/Apache-DolphinScheduler-2.0.1.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/12/16/1639383815755.md.png',
           title: 'From Airflow to Apache DolphinScheduler, the Roadmap of Scheduling System On Youzan Big Data Development Platform',
-          content: 'At the recent Apache DolphinScheduler Meetup 2021, Zheqi Song,...',
+          content: 'At the recent Apache DolphinScheduler Meetup 2021, Zheqi Song...',
           dateStr: '2021-12-16',
           link: '/en-us/blog/YouZan-case-study.html',
         },
