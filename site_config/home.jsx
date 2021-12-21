@@ -561,7 +561,7 @@ export default {
           title: 'A Formidable Combination of Lizhi Machine Learning Platform& DolphinScheduler Creates New Paradigm for Data Process in the Future!',
           content: 'The online audio industry is a blue ocean market in China nowadays...',
           dateStr: '2021-11-24',
-          link: '/en-us/blog/Lizhi-case-study(.html',
+          link: '/en-us/blog/Lizhi-case-study.html',
         },
       ],
     },
