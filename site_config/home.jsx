@@ -543,7 +543,7 @@ export default {
       title: 'Events & News',
       list: [
         {
-          img: 'https://imgpp.com/images/2021/12/16/1639383815755.md.png',
+          img: 'https://imgpp.com/images/2021/12/20/1639994965225.md.png',
           title: 'Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!',
           content: 'Good news! Apache DolphinScheduler 2.0.1 version is officially released today!...',
           dateStr: '2021-12-20',
