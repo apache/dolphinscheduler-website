@@ -7,7 +7,7 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 ### PMC
 
 | Public Name       | Apache ID    | GitHub ID      |
-| ----------------- | ------------ | -------------- |
+|-------------------| ------------ | -------------- |
 | Furkan Kamaci     | kamaci       | kamaci         |
 | Gang Li           | lgcareer     | lgcareer       |
 | Guo Jiwei         | technoboy    | Technoboy-     |
@@ -23,29 +23,33 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Wu Baoqi          | baoqiwu      | Baoqi          |
 | Xiaochun Liu      | liuxiaochun  | khadgarmage    |
 | ZijJian Gong      | millionfor   | millionfor     |
+| Calvin Kirs       | kirs         | CalvinKirs     |
 
 
 ### Committer
 
-| Public Name   | Apache ID    | GitHub ID        |
-| ------------- | ------------ | ---------------- |
-| BoYi Zhang    | zhangboyi    | BoYiZhang        |
-| Caibiao Xiang | break60      | break60          |
-| Calvin Kirs   | kirs         | CalvinKirs       |
-| Chong Zhuang  | kerwin       | zhuangchong      |
-| Cong Huang    | chongchongzi | chongchongzi     |
-| Hemin Wen     | wenhemin     | wen-hemin        |
-| Kai Zhu       | zhukai       | nauu             |
-| Kejia Chen    | jave         | Jave-Chen        |
-| Li Huang      | eights       | Eights-Li        |
-| Lin Li        | lilin        | samz406          |
-| Shang Lou     | clay4megtr   | clay4444         |
-| Shaojie Wu    | gabrywu      | gabrywu          |
-| Shiwen Cheng  | chengshiwen  | chengshiwen      |
-| Wenhe Li      | liwenhe      | liwenhe1993      |
-| Xingchun Chen | chenxingchun | xingchun-chen    |
-| Yichao Yang   | yangyichao   | yangyichao-mango |
-| Zongyao Zhang | lfyee        | lfyee            |
+| Public Name   | Apache ID    | GitHub ID         |
+|---------------|--------------|-------------------|
+| BoYi Zhang    | zhangboyi    | BoYiZhang         |
+| Caibiao Xiang | break60      | break60           |
+| Chong Zhuang  | kerwin       | zhuangchong       |
+| Cong Huang    | chongchongzi | chongchongzi      |
+| Hemin Wen     | wenhemin     | wen-hemin         |
+| Kai Zhu       | zhukai       | nauu              |
+| Kejia Chen    | jave         | Jave-Chen         |
+| Li Huang      | eights       | Eights-Li         |
+| Lin Li        | lilin        | samz406           |
+| Shang Lou     | clay4megtr   | clay4444          |
+| Shaojie Wu    | gabrywu      | gabrywu           |
+| Shiwen Cheng  | chengshiwen  | chengshiwen       |
+| Wenhe Li      | liwenhe      | liwenhe1993       |
+| Xingchun Chen | chenxingchun | xingchun-chen     |
+| Yichao Yang   | yangyichao   | yangyichao-mango  |
+| Zongyao Zhang | lfyee        | lfyee             |
+| Zhenxu Ke     | kezhenxu94   | kezhenxu94        |
+| Jiajie Zhong  | zhongjiajie  | zhongjiajie       |
+| Yizhi Wang    | wangyizhi    | Wangyizhi1        |
+| ShunFeng Cai  | caishunfeng  | caishunfeng       |
 
 ## Contributors
 
