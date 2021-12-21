@@ -7,7 +7,7 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 ### PMC
 
 | Public Name       | Apache ID    | GitHub ID      |
-| ----------------- | ------------ | -------------- |
+|-------------------| ------------ | -------------- |
 | Furkan Kamaci     | kamaci       | kamaci         |
 | Gang Li           | lgcareer     | lgcareer       |
 | Guo Jiwei         | technoboy    | Technoboy-     |
@@ -23,6 +23,7 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Wu Baoqi          | baoqiwu      | Baoqi          |
 | Xiaochun Liu      | liuxiaochun  | khadgarmage    |
 | ZijJian Gong      | millionfor   | millionfor     |
+| Calvin Kirs       | kirs         | CalvinKirs     |
 
 
 ### Committer
@@ -31,7 +32,6 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | ------------- | ------------ | ---------------- |
 | BoYi Zhang    | zhangboyi    | BoYiZhang        |
 | Caibiao Xiang | break60      | break60          |
-| Calvin Kirs   | kirs         | CalvinKirs       |
 | Chong Zhuang  | kerwin       | zhuangchong      |
 | Cong Huang    | chongchongzi | chongchongzi     |
 | Hemin Wen     | wenhemin     | wen-hemin        |
@@ -46,6 +46,11 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Xingchun Chen | chenxingchun | xingchun-chen    |
 | Yichao Yang   | yangyichao   | yangyichao-mango |
 | Zongyao Zhang | lfyee        | lfyee            |
+| Zhenxu Ke     | kezhenxu94   | kezhenxu94       |
+| Jiajie Zhong  | zhongjiajie  | zhongjiajie      |
+| Yizhi Wang    | wangyizhi    | Wangyizhi1       |
+| ShunFeng Cai  | caishunfeng  | caishunfeng      |
+
 
 ## 贡献者
 
