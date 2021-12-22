@@ -1,16 +1,14 @@
+---
+title: Architecture Design
+keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop，orchestration, dataops
+description: Before explaining the architecture of the schedule system, let us first understand the common nouns of the schedule system.
+---
 ## Architecture Design
 Before explaining the architecture of the schedule system, let us first understand the common nouns of the schedule system.
 
 ### 1.Noun Interpretation
 
 **DAG：** Full name Directed Acyclic Graph，referred to as DAG。Tasks in the workflow are assembled in the form of directed acyclic graphs, which are topologically traversed from nodes with zero indegrees of ingress until there are no successor nodes. For example, the following picture:
-
-<p align="center">
-  <img src="/img/dag_examples_cn.jpg" alt="dag示例"  width="60%" />
-  <p align="center">
-        <em>dag example</em>
-  </p>
-</p>
 
 **Process definition**: Visualization **DAG** by dragging task nodes and establishing associations of task nodes 
 
