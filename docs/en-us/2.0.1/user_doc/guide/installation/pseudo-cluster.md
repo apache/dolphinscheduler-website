@@ -135,14 +135,6 @@ javaHome="/your/java/home/here"
 # ---------------------------------------------------------
 # Database
 # ---------------------------------------------------------
-# Database type, username, password, IP, port, metadata. For now dbtype supports `mysql` and `postgresql`
-dbtype="mysql"
-dbhost="localhost:3306"
-# Have to modify if you are not using dolphinscheduler/dolphinscheduler as your username and password
-username="dolphinscheduler"
-password="dolphinscheduler"
-dbname="dolphinscheduler"
-
 # Database type, username, password, IP, port, metadata. For now dbtype supports `mysql` and `postgresql`, `H2`
 # Please make sure that the value of configuration is quoted in double quotation marks, otherwise may not take effect
 DATABASE_TYPE="mysql"

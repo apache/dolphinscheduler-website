@@ -236,12 +236,12 @@ In the early scheduling design, if there is no priority design and the fair sche
 
         - The priority of the process definition is to consider that some processes need to be processed before other processes. This can be configured when the process is started or scheduled to start. There are 5 levels in total, which are HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below
             <p align="center">
-               <img src="https://analysys.github.io/easyscheduler_docs_cn/images/process_priority.png" alt="Process priority configuration"  width="40%" />
+               <img src="https://user-images.githubusercontent.com/10797147/146744784-eb351b14-c94a-4ed6-8ba4-5132c2a3d116.png" alt="Process priority configuration"  width="40%" />
              </p>
 
         - The priority of the task is also divided into 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, LOWEST. As shown below
             <p align="center">
-               <img src="https://analysys.github.io/easyscheduler_docs_cn/images/task_priority.png" alt="Task priority configuration"  width="35%" />
+               <img src="https://user-images.githubusercontent.com/10797147/146744830-5eac611f-5933-4f53-a0c6-31613c283708.png" alt="Task priority configuration"  width="35%" />
              </p>
 
 
