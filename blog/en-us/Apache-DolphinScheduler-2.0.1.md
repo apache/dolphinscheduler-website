@@ -1,3 +1,8 @@
+---
+title:  Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!
+keywords: DolphinScheduler,scheduler,big data,ETL,airflow,hadoop
+description: Good news! Apache DolphinScheduler 2.0.1 version is officially released today!
+---
 ## Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!
 
 Good news! Apache DolphinScheduler 2.0.1 version is officially released today!
