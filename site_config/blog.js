@@ -4,18 +4,18 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!',
+                author: 'Debra Chen',
+                dateStr: '2021-12-20',
+                desc: 'Apache DolphinScheduler 2.0.1',
+                link: '/en-us/blog/Apache-DolphinScheduler-2.0.1.html',
+            },
+            {
                 title: 'From Airflow to Apache DolphinScheduler, the Roadmap of Scheduling System On Youzan Big Data Development Platform',
                 author: 'Debra Chen',
                 dateStr: '2021-12-16',
                 desc: 'YouZan case study',
                 link: '/en-us/blog/YouZan-case-study.html',
-            },
-            {
-                title: 'A Formidable Combination of Lizhi Machine Learning Platform& DolphinScheduler Creates New Paradigm for Data Process in the Future!',
-                author: 'Debra Chen',
-                dateStr: '2021-11-24',
-                desc: 'Lizhi case study(En)',
-                link: '/en-us/blog/Lizhi-case-study.html',
             },
             {
                 title: 'Refactoring, Plug-in, Performance Improves By 20 times, Apache DolphinScheduler 2.0 alpha Release Highlights Check!',
@@ -82,6 +82,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: 'Apache DolphinScheduler 2.0.1 来了，备受期待的一键升级、插件化终于实现！',
+                author: 'Debra Chen',
+                dateStr: '2021-12-17',
+                desc: 'Apache DolphinScheduler 2.0.1',
+                link: '/zh-cn/blog/Apache-DolphinScheduler-2.0.1.html',
+            },
             {
                 title: '从 Airflow 到 Apache DolphinScheduler，有赞大数据开发平台的调度系统演进',
                 author: 'Debra Chen',
