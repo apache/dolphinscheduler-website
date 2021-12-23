@@ -2,9 +2,10 @@
 
 ## Get started quickly
 
-> Please refer to [Quick Start](https://dolphinscheduler.apache.org/en-us/docs/2.0.0/user_doc/guide/quick-start.html)
+> Please refer to [Quick Start](https://dolphinscheduler.apache.org/en-us/docs/2.0.1/user_doc/guide/quick-start.html)
 
 ## Operation guide
+
 
 ### 1. Home
 

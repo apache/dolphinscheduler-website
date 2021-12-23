@@ -3,7 +3,7 @@
 
 ## 快速上手
 
-  > 请参照[快速上手](https://dolphinscheduler.apache.org/zh-cn/docs/2.0.0/user_doc/guide/quick-start.html)
+  > 请参照[快速上手](https://dolphinscheduler.apache.org/zh-cn/docs/2.0.1/user_doc/guide/quick-start.html)
 
 ## 操作指南
 

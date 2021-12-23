@@ -78,7 +78,7 @@ scheduling system
 * **UI**
 
   The front-end page of the system provides various visual operation interfaces of the system,See more
-  at<a href="/en-us/docs/2.0.0/user_doc/system-manual.html" target="_self"> System User Manual </a>section。
+  at [System User Manual](../guide/system-manual.md) section。
 
 #### 1.4 Architecture design ideas
 
