@@ -7,3 +7,5 @@
 其中 send.type 分别对应企微文档：
 应用：https://work.weixin.qq.com/api/doc/90000/90135/90236
 群聊：https://work.weixin.qq.com/api/doc/90000/90135/90248
+
+user.send.msg 对应文档中的 content，与此相对应的值的变量为 {msg}
