@@ -121,11 +121,14 @@ dolphinscheduler-service/src/main/resources/registry.properties</li>
 <h5>启动服务</h5>
 <p>我们需要启动三个必须服务，包括 MasterServer，WorkerServer，ApiApplicationServer，如果有需求可以启动可选服务 LoggerServer</p>
 <ul>
-<li>MasterServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.server.master.MasterServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false</code></li>
-<li>WorkerServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.server.worker.WorkerServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false</code></li>
-<li>ApiApplicationServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.api.ApiApplicationServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api</code>。启动完成可以浏览 Open API 文档，地址为 <a href="http://localhost:12345/dolphinscheduler/doc.html">http://localhost:12345/dolphinscheduler/doc.html</a></li>
+<li>MasterServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.server.master.MasterServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
+<li>WorkerServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.server.worker.WorkerServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
+<li>ApiApplicationServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.api.ApiApplicationServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api,mysql</code>。启动完成可以浏览 Open API 文档，地址为 <a href="http://localhost:12345/dolphinscheduler/doc.html">http://localhost:12345/dolphinscheduler/doc.html</a></li>
 <li>LoggerServer：<strong>这是非必须功能，可以不开启</strong>，在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.server.log.LoggerServer</code> 中的 <code>main</code> 方法</li>
 </ul>
+<blockquote>
+<p>VM Options <code>-Dspring.profiles.active=mysql</code> 中 <code>mysql</code> 表示指定的配置文件</p>
+</blockquote>
 <h3>启动前端</h3>
 <p>安装前端依赖并运行前端组件</p>
 <pre><code class="language-shell">cd dolphinscheduler-ui
