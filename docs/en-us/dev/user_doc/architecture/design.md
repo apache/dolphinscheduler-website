@@ -199,8 +199,6 @@ Fault-tolerant content: Master's fault-tolerant content includes: fault-tolerant
 
 Fault-tolerant post-processing: After the fault tolerance of ZooKeeper Master is completed, it is re-scheduled by the Scheduler thread in DolphinScheduler, traverses the DAG to find the "running" and "submit successful" tasks, monitors the status of its task instances for the "running" tasks, and "commits successful" tasks It is necessary to determine whether the task queue already exists. If it exists, the status of the task instance is also monitored. If it does not exist, resubmit the task instance.
 
-
-
 - Worker fault tolerance：
 
 <p align="center">
