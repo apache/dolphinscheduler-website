@@ -1,4 +1,4 @@
-SkyWalking Agent Deployment
+SkyWalking Agent
 =============================
 
 The dolphinscheduler-skywalking module provides [SkyWalking](https://skywalking.apache.org/) monitor agent for the Dolphinscheduler project.
@@ -38,7 +38,7 @@ $ docker run -d --name dolphinscheduler \
 -e SW_GRPC_LOG_SERVER_HOST="your.skywalking-log-reporter.com" \
 -e SW_GRPC_LOG_SERVER_PORT="11800" \
 -p 12345:12345 \
-apache/dolphinscheduler:2.0.1 all
+apache/dolphinscheduler:2.0.0 all
 ```
 
 ### Through install_config.conf configuration (for DolphinScheduler install.sh)
