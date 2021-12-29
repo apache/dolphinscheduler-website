@@ -50,10 +50,6 @@ export default {
             title: 'Kubernetes Deployment',
             link: '/en-us/docs/2.0.1/user_doc/guide/installation/kubernetes.html',
           },
-          {
-            title: 'SkyWalking-Agent Deployment',
-            link: '/en-us/docs/2.0.1/user_doc/guide/installation/skywalking-agent.html',
-          },
         ],
       },
       {
@@ -239,6 +235,15 @@ export default {
         ],
       },
       {
+        title: 'Observability',
+        children: [
+          {
+            title: 'SkyWalking-Agent',
+            link: '/en-us/docs/2.0.1/user_doc/guide/observability/skywalking-agent.html',
+          },
+        ]
+      },
+      {
         title: 'FAQ',
         children: [
           {
@@ -309,10 +314,6 @@ export default {
           {
             title: 'Kubernetes部署(Kubernetes)',
             link: '/zh-cn/docs/2.0.1/user_doc/guide/installation/kubernetes.html',
-          },
-          {
-            title: 'SkyWalking-Agent部署(SkyWalking)',
-            link: '/zh-cn/docs/2.0.1/user_doc/guide/installation/skywalking-agent.html',
           },
         ],
       }, 
@@ -505,6 +506,15 @@ export default {
             link: '/zh-cn/docs/2.0.1/user_doc/expansion-reduction.html',
           },
         ],
+      },
+      {
+        title: '可观测性',
+        children: [
+          {
+            title: 'SkyWalking-Agent',
+            link: '/zh-cn/docs/2.0.1/user_doc/guide/observability/skywalking-agent.html',
+          },
+        ]
       },
       {
         title: 'FAQ',

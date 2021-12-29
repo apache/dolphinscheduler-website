@@ -7,17 +7,17 @@
     <tr>
         <td>system.biz.date</td>
         <td>${system.biz.date}</td>
-        <td>The day before the scheduled time of the daily scheduling instance, the format is yyyyMMdd, when the data is supplemented, the date is +1</td>
+        <td>The day before the scheduled time of the daily scheduling instance, the format is yyyyMMdd</td>
     </tr>
     <tr>
         <td>system.biz.curdate</td>
         <td>${system.biz.curdate}</td>
-        <td>The timing time of the daily scheduling instance, the format is yyyyMMdd, when the data is supplemented, the date is +1</td>
+        <td>The timing time of the daily scheduling instance, the format is yyyyMMdd</td>
     </tr>
     <tr>
         <td>system.datetime</td>
         <td>${system.datetime}</td>
-        <td>The timing time of the daily scheduling instance, the format is yyyyMMddHHmmss, when the data is supplemented, the date is +1</td>
+        <td>The timing time of the daily scheduling instance, the format is yyyyMMddHHmmss</td>
     </tr>
 </table>
 
