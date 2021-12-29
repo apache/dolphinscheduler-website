@@ -111,6 +111,7 @@ The following services are automatically started when the container starts:
      LoggerServer         ----- logger service
      ApiApplicationServer ----- api service
      AlertServer          ----- alert service
+     PythonGatewayServer  ----- python gateway service
 ```
 
 If you just want to run part of the services in the DolphinScheduler
@@ -155,6 +156,15 @@ $ docker run -d --name dolphinscheduler-alert \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
 apache/dolphinscheduler:2.0.2 alert-server
+```
+
+* Start a **python gateway server**, For example:
+
+```
+$ docker run -d --name dolphinscheduler-python-gateway \
+-e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
+-e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
+apache/dolphinscheduler:2.0.2 python-gateway
 ```
 
 **Note**: You must be specify `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_DATABASE`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`, `ZOOKEEPER_QUORUM` when start a standalone dolphinscheduler server.

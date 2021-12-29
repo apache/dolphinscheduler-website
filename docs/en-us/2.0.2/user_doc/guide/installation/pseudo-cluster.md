@@ -119,6 +119,7 @@ masters="localhost"
 workers="localhost:default"
 alertServer="localhost"
 apiServers="localhost"
+pythonGatewayServers="localhost"
 
 # DolphinScheduler installation path, it will auto create if not exists
 installPath="~/dolphinscheduler"
@@ -193,6 +194,10 @@ sh ./bin/dolphinscheduler-daemon.sh stop logger-server
 # Start or stop Alert
 sh ./bin/dolphinscheduler-daemon.sh start alert-server
 sh ./bin/dolphinscheduler-daemon.sh stop alert-server
+
+# Start or stop Python Gateway Server
+sh ./bin/dolphinscheduler-daemon.sh start python-gateway-server
+sh ./bin/dolphinscheduler-daemon.sh stop python-gateway-server
 ```
 
 > **_Note:_**: Please refer to the section of "System Architecture Design" for service usage

@@ -28,6 +28,7 @@ masters="ds1,ds2"
 workers="ds3:default,ds4:default,ds5:default"
 alertServer="ds4"
 apiServers="ds5"
+pythonGatewayServers="ds5"
 ```
 
 ## Start DolphinScheduler && Login DolphinScheduler && Server Start And Stop

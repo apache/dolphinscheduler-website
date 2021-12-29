@@ -111,6 +111,7 @@ apache/dolphinscheduler:2.0.2 all
     LoggerServer         ----- logger服务
     ApiApplicationServer ----- api服务
     AlertServer          ----- alert服务
+    PythonGatewayServer  ----- python gateway服务
 ```
 
 如果你只是想运行 dolphinscheduler 中的部分服务
@@ -155,6 +156,15 @@ $ docker run -d --name dolphinscheduler-alert \
 -e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
 -e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
 apache/dolphinscheduler:2.0.2 alert-server
+```
+
+* 启动一个 **python gateway server**, 如下:
+
+```
+$ docker run -d --name dolphinscheduler-python-gateway \
+-e DATABASE_HOST="192.168.x.x" -e DATABASE_PORT="5432" -e DATABASE_DATABASE="dolphinscheduler" \
+-e DATABASE_USERNAME="test" -e DATABASE_PASSWORD="test" \
+apache/dolphinscheduler:2.0.2 python-gateway-server
 ```
 
 **注意**: 当你运行dolphinscheduler中的部分服务时，你必须指定这些环境变量 `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_DATABASE`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`, `ZOOKEEPER_QUORUM`。
