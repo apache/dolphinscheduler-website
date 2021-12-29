@@ -37,8 +37,8 @@ SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
 ## 5. 服务升级
 
 ### 5.1 修改`conf/config/install_config.conf`配置内容
-单机部署请参照[单机部署(Standalone)](/zh-cn/docs/2.0.1/user_doc/guide/installation/standalone.html)中的`6.修改运行参数部分`
-集群部署请参照[集群部署(Cluster)](/zh-cn/docs/2.0.1/user_doc/guide/installation/cluster.html)中的`6.修改运行参数部分`
+单机部署请参照[单机部署(Standalone)](/zh-cn/docs/2.0.2/user_doc/guide/installation/standalone.html)中的`6.修改运行参数部分`
+集群部署请参照[集群部署(Cluster)](/zh-cn/docs/2.0.2/user_doc/guide/installation/cluster.html)中的`6.修改运行参数部分`
 
 ### 注意事项
 

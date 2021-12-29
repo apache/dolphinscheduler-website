@@ -34,8 +34,8 @@ SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
 ## 5. Backend Service Upgrade.
 
 ### 5.1 Modify the Content in `conf/config/install_config.conf` File.
-- Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](/en-us/docs/2.0.1/user_doc/guide/installation/standalone.html).
-- Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](/en-us/docs/2.0.1/user_doc/guide/installation/cluster.html).
+- Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](/en-us/docs/2.0.2/user_doc/guide/installation/standalone.html).
+- Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](/en-us/docs/2.0.2/user_doc/guide/installation/cluster.html).
 
 #### Masters Need Attentions
 

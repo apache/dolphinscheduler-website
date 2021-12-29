@@ -29,9 +29,9 @@
 mkdir -p /opt
 cd /opt
 # 解压缩
-tar -zxvf apache-dolphinscheduler-2.0.1-bin.tar.gz -C /opt 
+tar -zxvf apache-dolphinscheduler-2.0.2-bin.tar.gz -C /opt 
 cd /opt
-mv apache-dolphinscheduler-2.0.1-bin  dolphinscheduler
+mv apache-dolphinscheduler-2.0.2-bin  dolphinscheduler
 ```
 
 ```markdown
