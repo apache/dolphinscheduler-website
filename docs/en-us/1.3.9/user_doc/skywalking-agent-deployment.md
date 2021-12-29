@@ -1,4 +1,4 @@
-SkyWalking Agent Deployment
+SkyWalking Agent
 =============================
 
 The dolphinscheduler-skywalking module provides [SkyWalking](https://skywalking.apache.org/) monitor agent for the Dolphinscheduler project.
