@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { autobind } from 'core-decorators';
 import siteConfig from '../../../site_config/site';
 import { getLink } from '../../../utils';
+import MobileMenu from '../mobileMenu/index';
 import Menu from 'antd/lib/menu';
 import 'antd/lib/menu/style/index.css';
 import './index.scss';
@@ -53,7 +54,6 @@ class Header extends React.Component {
       language: props.language,
       search: siteConfig.defaultSearch,
       searchValue: '',
-      submenuVisibleMap: {},
     };
   }
 
@@ -69,17 +69,6 @@ class Header extends React.Component {
       }
     } else if (localStorage.getItem('currents')) {
       this.setCurrent(localStorage.getItem('currents'));
-    }
-    if (siteConfig[this.state.language].pageMenu) {
-      const map = {};
-      siteConfig[this.state.language].pageMenu.forEach((menu) => {
-        if (menu.children && menu.children.length > 0) {
-          map[menu.key] = false;
-        }
-      });
-      this.setState({
-        submenuVisibleMap: map,
-      });
     }
   }
 
@@ -154,32 +143,15 @@ class Header extends React.Component {
     e.stopPropagation();
   }
 
-  toggleMenu() {
+  toggleMenu(bool) {
     this.setState({
-      mobileMemuVisible: !this.state.mobileMemuVisible,
-    }, () => {
-      if (this.state.mobileMemuVisible) {
-        document.body.addEventListener('touchmove', this.preventScroll, { passive: false });
-      } else {
-        document.body.removeEventListener('touchmove', this.preventScroll);
-      }
-    });
-  }
-
-  toggoleSubMenu(key) {
-    const { submenuVisibleMap } = this.state;
-    if (!submenuVisibleMap.hasOwnProperty(key)) return;
-    this.setState({
-      submenuVisibleMap: {
-        ...submenuVisibleMap,
-        [key]: !submenuVisibleMap[key],
-      },
+      mobileMemuVisible: bool,
     });
   }
 
   render() {
     const { type, logo, onLanguageChange } = this.props;
-    const { mobileMemuVisible, language, search, searchVisible, submenuVisibleMap } = this.state;
+    const { mobileMemuVisible, language, search, searchVisible } = this.state;
     return (
       <header
         className={
@@ -195,7 +167,7 @@ class Header extends React.Component {
               'mobile-menu-btn': true,
               [`mobile-menu-btn-${type}`]: true,
             })}
-            onClick={this.toggleMenu}
+            onClick={() => this.toggleMenu(!mobileMemuVisible)}
           />
           <a href={getLink(`/${language}/index.html`)}>
             <img className="logo" alt={siteConfig.name} title={siteConfig.name} src={getLink(logo)} />
@@ -269,37 +241,7 @@ class Header extends React.Component {
               </Menu>
             </div>
           </div>
-          <div className={mobileMemuVisible ? 'mobile-menu visible' : 'mobile-menu'} onScroll={this.preventScroll}>
-            <div className="mobile-menu-content">
-              <div className="mobile-menu-list">
-                {
-                  siteConfig[language].pageMenu.map(item => (
-                    <div className="mobile-menu-item" onClick={() => this.toggoleSubMenu(item.key)} >
-                      <a className="mobile-menu-title" href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                      {
-                        item.children && item.children.length > 0 ?
-                          <em className={submenuVisibleMap[item.key] ? 'mobile-menu-icon open' : 'mobile-menu-icon'} /> :
-                          null
-                      }
-                      {
-                        item.children && item.children.length > 0 ?
-                          <div className={submenuVisibleMap[item.key] ? 'mobile-sub-menus open' : 'mobile-sub-menus'}>
-                            {
-                              item.children && item.children.map(sub => (
-                                <div className="mobile-sub-menu-item"><a href={getLink(sub.link)} target={sub.target || '_self'}>{sub.text}</a></div>
-                              ))
-                            }
-                          </div>
-                          :
-                          null
-                      }
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-            <div className="mobile-menu-dummy" onClick={this.toggleMenu} />
-          </div>
+          <MobileMenu menus={siteConfig[language].pageMenu} visible={mobileMemuVisible} setVisible={this.toggleMenu} />
         </div>
       </header>
     );
