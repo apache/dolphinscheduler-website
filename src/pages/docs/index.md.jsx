@@ -35,7 +35,7 @@ const docsSource = {
   '1.3.9': docs139Config,
   '2.0.0': docs200Config,
   '2.0.1': docs201Config,
-  '2.0.2': docs201Config,
+  '2.0.2': docs202Config,
   dev: docsDevConfig,
 };
 
