@@ -2,10 +2,13 @@
 <div align=center>
 <img src="https://imgpp.com/images/2021/12/30/1639640547411.md.png"/>
 </div>
-作者| 孙浩
 
-✎ 编 者 按：基于 Apache Dolphinscheduler 调度平台，云计算和大数据提供商亿云信息已经服务公司多个项目部的地市现场平稳运行一年之久。
-结合政务信息化生态建设业务，亿云信息基于 DolphinScheduler 构建了资产数据管控平台的数据服务模块。他们是如何进行探索和优化的？亿云信息研发工程师 孙浩 进行了详细的用户实践交流分享。
+作者| 孙浩
+<br />
+
+> 编 者 按：基于 Apache Dolphinscheduler 调度平台，云计算和大数据提供商亿云信息已经服务公司多个项目部的地市现场平稳运行一年之久。
+<br />
+> 结合政务信息化生态建设业务，亿云信息基于 DolphinScheduler 构建了资产数据管控平台的数据服务模块。他们是如何进行探索和优化的？亿云信息研发工程师 孙浩 进行了详细的用户实践交流分享。
 
 ## 01 研发背景
 
@@ -41,57 +44,63 @@ DS 作为调度系统支持以下功能：
 
 回归业务本身，我们的业务场景，数据同步的业务需要是类型多，但数据量基本不会特别大，对实时要求并不高。所以在架构选型之初，我们就选择了 datax+ds 的组合，并进行对应业务的改造实现，现在作为服务产品融合在各个项目中，提供离线同步服务。
 
+<br />
+
 <div align=center>
 <img src="https://imgpp.com/images/2021/12/30/1.md.png"/>
 </div>
 
+<br />
+
 同步任务分为了周期任务和一次性任务，在配置完成输入输出源的配置任务之后，周期任务的话，需要配置 corn 表达式，然后调用保存接口，将同步任务发送给DS 的调度平台。
+<br />
 <div align=center>
 <img src="https://imgpp.com/images/2021/12/30/2.md.png"/>
 </div>
+<br />
 我们这里综合考虑放弃了之前 DS 的 UI 前端（第二部分在自助开发模块会给大家解释），复用 DS 后端的上线、启停、删除、日志查看等接口。
-
+<br />
 <div align=center>
-< img src="https://imgpp.com/images/2021/12/30/4.md.png"/>
+<img src="https://imgpp.com/images/2021/12/30/4.md.png"/>
 </div>
-
+<br />
 <div align=center>
-< img src="https://imgpp.com/images/2021/12/30/5.md.png"/>
+<img src="https://imgpp.com/images/2021/12/30/5.md.png"/>
 </div>
-
+<br />
 整个同步模块的设计思路，就是重复利用 datax 组件的输入输出 plugin 多样性，配合 DS 的优化，来实现一个离线的同步任务，这个是当前我们的同步的一个组件图，实时同步这块不再赘述。
-
+<br />
 <div align=center>
-< img src="https://imgpp.com/images/2021/12/30/9.md.png"/>
+<img src="https://imgpp.com/images/2021/12/30/9.md.png"/>
 </div>
-
+<br />
 ## 03 基于DS的自助开发实践
 
 熟悉 datax的人都知道它本质上是一个 ETL 工具，而其 Transform 的属性体现在，它提供了一个支持 grovy 语法的 transformer 模块，同时可以在 datax 源码中进一步丰富 transformer 中用到工具类，例如替换、正则匹配、筛选、脱敏、统计等功能。而 Dolphinscheduler 的任务，是可以用 DAG 图来实现，那么我们想到，是否存在一种可能，针对一张表或者几张表，把每个 datax 或者 SQL 抽象成一个数据治理的小模块，每个模块按照 DAG 图去设计，并且在上下游之间可以实现数据的传递，最好还是和 DS 一样的可以拖拽式的实现。于是，我们基于前期对 datax 与 ds 的使用，实现了一个自助开发的模块。
-
+<br />
 <div align=center>
-< img src="https://imgpp.com/images/2021/12/30/6.md.png"/>
+<img src="https://imgpp.com/images/2021/12/30/6.md.png"/>
 </div>
-
+<br />
 每个组件可能是一个模块，每个模块功能之间的依赖关系，我们利用 ds 的depend 来处理，而对应组件与组件传递数据，我们利用前端去存储，也就是我们在引入 input（输入组件）之后，让前端来进行大部分组件间的传递和逻辑判断，因为每个组件都可以看作一个 datax 的(输出/输出)，所有参数在输入时，最终输出的全集基本就确定了，这也是我们放弃 DS 的 UI 前端的原因。之后，我们将这个 DAG 图组装成 DS 的定义的类型，同样交付给 ds 任务中心。
 
 PS：因为我们的业务场景可能存在跨数据库查询的情况（不同实例的 mysql 组合查询），我们的 SQL 组件底层使用 Presto 来实现一个统一 SQL 层，这样即使是不同 IP 实例下的数据源（业务上有关联意义），也可以通过 Presto 来支持组合检索。
 
 ## 04 其他的一些简单尝试
 熟悉治理流程的人都知道，如果能够做到简单的治理流程化，那么必然可以产出一份质量报告。我们在自助开发的基础上进行优化，将部分治理的记录写入 ES 中，再利用 ES 的聚合能力来实现了一个质量报告。
-
+<br />
 <div align=center>
 <img src="https://imgpp.com/images/2021/12/30/7.md.png"/>
 </div>
-
+<br />
 <div align=center>
 <img src="https://imgpp.com/images/2021/12/30/8.md.png"/>
 </div>
-
+<br />
 <div align=center>
 <img src="https://imgpp.com/images/2021/12/30/10.md.png"/>
 </div>
-
+<br />
 以上便是我们使用 DS 结合 datax 等中间件，并结合业务背景所做的一些符合自身需求的实践。
 
 ## 05 感谢
