@@ -67,6 +67,7 @@ The design of the entire synchronization module is aimed to reuse the diversity 
 
 
 <div align=center>
+
 <img src="https://imgpp.com/images/2021/12/30/ffd0c839647bcce4c208ee0cf5b7622b.md.png"/>
 </div>
 

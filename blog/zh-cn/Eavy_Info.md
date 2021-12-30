@@ -52,6 +52,7 @@ DS 作为调度系统支持以下功能：
 我们这里综合考虑放弃了之前 DS 的 UI 前端（第二部分在自助开发模块会给大家解释），复用 DS 后端的上线、启停、删除、日志查看等接口。
 
 <div align=center>
+
 <img src="https://imgpp.com/images/2021/12/30/4.md.png"/>
 </div>
 
