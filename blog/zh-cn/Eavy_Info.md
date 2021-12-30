@@ -52,17 +52,18 @@ DS 作为调度系统支持以下功能：
 我们这里综合考虑放弃了之前 DS 的 UI 前端（第二部分在自助开发模块会给大家解释），复用 DS 后端的上线、启停、删除、日志查看等接口。
 
 <div align=center>
-< img src="https://imgpp.com/images/2021/12/30/4.md.png"/>
+
+<img src="https://imgpp.com/images/2021/12/30/4.md.png"/>
 </div>
 
 <div align=center>
-< img src="https://imgpp.com/images/2021/12/30/5.md.png"/>
+<img src="https://imgpp.com/images/2021/12/30/5.md.png"/>
 </div>
 
 整个同步模块的设计思路，就是重复利用 datax 组件的输入输出 plugin 多样性，配合 DS 的优化，来实现一个离线的同步任务，这个是当前我们的同步的一个组件图，实时同步这块不再赘述。
 
 <div align=center>
-< img src="https://imgpp.com/images/2021/12/30/9.md.png"/>
+<img src="https://imgpp.com/images/2021/12/30/9.md.png"/>
 </div>
 
 ## 03 基于DS的自助开发实践
@@ -70,7 +71,7 @@ DS 作为调度系统支持以下功能：
 熟悉 datax的人都知道它本质上是一个 ETL 工具，而其 Transform 的属性体现在，它提供了一个支持 grovy 语法的 transformer 模块，同时可以在 datax 源码中进一步丰富 transformer 中用到工具类，例如替换、正则匹配、筛选、脱敏、统计等功能。而 Dolphinscheduler 的任务，是可以用 DAG 图来实现，那么我们想到，是否存在一种可能，针对一张表或者几张表，把每个 datax 或者 SQL 抽象成一个数据治理的小模块，每个模块按照 DAG 图去设计，并且在上下游之间可以实现数据的传递，最好还是和 DS 一样的可以拖拽式的实现。于是，我们基于前期对 datax 与 ds 的使用，实现了一个自助开发的模块。
 
 <div align=center>
-< img src="https://imgpp.com/images/2021/12/30/6.md.png"/>
+<img src="https://imgpp.com/images/2021/12/30/6.md.png"/>
 </div>
 
 每个组件可能是一个模块，每个模块功能之间的依赖关系，我们利用 ds 的depend 来处理，而对应组件与组件传递数据，我们利用前端去存储，也就是我们在引入 input（输入组件）之后，让前端来进行大部分组件间的传递和逻辑判断，因为每个组件都可以看作一个 datax 的(输出/输出)，所有参数在输入时，最终输出的全集基本就确定了，这也是我们放弃 DS 的 UI 前端的原因。之后，我们将这个 DAG 图组装成 DS 的定义的类型，同样交付给 ds 任务中心。
