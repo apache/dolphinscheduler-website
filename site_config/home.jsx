@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: 'https://imgpp.com/images/2021/12/29/1640759432737.md.png',
+          title: '亿云基于 DolphinScheduler 构建资产数据管理平台服务，助力政务信息化生态建设',
+          content: '基于 Apache Dolphinscheduler 调度平台，云计算和大数据提供商亿云...',
+          dateStr: '2021-12-30',
+          link: '/zh-cn/blog/Eavy_Info.html',
+        },
+        {
           img: 'https://imgpp.com/images/2021/12/17/1639647220322.md.png',
 
           title: 'Apache DolphinScheduler 2.0.1 来了，备受期待的一键升级、插件化终于实现！',
@@ -69,13 +76,6 @@ export default {
           content: '在不久前的 Apache DolphinScheduler Meetup 2021 上...',
           dateStr: '2021-12-10',
           link: '/zh-cn/blog/YouZan-case-study.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/11/23/1637566412753.md.png',
-          title: '荔枝机器学习平台与大数据调度系统“双剑合璧”，打造未来数据处理新模式！',
-          content: '在线音频行业在中国仍是蓝海一片。根据 CIC 数据显示...',
-          dateStr: '2021-11-23',
-          link: '/zh-cn/blog/Lizhi-case-study.html',
         },
       ],
     },
@@ -543,6 +543,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: 'https://imgpp.com/images/2021/12/29/1640759432737.md.png',
+          title: '# Eavy Info Builds Data Asset Management Platform Services Based on Apache DolphinScheduler to Construct Government Information Ecology',
+          content: 'Based on the Apache DolphinScheduler, the cloud computing and big data provider Eavy Info...',
+          dateStr: '2021-11-24',
+          link: '/en-us/blog/Eavy_Info.html',
+        },
+        {
           img: 'https://imgpp.com/images/2021/12/20/1639994965225.md.png',
           title: 'Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!',
           content: 'Good news! Apache DolphinScheduler 2.0.1 version is officially released today!...',
@@ -555,13 +562,6 @@ export default {
           content: 'At the recent Apache DolphinScheduler Meetup 2021, Zheqi Song...',
           dateStr: '2021-12-16',
           link: '/en-us/blog/YouZan-case-study.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/11/23/1637566412753.md.png',
-          title: 'A Formidable Combination of Lizhi Machine Learning Platform& DolphinScheduler Creates New Paradigm for Data Process in the Future!',
-          content: 'The online audio industry is a blue ocean market in China nowadays...',
-          dateStr: '2021-11-24',
-          link: '/en-us/blog/Lizhi-case-study.html',
         },
       ],
     },
