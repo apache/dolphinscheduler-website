@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Eavy Info Builds Data Asset Management Platform Services Based on Apache DolphinScheduler to Construct Government Information Ecology',
+                author: 'Debra Chen',
+                dateStr: '2021-12-30',
+                desc: ' Use Case',
+                link: '/en-us/blog/Eavy_Info.html',
+            },
+            {
                 title: 'Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!',
                 author: 'Debra Chen',
                 dateStr: '2021-12-20',
@@ -82,6 +89,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '亿云基于 DolphinScheduler 构建资产数据管理平台服务，助力政务信息化生态建设',
+                author: 'Debra Chen',
+                dateStr: '2021-12-30',
+                desc: '最佳实践',
+                link: '/zh-cn/blog/Eavy_Info.html',
+            },
             {
                 title: 'Apache DolphinScheduler 2.0.1 来了，备受期待的一键升级、插件化终于实现！',
                 author: 'Debra Chen',
