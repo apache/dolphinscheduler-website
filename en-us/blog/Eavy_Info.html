@@ -47,7 +47,7 @@
 <p>We gave up the previous UI front-end of DS after comprehensive consideration and reused the DS back-end interfaces to carry the online procedure, start and stopping, deleting, and log viewing.</p>
 <p>The design of the entire synchronization module is aimed to reuse the diversity of input and output plugins of the Datax component and integrate with the optimization of DS to achieve an offline synchronization task. This is a component diagram of our current synchronization.</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/29/9febb92b69077778c765d115427e3a48.md.png"/>
+<img src="https://imgpp.com/images/2021/12/30/ffd0c839647bcce4c208ee0cf5b7622b.md.png"/>
 </div>
 <h2>Self Development Practices Based on DS</h2>
 <p>Anyone familiar with Datax knows that it is essentially an ETL tool, which provides a transformer module that supports Groovy syntax, and at the same time further enrich the tool classes used in the transformer in the Datax source code, such as replacing, regular matching, screening, desensitization, statistics, and other functions. That shows its property of Transform. Since the tasks are implemented with DAG diagrams in Apache DolphinScheduler, we wonder that is it possible to abstract each Datax or SQL into a small data governance module for a table or several tables? Each module is designed based on the DAG diagram, and the data can be transferred between upstream and downstream and is can be implemented by drag-and-drop like DS. Therefore, we self-developed a module based on the previous work on Datax and DS.</p>
