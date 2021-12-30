@@ -63,7 +63,6 @@ class Home extends Language {
         });
       });
     this.initSwiper();
-    window._debug = this;
   }
 
   componentDidUpdate(prevProps, prevState) {
