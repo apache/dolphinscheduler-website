@@ -2,7 +2,7 @@ export default {
   'en-us': {
     sidemenu: [
       {
-        title: 'About Apache DolphinScheduler',
+        title: 'About',
         children: [
           {
             title: 'Introduction',
@@ -24,6 +24,10 @@ export default {
           {
             title: 'Quick Start',
             link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
+          },
+          {
+            title: 'User Manual',
+            link: '/en-us/docs/2.0.0/user_doc/guide/system-manual.html',
           },
           {
             title: 'Docker Deployment',
@@ -49,10 +53,6 @@ export default {
           {
             title: 'Kubernetes Deployment',
             link: '/en-us/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
-          },
-          {
-            title: 'SkyWalking-Agent Deployment',
-            link: '/en-us/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
           },
         ],
       },
@@ -239,6 +239,15 @@ export default {
         ],
       },
       {
+        title: 'Observability',
+        children: [
+          {
+            title: 'SkyWalking-Agent',
+            link: '/en-us/docs/2.0.0/user_doc/guide/observability/skywalking-agent.html',
+          },
+        ]
+      },
+      {
         title: 'FAQ',
         children: [
           {
@@ -286,6 +295,10 @@ export default {
             link: '/zh-cn/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
+            title: '用户手册',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/system-manual.html',
+          },
+          {
             title: 'Docker部署(Docker)',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/docker.html',
           },
@@ -309,10 +322,6 @@ export default {
           {
             title: 'Kubernetes部署(Kubernetes)',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
-          },
-          {
-            title: 'SkyWalking-Agent部署(SkyWalking)',
-            link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
           },
         ],
       }, 
@@ -505,6 +514,15 @@ export default {
             link: '/zh-cn/docs/2.0.0/user_doc/expansion-reduction.html',
           },
         ],
+      },
+      {
+        title: '可观测性',
+        children: [
+          {
+            title: 'SkyWalking-Agent',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/observability/skywalking-agent.html',
+          },
+        ]
       },
       {
         title: 'FAQ',

@@ -19,14 +19,10 @@ export default {
           {
             title: 'Backend Development',
             children: [
-              // TODO not suppor multiply level for now
+              // TODO not support multiply level for now
               // {
                 // title: 'SPI',
                 // children: [
-                  {
-                    title: 'Plugin',
-                    link: '/en-us/development/backend/spi/plugin.html',
-                  },
                   {
                     title: 'Alert SPI',
                     link: '/en-us/development/backend/spi/alert.html',
@@ -38,6 +34,10 @@ export default {
                   {
                     title: 'Task SPI',
                     link: '/en-us/development/backend/spi/task.html',
+                  },
+                  {
+                    title: 'Datasource SPI',
+                    link: '/en-us/development/backend/spi/datasource.html',
                   },
                 // ],
               // }
@@ -80,14 +80,10 @@ export default {
           {
             title: '后端开发',
             children: [
-              // TODO not suppor multiply level for now
+              // TODO not support multiply level for now
               // {
                 // title: 'SPI相关',
                 // children: [
-                  {
-                    title: '插件开发',
-                    link: '/zh-cn/development/backend/spi/plugin.html',
-                  },
                   {
                     title: 'Alert SPI',
                     link: '/zh-cn/development/backend/spi/alert.html',
@@ -99,6 +95,10 @@ export default {
                   {
                     title: 'Task SPI',
                     link: '/zh-cn/development/backend/spi/task.html',
+                  },
+                  {
+                    title: 'Datasource SPI',
+                    link: '/zh-cn/development/backend/spi/datasource.html',
                   },
                 // ],
               // },

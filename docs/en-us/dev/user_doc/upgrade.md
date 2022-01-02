@@ -9,7 +9,7 @@
 
 ## 3. Download the New Version's Installation Package.
 
-- [Download](/en-us/download/download.html) the latest version of the installation packages.
+- [download](/en-us/download/download.html) the latest version of the installation packages.
 - The following upgrade operations need to be performed in the new version's directory.
 
 ## 4. Database Upgrade
@@ -35,8 +35,8 @@
 ## 5. Backend Service Upgrade.
 
 ### 5.1 Modify the Content in `conf/config/install_config.conf` File.
-- Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](/en-us/docs/1.3.8/user_doc/standalone-deployment.html).
-- Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](/en-us/docs/1.3.8/user_doc/cluster-deployment.html).
+- Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](/en-us/docs/dev/user_doc/guide/installation/standalone.html).
+- Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](/en-us/docs/dev/user_doc/guide/installation/cluster.html).
 
 #### Masters Need Attentions
 Create worker group in 1.3.1 version has different design: 

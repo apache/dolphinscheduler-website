@@ -1,4 +1,4 @@
-SkyWalking Agent 部署
+SkyWalking Agent
 =============================
 
 dolphinscheduler-skywalking 模块为 Dolphinscheduler 项目提供了 [Skywalking](https://skywalking.apache.org/) 监控代理。

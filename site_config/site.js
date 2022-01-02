@@ -4,7 +4,7 @@ export default {
   port: 8080,
   domain: 'dolphinscheduler.apache.org',
   copyToDist: ['asset', 'img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess', 'googled0df7b96f277a143.html'],
-  docsLatest: '2.0.0',
+  docsLatest: '2.0.1',
   defaultSearch: 'google', // default search engine
   defaultLanguage: 'en-us',
   'en-us': {
@@ -21,8 +21,13 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: 'latest(2.0.0)',
+            text: 'latest(2.0.1)',
             link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
+          },
+          {
+            key: 'docs1',
+            text: '1.3.9',
+            link: '/en-us/docs/1.3.9/user_doc/quick-start.html',
           },
           {
             key: 'docs200',
@@ -114,11 +119,11 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/latest/user_doc/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
         },
         {
           text: 'Developer guide',
-          link: '/en-us/development/backend-development.html',
+          link: '/en-us/development/development-environment-setup.html',
         },
       ],
     },
@@ -193,8 +198,13 @@ export default {
         children: [
           {
             key: 'docs0',
-            text: '最新版本latest(2.0.0)',
+            text: '最新版本latest(2.0.1)',
             link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
+          },
+          {
+            key: 'docs1',
+            text: '1.3.9',
+            link: '/zh-cn/docs/1.3.9/user_doc/quick-start.html',
           },
           {
             key: 'docs200',
@@ -288,11 +298,11 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+          link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/development/backend-development.html',
+          link: '/zh-cn/development/development-environment-setup.html',
         },
       ],
     },

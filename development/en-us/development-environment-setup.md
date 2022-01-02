@@ -30,7 +30,6 @@ There are two ways to configure the DolphinScheduler development environment, st
 ## DolphinScheduler Standalone Quick Start
 
 > **_Note:_** Standalone server only for development and debugging, cause it use H2 Database, Zookeeper Testing Server which may not stable in production
-> If you want to test plugin, you can modify `plugin.bind` in StandaloneServer class or modify the configuration file by yourself.
 > Standalone is only supported in DolphinScheduler 1.3.9 and later versions
 
 ### Git Branch Choose
@@ -41,12 +40,6 @@ Use different Git branch to develop different codes
 * If you want to develop the latest code, choose branch branch `dev`.
 
 ### Start backend server
-
-Compile backend code
-
-```shell
-mvn install -DskipTests
-```
 
 Find the class `org.apache.dolphinscheduler.server.StandaloneServer` in Intellij IDEA and clikc run main function to startup.
 
@@ -94,32 +87,27 @@ Following steps will guide how to start the DolphinScheduler backend service
 ##### Backend Start Prepare
 
 * Open project: Use IDE open the project, here we use Intellij IDEA as an example, after opening it will take a while for Intellij IDEA to complete the dependent download
-* Plugin installation(**Only required for 2.0 or later**): Compile plugin by command `mvn -U clean install  -Dmaven.test.skip=true`
-  
-  Note: **${VERSION}** needs to be manually modified according to the current version, regarding ***.plugin.binding, maven.local.repository does not need to be modified.
+* Plugin installation(**Only required for 2.0 or later**)
 
-  * alert plugin config (alert.properties)
-  ```alert.properties
-   alert.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/alert	
-  ```
-  * registry plugin config  (registry.properties)
+ * Registry plug-in configuration, take Zookeeper as an example (registry.properties)
+  dolphinscheduler-service/src/main/resources/registry.properties
   ```registry.properties
-   registry.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper	
-  ```
-  * task plugin config (worker.properties)
-  ```worker.properties
-     task.plugin.dir=./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/task	
+   registry.plugin.name=zookeeper
+   registry.servers=127.0.0.1:2181
   ```
 * File change
   * If you use MySQL as your metadata database, you need to modify `dolphinscheduler/pom.xml` and change the `scope` of the `mysql-connector-java` dependency to `compile`. This step is not necessary to use PostgreSQL
-  * Modify database configuration, modify the database configuration in the `dolphinscheduler/dolphinscheduler-dao/datasource.properties`
+  * Modify database configuration, modify the database configuration in the `dolphinscheduler-dao/src/main/resources/application-mysql.yaml`
 
-  ```properties
-  # We here use MySQL with database, username, password named dolphinscheduler as an example
-  spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-  spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-  spring.datasource.username=dolphinscheduler
-  spring.datasource.password=dolphinscheduler
+
+  We here use MySQL with database, username, password named dolphinscheduler as an example
+  ```application-mysql.yaml
+   spring:
+     datasource:
+       driver-class-name: com.mysql.jdbc.Driver
+       url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8
+       username: ds_user
+       password: dolphinscheduler
   ```
 
 * Log level: add a line `<appender-ref ref="STDOUT"/>` to the following configuration to enable the log to be displayed on the command line
@@ -146,10 +134,12 @@ Following steps will guide how to start the DolphinScheduler backend service
 
 There are three necessary server we have to start, including MasterServer，WorkerServer，ApiApplicationServer, and a optional server you could start if you need, named LoggerServer.
 
-* MasterServer：Execute function `main` in the class `org.apache.dolphinscheduler.server.master.MasterServer` by Intellij IDEA, with the configuration *VM Options* `-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false`
-* WorkerServer：Execute function `main` in the class `org.apache.dolphinscheduler.server.worker.WorkerServer` by Intellij IDEA, with the configuration *VM Options* `-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false`
-* ApiApplicationServer：Execute function `main` in the class `org.apache.dolphinscheduler.api.ApiApplicationServer` by Intellij IDEA, with the configuration *VM Options* `-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api`. After it started, you could find Open API documentation in http://localhost:12345/dolphinscheduler/doc.html
+* MasterServer：Execute function `main` in the class `org.apache.dolphinscheduler.server.master.MasterServer` by Intellij IDEA, with the configuration *VM Options* `-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql`
+* WorkerServer：Execute function `main` in the class `org.apache.dolphinscheduler.server.worker.WorkerServer` by Intellij IDEA, with the configuration *VM Options* `-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql`
+* ApiApplicationServer：Execute function `main` in the class `org.apache.dolphinscheduler.api.ApiApplicationServer` by Intellij IDEA, with the configuration *VM Options* `-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api,mysql`. After it started, you could find Open API documentation in http://localhost:12345/dolphinscheduler/doc.html
 * LoggerServer：**Optional server, only start if you need**，Execute function `main` in the class `org.apache.dolphinscheduler.server.log.LoggerServer` by Intellij IDEA
+
+> The `mysql` in the VM Options `-Dspring.profiles.active=mysql` means specified configuration file
 
 ### Start Frontend Server
 

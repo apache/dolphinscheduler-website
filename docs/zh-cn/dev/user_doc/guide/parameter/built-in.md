@@ -7,21 +7,21 @@
     <tr>
         <td>system.biz.date</td>
         <td>${system.biz.date}</td>
-        <td>日常调度实例定时的定时时间前一天，格式为 yyyyMMdd，补数据时，该日期 +1</td>
+        <td>日常调度实例定时的定时时间前一天，格式为 yyyyMMdd</td>
     </tr>
     <tr>
         <td>system.biz.curdate</td>
         <td>${system.biz.curdate}</td>
-        <td>日常调度实例定时的定时时间，格式为 yyyyMMdd，补数据时，该日期 +1</td>
+        <td>日常调度实例定时的定时时间，格式为 yyyyMMdd</td>
     </tr>
     <tr>
         <td>system.datetime</td>
         <td>${system.datetime}</td>
-        <td>日常调度实例定时的定时时间，格式为 yyyyMMddHHmmss，补数据时，该日期 +1</td>
+        <td>日常调度实例定时的定时时间，格式为 yyyyMMddHHmmss</td>
     </tr>
 </table>
 
-## 衍生内置参数
+## 衍生内置参数
 
 - 支持代码中自定义变量名，声明方式：${变量名}。可以是引用 "系统参数"
 

@@ -1,30 +1,26 @@
-### DolphinScheduler Registry SPI 主要设计
+### DolphinScheduler Registry SPI 扩展
 
 #### 如何使用？
 
-首先你需要执行 `mvn -U install -Dmaven.test.skip=true` 安装插件，生成注册中心的插件 jar。目录是：dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry
+进行以下配置（以 zookeeper 为例）
 
-注意：**${VERSION}** 需要根据当前版本手动修改
+* 注册中心插件配置, 以Zookeeper 为例 (registry.properties)
+  dolphinscheduler-service/src/main/resources/registry.properties
+  ```registry.properties
+   registry.plugin.name=zookeeper
+   registry.servers=127.0.0.1:2181
+  ```
 
-其次进行以下配置（以 zookeeper 为例）
-
-|参数 |默认值| 描述|
-|--|--|--|
-registry.plugin.dir|./dolphinscheduler-dist/target/dolphinscheduler-dist-${VERSION}/lib/plugin/registry/zookeeper | 注册中心插件目录
-registry.plugin.name|zookeeper|注册中心具体插件名称
-registry.plugin.binding|registry|DolphinScheduler 插件类别
-registry.servers|127.0.0.1:2181|zk 连接地址
-
-具体配置信息请参考具体插件提供的参数信息，例如 zk：org/apache/dolphinscheduler/plugin/registry/zookeeper/ZookeeperConfiguration.java
+具体配置信息请参考具体插件提供的参数信息，例如 zk：`org/apache/dolphinscheduler/plugin/registry/zookeeper/ZookeeperConfiguration.java`
 所有配置信息前缀需要 +registry，如 base.sleep.time.ms，在 registry 中应该这样配置：registry.base.sleep.time.ms=100
 
+#### 如何扩展
 
+`dolphinscheduler-registry-api` 定义了实现插件的标准，当你需要扩展插件的时候只需要实现 `org.apache.dolphinscheduler.registry.api.RegistryFactory` 即可。
+
+`dolphinscheduler-registry-plugin` 模块下是我们目前所提供的注册中心插件。
 #### FAQ
 
-1: registry plugin not found
-
-请检查是否有执行 `mvn -U install -Dmaven.test.skip=true` ，此外，请检查配置文件中的 registry.plugin.dir 中配置的目录是否有相关插件。
-
-2：registry connect timeout
+1：registry connect timeout
 
 可以增加相关超时参数。

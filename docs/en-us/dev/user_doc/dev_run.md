@@ -1,6 +1,6 @@
 ## Development Environment Setup
 
->    Reference: [DolphinScheduler builds the development environment on Windows local.](https://dolphinscheduler.apache.org/zh-cn/blog/DS_run_in_windows.html)
+>    Reference: [DolphinScheduler builds the development environment on Windows local.](/zh-cn/blog/DS_run_in_windows.html)
 
 #### 1. Download the source code
 

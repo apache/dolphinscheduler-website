@@ -60,7 +60,7 @@ $ docker-compose up -d
   <img src="/img/login.png" width="60%" />
 </p>
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.6/user_doc/quick-start.html)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.6/user_doc/quick-start.html) 查看如何使用DolphinScheduler
 
 ### 二、通过指定已存在的 PostgreSQL 和 ZooKeeper 服务
 
