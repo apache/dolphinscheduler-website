@@ -67,44 +67,6 @@ chmod 600 ~/.ssh/authorized_keys
 ./bin/zkServer.sh start
 ```
 
-### 初始化数据库
-
-DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 [mysql-connector-java 驱动][mysql] (8.0.16) 并移动到 DolphinScheduler 的 lib目录下。下面以 MySQL 为例，说明如何初始化数据库
-
-```shell
-mysql -uroot -p
-
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-
-# 修改 {user} 和 {password} 为你希望的用户名和密码
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
-
-mysql> flush privileges;
-```
-
-运行对应数据库的最新定义文件，位置在安装目录 `sql/sql/dolphinscheduler_*.sql` 。例如你是 MySQL ，运行 `sql/sql/dolphinscheduler_mysql.sql` ，是 PostgreSQL 则运行 `sql/sql/dolphinscheduler_postgre.sql`
-
-> **_NOTICE:_** 最新版本目前通过运行命令 `sh script/create-dolphinscheduler.sh`
-
-<!--
-修改数据库配置，并初始化
-
-```properties
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-# 如果你不是以 dolphinscheduler/dolphinscheduler 作为用户名和密码的，需要进行修改
-spring.datasource.username=dolphinscheduler
-spring.datasource.password=dolphinscheduler
-```
-
-修改并保存完后，执行 script 目录下的创建表及导入基础数据脚本
-
-```shell
-sh script/create-dolphinscheduler.sh
-```
--->
-
 ## 修改相关配置
 
 完成了基础环境的准备后，在运行部署命令前，还需要根据环境修改配置文件。配置文件在路径在`conf/config/install_config.conf`下，一般部署只需要修改**INSTALL MACHINE、DolphinScheduler ENV、Database、Registry Server**部分即可完成部署，下面对必须修改参数进行说明
@@ -151,6 +113,27 @@ SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
 registryServers="localhost:2181"
 ```
 
+## 初始化数据库
+
+DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 [mysql-connector-java 驱动][mysql] (8.0.16) 并移动到 DolphinScheduler 的 lib目录下。下面以 MySQL 为例，说明如何初始化数据库
+
+```shell
+mysql -uroot -p
+
+mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+# 修改 {user} 和 {password} 为你希望的用户名和密码
+mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
+mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
+
+mysql> flush privileges;
+```
+
+完成上述步骤后，您已经为 DolphinScheduler 创建一个新数据库，现在你可以通过快速的 Shell 脚本来初始化数据库
+
+```shell
+sh script/create-dolphinscheduler.sh
+```
 
 ## 启动 DolphinScheduler
 

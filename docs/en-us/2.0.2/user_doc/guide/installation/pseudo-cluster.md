@@ -67,44 +67,6 @@ Go to the zookeeper installation directory, copy configure file `zoo_sample.cfg`
 ./bin/zkServer.sh start
 ```
 
-### Initialize the database
-
-DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
-
-```shell
-mysql -uroot -p
-
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-
-# Change {user} and {password} by requests
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
-
-mysql> flush privileges;
-```
-
-Run the latest schema file manually in `sql/sql/dolphinscheduler_*.sql` to initialization you database. If you use MySQL, please run `sql/sql/dolphinscheduler_mysql.sql`, for PostgreSQL run `sql /sql/dolphinscheduler_postgre.sql`
-
-> **_NOTICE:_** In the latest version, the way running command `sh script/create-dolphinscheduler.sh` initialization database is broken
-
-<!--
-Modify the database configuration and initialize
-
-```properties
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-# Modify it if you are not using dolphinscheduler/dolphinscheduler as your username and password
-spring.datasource.username=dolphinscheduler
-spring.datasource.password=dolphinscheduler
-```
-
-After modifying and saving, execute the following command to create database table and inti basic data.
-
-```shell
-sh script/create-dolphinscheduler.sh
-```
--->
-
 ## Modify configuration
 
 After completing the preparation of the basic environment, you need to modify the configuration file according to your environment. The configuration file is in the path of `conf/config/install_config.conf`. Generally, you just needs to modify the **INSTALL MACHINE, DolphinScheduler ENV, Database, Registry Server** part to complete the deployment, the following describes the parameters that must be modified
@@ -149,6 +111,28 @@ SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
 # ---------------------------------------------------------
 # Registration center address, the address of zookeeper service
 registryServers="localhost:2181"
+```
+
+## Initialize the database
+
+DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
+
+```shell
+mysql -uroot -p
+
+mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+# Change {user} and {password} by requests
+mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
+mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
+
+mysql> flush privileges;
+```
+
+After above steps done you would create a new database for DolphinScheduler, then run shortcut Shell scripts to init database
+
+```shell
+sh script/create-dolphinscheduler.sh
 ```
 
 ## Start DolphinScheduler
