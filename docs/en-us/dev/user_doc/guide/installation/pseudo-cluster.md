@@ -69,7 +69,7 @@ Go to the zookeeper installation directory, copy configure file `zoo_sample.cfg`
 
 ### Initialize the database
 
-DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (5.1.47+) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
+DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
 
 ```shell
 mysql -uroot -p
