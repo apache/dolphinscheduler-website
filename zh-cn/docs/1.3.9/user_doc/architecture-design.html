@@ -53,7 +53,7 @@
 <p>MasterServer采用分布式无中心设计理念，MasterServer主要负责 DAG 任务切分、任务提交监控，并同时监听其它MasterServer和WorkerServer的健康状态。
 MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeeper临时节点变化来进行容错处理。
 MasterServer基于netty提供监听服务。</p>
-<h5>该服务内主要包含:</h5>
+<p><strong>该服务内主要包含:</strong></p>
 <ul>
 <li>
 <p><strong>Distributed Quartz</strong>分布式调度组件，主要负责定时任务的启停操作，当quartz调起任务后，Master内部会有线程池具体负责处理任务的后续操作</p>
@@ -73,8 +73,8 @@ MasterServer基于netty提供监听服务。</p>
 <p><strong>WorkerServer</strong></p>
 <p>WorkerServer也采用分布式无中心设计理念，WorkerServer主要负责任务的执行和提供日志服务。
 WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
-Server基于netty提供监听服务。Worker</p>
-<h5>该服务包含：</h5>
+WorkerServer基于netty提供监听服务。</p>
+<p><strong>该服务包含：</strong></p>
 <ul>
 <li>
 <p><strong>FetchTaskThread</strong>主要负责不断从<strong>Task Queue</strong>中领取任务，并根据不同任务类型调用<strong>TaskScheduleThread</strong>对应执行器。</p>
