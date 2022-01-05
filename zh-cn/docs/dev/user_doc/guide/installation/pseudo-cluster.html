@@ -70,7 +70,7 @@ chmod 600 ~/.ssh/authorized_keys
 ./bin/zkServer.sh start
 </code></pre>
 <h3>初始化数据库</h3>
-<p>DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java 驱动</a> (5.1.47+) 并移动到 DolphinScheduler 的 lib目录下。下面以 MySQL 为例，说明如何初始化数据库</p>
+<p>DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java 驱动</a> (8.0.16) 并移动到 DolphinScheduler 的 lib目录下。下面以 MySQL 为例，说明如何初始化数据库</p>
 <pre><code class="language-shell">mysql -uroot -p
 <span class="hljs-meta">
 mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>
