@@ -19,6 +19,13 @@ mkdir dolphinscheduler
 cd dolphinscheduler
 git clone git@github.com:apache/dolphinscheduler.git
 ```
+### compile source code
+i. Create a new database locally for debugging. DolphinScheduler supports mysql and postgresql, here we use mysql for configuration and the database name could be : dolphinscheduler.
+
+ii. Import the code into IDEA, modify pom.xml in the root project, and change the scope of the mysql-connector-java dependency to compile.
+
+iii. Run mvn -U install package -Prelease -Dmaven.test.skip=true in terminal to install the required registered plugins
+
 
 ## Notice
 
