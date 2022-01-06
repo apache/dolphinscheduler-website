@@ -1,6 +1,6 @@
 # 伪集群部署
 
-伪集群部署目的是在单台机器部署 DolphinScheduler 服务，该模式下master、worker、api server、logger server都在同一台机器上
+伪集群部署目的是在单台机器部署 DolphinScheduler 服务，该模式下master、worker、api server 都在同一台机器上
 
 如果你是新手，想要体验 DolphinScheduler 的功能，推荐使用[Standalone](standalone.md)方式体检。如果你想体验更完整的功能，或者更大的任务量，推荐使用[伪集群部署](pseudo-cluster.md)。如果你是在生产中使用，推荐使用[集群部署](cluster.md)或者[kubernetes](kubernetes.md)
 
@@ -184,10 +184,6 @@ sh ./bin/dolphinscheduler-daemon.sh stop worker-server
 # 启停 Api
 sh ./bin/dolphinscheduler-daemon.sh start api-server
 sh ./bin/dolphinscheduler-daemon.sh stop api-server
-
-# 启停 Logger
-sh ./bin/dolphinscheduler-daemon.sh start logger-server
-sh ./bin/dolphinscheduler-daemon.sh stop logger-server
 
 # 启停 Alert
 sh ./bin/dolphinscheduler-daemon.sh start alert-server

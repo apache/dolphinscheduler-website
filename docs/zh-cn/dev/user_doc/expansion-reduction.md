@@ -138,7 +138,6 @@ bin/stop-all.sh 停止所有服务
 
 sh bin/dolphinscheduler-daemon.sh stop master-server  停止 master 服务
 sh bin/dolphinscheduler-daemon.sh stop worker-server  停止 worker 服务
-sh bin/dolphinscheduler-daemon.sh stop logger-server  停止 logger  服务
 sh bin/dolphinscheduler-daemon.sh stop api-server     停止 api    服务
 sh bin/dolphinscheduler-daemon.sh stop alert-server   停止 alert  服务
 
@@ -148,7 +147,6 @@ bin/start-all.sh 启动所有服务
 
 sh bin/dolphinscheduler-daemon.sh start master-server  启动 master 服务
 sh bin/dolphinscheduler-daemon.sh start worker-server  启动 worker 服务
-sh bin/dolphinscheduler-daemon.sh start logger-server  启动 logger  服务
 sh bin/dolphinscheduler-daemon.sh start api-server     启动 api    服务
 sh bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
 
@@ -164,7 +162,6 @@ sh bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
 ```
     MasterServer         ----- master服务
     WorkerServer         ----- worker服务
-    LoggerServer         ----- logger服务
     ApiApplicationServer ----- api服务
     AlertServer          ----- alert服务
 ```
@@ -175,9 +172,8 @@ sh bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
  logs/
     ├── dolphinscheduler-alert-server.log
     ├── dolphinscheduler-master-server.log
-    |—— dolphinscheduler-worker-server.log
-    |—— dolphinscheduler-api-server.log
-    |—— dolphinscheduler-logger-server.log
+    ├── dolphinscheduler-worker-server.log
+    ├── dolphinscheduler-api-server.log
 ```
 如果以上服务都正常启动且调度系统页面正常,在web系统的[监控中心]查看是否有扩容的Master或者Worker服务.如果存在,则扩容完成
 
@@ -189,7 +185,7 @@ sh bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
 
 ### 2.1 停止缩容节点上的服务
  * 如果缩容master节点,要确定要缩容master服务所在的物理机,并在物理机上停止该master服务.
- * 如果缩容worker节点,要确定要缩容worker服务所在的物理机,并在物理机上停止worker和logger服务.
+ * 如果缩容worker节点,要确定要缩容worker服务所在的物理机,并在物理机上停止worker服务.
  
 ```shell
 停止命令:
@@ -197,7 +193,6 @@ bin/stop-all.sh 停止所有服务
 
 sh bin/dolphinscheduler-daemon.sh stop master-server  停止 master 服务
 sh bin/dolphinscheduler-daemon.sh stop worker-server  停止 worker 服务
-sh bin/dolphinscheduler-daemon.sh stop logger-server  停止 logger  服务
 sh bin/dolphinscheduler-daemon.sh stop api-server     停止 api    服务
 sh bin/dolphinscheduler-daemon.sh stop alert-server   停止 alert  服务
 
@@ -207,7 +202,6 @@ bin/start-all.sh 启动所有服务
 
 sh bin/dolphinscheduler-daemon.sh start master-server  启动 master 服务
 sh bin/dolphinscheduler-daemon.sh start worker-server  启动 worker 服务
-sh bin/dolphinscheduler-daemon.sh start logger-server  启动 logger  服务
 sh bin/dolphinscheduler-daemon.sh start api-server     启动 api    服务
 sh bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
 
@@ -222,7 +216,6 @@ sh bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
 ```
     MasterServer         ----- master服务
     WorkerServer         ----- worker服务
-    LoggerServer         ----- logger服务
     ApiApplicationServer ----- api服务
     AlertServer          ----- alert服务
 ```

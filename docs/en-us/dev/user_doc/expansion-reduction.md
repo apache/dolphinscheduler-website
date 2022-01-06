@@ -135,7 +135,6 @@ bin/stop-all.sh # stop all services
 
 sh bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
 sh bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-sh bin/dolphinscheduler-daemon.sh stop logger-server  # stop logger service
 sh bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
 sh bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
 
@@ -145,7 +144,6 @@ bin/start-all.sh # start all services
 
 sh bin/dolphinscheduler-daemon.sh start master-server  # start master service
 sh bin/dolphinscheduler-daemon.sh start worker-server  # start worker service
-sh bin/dolphinscheduler-daemon.sh start logger-server  # start logger service
 sh bin/dolphinscheduler-daemon.sh start api-server     # start api    service
 sh bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service
 
@@ -161,7 +159,6 @@ sh bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service
 ```
     MasterServer         ----- master service
     WorkerServer         ----- worker service
-    LoggerServer         ----- logger service
     ApiApplicationServer ----- api    service
     AlertServer          ----- alert  service
 ```
@@ -172,9 +169,8 @@ After successful startup, you can view the logs, which are stored in the logs fo
  logs/
     ├── dolphinscheduler-alert-server.log
     ├── dolphinscheduler-master-server.log
-    |—— dolphinscheduler-worker-server.log
-    |—— dolphinscheduler-api-server.log
-    |—— dolphinscheduler-logger-server.log
+    ├── dolphinscheduler-worker-server.log
+    ├── dolphinscheduler-api-server.log
 ```
 If the above services are started normally and the scheduling system page is normal, check whether there is an expanded Master or Worker service in the [Monitor] of the web system. If it exists, the expansion is complete.
 
@@ -186,7 +182,7 @@ There are two steps for shrinking. After performing the following two steps, the
 
 ### 2.1 Stop the service on the scaled-down node
  * If you are scaling down the master node, identify the physical machine where the master service is located, and stop the master service on the physical machine.
- * If the worker node is scaled down, determine the physical machine where the worker service is to be scaled down and stop the worker and logger services on the physical machine.
+ * If the worker node is scaled down, determine the physical machine where the worker service is to be scaled down and stop the worker services on the physical machine.
  
 ```shell
 # stop command:
@@ -194,7 +190,6 @@ bin/stop-all.sh # stop all services
 
 sh bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
 sh bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-sh bin/dolphinscheduler-daemon.sh stop logger-server  # stop logger service
 sh bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
 sh bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
 
@@ -204,7 +199,6 @@ bin/start-all.sh # start all services
 
 sh bin/dolphinscheduler-daemon.sh start master-server # start master service
 sh bin/dolphinscheduler-daemon.sh start worker-server # start worker service
-sh bin/dolphinscheduler-daemon.sh start logger-server # start logger service
 sh bin/dolphinscheduler-daemon.sh start api-server    # start api    service
 sh bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
 
@@ -219,7 +213,6 @@ sh bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
 ```
     MasterServer         ----- master service
     WorkerServer         ----- worker service
-    LoggerServer         ----- logger service
     ApiApplicationServer ----- api    service
     AlertServer          ----- alert  service
 ```

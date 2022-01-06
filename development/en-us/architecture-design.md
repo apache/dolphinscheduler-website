@@ -76,7 +76,6 @@ Before explaining the architecture of the schedule system, let us first understa
        ##### This service contains:
 
        - **FetchTaskThread** is mainly responsible for continuously receiving tasks from **Task Queue** and calling **TaskScheduleThread** corresponding executors according to different task types.
-       - **LoggerServer** is an RPC service that provides functions such as log fragment viewing, refresh and download.
 
      - **ZooKeeper**
 
