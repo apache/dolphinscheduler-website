@@ -20,7 +20,7 @@ git clone git@github.com:apache/dolphinscheduler.git
 ```
 ### 编译源码 
 * 如果使用MySQL数据库，请注意修改pom.xml，并将mysql连接器java依赖项的范围更改为编译。
-* 运行 ` mvn -U install package -Prelease -Dmaven.test.skip=true` 在终端中安装所需的已注册插件
+* 运行 ` mvn -U install package -Prelease -Dmaven.test.skip=true` 
 
 
 
