@@ -100,7 +100,8 @@ Before explaining the architecture of the scheduling system, let's first underst
 
 * **UI** 
 
-    The front-end page of the system provides various visual operation interfaces of the system,See more at [User Manual](../guide/introduction.md) section。
+  The front-end page of the system provides various visual operation interfaces of the system,See more
+  at [Introduction to Functions](../guide/homepage.md) section。
 
 #### 2.3 Architecture design ideas
 
