@@ -108,7 +108,6 @@ apache/dolphinscheduler:1.3.8 all
 ```
     MasterServer         ----- master服务
     WorkerServer         ----- worker服务
-    LoggerServer         ----- logger服务
     ApiApplicationServer ----- api服务
     AlertServer          ----- alert服务
 ```
@@ -127,7 +126,7 @@ $ docker run -d --name dolphinscheduler-master \
 apache/dolphinscheduler:1.3.8 master-server
 ```
 
-* 启动一个 **worker server** (包括 **logger server**), 如下:
+* 启动一个 **worker server**, 如下:
 
 ```
 $ docker run -d --name dolphinscheduler-worker \
@@ -772,7 +771,7 @@ SW_GRPC_LOG_SERVER_PORT=11800
 
 **`DOLPHINSCHEDULER_OPTS`**
 
-配置`dolphinscheduler`的`jvm options`，适用于`master-server`、`worker-server`、`api-server`、`alert-server`、`logger-server`，默认值 `""`、
+配置`dolphinscheduler`的`jvm options`，适用于`master-server`、`worker-server`、`api-server`、`alert-server`，默认值 `""`、
 
 **`DATA_BASEDIR_PATH`**
 
@@ -1025,9 +1024,3 @@ SW_GRPC_LOG_SERVER_PORT=11800
 **`API_SERVER_OPTS`**
 
 配置`api-server`的`jvm options`，默认值 `-Xms512m -Xmx512m -Xmn256m`。
-
-### Logger Server
-
-**`LOGGER_SERVER_OPTS`**
-
-配置`logger-server`的`jvm options`，默认值 `-Xms512m -Xmx512m -Xmn256m`。

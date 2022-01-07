@@ -24,7 +24,7 @@ git clone git@github.com:apache/dolphinscheduler.git
 DolphinScheduler 开发环境配置有两个方式，分别是standalone模式，以及普通模式
 
 * [standalone模式](#dolphinscheduler-standalone快速开发模式)：**推荐使用，但仅支持 1.3.9 及以后的版本**，方便快速的开发环境搭建，能解决大部分场景的开发
-* [普通模式](#dolphinscheduler-普通开发模式)：master、worker、api、logger等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多
+* [普通模式](#dolphinscheduler-普通开发模式)：master、worker、api等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多
 
 ## DolphinScheduler Standalone快速开发模式
 
@@ -129,12 +129,11 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
 
 ##### 启动服务
 
-我们需要启动三个必须服务，包括 MasterServer，WorkerServer，ApiApplicationServer，如果有需求可以启动可选服务 LoggerServer
+我们需要启动三个服务，包括 MasterServer，WorkerServer，ApiApplicationServer
 
 * MasterServer：在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.server.master.MasterServer` 中的 `main` 方法，并配置 *VM Options* `-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql`
 * WorkerServer：在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.server.worker.WorkerServer` 中的 `main` 方法，并配置 *VM Options* `-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql`
 * ApiApplicationServer：在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.api.ApiApplicationServer` 中的 `main` 方法，并配置 *VM Options* `-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api,mysql`。启动完成可以浏览 Open API 文档，地址为 http://localhost:12345/dolphinscheduler/doc.html
-* LoggerServer：**这是非必须功能，可以不开启**，在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.server.log.LoggerServer` 中的 `main` 方法
 
 > VM Options `-Dspring.profiles.active=mysql` 中 `mysql` 表示指定的配置文件
 

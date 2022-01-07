@@ -78,8 +78,6 @@ Before explaining the architecture of the scheduling system, let's first underst
      ##### The service mainly includes:
      - **Fetch TaskThread** is mainly responsible for continuously getting tasks from **Task Queue**, and calling **TaskScheduleThread** corresponding executor according to different task types.
 
-     - **LoggerServer** is an RPC service that provides functions such as log fragment viewing, refreshing and downloading
-
 * **ZooKeeper** 
 
     ZooKeeper service, MasterServer and WorkerServer nodes in the system all use ZooKeeper for cluster management and fault tolerance. In addition, the system is based on ZooKeeper for event monitoring and distributed locks.
