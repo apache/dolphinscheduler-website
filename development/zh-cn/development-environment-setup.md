@@ -129,7 +129,7 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
 
 ##### 启动服务
 
-我们需要启动三个服务，包括 MasterServer，WorkerServer，ApiApplicationServer，LoggerServer 已经被整合进了 MasterServer 和 WorkerServer，所以无需独立启动
+我们需要启动三个服务，包括 MasterServer，WorkerServer，ApiApplicationServer
 
 * MasterServer：在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.server.master.MasterServer` 中的 `main` 方法，并配置 *VM Options* `-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql`
 * WorkerServer：在 Intellij IDEA 中执行 `org.apache.dolphinscheduler.server.worker.WorkerServer` 中的 `main` 方法，并配置 *VM Options* `-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql`

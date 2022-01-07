@@ -132,7 +132,7 @@ Following steps will guide how to start the DolphinScheduler backend service
 
 ##### Server start
 
-There are three services that need to be started, including MasterServer, WorkerServer, ApiApplicationServer.LoggerServer is already integrated into the MasterServer and WorkerServer, so there is no need to start them independently.
+There are three services that need to be started, including MasterServer, WorkerServer, ApiApplicationServer.
 
 * MasterServer：Execute function `main` in the class `org.apache.dolphinscheduler.server.master.MasterServer` by Intellij IDEA, with the configuration *VM Options* `-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql`
 * WorkerServer：Execute function `main` in the class `org.apache.dolphinscheduler.server.worker.WorkerServer` by Intellij IDEA, with the configuration *VM Options* `-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql`
