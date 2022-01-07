@@ -542,6 +542,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: 'https://imgpp.com/images/2022/01/07/_1ca0eca926145ffc5f05f15b6b612a2b_64635.md.jpg',
+          title: 'Apache DolphinScheduler Won the「2021 OSC Most Popular Projects」award, and Whaleops Open Source Technology Received the honor of「Outstanding Chinese Open Source Original Startups」!',
+          content: 'Recently, the "2021 OSC Best China Open Source Projects Poll」initiated by OSCHINA announced the selection results....',
+          dateStr: '2022-1-7',
+          link: '/en-us/blog/Awarded_most_popular_project_in_2021.html',
+        },
+        {
           img: 'https://imgpp.com/images/2021/12/29/1640759432737.md.png',
           title: '# Eavy Info Builds Data Asset Management Platform Services Based on Apache DolphinScheduler to Construct Government Information Ecology',
           content: 'Based on the Apache DolphinScheduler, the cloud computing and big data provider Eavy Info...',
@@ -554,13 +561,6 @@ export default {
           content: 'Good news! Apache DolphinScheduler 2.0.1 version is officially released today!...',
           dateStr: '2021-12-20',
           link: '/en-us/blog/Apache-DolphinScheduler-2.0.1.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/12/16/1639383815755.md.png',
-          title: 'From Airflow to Apache DolphinScheduler, the Roadmap of Scheduling System On Youzan Big Data Development Platform',
-          content: 'At the recent Apache DolphinScheduler Meetup 2021, Zheqi Song...',
-          dateStr: '2021-12-16',
-          link: '/en-us/blog/YouZan-case-study.html',
         },
       ],
     },

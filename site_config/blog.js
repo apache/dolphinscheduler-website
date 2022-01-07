@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Apache DolphinScheduler Won the「2021 OSC Most Popular Projects」award, and Whaleops Open Source Technology Received the honor of「Outstanding Chinese Open Source Original Startups」!',
+                author: 'Debra Chen',
+                dateStr: '2022-1-7',
+                desc: ' 2021 OSC Most Popular Projects',
+                link: '/en-us/blog/Awarded_most_popular_project_in_2021.html',
+            },
+            {
                 title: 'Eavy Info Builds Data Asset Management Platform Services Based on Apache DolphinScheduler to Construct Government Information Ecology',
                 author: 'Debra Chen',
                 dateStr: '2021-12-30',
