@@ -76,12 +76,7 @@ WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
 Server基于netty提供监听服务。Worker</p>
 <h5>该服务包含：</h5>
 <ul>
-<li>
-<p><strong>FetchTaskThread</strong>主要负责不断从<strong>Task Queue</strong>中领取任务，并根据不同任务类型调用<strong>TaskScheduleThread</strong>对应执行器。</p>
-</li>
-<li>
-<p><strong>LoggerServer</strong>是一个RPC服务，提供日志分片查看、刷新和下载等功能</p>
-</li>
+<li><strong>FetchTaskThread</strong>主要负责不断从<strong>Task Queue</strong>中领取任务，并根据不同任务类型调用<strong>TaskScheduleThread</strong>对应执行器。</li>
 </ul>
 </li>
 <li>
