@@ -55,6 +55,14 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: 'https://imgpp.com/images/2022/01/07/1.md.png',
+
+          title: 'Apache DolphinScheduler 获评 2021 年度「最受欢迎项目」',
+          content: '近日，由 OSCHINA 举办的「2021 OSC 中国开源项目」评选活动公布了评选结果。...',
+          dateStr: '2022-1-7',
+          link: '/zh-cn/blog/Awarded_most_popular_project_in_2021.html',
+        },
+        {
           img: 'https://imgpp.com/images/2021/12/29/1640759432737.md.png',
           title: '亿云基于 DolphinScheduler 构建资产数据管理平台服务，助力政务信息化生态建设',
           content: '基于 Apache Dolphinscheduler 调度平台，云计算和大数据提供商亿云...',
@@ -68,14 +76,6 @@ export default {
           content: '2.0.1 版本通过优化内核增强了系统处理能力，从而在性能上得到较大提升...',
           dateStr: '2021-12-17',
           link: '/zh-cn/blog/Apache-DolphinScheduler-2.0.1.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/12/10/15ede237ae3ba0f78.md.png',
-
-          title: '从 Airflow 到 Apache DolphinScheduler，有赞大数据开发平台的调度系统演进,',
-          content: '在不久前的 Apache DolphinScheduler Meetup 2021 上...',
-          dateStr: '2021-12-10',
-          link: '/zh-cn/blog/YouZan-case-study.html',
         },
       ],
     },
