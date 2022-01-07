@@ -90,6 +90,13 @@ export default {
         postsTitle: '所有文章',
         list: [
             {
+                title: 'Apache DolphinScheduler 获评 2021 年度「最受欢迎项目」',
+                author: 'Debra Chen',
+                dateStr: '2022-1-7',
+                desc: '最受欢迎项目奖',
+                link: '/zh-cn/blog/Awarded_most_popular_project_in_2021.html',
+            },
+            {
                 title: '亿云基于 DolphinScheduler 构建资产数据管理平台服务，助力政务信息化生态建设',
                 author: 'Debra Chen',
                 dateStr: '2021-12-30',
