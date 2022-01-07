@@ -55,7 +55,7 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
-          img: 'https://imgpp.com/image/9K6nJ',
+          img: 'https://imgpp.com/images/2022/01/07/_c449bb07189725ea562d5ba404504b8f_96119.jpg',
           title: 'Apache DolphinScheduler 获评 2021 年度「最受欢迎项目」',
           content: '近日，由 OSCHINA 举办的「2021 OSC 中国开源项目」评选活动公布了评选结果。...',
           dateStr: '2022-1-7',
