@@ -24,7 +24,7 @@
 ├─conf                              configurations directory
 │  ├─application-api.properties         API-service config properties
 │  ├─datasource.properties              datasource config properties
-│  ├─zookeeper.properties               zookeeper config properties
+│  ├─registry.properties               registry config properties
 │  ├─master.properties                  master config properties
 │  ├─worker.properties                  worker config properties
 │  ├─quartz.properties                  quartz config properties
@@ -80,8 +80,8 @@
 </tr>
 <tr>
 <td>3</td>
-<td>zookeeper config properties</td>
-<td>zookeeper.properties</td>
+<td>registry config properties</td>
+<td>registry.properties</td>
 </tr>
 <tr>
 <td>4</td>
@@ -263,7 +263,7 @@ Currently, DS just makes a basic config, please config further JVＭ options bas
 </tr>
 </tbody>
 </table>
-<h2>3.zookeeper.properties [zookeeper config properties]</h2>
+<h2>3.registry.properties [registry config properties, default is zookeeper]</h2>
 <table>
 <thead>
 <tr>
@@ -274,39 +274,44 @@ Currently, DS just makes a basic config, please config further JVＭ options bas
 </thead>
 <tbody>
 <tr>
-<td>zookeeper.quorum</td>
+<td><a href="http://registry.plugin.name">registry.plugin.name</a></td>
+<td>zookeeper</td>
+<td>plugin name</td>
+</tr>
+<tr>
+<td>registry.servers</td>
 <td>localhost:2181</td>
 <td>zookeeper cluster connection info</td>
 </tr>
 <tr>
-<td>zookeeper.dolphinscheduler.root</td>
-<td>/dolphinscheduler</td>
-<td>DS is stored under zookeeper root directory</td>
+<td>registry.namespace</td>
+<td>dolphinscheduler</td>
+<td>DS is stored under zookeeper root directory(Start without /)</td>
 </tr>
 <tr>
-<td>zookeeper.session.timeout</td>
-<td>60000</td>
-<td>session timeout</td>
-</tr>
-<tr>
-<td>zookeeper.connection.timeout</td>
-<td>30000</td>
-<td>connection timeout</td>
-</tr>
-<tr>
-<td>zookeeper.retry.base.sleep</td>
-<td>100</td>
+<td><a href="http://registry.base.sleep.time.ms">registry.base.sleep.time.ms</a></td>
+<td>60</td>
 <td>time to wait between subsequent retries</td>
 </tr>
 <tr>
-<td>zookeeper.retry.max.sleep</td>
-<td>30000</td>
+<td><a href="http://registry.max.sleep.ms">registry.max.sleep.ms</a></td>
+<td>300</td>
 <td>maximum time to wait between subsequent retries</td>
 </tr>
 <tr>
-<td>zookeeper.retry.maxtime</td>
-<td>10</td>
+<td>registry.max.retries</td>
+<td>5</td>
 <td>maximum retry times</td>
+</tr>
+<tr>
+<td><a href="http://registry.session.timeout.ms">registry.session.timeout.ms</a></td>
+<td>30000</td>
+<td>session timeout</td>
+</tr>
+<tr>
+<td><a href="http://registry.connection.timeout.ms">registry.connection.timeout.ms</a></td>
+<td>7500</td>
+<td>connection timeout</td>
 </tr>
 </tbody>
 </table>
@@ -811,7 +816,7 @@ Currently, DS just makes a basic config, please config further JVＭ options bas
 </ul>
 <blockquote>
 <p>System will load configs in the install_config.conf and auto-configure files below, based on the file content when executing '<a href="http://install.sh">install.sh</a>'.
-Files such as <a href="http://dolphinscheduler-daemon.sh">dolphinscheduler-daemon.sh</a>、datasource.properties、zookeeper.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties and etc.</p>
+Files such as <a href="http://dolphinscheduler-daemon.sh">dolphinscheduler-daemon.sh</a>、datasource.properties、registry.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties and etc.</p>
 </blockquote>
 <ul>
 <li>2.Startup/shutdown DS cluster</li>

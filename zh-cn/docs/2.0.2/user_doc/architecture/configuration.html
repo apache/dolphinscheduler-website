@@ -26,7 +26,7 @@
 ├─conf                              配置文件目录
 │  ├─application-api.properties         api服务配置文件
 │  ├─datasource.properties              数据库配置文件
-│  ├─zookeeper.properties               zookeeper配置文件
+│  ├─registry.properties               registry配置文件
 │  ├─master.properties                  master服务配置文件
 │  ├─worker.properties                  worker服务配置文件
 │  ├─quartz.properties                  quartz服务配置文件
@@ -82,8 +82,8 @@
 </tr>
 <tr>
 <td>3</td>
-<td>zookeeper连接配置</td>
-<td>zookeeper.properties</td>
+<td>registry连接配置</td>
+<td>registry.properties</td>
 </tr>
 <tr>
 <td>4</td>
@@ -265,7 +265,7 @@
 </tr>
 </tbody>
 </table>
-<h2>3.zookeeper.properties [zookeeper连接配置]</h2>
+<h2>3.registry.properties [registry连接配置,默认使用zookeeper]</h2>
 <table>
 <thead>
 <tr>
@@ -276,39 +276,44 @@
 </thead>
 <tbody>
 <tr>
-<td>zookeeper.quorum</td>
+<td><a href="http://registry.plugin.name">registry.plugin.name</a></td>
+<td>zookeeper</td>
+<td>插件名称</td>
+</tr>
+<tr>
+<td>registry.servers</td>
 <td>localhost:2181</td>
 <td>zk集群连接信息</td>
 </tr>
 <tr>
-<td>zookeeper.dolphinscheduler.root</td>
-<td>/dolphinscheduler</td>
-<td>DS在zookeeper存储根目录</td>
+<td>registry.namespace</td>
+<td>dolphinscheduler</td>
+<td>DS在zookeeper存储根目录(开头不带/)</td>
 </tr>
 <tr>
-<td>zookeeper.session.timeout</td>
-<td>60000</td>
-<td>session 超时</td>
-</tr>
-<tr>
-<td>zookeeper.connection.timeout</td>
-<td>30000</td>
-<td>连接超时</td>
-</tr>
-<tr>
-<td>zookeeper.retry.base.sleep</td>
-<td>100</td>
+<td><a href="http://registry.base.sleep.time.ms">registry.base.sleep.time.ms</a></td>
+<td>60</td>
 <td>基本重试时间差</td>
 </tr>
 <tr>
-<td>zookeeper.retry.max.sleep</td>
-<td>30000</td>
+<td><a href="http://registry.max.sleep.ms">registry.max.sleep.ms</a></td>
+<td>300</td>
 <td>最大重试时间</td>
 </tr>
 <tr>
-<td>zookeeper.retry.maxtime</td>
-<td>10</td>
+<td>registry.max.retries</td>
+<td>5</td>
 <td>最大重试次数</td>
+</tr>
+<tr>
+<td><a href="http://registry.session.timeout.ms">registry.session.timeout.ms</a></td>
+<td>30000</td>
+<td>session 超时时间</td>
+</tr>
+<tr>
+<td><a href="http://registry.connection.timeout.ms">registry.connection.timeout.ms</a></td>
+<td>7500</td>
+<td>连接超时时间</td>
 </tr>
 </tbody>
 </table>
@@ -813,7 +818,7 @@
 </ul>
 <blockquote>
 <p>调用install.sh脚本会自动加载该文件中的配置.并根据该文件中的内容自动配置上述的配置文件中的内容.
-比如:dolphinscheduler-daemon.sh、datasource.properties、zookeeper.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties 等文件.</p>
+比如:dolphinscheduler-daemon.sh、datasource.properties、registry.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties 等文件.</p>
 </blockquote>
 <ul>
 <li>2.DS集群的启动&amp;关闭.</li>
@@ -842,7 +847,7 @@ username=<span class="hljs-string">&quot;xx&quot;</span>
 <span class="hljs-comment"># 数据库 密码</span>
 password=<span class="hljs-string">&quot;xx&quot;</span>
 
-<span class="hljs-comment"># Zookeeper地址</span>
+<span class="hljs-comment"># zookeeper地址</span>
 zkQuorum=<span class="hljs-string">&quot;192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181&quot;</span>
 
 <span class="hljs-comment"># 将DS安装到哪个目录，如: /data1_1T/dolphinscheduler，</span>
