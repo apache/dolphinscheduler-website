@@ -127,7 +127,7 @@ registry.plugin.name|zookeeper| 插件名称
 registry.servers|localhost:2181| zk集群连接信息
 registry.namespace|dolphinscheduler| DS在zookeeper存储根目录(开头不带/)
 registry.base.sleep.time.ms|60| 基本重试时间差
-registry.max.sleep.ms|60| 最大重试时间
+registry.max.sleep.ms|300| 最大重试时间
 registry.max.retries|5| 最大重试次数
 registry.session.timeout.ms|30000| session 超时时间
 registry.connection.timeout.ms|7500| 连接超时时间

@@ -125,7 +125,7 @@ registry.plugin.name|zookeeper| plugin name
 registry.servers|localhost:2181| zookeeper cluster connection info
 registry.namespace|dolphinscheduler| DS is stored under zookeeper root directory(Start without /)
 registry.base.sleep.time.ms|60| time to wait between subsequent retries
-registry.max.sleep.ms|60| maximum time to wait between subsequent retries
+registry.max.sleep.ms|300| maximum time to wait between subsequent retries
 registry.max.retries|5| maximum retry times
 registry.session.timeout.ms|30000| session timeout
 registry.connection.timeout.ms|7500| connection timeout
