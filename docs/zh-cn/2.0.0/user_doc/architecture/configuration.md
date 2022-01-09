@@ -18,7 +18,7 @@
 ├─conf                              配置文件目录
 │  ├─application-api.properties         api服务配置文件
 │  ├─datasource.properties              数据库配置文件
-│  ├─zookeeper.properties               zookeeper配置文件
+│  ├─registry.properties               registry配置文件
 │  ├─master.properties                  master服务配置文件
 │  ├─worker.properties                  worker服务配置文件
 │  ├─quartz.properties                  quartz服务配置文件
@@ -60,7 +60,7 @@
 |--|--|--|
 1|启动/关闭DS服务脚本|dolphinscheduler-daemon.sh
 2|数据库连接配置 | datasource.properties
-3|zookeeper连接配置|zookeeper.properties
+3|registry连接配置|registry.properties
 4|公共[存储]配置|common.properties
 5|API服务配置|application-api.properties
 6|Master服务配置|master.properties
@@ -69,11 +69,11 @@
 9|Quartz配置|quartz.properties
 10|DS环境变量配置脚本[用于DS安装/启动]|install_config.conf
 11|运行脚本加载环境变量配置文件 <br />[如: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]|dolphinscheduler_env.sh
-12|各服务日志配置文件|api服务日志配置文件 : logback-api.xml  <br /> master服务日志配置文件  : logback-master.xml    <br /> worker服务日志配置文件 : logback-worker.xml  <br /> alert服务日志配置文件 : logback-alert.xml 
+12|各服务日志配置文件|api服务日志配置文件 : logback-api.xml  <br /> master服务日志配置文件  : logback-master.xml    <br /> worker服务日志配置文件 : logback-worker.xml  <br /> alert服务日志配置文件 : logback-alert.xml
 
 
 ## 1.dolphinscheduler-daemon.sh [启动/关闭DS服务脚本]
-dolphinscheduler-daemon.sh脚本负责DS的启动&关闭. 
+dolphinscheduler-daemon.sh脚本负责DS的启动&关闭.
 start-all.sh/stop-all.sh最终也是通过dolphinscheduler-daemon.sh对集群进行启动/关闭操作.
 目前DS只是做了一个基本的设置,JVM参数请根据各自资源的实际情况自行设置.
 
@@ -120,21 +120,22 @@ spring.datasource.poolPreparedStatements|true| 开启PSCache
 spring.datasource.maxPoolPreparedStatementPerConnectionSize|20| 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。
 
 
-## 3.zookeeper.properties [zookeeper连接配置]
-|参数 |默认值| 描述| 
+## 3.registry.properties [registry连接配置,默认使用zookeeper]
+|参数 |默认值| 描述|
 |--|--|--|
-zookeeper.quorum|localhost:2181| zk集群连接信息
-zookeeper.dolphinscheduler.root|/dolphinscheduler| DS在zookeeper存储根目录
-zookeeper.session.timeout|60000|  session 超时
-zookeeper.connection.timeout|30000|  连接超时
-zookeeper.retry.base.sleep|100| 基本重试时间差
-zookeeper.retry.max.sleep|30000| 最大重试时间
-zookeeper.retry.maxtime|10|最大重试次数
+registry.plugin.name|zookeeper| 插件名称
+registry.servers|localhost:2181| zk集群连接信息
+registry.namespace|dolphinscheduler| DS在zookeeper存储根目录(开头不带/)
+registry.base.sleep.time.ms|60| 基本重试时间差
+registry.max.sleep.ms|300| 最大重试时间
+registry.max.retries|5| 最大重试次数
+registry.session.timeout.ms|30000| session 超时时间
+registry.connection.timeout.ms|7500| 连接超时时间
 
 
 ## 4.common.properties [hadoop、s3、yarn配置]
-common.properties配置文件目前主要是配置hadoop/s3a相关的配置. 
-|参数 |默认值| 描述| 
+common.properties配置文件目前主要是配置hadoop/s3a相关的配置.
+|参数 |默认值| 描述|
 |--|--|--|
 data.basedir.path|/tmp/dolphinscheduler|本地工作目录,用于存放临时文件
 resource.storage.type|NONE|资源文件存储类型: HDFS,S3,NONE
@@ -157,7 +158,7 @@ development.state|false|是否处于开发模式
 
 
 ## 5.application-api.properties [API服务配置]
-|参数 |默认值| 描述| 
+|参数 |默认值| 描述|
 |--|--|--|
 server.port|12345|api服务通讯端口
 server.servlet.session.timeout|7200|session超时时间
@@ -172,7 +173,7 @@ security.authentication.type|PASSWORD|权限校验类型
 
 
 ## 6.master.properties [Master服务配置]
-|参数 |默认值| 描述| 
+|参数 |默认值| 描述|
 |--|--|--|
 master.listen.port|5678|master监听端口
 master.exec.threads|100|master工作线程数量,用于限制并行的流程实例数量
@@ -187,7 +188,7 @@ master.reserved.memory|0.3|master预留内存,只有低于系统可用内存时,
 
 
 ## 7.worker.properties [Worker服务配置]
-|参数 |默认值| 描述| 
+|参数 |默认值| 描述|
 |--|--|--|
 worker.listen.port|1234|worker监听端口
 worker.exec.threads|100|worker工作线程数量,用于限制并行的任务实例数量
@@ -198,7 +199,7 @@ worker.groups|default|worker分组配置,逗号分隔,例如'worker.groups=defau
 
 
 ## 8.alert.properties [Alert 告警服务配置]
-|参数 |默认值| 描述| 
+|参数 |默认值| 描述|
 |--|--|--|
 alert.type|EMAIL|告警类型|
 mail.protocol|SMTP| 邮件服务器协议
@@ -226,7 +227,7 @@ plugin.dir|/Users/xx/your/path/to/plugin/dir|插件目录
 
 ## 9.quartz.properties [Quartz配置]
 这里面主要是quartz配置,请结合实际业务场景&资源进行配置,本文暂时不做展开.
-|参数 |默认值| 描述| 
+|参数 |默认值| 描述|
 |--|--|--|
 org.quartz.jobStore.driverDelegateClass | org.quartz.impl.jdbcjobstore.StdJDBCDelegate
 org.quartz.jobStore.driverDelegateClass | org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
@@ -250,10 +251,10 @@ org.quartz.dataSource.myDs.connectionProvider.class | org.apache.dolphinschedule
 
 ## 10.install_config.conf [DS环境变量配置脚本[用于DS安装/启动]]
 install_config.conf这个配置文件比较繁琐,这个文件主要有两个地方会用到.
-* 1.DS集群的自动安装. 
+* 1.DS集群的自动安装.
 
-> 调用install.sh脚本会自动加载该文件中的配置.并根据该文件中的内容自动配置上述的配置文件中的内容. 
-> 比如:dolphinscheduler-daemon.sh、datasource.properties、zookeeper.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties 等文件.
+> 调用install.sh脚本会自动加载该文件中的配置.并根据该文件中的内容自动配置上述的配置文件中的内容.
+> 比如:dolphinscheduler-daemon.sh、datasource.properties、registry.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties 等文件.
 
 
 * 2.DS集群的启动&关闭.
@@ -281,7 +282,7 @@ username="xx"
 # 数据库 密码
 password="xx"
 
-# Zookeeper地址
+# zookeeper地址
 zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
 
 # 将DS安装到哪个目录，如: /data1_1T/dolphinscheduler，
