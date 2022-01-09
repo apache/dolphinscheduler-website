@@ -16,7 +16,7 @@ Currently, all the configuration files are under [conf ] directory. Please check
 ├─conf                              configurations directory
 │  ├─application-api.properties         API-service config properties
 │  ├─datasource.properties              datasource config properties
-│  ├─zookeeper.properties               zookeeper config properties
+│  ├─registry.properties               registry config properties
 │  ├─master.properties                  master config properties
 │  ├─worker.properties                  worker config properties
 │  ├─quartz.properties                  quartz config properties
@@ -58,7 +58,7 @@ serial number| service classification| config file|
 |--|--|--|
 1|startup/shutdown DS application|dolphinscheduler-daemon.sh
 2|datasource config properties| datasource.properties
-3|zookeeper config properties|zookeeper.properties
+3|registry config properties|registry.properties
 4|common-service[storage] config properties|common.properties
 5|API-service config properties|application-api.properties
 6|master config properties|master.properties
@@ -67,11 +67,11 @@ serial number| service classification| config file|
 9|quartz config properties|quartz.properties
 10|DS environment variables configuration script[install/start DS]|install_config.conf
 11|load environment variables configs <br /> [eg: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]|dolphinscheduler_env.sh
-12|services log config files|API-service log config : logback-api.xml  <br /> master-service log config  : logback-master.xml    <br /> worker-service log config : logback-worker.xml  <br /> alert-service log config : logback-alert.xml 
+12|services log config files|API-service log config : logback-api.xml  <br /> master-service log config  : logback-master.xml    <br /> worker-service log config : logback-worker.xml  <br /> alert-service log config : logback-alert.xml
 
 
 ## 1.dolphinscheduler-daemon.sh [startup/shutdown DS application]
-dolphinscheduler-daemon.sh is responsible for DS startup & shutdown. 
+dolphinscheduler-daemon.sh is responsible for DS startup & shutdown.
 Essentially, start-all.sh/stop-all.sh startup/shutdown the cluster via dolphinscheduler-daemon.sh.
 Currently, DS just makes a basic config, please config further JVＭ options based on your practical situation of resources.
 
@@ -90,7 +90,7 @@ export DOLPHINSCHEDULER_OPTS="
 "
 ```
 
-> "-XX:DisableExplicitGC" is not recommended due to may lead to memory link (DS dependent on Netty to communicate). 
+> "-XX:DisableExplicitGC" is not recommended due to may lead to memory link (DS dependent on Netty to communicate).
 
 ## 2.datasource.properties [datasource config properties]
 DS uses Druid to manage database connections and default simplified configs are:
@@ -118,20 +118,21 @@ spring.datasource.poolPreparedStatements|true| Open PSCache
 spring.datasource.maxPoolPreparedStatementPerConnectionSize|20| specify the size of PSCache on each connection
 
 
-## 3.zookeeper.properties [zookeeper config properties]
+## 3.registry.properties [registry config properties, default is zookeeper]
 |Parameters | Default value| Description|
 |--|--|--|
-zookeeper.quorum|localhost:2181| zookeeper cluster connection info
-zookeeper.dolphinscheduler.root|/dolphinscheduler| DS is stored under zookeeper root directory
-zookeeper.session.timeout|60000|  session timeout
-zookeeper.connection.timeout|30000| connection timeout
-zookeeper.retry.base.sleep|100| time to wait between subsequent retries
-zookeeper.retry.max.sleep|30000| maximum time to wait between subsequent retries
-zookeeper.retry.maxtime|10| maximum retry times
+registry.plugin.name|zookeeper| plugin name
+registry.servers|localhost:2181| zookeeper cluster connection info
+registry.namespace|dolphinscheduler| DS is stored under zookeeper root directory(Start without /)
+registry.base.sleep.time.ms|60| time to wait between subsequent retries
+registry.max.sleep.ms|60| maximum time to wait between subsequent retries
+registry.max.retries|5| maximum retry times
+registry.session.timeout.ms|30000| session timeout
+registry.connection.timeout.ms|7500| connection timeout
 
 
 ## 4.common.properties [hadoop、s3、yarn config properties]
-Currently, common.properties mainly configures hadoop/s3a related configurations. 
+Currently, common.properties mainly configures hadoop/s3a related configurations.
 |Parameters | Default value| Description|
 |--|--|--|
 data.basedir.path|/tmp/dolphinscheduler| local directory used to store temp files
@@ -251,7 +252,7 @@ install_config.conf is a bit complicated and is mainly used in the following two
 * 1.DS cluster auto installation
 
 > System will load configs in the install_config.conf and auto-configure files below, based on the file content when executing 'install.sh'.
-> Files such as dolphinscheduler-daemon.sh、datasource.properties、zookeeper.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties and etc.
+> Files such as dolphinscheduler-daemon.sh、datasource.properties、registry.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties and etc.
 
 
 * 2.Startup/shutdown DS cluster
