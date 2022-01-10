@@ -197,6 +197,14 @@ export default {
                         title: 'Flink',
                         link: '/en-us/docs/dev/user_doc/guide/flink-call.html',
                     },
+                    {
+                        title: 'Upgrade',
+                        link: '/en-us/docs/dev/user_doc/guide/upgrade.html',
+                    },
+                    {
+                        title: 'Expansion and Reduction',
+                        link: '/en-us/docs/dev/user_doc/guide/expansion-reduction.html',
+                    },
                 ],
             },
             {
@@ -225,24 +233,6 @@ export default {
                     {
                         title: 'Cache',
                         link: '/en-us/docs/dev/user_doc/architecture/cache.html',
-                    },
-                ],
-            },
-            {
-                title: 'Upgrade',
-                children: [
-                    {
-                        title: 'Upgrade',
-                        link: '/en-us/docs/dev/user_doc/upgrade.html',
-                    },
-                ],
-            },
-            {
-                title: 'Expansion/Reduction',
-                children: [
-                    {
-                        title: 'Capacity expansion and reduction',
-                        link: '/en-us/docs/dev/user_doc/expansion-reduction.html',
                     },
                 ],
             },
@@ -465,6 +455,14 @@ export default {
                         title: 'Flink调用',
                         link: '/zh-cn/docs/dev/user_doc/guide/flink-call.html',
                     },
+                    {
+                        title: '升级',
+                        link: '/zh-cn/docs/dev/user_doc/guide/upgrade.html',
+                    },
+                    {
+                        title: '扩/缩容',
+                        link: '/zh-cn/docs/dev/user_doc/guide/expansion-reduction.html',
+                    },
                 ],
             },
             {
@@ -493,24 +491,6 @@ export default {
                     {
                         title: '缓存',
                         link: '/zh-cn/docs/dev/user_doc/architecture/cache.html',
-                    },
-                ],
-            },
-            {
-                title: '版本升级',
-                children: [
-                    {
-                        title: '升级',
-                        link: '/zh-cn/docs/dev/user_doc/upgrade.html',
-                    },
-                ],
-            },
-            {
-                title: '扩/缩容',
-                children: [
-                    {
-                        title: '扩/缩容',
-                        link: '/zh-cn/docs/dev/user_doc/expansion-reduction.html',
                     },
                 ],
             },
