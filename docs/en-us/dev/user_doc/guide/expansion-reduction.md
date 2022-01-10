@@ -1,5 +1,3 @@
-<!-- markdown-link-check-disable -->
-
 # DolphinScheduler Expansion and Reduction
 
 ## 1. Expansion 
@@ -29,9 +27,9 @@ This article describes how to add a new master service or worker service to an e
 mkdir -p /opt
 cd /opt
 # decompress
-tar -zxvf apache-dolphinscheduler-2.0.2-bin.tar.gz -C /opt 
+tar -zxvf apache-dolphinscheduler-1.3.8-bin.tar.gz -C /opt 
 cd /opt
-mv apache-dolphinscheduler-2.0.2-bin  dolphinscheduler
+mv apache-dolphinscheduler-1.3.8-bin  dolphinscheduler
 ```
 
 ```markdown
@@ -118,7 +116,7 @@ masters="existing master01,existing master02,ds1,ds2"
 workers="existing worker01:default,existing worker02:default,ds3:default,ds4:default"
 
 ```
-- If the expansion is for worker nodes, you need to set the worker group. Please refer to the security [Worker grouping](./guide/security.md)
+- If the expansion is for worker nodes, you need to set the worker group. Please refer to the security [Worker grouping](docs/en-us/dev/user_doc/guide/security.md)
 
 - On all new nodes, change the directory permissions so that the deployment user has access to the dolphinscheduler directory
 
@@ -137,7 +135,6 @@ bin/stop-all.sh # stop all services
 
 sh bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
 sh bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-sh bin/dolphinscheduler-daemon.sh stop logger-server  # stop logger service
 sh bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
 sh bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
 
@@ -147,7 +144,6 @@ bin/start-all.sh # start all services
 
 sh bin/dolphinscheduler-daemon.sh start master-server  # start master service
 sh bin/dolphinscheduler-daemon.sh start worker-server  # start worker service
-sh bin/dolphinscheduler-daemon.sh start logger-server  # start logger service
 sh bin/dolphinscheduler-daemon.sh start api-server     # start api    service
 sh bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service
 
@@ -163,7 +159,6 @@ sh bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service
 ```
     MasterServer         ----- master service
     WorkerServer         ----- worker service
-    LoggerServer         ----- logger service
     ApiApplicationServer ----- api    service
     AlertServer          ----- alert  service
 ```
@@ -174,9 +169,8 @@ After successful startup, you can view the logs, which are stored in the logs fo
  logs/
     ├── dolphinscheduler-alert-server.log
     ├── dolphinscheduler-master-server.log
-    |—— dolphinscheduler-worker-server.log
-    |—— dolphinscheduler-api-server.log
-    |—— dolphinscheduler-logger-server.log
+    ├── dolphinscheduler-worker-server.log
+    ├── dolphinscheduler-api-server.log
 ```
 If the above services are started normally and the scheduling system page is normal, check whether there is an expanded Master or Worker service in the [Monitor] of the web system. If it exists, the expansion is complete.
 
@@ -188,7 +182,7 @@ There are two steps for shrinking. After performing the following two steps, the
 
 ### 2.1 Stop the service on the scaled-down node
  * If you are scaling down the master node, identify the physical machine where the master service is located, and stop the master service on the physical machine.
- * If the worker node is scaled down, determine the physical machine where the worker service is to be scaled down and stop the worker and logger services on the physical machine.
+ * If the worker node is scaled down, determine the physical machine where the worker service is to be scaled down and stop the worker services on the physical machine.
  
 ```shell
 # stop command:
@@ -196,7 +190,6 @@ bin/stop-all.sh # stop all services
 
 sh bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
 sh bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-sh bin/dolphinscheduler-daemon.sh stop logger-server  # stop logger service
 sh bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
 sh bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
 
@@ -206,7 +199,6 @@ bin/start-all.sh # start all services
 
 sh bin/dolphinscheduler-daemon.sh start master-server # start master service
 sh bin/dolphinscheduler-daemon.sh start worker-server # start worker service
-sh bin/dolphinscheduler-daemon.sh start logger-server # start logger service
 sh bin/dolphinscheduler-daemon.sh start api-server    # start api    service
 sh bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
 
@@ -221,7 +213,6 @@ sh bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
 ```
     MasterServer         ----- master service
     WorkerServer         ----- worker service
-    LoggerServer         ----- logger service
     ApiApplicationServer ----- api    service
     AlertServer          ----- alert  service
 ```
