@@ -25,7 +25,7 @@ Start process activity diagram
 Version 2.0.1 enhanced the system's processing capabilities by optimizing the kernel, thereby greatly improving
 performance. The new UI interface also greatly improved the user experience. More importantly, there are two major
 changes in version 2.0.1: plug-in and refactoring.
-
+https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/upgrade.html
 ## 01 Plug-in
 
 Previously, some users had feedback that they hoped that Apache DolphinScheduler could be optimized for plug-inization.
