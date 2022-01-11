@@ -19,7 +19,7 @@ cd dolphinscheduler
 git clone git@github.com:apache/dolphinscheduler.git
 ```
 ### 编译源码 
-* 如果使用MySQL数据库，请注意修改pom.xml， 添加"mysql连接器java" need to be english 引入到pom.xml 文件中。
+* 如果使用MySQL数据库，请注意修改pom.xml， 添加 ` mysql-connector-java ` 依赖。
 * 运行 ` mvn -U install package -Prelease -Dmaven.test.skip=true ` 
 
 
