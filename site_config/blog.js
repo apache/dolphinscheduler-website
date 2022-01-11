@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Congratulations! Apache DolphinScheduler Has Been Approved As A TWOS Candidate Member',
+                author: 'Debra Chen',
+                dateStr: '2022-1-11',
+                desc: ' TWOS',
+                link: '/en-us/blog/Twos.html',
+            },
+            {
                 title: 'Apache DolphinScheduler Won the「2021 OSC Most Popular Projects」award, and Whaleops Open Source Technology Received the honor of「Outstanding Chinese Open Source Original Startups」!',
                 author: 'Debra Chen',
                 dateStr: '2022-1-7',
@@ -96,6 +103,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '恭喜 Apache DolphinScheduler 入选可信开源社区共同体（TWOS）预备成员！',
+                author: 'Debra Chen',
+                dateStr: '2022-1-11',
+                desc: 'TWOS',
+                link: '/zh-cn/blog/Twos.html',
+            },
             {
                 title: 'Apache DolphinScheduler 获评 2021 年度「最受欢迎项目」',
                 author: 'Debra Chen',
