@@ -18,7 +18,7 @@
 ├─conf                              配置文件目录
 │  ├─application-api.properties         api服务配置文件
 │  ├─datasource.properties              数据库配置文件
-│  ├─zookeeper.properties               zookeeper配置文件
+│  ├─registry.properties               registry配置文件
 │  ├─master.properties                  master服务配置文件
 │  ├─worker.properties                  worker服务配置文件
 │  ├─quartz.properties                  quartz服务配置文件
@@ -60,7 +60,7 @@
 |--|--|--|
 1|启动/关闭DS服务脚本|dolphinscheduler-daemon.sh
 2|数据库连接配置 | datasource.properties
-3|zookeeper连接配置|zookeeper.properties
+3|registry连接配置|registry.properties
 4|公共[存储]配置|common.properties
 5|API服务配置|application-api.properties
 6|Master服务配置|master.properties
@@ -120,16 +120,17 @@ spring.datasource.poolPreparedStatements|true| 开启PSCache
 spring.datasource.maxPoolPreparedStatementPerConnectionSize|20| 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。
 
 
-## 3.zookeeper.properties [zookeeper连接配置]
+## 3.registry.properties [registry连接配置,默认使用zookeeper]
 |参数 |默认值| 描述| 
 |--|--|--|
-zookeeper.quorum|localhost:2181| zk集群连接信息
-zookeeper.dolphinscheduler.root|/dolphinscheduler| DS在zookeeper存储根目录
-zookeeper.session.timeout|60000|  session 超时
-zookeeper.connection.timeout|30000|  连接超时
-zookeeper.retry.base.sleep|100| 基本重试时间差
-zookeeper.retry.max.sleep|30000| 最大重试时间
-zookeeper.retry.maxtime|10|最大重试次数
+registry.plugin.name|zookeeper| 插件名称
+registry.servers|localhost:2181| zk集群连接信息
+registry.namespace|dolphinscheduler| DS在zookeeper存储根目录(开头不带/)
+registry.base.sleep.time.ms|60| 基本重试时间差
+registry.max.sleep.ms|300| 最大重试时间
+registry.max.retries|5| 最大重试次数
+registry.session.timeout.ms|30000| session 超时时间
+registry.connection.timeout.ms|7500| 连接超时时间
 
 
 ## 4.common.properties [hadoop、s3、yarn配置]
@@ -253,7 +254,7 @@ install_config.conf这个配置文件比较繁琐,这个文件主要有两个地
 * 1.DS集群的自动安装. 
 
 > 调用install.sh脚本会自动加载该文件中的配置.并根据该文件中的内容自动配置上述的配置文件中的内容. 
-> 比如:dolphinscheduler-daemon.sh、datasource.properties、zookeeper.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties 等文件.
+> 比如:dolphinscheduler-daemon.sh、datasource.properties、registry.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties 等文件.
 
 
 * 2.DS集群的启动&关闭.
@@ -281,7 +282,7 @@ username="xx"
 # 数据库 密码
 password="xx"
 
-# Zookeeper地址
+# zookeeper地址
 zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
 
 # 将DS安装到哪个目录，如: /data1_1T/dolphinscheduler，

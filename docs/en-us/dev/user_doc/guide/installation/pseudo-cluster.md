@@ -1,6 +1,6 @@
 # Pseudo-Cluster Deployment
 
-The purpose of pseudo-cluster deployment is to deploy the DolphinScheduler service on a single machine. In this mode, DolphinScheduler's master, worker, api server, and logger server are all on the same machine.
+The purpose of pseudo-cluster deployment is to deploy the DolphinScheduler service on a single machine. In this mode, DolphinScheduler's master, worker, api server, are all on the same machine.
 
 If you are a green hand and want to experience DolphinScheduler, we recommended you install follow [Standalone](standalone.md). If you want to experience more complete functions or schedule large tasks number, we recommended you install follow [pseudo-cluster deployment](pseudo-cluster.md). If you want to using DolphinScheduler in production, we recommended you follow [cluster deployment](cluster.md) or [kubernetes](kubernetes.md)
 
@@ -185,10 +185,6 @@ sh ./bin/dolphinscheduler-daemon.sh stop worker-server
 # Start or stop DolphinScheduler Api
 sh ./bin/dolphinscheduler-daemon.sh start api-server
 sh ./bin/dolphinscheduler-daemon.sh stop api-server
-
-# Start or stop Logger
-sh ./bin/dolphinscheduler-daemon.sh start logger-server
-sh ./bin/dolphinscheduler-daemon.sh stop logger-server
 
 # Start or stop Alert
 sh ./bin/dolphinscheduler-daemon.sh start alert-server

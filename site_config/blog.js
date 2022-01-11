@@ -4,6 +4,20 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Congratulations! Apache DolphinScheduler Has Been Approved As A TWOS Candidate Member',
+                author: 'Debra Chen',
+                dateStr: '2022-1-11',
+                desc: ' TWOS',
+                link: '/en-us/blog/Twos.html',
+            },
+            {
+                title: 'Apache DolphinScheduler Won the「2021 OSC Most Popular Projects」award, and Whaleops Open Source Technology Received the honor of「Outstanding Chinese Open Source Original Startups」!',
+                author: 'Debra Chen',
+                dateStr: '2022-1-7',
+                desc: ' 2021 OSC Most Popular Projects',
+                link: '/en-us/blog/Awarded_most_popular_project_in_2021.html',
+            },
+            {
                 title: 'Eavy Info Builds Data Asset Management Platform Services Based on Apache DolphinScheduler to Construct Government Information Ecology',
                 author: 'Debra Chen',
                 dateStr: '2021-12-30',
@@ -89,6 +103,20 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '恭喜 Apache DolphinScheduler 入选可信开源社区共同体（TWOS）预备成员！',
+                author: 'Debra Chen',
+                dateStr: '2022-1-11',
+                desc: 'TWOS',
+                link: '/zh-cn/blog/Twos.html',
+            },
+            {
+                title: 'Apache DolphinScheduler 获评 2021 年度「最受欢迎项目」',
+                author: 'Debra Chen',
+                dateStr: '2022-1-7',
+                desc: '最受欢迎项目奖',
+                link: '/zh-cn/blog/Awarded_most_popular_project_in_2021.html',
+            },
             {
                 title: '亿云基于 DolphinScheduler 构建资产数据管理平台服务，助力政务信息化生态建设',
                 author: 'Debra Chen',

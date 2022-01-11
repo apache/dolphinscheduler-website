@@ -55,27 +55,25 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: 'https://imgpp.com/images/2022/01/10/164179986575876800e959cabce5b.md.png',
+          title: '恭喜 Apache DolphinScheduler 入选可信开源社区共同体（TWOS）预备成员！',
+          content: '近日，可信开源社区共同体正式宣布批准 6 位正式成员和 3 位预备成员加入。其中...',
+          dateStr: '2022-1-11',
+          link: '/zh-cn/blog/Twos.html',
+        },
+        {
+          img: 'https://imgpp.com/images/2022/01/07/_c449bb07189725ea562d5ba404504b8f_96119.jpg',
+          title: 'Apache DolphinScheduler 获评 2021 年度「最受欢迎项目」',
+          content: '近日，由 OSCHINA 举办的「2021 OSC 中国开源项目」评选活动公布了评选结果。...',
+          dateStr: '2022-1-7',
+          link: '/zh-cn/blog/Awarded_most_popular_project_in_2021.html',
+        },
+        {
           img: 'https://imgpp.com/images/2021/12/29/1640759432737.md.png',
           title: '亿云基于 DolphinScheduler 构建资产数据管理平台服务，助力政务信息化生态建设',
           content: '基于 Apache Dolphinscheduler 调度平台，云计算和大数据提供商亿云...',
           dateStr: '2021-12-30',
           link: '/zh-cn/blog/Eavy_Info.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/12/17/1639647220322.md.png',
-
-          title: 'Apache DolphinScheduler 2.0.1 来了，备受期待的一键升级、插件化终于实现！',
-          content: '2.0.1 版本通过优化内核增强了系统处理能力，从而在性能上得到较大提升...',
-          dateStr: '2021-12-17',
-          link: '/zh-cn/blog/Apache-DolphinScheduler-2.0.1.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/12/10/15ede237ae3ba0f78.md.png',
-
-          title: '从 Airflow 到 Apache DolphinScheduler，有赞大数据开发平台的调度系统演进,',
-          content: '在不久前的 Apache DolphinScheduler Meetup 2021 上...',
-          dateStr: '2021-12-10',
-          link: '/zh-cn/blog/YouZan-case-study.html',
         },
       ],
     },
@@ -543,25 +541,26 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: 'https://imgpp.com/images/2022/01/10/1641804549068.md.png',
+          title: 'Congratulations! Apache DolphinScheduler Has Been Approved As A TWOS Candidate Member',
+          content: 'ecently, TWOS officially announced the approval of 6 full members and 3 candidate...',
+          dateStr: '2022-1-11',
+          link: '/en-us/blog/Twos.html',
+        },
+        {
+
+          img: 'https://imgpp.com/images/2022/01/07/_1ca0eca926145ffc5f05f15b6b612a2b_64635.md.jpg',
+          title: 'Apache DolphinScheduler Won the「2021 OSC Most Popular Projects」award, and Whaleops Open Source Technology Received the honor of「Outstanding Chinese Open Source Original Startups」!',
+          content: 'Recently, the "2021 OSC Best China Open Source Projects Poll」initiated by OSCHINA announced the selection results....',
+          dateStr: '2022-1-7',
+          link: '/en-us/blog/Awarded_most_popular_project_in_2021.html',
+        },
+        {
           img: 'https://imgpp.com/images/2021/12/29/1640759432737.md.png',
           title: '# Eavy Info Builds Data Asset Management Platform Services Based on Apache DolphinScheduler to Construct Government Information Ecology',
           content: 'Based on the Apache DolphinScheduler, the cloud computing and big data provider Eavy Info...',
           dateStr: '2021-11-24',
           link: '/en-us/blog/Eavy_Info.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/12/20/1639994965225.md.png',
-          title: 'Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!',
-          content: 'Good news! Apache DolphinScheduler 2.0.1 version is officially released today!...',
-          dateStr: '2021-12-20',
-          link: '/en-us/blog/Apache-DolphinScheduler-2.0.1.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/12/16/1639383815755.md.png',
-          title: 'From Airflow to Apache DolphinScheduler, the Roadmap of Scheduling System On Youzan Big Data Development Platform',
-          content: 'At the recent Apache DolphinScheduler Meetup 2021, Zheqi Song...',
-          dateStr: '2021-12-16',
-          link: '/en-us/blog/YouZan-case-study.html',
         },
       ],
     },
