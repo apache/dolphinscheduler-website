@@ -111,7 +111,7 @@ sh ./script/create-dolphinscheduler.sh
 
 For specific upgrade documentation, please refer to:
 
-https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/upgrade.html
+https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/upgrade.html
 
 In addition, future versions of Apache DolphinScheduler can be automatically upgraded, saving the trouble of manual
 upgrades.
