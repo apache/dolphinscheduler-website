@@ -108,7 +108,6 @@ The following services are automatically started when the container starts:
 ```
      MasterServer         ----- master service
      WorkerServer         ----- worker service
-     LoggerServer         ----- logger service
      ApiApplicationServer ----- api service
      AlertServer          ----- alert service
 ```
@@ -127,7 +126,7 @@ $ docker run -d --name dolphinscheduler-master \
 apache/dolphinscheduler:1.3.8 master-server
 ```
 
-* Start a **worker server** (including **logger server**), For example:
+* Start a **worker server**, For example:
 
 ```
 $ docker run -d --name dolphinscheduler-worker \
@@ -772,7 +771,7 @@ This environment variable sets zookeeper root directory for dolphinscheduler. Th
 
 **`DOLPHINSCHEDULER_OPTS`**
 
-This environment variable sets JVM options for dolphinscheduler, suitable for `master-server`, `worker-server`, `api-server`, `alert-server`, `logger-server`. The default value is empty.
+This environment variable sets JVM options for dolphinscheduler, suitable for `master-server`, `worker-server`, `api-server`, `alert-server`. The default value is empty.
 
 **`DATA_BASEDIR_PATH`**
 
@@ -1025,9 +1024,3 @@ This environment variable sets enterprise wechat users for `alert-server`. The d
 **`API_SERVER_OPTS`**
 
 This environment variable sets JVM options for `api-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.
-
-### Logger Server
-
-**`LOGGER_SERVER_OPTS`**
-
-This environment variable sets JVM options for `logger-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.

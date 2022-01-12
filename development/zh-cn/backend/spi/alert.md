@@ -43,7 +43,7 @@ AlertResult
 告警插件发送告警返回信息。
 
 org.apache.dolphinscheduler.spi.params
-该包下是插件化的参数定义，我们前端使用 from-create 这个前端库 http://www.form-create.com，该库可以基于插件定义返回的参数列表 json 来动态生成前端的 ui，因此我们在做 SPI 插件开发的时候无需关心前端。
+该包下是插件化的参数定义，我们前端使用 from-create 这个前端库，该库可以基于插件定义返回的参数列表 json 来动态生成前端的 ui，因此我们在做 SPI 插件开发的时候无需关心前端。
 
 该 package 下我们目前只封装了 RadioParam，TextParam，PasswordParam，分别用来定义 text 类型的参数，radio 参数和 password 类型的参数。
 

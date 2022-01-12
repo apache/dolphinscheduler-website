@@ -59,7 +59,7 @@
     MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeeper临时节点变化来进行容错处理。
     MasterServer基于netty提供监听服务。
 
-    ##### 该服务内主要包含:
+    **该服务内主要包含:**
 
     - **Distributed Quartz**分布式调度组件，主要负责定时任务的启停操作，当quartz调起任务后，Master内部会有线程池具体负责处理任务的后续操作
 
@@ -73,8 +73,10 @@
 
      WorkerServer也采用分布式无中心设计理念，WorkerServer主要负责任务的执行和提供日志服务。
      WorkerServer服务启动时向Zookeeper注册临时节点，并维持心跳。
-     Server基于netty提供监听服务。Worker
-     ##### 该服务包含：
+     WorkerServer基于netty提供监听服务。
+
+     **该服务包含：**
+
      - **FetchTaskThread**主要负责不断从**Task Queue**中领取任务，并根据不同任务类型调用**TaskScheduleThread**对应执行器。
 
      - **LoggerServer**是一个RPC服务，提供日志分片查看、刷新和下载等功能
@@ -327,5 +329,4 @@ public class TaskLogFilter extends Filter<ILoggingEvent> {
 - dolphinscheduler-ui 前端模块
 ### 总结
 本文从调度出发，初步介绍了大数据分布式工作流调度系统--DolphinScheduler的架构原理及实现思路。未完待续
-
 

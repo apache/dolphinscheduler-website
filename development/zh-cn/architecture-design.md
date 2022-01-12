@@ -66,8 +66,6 @@
      ##### 该服务包含：
      - **FetchTaskThread**主要负责不断从**Task Queue**中领取任务，并根据不同任务类型调用**TaskScheduleThread**对应执行器。
 
-     - **LoggerServer**是一个RPC服务，提供日志分片查看、刷新和下载等功能
-
 * **ZooKeeper** 
 
     ZooKeeper服务，系统中的MasterServer和WorkerServer节点都通过ZooKeeper来进行集群管理和容错。另外系统还基于ZooKeeper进行事件监听和分布式锁。

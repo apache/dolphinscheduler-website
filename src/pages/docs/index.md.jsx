@@ -18,6 +18,8 @@ import docs136Config from '../../../site_config/docs1-3-6';
 import docs138Config from '../../../site_config/docs1-3-8';
 import docs139Config from '../../../site_config/docs1-3-9';
 import docs200Config from '../../../site_config/docs2-0-0';
+import docs201Config from '../../../site_config/docs2-0-1';
+import docs202Config from '../../../site_config/docs2-0-2';
 import docsDevConfig from '../../../site_config/docsdev';
 
 const docsSource = {
@@ -32,6 +34,8 @@ const docsSource = {
   '1.3.8': docs138Config,
   '1.3.9': docs139Config,
   '2.0.0': docs200Config,
+  '2.0.1': docs201Config,
+  '2.0.2': docs202Config,
   dev: docsDevConfig,
 };
 

@@ -77,8 +77,6 @@
      ##### 该服务包含：
      - **FetchTaskThread**主要负责不断从**Task Queue**中领取任务，并根据不同任务类型调用**TaskScheduleThread**对应执行器。
 
-     - **LoggerServer**是一个RPC服务，提供日志分片查看、刷新和下载等功能
-
 * **ZooKeeper** 
 
     ZooKeeper服务，系统中的MasterServer和WorkerServer节点都通过ZooKeeper来进行集群管理和容错。另外系统还基于ZooKeeper进行事件监听和分布式锁。
@@ -99,7 +97,7 @@
 
 * **UI** 
 
-    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/1.3.8/user_doc/system-manual.html" target="_self">系统使用手册</a>部分。
+    系统的前端页面，提供系统的各种可视化操作界面，详见[系统使用手册](../guide/introduction.md)部分。
 
 #### 2.3 架构设计思想
 
@@ -184,24 +182,31 @@ DolphinScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Mast
  </p>
 其中Master监控其他Master和Worker的目录，如果监听到remove事件，则会根据具体的业务逻辑进行流程实例容错或者任务实例容错。
 
+- Master容错流程：
 
-
-- Master容错流程图：
-
- <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant_master.png" alt="Master容错流程图"  width="40%" />
- </p>
-ZooKeeper Master容错完成之后则重新由DolphinScheduler中Scheduler线程调度，遍历 DAG 找到”正在运行”和“提交成功”的任务，对”正在运行”的任务监控其任务实例的状态，对”提交成功”的任务需要判断Task Queue中是否已经存在，如果存在则同样监控任务实例的状态，如果不存在则重新提交任务实例。
-
-
-
-- Worker容错流程图：
-
- <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant_worker.png" alt="Worker容错流程图"  width="40%" />
+<p align="center">
+   <img src="/img/failover-master.jpg" alt="容错流程"  width="50%" />
  </p>
 
-Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则接管任务并进行重新提交。
+容错范围：从host的维度来看，Master的容错范围包括：自身host+注册中心上不存在的节点host，容错的整个过程会加锁；
+
+容错内容：Master的容错内容包括：容错工作流实例和任务实例，在容错前会比较实例的开始时间和服务节点的启动时间，在服务启动时间之后的则跳过容错；
+
+容错后处理：ZooKeeper Master容错完成之后则重新由DolphinScheduler中Scheduler线程调度，遍历 DAG 找到”正在运行”和“提交成功”的任务，对”正在运行”的任务监控其任务实例的状态，对”提交成功”的任务需要判断Task Queue中是否已经存在，如果存在则同样监控任务实例的状态，如果不存在则重新提交任务实例。
+
+
+
+- Worker容错流程：
+
+<p align="center">
+   <img src="/img/failover-worker.jpg" alt="容错流程"  width="50%" />
+ </p>
+
+容错范围：从工作流实例的维度看，每个Master只负责容错自己的工作流实例；只有在`handleDeadServer`时会加锁；
+
+容错内容：当发送Worker节点的remove事件时，Master只容错任务实例，在容错前会比较实例的开始时间和服务节点的启动时间，在服务启动时间之后的则跳过容错；
+
+容错后处理：Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则接管任务并进行重新提交。
 
  注意：由于” 网络抖动”可能会使得节点短时间内失去和ZooKeeper的心跳，从而发生节点的remove事件。对于这种情况，我们使用最简单的方式，那就是节点一旦和ZooKeeper发生超时连接，则直接将Master或Worker服务停掉。
 

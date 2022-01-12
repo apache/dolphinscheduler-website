@@ -26,6 +26,10 @@ export default {
             link: '/en-us/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
+            title: 'User Manual',
+            link: '/en-us/docs/2.0.0/user_doc/guide/system-manual.html',
+          },
+          {
             title: 'Docker Deployment',
             link: '/en-us/docs/2.0.0/user_doc/guide/installation/docker.html',
            },
@@ -49,10 +53,6 @@ export default {
           {
             title: 'Kubernetes Deployment',
             link: '/en-us/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
-          },
-          {
-            title: 'SkyWalking-Agent Deployment',
-            link: '/en-us/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
           },
         ],
       },
@@ -211,6 +211,14 @@ export default {
             title: 'Flink',
             link: '/en-us/docs/2.0.0/user_doc/guide/flink-call.html',
           },
+          {
+            title: 'Upgrade',
+            link: '/en-us/docs/2.0.0/user_doc/guide/upgrade.html',
+          },
+          {
+            title: 'Expansion and Reduction',
+            link: '/en-us/docs/2.0.0/user_doc/guide/expansion-reduction.html',
+          },
         ],
       },
       {
@@ -237,6 +245,15 @@ export default {
             link: '/en-us/docs/2.0.0/user_doc/architecture/load-balance.html',
           },
         ],
+      },
+      {
+        title: 'Observability',
+        children: [
+          {
+            title: 'SkyWalking-Agent',
+            link: '/en-us/docs/2.0.0/user_doc/guide/observability/skywalking-agent.html',
+          },
+        ]
       },
       {
         title: 'FAQ',
@@ -286,6 +303,10 @@ export default {
             link: '/zh-cn/docs/2.0.0/user_doc/guide/quick-start.html',
           },
           {
+            title: '用户手册',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/system-manual.html',
+          },
+          {
             title: 'Docker部署(Docker)',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/docker.html',
           },
@@ -309,10 +330,6 @@ export default {
           {
             title: 'Kubernetes部署(Kubernetes)',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/kubernetes.html',
-          },
-          {
-            title: 'SkyWalking-Agent部署(SkyWalking)',
-            link: '/zh-cn/docs/2.0.0/user_doc/guide/installation/skywalking-agent.html',
           },
         ],
       }, 
@@ -471,6 +488,14 @@ export default {
             title: 'Flink调用',
             link: '/zh-cn/docs/2.0.0/user_doc/guide/flink-call.html',
           },
+          {
+            title: '升级',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/upgrade.html',
+          },
+          {
+            title: '扩/缩容',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/expansion-reduction.html',
+          },
         ],
       },
       {
@@ -496,15 +521,16 @@ export default {
             title: '负载均衡',
             link: '/zh-cn/docs/2.0.0/user_doc/architecture/load-balance.html',
           },
-          {
-            title: '升级',
-            link: '/zh-cn/docs/2.0.0/user_doc/upgrade.html',
-          },
-          {
-            title: '扩/缩容',
-            link: '/zh-cn/docs/2.0.0/user_doc/expansion-reduction.html',
-          },
         ],
+      },
+      {
+        title: '可观测性',
+        children: [
+          {
+            title: 'SkyWalking-Agent',
+            link: '/zh-cn/docs/2.0.0/user_doc/guide/observability/skywalking-agent.html',
+          },
+        ]
       },
       {
         title: 'FAQ',

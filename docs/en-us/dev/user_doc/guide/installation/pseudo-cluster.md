@@ -1,6 +1,6 @@
 # Pseudo-Cluster Deployment
 
-The purpose of pseudo-cluster deployment is to deploy the DolphinScheduler service on a single machine. In this mode, DolphinScheduler's master, worker, api server, and logger server are all on the same machine.
+The purpose of pseudo-cluster deployment is to deploy the DolphinScheduler service on a single machine. In this mode, DolphinScheduler's master, worker, api server, are all on the same machine.
 
 If you are a green hand and want to experience DolphinScheduler, we recommended you install follow [Standalone](standalone.md). If you want to experience more complete functions or schedule large tasks number, we recommended you install follow [pseudo-cluster deployment](pseudo-cluster.md). If you want to using DolphinScheduler in production, we recommended you follow [cluster deployment](cluster.md) or [kubernetes](kubernetes.md)
 
@@ -9,7 +9,7 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
 Pseudo-cluster deployment of DolphinScheduler requires external software support
 
 * JDK：Download [JDK][jdk] (1.8+), and configure `JAVA_HOME` to and `PATH` variable. You can skip this step, if it already exists in your environment.
-* Binary package: Download the DolphinScheduler binary package at [download page](../../../../../../en-us/download/download.md)
+* Binary package: Download the DolphinScheduler binary package at [download page](https://dolphinscheduler.apache.org/en-us/download/download.html)
 * Database: PostgreSQL (8.2.15+) or MySQL (5.7+), you can choose one of the two, such as MySQL requires JDBC Driver 8.0.16
 * Registry Center: ZooKeeper (3.4.6+)，[download link][zookeeper]
 * Process tree analysis
@@ -69,7 +69,7 @@ Go to the zookeeper installation directory, copy configure file `zoo_sample.cfg`
 
 ### Initialize the database
 
-DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (5.1.47+) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
+DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
 
 ```shell
 mysql -uroot -p
@@ -185,10 +185,6 @@ sh ./bin/dolphinscheduler-daemon.sh stop worker-server
 # Start or stop DolphinScheduler Api
 sh ./bin/dolphinscheduler-daemon.sh start api-server
 sh ./bin/dolphinscheduler-daemon.sh stop api-server
-
-# Start or stop Logger
-sh ./bin/dolphinscheduler-daemon.sh start logger-server
-sh ./bin/dolphinscheduler-daemon.sh stop logger-server
 
 # Start or stop Alert
 sh ./bin/dolphinscheduler-daemon.sh start alert-server
