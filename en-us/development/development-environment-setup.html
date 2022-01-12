@@ -26,6 +26,9 @@ language</li>
 cd dolphinscheduler
 git clone git@github.com:apache/dolphinscheduler.git
 </code></pre>
+<h3>compile source code</h3>
+<p>i. If you use MySQL database, pay attention to modify pom.xml in the root project, and change the scope of the mysql-connector-java dependency to compile.</p>
+<p>ii. Run <code>mvn -U install package -Prelease -Dmaven.test.skip=true</code></p>
 <h2>Notice</h2>
 <p>There are two ways to configure the DolphinScheduler development environment, standalone mode and normal mode</p>
 <ul>
