@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,2.0.2">
+  <meta name="description" content="In the long-awaited, WorkflowAsCode function is finally launched in version 2.0.2 as promised, bringing good news to users who need to dynamically create and update workflows in batches.">
+  <title>Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched!</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/build/vendor.23870e5.css">
+  <link rel="stylesheet" href="/build/blog.md.055b3f1.css">
+</head>
+<body>
+  <div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-dark"><div class="header-body"><span class="mobile-menu-btn mobile-menu-btn-dark"></span><a href="/en-us/index.html"><img class="logo" src="/img/hlogo_white.svg"/></a><div class="search search-dark"><span class="icon-search"></span></div><span class="language-switch language-switch-dark">中</span><div class="header-menu"><div><ul class="ant-menu whiteClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/download/download.html" target="_self">DOWNLOAD</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item ant-menu-item-selected" role="menuitem"><a href="/en-us/blog/index.html" target="_self">BLOG</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/community/team.html" target="_self">COMMUNITY</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="https://www.apache.org/" target="_blank">ASF</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/user/index.html" target="_self">USER</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div><div class="mobile-menu"><div class="mobile-menu-content"><div class="mobile-menu-list"><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/index.html" target="_self">HOME</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">latest(2.0.2)</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/1.3.9/user_doc/quick-start.html" target="_self">1.3.9</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/latest/user_doc/architecture/listdocs.html" target="_self">Older Versions</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/dev/user_doc/guide/quick-start.html" target="_self">dev</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/download/download.html" target="_self">DOWNLOAD</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/blog/index.html" target="_self">BLOG</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/community/team.html" target="_self">COMMUNITY</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="https://www.apache.org/" target="_blank">ASF</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="https://www.apache.org/" target="_blank">Foundation</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/licenses/" target="_blank">License</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/security/" target="_blank">Security</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/user/index.html" target="_self">USER</a></div></div></div><div class="mobile-menu-dummy"></div></div></div></header><section class="blog-content markdown-body"><h1>Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched!</h1>
+<div align=center>
+<img src="/img/2022-1-13/1_3XcwBeN5HkBzZ76zXDcigw.jpeg"/>
+</div>
+<p>In the long-awaited, WorkflowAsCode function is finally launched in version 2.0.2 as promised, bringing good news to users who need to dynamically create and update workflows in batches.</p>
+<p>In addition, the new version also adds the WeCom alarm group chat message push, simplifies the metadata initialization process, and fixes issues that existed in the former version, such as failure of service restart after forced termination, and the failure to add a Hive data source.</p>
+<h2>New Function</h2>
+<h3>WorkflowAsCode</h3>
+<p>First of all, in terms of new functions, version 2.0.2 released PythonGatewayServer, which is a Workflow-as-code server started in the same way as apiServer and other services.</p>
+<p>When PythonGatewayServer is enabled, all Python API requests are sent to PythonGatewayServer. Workflow-as-code lets users create workflows through the Python API, which is great news for users who need to create and update workflows dynamically and in batches. Workflows created with Workflow-as-code can be viewed in the web UI just like other workflows.</p>
+<p>The following is a Workflow-as-code test case:</p>
+<pre><code class="language-py"><span class="hljs-comment"># Define workflow properties, including name, scheduling period, start time, tenant, etc.</span>
+
+<span class="hljs-keyword">with</span> ProcessDefinition(
+    name=<span class="hljs-string">&quot;tutorial&quot;</span>,
+    schedule=<span class="hljs-string">&quot;0 0 0 * * ? *&quot;</span>,
+    start_time=<span class="hljs-string">&quot;2021-01-01&quot;</span>,
+    tenant=<span class="hljs-string">&quot;tenant_exists&quot;</span>,
+) <span class="hljs-keyword">as</span> pd:
+    <span class="hljs-comment"># Define 4 tasks, which are all shell tasks, the required parameters of shell tasks are task name, command information, here are all the shell commands of echo   </span>
+
+    task_parent = Shell(name=<span class="hljs-string">&quot;task_parent&quot;</span>, command=<span class="hljs-string">&quot;echo hello pydolphinscheduler&quot;</span>)
+    task_child_one = Shell(name=<span class="hljs-string">&quot;task_child_one&quot;</span>, command=<span class="hljs-string">&quot;echo &#x27;child one&#x27;&quot;</span>)
+    task_child_two = Shell(name=<span class="hljs-string">&quot;task_child_two&quot;</span>, command=<span class="hljs-string">&quot;echo &#x27;child two&#x27;&quot;</span>)
+    task_union = Shell(name=<span class="hljs-string">&quot;task_union&quot;</span>, command=<span class="hljs-string">&quot;echo union&quot;</span>)
+
+    <span class="hljs-comment"># Define dependencies between tasks</span>
+    <span class="hljs-comment"># Here, task_child_one and task_child_two are first declared as a task group through python&#x27;s list</span>
+    task_group = [task_child_one, task_child_two]
+    <span class="hljs-comment"># Use the set_downstream method to declare the task group task_group as the downstream of task_parent, and declare the upstream through set_upstream</span>
+    task_parent.set_downstream(task_group)
+
+    <span class="hljs-comment"># Use the bit operator &lt;&lt; to declare the task_union as the downstream of the task_group, and support declaration through the bit operator &gt;&gt;</span>
+    task_union &lt;&lt; task_group
+
+</code></pre>
+<p>When the above code runs, you can see workflow in the web UI as follows:</p>
+<pre><code class="language---&gt;">                / \
+task_parent --&gt; --&gt; task_union
+                \ /
+                  --&gt; task_child_two
+</code></pre>
+<h3>2 Wecom alarm mode supports group chat message push</h3>
+<p>In the previous version, the WeChat alarm only supported the message notification; in version 2.0.2, when the user uses the Wecom alarm, it supports pushing the group chat message in the app to the user.</p>
+<h2>02 Optimization</h2>
+<h3>1 Simplified metadata initialization process</h3>
+<p>When Apache DolphinScheduler is first installed, running <a href="http://create-dolphinscheduler.sh">create-dolphinscheduler.sh</a> requires a step  by step upgrade from the oldest version to the current version. In order to initialize the metadata process more conveniently and quickly, version 2.0.2 allows users to directly install the current version of the database script, which improves the installation speed.</p>
+<h3>2 Remove &quot;+1&quot; (days) in complement dates</h3>
+<p>Removed the &quot;+1&quot; day in the complement date to avoid user confusion when the UI date always displays +1 when the complement is added.</p>
+<h2>03 Bug Fixes</h2>
+<p>[#7661] fix logger memory leak in worker
+[#7750] Compatible with historical version data source connection information
+[#7705] Memory constraints cause errors when upgrading from 1.3.5 to 2.0.2
+[#7786] Service restart fails after a forced termination
+[#7660] Process definition version create time is wrong
+[#7607] Failed to execute PROCEDURE node
+[#7639] Add default configuration of quartz and zookeeper in common configuration items
+[#7654] In the dependency node, an error is reported when there is an option that does not belong to the current project
+[#7658] Workflow replication error
+[#7609] Workflow is always running when worker sendResult succeeds but the master does not receive error report
+[#7554] H2 in Standalone Server will automatically restart after a few minutes, resulting in abnormal data loss
+[#7434] Error reported when executing MySQL table creation statement
+[#7537] Dependent node retry delay does not work
+[#7392] Failed to add a Hive data source</p>
+<p>Download: <a href="https://dolphinscheduler.apache.org/zh-cn/download/download.html">https://dolphinscheduler.apache.org/zh-cn/download/download.html</a>
+Release Note: <a href="https://github.com/apache/dolphinscheduler/releases/tag/2.0.2">https://github.com/apache/dolphinscheduler/releases/tag/2.0.2</a></p>
+<h2>04 Thanks</h2>
+<p>As always, we would like to thank all the contributors (in no particular order) who have worked to polish Apache DolphinScheduler 2.0.2 as a better platform. It is your wisdom and efforts to make it more in line with the needs of users.</p>
+<div align=center>
+<img src="/img/2022-1-13/1_IFBxUh2I0LFWF3Jkwz1e5g.png"/>
+</div>
+<h2>The Way to Join US</h2>
+<p>There are many ways to participate and contribute to the DolphinScheduler community, including:
+Documents, translation, Q&amp;A, tests, codes, articles, keynote speeches, etc.</p>
+<p>We assume the first PR (document, code) to contribute to be simple and should be used to familiarize yourself with the submission process and community collaboration style.</p>
+<p>So the community has compiled the following list of issues suitable for novices: <a href="https://github.com/apache/dolphinscheduler/issues/5689">https://github.com/apache/dolphinscheduler/issues/5689</a>
+List of non-newbie issues: <a href="https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22">https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A&quot;volunteer+wanted&quot;</a>
+How to participate in the contribution: <a href="https://dolphinscheduler.apache.org/en-us/community/development/contribute.html">https://dolphinscheduler.apache.org/en-us/community/development/contribute.html</a></p>
+<p>Community Official Website：
+<a href="https://dolphinscheduler.apache.org/">https://dolphinscheduler.apache.org/</a>
+GitHub Code repository:
+<a href="https://github.com/apache/dolphinscheduler">https://github.com/apache/dolphinscheduler</a>
+Your Star for the project is important, don’t hesitate to lighten a Star for Apache DolphinScheduler ❤️</p>
+</section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+  <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
+  <script>window.rootPath = '';</script>
+  <script src="/build/vendor.8f21465.js"></script>
+  <script src="/build/blog.md.f25cabd.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e7b4b400dd31fa015018a435c64d06f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-899J8PYKJZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-899J8PYKJZ');
+  </script>
+</body>
+</html>
