@@ -7,7 +7,7 @@ description:In the long-awaited, WorkflowAsCode function is finally launched in 
 # Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched!
 
 <div align=center>
-<img src="https://miro.medium.com/max/1260/1*3XcwBeN5HkBzZ76zXDcigw.jpeg"/>
+<img src="img/2022-1-13/1_3XcwBeN5HkBzZ76zXDcigw.jpeg"/>
 </div>
 
 In the long-awaited, WorkflowAsCode function is finally launched in version 2.0.2 as promised, bringing good news to users who need to dynamically create and update workflows in batches.
@@ -101,7 +101,7 @@ Release Note: https://github.com/apache/dolphinscheduler/releases/tag/2.0.2
 As always, we would like to thank all the contributors (in no particular order) who have worked to polish Apache DolphinScheduler 2.0.2 as a better platform. It is your wisdom and efforts to make it more in line with the needs of users.
 
 <div align=center>
-<img src="https://miro.medium.com/max/1260/1*IFBxUh2I0LFWF3Jkwz1e5g.png"/>
+<img src="img/2022-1-13/1_IFBxUh2I0LFWF3Jkwz1e5g.png"/>
 </div>
 
 ## The Way to Join US
