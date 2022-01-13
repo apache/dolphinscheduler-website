@@ -19,6 +19,12 @@ mkdir dolphinscheduler
 cd dolphinscheduler
 git clone git@github.com:apache/dolphinscheduler.git
 ```
+### compile source code
+
+i. If you use MySQL database, pay attention to modify pom.xml in the root project, and change the scope of the mysql-connector-java dependency to compile.
+
+ii. Run `mvn -U install package -Prelease -Dmaven.test.skip=true ` 
+
 
 ## Notice
 
