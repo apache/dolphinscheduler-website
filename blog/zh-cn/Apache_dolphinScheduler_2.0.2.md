@@ -1,7 +1,7 @@
 # WorkflowAsCode 来了，Apache DolphinScheduler 2.0.2 惊喜发布！
 
 <div align=center>
-<img src="img/2022-1-13/1_3XcwBeN5HkBzZ76zXDcigw.jpeg"/>
+<img src="/img/2022-1-13/1_3XcwBeN5HkBzZ76zXDcigw.jpeg"/>
 </div>
 
 千呼万唤中，WorkflowAsCode 功能终于在 2.0.2 版本中如约上线，为有动态、批量创建和更新工作流需求的用户带来福音。
@@ -91,7 +91,7 @@ Release Note：https://github.com/apache/dolphinscheduler/releases/tag/2.0.2
 一如既往地，感谢所有为 2.0.2版本建言献策并付诸行动的 Contributor（排名不分先后），是你们的智慧和付出让 Apache DolphinScheduler 更加符合用户的使用需求。
 
 <div align=center>
-<img src="img/2022-1-13/1_IFBxUh2I0LFWF3Jkwz1e5g.png"/>
+<img src="/img/2022-1-13/1_IFBxUh2I0LFWF3Jkwz1e5g.png"/>
 </div>
 
 
