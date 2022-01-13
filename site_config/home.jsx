@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: 'https://miro.medium.com/max/1260/1*3XcwBeN5HkBzZ76zXDcigw.jpeg',
+          title: 'WorkflowAsCode 来了，Apache DolphinScheduler 2.0.2 惊喜发布',
+          content: '千呼万唤中，WorkflowAsCode 功能终于在 2.0.2 版本中如约上线...',
+          dateStr: '2022-1-13',
+          link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.2.html',
+        },
+        {
           img: 'https://imgpp.com/images/2022/01/10/164179986575876800e959cabce5b.md.png',
           title: '恭喜 Apache DolphinScheduler 入选可信开源社区共同体（TWOS）预备成员！',
           content: '近日，可信开源社区共同体正式宣布批准 6 位正式成员和 3 位预备成员加入。其中...',
@@ -67,13 +74,6 @@ export default {
           content: '近日，由 OSCHINA 举办的「2021 OSC 中国开源项目」评选活动公布了评选结果。...',
           dateStr: '2022-1-7',
           link: '/zh-cn/blog/Awarded_most_popular_project_in_2021.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/12/29/1640759432737.md.png',
-          title: '亿云基于 DolphinScheduler 构建资产数据管理平台服务，助力政务信息化生态建设',
-          content: '基于 Apache Dolphinscheduler 调度平台，云计算和大数据提供商亿云...',
-          dateStr: '2021-12-30',
-          link: '/zh-cn/blog/Eavy_Info.html',
         },
       ],
     },
@@ -541,6 +541,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: 'https://miro.medium.com/max/1260/1*3XcwBeN5HkBzZ76zXDcigw.jpeg',
+          title: '# Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched! ',
+          content: 'In the long-awaited, WorkflowAsCode function is finally launched in version 2.0.2 as promised...',
+          dateStr: '2022-1-13',
+          link: '/en-us/blog/Apache_dolphinScheduler_2.0.2.html',
+        },
+        {
           img: 'https://imgpp.com/images/2022/01/10/1641804549068.md.png',
           title: 'Congratulations! Apache DolphinScheduler Has Been Approved As A TWOS Candidate Member',
           content: 'ecently, TWOS officially announced the approval of 6 full members and 3 candidate...',
@@ -554,13 +561,6 @@ export default {
           content: 'Recently, the "2021 OSC Best China Open Source Projects Poll」initiated by OSCHINA announced the selection results....',
           dateStr: '2022-1-7',
           link: '/en-us/blog/Awarded_most_popular_project_in_2021.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2021/12/29/1640759432737.md.png',
-          title: '# Eavy Info Builds Data Asset Management Platform Services Based on Apache DolphinScheduler to Construct Government Information Ecology',
-          content: 'Based on the Apache DolphinScheduler, the cloud computing and big data provider Eavy Info...',
-          dateStr: '2021-11-24',
-          link: '/en-us/blog/Eavy_Info.html',
         },
       ],
     },
