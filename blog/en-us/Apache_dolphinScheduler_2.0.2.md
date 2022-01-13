@@ -2,7 +2,6 @@
 title: Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched!
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,2.0.2
 description:In the long-awaited, WorkflowAsCode function is finally launched in version 2.0.2 as promised, bringing good news to users who need to dynamically create and update workflows in batches.
-
 ---
 # Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched!
 
