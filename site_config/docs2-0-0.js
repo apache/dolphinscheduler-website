@@ -283,7 +283,7 @@ export default {
         children: [
           {
             title: '简介',
-            link: '/zh-cn/docs/2.0.1/user_doc/About_DolphinScheduler/About_DolphinScheduler.html',
+            link: '/zh-cn/docs/2.0.0/user_doc/About_DolphinScheduler/About_DolphinScheduler.html',
           },
           {
             title: '建议配置',
