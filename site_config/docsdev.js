@@ -2,6 +2,15 @@ export default {
     'en-us': {
         sidemenu: [
             {
+                title: 'About',
+                children: [
+                    {
+                        title: 'Introduction',
+                        link: '/en-us/docs/dev/user_doc/About_DolphinScheduler/About_DolphinScheduler.html',
+                    },
+                ],
+            },
+            {
                 title: 'User Manual',
                 children: [
                     {
@@ -255,7 +264,7 @@ export default {
                 children: [
                     {
                         title: '简介',
-                        link: '/zh-cn/docs/About_DolphinScheduler/About_DolphinScheduler.html',
+                        link: '/zh-cn/docs/dev/user_doc/About_DolphinScheduler/About_DolphinScheduler.html',
                     },
                 ],
             },
