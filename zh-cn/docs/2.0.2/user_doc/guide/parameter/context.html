@@ -15,7 +15,7 @@
 <h2>本地任务引用全局参数</h2>
 <p>本地任务引用全局参数的前提是，你已经定义了<a href="global.md">全局参数</a>，使用方式和<a href="local.md">本地参数</a>中的使用方式类似，但是参数的值需要配置成全局参数中的key</p>
 <p><img src="/img/global_parameter.png" alt="parameter-call-global-in-local"></p>
-<p>如上图中的<code>${biz_date}</code>以及<code>${curdate}</code>，就是本地参数引用全局参数的例子。观察上图的最后一行，local_param_bizdate通过${global_bizdate}来引用全局参数，在shell脚本中可以通过${local_param_bizdate}来引全局变量 global_bizdate的值，或通过JDBC直接将local_param_bizdate的值set进去。同理，local_param通过{local_param}引用上一节中定义的全局参数。​biz_date、biz_curdate、system.datetime都是用户自定义的参数，通过{全局参数}进行赋值。</p>
+<p>如上图中的<code>${biz_date}</code>以及<code>${biz_curdate}</code>，就是本地参数引用全局参数的例子。观察上图的最后一行，local_param_bizdate通过${global_bizdate}来引用全局参数，在shell脚本中可以通过${local_param_bizdate}来引全局变量 global_bizdate的值，或通过JDBC直接将local_param_bizdate的值set进去。同理，local_param通过{local_param}引用上一节中定义的全局参数。​biz_date、biz_curdate、system.datetime都是用户自定义的参数，通过{全局参数}进行赋值。</p>
 <h2>上游任务传递给下游任务</h2>
 <p>DolphinScheduler 允许在任务间进行参数传递，目前传递方向仅支持上游单向传递给下游。目前支持这个特性的任务类型有：</p>
 <ul>
