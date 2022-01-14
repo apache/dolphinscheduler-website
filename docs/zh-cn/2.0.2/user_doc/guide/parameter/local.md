@@ -16,4 +16,4 @@
    <img src="/img/global_parameter.png" width="80%" />
 </p>
 
-如果想要在本地参数中调用系统内置参数，将内置参数对应的值填到`value`中，如上图中的`${biz_date}`以及`${curdate}`
+如果想要在本地参数中调用系统内置参数，将内置参数对应的值填到`value`中，如上图中的`${biz_date}`以及`${biz_curdate}`

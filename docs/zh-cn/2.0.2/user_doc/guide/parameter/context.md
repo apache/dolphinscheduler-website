@@ -8,7 +8,7 @@ DolphinScheduler 提供参数间相互引用的能力，包括：本地参数引
 
 ![parameter-call-global-in-local](/img/global_parameter.png)
 
-如上图中的`${biz_date}`以及`${curdate}`，就是本地参数引用全局参数的例子。观察上图的最后一行，local_param_bizdate通过\${global_bizdate}来引用全局参数，在shell脚本中可以通过\${local_param_bizdate}来引全局变量 global_bizdate的值，或通过JDBC直接将local_param_bizdate的值set进去。同理，local_param通过${local_param}引用上一节中定义的全局参数。​biz_date、biz_curdate、system.datetime都是用户自定义的参数，通过${全局参数}进行赋值。
+如上图中的`${biz_date}`以及`${biz_curdate}`，就是本地参数引用全局参数的例子。观察上图的最后一行，local_param_bizdate通过\${global_bizdate}来引用全局参数，在shell脚本中可以通过\${local_param_bizdate}来引全局变量 global_bizdate的值，或通过JDBC直接将local_param_bizdate的值set进去。同理，local_param通过${local_param}引用上一节中定义的全局参数。​biz_date、biz_curdate、system.datetime都是用户自定义的参数，通过${全局参数}进行赋值。
 
 ## 上游任务传递给下游任务
 
