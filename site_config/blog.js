@@ -4,6 +4,20 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Apache DolphinScheduler Board Report: Community Runs Well, Commit Number Grows over 123%',
+                author: 'Debra Chen',
+                dateStr: '2022-1-13',
+                desc: 'Apache DolphinScheduler Board Report',
+                link: '/en-us/blog/Board_of_Directors_Report.html',
+            },
+            {
+                title: 'Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched!',
+                author: 'Debra Chen',
+                dateStr: '2022-1-13',
+                desc: ' TWOS',
+                link: '/en-us/blog/Apache_dolphinScheduler_2.0.2.html',
+            },
+            {
                 title: 'Congratulations! Apache DolphinScheduler Has Been Approved As A TWOS Candidate Member',
                 author: 'Debra Chen',
                 dateStr: '2022-1-11',
@@ -103,6 +117,20 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: 'Apache DolphinScheduler 董事会报告：社区健康运行，Commit 增长 123%',
+                author: 'Debra Chen',
+                dateStr: '2022-1-13',
+                desc: 'Apache DolphinScheduler 董事会报告：社区健康运行，Commit 增长 123%',
+                link: '/zh-cn/blog/Board_of_Directors_Report.html',
+            },
+            {
+                title: 'WorkflowAsCode 来了，Apache DolphinScheduler 2.0.2 惊喜发布！',
+                author: 'Debra Chen',
+                dateStr: '2022-1-13',
+                desc: 'Apache DolphinScheduler 2.0.2',
+                link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.2.html',
+            },
             {
                 title: '恭喜 Apache DolphinScheduler 入选可信开源社区共同体（TWOS）预备成员！',
                 author: 'Debra Chen',
