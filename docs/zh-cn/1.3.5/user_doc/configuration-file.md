@@ -1,4 +1,4 @@
-
+<!-- markdown-link-check-disable -->
 
 # 前言
 本文档为dolphinscheduler配置文件说明文档,针对版本为 dolphinscheduler-1.3.x 版本.

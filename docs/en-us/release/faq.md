@@ -1,6 +1,7 @@
+<!-- markdown-link-check-disable -->
 ## Q: What's the name of this project?
 
-A: Before version 1.2 project name is called EasyScheduler, version 1.2 and later it's called DolphinScheduler.
+A: DolphinScheduler
 
 ---
 
@@ -563,6 +564,47 @@ A: 1, It is currently judged according to natural days, at the end of last month
 ## Q : DS Backend Inteface Document
 A: 1, http://106.75.43.194:8888/dolphinscheduler/doc.html?language=en.
 
+## During the operation of dolphinscheduler, the ip address is obtained incorrectly
+
+When the master service and worker service are registered with zookeeper, relevant information will be created in the form of ip:port
+
+If the ip address is obtained incorrectly, please check the network information. For example, in the Linux system, use the `ifconfig` command to view the network information. The following figure is an example:
+
+<p align="center">
+  <img src="/img/network/network_config.png" width="60%" />
+</p>
+
+You can use the three strategies provided by dolphinscheduler to get the available ip:
+
+* default: First using internal network card to obtain the IP address, and then using external network card. If all above fail, use the address of the first available network card
+* inner: Use the internal network card to obtain the ip address, if fails thrown an exception.
+* outer: Use the external network card to obtain the ip address, if fails thrown an exception.
+
+Modify the configuration in `common.properties`:
+
+```shell
+# network IP gets priority, default: inner outer
+# dolphin.scheduler.network.priority.strategy=default
+```
+
+After configuration is modified, restart the service to activation
+
+If the ip address is still wrong, please download [dolphinscheduler-netutils.jar](/asset/dolphinscheduler-netutils.jar) to the machine, execute the following commands and feedback the output to the community developers:
+
+```shell
+java -jar target/dolphinscheduler-netutils.jar
+```
+
+## Configure sudo to be secret free, which is used to solve the problem of using the default configuration sudo authority to be too large or unable to apply for root authority
+
+Configure the sudo permission of the dolphinscheduler account to be an ordinary user manager within the scope of some ordinary users, and restrict specified users to run certain commands on the specified host. For detailed configuration, please see sudo rights management
+For example, sudo permission management configuration dolphinscheduler OS account can only operate the permissions of users userA, userB, userC (users userA, userB, and userC are used for multi-tenant submitting jobs to the big data cluster)
+
+```shell
+echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
+```
+
 ---
 
-## We will collect more FAQ later.
+## We will collect more FAQ later

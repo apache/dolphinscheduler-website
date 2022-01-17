@@ -2,18 +2,19 @@
 
 # 1、Install basic softwares (please install required softwares by yourself)
 
- * [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+) or [MySQL](https://dev.mysql.com/downloads/mysql/) (5.7)  :  Choose One, JDBC Driver 5.1.47+ is required if MySQL is used
- * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
- * [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+) ：Required
- * [Hadoop](https://hadoop.apache.org/releases.html) (2.6+) or [MinIO](https://min.io/download) ：Optional. If you need resource function, for Standalone Deployment you can choose a local directory as the upload destination (this does not need Hadoop deployed). Of course, you can also choose to upload to Hadoop or MinIO.
+* [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+) or [MySQL](https://dev.mysql.com/downloads/mysql/) (5.7) : Choose One, JDBC Driver 5.1.47+ is required if MySQL is used
+* [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) : Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
+* [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+) : Required
+* pstree or psmisc : "pstree" is required for Mac OS and "psmisc" is required for Fedora/Red/Hat/CentOS/Ubuntu/Debian
+* [Hadoop](https://hadoop.apache.org/releases.html) (2.6+) or [MinIO](https://min.io/download) : Optional. If you need resource function, for Standalone Deployment you can choose a local directory as the upload destination (this does not need Hadoop deployed). Of course, you can also choose to upload to Hadoop or MinIO.
 
 ```markdown
- Tips：DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients to run corresponding task.
+ Tips: DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients to run corresponding task.
 ```
 
 # 2、Download the binary tar.gz package.
 
-- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html), download package, move to deployment directory and uncompress it.
+- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html), download package, move to deployment directory and uncompress it.
 
 ```shell
 # Create the deployment directory. Please do not choose a high-privilege directory such as /root or /home.
@@ -49,7 +50,7 @@ chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 ```
  Notes：
  - Because the task execution is based on 'sudo -u {linux-user}' to switch among different Linux users to implement multi-tenant job running, so the deployment user must have sudo permissions and is secret-free. If beginner learners don’t understand, you can ignore this point for now.
- - Please comment out line "Default requiretty", if it present in "/etc/sudoers" file. 
+ - Please comment out line "Defaults requirett", if it present in "/etc/sudoers" file. 
  - If you need to use resource upload, you need to assign user the permission to operate the local file system, HDFS or MinIO.
 ```
 
@@ -93,7 +94,7 @@ mysql -uroot -p
       vi conf/datasource.properties
     ```
 
-    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/)] package to lib directory, and then configure the database connection information correctly.
+    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/) package to lib directory, and then configure the database connection information correctly.
 
     ```properties
       #postgre

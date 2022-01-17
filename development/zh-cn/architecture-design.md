@@ -5,7 +5,7 @@
 **DAG：** 全称Directed Acyclic Graph，简称DAG。工作流中的Task任务以有向无环图的形式组装起来，从入度为零的节点进行拓扑遍历，直到无后继节点为止。举例如下图：
 
 <p align="center">
-  <img src="/img/dag_examples_cn.jpg" alt="dag示例"  width="60%" />
+  <img src="/img/architecture-design/dag_examples_ch_zn.png" alt="dag示例"  width="80%" />
   <p align="center">
         <em>dag示例</em>
   </p>
@@ -37,7 +37,7 @@
 
 #### 2.1 系统架构图
 <p align="center">
-  <img src="/img/architecture.jpg" alt="系统架构图"  width="70%" />
+  <img src="/img/architecture.jpg" alt="系统架构图"  />
   <p align="center">
         <em>系统架构图</em>
   </p>
@@ -66,8 +66,6 @@
      ##### 该服务包含：
      - **FetchTaskThread**主要负责不断从**Task Queue**中领取任务，并根据不同任务类型调用**TaskScheduleThread**对应执行器。
 
-     - **LoggerServer**是一个RPC服务，提供日志分片查看、刷新和下载等功能
-
 * **ZooKeeper** 
 
     ZooKeeper服务，系统中的MasterServer和WorkerServer节点都通过ZooKeeper来进行集群管理和容错。另外系统还基于ZooKeeper进行事件监听和分布式锁。
@@ -79,7 +77,7 @@
 
 * **Alert** 
 
-    提供告警相关接口，接口主要包括**告警**两种类型的告警数据的存储、查询和通知功能。其中通知功能又有**邮件通知**和**SNMP(暂未实现)**两种。
+    提供告警相关接口，接口主要包括两种类型的告警数据的存储、查询和通知功能。其中通知功能又有**邮件通知**和**SNMP(暂未实现)**两种。
 
 * **API** 
 
@@ -88,7 +86,7 @@
 
 * **UI** 
 
-    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/latest/user_doc/system-manual.html" target="_self">系统使用手册</a>部分。
+    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/latest/user_doc/guide/introduction.html" target="_self">系统使用手册</a>部分。
 
 #### 2.3 架构设计思想
 
@@ -131,12 +129,12 @@
 DolphinScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Master执行Scheduler，或者只有一台Worker执行任务的提交。
 1. 获取分布式锁的核心流程算法如下
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock.png" alt="获取分布式锁流程"  width="50%" />
+   <img src="/img/architecture-design/distributed_lock_ch_zn.png" alt="获取分布式锁流程"  width="70%" />
  </p>
 
 2. DolphinScheduler中Scheduler线程分布式锁实现流程图：
  <p align="center">
-   <img src="/img/distributed_lock_procss.png" alt="获取分布式锁流程"  width="50%" />
+   <img src="/img/architecture-design/distributed_lock_procss_ch_zn.png" alt="获取分布式锁流程" />
  </p>
 
 
@@ -146,7 +144,7 @@ DolphinScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Mast
 -  如果一个大的DAG中嵌套了很多子流程，如下图则会产生“死等”状态：
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/lack_thread.png" alt="线程不足循环等待问题"  width="50%" />
+   <img src="/img/architecture-design/lack_thread_ch_zn.png" alt="线程不足循环等待问题"  width="70%" />
  </p>
 上图中MainFlowThread等待SubFlowThread1结束，SubFlowThread1等待SubFlowThread2结束， SubFlowThread2等待SubFlowThread3结束，而SubFlowThread3等待线程池有新线程，则整个DAG流程不能结束，从而其中的线程也不能释放。这样就形成的子父流程循环等待的状态。此时除非启动新的Master来增加线程来打破这样的”僵局”，否则调度集群将不能再使用。
 
@@ -169,7 +167,7 @@ DolphinScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Mast
 服务容错设计依赖于ZooKeeper的Watcher机制，实现原理如图：
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant.png" alt="DolphinScheduler容错设计"  width="40%" />
+   <img src="/img/architecture-design/fault-tolerant_ch_zn.png" alt="DolphinScheduler容错设计"  width="70%" />
  </p>
 其中Master监控其他Master和Worker的目录，如果监听到remove事件，则会根据具体的业务逻辑进行流程实例容错或者任务实例容错。
 
@@ -178,7 +176,7 @@ DolphinScheduler使用ZooKeeper分布式锁来实现同一时刻只有一台Mast
 - Master容错流程图：
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant_master.png" alt="Master容错流程图"  width="40%" />
+   <img src="/img/architecture-design/fault-tolerant_master_ch_zn.png" alt="Master容错流程图"  width="70%" />
  </p>
 ZooKeeper Master容错完成之后则重新由DolphinScheduler中Scheduler线程调度，遍历 DAG 找到”正在运行”和“提交成功”的任务，对”正在运行”的任务监控其任务实例的状态，对”提交成功”的任务需要判断Task Queue中是否已经存在，如果存在则同样监控任务实例的状态，如果不存在则重新提交任务实例。
 
@@ -187,7 +185,7 @@ ZooKeeper Master容错完成之后则重新由DolphinScheduler中Scheduler线程
 - Worker容错流程图：
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant_worker.png" alt="Worker容错流程图"  width="40%" />
+   <img src="/img/architecture-design/fault-tolerant_worker_ch_zn.png" alt="Worker容错流程图"  width="70%" />
  </p>
 
 Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则接管任务并进行重新提交。
@@ -242,7 +240,7 @@ Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则
 -  介于考虑到尽可能的DolphinScheduler的轻量级性，所以选择了gRPC实现远程访问日志信息。
 
  <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc远程访问"  width="50%" />
+   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc远程访问"  width="60%" />
  </p>
 
 

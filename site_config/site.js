@@ -1,78 +1,43 @@
 // 全局的一些配置
 export default {
-  rootPath: '', // 发布到服务器的根目录，需以/开头但不能有尾/，如果只有/，请填写空字符串
-  port: 8080, // 本地开发服务器的启动端口
-  domain: 'dolphinscheduler.apache.org', // 站点部署域名，无需协议和path等
-  copyToDist: ['asset', 'img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess'], // 当build发布时，需要额外复制到dist目录的资源，默认有：index.html, 404.html, en-us, zh-cn, build
-  docsLatest: '1.3.6', // docs的最新版本，当docs有多个版本时支持latest访问，空则不启用此特性
-  defaultSearch: 'google', // 默认搜索引擎，baidu或者google
+  rootPath: '',
+  port: 8080,
+  domain: 'dolphinscheduler.apache.org',
+  copyToDist: ['asset', 'img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess', 'googled0df7b96f277a143.html'],
+  docsLatest: '2.0.2',
+  defaultSearch: 'google', // default search engine
   defaultLanguage: 'en-us',
   'en-us': {
     pageMenu: [
       {
-        key: 'home', // 用作顶部菜单的选中
+        key: 'home',
         text: 'HOME',
         link: '/en-us/index.html',
       },
       {
         key: 'docs',
         text: 'DOCS',
-        link: '/en-us/docs/latest/user_doc/quick-start.html',
+        link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.6)',
-            link: '/en-us/docs/latest/user_doc/quick-start.html',
+            text: 'latest(2.0.2)',
+            link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
           },
           {
-            key: 'docs136',
-            text: '1.3.6',
-            link: '/en-us/docs/1.3.6/user_doc/quick-start.html',
+            key: 'docs1',
+            text: '1.3.9',
+            link: '/en-us/docs/1.3.9/user_doc/quick-start.html',
           },
           {
-            key: 'docs135',
-            text: '1.3.5',
-            link: '/en-us/docs/1.3.5/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs134',
-            text: '1.3.4',
-            link: '/en-us/docs/1.3.4/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs133',
-            text: '1.3.3',
-            link: '/en-us/docs/1.3.3/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs132',
-            text: '1.3.2',
-            link: '/en-us/docs/1.3.2/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs131',
-            text: '1.3.1',
-            link: '/en-us/docs/1.3.1/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs121',
-            text: '1.2.1',
-            link: '/en-us/docs/1.2.1/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs120',
-            text: '1.2.0',
-            link: '/en-us/docs/1.2.0/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs110',
-            text: '1.1.0(Not Apache Release)',
-            link: 'https://analysys.github.io/easyscheduler_docs_cn/',
+            key: 'docs200',
+            text: 'Older Versions',
+            link: '/en-us/docs/latest/user_doc/architecture/listdocs.html',
           },
           {
             key: 'docsdev',
             text: 'dev',
-            link: '/en-us/docs/dev/user_doc/alert_spi.html',
+            link: '/en-us/docs/dev/user_doc/guide/quick-start.html',
           },
         ],
       },
@@ -139,6 +104,11 @@ export default {
           },
         ],
       },
+      {
+        key: 'user',
+        text: 'USER',
+        link: '/en-us/user/index.html',
+      },
     ],
     documentation: {
       title: 'Documentation',
@@ -149,11 +119,11 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/latest/user_doc/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
         },
         {
           text: 'Developer guide',
-          link: '/en-us/development/backend-development.html',
+          link: '/en-us/development/development-environment-setup.html',
         },
       ],
     },
@@ -224,62 +194,27 @@ export default {
       {
         key: 'docs',
         text: '文档',
-        link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+        link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
         children: [
           {
             key: 'docs0',
-            text: 'latest(1.3.6)',
-            link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+            text: '最新版本latest(2.0.2)',
+            link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
           },
           {
-            key: 'docs136',
-            text: '1.3.6',
-            link: '/zh-cn/docs/1.3.6/user_doc/quick-start.html',
+            key: 'docs1',
+            text: '1.3.9',
+            link: '/zh-cn/docs/1.3.9/user_doc/quick-start.html',
           },
           {
-            key: 'docs135',
-            text: '1.3.5',
-            link: '/zh-cn/docs/1.3.5/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs134',
-            text: '1.3.4',
-            link: '/zh-cn/docs/1.3.4/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs133',
-            text: '1.3.3',
-            link: '/zh-cn/docs/1.3.3/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs132',
-            text: '1.3.2',
-            link: '/zh-cn/docs/1.3.2/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs131',
-            text: '1.3.1',
-            link: '/zh-cn/docs/1.3.1/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs121',
-            text: '1.2.1',
-            link: '/zh-cn/docs/1.2.1/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs120',
-            text: '1.2.0',
-            link: '/zh-cn/docs/1.2.0/user_doc/quick-start.html',
-          },
-          {
-            key: 'docs110',
-            text: '1.1.0(Not Apache Release)',
-            link: 'https://analysys.github.io/easyscheduler_docs_cn/',
+            key: 'docs200',
+            text: '历史版本',
+            link: '/zh-cn/docs/latest/user_doc/architecture/listdocs.html',
           },
           {
             key: 'docsdev',
             text: 'dev',
-            link: '/zh-cn/docs/dev/user_doc/registry_spi.html',
+            link: '/zh-cn/docs/dev/user_doc/guide/quick-start.html',
           },
         ],
       },
@@ -347,6 +282,12 @@ export default {
           },
         ],
       },
+      {
+        key: 'user',
+        text: '用户',
+        // link: '',
+        link: '/zh-cn/user/index.html',
+      },
     ],
     documentation: {
       title: '文档',
@@ -357,11 +298,11 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+          link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/development/backend-development.html',
+          link: '/zh-cn/development/development-environment-setup.html',
         },
       ],
     },

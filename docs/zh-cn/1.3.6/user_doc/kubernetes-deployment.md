@@ -63,7 +63,7 @@ echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.6/user_doc/quick-start.html)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.6/user_doc/quick-start.html) 查看如何使用DolphinScheduler
 
 ## 卸载 dolphinscheduler
 
@@ -98,14 +98,11 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 | Hadoop3                                                      | 尚未确定 | 尚未测试                |
 | Spark-Local(client)                                          | 间接支持 | 详见 FAQ               |
 | Spark-YARN(cluster)                                          | 间接支持 | 详见 FAQ               |
-| Spark-Mesos(cluster)                                         | 尚不    |                        |
 | Spark-Standalone(cluster)                                    | 尚不    |                        |
 | Spark-Kubernetes(cluster)                                    | 尚不    |                        |
 | Flink-Local(local>=1.11)                                     | 尚不    | Generic CLI 模式尚未支持 |
 | Flink-YARN(yarn-cluster)                                     | 间接支持 | 详见 FAQ               |
 | Flink-YARN(yarn-session/yarn-per-job/yarn-application>=1.11) | 尚不    | Generic CLI 模式尚未支持 |
-| Flink-Mesos(default)                                         | 尚不    |                        |
-| Flink-Mesos(remote>=1.11)                                    | 尚不    | Generic CLI 模式尚未支持 |
 | Flink-Standalone(default)                                    | 尚不    |                        |
 | Flink-Standalone(remote>=1.11)                               | 尚不    | Generic CLI 模式尚未支持 |
 | Flink-Kubernetes(default)                                    | 尚不    |                        |
@@ -192,7 +189,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -235,7 +232,7 @@ externalDatabase:
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -264,7 +261,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -287,7 +284,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -320,7 +317,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*

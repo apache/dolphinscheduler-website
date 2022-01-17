@@ -34,14 +34,14 @@ Please download the source code package apache-dolphinscheduler-1.3.6-src.tar.gz
 
 #### 2. Pull Image and Start the Service
 
-> For Mac and Linux user, open **Terminal**  
-> For Windows Docker Toolbox user, open **Docker Quickstart Terminal**  
+> For Mac and Linux user, open **Terminal**
+> For Windows Docker Toolbox user, open **Docker Quickstart Terminal**
 > For Windows Docker Desktop user, open **Windows PowerShell**
 
 ```
 $ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.6-src/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.6
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 $ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
@@ -81,7 +81,7 @@ In this way, you need to install [docker](https://docs.docker.com/engine/install
 We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository:
 
 ```
-docker pull apache/dolphinscheduler:1.3.6
+docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 ```
 
 #### 5. Run a DolphinScheduler Instance
@@ -176,14 +176,11 @@ Especially, it can be configured through the environment variable configuration 
 | Hadoop3                                                      | Not Sure     | Not tested                            |
 | Spark-Local(client)                                          | Indirect Yes | Refer to FAQ                          |
 | Spark-YARN(cluster)                                          | Indirect Yes | Refer to FAQ                          |
-| Spark-Mesos(cluster)                                         | Not Yet      |                                       |
 | Spark-Standalone(cluster)                                    | Not Yet      |                                       |
 | Spark-Kubernetes(cluster)                                    | Not Yet      |                                       |
 | Flink-Local(local>=1.11)                                     | Not Yet      | Generic CLI mode is not yet supported |
 | Flink-YARN(yarn-cluster)                                     | Indirect Yes | Refer to FAQ                          |
 | Flink-YARN(yarn-session/yarn-per-job/yarn-application>=1.11) | Not Yet      | Generic CLI mode is not yet supported |
-| Flink-Mesos(default)                                         | Not Yet      |                                       |
-| Flink-Mesos(remote>=1.11)                                    | Not Yet      | Generic CLI mode is not yet supported |
 | Flink-Standalone(default)                                    | Not Yet      |                                       |
 | Flink-Standalone(remote>=1.11)                               | Not Yet      | Generic CLI mode is not yet supported |
 | Flink-Kubernetes(default)                                    | Not Yet      |                                       |
@@ -368,7 +365,7 @@ done
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -414,7 +411,7 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -443,7 +440,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. Create a new `Dockerfile` to add Oracle driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -466,7 +463,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. Create a new `Dockerfile` to install pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -499,7 +496,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. Create a new `Dockerfile` to install Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*

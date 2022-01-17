@@ -98,14 +98,11 @@ The configuration file is `values.yaml`, and the [Appendix-Configuration](#appen
 | Hadoop3                                                      | Not Sure     | Not tested                            |
 | Spark-Local(client)                                          | Indirect Yes | Refer to FAQ                          |
 | Spark-YARN(cluster)                                          | Indirect Yes | Refer to FAQ                          |
-| Spark-Mesos(cluster)                                         | Not Yet      |                                       |
 | Spark-Standalone(cluster)                                    | Not Yet      |                                       |
 | Spark-Kubernetes(cluster)                                    | Not Yet      |                                       |
 | Flink-Local(local>=1.11)                                     | Not Yet      | Generic CLI mode is not yet supported |
 | Flink-YARN(yarn-cluster)                                     | Indirect Yes | Refer to FAQ                          |
 | Flink-YARN(yarn-session/yarn-per-job/yarn-application>=1.11) | Not Yet      | Generic CLI mode is not yet supported |
-| Flink-Mesos(default)                                         | Not Yet      |                                       |
-| Flink-Mesos(remote>=1.11)                                    | Not Yet      | Generic CLI mode is not yet supported |
 | Flink-Standalone(default)                                    | Not Yet      |                                       |
 | Flink-Standalone(remote>=1.11)                               | Not Yet      | Generic CLI mode is not yet supported |
 | Flink-Kubernetes(default)                                    | Not Yet      |                                       |
@@ -192,7 +189,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -235,7 +232,7 @@ externalDatabase:
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -264,7 +261,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. Create a new `Dockerfile` to add Oracle driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -287,7 +284,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. Create a new `Dockerfile` to install pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -320,7 +317,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. Create a new `Dockerfile` to install Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*

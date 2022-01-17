@@ -53,7 +53,7 @@ $ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.5/user_doc/quick-start.html)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.5/user_doc/quick-start.html) 查看如何使用DolphinScheduler
 
 ## 卸载 dolphinscheduler
 
@@ -148,7 +148,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -177,7 +177,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 

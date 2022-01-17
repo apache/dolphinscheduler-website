@@ -1,3 +1,4 @@
+<!-- markdown-link-check-disable -->
 # Foreword
 This document is a description of the dolphinscheduler configuration file, and the version is for dolphinscheduler-1.3.x.
 
@@ -5,7 +6,6 @@ This document is a description of the dolphinscheduler configuration file, and t
 All configuration files of dolphinscheduler are currently in the [conf] directory.
 
 For a more intuitive understanding of the location of the [conf] directory and the configuration files it contains, please see the simplified description of the dolphinscheduler installation directory below.
-
 This article mainly talks about the configuration file of dolphinscheduler. I won't go into details in other parts.
 
 [Note: The following dolphinscheduler is referred to as DS.]
