@@ -52,15 +52,19 @@
 <h4>2.3 Workflow definition</h4>
 <h4><span id=creatDag>2.3.1 Create workflow definition</span></h4>
 <ul>
-<li>Click Project Management -&gt; Workflow -&gt; Workflow Definition to enter the workflow definition page, and click the &quot;Create Workflow&quot; button to enter the <strong>workflow DAG edit</strong> page, as shown in the following figure:<p align="center">
+<li>
+<p>Click Project Management -&gt; Workflow -&gt; Workflow Definition to enter the workflow definition page, and click the &quot;Create Workflow&quot; button to enter the <strong>workflow DAG edit</strong> page, as shown in the following figure:</p>
+<p align="center">
     <img src="/img/dag5.png" width="80%" />
 </p>
 </li>
-<li>Drag in the toolbar <img src="/img/shell.png" width="35"/> Add a Shell task to the drawing board, as shown in the figure below:<p align="center">
-    <img src="/img/shell-en.png" width="80%" />
-</p>
+<li>
+<p>Drag in the toolbar <img src="/img/tasks/icons/shell.png" width="15"/> Add a Shell task to the drawing board, as shown in the figure below:
+<img src="/img/tasks/demo/shell.jpg" alt="demo-shell-simple"></p>
 </li>
-<li><strong>Add parameter settings for this shell task:</strong></li>
+<li>
+<p><strong>Add parameter settings for this shell task:</strong></p>
+</li>
 </ul>
 <ol>
 <li>Fill in the &quot;Node Name&quot;, &quot;Description&quot;, and &quot;Script&quot; fields;</li>
@@ -665,48 +669,22 @@ Operation function: rename, download, delete.</p>
 <p>Shell node, when the worker is executed, a temporary shell script is generated, and the linux user with the same name as the tenant executes the script.</p>
 </blockquote>
 <ul>
-<li>
-<p>Click Project Management-Project Name-Workflow Definition, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</p>
-</li>
-<li>
-<p>Drag <img src="/img/shell.png" width="35"/> from the toolbar to the drawing board, as shown in the figure below:</p>
-<p align="center">
-    <img src="/img/shell-en.png" width="80%" />
-</p>
-</li>
-<li>
-<p>Node name: The node name in a workflow definition is unique.</p>
-</li>
-<li>
-<p>Run flag: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.</p>
-</li>
-<li>
-<p>Descriptive information: describe the function of the node.</p>
-</li>
-<li>
-<p>Task priority: When the number of worker threads is insufficient, they are executed in order from high to low, and when the priority is the same, they are executed according to the first-in first-out principle.</p>
-</li>
-<li>
-<p>Worker grouping: Tasks are assigned to the machines of the worker group to execute. If Default is selected, a worker machine will be randomly selected for execution.</p>
-</li>
-<li>
-<p>Number of failed retry attempts: The number of times the task failed to be resubmitted. It supports drop-down and hand-filling.</p>
-</li>
-<li>
-<p>Failed retry interval: The time interval for resubmitting the task after a failed task. It supports drop-down and hand-filling.</p>
-</li>
-<li>
-<p>Timeout alarm: Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will be sent and the task execution will fail.</p>
-</li>
-<li>
-<p>Script: SHELL program developed by users.</p>
-</li>
-<li>
-<p>Resource: Refers to the list of resource files that need to be called in the script, and the files uploaded or created by the resource center-file management.</p>
-</li>
-<li>
-<p>User-defined parameters: It is a user-defined parameter that is part of SHELL, which will replace the content with ${variable} in the script.</p>
-</li>
+<li>Click Project Management-Project Name-Workflow Definition, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>
+<li>Drag <img src="/img/tasks/icons/shell.png" width="15"/> from the toolbar to the drawing board, as shown in the figure below:</li>
+</ul>
+<p><img src="/img/tasks/demo/shell.jpg" alt="demo-shell-simple"></p>
+<ul>
+<li>Node name: The node name in a workflow definition is unique.</li>
+<li>Run flag: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.</li>
+<li>Descriptive information: describe the function of the node.</li>
+<li>Task priority: When the number of worker threads is insufficient, they are executed in order from high to low, and when the priority is the same, they are executed according to the first-in first-out principle.</li>
+<li>Worker grouping: Tasks are assigned to the machines of the worker group to execute. If Default is selected, a worker machine will be randomly selected for execution.</li>
+<li>Number of failed retry attempts: The number of times the task failed to be resubmitted. It supports drop-down and hand-filling.</li>
+<li>Failed retry interval: The time interval for resubmitting the task after a failed task. It supports drop-down and hand-filling.</li>
+<li>Timeout alarm: Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will be sent and the task execution will fail.</li>
+<li>Script: SHELL program developed by users.</li>
+<li>Resource: Refers to the list of resource files that need to be called in the script, and the files uploaded or created by the resource center-file management.</li>
+<li>User-defined parameters: It is a user-defined parameter that is part of SHELL, which will replace the content with ${variable} in the script.</li>
 </ul>
 <h4>7.2 Sub-process node</h4>
 <ul>
