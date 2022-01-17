@@ -47,9 +47,9 @@ In this way, you need to install [docker](https://docs.docker.com/engine/install
 
 #### 1. Basic Required Software (please install by yourself)
 
- - PostgreSQL (8.2.15+)
- - ZooKeeper (3.4.6+)
- - Docker (1.13.1+)
+ - [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+)
+ - [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+)
+ - [Docker](https://docs.docker.com/engine/install/) (1.13.1+)
 
 #### 2. Please login to the PostgreSQL database and create a database named `dolphinscheduler`
 

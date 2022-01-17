@@ -58,10 +58,6 @@ export default {
             title: 'Code of Conduct',
             link: '/en-us/community/development/code-conduct.html',
           },
-          {
-            title: 'Contributor Guide',
-            link: '/en-us/community/contributor-guide.html',
-          },
         ],
       },
       {
@@ -258,10 +254,6 @@ export default {
           {
             title: '行为准则',
             link: '/zh-cn/community/development/code-conduct.html',
-          },
-          {
-            title: '贡献者指南',
-            link: '/zh-cn/community/contributor-guide.html',
           },
         ],
       },
