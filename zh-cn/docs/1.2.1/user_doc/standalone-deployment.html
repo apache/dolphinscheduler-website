@@ -15,11 +15,11 @@
 <h1>1、后端部署</h1>
 <h3>1.1 : 基础软件安装(必装项请自行安装)</h3>
 <ul>
-<li>PostgreSQL (8.2.15+) or MySQL (5.6或者5.7系列)：两者任选其一即可</li>
+<li><a href="https://www.postgresql.org/download/">PostgreSQL</a> (8.2.15+) or <a href="https://dev.mysql.com/downloads/mysql/">MySQL</a> (5.7系列)：两者任选其一即可</li>
 <li><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a> (1.8+)：必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量</li>
-<li>ZooKeeper (3.4.6+)：必装</li>
+<li><a href="https://zookeeper.apache.org/releases.html">ZooKeeper</a> (3.4.6+)：必装</li>
 <li>pstree or psmisc：Mac OS必装pstree，Fedora/Red/Hat/CentOS/Ubuntu/Debian必装psmisc</li>
-<li>Hadoop (2.6+) or MinIO：选装， 如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署Hadoop)；当然也可以选择上传到Hadoop or MinIO集群上</li>
+<li><a href="https://hadoop.apache.org/releases.html">Hadoop</a> (2.6+) or <a href="https://min.io/download">MinIO</a>：选装，如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署Hadoop)；当然也可以选择上传到Hadoop or MinIO集群上</li>
 </ul>
 <pre><code class="language-markdown"> 注意：DolphinScheduler本身不依赖Hadoop、Hive、Spark,仅是会调用他们的Client，用于对应任务的运行。
 </code></pre>
