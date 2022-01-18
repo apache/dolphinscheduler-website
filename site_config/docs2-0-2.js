@@ -61,7 +61,24 @@ export default {
           },
           {
             title: 'Project',
-            link: '/en-us/docs/2.0.2/user_doc/guide/project.html',
+            children: [
+              {
+                title: 'Project List',
+                link: '/en-us/docs/2.0.2/user_doc/guide/project/project-list.html',
+              },
+              {
+                title: 'Workflow Definition',
+                link: '/en-us/docs/2.0.2/user_doc/guide/project/workflow-definition.html',
+              },
+              {
+                title: 'Workflow Instance',
+                link: '/en-us/docs/2.0.2/user_doc/guide/project/workflow-instance.html',
+              },
+              {
+                title: 'Task Instance',
+                link: '/en-us/docs/2.0.2/user_doc/guide/project/task-instance.html',
+              },
+            ]
           },
           {
             title: 'Task',
@@ -334,7 +351,24 @@ export default {
           },
           {
             title: '项目管理',
-            link: '/zh-cn/docs/2.0.2/user_doc/guide/project.html',
+            children: [
+              {
+                title: '项目列表',
+                link: '/zh-cn/docs/2.0.2/user_doc/guide/project/project-list.html',
+              },
+              {
+                title: '工作流定义',
+                link: '/zh-cn/docs/2.0.2/user_doc/guide/project/workflow-definition.html',
+              },
+              {
+                title: '工作流实例',
+                link: '/zh-cn/docs/2.0.2/user_doc/guide/project/workflow-instance.html',
+              },
+              {
+                title: '任务实例',
+                link: '/zh-cn/docs/2.0.2/user_doc/guide/project/task-instance.html',
+              },
+            ]
           },
           {
             title: '任务类型',
