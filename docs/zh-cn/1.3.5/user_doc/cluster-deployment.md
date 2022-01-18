@@ -2,11 +2,11 @@
 
 # 1、基础软件安装(必装项请自行安装)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7系列)：两者任选其一即可, 如MySQL则需要JDBC Driver 5.1.47+
- * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+)：必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
- * ZooKeeper (3.4.6+)：必装 
- * pstree or psmisc：Mac OS必装pstree，Fedora/Red/Hat/CentOS/Ubuntu/Debian必装psmisc
- * Hadoop (2.6+) or MinIO：选装，如果需要用到资源上传功能，可以选择上传到Hadoop or MinIO上
+* [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+) or [MySQL](https://dev.mysql.com/downloads/mysql/) (5.6或者5.7系列)：两者任选其一即可
+* [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+)：必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
+* [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+)：必装
+* pstree or psmisc：Mac OS必装pstree，Fedora/Red/Hat/CentOS/Ubuntu/Debian必装psmisc
+* [Hadoop](https://hadoop.apache.org/releases.html) (2.6+) or [MinIO](https://min.io/download) ：选装，如果需要用到资源上传功能，可以选择上传到Hadoop or MinIO上
 
 ```markdown
  注意：DolphinScheduler本身不依赖Hadoop、Hive、Spark,仅是会调用他们的Client，用于对应任务的提交。
