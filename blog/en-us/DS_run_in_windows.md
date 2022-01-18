@@ -6,7 +6,7 @@
 
    GitHub Repository: https://github.com/apache/dolphinscheduler.git
 
-   Here we use 1.3.8-release tag.
+   Here we use 1.3.6-release tag.
 
 2. ## Install Zookeeper on Windows
 
@@ -27,7 +27,7 @@
 
 3. ## Set-up Backend Environment
 
-   1. Create MYSQL database for debugging, named as 'dolphinschedulerTest'.
+   1. Create MYSQL database for debugging, named as 'dolphinschedulerKou'.
 
    2. Import Maven project to IDEA, find 'pom.xml' under the root directory and modify the scope of 'mysql-connector-java' to compile.
 
@@ -60,25 +60,25 @@
       ~~~
 
 
-7. Run MasterServer, run the main method of 'org.apache.dolphinscheduler.server.master.MasterServer' and VM Options need to be set are:
+7. Start the MasterServer by execute the main method of 'org.apache.dolphinscheduler.server.master.MasterServer' and VM Options need to be set are:
 
    ~~~
    -Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false
    ~~~
 
-8. Run WorkerServer, run the main method of 'org.apache.dolphinscheduler.server.worker.WorkerServer' and VM Options need to be set are:
+8. Start the WorkerServer by execute the main method of 'org.apache.dolphinscheduler.server.worker.WorkerServer' and VM Options need to be set are:
 
    ~~~
    -Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false
    ~~~
 
-9. Run ApiApplicationServer, run the main method of 'org.apache.dolphinscheduler.api.ApiApplicationServer' and VM Options need to be set are:
+9. Start the ApiApplicationServer by execute the main method of 'org.apache.dolphinscheduler.api.ApiApplicationServer' and VM Options need to be set are:
 
    ~~~
    -Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api
    ~~~
 
-10. If you need to use the log function, run the main method of 'org.apache.dolphinscheduler.server.log.LoggerServer'.
+10. If you need to use the log function, execute the main method of 'org.apache.dolphinscheduler.server.log.LoggerServer'.
 
 11. Backend swagger url: http://localhost:12345/dolphinscheduler/doc.html?language=en_us&lang=en.
 
