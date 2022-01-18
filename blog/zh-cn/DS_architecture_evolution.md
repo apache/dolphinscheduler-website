@@ -28,7 +28,7 @@ DolphinScheduler具有以下几个优良功能特性：
 
 - **简单易用** — 所有流程定义操作可视化编排，定义关键信息一目了然，一键部署
 
-关于DolphinSheduler更多功能介绍和开发文档请查阅官网详细信息https://dolphinscheduler.apache.org/zh-cn/。
+关于DolphinSheduler更多功能介绍和开发文档请查阅官网详细信息 https://dolphinscheduler.apache.org
 
 
 ## 架构演进过程
@@ -48,7 +48,7 @@ DolphinScheduler最初进入Apache孵化器的版本是1.2，在这一版本中�
 - 异步派发任务会导致**任务执行延迟**
 - 由于masker和worker都需要依赖数据库，导致数据库压力大
 
-[![W15rAH.jpg](https://z3.ax1x.com/2021/07/17/W15rAH.jpg)](https://imgtu.com/i/W15rAH)
+[![archdiagram_zh.svg](/img/archdiagram_zh.svg)]
 
 
 
@@ -68,7 +68,7 @@ DolphinScheduler最初进入Apache孵化器的版本是1.2，在这一版本中�
 - master轮询数据库，仍然导致**数据库压力大**
 - 各组件存在**耦合**情况
 
-![系统架构图](https://dolphinscheduler.apache.org/img/architecture-1.3.0.jpg)
+![系统架构图](/img/architecture-1.3.0.jpg)
 
 
 

@@ -10,7 +10,7 @@
 	   日常dev开发分支，新提交的代码都可以pull request到这个分支上。
 	   
     * branch-1.0.0 发布版本分支
-	   发布版本分支，后续会有2.0...等版本分支，版本分支只修改bug，不增加新功能。
+	   发布版本分支，后续会有2.0...等版本分支。
 
 * 把自己仓库clone到本地
   
@@ -53,15 +53,9 @@ git push --set-upstream origin dev-1.0
 
 * 将修改提交到远端仓库
 
-	* 在github页面，点击New pull request.
-		<p align="center">
-	   <img src="http://geek.analysys.cn/static/upload/221/2019-04-02/90f3abbf-70ef-4334-b8d6-9014c9cf4c7f.png" width="60%" />
-	 </p>
+	* 在github的PullRequest页面，点击"New pull request".
 	 
-	* 选择修改完的本地分支和要合并过去的分支，Create pull request.
-		<p align="center">
-	   <img src="http://geek.analysys.cn/static/upload/221/2019-04-02/fe7eecfe-2720-4736-951b-b3387cf1ae41.png" width="60%" />
-	 </p>
+	* 选择修改完的本地分支和要合并的目的分支，点击"Create pull request".
 	
 * 接着社区Committer们会做CodeReview，然后他会与您讨论一些细节（包括设计，实现，性能等）。当团队中所有人员对本次修改满意后，会将提交合并到dev分支
 

@@ -157,7 +157,7 @@ kubectl scale --replicas=3 deploy dolphinscheduler-api
 kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
 ```
 
-List all statefulsets (aka `sts`):
+List all stateful sets (aka `sts`):
 
 ```
 kubectl get sts
@@ -189,7 +189,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -232,7 +232,7 @@ externalDatabase:
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -261,7 +261,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. Create a new `Dockerfile` to add Oracle driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -277,14 +277,14 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 6. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
 
-7. Add a Oracle datasource in `Datasource manage`
+7. Add an Oracle datasource in `Datasource manage`
 
 ### How to support Python 2 pip and custom requirements.txt?
 
 1. Create a new `Dockerfile` to install pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -317,7 +317,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. Create a new `Dockerfile` to install Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*
@@ -355,7 +355,7 @@ Take Spark 2.4.7 as an example:
 
 3. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
 
-4. Copy the Spark 2.4.7 release binary into Docker container
+4. Copy the Spark 2.4.7 release binary into the Docker container
 
 ```bash
 kubectl cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
@@ -376,7 +376,7 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 # or just mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
-The last command will print Spark version if everything goes well
+The last command will print the Spark version if everything goes well
 
 6. Verify Spark under a Shell task
 
@@ -415,7 +415,7 @@ Take Spark 3.1.1 as an example:
 
 3. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
 
-4. Copy the Spark 3.1.1 release binary into Docker container
+4. Copy the Spark 3.1.1 release binary into the Docker container
 
 ```bash
 kubectl cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
@@ -434,7 +434,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 # or just mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
-The last command will print Spark version if everything goes well
+The last command will print the Spark version if everything goes well
 
 6. Verify Spark under a Shell task
 
@@ -446,7 +446,7 @@ Check whether the task log contains the output like `Pi is roughly 3.146015`
 
 ### How to support shared storage between Master, Worker and Api server?
 
-For example, Master, Worker and Api server may use Hadoop at the same time
+For example, Master, Worker and API server may use Hadoop at the same time
 
 1. Modify the following configurations in `values.yaml`
 

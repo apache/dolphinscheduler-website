@@ -2,7 +2,7 @@
 
 ## Get started quickly
 
-> Please refer to [Quick Start](quick-start.html)
+> Please refer to [Quick Start](https://dolphinscheduler.apache.org/en-us/docs/1.3.6/user_doc/quick-start.html)
 
 ## Operation guide
 
@@ -43,10 +43,10 @@ The home page contains task status statistics, process status statistics, and wo
   <p align="center">
       <img src="/img/dag5.png" width="80%" />
   </p>
-- Drag in the toolbar <img src="/img/shell.png" width="35"/> Add a Shell task to the drawing board, as shown in the figure below:
-  <p align="center">
-      <img src="/img/shell-en.png" width="80%" />
-  </p>
+- Drag in the toolbar <img src="/img/tasks/icons/shell.png" width="15"/> Add a Shell task to the drawing board, as shown in the figure below:
+
+  ![demo-shell-simple](/img/tasks/demo/shell.jpg)
+
 - **Add parameter settings for this shell task:**
 
 1. Fill in the "Node Name", "Description", and "Script" fields;
@@ -613,11 +613,9 @@ worker.groups=default,test
 > Shell node, when the worker is executed, a temporary shell script is generated, and the linux user with the same name as the tenant executes the script.
 
 - Click Project Management-Project Name-Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
-- Drag <img src="/img/shell.png" width="35"/> from the toolbar to the drawing board, as shown in the figure below:
+- Drag <img src="/img/tasks/icons/shell.png" width="15"/> from the toolbar to the drawing board, as shown in the figure below:
 
-  <p align="center">
-      <img src="/img/shell-en.png" width="80%" />
-  </p>
+  ![demo-shell-simple](/img/tasks/demo/shell.jpg)
 
 - Node name: The node name in a workflow definition is unique.
 - Run flag: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.

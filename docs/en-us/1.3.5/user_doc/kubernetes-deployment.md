@@ -148,7 +148,7 @@ Not yet supported, the version 1.3.6 will support
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -177,7 +177,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. Create a new `Dockerfile` to add Oracle driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 

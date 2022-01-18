@@ -41,7 +41,7 @@
 ```
 $ tar -zxvf apache-dolphinscheduler-1.3.8-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.8-src/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.8
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 $ docker tag apache/dolphinscheduler:1.3.8 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
@@ -60,7 +60,7 @@ $ docker-compose up -d
   <img src="/img/login.png" width="60%" />
 </p>
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.8/user_doc/quick-start.html)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.8/user_doc/quick-start.html) 查看如何使用DolphinScheduler
 
 ### 二、通过指定已存在的 PostgreSQL 和 ZooKeeper 服务
 
@@ -81,7 +81,7 @@ $ docker-compose up -d
 我们已将面向用户的 DolphinScheduler 镜像上传至 docker 仓库，用户无需在本地构建镜像，直接执行以下命令从 docker 仓库 pull 镜像：
 
 ```
-docker pull apache/dolphinscheduler:1.3.8
+docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 ```
 
 #### 5、运行一个 DolphinScheduler 实例
@@ -300,7 +300,7 @@ docker service scale dolphinscheduler_dolphinscheduler-worker=3
 
 ### 如何构建一个 Docker 镜像？
 
-#### 1. 从源码构建 (需要 Maven 3.3+ & JDK 1.8+)
+#### 从源码构建 (需要 Maven 3.3+ & JDK 1.8+)
 
 类 Unix 系统，在 Terminal 中执行:
 
@@ -316,7 +316,7 @@ C:\dolphinscheduler-src>.\docker\build\hooks\build.bat
 
 如果你不理解 `./docker/build/hooks/build` `./docker/build/hooks/build.bat` 这些脚本，请阅读里面的内容
 
-#### 2. 从二进制包构建 (不需要 Maven 3.3+ & JDK 1.8+)
+#### 从二进制包构建 (不需要 Maven 3.3+ & JDK 1.8+)
 
 请下载二进制包 apache-dolphinscheduler-1.3.8-bin.tar.gz，下载地址: [下载](/zh-cn/download/download.html). 然后将 apache-dolphinscheduler-1.3.8-bin.tar.gz 放到 `apache-dolphinscheduler-1.3.8-src/docker/build` 目录里，在 Terminal 或 PowerShell 中执行:
 
@@ -326,6 +326,20 @@ $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
 ```
 
 > PowerShell 应该使用 `cd apache-dolphinscheduler-1.3.8-src/docker/build`
+
+#### 构建多平台架构镜像
+
+目前支持构建 `linux/amd64` 和 `linux/arm64` 平台架构的镜像，要求：
+
+1. 支持 [docker buildx](https://docs.docker.com/engine/reference/commandline/buildx/)
+2. 具有 https://hub.docker.com/r/apache/dolphinscheduler 的 push 权限（**务必谨慎**: 构建命令默认会自动将多平台架构镜像推送到 apache/dolphinscheduler 的 docker hub）
+
+执行:
+
+```bash
+$ docker login # 登录, 用于推送 apache/dolphinscheduler
+$ bash ./docker/build/hooks/build x
+```
 
 ### 如何为 Docker 添加一个环境变量？
 
@@ -365,7 +379,7 @@ done
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -411,7 +425,7 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -440,7 +454,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -463,7 +477,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -496,7 +510,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*
