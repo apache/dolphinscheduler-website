@@ -66,6 +66,6 @@ DolphinScheduler 遵循 Apache 的方式来构建社区。 只要为项目做出
 
 DolphinScheduler 社区在接受新提交者时遵循 [Apache 社区的流程](http://community.apache.org/newcommitter.html)。
 
-1. 开始讨论并在 @private 中投票。 只有当前 PMC 成员可以提名。
+1. 开始讨论并在 @private 中投票，只有当前 PMC 成员可以提名。
 2. 如果投票通过，请发送邀请以成为 @private CC 的提交者。
 3. 设置提交者权限
