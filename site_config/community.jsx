@@ -93,6 +93,15 @@ export default {
           },
         ],
       },
+      {
+        title: 'DSIP',
+        children: [
+          {
+            title: 'DSIP',
+            link: '/en-us/community/DSIP.html',
+          },
+        ],
+      },
     ],
     events: {
       title: 'Events & News',
@@ -291,6 +300,15 @@ export default {
           {
             title: '单元测试编写指南',
             link: '/zh-cn/community/development/unit-test.html',
+          },
+        ],
+      },
+      {
+        title: 'DSIP',
+        children: [
+          {
+            title: 'DSIP',
+            link: '/zh-cn/community/DSIP.html',
           },
         ],
       },
