@@ -37,10 +37,8 @@
     <p align="center">
         <img src="/img/dag0.png" width="80%" />
     </p>  
-  - 工具栏中拖拽<img src="/img/shell.png" width="35"/>到画板中，新增一个Shell任务,如下图所示：
-    <p align="center">
-        <img src="/img/shell_dag.png" width="80%" />
-    </p>  
+  - 工具栏中拖拽 <img src="/img/tasks/icons/shell.png" width="15"/> 到画板中，新增一个Shell任务,如下图所示：
+    ![demo-shell-simple](/img/tasks/demo/shell.jpg)
   - **添加shell任务的参数设置：**
   1. 填写“节点名称”，“描述”，“脚本”字段；
   1. “运行标志”勾选“正常”，若勾选“禁止执行”，运行工作流不会执行该任务；
@@ -576,11 +574,9 @@ worker.groups=default,test
 #### 7.1 Shell节点
   > shell节点，在worker执行的时候，会生成一个临时shell脚本，使用租户同名的linux用户执行这个脚本。
   - 点击项目管理-项目名称-工作流定义，点击"创建工作流"按钮，进入DAG编辑页面。
-  - 工具栏中拖动<img src="/img/shell.png" width="35"/>到画板中，如下图所示：
+  - 工具栏中拖动 <img src="/img/tasks/icons/shell.png" width="15"/> 到画板中，如下图所示：
 
-    <p align="center">
-        <img src="/img/shell_dag.png" width="80%" />
-    </p> 
+    ![demo-shell-simple](/img/tasks/demo/shell.jpg)
 
 - 节点名称：一个工作流定义中的节点名称是唯一的。
 - 运行标志：标识这个节点是否能正常调度,如果不需要执行，可以打开禁止执行开关。

@@ -8,7 +8,7 @@ The premise of local tasks referencing global parameters is that you have alread
 
 ![parameter-call-global-in-local](/img/global_parameter.png)
 
-As shown in the figure above, `${biz_date}` and `${curdate}` are examples of local parameters referencing global parameters. Observe the last line of the above figure, local_param_bizdate uses \${global_bizdate} to refer to the global parameter. In the shell script, you can use \${local_param_bizdate} to refer to the value of the global variable global_bizdate, or set the value of local_param_bizdate directly through JDBC. In the same way, local_param refers to the global parameters defined in the previous section through ${local_param}. ​Biz_date, biz_curdate, system.datetime are all user-defined parameters, which are assigned via ${global parameters}.
+As shown in the figure above, `${biz_date}` and `${biz_curdate}` are examples of local parameters referencing global parameters. Observe the last line of the above figure, local_param_bizdate uses \${global_bizdate} to refer to the global parameter. In the shell script, you can use \${local_param_bizdate} to refer to the value of the global variable global_bizdate, or set the value of local_param_bizdate directly through JDBC. In the same way, local_param refers to the global parameters defined in the previous section through ${local_param}. ​Biz_date, biz_curdate, system.datetime are all user-defined parameters, which are assigned via ${global parameters}.
 
 ## Pass parameter from upstream task to downstream
 

@@ -15,7 +15,7 @@
 - Number of taskManage: You can set the number of taskManage
 - JobManager memory number: You can set the jobManager memory number
 - TaskManager memory number: You can set the taskManager memory number
-- Command line parameters: Set the input parameters of the Spark program and support the substitution of custom parameter variables.
+- Command line parameters: Set the input parameters of the Flink program and support the substitution of custom parameter variables.
 - Other parameters: support --jars, --files, --archives, --conf format
 - Resource: If the resource file is referenced in other parameters, you need to select and specify in the resource
 - Custom parameter: It is a local user-defined parameter of Flink, which will replace the content with \${variable} in the script

@@ -68,9 +68,9 @@ $ docker-compose up -d
 
 #### 1、基础软件安装 (请自行安装)
 
- - PostgreSQL (8.2.15+)
- - ZooKeeper (3.4.6+)
- - Docker (1.13.1+)
+ - [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+)
+ - [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+)
+ - [Docker](https://docs.docker.com/engine/install/) (1.13.1+)
 
 #### 2、请登录 PostgreSQL 数据库，创建名为 `dolphinscheduler` 数据库
 

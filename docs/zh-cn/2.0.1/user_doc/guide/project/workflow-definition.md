@@ -6,10 +6,10 @@
     <p align="center">
         <img src="/img/dag0.png" width="80%" />
     </p>  
-- 工具栏中拖拽<img src="/img/shell.png" width="35"/>到画板中，新增一个Shell任务,如下图所示：
-    <p align="center">
-        <img src="/img/shell_dag.png" width="80%" />
-    </p>  
+- 工具栏中拖拽 <img src="/img/tasks/icons/shell.png" width="15"/> 到画板中，新增一个Shell任务,如下图所示：
+
+    ![demo-shell-simple](/img/tasks/demo/shell.jpg)
+
 - **添加shell任务的参数设置：**
   1. 填写“节点名称”，“描述”，“脚本”字段；
   1. “运行标志”勾选“正常”，若勾选“禁止执行”，运行工作流不会执行该任务；

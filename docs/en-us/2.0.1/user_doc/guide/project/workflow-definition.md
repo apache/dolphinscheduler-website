@@ -6,10 +6,10 @@
   <p align="center">
       <img src="/img/dag5.png" width="80%" />
   </p>
-- Drag in the toolbar <img src="/img/shell.png" width="35"/> Add a Shell task to the drawing board, as shown in the figure below:
-  <p align="center">
-      <img src="/img/shell-en.png" width="80%" />
-  </p>
+- Drag in the toolbar <img src="/img/tasks/icons/shell.png" width="15"/> Add a Shell task to the drawing board, as shown in the figure below:
+
+  ![demo-shell-simple](/img/tasks/demo/shell.jpg)
+
 - **Add parameter settings for this shell task:**
 
 1. Fill in the "Node Name", "Description", and "Script" fields;
