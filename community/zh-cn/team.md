@@ -59,6 +59,7 @@ DolphinScheduler 有数百个贡献者，您可以在我们存储库的贡献列
 - [DolphinScheduler main repository](https://github.com/apache/dolphinscheduler/graphs/contributors)
 - [DolphinScheduler website](https://github.com/apache/dolphinscheduler-website/graphs/contributors)
 - [DolphinScheduler maven plugin](https://github.com/apache/dolphinscheduler-maven-plugin/graphs/contributors)
+- [DolphinScheduler ambari](https://github.com/apache/dolphinscheduler-ambari/graphs/contributors)
 
 ## 成为一个提交者
 
