@@ -16,6 +16,10 @@
 - Database name: Enter the name of the database connected to HIVE
 - Jdbc connection parameters: parameter settings for HIVE connection, filled in in JSON form
 
+> NOTICE: If you wish execute multiple HIVE SQL in the same session, you could set `support.hive.oneSession = true` in
+> configure `common.properties`. It is helpful when you try to set env before running HIVE SQL. Parameter
+> `support.hive.oneSession` default value is `false` and SQL would run in different session if their more than one.
+
 ## Use HiveServer2 HA Zookeeper
 
  <p align="center">

@@ -16,6 +16,9 @@
 - 数据库名：输入连接HIVE的数据库名称
 - Jdbc连接参数：用于HIVE连接的参数设置，以JSON形式填写
 
+> 注意：如果您希望在同一个会话中执行多个 HIVE SQL，您可以修改配置文件 `common.properties` 中的配置，设置 `support.hive.oneSession = true`。
+> 这对运行 HIVE SQL 前设置环境变量的场景会很有帮助。参数 `support.hive.oneSession` 默认值为 `false`，多条 SQL 将在不同的会话中运行。
+
 ## 使用HiveServer2 HA Zookeeper
 
  <p align="center">
