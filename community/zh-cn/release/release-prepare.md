@@ -10,22 +10,18 @@
 
 ## 更新版本
 
-例如要发版 `x.y.z`，需要先进行以下修改:
+例如要发的版本为 `x.y.z`，如下的版本需要先修改成 `x.y.z`
 
- - `pom.xml`: `revision`, `version`, `tag` 标签版本更新为 x.y.z
- - `ambari_plugin`:
-   - `ambari_plugin/common-services/DOLPHIN/x.y.z`: 目录版本更新为 x.y.z
-   - `ambari_plugin/common-services/DOLPHIN/x.y.z/alerts.json`: 内容版本更新为 x.y.z
-   - `ambari_plugin/common-services/DOLPHIN/x.y.z/metainfo.xml`: 内容版本更新为 x.y.z
-   - `ambari_plugin/statcks/DOLPHIN/metainfo.xml`: 内容版本更新为 x.y.z
+ - `pom.xml`: 属性 `revision`, `version`, `tag`
  - `sql`:
-   - `dolphinscheduler_mysql.sql`: `t_ds_version` 版本更新为 x.y.z
-   - `dolphinscheduler_postgre.sql`: `t_ds_version` 版本更新为 x.y.z
+   - `dolphinscheduler_mysql.sql`: 表 `t_ds_version`
+   - `dolphinscheduler_postgre.sql`: 表 `t_ds_version`
+   - `dolphinscheduler_h2.sql`:  表 `t_ds_version`
    - `upgrade`: 是否新增 `x.y.z_schema`
-   - `soft_version`: 版本更新为 x.y.z
+   - `soft_version`
  - `docker/docker-swarm`:
-   - `docker-compose.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler` 版本更新为 x.y.z
-   - `docker-stack.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler` 版本更新为 x.y.z
+   - `docker-compose.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler`
+   - `docker-stack.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler`
  - `docker/kubernetes/dolphinscheduler`:
-   - `Chart.yaml`: `appVersion` 版本更新为 x.y.z (`version` 为 helm chart 版本, 增量更新但不要设置为 x.y.z)
-   - `values.yaml`: `image.tag` 版本更新为 x.y.z
+   - `Chart.yaml`: `appVersion` (`version` 为 helm chart 版本, 增量更新但不要设置为 x.y.z)
+   - `values.yaml`: `image.tag`
