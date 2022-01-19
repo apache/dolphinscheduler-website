@@ -4,7 +4,7 @@
 
 For example, after the release of `x.y.z`, the following updates are required:
 
- - `docs/en-us/x.y.z` and `docs/zh-cn/x.y.z`: copy the old directory to the new version x.y.z
+ - Add new version of `docs/en-us/x.y.z` and `docs/zh-cn/x.y.z`: copy the old directory to the new version x.y.z
    - The reference links of the included documents keep same with x.y.z, especially pay attention to the following file updates:
      - `architecture-design.md`
      - `cluster-deployment.md`
@@ -25,7 +25,8 @@ For example, after the release of `x.y.z`, the following updates are required:
 
 DolphinScheduler's GitHub [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)
 issue template have **Version** selection bottom. So after we release DolphinScheduler we should and the new version to
-bug-report.yml
+bug-report.yml. Please notice we should add both version we just released, and the next release version, which to track
+bug for next release version code.
 
 ## Publish Image
 
