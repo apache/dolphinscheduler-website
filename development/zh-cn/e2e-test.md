@@ -1,7 +1,6 @@
 # DolphinScheduler — E2E 自动化测试
 
 
-
 ## 一、前置知识：
 
 ### 1、E2E 测试与单元测试的区别
@@ -12,9 +11,9 @@ E2E，是“End to End”的缩写，可以翻译成“端到端”测试。它�
 
 比如，登陆界面的 E2E 测试，关注用户是否能够正常输入，正常登录；登陆失败的话，是否能够正确显示错误信息。至于输入不合法的内容是否处理，并不是所关注的重点。
 
-### 2、[Selenium](https://www.selenium.dev/) 测试框架
+### 2、Selenium 测试框架
 
-Selenium 是一种开源测试工具，用于在 Web 浏览器上执行自动化测试。该框架使用 WebDriver 通过浏览器的原生组件，转化 Web Service 的命令为浏览器 native 的调用来完成操作。简单来说，就是模拟浏览器，对于页面的元素进行选择操作。
+[Selenium]((https://www.selenium.dev/)) 是一种开源测试工具，用于在 Web 浏览器上执行自动化测试。该框架使用 WebDriver 通过浏览器的原生组件，转化 Web Service 的命令为浏览器 native 的调用来完成操作。简单来说，就是模拟浏览器，对于页面的元素进行选择操作。
 
 WebDriver 是一个 API 和协议，它定义了一个语言中立的接口，用于控制 web 浏览器的行为。 每个浏览器都有一个特定的 WebDriver 实现，称为驱动程序。驱动程序是负责委派给浏览器的组件，并处理与 Selenium 和浏览器之间的通信。
 
@@ -24,7 +23,7 @@ Selenium 框架通过一个面向用户的界面将所有这些部分连接在�
 
 ### 1、E2E-Pages
 
-本次测试使用 docker-compose 部署，当前测试的为单机模式，主要用于检验一些例如“增删改查”基本功能，后期如需做集群验证，例如不同服务之间的协作，或者各个服务之间的通讯机制，可参考 `deploy/docker/docker-compose.yml`来配置。
+DolphinScheduler 的 E2E 测试使用 docker-compose 部署，当前测试的为单机模式，主要用于检验一些例如“增删改查”基本功能，后期如需做集群验证，例如不同服务之间的协作，或者各个服务之间的通讯机制，可参考 `deploy/docker/docker-compose.yml`来配置。
 
 对于 E2E 测试（前端这一块），使用页面模型的形式，主要为每一个页面建立一个对应的模型。下面以登录页为例：
 
@@ -175,6 +174,8 @@ public final class LoginPage extends NavBarPage {
 ```
 
 其余的都是类似的情况，可参考具体的源码来理解。
+
+https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-e2e/dolphinscheduler-e2e-case/src/test/java/org/apache/dolphinscheduler/e2e/cases
 
 ## 三、补充
 
