@@ -22,7 +22,7 @@ Please download the source code package apache-dolphinscheduler-incubating-1.3.5
 ```
 $ unzip apache-dolphinscheduler-incubating-1.3.5-src.zip
 $ cd apache-dolphinscheduler-incubating-1.3.5-src-release/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.5
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 $ docker tag apache/dolphinscheduler:1.3.5 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
@@ -47,9 +47,9 @@ In this way, you need to install [docker](https://docs.docker.com/engine/install
 
 #### 1. Basic Required Software (please install by yourself)
 
- - PostgreSQL (8.2.15+)
- - ZooKeeper (3.4.6+)
- - Docker (1.13.1+)
+ - [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+)
+ - [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+)
+ - [Docker](https://docs.docker.com/engine/install/) (1.13.1+)
 
 #### 2. Please login to the PostgreSQL database and create a database named `dolphinscheduler`
 
@@ -60,7 +60,7 @@ In this way, you need to install [docker](https://docs.docker.com/engine/install
 We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository:
 
 ```
-docker pull apache/dolphinscheduler:1.3.5
+docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 ```
 
 #### 5. Run a DolphinScheduler Instance
@@ -313,7 +313,7 @@ done
 2. Create a new `Dockerfile` to add MySQL driver and client:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 RUN apk add --update --no-cache mysql-client
 ```
@@ -360,7 +360,7 @@ DATABASE_PARAMS: useUnicode=true&characterEncoding=UTF-8
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -389,7 +389,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. Create a new `Dockerfile` to add Oracle driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.5
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 

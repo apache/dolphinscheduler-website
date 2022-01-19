@@ -510,11 +510,9 @@ conf/common/hadoop.properties
 ### Shell
 
   - The shell node, when the worker executes, generates a temporary shell script, which is executed by a Linux user with the same name as the tenant.
-> Drag the ![PNG](https://analysys.github.io/easyscheduler_docs/images/toolbar_SHELL.png) task node in the toolbar onto the palette and double-click the task node as follows:
+> Drag the <img src="/img/tasks/icons/shell.png" width="15"/> task node in the toolbar onto the palette and double-click the task node as follows:
 
-<p align="center">
-   <img src="/img/shell-en.png" width="80%" />
- </p>`
+![demo-shell-simple](/img/tasks/demo/shell.jpg)
 
 - Node name: The node name in a process definition is unique
 - Run flag: Identify whether the node can be scheduled properly, and if it does not need to be executed, you can turn on the forbidden execution switch.

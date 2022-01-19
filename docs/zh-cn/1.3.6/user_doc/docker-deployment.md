@@ -41,7 +41,7 @@
 ```
 $ tar -zxvf apache-dolphinscheduler-1.3.6-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.6-src/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.6
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 $ docker tag apache/dolphinscheduler:1.3.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
@@ -60,7 +60,7 @@ $ docker-compose up -d
   <img src="/img/login.png" width="60%" />
 </p>
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.6/user_doc/quick-start.html)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.6/user_doc/quick-start.html) 查看如何使用DolphinScheduler
 
 ### 二、通过指定已存在的 PostgreSQL 和 ZooKeeper 服务
 
@@ -68,9 +68,9 @@ $ docker-compose up -d
 
 #### 1、基础软件安装 (请自行安装)
 
- - PostgreSQL (8.2.15+)
- - ZooKeeper (3.4.6+)
- - Docker (1.13.1+)
+ - [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+)
+ - [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+)
+ - [Docker](https://docs.docker.com/engine/install/) (1.13.1+)
 
 #### 2、请登录 PostgreSQL 数据库，创建名为 `dolphinscheduler` 数据库
 
@@ -81,7 +81,7 @@ $ docker-compose up -d
 我们已将面向用户的 DolphinScheduler 镜像上传至 docker 仓库，用户无需在本地构建镜像，直接执行以下命令从 docker 仓库 pull 镜像：
 
 ```
-docker pull apache/dolphinscheduler:1.3.6
+docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 ```
 
 #### 5、运行一个 DolphinScheduler 实例
@@ -365,7 +365,7 @@ done
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -411,7 +411,7 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
 ```
 
@@ -440,7 +440,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -463,7 +463,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -496,7 +496,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.6
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.6
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*

@@ -13,7 +13,7 @@
 
 ## 添加租户
 
-- 租户对应的是Linux的用户，用于worker提交作业所使用的用户。如果linux没有这个用户，worker会在执行脚本的时候创建这个用户。
+- 租户对应的是Linux的用户，用于worker提交作业所使用的用户。如果linux没有这个用户，则会导致任务运行失败。你可以通过修改 `worker.properties` 配置文件中参数 `worker.tenant.auto.create=true` 实现当 linux 用户不存在时自动创建该用户。`worker.tenant.auto.create=true` 参数会要求 worker 可以免密运行 `sudo` 命令
 - 租户编码：**租户编码是Linux上的用户，唯一，不能重复**
 - 管理员进入安全中心->租户管理页面，点击“创建租户”按钮，创建租户。
 
@@ -138,3 +138,29 @@
 示例: 
 worker.groups=default,test
 ```
+
+- 也可以在运行中修改worker所属的worker分组，如果修改成功，worker就会使用这个新建的分组，忽略`worker.properties`中的配置。修改步骤为"安全中心 -> worker分组管理 -> 点击 '新建worker分组' -> 输入'组名称' -> 选择已有worker -> 点击'提交'"
+
+## 环境管理
+
+* 在线配置Worker运行环境，一个Worker可以指定多个环境，每个环境等价于dolphinscheduler_env.sh文件.
+
+* 默认环境为dolphinscheduler_env.sh文件.
+
+* 在任务执行时,可以将任务分配给指定worker分组，根据worker分组选择对应的环境，最终由该组中的worker节点执行环境后执行该任务.
+
+> 创建/更新 环境
+
+- 环境配置等价于dolphinscheduler_env.sh文件内配置
+
+  <p align="center">
+      <img src="/img/create-environment.png" width="80%" />
+  </p>
+
+> 使用 环境
+
+- 在工作流定义中创建任务节点选择Worker分组和Worker分组对应的环境，任务执行时Worker会先执行环境在执行任务.
+
+    <p align="center">
+        <img src="/img/use-environment.png" width="80%" />
+    </p>

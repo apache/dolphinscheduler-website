@@ -22,7 +22,7 @@
 ```
 $ unzip apache-dolphinscheduler-incubating-1.3.4-src.zip
 $ cd apache-dolphinscheduler-incubating-1.3.4-src-release/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.4
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.4
 $ docker tag apache/dolphinscheduler:1.3.4 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
@@ -39,7 +39,7 @@ $ docker-compose up -d
   <img src="/img/login.png" width="60%" />
 </p>
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.4/user_doc/quick-start.html)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.4/user_doc/quick-start.html) 查看如何使用DolphinScheduler
 
 ### 二、通过指定已存在的 PostgreSQL 和 ZooKeeper 服务
 
@@ -47,9 +47,9 @@ $ docker-compose up -d
 
 #### 1、基础软件安装 (请自行安装)
 
- - PostgreSQL (8.2.15+)
- - ZooKeeper (3.4.6+)
- - Docker (1.13.1+)
+ - [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+)
+ - [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+)
+ - [Docker](https://docs.docker.com/engine/install/) (1.13.1+)
 
 #### 2、请登录 PostgreSQL 数据库，创建名为 `dolphinscheduler` 数据库
 
@@ -60,7 +60,7 @@ $ docker-compose up -d
 我们已将面向用户的 DolphinScheduler 镜像上传至 docker 仓库，用户无需在本地构建镜像，直接执行以下命令从 docker 仓库 pull 镜像：
 
 ```
-docker pull apache/dolphinscheduler:1.3.4
+docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.4
 ```
 
 #### 5、运行一个 DolphinScheduler 实例

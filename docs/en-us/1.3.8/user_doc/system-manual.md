@@ -2,7 +2,7 @@
 
 ## Get started quickly
 
-> Please refer to [Quick Start](quick-start.html)
+> Please refer to [Quick Start](https://dolphinscheduler.apache.org/en-us/docs/1.3.6/user_doc/quick-start.html)
 
 ## Operation guide
 
@@ -43,10 +43,10 @@ The home page contains task status statistics, process status statistics, and wo
   <p align="center">
       <img src="/img/dag5.png" width="80%" />
   </p>
-- Drag in the toolbar <img src="/img/shell.png" width="35"/> Add a Shell task to the drawing board, as shown in the figure below:
-  <p align="center">
-      <img src="/img/shell-en.png" width="80%" />
-  </p>
+- Drag in the toolbar <img src="/img/tasks/icons/shell.png" width="15"/> Add a Shell task to the drawing board, as shown in the figure below:
+
+  ![demo-shell-simple](/img/tasks/demo/shell.jpg)
+
 - **Add parameter settings for this shell task:**
 
 1. Fill in the "Node Name", "Description", and "Script" fields;
@@ -57,7 +57,7 @@ The home page contains task status statistics, process status statistics, and wo
 6. Custom parameters (optional), refer to [Custom Parameters](#UserDefinedParameters);
 7. Click the "Confirm Add" button to save the task settings.
 
-- **Increase the order of task execution:** Click the icon in the upper right corner <img src="/img/line.png" width="35"/> to connect the task; as shown in the figure below, task 2 and task 3 are executed in parallel, When task 1 finished executing, tasks 2 and 3 will be executed simultaneously.
+- **Increase the order of task execution:** Click the icon in the upper right corner <img src="/img/line.png" width="35"/> to connect the task; as shown in the figure below, task 2 and task 3 are executed in parallel, When task 1 finished execute, tasks 2 and 3 will be executed simultaneously.
 
   <p align="center">
      <img src="/img/dag6.png" width="80%" />
@@ -581,9 +581,9 @@ worker.groups=default,test
 
 #### 6.1.3 Zookeeper monitoring
 
-- Mainly related configuration information of each worker and master in ZooKeeper.
+- Mainly related configuration information of each worker and master in zookpeeper.
 
-<p alignlinux ="center">
+<p align="center">
    <img src="/img/zookeeper-monitor-en.png" width="80%" />
  </p>
 
@@ -610,14 +610,12 @@ worker.groups=default,test
 
 #### 7.1 Shell node
 
-> Shell node, when the worker is executed, a temporary shell script is generated, and the Linux user with the same name as the tenant executes the script.
+> Shell node, when the worker is executed, a temporary shell script is generated, and the linux user with the same name as the tenant executes the script.
 
 - Click Project Management-Project Name-Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
-- Drag <img src="/img/shell.png" width="35"/> from the toolbar to the drawing board, as shown in the figure below:
+- Drag <img src="/img/tasks/icons/shell.png" width="15"/> from the toolbar to the drawing board, as shown in the figure below:
 
-  <p align="center">
-      <img src="/img/shell-en.png" width="80%" />
-  </p>
+  ![demo-shell-simple](/img/tasks/demo/shell.jpg)
 
 - Node name: The node name in a workflow definition is unique.
 - Run flag: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.

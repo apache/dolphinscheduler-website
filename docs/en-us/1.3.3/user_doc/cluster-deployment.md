@@ -2,11 +2,11 @@
 
 # 1、Before you begin (please install requirement basic software by yourself)
 
- * PostgreSQL (8.2.15+) or MySQL (5.7) : Choose One,<font color="#dd0000">If use MySQL,It is strongly recommended that MySQL version is 5.7 or higher</font>
- * [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) : Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
- * ZooKeeper (3.4.6+) : Required
- * pstree or psmisc : "pstree" is required for Mac OS and "psmisc" is required for Fedora/Red/Hat/CentOS/Ubuntu/Debian
- * Hadoop (2.6+) or MinIO : Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.
+* [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+) or [MySQL](https://dev.mysql.com/downloads/mysql/) (5.7) : Choose One,<font color="#dd0000">If use MySQL,It is strongly recommended that MySQL version is 5.7 or higher</font>
+* [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) : Required. Double-check configure JAVA_HOME and PATH environment variables in /etc/profile
+* [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+) : Required
+* pstree or psmisc : "pstree" is required for Mac OS and "psmisc" is required for Fedora/Red/Hat/CentOS/Ubuntu/Debian
+* [Hadoop](https://hadoop.apache.org/releases.html) (2.6+) or [MinIO](https://min.io/download) : Optional. If you need to upload a resource function, you can choose a local file directory as the upload folder for a single machine (this operation does not need to deploy Hadoop). Of course, you can also choose to upload to Hadoop or MinIO.
 
 ```markdown
  Tips: DolphinScheduler itself does not rely on Hadoop, Hive, Spark, only use their clients for the corresponding task of running.
@@ -14,7 +14,7 @@
 
 # 2、Download the binary package.
 
-- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [Download](/en-us/download/download.html)，Download the package and move to the installation and deployment directory. Then uncompress it.
+- Please download the latest version of the default installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [download](/en-us/download/download.html)，Download the package and move to the installation and deployment directory. Then uncompress it.
 
 ```shell
 # Create the deployment directory. Do not choose a deployment directory with a high-privilege directory such as / root or / home.
@@ -145,7 +145,7 @@ mysql -h192.168.xx.xx -P3306 -uroot -p
       vi conf/datasource.properties
     ```
 
-    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/)] package to lib under the directory, and then configure the database connection information correctly.
+    - If you choose Mysql, please comment out the relevant configuration of PostgreSQL (vice versa), you also need to manually add the [[mysql-connector-java driver jar] (https://downloads.mysql.com/archives/c-j/) package to lib under the directory, and then configure the database connection information correctly.
 
     ```properties
       #postgre

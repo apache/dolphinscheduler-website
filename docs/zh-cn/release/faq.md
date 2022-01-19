@@ -1,6 +1,7 @@
+<!-- markdown-link-check-disable -->
 ## Q：项目的名称是？
 
-A：1.2 版本以前项目名称是 EasyScheduler，1.2 以及之后的版本叫做 DolphinScheduler。
+A：DolphinScheduler
 
 ---
 
@@ -29,7 +30,7 @@ A：支持绝大多数邮箱，qq、163、126、139、outlook、aliyun 等皆支
 
 ## Q：常用的系统变量时间参数有哪些，如何使用？
 
-A：请参考[使用手册](/zh-cn/docs/1.3.4/user_doc/system-manual.html) 第8小节
+A：请参考[使用手册](https://dolphinscheduler.apache.org/zh-cn/docs/1.3.4/user_doc/system-manual.html) 第8小节
 
 ---
 
@@ -541,6 +542,48 @@ A：1，目前是按照自然天来判断，上月末：判断时间是工作流
 
 ## Q：DS 后端接口文档
 A：1，http://106.75.43.194:8888/dolphinscheduler/doc.html?language=zh_CN&lang=zh。
+
+
+## dolphinscheduler 在运行过程中，ip 地址获取错误的问题
+
+master 服务、worker 服务在 zookeeper 注册时，会以 ip:port 的形式创建相关信息
+
+如果 ip 地址获取错误，请检查网络信息，如 Linux 系统通过 `ifconfig` 命令查看网络信息，以下图为例：
+
+<p align="center">
+  <img src="/img/network/network_config.png" width="60%" />
+</p>
+
+可以使用 dolphinscheduler 提供的三种策略，获取可用 ip：
+
+* default: 优先获取内网网卡获取 ip 地址，其次获取外网网卡获取 ip 地址，在前两项失效情况下，使用第一块可用网卡的地址
+* inner: 使用内网网卡获取 ip地址，如果获取失败抛出异常信息
+* outer: 使用外网网卡获取 ip地址，如果获取失败抛出异常信息
+
+配置方式是在 `common.properties` 中修改相关配置：
+
+```shell
+# network IP gets priority, default: inner outer
+# dolphin.scheduler.network.priority.strategy=default
+```
+
+以上配置修改后重启服务生效
+
+如果 ip 地址获取依然错误，请下载 [dolphinscheduler-netutils.jar](/asset/dolphinscheduler-netutils.jar) 到相应机器，执行以下命令以进一步排障，并反馈给社区开发人员：
+
+```shell
+java -jar target/dolphinscheduler-netutils.jar
+```
+
+## 配置 sudo 免密，用于解决默认配置 sudo 权限过大或不能申请 root 权限的使用问题
+
+配置 dolphinscheduler OS 账号的 sudo 权限为部分普通用户范围内的一个普通用户管理者，限制指定用户在指定主机上运行某些命令，详细配置请看 sudo 权限管理
+例如 sudo 权限管理配置 dolphinscheduler OS 账号只能操作用户 userA,userB,userC 的权限（其中用户 userA,userB,userC 用于多租户向大数据集群提交作业）
+
+```shell
+echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
+```
 
 ---
 

@@ -66,8 +66,6 @@
      ##### 该服务包含：
      - **FetchTaskThread**主要负责不断从**Task Queue**中领取任务，并根据不同任务类型调用**TaskScheduleThread**对应执行器。
 
-     - **LoggerServer**是一个RPC服务，提供日志分片查看、刷新和下载等功能
-
 * **ZooKeeper** 
 
     ZooKeeper服务，系统中的MasterServer和WorkerServer节点都通过ZooKeeper来进行集群管理和容错。另外系统还基于ZooKeeper进行事件监听和分布式锁。
@@ -79,7 +77,7 @@
 
 * **Alert** 
 
-    提供告警相关接口，接口主要包括**告警**两种类型的告警数据的存储、查询和通知功能。其中通知功能又有**邮件通知**和**SNMP(暂未实现)**两种。
+    提供告警相关接口，接口主要包括两种类型的告警数据的存储、查询和通知功能。其中通知功能又有**邮件通知**和**SNMP(暂未实现)**两种。
 
 * **API** 
 
@@ -88,7 +86,7 @@
 
 * **UI** 
 
-    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/latest/user_doc/system-manual.html" target="_self">系统使用手册</a>部分。
+    系统的前端页面，提供系统的各种可视化操作界面，详见<a href="/zh-cn/docs/latest/user_doc/guide/introduction.html" target="_self">系统使用手册</a>部分。
 
 #### 2.3 架构设计思想
 

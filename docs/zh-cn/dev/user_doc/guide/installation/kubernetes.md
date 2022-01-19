@@ -1,5 +1,10 @@
 # 快速试用 Kubernetes 部署
 
+Kubernetes部署目的是在Kubernetes集群中部署 DolphinScheduler 服务，能调度大量任务，可用于在生产中部署。
+
+如果你是新手，想要体验 DolphinScheduler 的功能，推荐使用[Standalone](standalone.md)方式体检。如果你想体验更完整的功能，或者更大的任务量，推荐使用[伪集群部署](pseudo-cluster.md)。如果你是在生产中使用，推荐使用[集群部署](cluster.md)或者[kubernetes](kubernetes.md)
+
+
 ## 先决条件
 
  - [Helm](https://helm.sh/) 3.1.0+
@@ -63,7 +68,7 @@ echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.8/user_doc/quick-start.html)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](/zh-cn/docs/dev/user_doc/guide/quick-start.html)查看如何使用DolphinScheduler
 
 ## 卸载 dolphinscheduler
 
@@ -184,13 +189,13 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 >
 > 如果你要使用 MySQL, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
 
-1. 下载 MySQL 驱动包 [mysql-connector-java-5.1.49.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar) (要求 `>=5.1.47`)
+1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
-COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
+COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
 3. 构建一个包含 MySQL 驱动包的新镜像:
@@ -227,13 +232,13 @@ externalDatabase:
 >
 > 如果你要添加 MySQL 数据源, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
 
-1. 下载 MySQL 驱动包 [mysql-connector-java-5.1.49.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar) (要求 `>=5.1.47`)
+1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
-COPY mysql-connector-java-5.1.49.jar /opt/dolphinscheduler/lib
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
+COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
 3. 构建一个包含 MySQL 驱动包的新镜像:
@@ -261,7 +266,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -284,7 +289,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -317,7 +322,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*
@@ -640,7 +645,6 @@ common:
 | `worker.nodeSelector`                                                             | NodeSelector is a selector which must be true for the pod to fit on a node                                                     | `{}`                                                  |
 | `worker.tolerations`                                                              | If specified, the pod's tolerations                                                                                            | `{}`                                                  |
 | `worker.resources`                                                                | The `resource` limit and request config for worker server                                                                      | `{}`                                                  |
-| `worker.configmap.LOGGER_SERVER_OPTS`                                             | The jvm options for logger server                                                                                              | `-Xms512m -Xmx512m -Xmn256m`                          |
 | `worker.configmap.WORKER_SERVER_OPTS`                                             | The jvm options for worker server                                                                                              | `-Xms1g -Xmx1g -Xmn512m`                              |
 | `worker.configmap.WORKER_EXEC_THREADS`                                            | Worker execute thread number to limit task instances                                                                           | `100`                                                 |
 | `worker.configmap.WORKER_HEARTBEAT_INTERVAL`                                      | Worker heartbeat interval, the unit is second                                                                                  | `10`                                                  |

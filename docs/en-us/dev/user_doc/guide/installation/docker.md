@@ -41,7 +41,7 @@ Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz
 ```
 $ tar -zxvf apache-dolphinscheduler-1.3.8-src.tar.gz
 $ cd apache-dolphinscheduler-1.3.8-src/docker/docker-swarm
-$ docker pull apache/dolphinscheduler:1.3.8
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 $ docker tag apache/dolphinscheduler:1.3.8 apache/dolphinscheduler:latest
 $ docker-compose up -d
 ```
@@ -60,7 +60,7 @@ The default username is `admin` and the default password is `dolphinscheduler123
   <img src="/img/login_en.png" width="60%" />
 </p>
 
-Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/1.3.8/user_doc/quick-start.html) to explore how to use DolphinScheduler
+Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/dev/user_doc/guide/quick-start.html) to explore how to use DolphinScheduler
 
 ### The Second Way: Start via specifying the existing PostgreSQL and ZooKeeper service
 
@@ -68,9 +68,9 @@ In this way, you need to install [docker](https://docs.docker.com/engine/install
 
 #### 1. Basic Required Software (please install by yourself)
 
- - PostgreSQL (8.2.15+)
- - ZooKeeper (3.4.6+)
- - Docker (1.13.1+)
+ - [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+)
+ - [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+)
+ - [Docker](https://docs.docker.com/engine/install/) (1.13.1+)
 
 #### 2. Please login to the PostgreSQL database and create a database named `dolphinscheduler`
 
@@ -81,7 +81,7 @@ In this way, you need to install [docker](https://docs.docker.com/engine/install
 We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository:
 
 ```
-docker pull apache/dolphinscheduler:1.3.8
+docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 ```
 
 #### 5. Run a DolphinScheduler Instance
@@ -108,7 +108,6 @@ The following services are automatically started when the container starts:
 ```
      MasterServer         ----- master service
      WorkerServer         ----- worker service
-     LoggerServer         ----- logger service
      ApiApplicationServer ----- api service
      AlertServer          ----- alert service
 ```
@@ -127,7 +126,7 @@ $ docker run -d --name dolphinscheduler-master \
 apache/dolphinscheduler:1.3.8 master-server
 ```
 
-* Start a **worker server** (including **logger server**), For example:
+* Start a **worker server**, For example:
 
 ```
 $ docker run -d --name dolphinscheduler-worker \
@@ -374,12 +373,12 @@ done
 >
 > If you want to use MySQL, you can build a new image based on the `apache/dolphinscheduler` image as follows.
 
-1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (require `>=8.0.16`)
+1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
@@ -420,12 +419,12 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 >
 > If you want to add MySQL datasource, you can build a new image based on the `apache/dolphinscheduler` image as follows.
 
-1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (require `>=8.0.16`)
+1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
@@ -454,7 +453,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. Create a new `Dockerfile` to add Oracle driver:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -477,7 +476,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. Create a new `Dockerfile` to install pip:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -510,7 +509,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. Create a new `Dockerfile` to install Python 3:
 
 ```
-FROM apache/dolphinscheduler:1.3.8
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*
@@ -772,7 +771,7 @@ This environment variable sets zookeeper root directory for dolphinscheduler. Th
 
 **`DOLPHINSCHEDULER_OPTS`**
 
-This environment variable sets JVM options for dolphinscheduler, suitable for `master-server`, `worker-server`, `api-server`, `alert-server`, `logger-server`. The default value is empty.
+This environment variable sets JVM options for dolphinscheduler, suitable for `master-server`, `worker-server`, `api-server`, `alert-server`. The default value is empty.
 
 **`DATA_BASEDIR_PATH`**
 
@@ -1025,9 +1024,3 @@ This environment variable sets enterprise wechat users for `alert-server`. The d
 **`API_SERVER_OPTS`**
 
 This environment variable sets JVM options for `api-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.
-
-### Logger Server
-
-**`LOGGER_SERVER_OPTS`**
-
-This environment variable sets JVM options for `logger-server`. The default value is `-Xms512m -Xmx512m -Xmn256m`.

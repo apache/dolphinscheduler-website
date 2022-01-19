@@ -1,10 +1,9 @@
-
-
+<!-- markdown-link-check-disable -->
 # 前言
 本文档为dolphinscheduler配置文件说明文档,针对版本为 dolphinscheduler-1.3.x 版本.
 
 # 目录结构
-目前dolphinscheduler 所有的配置文件都在 [conf ] 目录中.
+目前dolphinscheduler 所有的配置文件都在 [conf] 目录中.
 为了更直观的了解[conf]目录所在的位置以及包含的配置文件,请查看下面dolphinscheduler安装目录的简化说明.
 本文主要讲述dolphinscheduler的配置文件.其他部分先不做赘述.
 

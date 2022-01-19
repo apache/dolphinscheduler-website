@@ -7,7 +7,7 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 ### PMC
 
 | Public Name       | Apache ID    | GitHub ID      |
-| ----------------- | ------------ | -------------- |
+|-------------------| ------------ | -------------- |
 | Furkan Kamaci     | kamaci       | kamaci         |
 | Gang Li           | lgcareer     | lgcareer       |
 | Guo Jiwei         | technoboy    | Technoboy-     |
@@ -23,6 +23,7 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Wu Baoqi          | baoqiwu      | Baoqi          |
 | Xiaochun Liu      | liuxiaochun  | khadgarmage    |
 | ZijJian Gong      | millionfor   | millionfor     |
+| Calvin Kirs       | kirs         | CalvinKirs     |
 
 
 ### Committer
@@ -31,7 +32,6 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | ------------- | ------------ | ---------------- |
 | BoYi Zhang    | zhangboyi    | BoYiZhang        |
 | Caibiao Xiang | break60      | break60          |
-| Calvin Kirs   | kirs         | CalvinKirs       |
 | Chong Zhuang  | kerwin       | zhuangchong      |
 | Cong Huang    | chongchongzi | chongchongzi     |
 | Hemin Wen     | wenhemin     | wen-hemin        |
@@ -46,6 +46,11 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Xingchun Chen | chenxingchun | xingchun-chen    |
 | Yichao Yang   | yangyichao   | yangyichao-mango |
 | Zongyao Zhang | lfyee        | lfyee            |
+| Zhenxu Ke     | kezhenxu94   | kezhenxu94       |
+| Jiajie Zhong  | zhongjiajie  | zhongjiajie      |
+| Yizhi Wang    | wangyizhi    | Wangyizhi1       |
+| ShunFeng Cai  | caishunfeng  | caishunfeng      |
+
 
 ## 贡献者
 
@@ -54,6 +59,7 @@ DolphinScheduler 有数百个贡献者，您可以在我们存储库的贡献列
 - [DolphinScheduler main repository](https://github.com/apache/dolphinscheduler/graphs/contributors)
 - [DolphinScheduler website](https://github.com/apache/dolphinscheduler-website/graphs/contributors)
 - [DolphinScheduler maven plugin](https://github.com/apache/dolphinscheduler-maven-plugin/graphs/contributors)
+- [DolphinScheduler ambari](https://github.com/apache/dolphinscheduler-ambari/graphs/contributors)
 
 ## 成为一个提交者
 
@@ -61,6 +67,6 @@ DolphinScheduler 遵循 Apache 的方式来构建社区。 只要为项目做出
 
 DolphinScheduler 社区在接受新提交者时遵循 [Apache 社区的流程](http://community.apache.org/newcommitter.html)。
 
-1.开始讨论并在 @private 中投票。 只有当前 PMC 成员可以提名。
-2.如果投票通过，请发送邀请以成为 @private CC 的提交者。
-3.设置提交者权限
+1. 开始讨论并在 @private 中投票，只有当前 PMC 成员可以提名。
+2. 如果投票通过，请发送邀请以成为 @private CC 的提交者。
+3. 设置提交者权限

@@ -6,7 +6,7 @@ export default {
       buttons: [
         {
           text: '立即开始',
-          link: '/zh-cn/docs/latest/user_doc/quick-start.html',
+          link: '/zh-cn/docs/latest/user_doc/guide/quick-start.html',
           type: 'primary',
         },
         {
@@ -55,46 +55,25 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
-          img: '/img/apache.jpg',
-          title: 'Wenjun Ruan：如何成为Apache DolphinScheduler Committer',
-          content: '7.29,来自 eBay 的 Wenjun 同学正式成为Apache DolphinSchedulerCommitter,此文将为大家分享他的开源旅程，以及他是如何成为DolphinScheduler的Committer',
-          dateStr: '2021-07-29',
-          link: '/zh-cn/blog/new_committer_wenjun.html',
+          img: '/img/2022-1-13/640.png',
+          title: 'Apache DolphinScheduler 董事会报告：社区健康运行，Commit 增长 123%',
+          content: '自 2021 年 3 月 17 日从 Apache 孵化器毕业以来，Apache DolphinScheduler ...',
+          dateStr: '2022-1-13',
+          link: '/zh-cn/blog/Board_of_Directors_Report.html',
         },
         {
-          img: '/img/dailidong.png',
-          title: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线直播',
-          content: 'Apache DolphinScheduler(Incubating) 1.3.0新特性及Roadmap路线在线直播，700多人在线',
-          dateStr: '2020-05-26',
-          link: '/zh-cn/blog/live_online_2020_05_26.html',
+          img: 'https://miro.medium.com/max/1260/1*3XcwBeN5HkBzZ76zXDcigw.jpeg',
+          title: 'WorkflowAsCode 来了，Apache DolphinScheduler 2.0.2 惊喜发布',
+          content: '千呼万唤中，WorkflowAsCode 功能终于在 2.0.2 版本中如约上线...',
+          dateStr: '2022-1-13',
+          link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.2.html',
         },
         {
-          img: '/img/2019-12-08/941576036700_.pic_hd.jpg',
-          title: 'Apache ShardingSphere & DolphinScheduler联合Meetup成功举行',
-          content: 'Apache ShardingSphere & DolphinScheduler联合Meetup 2019年12月8日在北京成功举行。',
-          dateStr: '2019-12-13',
-          link: '/zh-cn/blog/meetup_2019_12_08.html',
-        },
-        {
-          img: '/img/meetup_20191026.jpg',
-          title: 'Apache Dolphin Scheduler(Incubating) Meetup 成功举行',
-          content: 'Apache Dolphin Scheduler(Incubating) Meetup 2019年10月26日在上海成功举行。',
-          dateStr: '2019-9-27',
-          link: '/zh-cn/blog/meetup_2019_10_26.html',
-        },
-        {
-          img: '/img/architecture.jpg',
-          title: '一个分布式易扩展的可视化DAG工作流任务调度系统',
-          content: '一个分布式易扩展的可视化DAG工作流任务调度系统',
-          dateStr: 'May 12nd，2018',
-          link: '/zh-cn/blog/architecture-design.html',
-        },
-        {
-          img: '/img/review_img4.png',
-          title: 'DolphinScheduler 开发者大会在北京成功举行',
-          content: 'DolphinScheduler 开发者大会在北京成功举行',
-          dateStr: 'May 12nd，2018',
-          link: '/zh-cn/development/architecture-design.html',
+          img: 'https://imgpp.com/images/2022/01/10/164179986575876800e959cabce5b.md.png',
+          title: '恭喜 Apache DolphinScheduler 入选可信开源社区共同体（TWOS）预备成员！',
+          content: '近日，可信开源社区共同体正式宣布批准 6 位正式成员和 3 位预备成员加入。其中...',
+          dateStr: '2022-1-11',
+          link: '/zh-cn/blog/Twos.html',
         },
       ],
     },
@@ -265,16 +244,28 @@ export default {
         },
         {
           img: '/img/ourusers/dell.png',
-        },        
+        },
         {
           img: '/img/ourusers/shansong.png',
         },
         {
           img: '/img/ourusers/189.png',
-        },        
+        },
         {
           img: '/img/ourusers/360.png',
-        },   
+        },
+        {
+          img: '/img/ourusers/fankewang.png',
+        },
+        {
+          img: '/img/ourusers/yueyunkeji.png',
+        },
+        {
+          img: '/img/ourusers/yiyunxinxi.png',
+        },
+        {
+          img: '/img/ourusers/zhihuiqice.png',
+        },
       ],
     },
     userreview: {
@@ -310,7 +301,7 @@ export default {
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/latest/user_doc/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
           type: 'primary',
         },
         {
@@ -522,62 +513,54 @@ export default {
         },
         {
           img: '/img/ourusers/dell.png',
-        },        
+        },
         {
           img: '/img/ourusers/shansong.png',
         },
         {
           img: '/img/ourusers/189.png',
-        },        
+        },
         {
           img: '/img/ourusers/360.png',
-        },           
+        },
+        {
+          img: '/img/ourusers/fankewang.png',
+        },
+        {
+          img: '/img/ourusers/yueyunkeji.png',
+        },
+        {
+          img: '/img/ourusers/yiyunxinxi.png',
+        },
+        {
+          img: '/img/ourusers/zhihuiqice.png',
+        },
       ],
     },
     events: {
       title: 'Events & News',
       list: [
         {
-          img: '/img/2021-03-16/boyi.png',
-          title: '[ANNOUNCE] Welcome to our new committer: BoYiZhang',
-          content: '[ANNOUNCE] Welcome to our new committer: BoYiZhang',
-          dateStr: '2021-03-16',
-          link: 'https://lists.apache.org/thread.html/rbd018b05da88d98f403dcd18098fa622c0c4c6db8d2b28c84028a818%40%3Cdev.dolphinscheduler.apache.org%3E',
+
+          img: '/img/2022-1-13/640.png',
+          title: 'Apache DolphinScheduler Board Report: Community Runs Well, Commit Number Grows over 123%',
+          content: 'Since graduating from the Apache Incubator on March 17, 2021....',
+          dateStr: '2022-1-13',
+          link: '/en-us/blog/Board_of_Directors_Report.html',
         },
         {
-          img: '/img/dailidong.png',
-          title: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap',
-          content: 'live online: Apache DolphinScheduler(Incubating) 1.3.0 new feature and Roadmap，more than 700 people online',
-          dateStr: '2020-05-26',
-          link: '/zh-cn/blog/live_online_2020_05_26.html',
+          img: 'https://miro.medium.com/max/1260/1*3XcwBeN5HkBzZ76zXDcigw.jpeg',
+          title: '# Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched! ',
+          content: 'In the long-awaited, WorkflowAsCode function is finally launched in version 2.0.2 as promised...',
+          dateStr: '2022-1-13',
+          link: '/en-us/blog/Apache_dolphinScheduler_2.0.2.html',
         },
         {
-          img: '/img/2019-12-08/941576036700_.pic_hd.jpg',
-          title: 'Apache ShardingSphere & DolphinScheduler joint Meetup',
-          content: 'Apache ShardingSphere & DolphinScheduler Meetup successfully held in Beijing on December 8, 2019',
-          dateStr: '2019-12-13',
-          link: '/en-us/blog/meetup_2019_12_08.html',
-        },
-        {
-          img: '/img/meetup_20191026.jpg',
-          title: 'Apache Dolphin Scheduler(Incubating) Meetup has been held successfully',
-          content: 'Apache Dolphin Scheduler(Incubating) Meetup has been held successfully in Shanghai 2019.10.26.',
-          dateStr: '2019-9-27',
-          link: '/en-us/blog/meetup_2019_10_26.html',
-        },
-        {
-          img: '/img/architecture.jpg',
-          title: 'A distributed and easy-to-extend visual workflow scheduler system.',
-          content: 'A distributed and easy-to-extend visual workflow scheduler system.',
-          dateStr: 'May 12nd，2018',
-          link: '/en-us/blog/architecture-design.html',
-        },
-        {
-          img: '/img/review_img4.png',
-          title: 'DolphinScheduler beijing meetup has been held successfully',
-          content: 'DolphinScheduler beijing meetup has been held successfully',
-          dateStr: 'May 12nd，2018',
-          link: '/en-us/development/architecture-design.html',
+          img: 'https://imgpp.com/images/2022/01/10/1641804549068.md.png',
+          title: 'Congratulations! Apache DolphinScheduler Has Been Approved As A TWOS Candidate Member',
+          content: 'ecently, TWOS officially announced the approval of 6 full members and 3 candidate...',
+          dateStr: '2022-1-11',
+          link: '/en-us/blog/Twos.html',
         },
       ],
     },
