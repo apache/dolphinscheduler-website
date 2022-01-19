@@ -27,15 +27,15 @@ export default {
         children: [
           {
             title: 'Release Preparation',
-            link: '/en-us/community/release-prepare.html',
+            link: '/en-us/community/release/release-prepare.html',
           },
           {
             title: 'Release Guide',
-            link: '/en-us/community/release.html',
+            link: '/en-us/community/release/release.html',
           },
           {
             title: 'Release Post',
-            link: '/en-us/community/release-post.html',
+            link: '/en-us/community/release/release-post.html',
           },
         ],
       },
@@ -246,15 +246,15 @@ export default {
         children: [
           {
             title: '发版准备',
-            link: '/zh-cn/community/release-prepare.html',
+            link: '/zh-cn/community/release/release-prepare.html',
           },
           {
             title: '发版指南',
-            link: '/zh-cn/community/release.html',
+            link: '/zh-cn/community/release/release.html',
           },
           {
             title: '发版后续',
-            link: '/zh-cn/community/release-post.html',
+            link: '/zh-cn/community/release/release-post.html',
           },
         ],
       },
