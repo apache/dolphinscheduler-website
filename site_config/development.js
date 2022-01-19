@@ -113,6 +113,10 @@ export default {
             link: '/zh-cn/development/frontend-development.html',
           },
           {
+            title: 'E2E 自动化测试',
+            link: '/zh-cn/development/e2e-test.html',
+          },
+          {
             title: '问题与交流',
             link: '/zh-cn/development/have-questions.html',
           },
