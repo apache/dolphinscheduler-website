@@ -257,6 +257,10 @@ export default {
             title: 'Load Balance',
             link: '/en-us/docs/2.0.3/user_doc/architecture/load-balance.html',
           },
+          {
+            title: 'Cache',
+            link: '/en-us/docs/2.0.3/user_doc/architecture/cache.html',
+          },
         ],
       },
       {
@@ -546,6 +550,10 @@ export default {
           {
             title: '负载均衡',
             link: '/zh-cn/docs/2.0.3/user_doc/architecture/load-balance.html',
+          },
+          {
+            title: '缓存',
+            link: '/zh-cn/docs/2.0.3/user_doc/architecture/cache.html',
           },
         ],
       },
