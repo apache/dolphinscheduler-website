@@ -3,7 +3,7 @@
 
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/1637566412753.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/1637566412753.png"/>
 </div>
 
 
@@ -15,7 +15,7 @@
 ## 01 背景
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/radio-g360707f44_1920.md.jpg"/>
+<img src="https://s1.imgpp.com/2021/11/23/radio-g360707f44_1920.md.jpg"/>
 </div>
 
 
@@ -70,7 +70,7 @@
 一个简单的xgboost案例：
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/1.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/1.png"/>
 </div>
  
 
@@ -83,7 +83,7 @@
 Transformer&自定义预处理配置文件，训练和线上采用同一份配置，获取特征后进行特征预处理。里面包含了要预测的 itemType 及其特征集，用户 userType 及其特征集，关联和交叉的 itemType 及其特征集。定义每个特征预处理的 transformer 函数，支持自定义transformer 和热更新，xgboost 和 tf 模型的特征预处理。经过此节点后，才是模型训练真正要的数据格式。这个配置文件在模型发布时也会带上，以便保持训练和线上预测是一致的。这个文件维护在 DolphinScheduler 的资源中心。
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/2.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/2.png"/>
 </div>
  
 ### 3. Xgboost 训练
@@ -93,7 +93,7 @@ Transformer&自定义预处理配置文件，训练和线上采用同一份配�
 例如，xgboost 训练过程中，使用 Python封装好 xgboost训练脚本，包装成 DolphinScheduler 的 xgboost 训练节点，在界面上暴露训练所需参数。经过“训练集数据预处理”输出的文件，经过 hdfs 输入到训练节点。
  
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/3.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/3.png"/>
 </div>
 
  
@@ -102,7 +102,7 @@ Transformer&自定义预处理配置文件，训练和线上采用同一份配�
 发布模型会把模型和预处理配置文件发到 HDFS，同时向模型发布表插入记录，模型服务会自动识别新模型，进而更新模型，对外提供在线预测服务。
  
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/4.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/4.png"/>
 </div>
 
 

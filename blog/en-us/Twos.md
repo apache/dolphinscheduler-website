@@ -6,7 +6,7 @@ description: Recently, TWOS officially announced the approval of 6 full members 
 ## Congratulations! Apache DolphinScheduler Has Been Approved As A TWOS Candidate Member
 
 <div align=center>
-<img src="https://imgpp.com/images/2022/01/10/1641804549068.md.png"/>
+<img src="https://s1.imgpp.com/2022/01/10/1641804549068.png"/>
 </div>
 
 Recently, TWOS officially announced the approval of 6 full members and 3 candidate members, Apache DolphinScheduler, a cloud-native distributed big data scheduler, was listed by TWOS.
@@ -26,7 +26,7 @@ After being screened by TWOS evaluation criteria, Apache DolphinScheduler was ap
 On September 17, 2021, the first batch of members joined TWOS, including 25 full members such as openEuler, openGauss, MindSpore, openLookeng, etc., and 27 candidate members like Apache RocketMQ, Dcloud, Fluid, FastReID, etc., with a total of 52 members:
 
 <div align=center>
-<img src="https://imgpp.com/images/2022/01/10/1.md.png"/>
+<img src="https://s1.imgpp.com/2022/01/10/1.png"/>
 </div>
 
 Only two communities were selected for the second batch of candidate members—Apache DolphinScheduler and PolarDB, an open-source cloud-native ecological distributed database contributed by Alibaba Cloud.

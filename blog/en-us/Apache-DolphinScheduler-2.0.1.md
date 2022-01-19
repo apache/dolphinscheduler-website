@@ -17,7 +17,7 @@ Download Apache DolphinScheduler 2.0.1：https://dolphinscheduler.apache.org/zh-
 The workflow execution process activities of Apache DolphinScheduler 2.0.1 are shown in the following figure:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/20/master-process-2.0-en.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/20/master-process-2.0-en.png"/>
 </div>
 
 Start process activity diagram
@@ -96,7 +96,7 @@ Improves the efficiency of workflow operation.
 The operation flow chart of the workflow and tasks under the API module are shown as below:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/20/3.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/20/3.png"/>
 </div>
 
 ## 03 Automatic Version Upgrade Function
@@ -143,12 +143,12 @@ Currently, the transfer between shell tasks and sql tasks is supported. Passing 
 Set an out variable "trans" in the previous "create_parameter" task: echo'${setValue(trans=hello trans)}'
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/323f6a18d8a1d2f2d8fdcb5687c264b5.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/323f6a18d8a1d2f2d8fdcb5687c264b5.png"/>
 </div>
 Once Keyword: "${setValue(key=value)}" is detected in the task log of the current task, the system will automatically parse the variable transfer value, in the post-task, you can directly use the "trans" variable:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/8be29339b73b594dc05a6b832d9330ec.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/8be29339b73b594dc05a6b832d9330ec.png"/>
 </div>
 
 The parameter passing of the SQL task:
@@ -157,13 +157,13 @@ select the value corresponding to the column with the same variable name in the 
 output of user number:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/85bc5216c01ca958cdf11d4bd555c8a6.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/85bc5216c01ca958cdf11d4bd555c8a6.png"/>
 </div>
 
 Use the variable "cnt" in downstream tasks:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/4278d0b7f833b64f24fc3d6122287454.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/4278d0b7f833b64f24fc3d6122287454.png"/>
 </div>
 
 2.0.1 adds switch task and pigeon task components:
@@ -186,7 +186,7 @@ branch circulation. For other tasks, select D in the branch circulation.
 
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/636f53ddc809f028ffdfc18fd08b5828.md.jpg"/>
+<img src="https://s1.imgpp.com/2021/12/17/636f53ddc809f028ffdfc18fd08b5828.md.jpg"/>
 </div>
 
 
@@ -207,7 +207,7 @@ Configure the worker running environment online. A worker can specify multiple e
 equivalent to the dolphinscheduler_env.sh file.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/ef8b444c6dbebe397daaaa3bbadf743f.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/ef8b444c6dbebe397daaaa3bbadf743f.png"/>
 </div>
 
 
@@ -267,8 +267,8 @@ Thanks to the 289 community contributors who participated in the optimization an
 particular order)!
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/2020b4f57e33734414a11149704ded92.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/2020b4f57e33734414a11149704ded92.png"/>
 </div>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/1825b6945d5845233b7389479ba6c074.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/1825b6945d5845233b7389479ba6c074.png"/>
 </div>

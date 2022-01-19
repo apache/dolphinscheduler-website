@@ -1,6 +1,6 @@
 # 重构、插件化、性能提升 20 倍，Apache DolphinScheduler 2.0 alpha 发布亮点太多！
 
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png"></div>
 
   
 社区的小伙伴们，好消息！经过 100 多位社区贡献者近 10 个月的共同努力，我们很高兴地宣布 Apache DolphinScheduler 2.0 alpha 发布。这是 DolphinScheduler 自进入 Apache 以来的首个大版本，进行了多项关键更新和优化，是 DolphinScheduler 发展中的里程碑。
@@ -28,9 +28,9 @@ DolphinScheduler 2.0 alpha 主要重构了 Master 的实现，大幅优化了元
 
 ## 优化 UI 组件，全新的 UI 界面
 
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/4e4024cbddbe3113f730c5e67f083c4f.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/4e4024cbddbe3113f730c5e67f083c4f.md.png"></div>
 
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/75e002b21d827aee9aeaa3922c20c13f.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/75e002b21d827aee9aeaa3922c20c13f.md.png"></div>
 
 
 <center> 
@@ -53,17 +53,17 @@ DolphinScheduler 2.0 alpha 主要重构了 Master 的实现，大幅优化了元
 
 
 ## 新功能列表
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/WX20211116-164031.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/WX20211116-164031.md.png"></div>
 
 
 ## 优化项
 
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/WX20211116-164042.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/WX20211116-164042.md.png"></div>
 
 
 
 ## Bug 修复
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/WX20211116-164059.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/WX20211116-164059.md.png"></div>
 
 
 
@@ -75,7 +75,7 @@ DolphinScheduler 2.0 alpha 的发布凝聚了众多社区贡献者的智慧和�
 非常感谢 100+ 位（GitHub ID）社区小伙伴的贡献，期待更多人能够加入 DolphinScheduler 社
 区共建，为打造一个更好用的大数据工作流调度平台贡献自己的力量！
 
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/8926d45ead1f735e8cfca0e8142b315f.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/8926d45ead1f735e8cfca0e8142b315f.md.png"></div>
 
 
 <center>2.0 alpha 贡献者名单</center>
