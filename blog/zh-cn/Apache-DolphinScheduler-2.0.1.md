@@ -1,7 +1,7 @@
 # Apache DolphinScheduler 2.0.1 来了，备受期待的一键升级、插件化终于实现！
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/1639647220322.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/1639647220322.png"/>
 </div>
 
 > 编者按：好消息！Apache DolphinScheduler 2.0.1 版本今日正式发布！
@@ -14,7 +14,7 @@
 Apache DolphinScheduler 2.0.1 的工作流执行流程活动如下图所示：
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/82a493951882982a22823a08ab8718e7.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/82a493951882982a22823a08ab8718e7.png"/>
 </div>
 
 启动流程活动图
@@ -74,7 +74,7 @@ org.apache.dolphinscheduler.spi.params 里对插件的参数做了封装，它�
 下图为 API 模块下工作流和任务的操作流程图：
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/27405914b6eced124394f2079676633c.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/27405914b6eced124394f2079676633c.png"/>
 </div>
 
 
@@ -114,14 +114,14 @@ StandAloneServer 是为了让用户快速体验产品而创建的服务，其中
 在前一个"create_parameter"任务中设置一个out的变量”trans“: echo '${setValue(trans=hello trans)}'
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/323f6a18d8a1d2f2d8fdcb5687c264b5.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/323f6a18d8a1d2f2d8fdcb5687c264b5.png"/>
 </div>
 
 
 当前置任务中的任务日志中检测到关键字：”${setValue(key=value)}“, 系统会自动解析变量传递值，在后置任务中，可以直接使用”trans“变量：
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/8be29339b73b594dc05a6b832d9330ec.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/8be29339b73b594dc05a6b832d9330ec.png"/>
 </div>
 
 - SQL 任务的参数传递：
@@ -129,13 +129,13 @@ StandAloneServer 是为了让用户快速体验产品而创建的服务，其中
 SQL 任务的自定义变量 prop 的名字需要和字段名称一致，变量会选择 SQL 查询结果中的列名中与该变量名称相同的列对应的值。输出用户数量：
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/85bc5216c01ca958cdf11d4bd555c8a6.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/85bc5216c01ca958cdf11d4bd555c8a6.png"/>
 </div>
   
 在下游任务中使用变量”cnt“:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/4278d0b7f833b64f24fc3d6122287454.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/4278d0b7f833b64f24fc3d6122287454.png"/>
 </div>
 
 新增 switch 任务和 pigeon 任务组件：
@@ -151,7 +151,7 @@ SQL 任务的自定义变量 prop 的名字需要和字段名称一致，变量�
 配置当全局变量 id=1 时，运行任务 C。则在任务 B 的条件中编辑 ${id} == 1，分支流转选择 C。对于其他任务，在分支流转中选择 D。
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/636f53ddc809f028ffdfc18fd08b5828.md.jpg"/>
+<img src="https://s1.imgpp.com/2021/12/17/636f53ddc809f028ffdfc18fd08b5828.md.jpg"/>
 </div>
 
 
@@ -168,7 +168,7 @@ pigeon 任务，是一个可以和第三方系统对接的一种任务组件，�
 在线配置 Worker 运行环境，一个 Worker 可以指定多个环境，每个环境等价于 dolphinscheduler_env.sh 文件。
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/ef8b444c6dbebe397daaaa3bbadf743f.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/ef8b444c6dbebe397daaaa3bbadf743f.png"/>
 </div>
 
 在创建任务的时候，选择 worker 分组和对应的环境变量，任务在执行时，worker 会在对应的执行环境中执行任务。
@@ -234,12 +234,12 @@ pigeon 任务，是一个可以和第三方系统对接的一种任务组件，�
 感谢 289 位参与 2.0.1 版本优化和改进的社区贡献者（排名不分先后）！
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/2020b4f57e33734414a11149704ded92.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/2020b4f57e33734414a11149704ded92.png"/>
 </div>
 
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/1825b6945d5845233b7389479ba6c074.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/1825b6945d5845233b7389479ba6c074.png"/>
 </div>
 
 ## 8 加入社区
@@ -249,7 +249,7 @@ pigeon 任务，是一个可以和第三方系统对接的一种任务组件，�
 参与 DolphinScheduler 社区有非常多的参与贡献的方式，包括：
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/bca55edc877ed6136703a6251e3a19f9.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/bca55edc877ed6136703a6251e3a19f9.png"/>
 </div>
 
 贡献第一个PR(文档、代码) 我们也希望是简单的，第一个PR用于熟悉提交的流程和社区协作以及感受社区的友好度。

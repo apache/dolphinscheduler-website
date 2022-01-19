@@ -1,7 +1,7 @@
 # From Airflow to Apache DolphinScheduler, the Roadmap of Scheduling System On Youzan Big Data Development Platform
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1639383815755.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1639383815755.png"/>
 </div>
 
 At the recent Apache DolphinScheduler Meetup 2021, Zheqi Song, the Director of Youzan Big Data Development Platform
@@ -25,7 +25,7 @@ capabilities for driving merchants' digital growth.
 At present, Youzan has established a relatively complete digital product matrix with the support of the data center:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_Jjgx5qQfjo559_oaJP-DAQ.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_Jjgx5qQfjo559_oaJP-DAQ.png"/>
 </div>
 
 Youzan has established a big data development platform (hereinafter referred to as DP platform) to support the
@@ -33,7 +33,7 @@ increasing demand for data processing services. This is a big data offline devel
 the environment, tools, and data needed for the big data tasks development.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_G9znZGQ1XBhJva0tjWa6Bg.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_G9znZGQ1XBhJva0tjWa6Bg.png"/>
 </div>
 
 Youzan Big Data Development Platform Architecture
@@ -49,7 +49,7 @@ scheduling cluster.
 ### 1 Scheduling layer architecture design
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_UDNCmMrZtcswj62aqNXA1g.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_UDNCmMrZtcswj62aqNXA1g.png"/>
 </div>
 
 Youzan Big Data Development Platform Scheduling Layer Architecture Design
@@ -85,7 +85,7 @@ scheduling system also faces many challenges and problems.
 3. Performance issues:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_U33OWzzfw2Dqn3ryCNbSvw.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_U33OWzzfw2Dqn3ryCNbSvw.png"/>
 </div>
 
 Airflow's schedule loop, as shown in the figure above, is essentially the loading and analysis of DAG and generates DAG
@@ -112,11 +112,11 @@ community ecology.
 This is the comparative analysis result below:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_Rbr05klPmQIc7WPFNeEH-w.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_Rbr05klPmQIc7WPFNeEH-w.png"/>
 </div>
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_Ity1QoRL_Yu5aDVClY9AgA.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_Ity1QoRL_Yu5aDVClY9AgA.png"/>
 </div>
 
 Airflow VS DolphinScheduler
@@ -124,7 +124,7 @@ Airflow VS DolphinScheduler
 ### 1 DolphinScheduler valuation
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_o8c1Y1TFAOis3KozzJnvfA.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_o8c1Y1TFAOis3KozzJnvfA.png"/>
 </div>
 
 As shown in the figure above, after evaluating, we found that the throughput performance of DolphinScheduler is twice
@@ -183,7 +183,7 @@ In response to the above three points, we have redesigned the architecture.
    release.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_eusVhW4QAJ2uO-J96bqiFg.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_eusVhW4QAJ2uO-J96bqiFg.png"/>
 </div>
 
 Refactoring Design
@@ -197,7 +197,7 @@ complement it.
 - Workflow definition status combing
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/-1.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/-1.png"/>
 </div>
 
 We first combed the definition status of the DolphinScheduler workflow. The definition and timing management of
@@ -213,10 +213,10 @@ generated on the DolphinScheduler. After going online, the task will be run and 
 to view the results and obtain log running information in real-time.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/-1.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/-1.png"/>
 </div>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/-3.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/-3.png"/>
 </div>
 - Workflow release process transformation
 
@@ -224,10 +224,10 @@ Secondly, for the workflow online process, after switching to DolphinScheduler, 
 workflow definition configuration and timing configuration, as well as the online status.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_4-ikFp_jJ44-YWJcGNioOg.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_4-ikFp_jJ44-YWJcGNioOg.png"/>
 </div>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/-5.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/-5.png"/>
 </div>
 The original data maintenance and configuration synchronization of the workflow is managed based on the DP master, and
 only when the task is online and running will it interact with the scheduling system. Based on these two core changes,
@@ -249,7 +249,7 @@ the DP master, map the task information maintained by the DP to the task on DP, 
 DolphinScheduler to transfer task configuration information.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_A76iOa5LKyPiu-NoopmYrA.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_A76iOa5LKyPiu-NoopmYrA.png"/>
 </div>
 
 Because some of the task types are already supported by DolphinScheduler, it is only necessary to customize the
@@ -264,7 +264,7 @@ transformation focuses on these task types. At present, the adaptation and trans
 tasks, and script tasks adaptation have been completed.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_y7HUfYyLs9NxnTzENKGSCA.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_y7HUfYyLs9NxnTzENKGSCA.png"/>
 </div>
 ### 4 Function complement
 
@@ -283,7 +283,7 @@ In Figure 1, the workflow is called up on time at 6 o'clock and tuned up once an
 called up on time at 6 o'clock and the task execution is completed. The current state is also normal.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_MvQGZ-FKKLMvKrlWihXHgg.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_MvQGZ-FKKLMvKrlWihXHgg.png"/>
 </div>
 
 figure 1
@@ -292,7 +292,7 @@ Figure 2 shows that the scheduling system was abnormal at 8 o'clock, causing the
 o'clock and 8 o'clock.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_1WxLOtd1Oh2YERmtGcRb0Q.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_1WxLOtd1Oh2YERmtGcRb0Q.png"/>
 </div>
 figure 2
 
@@ -300,7 +300,7 @@ Figure 3 shows that when the scheduling is resumed at 9 o'clock, thanks to the C
 can automatically replenish the previously lost execution plan to realize the automatic replenishment of the scheduling.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/126ec1039f7aa614c.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/126ec1039f7aa614c.png"/>
 </div>
 
 Figure 3
@@ -314,7 +314,7 @@ At the same time, this mechanism is also applied to DP's global complement.
 - Global Complement across Dags
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_eVyyABTQCLeSGzbbuizfDA.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_eVyyABTQCLeSGzbbuizfDA.png"/>
 </div>
 
 DP platform cross-Dag global complement process
@@ -347,7 +347,7 @@ environment and the formal environment.
 
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_bXwtKI2HJzQuHCMW5y3hgg.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_bXwtKI2HJzQuHCMW5y3hgg.png"/>
 </div>
 
 DolphinScheduler 2.0 workflow task node display
@@ -364,7 +364,7 @@ stress will be carried out in the test environment. If no problems occur, we wil
 production environment in January 2022, and plan to complete the full migration in March.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_jv3ScivmLop7GYjKIECaiw.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_jv3ScivmLop7GYjKIECaiw.png"/>
 </div>
 
 ### 3 Expectations for DolphinScheduler
@@ -374,7 +374,7 @@ plug-in alarm components based on DolphinScheduler 2.0, by which the Form inform
 displayed adaptively on the frontend.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/16/1_3jP2KQDtFy71ciDoUyW3eg.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/16/1_3jP2KQDtFy71ciDoUyW3eg.png"/>
 </div>
 
 "

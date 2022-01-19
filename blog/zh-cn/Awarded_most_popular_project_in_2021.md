@@ -1,6 +1,6 @@
 # Apache DolphinScheduler 获评 2021 年度「最受欢迎项目」！
 <div align=center>
-<img src="https://imgpp.com/images/2022/01/07/_c449bb07189725ea562d5ba404504b8f_96119.md.jpg"/>
+<img src="https://s1.imgpp.com/2022/01/07/_c449bb07189725ea562d5ba404504b8f_96119.md.jpg"/>
 </div>
 
 > 近日，由 OSCHINA 举办的「2021 OSC 中国开源项目」评选活动公布了评选结果。
@@ -9,11 +9,11 @@
 
 ## 获评「最受欢迎项目」
 <div align=center>
-<img src="https://imgpp.com/images/2022/01/07/1.md.png"/>
+<img src="https://s1.imgpp.com/2022/01/07/1.png"/>
 </div>
 
 <div align=center>
-<img src="https://imgpp.com/images/2022/01/07/2.md.png"/>
+<img src="https://s1.imgpp.com/2022/01/07/2.png"/>
 </div>
 
 
@@ -23,7 +23,7 @@
 之后，经过第二轮投票的激烈角逐，Apache DolphinScheduler 再次胜出，获得「最受欢迎项目」奖项。
 
 <div align=center>
-<img src="https://imgpp.com/images/2022/01/07/3-1.md.png"/>
+<img src="https://s1.imgpp.com/2022/01/07/3-1.png"/>
 </div>
 
 中国开源软件生态蓬勃发展，近年来涌现出了一大批优秀的开源软件创企，他们不忘初心，深耕开源，回馈社区，为中国开源软件事业添砖加瓦，成为全球开源软件生态中不可忽视的重要力量。「OSC 中国开源项目评选」是开源中国（OSCHINA，OSC 开源社区）举办的国内最权威、最盛大的开源项目评选活动，旨在更好地展示国内开源现状，探讨国内开源趋势，激励国内开源人才，促进国内开源生态完善。
