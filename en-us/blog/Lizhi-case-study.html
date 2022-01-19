@@ -20,7 +20,7 @@
 </blockquote>
 <h2>Background</h2>
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/radio-g360707f44_1920.md.jpg"/>
+<img src="https://s1.imgpp.com/2021/11/23/radio-g360707f44_1920.md.jpg"/>
 </div>
 <p>Lizhi is a fast-growing UGC audio community company that attaches great importance to AI and data analysis technology development. AI can find the right voice for each user among the massively fragmented audios, and build it into a sustainable ecological closed loop. And data analysis can guide the company’s fast-growing business. Both of the two fields need to process massive amounts of data and require a big data scheduling system.</p>
 <p>Before the beginning of 2020, Lizhi used the Azkaban scheduling system. Although the big data scheduling SQL/shell/python scripts and other big data-related modules can complete the entire AI process, it is not easy and reusable enough. The machine learning platform is a set of systems built specifically for AI, which abstracts the AI development paradigm, i.e. data acquisition, data preprocessing, model training, model prediction, model evaluation, and model release into modules. Each module provides multiple implementations and is connected in series by DAG to achieve low-code development by drag-and-drop configuration.</p>
@@ -64,28 +64,28 @@
 At the technical level of the platform, Lizhi optimizes the extended modules for the five paradigms of machine learning, i.e. obtaining training samples, data preprocessing, model training, model evaluation, and model release.</p>
 <p>A simple xgboost case:</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/1.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/1.png"/>
 </div>
 <h3>1. Obtaining training samples</h3>
 <p>At present, Lizhi does not directly select data from Hive, and joins the union, splitting the sample afterward, but directly processes the sample by shell nodes.</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/2.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/2.png"/>
 </div>
 <h3>2. Data preprocessing</h3>
 <p>Transformer&amp; custom preprocessing configuration file, use the same configuration for online training, and feature preprocessing is performed after the feature is obtained. It contains the itemType and its feature set to be predicted, the user’s userType and its feature set, as well as the associated and crossed itemType and its feature set. Define the transformer function for each feature preprocessing, supports custom transformer and hot update, xgboost, and tf model feature preprocessing. After the node process, the data format that is needed for model training is prepared. This configuration file will also be brought along when the model is released to keep training and online prediction consistent. This file is maintained in the resource center of DolphinScheduler.</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/2.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/2.png"/>
 </div>
 <h3>3. Xgboost training</h3>
 <p>It supports w2v, xgboost, tf model training modules. The training modules are first packaged with TensorFlow or PyTorch and then packaged into DolphinScheduler modules.
 For example, in the xgboost training process, use Python to package the xgboost training script into the xgboost training node of DolphinScheduler, and show the parameters required for training on the interface. The file exported by “training set data preprocessing” is input to the training node through HDFS.</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/3.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/3.png"/>
 </div>
 <h3>4. Model release</h3>
 <p>The release model will send the model and preprocessing configuration files to HDFS and insert records into the model release table. The model service will automatically identify the new model, update the model, and provide online prediction services to the external.</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/11/23/4.md.png"/>
+<img src="https://s1.imgpp.com/2021/11/23/4.png"/>
 </div>
 <p>Haibin Yu said that due to historical and technical limitations, Lizhi has not yet built a machine learning platform like Ali PAI, but the practice has proved that similar platform functions can be achieved based on DolphinScheduler.</p>
 <p>In addition, Lizhi has also carried out many re-developments based on DolphinScheduler to make the scheduling system more in line with actual business needs, such as:</p>
@@ -109,7 +109,7 @@ Lizhi believes that if the scheduling system can be improved in terms of kernel 
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.41c1265.js"></script>
+  <script src="/build/vendor.24cc005.js"></script>
   <script src="/build/blog.md.f25cabd.js"></script>
   <script>
     var _hmt = _hmt || [];

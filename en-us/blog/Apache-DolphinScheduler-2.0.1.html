@@ -20,7 +20,7 @@ new task parameter transfer functions, etc..</p>
 <p>Download Apache DolphinScheduler 2.0.1：<a href="https://dolphinscheduler.apache.org/zh-cn/download/download.html">https://dolphinscheduler.apache.org/zh-cn/download/download.html</a></p>
 <p>The workflow execution process activities of Apache DolphinScheduler 2.0.1 are shown in the following figure:</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/20/master-process-2.0-en.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/20/master-process-2.0-en.png"/>
 </div>
 <p>Start process activity diagram</p>
 <p>Version 2.0.1 enhanced the system's processing capabilities by optimizing the kernel, thereby greatly improving
@@ -80,7 +80,7 @@ workflow, and added a log table to save the historical version of workflow defin
 Improves the efficiency of workflow operation.</p>
 <p>The operation flow chart of the workflow and tasks under the API module are shown as below:</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/20/3.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/20/3.png"/>
 </div>
 <h2>03 Automatic Version Upgrade Function</h2>
 <p>Automatic version upgrade finally comes true in version 2.0.1. The users can automatically upgrade Apache
@@ -109,22 +109,22 @@ click: <a href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/g
 <p>Currently, the transfer between shell tasks and sql tasks is supported. Passing parameters between shell tasks:
 Set an out variable &quot;trans&quot; in the previous &quot;create_parameter&quot; task: echo'${setValue(trans=hello trans)}'</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/323f6a18d8a1d2f2d8fdcb5687c264b5.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/323f6a18d8a1d2f2d8fdcb5687c264b5.png"/>
 </div>
 Once Keyword: "${setValue(key=value)}" is detected in the task log of the current task, the system will automatically parse the variable transfer value, in the post-task, you can directly use the "trans" variable:
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/8be29339b73b594dc05a6b832d9330ec.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/8be29339b73b594dc05a6b832d9330ec.png"/>
 </div>
 <p>The parameter passing of the SQL task:
 The name of the custom variable prop of the SQL task needs to be consistent with the field name, and the variable will
 select the value corresponding to the column with the same variable name in the column name in the SQL query result. The
 output of user number:</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/85bc5216c01ca958cdf11d4bd555c8a6.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/85bc5216c01ca958cdf11d4bd555c8a6.png"/>
 </div>
 <p>Use the variable &quot;cnt&quot; in downstream tasks:</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/4278d0b7f833b64f24fc3d6122287454.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/4278d0b7f833b64f24fc3d6122287454.png"/>
 </div>
 <p>2.0.1 adds switch task and pigeon task components:</p>
 <ul>
@@ -141,7 +141,7 @@ generated upstream). Next, we set id as 1, run task C, and others run task D.</p
 <p>Configure task C to run when the global variable id=1. Then edit ${id} == 1 in the condition of task B, and select C for
 branch circulation. For other tasks, select D in the branch circulation.</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/636f53ddc809f028ffdfc18fd08b5828.md.jpg"/>
+<img src="https://s1.imgpp.com/2021/12/17/636f53ddc809f028ffdfc18fd08b5828.md.jpg"/>
 </div>
 <p>-pigeon task</p>
 <p>The pigeon task is a task component that can be docked with third-party systems. It can trigger task execution, cancel
@@ -154,7 +154,7 @@ DolphinScheduler.</p>
 <p>Configure the worker running environment online. A worker can specify multiple environments, and each environment is
 equivalent to the dolphinscheduler_env.sh file.</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/ef8b444c6dbebe397daaaa3bbadf743f.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/ef8b444c6dbebe397daaaa3bbadf743f.png"/>
 </div>
 <p>When creating a task, select the worker group and the corresponding environment variables. When the task is executed,
 the worker will execute the task in the corresponding execution environment.</p>
@@ -194,16 +194,16 @@ run; Fix the problem of invalid workflow timeout strategy; Fix the problem that 
 <p>Thanks to the 289 community contributors who participated in the optimization and improvement of version 2.0.1 (in no
 particular order)!</p>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/2020b4f57e33734414a11149704ded92.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/2020b4f57e33734414a11149704ded92.png"/>
 </div>
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/17/1825b6945d5845233b7389479ba6c074.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/17/1825b6945d5845233b7389479ba6c074.png"/>
 </div>
 </section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.41c1265.js"></script>
+  <script src="/build/vendor.24cc005.js"></script>
   <script src="/build/blog.md.f25cabd.js"></script>
   <script>
     var _hmt = _hmt || [];
