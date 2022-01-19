@@ -69,7 +69,7 @@ export default {
           link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.2.html',
         },
         {
-          img: 'https://imgpp.com/images/2022/01/10/164179986575876800e959cabce5b.md.png',
+          img: 'https://s1.imgpp.com/2022/01/10/164179986575876800e959cabce5b.png',
           title: '恭喜 Apache DolphinScheduler 入选可信开源社区共同体（TWOS）预备成员！',
           content: '近日，可信开源社区共同体正式宣布批准 6 位正式成员和 3 位预备成员加入。其中...',
           dateStr: '2022-1-11',
