@@ -1,7 +1,5 @@
 # DolphinScheduler E2E Automation Test
 
-
-
 ## I. Preparatory knowledge
 
 ### 1. The difference between E2E Test and Unit Test
