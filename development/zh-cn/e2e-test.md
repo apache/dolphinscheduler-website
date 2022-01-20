@@ -1,6 +1,4 @@
 # DolphinScheduler — E2E 自动化测试
-
-
 ## 一、前置知识：
 
 ### 1、E2E 测试与单元测试的区别
@@ -25,7 +23,7 @@ Selenium 框架通过一个面向用户的界面将所有这些部分连接在�
 
 DolphinScheduler 的 E2E 测试使用 docker-compose 部署，当前测试的为单机模式，主要用于检验一些例如“增删改查”基本功能，后期如需做集群验证，例如不同服务之间的协作，或者各个服务之间的通讯机制，可参考 `deploy/docker/docker-compose.yml`来配置。
 
-对于 E2E 测试（前端这一块），使用页面模型的形式，主要为每一个页面建立一个对应的模型。下面以登录页为例：
+对于 E2E 测试（前端这一块），使用 [页面模型](https://www.selenium.dev/documentation/guidelines/page_object_models/) 的形式，主要为每一个页面建立一个对应的模型。下面以登录页为例：
 
 ```java
 package org.apache.dolphinscheduler.e2e.pages;
@@ -142,7 +140,7 @@ public final class LoginPage extends NavBarPage {
 
 ![E2E_Cases](../../img/e2e-test/E2E_Cases.png)
 
-下面以租户管理测试为例，前文以及说明，我们使用 docker-compose 进行部署，所以每个测试案例，都需要以注解的形式引入对应的文件。
+下面以租户管理测试为例，前文已经说明，我们使用 docker-compose 进行部署，所以每个测试案例，都需要以注解的形式引入对应的文件。
 
 使用 Selenium 所提供的 RemoteWebDriver 来加载浏览器。在每个测试案例开始之前都需要进行一些准备工作。比如：登录用户、跳转到对应的页面（根据具体的测试案例而定）。
 

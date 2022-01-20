@@ -52,6 +52,10 @@ export default {
             link: '/en-us/development/frontend-development.html',
           },
           {
+            title: 'E2E Automation Test',
+            link: '/en-us/development/e2e-test.html',
+          },
+          {
             title: 'Questions & Communications',
             link: '/en-us/development/have-questions.html',
           },
