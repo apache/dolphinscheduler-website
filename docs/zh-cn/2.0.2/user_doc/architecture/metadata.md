@@ -1,4 +1,4 @@
-# Dolphin Scheduler 2.0元数据文档
+# 元数据
 
 <a name="25Ald"></a>
 ### 表概览
@@ -180,6 +180,3 @@
 | update_time | datetime | 更新时间 |
 | process_instance_priority | int | 流程实例优先级：0 Highest,1 High,2 Medium,3 Low,4 Lowest |
 | worker_group | varchar | 任务指定运行的worker分组 |
-
-
-

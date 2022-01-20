@@ -1,7 +1,4 @@
-# 快速上手
-* 喜欢看视频的伙伴可以参见手把手教你如何《快速上手 Apache DolphinScheduler 教程》
-[![image](https://user-images.githubusercontent.com/15833811/126286960-dfb3bfee-c8fb-4bdf-a717-d3be221c9711.png)](https://www.bilibili.com/video/BV1d64y1s7eZ)
-
+# 快速开始
 
 * 管理员用户登录
   >地址：http://192.168.xx.xx:12345/dolphinscheduler 用户名密码：admin/dolphinscheduler123
@@ -39,7 +36,7 @@
  <p align="center">
     <img src="/img/create-environment.png" width="60%" />
   </p>
- 
+
  * 创建token令牌
  <p align="center">
     <img src="/img/creat_token.png" width="60%" />
@@ -64,3 +61,6 @@
  <p align="center">
    <img src="/img/task-log.png" width="60%" />
 </p>
+
+### 演示地址：
+[![image](https://user-images.githubusercontent.com/15833811/126286960-dfb3bfee-c8fb-4bdf-a717-d3be221c9711.png)](https://www.bilibili.com/video/BV1d64y1s7eZ)

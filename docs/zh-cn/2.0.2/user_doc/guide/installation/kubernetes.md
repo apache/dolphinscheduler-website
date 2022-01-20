@@ -1,4 +1,4 @@
-# 快速试用 Kubernetes 部署
+# Kubernetes 部署
 
 Kubernetes部署目的是在Kubernetes集群中部署 DolphinScheduler 服务，能调度大量任务，可用于在生产中部署。
 
