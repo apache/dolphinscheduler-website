@@ -40,6 +40,15 @@ export default {
         ],
       },
       {
+        title: 'Join Community',
+        children: [
+          {
+            title: 'Review Issue or Pull Requests',
+            link: '/en-us/community/join/review.html',
+          },
+        ],
+      },
+      {
         title: 'Contribution Guide',
         children: [
           {
@@ -263,6 +272,15 @@ export default {
           {
             title: '行为准则',
             link: '/zh-cn/community/development/code-conduct.html',
+          },
+        ],
+      },
+      {
+        title: '参与社区',
+        children: [
+          {
+            title: 'Review Issue or Pull Requests',
+            link: '/zh-cn/community/join/review.html',
           },
         ],
       },
