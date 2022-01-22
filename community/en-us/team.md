@@ -47,6 +47,7 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Jiajie Zhong  | zhongjiajie  | [@zhongjiajie](https://github.com/zhongjiajie)           |
 | Yizhi Wang    | wangyizhi    | [@Wangyizhi1](https://github.com/Wangyizhi1)             |
 | ShunFeng Cai  | caishunfeng  | [@caishunfeng](https://github.com/caishunfeng)           |
+| Wenjun Ruan   | wenjun       | [@ruanwenjun](https://github.com/ruanwenjun)             |
 
 ## Contributors
 
