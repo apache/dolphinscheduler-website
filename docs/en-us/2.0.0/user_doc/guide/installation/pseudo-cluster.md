@@ -35,6 +35,9 @@ echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 sed -i '$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
+# Unzip the downloaded DolphinScheduler binary package to the specified directory, such as creating /opt/dolphinscheduler, and rename the unzipped file name
+tar -zxvf apache-dolphinscheduler-2.0.0-bin.tar.gz -C /opt/dolphinscheduler
+mv apache-dolphinscheduler-2.0.0-bin  dolphinscheduler-bin
 # Modify directory permissions and grant permissions for user you created above
 chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 ```
@@ -85,7 +88,7 @@ mysql> flush privileges;
 
 Run the latest schema file manually in `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_*.sql` to initialization you database. If you use MySQL, please run `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql`, for PostgreSQL run `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_postgre.sql`
 
-> **_NOTICE:_** In the latest version, the way running command `sh script/create-dolphinscheduler.sh` initialization database is broken, We have created a [issue-6597][issue] to track and fix this problem
+> **_NOTICE:_** In the 2.0.0 version, the way running command `sh script/create-dolphinscheduler.sh` initialization database is broken, We have created a [issue-6597][issue] to track and fix this problem
 
 <!--
 Modify the database configuration and initialize
@@ -152,7 +155,7 @@ registryServers="localhost:2181"
 
 ## Start DolphinScheduler
 
-Use deployment user you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder
+Use **deployment user** you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder
 
 ```shell
 sh install.sh

@@ -35,6 +35,9 @@ echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 sed -i '$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
+# 将下载好 DolphinScheduler 二进制包解压到指定目录，比如创建 /opt/dolphinscheduler，并重命名解压后的文件名
+tar -zxvf apache-dolphinscheduler-2.0.3-bin.tar.gz -C /opt/dolphinscheduler
+mv apache-dolphinscheduler-2.0.3-bin  dolphinscheduler-bin
 # 修改目录权限，使得部署用户对 dolphinscheduler-bin 目录有操作权限
 chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 ```
@@ -66,26 +69,6 @@ chmod 600 ~/.ssh/authorized_keys
 # 启动 zookeeper
 ./bin/zkServer.sh start
 ```
-
-### 初始化数据库
-
-DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 [mysql-connector-java 驱动][mysql] (8.0.16) 并移动到 DolphinScheduler 的 lib目录下。下面以 MySQL 为例，说明如何初始化数据库
-
-```shell
-mysql -uroot -p
-
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-
-# 修改 {user} 和 {password} 为你希望的用户名和密码
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
-
-mysql> flush privileges;
-```
-
-运行对应数据库的最新定义文件，位置在 `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_*.sql` 。例如你是 MySQL ，运行 `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql` ，是 PostgreSQL 则运行 `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_postgre.sql`
-
-> **_NOTICE:_** 最新版本目前通过运行命令 `sh script/create-dolphinscheduler.sh` 初始化数据库的方式暂不可用，我们创建了一个[issue-6597][issue] 去追踪并修复这个问题。
 
 <!--
 修改数据库配置，并初始化
@@ -150,9 +133,31 @@ dbname="dolphinscheduler"
 registryServers="localhost:2181"
 ```
 
+## 初始化数据库
+
+DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 [mysql-connector-java 驱动][mysql] (8.0.16) 并移动到 DolphinScheduler 的 lib目录下。下面以 MySQL 为例，说明如何初始化数据库
+
+```shell
+mysql -uroot -p
+
+mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+# 修改 {user} 和 {password} 为你希望的用户名和密码
+mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
+mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
+
+mysql> flush privileges;
+```
+
+完成上述步骤后，您已经为 DolphinScheduler 创建一个新数据库，现在你可以通过快速的 Shell 脚本来初始化数据库
+
+```shell
+sh script/create-dolphinscheduler.sh
+```
+
 ## 启动 DolphinScheduler
 
-使用部署用户运行一下命令完成部署，部署后的运行日志将存放在 logs 文件夹内
+使用上面创建的**部署用户**运行以下命令完成部署，部署后的运行日志将存放在 logs 文件夹内
 
 ```shell
 sh install.sh

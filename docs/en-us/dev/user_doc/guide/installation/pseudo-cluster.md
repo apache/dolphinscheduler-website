@@ -35,6 +35,9 @@ echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 sed -i '$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
+# Unzip the downloaded DolphinScheduler binary package to the specified directory, such as creating /opt/dolphinscheduler, and rename the unzipped file name
+tar -zxvf apache-dolphinscheduler-2.0.3-bin.tar.gz -C /opt/dolphinscheduler
+mv apache-dolphinscheduler-2.0.3-bin  dolphinscheduler-bin
 # Modify directory permissions and grant permissions for user you created above
 chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
 ```
@@ -66,26 +69,6 @@ Go to the zookeeper installation directory, copy configure file `zoo_sample.cfg`
 # Start zookeeper
 ./bin/zkServer.sh start
 ```
-
-### Initialize the database
-
-DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
-
-```shell
-mysql -uroot -p
-
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-
-# Change {user} and {password} by requests
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
-
-mysql> flush privileges;
-```
-
-Run the latest schema file manually in `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_*.sql` to initialization you database. If you use MySQL, please run `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql`, for PostgreSQL run `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_postgre.sql`
-
-> **_NOTICE:_** In the latest version, the way running command `sh script/create-dolphinscheduler.sh` initialization database is broken, We have created a [issue-6597][issue] to track and fix this problem
 
 <!--
 Modify the database configuration and initialize
@@ -150,9 +133,31 @@ dbname="dolphinscheduler"
 registryServers="localhost:2181"
 ```
 
+## Initialize the database
+
+DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
+
+```shell
+mysql -uroot -p
+
+mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+
+# Change {user} and {password} by requests
+mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
+mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
+
+mysql> flush privileges;
+```
+
+After above steps done you would create a new database for DolphinScheduler, then run shortcut Shell scripts to init database
+
+```shell
+sh script/create-dolphinscheduler.sh
+```
+
 ## Start DolphinScheduler
 
-Use deployment user you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder
+Use **deployment user** you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder
 
 ```shell
 sh install.sh
