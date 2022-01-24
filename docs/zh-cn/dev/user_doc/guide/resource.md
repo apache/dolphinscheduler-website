@@ -118,13 +118,13 @@ conf/common.properties
 #### 新建任务组   
 
 <p align="center">
-    <img src="/img/task_group_manage.png"/>
+    <img src="/img/task_group_manage.png" width="80%" />
 </p>
 
 用户点击【资源中心】-【任务组管理】-【任务组配置】-新建任务组
 
 <p align="center">
-<img src="/img/task_group_create.png"/>
+<img src="/img/task_group_create.png" width="80%" />
 </p> 
 
 您需要输入图片中信息，其中
@@ -138,13 +138,13 @@ conf/common.properties
 #### 查看任务组队列
 
 <p align="center">
-    <img src="/img/task_group_conf.png"/>
+    <img src="/img/task_group_conf.png" width="80%" />
 </p>
 
 点击按钮查看任务组使用信息
 
 <p align="center">
-    <img src="/img/task_group_queue_list.png"/>
+    <img src="/img/task_group_queue_list.png" width="80%" />
 </p>
 
 #### 任务组的使用
@@ -154,7 +154,7 @@ conf/common.properties
 我们以shell节点为例：
 
 <p align="center">
-    <img src="/img/task_group_use.png" />
+    <img src="/img/task_group_use.png" width="80%" />
 </p>        
 
 关于任务组的配置，您需要做的只需要配置红色框内的部分，其中：
