@@ -100,6 +100,10 @@ export default {
             title: 'Micro BenchMark Notice',
             link: '/en-us/community/development/microbench.html',
           },
+          {
+            title: 'Unit Test Writing Guide',
+            link: '/en-us/community/development/unit-test.html',
+          },
         ],
       },
       {
