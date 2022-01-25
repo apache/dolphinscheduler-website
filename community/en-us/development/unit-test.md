@@ -70,7 +70,7 @@ There are several types of invalid assertions:
 
 3.   Assertions should be affirmative rather than negative if possible. Assertions should be within a range of predicted results, or exact values, whenever possible (otherwise you may end up with something that doesn't match your actual expectations but passes the assertion) unless your code only cares about whether it is empty or not.
 
-### 8. The attention of some single measuring point
+### 8. Some points to note for unit tests
 
 1: Thread.sleep()
 
