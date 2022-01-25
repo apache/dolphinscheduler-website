@@ -35,6 +35,11 @@ export default {
             link: '/en-us/docs/latest/user_doc/architecture/listdocs.html',
           },
           {
+            key: 'pythonAPI',
+            text: 'PyDolphinScheduler',
+            link: '/python/index.html',
+          },
+          {
             key: 'docsdev',
             text: 'dev',
             link: '/en-us/docs/dev/user_doc/guide/quick-start.html',
@@ -210,6 +215,11 @@ export default {
             key: 'docs200',
             text: '历史版本',
             link: '/zh-cn/docs/latest/user_doc/architecture/listdocs.html',
+          },
+          {
+            key: 'pythonAPI',
+            text: 'PyDolphinScheduler',
+            link: '/python/index.html',
           },
           {
             key: 'docsdev',
