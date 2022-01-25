@@ -8,7 +8,7 @@ env:
 
 jobs:
   build-py-doc:
-    name: Build Python Dist Doc From apache/dolphinscheduler
+    name: Build Python Doc
     runs-on: ubuntu-latest
     steps:
       - name: Checkout apache/dolphinscheduler
@@ -28,13 +28,13 @@ jobs:
         working-directory: dolphinscheduler-python/pydolphinscheduler/docs
         run: make clean && make html
       - uses: actions/upload-artifact@v2
-        name: Upload Python API Dist Document
+        name: Upload Python API Dist Doc
         with:
           name: python-dist-doc
           path: dolphinscheduler-python/pydolphinscheduler/docs/build/html
           retention-days: 1
 
-  build-and-deploy:
+  build-website-deploy:
     runs-on: ubuntu-latest
     needs: [ build-py-doc ]
     steps:
