@@ -21,5 +21,5 @@ When a custom bot sends a message, you can specify the "@person list" by your mo
 * @All
   > Is @Everyone
 
-[DingTalk Custom Robot Access Development Documentation](https://open.dingtalk.com/document/robots/custom-robot-access>),
+[DingTalk Custom Robot Access Development Documentation](https://open.dingtalk.com/document/robots/custom-robot-access),
 Use message type as text
