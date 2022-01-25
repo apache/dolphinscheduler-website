@@ -21,5 +21,5 @@
 * @All
   > 是否@所有人
 
-钉钉自定义机器人接入开发文档: <https://open.dingtalk.com/document/robots/custom-robot-access>,
+[钉钉自定义机器人接入开发文档](https://open.dingtalk.com/document/robots/custom-robot-access),
 采用消息类型为text
