@@ -44,7 +44,7 @@ sed -i &#x27;$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; /etc/s
 sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <span class="hljs-meta">
 #</span><span class="bash"> Modify directory permissions and grant permissions <span class="hljs-keyword">for</span> user you created above</span>
-chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
+chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
 </code></pre>
 <blockquote>
 <p><strong><em>NOTICE:</em></strong></p>
@@ -69,22 +69,6 @@ chmod 600 ~/.ssh/authorized_keys
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> Start zookeeper</span>
 ./bin/zkServer.sh start
 </code></pre>
-<h3>Initialize the database</h3>
-<p>DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java driver</a> (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database</p>
-<pre><code class="language-shell">mysql -uroot -p
-<span class="hljs-meta">
-mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>
-<span class="hljs-meta">
-#</span><span class="bash"> Change {user} and {password} by requests</span>
-<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
-<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
-<span class="hljs-meta">
-mysql&gt;</span><span class="bash"> flush privileges;</span>
-</code></pre>
-<p>Run the latest schema file manually in <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_*.sql</code> to initialization you database. If you use MySQL, please run <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql</code>, for PostgreSQL run <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_postgre.sql</code></p>
-<blockquote>
-<p><strong><em>NOTICE:</em></strong> In the latest version, the way running command <code>sh script/create-dolphinscheduler.sh</code> initialization database is broken, We have created a <a href="https://github.com/apache/dolphinscheduler/issues/6597">issue-6597</a> to track and fix this problem</p>
-</blockquote>
 <!--
 Modify the database configuration and initialize
 
@@ -143,8 +127,23 @@ dbname=&quot;dolphinscheduler&quot;
 <span class="hljs-meta">#</span><span class="bash"> Registration center address, the address of zookeeper service</span>
 registryServers=&quot;localhost:2181&quot;
 </code></pre>
+<h2>Initialize the database</h2>
+<p>DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java driver</a> (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database</p>
+<pre><code class="language-shell">mysql -uroot -p
+<span class="hljs-meta">
+mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>
+<span class="hljs-meta">
+#</span><span class="bash"> Change {user} and {password} by requests</span>
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
+<span class="hljs-meta">
+mysql&gt;</span><span class="bash"> flush privileges;</span>
+</code></pre>
+<p>After above steps done you would create a new database for DolphinScheduler, then run shortcut Shell scripts to init database</p>
+<pre><code class="language-shell">sh script/create-dolphinscheduler.sh
+</code></pre>
 <h2>Start DolphinScheduler</h2>
-<p>Use deployment user you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder</p>
+<p>Use <strong>deployment user</strong> you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder</p>
 <pre><code class="language-shell">sh install.sh
 </code></pre>
 <blockquote>

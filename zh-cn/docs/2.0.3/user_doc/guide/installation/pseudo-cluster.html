@@ -43,8 +43,8 @@ echo &quot;dolphinscheduler&quot; | passwd --stdin dolphinscheduler
 sed -i &#x27;$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; /etc/sudoers
 sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <span class="hljs-meta">
-#</span><span class="bash"> 修改目录权限，使得部署用户对 dolphinscheduler-bin 目录有操作权限</span>
-chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
+#</span><span class="bash"> 修改目录权限，使得部署用户对二进制包解压后的 apache-dolphinscheduler-*-bin 目录有操作权限</span>
+chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
 </code></pre>
 <blockquote>
 <p><strong><em>注意:</em></strong></p>
@@ -127,7 +127,7 @@ mysql&gt;</span><span class="bash"> flush privileges;</span>
 <pre><code class="language-shell">sh script/create-dolphinscheduler.sh
 </code></pre>
 <h2>启动 DolphinScheduler</h2>
-<p>使用部署用户运行一下命令完成部署，部署后的运行日志将存放在 logs 文件夹内</p>
+<p>使用上面创建的<strong>部署用户</strong>运行以下命令完成部署，部署后的运行日志将存放在 logs 文件夹内</p>
 <pre><code class="language-shell">sh install.sh
 </code></pre>
 <blockquote>

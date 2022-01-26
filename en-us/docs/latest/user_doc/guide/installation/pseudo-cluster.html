@@ -44,7 +44,7 @@ sed -i &#x27;$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; /etc/s
 sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <span class="hljs-meta">
 #</span><span class="bash"> Modify directory permissions and grant permissions <span class="hljs-keyword">for</span> user you created above</span>
-chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
+chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
 </code></pre>
 <blockquote>
 <p><strong><em>NOTICE:</em></strong></p>
@@ -127,7 +127,7 @@ mysql&gt;</span><span class="bash"> flush privileges;</span>
 <pre><code class="language-shell">sh script/create-dolphinscheduler.sh
 </code></pre>
 <h2>Start DolphinScheduler</h2>
-<p>Use deployment user you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder</p>
+<p>Use <strong>deployment user</strong> you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder</p>
 <pre><code class="language-shell">sh install.sh
 </code></pre>
 <blockquote>

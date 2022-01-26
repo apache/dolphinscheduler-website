@@ -43,8 +43,8 @@ echo &quot;dolphinscheduler&quot; | passwd --stdin dolphinscheduler
 sed -i &#x27;$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; /etc/sudoers
 sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <span class="hljs-meta">
-#</span><span class="bash"> 修改目录权限，使得部署用户对 dolphinscheduler-bin 目录有操作权限</span>
-chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
+#</span><span class="bash"> 修改目录权限，使得部署用户对二进制包解压后的 apache-dolphinscheduler-*-bin 目录有操作权限</span>
+chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
 </code></pre>
 <blockquote>
 <p><strong><em>注意:</em></strong></p>
@@ -83,7 +83,7 @@ mysql&gt;</span><span class="bash"> flush privileges;</span>
 </code></pre>
 <p>运行对应数据库的最新定义文件，位置在 <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_*.sql</code> 。例如你是 MySQL ，运行 <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql</code> ，是 PostgreSQL 则运行 <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_postgre.sql</code></p>
 <blockquote>
-<p><strong><em>NOTICE:</em></strong> 最新版本目前通过运行命令 <code>sh script/create-dolphinscheduler.sh</code> 初始化数据库的方式暂不可用，我们创建了一个<a href="https://github.com/apache/dolphinscheduler/issues/6597">issue-6597</a> 去追踪并修复这个问题。</p>
+<p><strong><em>NOTICE:</em></strong> 2.0.0 版本目前通过运行命令 <code>sh script/create-dolphinscheduler.sh</code> 初始化数据库的方式暂不可用，我们创建了一个<a href="https://github.com/apache/dolphinscheduler/issues/6597">issue-6597</a> 去追踪并修复这个问题。</p>
 </blockquote>
 <!--
 修改数据库配置，并初始化
@@ -144,7 +144,7 @@ dbname=&quot;dolphinscheduler&quot;
 registryServers=&quot;localhost:2181&quot;
 </code></pre>
 <h2>启动 DolphinScheduler</h2>
-<p>使用部署用户运行一下命令完成部署，部署后的运行日志将存放在 logs 文件夹内</p>
+<p>使用上面创建的<strong>部署用户</strong>运行以下命令完成部署，部署后的运行日志将存放在 logs 文件夹内</p>
 <pre><code class="language-shell">sh install.sh
 </code></pre>
 <blockquote>

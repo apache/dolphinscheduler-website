@@ -43,8 +43,8 @@ echo &quot;dolphinscheduler&quot; | passwd --stdin dolphinscheduler
 sed -i &#x27;$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; /etc/sudoers
 sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <span class="hljs-meta">
-#</span><span class="bash"> 修改目录权限，使得部署用户对 dolphinscheduler-bin 目录有操作权限</span>
-chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
+#</span><span class="bash"> 修改目录权限，使得部署用户对二进制包解压后的 apache-dolphinscheduler-*-bin 目录有操作权限</span>
+chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
 </code></pre>
 <blockquote>
 <p><strong><em>注意:</em></strong></p>
@@ -69,22 +69,6 @@ chmod 600 ~/.ssh/authorized_keys
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 启动 zookeeper</span>
 ./bin/zkServer.sh start
 </code></pre>
-<h3>初始化数据库</h3>
-<p>DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java 驱动</a> (8.0.16) 并移动到 DolphinScheduler 的 lib目录下。下面以 MySQL 为例，说明如何初始化数据库</p>
-<pre><code class="language-shell">mysql -uroot -p
-<span class="hljs-meta">
-mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>
-<span class="hljs-meta">
-#</span><span class="bash"> 修改 {user} 和 {password} 为你希望的用户名和密码</span>
-<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
-<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
-<span class="hljs-meta">
-mysql&gt;</span><span class="bash"> flush privileges;</span>
-</code></pre>
-<p>运行对应数据库的最新定义文件，位置在 <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_*.sql</code> 。例如你是 MySQL ，运行 <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql</code> ，是 PostgreSQL 则运行 <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_postgre.sql</code></p>
-<blockquote>
-<p><strong><em>NOTICE:</em></strong> 最新版本目前通过运行命令 <code>sh script/create-dolphinscheduler.sh</code> 初始化数据库的方式暂不可用，我们创建了一个<a href="https://github.com/apache/dolphinscheduler/issues/6597">issue-6597</a> 去追踪并修复这个问题。</p>
-</blockquote>
 <!--
 修改数据库配置，并初始化
 
@@ -143,8 +127,23 @@ dbname=&quot;dolphinscheduler&quot;
 <span class="hljs-meta">#</span><span class="bash"> 注册中心地址，zookeeper服务的地址</span>
 registryServers=&quot;localhost:2181&quot;
 </code></pre>
+<h2>初始化数据库</h2>
+<p>DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java 驱动</a> (8.0.16) 并移动到 DolphinScheduler 的 lib目录下。下面以 MySQL 为例，说明如何初始化数据库</p>
+<pre><code class="language-shell">mysql -uroot -p
+<span class="hljs-meta">
+mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>
+<span class="hljs-meta">
+#</span><span class="bash"> 修改 {user} 和 {password} 为你希望的用户名和密码</span>
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
+<span class="hljs-meta">
+mysql&gt;</span><span class="bash"> flush privileges;</span>
+</code></pre>
+<p>完成上述步骤后，您已经为 DolphinScheduler 创建一个新数据库，现在你可以通过快速的 Shell 脚本来初始化数据库</p>
+<pre><code class="language-shell">sh script/create-dolphinscheduler.sh
+</code></pre>
 <h2>启动 DolphinScheduler</h2>
-<p>使用部署用户运行一下命令完成部署，部署后的运行日志将存放在 logs 文件夹内</p>
+<p>使用上面创建的<strong>部署用户</strong>运行以下命令完成部署，部署后的运行日志将存放在 logs 文件夹内</p>
 <pre><code class="language-shell">sh install.sh
 </code></pre>
 <blockquote>
