@@ -15,8 +15,8 @@
 <h3>1.写单元测试的收益</h3>
 <ul>
 <li>单元测试能帮助每个人深入代码细节，了解代码的功能。</li>
-<li>通过测试用例我们能发现bug，并提交代码的健壮性。</li>
-<li>测试用例同时也是代码的demo用法。</li>
+<li>通过测试用例我们能发现 bug，并提交代码的健壮性。</li>
+<li>测试用例同时也是代码的 demo 用法。</li>
 </ul>
 <h3>2.单元测试用例的一些设计原则</h3>
 <ul>
@@ -24,12 +24,12 @@
 <li>注意边界条件。</li>
 <li>单元测试也应该好好设计，不要写无用的代码。</li>
 <li>当你发现一个<code>方法</code>很难写单元测试时，如果可以确认这个<code>方法</code>是<code>臭代码</code>，那么就和开发者一起重构它。</li>
-<li>DolphinScheduler: <a href="http://site.mockito.org/">mockito</a>. 下面是一些开发向导:<a href="http://www.baeldung.com/bdd-mockito">mockito tutorial</a> ,<a href="https://dzone.com/refcardz/mockito">mockito refcard</a></li>
+<li>DolphinScheduler: <a href="http://site.mockito.org/">mockito</a>. 下面是一些开发向导: <a href="http://www.baeldung.com/bdd-mockito">mockito tutorial</a>, <a href="https://dzone.com/refcardz/mockito">mockito refcard</a></li>
 <li>TDD（可选）：当你开始写一个新的功能时，你可以试着先写测试用例。</li>
 </ul>
 <h3>3.测试覆盖率设定值</h3>
 <ul>
-<li>在现阶段，Delta更改代码的测试覆盖设定值为：&gt;＝60%，越高越好。</li>
+<li>在现阶段，Delta 更改代码的测试覆盖设定值为：&gt;＝60%，越高越好。</li>
 <li>我们可以在这个页面中看到测试报告: <a href="https://codecov.io/gh/apache/dolphinscheduler">https://codecov.io/gh/apache/dolphinscheduler</a></li>
 </ul>
 <h2>单元测试基本准则</h2>
@@ -49,7 +49,7 @@
 <p>一般建议只在一些工具类提供静态方法，这种情况下也不需要 mock，直接使用真实类即可。如果被依赖类不是工具类，可以将静态方法重构为实例方法。这样更加符合面向对象的设计理念。</p>
 <h3>6： 完备性</h3>
 <p>测试覆盖率，这是个非常费劲的问题，对于核心流程，我们是希望能够达到 90% 的覆盖率，非核心流程要求 60% 以上。</p>
-<p>覆盖率足够高的情况下会减少足够多的bug出现的概率，同时也减少了我们回归测试的成本。这是一个长久的工作，每当开发者新增或者修改代码的时候，相关测试用例与此同时也需要完善。这一点，希望开发者以及相关代码reviewer都能足够重视。</p>
+<p>覆盖率足够高的情况下会减少足够多的 bug 出现的概率，同时也减少了我们回归测试的成本。这是一个长久的工作，每当开发者新增或者修改代码的时候，相关测试用例与此同时也需要完善。这一点，希望开发者以及相关代码 reviewer 都能足够重视。</p>
 <h3>7：拒绝无效断言</h3>
 <p>无效断言让测试本身变得毫无意义，它和你的代码正确与否几乎没什么关系，且有可能会给你造成一种成功的假象，这种假象有可能持续到你的代码部署到生产环境。</p>
 <p>关于无效的断言这么几种类型</p>
@@ -64,7 +64,7 @@
 <p>2:忽略某些测试类</p>
 <p>@Ignore 注解应该附上相关 issue 地址，方便后续开发者追踪了解该测试被忽略的历史原因。</p>
 <p>如 @Ignore(&quot;see #1&quot;)</p>
-<p>3: try-catch单元测试异常</p>
+<p>3: try-catch 单元测试异常</p>
 <p>当单元测试中的代码引发异常的时候，测试将失败,因此，不需要使用 try-catch 捕获异常。</p>
 <pre><code>@Test
 public void testMethod() {
@@ -84,13 +84,13 @@ public void testMethod() throws MyException {
 <p>4:测试异常情况</p>
 <p>当你需要进行异常情况测试时，应该避免在测试代码中包含多个方法的调用（尤其是有多个可以引发相同异常的方法），同时应该明确说明你要测试什么。</p>
 <p>5:拒绝使用 MockitoJUnitRunner.Silent.class</p>
-<p>当单测出现UnnecessaryStubbingException时，请不要第一时间考虑使用 @RunWith(MockitoJUnitRunner.Silent.class) 来解决它，这只是隐藏了问题，
+<p>当单测出现 UnnecessaryStubbingException 时，请不要第一时间考虑使用 @RunWith(MockitoJUnitRunner.Silent.class) 来解决它，这只是隐藏了问题，
 你应该根据异常提示解决相关问题，这并不是一个困难的工作。当完成更改时，你会发现，你的代码又简洁了许多。</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="/zh-cn/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/development-environment-setup.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.f4c2da7.js"></script>
+  <script src="/build/vendor.478606e.js"></script>
   <script src="/build/community.md.4b2dc90.js"></script>
   <script>
     var _hmt = _hmt || [];
