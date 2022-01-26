@@ -2,9 +2,8 @@ name: Build and Deploy
 
 on: [push]
 
-# TODO
 env:
-  HOME_PYDS: dolphinscheduler-python/pydolphinscheduler
+  PYDS_HOME: dolphinscheduler-python/pydolphinscheduler
 
 jobs:
   build-py-doc:
@@ -20,18 +19,18 @@ jobs:
         with:
           python-version: 3.7
       - name: Install Development Dependences
-        working-directory: dolphinscheduler-python/pydolphinscheduler
+        working-directory: ${{ env.PYDS_HOME }}
         run: |
           pip install -r requirements_dev.txt
           pip install -e .
       - name: Test Build Document
-        working-directory: dolphinscheduler-python/pydolphinscheduler/docs
+        working-directory: ${{ env.PYDS_HOME }}/docs
         run: make clean && make html
       - uses: actions/upload-artifact@v2
         name: Upload Python API Dist Doc
         with:
           name: python-dist-doc
-          path: dolphinscheduler-python/pydolphinscheduler/docs/build/html
+          path: ${{ env.PYDS_HOME }}/docs/build/html
           retention-days: 1
 
   build-website-deploy:
