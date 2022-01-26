@@ -35,8 +35,8 @@ echo "dolphinscheduler" | passwd --stdin dolphinscheduler
 sed -i '$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
-# 修改目录权限，使得部署用户对 dolphinscheduler-bin 目录有操作权限
-chown -R dolphinscheduler:dolphinscheduler dolphinscheduler-bin
+# 修改目录权限，使得部署用户对二进制包解压后的 apache-dolphinscheduler-*-bin 目录有操作权限
+chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
 ```
 
 > **_注意:_**
@@ -137,7 +137,7 @@ sh script/create-dolphinscheduler.sh
 
 ## 启动 DolphinScheduler
 
-使用部署用户运行一下命令完成部署，部署后的运行日志将存放在 logs 文件夹内
+使用上面创建的**部署用户**运行以下命令完成部署，部署后的运行日志将存放在 logs 文件夹内
 
 ```shell
 sh install.sh
