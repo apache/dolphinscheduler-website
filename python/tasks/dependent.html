@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dependent &mdash; pydolphinscheduler 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Spark" href="spark.html" />
+    <link rel="prev" title="Condition" href="condition.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> pydolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condition.html">Condition</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dependent</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.dependent">Dive Into</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spark.html">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sub_process.html">Sub Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pydolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tasks</a> &raquo;</li>
+      <li>Dependent</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tasks/dependent.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dependent">
+<h1>Dependent<a class="headerlink" href="#dependent" title="Permalink to this headline"></a></h1>
+<p>A dependent task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A example workflow for task dependent.</span>
+
+<span class="sd">This example will create two workflows named `task_dependent` and `task_dependent_external`.</span>
+<span class="sd">`task_dependent` is true workflow define and run task dependent, while `task_dependent_external`</span>
+<span class="sd">define outside workflow and task from dependent.</span>
+
+<span class="sd">After this script submit, we would get workflow as below:</span>
+
+<span class="sd">task_dependent_external:</span>
+
+<span class="sd">task_1</span>
+<span class="sd">task_2</span>
+<span class="sd">task_3</span>
+
+<span class="sd">task_dependent:</span>
+
+<span class="sd">task_dependent(this task dependent on task_dependent_external.task_1 and task_dependent_external.task_2).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">ProcessDefinitionDefault</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.dependent</span> <span class="kn">import</span> <span class="n">And</span><span class="p">,</span> <span class="n">Dependent</span><span class="p">,</span> <span class="n">DependentItem</span><span class="p">,</span> <span class="n">Or</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.shell</span> <span class="kn">import</span> <span class="n">Shell</span>
+
+<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dependent_external&quot;</span><span class="p">,</span>
+    <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+    <span class="n">task_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task 1&quot;</span><span class="p">)</span>
+    <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task 2&quot;</span><span class="p">)</span>
+    <span class="n">task_3</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_3&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task 3&quot;</span><span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dependent_example&quot;</span><span class="p">,</span>
+    <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">Dependent</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dependent&quot;</span><span class="p">,</span>
+        <span class="n">dependence</span><span class="o">=</span><span class="n">And</span><span class="p">(</span>
+            <span class="n">Or</span><span class="p">(</span>
+                <span class="n">DependentItem</span><span class="p">(</span>
+                    <span class="n">project_name</span><span class="o">=</span><span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">PROJECT</span><span class="p">,</span>
+                    <span class="n">process_definition_name</span><span class="o">=</span><span class="s2">&quot;task_dependent_external&quot;</span><span class="p">,</span>
+                    <span class="n">dependent_task_name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">DependentItem</span><span class="p">(</span>
+                    <span class="n">project_name</span><span class="o">=</span><span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">PROJECT</span><span class="p">,</span>
+                    <span class="n">process_definition_name</span><span class="o">=</span><span class="s2">&quot;task_dependent_external&quot;</span><span class="p">,</span>
+                    <span class="n">dependent_task_name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="module-pydolphinscheduler.tasks.dependent">
+<span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.tasks.dependent" title="Permalink to this headline"></a></h2>
+<p>Task dependent.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.And">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.dependent.</span></span><span class="sig-name descname"><span class="pre">And</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#And"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.And" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentOperator" title="pydolphinscheduler.tasks.dependent.DependentOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.dependent.DependentOperator</span></code></a></p>
+<p>Operator And for task dependent.</p>
+<p>It could accept both <a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentItem" title="pydolphinscheduler.tasks.dependent.DependentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DependentItem</span></code></a> and children of <a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentOperator" title="pydolphinscheduler.tasks.dependent.DependentOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DependentOperator</span></code></a>,
+and set AND condition to those args.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.Dependent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.dependent.</span></span><span class="sig-name descname"><span class="pre">Dependent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentOperator" title="pydolphinscheduler.tasks.dependent.DependentOperator"><span class="pre">pydolphinscheduler.tasks.dependent.DependentOperator</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#Dependent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.Dependent" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.task.Task</span></code></a></p>
+<p>Task dependent object, declare behavior for dependent task to dolphinscheduler.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.Dependent._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.Dependent._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.Dependent._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.Dependent._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.Dependent._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.Dependent._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.Dependent.task_params">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.Dependent.task_params" title="Permalink to this definition"></a></dt>
+<dd><p>Override Task.task_params for dependent task.</p>
+<p>Dependent task have some specials attribute <cite>dependence</cite>, and in most of the task
+this attribute is None and use empty dict <cite>{}</cite> as default value. We do not use class
+attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.dependent.</span></span><span class="sig-name descname"><span class="pre">DependentDate</span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#DependentDate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<p>Constant of Dependent date value.</p>
+<p>These values set according to Java server side, if you want to add and change it,
+please change Java server side first.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.CURRENT_HOUR">
+<span class="sig-name descname"><span class="pre">CURRENT_HOUR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'currentHour'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.CURRENT_HOUR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_FRIDAY">
+<span class="sig-name descname"><span class="pre">LAST_FRIDAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastFriday'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_FRIDAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_MONDAY">
+<span class="sig-name descname"><span class="pre">LAST_MONDAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastMonday'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_MONDAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_MONTH">
+<span class="sig-name descname"><span class="pre">LAST_MONTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastMonth'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_MONTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_MONTH_BEGIN">
+<span class="sig-name descname"><span class="pre">LAST_MONTH_BEGIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastMonthBegin'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_MONTH_BEGIN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_MONTH_END">
+<span class="sig-name descname"><span class="pre">LAST_MONTH_END</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastMonthEnd'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_MONTH_END" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_ONE_DAYS">
+<span class="sig-name descname"><span class="pre">LAST_ONE_DAYS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'last1Days'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_ONE_DAYS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_ONE_HOUR">
+<span class="sig-name descname"><span class="pre">LAST_ONE_HOUR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'last1Hour'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_ONE_HOUR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_SATURDAY">
+<span class="sig-name descname"><span class="pre">LAST_SATURDAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastSaturday'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_SATURDAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_SEVEN_DAYS">
+<span class="sig-name descname"><span class="pre">LAST_SEVEN_DAYS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'last7Days'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_SEVEN_DAYS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_SUNDAY">
+<span class="sig-name descname"><span class="pre">LAST_SUNDAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastSunday'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_SUNDAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_THREE_DAYS">
+<span class="sig-name descname"><span class="pre">LAST_THREE_DAYS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'last3Days'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_THREE_DAYS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_THREE_HOURS">
+<span class="sig-name descname"><span class="pre">LAST_THREE_HOURS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'last3Hours'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_THREE_HOURS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_THURSDAY">
+<span class="sig-name descname"><span class="pre">LAST_THURSDAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastThursday'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_THURSDAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_TUESDAY">
+<span class="sig-name descname"><span class="pre">LAST_TUESDAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastTuesday'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_TUESDAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_TWENTY_FOUR_HOURS">
+<span class="sig-name descname"><span class="pre">LAST_TWENTY_FOUR_HOURS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'last24Hours'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_TWENTY_FOUR_HOURS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_TWO_DAYS">
+<span class="sig-name descname"><span class="pre">LAST_TWO_DAYS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'last2Days'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_TWO_DAYS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_TWO_HOURS">
+<span class="sig-name descname"><span class="pre">LAST_TWO_HOURS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'last2Hours'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_TWO_HOURS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_WEDNESDAY">
+<span class="sig-name descname"><span class="pre">LAST_WEDNESDAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastWednesday'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_WEDNESDAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.LAST_WEEK">
+<span class="sig-name descname"><span class="pre">LAST_WEEK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lastWeek'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.LAST_WEEK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.THIS_MONTH">
+<span class="sig-name descname"><span class="pre">THIS_MONTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'thisMonth'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.THIS_MONTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.THIS_WEEK">
+<span class="sig-name descname"><span class="pre">THIS_WEEK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'thisWeek'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.THIS_WEEK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentDate.TODAY">
+<span class="sig-name descname"><span class="pre">TODAY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'today'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentDate.TODAY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.dependent.</span></span><span class="sig-name descname"><span class="pre">DependentItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_definition_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependent_task_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependent_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentDate" title="pydolphinscheduler.tasks.dependent.DependentDate"><span class="pre">pydolphinscheduler.tasks.dependent.DependentDate</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'today'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#DependentItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.base.Base</span></code></p>
+<p>Dependent item object, minimal unit for task dependent.</p>
+<p>It declare which project, process_definition, task are dependent to this task.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem.get_code_from_gateway">
+<span class="sig-name descname"><span class="pre">get_code_from_gateway</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#DependentItem.get_code_from_gateway"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem.get_code_from_gateway" title="Permalink to this definition"></a></dt>
+<dd><p>Get project, definition, task code from given parameter.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem._DEFINE_ATTR">
+<span class="sig-name descname"><span class="pre">_DEFINE_ATTR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cycle',</span> <span class="pre">'date_value',</span> <span class="pre">'definition_code',</span> <span class="pre">'dep_task_code',</span> <span class="pre">'project_code'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem._DEFINE_ATTR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem.code_parameter">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">code_parameter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem.code_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Get name info parameter to query code.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem.cycle">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cycle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem.cycle" title="Permalink to this definition"></a></dt>
+<dd><p>Get dependent cycle.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem.date_value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">date_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem.date_value" title="Permalink to this definition"></a></dt>
+<dd><p>Get dependent date.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem.definition_code">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">definition_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem.definition_code" title="Permalink to this definition"></a></dt>
+<dd><p>Get dependent definition code.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem.dep_task_code">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dep_task_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem.dep_task_code" title="Permalink to this definition"></a></dt>
+<dd><p>Get dependent tasks code list.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem.is_all_task">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_all_task</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem.is_all_task" title="Permalink to this definition"></a></dt>
+<dd><p>Check whether dependent all tasks or not.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentItem.project_code">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">project_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentItem.project_code" title="Permalink to this definition"></a></dt>
+<dd><p>Get dependent project code.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentOperator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.dependent.</span></span><span class="sig-name descname"><span class="pre">DependentOperator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#DependentOperator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentOperator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.base.Base</span></code></p>
+<p>Set DependentItem or dependItemList with specific operator.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentOperator.get_define">
+<span class="sig-name descname"><span class="pre">get_define</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#DependentOperator.get_define"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentOperator.get_define" title="Permalink to this definition"></a></dt>
+<dd><p>Overwrite Base.get_define to get task dependent specific get define.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentOperator.operator_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">operator_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#DependentOperator.operator_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentOperator.operator_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get operator name in different class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentOperator.set_define_attr">
+<span class="sig-name descname"><span class="pre">set_define_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#DependentOperator.set_define_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentOperator.set_define_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Set attribute to function <a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentOperator.get_define" title="pydolphinscheduler.tasks.dependent.DependentOperator.get_define"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_define()</span></code></a>.</p>
+<p>It is a wrapper for both <cite>And</cite> and <cite>Or</cite> operator.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentOperator._DEFINE_ATTR">
+<span class="sig-name descname"><span class="pre">_DEFINE_ATTR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'relation'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentOperator._DEFINE_ATTR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.DependentOperator.relation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.DependentOperator.relation" title="Permalink to this definition"></a></dt>
+<dd><p>Get operator name in different class, for function <a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentOperator.get_define" title="pydolphinscheduler.tasks.dependent.DependentOperator.get_define"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_define()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.dependent.Or">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.dependent.</span></span><span class="sig-name descname"><span class="pre">Or</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/dependent.html#Or"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.dependent.Or" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentOperator" title="pydolphinscheduler.tasks.dependent.DependentOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.dependent.DependentOperator</span></code></a></p>
+<p>Operator Or for task dependent.</p>
+<p>It could accept both <a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentItem" title="pydolphinscheduler.tasks.dependent.DependentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DependentItem</span></code></a> and children of <a class="reference internal" href="#pydolphinscheduler.tasks.dependent.DependentOperator" title="pydolphinscheduler.tasks.dependent.DependentOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">DependentOperator</span></code></a>,
+and set OR condition to those args.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="condition.html" class="btn btn-neutral float-left" title="Condition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spark.html" class="btn btn-neutral float-right" title="Spark" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

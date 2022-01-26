@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Procedure &mdash; pydolphinscheduler 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Datax" href="datax.html" />
+    <link rel="prev" title="Map Reduce" href="map_reduce.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> pydolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condition.html">Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependent.html">Dependent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark.html">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sub_process.html">Sub Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pydolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tasks</a> &raquo;</li>
+      <li>Procedure</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tasks/procedure.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pydolphinscheduler.tasks.procedure">
+<span id="procedure"></span><h1>Procedure<a class="headerlink" href="#module-pydolphinscheduler.tasks.procedure" title="Permalink to this headline"></a></h1>
+<p>Task procedure.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.procedure.Procedure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.procedure.</span></span><span class="sig-name descname"><span class="pre">Procedure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/procedure.html#Procedure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.procedure.Procedure" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.task.Task</span></code></a></p>
+<p>Task Procedure object, declare behavior for Procedure task to dolphinscheduler.</p>
+<p>It should run database procedure job in multiply sql lik engine, such as:
+- ClickHouse
+- DB2
+- HIVE
+- MySQL
+- Oracle
+- Postgresql
+- Presto
+- SQLServer
+You provider datasource_name contain connection information, it decisions which
+database type and database instance would run this sql.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.procedure.Procedure._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.procedure.Procedure._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.procedure.Procedure._task_custom_attr">
+<span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'method'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.procedure.Procedure._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.procedure.Procedure._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.procedure.Procedure._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.procedure.Procedure._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.procedure.Procedure._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.procedure.Procedure.task_params">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.procedure.Procedure.task_params" title="Permalink to this definition"></a></dt>
+<dd><p>Override Task.task_params for produce task.</p>
+<p>produce task have some specials attribute for task_params, and is odd if we
+directly set as python property, so we Override Task.task_params here.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="map_reduce.html" class="btn btn-neutral float-left" title="Map Reduce" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="datax.html" class="btn btn-neutral float-right" title="Datax" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

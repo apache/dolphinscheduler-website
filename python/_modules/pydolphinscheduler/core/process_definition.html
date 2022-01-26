@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pydolphinscheduler.core.process_definition &mdash; pydolphinscheduler 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> pydolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pydolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>pydolphinscheduler.core.process_definition</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pydolphinscheduler.core.process_definition</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
+<span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
+<span class="c1"># distributed with this work for additional information</span>
+<span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
+<span class="c1"># to you under the Apache License, Version 2.0 (the</span>
+<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># with the License.  You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing,</span>
+<span class="c1"># software distributed under the License is distributed on an</span>
+<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># KIND, either express or implied.  See the License for the</span>
+<span class="c1"># specific language governing permissions and limitations</span>
+<span class="c1"># under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;Module process definition, core class for workflow define.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
+
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ProcessDefinitionDefault</span><span class="p">,</span>
+    <span class="n">ProcessDefinitionReleaseState</span><span class="p">,</span>
+    <span class="n">TaskType</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.base</span> <span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyDSTaskNoFoundException</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.side</span> <span class="kn">import</span> <span class="n">Project</span><span class="p">,</span> <span class="n">Tenant</span><span class="p">,</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.utils.date</span> <span class="kn">import</span> <span class="n">MAX_DATETIME</span><span class="p">,</span> <span class="n">conv_from_str</span><span class="p">,</span> <span class="n">conv_to_schedule</span>
+
+
+<span class="k">class</span> <span class="nc">ProcessDefinitionContext</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Class process definition context, use when task get process definition from context expression.&quot;&quot;&quot;</span>
+
+    <span class="n">_context_managed_process_definition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;ProcessDefinition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pd</span><span class="p">:</span> <span class="s2">&quot;ProcessDefinition&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set attribute self._context_managed_process_definition.&quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_context_managed_process_definition</span> <span class="o">=</span> <span class="n">pd</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;ProcessDefinition&quot;</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get attribute self._context_managed_process_definition.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_context_managed_process_definition</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Delete attribute self._context_managed_process_definition.&quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_context_managed_process_definition</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="ProcessDefinition"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition">[docs]</a><span class="k">class</span> <span class="nc">ProcessDefinition</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;process definition object, will define process definition attribute, task, relation.</span>
+
+<span class="sd">    TODO: maybe we should rename this class, currently use DS object name.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># key attribute for identify ProcessDefinition object</span>
+    <span class="n">_KEY_ATTR</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;project&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tenant&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;release_state&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;param&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_project&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_tenant&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;worker_group&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;release_state&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;param&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tasks&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_definition_json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_relation_json&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">schedule</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timezone</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">TIME_ZONE</span><span class="p">,</span>
+        <span class="n">user</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER</span><span class="p">,</span>
+        <span class="n">project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">PROJECT</span><span class="p">,</span>
+        <span class="n">tenant</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">TENANT</span><span class="p">,</span>
+        <span class="n">queue</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">QUEUE</span><span class="p">,</span>
+        <span class="n">worker_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">release_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionReleaseState</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">,</span>
+        <span class="n">param</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="n">schedule</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span> <span class="o">=</span> <span class="n">start_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_end_time</span> <span class="o">=</span> <span class="n">end_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timezone</span> <span class="o">=</span> <span class="n">timezone</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_user</span> <span class="o">=</span> <span class="n">user</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span> <span class="o">=</span> <span class="n">tenant</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span> <span class="o">=</span> <span class="n">queue</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span> <span class="o">=</span> <span class="n">worker_group</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">release_state</span> <span class="o">=</span> <span class="n">release_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">param</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># TODO how to fix circle import</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="s2">&quot;TaskRelation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># noqa: F821</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition_code</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ProcessDefinition&quot;</span><span class="p">:</span>
+        <span class="n">ProcessDefinitionContext</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ProcessDefinitionContext</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tenant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tenant</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get attribute tenant.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Tenant</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">)</span>
+
+    <span class="nd">@tenant</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">tenant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant</span><span class="p">:</span> <span class="n">Tenant</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set attribute tenant.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span> <span class="o">=</span> <span class="n">tenant</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">project</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Project</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get attribute project.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">)</span>
+
+    <span class="nd">@project</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="n">Project</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set attribute project.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get user object.</span>
+
+<span class="sd">        For now we just get from python side but not from java gateway side, so it may not correct.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">User</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
+            <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER_PWD</span><span class="p">,</span>
+            <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER_EMAIL</span><span class="p">,</span>
+            <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER_PHONE</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">,</span>
+            <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER_STATE</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="ProcessDefinition._parse_datetime"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition._parse_datetime">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_parse_datetime</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">datetime</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">val</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">conv_from_str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span><span class="s2">&quot;Do not support value type </span><span class="si">%s</span><span class="s2"> for now&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">))</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">start_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get attribute start_time.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_datetime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span><span class="p">)</span>
+
+    <span class="nd">@start_time</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">start_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set attribute start_time.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">end_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get attribute end_time.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_datetime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_end_time</span><span class="p">)</span>
+
+    <span class="nd">@end_time</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">end_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set attribute end_time.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_end_time</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">param_json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;Return param json base on self.param.&quot;&quot;&quot;</span>
+        <span class="c1"># Handle empty dict and None value</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;prop&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span>
+                <span class="s2">&quot;direct&quot;</span><span class="p">:</span> <span class="s2">&quot;IN&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;VARCHAR&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">task_definition_json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return all tasks definition in list of dict.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">get_define</span><span class="p">()</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">task_relation_json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return all relation between tasks pair in list of dict.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handle_root_relation</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">tr</span><span class="o">.</span><span class="n">get_define</span><span class="p">()</span> <span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">schedule_json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get schedule parameter json object. This is requests from java gateway interface.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">conv_to_schedule</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+            <span class="p">)</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">conv_to_schedule</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="k">else</span> <span class="n">MAX_DATETIME</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;startTime&quot;</span><span class="p">:</span> <span class="n">start_time</span><span class="p">,</span>
+                <span class="s2">&quot;endTime&quot;</span><span class="p">:</span> <span class="n">end_time</span><span class="p">,</span>
+                <span class="s2">&quot;crontab&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">,</span>
+                <span class="s2">&quot;timezoneId&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">timezone</span><span class="p">,</span>
+            <span class="p">}</span>
+
+    <span class="c1"># TODO inti DAG&#39;s tasks are in the same location with default {x: 0, y: 0}</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">task_location</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return all tasks location for all process definition.</span>
+
+<span class="sd">        For now, we only set all location with same x and y valued equal to 0. Because we do not</span>
+<span class="sd">        find a good way to set task locations. This is requests from java gateway interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;taskCode&quot;</span><span class="p">:</span> <span class="n">task_code</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span> <span class="k">for</span> <span class="n">task_code</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">task_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]:</span>  <span class="c1"># noqa: F821</span>
+        <span class="sd">&quot;&quot;&quot;Return list of tasks objects.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<div class="viewcode-block" id="ProcessDefinition._handle_root_relation"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition._handle_root_relation">[docs]</a>    <span class="k">def</span> <span class="nf">_handle_root_relation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Handle root task property :class:`pydolphinscheduler.core.task.TaskRelation`.</span>
+
+<span class="sd">        Root task in DAG do not have dominant upstream node, but we have to add an exactly default</span>
+<span class="sd">        upstream task with task_code equal to `0`. This is requests from java gateway interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">TaskRelation</span>
+
+        <span class="n">post_relation_code</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">relation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="p">:</span>
+            <span class="n">post_relation_code</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">relation</span><span class="o">.</span><span class="n">post_task_code</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">post_relation_code</span><span class="p">:</span>
+                <span class="n">root_relation</span> <span class="o">=</span> <span class="n">TaskRelation</span><span class="p">(</span><span class="n">pre_task_code</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">post_task_code</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">root_relation</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ProcessDefinition.add_task"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.add_task">[docs]</a>    <span class="k">def</span> <span class="nf">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="s2">&quot;Task&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+        <span class="sd">&quot;&quot;&quot;Add a single task to process definition.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">]</span> <span class="o">=</span> <span class="n">task</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">_process_definition</span> <span class="o">=</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ProcessDefinition.add_tasks"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.add_tasks">[docs]</a>    <span class="k">def</span> <span class="nf">add_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+        <span class="sd">&quot;&quot;&quot;Add task sequence to process definition, it a wrapper of :func:`add_task`.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ProcessDefinition.get_task"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.get_task">[docs]</a>    <span class="k">def</span> <span class="nf">get_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Task&quot;</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+        <span class="sd">&quot;&quot;&quot;Get task object from process definition by given code.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyDSTaskNoFoundException</span><span class="p">(</span>
+                <span class="s2">&quot;Task with code </span><span class="si">%s</span><span class="s2"> can not found in process definition %&quot;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="n">code</span><span class="p">]</span></div>
+
+    <span class="c1"># TODO which tying should return in this case</span>
+<div class="viewcode-block" id="ProcessDefinition.get_tasks_by_name"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.get_tasks_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_tasks_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]:</span>  <span class="c1"># noqa: F821</span>
+        <span class="sd">&quot;&quot;&quot;Get tasks object by given name, if will return all tasks with this name.&quot;&quot;&quot;</span>
+        <span class="n">find</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">find</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">find</span></div>
+
+<div class="viewcode-block" id="ProcessDefinition.get_one_task_by_name"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.get_one_task_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_one_task_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Task&quot;</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+        <span class="sd">&quot;&quot;&quot;Get exact one task from process definition by given name.</span>
+
+<span class="sd">        Function always return one task even though this process definition have more than one task with</span>
+<span class="sd">        this name.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tasks_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">tasks</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyDSTaskNoFoundException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can not find task with name </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tasks</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ProcessDefinition.run"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Submit and Start ProcessDefinition instance.</span>
+
+<span class="sd">        Shortcut for function :func:`submit` and function :func:`start`. Only support manual start workflow</span>
+<span class="sd">        for now, and schedule run will coming soon.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ProcessDefinition._ensure_side_model_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition._ensure_side_model_exists">[docs]</a>    <span class="k">def</span> <span class="nf">_ensure_side_model_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Ensure process definition side model exists.</span>
+
+<span class="sd">        For now, side object including :class:`pydolphinscheduler.side.project.Project`,</span>
+<span class="sd">        :class:`pydolphinscheduler.side.tenant.Tenant`, :class:`pydolphinscheduler.side.user.User`.</span>
+<span class="sd">        If these model not exists, would create default value in</span>
+<span class="sd">        :class:`pydolphinscheduler.constants.ProcessDefinitionDefault`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO used metaclass for more pythonic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tenant</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">)</span>
+        <span class="c1"># model User have to create after Tenant created</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">()</span>
+        <span class="c1"># Project model need User object exists</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ProcessDefinition._pre_submit_check"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition._pre_submit_check">[docs]</a>    <span class="k">def</span> <span class="nf">_pre_submit_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check specific condition satisfy before.</span>
+
+<span class="sd">        This method should be called before process definition submit to java gateway</span>
+<span class="sd">        For now, we have below checker:</span>
+<span class="sd">        * `self.param` should be set if task `switch` in this workflow.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">any</span><span class="p">([</span><span class="n">task</span><span class="o">.</span><span class="n">task_type</span> <span class="o">==</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">SWITCH</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="p">):</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
+                <span class="s2">&quot;Parameter param must be provider if task Switch in process definition.&quot;</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ProcessDefinition.submit"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.submit">[docs]</a>    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Submit ProcessDefinition instance to java gateway.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_side_model_exists</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pre_submit_check</span><span class="p">()</span>
+
+        <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition_code</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">createOrUpdateProcessDefinition</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_json</span><span class="p">),</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_location</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">,</span>
+            <span class="c1"># TODO add serialization function</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_relation_json</span><span class="p">),</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_definition_json</span><span class="p">),</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition_code</span></div>
+
+<div class="viewcode-block" id="ProcessDefinition.start"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create and start ProcessDefinition instance.</span>
+
+<span class="sd">        which post to `start-process-instance` to java gateway</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>
+        <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">execProcessInstance</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span><span class="p">,</span>
+            <span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

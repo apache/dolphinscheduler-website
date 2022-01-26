@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datax &mdash; pydolphinscheduler 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sub Process" href="sub_process.html" />
+    <link rel="prev" title="Procedure" href="procedure.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> pydolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condition.html">Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependent.html">Dependent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark.html">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Datax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.datax">Dive Into</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sub_process.html">Sub Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pydolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tasks</a> &raquo;</li>
+      <li>Datax</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tasks/datax.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="datax">
+<h1>Datax<a class="headerlink" href="#datax" title="Permalink to this headline"></a></h1>
+<p>A DataX task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A example workflow for task datax.</span>
+
+<span class="sd">This example will create a workflow named `task_datax`.</span>
+<span class="sd">`task_datax` is true workflow define and run task task_datax.</span>
+<span class="sd">You can create data sources `first_mysql` and `first_mysql` through UI.</span>
+<span class="sd">It creates a task to synchronize datax from the source database to the target database.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.datax</span> <span class="kn">import</span> <span class="n">CustomDataX</span><span class="p">,</span> <span class="n">DataX</span>
+
+<span class="c1"># datax json template</span>
+<span class="n">JSON_TEMPLATE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;reader&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mysqlreader&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;parameter&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;usr&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;pwd&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;column&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">],</span>
+                        <span class="s2">&quot;splitPk&quot;</span><span class="p">:</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;table&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;source_table&quot;</span><span class="p">],</span>
+                                <span class="s2">&quot;jdbcUrl&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;jdbc:mysql://127.0.0.1:3306/source_db&quot;</span><span class="p">],</span>
+                            <span class="p">}</span>
+                        <span class="p">],</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;writer&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mysqlwriter&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;parameter&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;writeMode&quot;</span><span class="p">:</span> <span class="s2">&quot;insert&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;usr&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;pwd&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;column&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">],</span>
+                        <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">[</span>
+                            <span class="p">{</span>
+                                <span class="s2">&quot;jdbcUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;jdbc:mysql://127.0.0.1:3306/target_db&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;table&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;target_table&quot;</span><span class="p">],</span>
+                            <span class="p">}</span>
+                        <span class="p">],</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;setting&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;errorLimit&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;percentage&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+            <span class="s2">&quot;speed&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;channel&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_datax_example&quot;</span><span class="p">,</span>
+    <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+    <span class="c1"># This task synchronizes the data in `t_ds_project`</span>
+    <span class="c1"># of `first_mysql` database to `target_project` of `second_mysql` database.</span>
+    <span class="c1"># You have to make sure data source named `first_mysql` and `second_mysql` exists</span>
+    <span class="c1"># in your environment.</span>
+    <span class="n">task1</span> <span class="o">=</span> <span class="n">DataX</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_datax&quot;</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;first_mysql&quot;</span><span class="p">,</span>
+        <span class="n">datatarget_name</span><span class="o">=</span><span class="s2">&quot;second_mysql&quot;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;select id, name, code, description from source_table&quot;</span><span class="p">,</span>
+        <span class="n">target_table</span><span class="o">=</span><span class="s2">&quot;target_table&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># You can custom json_template of datax to sync data. This task create a new</span>
+    <span class="c1"># datax job same as task1, transfer record from `first_mysql` to `second_mysql`</span>
+    <span class="n">task2</span> <span class="o">=</span> <span class="n">CustomDataX</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_custom_datax&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">JSON_TEMPLATE</span><span class="p">))</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="module-pydolphinscheduler.tasks.datax">
+<span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.tasks.datax" title="Permalink to this headline"></a></h2>
+<p>Task datax.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.CustomDataX">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.datax.</span></span><span class="sig-name descname"><span class="pre">CustomDataX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/datax.html#CustomDataX"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.datax.CustomDataX" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.task.Task</span></code></a></p>
+<p>Task CustomDatax object, declare behavior for custom DataX task to dolphinscheduler.</p>
+<p>You provider json template for DataX, it can synchronize data according to the template you provided.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.CustomDataX.CUSTOM_CONFIG">
+<span class="sig-name descname"><span class="pre">CUSTOM_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.CustomDataX.CUSTOM_CONFIG" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.CustomDataX._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.CustomDataX._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.CustomDataX._task_custom_attr">
+<span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'custom_config',</span> <span class="pre">'json',</span> <span class="pre">'xms',</span> <span class="pre">'xmx'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.CustomDataX._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.CustomDataX._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.CustomDataX._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.CustomDataX._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.CustomDataX._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.DataX">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.datax.</span></span><span class="sig-name descname"><span class="pre">DataX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datatarget_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_speed_byte</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_speed_record</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_statements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_statements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/datax.html#DataX"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.datax.DataX" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.task.Task</span></code></a></p>
+<p>Task DataX object, declare behavior for DataX task to dolphinscheduler.</p>
+<p>It should run database datax job in multiply sql link engine, such as:
+- MySQL
+- Oracle
+- Postgresql
+- SQLServer
+You provider datasource_name and datatarget_name contain connection information, it decisions which
+database type and database instance would synchronous data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.DataX.CUSTOM_CONFIG">
+<span class="sig-name descname"><span class="pre">CUSTOM_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.DataX.CUSTOM_CONFIG" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.DataX._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.DataX._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.DataX._task_custom_attr">
+<span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'custom_config',</span> <span class="pre">'job_speed_byte',</span> <span class="pre">'job_speed_record',</span> <span class="pre">'post_statements',</span> <span class="pre">'pre_statements',</span> <span class="pre">'sql',</span> <span class="pre">'target_table',</span> <span class="pre">'xms',</span> <span class="pre">'xmx'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.DataX._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.DataX._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.DataX._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.DataX._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.DataX._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.datax.DataX.task_params">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.datax.DataX.task_params" title="Permalink to this definition"></a></dt>
+<dd><p>Override Task.task_params for datax task.</p>
+<p>datax task have some specials attribute for task_params, and is odd if we
+directly set as python property, so we Override Task.task_params here.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="procedure.html" class="btn btn-neutral float-left" title="Procedure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sub_process.html" class="btn btn-neutral float-right" title="Sub Process" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

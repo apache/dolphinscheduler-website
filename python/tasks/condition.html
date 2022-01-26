@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Condition &mdash; pydolphinscheduler 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dependent" href="dependent.html" />
+    <link rel="prev" title="Switch" href="switch.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> pydolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Condition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.condition">Dive Into</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dependent.html">Dependent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark.html">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sub_process.html">Sub Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pydolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tasks</a> &raquo;</li>
+      <li>Condition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tasks/condition.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="condition">
+<h1>Condition<a class="headerlink" href="#condition" title="Permalink to this headline"></a></h1>
+<p>A condition task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A example workflow for task condition.</span>
+
+<span class="sd">This example will create five task in single workflow, with four shell task and one condition task. Task</span>
+<span class="sd">condition have one upstream which we declare explicit with syntax `parent &gt;&gt; condition`, and three downstream</span>
+<span class="sd">automatically set dependence by condition task by passing parameter `condition`. The graph of this workflow</span>
+<span class="sd">like:</span>
+<span class="sd">pre_task_1 -&gt;                     -&gt; success_branch</span>
+<span class="sd">             \                  /</span>
+<span class="sd">pre_task_2 -&gt;  -&gt; conditions -&gt;</span>
+<span class="sd">             /                  \</span>
+<span class="sd">pre_task_3 -&gt;                     -&gt; fail_branch</span>
+<span class="sd">.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.condition</span> <span class="kn">import</span> <span class="n">FAILURE</span><span class="p">,</span> <span class="n">SUCCESS</span><span class="p">,</span> <span class="n">And</span><span class="p">,</span> <span class="n">Condition</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.shell</span> <span class="kn">import</span> <span class="n">Shell</span>
+
+<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_condition_example&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+    <span class="n">pre_task_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;pre_task_1&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo pre_task_1&quot;</span><span class="p">)</span>
+    <span class="n">pre_task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;pre_task_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo pre_task_2&quot;</span><span class="p">)</span>
+    <span class="n">pre_task_3</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;pre_task_3&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo pre_task_3&quot;</span><span class="p">)</span>
+    <span class="n">cond_operator</span> <span class="o">=</span> <span class="n">And</span><span class="p">(</span>
+        <span class="n">And</span><span class="p">(</span>
+            <span class="n">SUCCESS</span><span class="p">(</span><span class="n">pre_task_1</span><span class="p">,</span> <span class="n">pre_task_2</span><span class="p">),</span>
+            <span class="n">FAILURE</span><span class="p">(</span><span class="n">pre_task_3</span><span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">success_branch</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;success_branch&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo success_branch&quot;</span><span class="p">)</span>
+    <span class="n">fail_branch</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;fail_branch&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo fail_branch&quot;</span><span class="p">)</span>
+
+    <span class="n">condition</span> <span class="o">=</span> <span class="n">Condition</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span>
+        <span class="n">condition</span><span class="o">=</span><span class="n">cond_operator</span><span class="p">,</span>
+        <span class="n">success_task</span><span class="o">=</span><span class="n">success_branch</span><span class="p">,</span>
+        <span class="n">failed_task</span><span class="o">=</span><span class="n">fail_branch</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="module-pydolphinscheduler.tasks.condition">
+<span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.tasks.condition" title="Permalink to this headline"></a></h2>
+<p>Task Conditions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.And">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.condition.</span></span><span class="sig-name descname"><span class="pre">And</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#And"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.And" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.condition.ConditionOperator" title="pydolphinscheduler.tasks.condition.ConditionOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.condition.ConditionOperator</span></code></a></p>
+<p>Operator And for task condition.</p>
+<p>It could accept both <code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code> and children of <a class="reference internal" href="#pydolphinscheduler.tasks.condition.ConditionOperator" title="pydolphinscheduler.tasks.condition.ConditionOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConditionOperator</span></code></a>,
+and set AND condition to those args.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Condition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.condition.</span></span><span class="sig-name descname"><span class="pre">Condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pydolphinscheduler.tasks.condition.ConditionOperator" title="pydolphinscheduler.tasks.condition.ConditionOperator"><span class="pre">pydolphinscheduler.tasks.condition.ConditionOperator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">success_task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">pydolphinscheduler.core.task.Task</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">failed_task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">pydolphinscheduler.core.task.Task</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#Condition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Condition" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.task.Task</span></code></a></p>
+<p>Task condition object, declare behavior for condition task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Condition._set_dep">
+<span class="sig-name descname"><span class="pre">_set_dep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#Condition._set_dep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Condition._set_dep" title="Permalink to this definition"></a></dt>
+<dd><p>Set upstream according to parameter <cite>condition</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Condition._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Condition._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Condition._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Condition._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Condition._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Condition._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Condition.condition_result">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">condition_result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Condition.condition_result" title="Permalink to this definition"></a></dt>
+<dd><p>Get condition result define for java gateway.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Condition.task_params">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Condition.task_params" title="Permalink to this definition"></a></dt>
+<dd><p>Override Task.task_params for Condition task.</p>
+<p>Condition task have some specials attribute <cite>dependence</cite>, and in most of the task
+this attribute is None and use empty dict <cite>{}</cite> as default value. We do not use class
+attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.ConditionOperator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.condition.</span></span><span class="sig-name descname"><span class="pre">ConditionOperator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#ConditionOperator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.ConditionOperator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.base.Base</span></code></p>
+<p>Set ConditionTask or ConditionOperator with specific operator.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.ConditionOperator.get_define">
+<span class="sig-name descname"><span class="pre">get_define</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#ConditionOperator.get_define"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.ConditionOperator.get_define" title="Permalink to this definition"></a></dt>
+<dd><p>Overwrite Base.get_define to get task Condition specific get define.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.ConditionOperator.operator_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">operator_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#ConditionOperator.operator_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.ConditionOperator.operator_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get operator name in different class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.ConditionOperator.set_define_attr">
+<span class="sig-name descname"><span class="pre">set_define_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#ConditionOperator.set_define_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.ConditionOperator.set_define_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Set attribute to function <a class="reference internal" href="#pydolphinscheduler.tasks.condition.ConditionOperator.get_define" title="pydolphinscheduler.tasks.condition.ConditionOperator.get_define"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_define()</span></code></a>.</p>
+<p>It is a wrapper for both <cite>And</cite> and <cite>Or</cite> operator.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.ConditionOperator._DEFINE_ATTR">
+<span class="sig-name descname"><span class="pre">_DEFINE_ATTR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'relation'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.condition.ConditionOperator._DEFINE_ATTR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.ConditionOperator.relation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.condition.ConditionOperator.relation" title="Permalink to this definition"></a></dt>
+<dd><p>Get operator name in different class, for function <a class="reference internal" href="#pydolphinscheduler.tasks.condition.ConditionOperator.get_define" title="pydolphinscheduler.tasks.condition.ConditionOperator.get_define"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_define()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.FAILURE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.condition.</span></span><span class="sig-name descname"><span class="pre">FAILURE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tasks</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#FAILURE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.FAILURE" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.condition.Status" title="pydolphinscheduler.tasks.condition.Status"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.condition.Status</span></code></a></p>
+<p>Class FAILURE to task condition, sub class of <a class="reference internal" href="#pydolphinscheduler.tasks.condition.Status" title="pydolphinscheduler.tasks.condition.Status"><code class="xref py py-class docutils literal notranslate"><span class="pre">Status</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Or">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.condition.</span></span><span class="sig-name descname"><span class="pre">Or</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#Or"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Or" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.condition.ConditionOperator" title="pydolphinscheduler.tasks.condition.ConditionOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.condition.ConditionOperator</span></code></a></p>
+<p>Operator Or for task condition.</p>
+<p>It could accept both <code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code> and children of <a class="reference internal" href="#pydolphinscheduler.tasks.condition.ConditionOperator" title="pydolphinscheduler.tasks.condition.ConditionOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConditionOperator</span></code></a>,
+and set OR condition to those args.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.SUCCESS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.condition.</span></span><span class="sig-name descname"><span class="pre">SUCCESS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tasks</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#SUCCESS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.SUCCESS" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.condition.Status" title="pydolphinscheduler.tasks.condition.Status"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.condition.Status</span></code></a></p>
+<p>Class SUCCESS to task condition, sub class of <a class="reference internal" href="#pydolphinscheduler.tasks.condition.Status" title="pydolphinscheduler.tasks.condition.Status"><code class="xref py py-class docutils literal notranslate"><span class="pre">Status</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Status">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.condition.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tasks</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#Status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Status" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.base.Base</span></code></p>
+<p>Base class of Condition task status.</p>
+<p>It a parent class for <a class="reference internal" href="#pydolphinscheduler.tasks.condition.SUCCESS" title="pydolphinscheduler.tasks.condition.SUCCESS"><code class="xref py py-class docutils literal notranslate"><span class="pre">SUCCESS</span></code></a> and <a class="reference internal" href="#pydolphinscheduler.tasks.condition.FAILURE" title="pydolphinscheduler.tasks.condition.FAILURE"><code class="xref py py-class docutils literal notranslate"><span class="pre">FAILURE</span></code></a>. Provider status name
+and <a class="reference internal" href="#pydolphinscheduler.tasks.condition.Status.get_define" title="pydolphinscheduler.tasks.condition.Status.get_define"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_define()</span></code></a> to sub class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Status.get_define">
+<span class="sig-name descname"><span class="pre">get_define</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#Status.get_define"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Status.get_define" title="Permalink to this definition"></a></dt>
+<dd><p>Get status definition attribute communicate to Java gateway server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.condition.Status.status_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/condition.html#Status.status_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.condition.Status.status_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get name for Status or its sub class.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="switch.html" class="btn btn-neutral float-left" title="Switch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dependent.html" class="btn btn-neutral float-right" title="Dependent" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

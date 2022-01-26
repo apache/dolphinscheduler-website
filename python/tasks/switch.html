@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Switch &mdash; pydolphinscheduler 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Condition" href="condition.html" />
+    <link rel="prev" title="HTTP" href="http.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> pydolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Switch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.switch">Dive Into</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="condition.html">Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependent.html">Dependent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark.html">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sub_process.html">Sub Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pydolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tasks</a> &raquo;</li>
+      <li>Switch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tasks/switch.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="switch">
+<h1>Switch<a class="headerlink" href="#switch" title="Permalink to this headline"></a></h1>
+<p>A switch task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A example workflow for task switch.</span>
+
+<span class="sd">This example will create four task in single workflow, with three shell task and one switch task. Task switch</span>
+<span class="sd">have one upstream which we declare explicit with syntax `parent &gt;&gt; switch`, and two downstream automatically</span>
+<span class="sd">set dependence by switch task by passing parameter `condition`. The graph of this workflow like:</span>
+<span class="sd">                      --&gt; switch_child_1</span>
+<span class="sd">                    /</span>
+<span class="sd">parent -&gt; switch -&gt;</span>
+<span class="sd">                    \</span>
+<span class="sd">                      --&gt; switch_child_2</span>
+<span class="sd">.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.shell</span> <span class="kn">import</span> <span class="n">Shell</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.switch</span> <span class="kn">import</span> <span class="n">Branch</span><span class="p">,</span> <span class="n">Default</span><span class="p">,</span> <span class="n">Switch</span><span class="p">,</span> <span class="n">SwitchCondition</span>
+
+<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_switch_example&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;var&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">}</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo parent&quot;</span><span class="p">)</span>
+    <span class="n">switch_child_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;switch_child_1&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo switch_child_1&quot;</span><span class="p">)</span>
+    <span class="n">switch_child_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;switch_child_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo switch_child_2&quot;</span><span class="p">)</span>
+    <span class="n">switch_condition</span> <span class="o">=</span> <span class="n">SwitchCondition</span><span class="p">(</span>
+        <span class="n">Branch</span><span class="p">(</span><span class="n">condition</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{var}</span><span class="s2"> &gt; 1&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="n">switch_child_1</span><span class="p">),</span>
+        <span class="n">Default</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">switch_child_2</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">switch</span> <span class="o">=</span> <span class="n">Switch</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;switch&quot;</span><span class="p">,</span> <span class="n">condition</span><span class="o">=</span><span class="n">switch_condition</span><span class="p">)</span>
+    <span class="n">parent</span> <span class="o">&gt;&gt;</span> <span class="n">switch</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="module-pydolphinscheduler.tasks.switch">
+<span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.tasks.switch" title="Permalink to this headline"></a></h2>
+<p>Task Switch.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.Branch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.switch.</span></span><span class="sig-name descname"><span class="pre">Branch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">pydolphinscheduler.core.task.Task</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/switch.html#Branch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.switch.Branch" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.switch.SwitchBranch" title="pydolphinscheduler.tasks.switch.SwitchBranch"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.switch.SwitchBranch</span></code></a></p>
+<p>Common condition branch for switch task.</p>
+<p>If any condition in <a class="reference internal" href="#pydolphinscheduler.tasks.switch.Branch" title="pydolphinscheduler.tasks.switch.Branch"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branch</span></code></a> match, would set this <a class="reference internal" href="#pydolphinscheduler.tasks.switch.Branch" title="pydolphinscheduler.tasks.switch.Branch"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branch</span></code></a>’s task as downstream of task
+switch. If all condition branch do not match would set <a class="reference internal" href="#pydolphinscheduler.tasks.switch.Default" title="pydolphinscheduler.tasks.switch.Default"><code class="xref py py-class docutils literal notranslate"><span class="pre">Default</span></code></a>’s task as task switch downstream.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.Default">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.switch.</span></span><span class="sig-name descname"><span class="pre">Default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">pydolphinscheduler.core.task.Task</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/switch.html#Default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.switch.Default" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.switch.SwitchBranch" title="pydolphinscheduler.tasks.switch.SwitchBranch"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.switch.SwitchBranch</span></code></a></p>
+<p>Class default branch for switch task.</p>
+<p>If all condition of <a class="reference internal" href="#pydolphinscheduler.tasks.switch.Branch" title="pydolphinscheduler.tasks.switch.Branch"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branch</span></code></a> do not match, task switch would run the tasks in <a class="reference internal" href="#pydolphinscheduler.tasks.switch.Default" title="pydolphinscheduler.tasks.switch.Default"><code class="xref py py-class docutils literal notranslate"><span class="pre">Default</span></code></a>
+and set <a class="reference internal" href="#pydolphinscheduler.tasks.switch.Default" title="pydolphinscheduler.tasks.switch.Default"><code class="xref py py-class docutils literal notranslate"><span class="pre">Default</span></code></a>’s task as switch downstream. Please notice that each switch condition
+could only have one single <a class="reference internal" href="#pydolphinscheduler.tasks.switch.Default" title="pydolphinscheduler.tasks.switch.Default"><code class="xref py py-class docutils literal notranslate"><span class="pre">Default</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.Switch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.switch.</span></span><span class="sig-name descname"><span class="pre">Switch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pydolphinscheduler.tasks.switch.SwitchCondition" title="pydolphinscheduler.tasks.switch.SwitchCondition"><span class="pre">pydolphinscheduler.tasks.switch.SwitchCondition</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/switch.html#Switch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.switch.Switch" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.task.Task</span></code></a></p>
+<p>Task switch object, declare behavior for switch task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.Switch._set_dep">
+<span class="sig-name descname"><span class="pre">_set_dep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/switch.html#Switch._set_dep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.switch.Switch._set_dep" title="Permalink to this definition"></a></dt>
+<dd><p>Set downstream according to parameter <cite>condition</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.Switch._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.switch.Switch._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.Switch._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.switch.Switch._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.Switch._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.switch.Switch._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.Switch.task_params">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.switch.Switch.task_params" title="Permalink to this definition"></a></dt>
+<dd><p>Override Task.task_params for switch task.</p>
+<p>switch task have some specials attribute <cite>switch</cite>, and in most of the task
+this attribute is None and use empty dict <cite>{}</cite> as default value. We do not use class
+attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.SwitchBranch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.switch.</span></span><span class="sig-name descname"><span class="pre">SwitchBranch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">pydolphinscheduler.core.task.Task</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/switch.html#SwitchBranch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.switch.SwitchBranch" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.base.Base</span></code></p>
+<p>Base class of ConditionBranch of task switch.</p>
+<p>It a parent class for <a class="reference internal" href="#pydolphinscheduler.tasks.switch.Branch" title="pydolphinscheduler.tasks.switch.Branch"><code class="xref py py-class docutils literal notranslate"><span class="pre">Branch</span></code></a> and <a class="reference internal" href="#pydolphinscheduler.tasks.switch.Default" title="pydolphinscheduler.tasks.switch.Default"><code class="xref py py-class docutils literal notranslate"><span class="pre">Default</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.SwitchBranch.get_define">
+<span class="sig-name descname"><span class="pre">get_define</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/switch.html#SwitchBranch.get_define"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.switch.SwitchBranch.get_define" title="Permalink to this definition"></a></dt>
+<dd><p>Get <code class="xref py py-class docutils literal notranslate"><span class="pre">ConditionBranch</span></code> definition attribute communicate to Java gateway server.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.SwitchBranch._DEFINE_ATTR">
+<span class="sig-name descname"><span class="pre">_DEFINE_ATTR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'next_node'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.switch.SwitchBranch._DEFINE_ATTR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.SwitchBranch.condition">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">condition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.switch.SwitchBranch.condition" title="Permalink to this definition"></a></dt>
+<dd><p>Get task switch property condition.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.SwitchBranch.next_node">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">next_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.switch.SwitchBranch.next_node" title="Permalink to this definition"></a></dt>
+<dd><p>Get task switch property next_node, it return task code when init class switch.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.SwitchCondition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.switch.</span></span><span class="sig-name descname"><span class="pre">SwitchCondition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/switch.html#SwitchCondition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.switch.SwitchCondition" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.base.Base</span></code></p>
+<p>Set switch condition of given parameter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.SwitchCondition.get_define">
+<span class="sig-name descname"><span class="pre">get_define</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/switch.html#SwitchCondition.get_define"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.switch.SwitchCondition.get_define" title="Permalink to this definition"></a></dt>
+<dd><p>Overwrite Base.get_define to get task Condition specific get define.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.SwitchCondition.set_define_attr">
+<span class="sig-name descname"><span class="pre">set_define_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/switch.html#SwitchCondition.set_define_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.switch.SwitchCondition.set_define_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Set attribute to function <a class="reference internal" href="#pydolphinscheduler.tasks.switch.SwitchCondition.get_define" title="pydolphinscheduler.tasks.switch.SwitchCondition.get_define"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_define()</span></code></a>.</p>
+<p>It is a wrapper for both <cite>And</cite> and <cite>Or</cite> operator.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.switch.SwitchCondition._DEFINE_ATTR">
+<span class="sig-name descname"><span class="pre">_DEFINE_ATTR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'depend_task_list'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.switch.SwitchCondition._DEFINE_ATTR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="http.html" class="btn btn-neutral float-left" title="HTTP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="condition.html" class="btn btn-neutral float-right" title="Condition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
