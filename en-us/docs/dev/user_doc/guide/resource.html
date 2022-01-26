@@ -139,6 +139,46 @@ Operation function: rename, download, delete.</p>
 <p align="center">
    <img src="/img/udf_edit_en.png" width="80%" />
  </p>
+<h2>Task group settings</h2>
+<p>The task group is mainly used to control the concurrency of task instances, and is designed to control the pressure of other resources (it can also control the pressure of the Hadoop cluster, the cluster will have queue control it). When creating a new task definition, you can configure the corresponding task group and configure the priority of the task running in the task group.</p>
+<h3>Task group configuration</h3>
+<h4>Create task group</h4>
+<p align="center">
+    <img src="/img/task_group_manage_eng.png" width="80%" />
+</p>
+<p>The user clicks [Resources] - [Task Group Management] - [Task Group option] - create task Group</p>
+<p align="center">
+<img src="/img/task_group_create_eng.png" width="80%" />
+</p> 
+<p>You need to enter the information in the picture:</p>
+<p>[Task group name]: The name displayed when the task group is used</p>
+<p>[Project name]: The project that the task group functions, this item is optional, if not selected, all the projects in the whole system can use this task group.</p>
+<p>[Resource pool size]: The maximum number of concurrent task instances allowed</p>
+<h4>View task group queue</h4>
+<p align="center">
+    <img src="/img/task_group_conf_eng.png" width="80%" />
+</p>
+<p>Click the button to view task group usage information</p>
+<p align="center">
+    <img src="/img/task_group_queue_list_eng.png" width="80%" />
+</p>
+<h4>Use of task groups</h4>
+<p>Note: The use of task groups is applicable to tasks executed by workers, such as [switch] nodes, [condition] nodes, [sub_process] and other node types executed by the master are not controlled by the task group. Let's take the shell node as an example:</p>
+<p align="center">
+    <img src="/img/task_group_use_eng.png" width="80%" />
+</p>        
+<p>Regarding the configuration of the task group, all you need to do is to configure the part in the red box:</p>
+<p>[Task group name] : The task group name displayed on the task group configuration page. Here you can only see the task group that the project has permission to (the project is selected when creating a task group), or the task group that acts globally (the new task group is created). when no item is selected)</p>
+<p>[Priority] : When there is a waiting resource, the task with high priority will be distributed to the worker by the master first. The larger the value of this part, the higher the priority.</p>
+<h3>Implementation logic of task group</h3>
+<h4>Get task group resources:</h4>
+<p>The master judges whether the task is configured with a task group when distributing the task. If the task is not configured, it is normally thrown to the worker to run; if a task group is configured, it checks whether the remaining size of the task group resource pool meets the current task operation before throwing it to the worker for execution. , if the resource pool -1 is satisfied, continue to run; if not, exit the task distribution and wait for other tasks to wake up.</p>
+<h4>Release and wake up:</h4>
+<p>When the task that has obtained the task group resource ends, the task group resource will be released. After the release, it will check whether there is a task waiting in the current task group. If there is, mark the task with the best priority to run, and create a new executable event. . The event stores the task id that is marked to obtain the resource, and then obtains the task group resource and then runs it.</p>
+<h4>Task Group Flowchart</h4>
+<p align="center">
+    <img src="/img/task_group_process.png" width="80%" />
+</p>        
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
