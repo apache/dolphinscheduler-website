@@ -1,17 +1,16 @@
 <!-- markdown-link-check-disable -->
 
-# 前言
-本文档为dolphinscheduler配置文件说明文档,针对版本为 dolphinscheduler-1.3.x 版本.
+# 配置说明
 
-# 目录结构
-目前dolphinscheduler 所有的配置文件都在 [conf ] 目录中.
-为了更直观的了解[conf]目录所在的位置以及包含的配置文件,请查看下面dolphinscheduler安装目录的简化说明.
-本文主要讲述dolphinscheduler的配置文件.其他部分先不做赘述.
+Dolphinscheduler 配置文件说明文档 （仅针对 dolphinscheduler-1.3.x 版本）
 
-[注:以下 dolphinscheduler 简称为DS.]
+# 配置文件
+
+Dolphinscheduler配置文件说明：
+
 ```
 
-├─bin                               DS命令存放目录
+├─bin                               Dolphinscheduler命令存放目录
 │  ├─dolphinscheduler-daemon.sh         启动/关闭DS服务脚本
 │  ├─start-all.sh                       根据配置文件启动所有DS服务
 │  ├─stop-all.sh                        根据配置文件关闭所有DS服务
@@ -25,7 +24,7 @@
 │  ├─common.properties                  公共服务[存储]配置文件
 │  ├─alert.properties                   alert服务配置文件
 │  ├─config                             环境变量配置文件夹
-│      ├─install_config.conf                DS环境变量配置脚本[用于DS安装/启动]
+│      ├─install_config.conf                Dolphinscheduler环境变量配置脚本[用于DS安装/启动]
 │  ├─env                                运行脚本环境变量配置目录
 │      ├─dolphinscheduler_env.sh            运行脚本加载环境变量配置文件[如: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]
 │  ├─org                                mybatis mapper文件目录
@@ -39,11 +38,11 @@
 │  ├─upgrade                            升级SQL脚本目录
 │  ├─dolphinscheduler_postgre.sql       postgre数据库初始化脚本
 │  ├─dolphinscheduler_mysql.sql         mysql数据库初始化脚本
-│  ├─soft_version                       当前DS版本标识文件
-├─script                            DS服务部署,数据库创建/升级脚本目录
-│  ├─create-dolphinscheduler.sh         DS数据库初始化脚本      
-│  ├─upgrade-dolphinscheduler.sh        DS数据库升级脚本                
-│  ├─monitor-server.sh                  DS服务监控启动脚本               
+│  ├─soft_version                       当前Dolphinscheduler版本标识文件
+├─script                            Dolphinscheduler服务部署,数据库创建/升级脚本目录
+│  ├─create-dolphinscheduler.sh         Dolphinscheduler数据库初始化脚本      
+│  ├─upgrade-dolphinscheduler.sh        Dolphinscheduler数据库升级脚本                
+│  ├─monitor-server.sh                  Dolphinscheduler服务监控启动脚本               
 │  ├─scp-hosts.sh                       安装文件传输脚本                                                    
 │  ├─remove-zk-node.sh                  清理zookeeper缓存文件脚本       
 ├─ui                                前端WEB资源目录
@@ -54,7 +53,7 @@
 ```
 
 
-# 配置文件详解
+# 配置详解
 
 序号| 服务分类 |  配置文件|
 |--|--|--|
@@ -69,32 +68,32 @@
 9|Quartz配置|quartz.properties
 10|DS环境变量配置脚本[用于DS安装/启动]|install_config.conf
 11|运行脚本加载环境变量配置文件 <br />[如: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]|dolphinscheduler_env.sh
-12|各服务日志配置文件|api服务日志配置文件 : logback-api.xml  <br /> master服务日志配置文件  : logback-master.xml    <br /> worker服务日志配置文件 : logback-worker.xml  <br /> alert服务日志配置文件 : logback-alert.xml 
+12|各服务日志配置文件|api服务日志配置文件 : logback-api.xml  <br /> master服务日志配置文件  : logback-master.xml    <br /> worker服务日志配置文件 : logback-worker.xml  <br /> alert服务日志配置文件 : logback-alert.xml
 
 
-## 1.dolphinscheduler-daemon.sh [启动/关闭DS服务脚本]
-dolphinscheduler-daemon.sh脚本负责DS的启动&关闭. 
+## dolphinscheduler-daemon.sh [启动/关闭DS服务脚本]
+dolphinscheduler-daemon.sh脚本负责DS的启动&关闭.
 start-all.sh/stop-all.sh最终也是通过dolphinscheduler-daemon.sh对集群进行启动/关闭操作.
 目前DS只是做了一个基本的设置,JVM参数请根据各自资源的实际情况自行设置.
 
-默认简化参数如下:
+默认参数:
 ```bash
 export DOLPHINSCHEDULER_OPTS="
--server 
--Xmx16g 
--Xms1g 
--Xss512k 
--XX:+UseConcMarkSweepGC 
--XX:+CMSParallelRemarkEnabled 
--XX:+UseFastAccessorMethods 
--XX:+UseCMSInitiatingOccupancyOnly 
+-server
+-Xmx16g
+-Xms1g
+-Xss512k
+-XX:+UseConcMarkSweepGC
+-XX:+CMSParallelRemarkEnabled
+-XX:+UseFastAccessorMethods
+-XX:+UseCMSInitiatingOccupancyOnly
 -XX:CMSInitiatingOccupancyFraction=70
 "
 ```
 
 > 不建议设置"-XX:DisableExplicitGC" , DS使用Netty进行通讯,设置该参数,可能会导致内存泄漏.
 
-## 2.datasource.properties [数据库连接]
+## datasource.properties [数据库连接]
 在DS中使用Druid对数据库连接进行管理,默认简化配置如下.
 |参数 | 默认值| 描述|
 |--|--|--|
@@ -120,8 +119,8 @@ spring.datasource.poolPreparedStatements|true| 开启PSCache
 spring.datasource.maxPoolPreparedStatementPerConnectionSize|20| 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。
 
 
-## 3.registry.properties [registry连接配置,默认使用zookeeper]
-|参数 |默认值| 描述| 
+## registry.properties [registry连接配置,默认使用zookeeper]
+|参数 |默认值| 描述|
 |--|--|--|
 registry.plugin.name|zookeeper| 插件名称
 registry.servers|localhost:2181| zk集群连接信息
@@ -133,9 +132,9 @@ registry.session.timeout.ms|30000| session 超时时间
 registry.connection.timeout.ms|7500| 连接超时时间
 
 
-## 4.common.properties [hadoop、s3、yarn配置]
-common.properties配置文件目前主要是配置hadoop/s3a相关的配置. 
-|参数 |默认值| 描述| 
+## common.properties [hadoop、s3、yarn配置]
+common.properties配置文件目前主要是配置hadoop/s3a相关的配置.
+|参数 |默认值| 描述|
 |--|--|--|
 data.basedir.path|/tmp/dolphinscheduler|本地工作目录,用于存放临时文件
 resource.storage.type|NONE|资源文件存储类型: HDFS,S3,NONE
@@ -157,8 +156,8 @@ dolphinscheduler.env.path|env/dolphinscheduler_env.sh|运行脚本加载环境�
 development.state|false|是否处于开发模式
 
 
-## 5.application-api.properties [API服务配置]
-|参数 |默认值| 描述| 
+## application-api.properties [API服务配置]
+|参数 |默认值| 描述|
 |--|--|--|
 server.port|12345|api服务通讯端口
 server.servlet.session.timeout|7200|session超时时间
@@ -172,8 +171,8 @@ spring.messages.basename|i18n/messages|i18n配置
 security.authentication.type|PASSWORD|权限校验类型
 
 
-## 6.master.properties [Master服务配置]
-|参数 |默认值| 描述| 
+## master.properties [Master服务配置]
+|参数 |默认值| 描述|
 |--|--|--|
 master.listen.port|5678|master监听端口
 master.exec.threads|100|master工作线程数量,用于限制并行的流程实例数量
@@ -187,8 +186,8 @@ master.max.cpuload.avg|-1|master最大cpuload均值,只有高于系统cpuload均
 master.reserved.memory|0.3|master预留内存,只有低于系统可用内存时,master服务才能调度任务,单位为G
 
 
-## 7.worker.properties [Worker服务配置]
-|参数 |默认值| 描述| 
+## worker.properties [Worker服务配置]
+|参数 |默认值| 描述|
 |--|--|--|
 worker.listen.port|1234|worker监听端口
 worker.exec.threads|100|worker工作线程数量,用于限制并行的任务实例数量
@@ -198,8 +197,8 @@ worker.reserved.memory|0.3|worker预留内存,只有低于系统可用内存时,
 worker.groups|default|worker分组配置,逗号分隔,例如'worker.groups=default,test' <br> worker启动时会根据该配置自动加入对应的分组
 
 
-## 8.alert.properties [Alert 告警服务配置]
-|参数 |默认值| 描述| 
+## alert.properties [Alert 告警服务配置]
+|参数 |默认值| 描述|
 |--|--|--|
 alert.type|EMAIL|告警类型|
 mail.protocol|SMTP| 邮件服务器协议
@@ -225,9 +224,9 @@ enterprise.wechat.team.send.msg||群发消息格式
 plugin.dir|/Users/xx/your/path/to/plugin/dir|插件目录
 
 
-## 9.quartz.properties [Quartz配置]
+## quartz.properties [Quartz配置]
 这里面主要是quartz配置,请结合实际业务场景&资源进行配置,本文暂时不做展开.
-|参数 |默认值| 描述| 
+|参数 |默认值| 描述|
 |--|--|--|
 org.quartz.jobStore.driverDelegateClass | org.quartz.impl.jdbcjobstore.StdJDBCDelegate
 org.quartz.jobStore.driverDelegateClass | org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
@@ -249,18 +248,18 @@ org.quartz.jobStore.dataSource | myDs
 org.quartz.dataSource.myDs.connectionProvider.class | org.apache.dolphinscheduler.service.quartz.DruidConnectionProvider
 
 
-## 10.install_config.conf [DS环境变量配置脚本[用于DS安装/启动]]
+## install_config.conf [DS环境变量配置脚本[用于DS安装/启动]]
 install_config.conf这个配置文件比较繁琐,这个文件主要有两个地方会用到.
-* 1.DS集群的自动安装. 
+* DS集群的自动安装.
 
-> 调用install.sh脚本会自动加载该文件中的配置.并根据该文件中的内容自动配置上述的配置文件中的内容. 
+> 调用install.sh脚本会自动加载该文件中的配置.并根据该文件中的内容自动配置上述的配置文件中的内容.
 > 比如:dolphinscheduler-daemon.sh、datasource.properties、registry.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties 等文件.
 
 
-* 2.DS集群的启动&关闭.
+* DS集群的启动&关闭.
 >DS集群在启动&关闭的时候,会加载该配置文件中的masters,workers,alertServer,apiServers等参数,启动/关闭DS集群.
 
-文件内容如下:
+文件内容:
 ```bash
 
 # 注意: 该配置文件中如果包含特殊字符,如: `.*[]^${}\+?|()@#&`, 请转义,
@@ -376,11 +375,11 @@ workers="ds1:default,ds2:default,ds3:default,ds4:default,ds5:default"
 #  部署alert服务主机
 alertServer="ds3"
 
-# 部署api服务主机 
+# 部署api服务主机
 apiServers="ds1"
 ```
 
-## 11.dolphinscheduler_env.sh [环境变量配置]
+## dolphinscheduler_env.sh [环境变量配置]
 通过类似shell方式提交任务的的时候,会加载该配置文件中的环境变量到主机中.
 涉及到的任务类型有: Shell任务、Python任务、Spark任务、Flink任务、Datax任务等等
 ```bash
@@ -398,7 +397,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 
 ```
 
-## 12.各服务日志配置文件
+## 各服务日志配置文件
 对应服务服务名称| 日志文件名 |
 |--|--|--|
 api服务日志配置文件 |logback-api.xml|

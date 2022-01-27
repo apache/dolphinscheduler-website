@@ -1,17 +1,6 @@
-## 名词解释
+## 词汇表
 
-在对Apache DolphinScheduler了解之前，我们先来认识一下调度系统常用的名词
-
-### 1.名词解释
-
-**DAG：** 全称Directed Acyclic Graph，简称DAG。工作流中的Task任务以有向无环图的形式组装起来，从入度为零的节点进行拓扑遍历，直到无后继节点为止。举例如下图：
-
-<p align="center">
-  <img src="/img/dag_examples_cn.jpg" alt="dag示例"  width="60%" />
-  <p align="center">
-        <em>dag示例</em>
-  </p>
-</p>
+**DAG：** 全称Directed Acyclic Graph，简称DAG。工作流中的Task任务以有向无环图的形式组装起来，从入度为零的节点进行拓扑遍历，直到无后继节点为止。
 
 **流程定义**：通过拖拽任务节点并建立任务节点的关联所形成的可视化**DAG**
 
@@ -36,23 +25,3 @@
 **失败策略**：对于并行运行的任务，如果有任务失败，提供两种失败策略处理方式，**继续**是指不管并行运行任务的状态，直到流程失败结束。**结束**是指一旦发现失败任务，则同时Kill掉正在运行的并行任务，流程失败结束
 
 **补数**：补历史数据，支持**区间并行和串行**两种补数方式
-
-### 2.模块介绍
-
-- dolphinscheduler-alert 告警模块，提供 AlertServer 服务。
-
-- dolphinscheduler-api web应用模块，提供 ApiServer 服务。
-
-- dolphinscheduler-common 通用的常量枚举、工具类、数据结构或者基类
-
-- dolphinscheduler-dao 提供数据库访问等操作。
-
-- dolphinscheduler-remote 基于 netty 的客户端、服务端
-
-- dolphinscheduler-server MasterServer 和 WorkerServer 服务
-
-- dolphinscheduler-service service模块，包含Quartz、Zookeeper、日志客户端访问服务，便于server模块和api模块调用
-
-- dolphinscheduler-ui 前端模块
-
-

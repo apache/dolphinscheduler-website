@@ -1,7 +1,7 @@
-# Dolphin Scheduler 2.0元数据文档
+# 元数据表
 
 <a name="25Ald"></a>
-### 表概览
+
 | 表名 | 表信息 |
 | :---: | :---: |
 | t_ds_access_token | 访问ds后端的token |
@@ -30,6 +30,7 @@
 | t_ds_version | ds版本信息 |
 
 <a name="VNVGr"></a>
+
 ### 用户	队列	数据源
 ![image.png](/img/metadata-erd/user-queue-datasource.png)
 
@@ -37,6 +38,7 @@
 - t_ds_user中的queue字段存储的是队列表中的queue_name信息，t_ds_tenant下存的是queue_id，在流程定义执行过程中，用户队列优先级最高，用户队列为空则采用租户队列<br />
 - t_ds_datasource表中的user_id字段表示创建该数据源的用户，t_ds_relation_datasource_user中的user_id表示，对数据源有权限的用户<br />
 <a name="HHyGV"></a>
+
 ### 项目	资源	告警
 ![image.png](/img/metadata-erd/project-resource-alert.png)
 
@@ -45,6 +47,7 @@
 - t_ds_resources表中的user_id表示创建该资源的用户，t_ds_relation_resources_user中的user_id表示对资源有权限的用户<br />
 - t_ds_udfs表中的user_id表示创建该UDF的用户，t_ds_relation_udfs_user表中的user_id表示对UDF有权限的用户<br />
 <a name="Bg2Sn"></a>
+
 ### 命令	流程	任务
 ![image.png](/img/metadata-erd/command.png)<br />![image.png](/img/metadata-erd/process-task.png)
 
@@ -52,8 +55,10 @@
 - t_ds_schedulers表存放流程定义的定时调度信息<br />
 - t_ds_relation_process_instance表存放的数据用于处理流程定义中含有子流程的情况，parent_process_instance_id表示含有子流程的主流程实例id，process_instance_id表示子流程实例的id，parent_task_instance_id表示子流程节点的任务实例id，流程实例表和任务实例表分别对应t_ds_process_instance表和t_ds_task_instance表
 <a name="Pv25P"></a>
+
 ### 核心表Schema
 <a name="32Jzd"></a>
+
 #### t_ds_process_definition
 | 字段 | 类型 | 注释 |
 | --- | --- | --- |
@@ -79,6 +84,7 @@
 | resource_ids | varchar | 资源id集 |
 
 <a name="e6jfz"></a>
+
 #### t_ds_process_instance
 | 字段 | 类型 | 注释 |
 | --- | --- | --- |
@@ -116,6 +122,7 @@
 | tenant_id | int | 租户id |
 
 <a name="IvHEc"></a>
+
 #### t_ds_task_instance
 | 字段 | 类型 | 注释 |
 | --- | --- | --- |
@@ -143,6 +150,7 @@
 | worker_group | varchar | 任务指定运行的worker分组 |
 
 <a name="pPQkU"></a>
+
 #### t_ds_schedules
 | 字段 | 类型 | 注释 |
 | --- | --- | --- |
@@ -162,6 +170,7 @@
 | update_time | datetime | 更新时间 |
 
 <a name="TkQzn"></a>
+
 #### t_ds_command
 | 字段 | 类型 | 注释 |
 | --- | --- | --- |
@@ -180,6 +189,3 @@
 | update_time | datetime | 更新时间 |
 | process_instance_priority | int | 流程实例优先级：0 Highest,1 High,2 Medium,3 Low,4 Lowest |
 | worker_group | varchar | 任务指定运行的worker分组 |
-
-
-

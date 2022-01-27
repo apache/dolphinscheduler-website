@@ -1,8 +1,8 @@
 
 # 任务总体存储结构
-在dolphinscheduler中创建的所有任务都保存在t_ds_process_definition 表中.
+dolphinscheduler中所有任务保存在t_ds_process_definition 表中
 
-该数据库表结构如下表所示:
+t_ds_process_definition 表结构如下表所示:
 
 
 序号 | 字段  | 类型  |  描述
@@ -28,9 +28,10 @@
 19|modify_by|varchar(36)|修改用户
 20|resource_ids|varchar(255)|资源ids
 
-其中process_definition_json 字段为核心字段, 定义了 DAG 图中的任务信息.该数据以JSON 的方式进行存储.
+其中process_definition_json 字段为核心字段, 定义 DAG 图中任务信息并以JSON 格式存储.
 
-公共的数据结构如下表.
+公共数据结构如下表所示：
+
 序号 | 字段  | 类型  |  描述
 -------- | ---------| -------- | ---------
 1|globalParams|Array|全局参数
@@ -38,7 +39,7 @@
 3|tenantId|int|租户id
 4|timeout|int|超时时间
 
-数据示例:
+公共数据结构示例:
 ```bash
 {
     "globalParams":[
@@ -55,9 +56,10 @@
 }
 ```
 
-# 各任务类型存储结构详解
+# 各任务类型存储结构
 
 ## Shell节点
+
 **节点数据结构如下:**
 序号|参数名||类型|描述 |描述
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -72,7 +74,7 @@
 9|runFlag | |String |运行标识| |
 10|conditionResult | |Object|条件分支 | |
 11| | successNode| Array|成功跳转节点| |
-12| | failedNode|Array|失败跳转节点 | 
+12| | failedNode|Array|失败跳转节点 |
 13| dependence| |Object |任务依赖 |与params互斥
 14|maxRetryTimes | |String|最大重试次数 | |
 15|retryInterval | |String |重试间隔| |
@@ -133,7 +135,6 @@
 
 
 ## SQL节点
-通过 SQL对指定的数据源进行数据查询、更新操作.
 
 **节点数据结构如下:**
 序号|参数名||类型|描述 |描述
@@ -159,7 +160,7 @@
 19|runFlag | |String |运行标识| |
 20|conditionResult | |Object|条件分支 | |
 21| | successNode| Array|成功跳转节点| |
-22| | failedNode|Array|失败跳转节点 | 
+22| | failedNode|Array|失败跳转节点 |
 23| dependence| |Object |任务依赖 |与params互斥
 24|maxRetryTimes | |String|最大重试次数 | |
 25|retryInterval | |String |重试间隔| |
@@ -262,7 +263,7 @@
 20|runFlag | |String |运行标识| |
 21|conditionResult | |Object|条件分支 | |
 22| | successNode| Array|成功跳转节点| |
-23| | failedNode|Array|失败跳转节点 | 
+23| | failedNode|Array|失败跳转节点 |
 24| dependence| |Object |任务依赖 |与params互斥
 25|maxRetryTimes | |String|最大重试次数 | |
 26|retryInterval | |String |重试间隔| |
@@ -355,7 +356,7 @@
 13|runFlag | |String |运行标识| |
 14|conditionResult | |Object|条件分支 | |
 15| | successNode| Array|成功跳转节点| |
-16| | failedNode|Array|失败跳转节点 | 
+16| | failedNode|Array|失败跳转节点 |
 17| dependence| |Object |任务依赖 |与params互斥
 18|maxRetryTimes | |String|最大重试次数 | |
 19|retryInterval | |String |重试间隔| |
@@ -436,7 +437,7 @@
 9|runFlag | |String |运行标识| |
 10|conditionResult | |Object|条件分支 | |
 11| | successNode| Array|成功跳转节点| |
-12| | failedNode|Array|失败跳转节点 | 
+12| | failedNode|Array|失败跳转节点 |
 13| dependence| |Object |任务依赖 |与params互斥
 14|maxRetryTimes | |String|最大重试次数 | |
 15|retryInterval | |String |重试间隔| |
@@ -522,7 +523,7 @@
 18|runFlag | |String |运行标识| |
 19|conditionResult | |Object|条件分支 | |
 20| | successNode| Array|成功跳转节点| |
-21| | failedNode|Array|失败跳转节点 | 
+21| | failedNode|Array|失败跳转节点 |
 22| dependence| |Object |任务依赖 |与params互斥
 23|maxRetryTimes | |String|最大重试次数 | |
 24|retryInterval | |String |重试间隔| |
@@ -611,7 +612,7 @@
 12|runFlag | |String |运行标识| |
 13|conditionResult | |Object|条件分支 | |
 14| | successNode| Array|成功跳转节点| |
-15| | failedNode|Array|失败跳转节点 | 
+15| | failedNode|Array|失败跳转节点 |
 16| dependence| |Object |任务依赖 |与params互斥
 17|maxRetryTimes | |String|最大重试次数 | |
 18|retryInterval | |String |重试间隔| |
@@ -692,7 +693,7 @@
 6| |dsType |String | 源数据库类型
 7| |dataSource |Int | 源数据库ID
 8| |dtType | String| 目标数据库类型
-9| |dataTarget | Int| 目标数据库ID 
+9| |dataTarget | Int| 目标数据库ID
 10| |sql |String | SQL语句
 11| |targetTable |String | 目标表
 12| |jobSpeedByte |Int | 限流(字节数)
@@ -705,7 +706,7 @@
 19|runFlag | |String |运行标识| |
 20|conditionResult | |Object|条件分支 | |
 21| | successNode| Array|成功跳转节点| |
-22| | failedNode|Array|失败跳转节点 | 
+22| | failedNode|Array|失败跳转节点 |
 23| dependence| |Object |任务依赖 |与params互斥
 24|maxRetryTimes | |String|最大重试次数 | |
 25|retryInterval | |String |重试间隔| |
@@ -789,7 +790,7 @@
 13|runFlag | |String |运行标识| |
 14|conditionResult | |Object|条件分支 | |
 15| | successNode| Array|成功跳转节点| |
-16| | failedNode|Array|失败跳转节点 | 
+16| | failedNode|Array|失败跳转节点 |
 17| dependence| |Object |任务依赖 |与params互斥
 18|maxRetryTimes | |String|最大重试次数 | |
 19|retryInterval | |String |重试间隔| |
@@ -860,7 +861,7 @@
 6|runFlag | |String |运行标识| |
 7|conditionResult | |Object|条件分支 | |
 8| | successNode| Array|成功跳转节点| |
-9| | failedNode|Array|失败跳转节点 | 
+9| | failedNode|Array|失败跳转节点 |
 10| dependence| |Object |任务依赖 |与params互斥
 11|maxRetryTimes | |String|最大重试次数 | |
 12|retryInterval | |String |重试间隔| |
@@ -926,7 +927,7 @@
 7|runFlag | |String |运行标识| |
 8|conditionResult | |Object|条件分支 | |
 9| | successNode| Array|成功跳转节点| |
-10| | failedNode|Array|失败跳转节点 | 
+10| | failedNode|Array|失败跳转节点 |
 11| dependence| |Object |任务依赖 |与params互斥
 12|maxRetryTimes | |String|最大重试次数 | |
 13|retryInterval | |String |重试间隔| |
@@ -989,7 +990,7 @@
 9|runFlag | |String |运行标识| |
 10|conditionResult | |Object|条件分支 | |
 11| | successNode| Array|成功跳转节点| |
-12| | failedNode|Array|失败跳转节点 | 
+12| | failedNode|Array|失败跳转节点 |
 13| dependence| |Object |任务依赖 |与params互斥
 14| | relation|String |关系 |AND,OR
 15| | dependTaskList|Array |依赖任务清单 |
