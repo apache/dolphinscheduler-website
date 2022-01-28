@@ -2,17 +2,17 @@
 Unit Test 
 ### 1.写单元测试的收益
 * 单元测试能帮助每个人深入代码细节，了解代码的功能。
-* 通过测试用例我们能发现bug，并提交代码的健壮性。
-* 测试用例同时也是代码的demo用法。
+* 通过测试用例我们能发现 bug，并提交代码的健壮性。
+* 测试用例同时也是代码的 demo 用法。
 ### 2.单元测试用例的一些设计原则
 * 应该精心设计好步骤，颗粒度和组合条件。
 * 注意边界条件。
 * 单元测试也应该好好设计，不要写无用的代码。
 * 当你发现一个`方法`很难写单元测试时，如果可以确认这个`方法`是`臭代码`，那么就和开发者一起重构它。
-* DolphinScheduler: [mockito](http://site.mockito.org/). 下面是一些开发向导:[mockito tutorial](http://www.baeldung.com/bdd-mockito) ,[mockito refcard](https://dzone.com/refcardz/mockito)
+* DolphinScheduler: [mockito](http://site.mockito.org/). 下面是一些开发向导: [mockito tutorial](http://www.baeldung.com/bdd-mockito), [mockito refcard](https://dzone.com/refcardz/mockito)
 * TDD（可选）：当你开始写一个新的功能时，你可以试着先写测试用例。
 ### 3.测试覆盖率设定值
-* 在现阶段，Delta更改代码的测试覆盖设定值为：>＝60%，越高越好。
+* 在现阶段，Delta 更改代码的测试覆盖设定值为：>＝60%，越高越好。
 * 我们可以在这个页面中看到测试报告: https://codecov.io/gh/apache/dolphinscheduler
 
 ## 单元测试基本准则
@@ -48,7 +48,7 @@ Unit Test
 
 测试覆盖率，这是个非常费劲的问题，对于核心流程，我们是希望能够达到 90% 的覆盖率，非核心流程要求 60% 以上。
 
-覆盖率足够高的情况下会减少足够多的bug出现的概率，同时也减少了我们回归测试的成本。这是一个长久的工作，每当开发者新增或者修改代码的时候，相关测试用例与此同时也需要完善。这一点，希望开发者以及相关代码reviewer都能足够重视。
+覆盖率足够高的情况下会减少足够多的 bug 出现的概率，同时也减少了我们回归测试的成本。这是一个长久的工作，每当开发者新增或者修改代码的时候，相关测试用例与此同时也需要完善。这一点，希望开发者以及相关代码 reviewer 都能足够重视。
 
 ### 7：拒绝无效断言
 
@@ -77,7 +77,7 @@ Awaitility.await().atMost(…)
 
 如 @Ignore("see #1")
 
-3: try-catch单元测试异常
+3: try-catch 单元测试异常
 
 当单元测试中的代码引发异常的时候，测试将失败,因此，不需要使用 try-catch 捕获异常。
 
@@ -104,5 +104,5 @@ public void testMethod() throws MyException {
 
 5:拒绝使用 MockitoJUnitRunner.Silent.class
 
-当单测出现UnnecessaryStubbingException时，请不要第一时间考虑使用 @RunWith(MockitoJUnitRunner.Silent.class) 来解决它，这只是隐藏了问题，
+当单测出现 UnnecessaryStubbingException 时，请不要第一时间考虑使用 @RunWith(MockitoJUnitRunner.Silent.class) 来解决它，这只是隐藏了问题，
 你应该根据异常提示解决相关问题，这并不是一个困难的工作。当完成更改时，你会发现，你的代码又简洁了许多。

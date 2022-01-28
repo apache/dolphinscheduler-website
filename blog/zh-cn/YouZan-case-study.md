@@ -13,11 +13,11 @@
  
 目前，有赞在数据中台的支撑下已经建立了比较完整的数字产品矩阵：
 
-[![68d4bd3ba305f91cf.md.jpg](https://imgpp.com/images/2021/12/10/68d4bd3ba305f91cf.md.jpg)](https://imgpp.com/image/ZbGED)
+[![68d4bd3ba305f91cf.md.jpg](https://s1.imgpp.com/2021/12/10/68d4bd3ba305f91cf.md.jpg)](https://imgpp.com/image/ZbGED)
 
 为了支持日益增长的数据处理业务需求，有赞建立了大数据开发平台（以下简称 DP 平台）。这是一个大数据离线开发平台，提供用户大数据任务开发所需的环境、工具和数据。
 
-[![8102f512534d0984a.md.jpg](https://imgpp.com/images/2021/12/10/8102f512534d0984a.md.jpg)](https://imgpp.com/image/ZbZbN)
+[![8102f512534d0984a.md.jpg](https://s1.imgpp.com/2021/12/10/8102f512534d0984a.md.jpg)](https://imgpp.com/image/ZbZbN)
 
 有赞大数据开发平台架构
 
@@ -26,7 +26,7 @@
 ### 1 调度层架构设计
 
  
-[![9f5a07ad20fdbb0d9.md.jpg](https://imgpp.com/images/2021/12/10/9f5a07ad20fdbb0d9.md.jpg)](https://imgpp.com/image/ZbiQL)
+[![9f5a07ad20fdbb0d9.md.jpg](https://s1.imgpp.com/2021/12/10/9f5a07ad20fdbb0d9.md.jpg)](https://imgpp.com/image/ZbiQL)
 
 有赞大数据开发平台调度层架构设计
   
@@ -50,7 +50,7 @@
 2. Python 技术栈，维护迭代成本高；
 3. 性能问题：
 
-[![134be4c7b422b89889.md.jpg](https://imgpp.com/images/2021/12/10/134be4c7b422b89889.md.jpg)](https://imgpp.com/image/Zb8yu)
+[![134be4c7b422b89889.md.jpg](https://s1.imgpp.com/2021/12/10/134be4c7b422b89889.md.jpg)](https://imgpp.com/image/Zb8yu)
 
 Airflow 的 schedule loop 如上图所示，本质上是对 DAG 的加载解析，将其生成 DAG round 实例执行任务调度。Airflow 2.0 之前的版本是单点 DAG 扫描解析到数据库，这就导致业务增长 Dag 数量较多时，scheduler loop 扫一次 Dag folder 会存在较大延迟（超过扫描频率），甚至扫描时间需要 60-70 秒，严重影响调度性能。
  
@@ -64,14 +64,14 @@ Airflow Scheduler Failover Controller 本质还是一个主从模式，standby �
  
 以下为对比分析结果：
 
-[![14dfca6d4f7730a5f2.md.jpg](https://imgpp.com/images/2021/12/10/14dfca6d4f7730a5f2.md.jpg)](https://imgpp.com/image/ZbaBs)
+[![14dfca6d4f7730a5f2.md.jpg](https://s1.imgpp.com/2021/12/10/14dfca6d4f7730a5f2.md.jpg)](https://imgpp.com/image/ZbaBs)
 
 Airflow VS DolphinScheduler
  
 
 ### 1 DolphinScheduler 价值评估
 
-[![156249f11dc4ada0d4.md.jpg](https://imgpp.com/images/2021/12/10/156249f11dc4ada0d4.md.jpg)](https://imgpp.com/image/ZbVrt)
+[![156249f11dc4ada0d4.md.jpg](https://s1.imgpp.com/2021/12/10/156249f11dc4ada0d4.md.jpg)](https://imgpp.com/image/ZbVrt)
 
 如上图所示，经过对 DolphinScheduler 价值评估，我们发现其在相同的条件下，吞吐性能是原来的调度系统的 2 倍，而 2.0 版本后 DolphinScheduler 的性能还会有更大幅度的提升，这一点让我们非常兴奋。
 
@@ -106,7 +106,7 @@ Airflow VS DolphinScheduler
 3. 任务生命周期管理/调度管理等操作通过 DolphinScheduler API 交互；
 利用 Project 机制冗余工作流配置，实现测试、发布的配置隔离。
  
-[![176ca073b653e27d44.md.jpg](https://imgpp.com/images/2021/12/10/176ca073b653e27d44.md.jpg)](https://imgpp.com/image/Zbsda)
+[![176ca073b653e27d44.md.jpg](https://s1.imgpp.com/2021/12/10/176ca073b653e27d44.md.jpg)](https://imgpp.com/image/Zbsda)
 
 改造方案设计
  
@@ -115,7 +115,7 @@ Airflow VS DolphinScheduler
 - 工作流定义状态梳理
 
  
-[![18e9d13314731833e1.md.jpg](https://imgpp.com/images/2021/12/10/18e9d13314731833e1.md.jpg)](https://imgpp.com/image/Zbvzd)
+[![18e9d13314731833e1.md.jpg](https://s1.imgpp.com/2021/12/10/18e9d13314731833e1.md.jpg)](https://imgpp.com/image/Zbvzd)
  
 我们首先梳理了 DolphinScheduler 工作流的定义状态。因为 DolphinScheduler 工作的定义和定时管理会区分为上下线状态， 但 DP平台上两者的状态是统一的，因此在任务测试和工作流发布流程中，需要对 DP到DolphinScheduler 的流程串联做相应的改造。
 
@@ -123,13 +123,13 @@ Airflow VS DolphinScheduler
 
 首先是任务测试流程改造。在切换到 DolphinScheduler 之后，所有的交互都是基于DolphinScheduler API 来进行的，当在 DP 启动任务测试时，会在 DolphinScheduler 侧生成对应的工作流定义配置，上线之后运行任务，同时调用 DolphinScheduler 的日志查看结果，实时获取日志运行信息。
 
-[![1954c93c34d86390df.jpg](https://imgpp.com/images/2021/12/10/1954c93c34d86390df.jpg)](https://imgpp.com/image/Zb6Q0)
+[![1954c93c34d86390df.jpg](https://s1.imgpp.com/2021/12/10/1954c93c34d86390df.jpg)](https://imgpp.com/image/Zb6Q0)
 
 - 工作流发布流程改造
  
 其次，针对工作流上线流程，切换到 DolphinScheduler 之后，主要是对工作流定义配置和定时配置，以及上线状态进行了同步。
 
-[![207714f8c5060a9162.md.jpg](https://imgpp.com/images/2021/12/10/207714f8c5060a9162.md.jpg)](https://imgpp.com/image/Zbx2b)
+[![207714f8c5060a9162.md.jpg](https://s1.imgpp.com/2021/12/10/207714f8c5060a9162.md.jpg)](https://imgpp.com/image/Zbx2b)
  
 通过这两个核心流程的改造。工作流的原数据维护和配置同步其实都是基于 DP master来管理，只有在上线和任务运行时才会到调度系统进行交互，基于这点，DP 平台实现了工作流维度下的系统动态切换，以便于后续的线上灰度测试。
 
@@ -141,7 +141,7 @@ Airflow VS DolphinScheduler
 
 目前，DolphinScheduler 平台已支持的任务类型主要包含数据同步类和数据计算类任务，如Hive SQL 任务、DataX 任务、Spark 任务等。因为任务的原数据信息是在 DP 侧维护的，因此 DP 平台的对接方案是在 DP 的 master 构建任务配置映射模块，将 DP 维护的 task 信息映射到 DP 侧的 task，然后通过 DolphinScheduler 的 API 调用来实现任务配置信息传递。
 
-[![1.md.png](https://imgpp.com/images/2021/12/10/1.md.png)](https://imgpp.com/image/Z8fNH)
+[![1.md.png](https://s1.imgpp.com/2021/12/10/1.md.png)](https://imgpp.com/image/Z8fNH)
  
 因为 DolphinScheduler 已经支持部分任务类型 ，所以只需要基于 DP 平台目前的实际使用场景对 DolphinScheduler 相应任务模块进行定制化改造。而对于 DolphinScheduler 未支持的任务类型，如Kylin任务、算法训练任务、DataY任务等，DP 平台也计划后续通过 DolphinScheduler 2.0 的插件化能力来补齐。 
 
@@ -149,7 +149,7 @@ Airflow VS DolphinScheduler
 
 因为 DP 平台上 SQL 任务和同步任务占据了任务总量的 80% 左右，因此改造重点都集中在这几个任务类型上，目前已基本完成 Hive SQL 任务、DataX 任务以及脚本任务的适配改造以及迁移工作。
 
-[![2.md.png](https://imgpp.com/images/2021/12/10/2.md.png)](https://imgpp.com/image/Z8dgm)
+[![2.md.png](https://s1.imgpp.com/2021/12/10/2.md.png)](https://imgpp.com/image/Z8dgm)
  
 
 ### 4 功能补齐
@@ -164,17 +164,17 @@ Catchup 机制在 DP 的使用场景，是在调度系统异常或资源不足�
 
 在图 1 中，工作流在 6 点准时调起，每小时调一次，可以看到在 6 点任务准时调起并完成任务执行，当前状态也是正常调度状态。
 
-[![11d6e4adb990afe71.md.png](https://imgpp.com/images/2021/12/10/11d6e4adb990afe71.md.png)](https://imgpp.com/image/Z8IkI)
+[![11d6e4adb990afe71.md.png](https://s1.imgpp.com/2021/12/10/11d6e4adb990afe71.md.png)](https://imgpp.com/image/Z8IkI)
  图1
 
 图 2 显示在 6 点完成调度后，一直到 8 点期间，调度系统出现异常，导致 7 点和 8点该工作流未被调起。
 
-[![242413a5dcd1c029e.md.png](https://imgpp.com/images/2021/12/10/242413a5dcd1c029e.md.png)](https://imgpp.com/image/Z8X64)
+[![242413a5dcd1c029e.md.png](https://s1.imgpp.com/2021/12/10/242413a5dcd1c029e.md.png)](https://imgpp.com/image/Z8X64)
  图2
  
 图 3 表示当 9 点恢复调度之后，因为 具有 Catchup 机制，调度系统会自动回补之前丢失的执行计划，实现调度的自动回补。 
 
-[![3.md.png](https://imgpp.com/images/2021/12/10/3.md.png)](https://imgpp.com/image/Z8tq8)
+[![3.md.png](https://s1.imgpp.com/2021/12/10/3.md.png)](https://imgpp.com/image/Z8tq8)
 图3
  
 此机制在任务量较大时作用尤为显著，当 Schedule 节点异常或核心任务堆积导致工作流错过调度出发时间时，因为系统本身的容错机制可以支持自动回补调度任务，所以无需人工手动补数重跑。
@@ -183,7 +183,7 @@ Catchup 机制在 DP 的使用场景，是在调度系统异常或资源不足�
  
 - 跨 Dag 全局补数
 
-[![4.md.png](https://imgpp.com/images/2021/12/10/4.md.png)](https://imgpp.com/image/Z8BtU)
+[![4.md.png](https://s1.imgpp.com/2021/12/10/4.md.png)](https://imgpp.com/image/Z8BtU)
 DP 平台跨 Dag 全局补数流程
 
 全局补数在有赞的主要使用场景，是用在核心上游表产出中出现异常，导致下游商家展示数据异常时。这种情况下，一般都需要系统能够快速重跑整个数据链路下的所有任务实例。
@@ -203,12 +203,12 @@ DP 平台目前已经在测试环境中部署了部分 DolphinScheduler 服务�
 
 对接到 DolphinScheduler API 系统后，DP 平台在用户层面统一使用 admin 用户，因为其用户体系是直接在 DP master 上进行维护，所有的工作流信息会区分测试环境和正式环境。
 
-[![25.md.jpg](https://imgpp.com/images/2021/12/10/25.md.jpg)](https://imgpp.com/image/Zb7rA)
+[![25.md.jpg](https://s1.imgpp.com/2021/12/10/25.md.jpg)](https://imgpp.com/image/Zb7rA)
 DolphinScheduler 工作流定义列表
  
-[![26.md.jpg](https://imgpp.com/images/2021/12/10/26.md.jpg)](https://imgpp.com/image/ZbQlk)
+[![26.md.jpg](https://s1.imgpp.com/2021/12/10/26.md.jpg)](https://imgpp.com/image/ZbQlk)
 
-[![27.md.jpg](https://imgpp.com/images/2021/12/10/27.md.jpg)](https://imgpp.com/image/ZbodC)
+[![27.md.jpg](https://s1.imgpp.com/2021/12/10/27.md.jpg)](https://imgpp.com/image/ZbodC)
 DolphinScheduler 2.0工作流任务节点展示
 
 DolphinScheduler 2.0 整体的 UI 交互看起来更加简洁，可视化程度更高，我们计划直接升级至 2.0 版本。
@@ -217,7 +217,7 @@ DolphinScheduler 2.0 整体的 UI 交互看起来更加简洁，可视化程度�
  
 目前 ，DP 平台还处于接入 DolphinScheduler 的灰度测试阶段，计划于今年 12 月进行工作流的全量迁移，同时会在测试环境进行分阶段全方位测试或调度性能测试和压力测试。确定没有任何问题后，我们会在来年 1 月进行生产环境灰度测试，并计划在 3 月完成全量迁移。
 
-[![28.md.jpg](https://imgpp.com/images/2021/12/10/28.md.jpg)](https://imgpp.com/image/Zb0z6)
+[![28.md.jpg](https://s1.imgpp.com/2021/12/10/28.md.jpg)](https://imgpp.com/image/Zb0z6)
 
 
 ### 3 对 DolphinScheduler 的期待
@@ -225,7 +225,7 @@ DolphinScheduler 2.0 整体的 UI 交互看起来更加简洁，可视化程度�
  
 未来，我们对 DolphinScheduler 最大的期待是希望 2.0 版本可以实现任务插件化。
 
-[![5.md.png](https://imgpp.com/images/2021/12/10/5.md.png)](https://imgpp.com/image/Z8Oae)
+[![5.md.png](https://s1.imgpp.com/2021/12/10/5.md.png)](https://imgpp.com/image/Z8Oae)
  
 目前，DP 平台已经基于 DolphinScheduler 2.0实现了告警组件插件化，可在后端定义表单信息，并在前端自适应展示。
 

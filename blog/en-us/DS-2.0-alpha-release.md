@@ -1,6 +1,6 @@
 # Refactoring, Plug-in, Performance Improves By 20 times, Apache DolphinScheduler 2.0 alpha Release Highlights Check!
 
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/a920be6733a3d99af38d1cdebfcbb3ff.md.png"></div>
 
 Hello community, good news! After nearly 10 months of joint efforts by more than 100 community contributors, we are happy to announce the release of Apache DolphinScheduler 2.0 alpha. This is the first major version of DolphinScheduler since it entered Apache. It has undergone a number of key updates and optimizations, which means a milestone in the development of DolphinScheduler.
 DolphinScheduler 2.0 alpha mainly refactors the implementation of Master, greatly optimizes the metadata structure and processing flow, adds SPI plug-in capabilities, and improves performance by 20 times. At the same time, the new version has designed a brand new UI interface to bring a better user experience. In addition, 2.0 alpha has newly added and optimized some features that are eagerly demanded in the community, such as parameter transfer, version control, import and export functions.
@@ -24,9 +24,9 @@ Increase the caching mechanism to greatly reduce the number of database operatio
 
 ## UI Components Optimization Brings Brand New UI Interface
 
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/4e4024cbddbe3113f730c5e67f083c4f.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/4e4024cbddbe3113f730c5e67f083c4f.md.png"></div>
 
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/75e002b21d827aee9aeaa3922c20c13f.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/75e002b21d827aee9aeaa3922c20c13f.md.png"></div>
 
 UI interface comparison: 1.3.9 (top) VS. 2.0 alpha (bottom)
 
@@ -75,6 +75,6 @@ In addition to changes in performance and UI, DolphinScheduler has also undergon
 The release of DolphinScheduler 2.0 alpha embodies the wisdom and strength of the community contributors. Their active participation and great enthusiasm open the DolphinScheduler 2.0 era!
 Thanks so much for the participation of 100+ contributors (GitHub ID), and we are looking forward to more and more open sourcing enthusiasts joining the DolphinScheduler community co-construction, to contribute yourself to building a more usable big data workflow scheduling platform!
 
-<div align='center'><img src="https://imgpp.com/images/2021/11/16/8926d45ead1f735e8cfca0e8142b315f.md.png"></div>
+<div align='center'><img src="https://s1.imgpp.com/2021/11/16/8926d45ead1f735e8cfca0e8142b315f.md.png"></div>
 
 2.0 List of alpha contributors

@@ -52,6 +52,10 @@ export default {
             link: '/en-us/development/frontend-development.html',
           },
           {
+            title: 'E2E Automation Test',
+            link: '/en-us/development/e2e-test.html',
+          },
+          {
             title: 'Questions & Communications',
             link: '/en-us/development/have-questions.html',
           },
@@ -111,6 +115,10 @@ export default {
           {
             title: '前端开发',
             link: '/zh-cn/development/frontend-development.html',
+          },
+          {
+            title: 'E2E 自动化测试',
+            link: '/zh-cn/development/e2e-test.html',
           },
           {
             title: '问题与交流',

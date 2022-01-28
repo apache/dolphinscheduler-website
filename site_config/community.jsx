@@ -40,6 +40,15 @@ export default {
         ],
       },
       {
+        title: 'Join Community',
+        children: [
+          {
+            title: 'Review Issue or Pull Requests',
+            link: '/en-us/community/join/review.html',
+          },
+        ],
+      },
+      {
         title: 'Contribution Guide',
         children: [
           {
@@ -90,6 +99,19 @@ export default {
           {
             title: 'Micro BenchMark Notice',
             link: '/en-us/community/development/microbench.html',
+          },
+          {
+            title: 'Unit Test Writing Guide',
+            link: '/en-us/community/development/unit-test.html',
+          },
+        ],
+      },
+      {
+        title: 'DSIP',
+        children: [
+          {
+            title: 'DSIP',
+            link: '/en-us/community/DSIP.html',
           },
         ],
       },
@@ -258,6 +280,15 @@ export default {
         ],
       },
       {
+        title: '参与社区',
+        children: [
+          {
+            title: 'Review Issue or Pull Requests',
+            link: '/zh-cn/community/join/review.html',
+          },
+        ],
+      },
+      {
         title: '提交者指南',
         children: [
           {
@@ -291,6 +322,15 @@ export default {
           {
             title: '单元测试编写指南',
             link: '/zh-cn/community/development/unit-test.html',
+          },
+        ],
+      },
+      {
+        title: 'DSIP',
+        children: [
+          {
+            title: 'DSIP',
+            link: '/zh-cn/community/DSIP.html',
           },
         ],
       },

@@ -6,7 +6,7 @@ description: Based on the Apache DolphinScheduler, the cloud computing and big d
 # Eavy Info Builds Data Asset Management Platform Services Based on Apache DolphinScheduler to Construct Government Information Ecology | Use Case
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/29/1640759432737.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/29/1640759432737.png"/>
 </div>
 
 Based on the Apache DolphinScheduler, the cloud computing and big data provider Eavy Info has been serving the business operations in the company for more than a year.
@@ -22,7 +22,7 @@ Out of this consideration, we have developed a Data Asset Management Platform, o
 Apache DolphinScheduler is a distributed, decentralized, easy-to-expand visual DAG scheduling system that supports multiple types of tasks including Shell, Python, Spark, Flink, etc., and has good scalability. Its overall structure is shown in the figure below:
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/28/1.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/28/1.png"/>
 </div>
 
 This is a typical master-slave architecture with strong horizontal scalability. The scheduling engine Quartz is a Java open source project of Spring Boot, it is easier to integrate and use for those familiar with Spring Boot development.
@@ -50,13 +50,13 @@ Based on Apache DolphinScheduler, we carry out the following practices.
 In our business scenario, there are many types of business needs for data synchronization, but the amount of data is not particularly large and is real-time-undemanding. So at the beginning of the architecture selection, we chose the combination of Datax+Apache DolphinScheduler and implemented the transformation of the corresponding business. Now it is integrated into various projects as a service product to provide offline synchronization services.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/29/1-1.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/29/1-1.png"/>
 </div>
 
 Synchronization tasks are divided into periodic tasks and one-time tasks. After the configuration tasks of the input and output sources, the corn expression needs to be configured for periodic tasks, and then the save interface is called to send the synchronization tasks to the DS scheduling platform.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/29/2-1.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/29/2-1.png"/>
 </div>
 
 Synchronization tasks are divided into **periodic tasks** and **one-time tasks**. After the configuration tasks of the input and output sources are configured, the corn expression needs to be configured for periodic tasks, and then the **save interface** is called to send the synchronization tasks to the DS scheduling platform.
@@ -68,7 +68,7 @@ The design of the entire synchronization module is aimed to reuse the diversity 
 
 <div align=center>
 
-<img src="https://imgpp.com/images/2021/12/30/ffd0c839647bcce4c208ee0cf5b7622b.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/30/ffd0c839647bcce4c208ee0cf5b7622b.png"/>
 </div>
 
 ## Self Development Practices Based on DS
@@ -76,7 +76,7 @@ The design of the entire synchronization module is aimed to reuse the diversity 
 Anyone familiar with Datax knows that it is essentially an ETL tool, which provides a transformer module that supports Groovy syntax, and at the same time further enrich the tool classes used in the transformer in the Datax source code, such as replacing, regular matching, screening, desensitization, statistics, and other functions. That shows its property of Transform. Since the tasks are implemented with DAG diagrams in Apache DolphinScheduler, we wonder that is it possible to abstract each Datax or SQL into a small data governance module for a table or several tables? Each module is designed based on the DAG diagram, and the data can be transferred between upstream and downstream and is can be implemented by drag-and-drop like DS. Therefore, we self-developed a module based on the previous work on Datax and DS.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/30/ffd0c839647bcce4c208ee0cf5b7622b.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/30/ffd0c839647bcce4c208ee0cf5b7622b.png"/>
 </div>
 
 Each component is regarded as a module, and the dependency between the functions of each module is dealt with the dependency of DS. The corresponding component and the component transfer data are stored at the front-end, which means the front-end performs the transfer and logical judgments between most of the components after introducing input (input component) , since each component can be seen as an output/output of Datax. Once all parameters are set, the final output is determined. That is also the reason why we abandoned the UI front end of DS. After that, we assemble this DAG diagram into the defined type of DS and deliver it to the DS task center.
@@ -88,7 +88,7 @@ PS: Because our business scenarios may involve cross-database queries (MySQL com
 People dabble in the governance process know that a simple governance process can lead to a quality report. We write part of the government records into ES, and then use the aggregation capabilities of ES to obtain a quality report.
 
 <div align=center>
-<img src="https://imgpp.com/images/2021/12/29/4da40632c21dbea51d2951d98ee18f1b.md.png"/>
+<img src="https://s1.imgpp.com/2021/12/29/4da40632c21dbea51d2951d98ee18f1b.png"/>
 </div>
 
 The above are some practices that we have made based on DS and middlewares like Datax, combining with businesses to meet our own needs.
