@@ -266,6 +266,9 @@ export default {
         {
           img: '/img/ourusers/zhihuiqice.png',
         },
+        {
+          img: '/img/ourusers/sutpc.png',
+        },
       ],
     },
     userreview: {
@@ -534,6 +537,9 @@ export default {
         },
         {
           img: '/img/ourusers/zhihuiqice.png',
+        },
+        {
+          img: '/img/ourusers/sutpc.png',
         },
       ],
     },
