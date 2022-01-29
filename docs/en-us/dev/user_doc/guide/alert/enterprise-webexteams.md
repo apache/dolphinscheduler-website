@@ -2,7 +2,8 @@
 
 If you need to use WebexTeams to alert, please create an alarm Instance in warning instance manage, and then choose the WebexTeams plugin. The configuration example of enterprise WebexTeams is as follows:
 
-![enterprise-wechat-plugin](/img/alert/enterprise-wechat-plugin.png)
+![enterprise-webexteams-plugin](/img/alert/enterprise-webexteams-plugin.png)
+
 
 parameter configuration
 
