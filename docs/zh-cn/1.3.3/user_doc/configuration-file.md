@@ -398,7 +398,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 
 ## 12.各服务日志配置文件
 对应服务服务名成| 日志文件名 |
---|--|
+|--|--|--|
 api服务日志配置文件 |logback-api.xml|
 master服务日志配置文件|logback-master.xml |
 worker服务日志配置文件|logback-worker.xml |
