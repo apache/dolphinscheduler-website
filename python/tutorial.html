@@ -171,10 +171,10 @@ For all arguments of object process definition, you could find in the
 <a class="reference internal" href="tasks/shell.html#module-pydolphinscheduler.tasks.shell" title="pydolphinscheduler.tasks.shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.shell</span></code></a> which running <cite>echo</cite> command in terminal.
 Beside the argument <cite>command</cite>, we also need setting argument <cite>name</cite> for each task <em>(not
 only shell task, `name` is required for each type of task)</em>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
-<span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
-<span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
-<span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
+    <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
+    <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Beside shell task, <em>PyDolphinScheduler</em> support multiple tasks and you could
@@ -191,10 +191,10 @@ operators <cite>&gt;&gt;</cite> and <cite>&lt;&lt;</cite>.</p>
 <p>In this example, we set task <cite>task_parent</cite> is the upstream task of task
 <cite>task_child_one</cite> and <cite>task_child_two</cite>, and task <cite>task_union</cite> is the downstream
 task of both these two task.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">,</span> <span class="n">task_child_two</span><span class="p">]</span>
-<span class="n">task_parent</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">,</span> <span class="n">task_child_two</span><span class="p">]</span>
+    <span class="n">task_parent</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
 
-<span class="n">task_union</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+    <span class="n">task_union</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
 </pre></div>
 </div>
 <p>Please notice that we could grouping some tasks and set dependence if they have
@@ -213,7 +213,7 @@ Apache DolphinScheduler daemon.</p>
 to the daemon, and set the schedule time we just declare in <a class="reference internal" href="#process-definition-declaration">process definition declaration</a>.</p>
 <p>Now, we could run the Python code like other Python script, for the basic usage run
 <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">tutorial.py</span></code> to trigger and run it.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>If you not start your Apache DolphinScheduler server, you could find the way in
