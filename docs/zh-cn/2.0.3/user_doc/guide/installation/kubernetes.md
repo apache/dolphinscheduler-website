@@ -1,51 +1,42 @@
-# 快速试用 Kubernetes 部署
+# Kubernetes 部署
 
 Kubernetes部署目的是在Kubernetes集群中部署 DolphinScheduler 服务，能调度大量任务，可用于在生产中部署。
 
-如果你是新手，想要体验 DolphinScheduler 的功能，推荐使用[Standalone](standalone.md)方式体检。如果你想体验更完整的功能，或者更大的任务量，推荐使用[伪集群部署](pseudo-cluster.md)。如果你是在生产中使用，推荐使用[集群部署](cluster.md)或者[kubernetes](kubernetes.md)
-
-
-## 先决条件
+## 生产准备
 
  - [Helm](https://helm.sh/) 3.1.0+
  - [Kubernetes](https://kubernetes.io/) 1.12+
- - PV 供应(需要基础设施支持)
 
-## 安装 dolphinscheduler
+## 安装 Dolphinscheduler
 
-请下载源码包 apache-dolphinscheduler-2.0.3-src.tar.gz，下载地址: [下载](/zh-cn/download/download.html)
-
-发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下命令：
+发布一个名为 `dolphinscheduler` 执行以下命令：
 
 ```
-$ tar -zxvf apache-dolphinscheduler-2.0.3-src.tar.gz
-$ cd apache-dolphinscheduler-2.0.3-src/docker/kubernetes/dolphinscheduler
+$ tar -zxvf apache-dolphinscheduler-2.0.2-src.tar.gz
+$ cd apache-dolphinscheduler-2.0.2-src/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
-$ helm install dolphinscheduler . --set image.tag=2.0.3
+$ helm install dolphinscheduler . --set image.tag=2.0.2
 ```
 
-将名为 `dolphinscheduler` 的版本(release) 发布到 `test` 的命名空间中：
+将 `dolphinscheduler` 发布到 `test` 命名空间中：
 
 ```bash
 $ helm install dolphinscheduler . -n test
 ```
 
-> **提示**: 如果名为 `test` 的命名空间被使用, 选项参数 `-n test` 需要添加到 `helm` 和 `kubectl` 命令中
+> **提示**: `test` 的命名空间被使用, 选项参数 `-n test` 添加到 `helm` 和 `kubectl`
 
-这些命令以默认配置在 Kubernetes 集群上部署 DolphinScheduler，[附录-配置](#appendix-configuration)部分列出了可以在安装过程中配置的参数
+**PostgreSQL** (用户 `root`, 密码 `root`, 数据库 `dolphinscheduler`)
+**ZooKeeper** 服务将会默认启动
 
-> **提示**: 列出所有已发布的版本，使用 `helm list`
+## 访问 DolphinScheduler
 
-**PostgreSQL** (用户 `root`, 密码 `root`, 数据库 `dolphinscheduler`) 和 **ZooKeeper** 服务将会默认启动
+`values.yaml` 中 `ingress.enabled` 设置为 `true`, 访问 `http://${ingress.host}/dolphinscheduler`
 
-## 访问 DolphinScheduler 前端页面
+> **提示**: 如果 ingress 访问无效，联系 Kubernetes 管理员查看 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
-如果 `values.yaml` 文件中的 `ingress.enabled` 被设置为 `true`, 在浏览器中访问 `http://${ingress.host}/dolphinscheduler` 即可
-
-> **提示**: 如果 ingress 访问遇到问题，请联系 Kubernetes 管理员并查看 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
-
-否则，当 `api.service.type=ClusterIP` 时，你需要执行 port-forward 端口转发命令：
+当 `api.service.type=ClusterIP` 需要执行 port-forward 端口转发：
 
 ```bash
 $ kubectl port-forward --address 0.0.0.0 svc/dolphinscheduler-api 12345:12345
@@ -54,9 +45,10 @@ $ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:
 
 > **提示**: 如果出现 `unable to do port forwarding: socat not found` 错误, 需要先安装 `socat`
 
-然后访问前端页面: http://192.168.xx.xx:12345/dolphinscheduler (本地地址为 http://127.0.0.1:12345/dolphinscheduler)
+访问页面: http://192.168.xx.xx:12345/dolphinscheduler
+(本地地址： http://127.0.0.1:12345/dolphinscheduler)
 
-或者当 `api.service.type=NodePort` 时，你需要执行命令：
+当 `api.service.type=NodePort` 需要执行：
 
 ```bash
 NODE_IP=$(kubectl get no -n {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
@@ -64,33 +56,15 @@ NODE_PORT=$(kubectl get svc {{ template "dolphinscheduler.fullname" . }}-api -n 
 echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
 ```
 
-然后访问前端页面: http://192.168.xx.xx:12345/dolphinscheduler
+访问页面: http://192.168.xx.xx:12345/dolphinscheduler
 
-默认的用户是`admin`，默认的密码是`dolphinscheduler123`
+默认用户：`admin`，默认密码：`dolphinscheduler123`
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/2.0.3/user_doc/guide/quick-start.html)查看如何使用DolphinScheduler
+具体参考[快速开始](/zh-cn/docs/2.0.2/user_doc/guide/quick-start.html)查看使用DolphinScheduler
 
-## 卸载 dolphinscheduler
+## 配置  Dolphinscheduler
 
-卸载名为 `dolphinscheduler` 的版本(release)，请执行：
-
-```bash
-$ helm uninstall dolphinscheduler
-```
-
-该命令将删除与 `dolphinscheduler` 相关的所有 Kubernetes 组件（但PVC除外），并删除版本(release)
-
-要删除与 `dolphinscheduler` 相关的PVC，请执行：
-
-```bash
-$ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
-```
-
-> **注意**: 删除PVC也会删除所有数据，请谨慎操作！
-
-## 配置
-
-配置文件为 `values.yaml`，[附录-配置](#appendix-configuration) 表格列出了 DolphinScheduler 的可配置参数及其默认值
+配置 `values.yaml`，DolphinScheduler 的可配置参数及其默认值参考[附录 - 配置](#appendix-configuration)
 
 ## 支持矩阵
 
@@ -127,407 +101,24 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 | SQL-SQLServer                                                | 间接支持 | 详见 FAQ               |
 | SQL-DB2                                                      | 间接支持 | 详见 FAQ               |
 
-## FAQ
+## 卸载 Dolphinscheduler
 
-### 如何查看一个 pod 容器的日志？
-
-列出所有 pods (别名 `po`):
-
-```
-kubectl get po
-kubectl get po -n test # with test namespace
-```
-
-查看名为 dolphinscheduler-master-0 的 pod 容器的日志:
-
-```
-kubectl logs dolphinscheduler-master-0
-kubectl logs -f dolphinscheduler-master-0 # 跟随日志输出
-kubectl logs --tail 10 dolphinscheduler-master-0 -n test # 显示倒数10行日志
-```
-
-### 如何在 Kubernetes 上扩缩容 api, master 和 worker？
-
-列出所有 deployments (别名 `deploy`):
-
-```
-kubectl get deploy
-kubectl get deploy -n test # with test namespace
-```
-
-扩缩容 api 至 3 个副本:
-
-```
-kubectl scale --replicas=3 deploy dolphinscheduler-api
-kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
-```
-
-列出所有 statefulsets (别名 `sts`):
-
-```
-kubectl get sts
-kubectl get sts -n test # with test namespace
-```
-
-扩缩容 master 至 2 个副本:
-
-```
-kubectl scale --replicas=2 sts dolphinscheduler-master
-kubectl scale --replicas=2 sts dolphinscheduler-master -n test # with test namespace
-```
-
-扩缩容 worker 至 6 个副本:
-
-```
-kubectl scale --replicas=6 sts dolphinscheduler-worker
-kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
-```
-
-### 如何用 MySQL 替代 PostgreSQL 作为 DolphinScheduler 的数据库？
-
-> 由于商业许可证的原因，我们不能直接使用 MySQL 的驱动包.
->
-> 如果你要使用 MySQL, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
-
-1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
-2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
-
-```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.3
-COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
-```
-
-3. 构建一个包含 MySQL 驱动包的新镜像:
-
-```
-docker build -t apache/dolphinscheduler:mysql-driver .
-```
-
-4. 推送 docker 镜像 `apache/dolphinscheduler:mysql-driver` 到一个 docker registry 中
-
-5. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `mysql-driver`
-
-6. 修改 `values.yaml` 文件中 postgresql 的 `enabled` 为 `false`
-
-7. 修改 `values.yaml` 文件中的 externalDatabase 配置 (尤其修改 `host`, `username` 和 `password`)
-
-```yaml
-externalDatabase:
-  type: "mysql"
-  driver: "com.mysql.jdbc.Driver"
-  host: "localhost"
-  port: "3306"
-  username: "root"
-  password: "root"
-  database: "dolphinscheduler"
-  params: "useUnicode=true&characterEncoding=UTF-8"
-```
-
-8. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
-
-### 如何在数据源中心支持 MySQL 数据源？
-
-> 由于商业许可证的原因，我们不能直接使用 MySQL 的驱动包.
->
-> 如果你要添加 MySQL 数据源, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
-
-1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) (要求 `>=8.0.1`)
-
-2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
-
-```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.3
-COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
-```
-
-3. 构建一个包含 MySQL 驱动包的新镜像:
-
-```
-docker build -t apache/dolphinscheduler:mysql-driver .
-```
-
-4. 推送 docker 镜像 `apache/dolphinscheduler:mysql-driver` 到一个 docker registry 中
-
-5. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `mysql-driver`
-
-6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
-
-7. 在数据源中心添加一个 MySQL 数据源
-
-### 如何在数据源中心支持 Oracle 数据源？
-
-> 由于商业许可证的原因，我们不能直接使用 Oracle 的驱动包.
->
-> 如果你要添加 Oracle 数据源, 你可以基于官方镜像 `apache/dolphinscheduler` 进行构建.
-
-1. 下载 Oracle 驱动包 [ojdbc8.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/) (例如 `ojdbc8-19.9.0.0.jar`)
-
-2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
-
-```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.3
-COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
-```
-
-3. 构建一个包含 Oracle 驱动包的新镜像:
-
-```
-docker build -t apache/dolphinscheduler:oracle-driver .
-```
-
-4. 推送 docker 镜像 `apache/dolphinscheduler:oracle-driver` 到一个 docker registry 中
-
-5. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `oracle-driver`
-
-6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
-
-7. 在数据源中心添加一个 Oracle 数据源
-
-### 如何支持 Python 2 pip 以及自定义 requirements.txt？
-
-1. 创建一个新的 `Dockerfile`，用于安装 pip:
-
-```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.3
-COPY requirements.txt /tmp
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends python-pip && \
-    pip install --no-cache-dir -r /tmp/requirements.txt && \
-    rm -rf /var/lib/apt/lists/*
-```
-
-这个命令会安装默认的 **pip 18.1**. 如果你想升级 pip, 只需添加一行
-
-```
-    pip install --no-cache-dir -U pip && \
-```
-
-2. 构建一个包含 pip 的新镜像:
-
-```
-docker build -t apache/dolphinscheduler:pip .
-```
-
-3. 推送 docker 镜像 `apache/dolphinscheduler:pip` 到一个 docker registry 中
-
-4. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `pip`
-
-5. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
-
-6. 在一个新 Python 任务下验证 pip
-
-### 如何支持 Python 3？
-
-1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
-
-```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.3
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends python3 && \
-    rm -rf /var/lib/apt/lists/*
-```
-
-这个命令会安装默认的 **Python 3.7.3**. 如果你也想安装 **pip3**, 将 `python3` 替换为 `python3-pip` 即可
-
-```
-    apt-get install -y --no-install-recommends python3-pip && \
-```
-
-2. 构建一个包含 Python 3 的新镜像:
-
-```
-docker build -t apache/dolphinscheduler:python3 .
-```
-
-3. 推送 docker 镜像 `apache/dolphinscheduler:python3` 到一个 docker registry 中
-
-4. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `python3`
-
-5. 修改 `values.yaml` 文件中的 `PYTHON_HOME` 为 `/usr/bin/python3`
-
-6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
-
-7. 在一个新 Python 任务下验证 Python 3
-
-### 如何支持 Hadoop, Spark, Flink, Hive 或 DataX？
-
-以 Spark 2.4.7 为例:
-
-1. 下载 Spark 2.4.7 发布的二进制包 `spark-2.4.7-bin-hadoop2.7.tgz`
-
-2. 确保 `common.sharedStoragePersistence.enabled` 开启
-
-3. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
-
-4. 复制 Spark 3.1.1 二进制包到 Docker 容器中
+执行：
 
 ```bash
-kubectl cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
-kubectl cp -n test spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft # with test namespace
+$ helm uninstall dolphinscheduler
 ```
+删除与 `dolphinscheduler` 相关的所有 Kubernetes 组件（但PVC除外），并删除版本
 
-因为存储卷 `sharedStoragePersistence` 被挂载到 `/opt/soft`, 因此 `/opt/soft` 中的所有文件都不会丢失
-
-5. 登录到容器并确保 `SPARK_HOME2` 存在
+删除 `dolphinscheduler` 相关PVC，执行：
 
 ```bash
-kubectl exec -it dolphinscheduler-worker-0 bash
-kubectl exec -n test -it dolphinscheduler-worker-0 bash # with test namespace
-cd /opt/soft
-tar zxf spark-2.4.7-bin-hadoop2.7.tgz
-rm -f spark-2.4.7-bin-hadoop2.7.tgz
-ln -s spark-2.4.7-bin-hadoop2.7 spark2 # or just mv
-$SPARK_HOME2/bin/spark-submit --version
+$ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 ```
 
-如果一切执行正常，最后一条命令将会打印 Spark 版本信息
+> **注意**: 删除PVC会删除所有数据，谨慎操作！
 
-6. 在一个 Shell 任务下验证 Spark
-
-```
-$SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.11-2.4.7.jar
-```
-
-检查任务日志是否包含输出 `Pi is roughly 3.146015`
-
-7. 在一个 Spark 任务下验证 Spark
-
-文件 `spark-examples_2.11-2.4.7.jar` 需要先被上传到资源中心，然后创建一个 Spark 任务并设置:
-
-- Spark版本: `SPARK2`
-- 主函数的Class: `org.apache.spark.examples.SparkPi`
-- 主程序包: `spark-examples_2.11-2.4.7.jar`
-- 部署方式: `local`
-
-同样地, 检查任务日志是否包含输出 `Pi is roughly 3.146015`
-
-8. 验证 Spark on YARN
-
-Spark on YARN (部署方式为 `cluster` 或 `client`) 需要 Hadoop 支持. 类似于 Spark 支持, 支持 Hadoop 的操作几乎和前面的步骤相同
-
-确保 `$HADOOP_HOME` 和 `$HADOOP_CONF_DIR` 存在
-
-### 如何支持 Spark 3？
-
-事实上，使用 `spark-submit` 提交应用的方式是相同的, 无论是 Spark 1, 2 或 3. 换句话说，`SPARK_HOME2` 的语义是第二个 `SPARK_HOME`, 而非 `SPARK2` 的 `HOME`, 因此只需设置 `SPARK_HOME2=/path/to/spark3` 即可
-
-以 Spark 3.1.1 为例:
-
-1. 下载 Spark 3.1.1 发布的二进制包 `spark-3.1.1-bin-hadoop2.7.tgz`
-
-2. 确保 `common.sharedStoragePersistence.enabled` 开启
-
-3. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
-
-4. 复制 Spark 3.1.1 二进制包到 Docker 容器中
-
-```bash
-kubectl cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
-kubectl cp -n test spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft # with test namespace
-```
-
-5. 登录到容器并确保 `SPARK_HOME2` 存在
-
-```bash
-kubectl exec -it dolphinscheduler-worker-0 bash
-kubectl exec -n test -it dolphinscheduler-worker-0 bash # with test namespace
-cd /opt/soft
-tar zxf spark-3.1.1-bin-hadoop2.7.tgz
-rm -f spark-3.1.1-bin-hadoop2.7.tgz
-ln -s spark-3.1.1-bin-hadoop2.7 spark2 # or just mv
-$SPARK_HOME2/bin/spark-submit --version
-```
-
-如果一切执行正常，最后一条命令将会打印 Spark 版本信息
-
-6. 在一个 Shell 任务下验证 Spark
-
-```
-$SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.12-3.1.1.jar
-```
-
-检查任务日志是否包含输出 `Pi is roughly 3.146015`
-
-### 如何在 Master、Worker 和 Api 服务之间支持共享存储？
-
-例如, Master、Worker 和 Api 服务可能同时使用 Hadoop
-
-1. 修改 `values.yaml` 文件中下面的配置项
-
-```yaml
-common:
-  sharedStoragePersistence:
-    enabled: false
-    mountPath: "/opt/soft"
-    accessModes:
-    - "ReadWriteMany"
-    storageClassName: "-"
-    storage: "20Gi"
-```
-
-`storageClassName` 和 `storage` 需要被修改为实际值
-
-> **注意**: `storageClassName` 必须支持访问模式: `ReadWriteMany`
-
-2. 将 Hadoop 复制到目录 `/opt/soft`
-
-3. 确保 `$HADOOP_HOME` 和 `$HADOOP_CONF_DIR` 正确
-
-### 如何支持本地文件存储而非 HDFS 和 S3？
-
-修改 `values.yaml` 文件中下面的配置项
-
-```yaml
-common:
-  configmap:
-    RESOURCE_STORAGE_TYPE: "HDFS"
-    RESOURCE_UPLOAD_PATH: "/dolphinscheduler"
-    FS_DEFAULT_FS: "file:///"
-  fsFileResourcePersistence:
-    enabled: true
-    accessModes:
-    - "ReadWriteMany"
-    storageClassName: "-"
-    storage: "20Gi"
-```
-
-`storageClassName` 和 `storage` 需要被修改为实际值
-
-> **注意**: `storageClassName` 必须支持访问模式: `ReadWriteMany`
-
-### 如何支持 S3 资源存储，例如 MinIO？
-
-以 MinIO 为例: 修改 `values.yaml` 文件中下面的配置项
-
-```yaml
-common:
-  configmap:
-    RESOURCE_STORAGE_TYPE: "S3"
-    RESOURCE_UPLOAD_PATH: "/dolphinscheduler"
-    FS_DEFAULT_FS: "s3a://BUCKET_NAME"
-    FS_S3A_ENDPOINT: "http://MINIO_IP:9000"
-    FS_S3A_ACCESS_KEY: "MINIO_ACCESS_KEY"
-    FS_S3A_SECRET_KEY: "MINIO_SECRET_KEY"
-```
-
-`BUCKET_NAME`, `MINIO_IP`, `MINIO_ACCESS_KEY` 和 `MINIO_SECRET_KEY` 需要被修改为实际值
-
-> **注意**: `MINIO_IP` 只能使用 IP 而非域名, 因为 DolphinScheduler 尚不支持 S3 路径风格访问 (S3 path style access)
-
-### 如何配置 SkyWalking？
-
-修改 `values.yaml` 文件中的 SKYWALKING 配置项
-
-```yaml
-common:
-  configmap:
-    SKYWALKING_ENABLE: "true"
-    SW_AGENT_COLLECTOR_BACKEND_SERVICES: "127.0.0.1:11800"
-    SW_GRPC_LOG_SERVER_HOST: "127.0.0.1"
-    SW_GRPC_LOG_SERVER_PORT: "11800"
-```
-
-## 附录-配置
+## 附录 - 配置
 
 | Parameter                                                                         | Description                                                                                                                    | Default                                               |
 | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |

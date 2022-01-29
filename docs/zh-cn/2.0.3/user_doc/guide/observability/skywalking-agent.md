@@ -1,17 +1,13 @@
 SkyWalking Agent
-=============================
+==================
 
-dolphinscheduler-skywalking 模块为 Dolphinscheduler 项目提供了 [Skywalking](https://skywalking.apache.org/) 监控代理。
+dolphinscheduler-skywalking 模块为 Dolphinscheduler 提供了 [Skywalking](https://skywalking.apache.org/) 监控代理。
 
-本文档介绍了如何通过此模块接入 SkyWalking 8.4+ (推荐使用8.5.0)。
+# 安装 Skywalking agent
 
-# 安装
+### 配置环境变量 ( Docker Compose 部署)
 
-以下配置用于启用 Skywalking agent。
-
-### 通过配置环境变量 (使用 Docker Compose 部署时)
-
-修改 `docker/docker-swarm/config.env.sh` 文件中的 SKYWALKING 环境变量:
+修改 `docker/docker-swarm/config.env.sh` 中 SKYWALKING 环境变量:
 
 ```
 SKYWALKING_ENABLE=true
@@ -20,13 +16,13 @@ SW_GRPC_LOG_SERVER_HOST=127.0.0.1
 SW_GRPC_LOG_SERVER_PORT=11800
 ```
 
-并且运行
+运行
 
 ```shell
 $ docker-compose up -d
 ```
 
-### 通过配置环境变量 (使用 Docker 部署时)
+### 配置环境变量 ( Docker 部署)
 
 ```shell
 $ docker run -d --name dolphinscheduler \
@@ -38,12 +34,12 @@ $ docker run -d --name dolphinscheduler \
 -e SW_GRPC_LOG_SERVER_HOST="your.skywalking-log-reporter.com" \
 -e SW_GRPC_LOG_SERVER_PORT="11800" \
 -p 12345:12345 \
-apache/dolphinscheduler:2.0.3 all
+apache/dolphinscheduler:2.0.2 all
 ```
 
-### 通过配置 install_config.conf (使用 DolphinScheduler install.sh 部署时)
+### 配置 install_config.conf ( DolphinScheduler install.sh 部署)
 
-添加以下配置到 `${workDir}/conf/config/install_config.conf`.
+添加以下配置至 `${workDir}/conf/config/install_config.conf`.
 
 ```properties
 
@@ -59,16 +55,18 @@ skywalkingLogReporterPort="11800"
 
 ```
 
-# 使用
-
-### 导入图表
+# 使用Skywalking agent
 
 #### 导入图表到 Skywalking server
 
-复制 `${dolphinscheduler.home}/ext/skywalking-agent/dashboard/dolphinscheduler.yml` 文件到 `${skywalking-oap-server.home}/config/ui-initialized-templates/` 目录下，并重启 Skywalking oap-server。
+```shell
 
+copy `${dolphinscheduler.home}/ext/skywalking-agent/dashboard/dolphinscheduler.yml`
+to `${skywalking-oap-server.home}/config/ui-initialized-templates/`
+Skywalking oap-server。
+```
 #### 查看 dolphinscheduler 图表
 
-如果之前已经使用浏览器打开过 Skywalking，则需要清空浏览器缓存。
+如果已经在浏览器打开过 Skywalking，则需要清空浏览器缓存。
 
 ![img1](/img/skywalking/import-dashboard-1.jpg)

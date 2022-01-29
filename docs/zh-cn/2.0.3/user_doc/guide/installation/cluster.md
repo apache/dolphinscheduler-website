@@ -1,22 +1,25 @@
-# 集群部署(Cluster)
+# 集群部署
 
-集群部署目的是在多台机器部署 DolphinScheduler 服务，用于运行大量任务情况。
-
-如果你是新手，想要体验 DolphinScheduler 的功能，推荐使用[Standalone](standalone.md)方式体检。如果你想体验更完整的功能，或者更大的任务量，推荐使用[伪集群部署](pseudo-cluster.md)。如果你是在生产中使用，推荐使用[集群部署](cluster.md)或者[kubernetes](kubernetes.md)
+集群部署是在多台机器部署 DolphinScheduler 服务，用于复杂大量任务场景。
 
 ## 部署步骤
 
-集群部署(Cluster)使用的脚本和配置文件与[伪集群部署](pseudo-cluster.md)中的配置一样，所以所需要的步骤也与[伪集群部署](pseudo-cluster.md)大致一样。区别就是[伪集群部署](pseudo-cluster.md)针对的是一台机器，而集群部署(Cluster)需要针对多台机器，且两者“修改相关配置”步骤区别较大
+集群部署(Cluster)使用的脚本和配置文件可参考：[伪集群部署](pseudo-cluster.md)配置。
+区别就是[伪集群部署](pseudo-cluster.md)针对的是一台机器，而集群部署(Cluster)需要针对多台机器。
 
-### 前置准备工作 && 准备 DolphinScheduler 启动环境
+### 生产准备 && 安装 DolphinScheduler
 
-其中除了[伪集群部署](pseudo-cluster.md)中的“前置准备工作”，“准备启动环境”除了“启动zookeeper”以及“初始化数据库”外，别的都需要在每台机器中进行配置
+可参考：[伪集群部署](pseudo-cluster.md)“，集群部署区别需要在每台机器中进行配置
 
 ### 修改相关配置
 
-这个是与[伪集群部署](pseudo-cluster.md)差异较大的一步，因为部署脚本会通过 `scp` 的方式将安装需要的资源传输到各个机器上，所以这一步我们仅需要修改运行`install.sh`脚本的所在机器的配置即可。配置文件在路径在`conf/config/install_config.conf`下，此处我们仅需修改**INSTALL MACHINE**，**DolphinScheduler ENV、Database、Registry Server**与[伪集群部署](pseudo-cluster.md)保持一致，下面对必须修改参数进行说明
+部署脚本通过 `scp` 将需要资源传输各个机器上，我们仅需要修改运行`install.sh`脚本所在机器配置即可。
+配置文件路径在`conf/config/install_config.conf`
+修改**INSTALL MACHINE,DolphinScheduler ENV,Database,Registry Server**
 
 ```shell
+#----------------------------------------------------------
+#修改参数说明
 # ---------------------------------------------------------
 # INSTALL MACHINE
 # ---------------------------------------------------------
@@ -31,6 +34,6 @@ apiServers="ds5"
 pythonGatewayServers="ds5"
 ```
 
-## 启动 DolphinScheduler && 登录 DolphinScheduler && 启停服务
+## 启动 DolphinScheduler
 
-[与伪集群部署](pseudo-cluster.md)保持一致
+[参考伪集群部署](pseudo-cluster.md)
