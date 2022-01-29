@@ -1,8 +1,8 @@
-# Python节点
+# Python 节点
 
-- 使用python节点，可以直接执行python脚本，对于python节点，worker会使用`python **`方式提交任务。
+- 使用python节点，可直接执行python脚本，对于python节点，worker使用`python **`方式提交任务
 
-> 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_PYTHON.png)任务节点到画板中，如下图所示：
+>拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_PYTHON.png)任务节点到画板中，如图所示：
 
 <p align="center">
    <img src="/img/python_edit.png" width="80%" />

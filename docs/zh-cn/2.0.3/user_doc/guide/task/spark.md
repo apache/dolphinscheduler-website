@@ -1,8 +1,8 @@
-# SPARK节点
+# Spark 节点
 
 - 通过SPARK节点，可以直接直接执行SPARK程序，对于spark节点，worker会使用`spark-submit`方式提交任务
 
-> 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SPARK.png)任务节点到画板中，如下图所示：
+> 拖动工具栏中![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SPARK.png)任务节点到画板中，如图所示：
 
 <p align="center">
    <img src="/img/spark_edit.png" width="80%" />
@@ -18,5 +18,3 @@
 - 其他参数：支持 --jars、--files、--archives、--conf格式
 - 资源：如果其他参数中引用了资源文件，需要在资源中选择指定
 - 自定义参数：是MR局部的用户自定义参数，会替换脚本中以${变量}的内容
-
-注意：JAVA和Scala只是用来标识，没有区别，如果是Python开发的Spark则没有主函数的class，其他都是一样

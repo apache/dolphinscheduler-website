@@ -1,6 +1,7 @@
-# SQL节点
+# SQL 节点
 
-- 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SQL.png)任务节点到画板中
+>拖动工具栏中![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SQL.png)任务节点到画板中
+
 - 非查询SQL功能：编辑非查询SQL任务信息，sql类型选择非查询，如下图所示：
   <p align="center">
    <img src="/img/sql-node.png" width="80%" />

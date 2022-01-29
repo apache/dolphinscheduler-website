@@ -1,6 +1,6 @@
-# http节点
+# HTTP 节点
 
-- 拖动工具栏中的<img src="/img/http.png" width="35"/>任务节点到画板中，如下图所示：
+>拖动工具栏中的<img src="/img/http.png" width="35"/>任务节点到画板中，如图所示：
 
 <p align="center">
    <img src="/img/http_edit.png" width="80%" />

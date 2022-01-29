@@ -1,6 +1,6 @@
-# Flink节点
+# Flink 节点
 
-- 拖动工具栏中的<img src="/img/flink.png" width="35"/>任务节点到画板中，如下图所示：
+>拖动工具栏中的<img src="/img/flink.png" width="35"/>任务节点到画板中，如图所示：
 
 <p align="center">
   <img src="/img/flink_edit.png" width="80%" />
@@ -19,5 +19,3 @@
 - 其他参数：支持 --jars、--files、--archives、--conf格式
 - 资源：如果其他参数中引用了资源文件，需要在资源中选择指定
 - 自定义参数：是Flink局部的用户自定义参数，会替换脚本中以${变量}的内容
-
-注意：JAVA和Scala只是用来标识，没有区别，如果是Python开发的Flink则没有主函数的class，其他都是一样

@@ -1,10 +1,10 @@
-# Conditions
+# Conditions 节点
 
-Conditions是一个条件节点，根据上游任务运行状态，判断应该运行哪个下游任务。截止目前Conditions支持多个上游任务，但只支持两个下游任务。当上游任务数超过一个时，可以通过`且`以及`或`操作符实现复杂上游依赖
+Conditions是一个条件节点，支持多个上游任务以及两个下游任务，同时可以根据上游任务运行状态，判断下游任务。
 
 ## 创建任务
 
-拖动工具栏中的<img src="/img/conditions.png" width="20"/>任务节点到画板中即能完成任务创建，如下图所示：
+>拖动工具栏中的<img src="/img/conditions.png" width="20"/>任务节点到画板中即能完成任务创建，如图所示：
 
   <p align="center">
    <img src="/img/condition_dag_en.png" width="80%" />
@@ -33,4 +33,5 @@ Conditions是一个条件节点，根据上游任务运行状态，判断应该�
 
 ## 相关任务
 
-[switch](switch.md)：Condition节点主要依据上游节点的执行状态（成功、失败）执行对应分支。[Switch](switch.md)节点主要依据全局变量的值和用户所编写的表达式判断结果执行对应分支
+[Switch](switch.md)：Condition节点主要依据上游节点的执行状态（成功、失败）执行对应分支
+[Switch](switch.md)节点主要依据全局变量的值和用户所编写的表达式判断结果执行对应分支

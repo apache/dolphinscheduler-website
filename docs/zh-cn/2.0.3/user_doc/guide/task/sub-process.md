@@ -1,7 +1,7 @@
 # 子流程节点
 
-- 子流程节点，就是把外部的某个工作流定义当做一个任务节点去执行。
-> 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SUB_PROCESS.png)任务节点到画板中，如下图所示：
+- 子流程节点，就是把外部的某个工作流定义当做一个任务节点去执行
+> 拖动工具栏中![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_SUB_PROCESS.png)任务节点到画板中，如图所示：
 
 <p align="center">
    <img src="/img/subprocess_edit.png" width="80%" />

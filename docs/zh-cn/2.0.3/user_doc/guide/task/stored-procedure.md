@@ -1,7 +1,7 @@
 # 存储过程节点
 
-- 根据选择的数据源，执行存储过程。
-> 拖动工具栏中的![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_PROCEDURE.png)任务节点到画板中，如下图所示：
+- 根据选择的数据源，执行存储过程
+> 拖动工具栏中![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_PROCEDURE.png)任务节点到画板中，如图所示：
 
 <p align="center">
    <img src="/img/procedure_edit.png" width="80%" />

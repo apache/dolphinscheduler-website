@@ -1,9 +1,5 @@
-# Shell
+# Shell 节点
 
-## 综述
-
-Shell 任务类型，用于创建 Shell 类型的任务并执行一系列的 Shell 脚本。worker 执行该任务的时候，会生成一个临时shell脚本，
-并使用与租户同名的 linux 用户执行这个脚本。
 
 ## 创建任务
 
@@ -30,19 +26,17 @@ Shell 任务类型，用于创建 Shell 类型的任务并执行一系列的 She
 
 ### 简单打印一行文字
 
-该样例模拟了常见的简单任务，这些任务只需要简单的一两行命令就能运行起来。我们以打印一行日志为例，该任务仅会在日志文件中打印一行
-"This is a demo of shell task"
+我们以打印一行日志为例，该任务仅会在日志文件中打印一行 "This is a demo of shell task"
 
 ![demo-shell-simple](/img/tasks/demo/shell.jpg)
 
 ### 使用自定义参数
 
-该样例模拟了自定义参数任务，为了更方便的复用已有的任务，或者面对动态的需求时，我们会使用变量保证脚本的复用性。本例中，我们先在自定义脚本
-中定义了参数 "param_key"，并将他的值设置为 "param_val"。接着在"脚本"中声明了 echo 命令，将参数 "param_key" 打印了出来。当我们保存
-并运行任务后，在日志中会看到将参数 "param_key" 对应的值 "param_val" 打印出来。
+自定义参数任务可以方便复用已有的任务，以及面对动态需求时，我们会使用变量保证脚本复用性。
+
+本例中我们进行如下定义：
+自定义脚本中定义了参数 "param_key"，并将值设置为 "param_val"。
+在"脚本"中声明了 echo 命令，将参数 "param_key" 打印出来
+保存并运行任务后，在日志中会看到将参数 "param_key" 对应的值 "param_val" 打印出来
 
 ![demo-shell-custom-param](/img/tasks/demo/shell_custom_param.jpg)
-
-## 注意事项
-
-无
