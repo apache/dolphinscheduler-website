@@ -1,15 +1,15 @@
 # 资源中心
 
-如果需要用到资源上传功能，针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署 Hadoop)。当然也可以选择上传到 Hadoop or MinIO 集群上，此时则需要有Hadoop (2.6+) 或者 MinIO 等相关环境
+针对单机可以选择本地文件目录作为上传文件夹(此操作不需要部署 Hadoop)。也可选择上传 Hadoop or MinIO 集群上，需要Hadoop (2.6+) 或 MinIO 等相关环境
 
 > **_注意:_**
 >
-> * 如果用到资源上传的功能，那么 [安装部署](installation/standalone.md)中，部署用户需要有这部分的操作权限
-> * 如果 Hadoop 集群的 NameNode 配置了 HA 的话，需要开启 HDFS 类型的资源上传，同时需要将 Hadoop 集群下的 `core-site.xml` 和 `hdfs-site.xml` 复制到 `/opt/dolphinscheduler/conf`，非 NameNode HA 跳过次步骤
+> * 如果用到资源上传功能，那么 [安装部署](installation/standalone.md)中，部署用户需要有这部分操作权限
+> * 如果 Hadoop 集群 NameNode 配置 HA ，需要开启 HDFS 类型资源上传，同时将 Hadoop 集群下 `core-site.xml` 和 `hdfs-site.xml` 复制到 `/opt/dolphinscheduler/conf`，非 NameNode HA 跳过次步骤
 
 ## hdfs资源配置
 
-- 上传资源文件和udf函数，所有上传的文件和资源都会被存储到hdfs上，所以需要以下配置项：
+- 上传资源文件和udf函数，所有上传文件和资源都会被存储到hdfs，需要如下配置项：
 
 ```  
 conf/common.properties  
@@ -40,14 +40,14 @@ conf/common.properties
 
 ## 文件管理
 
-> 是对各种资源文件的管理，包括创建基本的txt/log/sh/conf/py/java等文件、上传jar包等各种类型文件，可进行编辑、重命名、下载、删除等操作。
+> 资源文件管理，包括创建基本txt/log/sh/conf/py/java等文件、上传jar包等各种类型文件，可进行编辑、重命名、下载、删除等操作。
   <p align="center">
    <img src="/img/file-manage.png" width="80%" />
  </p>
 
 * 创建文件
 
-  > 文件格式支持以下几种类型：txt、log、sh、conf、cfg、py、java、sql、xml、hql、properties
+  > 文件格式支持以下类型：txt、log、sh、conf、cfg、py、java、sql、xml、hql、properties
 
     <p align="center">
         <img src="/img/file_create.png" width="80%" />

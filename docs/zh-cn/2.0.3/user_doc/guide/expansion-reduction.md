@@ -1,46 +1,42 @@
-# DolphinScheduler扩容/缩容 文档
+# DolphinScheduler 扩容/缩容
 
 
-## 1. DolphinScheduler扩容文档
-本文扩容是针对现有的DolphinScheduler集群添加新的master或者worker节点的操作说明.
+## DolphinScheduler 扩容
+
+针对现有 DolphinScheduler 集群添加新master或worker节点操作说明
 
 ```
- 注意： 一台物理机上不能存在多个master服务进程或者worker服务进程.
-       如果扩容master或者worker节点所在的物理机已经安装了调度的服务,请直接跳到 [1.4.修改配置]. 编辑 ** 所有 ** 节点上的配置文件 `conf/config/install_config.conf`. 新增masters或者workers参数,重启调度集群即可.
+ 注意： 一台物理机上不能存在多个master服务进程或worker服务进程
+       如果扩容master或者worker节点所在的物理机已经安装了调度的服务,请直接跳到 [修改配置]
 ```
 
-### 1.1. 基础软件安装(必装项请自行安装)
+### 生产准备
 
-* [必装] [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+) :  必装，请安装好后在/etc/profile下配置 JAVA_HOME 及 PATH 变量
-* [可选] 如果扩容的是worker类型的节点,需要考虑是否要安装外部客户端,比如Hadoop、Hive、Spark 的Client.
+* [JDK 1.8+](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* 如果扩容是worker类型节点,需考虑是否要安装外部客户端,比如Hadoop、Hive、Spark 的Client
 
+### 安装 DolphinScheduler
 
-```markdown
- 注意：DolphinScheduler本身不依赖Hadoop、Hive、Spark,仅是会调用他们的Client，用于对应任务的提交。
-```
-
-### 1.2. 获取安装包
-- 确认现有环境使用的DolphinScheduler是哪个版本,获取对应版本的安装包,如果版本不同,可能存在兼容性的问题.
-- 确认其他节点的统一安装目录,本文假设DolphinScheduler统一安装在 /opt/ 目录中,安装全路径为/opt/dolphinscheduler.
-- 请下载对应版本的安装包至服务器安装目录,解压并重名为dolphinscheduler存放在/opt目录中. 
-- 添加数据库依赖包,本文使用Mysql数据库,添加mysql-connector-java驱动包到/opt/dolphinscheduler/lib目录中
 ```shell
-# 创建安装目录,安装目录请不要创建在/root、/home等高权限目录 
+# 创建安装目录,安装目录请不要创建在/root、/home等高权限目录
+# 确认现有环境使用DolphinScheduler版本,获取对应版本安装包
+# 确认其他节点统一安装目录
+# 下载对应版本安装包至服务器安装目录
+# 添加数据库依赖包
+
 mkdir -p /opt
 cd /opt
 # 解压缩
-tar -zxvf apache-dolphinscheduler-2.0.3-bin.tar.gz -C /opt 
+tar -zxvf apache-dolphinscheduler-2.0.3-bin.tar.gz -C /opt
 cd /opt
 mv apache-dolphinscheduler-2.0.3-bin  dolphinscheduler
+
+# 注意：安装包可以从现有的环境直接复制到扩容的物理机上使用
 ```
 
-```markdown
- 注意：安装包可以从现有的环境直接复制到扩容的物理机上使用.
-```
+### 部署用户
 
-### 1.3. 创建部署用户
-
-- 在**所有**扩容的机器上创建部署用户，并且一定要配置sudo免密。假如我们计划在ds1,ds2,ds3,ds4这四台扩容机器上部署调度，首先需要在每台机器上都创建部署用户
+- **所有**扩容机器上创建部署用户,并配置sudo免密,假设计划在ds1,ds2,ds3,ds4这四台扩容机器上部署调度，需要在每台机器上都创建部署用户
 
 ```shell
 # 创建用户需使用root登录，设置部署用户名，请自行修改，后面以dolphinscheduler为例
@@ -53,22 +49,19 @@ echo "dolphinscheduler123" | passwd --stdin dolphinscheduler
 echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
+#注意：
+#因为是以 sudo -u {linux-user} 切换不同linux用户的方式来实现多租户运行作业，所以部署用户需要有 sudo 权限，而且是免密的。
+#如果发现/etc/sudoers文件中有"Default requiretty"这行，也请注释掉
+#如果用到资源上传的话，还需要在`HDFS或者MinIO`上给该部署用户分配读写的权限
 ```
 
-```markdown
- 注意：
- - 因为是以 sudo -u {linux-user} 切换不同linux用户的方式来实现多租户运行作业，所以部署用户需要有 sudo 权限，而且是免密的。
- - 如果发现/etc/sudoers文件中有"Default requiretty"这行，也请注释掉
- - 如果用到资源上传的话，还需要在`HDFS或者MinIO`上给该部署用户分配读写的权限
-```
-
-### 1.4. 修改配置
+### 修改配置
 
 - 从现有的节点比如Master/Worker节点,直接拷贝conf目录替换掉新增节点中的conf目录.拷贝之后检查一下配置项是否正确.
-    
+
     ```markdown
     重点检查:
-    datasource.properties 中的数据库连接信息. 
+    datasource.properties 中的数据库连接信息.
     zookeeper.properties 中的连接zk的信息.
     common.properties 中关于资源存储的配置信息(如果设置了hadoop,请检查是否存在core-site.xml和hdfs-site.xml配置文件).
     env/dolphinscheduler_env.sh 中的环境变量
@@ -87,7 +80,7 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
         export FLINK_HOME=/opt/soft/flink
         export DATAX_HOME=/opt/soft/datax/bin/datax.py
         export PATH=$HADOOP_HOME/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH:$FLINK_HOME/bin:$DATAX_HOME:$PATH
-    
+
         ```
 
      `注: 这一步非常重要,例如 JAVA_HOME 和 PATH 是必须要配置的，没有用到的可以忽略或者注释掉`
@@ -100,7 +93,7 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
     ```
 
  - 修改 **所有** 节点上的配置文件 `conf/config/install_config.conf`, 同步修改以下配置.
-    
+
     * 新增的master节点, 需要修改 ips 和 masters 参数.
     * 新增的worker节点, 需要修改 ips 和  workers 参数.
 
@@ -128,7 +121,7 @@ sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler
 
 
 
-### 1.4. 重启集群&验证
+### 集群验证
 
 - 重启集群
 
@@ -183,14 +176,15 @@ sh bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
 
 -----------------------------------------------------------------------------
 
-## 2. 缩容
+## DolphinScheduler 缩容
+
 缩容是针对现有的DolphinScheduler集群减少master或者worker服务,
 缩容一共分两个步骤,执行完以下两步,即可完成缩容操作.
 
-### 2.1 停止缩容节点上的服务
+### 停止缩容节点上的服务
  * 如果缩容master节点,要确定要缩容master服务所在的物理机,并在物理机上停止该master服务.
  * 如果缩容worker节点,要确定要缩容worker服务所在的物理机,并在物理机上停止worker和logger服务.
- 
+
 ```shell
 停止命令:
 bin/stop-all.sh 停止所有服务
@@ -229,10 +223,10 @@ sh bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
 如果对应的master服务或者worker服务不存在,则代表master/worker服务成功关闭.
 
 
-### 2.2 修改配置文件
+### 修改配置文件
 
  - 修改 **所有** 节点上的配置文件 `conf/config/install_config.conf`, 同步修改以下配置.
-    
+
     * 缩容master节点, 需要修改 ips 和 masters 参数.
     * 缩容worker节点, 需要修改 ips 和  workers 参数.
 
