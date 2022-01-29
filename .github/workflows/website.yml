@@ -21,8 +21,7 @@ jobs:
       - name: Install Development Dependences
         working-directory: ${{ env.PYDS_HOME }}
         run: |
-          pip install -r requirements_dev.txt
-          pip install -e .
+          pip install -e .[doc]
       - name: Test Build Document
         working-directory: ${{ env.PYDS_HOME }}/docs
         run: make clean && make html
