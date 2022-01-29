@@ -1,6 +1,4 @@
 # Telegram
-
-
 If you need `Telegram` to alert, please create an alarm instance in warning instance manage dashboard. and choose the `Telegram` plugin
 
 The configuration example of `Telegram` is as follows:
