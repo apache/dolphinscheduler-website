@@ -401,7 +401,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 
 ## 12. Services logback configs
 Services name| logback config name |
-|--|--|--|
+--|--|
 API-service logback config |logback-api.xml|
 master-service logback config|logback-master.xml |
 worker-service logback config|logback-worker.xml |
