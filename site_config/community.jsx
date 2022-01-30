@@ -5,15 +5,6 @@ export default {
     barText: 'Community',
     sidemenu: [
       {
-        title: 'Team',
-        children: [
-          {
-            title: 'Team Introduction',
-            link: '/en-us/community/team.html',
-          },
-        ],
-      },
-      {
         title: 'Security',
         children: [
           {
@@ -43,7 +34,23 @@ export default {
         title: 'Join Community',
         children: [
           {
+            title: 'Subscribe Mailing Lists',
+            link: '/en-us/community/join/review.html',
+          },
+          {
+            title: 'Create Discussion',
+            link: '/en-us/community/development/discussion.html',
+          },
+          {
+            title: 'Create Issue',
+            link: '/en-us/community/development/issue.html',
+          },
+          {
             title: 'Review Issue or Pull Requests',
+            link: '/en-us/community/join/review.html',
+          },
+          {
+            title: 'Submit Pull Requests',
             link: '/en-us/community/join/review.html',
           },
         ],
@@ -54,10 +61,6 @@ export default {
           {
             title: 'How to Become a Committer',
             link: '/en-us/community/development/become-a-committer.html',
-          },
-          {
-            title: 'Subscribe Mailing Lists',
-            link: '/en-us/community/development/subscribe.html',
           },
           {
             title: 'Participate in Contributing',
@@ -85,10 +88,6 @@ export default {
             link: '/en-us/community/development/document.html',
           },
           {
-            title: 'Issue Notice',
-            link: '/en-us/community/development/issue.html',
-          },
-          {
             title: 'Pull Request Notice',
             link: '/en-us/community/development/pull-request.html',
           },
@@ -112,6 +111,32 @@ export default {
           {
             title: 'DSIP',
             link: '/en-us/community/DSIP.html',
+          },
+        ],
+      },
+      {
+        title: 'Team',
+        children: [
+          {
+            title: 'Team Introduction',
+            link: '/en-us/community/team.html',
+          },
+        ],
+      },
+      {
+        title: 'Release Guide',
+        children: [
+          {
+            title: 'Release Preparation',
+            link: '/en-us/community/release-prepare.html',
+          },
+          {
+            title: 'Release Guide',
+            link: '/en-us/community/release.html',
+          },
+          {
+            title: 'Release Post',
+            link: '/en-us/community/release-post.html',
           },
         ],
       },
@@ -326,7 +351,7 @@ export default {
         ],
       },
       {
-        title: 'DSIP',
+        title: 'Improvement Proposal',
         children: [
           {
             title: 'DSIP',
