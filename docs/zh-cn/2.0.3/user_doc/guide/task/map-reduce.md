@@ -38,17 +38,13 @@ MR 任务类型，用于执行 MapReduce 程序。对于 MR 节点，worker 会�
 
 ### Python 程序
 
-<p align="center">
-   <img src="/img/mr_python.png" width="80%" />
- </p>
-
-- 程序类型：选择 Python 语言 
-- 主jar包：是运行 MR 的 Python jar 包
+- 程序类型：选择 Python 语言。
+- 主jar包：是运行 MR 的 Python jar 包。
 - 其他参数：支持 –D、-mapper、-reducer、-input  -output格式，这里可以设置用户自定义参数的输入，比如：
 - -mapper  "mapper.py 1"  -file mapper.py   -reducer reducer.py  -file reducer.py –input /journey/words.txt -output /journey/out/mr/${currentTimeMillis}
-- 其中 -mapper 后的 mapper.py 1是两个参数，第一个参数是mapper.py，第二个参数是1
-- 资源： 如果其他参数中引用了资源文件，需要在资源中选择指定
-- 自定义参数：是 MR 局部的用户自定义参数，会替换脚本中以 ${变量}的内容
+- 其中 -mapper 后的 mapper.py 1是两个参数，第一个参数是 mapper.py，第二个参数是 1。
+- 资源： 如果其他参数中引用了资源文件，需要在资源中选择指定。
+- 自定义参数：是 MR 局部的用户自定义参数，会替换脚本中以 ${变量} 的内容。
 
 ## 任务样例
 
