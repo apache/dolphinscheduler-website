@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,2.0.3">
+  <meta name="description" content="Today, Apache DolphinScheduler announced the official release of version 2.0.3. In this version,">
+  <title>Apache DolphinScheduler 2.0.3 Release Announcement: DingTalk alert plugin adds signature verification, and supports data sources to obtain links from multiple sessions</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/build/vendor.23870e5.css">
+  <link rel="stylesheet" href="/build/blog.md.055b3f1.css">
+</head>
+<body>
+  <div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-dark"><div class="header-body"><span class="mobile-menu-btn mobile-menu-btn-dark"></span><a href="/en-us/index.html"><img class="logo" src="/img/hlogo_white.svg"/></a><div class="search search-dark"><span class="icon-search"></span></div><span class="language-switch language-switch-dark">中</span><div class="header-menu"><div><ul class="ant-menu whiteClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/download/download.html" target="_self">DOWNLOAD</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item ant-menu-item-selected" role="menuitem"><a href="/en-us/blog/index.html" target="_self">BLOG</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/community/team.html" target="_self">COMMUNITY</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="https://www.apache.org/" target="_blank">ASF</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/user/index.html" target="_self">USER</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div><div class="mobile-menu"><div class="mobile-menu-content"><div class="mobile-menu-list"><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/index.html" target="_self">HOME</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">latest(2.0.3)</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/1.3.9/user_doc/quick-start.html" target="_self">1.3.9</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/latest/user_doc/architecture/listdocs.html" target="_self">Older Versions</a></div><div class="mobile-sub-menu-item"><a href="/python/index.html" target="_self">PyDolphinScheduler</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/dev/user_doc/guide/quick-start.html" target="_self">dev</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/download/download.html" target="_self">DOWNLOAD</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/blog/index.html" target="_self">BLOG</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/community/team.html" target="_self">COMMUNITY</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="https://www.apache.org/" target="_blank">ASF</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="https://www.apache.org/" target="_blank">Foundation</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/licenses/" target="_blank">License</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/security/" target="_blank">Security</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/user/index.html" target="_self">USER</a></div></div></div><div class="mobile-menu-dummy"></div></div></div></header><section class="blog-content markdown-body"><h1>Apache DolphinScheduler 2.0.3 Release Announcement: DingTalk alert plugin adds signature verification, and supports data sources to obtain links from multiple sessions</h1>
+<div align=center>
+<img src="/img/2.0.3/2022-1-2701/1.png"/>
+</div>
+<blockquote>
+<p>Today, Apache DolphinScheduler announced the official release of version 2.0.3. In this version, DingTalk alert plugin adds signature verification and enables data sources to get links from multiple sessions. In addition, 2.0.3 also optimizes cache management, complement time, data source password display in logs, etc., and fixes several Bug.</p>
+</blockquote>
+<h2>Function Enhancement</h2>
+<h3>DingTalk alert plugin adds signature verification</h3>
+<p>2.0.3 Supports DingTalk robot alarm function through signature verification.</p>
+<div align=center>
+<img src="/img/2.0.3/2022-1-2701/2.png"/>
+</div>
+<p><strong>DingTalk parameter configuration</strong></p>
+<ul>
+<li>Webhooks</li>
+</ul>
+<p>The format is as follows: <a href="https://oapi.dingtalk.com/robot/send?access_token=XXXXXX">https://oapi.dingtalk.com/robot/send?access_token=XXXXXX</a></p>
+<ul>
+<li>Keyword</li>
+</ul>
+<p>Custom keywords for security settings</p>
+<ul>
+<li>Secret</li>
+</ul>
+<p>Signature of security settings</p>
+<p>When a custom bot sends a message, you can specify the &quot;@person list&quot; by your mobile phone number. When a person in the &quot;@people list&quot; receives the message, there will be an @message reminder. Even set to Do Not Disturb mode, there will still be notification reminders for conversations, and the prompt &quot;Someone @ you&quot; will appear on the first screen.</p>
+<ul>
+<li>@Mobiles</li>
+</ul>
+<p>The phone number of the person being @</p>
+<ul>
+<li>@UserIds</li>
+</ul>
+<p>User userid of @person</p>
+<ul>
+<li>@All</li>
+</ul>
+<p>@everyone</p>
+<p>For details, please refer to: <a href="https://open.dingtalk.com/document/robots/customize-robot-security-settings">https://open.dingtalk.com/document/robots/customize-robot-security-settings</a></p>
+<h3>Supports data source to get connection from multi sessions</h3>
+<p>Previously, we use the JdbcDataSourceProvider.createOneSessionJdbcDataSource() method to create a connection pool in hive/impala set MaximumPoolSize=1, while in scheduling tasks, if hive/impala multitasking runs at the same time, getConnection=null will occur, and the SqlTask.prepareStatementAndBind() method will throw a null pointer exception.</p>
+<p>2.0.3 is optimized to support data sources getting links from multiple sessions.</p>
+<h2>Improvements</h2>
+<h3>Introduces cache manager, reduce DB query in Master scheduling</h3>
+<p>Since numerous database read operations, such as tenant, user, processDefinition, etc., will occur during the scheduling process of the master server, it will bring enormous pressure on the DB on the one hand, and will slow down the entire core scheduling process on the other hand.</p>
+<p>Considering that this part of business data involves more reading than writing, 2.0.3 introduces a cache module, which mainly acts on the Master node to cache business data such as tenants and workflow definitions, thus reduces database query pressure, and speeds up the core scheduling process. Please check the official website documentation for details: <a href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/architecture/cache.html">https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/architecture/cache.html</a></p>
+<h3>Optimize complement task's date, the complement time interval from '[left, right)' to '[left, right]'</h3>
+<p>Previously, the complement time was &quot;left closed and right open&quot; (startDate &lt;= N &lt; endDate), which is actually not conducive to user understanding. After optimization, the deployment time interval is changed to &quot;closed left and closed right&quot;.</p>
+<p>Complement case: <a href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/project/workflow-definition.html">https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/project/workflow-definition.html</a></p>
+<h3>Encrypted data source password in the logs</h3>
+<p>The password in the data source is encrypted to enhance privacy protection.</p>
+<h2>Bug Fixes</h2>
+<ul>
+<li>zkRoot in conf/config/install_ config does not take effect</li>
+<li>Problems caused by modifying the administrator user information.</li>
+<li>Add delete workflow instance when delete process definition</li>
+<li>udf sub resource manage edit modal cant close</li>
+<li>process is always running: netty writeAndFlush without retry when failed, leads to worker response to master failed</li>
+<li>After deleting the running workflow, the master keeps brushing the error log</li>
+<li>Edit the bug of worker grouping in environment management.</li>
+<li>Dependent node ui dislocation</li>
+<li>Error in querying historical version information of workflow</li>
+<li>Solve the problem that task log output affects performance under high concurrency</li>
+<li>The global parameters of the sub_process node are not passed to the associated workflow task</li>
+<li>Query log can not show contents when task log in master on k8s</li>
+<li>Duplicate processes in the process definition list</li>
+<li>Process instance is always running: task is failure when process instance FailureStrategy.END</li>
+<li>Field ‘is_directory’ in t_ds_resources table has error type in PostgreSQL database</li>
+<li>Repair JDBC connection of Oracle</li>
+<li>When there is a forbidden node in dag, the execution flow is abnormal</li>
+<li>QuerySimpleList return wrong projectCode</li>
+</ul>
+<p><strong>Release Note:</strong> <a href="https://github.com/apache/dolphinscheduler/releases/tag/2.0.3">https://github.com/apache/dolphinscheduler/releases/tag/2.0.3</a></p>
+<p><strong>Download:</strong> <a href="https://dolphinscheduler.apache.org/en-us/download/download.html">https://dolphinscheduler.apache.org/en-us/download/download.html</a></p>
+<h2>Thanks to contributors</h2>
+<p>Thanks to the community contributors for their active contributions to this release! This is the list of Contributors, in no particular order:</p>
+<div align=center>
+<img src="/img/2.0.3/2022-1-2701/3.png"/>
+</div>
+</section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+  <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
+  <script>window.rootPath = '';</script>
+  <script src="/build/vendor.1ec20be.js"></script>
+  <script src="/build/blog.md.f25cabd.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e7b4b400dd31fa015018a435c64d06f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-899J8PYKJZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-899J8PYKJZ');
+  </script>
+</body>
+</html>
