@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Apache DolphinScheduler 2.0.3 Release Announcement: DingTalk alert plugin adds signature verification, and supports data sources to obtain links from multiple sessions\n',
+                author: 'Debra Chen',
+                dateStr: '2022-1-27',
+                desc: 'Apache DolphinScheduler Board Report',
+                link: '/en-us/blog/Apache_dolphinScheduler_2.0.3.html',
+            },
+            {
                 title: 'Apache DolphinScheduler Board Report: Community Runs Well, Commit Number Grows over 123%',
                 author: 'Debra Chen',
                 dateStr: '2022-1-13',
@@ -117,6 +124,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: 'Apache DolphinScheduler 2.0.3 发布，支持钉钉告警签名校验，数据源可从多个会话获取链接',
+                author: 'Debra Chen',
+                dateStr: '2022-1-27',
+                desc: 'Apache DolphinScheduler 董事会报告：社区健康运行，Commit 增长 123%',
+                link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.3.html',
+            },
             {
                 title: 'Apache DolphinScheduler 董事会报告：社区健康运行，Commit 增长 123%',
                 author: 'Debra Chen',
