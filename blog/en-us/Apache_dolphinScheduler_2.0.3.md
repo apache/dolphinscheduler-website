@@ -143,19 +143,4 @@ Thanks to the community contributors for their active contributions to this rele
 <img src="/img/2.0.3/2022-1-2701/3.png"/>
 </div>
 
-## Join US
-
-There are many ways to participate and contribute to the DolphinScheduler community, including:
-Documents, translation, Q&A, tests, codes, articles, keynote speeches, etc.
-
-We assume the first PR (document, code) to contribute to be simple and should be used to familiarize yourself with the submission process and community collaboration style.
-
-So the community has compiled the following list of issues suitable for novices: https://github.com/apache/dolphinscheduler/issues/5689
-List of non-newbie issues: https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22
-How to participate in the contribution: https://dolphinscheduler.apache.org/en-us/community/development/contribute.html
-Community Official Website
-https://dolphinscheduler.apache.org/
-GitHub Code repository: https://github.com/apache/dolphinscheduler
-
-Your Star for the project is important, don’t hesitate to lighten a Star for Apache DolphinScheduler ❤️
 
