@@ -9,7 +9,7 @@ description:Today, Apache DolphinScheduler announced the official release of ver
 <img src="/img/2.0.3/2022-1-2701/1.png"/>
 </div>
 
-> Today, Apache DolphinScheduler announced the official release of version 2.0.3. In this version, DingTalk alert plugin adds signature verification and enables data sources to get links from multiple sessions. In addition, 2.0.3 also optimizes cache management, complement time, data source password display in logs, etc., and fixes several key vulnerabilities.
+> Today, Apache DolphinScheduler announced the official release of version 2.0.3. In this version, DingTalk alert plugin adds signature verification and enables data sources to get links from multiple sessions. In addition, 2.0.3 also optimizes cache management, complement time, data source password display in logs, etc., and fixes several key Bug.
 
 
 
