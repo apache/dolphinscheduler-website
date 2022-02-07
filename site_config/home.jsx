@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/2.0.3/2022-1-27/1.png',
+          title: 'Apache DolphinScheduler 2.0.3 发布，支持钉钉告警签名校验，数据源可从多个会话获取链接',
+          content: '今天，Apache DolphinScheduler 宣布 2.0.3 版本正式发布。..',
+          dateStr: '2022-1-27',
+          link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.3.html',
+        },
+        {
           img: '/img/2022-1-13/640.png',
           title: 'Apache DolphinScheduler 董事会报告：社区健康运行，Commit 增长 123%',
           content: '自 2021 年 3 月 17 日从 Apache 孵化器毕业以来，Apache DolphinScheduler ...',
@@ -67,13 +74,6 @@ export default {
           content: '千呼万唤中，WorkflowAsCode 功能终于在 2.0.2 版本中如约上线...',
           dateStr: '2022-1-13',
           link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.2.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2022/01/10/164179986575876800e959cabce5b.md.png',
-          title: '恭喜 Apache DolphinScheduler 入选可信开源社区共同体（TWOS）预备成员！',
-          content: '近日，可信开源社区共同体正式宣布批准 6 位正式成员和 3 位预备成员加入。其中...',
-          dateStr: '2022-1-11',
-          link: '/zh-cn/blog/Twos.html',
         },
       ],
     },
@@ -265,6 +265,9 @@ export default {
         },
         {
           img: '/img/ourusers/zhihuiqice.png',
+        },
+        {
+          img: '/img/ourusers/sutpc.png',
         },
       ],
     },
@@ -535,11 +538,21 @@ export default {
         {
           img: '/img/ourusers/zhihuiqice.png',
         },
+        {
+          img: '/img/ourusers/sutpc.png',
+        },
       ],
     },
     events: {
       title: 'Events & News',
       list: [
+        {
+          img: '/img/2.0.3/2022-1-2701/1.png',
+          title: 'Apache DolphinScheduler 2.0.3 Release Announcement: DingTalk alert plugin adds signature verification, and supports data sources to obtain links from multiple sessions\n',
+          content: 'Today, Apache DolphinScheduler announced the official release of version 2.0.3. In this version...',
+          dateStr: '2022-1-27',
+          link: '/en-us/blog/Apache_dolphinScheduler_2.0.3.html',
+        },
         {
 
           img: '/img/2022-1-13/640.png',
@@ -554,13 +567,6 @@ export default {
           content: 'In the long-awaited, WorkflowAsCode function is finally launched in version 2.0.2 as promised...',
           dateStr: '2022-1-13',
           link: '/en-us/blog/Apache_dolphinScheduler_2.0.2.html',
-        },
-        {
-          img: 'https://imgpp.com/images/2022/01/10/1641804549068.md.png',
-          title: 'Congratulations! Apache DolphinScheduler Has Been Approved As A TWOS Candidate Member',
-          content: 'ecently, TWOS officially announced the approval of 6 full members and 3 candidate...',
-          dateStr: '2022-1-11',
-          link: '/en-us/blog/Twos.html',
         },
       ],
     },
