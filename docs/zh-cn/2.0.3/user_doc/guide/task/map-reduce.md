@@ -2,7 +2,7 @@
 
 ## 综述
 
-MR 任务类型，用于执行 MapReduce 程序。对于 MR 节点，worker 会通过使用 `hadoop jar` 的方式提交任务。
+MapReduce(MR) 任务类型，用于执行 MapReduce 程序。对于 MapReduce 节点，worker 会通过使用 Hadoop 命令 `hadoop jar` 的方式提交任务。更多详情查看 [Hadoop Command Manual](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/CommandsManual.html#jar)。
 
 ## 创建任务
 
@@ -22,46 +22,46 @@ MR 任务类型，用于执行 MapReduce 程序。对于 MR 节点，worker 会�
 - 延迟执行时间：任务延迟执行的时间，以分为单位。
 - 超时告警：勾选超时告警、超时失败，当任务超过"超时时长"后，会发送告警邮件并且任务执行失败。
 - 资源：是指脚本中需要调用的资源文件列表，资源中心-文件管理上传或创建的文件。
-- 自定义参数：是 MR 局部的用户自定义参数，会替换脚本中以 ${变量} 的内容。
+- 自定义参数：是 MapReduce 局部的用户自定义参数，会替换脚本中以 ${变量} 的内容。
 - 前置任务：选择当前任务的前置任务，会将被选择的前置任务设置为当前任务的上游。
 
 ### JAVA/SCALA 程序
- 
+
 - 程序类型：选择 JAVA/SCALA 语言。
-- 主函数的 Class：是 MR 程序的入口 Main Class 的**全路径**。
+- 主函数的 Class：是 MapReduce 程序的入口 Main Class 的**全路径**。
 - 主程序包：执行 MapReduce 程序的 jar 包。
-- 任务名称：MR 任务名称（可以不填）。
-- 命令行参数：是设置 MR 程序的输入参数，支持自定义参数变量的替换。
+- 任务名称（选填）：MapReduce 任务名称。
+- 命令行参数：是设置 MapReduce 程序的输入参数，支持自定义参数变量的替换。
 - 其他参数：支持 –D、-files、-libjars、-archives 格式。
 - 资源： 如果其他参数中引用了资源文件，需要在资源中选择指定
-- 自定义参数：是 MR 局部的用户自定义参数，会替换脚本中以 ${变量} 的内容
+- 自定义参数：是 MapReduce 局部的用户自定义参数，会替换脚本中以 ${变量} 的内容
 
 ### Python 程序
 
 - 程序类型：选择 Python 语言。
-- 主jar包：是运行 MR 的 Python jar 包。
+- 主 jar 包：是运行 MapReduce 的 Python jar 包。
 - 其他参数：支持 –D、-mapper、-reducer、-input  -output格式，这里可以设置用户自定义参数的输入，比如：
 - -mapper  "mapper.py 1"  -file mapper.py   -reducer reducer.py  -file reducer.py –input /journey/words.txt -output /journey/out/mr/${currentTimeMillis}
 - 其中 -mapper 后的 mapper.py 1是两个参数，第一个参数是 mapper.py，第二个参数是 1。
 - 资源： 如果其他参数中引用了资源文件，需要在资源中选择指定。
-- 自定义参数：是 MR 局部的用户自定义参数，会替换脚本中以 ${变量} 的内容。
+- 自定义参数：是 MapReduce 局部的用户自定义参数，会替换脚本中以 ${变量} 的内容。
 
 ## 任务样例
 
-### 执行 WordCount 程序
+###  执行 WordCount 程序
 
 该样例为 MapReduce 应用中常见的入门类型，主要为统计输入的文本中，相同单词的数量有多少。
 
 #### 上传主程序包
 
-在使用 MR 任务节点时，需要利用资源中心上传执行程序的 jar 包。可参考[资源中心](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/resource.html)。
+在使用 MapReduce 任务节点时，需要利用资源中心上传执行程序的 jar 包。可参考[资源中心](docs/zh-cn/dev/user_doc/guide/resource.md)。
 
 当配置完成资源中心之后，直接使用拖拽的方式，即可上传所需目标文件。
 
-![resources_uphold](/img/tasks/demo/resources_uphold.png)
+![resource_upload](/img/tasks/demo/resource_upload.png)
 
-#### 配置 MR 节点
- 
- 根据上述参数说明，配置所需的内容即可。
- 
- ![demo-mr-simple](/img/tasks/demo/mr.png)
+#### 配置 MapReduce 节点
+
+根据上述参数说明，配置所需的内容即可。
+
+![demo-mr-simple](/img/tasks/demo/mr.png)
