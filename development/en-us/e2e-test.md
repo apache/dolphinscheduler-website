@@ -12,7 +12,7 @@ For example, E2E test of the login page is concerned with whether the user is ab
 
 ### 2. Selenium test framework
 
-[Selenium]((https://www.selenium.dev/)) is an open source testing tool for executing automated tests on a web browser. The framework uses WebDriver to transform Web Service commands into browser native calls through the browser's native components to complete operations. In simple words, it simulates the browser and makes selection operations on the elements of the page.
+[Selenium](https://www.selenium.dev) is an open source testing tool for executing automated tests on a web browser. The framework uses WebDriver to transform Web Service commands into browser native calls through the browser's native components to complete operations. In simple words, it simulates the browser and makes selection operations on the elements of the page.
 
 A WebDriver is an API and protocol which defines a language-neutral interface for controlling the behavior of a web browser.  Every browser has a specific WebDriver implementation, called a driver. The driver is the component responsible for delegating to the browser and handling the communication with Selenium and the browser.
 
