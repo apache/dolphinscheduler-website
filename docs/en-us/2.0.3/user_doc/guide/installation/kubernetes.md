@@ -67,7 +67,7 @@ And then access the web: http://$NODE_IP:$NODE_PORT/dolphinscheduler
 
 The default username is `admin` and the default password is `dolphinscheduler123`
 
-Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/2.0.3/user_doc/guide/quick-start.html) to explore how to use DolphinScheduler
+Please refer to the `Quick Start` in the chapter [Quick Start](../quick-start.md) to explore how to use DolphinScheduler
 
 ## Uninstalling the Chart
 

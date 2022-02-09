@@ -53,7 +53,7 @@ And then access the web: http://localhost:12345/dolphinscheduler (The local addr
 
 The default username is `admin` and the default password is `dolphinscheduler123`
 
-Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/1.3.5/user_doc/quick-start.html) to explore how to use DolphinScheduler
+Please refer to the `Quick Start` in the chapter [Quick Start](./quick-start.md) to explore how to use DolphinScheduler
 
 ## Uninstalling the Chart
 

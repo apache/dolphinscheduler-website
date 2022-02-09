@@ -61,7 +61,7 @@ The default username is `admin` and the default password is `dolphinscheduler123
 </p>
 
 
-Please refer to the `Quick Start` in the chapter [User Manual](/en-us/docs/1.3.9/user_doc/quick-start.html) to explore how to use DolphinScheduler
+Please refer to the `Quick Start` in the chapter [Quick Start](./quick-start.md) to explore how to use DolphinScheduler
 
 ### The Second Way: Start via specifying the existing PostgreSQL and ZooKeeper service
 
