@@ -65,4 +65,4 @@ Simply configure the required content according to the parameter descriptions ab
 
 ![demo-mr-simple](/img/tasks/demo/mr.png)
 
-
+![test-new-img](/img/test-new-img.jpg)
