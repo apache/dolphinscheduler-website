@@ -80,7 +80,7 @@ A：     1，如果是 node 启动的查看 dolphinscheduler-ui 下的 .env 文�
 
 ​       3，如果以上配置都是正确的，那么请查看 Api Server 服务是否是正常的，
 
-​			curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info 查看 Api Server 日志，
+​			curl http://localhost:12345/dolphinscheduler/users/get-user-info 查看 Api Server 日志，
 
 ​			如果提示 cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证明 Api Server 服务是正常的
 

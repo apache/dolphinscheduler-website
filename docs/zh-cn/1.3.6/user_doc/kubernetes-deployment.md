@@ -59,7 +59,7 @@ NODE_PORT=$(kubectl get svc {{ template "dolphinscheduler.fullname" . }}-api -n 
 echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
 ```
 
-然后访问前端页面: http://192.168.xx.xx:12345/dolphinscheduler
+然后访问前端页面: http://localhost:12345/dolphinscheduler
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 

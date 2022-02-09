@@ -79,7 +79,7 @@ A:   1, if it is node startup, check whether the .env API_BASE configuration und
 
 ​       3, if the above configuration is correct, then please check if the Api Server service is normal, 
 
-​		   curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info, check the Api Server log,
+​		   curl http://localhost:12345/dolphinscheduler/users/get-user-info, check the Api Server log,
 
 ​          if  Prompt cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null,   		  which proves that the Api Server service is normal.
 

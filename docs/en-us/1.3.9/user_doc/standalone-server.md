@@ -22,7 +22,7 @@ sh . /bin/dolphinscheduler-daemon.sh start standalone-server
 # 3. Login to the system
 
 - Access front-end page address, interface ip (modify by yourself)
-  http://192.168.xx.xx:12345/dolphinscheduler
+  http://localhost:12345/dolphinscheduler
 
 <p align="center">
 <img src="/img/login.png" width="60%" />

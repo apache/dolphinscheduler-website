@@ -1,7 +1,7 @@
 # 快速上手
 
 * 管理员用户登录
-  >地址：http://192.168.xx.xx:12345/dolphinscheduler 用户名密码：admin/dolphinscheduler123
+  >地址：http://localhost:12345/dolphinscheduler 用户名密码：admin/dolphinscheduler123
 
 <p align="center">
    <img src="/img/login.png" width="100%" />

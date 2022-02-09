@@ -288,7 +288,7 @@ After the deployment is success, you can view logs. Logs stored in the logs fold
 # 8、login
 
 - Access the front page address, interface IP (self-modified)
-http://192.168.xx.xx:12345/dolphinscheduler
+http://localhost:12345/dolphinscheduler
 
    <p align="center">
      <img src="/img/login.png" width="60%" />

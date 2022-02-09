@@ -2,7 +2,7 @@
 
 * Administrator user login
 
-  > Address：http://192.168.xx.xx:12345/dolphinscheduler  Username and password：admin/dolphinscheduler123
+  > Address：http://localhost:12345/dolphinscheduler  Username and password：admin/dolphinscheduler123
 
 <p align="center">
    <img src="/img/login_en.png" width="60%" />
