@@ -35,8 +35,8 @@
 ## 5. Service upgrade
 
 ### 5.1 Modify `conf/config/install_config.conf` configuration content
-For standalone deployment, please refer to [Standalone deployment](/en-us/docs/1.3.1/user_doc/standalone-deployment.html) in `6. Modify the running parameters section`
-For cluster deployment, please refer to [Cluster Deployment (Cluster)](/en-us/docs/1.3.1/user_doc/cluster-deployment.html) in `6. Modify the operating parameters section`
+For standalone deployment, please refer to [Standalone deployment](./standalone-deployment.md) in `6. Modify the running parameters section`
+For cluster deployment, please refer to [Cluster Deployment (Cluster)](./cluster-deployment.md) in `6. Modify the operating parameters section`
 
 ### Precautions
 Creating worker groups has a different design in version 1.3.1 and previous versions
