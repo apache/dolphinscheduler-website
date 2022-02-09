@@ -4,7 +4,7 @@
 
 例如已发版 `x.y.z`，需要进行以下更新:
 
- - `docs/en-us/x.y.z` 和 `docs/zh-cn/x.y.z`: 复制老版本目录改为新版本 x.y.z
+ - 增加新的中、英文文档 `docs/en-us/x.y.z` 和 `docs/zh-cn/x.y.z`: 复制老版本目录改为新版本 x.y.z
    - 所包含文档的引用链接保持和 x.y.z 一致，尤其注意以下文件更新:
      - `architecture-design.md`
      - `cluster-deployment.md`
@@ -25,7 +25,7 @@
 
 DolphinScheduler 在 GitHub issue 中有版本选择的部分，当有新版本发版后，需要更新这部分的内容。目前与版本关联的是
 [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)，发版的时候需要
-向其中的 **Version** 部分增加内容。
+向其中的 **Version** 部分增加已经发版的版本 x.y.x，以及其下一个版本，用于追踪将要发版的bug。
 
 ## 发布镜像
 

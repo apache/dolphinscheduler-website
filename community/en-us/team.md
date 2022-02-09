@@ -1,6 +1,11 @@
 # DolphinScheduler Team
 
-The DolphinScheduler team is comprised of Members and Contributors. Members have direct access to the source of DolphinScheduler project and actively evolve the code-base. Contributors improve the project through submission of patches and suggestions to the Members. The number of Contributors to the project is unbounded. All contributions to DolphinScheduler are greatly appreciated, whether for trivial cleanups, big new features or other material rewards.
+The DolphinScheduler team comprises Members and Contributors. The biggest difference between Members and Contributors
+is write access. Members have write access to the project, their could directly commit to git repository (discourage 
+to do this). Contributors improve the project through submission of patches and suggestions. After approve by Members,
+those change could be merged into git repository. Everyone is encouraged to contribute to DolphinScheduler, and all
+members come from contributors. You could go and see [good first issue](https://github.com/apache/dolphinscheduler/issues/5689)
+if you want to start your first contribute.
 
 ## Members
 
@@ -60,9 +65,12 @@ DolphinScheduler have hundreds of contributors, you could find them in our repos
 
 ## Becoming a Committer
 
-DolphinScheduler follows the Apache way to build the community. Anyone can become a committer once they have contributed sufficiently to the project and earned the trust. Read [Contributing Guides](/en-us/community/development/contribute.html) to take part in the community.
+DolphinScheduler follows the Apache way to build the community. Anyone can become a committer once they have contributed
+sufficiently to the project and earned the trust. Read [Contributing Guides](/en-us/community/development/contribute.html)
+to take part in the community.
 
-The DolphinScheduler community follows the [Apache Community’s process](http://community.apache.org/newcommitter.html) on accepting a new committer.
+The DolphinScheduler community follows the [Apache Community’s process](http://community.apache.org/newcommitter.html)
+on accepting a new committer.
 
 1. Start the discussion and vote in @private. Only current PMC member could nominate.
 2. If the vote passes, send an offer to become a committer with @private CC’ed.
