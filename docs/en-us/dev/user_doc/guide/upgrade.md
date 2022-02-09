@@ -35,8 +35,9 @@
 ## 5. Backend Service Upgrade.
 
 ### 5.1 Modify the Content in `conf/config/install_config.conf` File.
-- Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](/en-us/docs/dev/user_doc/guide/installation/standalone.html).
-- Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](/en-us/docs/dev/user_doc/guide/installation/cluster.html).
+
+- Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](./installation/standalone.md).
+- Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](./installation/cluster.md).
 
 #### Masters Need Attentions
 Create worker group in 1.3.1 version has different design: 
