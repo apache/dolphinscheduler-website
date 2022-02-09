@@ -31,7 +31,7 @@ $ docker-compose up -d
 
 #### 3、登录系统
 
-访问前端页面： http://192.168.xx.xx:8888 (本地地址为 http://127.0.0.1:8888)
+访问前端页面：http://localhost:8888，如果你是特定服务器修改，请将 localhost 修改成对应的地址
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 

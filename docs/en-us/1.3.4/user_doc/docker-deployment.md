@@ -31,7 +31,7 @@ The **PostgreSQL** (with username `root`, password `root` and database `dolphins
 
 #### 3. Login
 
-Visit the Web UI: http://192.168.xx.xx:8888 (The local address is http://127.0.0.1:8888)
+Visit the Web UI: http://192.168.xx.xx:8888 (The local address is http://localhost:8888)
 
 The default username is `admin` and the default password is `dolphinscheduler123`
 

@@ -49,7 +49,7 @@ $ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:
 
 > **提示**: 如果出现 `unable to do port forwarding: socat not found` 错误, 需要先安装 `socat`
 
-然后访问前端页面: http://192.168.xx.xx:12345/dolphinscheduler (本地地址为 http://127.0.0.1:12345/dolphinscheduler)
+访问前端页面：http://localhost:12345/dolphinscheduler，如果有需要请修改成对应的 IP 地址
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
