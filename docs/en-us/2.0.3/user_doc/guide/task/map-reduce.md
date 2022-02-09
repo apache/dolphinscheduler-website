@@ -64,5 +64,3 @@ After configuring the Resource Centre, you can upload the required target files 
 Simply configure the required content according to the parameter descriptions above.
 
 ![demo-mr-simple](/img/tasks/demo/mr.png)
-
-
