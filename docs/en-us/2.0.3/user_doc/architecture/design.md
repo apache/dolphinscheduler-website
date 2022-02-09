@@ -80,7 +80,6 @@ The workflow of DolphinScheduler:
      </p>
    </p>
 
-
 ## Fault-tolerant design
    Fault tolerance is divided into **service downtime fault tolerance**, **task retry**, service downtime fault tolerance is composed of **Master fault tolerance** and **Worker fault tolerance**
 
