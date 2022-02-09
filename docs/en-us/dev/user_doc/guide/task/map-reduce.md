@@ -53,7 +53,7 @@ This example is a common introductory type of MapReduce application, which is de
 
 #### Uploading the main package
 
-When using the MapReduce task node, you will need to use the Resource Centre to upload the jar package for the executable. Refer to the [resource centre](docs/zh-cn/dev/user_doc/guide/resource.md).
+When using the MapReduce task node, you will need to use the Resource Centre to upload the jar package for the executable. Refer to the [resource centre](../resource.md).
 
 After configuring the Resource Centre, you can upload the required target files directly using drag and drop.
 
