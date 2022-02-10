@@ -79,7 +79,7 @@ A:   1, if it is node startup, check whether the .env API_BASE configuration und
 
 ​       3, if the above configuration is correct, then please check if the Api Server service is normal, 
 
-​		   curl http://192.168.xx.xx:12345/dolphinscheduler/users/get-user-info, check the Api Server log,
+​		   curl http://localhost:12345/dolphinscheduler/users/get-user-info, check the Api Server log,
 
 ​          if  Prompt cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null,   		  which proves that the Api Server service is normal.
 
@@ -300,9 +300,9 @@ change into
 ---
 
 ## Q : how to add a worker server
-A: 1, Create deployment user and hosts mapping, please refer 1.3 part of [cluster deployment](/en-us/docs/1.3.4/user_doc/cluster-deployment.html)
+A: 1, Create deployment user and hosts mapping, please refer 1.3 part of [cluster deployment](https://dolphinscheduler.apache.org/en-us/docs/laster/user_doc/installation/cluster.html)
 
-​		2, Configure hosts mapping and ssh access and modify directory permissions. please refer 1.4 part of [cluster deployment](/en-us/docs/1.3.4/user_doc/cluster-deployment.html)
+​		2, Configure hosts mapping and ssh access and modify directory permissions. please refer 1.4 part of [cluster deployment](https://dolphinscheduler.apache.org/en-us/docs/laster/user_doc/installation/cluster.html)
 
 ​		3, Copy the deployment directory from worker server that has already deployed
 
@@ -451,7 +451,7 @@ sudo rm -rf node_modules
  sudo npm uninstall node-sass
  sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
  ``` 
-   3, if the 2nd step failure, please, [referer url](/en-us/docs/1.3.4/user_doc/frontend-development.html)
+   3, if the 2nd step failure, please, [referer url](https://dolphinscheduler.apache.org/en-us/development/frontend-development.html)
 ```
  sudo npm rebuild node-sass
  ``` 

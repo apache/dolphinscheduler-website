@@ -113,7 +113,7 @@ Create the ui directory under the backend binary package directory
 Copy all files in the dolphinscheduler-ui/dist directory to the backend binary package ui directory
 
 Visit the following url, interface address (modify it yourself)
-http://192.168.xx.xx:12345/dolphinscheduler
+http://localhost:12345/dolphinscheduler
 
 ## FAQ
 #### Upload file size limit

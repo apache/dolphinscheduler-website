@@ -103,7 +103,7 @@ npm run build:release
 拷贝dolphinscheduler-ui/dist目录下所有的文件到后端二进制包ui目录下
 
 访问以下url,接口地址(自行修改)
-http://192.168.xx.xx:12345/dolphinscheduler
+http://localhost:12345/dolphinscheduler
 
 
 

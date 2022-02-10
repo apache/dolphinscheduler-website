@@ -53,6 +53,8 @@ Error: Process completed with exit code 1.
 这种情况下，我们会在check里面得到 check dependency license fail的错误信息，如上，我们缺少了HikariCP-java6-2.3.13、c3p0等的license声明，
 按照添加jar的步骤补充即可，提示还是蛮友好的（哈哈）。
 ### 附件
+
+<!-- markdown-link-check-disable -->
 附件：新jar的邮件格式 
 ```
 [VOTE][New Jar] jetcd-core(registry plugin support etcd3 ) 
@@ -94,6 +96,7 @@ https://mvnrepository.com/artifact/io.etcd/jetcd-core
 
 https://mvnrepository.com/artifact/io.etcd/jetcd-launcher
 ```
+<!-- markdown-link-check-enable -->
 
 ### 参考文章：
 * [COMMUNITY-LED DEVELOPMENT "THE APACHE WAY"](https://apache.org/dev/licensing-howto.html)

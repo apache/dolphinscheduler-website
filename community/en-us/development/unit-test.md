@@ -12,7 +12,9 @@
 -    Pay attention to boundary conditions.
 -    Unit tests should be well designed as well as avoiding useless code.
 -    When you find a `method` is difficult to write unit test, and if you confirm that the `method` is `bad code`, then refactor it with the developer.
+<!-- markdown-link-check-disable -->
 -    DolphinScheduler: [mockito](http://site.mockito.org/). Here are some development guides: [mockito tutorial](http://www.baeldung.com/bdd-mockito), [mockito refcard](https://dzone.com/refcardz/mockito)
+<!-- markdown-link-check-enable -->
 -    TDD(option): When you start writing a new feature, you can try writing test cases first.
 
 ### 3. Test coverage setpoint

@@ -30,9 +30,9 @@ export default {
             link: '/en-us/docs/1.3.9/user_doc/quick-start.html',
           },
           {
-            key: 'docs200',
+            key: 'docsHistory',
             text: 'Older Versions',
-            link: '/en-us/docs/latest/user_doc/architecture/listdocs.html',
+            link: '/en-us/docs/release/history-versions.html',
           },
           {
             key: 'pythonAPI',
@@ -212,9 +212,9 @@ export default {
             link: '/zh-cn/docs/1.3.9/user_doc/quick-start.html',
           },
           {
-            key: 'docs200',
+            key: 'docsHistory',
             text: '历史版本',
-            link: '/zh-cn/docs/latest/user_doc/architecture/listdocs.html',
+            link: '/zh-cn/docs/release/history-versions.html',
           },
           {
             key: 'pythonAPI',
