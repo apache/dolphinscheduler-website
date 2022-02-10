@@ -1,6 +1,6 @@
 # Older Versions
 
-#### DolphinScheduler setup instructions for each stable release:
+##### DolphinScheduler setup instructions for each stable release:
 
 ### Versions: [2.0.3 Document](/en-us/docs/2.0.3/user_doc/guide/quick-start.html)
 

@@ -1,5 +1,6 @@
 # 历史版本
-#### DolphinScheduler每个稳定版本的设置说明:
+
+##### DolphinScheduler每个稳定版本的设置说明:
 
 ### 版本：[2.0.3 文档](/zh-cn/docs/2.0.3/user_doc/guide/quick-start.html)
 
