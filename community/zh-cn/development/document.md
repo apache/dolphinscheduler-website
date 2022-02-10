@@ -22,7 +22,7 @@ DolphinScheduler 网站由 [docsite](https://github.com/chengshiwen/docsite-ext)
 
 1. 在根目录中运行 `npm install` 以安装依赖项。
 
-2. 在根目录下运行 `npm run start` 启动本地服务器，其将允许在 http://127.0.0.1:8080。
+2. 在根目录下运行 `npm run start` 启动本地服务器，其将允许在 http://localhost:8080。
 
 3. 运行 `npm run build` 可以生成文档网站源代码。
 

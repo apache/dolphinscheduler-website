@@ -116,7 +116,7 @@ masters="existing master01,existing master02,ds1,ds2"
 workers="existing worker01:default,existing worker02:default,ds3:default,ds4:default"
 
 ```
-- If the expansion is for worker nodes, you need to set the worker group. Please refer to the user manual [5.7 Worker grouping](/en-us/docs/1.3.9/user_doc/system-manual.html)
+- If the expansion is for worker nodes, you need to set the worker group. Please refer to the user manual [5.7 Worker grouping](./system-manual.md)
 
 - On all new nodes, change the directory permissions so that the deployment user has access to the dolphinscheduler directory
 

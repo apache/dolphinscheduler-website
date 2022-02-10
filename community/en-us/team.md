@@ -60,7 +60,7 @@ DolphinScheduler have hundreds of contributors, you could find them in our repos
 
 ## Becoming a Committer
 
-DolphinScheduler follows the Apache way to build the community. Anyone can become a committer once they have contributed sufficiently to the project and earned the trust. Read [Contributing Guides](/en-us/community/development/contribute.html) to take part in the community.
+DolphinScheduler follows the Apache way to build the community. Anyone can become a committer once they have contributed sufficiently to the project and earned the trust. Read [Contributing Guides](https://dolphinscheduler.apache.org/en-us/community/development/contribute.html) to take part in the community.
 
 The DolphinScheduler community follows the [Apache Community’s process](http://community.apache.org/newcommitter.html) on accepting a new committer.
 

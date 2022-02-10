@@ -3,7 +3,7 @@
 
 ## Get started quickly
 
-> Please refer to[Get started quickly](https://dolphinscheduler.apache.org/en-us/docs/1.3.1/user_doc/quick-start.html)
+> Please refer to[Get started quickly](./quick-start.md)
 
 ## Operation guide
 ### 1. Home

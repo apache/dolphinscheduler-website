@@ -333,7 +333,7 @@ sh: bin/dolphinscheduler-daemon.sh: No such file or directory
 # 8、登录系统
 
 - 访问前端页面地址，接口 ip (自行修改)
-http://192.168.xx.xx:12345/dolphinscheduler
+http://localhost:12345/dolphinscheduler
 
    <p align="center">
      <img src="/img/login.png" width="60%" />

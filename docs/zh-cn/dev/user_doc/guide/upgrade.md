@@ -35,8 +35,8 @@
 ## 5. 服务升级
 
 ### 5.1 修改`conf/config/install_config.conf`配置内容
-单机部署请参照[单机部署(Standalone)](/zh-cn/docs/dev/user_doc/guide/installation/standalone.html)中的`6.修改运行参数部分`
-集群部署请参照[集群部署(Cluster)](/zh-cn/docs/dev/user_doc/guide/installation/cluster.html)中的`6.修改运行参数部分`
+单机部署请参照[单机部署(Standalone)](./installation/standalone.md)中的`6.修改运行参数部分`
+集群部署请参照[集群部署(Cluster)](./installation/cluster.md)中的`6.修改运行参数部分`
 
 ### 注意事项
 创建worker分组在1.3.1版本和之前版本有了不同的设计

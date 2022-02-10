@@ -2,50 +2,20 @@
   "ignorePatterns": [
     {
       "pattern": "^http://localhost"
-    },
-    {
-      "pattern": "^http://192.168.xx.xx"
-    },
-    {
-      "pattern": "^http://127.0.0.1"
-    },
-    {
-      "pattern": "^https://stackoverflow.com/"
-    },
-    {
-      "pattern": "^https://mvnrepository.com/"
-    },
-    {
-      "pattern": "^https://sks-keyservers.net/"
-    },
-    {
-      "pattern": "^http://www.baeldung.com/bdd-mockito"
     }
   ],
   "replacementPatterns": [
     {
-      "pattern": "^/img/",
-      "replacement": "https://dolphinscheduler.apache.org/img/"
+      "pattern": "^/en-us/download/download.html$",
+      "replacement": "https://dolphinscheduler.apache.org/en-us/download/download.html"
     },
     {
-      "pattern": "^/asset/dolphinscheduler-netutils.jar",
-      "replacement": "https://dolphinscheduler.apache.org/asset/dolphinscheduler-netutils.jar"
+      "pattern": "^/zh-cn/download/download.html$",
+      "replacement": "https://dolphinscheduler.apache.org/zh-cn/download/download.html"
     },
     {
-      "pattern": "^/en-us/",
-      "replacement": "https://dolphinscheduler.apache.org/en-us/"
-    },
-    {
-      "pattern": "^/file/",
-      "replacement": "https://dolphinscheduler.apache.org/file/"
-    },
-    {
-      "pattern": "^/zh-cn/",
-      "replacement": "https://dolphinscheduler.apache.org/zh-cn/"
-    },
-    {
-      "pattern": "^/docs/",
-      "replacement": "https://dolphinscheduler.apache.org/docs/"
+      "pattern": "^/",
+      "replacement": "{{BASEURL}}/"
     }
   ],
   "timeout": "10s",
