@@ -29,7 +29,6 @@ $ helm install dolphinscheduler . --set image.tag=2.0.2
 ```bash
 $ helm install dolphinscheduler . -n test
 ```
-
 > **提示**: 如果名为 `test` 的命名空间被使用, 选项参数 `-n test` 需要添加到 `helm` 和 `kubectl` 命令中
 
 这些命令以默认配置在 Kubernetes 集群上部署 DolphinScheduler，[附录-配置](#appendix-configuration)部分列出了可以在安装过程中配置的参数

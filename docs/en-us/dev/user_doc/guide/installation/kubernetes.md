@@ -29,7 +29,6 @@ Publish a release named `dolphinscheduler` into the `test` namespace:
 ```bash
 $ helm install dolphinscheduler . -n test
 ````
-
 > **hint**: if a namespace named `test` is used, the option parameter `-n test` needs to be added to the `helm` and `kubectl` commands
 
 These commands deploy DolphinScheduler on a Kubernetes cluster with the default configuration, the [Appendix-Configuration](#appendix-configuration) section lists the parameters that can be configured during installation
