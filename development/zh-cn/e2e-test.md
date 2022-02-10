@@ -103,7 +103,7 @@ public final class LoginPage extends NavBarPage {
     }
 ```
 
-![SecurityPage](../../img/e2e-test/SecurityPage.png)
+![SecurityPage](../../img/e2e-test/SecurityPage_zh.png)
 
 对于导航栏选项的跳转，在`org/apache/dolphinscheduler/e2e/pages/common/NavBarPage.java` 中提供了 goToNav 的方法。当前支持的页面为：项目管理（ProjectPage）、安全中心（SecurityPage）和资源中心（ResourcePage）。
 

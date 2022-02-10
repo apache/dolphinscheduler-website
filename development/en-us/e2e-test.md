@@ -104,7 +104,7 @@ The goToTab method is provided in SecurityPage to test the corresponding sidebar
     }
 ```
 
-![SecurityPage](../../img/e2e-test/SecurityPage.png)
+![SecurityPage](../../img/e2e-test/SecurityPage_en.png)
 
 For navigation bar options jumping, the goToNav method is provided in `org/apache/dolphinscheduler/e2e/pages/common/NavBarPage.java`. The currently supported pages are: ProjectPage, SecurityPage and ResourcePage.
 
