@@ -31,7 +31,7 @@ $ docker-compose up -d
 
 #### 3、登录系统
 
-访问前端页面： http://192.168.xx.xx:8888 (本地地址为 http://127.0.0.1:8888)
+访问前端页面：http://localhost:8888，如果你是特定服务器修改，请将 localhost 修改成对应的地址
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
@@ -39,7 +39,8 @@ $ docker-compose up -d
   <img src="/img/login.png" width="60%" />
 </p>
 
-请参考用户手册章节的[快速上手](/zh-cn/docs/1.3.4/user_doc/quick-start.html) 查看如何使用DolphinScheduler
+
+请参考用户手册章节的[快速上手](./quick-start.md) 查看如何使用DolphinScheduler
 
 ### 二、通过指定已存在的 PostgreSQL 和 ZooKeeper 服务
 

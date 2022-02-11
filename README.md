@@ -11,7 +11,7 @@ Please also make sure your node version is 10+, version lower than 10.x is not s
 ## Build instruction 
 
 1. Run `npm install` in the root directory to install the dependencies.
-2. Run `npm run start` in the root directory to start a local server, you will see the website in 'http://127.0.0.1:8080'.
+2. Run `npm run start` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
 3. Run `npm run build` to build source code into dist directory.
 4. Verify your change locally: `python -m SimpleHTTPServer 8000`, when your python version is 3 use :`python3 -m http.server 8000` instead.
 

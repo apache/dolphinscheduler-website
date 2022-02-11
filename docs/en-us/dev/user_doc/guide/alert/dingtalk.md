@@ -12,6 +12,8 @@ parameter configuration
   > Custom keywords for security settings
 * Secret
   > Signature of security settings
+* MessageType
+  > Support both text and markdown types
 
 When a custom bot sends a message, you can specify the "@person list" by your mobile phone number. When the people in the "@people list" receive the message, there will be a @ message reminder. Do not disturb conversations still notify reminders, and "someone @ you" appears on the fold
 * @Mobiles
@@ -21,5 +23,4 @@ When a custom bot sends a message, you can specify the "@person list" by your mo
 * @All
   > Is @Everyone
 
-[DingTalk Custom Robot Access Development Documentation](https://open.dingtalk.com/document/robots/custom-robot-access),
-Use message type as text
+[DingTalk Custom Robot Access Development Documentation](https://open.dingtalk.com/document/robots/custom-robot-access)

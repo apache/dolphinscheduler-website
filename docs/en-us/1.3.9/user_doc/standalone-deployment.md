@@ -14,7 +14,7 @@
 
 # 2、Download the Binary tar.gz Package
 
-- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html), download package, move to deployment directory and uncompress it.
+- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [download](/en-us/download/download.html), download package, move to deployment directory and uncompress it.
 
 ```shell
 # Create the deployment directory. Please do not choose a high-privilege directory such as /root or /home.
@@ -291,7 +291,7 @@ After the deployment is done, you can view logs which stored in the logs folder.
 # 8、Login
 
 - Access the front page address, interface IP (self-modified)
-http://192.168.xx.xx:12345/dolphinscheduler
+http://localhost:12345/dolphinscheduler
 
    <p align="center">
      <img src="/img/login.png" width="60%" />

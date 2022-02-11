@@ -286,7 +286,7 @@ export default {
         children: [
           {
             title: 'Older Versions',
-            link: '/en-us/docs/2.0.3/user_doc/architecture/listdocs.html',
+            link: '/en-us/docs/release/history-versions.html',
           },
         ],
       },
@@ -580,7 +580,7 @@ export default {
         children: [
           {
             title: '历史版本',
-            link: '/zh-cn/docs/2.0.3/user_doc/architecture/listdocs.html',
+            link: '/zh-cn/docs/release/history-versions.html',
           },
         ],
       },

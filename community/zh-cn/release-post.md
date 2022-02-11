@@ -29,7 +29,7 @@ DolphinScheduler 在 GitHub issue 中有版本选择的部分，当有新版本�
 
 ## 发布镜像
 
-构建 Docker 镜像，请参考 [如何构建一个 Docker 镜像？](/zh-cn/docs/latest/user_doc/guide/installation/docker.html)
+构建 Docker 镜像，请参考 [如何构建一个 Docker 镜像？](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/installation/docker.html)
 
 然后推送镜像
 

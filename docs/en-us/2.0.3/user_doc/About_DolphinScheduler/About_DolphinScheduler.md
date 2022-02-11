@@ -1,3 +1,5 @@
+# About DolphinScheduler
+
 Apache DolphinScheduler is a cloud-native visual Big Data workflow scheduler system, committed to “solving complex big-data task dependencies and triggering relationships in data OPS orchestration so that various types of big data tasks can be used out of the box”.
 
 # High Reliability
