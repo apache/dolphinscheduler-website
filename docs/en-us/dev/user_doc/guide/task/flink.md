@@ -48,7 +48,7 @@ This is a common introductory case in the Big Data ecosystem, which often applie
 
 #### Uploading the main package
 
-When using the Flink task node, you will need to use the Resource Centre to upload the jar package for the executable. Refer to the [resource centre](../resource.md).
+When using the Flink task node, you will need to use the Resource Centre to upload the jar package for the executable. Refer to the [resource center](../resource.md).
 
 After configuring the Resource Centre, you can upload the required target files directly using drag and drop.
 
@@ -62,4 +62,4 @@ Simply configure the required content according to the parameter descriptions ab
 
 ## Notice
 
- JAVA and Scala are only used for identification, there is no difference, if it is Flink developed by Python, there is no class of the main function, the others are the same
+ JAVA and Scala are only used for identification, there is no difference, if it is Flink developed by Python, there is no class of the main function, the others are the same.
