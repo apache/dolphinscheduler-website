@@ -48,7 +48,7 @@ This is a common introductory case in the Big Data ecosystem, which often applie
 
 #### Uploading the main package
 
-When using the Flink task node, you will need to use the Resource Centre to upload the jar package for the executable. Refer to the [resource centre](file:///D:/gitcode/incubator-dolphinscheduler-website/docs/en-us/2.0.3/user_doc/guide/resource.md).
+When using the Flink task node, you will need to use the Resource Centre to upload the jar package for the executable. Refer to the [resource centre](../resource.md).
 
 After configuring the Resource Centre, you can upload the required target files directly using drag and drop.
 
