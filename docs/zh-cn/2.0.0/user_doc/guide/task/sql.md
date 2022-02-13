@@ -6,7 +6,7 @@ SQL任务类型，用于连接数据库并执行相应SQL。
 
 ## 创建数据源
 
-可参考[数据源中心介绍](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/datasource/introduction.html)。
+可参考[数据源中心介绍](../datasource/introduction.md)。
 
 ## 创建任务
 

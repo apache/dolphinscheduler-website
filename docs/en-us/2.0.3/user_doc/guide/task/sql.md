@@ -6,7 +6,7 @@ SQL task, used to connect to database and execute SQL.
 
 ## create data source
 
-Refer to [Data Source](https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/datasource/introduction.html)
+Refer to [Data Source](../datasource/introduction.md)
 
 ## Create Task
 
