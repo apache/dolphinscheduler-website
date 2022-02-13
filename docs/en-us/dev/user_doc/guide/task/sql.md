@@ -2,16 +2,16 @@
 
 ## Overview
 
-SQL task, used to connect to remote database and execute SQL.
+SQL task, used to connect to database and execute SQL.
 
 ## create data source
 
-Click the "create Datasource" button in the Datasource, enter the connection information and test the connection.
+Refer to [Data Source](https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/datasource/introduction.html)
 
 ## Create Task
 
 - Click Project Management-Project Name-Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
-- Drag <img src="/img/tasks/demo/sql-icon.png" width="25"/> from the toolbar to the drawing board.
+- Drag <img src="/img/tasks/icons/sql.png" width="25"/> from the toolbar to the drawing board.
 
 ## Task Parameter
 
@@ -28,13 +28,15 @@ Click the "create Datasource" button in the Datasource, enter the connection inf
 
 ### Create a temporary table in hive and write data
 
-This example creates a temporary table `tmp_hello_world` in hive and write a row of data. Before creating a temporary table, you need to ensure that the table does not exist, so you will use the "Pre Statement" function in the SQL task to delete the table before the "SQL statement" is executed.
+This example creates a temporary table `tmp_hello_world` in hive and write a row of data. Before creating a temporary table, we need to ensure that the table does not exist, so we will use custom parameters to obtain the time of the day as the suffix of the table name every time we run, so that this task can run every day. The format of the created table name is: `tmp_hello_world_{yyyyMMdd}`.
 
-<img src="/img/tasks/demo/hive-sql-en.png" alt="hive-sql-en" style="zoom:80%;" />
+![hive-sql](/img/tasks/demo/hive-sql.png)
 
-After running the task successfully, query the results in hive.
+### After running the task successfully, query the results in hive.
 
-<img src="/img/tasks/demo/hive-result.png" alt="hive-result" style="zoom:80%;" />
+Log in to the bigdata cluster and use 'hive' command or 'beeline' or 'JDBC' and other methods to connect to the 'Apache Hive' for the query. The query SQL is `select * from tmp_hello_world_{yyyyMMdd}`, please replace '{yyyyMMdd}' with the date of the running day. The query screenshot is as follows:
+
+![hive-sql](/img/tasks/demo/hive-result.png)
 
 ## Notice
 
