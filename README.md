@@ -14,7 +14,7 @@ Please also make sure your node version is 10+, version lower than 10.x is not s
 2. Run `npm run start` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
 ```
 Note:if you clone the code in Windows not Mac .please read details as below.
-if you execute the commands like two steps,you will get exception "UnhandledPromiseRejectionWarning: Error: EPERM: operation not permitted, symlink '2.0.3' -> 'latest'".
+If you execute the commands like the two steps above, you will get the exception "UnhandledPromiseRejectionWarning: Error: EPERM: operation not permitted, symlink '2.0.3' -> 'latest'".
 When you meet this problem.you will run two steps in the cmd.exe as an  ADMINISTRATOR MEMBER.
 ```
 3. Run `npm run build` to build source code into dist directory.
