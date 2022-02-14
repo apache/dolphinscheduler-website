@@ -2,7 +2,7 @@
 
 ## 综述
 
-Spark  任务类型，用于执行 Spark 程序。对于 Spark 节点，worker 会通关使用 spakr 命令 `spark submit` 方式提交任务。更多详情查看 [spark-submit](https://spark.apache.org/docs/3.2.1/submitting-applications.html#launching-applications-with-spark-submit)。
+Spark  任务类型，用于执行 Spark 程序。对于 Spark 节点，worker 会通关使用 spark 命令 `spark submit` 方式提交任务。更多详情查看 [spark-submit](https://spark.apache.org/docs/3.2.1/submitting-applications.html#launching-applications-with-spark-submit)。
 
 ## 创建任务
 
