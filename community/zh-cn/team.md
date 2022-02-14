@@ -50,6 +50,7 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Yizhi Wang    | wangyizhi    | [@Wangyizhi1](https://github.com/Wangyizhi1)             |
 | ShunFeng Cai  | caishunfeng  | [@caishunfeng](https://github.com/caishunfeng)           |
 | Wenjun Ruan   | wenjun       | [@ruanwenjun](https://github.com/ruanwenjun)             |
+| Jian Song     | songjian     | [@songjianet](https://github.com/songjianet)             |
 
 ## 贡献者
 
