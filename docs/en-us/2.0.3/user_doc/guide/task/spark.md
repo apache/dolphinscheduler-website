@@ -21,11 +21,11 @@ Spark task type for executing Spark programs. For Spark nodes, the worker submit
 - **Failed retry interval**: The time, in cents, interval for resubmitting the task after a failed task.
 - **Delayed execution time**: the time, in cents, that a task is delayed in execution.
 - **Timeout alarm**: Check the timeout alarm and timeout failure. When the task exceeds the "timeout period", an alarm email will be sent and the task execution will fail.
-- **Program type**: supports Java、Scala and Python.
+- **Program type**: supports Java, Scala and Python.
 - **Spark version**: support Spark1 and Spark2.
 - **The class of main function**: is the full path of Main Class, the entry point of the Spark program.
 - **Main jar package**: is the Spark jar package.
-- **Deployment mode**: support three modes of yarn-cluster、yarn-client and local. 
+- **Deployment mode**: support three modes of yarn-cluster, yarn-client and local. 
 - **Task name** (option): Spark task name.
 - **Driver core number**: This is used to set the number of Driver core, which can be set according to the actual production environment.
 - **Driver memory number**: This is used to set the number of Driver memories, which can be set according to the actual production environment.
