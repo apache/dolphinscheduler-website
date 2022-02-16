@@ -12,6 +12,11 @@ Please also make sure your node version is 10+, version lower than 10.x is not s
 
 1. Run `npm install` in the root directory to install the dependencies.
 2. Run `npm run start` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
+```
+Note: if you clone the code in Windows, not Mac. Please read the details below.
+If you execute the commands like the two steps above, you will get the exception "UnhandledPromiseRejectionWarning: Error: EPERM: operation not permitted, symlink '2.0.3' -> 'latest'".
+When meeting this problem. You can run two steps in the cmd.exe as an ADMINISTRATOR MEMBER.
+```
 3. Run `npm run build` to build source code into dist directory.
 4. Verify your change locally: `python -m SimpleHTTPServer 8000`, when your python version is 3 use :`python3 -m http.server 8000` instead.
 
