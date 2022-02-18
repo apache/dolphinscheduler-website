@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/2022-02-26/07.png',
+          title: '# 直播报名火热启动 | 2022 年 Apache DolphinScheduler Meetup 首秀！',
+          content: '各位关注 Apache DolphinScheduler 的小伙伴们大家好呀！相信大家都已经从热闹的春节里...',
+          dateStr: '2022-2-18',
+          link: '/zh-cn/blog/Meetup_2022_02_26.html',
+        },
+        {
           img: '/img/2.0.3/2022-1-27/1.png',
           title: 'Apache DolphinScheduler 2.0.3 发布，支持钉钉告警签名校验，数据源可从多个会话获取链接',
           content: '今天，Apache DolphinScheduler 宣布 2.0.3 版本正式发布。..',
@@ -67,13 +74,6 @@ export default {
           content: '自 2021 年 3 月 17 日从 Apache 孵化器毕业以来，Apache DolphinScheduler ...',
           dateStr: '2022-1-13',
           link: '/zh-cn/blog/Board_of_Directors_Report.html',
-        },
-        {
-          img: 'https://miro.medium.com/max/1260/1*3XcwBeN5HkBzZ76zXDcigw.jpeg',
-          title: 'WorkflowAsCode 来了，Apache DolphinScheduler 2.0.2 惊喜发布',
-          content: '千呼万唤中，WorkflowAsCode 功能终于在 2.0.2 版本中如约上线...',
-          dateStr: '2022-1-13',
-          link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.2.html',
         },
       ],
     },
@@ -547,6 +547,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: '/img/2022-02-26/08.png',
+          title: ' Sign Up to Apache DolphinScheduler Meetup Online | We Are Waiting For You to Join the Grand Gathering on 2.26 2022!\n',
+          content: 'Hello the community! After having adjusted ourselves from the pleasure of...',
+          dateStr: '2022-2-18',
+          link: '/en-us/blog/Meetup_2022_02_26.html',
+        },
+        {
           img: '/img/2.0.3/2022-1-2701/1.png',
           title: 'Apache DolphinScheduler 2.0.3 Release Announcement: DingTalk alert plugin adds signature verification, and supports data sources to obtain links from multiple sessions\n',
           content: 'Today, Apache DolphinScheduler announced the official release of version 2.0.3. In this version...',
@@ -560,13 +567,6 @@ export default {
           content: 'Since graduating from the Apache Incubator on March 17, 2021....',
           dateStr: '2022-1-13',
           link: '/en-us/blog/Board_of_Directors_Report.html',
-        },
-        {
-          img: 'https://miro.medium.com/max/1260/1*3XcwBeN5HkBzZ76zXDcigw.jpeg',
-          title: '# Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched! ',
-          content: 'In the long-awaited, WorkflowAsCode function is finally launched in version 2.0.2 as promised...',
-          dateStr: '2022-1-13',
-          link: '/en-us/blog/Apache_dolphinScheduler_2.0.2.html',
         },
       ],
     },
