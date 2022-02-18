@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: '# Sign Up to Apache DolphinScheduler Meetup Online | We Are Waiting For You to Join the Grand Gathering on 2.26 2022!\n',
+                author: 'Debra Chen',
+                dateStr: '2022-2-18',
+                desc: 'Apache DolphinScheduler Meetup Online ',
+                link: '/en-us/blog/Meetup_2022_02_26.html',
+            },
+            {
                 title: 'Apache DolphinScheduler 2.0.3 Release Announcement: DingTalk alert plugin adds signature verification, and supports data sources to obtain links from multiple sessions\n',
                 author: 'Debra Chen',
                 dateStr: '2022-1-27',
@@ -124,6 +131,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '直播报名火热启动 | 2022 年 Apache DolphinScheduler Meetup 首秀！',
+                author: 'Debra Chen',
+                dateStr: '2022-2-18',
+                desc: '直播报名火热启动 | 2022 年 Apache DolphinScheduler Meetup 首秀！',
+                link: '/zh-cn/blog/Meetup_2022_02_26.html',
+            },
             {
                 title: 'Apache DolphinScheduler 2.0.3 发布，支持钉钉告警签名校验，数据源可从多个会话获取链接',
                 author: 'Debra Chen',
