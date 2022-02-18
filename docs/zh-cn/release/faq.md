@@ -592,9 +592,9 @@ A：将Worker节点分别部署至多个Yarn集群，步骤如下（例如AWS EM
    
    1. 将 Worker 节点部署至 EMR 集群的 Master 节点
    
-   2. 将 conf/common.properties 中的 yarn.application.status.address 修改为当前集群的 Yarn 的信息
+   2. 将 `conf/common.properties` 中的 `yarn.application.status.address` 修改为当前集群的 Yarn 的信息
    
-   3. 通过 bin/dolphinscheduler-daemon.sh start worker-server 和 bin/dolphinscheduler-daemon.sh start logger-server 分别启动 worker-server 和 logger-server
+   3. 通过 `bin/dolphinscheduler-daemon.sh start worker-server` 和 `bin/dolphinscheduler-daemon.sh start logger-server` 分别启动 worker-server 和 logger-server
 
 ---
 
