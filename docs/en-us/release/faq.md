@@ -607,4 +607,15 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
 ---
 
+## Q：Deploy for multiple YARN clusters
+A：By deploying different worker in different yarn clusters，the steps are as follows(eg: AWS EMR):
+   
+   1. Deploying the worker server on the master node of the EMR cluster
+   
+   2. Changing `yarn.application.status.address` to current emr's yarn url in the `conf/common.properties`
+   
+   3. Execute command `bin/dolphinscheduler-daemon.sh start worker-server` and `bin/dolphinscheduler-daemon.sh start logger-server` to start worker-server and logger-server
+
+---
+
 ## We will collect more FAQ later
