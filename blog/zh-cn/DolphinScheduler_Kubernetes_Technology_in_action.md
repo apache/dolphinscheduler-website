@@ -29,9 +29,9 @@ Apache DolphinScheduler是当前非常优秀的分布式易扩展的可视化工
 
 海豚的官网和GitHub上有非常详细的配置文件和案例。这里我们重点介绍一些社区中经常出现的咨询和问题。
 
-官网文档地址 https://dolphinscheduler.apache.org/zh-cn/docs/1.3.9/user_doc/Kubernetes-deployment.html
+官网文档地址 https://dolphinscheduler.apache.org/zh-cn/docs/1.3.9/user_doc/kubernetes-deployment.html
 
-GitHub文件夹地址  https://GitHub.com/apache/dolphinscheduler/tree/1.3.9-release/docker/Kubernetes/dolphinscheduler
+GitHub文件夹地址  https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler
 
 + 在value.yaml文件中修改镜像，以实现离线安装（air-gap install）；
 
@@ -105,7 +105,7 @@ GitHub文件夹地址  https://GitHub.com/apache/dolphinscheduler/tree/1.3.9-rel
 
   执行helm install dolphinscheduler . -n ds139，或者执行helm upgrade dolphinscheduler -n ds139，也可以先helm uninstall dolphinscheduler -n ds139，再执行helm install dolphinscheduler . -n ds139。
 
-+ 通常生产环境建议使用独立外置postgresql作为管理数据库，并且使用独立安装的zookeeper环境（本案例使用了zookeeper operator https://GitHub.com/pravega/zookeeper-operator，与Apache DolphinScheduler在同一个Kubernetes集群中）。
++ 通常生产环境建议使用独立外置postgresql作为管理数据库，并且使用独立安装的zookeeper环境（本案例使用了zookeeper operator https://GitHub.com/pravega/zookeeper-operator ，与Apache DolphinScheduler在同一个Kubernetes集群中）。
 
   ~~~yaml
   ## If not exists external database, by default, Dolphinscheduler's database will use it.
@@ -152,7 +152,7 @@ GitHub文件夹地址  https://GitHub.com/apache/dolphinscheduler/tree/1.3.9-rel
 
 ## 基于argo-cd的Gitops部署方式
 
-argo-cd是基于Kubernetes 的声明式Gitops持续交付工具。argo-cd是CNCF的孵化项目，Gitops的最佳实践工具。关于Gitops的解释可以参考https://about.Gitlab.com/topics/Gitops/
+argo-cd是基于Kubernetes 的声明式Gitops持续交付工具。argo-cd是CNCF的孵化项目，Gitops的最佳实践工具。关于Gitops的解释可以参考https://about.gitlab.com/topics/Gitops/
 
 <div align=center>
 <img src="/img/2022-02-22/3.png"/>
