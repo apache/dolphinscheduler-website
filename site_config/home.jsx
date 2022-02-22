@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/2022-02-22/1.jpeg',
+          title: 'Apache DolphinScheduler在Kubernetes体系中的技术实战',
+          content: '基于笔者所在公司业务的特性，阐述我们使用 Kubernetes 作为Apache DolphinScheduler的技术底座的原因： ...',
+          dateStr: '2022-2-22',
+          link: '/zh-cn/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
+        },
+        {
           img: '/img/2022-02-26/07.png',
           title: '# 直播报名火热启动 | 2022 年 Apache DolphinScheduler Meetup 首秀！',
           content: '各位关注 Apache DolphinScheduler 的小伙伴们大家好呀！相信大家都已经从热闹的春节里...',
@@ -67,13 +74,6 @@ export default {
           content: '今天，Apache DolphinScheduler 宣布 2.0.3 版本正式发布。..',
           dateStr: '2022-1-27',
           link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.3.html',
-        },
-        {
-          img: '/img/2022-1-13/640.png',
-          title: 'Apache DolphinScheduler 董事会报告：社区健康运行，Commit 增长 123%',
-          content: '自 2021 年 3 月 17 日从 Apache 孵化器毕业以来，Apache DolphinScheduler ...',
-          dateStr: '2022-1-13',
-          link: '/zh-cn/blog/Board_of_Directors_Report.html',
         },
       ],
     },
