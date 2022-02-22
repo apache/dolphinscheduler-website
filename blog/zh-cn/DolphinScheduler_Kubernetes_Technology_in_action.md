@@ -61,7 +61,8 @@ GitHub文件夹地址  https://github.com/apache/dolphinscheduler/tree/1.3.9-rel
     pullPolicy: "Always"GitHub
   ~~~
 
-  把https://GitHub.com/apache/dolphinscheduler/tree/1.3.9-release/docker/Kubernetes/dolphinscheduler 整个目录copy到可以执行helm命令的主机，然后按照官网执行
+  把 https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler/ 整个目录copy到可以执行helm命令的主机，然后按照官网执行
+
 
   ~~~shell
   kubectl create ns ds139Git
