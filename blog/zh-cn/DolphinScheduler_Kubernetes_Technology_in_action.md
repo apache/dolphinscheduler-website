@@ -31,10 +31,10 @@ Apache DolphinScheduler是当前非常优秀的分布式易扩展的可视化工
 
 官网文档地址 https://dolphinscheduler.apache.org/zh-cn/docs/1.3.9/user_doc/kubernetes-deployment.html
 
-GitHub文件夹地址  https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler
+GitHub文件夹地址  https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler/
 
 + 在value.yaml文件中修改镜像，以实现离线安装（air-gap install）；
-
+  https://about.gitlab.com/topics/gitops/
   ~~~yaml
   image:
     repository: "apache/dolphinscheduler"
@@ -152,7 +152,7 @@ GitHub文件夹地址  https://github.com/apache/dolphinscheduler/tree/1.3.9-rel
 
 ## 基于argo-cd的Gitops部署方式
 
-argo-cd是基于Kubernetes 的声明式Gitops持续交付工具。argo-cd是CNCF的孵化项目，Gitops的最佳实践工具。关于Gitops的解释可以参考https://about.gitlab.com/topics/Gitops/
+argo-cd是基于Kubernetes 的声明式Gitops持续交付工具。argo-cd是CNCF的孵化项目，Gitops的最佳实践工具。关于Gitops的解释可以参考https://about.gitlab.com/topics/gitops/
 
 <div align=center>
 <img src="/img/2022-02-22/3.png"/>
