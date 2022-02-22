@@ -155,12 +155,19 @@ It is alright for <code>KEYS</code> to only include the public key of the deploy
 cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 </code></pre>
 <p>Add source code packages, binary packages and executable binary packages to SVN working directory.</p>
-<pre><code class="language-shell">cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> Source and binary tarball <span class="hljs-keyword">for</span> main code</span>
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+<span class="hljs-meta">
+#</span><span class="bash"> Source and binary tarball <span class="hljs-keyword">for</span> Python API</span>
+mkdir -p ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
 </code></pre>
 <h3>Generate sign files</h3>
 <pre><code class="language-shell">shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -a 512 python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz &gt;&gt; python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -b -a 512 python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl &gt;&gt; python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
 </code></pre>
 <h3>Commit to Apache SVN</h3>
 <pre><code class="language-shell">svn add *
@@ -170,6 +177,8 @@ svn --username=${APACHE LDAP username} commit -m &quot;release ${RELEASE.VERSION
 <h3>Check sha512 hash</h3>
 <pre><code class="language-shell">shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -c python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -c python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
 </code></pre>
 <h3>Check gpg Signature</h3>
 <p>First, import releaser's public key.
@@ -196,6 +205,8 @@ Your decision? 5
 <p>Then, check the gpg signature.</p>
 <pre><code class="language-shell">gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz
 gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz
+gpg --verify python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.asc python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz
+gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.asc python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl
 </code></pre>
 <h3>Check Released Files</h3>
 <h4>Check source package</h4>

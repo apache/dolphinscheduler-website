@@ -169,13 +169,19 @@ cd ~/ds_svn/dev/dolphinscheduler
 cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 </code></pre>
 <p>将源码包和二进制包添加至SVN工作目录。</p>
-<pre><code class="language-shell">cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 主程序源码包和二进制包</span>
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-
+<span class="hljs-meta">
+#</span><span class="bash"> Python API 源码和二进制包</span>
+mkdir -p ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
 </code></pre>
 <h3>生成文件签名</h3>
 <pre><code class="language-shell">shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -a 512 python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz &gt;&gt; python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -b -a 512 python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl &gt;&gt; python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
 </code></pre>
 <h3>提交Apache SVN</h3>
 <pre><code class="language-shell">cd ~/ds_svn/dev/dolphinscheduler
@@ -186,6 +192,8 @@ svn --username=${APACHE LDAP 用户名} commit -m &quot;release ${RELEASE.VERSIO
 <h3>检查sha512哈希</h3>
 <pre><code class="language-shell">shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -c python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -c python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
 </code></pre>
 <h3>检查gpg签名</h3>
 <p>首先导入发布人公钥。从svn仓库导入KEYS到本地环境。（发布版本的人不需要再导入，帮助做验证的人需要导入，用户名填发版人的即可）</p>
@@ -211,6 +219,8 @@ Your decision? 5
 <p>然后进行gpg签名检查。</p>
 <pre><code class="language-shell">gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz
 gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz
+gpg --verify python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.asc python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz
+gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.asc python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl
 </code></pre>
 <h3>检查发布文件内容</h3>
 <h4>检查源码包的文件内容</h4>
