@@ -132,6 +132,13 @@ export default {
         postsTitle: '所有文章',
         list: [
             {
+                title: 'Apache DolphinScheduler 在 Kubernetes 体系中的技术实战',
+                author: 'Debra Chen',
+                dateStr: '2022-2-18',
+                desc: 'Apache DolphinScheduler 在 Kubernetes 体系中的技术实战',
+                link: '/zh-cn/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
+            },
+            {
                 title: '直播报名火热启动 | 2022 年 Apache DolphinScheduler Meetup 首秀！',
                 author: 'Debra Chen',
                 dateStr: '2022-2-18',
