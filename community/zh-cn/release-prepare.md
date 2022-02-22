@@ -13,11 +13,6 @@
 例如要发版 `x.y.z`，需要先进行以下修改:
 
  - `pom.xml`: `revision`, `version`, `tag` 标签版本更新为 x.y.z
- - `ambari_plugin`:
-   - `ambari_plugin/common-services/DOLPHIN/x.y.z`: 目录版本更新为 x.y.z
-   - `ambari_plugin/common-services/DOLPHIN/x.y.z/alerts.json`: 内容版本更新为 x.y.z
-   - `ambari_plugin/common-services/DOLPHIN/x.y.z/metainfo.xml`: 内容版本更新为 x.y.z
-   - `ambari_plugin/statcks/DOLPHIN/metainfo.xml`: 内容版本更新为 x.y.z
  - `sql`:
    - `dolphinscheduler_mysql.sql`: `t_ds_version` 版本更新为 x.y.z
    - `dolphinscheduler_postgre.sql`: `t_ds_version` 版本更新为 x.y.z
@@ -29,3 +24,4 @@
  - `docker/kubernetes/dolphinscheduler`:
    - `Chart.yaml`: `appVersion` 版本更新为 x.y.z (`version` 为 helm chart 版本, 增量更新但不要设置为 x.y.z)
    - `values.yaml`: `image.tag` 版本更新为 x.y.z
+ - `dolphinscheduler-python/pydolphinscheduler/setup.py`: 修改其中的 `version` 为 x.y.z
