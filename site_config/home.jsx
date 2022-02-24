@@ -547,6 +547,14 @@ export default {
       title: 'Events & News',
       list: [
         {
+
+          img: '/img/2022-02-24/1.jpeg',
+          title: 'Technical Practice of Apache DolphinScheduler in Kubernetes System',
+          content: 'Kubernetes is a cluster system based on container technology....',
+          dateStr: '2022-2-24',
+          link: '/en-us/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
+        },
+        {
           img: '/img/2022-02-26/08.png',
           title: ' Sign Up to Apache DolphinScheduler Meetup Online | We Are Waiting For You to Join the Grand Gathering on 2.26 2022!\n',
           content: 'Hello the community! After having adjusted ourselves from the pleasure of...',
@@ -560,14 +568,7 @@ export default {
           dateStr: '2022-1-27',
           link: '/en-us/blog/Apache_dolphinScheduler_2.0.3.html',
         },
-        {
 
-          img: '/img/2022-1-13/640.png',
-          title: 'Apache DolphinScheduler Board Report: Community Runs Well, Commit Number Grows over 123%',
-          content: 'Since graduating from the Apache Incubator on March 17, 2021....',
-          dateStr: '2022-1-13',
-          link: '/en-us/blog/Board_of_Directors_Report.html',
-        },
       ],
     },
     userreview: {
