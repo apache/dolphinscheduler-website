@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Kubernetes">
+  <meta name="description" content="Kubernetes is a cluster system based on container technology">
+  <title>Technical Practice of Apache DolphinScheduler in Kubernetes System</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/build/vendor.23870e5.css">
+  <link rel="stylesheet" href="/build/blog.md.055b3f1.css">
+</head>
+<body>
+  <div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-dark"><div class="header-body"><span class="mobile-menu-btn mobile-menu-btn-dark"></span><a href="/en-us/index.html"><img class="logo" src="/img/hlogo_white.svg"/></a><div class="search search-dark"><span class="icon-search"></span></div><span class="language-switch language-switch-dark">中</span><div class="header-menu"><div><ul class="ant-menu whiteClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/download/download.html" target="_self">DOWNLOAD</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item ant-menu-item-selected" role="menuitem"><a href="/en-us/blog/index.html" target="_self">BLOG</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/community/team.html" target="_self">COMMUNITY</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="https://www.apache.org/" target="_blank">ASF</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/user/index.html" target="_self">USER</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div><div class="mobile-menu"><div class="mobile-menu-content"><div class="mobile-menu-list"><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/index.html" target="_self">HOME</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">latest(2.0.3)</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/1.3.9/user_doc/quick-start.html" target="_self">1.3.9</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/release/history-versions.html" target="_self">Older Versions</a></div><div class="mobile-sub-menu-item"><a href="/python/index.html" target="_self">PyDolphinScheduler</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/dev/user_doc/guide/quick-start.html" target="_self">dev</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/download/download.html" target="_self">DOWNLOAD</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/blog/index.html" target="_self">BLOG</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/community/team.html" target="_self">COMMUNITY</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="https://www.apache.org/" target="_blank">ASF</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="https://www.apache.org/" target="_blank">Foundation</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/licenses/" target="_blank">License</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/security/" target="_blank">Security</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/user/index.html" target="_self">USER</a></div></div></div><div class="mobile-menu-dummy"></div></div></div></header><section class="blog-content markdown-body"><h1>Technical Practice of Apache DolphinScheduler in Kubernetes System</h1>
+<div align=center>
+<img src="/img/2022-02-24/1.jpeg"/>
+</div>
+<p>Author | Yang Dian, Data and Algorithm Platform Architect | Shenzhen Transportation Center</p>
+<p>Editor | warrior_</p>
+<blockquote>
+<p>Editor's note：</p>
+</blockquote>
+<blockquote>
+<p>Kubernetes is a cluster system based on container technology, implements container orchestration, provides microservices and buses, and involves a large number of knowledge systems.</p>
+</blockquote>
+<blockquote>
+<p>Starting from the author's actual work experience, this article shows us the use and technology sharing of DolphinScheduler in practice scenarios, hoping it can inspire those who have the same experience.</p>
+</blockquote>
+<h2>Why do we use DolphinSchedule? What value does it bring to us? And what problems did we encounter?</h2>
+<p>Apache DolphinScheduler is an excellent distributed and easily scalable visual workflow task scheduling platform.</p>
+<p>In the field I'm working in, the application of DolphinScheduler can quickly solve the top ten pain points of data development for enterprises:</p>
+<ul>
+<li>Multi-source data connection and access, most common data sources in the technical field can be accessed, and adding new data sources does not require too many changes;</li>
+<li>Diversified +specialized + massive data task management, which really revolves problems focusing on big data (Hadoop family, Flink, etc.) task scheduling, and is significantly different from traditional schedulers;</li>
+<li>Graphical task arrangement, super convenient user experience, competitive ability with commercial products, especially to most foreign open source products that cannot directly generate data tasks by dragging and dropping;</li>
+<li>Task details, rich viewing of tasks, log, and time-running axis display, which well meet developers' requirement of refined data tasks management, quickly locating slow SQL and performance bottlenecks;</li>
+<li>Support for a variety of distributed file systems, enrich users' choices for unstructured data;</li>
+<li>Native multi-tenant management to meet the data task management and isolation requirements of large organizations;</li>
+<li>Fully automatic distributed scheduling algorithm to balance all scheduling tasks;</li>
+<li>The native function of cluster monitoring, which can monitor CPU, memory, number of connections, Zookeeper status is suitable for one-stop operation and maintenance for SME;</li>
+<li>The native task alarm function, which minimizes the risk of task operation;</li>
+<li>The strong community-based operation, listening to the real voice of customers, constantly adding new functions, and continuously optimizing the customer experience.</li>
+</ul>
+<p>I also encountered many new challenges in the projects launching various types of Apache DolphinScheduler:</p>
+<ul>
+<li>How to deploy Apache DolphinScheduler with less human resources, and can a fully automatic cluster installation and deployment mode be realized?</li>
+<li>How to standardize technical component implementation specifications?</li>
+<li>Can unmanned supervision and system self-healing be achieved?</li>
+<li>How to install and update the air-gap mode under the network security control?</li>
+<li>Can it automatically expand without disturbing?</li>
+<li>How to build and integrate the monitoring system?</li>
+</ul>
+<p>To solve the above challenges, we repeatedly integrated Apache DolphinScheduler into the existing Kubernetes cloud-native system to tackle problems and make Apache DolphinScheduler technology more powerful.</p>
+<h2>Kubernetes Technical System Bring New Technical Features to Apache DolphinScheduler</h2>
+<p>After using Kubernetes to manage Apache DolphinScheduler, the overall technical solutions are quickly enriched and efficient technical features added, by which the above practical challenges  tackled quickly:</p>
+<ul>
+<li>The development environment and production environment was rapidly established in various independent deployment projects, and all can be implemented by one-key deployment and one-key upgrade;</li>
+<li>Overall supports offline installation, and the installation speed is faster;</li>
+<li>Unify the installation configuration information as much as possible to reduce the abnormal configuration of multiple projects. All configuration items can be managed through the internal git of the enterprise based on different projects;</li>
+<li>Combine with object storage technology to unify unstructured data technology;</li>
+<li>The convenient monitoring system is integrated with the existing prometheus monitoring system;</li>
+<li>Mixed-use of multiple schedulers;</li>
+<li>Fully automatic resource scheduling capability;</li>
+<li>Fast self-healing ability, automatic abnormal restart, and restart mode based on probe mode.</li>
+</ul>
+<p>The cases in this article are based on Apache DolphinScheduler version 1.3.9.</p>
+<h2>Automated and Efficient Deployment Based on Helm tools</h2>
+<p>First, let's introduce the installation method based on the Helm provided by the official website. Helm is the best way to find, share and use software to build Kubernetes, which is one of the graduate projects of cloud-native CNCF.</p>
+<div align=center>
+<img src="/img/2022-02-24/2.png"/>
+</div>
+<p>There are very detailed configuration files and cases on Apache DolphinScheduler official website and GitHub. Here I‘ll highlight some of the FAQs in the community.</p>
+<p>Official website document address
+<a href="https://dolphinscheduler.apache.org/en-us/docs/1.3.9/user_doc/kubernetes-deployment.html">https://dolphinscheduler.apache.org/en-us/docs/1.3.9/user_doc/kubernetes-deployment.html</a></p>
+<p>GitHub folder address
+<a href="https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler">https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler</a></p>
+<p>Modify the image in the value.yaml file for offline installation (air-gap install);</p>
+<pre><code>image:
+repository: &quot;apache/dolphinscheduler&quot;
+tag: &quot;1.3.9&quot;
+pullPolicy: &quot;IfNotPresent&quot;
+</code></pre>
+<p>Pull, tag, and push for harbors installed in the company or private warehouses of other public clouds. Here we assume that the private warehouse address is <a href="http://harbor.abc.com">harbor.abc.com</a>, the host where the image is built has been docker login <a href="http://harbor.abc.com">harbor.abc.com</a>, and the new apache project under the private warehouse has been established and authorized.</p>
+<p>execute shell commands</p>
+<pre><code>docker pull apache/dolphinscheduler:1.3.9
+dock tag apache/dolphinscheduler:1.3.9 
+harbor.abc.com/apache/dolphinscheduler:1.3.9
+docker push apache/dolphinscheduler:1.3.9
+</code></pre>
+<p>Then replace the image information in the value file. Here we recommend using the Always method to pull the image. In the production environment, try to check whether it is the latest image content every time to ensure the correctness of the software product. In addition, many coders are used to writing the tag as latest, and making the image without adding the tag information, which is very dangerous in the production environment. Because the image of the latest will be changed once anyone pushes the image and it is impossible to judge the version of the latest. So, it is recommended to be clear about the tags of each release, and use Always.</p>
+<pre><code>image:
+repository: &quot;harbor.abc.com/apache/dolphinscheduler&quot;
+tag: &quot;1.3.9&quot;
+pullPolicy: &quot;Always&quot;
+</code></pre>
+<p>Copy the entire directory of <a href="https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler">https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler</a> to a host that can execute the Helm command, and then execute</p>
+<pre><code>kubectl create ns ds139
+helm install dolphinscheduler . -n ds139 following the official website instruction to install offline.
+</code></pre>
+<p>to install offline.</p>
+<ul>
+<li>To integrate DataX, MySQL, Oracle client components, first download the following components:
+<a href="https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar">https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar</a>
+<a href="https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/">https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/</a>
+<a href="https://github.com/alibaba/DataX/blob/master/userGuid.md">https://github.com/alibaba/DataX/blob/master/userGuid.md</a> Compile</li>
+</ul>
+<p>build and compile according to the prompt, and the file package is located in {DataX_source_code_home}/target/datax/datax/</p>
+<p>Create a new dockerfile based on the above plugin components, and the image that has been pushed to the private warehouse can be applied to the basic image.</p>
+<pre><code>FROM harbor.abc.com/apache/dolphinscheduler:1.3.9
+COPY *.jar /opt/dolphinscheduler/lib/
+RUN mkdir -p /opt/soft/datax
+COPY datax /opt/soft/datax
+</code></pre>
+<p>Save the dockerfile and execute the shell command</p>
+<pre><code>docker build -t harbor.abc.com/apache/dolphinscheduler:1.3.9-mysql-oracle-datax . #Don't forget the last point
+docker push harbor.abc.com/apache/dolphinscheduler:1.3.9-mysql-oracle-datax
+</code></pre>
+<p>Modify the value file</p>
+<pre><code>image:
+repository: &quot;harbor.abc.com/apache/dolphinscheduler&quot;
+tag: &quot;1.3.9-mysql-oracle-datax&quot;
+pullPolicy: &quot;Always&quot;
+</code></pre>
+<p>Execute helm install dolphinscheduler . -n ds139
+or helm upgrade dolphinscheduler -n ds139, or  firstly helm uninstall dolphinscheduler -n ds139, and then execute helm install dolphinscheduler . -n ds139.</p>
+<ul>
+<li>Generally, it is recommended to use an independent external PostgreSQL as the management database in the production environment, and use the independently installed Zookeeper environment (I used the Zookeeper operator  <a href="https://github.com/pravega/zookeeper-operator">https://github.com/pravega/zookeeper-operator</a> in this case, which is scheduled in the same Kubernetes cluster as Apache DolphinScheduler ). We found that after using the external database, completely deleting  and redeploying the Apache DolphinScheduler in Kubernetes, the task data, tenant data, user data, etc. are retained, which once again verifies the high availability of the system and data integrity. (If the pvc is deleted, the historical job log will be lost)</li>
+</ul>
+<pre><code>## If not exists external database, by default, Dolphinscheduler's database will use it.
+postgresql:
+enabled: false
+postgresqlUsername: &quot;root&quot;
+postgresqlPassword: &quot;root&quot;
+postgresqlDatabase: &quot;dolphinscheduler&quot;
+persistence:
+  enabled: false
+  size: &quot;20Gi&quot;
+  storageClass: &quot;-&quot;
+
+## If exists external database, and set postgresql.enable value to false.
+## external database will be used, otherwise Dolphinscheduler's database will be used.
+externalDatabase:
+type: &quot;postgresql&quot;
+driver: &quot;org.postgresql.Driver&quot;
+host: &quot;192.168.1.100&quot;
+port: &quot;5432&quot;
+username: &quot;admin&quot;
+password: &quot;password&quot;
+database: &quot;dolphinscheduler&quot;
+params: &quot;characterEncoding=utf8&quot;
+ 
+## If not exists external zookeeper, by default, Dolphinscheduler's zookeeper will use it.
+zookeeper:
+enabled: false
+fourlwCommandsWhitelist: &quot;srvr,ruok,wchs,cons&quot;
+persistence:
+  enabled: false
+  size: &quot;20Gi&quot;
+  storageClass: &quot;storage-nfs&quot;
+zookeeperRoot: &quot;/dolphinscheduler&quot;
+
+## If exists external zookeeper, and set zookeeper.enable value to false.
+## If zookeeper.enable is false, Dolphinscheduler's zookeeper will use it.
+externalZookeeper:
+zookeeperQuorum: &quot;zookeeper-0.zookeeper-headless.zookeeper.svc.cluster.local:2181,zookeeper-1.zookeeper-headless.zookeeper.svc.cluster.local:2181,zookeeper-2.zookeeper-headless.zookeeper.svc.cluster.local:2181&quot;
+zookeeperRoot: &quot;/dolphinscheduler&quot;
+</code></pre>
+<h2>How to deploy GitOps based on Argo CD</h2>
+<p>Argo CD is a declarative GitOps continuous delivery tool based on Kubernetes. GitOps is an incubation project of CNCF and a best practice tool for GitOps. For more details of GitOps, please refer to <a href="https://about.gitlab.com/topics/gitops/">https://about.gitlab.com/topics/gitops/</a></p>
+<div align=center>
+<img src="/img/2022-02-24/3.png"/>
+</div>
+<p>GitOps can bring the following advantages to the implementation of Apache DolphinScheduler.</p>
+<ul>
+<li>Graphical &amp; one-click installation of clustered software;</li>
+<li>Git records the full release process, one-click rollback;</li>
+<li>Convenient DolphinScheduler tool log viewing.</li>
+</ul>
+<p>Implementation installation steps using Argo CD:</p>
+<ul>
+<li>Download the Apache DolphinScheduler source code from GitHub, modify the value file, and refer to the content that needs to be modified in the helm installation in the previous chapter;</li>
+<li>Create a new git project in the modified source code directory, and push it to the company's internal GitLab. The directory name of the GitHub source code is docker/kubernetes/dolphinscheduler;</li>
+<li>Configure GitLab information in Argo CD, we use https mode here;</li>
+</ul>
+<div align=center>
+<img src="/img/2022-02-24/4.png"/>
+</div>
+<ul>
+<li>Argo CD Create a new deployment project and fill in the relevant information</li>
+</ul>
+<div align=center>
+<img src="/img/2022-02-24/5.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-02-24/6.png"/>
+</div>
+<p>Refresh and pull the deployment information in git to complete the final deployment work. You can see that pod, configmap, secret, service, ingress and other resources are automatically pulled up, and Argo CD displays the commit information and submitter username used by git push before, which completely records all release event information. At the same time, you can also roll back to the historical version with one click.</p>
+<div align=center>
+<img src="/img/2022-02-24/7.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-02-24/8.png"/>
+</div>
+<ul>
+<li>Relevant resource information can be seen through the kubectl command;</li>
+</ul>
+<pre><code>[root@tpk8s-master01 ~]# kubectl get po -n ds139
+NAME READY STATUS RESTARTS AGE
+dolphinscheduler-alert-96c74dc84-72cc9 1/1 Running 0 22m
+dolphinscheduler-api-78db664b7b-gsltq 1/1 Running 0 22m
+dolphinscheduler-master-0 1/1 Running 0 22m
+dolphinscheduler-master-1 1/1 Running 0 22m
+dolphinscheduler-master-2 1/1 Running 0 22m
+dolphinscheduler-worker-0 1/1 Running 0 22m
+dolphinscheduler-worker-1 1/1 Running 0 22m
+dolphinscheduler-worker-2 1/1 Running 0 22m
+
+[root@tpk8s-master01 ~]# kubectl get statefulset -n ds139
+NAME READY AGE
+dolphinscheduler-master 3/3 22m
+dolphinscheduler-worker 3/3 22m
+
+[root@tpk8s-master01 ~]# kubectl get cm -n ds139
+NAME DATA AGE
+dolphinscheduler-alert 15 23m
+dolphinscheduler-api 1 23m
+dolphinscheduler-common 29 23m
+dolphinscheduler-master 10 23m
+dolphinscheduler-worker 7 23m
+
+[root@tpk8s-master01 ~]# kubectl get service -n ds139
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
+dolphinscheduler-api ClusterIP 10.43.238.5 &lt;none&gt; 12345/TCP 23m
+dolphinscheduler-master-headless ClusterIP None &lt;none&gt; 5678/TCP 23m
+dolphinscheduler-worker-headless ClusterIP None &lt;none&gt; 1234/TCP,50051/TCP 23m
+
+[root@tpk8s-master01 ~]# kubectl get ingress -n ds139
+NAME CLASS HOSTS ADDRESS
+dolphinscheduler &lt;none&gt; ds139.abc.com
+</code></pre>
+<ul>
+<li>You can see that all pods are scattered on different hosts in the Kubernetes cluster, for example, workers 1 and 2 are on different nodes.</li>
+</ul>
+<div align=center>
+<img src="/img/2022-02-24/9.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-02-24/10.png"/>
+</div>
+<p>We have configured ingress, and the company can easily use the domain name for access by configuring the pan-domain name within the company;</p>
+<div align=center>
+<img src="/img/2022-02-24/11.png"/>
+</div>
+<p>You can log in to the domain name for access：</p>
+<p>http:ds.139.abc.com/dolphinscheduler/ui/#/home</p>
+<ul>
+<li>The specific configuration can modify the content in the value file:</li>
+</ul>
+<pre><code>ingress:
+enabled: true
+host: &quot;ds139.abc.com&quot;
+path: &quot;/dolphinscheduler&quot;
+tls:
+  enabled: false
+  secretName: &quot;dolphinscheduler-tls&quot;
+
+</code></pre>
+<ul>
+<li>It is convenient to view the internal logs of each component of Apache DolphinScheduler:</li>
+</ul>
+<div align=center>
+<img src="/img/2022-02-24/13.png"/>
+</div>
+<ul>
+<li>Check the deployed system, 3 masters, 3 workers, and Zookeeper are all configured normally;</li>
+</ul>
+<div align=center>
+<img src="/img/2022-02-24/14.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-02-24/15.png"/>
+</div>
+<ul>
+<li>Using Argo CD, it is very convenient to modify the number of replicas of components such as master, worker, api, alert, etc. Apache DolphinScheduler's helm configuration also reserves the setting information of CPU and memory. Here we modify the copy value in value. After modification, git push it to the company's internal GitLab.</li>
+</ul>
+<pre><code>master:
+ 
+ ## PodManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down.
+podManagementPolicy: &quot;Parallel&quot;
+ ## Replicas is the desired number of replicas of the given Template.
+replicas: &quot;5&quot;
+ 
+worker:
+ ## PodManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down.
+podManagementPolicy: &quot;Parallel&quot;
+ ## Replicas is the desired number of replicas of the given Template.
+replicas: &quot;5&quot;
+ 
+ 
+alert:
+ ## Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
+replicas: &quot;3&quot;
+ 
+api:
+ ## Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
+replicas: &quot;3&quot;
+</code></pre>
+<ul>
+<li>Just click sync on Argo CD to synchronize, and the corresponding pods will be added as required</li>
+</ul>
+<div align=center>
+<img src="/img/2022-02-24/17.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-02-24/18.png"/>
+</div>
+<pre><code>[root@tpk8s-master01 ~]# kubectl get po -n ds139
+NAME                  READY STATUS RESTARTS AGE
+dolphinscheduler-alert-96c74dc84-72cc9 1/1  Running 0    43m
+dolphinscheduler-alert-96c74dc84-j6zdh 1/1  Running 0    2m27s
+dolphinscheduler-alert-96c74dc84-rn9wb 1/1  Running 0    2m27s
+dolphinscheduler-api-78db664b7b-6j8rj 1/1  Running 0    2m27s
+dolphinscheduler-api-78db664b7b-bsdgv 1/1  Running 0    2m27s
+dolphinscheduler-api-78db664b7b-gsltq 1/1  Running 0    43m
+dolphinscheduler-master-0       1/1  Running 0    43m
+dolphinscheduler-master-1       1/1  Running 0    43m
+dolphinscheduler-master-2       1/1  Running 0    43m
+dolphinscheduler-master-3       1/1  Running 0    2m27s
+dolphinscheduler-master-4       1/1  Running 0    2m27s
+dolphinscheduler-worker-0       1/1  Running 0    43m
+dolphinscheduler-worker-1       1/1  Running 0    43m
+dolphinscheduler-worker-2       1/1  Running 0    43m
+dolphinscheduler-worker-3       1/1  Running 0    2m27s
+dolphinscheduler-worker-4       1/1  Running 0    2m27s
+
+</code></pre>
+<h2>Apache DolphinScheduler integrates with S3 Object Storage Technology</h2>
+<p>How to configure the integration of s3 minio is one of the FAQs in the community. Here is the method of helm configuration based on Kubernetes.</p>
+<ul>
+<li>Modify the s3 part of value, it is recommended to use ip+port to point to the minio server.</li>
+</ul>
+<pre><code>common:
+ ##Configmap
+configmap:
+  DOLPHINSCHEDULER_OPTS: &quot;&quot;
+  DATA_BASEDIR_PATH: &quot;/tmp/dolphinscheduler&quot;
+  RESOURCE_STORAGE_TYPE: &quot;S3&quot;
+  RESOURCE_UPLOAD_PATH: &quot;/dolphinscheduler&quot;
+  FS_DEFAULT_FS: &quot;s3a://dfs&quot;
+  FS_S3A_ENDPOINT: &quot;http://192.168.1.100:9000&quot;
+  FS_S3A_ACCESS_KEY: &quot;admin&quot;
+  FS_S3A_SECRET_KEY: &quot;password&quot;
+</code></pre>
+<ul>
+<li>The name of the bucket that stores dolphin files in minio is dolphinscheduler. I create new folders and files for testing here. The directory of the minio is under the tenant of the upload operation.</li>
+</ul>
+<div align=center>
+<img src="/img/2022-02-24/19.png"/>
+</div>
+<h2>Apache DolphinScheduler Integrates with Kube-Prometheus Technology</h2>
+<ul>
+<li>
+<p>We use the Kube-prometheus operator technology in Kubernetes to automatically monitor the resources of each component of  Apache DolphinScheduler after deploying.</p>
+</li>
+<li>
+<p>Please pay attention to that the version of kube-prometheus needs to correspond to the major version of Kubernetes. <a href="https://github.com/prometheus-operator/kube-prometheus">https://github.com/prometheus-operator/kube-prometheus</a></p>
+</li>
+</ul>
+<div align=center>
+<img src="/img/2022-02-24/20.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-02-24/21.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-02-24/22.png"/>
+</div>
+<h2>Technical Integration of Apache DolphinScheduler and Service Mesh</h2>
+<ul>
+<li>Through the service mesh technology, the observability analysis of API external service calls and internal calls of Apache DolphinScheduler can be realized to optimize the Apache DolphinScheduler product services.</li>
+</ul>
+<p>We use linkerd as a service mesh product for integration, which is also one of CNCF's excellent graduate projects.</p>
+<div align=center>
+<img src="/img/2022-02-24/23.png"/>
+</div>
+<p>Just modify the annotations in the value file of the Apache  DolphinScheduler helm and redeploy, you can quickly inject the mesh proxy sidecar, as well as master, worker, API, alert and other components.</p>
+<pre><code>annotations: #{}
+   linkerd.io/inject: enabled
+</code></pre>
+<p>You can observe the quality of service communication between components, the number of requests per second, etc.</p>
+<div align=center>
+<img src="/img/2022-02-24/24.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-02-24/25.png"/>
+</div>
+<h2>Prospects on Apache DolphinScheduler Based on cloud-native Technology</h2>
+<p>As a new-generation Cloud-Native big data tool, Apache DolphinScheduler is expected to integrate more excellent tools and features in the Kubernetes ecosystem in the future to meet more requirements of diversified user groups and scenarios.</p>
+<ul>
+<li>Integration with Argo-workflow, users can call Argo-workflow single job, dag job, and periodic job in Apache DolphinScheduler through api, cli, etc.;</li>
+<li>Use HPA to automatically expand and shrink workers to achieve unattended horizontal expansion;</li>
+<li>Integrate the Spark operator and Flink operator tools of Kubernetes to achieve comprehensive cloud-native;</li>
+<li>Implement multi-cloud and multi-cluster distributed job scheduling, and strengthen the architectural attributes of serverless+faas classes;</li>
+<li>Use sidecar to periodically delete worker job logs to realize carefree operation and maintenance;</li>
+</ul>
+<p>Finally, I strongly recommend you to use Slack to communicate with the Apache DolphinScheduler community, which is officially recommended！</p>
+<div align=center>
+<img src="/img/2022-02-24/26.png"/>
+</div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+  <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
+  <script>window.rootPath = '';</script>
+  <script src="/build/vendor.f60cd5d.js"></script>
+  <script src="/build/blog.md.f25cabd.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e7b4b400dd31fa015018a435c64d06f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-899J8PYKJZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-899J8PYKJZ');
+  </script>
+</body>
+</html>
