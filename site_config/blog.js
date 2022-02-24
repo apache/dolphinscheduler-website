@@ -4,7 +4,14 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
-                title: '# Sign Up to Apache DolphinScheduler Meetup Online | We Are Waiting For You to Join the Grand Gathering on 2.26 2022!\n',
+                title: 'Technical Practice of Apache DolphinScheduler in Kubernetes System',
+                author: 'Debra Chen',
+                dateStr: '2022-2-24',
+                desc: 'Kubernetes is a cluster system based on container technology, ',
+                link: '/en-us/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
+            },
+            {
+                title: 'Sign Up to Apache DolphinScheduler Meetup Online | We Are Waiting For You to Join the Grand Gathering on 2.26 2022!',
                 author: 'Debra Chen',
                 dateStr: '2022-2-18',
                 desc: 'Apache DolphinScheduler Meetup Online ',
