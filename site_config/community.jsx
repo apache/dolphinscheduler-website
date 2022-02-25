@@ -46,6 +46,10 @@ export default {
             title: 'Review Issue or Pull Requests',
             link: '/en-us/community/join/review.html',
           },
+          {
+            title: 'E2E Contribution Guide',
+            link: '/en-us/community/join/e2e-guide.html',
+          },
         ],
       },
       {
@@ -285,6 +289,10 @@ export default {
           {
             title: 'Review Issue or Pull Requests',
             link: '/zh-cn/community/join/review.html',
+          },
+          {
+            title: 'E2E Contribution Guide',
+            link: '/zh-cn/community/join/e2e-guide.html',
           },
         ],
       },
