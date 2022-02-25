@@ -138,6 +138,10 @@ export default {
                                 title: 'Switch',
                                 link: '/en-us/docs/dev/user_doc/guide/task/switch.html',
                             },
+                            {
+                                title: 'Amazon EMR',
+                                link: '/en-us/docs/dev/user_doc/guide/task/emr.html',
+                            },
                         ],
                     },
                     {
@@ -412,6 +416,10 @@ export default {
                             {
                                 title: 'Switch',
                                 link: '/zh-cn/docs/dev/user_doc/guide/task/switch.html',
+                            },
+                            {
+                                title: 'Amazon EMR',
+                                link: '/zh-cn/docs/dev/user_doc/guide/task/emr.html',
                             },
                         ],
                     },
