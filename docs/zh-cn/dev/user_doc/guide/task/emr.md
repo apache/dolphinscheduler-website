@@ -16,7 +16,7 @@ Amazon EMR任务类型，用于在AWS上创建EMR集群并执行计算任务。 
 - json: [RunJobFlowRequest](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/elasticmapreduce/model/RunJobFlowRequest.html) 对象对应的json，详细json定义参见 [API_RunJobFlow_Examples](https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html#API_RunJobFlow_Examples)
 
 ## json参数样例
-```json·
+```json
 {
   "Name": "SparkPi",
   "ReleaseLabel": "emr-5.34.0",
