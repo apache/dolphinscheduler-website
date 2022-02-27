@@ -43,7 +43,7 @@ git push --set-upstream origin dev-1.0
 git checkout -b xxx origin/dev
 ```
 
-Make sure that the branch `xxx` is building successfully on the latest code of the official dev branch**
+Make sure that the branch `xxx` is building successfully on the latest code of the official dev branch
 
 
 * After modifying the code locally in the new branch, submit it to your own repository:

@@ -51,7 +51,7 @@ git push --set-upstream origin dev-1.0
 git checkout -b xxx origin/dev
 ```
 
-确保分支`xxx`是基于官方dev分支的最新代码**
+确保分支`xxx`是基于官方dev分支的最新代码
 
 
 * 在新建的分支上本地修改代码以后，提交到自己仓库：
