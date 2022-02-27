@@ -38,7 +38,7 @@ git checkout -b dev-1.0 upstream/dev-1.0
 git push --set-upstream origin dev-1.0
 ```
 
-* CREATING NEW BRANCH
+* Create new branch
 ```
 git checkout -b xxx origin/dev
 ```
