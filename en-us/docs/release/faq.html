@@ -427,7 +427,7 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 </ol>
 <hr>
 <h2>Q：Update process definition error: Duplicate key TaskDefinition</h2>
-<p>A：Before DS 2.0.4, there may be a problem of duplicate keys TaskDefinition due to version switching, which may cause the update workflow to fail; you can refer to the following SQL to delete duplicate data, taking MySQL as an example: (Note: Before operating, be sure to back up the original data, the SQL from pr<a href="https://github.com/apache/dolphinscheduler/pull/8408">#8408</a>)</p>
+<p>A：Before DS 2.0.4 (after 2.0.0-alpha), there may be a problem of duplicate keys TaskDefinition due to version switching, which may cause the update workflow to fail; you can refer to the following SQL to delete duplicate data, taking MySQL as an example: (Note: Before operating, be sure to back up the original data, the SQL from pr<a href="https://github.com/apache/dolphinscheduler/pull/8408">#8408</a>)</p>
 <pre><code class="language-SQL"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> t_ds_process_task_relation_log <span class="hljs-keyword">WHERE</span> id <span class="hljs-keyword">IN</span>
 (
  <span class="hljs-keyword">SELECT</span>

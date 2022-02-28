@@ -412,7 +412,7 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 </ol>
 <hr>
 <h2>Q：Update process definition error: Duplicate key TaskDefinition</h2>
-<p>A：在DS 2.0.4之前，可能存在版本切换的重复键问题，导致更新工作流失败；可参考如下SQL进行重复数据的删除，以MySQL为例：（注意：操作前请务必备份原数据，SQL来源于pr <a href="https://github.com/apache/dolphinscheduler/pull/8408">#8408</a>）</p>
+<p>A：在DS 2.0.4之前（2.0.0-alpha之后），可能存在版本切换的重复键问题，导致更新工作流失败；可参考如下SQL进行重复数据的删除，以MySQL为例：（注意：操作前请务必备份原数据，SQL来源于pr <a href="https://github.com/apache/dolphinscheduler/pull/8408">#8408</a>）</p>
 <pre><code class="language-SQL"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> t_ds_process_task_relation_log <span class="hljs-keyword">WHERE</span> id <span class="hljs-keyword">IN</span>
 (
  <span class="hljs-keyword">SELECT</span>
