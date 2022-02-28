@@ -189,7 +189,7 @@
 <h2>Q：如何增加一台工作服务器</h2>
 <p>A： 1，参考官网<a href="https://dolphinscheduler.apache.org/zh-cn/docs/laster/user_doc/installation/cluster.html">部署文档</a> 1.3 小节，创建部署用户和 hosts 映射</p>
 <p>​	2，参考官网<a href="https://dolphinscheduler.apache.org/zh-cn/docs/laster/user_doc/installation/cluster.html">部署文档</a> 1.4 小节，配置 hosts 映射和 ssh 打通及修改目录权限.
-1.4 小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限</p>
+​          1.4 小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限</p>
 <p>​	3，复制正在运行的服务器上的部署目录到新机器的同样的部署目录下</p>
 <p>​	4，到 bin 下，启动 worker server 和 logger server</p>
 <pre><code>        ./dolphinscheduler-daemon.sh start worker-server
@@ -410,6 +410,89 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <p>通过 <code>bin/dolphinscheduler-daemon.sh start worker-server</code> 和 <code>bin/dolphinscheduler-daemon.sh start logger-server</code> 分别启动 worker-server 和 logger-server</p>
 </li>
 </ol>
+<hr>
+<h2>Q：Update process definition error: Duplicate key TaskDefinition</h2>
+<p>A：在DS 2.0.4之前，可能存在版本切换的重复键问题，导致更新工作流失败；可参考如下SQL进行重复数据的删除，以MySQL为例：（注意：操作前请务必备份原数据，SQL来源于pr <a href="https://github.com/apache/dolphinscheduler/pull/8408">#8408</a>）</p>
+<pre><code class="language-SQL"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> t_ds_process_task_relation_log <span class="hljs-keyword">WHERE</span> id <span class="hljs-keyword">IN</span>
+(
+ <span class="hljs-keyword">SELECT</span>
+     x.id
+ <span class="hljs-keyword">FROM</span>
+     (
+         <span class="hljs-keyword">SELECT</span>
+             aa.id
+         <span class="hljs-keyword">FROM</span>
+             t_ds_process_task_relation_log aa
+                 <span class="hljs-keyword">JOIN</span>
+             (
+                 <span class="hljs-keyword">SELECT</span>
+                     a.process_definition_code
+                      ,<span class="hljs-built_in">MAX</span>(a.id) <span class="hljs-keyword">as</span> min_id
+                      ,a.pre_task_code
+                      ,a.pre_task_version
+                      ,a.post_task_code
+                      ,a.post_task_version
+                      ,a.process_definition_version
+                      ,<span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) cnt
+                 <span class="hljs-keyword">FROM</span>
+                     t_ds_process_task_relation_log a
+                         <span class="hljs-keyword">JOIN</span> (
+                         <span class="hljs-keyword">SELECT</span>
+                             code
+                         <span class="hljs-keyword">FROM</span>
+                             t_ds_process_definition
+                         <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> code
+                     )b <span class="hljs-keyword">ON</span> b.code <span class="hljs-operator">=</span> a.process_definition_code
+                 <span class="hljs-keyword">WHERE</span> <span class="hljs-number">1</span><span class="hljs-operator">=</span><span class="hljs-number">1</span>
+                 <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> a.pre_task_code
+                        ,a.post_task_code
+                        ,a.pre_task_version
+                        ,a.post_task_version
+                        ,a.process_definition_code
+                        ,a.process_definition_version
+                 <span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>
+             )bb <span class="hljs-keyword">ON</span> bb.process_definition_code <span class="hljs-operator">=</span> aa.process_definition_code
+                 <span class="hljs-keyword">AND</span> bb.pre_task_code <span class="hljs-operator">=</span> aa.pre_task_code
+                 <span class="hljs-keyword">AND</span> bb.post_task_code <span class="hljs-operator">=</span> aa.post_task_code
+                 <span class="hljs-keyword">AND</span> bb.process_definition_version <span class="hljs-operator">=</span> aa.process_definition_version
+                 <span class="hljs-keyword">AND</span> bb.pre_task_version <span class="hljs-operator">=</span> aa.pre_task_version
+                 <span class="hljs-keyword">AND</span> bb.post_task_version <span class="hljs-operator">=</span> aa.post_task_version
+                 <span class="hljs-keyword">AND</span> bb.min_id <span class="hljs-operator">!=</span> aa.id
+     )x
+)
+;
+
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> t_ds_task_definition_log <span class="hljs-keyword">WHERE</span> id <span class="hljs-keyword">IN</span>
+(
+   <span class="hljs-keyword">SELECT</span>
+       x.id
+   <span class="hljs-keyword">FROM</span>
+       (
+           <span class="hljs-keyword">SELECT</span>
+               a.id
+           <span class="hljs-keyword">FROM</span>
+               t_ds_task_definition_log a
+                   <span class="hljs-keyword">JOIN</span>
+               (
+                   <span class="hljs-keyword">SELECT</span>
+                       code
+                        ,name
+                        ,version
+                        ,<span class="hljs-built_in">MAX</span>(id) <span class="hljs-keyword">AS</span> min_id
+                   <span class="hljs-keyword">FROM</span>
+                       t_ds_task_definition_log
+                   <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> code
+                          ,name
+                          ,version
+                   <span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>
+               )b <span class="hljs-keyword">ON</span> b.code <span class="hljs-operator">=</span> a.code
+                   <span class="hljs-keyword">AND</span> b.name <span class="hljs-operator">=</span> a.name
+                   <span class="hljs-keyword">AND</span> b.version <span class="hljs-operator">=</span> a.version
+                   <span class="hljs-keyword">AND</span> b.min_id <span class="hljs-operator">!=</span> a.id
+       )x
+)
+;
+</code></pre>
 <hr>
 <p>我们会持续收集更多的 FAQ。</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="/zh-cn/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/development-environment-setup.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
