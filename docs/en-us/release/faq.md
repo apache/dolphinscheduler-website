@@ -619,7 +619,7 @@ A：By deploying different worker in different yarn clusters，the steps are as 
 
 ## Q：Update process definition error: Duplicate key TaskDefinition
 
-A：Before DS 2.0.4, there may be a problem of duplicate keys TaskDefinition due to version switching, which may cause the update workflow to fail; you can refer to the following SQL to delete duplicate data, taking MySQL as an example: (Note: Before operating, be sure to back up the original data, the SQL from pr[#8408](https://github.com/apache/dolphinscheduler/pull/8408))
+A：Before DS 2.0.4 (after 2.0.0-alpha), there may be a problem of duplicate keys TaskDefinition due to version switching, which may cause the update workflow to fail; you can refer to the following SQL to delete duplicate data, taking MySQL as an example: (Note: Before operating, be sure to back up the original data, the SQL from pr[#8408](https://github.com/apache/dolphinscheduler/pull/8408))
 
 ```SQL
 DELETE FROM t_ds_process_task_relation_log WHERE id IN
