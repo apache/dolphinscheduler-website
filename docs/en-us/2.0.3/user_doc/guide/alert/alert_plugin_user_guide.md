@@ -2,7 +2,7 @@
 
 ## How to Create Alert Plugins and Alert Groups
 
-In version 2.0.3, users need to create alert instances, and then associate them with alert groups, and an alert group can use multiple alert instances, and we will notify them one by one.
+After version 2.0.0, users need to create alert instances, and then associate them with alert groups, and an alert group can use multiple alert instances, and we will notify them one by one.
 
 First of all, you need to go to the Security Center, select Alarm Group Management, then click Alarm Instance Management on the left, then create an alarm instance, then select the corresponding alarm plug-in and fill in the relevant alarm parameters.
 

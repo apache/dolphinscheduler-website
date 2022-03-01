@@ -1,4 +1,4 @@
-# Dolphin Scheduler 2.0.3 MetaData
+# Dolphin Scheduler MetaData (available before 2.0.0)
 
 <a name="V5KOl"></a>
 

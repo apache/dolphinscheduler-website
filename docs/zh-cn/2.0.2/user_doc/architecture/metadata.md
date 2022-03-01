@@ -1,4 +1,4 @@
-# Dolphin Scheduler 2.0元数据文档
+# Dolphin Scheduler 元数据文档（仅适用于 2.0.0 之前）
 
 <a name="25Ald"></a>
 ### 表概览
