@@ -202,6 +202,10 @@ export default {
                 title: 'Enterprise Wechat',
                 link: '/en-us/docs/2.0.4/user_doc/guide/alert/enterprise-wechat.html',
               },
+              {
+                title: 'Ding Talk',
+                link: '/en-us/docs/2.0.4/user_doc/guide/alert/dingtalk.html',
+              },
             ],
           },
           {
@@ -495,6 +499,10 @@ export default {
               {
                 title: '企业微信',
                 link: '/zh-cn/docs/2.0.4/user_doc/guide/alert/enterprise-wechat.html',
+              },
+              {
+                title: '钉钉',
+                link: '/zh-cn/docs/2.0.4/user_doc/guide/alert/dingtalk.html',
               },
             ],
           },
