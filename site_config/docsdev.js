@@ -202,8 +202,20 @@ export default {
                                 link: '/en-us/docs/dev/user_doc/guide/alert/alert_plugin_user_guide.html',
                             },
                             {
+                                title: 'Telegram',
+                                link: '/en-us/docs/dev/user_doc/guide/alert/telegram.html',
+                            },
+                            {
+                                title: 'Ding Talk',
+                                link: '/en-us/docs/dev/user_doc/guide/alert/dingtalk.html',
+                            },
+                            {
                                 title: 'Enterprise Wechat',
                                 link: '/en-us/docs/dev/user_doc/guide/alert/enterprise-wechat.html',
+                            },
+                            {
+                                title: 'Enterprise Webexteams',
+                                link: '/en-us/docs/dev/user_doc/guide/alert/enterprise-webexteams.html',
                             },
                         ],
                     },
@@ -477,12 +489,24 @@ export default {
                         title: '告警',
                         children: [
                             {
-                                title: '告警组件向导 ',
+                                title: '告警组件向导',
                                 link: '/zh-cn/docs/dev/user_doc/guide/alert/alert_plugin_user_guide.html',
+                            },
+                            {
+                                title: 'Telegram',
+                                link: '/zh-cn/docs/dev/user_doc/guide/alert/telegram.html',
+                            },
+                            {
+                                title: '钉钉告警',
+                                link: '/zh-cn/docs/dev/user_doc/guide/alert/dingtalk.html',
                             },
                             {
                                 title: '企业微信',
                                 link: '/zh-cn/docs/dev/user_doc/guide/alert/enterprise-wechat.html',
+                            },
+                            {
+                                title: 'Webexteams',
+                                link: '/zh-cn/docs/dev/user_doc/guide/alert/enterprise-webexteams.html',
                             },
                         ],
                     },
