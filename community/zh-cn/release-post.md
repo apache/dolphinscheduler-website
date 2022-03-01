@@ -13,13 +13,14 @@
      - `kubernetes-deployment.md`
      - `standalone-deployment.md`
      - `upgrade.md`
+ - `docs/en-us/release/history-versions.md` 和 `docs/zh-cn/release/history-versions.md`: 增加 x.y.z 的新 version 和 link
+ - `download/en-us/download.md` 和 `download/zh-cn/download.md`: 增加 x.y.z 版本发布包的下载
  - `site_config/docsx-y-z.js`: 复制老配置文件改为新版本，内容链接保持和 x.y.z 一致
  - `site_config/site.js`:
    - `docsLatest`: 更新为 x.y.z
    - `docs0`: 两处 `en-us/zh-cn` 的 `text` 更新为 `latest(x.y.z)`
    - `docsxyz`: 两处 `en-us/zh-cn` 的 `children` 增加 `key` 为 `docsxyz`, `text` 为 `x.y.z` 的下拉菜单
  - `src/pages/docs/index.md.jsx`: 增加 `'x.y.z': docsxyzConfig,`
- - `download/en-us/download.md` 和 `download/zh-cn/download.md`: 增加 x.y.z 版本发布包的下载
 
 ## 更新 GitHub issue 模板
 
@@ -39,3 +40,8 @@ docker login # 输入用户和密码
 docker push apache/dolphinscheduler:x.y.z
 docker push apache/dolphinscheduler:latest
 ```
+
+## 发布到PyPI
+
+需要将 Python API 发布到 PyPI，请参考 [Python API release](https://github.com/apache/dolphinscheduler/blob/dev/dolphinscheduler-python/pydolphinscheduler/RELEASE.md#to-pypi)
+完成 PyPI 的发版
