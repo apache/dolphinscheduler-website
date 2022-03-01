@@ -82,6 +82,14 @@ conf/common.properties
 
 >  文件列表->点击"删除"按钮，删除指定文件
 
+* 重新上传文件
+
+  > 点击文件列表中的”重新上传文件“按钮进行重新上传文件，将文件拖拽到上传区域，文件名会自动以上传的文件名称补全
+
+    <p align="center">
+      <img src="/img/reupload_file_en.png" width="80%" />
+    </p>
+
 ## UDF管理
 
 ### 资源管理

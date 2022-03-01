@@ -86,6 +86,14 @@ conf/common/hadoop.properties
 - delete
   > File list -> Click the "Delete" button to delete the specified file
 
+- Re-upload file
+
+  > Re-upload file: Click the "Re-upload File" button to upload a new file to replace the old file, drag the file to the re-upload area, the file name will be automatically completed with the new file name
+
+    <p align="center">
+      <img src="/img/reupload_file_en.png" width="80%" />
+    </p>
+
 ## UDF management
 
 ### Resource management
