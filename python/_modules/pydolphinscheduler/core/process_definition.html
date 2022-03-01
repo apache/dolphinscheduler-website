@@ -91,11 +91,8 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ProcessDefinitionDefault</span><span class="p">,</span>
-    <span class="n">ProcessDefinitionReleaseState</span><span class="p">,</span>
-    <span class="n">TaskType</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">ProcessDefinitionReleaseState</span><span class="p">,</span> <span class="n">TaskType</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core</span> <span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.base</span> <span class="kn">import</span> <span class="n">Base</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyDSTaskNoFoundException</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
@@ -160,12 +157,12 @@
         <span class="n">schedule</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">timezone</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">TIME_ZONE</span><span class="p">,</span>
-        <span class="n">user</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER</span><span class="p">,</span>
-        <span class="n">project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">PROJECT</span><span class="p">,</span>
-        <span class="n">tenant</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">TENANT</span><span class="p">,</span>
-        <span class="n">queue</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">QUEUE</span><span class="p">,</span>
-        <span class="n">worker_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">timezone</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_TIME_ZONE</span><span class="p">,</span>
+        <span class="n">user</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_USER</span><span class="p">,</span>
+        <span class="n">project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_PROJECT</span><span class="p">,</span>
+        <span class="n">tenant</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_TENANT</span><span class="p">,</span>
+        <span class="n">queue</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_QUEUE</span><span class="p">,</span>
+        <span class="n">worker_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">release_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionReleaseState</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">,</span>
         <span class="n">param</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -223,12 +220,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">User</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
-            <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER_PWD</span><span class="p">,</span>
-            <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER_EMAIL</span><span class="p">,</span>
-            <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER_PHONE</span><span class="p">,</span>
+            <span class="n">configuration</span><span class="o">.</span><span class="n">USER_PASSWORD</span><span class="p">,</span>
+            <span class="n">configuration</span><span class="o">.</span><span class="n">USER_EMAIL</span><span class="p">,</span>
+            <span class="n">configuration</span><span class="o">.</span><span class="n">USER_PHONE</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">,</span>
-            <span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">USER_STATE</span><span class="p">,</span>
+            <span class="n">configuration</span><span class="o">.</span><span class="n">USER_STATE</span><span class="p">,</span>
         <span class="p">)</span>
 
 <div class="viewcode-block" id="ProcessDefinition._parse_datetime"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition._parse_datetime">[docs]</a>    <span class="nd">@staticmethod</span>

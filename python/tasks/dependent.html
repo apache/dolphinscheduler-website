@@ -114,7 +114,7 @@
 
 <span class="sd">task_dependent(this task dependent on task_dependent_external.task_1 and task_dependent_external.task_2).</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">ProcessDefinitionDefault</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core</span> <span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.dependent</span> <span class="kn">import</span> <span class="n">And</span><span class="p">,</span> <span class="n">Dependent</span><span class="p">,</span> <span class="n">DependentItem</span><span class="p">,</span> <span class="n">Or</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.shell</span> <span class="kn">import</span> <span class="n">Shell</span>
@@ -137,12 +137,12 @@
         <span class="n">dependence</span><span class="o">=</span><span class="n">And</span><span class="p">(</span>
             <span class="n">Or</span><span class="p">(</span>
                 <span class="n">DependentItem</span><span class="p">(</span>
-                    <span class="n">project_name</span><span class="o">=</span><span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">PROJECT</span><span class="p">,</span>
+                    <span class="n">project_name</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_PROJECT</span><span class="p">,</span>
                     <span class="n">process_definition_name</span><span class="o">=</span><span class="s2">&quot;task_dependent_external&quot;</span><span class="p">,</span>
                     <span class="n">dependent_task_name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span>
                 <span class="p">),</span>
                 <span class="n">DependentItem</span><span class="p">(</span>
-                    <span class="n">project_name</span><span class="o">=</span><span class="n">ProcessDefinitionDefault</span><span class="o">.</span><span class="n">PROJECT</span><span class="p">,</span>
+                    <span class="n">project_name</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_PROJECT</span><span class="p">,</span>
                     <span class="n">process_definition_name</span><span class="o">=</span><span class="s2">&quot;task_dependent_external&quot;</span><span class="p">,</span>
                     <span class="n">dependent_task_name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span>
                 <span class="p">),</span>
