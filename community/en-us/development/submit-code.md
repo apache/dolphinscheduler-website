@@ -44,8 +44,6 @@ git checkout -b xxx origin/dev
 ```
 
 Make sure that the branch `xxx` is building successfully on the latest code of the official dev branch
-
-
 * After modifying the code locally in the new branch, submit it to your own repository:
   
 `git commit -m 'commit content'`
