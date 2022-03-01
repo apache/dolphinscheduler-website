@@ -58,7 +58,7 @@ git checkout -b xxx origin/dev
   
     `git commit -m 'commit content'`
     
-    `git push origin xxx`
+    `git push origin xxx --set-upstream`
 
 * 将修改提交到远端仓库
 

@@ -50,7 +50,7 @@ Make sure that the branch `xxx` is building successfully on the latest code of t
   
 `git commit -m 'commit content'`
     
-`git push origin xxx`
+`git push origin xxx --set-upstream`
 
 * Submit changes to the remote repository
 
