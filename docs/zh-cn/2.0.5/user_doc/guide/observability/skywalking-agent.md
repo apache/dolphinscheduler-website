@@ -38,7 +38,7 @@ $ docker run -d --name dolphinscheduler \
 -e SW_GRPC_LOG_SERVER_HOST="your.skywalking-log-reporter.com" \
 -e SW_GRPC_LOG_SERVER_PORT="11800" \
 -p 12345:12345 \
-apache/dolphinscheduler:2.0.4 all
+apache/dolphinscheduler:2.0.5 all
 ```
 
 ### 通过配置 install_config.conf (使用 DolphinScheduler install.sh 部署时)

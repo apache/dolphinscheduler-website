@@ -1,9 +1,9 @@
 # 历史版本：
 #### 以下是Apache DolphinScheduler每个稳定版本的设置说明。
 
-### 版本：2.0.4
+### 版本：2.0.5
 
-#### 地址：[2.0.4 文档](../2.0.4/user_doc/guide/quick-start.md)
+#### 地址：[2.0.5 文档](../2.0.5/user_doc/guide/quick-start.md)
 
 ### 版本：2.0.3
 
