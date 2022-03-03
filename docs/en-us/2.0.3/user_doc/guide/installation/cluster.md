@@ -8,9 +8,9 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
 
 Cluster deployment uses the same scripts and configuration files as we deploy in [pseudo-cluster deployment](pseudo-cluster.md), so the prepare and required are the same as pseudo-cluster deployment. The difference is that [pseudo-cluster deployment](pseudo-cluster.md) is for one machine, while cluster deployment (Cluster) for multiple. and the steps of "Modify configuration" are quite different between pseudo-cluster deployment and cluster deployment.
 
-### Prepare && DolphinScheduler Startup Environment
+### Prepare and DolphinScheduler Startup Environment
 
-Because of cluster deployment for multiple machine, so you have to run you "Prepare" and "startup" in every machine in [pseudo-cluster.md](pseudo-cluster.md), except section "Configure machine SSH password-free login", "Start zookeeper", "Initialize the database", which is only for deployment or just need an single server
+Because of cluster deployment for multiple machine, so you have to run you "Prepare" and "startup" in every machine in [pseudo-cluster.md](pseudo-cluster.md), except section "Configure machine SSH password-free login", "Start ZooKeeper", "Initialize the database", which is only for deployment or just need an single server
 
 ### Modify Configuration
 
@@ -31,6 +31,10 @@ apiServers="ds5"
 pythonGatewayServers="ds5"
 ```
 
-## Start DolphinScheduler && Login DolphinScheduler && Server Start and Stop
+## Start and Login DolphinScheduler
+
+Same as pseudo-cluster.md](pseudo-cluster.md)
+
+## Start and Stop Server 
 
 Same as pseudo-cluster.md](pseudo-cluster.md)

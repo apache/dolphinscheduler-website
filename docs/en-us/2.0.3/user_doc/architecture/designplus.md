@@ -66,7 +66,7 @@ process fails and ends
 
 - dolphinscheduler-server MasterServer and WorkerServer services
 
-- dolphinscheduler-service service module, including Quartz, Zookeeper, log client access service, easy to call server
+- dolphinscheduler-service service module, including Quartz, ZooKeeper, log client access service, easy to call server
   module and api module
 
 - dolphinscheduler-ui front-end module

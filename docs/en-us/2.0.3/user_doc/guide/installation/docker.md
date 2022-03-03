@@ -9,13 +9,13 @@
 
 Here're 3 ways to quickly install DolphinScheduler
 
-### The First Way: Start a DolphinScheduler by docker-compose (Recommended)
+### The First Way: Start a DolphinScheduler by Docker Compose (Recommended)
 
 In this way, you need to install [docker-compose](https://docs.docker.com/compose/) as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet
 
 For Windows 7-10, you can install [Docker Toolbox](https://github.com/docker/toolbox/releases). For Windows 10 64-bit, you can install [Docker Desktop](https://docs.docker.com/docker-for-windows/install/), and pay attention to the [system requirements](https://docs.docker.com/docker-for-windows/install/#system-requirements)
 
-#### Configure Memory not Less than 4GB
+#### Configure Memory not Less Than 4GB
 
 For Mac user, click `Docker Desktop -> Preferences -> Resources -> Memory`
 
@@ -212,7 +212,7 @@ Especially, it can be configured through the environment variable configuration 
 
 ## FAQ
 
-### How to Manage DolphinScheduler by docker-compose?
+### How to Manage DolphinScheduler by Docker Compose?
 
 Start, restart, stop or list containers:
 
@@ -252,7 +252,7 @@ docker logs -f docker-swarm_dolphinscheduler-api_1 # follow log output
 docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # show last 10 lines from the end of the logs
 ```
 
-### How to Scale Master and Worker by docker-compose?
+### How to Scale Master and Worker by Docker Compose?
 
 Scale master to 2 instances:
 
@@ -310,7 +310,7 @@ docker service scale dolphinscheduler_dolphinscheduler-worker=3
 
 ### How to Build a Docker Image?
 
-#### Build from the Source Code (Require Maven 3.3+ & JDK 1.8+)
+#### Build from the Source Code (Require Maven 3.3+ and JDK 1.8+)
 
 In Unix-Like, execute in Terminal:
 
@@ -326,7 +326,7 @@ C:\dolphinscheduler-src>.\docker\build\hooks\build.bat
 
 Please read `./docker/build/hooks/build` `./docker/build/hooks/build.bat` script files if you don't understand
 
-#### Build from the Binary Distribution (Not require Maven 3.3+ & JDK 1.8+)
+#### Build from the Binary Distribution (Not require Maven 3.3+ and JDK 1.8+)
 
 Please download the binary distribution package apache-dolphinscheduler-2.0.3-bin.tar.gz, download address: [download](/en-us/download/download.html). And put apache-dolphinscheduler-2.0.3-bin.tar.gz into the `apache-dolphinscheduler-2.0.3-src/docker/build` directory, execute in Terminal or PowerShell:
 
@@ -770,13 +770,13 @@ This environment variable sets the database for the database. The default value 
 
 **`ZOOKEEPER_QUORUM`**
 
-This environment variable sets zookeeper quorum. The default value is `127.0.0.1:2181`.
+This environment variable sets ZooKeeper quorum. The default value is `127.0.0.1:2181`.
 
 **Note**: You must specify it when starting a standalone dolphinscheduler server. Like `master-server`, `worker-server`, `api-server`.
 
 **`ZOOKEEPER_ROOT`**
 
-This environment variable sets zookeeper root directory for dolphinscheduler. The default value is `/dolphinscheduler`.
+This environment variable sets ZooKeeper root directory for dolphinscheduler. The default value is `/dolphinscheduler`.
 
 ### Common
 

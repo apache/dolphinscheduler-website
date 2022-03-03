@@ -126,7 +126,7 @@ workers="existing worker01:default,existing worker02:default,ds3:default,ds4:def
 sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler
 ```
 
-### Restart the Cluster & Verify
+### Restart the Cluster and Verify
 
 - restart the cluster
 

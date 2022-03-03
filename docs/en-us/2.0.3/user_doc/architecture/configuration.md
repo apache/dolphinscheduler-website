@@ -46,7 +46,7 @@ Currently, all the configuration files are under [conf ] directory. Please check
 │  ├─upgrade-dolphinscheduler.sh        DS database upgrade script
 │  ├─monitor-server.sh                  DS monitor-server start script       
 │  ├─scp-hosts.sh                       transfer installation files script                                     
-│  ├─remove-zk-node.sh                  cleanup zookeeper caches script       
+│  ├─remove-zk-node.sh                  cleanup ZooKeeper caches script       
 ├─ui                                front-end web resources directory
 ├─lib                               DS .jar dependencies directory
 ├─install.sh                        auto-setup DS services script
@@ -72,7 +72,7 @@ serial number| service classification| config file|
 
 ### 1.dolphinscheduler-daemon.sh [startup/shutdown DS application]
 
-dolphinscheduler-daemon.sh is responsible for DS startup & shutdown. 
+dolphinscheduler-daemon.sh is responsible for DS startup and shutdown. 
 Essentially, start-all.sh/stop-all.sh startup/shutdown the cluster via dolphinscheduler-daemon.sh.
 Currently, DS just makes a basic config, please config further JVＭ options based on your practical situation of resources.
 
@@ -125,8 +125,8 @@ spring.datasource.maxPoolPreparedStatementPerConnectionSize|20| specify the size
 |Parameters | Default value| Description|
 |--|--|--|
 registry.plugin.name|zookeeper| plugin name
-registry.servers|localhost:2181| zookeeper cluster connection info
-registry.namespace|dolphinscheduler| DS is stored under zookeeper root directory(Start without /)
+registry.servers|localhost:2181| ZooKeeper cluster connection info
+registry.namespace|dolphinscheduler| DS is stored under ZooKeeper root directory(Start without /)
 registry.base.sleep.time.ms|60| time to wait between subsequent retries
 registry.max.sleep.ms|300| maximum time to wait between subsequent retries
 registry.max.retries|5| maximum retry times
@@ -278,7 +278,7 @@ install_config.conf is a bit complicated and is mainly used in the following two
 # Database type (DS currently only supports PostgreSQL and MySQL)
 dbtype="mysql"
 
-# Database url & port
+# Database url and port
 dbhost="192.168.xx.xx:3306"
 
 # Database name
@@ -291,7 +291,7 @@ username="xx"
 # Database password
 password="xx"
 
-# Zookeeper url
+# ZooKeeper url
 zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
 
 # DS installation path, such as '/data1_1T/dolphinscheduler'

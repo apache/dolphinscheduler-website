@@ -29,8 +29,8 @@ scheduling system
 
   MasterServer adopts a distributed and centerless design concept. MasterServer is mainly responsible for DAG task
   segmentation, task submission monitoring, and monitoring the health status of other MasterServer and WorkerServer at
-  the same time. When the MasterServer service starts, register a temporary node with Zookeeper, and perform fault
-  tolerance by monitoring changes in the temporary node of Zookeeper. MasterServer provides monitoring services based on
+  the same time. When the MasterServer service starts, register a temporary node with ZooKeeper, and perform fault
+  tolerance by monitoring changes in the temporary node of ZooKeeper. MasterServer provides monitoring services based on
   netty.
 
   #### The Service Mainly Includes:
@@ -48,7 +48,7 @@ scheduling system
 * **WorkerServer**
 
       WorkerServer also adopts a distributed centerless design concept, supports custom task plug-ins, and is mainly responsible for task execution and log services.
-      When the WorkerServer service starts, it registers a temporary node with Zookeeper and maintains a heartbeat.
+      When the WorkerServer service starts, it registers a temporary node with ZooKeeper and maintains a heartbeat.
 
   #### The Service Mainly Includes
 
@@ -60,7 +60,7 @@ scheduling system
 
 * **Registry**
 
-  The registry is implemented as a plug-in, and Zookeeper is supported by default. The MasterServer and WorkerServer
+  The registry is implemented as a plug-in, and ZooKeeper is supported by default. The MasterServer and WorkerServer
   nodes in the system use the registry for cluster management and fault tolerance. In addition, the system also performs
   event monitoring and distributed locks based on the registry.
 
@@ -129,7 +129,7 @@ Problems in centralized thought design:
   managers" To preside over the work. The most typical case is Etcd implemented by ZooKeeper and Go language.
 
 
-- The decentralization of DolphinScheduler is that the Master/Worker is registered in Zookeeper to realize the
+- The decentralization of DolphinScheduler is that the Master/Worker is registered in ZooKeeper to realize the
   non-centralization of the Master cluster and the Worker cluster. The sharding mechanism is used to fairly distribute
   the workflow for execution on the master, and tasks are sent to the workers for execution through different sending
   strategies. Specific task

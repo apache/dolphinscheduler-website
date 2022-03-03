@@ -4,14 +4,14 @@
 
 - Service management is mainly to monitor and display the health status and basic information of each service in the system
 
-## Master Monitor
+## Monitor Master Server
 
 - Mainly related to master information.
 <p align="center">
    <img src="/img/master-jk-en.png" width="80%" />
  </p>
 
-## Worker Monitor
+## Monitor Worker Server
 
 - Mainly related to worker information.
 
@@ -19,7 +19,7 @@
    <img src="/img/worker-jk-en.png" width="80%" />
  </p>
 
-## Zookeeper Monitor
+## Monitor ZooKeeper
 
 - Mainly related configuration information of each worker and master in ZooKeeper.
 
@@ -27,7 +27,7 @@
    <img src="/img/zookeeper-monitor-en.png" width="80%" />
  </p>
 
-## DB Monitor
+## Monitor DB
 
 - Mainly the health of the DB
 
@@ -43,5 +43,5 @@
 
 - Number of commands to be executed: statistics on the t_ds_command table
 - The number of failed commands: statistics on the t_ds_error_command table
-- Number of tasks to run: Count the data of task_queue in Zookeeper
-- Number of tasks to be killed: Count the data of task_kill in Zookeeper
+- Number of tasks to run: Count the data of task_queue in ZooKeeper
+- Number of tasks to be killed: Count the data of task_kill in ZooKeeper

@@ -58,12 +58,12 @@ chmod 600 ~/.ssh/authorized_keys
 
 > **_Notice:_** After the configuration is complete, you can run the command `ssh localhost` to test if it work or not, if you can login with ssh without password.
 
-### Start Zookeeper
+### Start ZooKeeper
 
-Go to the zookeeper installation directory, copy configure file `zoo_sample.cfg` to `conf/zoo.cfg`, and change value of dataDir in `conf/zoo.cfg` to `dataDir=./tmp/zookeeper`
+Go to the ZooKeeper installation directory, copy configure file `zoo_sample.cfg` to `conf/zoo.cfg`, and change value of dataDir in `conf/zoo.cfg` to `dataDir=./tmp/zookeeper`
 
 ```shell
-# Start zookeeper
+# Start ZooKeeper
 ./bin/zkServer.sh start
 ```
 
@@ -109,7 +109,7 @@ SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
 # ---------------------------------------------------------
 # Registry Server
 # ---------------------------------------------------------
-# Registration center address, the address of zookeeper service
+# Registration center address, the address of ZooKeeper service
 registryServers="localhost:2181"
 ```
 
