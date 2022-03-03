@@ -5,11 +5,11 @@ The dolphinscheduler-skywalking module provides [SkyWalking](https://skywalking.
 
 This document describes how to enable SkyWalking 8.4+ support with this module (recommended to use SkyWalking 8.5.0).
 
-# Installation
+## Installation
 
 The following configuration is used to enable SkyWalking agent.
 
-### Through environment variable configuration (for Docker Compose)
+### Through Environment Variable Configuration (for Docker Compose)
 
 Modify SkyWalking environment variables in `docker/docker-swarm/config.env.sh`:
 
@@ -26,7 +26,7 @@ And run
 $ docker-compose up -d
 ```
 
-### Through environment variable configuration (for Docker)
+### Through Environment Variable Configuration (for Docker)
 
 ```shell
 $ docker run -d --name dolphinscheduler \
@@ -41,7 +41,7 @@ $ docker run -d --name dolphinscheduler \
 apache/dolphinscheduler:2.0.3 all
 ```
 
-### Through install_config.conf configuration (for DolphinScheduler install.sh)
+### Through install_config.conf Configuration (for DolphinScheduler install.sh)
 
 Add the following configurations to `${workDir}/conf/config/install_config.conf`.
 
@@ -59,7 +59,7 @@ skywalkingLogReporterPort="11800"
 
 ```
 
-# Usage
+## Usage
 
 ### Import Dashboard
 

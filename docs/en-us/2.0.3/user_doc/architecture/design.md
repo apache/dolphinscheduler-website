@@ -1,11 +1,11 @@
-## System Architecture Design
+# System Architecture Design
 
 Before explaining the architecture of the scheduling system, let's first understand the commonly used terms of the
 scheduling system
 
-### 1.System Structure
+## System Structure
 
-#### 1.1 System architecture diagram
+### System Architecture Diagram
 
 <p align="center">
   <img src="/img/architecture-1.3.0.jpg" alt="System architecture diagram"  width="70%" />
@@ -14,7 +14,7 @@ scheduling system
   </p>
 </p>
 
-#### 1.2 Start process activity diagram
+### Start Process Activity Diagram
 
 <p align="center">
   <img src="/img/master-process-2.0-en.png" alt="Start process activity diagram"  width="70%" />
@@ -23,7 +23,7 @@ scheduling system
   </p>
 </p>
 
-#### 1.3 Architecture description
+### Architecture Description
 
 * **MasterServer**
 
@@ -33,7 +33,7 @@ scheduling system
   tolerance by monitoring changes in the temporary node of Zookeeper. MasterServer provides monitoring services based on
   netty.
 
-  ##### The service mainly includes:
+  #### The Service Mainly Includes:
     - **MasterSchedulerService** is a scanning thread that scans the **command** table in the database regularly,
       generates workflow instances, and performs different business operations according to different **command types**
 
@@ -50,7 +50,7 @@ scheduling system
       WorkerServer also adopts a distributed centerless design concept, supports custom task plug-ins, and is mainly responsible for task execution and log services.
       When the WorkerServer service starts, it registers a temporary node with Zookeeper and maintains a heartbeat.
 
-##### The service mainly includes
+  #### The Service Mainly Includes
 
     - **WorkerManagerThread** mainly receives tasks sent by the master through netty, and calls **TaskExecuteThread** corresponding executors according to different task types.
      
@@ -80,11 +80,11 @@ scheduling system
   The front-end page of the system provides various visual operation interfaces of the system,See more
   at [Introduction to Functions](../guide/homepage.md) section。
 
-#### 1.4 Architecture design ideas
+### Architecture Design Ideas
 
-##### One、Decentralization VS centralization
+#### Decentralization VS Centralization
 
-###### Centralized thinking
+##### Centralized Thinking
 
 The centralized design concept is relatively simple. The nodes in the distributed cluster are divided into roles
 according to roles, which are roughly divided into two roles:
@@ -93,24 +93,24 @@ according to roles, which are roughly divided into two roles:
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/master_slave.png" alt="master-slave character"  width="50%" />
  </p>
 
-- The role of the master is mainly responsible for task distribution and monitoring the health status of the slave, and
+   - The role of the master is mainly responsible for task distribution and monitoring the health status of the slave, and
   can dynamically balance the task to the slave, so that the slave node will not be in a "busy dead" or "idle dead"
   state.
-- The role of Worker is mainly responsible for task execution and maintenance and Master's heartbeat, so that Master can
+   - The role of Worker is mainly responsible for task execution and maintenance and Master's heartbeat, so that Master can
   assign tasks to Slave.
 
 Problems in centralized thought design:
 
-- Once there is a problem with the Master, the dragons are headless and the entire cluster will collapse. In order to
+   - Once there is a problem with the Master, the dragons are headless and the entire cluster will collapse. In order to
   solve this problem, most of the Master/Slave architecture models adopt the design scheme of active and standby Master,
   which can be hot standby or cold standby, or automatic switching or manual switching, and more and more new systems
   are beginning to have The ability to automatically elect and switch Master to improve the availability of the system.
-- Another problem is that if the Scheduler is on the Master, although it can support different tasks in a DAG running on
+   - Another problem is that if the Scheduler is on the Master, although it can support different tasks in a DAG running on
   different machines, it will cause the Master to be overloaded. If the Scheduler is on the slave, all tasks in a DAG
   can only submit jobs on a certain machine. When there are more parallel tasks, the pressure on the slave may be
   greater.
 
-###### Decentralized
+##### Decentralized
 
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="Decentralization"  width="50%" />
@@ -134,26 +134,25 @@ Problems in centralized thought design:
   the workflow for execution on the master, and tasks are sent to the workers for execution through different sending
   strategies. Specific task
 
-##### Second, the master execution process
+#### The Master Execution Process
 
 1. DolphinScheduler uses the sharding algorithm to modulate the command and assigns it according to the sort id of the
    master. The master converts the received command into a workflow instance, and uses the thread pool to process the
    workflow instance
 
 2. DolphinScheduler's process of workflow:
-
-- Start the workflow through UI or API calls, and persist a command to the database
-- The Master scans the Command table through the sharding algorithm, generates a workflow instance ProcessInstance, and
+    - Start the workflow through UI or API calls, and persist a command to the database
+    - The Master scans the Command table through the sharding algorithm, generates a workflow instance ProcessInstance, and
   deletes the Command data at the same time
-- The Master uses the thread pool to run WorkflowExecuteThread to execute the process of the workflow instance,
+    - The Master uses the thread pool to run WorkflowExecuteThread to execute the process of the workflow instance,
   including building DAG, creating task instance TaskInstance, and sending TaskInstance to worker through netty
-- After the worker receives the task, it modifies the task status and returns the execution information to the Master
-- The Master receives the task information, persists it to the database, and stores the state change event in the
+    - After the worker receives the task, it modifies the task status and returns the execution information to the Master
+    - The Master receives the task information, persists it to the database, and stores the state change event in the
   EventExecuteService event queue
-- EventExecuteService calls WorkflowExecuteThread according to the event queue to submit subsequent tasks and modify
+    - EventExecuteService calls WorkflowExecuteThread according to the event queue to submit subsequent tasks and modify
   workflow status
 
-##### Three、Insufficient thread loop waiting problem
+#### Insufficient Thread Loop Waiting Problem
 
 - If there is no sub-process in a DAG, if the number of data in the Command is greater than the threshold set by the
   thread pool, the process directly waits or fails.
@@ -179,12 +178,12 @@ note: The Master Scheduler thread is executed by FIFO when acquiring the Command
 
 So we chose the third way to solve the problem of insufficient threads.
 
-##### Four、Fault-tolerant design
+#### Fault-Tolerant Design
 
 Fault tolerance is divided into service downtime fault tolerance and task retry, and service downtime fault tolerance is
 divided into master fault tolerance and worker fault tolerance.
 
-###### 1. Downtime fault tolerance
+##### Downtime Fault Tolerance
 
 The service fault-tolerance design relies on ZooKeeper's Watcher mechanism, and the implementation principle is shown in the figure:
 
@@ -221,7 +220,7 @@ Fault-tolerant post-processing: Once the Master Scheduler thread finds that the 
 
 Note: Due to "network jitter", the node may lose its heartbeat with ZooKeeper in a short period of time, and the node's remove event may occur. For this situation, we use the simplest way, that is, once the node and ZooKeeper timeout connection occurs, then directly stop the Master or Worker service.
 
-###### 2.Task failed and try again
+##### Task Failed and Try Again
 
 Here we must first distinguish the concepts of task failure retry, process failure recovery, and process failure rerun:
 
@@ -246,7 +245,7 @@ supported. But the tasks in the logical node support retry.
 If there is a task failure in the workflow that reaches the maximum number of retries, the workflow will fail to stop,
 and the failed workflow can be manually rerun or process recovery operation
 
-##### Five、Task priority design
+#### Task Priority Design
 
 In the early scheduling design, if there is no priority design and the fair scheduling design is used, the task
 submitted first may be completed at the same time as the task submitted later, and the process or task priority cannot
@@ -272,7 +271,7 @@ be set, so We have redesigned this, and our current design is as follows:
                <img src="https://analysys.github.io/easyscheduler_docs_cn/images/task_priority.png" alt="Task priority configuration"  width="35%" />
              </p>
 
-##### Six、Logback and netty implement log access
+#### Logback and Netty Implement Log Access
 
 - Since Web (UI) and Worker are not necessarily on the same machine, viewing the log cannot be like querying a local
   file. There are two options:
@@ -290,7 +289,7 @@ be set, so We have redesigned this, and our current design is as follows:
   file.
 - FileAppender is mainly implemented as follows：
 
- ```java
+```java
  /**
   * task log appender
   */
@@ -314,7 +313,7 @@ be set, so We have redesigned this, and our current design is as follows:
         super.subAppend(event);
     }
 }
-
+```
 
 Generate logs in the form of /process definition id/process instance id/task instance id.log
 
@@ -322,7 +321,7 @@ Generate logs in the form of /process definition id/process instance id/task ins
 
 - TaskLogFilter is implemented as follows：
 
- ```java
+```java
  /**
  *  task log filter
  */
@@ -336,4 +335,4 @@ public class TaskLogFilter extends Filter<ILoggingEvent> {
         return FilterReply.DENY;
     }
 }
-
+```

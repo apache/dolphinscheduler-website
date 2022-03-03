@@ -1,18 +1,17 @@
-
 # Monitor
 
-## Service management
+## Service Management
 
 - Service management is mainly to monitor and display the health status and basic information of each service in the system
 
-## master monitoring
+## Master Monitor
 
 - Mainly related to master information.
 <p align="center">
    <img src="/img/master-jk-en.png" width="80%" />
  </p>
 
-## worker monitoring
+## Worker Monitor
 
 - Mainly related to worker information.
 
@@ -20,7 +19,7 @@
    <img src="/img/worker-jk-en.png" width="80%" />
  </p>
 
-## Zookeeper monitoring
+## Zookeeper Monitor
 
 - Mainly related configuration information of each worker and master in ZooKeeper.
 
@@ -28,7 +27,7 @@
    <img src="/img/zookeeper-monitor-en.png" width="80%" />
  </p>
 
-## DB monitoring
+## DB Monitor
 
 - Mainly the health of the DB
 
@@ -36,7 +35,7 @@
    <img src="/img/mysql-jk-en.png" width="80%" />
  </p>
 
-## Statistics management
+## Statistics Management
 
 <p align="center">
    <img src="/img/statistics-en.png" width="80%" />

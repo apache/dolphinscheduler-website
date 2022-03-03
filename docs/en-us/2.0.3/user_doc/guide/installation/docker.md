@@ -5,17 +5,17 @@
  - [Docker](https://docs.docker.com/engine/install/) 1.13.1+
  - [Docker Compose](https://docs.docker.com/compose/) 1.11.0+
 
-## How to use this Docker image
+## How to use this Docker Image
 
 Here're 3 ways to quickly install DolphinScheduler
 
-### The First Way: Start a DolphinScheduler by docker-compose (recommended)
+### The First Way: Start a DolphinScheduler by docker-compose (Recommended)
 
 In this way, you need to install [docker-compose](https://docs.docker.com/compose/) as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet
 
 For Windows 7-10, you can install [Docker Toolbox](https://github.com/docker/toolbox/releases). For Windows 10 64-bit, you can install [Docker Desktop](https://docs.docker.com/docker-for-windows/install/), and pay attention to the [system requirements](https://docs.docker.com/docker-for-windows/install/#system-requirements)
 
-#### 0. Configure memory not less than 4GB
+#### Configure Memory not Less than 4GB
 
 For Mac user, click `Docker Desktop -> Preferences -> Resources -> Memory`
 
@@ -28,11 +28,11 @@ For Windows Docker Desktop user
  - **Hyper-V mode**: Click `Docker Desktop -> Settings -> Resources -> Memory`
  - **WSL 2 mode**: Refer to [WSL 2 utility VM](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig)
 
-#### 1. Download the Source Code Package
+#### Download the Source Code Package
 
 Please download the source code package apache-dolphinscheduler-2.0.3-src.tar.gz, download address: [download](/en-us/download/download.html)
 
-#### 2. Pull Image and Start the Service
+#### Pull Image and Start the Service
 
 > For Mac and Linux user, open **Terminal**
 > For Windows Docker Toolbox user, open **Docker Quickstart Terminal**
@@ -50,7 +50,7 @@ $ docker-compose up -d
 
 The **PostgreSQL** (with username `root`, password `root` and database `dolphinscheduler`) and **ZooKeeper** services will start by default
 
-#### 3. Login
+#### Login
 
 Visit the Web UI: http://localhost:12345/dolphinscheduler (The local address is http://localhost:12345/dolphinscheduler)
 
@@ -62,21 +62,21 @@ The default username is `admin` and the default password is `dolphinscheduler123
 
 Please refer to the `Quick Start` in the chapter [Quick Start](../quick-start.md) to explore how to use DolphinScheduler
 
-### The Second Way: Start via specifying the existing PostgreSQL and ZooKeeper service
+### The Second Way: Start via Specifying the Existing PostgreSQL and ZooKeeper Service
 
 In this way, you need to install [docker](https://docs.docker.com/engine/install/) as a prerequisite, please install it yourself according to the rich docker installation guidance on the Internet
 
-#### 1. Basic Required Software (please install by yourself)
+#### Basic Required Software
 
  - [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+)
  - [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.4.6+)
  - [Docker](https://docs.docker.com/engine/install/) (1.13.1+)
 
-#### 2. Please login to the PostgreSQL database and create a database named `dolphinscheduler`
+#### Please Login to the PostgreSQL Database and Create a Database Named `dolphinscheduler`
 
-#### 3. Initialize the database, import `sql/dolphinscheduler_postgre.sql` to create tables and initial data
+#### Initialize the Database, Import `sql/dolphinscheduler_postgre.sql` to Create Tables and Initial Data
 
-#### 4. Download the DolphinScheduler Image
+#### Download the DolphinScheduler Image
 
 We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository:
 
@@ -97,11 +97,11 @@ apache/dolphinscheduler:2.0.3 all
 
 Note: database username test and password test need to be replaced with your actual PostgreSQL username and password, 192.168.x.x need to be replaced with your relate PostgreSQL and ZooKeeper host IP
 
-#### 6. Login
+#### Login
 
 Same as above
 
-### The Third Way: Start a standalone DolphinScheduler server
+### The Third Way: Start a Standalone DolphinScheduler Server
 
 The following services are automatically started when the container starts:
 
@@ -212,7 +212,7 @@ Especially, it can be configured through the environment variable configuration 
 
 ## FAQ
 
-### How to manage DolphinScheduler by docker-compose?
+### How to Manage DolphinScheduler by docker-compose?
 
 Start, restart, stop or list containers:
 
@@ -235,7 +235,7 @@ Stop containers and remove containers, networks and volumes:
 docker-compose down -v
 ```
 
-### How to view the logs of a container?
+### How to View the Logs of a Container?
 
 List all running containers:
 
@@ -252,7 +252,7 @@ docker logs -f docker-swarm_dolphinscheduler-api_1 # follow log output
 docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # show last 10 lines from the end of the logs
 ```
 
-### How to scale master and worker by docker-compose?
+### How to Scale Master and Worker by docker-compose?
 
 Scale master to 2 instances:
 
@@ -266,7 +266,7 @@ Scale worker to 3 instances:
 docker-compose up -d --scale dolphinscheduler-worker=3 dolphinscheduler-worker
 ```
 
-### How to deploy DolphinScheduler on Docker Swarm?
+### How to Deploy DolphinScheduler on Docker Swarm?
 
 Assuming that the Docker Swarm cluster has been created (If there is no Docker Swarm cluster, please refer to [create-swarm](https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/))
 
@@ -294,7 +294,7 @@ Remove the volumes of the stack named dolphinscheduler:
 docker volume rm -f $(docker volume ls --format "{{.Name}}" | grep -e "^dolphinscheduler")
 ```
 
-### How to scale master and worker on Docker Swarm?
+### How to Scale Master and Worker on Docker Swarm?
 
 Scale master of the stack named dolphinscheduler to 2 instances:
 
@@ -308,9 +308,9 @@ Scale worker of the stack named dolphinscheduler to 3 instances:
 docker service scale dolphinscheduler_dolphinscheduler-worker=3
 ```
 
-### How to build a Docker image?
+### How to Build a Docker Image?
 
-#### Build from the source code (Require Maven 3.3+ & JDK 1.8+)
+#### Build from the Source Code (Require Maven 3.3+ & JDK 1.8+)
 
 In Unix-Like, execute in Terminal:
 
@@ -326,7 +326,7 @@ C:\dolphinscheduler-src>.\docker\build\hooks\build.bat
 
 Please read `./docker/build/hooks/build` `./docker/build/hooks/build.bat` script files if you don't understand
 
-#### Build from the binary distribution (Not require Maven 3.3+ & JDK 1.8+)
+#### Build from the Binary Distribution (Not require Maven 3.3+ & JDK 1.8+)
 
 Please download the binary distribution package apache-dolphinscheduler-2.0.3-bin.tar.gz, download address: [download](/en-us/download/download.html). And put apache-dolphinscheduler-2.0.3-bin.tar.gz into the `apache-dolphinscheduler-2.0.3-src/docker/build` directory, execute in Terminal or PowerShell:
 
@@ -337,7 +337,7 @@ $ docker build --build-arg VERSION=2.0.3 -t apache/dolphinscheduler:2.0.3 .
 
 > PowerShell should use `cd apache-dolphinscheduler-2.0.3-src/docker/build`
 
-#### Build multi-platform images
+#### Build Multi-Platform Images
 
 Currently support to build images including `linux/amd64` and `linux/arm64` platform architecture, requirements:
 
@@ -351,7 +351,7 @@ $ docker login # login to push apache/dolphinscheduler
 $ bash ./docker/build/hooks/build
 ```
 
-### How to add an environment variable for Docker?
+### How to Add an Environment Variable for Docker?
 
 If you would like to do additional initialization in an image derived from this one, add one or more environment variables under `/root/start-init-conf.sh`, and modify template files in `/opt/dolphinscheduler/conf/*.tpl`.
 
@@ -378,7 +378,7 @@ EOF
 done
 ```
 
-### How to use MySQL as the DolphinScheduler's database instead of PostgreSQL?
+### How to Use MySQL as the DolphinScheduler's Database Instead of PostgreSQL?
 
 > Because of the commercial license, we cannot directly use the driver of MySQL.
 >
@@ -424,7 +424,7 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 
 8. Run a dolphinscheduler (See **How to use this docker image**)
 
-### How to support MySQL datasource in `Datasource manage`?
+### How to Support MySQL Datasource in `Datasource manage`?
 
 > Because of the commercial license, we cannot directly use the driver of MySQL.
 >
@@ -453,7 +453,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 6. Add a MySQL datasource in `Datasource manage`
 
-### How to support Oracle datasource in `Datasource manage`?
+### How to Support Oracle Datasource in `Datasource manage`?
 
 > Because of the commercial license, we cannot directly use the driver of Oracle.
 >
@@ -482,7 +482,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 6. Add an Oracle datasource in `Datasource manage`
 
-### How to support Python 2 pip and custom requirements.txt?
+### How to Support Python 2 pip and Custom requirements.txt?
 
 1. Create a new `Dockerfile` to install pip:
 
@@ -515,7 +515,7 @@ docker build -t apache/dolphinscheduler:pip .
 
 5. Verify pip under a new Python task
 
-### How to support Python 3?
+### How to Support Python 3?
 
 1. Create a new `Dockerfile` to install Python 3:
 
@@ -548,7 +548,7 @@ docker build -t apache/dolphinscheduler:python3 .
 
 6. Verify Python 3 under a new Python task
 
-### How to support Hadoop, Spark, Flink, Hive or DataX?
+### How to Support Hadoop, Spark, Flink, Hive or DataX?
 
 Take Spark 2.4.7 as an example:
 
@@ -602,7 +602,7 @@ Spark on YARN (Deploy Mode is `cluster` or `client`) requires Hadoop support. Si
 
 Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` exists
 
-### How to support Spark 3?
+### How to Support Spark 3?
 
 In fact, the way to submit applications with `spark-submit` is the same, regardless of Spark 1, 2 or 3. In other words, the semantics of `SPARK_HOME2` is the second `SPARK_HOME` instead of `SPARK2`'s `HOME`, so just set `SPARK_HOME2=/path/to/spark3`
 
@@ -639,7 +639,7 @@ $SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_H
 
 Check whether the task log contains the output like `Pi is roughly 3.146015`
 
-### How to support shared storage between Master, Worker and Api server?
+### How to Support Shared Storage between Master, Worker and Api server?
 
 > **Note**: If it is deployed on a single machine by `docker-compose`, step 1 and 2 can be skipped directly, and execute the command like `docker cp hadoop-3.2.2.tar.gz docker-swarm_dolphinscheduler-worker_1:/opt/soft` to put Hadoop into the shared directory `/opt/soft` in the container
 
@@ -662,7 +662,7 @@ volumes:
 
 3. Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` are correct
 
-### How to support local file resource storage instead of HDFS and S3?
+### How to Support Local File Resource Storage Instead of HDFS and S3?
 
 > **Note**: If it is deployed on a single machine by `docker-compose`, step 2 can be skipped directly
 
@@ -686,7 +686,7 @@ volumes:
       device: ":/path/to/resource/dir"
 ```
 
-### How to support S3 resource storage like MinIO?
+### How to Support S3 Resource Storage Like MinIO?
 
 Take MinIO as an example: Modify the following environment variables in `config.env.sh`
 
@@ -703,7 +703,7 @@ FS_S3A_SECRET_KEY=MINIO_SECRET_KEY
 
 > **Note**: `MINIO_IP` can only use IP instead of the domain name, because DolphinScheduler currently doesn't support S3 path style access
 
-### How to configure SkyWalking?
+### How to Configure SkyWalking?
 
 Modify SkyWalking environment variables in `config.env.sh`:
 
