@@ -5,7 +5,7 @@
  - [Docker](https://docs.docker.com/engine/install/) 1.13.1+
  - [Docker Compose](https://docs.docker.com/compose/) 1.11.0+
 
-## How to use this Docker Image
+## How to Use this Docker Image
 
 Here're 3 ways to quickly install DolphinScheduler
 
