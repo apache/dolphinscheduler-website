@@ -1,14 +1,17 @@
 <!-- markdown-link-check-disable -->
+# Configuration
 
-# Preface
+## Preface
+
 This document explains the DolphinScheduler application configurations according to DolphinScheduler-1.3.x versions.
 
-# Directory Structure
+## Directory Structure
+
 Currently, all the configuration files are under [conf ] directory. Please check the following simplified DolphinScheduler installation directories to have a direct view about the position [conf] directory in and configuration files inside. This document only describes DolphinScheduler configurations and other modules are not going into.
 
 [Note: the DolphinScheduler (hereinafter called the ‘DS’) .]
-```
 
+```
 ├─bin                               DS application commands directory
 │  ├─dolphinscheduler-daemon.sh         startup/shutdown DS application 
 │  ├─start-all.sh                  A     startup all DS services with configurations
@@ -16,7 +19,7 @@ Currently, all the configuration files are under [conf ] directory. Please check
 ├─conf                              configurations directory
 │  ├─application-api.properties         API-service config properties
 │  ├─datasource.properties              datasource config properties
-│  ├─zookeeper.properties               zookeeper config properties
+│  ├─zookeeper.properties               ZooKeeper config properties
 │  ├─master.properties                  master config properties
 │  ├─worker.properties                  worker config properties
 │  ├─quartz.properties                  quartz config properties
@@ -43,22 +46,19 @@ Currently, all the configuration files are under [conf ] directory. Please check
 │  ├─upgrade-dolphinscheduler.sh        DS database upgrade script
 │  ├─monitor-server.sh                  DS monitor-server start script       
 │  ├─scp-hosts.sh                       transfer installation files script                                     
-│  ├─remove-zk-node.sh                  cleanup zookeeper caches script       
+│  ├─remove-zk-node.sh                  cleanup ZooKeeper caches script       
 ├─ui                                front-end web resources directory
 ├─lib                               DS .jar dependencies directory
 ├─install.sh                        auto-setup DS services script
-
-
 ```
 
-
-# Configurations in Details
+## Configurations in Details
 
 serial number| service classification| config file|
 |--|--|--|
 1|startup/shutdown DS application|dolphinscheduler-daemon.sh
 2|datasource config properties| datasource.properties
-3|zookeeper config properties|zookeeper.properties
+3|ZooKeeper config properties|zookeeper.properties
 4|common-service[storage] config properties|common.properties
 5|API-service config properties|application-api.properties
 6|master config properties|master.properties
@@ -67,11 +67,12 @@ serial number| service classification| config file|
 9|quartz config properties|quartz.properties
 10|DS environment variables configuration script[install/start DS]|install_config.conf
 11|load environment variables configs <br /> [eg: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]|dolphinscheduler_env.sh
-12|services log config files|API-service log config : logback-api.xml  <br /> master-service log config  : logback-master.xml    <br /> worker-service log config : logback-worker.xml  <br /> alert-service log config : logback-alert.xml 
+12|services log config files|API-service log config : logback-api.xml  <br /> master-service log config  : logback-master.xml    <br /> worker-service log config : logback-worker.xml  <br /> alert-service log config : logback-alert.xml
 
 
-## 1.dolphinscheduler-daemon.sh [startup/shutdown DS application]
-dolphinscheduler-daemon.sh is responsible for DS startup & shutdown. 
+### dolphinscheduler-daemon.sh [startup/shutdown DS application]
+
+dolphinscheduler-daemon.sh is responsible for DS startup and shutdown.
 Essentially, start-all.sh/stop-all.sh startup/shutdown the cluster via dolphinscheduler-daemon.sh.
 Currently, DS just makes a basic config, please config further JVＭ options based on your practical situation of resources.
 
@@ -90,9 +91,10 @@ export DOLPHINSCHEDULER_OPTS="
 "
 ```
 
-> "-XX:DisableExplicitGC" is not recommended due to may lead to memory link (DS dependent on Netty to communicate). 
+> "-XX:DisableExplicitGC" is not recommended due to may lead to memory link (DS dependent on Netty to communicate).
 
-## 2.datasource.properties [datasource config properties]
+### datasource.properties [datasource config properties]
+
 DS uses Druid to manage database connections and default simplified configs are:
 |Parameters | Default value| Description|
 |--|--|--|
@@ -118,11 +120,12 @@ spring.datasource.poolPreparedStatements|true| Open PSCache
 spring.datasource.maxPoolPreparedStatementPerConnectionSize|20| specify the size of PSCache on each connection
 
 
-## 3.zookeeper.properties [zookeeper config properties]
+### zookeeper.properties [zookeeper config properties]
+
 |Parameters | Default value| Description|
 |--|--|--|
-zookeeper.quorum|localhost:2181| zookeeper cluster connection info
-zookeeper.dolphinscheduler.root|/dolphinscheduler| DS is stored under zookeeper root directory
+zookeeper.quorum|localhost:2181| ZooKeeper cluster connection info
+zookeeper.dolphinscheduler.root|/dolphinscheduler| DS is stored under ZooKeeper root directory
 zookeeper.session.timeout|60000|  session timeout
 zookeeper.connection.timeout|30000| connection timeout
 zookeeper.retry.base.sleep|100| time to wait between subsequent retries
@@ -130,8 +133,9 @@ zookeeper.retry.max.sleep|30000| maximum time to wait between subsequent retries
 zookeeper.retry.maxtime|10| maximum retry times
 
 
-## 4.common.properties [hadoop、s3、yarn config properties]
-Currently, common.properties mainly configures hadoop/s3a related configurations. 
+### common.properties [hadoop、s3、yarn config properties]
+
+Currently, common.properties mainly configures hadoop/s3a related configurations.
 |Parameters | Default value| Description|
 |--|--|--|
 data.basedir.path|/tmp/dolphinscheduler| local directory used to store temp files
@@ -154,7 +158,8 @@ dolphinscheduler.env.path|env/dolphinscheduler_env.sh|load environment variables
 development.state|false| specify whether in development state
 
 
-## 5.application-api.properties [API-service log config]
+### application-api.properties [API-service log config]
+
 |Parameters | Default value| Description|
 |--|--|--|
 server.port|12345|api service communication port
@@ -169,7 +174,8 @@ spring.messages.basename|i18n/messages| i18n config
 security.authentication.type|PASSWORD| authentication type
 
 
-## 6.master.properties [master-service log config]
+### master.properties [master-service log config]
+
 |Parameters | Default value| Description|
 |--|--|--|
 master.listen.port|5678|master listen port
@@ -184,7 +190,8 @@ master.max.cpuload.avg|-1|master max CPU load avg, only higher than the system C
 master.reserved.memory|0.3|master reserved memory, only lower than system available memory, master server can schedule. default value 0.3, the unit is G
 
 
-## 7.worker.properties [worker-service log config]
+### worker.properties [worker-service log config]
+
 |Parameters | Default value| Description|
 |--|--|--|
 worker.listen.port|1234|worker listen port
@@ -195,7 +202,8 @@ worker.reserved.memory|0.3|worker reserved memory, only lower than system availa
 worker.groups|default|worker groups separated by comma, like 'worker.groups=default,test' <br> worker will join corresponding group according to this config when startup
 
 
-## 8.alert.properties [alert-service log config]
+### alert.properties [alert-service log config]
+
 |Parameters | Default value| Description|
 |--|--|--|
 alert.type|EMAIL|alter type|
@@ -222,7 +230,8 @@ enterprise.wechat.team.send.msg||group message format
 plugin.dir|/Users/xx/your/path/to/plugin/dir|plugin directory
 
 
-## 9.quartz.properties [quartz config properties]
+### quartz.properties [quartz config properties]
+
 This part describes quartz configs and please configure them based on your practical situation and resources.
 |Parameters | Default value| Description|
 |--|--|--|
@@ -246,18 +255,20 @@ org.quartz.jobStore.dataSource | myDs
 org.quartz.dataSource.myDs.connectionProvider.class | org.apache.dolphinscheduler.service.quartz.DruidConnectionProvider
 
 
-## 10.install_config.conf [DS environment variables configuration script[install/start DS]]
+### install_config.conf [DS environment variables configuration script[install/start DS]]
+
 install_config.conf is a bit complicated and is mainly used in the following two places.
-* 1.DS cluster auto installation
+* DS Cluster Auto Installation
 
 > System will load configs in the install_config.conf and auto-configure files below, based on the file content when executing 'install.sh'.
 > Files such as dolphinscheduler-daemon.sh、datasource.properties、zookeeper.properties、common.properties、application-api.properties、master.properties、worker.properties、alert.properties、quartz.properties and etc.
 
 
-* 2.Startup/shutdown DS cluster
+* Startup/Shutdown DS Cluster
 > The system will load masters, workers, alertServer, apiServers and other parameters inside the file to startup/shutdown DS cluster.
 
-File content as follows:
+#### File Content as Follows:
+
 ```bash
 
 # Note:  please escape the character if the file contains special characters such as `.*[]^${}\+?|()@#&`.
@@ -266,7 +277,7 @@ File content as follows:
 # Database type (DS currently only supports PostgreSQL and MySQL)
 dbtype="mysql"
 
-# Database url & port
+# Database url and port
 dbhost="192.168.xx.xx:3306"
 
 # Database name
@@ -279,7 +290,7 @@ username="xx"
 # Database password
 password="xx"
 
-# Zookeeper url
+# ZooKeeper url
 zkQuorum="192.168.xx.xx:2181,192.168.xx.xx:2181,192.168.xx.xx:2181"
 
 # DS installation path, such as '/data1_1T/dolphinscheduler'
@@ -381,7 +392,8 @@ alertServer="ds3"
 apiServers="ds1"
 ```
 
-## 11.dolphinscheduler_env.sh [load environment variables configs]
+### dolphinscheduler_env.sh [load environment variables configs]
+
 When using shell to commit tasks, DS will load environment variables inside dolphinscheduler_env.sh into the host.
 Types of tasks involved are: Shell task、Python task、Spark task、Flink task、Datax task and etc.
 ```bash
@@ -399,7 +411,8 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAV
 
 ```
 
-## 12. Services logback configs
+### Services logback configs
+
 Services name| logback config name |
 --|--|
 API-service logback config |logback-api.xml|

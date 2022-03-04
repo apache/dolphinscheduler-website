@@ -4,7 +4,7 @@
 
 Flink task type for executing Flink programs. For Flink nodes, the worker submits the task by using the flink command `flink run`. See [flink cli](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/deployment/cli/) for more details.
 
-## Create task
+## Create Task
 
 - Click Project Management -> Project Name -> Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
 - Drag the <img src="/img/tasks/icons/flink.png" width="15"/> from the toolbar to the drawing board.
@@ -42,11 +42,11 @@ Flink task type for executing Flink programs. For Flink nodes, the worker submit
 
 ## Task Example
 
-### Execute the WordCount program
+### Execute the WordCount Program
 
 This is a common introductory case in the Big Data ecosystem, which often applied to computational frameworks such as MapReduce, Flink and Spark. The main purpose is to count the number of identical words in the input text. (Flink's releases come with this example job)
 
-#### Uploading the main package
+#### Upload the Main Package
 
 When using the Flink task node, you will need to use the Resource Centre to upload the jar package for the executable. Refer to the [resource center](../resource.md).
 
@@ -54,7 +54,7 @@ After configuring the Resource Centre, you can upload the required target files 
 
 ![resource_upload](/img/tasks/demo/upload_flink.png)
 
-#### Configuring Flink nodes
+#### Configure Flink Nodes
 
 Simply configure the required content according to the parameter descriptions above.
 
@@ -62,4 +62,4 @@ Simply configure the required content according to the parameter descriptions ab
 
 ## Notice
 
- JAVA and Scala are only used for identification, there is no difference, if it is Flink developed by Python, there is no class of the main function, the others are the same.
+JAVA and Scala are only used for identification, there is no difference, if it is Flink developed by Python, there is no class of the main function, the others are the same.

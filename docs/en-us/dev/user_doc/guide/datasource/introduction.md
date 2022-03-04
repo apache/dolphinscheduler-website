@@ -1,4 +1,3 @@
-
 # Data Source
 
 Data source center supports MySQL, POSTGRESQL, HIVE/IMPALA, SPARK, CLICKHOUSE, ORACLE, SQLSERVER and other data sources

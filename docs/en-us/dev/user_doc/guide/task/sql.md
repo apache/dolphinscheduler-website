@@ -4,7 +4,7 @@
 
 SQL task, used to connect to database and execute SQL.
 
-## create data source
+## Create Data Source
 
 Refer to [Data Source](../datasource/introduction.md)
 
@@ -26,13 +26,13 @@ Refer to [Data Source](../datasource/introduction.md)
 
 ## Task Example
 
-### Create a temporary table in hive and write data
+### Create a Temporary Table in Hive and Write Data
 
 This example creates a temporary table `tmp_hello_world` in hive and write a row of data. Before creating a temporary table, we need to ensure that the table does not exist, so we will use custom parameters to obtain the time of the day as the suffix of the table name every time we run, so that this task can run every day. The format of the created table name is: `tmp_hello_world_{yyyyMMdd}`.
 
 ![hive-sql](/img/tasks/demo/hive-sql.png)
 
-### After running the task successfully, query the results in hive.
+### After Running the Task Successfully, Query the Results in Hive
 
 Log in to the bigdata cluster and use 'hive' command or 'beeline' or 'JDBC' and other methods to connect to the 'Apache Hive' for the query. The query SQL is `select * from tmp_hello_world_{yyyyMMdd}`, please replace '{yyyyMMdd}' with the date of the running day. The query screenshot is as follows:
 

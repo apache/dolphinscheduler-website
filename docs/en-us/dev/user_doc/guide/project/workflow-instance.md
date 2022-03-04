@@ -1,6 +1,6 @@
-# Workflow instance
+# Workflow Instance
 
-## View workflow instance
+## View Workflow Instance
 
 - Click Project Management -> Workflow -> Workflow Instance to enter the Workflow Instance page, as shown in the figure below:
      <p align="center">
@@ -11,7 +11,7 @@
     <img src="/img/instance-runs-en.png" width="80%" />
   </p>
 
-## View task log
+## View Task Log
 
 - Enter the workflow instance page, click the workflow name, enter the DAG view page, double-click the task node, as shown in the following figure:
    <p align="center">
@@ -22,7 +22,7 @@
      <img src="/img/task-log-en.png" width="80%" />
    </p>
 
-## View task history
+## View Task History
 
 - Click Project Management -> Workflow -> Workflow Instance to enter the workflow instance page, and click the workflow name to enter the workflow DAG page;
 - Double-click the task node, as shown in the figure below, click "View History" to jump to the task instance page, and display a list of task instances running by the workflow instance
@@ -30,7 +30,7 @@
      <img src="/img/task_history_en.png" width="80%" />
    </p>
 
-## View operating parameters
+## View Operating Parameters
 
 - Click Project Management -> Workflow -> Workflow Instance to enter the workflow instance page, and click the workflow name to enter the workflow DAG page;
 - Click the icon in the upper left corner <img src="/img/run_params_button.png" width="35"/>，View the startup parameters of the workflow instance; click the icon <img src="/img/global_param.png" width="35"/>，View the global and local parameters of the workflow instance, as shown in the following figure:
@@ -38,7 +38,7 @@
      <img src="/img/run_params_en.png" width="80%" />
    </p>
 
-## Workflow instance operation function
+## Workflow Instance Operation Function
 
 Click Project Management -> Workflow -> Workflow Instance to enter the Workflow Instance page, as shown in the figure below:
 

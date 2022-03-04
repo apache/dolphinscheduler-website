@@ -1,4 +1,4 @@
-# POSTGRESQL
+# PostgreSQL
 
 - Data source: select POSTGRESQL
 - Data source name: enter the name of the data source

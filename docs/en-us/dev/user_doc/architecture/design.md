@@ -1,7 +1,8 @@
-## System Architecture Design
+# System Architecture Design
+
 Before explaining the architecture of the scheduling system, let's first understand the commonly used terms of the scheduling system
 
-### 1.Glossary
+## Glossary
 **DAG：** The full name is Directed Acyclic Graph, referred to as DAG. Task tasks in the workflow are assembled in the form of a directed acyclic graph, and topological traversal is performed from nodes with zero degrees of entry until there are no subsequent nodes. Examples are as follows:
 
 <p align="center">
@@ -33,9 +34,10 @@ Before explaining the architecture of the scheduling system, let's first underst
 
 **Complement**: Supplement historical data，Supports **interval parallel and serial** two complement methods
 
-### 2.System Structure
+## System Structure
 
-#### 2.1 System architecture diagram
+### System Architecture Diagram
+
 <p align="center">
   <img src="/img/architecture-1.3.0.jpg" alt="System architecture diagram"  width="70%" />
   <p align="center">
@@ -43,7 +45,8 @@ Before explaining the architecture of the scheduling system, let's first underst
   </p>
 </p>
 
-#### 2.2 Start process activity diagram
+### Start Process Activity Diagram
+
 <p align="center">
   <img src="/img/process-start-flow-1.3.0.png" alt="Start process activity diagram"  width="70%" />
   <p align="center">
@@ -51,15 +54,15 @@ Before explaining the architecture of the scheduling system, let's first underst
   </p>
 </p>
 
-#### 2.3 Architecture description
+### Architecture Description
 
 * **MasterServer** 
 
     MasterServer adopts a distributed and centerless design concept. MasterServer is mainly responsible for DAG task segmentation, task submission monitoring, and monitoring the health status of other MasterServer and WorkerServer at the same time.
-    When the MasterServer service starts, register a temporary node with Zookeeper, and perform fault tolerance by monitoring changes in the temporary node of Zookeeper.
+    When the MasterServer service starts, register a temporary node with ZooKeeper, and perform fault tolerance by monitoring changes in the temporary node of ZooKeeper.
     MasterServer provides monitoring services based on netty.
 
-    ##### The service mainly includes:
+    #### The Service Mainly Includes:
 
     - **Distributed Quartz** distributed scheduling component, which is mainly responsible for the start and stop operations of scheduled tasks. When Quartz starts the task, there will be a thread pool inside the Master that is specifically responsible for the follow-up operation of the processing task
 
@@ -73,9 +76,11 @@ Before explaining the architecture of the scheduling system, let's first underst
 
      WorkerServer also adopts a distributed and decentralized design concept. WorkerServer is mainly responsible for task execution and providing log services.
 
-     When the WorkerServer service starts, register a temporary node with Zookeeper and maintain a heartbeat.
+     When the WorkerServer service starts, register a temporary node with ZooKeeper and maintain a heartbeat.
      Server provides monitoring services based on netty. Worker
-     ##### The service mainly includes:
+  
+     #### The Service Mainly Includes:
+  
      - **Fetch TaskThread** is mainly responsible for continuously getting tasks from **Task Queue**, and calling **TaskScheduleThread** corresponding executor according to different task types.
 
 * **ZooKeeper** 
@@ -86,7 +91,7 @@ Before explaining the architecture of the scheduling system, let's first underst
 
 * **Task Queue** 
 
-    Provide task queue operation, the current queue is also implemented based on Zookeeper. Because there is less information stored in the queue, there is no need to worry about too much data in the queue. In fact, we have tested the millions of data storage queues, which has no impact on system stability and performance.
+    Provide task queue operation, the current queue is also implemented based on ZooKeeper. Because there is less information stored in the queue, there is no need to worry about too much data in the queue. In fact, we have tested the millions of data storage queues, which has no impact on system stability and performance.
 
 * **Alert** 
 
@@ -101,11 +106,11 @@ Before explaining the architecture of the scheduling system, let's first underst
   The front-end page of the system provides various visual operation interfaces of the system,See more
   at [Introduction to Functions](../guide/homepage.md) section。
 
-#### 2.3 Architecture design ideas
+### Architecture Design Ideas
 
-##### One、Decentralization VS centralization 
+#### Decentralization VS Centralization
 
-###### Centralized thinking
+##### Centralized Thinking
 
 The centralized design concept is relatively simple. The nodes in the distributed cluster are divided into roles according to roles, which are roughly divided into two roles:
 <p align="center">
@@ -115,16 +120,13 @@ The centralized design concept is relatively simple. The nodes in the distribute
 - The role of the master is mainly responsible for task distribution and monitoring the health status of the slave, and can dynamically balance the task to the slave, so that the slave node will not be in a "busy dead" or "idle dead" state.
 - The role of Worker is mainly responsible for task execution and maintenance and Master's heartbeat, so that Master can assign tasks to Slave.
 
-
-
 Problems in centralized thought design:
 
 - Once there is a problem with the Master, the dragons are headless and the entire cluster will collapse. In order to solve this problem, most of the Master/Slave architecture models adopt the design scheme of active and standby Master, which can be hot standby or cold standby, or automatic switching or manual switching, and more and more new systems are beginning to have The ability to automatically elect and switch Master to improve the availability of the system.
 - Another problem is that if the Scheduler is on the Master, although it can support different tasks in a DAG running on different machines, it will cause the Master to be overloaded. If the Scheduler is on the slave, all tasks in a DAG can only submit jobs on a certain machine. When there are more parallel tasks, the pressure on the slave may be greater.
 
+##### Decentralized
 
-
-###### Decentralized
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="Decentralization"  width="50%" />
  </p>
@@ -135,9 +137,9 @@ Problems in centralized thought design:
 
 
 
-- The decentralization of DolphinScheduler is that the Master/Worker is registered in Zookeeper, and the Master cluster and Worker cluster are centerless, and the Zookeeper distributed lock is used to elect one of the Master or Worker as the "manager" to perform the task.
+- The decentralization of DolphinScheduler is that the Master/Worker is registered in ZooKeeper, and the Master cluster and Worker cluster are centerless, and the ZooKeeper distributed lock is used to elect one of the Master or Worker as the "manager" to perform the task.
 
-##### Two、Distributed lock practice
+#### Distributed Lock Practice
 
 DolphinScheduler uses ZooKeeper distributed lock to realize that only one Master executes Scheduler at the same time, or only one Worker executes the submission of tasks.
 1. The core process algorithm for acquiring distributed locks is as follows:
@@ -151,7 +153,7 @@ DolphinScheduler uses ZooKeeper distributed lock to realize that only one Master
  </p>
 
 
-##### Three、Insufficient thread loop waiting problem
+#### Insufficient Thread Loop Waiting Problem
 
 -  If there is no sub-process in a DAG, if the number of data in the Command is greater than the threshold set by the thread pool, the process directly waits or fails.
 -  If many sub-processes are nested in a large DAG, the following figure will produce a "dead" state:
@@ -172,10 +174,10 @@ note: The Master Scheduler thread is executed by FIFO when acquiring the Command
 So we chose the third way to solve the problem of insufficient threads.
 
 
-##### Four、Fault-tolerant design
+#### Fault-Tolerant Design
 Fault tolerance is divided into service downtime fault tolerance and task retry, and service downtime fault tolerance is divided into master fault tolerance and worker fault tolerance.
 
-###### 1. Downtime fault tolerance
+##### Downtime Fault Tolerance
 
 The service fault-tolerance design relies on ZooKeeper's Watcher mechanism, and the implementation principle is shown in the figure:
 
@@ -212,15 +214,13 @@ Fault-tolerant post-processing: Once the Master Scheduler thread finds that the 
 
  Note: Due to "network jitter", the node may lose its heartbeat with ZooKeeper in a short period of time, and the node's remove event may occur. For this situation, we use the simplest way, that is, once the node and ZooKeeper timeout connection occurs, then directly stop the Master or Worker service.
 
-###### 2.Task failed and try again
+##### Task Failed and Try Again
 
 Here we must first distinguish the concepts of task failure retry, process failure recovery, and process failure rerun:
 
 - Task failure retry is at the task level and is automatically performed by the scheduling system. For example, if a Shell task is set to retry for 3 times, it will try to run it again up to 3 times after the Shell task fails.
 - Process failure recovery is at the process level and is performed manually. Recovery can only be performed **from the failed node** or **from the current node**
 - Process failure rerun is also at the process level and is performed manually, rerun is performed from the start node
-
-
 
 Next to the topic, we divide the task nodes in the workflow into two types.
 
@@ -232,9 +232,8 @@ Each **business node** can be configured with the number of failed retries. When
 
 If there is a task failure in the workflow that reaches the maximum number of retries, the workflow will fail to stop, and the failed workflow can be manually rerun or process recovery operation
 
+#### Task Priority Design
 
-
-##### Five、Task priority design
 In the early scheduling design, if there is no priority design and the fair scheduling design is used, the task submitted first may be completed at the same time as the task submitted later, and the process or task priority cannot be set, so We have redesigned this, and our current design is as follows:
 
 -  According to **priority of different process instances** priority over **priority of the same process instance** priority over **priority of tasks within the same process**priority over **tasks within the same process**submission order from high to Low task processing.
@@ -250,8 +249,7 @@ In the early scheduling design, if there is no priority design and the fair sche
                <img src="https://user-images.githubusercontent.com/10797147/146744830-5eac611f-5933-4f53-a0c6-31613c283708.png" alt="Task priority configuration"  width="35%" />
              </p>
 
-
-##### Six、Logback and netty implement log access
+#### Logback and Netty Implement Log Access
 
 -  Since Web (UI) and Worker are not necessarily on the same machine, viewing the log cannot be like querying a local file. There are two options:
   -  Put logs on the ES search engine
@@ -263,11 +261,10 @@ In the early scheduling design, if there is no priority design and the fair sche
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc remote access"  width="50%" />
  </p>
 
-
 - We use the FileAppender and Filter functions of the custom Logback to realize that each task instance generates a log file.
 - FileAppender is mainly implemented as follows：
 
- ```java
+```java
  /**
   * task log appender
   */
@@ -291,7 +288,7 @@ In the early scheduling design, if there is no priority design and the fair sche
         super.subAppend(event);
     }
 }
-
+```
 
 Generate logs in the form of /process definition id/process instance id/task instance id.log
 
@@ -313,8 +310,10 @@ public class TaskLogFilter extends Filter<ILoggingEvent> {
         return FilterReply.DENY;
     }
 }
+```
 
-### 3.Module introduction
+## Module Introduction
+
 - dolphinscheduler-alert alarm module, providing AlertServer service.
 
 - dolphinscheduler-api web application module, providing ApiServer service.
@@ -327,10 +326,10 @@ public class TaskLogFilter extends Filter<ILoggingEvent> {
 
 - dolphinscheduler-server MasterServer and WorkerServer services
 
-- dolphinscheduler-service service module, including Quartz, Zookeeper, log client access service, easy to call server module and api module
+- dolphinscheduler-service service module, including Quartz, ZooKeeper, log client access service, easy to call server module and api module
 
 - dolphinscheduler-ui front-end module
 
-### Sum up
+## Sum Up
 From the perspective of scheduling, this article preliminarily introduces the architecture principles and implementation ideas of the big data distributed workflow scheduling system-DolphinScheduler. To be continued
 

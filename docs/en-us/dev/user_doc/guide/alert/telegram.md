@@ -1,11 +1,12 @@
 # Telegram
+
 If you need `Telegram` to alert, please create an alarm instance in warning instance manage dashboard. and choose the `Telegram` plugin
 
 The configuration example of `Telegram` is as follows:
 
 ![telegram-plugin](/img/alert/telegram-plugin.png)
 
-params config:
+## Parameter Configuration
 
 * WebHook:
   > Telegram open api
@@ -26,7 +27,7 @@ params config:
 * Password
   > Authentication(Password) for Proxy-Server
 
-P.S.:
+References:
 - [Telegram Application Bot Guide](https://core.telegram.org/bots)
 - [Telegram Bots Api](https://core.telegram.org/bots/api)
 - [Telegram SendMessage Api](https://core.telegram.org/bots/api#sendmessage)
