@@ -231,11 +231,11 @@ No.|parameter name||type|description |note
 }
 ```
 
-### PROCEDURE [stored procedures] Node
+### Procedure [stored procedures] Node
 **The node data structure is as follows:**
 **Node data example:**
 
-### SPARK Node
+### Spark Node
 **The node data structure is as follows:**
 
 No.|parameter name||type|description |notes
@@ -954,7 +954,7 @@ No.|parameter name||type|description |notes
         }
 ```
 
-### DEPENDENT Node
+### Dependent Node
 
 **The node data structure is as follows:**
 No.|parameter name||type|description |notes

@@ -63,7 +63,7 @@ skywalkingLogReporterPort="11800"
 
 ### Import Dashboard
 
-#### Import DolphinScheduler Dashboard to SkyWalking Sever
+#### Import DolphinScheduler Dashboard to SkyWalking Server
 
 Copy the `${dolphinscheduler.home}/ext/skywalking-agent/dashboard/dolphinscheduler.yml` file into `${skywalking-oap-server.home}/config/ui-initialized-templates/` directory, and restart SkyWalking oap-server.
 

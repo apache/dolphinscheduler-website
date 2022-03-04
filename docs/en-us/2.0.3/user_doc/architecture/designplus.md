@@ -71,7 +71,7 @@ process fails and ends
 
 - dolphinscheduler-ui front-end module
 
-## Sum up
+## Sum Up
 
 From the perspective of scheduling, this article preliminarily introduces the architecture principles and implementation
 ideas of the big data distributed workflow scheduling system-DolphinScheduler. To be continued
