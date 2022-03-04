@@ -16,12 +16,12 @@
 <li><a href="https://docs.docker.com/engine/install/">Docker</a> 1.13.1+</li>
 <li><a href="https://docs.docker.com/compose/">Docker Compose</a> 1.11.0+</li>
 </ul>
-<h2>How to use this Docker image</h2>
+<h2>How to Use this Docker Image</h2>
 <p>Here're 3 ways to quickly install DolphinScheduler</p>
-<h3>The First Way: Start a DolphinScheduler by docker-compose (recommended)</h3>
+<h3>The First Way: Start a DolphinScheduler by Docker Compose (Recommended)</h3>
 <p>In this way, you need to install <a href="https://docs.docker.com/compose/">docker-compose</a> as a prerequisite, please install it yourself according to the rich docker-compose installation guidance on the Internet</p>
 <p>For Windows 7-10, you can install <a href="https://github.com/docker/toolbox/releases">Docker Toolbox</a>. For Windows 10 64-bit, you can install <a href="https://docs.docker.com/docker-for-windows/install/">Docker Desktop</a>, and pay attention to the <a href="https://docs.docker.com/docker-for-windows/install/#system-requirements">system requirements</a></p>
-<h4>0. Configure memory not less than 4GB</h4>
+<h4>Configure Memory not Less Than 4GB</h4>
 <p>For Mac user, click <code>Docker Desktop -&gt; Preferences -&gt; Resources -&gt; Memory</code></p>
 <p>For Windows Docker Toolbox user, two items need to be configured:</p>
 <ul>
@@ -33,9 +33,9 @@
 <li><strong>Hyper-V mode</strong>: Click <code>Docker Desktop -&gt; Settings -&gt; Resources -&gt; Memory</code></li>
 <li><strong>WSL 2 mode</strong>: Refer to <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig">WSL 2 utility VM</a></li>
 </ul>
-<h4>1. Download the Source Code Package</h4>
+<h4>Download the Source Code Package</h4>
 <p>Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: <a href="/en-us/download/download.html">download</a></p>
-<h4>2. Pull Image and Start the Service</h4>
+<h4>Pull Image and Start the Service</h4>
 <blockquote>
 <p>For Mac and Linux user, open <strong>Terminal</strong>
 For Windows Docker Toolbox user, open <strong>Docker Quickstart Terminal</strong>
@@ -51,24 +51,24 @@ $ docker-compose up -d
 <p>PowerShell should use <code>cd apache-dolphinscheduler-1.3.8-src\docker\docker-swarm</code></p>
 </blockquote>
 <p>The <strong>PostgreSQL</strong> (with username <code>root</code>, password <code>root</code> and database <code>dolphinscheduler</code>) and <strong>ZooKeeper</strong> services will start by default</p>
-<h4>3. Login</h4>
+<h4>Login</h4>
 <p>Visit the Web UI: <a href="http://localhost:12345/dolphinscheduler">http://localhost:12345/dolphinscheduler</a> (The local address is <a href="http://localhost:12345/dolphinscheduler">http://localhost:12345/dolphinscheduler</a>)</p>
 <p>The default username is <code>admin</code> and the default password is <code>dolphinscheduler123</code></p>
 <p align="center">
   <img src="/img/login_en.png" width="60%" />
 </p>
 <p>Please refer to the <code>Quick Start</code> in the chapter <a href="../quick-start.md">Quick Start</a> to explore how to use DolphinScheduler</p>
-<h3>The Second Way: Start via specifying the existing PostgreSQL and ZooKeeper service</h3>
+<h3>The Second Way: Start via Specifying the Existing PostgreSQL and ZooKeeper Service</h3>
 <p>In this way, you need to install <a href="https://docs.docker.com/engine/install/">docker</a> as a prerequisite, please install it yourself according to the rich docker installation guidance on the Internet</p>
-<h4>1. Basic Required Software (please install by yourself)</h4>
+<h4>Basic Required Software</h4>
 <ul>
 <li><a href="https://www.postgresql.org/download/">PostgreSQL</a> (8.2.15+)</li>
 <li><a href="https://zookeeper.apache.org/releases.html">ZooKeeper</a> (3.4.6+)</li>
 <li><a href="https://docs.docker.com/engine/install/">Docker</a> (1.13.1+)</li>
 </ul>
-<h4>2. Please login to the PostgreSQL database and create a database named <code>dolphinscheduler</code></h4>
-<h4>3. Initialize the database, import <code>sql/dolphinscheduler_postgre.sql</code> to create tables and initial data</h4>
-<h4>4. Download the DolphinScheduler Image</h4>
+<h4>Please Login to the PostgreSQL Database and Create a Database Named <code>dolphinscheduler</code></h4>
+<h4>Initialize the Database, Import <code>sql/dolphinscheduler_postgre.sql</code> to Create Tables and Initial Data</h4>
+<h4>Download the DolphinScheduler Image</h4>
 <p>We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository:</p>
 <pre><code>docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:1.3.8
 </code></pre>
@@ -81,9 +81,9 @@ $ docker-compose up -d
 apache/dolphinscheduler:1.3.8 all
 </code></pre>
 <p>Note: database username test and password test need to be replaced with your actual PostgreSQL username and password, 192.168.x.x need to be replaced with your relate PostgreSQL and ZooKeeper host IP</p>
-<h4>6. Login</h4>
+<h4>Login</h4>
 <p>Same as above</p>
-<h3>The Third Way: Start a standalone DolphinScheduler server</h3>
+<h3>The Third Way: Start a Standalone DolphinScheduler Server</h3>
 <p>The following services are automatically started when the container starts:</p>
 <pre><code>     MasterServer         ----- master service
      WorkerServer         ----- worker service
@@ -295,7 +295,7 @@ apache/dolphinscheduler:1.3.8 alert-server
 </tbody>
 </table>
 <h2>FAQ</h2>
-<h3>How to manage DolphinScheduler by docker-compose?</h3>
+<h3>How to Manage DolphinScheduler by Docker Compose?</h3>
 <p>Start, restart, stop or list containers:</p>
 <pre><code>docker-compose start
 docker-compose restart
@@ -308,7 +308,7 @@ docker-compose ps
 <p>Stop containers and remove containers, networks and volumes:</p>
 <pre><code>docker-compose down -v
 </code></pre>
-<h3>How to view the logs of a container?</h3>
+<h3>How to View the Logs of a Container?</h3>
 <p>List all running containers:</p>
 <pre><code>docker ps
 docker ps --format &quot;{{.Names}}&quot; # only print names
@@ -318,14 +318,14 @@ docker ps --format &quot;{{.Names}}&quot; # only print names
 docker logs -f docker-swarm_dolphinscheduler-api_1 # follow log output
 docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # show last 10 lines from the end of the logs
 </code></pre>
-<h3>How to scale master and worker by docker-compose?</h3>
+<h3>How to Scale Master and Worker by Docker Compose?</h3>
 <p>Scale master to 2 instances:</p>
 <pre><code>docker-compose up -d --scale dolphinscheduler-master=2 dolphinscheduler-master
 </code></pre>
 <p>Scale worker to 3 instances:</p>
 <pre><code>docker-compose up -d --scale dolphinscheduler-worker=3 dolphinscheduler-worker
 </code></pre>
-<h3>How to deploy DolphinScheduler on Docker Swarm?</h3>
+<h3>How to Deploy DolphinScheduler on Docker Swarm?</h3>
 <p>Assuming that the Docker Swarm cluster has been created (If there is no Docker Swarm cluster, please refer to <a href="https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/">create-swarm</a>)</p>
 <p>Start a stack named dolphinscheduler:</p>
 <pre><code>docker stack deploy -c docker-stack.yml dolphinscheduler
@@ -339,15 +339,15 @@ docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # show last 10 lines f
 <p>Remove the volumes of the stack named dolphinscheduler:</p>
 <pre><code>docker volume rm -f $(docker volume ls --format &quot;{{.Name}}&quot; | grep -e &quot;^dolphinscheduler&quot;)
 </code></pre>
-<h3>How to scale master and worker on Docker Swarm?</h3>
+<h3>How to Scale Master and Worker on Docker Swarm?</h3>
 <p>Scale master of the stack named dolphinscheduler to 2 instances:</p>
 <pre><code>docker service scale dolphinscheduler_dolphinscheduler-master=2
 </code></pre>
 <p>Scale worker of the stack named dolphinscheduler to 3 instances:</p>
 <pre><code>docker service scale dolphinscheduler_dolphinscheduler-worker=3
 </code></pre>
-<h3>How to build a Docker image?</h3>
-<h4>Build from the source code (Require Maven 3.3+ &amp; JDK 1.8+)</h4>
+<h3>How to Build a Docker Image?</h3>
+<h4>Build From the Source Code (Require Maven 3.3+ and JDK 1.8+)</h4>
 <p>In Unix-Like, execute in Terminal:</p>
 <pre><code class="language-bash">$ bash ./docker/build/hooks/build
 </code></pre>
@@ -355,7 +355,7 @@ docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # show last 10 lines f
 <pre><code class="language-bat"><span class="hljs-function">C:\<span class="hljs-title">dolphinscheduler</span>-<span class="hljs-title">src</span>&gt;.\<span class="hljs-title">docker</span>\<span class="hljs-title">build</span>\<span class="hljs-title">hooks</span>\<span class="hljs-title">build.bat</span>
 </span></code></pre>
 <p>Please read <code>./docker/build/hooks/build</code> <code>./docker/build/hooks/build.bat</code> script files if you don't understand</p>
-<h4>Build from the binary distribution (Not require Maven 3.3+ &amp; JDK 1.8+)</h4>
+<h4>Build From the Binary Distribution (Not require Maven 3.3+ and JDK 1.8+)</h4>
 <p>Please download the binary distribution package apache-dolphinscheduler-1.3.8-bin.tar.gz, download address: <a href="/en-us/download/download.html">download</a>. And put apache-dolphinscheduler-1.3.8-bin.tar.gz into the <code>apache-dolphinscheduler-1.3.8-src/docker/build</code> directory, execute in Terminal or PowerShell:</p>
 <pre><code>$ cd apache-dolphinscheduler-1.3.8-src/docker/build
 $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
@@ -363,7 +363,7 @@ $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
 <blockquote>
 <p>PowerShell should use <code>cd apache-dolphinscheduler-1.3.8-src/docker/build</code></p>
 </blockquote>
-<h4>Build multi-platform images</h4>
+<h4>Build Multi-Platform Images</h4>
 <p>Currently support to build images including <code>linux/amd64</code> and <code>linux/arm64</code> platform architecture, requirements:</p>
 <ol>
 <li>Support <a href="https://docs.docker.com/engine/reference/commandline/buildx/">docker buildx</a></li>
@@ -373,7 +373,7 @@ $ docker build --build-arg VERSION=1.3.8 -t apache/dolphinscheduler:1.3.8 .
 <pre><code class="language-bash">$ docker login <span class="hljs-comment"># login to push apache/dolphinscheduler</span>
 $ bash ./docker/build/hooks/build
 </code></pre>
-<h3>How to add an environment variable for Docker?</h3>
+<h3>How to Add an Environment Variable for Docker?</h3>
 <p>If you would like to do additional initialization in an image derived from this one, add one or more environment variables under <code>/root/start-init-conf.sh</code>, and modify template files in <code>/opt/dolphinscheduler/conf/*.tpl</code>.</p>
 <p>For example, to add an environment variable <code>SECURITY_AUTHENTICATION_TYPE</code> in <code>/root/start-init-conf.sh</code>:</p>
 <pre><code>export SECURITY_AUTHENTICATION_TYPE=PASSWORD
@@ -390,7 +390,7 @@ EOF
 &quot;</span> &gt; <span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/conf/<span class="hljs-variable">${line%.*}</span>
 <span class="hljs-keyword">done</span>
 </code></pre>
-<h3>How to use MySQL as the DolphinScheduler's database instead of PostgreSQL?</h3>
+<h3>How to Use MySQL as the DolphinScheduler's Database Instead of PostgreSQL?</h3>
 <blockquote>
 <p>Because of the commercial license, we cannot directly use the driver of MySQL.</p>
 <p>If you want to use MySQL, you can build a new image based on the <code>apache/dolphinscheduler</code> image as follows.</p>
@@ -443,7 +443,7 @@ DATABASE_PARAMS=useUnicode=true&amp;characterEncoding=UTF-8
 <ol start="8">
 <li>Run a dolphinscheduler (See <strong>How to use this docker image</strong>)</li>
 </ol>
-<h3>How to support MySQL datasource in <code>Datasource manage</code>?</h3>
+<h3>How to Support MySQL Datasource in <code>Datasource manage</code>?</h3>
 <blockquote>
 <p>Because of the commercial license, we cannot directly use the driver of MySQL.</p>
 <p>If you want to add MySQL datasource, you can build a new image based on the <code>apache/dolphinscheduler</code> image as follows.</p>
@@ -478,7 +478,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>Add a MySQL datasource in <code>Datasource manage</code></p>
 </li>
 </ol>
-<h3>How to support Oracle datasource in <code>Datasource manage</code>?</h3>
+<h3>How to Support Oracle Datasource in <code>Datasource manage</code>?</h3>
 <blockquote>
 <p>Because of the commercial license, we cannot directly use the driver of Oracle.</p>
 <p>If you want to add Oracle datasource, you can build a new image based on the <code>apache/dolphinscheduler</code> image as follows.</p>
@@ -513,7 +513,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <p>Add an Oracle datasource in <code>Datasource manage</code></p>
 </li>
 </ol>
-<h3>How to support Python 2 pip and custom requirements.txt?</h3>
+<h3>How to Support Python 2 pip and Custom requirements.txt?</h3>
 <ol>
 <li>Create a new <code>Dockerfile</code> to install pip:</li>
 </ol>
@@ -546,7 +546,7 @@ RUN apt-get update &amp;&amp; \
 <p>Verify pip under a new Python task</p>
 </li>
 </ol>
-<h3>How to support Python 3?</h3>
+<h3>How to Support Python 3?</h3>
 <ol>
 <li>Create a new <code>Dockerfile</code> to install Python 3:</li>
 </ol>
@@ -580,7 +580,7 @@ RUN apt-get update &amp;&amp; \
 <p>Verify Python 3 under a new Python task</p>
 </li>
 </ol>
-<h3>How to support Hadoop, Spark, Flink, Hive or DataX?</h3>
+<h3>How to Support Hadoop, Spark, Flink, Hive or DataX?</h3>
 <p>Take Spark 2.4.7 as an example:</p>
 <ol>
 <li>
@@ -629,7 +629,7 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </ol>
 <p>Spark on YARN (Deploy Mode is <code>cluster</code> or <code>client</code>) requires Hadoop support. Similar to Spark support, the operation of supporting Hadoop is almost the same as the previous steps</p>
 <p>Ensure that <code>$HADOOP_HOME</code> and <code>$HADOOP_CONF_DIR</code> exists</p>
-<h3>How to support Spark 3?</h3>
+<h3>How to Support Spark 3?</h3>
 <p>In fact, the way to submit applications with <code>spark-submit</code> is the same, regardless of Spark 1, 2 or 3. In other words, the semantics of <code>SPARK_HOME2</code> is the second <code>SPARK_HOME</code> instead of <code>SPARK2</code>'s <code>HOME</code>, so just set <code>SPARK_HOME2=/path/to/spark3</code></p>
 <p>Take Spark 3.1.1 as an example:</p>
 <ol>
@@ -662,7 +662,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <pre><code>$SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.12-3.1.1.jar
 </code></pre>
 <p>Check whether the task log contains the output like <code>Pi is roughly 3.146015</code></p>
-<h3>How to support shared storage between Master, Worker and Api server?</h3>
+<h3>How to Support Shared Storage between Master, Worker and Api server?</h3>
 <blockquote>
 <p><strong>Note</strong>: If it is deployed on a single machine by <code>docker-compose</code>, step 1 and 2 can be skipped directly, and execute the command like <code>docker cp hadoop-3.2.2.tar.gz docker-swarm_dolphinscheduler-worker_1:/opt/soft</code> to put Hadoop into the shared directory <code>/opt/soft</code> in the container</p>
 </blockquote>
@@ -688,7 +688,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <p>Ensure that <code>$HADOOP_HOME</code> and <code>$HADOOP_CONF_DIR</code> are correct</p>
 </li>
 </ol>
-<h3>How to support local file resource storage instead of HDFS and S3?</h3>
+<h3>How to Support Local File Resource Storage Instead of HDFS and S3?</h3>
 <blockquote>
 <p><strong>Note</strong>: If it is deployed on a single machine by <code>docker-compose</code>, step 2 can be skipped directly</p>
 </blockquote>
@@ -711,7 +711,7 @@ FS_DEFAULT_FS=file:///
       <span class="hljs-attr">o:</span> <span class="hljs-string">&quot;addr=10.40.0.199,nolock,soft,rw&quot;</span>
       <span class="hljs-attr">device:</span> <span class="hljs-string">&quot;:/path/to/resource/dir&quot;</span>
 </code></pre>
-<h3>How to support S3 resource storage like MinIO?</h3>
+<h3>How to Support S3 Resource Storage Like MinIO?</h3>
 <p>Take MinIO as an example: Modify the following environment variables in <code>config.env.sh</code></p>
 <pre><code>RESOURCE_STORAGE_TYPE=S3
 RESOURCE_UPLOAD_PATH=/dolphinscheduler
@@ -724,7 +724,7 @@ FS_S3A_SECRET_KEY=MINIO_SECRET_KEY
 <blockquote>
 <p><strong>Note</strong>: <code>MINIO_IP</code> can only use IP instead of the domain name, because DolphinScheduler currently doesn't support S3 path style access</p>
 </blockquote>
-<h3>How to configure SkyWalking?</h3>
+<h3>How to Configure SkyWalking?</h3>
 <p>Modify SkyWalking environment variables in <code>config.env.sh</code>:</p>
 <pre><code>SKYWALKING_ENABLE=true
 SW_AGENT_COLLECTOR_BACKEND_SERVICES=127.0.0.1:11800
@@ -759,10 +759,10 @@ SW_GRPC_LOG_SERVER_PORT=11800
 <p><strong>Note</strong>: You must specify it when starting a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>.</p>
 <h3>ZooKeeper</h3>
 <p><strong><code>ZOOKEEPER_QUORUM</code></strong></p>
-<p>This environment variable sets zookeeper quorum. The default value is <code>127.0.0.1:2181</code>.</p>
+<p>This environment variable sets ZooKeeper quorum. The default value is <code>127.0.0.1:2181</code>.</p>
 <p><strong>Note</strong>: You must specify it when starting a standalone dolphinscheduler server. Like <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>.</p>
 <p><strong><code>ZOOKEEPER_ROOT</code></strong></p>
-<p>This environment variable sets zookeeper root directory for dolphinscheduler. The default value is <code>/dolphinscheduler</code>.</p>
+<p>This environment variable sets ZooKeeper root directory for dolphinscheduler. The default value is <code>/dolphinscheduler</code>.</p>
 <h3>Common</h3>
 <p><strong><code>DOLPHINSCHEDULER_OPTS</code></strong></p>
 <p>This environment variable sets JVM options for dolphinscheduler, suitable for <code>master-server</code>, <code>worker-server</code>, <code>api-server</code>, <code>alert-server</code>. The default value is empty.</p>
@@ -896,7 +896,7 @@ SW_GRPC_LOG_SERVER_PORT=11800
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.2cb1845.js"></script>
+  <script src="/build/vendor.195c065.js"></script>
   <script src="/build/docs.md.fce1cc0.js"></script>
   <script>
     var _hmt = _hmt || [];
