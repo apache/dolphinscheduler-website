@@ -8,11 +8,11 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
 
 Cluster deployment uses the same scripts and configuration files as we deploy in [pseudo-cluster deployment](pseudo-cluster.md), so the prepare and required are the same as pseudo-cluster deployment. The difference is that [pseudo-cluster deployment](pseudo-cluster.md) is for one machine, while cluster deployment (Cluster) for multiple. and the steps of "Modify configuration" are quite different between pseudo-cluster deployment and cluster deployment.
 
-### Prepare && DolphinScheduler startup environment
+### Prepare and DolphinScheduler Startup Environment
 
-Because of cluster deployment for multiple machine, so you have to run you "Prepare" and "startup" in every machine in [pseudo-cluster.md](pseudo-cluster.md), except section "Configure machine SSH password-free login", "Start zookeeper", "Initialize the database", which is only for deployment or just need an single server
+Because of cluster deployment for multiple machine, so you have to run you "Prepare" and "startup" in every machine in [pseudo-cluster.md](pseudo-cluster.md), except section "Configure machine SSH password-free login", "Start ZooKeeper", "Initialize the database", which is only for deployment or just need an single server
 
-### Modify configuration
+### Modify Configuration
 
 This is a step that is quite different from [pseudo-cluster.md](pseudo-cluster.md), because the deployment script will transfer the resources required for installation machine to each deployment machine using `scp`. And we have to declare all machine we want to install DolphinScheduler and then run script `install.sh`. The configuration file is under the path `conf/config/install_config.conf`, here we only need to modify section **INSTALL MACHINE**, **DolphinScheduler ENV, Database, Registry Server** and keep other same as [pseudo-cluster deployment](pseudo-cluster .md), the following describes the parameters that must be modified
 
@@ -30,6 +30,10 @@ alertServer="ds4"
 apiServers="ds5"
 ```
 
-## Start DolphinScheduler && Login DolphinScheduler && Server Start And Stop
+## Start and Login DolphinScheduler
+
+Same as pseudo-cluster.md](pseudo-cluster.md)
+
+## Start and Stop Server
 
 Same as pseudo-cluster.md](pseudo-cluster.md)

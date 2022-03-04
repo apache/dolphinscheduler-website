@@ -7,7 +7,7 @@ If you want to use the resource upload function, you can select the local file d
 > * If the resource upload function is used, the deployment user in [installation and deployment](installation/standalone.md) must to have operation authority
 > * If you using Hadoop cluster with HA, you need to enable HDFS resource upload, and you need to copy the `core-site.xml` and `hdfs-site.xml` under the Hadoop cluster to `/opt/dolphinscheduler/conf`, otherwise Skip step
 
-## hdfs resource configuration
+## HDFS Resource Configuration
 
 - Upload resource files and udf functions, all uploaded files and resources will be stored on hdfs, so the following configuration items are required:
 
@@ -42,7 +42,7 @@ conf/common/hadoop.properties
 - Only one address needs to be configured for yarn.resourcemanager.ha.rm.ids and yarn.application.status.address, and the other address is empty.
 - You need to copy core-site.xml and hdfs-site.xml from the conf directory of the Hadoop cluster to the conf directory of the dolphinscheduler project, and restart the api-server service.
 
-## File management
+## File Management
 
 > It is the management of various resource files, including creating basic txt/log/sh/conf/py/java and other files, uploading jar packages and other types of files, and can do edit, rename, download, delete and other operations.
 
@@ -95,9 +95,9 @@ conf/common/hadoop.properties
     </p>
 
 
-## UDF management
+## UDF Management
 
-### Resource management
+### Resource Management
 
 > The resource management and file management functions are similar. The difference is that the resource management is the uploaded UDF function, and the file management uploads the user program, script and configuration file.
 > Operation function: rename, download, delete.
@@ -105,7 +105,7 @@ conf/common/hadoop.properties
 - Upload udf resources
   > Same as uploading files.
 
-### Function management
+### Function Management
 
 - Create UDF function
   > Click "Create UDF Function", enter the udf function parameters, select the udf resource, and click "Submit" to create the udf function.
@@ -120,13 +120,13 @@ conf/common/hadoop.properties
    <img src="/img/udf_edit_en.png" width="80%" />
  </p>
  
- ## Task group settings
+## Task Group Settings
 
 The task group is mainly used to control the concurrency of task instances, and is designed to control the pressure of other resources (it can also control the pressure of the Hadoop cluster, the cluster will have queue control it). When creating a new task definition, you can configure the corresponding task group and configure the priority of the task running in the task group. 
 
-### Task group configuration 
+### Task Group Configuration 
 
-#### Create task group 
+#### Create Task Group 
 
 <p align="center">
     <img src="/img/task_group_manage_eng.png" width="80%" />
@@ -146,7 +146,7 @@ You need to enter the information in the picture:
 
 [Resource pool size]: The maximum number of concurrent task instances allowed 
 
-#### View task group queue 
+#### View Task Group Queue 
 
 <p align="center">
     <img src="/img/task_group_conf_eng.png" width="80%" />
@@ -158,7 +158,7 @@ Click the button to view task group usage information
     <img src="/img/task_group_queue_list_eng.png" width="80%" />
 </p>
 
-#### Use of task groups 
+#### Use of Task Groups 
 
 Note: The use of task groups is applicable to tasks executed by workers, such as [switch] nodes, [condition] nodes, [sub_process] and other node types executed by the master are not controlled by the task group. Let's take the shell node as an example: 
 
@@ -173,13 +173,13 @@ Regarding the configuration of the task group, all you need to do is to configur
 
 [Priority] : When there is a waiting resource, the task with high priority will be distributed to the worker by the master first. The larger the value of this part, the higher the priority. 
 
-###  Implementation logic of task group 
+### Implementation Logic of Task Group 
 
-#### Get task group resources: 
+#### Get Task Group Resources: 
 
 The master judges whether the task is configured with a task group when distributing the task. If the task is not configured, it is normally thrown to the worker to run; if a task group is configured, it checks whether the remaining size of the task group resource pool meets the current task operation before throwing it to the worker for execution. , if the resource pool -1 is satisfied, continue to run; if not, exit the task distribution and wait for other tasks to wake up. 
 
-#### Release and wake up: 
+#### Release and Wake Up: 
 
 When the task that has obtained the task group resource ends, the task group resource will be released. After the release, it will check whether there is a task waiting in the current task group. If there is, mark the task with the best priority to run, and create a new executable event. . The event stores the task id that is marked to obtain the resource, and then obtains the task group resource and then runs it. 
 

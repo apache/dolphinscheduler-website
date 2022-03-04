@@ -4,7 +4,7 @@ If you need to use DingTalk for alerting, please create an alert instance in the
 
 ![dingtalk-plugin](/img/alert/dingtalk-plugin.png)
 
-parameter configuration
+## Parameter Configuration
 
 * Webhook
   > The format is as follows: https://oapi.dingtalk.com/robot/send?access_token=XXXXXX

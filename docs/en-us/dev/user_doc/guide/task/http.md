@@ -1,4 +1,3 @@
-
 # HTTP
 
 - Drag in the toolbar<img src="/img/http.png" width="35"/>The task node to the drawing board, as shown in the following figure:

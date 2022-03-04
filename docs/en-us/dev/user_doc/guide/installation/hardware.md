@@ -2,7 +2,7 @@
 
 DolphinScheduler, as an open-source distributed workflow task scheduling system, can be well deployed and run in Intel architecture server environments and mainstream virtualization environments, and supports mainstream Linux operating system environments.
 
-## 1. Linux Operating System Version Requirements
+## Linux Operating System Version Requirements
 
 | OS       | Version         |
 | :----------------------- | :----------: |
@@ -14,8 +14,10 @@ DolphinScheduler, as an open-source distributed workflow task scheduling system,
 > **Attention:**
 >The above Linux operating systems can run on physical servers and mainstream virtualization environments such as VMware, KVM, and XEN.
 
-## 2. Recommended Server Configuration
+## Recommended Server Configuration
+
 DolphinScheduler supports 64-bit hardware platforms with Intel x86-64 architecture. The following recommendation is made for server hardware configuration in a production environment:
+
 ### Production Environment
 
 | **CPU** | **MEM** | **HD** | **NIC** | **Num** |
@@ -27,7 +29,7 @@ DolphinScheduler supports 64-bit hardware platforms with Intel x86-64 architectu
 > - The hard disk size configuration is recommended by more than 50GB. The system disk and data disk are separated.
 
 
-## 3. Network Requirements
+## Network Requirements
 
 DolphinScheduler provides the following network port configurations for normal operation:
 
@@ -41,7 +43,7 @@ DolphinScheduler provides the following network port configurations for normal o
 > - MasterServer and WorkerServer do not need to enable communication between the networks. As long as the local ports do not conflict.
 > - Administrators can adjust relevant ports on the network side and host-side according to the deployment plan of DolphinScheduler components in the actual environment.
 
-## 4. Browser Requirements
+## Browser Requirements
 
 DolphinScheduler recommends Chrome and the latest browsers which using Chrome Kernel to access the front-end visual operator page.
 

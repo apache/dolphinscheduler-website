@@ -1,4 +1,4 @@
-# DEPENDENT
+# Dependent
 
 - Dependent nodes are **dependency check nodes**. For example, process A depends on the successful execution of process B yesterday, and the dependent node will check whether process B has a successful execution yesterday.
 

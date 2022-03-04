@@ -5,7 +5,7 @@ Generally, projects and processes are created through pages, but integration wit
 
 ## The Operation Steps of DS API Calls
 
-### Create a token
+### Create a Token
 1. Log in to the scheduling system, click "Security", then click "Token manage" on the left, and click "Create token" to create a token.
 
 <p align="center">
@@ -18,7 +18,7 @@ Generally, projects and processes are created through pages, but integration wit
    <img src="/img/create-token-en1.png" width="80%" />
  </p>
 
-### Use token
+### Use Token
 1. Open the API documentation page
     > Address：http://{api server ip}:12345/dolphinscheduler/doc.html?language=en_US&lang=en
 <p align="center">
@@ -36,7 +36,7 @@ Generally, projects and processes are created through pages, but integration wit
    <img src="/img/test-api.png" width="80%" />
  </p>  
 
-### Create a project
+### Create a Project
 Here is an example of creating a project named "wudl-flink-test"：
 <p align="center">
    <img src="/img/api/create_project1.png" width="80%" />
@@ -52,7 +52,9 @@ Here is an example of creating a project named "wudl-flink-test"：
 The returned msg information is "success", indicating that we have successfully created the project through API.
 
 If you are interested in the source code of the project, please continue to read the following：
-### Appendix：The source code of creating a project
+
+### Appendix：The Source Code of Creating a Project
+
 <p align="center">
    <img src="/img/api/create_source1.png" width="80%" />
  </p>
