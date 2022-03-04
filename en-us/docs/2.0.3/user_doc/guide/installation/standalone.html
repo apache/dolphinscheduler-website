@@ -14,7 +14,7 @@
 <p>Standalone only for quick look for DolphinScheduler.</p>
 <p>If you are a green hand and want to experience DolphinScheduler, we recommended you install follow <a href="standalone.md">Standalone</a>. If you want to experience more complete functions or schedule large tasks number, we recommended you install follow <a href="pseudo-cluster.md">pseudo-cluster deployment</a>. If you want to using DolphinScheduler in production, we recommended you follow <a href="cluster.md">cluster deployment</a> or <a href="kubernetes.md">kubernetes</a></p>
 <blockquote>
-<p><strong><em>Note:</em></strong> Standalone only recommends the use of less than 20 workflows, because it uses H2 Database, Zookeeper Testing Server, too many tasks may cause instability</p>
+<p><strong><em>Note:</em></strong> Standalone only recommends the use of less than 20 workflows, because it uses H2 Database, ZooKeeper Testing Server, too many tasks may cause instability</p>
 </blockquote>
 <h2>Prepare</h2>
 <ul>
@@ -22,7 +22,7 @@
 <li>Binary package: Download the DolphinScheduler binary package at <a href="https://dolphinscheduler.apache.org/en-us/download/download.html">download page</a></li>
 </ul>
 <h2>Start DolphinScheduler Standalone Server</h2>
-<h3>Extract and start DolphinScheduler</h3>
+<h3>Extract and Start DolphinScheduler</h3>
 <p>There is a standalone startup script in the binary compressed package, which can be quickly started after extract. Switch to a user with sudo permission and run the script</p>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> Extract and start Standalone Server</span>
 tar -xvzf apache-dolphinscheduler-*-bin.tar.gz
@@ -31,7 +31,7 @@ sh ./bin/dolphinscheduler-daemon.sh start standalone-server
 </code></pre>
 <h3>Login DolphinScheduler</h3>
 <p>The browser access address <a href="http://localhost:12345/dolphinscheduler">http://localhost:12345/dolphinscheduler</a> can login DolphinScheduler UI. The default username and password are <strong>admin/dolphinscheduler123</strong></p>
-<h2>start/stop server</h2>
+<h3>Start or Stop Server</h3>
 <p>The script <code>./bin/dolphinscheduler-daemon.sh</code> can not only quickly start standalone, but also stop the service operation. All the commands are as follows</p>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> Start Standalone Server</span>
 sh ./bin/dolphinscheduler-daemon.sh start standalone-server

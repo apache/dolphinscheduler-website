@@ -19,7 +19,7 @@
 <li><a href="https://kubernetes.io/">Kubernetes</a> 1.12+</li>
 <li>PV provisioner support in the underlying infrastructure</li>
 </ul>
-<h2>Installing the Chart</h2>
+<h2>Install the Chart</h2>
 <p>Please download the source code package apache-dolphinscheduler-2.0.3-src.tar.gz, download address: <a href="/en-us/download/download.html">download</a></p>
 <p>To install the chart with the release name <code>dolphinscheduler</code>, please execute the following commands:</p>
 <pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.3-src.tar.gz
@@ -60,7 +60,7 @@ NODE_PORT=$(kubectl get svc {{ template <span class="hljs-string">&quot;dolphins
 <p>And then access the web: http://<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi>O</mi><mi>D</mi><msub><mi>E</mi><mi>I</mi></msub><mi>P</mi><mo>:</mo></mrow><annotation encoding="application/x-tex">NODE_IP:</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mord mathit" style="margin-right:0.02778em;">D</span><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.07847em;">I</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mrel">:</span></span></span></span>NODE_PORT/dolphinscheduler</p>
 <p>The default username is <code>admin</code> and the default password is <code>dolphinscheduler123</code></p>
 <p>Please refer to the <code>Quick Start</code> in the chapter <a href="../quick-start.md">Quick Start</a> to explore how to use DolphinScheduler</p>
-<h2>Uninstalling the Chart</h2>
+<h2>Uninstall the Chart</h2>
 <p>To uninstall/delete the <code>dolphinscheduler</code> deployment:</p>
 <pre><code class="language-bash">$ helm uninstall dolphinscheduler
 </code></pre>
@@ -236,7 +236,7 @@ NODE_PORT=$(kubectl get svc {{ template <span class="hljs-string">&quot;dolphins
 </tbody>
 </table>
 <h2>FAQ</h2>
-<h3>How to view the logs of a pod container?</h3>
+<h3>How to View the Logs of a Pod Container?</h3>
 <p>List all pods (aka <code>po</code>):</p>
 <pre><code>kubectl get po
 kubectl get po -n test # with test namespace
@@ -246,7 +246,7 @@ kubectl get po -n test # with test namespace
 kubectl logs -f dolphinscheduler-master-0 # follow log output
 kubectl logs --tail 10 dolphinscheduler-master-0 -n test # show last 10 lines from the end of the logs
 </code></pre>
-<h3>How to scale api, master and worker on Kubernetes?</h3>
+<h3>How to Scale api, master and worker on Kubernetes?</h3>
 <p>List all deployments (aka <code>deploy</code>):</p>
 <pre><code>kubectl get deploy
 kubectl get deploy -n test # with test namespace
@@ -267,7 +267,7 @@ kubectl scale --replicas=2 sts dolphinscheduler-master -n test # with test names
 <pre><code>kubectl scale --replicas=6 sts dolphinscheduler-worker
 kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
 </code></pre>
-<h3>How to use MySQL as the DolphinScheduler's database instead of PostgreSQL?</h3>
+<h3>How to Use MySQL as the DolphinScheduler's Database Instead of PostgreSQL?</h3>
 <blockquote>
 <p>Because of the commercial license, we cannot directly use the driver of MySQL.</p>
 <p>If you want to use MySQL, you can build a new image based on the <code>apache/dolphinscheduler</code> image as follows.</p>
@@ -315,7 +315,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <ol start="8">
 <li>Run a DolphinScheduler release in Kubernetes (See <strong>Installing the Chart</strong>)</li>
 </ol>
-<h3>How to support MySQL datasource in <code>Datasource manage</code>?</h3>
+<h3>How to Support MySQL Datasource in <code>Datasource manage</code>?</h3>
 <blockquote>
 <p>Because of the commercial license, we cannot directly use the driver of MySQL.</p>
 <p>If you want to add MySQL datasource, you can build a new image based on the <code>apache/dolphinscheduler</code> image as follows.</p>
@@ -350,7 +350,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>Add a MySQL datasource in <code>Datasource manage</code></p>
 </li>
 </ol>
-<h3>How to support Oracle datasource in <code>Datasource manage</code>?</h3>
+<h3>How to Support Oracle Datasource in <code>Datasource manage</code>?</h3>
 <blockquote>
 <p>Because of the commercial license, we cannot directly use the driver of Oracle.</p>
 <p>If you want to add Oracle datasource, you can build a new image based on the <code>apache/dolphinscheduler</code> image as follows.</p>
@@ -385,7 +385,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <p>Add an Oracle datasource in <code>Datasource manage</code></p>
 </li>
 </ol>
-<h3>How to support Python 2 pip and custom requirements.txt?</h3>
+<h3>How to Support Python 2 pip and Custom requirements.txt?</h3>
 <ol>
 <li>Create a new <code>Dockerfile</code> to install pip:</li>
 </ol>
@@ -418,7 +418,7 @@ RUN apt-get update &amp;&amp; \
 <p>Verify pip under a new Python task</p>
 </li>
 </ol>
-<h3>How to support Python 3?</h3>
+<h3>How to Support Python 3?</h3>
 <ol>
 <li>Create a new <code>Dockerfile</code> to install Python 3:</li>
 </ol>
@@ -452,7 +452,7 @@ RUN apt-get update &amp;&amp; \
 <p>Verify Python 3 under a new Python task</p>
 </li>
 </ol>
-<h3>How to support Hadoop, Spark, Flink, Hive or DataX?</h3>
+<h3>How to Support Hadoop, Spark, Flink, Hive or DataX?</h3>
 <p>Take Spark 2.4.7 as an example:</p>
 <ol>
 <li>
@@ -506,7 +506,7 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </ol>
 <p>Spark on YARN (Deploy Mode is <code>cluster</code> or <code>client</code>) requires Hadoop support. Similar to Spark support, the operation of supporting Hadoop is almost the same as the previous steps</p>
 <p>Ensure that <code>$HADOOP_HOME</code> and <code>$HADOOP_CONF_DIR</code> exists</p>
-<h3>How to support Spark 3?</h3>
+<h3>How to Support Spark 3?</h3>
 <p>In fact, the way to submit applications with <code>spark-submit</code> is the same, regardless of Spark 1, 2 or 3. In other words, the semantics of <code>SPARK_HOME2</code> is the second <code>SPARK_HOME</code> instead of <code>SPARK2</code>'s <code>HOME</code>, so just set <code>SPARK_HOME2=/path/to/spark3</code></p>
 <p>Take Spark 3.1.1 as an example:</p>
 <ol>
@@ -544,7 +544,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <pre><code>$SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.12-3.1.1.jar
 </code></pre>
 <p>Check whether the task log contains the output like <code>Pi is roughly 3.146015</code></p>
-<h3>How to support shared storage between Master, Worker and Api server?</h3>
+<h3>How to Support Shared Storage Between Master, Worker and Api Server?</h3>
 <p>For example, Master, Worker and API server may use Hadoop at the same time</p>
 <ol>
 <li>Modify the following configurations in <code>values.yaml</code></li>
@@ -570,7 +570,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <p>Ensure that <code>$HADOOP_HOME</code> and <code>$HADOOP_CONF_DIR</code> are correct</p>
 </li>
 </ol>
-<h3>How to support local file resource storage instead of HDFS and S3?</h3>
+<h3>How to Support Local File Resource Storage Instead of HDFS and S3?</h3>
 <p>Modify the following configurations in <code>values.yaml</code></p>
 <pre><code class="language-yaml"><span class="hljs-attr">common:</span>
   <span class="hljs-attr">configmap:</span>
@@ -588,7 +588,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <blockquote>
 <p><strong>Note</strong>: <code>storageClassName</code> must support the access mode: <code>ReadWriteMany</code></p>
 </blockquote>
-<h3>How to support S3 resource storage like MinIO?</h3>
+<h3>How to Support S3 Resource Storage Like MinIO?</h3>
 <p>Take MinIO as an example: Modify the following configurations in <code>values.yaml</code></p>
 <pre><code class="language-yaml"><span class="hljs-attr">common:</span>
   <span class="hljs-attr">configmap:</span>
@@ -603,7 +603,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <blockquote>
 <p><strong>Note</strong>: <code>MINIO_IP</code> can only use IP instead of domain name, because DolphinScheduler currently doesn't support S3 path style access</p>
 </blockquote>
-<h3>How to configure SkyWalking?</h3>
+<h3>How to Configure SkyWalking?</h3>
 <p>Modify SKYWALKING configurations in <code>values.yaml</code>:</p>
 <pre><code class="language-yaml"><span class="hljs-attr">common:</span>
   <span class="hljs-attr">configmap:</span>
@@ -739,7 +739,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </tr>
 <tr>
 <td><code>zookeeper.enabled</code></td>
-<td>If not exists external Zookeeper, by default, the DolphinScheduler will use a internal Zookeeper</td>
+<td>If not exists external ZooKeeper, by default, the DolphinScheduler will use a internal Zookeeper</td>
 <td><code>true</code></td>
 </tr>
 <tr>
@@ -759,7 +759,7 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </tr>
 <tr>
 <td><code>zookeeper.persistence.storageClass</code></td>
-<td>Zookeeper data persistent volume storage class. If set to &quot;-&quot;, storageClassName: &quot;&quot;, which disables dynamic provisioning</td>
+<td>ZooKeeper data persistent volume storage class. If set to &quot;-&quot;, storageClassName: &quot;&quot;, which disables dynamic provisioning</td>
 <td><code>-</code></td>
 </tr>
 <tr>
@@ -769,12 +769,12 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </tr>
 <tr>
 <td><code>externalZookeeper.zookeeperQuorum</code></td>
-<td>If exists external Zookeeper, and set <code>zookeeper.enabled</code> value to false. Specify Zookeeper quorum</td>
+<td>If exists external ZooKeeper, and set <code>zookeeper.enabled</code> value to false. Specify Zookeeper quorum</td>
 <td><code>127.0.0.1:2181</code></td>
 </tr>
 <tr>
 <td><code>externalZookeeper.zookeeperRoot</code></td>
-<td>If exists external Zookeeper, and set <code>zookeeper.enabled</code> value to false. Specify dolphinscheduler root directory in Zookeeper</td>
+<td>If exists external ZooKeeper, and set <code>zookeeper.enabled</code> value to false. Specify dolphinscheduler root directory in Zookeeper</td>
 <td><code>/dolphinscheduler</code></td>
 </tr>
 <tr>

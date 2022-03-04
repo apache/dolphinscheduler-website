@@ -15,7 +15,7 @@
 <li>Only the administrator account in the security center has the authority to operate. It has functions such as queue management, tenant management, user management, alarm group management, worker group management, token management, etc. In the user management module, resources, data sources, projects, etc. Authorization</li>
 <li>Administrator login, default user name and password: admin/dolphinscheduler123</li>
 </ul>
-<h2>Create queue</h2>
+<h2>Create Queue</h2>
 <ul>
 <li>Queue is used when the &quot;queue&quot; parameter is needed to execute programs such as spark and mapreduce.</li>
 <li>The administrator enters the Security Center-&gt;Queue Management page and clicks the &quot;Create Queue&quot; button to create a queue.</li>
@@ -23,7 +23,7 @@
 <p align="center">
    <img src="/img/create-queue-en.png" width="80%" />
  </p>
-<h2>Add tenant</h2>
+<h2>Add Tenant</h2>
 <ul>
 <li>The tenant corresponds to the Linux user, which is used by the worker to submit the job. Task will fail if Linux does not exists this user. You can set the parameter <code>worker.tenant.auto.create</code> as <code>true</code> in configuration file <code>worker.properties</code>. After that DolphinScheduler would create user if not exists, The property <code>worker.tenant.auto.create=true</code> requests worker run <code>sudo</code> command without password.</li>
 <li>Tenant Code: <strong>Tenant Code is the only user on Linux and cannot be repeated</strong></li>
@@ -32,7 +32,7 @@
  <p align="center">
     <img src="/img/addtenant-en.png" width="80%" />
   </p>
-<h2>Create normal user</h2>
+<h2>Create Normal User</h2>
 <ul>
 <li>
 <p>Users are divided into <strong>administrator users</strong> and <strong>normal users</strong></p>
@@ -63,7 +63,7 @@
 <li>The administrator enters the Security Center-&gt;User Management page and clicks the &quot;Edit&quot; button. When editing user information, enter the new password to modify the user password.</li>
 <li>After a normal user logs in, click the user information in the user name drop-down box to enter the password modification page, enter the password and confirm the password and click the &quot;Edit&quot; button, then the password modification is successful.</li>
 </ul>
-<h2>Create alarm group</h2>
+<h2>Create Alarm Group</h2>
 <ul>
 <li>The alarm group is a parameter set at startup. After the process ends, the status of the process and other information will be sent to the alarm group in the form of email.</li>
 </ul>
@@ -74,7 +74,7 @@
   <img src="/img/mail-en.png" width="80%" />
 </li>
 </ul>
-<h2>Token management</h2>
+<h2>Token Management</h2>
 <blockquote>
 <p>Since the back-end interface has login check, token management provides a way to perform various operations on the system by calling the interface.</p>
 </blockquote>
@@ -145,7 +145,7 @@
 <ul>
 <li>Resources, data sources, and UDF function authorization are the same as project authorization.</li>
 </ul>
-<h2>Worker grouping</h2>
+<h2>Worker Grouping</h2>
 <p>Each worker node will belong to its own worker group, and the default group is &quot;default&quot;.</p>
 <p>When the task is executed, the task can be assigned to the specified worker group, and the task will be executed by the worker node in the group.</p>
 <blockquote>

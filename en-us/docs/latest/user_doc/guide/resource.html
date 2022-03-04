@@ -19,7 +19,7 @@
 <li>If you using Hadoop cluster with HA, you need to enable HDFS resource upload, and you need to copy the <code>core-site.xml</code> and <code>hdfs-site.xml</code> under the Hadoop cluster to <code>/opt/dolphinscheduler/conf</code>, otherwise Skip step</li>
 </ul>
 </blockquote>
-<h2>hdfs resource configuration</h2>
+<h2>HDFS Resource Configuration</h2>
 <ul>
 <li>Upload resource files and udf functions, all uploaded files and resources will be stored on hdfs, so the following configuration items are required:</li>
 </ul>
@@ -53,7 +53,7 @@ conf/common/hadoop.properties
 <li>Only one address needs to be configured for yarn.resourcemanager.ha.rm.ids and yarn.application.status.address, and the other address is empty.</li>
 <li>You need to copy core-site.xml and hdfs-site.xml from the conf directory of the Hadoop cluster to the conf directory of the dolphinscheduler project, and restart the api-server service.</li>
 </ul>
-<h2>File management</h2>
+<h2>File Management</h2>
 <blockquote>
 <p>It is the management of various resource files, including creating basic txt/log/sh/conf/py/java and other files, uploading jar packages and other types of files, and can do edit, rename, download, delete and other operations.</p>
 </blockquote>
@@ -107,8 +107,8 @@ conf/common/hadoop.properties
 </blockquote>
 </li>
 </ul>
-<h2>UDF management</h2>
-<h3>Resource management</h3>
+<h2>UDF Management</h2>
+<h3>Resource Management</h3>
 <blockquote>
 <p>The resource management and file management functions are similar. The difference is that the resource management is the uploaded UDF function, and the file management uploads the user program, script and configuration file.
 Operation function: rename, download, delete.</p>
@@ -120,7 +120,7 @@ Operation function: rename, download, delete.</p>
 </blockquote>
 </li>
 </ul>
-<h3>Function management</h3>
+<h3>Function Management</h3>
 <ul>
 <li>Create UDF function
 <blockquote>
