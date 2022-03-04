@@ -1,5 +1,7 @@
 # Enterprise WeChat
 
+## How to Create Enterprise WeChat Alert
+
 If you need to use Enterprise WeChat to alert, please create an alarm Instance in warning instance manage, and then choose the wechat plugin. The configuration example of enterprise WeChat is as follows
 
 ![enterprise-wechat-plugin](/img/alert/enterprise-wechat-plugin.png)

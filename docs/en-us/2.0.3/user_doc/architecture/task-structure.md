@@ -1,5 +1,7 @@
+# Task Structure
 
-# Overall Tasks Storage Structure
+## Overall Tasks Storage Structure
+
 All tasks created in DolphinScheduler are saved in the t_ds_process_definition table.
 
 The following shows the 't_ds_process_definition' table structure:
@@ -55,9 +57,10 @@ Data example:
 }
 ```
 
-# The Detailed Explanation of The Storage Structure of Each Task Type
+## The Detailed Explanation of The Storage Structure of Each Task Type
 
-## Shell Nodes
+### Shell Nodes
+
 **The node data structure is as follows:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -80,7 +83,6 @@ No.|parameter name||type|description |notes
 17| taskInstancePriority| |String|task priority | |
 18|workerGroup | |String |Worker group| |
 19|preTasks | |Array|preposition tasks | |
-
 
 **Node data example:**
 
@@ -131,8 +133,8 @@ No.|parameter name||type|description |notes
 
 ```
 
+### SQL Node
 
-## SQL Node
 Perform data query and update operations on the specified datasource through SQL.
 
 **The node data structure is as follows:**
@@ -167,7 +169,6 @@ No.|parameter name||type|description |note
 27| taskInstancePriority| |String|task priority | |
 28|workerGroup | |String |Worker group| |
 29|preTasks | |Array|preposition tasks | |
-
 
 **Node data example:**
 
@@ -230,12 +231,11 @@ No.|parameter name||type|description |note
 }
 ```
 
-
-## PROCEDURE [stored procedures] Node
+### Procedure [stored procedures] Node
 **The node data structure is as follows:**
 **Node data example:**
 
-## SPARK Node
+### Spark Node
 **The node data structure is as follows:**
 
 No.|parameter name||type|description |notes
@@ -270,7 +270,6 @@ No.|parameter name||type|description |notes
 28| taskInstancePriority| |String|task priority | |
 29|workerGroup | |String |Worker group| |
 30|preTasks | |Array|preposition tasks| |
-
 
 **Node data example:**
 
@@ -333,9 +332,8 @@ No.|parameter name||type|description |notes
 }
 ```
 
+### MapReduce(MR) Node
 
-
-## MapReduce(MR) Node
 **The node data structure is as follows:**
 
 No.|parameter name||type|description |notes
@@ -363,8 +361,6 @@ No.|parameter name||type|description |notes
 21| taskInstancePriority| |String|task priority| |
 22|workerGroup | |String |Worker group| |
 23|preTasks | |Array|preposition tasks| |
-
-
 
 **Node data example:**
 
@@ -420,8 +416,8 @@ No.|parameter name||type|description |notes
 }
 ```
 
+### Python Node
 
-## Python Node
 **The node data structure is as follows:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -444,7 +440,6 @@ No.|parameter name||type|description |notes
 17| taskInstancePriority| |String|task priority | |
 18|workerGroup | |String |Worker group| |
 19|preTasks | |Array|preposition tasks| |
-
 
 **Node data example:**
 
@@ -494,10 +489,8 @@ No.|parameter name||type|description |notes
 }
 ```
 
+### Flink Node
 
-
-
-## Flink Node
 **The node data structure is as follows:**
 
 No.|parameter name||type|description |notes
@@ -530,7 +523,6 @@ No.|parameter name||type|description |notes
 26| taskInstancePriority| |String|task priority| |
 27|workerGroup | |String |Worker group| |
 38|preTasks | |Array|preposition tasks| |
-
 
 **Node data example:**
 
@@ -592,7 +584,8 @@ No.|parameter name||type|description |notes
 }
 ```
 
-## HTTP Node
+### HTTP Node
+
 **The node data structure is as follows:**
 
 No.|parameter name||type|description |notes
@@ -619,7 +612,6 @@ No.|parameter name||type|description |notes
 20| taskInstancePriority| |String|task priority| |
 21|workerGroup | |String |Worker group| |
 22|preTasks | |Array|preposition tasks| |
-
 
 **Node data example:**
 
@@ -677,9 +669,8 @@ No.|parameter name||type|description |notes
 }
 ```
 
+### DataX Node
 
-
-## DataX Node
 **The node data structure is as follows:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -713,10 +704,7 @@ No.|parameter name||type|description |notes
 28|workerGroup | |String |Worker group| |
 29|preTasks | |Array|preposition tasks| |
 
-
-
 **Node data example:**
-
 
 ```bash
 {
@@ -768,7 +756,8 @@ No.|parameter name||type|description |notes
 }
 ```
 
-## Sqoop Node
+### Sqoop Node
+
 **The node data structure is as follows:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -795,9 +784,6 @@ No.|parameter name||type|description |notes
 21| taskInstancePriority| |String|task priority| |
 22|workerGroup | |String |Worker group| |
 23|preTasks | |Array|preposition tasks| |
-
-
-
 
 **Node data example:**
 
@@ -845,7 +831,8 @@ No.|parameter name||type|description |notes
         }
 ```
 
-## Condition Branch Node
+### Condition Branch Node
+
 **The node data structure is as follows:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -865,7 +852,6 @@ No.|parameter name||type|description |notes
 14| taskInstancePriority| |String|task priority | |
 15|workerGroup | |String |Worker group| |
 16|preTasks | |Array|preposition tasks| |
-
 
 **Node data example:**
 
@@ -909,8 +895,8 @@ No.|parameter name||type|description |notes
 }
 ```
 
+### Subprocess Node
 
-## Subprocess Node
 **The node data structure is as follows:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -931,7 +917,6 @@ No.|parameter name||type|description |notes
 15| taskInstancePriority| |String|task priority| |
 16|workerGroup | |String |Worker group| |
 17|preTasks | |Array|preposition tasks| |
-
 
 **Node data example:**
 
@@ -969,9 +954,8 @@ No.|parameter name||type|description |notes
         }
 ```
 
+### Dependent Node
 
-
-## DEPENDENT Node
 **The node data structure is as follows:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -996,7 +980,6 @@ No.|parameter name||type|description |notes
 19| taskInstancePriority| |String|task priority| |
 20|workerGroup | |String |Worker group| |
 21|preTasks | |Array|preposition tasks| |
-
 
 **Node data example:**
 

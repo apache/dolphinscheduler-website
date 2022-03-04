@@ -1,4 +1,6 @@
-## How to create alert plugins and alert groups
+# Alert Component User Guide
+
+## How to Create Alert Plugins and Alert Groups
 
 In version 2.0.3, users need to create alert instances, and then associate them with alert groups, and an alert group can use multiple alert instances, and we will notify them one by one.
 

@@ -4,7 +4,7 @@ Standalone only for quick look for DolphinScheduler.
 
 If you are a green hand and want to experience DolphinScheduler, we recommended you install follow [Standalone](standalone.md). If you want to experience more complete functions or schedule large tasks number, we recommended you install follow [pseudo-cluster deployment](pseudo-cluster.md). If you want to using DolphinScheduler in production, we recommended you follow [cluster deployment](cluster.md) or [kubernetes](kubernetes.md)
 
-> **_Note:_** Standalone only recommends the use of less than 20 workflows, because it uses H2 Database, Zookeeper Testing Server, too many tasks may cause instability
+> **_Note:_** Standalone only recommends the use of less than 20 workflows, because it uses H2 Database, ZooKeeper Testing Server, too many tasks may cause instability
 
 ## Prepare
 
@@ -13,7 +13,7 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
 
 ## Start DolphinScheduler Standalone Server
 
-### Extract and start DolphinScheduler
+### Extract and Start DolphinScheduler
 
 There is a standalone startup script in the binary compressed package, which can be quickly started after extract. Switch to a user with sudo permission and run the script
 
@@ -28,7 +28,7 @@ sh ./bin/dolphinscheduler-daemon.sh start standalone-server
 
 The browser access address http://localhost:12345/dolphinscheduler can login DolphinScheduler UI. The default username and password are **admin/dolphinscheduler123**
 
-## start/stop server
+### Start or Stop Server
 
 The script `./bin/dolphinscheduler-daemon.sh` can not only quickly start standalone, but also stop the service operation. All the commands are as follows
 
