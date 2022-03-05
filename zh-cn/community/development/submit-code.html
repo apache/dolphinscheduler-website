@@ -65,10 +65,16 @@
 git push --set-upstream origin dev-1.0
 </code></pre>
 <ul>
+<li>新建分支</li>
+</ul>
+<pre><code>git checkout -b xxx origin/dev
+</code></pre>
+<p>确保分支<code>xxx</code>是基于官方dev分支的最新代码</p>
+<ul>
 <li>
-<p>在本地修改代码以后，提交到自己仓库：</p>
+<p>在新建的分支上本地修改代码以后，提交到自己仓库：</p>
 <p><code>git commit -m 'commit content'</code></p>
-<p><code>git push</code></p>
+<p><code>git push origin xxx --set-upstream</code></p>
 </li>
 <li>
 <p>将修改提交到远端仓库</p>

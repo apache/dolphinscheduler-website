@@ -57,10 +57,16 @@ git merge --no-ff upstream/dev
 git push --set-upstream origin dev-1.0
 </code></pre>
 <ul>
-<li>After modifying the code locally, submit it to your own repository:</li>
+<li>Create new branch</li>
+</ul>
+<pre><code>git checkout -b xxx origin/dev
+</code></pre>
+<p>Make sure that the branch <code>xxx</code> is building successfully on the latest code of the official dev branch</p>
+<ul>
+<li>After modifying the code locally in the new branch, submit it to your own repository:</li>
 </ul>
 <p><code>git commit -m 'commit content'</code></p>
-<p><code>git push</code></p>
+<p><code>git push origin xxx --set-upstream</code></p>
 <ul>
 <li>
 <p>Submit changes to the remote repository</p>
