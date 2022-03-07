@@ -8,16 +8,14 @@ Today, Apache DolphinScheduler announced the official release of version 2.0.5. 
 
 ### Worker fault tolerance process
 
-Version 2.0.5 optimizes the worker's fault tolerance proc
-
-ess so that when the server is interrupted due to excessive pressure, it can normally transfer tasks to other workers to continue execution to avoid task interruption.
+Version 2.0.5 optimizes the worker's fault tolerance process so that when the server is interrupted due to excessive pressure, it can normally transfer tasks to other workers to continue execution to avoid task interruption.
 
 ### Forbid to run task page sign optimization
 
 Optimized the display of flags on pages where tasks are prohibited from running, which distinguishes from the display of tasks that are normally executed, to prevent users from confusing work status.
 
 <div align=center>
-<img src="/img/2022-3-7/2.png/>
+<img src="/img/2022-3-7/2.png"/>
 </div>
 
 ### Added prompts to the task box
@@ -48,7 +46,7 @@ Adds the Markdown information type to the alarm content of the DingTalk alarm pl
 
 [[#8135](https://github.com/apache/dolphinscheduler/issues/8135)] JDBC connection parameter cannot input '@'
 
-[[#8367](https://github.com/apache/dolphinscheduler/issues/8367)] Complement may not end normally
+[[#8367](https://github.com/apache/dolphinscheduler/issues/8367)] Fixed complement may not end normally
 
 [[#8170](https://github.com/apache/dolphinscheduler/issues/8170)] Fix the problem of failing to enter the sub-workflow from the page
 
