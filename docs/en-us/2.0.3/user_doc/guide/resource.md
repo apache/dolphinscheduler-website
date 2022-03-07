@@ -7,7 +7,7 @@ If you want to use the resource upload function, you can select the local file d
 > * If the resource upload function is used, the deployment user in [installation and deployment](installation/standalone.md) must to have operation authority
 > * If you using Hadoop cluster with HA, you need to enable HDFS resource upload, and you need to copy the `core-site.xml` and `hdfs-site.xml` under the Hadoop cluster to `/opt/dolphinscheduler/conf`, otherwise Skip step
 
-## hdfs resource configuration
+## HDFS Resource Configuration
 
 - Upload resource files and udf functions, all uploaded files and resources will be stored on hdfs, so the following configuration items are required:
 
@@ -42,7 +42,7 @@ conf/common/hadoop.properties
 - Only one address needs to be configured for yarn.resourcemanager.ha.rm.ids and yarn.application.status.address, and the other address is empty.
 - You need to copy core-site.xml and hdfs-site.xml from the conf directory of the Hadoop cluster to the conf directory of the dolphinscheduler project, and restart the api-server service.
 
-## File management
+## File Management
 
 > It is the management of various resource files, including creating basic txt/log/sh/conf/py/java and other files, uploading jar packages and other types of files, and can do edit, rename, download, delete and other operations.
 
@@ -86,9 +86,9 @@ conf/common/hadoop.properties
 - delete
   > File list -> Click the "Delete" button to delete the specified file
 
-## UDF management
+## UDF Management
 
-### Resource management
+### Resource Management
 
 > The resource management and file management functions are similar. The difference is that the resource management is the uploaded UDF function, and the file management uploads the user program, script and configuration file.
 > Operation function: rename, download, delete.
@@ -96,7 +96,7 @@ conf/common/hadoop.properties
 - Upload udf resources
   > Same as uploading files.
 
-### Function management
+### Function Management
 
 - Create UDF function
   > Click "Create UDF Function", enter the udf function parameters, select the udf resource, and click "Submit" to create the udf function.
