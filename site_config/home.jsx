@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/2022-3-7/1.png',
+          title: 'Apache DolphinScheduler 2.0.5 发布，Worker 容错流程优化',
+          content: '今天，Apache DolphinScheduler 宣布 2.0.5 版本正式发布。..',
+          dateStr: '2022-3-7',
+          link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.5.html',
+        },
+        {
           img: '/img/2022-02-22/1.jpeg',
           title: 'Apache DolphinScheduler在Kubernetes体系中的技术实战',
           content: '基于笔者所在公司业务的特性，阐述我们使用 Kubernetes 作为Apache DolphinScheduler的技术底座的原因： ...',
@@ -67,13 +74,6 @@ export default {
           content: '各位关注 Apache DolphinScheduler 的小伙伴们大家好呀！相信大家都已经从热闹的春节里...',
           dateStr: '2022-2-18',
           link: '/zh-cn/blog/Meetup_2022_02_26.html',
-        },
-        {
-          img: '/img/2.0.3/2022-1-27/1.png',
-          title: 'Apache DolphinScheduler 2.0.3 发布，支持钉钉告警签名校验，数据源可从多个会话获取链接',
-          content: '今天，Apache DolphinScheduler 宣布 2.0.3 版本正式发布。..',
-          dateStr: '2022-1-27',
-          link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.3.html',
         },
       ],
     },
@@ -547,7 +547,13 @@ export default {
       title: 'Events & News',
       list: [
         {
-
+          img: '/img/2022-3-7/1.png',
+          title: 'Release News! Apache DolphinScheduler 2_0_5 optimizes The Fault Tolerance Process of Worker',
+          content: 'Today, Apache DolphinScheduler announced the official release of version 2.0.5....',
+          dateStr: '2022-3-7',
+          link: '/en-us/blog/Apache_dolphinScheduler_2.0.5.html',
+        },
+        {
           img: '/img/2022-02-24/1.jpeg',
           title: 'Technical Practice of Apache DolphinScheduler in Kubernetes System',
           content: 'Kubernetes is a cluster system based on container technology....',
@@ -561,14 +567,6 @@ export default {
           dateStr: '2022-2-18',
           link: '/en-us/blog/Meetup_2022_02_26.html',
         },
-        {
-          img: '/img/2.0.3/2022-1-2701/1.png',
-          title: 'Apache DolphinScheduler 2.0.3 Release Announcement: DingTalk alert plugin adds signature verification, and supports data sources to obtain links from multiple sessions\n',
-          content: 'Today, Apache DolphinScheduler announced the official release of version 2.0.3. In this version...',
-          dateStr: '2022-1-27',
-          link: '/en-us/blog/Apache_dolphinScheduler_2.0.3.html',
-        },
-
       ],
     },
     userreview: {
