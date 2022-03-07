@@ -1,4 +1,4 @@
-#Apache DolphinScheduler 2.0.5 发布，Worker 容错流程优化
+# Apache DolphinScheduler 2.0.5 发布，Worker 容错流程优化
 
 <div align=center>
 <img src="/img/2022-3-7/1.png"/>
@@ -47,15 +47,15 @@
 
 ## Bug 修复
 
-[8213]修复了当 worker 分组包含大写字母时，任务运行错误的问题；
+[[#8213](https://github.com/apache/dolphinscheduler/issues/8213)] 修复了当 worker 分组包含大写字母时，任务运行错误的问题；
 
-[8347]修复了当任务失败重试时，工作流不能被停止的问题；
+[[#8347](https://github.com/apache/dolphinscheduler/pull/8347)] 修复了当任务失败重试时，工作流不能被停止的问题；
 
-[8135] 修复了 jdbc 连接参数不能输入‘@’的问题；
+[[#8135](https://github.com/apache/dolphinscheduler/issues/8135)] 修复了 jdbc 连接参数不能输入‘@’的问题；
 
-[8367] 修复了补数时可能不会正常结束的问题；
+[[#8367](https://github.com/apache/dolphinscheduler/issues/8367)]  修复了补数时可能不会正常结束的问题；
 
-[8170] 修复了从页面上不能进入子工作流的问题。
+[[#8170](https://github.com/apache/dolphinscheduler/issues/8170)]  修复了从页面上不能进入子工作流的问题。
 
 **2.0.5 下载地址**：
 

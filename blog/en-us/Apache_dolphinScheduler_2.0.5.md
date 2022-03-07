@@ -1,3 +1,8 @@
+---
+title:Release News! Apache DolphinScheduler 2_0_5 optimizes The Fault Tolerance Process of Worker
+keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup
+description: Today, Apache DolphinScheduler announced the official release of version 2.0.5.
+---
 <div align=center>
 <img src="/img/2022-3-7/1.png"/>
 </div>
