@@ -2,16 +2,16 @@
 
 ## Overall Tasks Storage Structure
 
-All tasks created in DolphinScheduler are saved in the t_ds_process_definition table.
+All tasks in DolphinScheduler are saved in the `t_ds_process_definition` table.
 
-The following shows the 't_ds_process_definition' table structure:
+The following shows the `t_ds_process_definition` table structure:
 
 No. | field  | type  |  description
 -------- | ---------| -------- | ---------
 1|id|int(11)|primary key
 2|name|varchar(255)|process definition name
 3|version|int(11)|process definition version
-4|release_state|tinyint(4)|release status of process definition: 0 not online, 1 online
+4|release_state|tinyint(4)|release status of process definition: 0 not released, 1 released
 5|project_id|int(11)|project id
 6|user_id|int(11)|user id of the process definition
 7|process_definition_json|longtext|process definition JSON
@@ -26,10 +26,10 @@ No. | field  | type  |  description
 16|timeout|int(11) |timeout
 17|tenant_id|int(11) |tenant id
 18|update_time|datetime|update time
-19|modify_by|varchar(36)|specifics of the user that made the modification
+19|modify_by|varchar(36)|specify the user that made the modification
 20|resource_ids|varchar(255)|resource ids
 
-The 'process_definition_json' field is the core field, which defines the task information in the DAG diagram, and it is stored in JSON format.
+The `process_definition_json` field is the core field, which defines the task information in the DAG diagram, and it is stored in JSON format.
 
 The following table describes the common data structure.
 No. | field  | type  |  description
@@ -64,9 +64,9 @@ Data example:
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task Id|
-2|type ||String |task type |SHELL
+2|type | |String |task type |SHELL
 3| name| |String|task name |
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| |rawScript |String| Shell script |
 6| | localParams| Array|customized local parameters||
 7| | resourceList| Array|resource files||
@@ -141,7 +141,7 @@ No.|parameter name||type|description |note
 1|id | |String|task id|
 2|type ||String |task type |SQL
 3| name| |String|task name|
-4| params| |Object|customized parameters|Json format
+4| params| |Object|customized parameters|JSON format
 5| |type |String |database type
 6| |datasource |Int |datasource id
 7| |sql |String |query SQL statement
@@ -150,10 +150,10 @@ No.|parameter name||type|description |note
 10| |title |String | mail title
 11| |receivers |String |receivers
 12| |receiversCc |String |CC receivers
-13| |showType | String|display type of mail|optionals: TABLE or ATTACHMENT
+13| |showType | String|display type of mail|options: TABLE or ATTACHMENT
 14| |connParams | String|connect parameters
 15| |preStatements | Array|preposition SQL statements
-16| | postStatements| Array|postposition SQL statements||
+16| | postStatements| Array|post-position SQL statements||
 17| | localParams| Array|customized parameters||
 18|description | |String|description | |
 19|runFlag | |String |execution flag| |
@@ -243,7 +243,7 @@ No.|parameter name||type|description |notes
 1|id | |String| task Id|
 2|type ||String |task type |SPARK
 3| name| |String|task name |
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| |mainClass |String | main class
 6| |mainArgs | String| execution arguments
 7| |others | String| other arguments
@@ -341,7 +341,7 @@ No.|parameter name||type|description |notes
 1|id | |String| task Id|
 2|type ||String |task type |MR
 3| name| |String|task name |
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| |mainClass |String | main class
 6| |mainArgs | String|execution arguments
 7| |others | String|other arguments
@@ -424,7 +424,7 @@ No.|parameter name||type|description |notes
 1|id | |String|  task Id|
 2|type ||String |task type|PYTHON
 3| name| |String|task name|
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| |rawScript |String| Python script|
 6| | localParams| Array|customized local parameters||
 7| | resourceList| Array|resource files||
@@ -498,7 +498,7 @@ No.|parameter name||type|description |notes
 1|id | |String|task Id|
 2|type ||String |task type|FLINK
 3| name| |String|task name|
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| |mainClass |String |main class
 6| |mainArgs | String|execution arguments
 7| |others | String|other arguments
@@ -593,7 +593,7 @@ No.|parameter name||type|description |notes
 1|id | |String|task Id|
 2|type ||String |task type|HTTP
 3| name| |String|task name|
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| |url |String |request url
 6| |httpMethod | String|http method|GET,POST,HEAD,PUT,DELETE
 7| | httpParams| Array|http parameters
@@ -677,7 +677,7 @@ No.|parameter name||type|description |notes
 1|id | |String| task Id|
 2|type ||String |task type|DATAX
 3| name| |String|task name|
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| |customConfig |Int |specify whether use customized config| 0 none customized, 1 customized
 6| |dsType |String | datasource type
 7| |dataSource |Int | datasource ID
@@ -688,7 +688,7 @@ No.|parameter name||type|description |notes
 12| |jobSpeedByte |Int |job speed limiting(bytes)
 13| |jobSpeedRecord | Int|job speed limiting(records)
 14| |preStatements | Array|preposition SQL
-15| | postStatements| Array|postposition SQL
+15| | postStatements| Array|post-position SQL
 16| | json| String|customized configs|valid if customConfig=1
 17| | localParams| Array|customized parameters|valid if customConfig=1
 18|description | |String|description| |
@@ -764,7 +764,7 @@ No.|parameter name||type|description |notes
 1|id | |String|task ID|
 2|type ||String |task type|SQOOP
 3| name| |String|task name|
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| | concurrency| Int|concurrency rate
 6| | modelType|String |flow direction|import,export
 7| |sourceType|String |datasource type|
@@ -903,7 +903,7 @@ No.|parameter name||type|description |notes
 1|id | |String| task ID|
 2|type ||String |task type|SHELL
 3| name| |String|task name|
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| |processDefinitionId |Int| process definition ID
 6|description | |String|description | |
 7|runFlag | |String |execution flag| |
@@ -962,7 +962,7 @@ No.|parameter name||type|description |notes
 1|id | |String| task ID|
 2|type ||String |task type|DEPENDENT
 3| name| |String|task name|
-4| params| |Object|customized parameters |Json format
+4| params| |Object|customized parameters |JSON format
 5| |rawScript |String|Shell script|
 6| | localParams| Array|customized local parameters||
 7| | resourceList| Array|resource files||
