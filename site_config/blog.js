@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Release News! Apache DolphinScheduler 2_0_5 optimizes The Fault Tolerance Process of Worker',
+                author: 'Debra Chen',
+                dateStr: '2022-3-7',
+                desc: 'Today, Apache DolphinScheduler announced the official release of version 2.0.5. ',
+                link: '/en-us/blog/Apache_dolphinScheduler_2.0.5.html',
+            },
+            {
                 title: 'Technical Practice of Apache DolphinScheduler in Kubernetes System',
                 author: 'Debra Chen',
                 dateStr: '2022-2-24',
@@ -138,6 +145,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: 'Apache DolphinScheduler 2_0_5 发布，Worker 容错流程优化',
+                author: 'Debra Chen',
+                dateStr: '2022-3-7',
+                desc: '今天，Apache DolphinScheduler 宣布 2.0.5 版本正式发布。',
+                link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.5.html',
+            },
             {
                 title: 'Apache DolphinScheduler 在 Kubernetes 体系中的技术实战',
                 author: 'Debra Chen',
