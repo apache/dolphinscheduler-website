@@ -446,14 +446,7 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION
 
 2.在Apache Staging仓库找到DolphinScheduler并点击`Release`
 
-3.更新下载页面
-
-```
-https://dolphinscheduler.apache.org/en-us/download/download.html
-https://dolphinscheduler.apache.org/zh-cn/download/download.html
-```
-
-4.发送邮件到`dev@dolphinscheduler.apache.org`通知完成版本发布。
+3.发送邮件到`dev@dolphinscheduler.apache.org`通知完成版本发布。
 
 通知邮件模板：
 
