@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup">
+  <meta name="description" content="Today, Apache DolphinScheduler announced the official release of version 2.0.5.">
+  <title>Release News! Apache DolphinScheduler 2_0_5 optimizes The Fault Tolerance Process of Worker</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/build/vendor.23870e5.css">
+  <link rel="stylesheet" href="/build/blog.md.055b3f1.css">
+</head>
+<body>
+  <div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-dark"><div class="header-body"><span class="mobile-menu-btn mobile-menu-btn-dark"></span><a href="/en-us/index.html"><img class="logo" src="/img/hlogo_white.svg"/></a><div class="search search-dark"><span class="icon-search"></span></div><span class="language-switch language-switch-dark">中</span><div class="header-menu"><div><ul class="ant-menu whiteClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/download/download.html" target="_self">DOWNLOAD</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item ant-menu-item-selected" role="menuitem"><a href="/en-us/blog/index.html" target="_self">BLOG</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/community/team.html" target="_self">COMMUNITY</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="https://www.apache.org/" target="_blank">ASF</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/user/index.html" target="_self">USER</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div><div class="mobile-menu"><div class="mobile-menu-content"><div class="mobile-menu-list"><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/index.html" target="_self">HOME</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">latest(2.0.5)</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/1.3.9/user_doc/quick-start.html" target="_self">1.3.9</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/release/history-versions.html" target="_self">Older Versions</a></div><div class="mobile-sub-menu-item"><a href="/python/index.html" target="_self">PyDolphinScheduler</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/dev/user_doc/guide/quick-start.html" target="_self">dev</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/download/download.html" target="_self">DOWNLOAD</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/blog/index.html" target="_self">BLOG</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/community/team.html" target="_self">COMMUNITY</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="https://www.apache.org/" target="_blank">ASF</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="https://www.apache.org/" target="_blank">Foundation</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/licenses/" target="_blank">License</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/security/" target="_blank">Security</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/user/index.html" target="_self">USER</a></div></div></div><div class="mobile-menu-dummy"></div></div></div></header><section class="blog-content markdown-body"><div align=center>
+<img src="/img/2022-3-7/1.png"/>
+</div>
+<p>Today, Apache DolphinScheduler announced the official release of version 2.0.5. This version has carried out some functional optimizations, such as optimizing the fault tolerance process of Worker, adding the function of re-uploading files in the resource center, and making several bug fixes.</p>
+<h2>Optimization</h2>
+<h3>Worker fault tolerance process</h3>
+<p>Version 2.0.5 optimizes the worker's fault tolerance process so that when the server is interrupted due to excessive pressure, it can normally transfer tasks to other workers to continue execution to avoid task interruption.</p>
+<h3>Forbid to run task page sign optimization</h3>
+<p>Optimized the display of flags on pages where tasks are prohibited from running, which distinguishes from the display of tasks that are normally executed, to prevent users from confusing work status.</p>
+<div align=center>
+<img src="/img/2022-3-7/2.png"/>
+</div>
+<h3>Added prompts to the task box</h3>
+<p>In version 2.0.5, a prompt is added to the task box to display all the long task names, which is convenient for users.</p>
+<div align=center>
+<img src="/img/2022-3-7/3.png"/>
+</div>
+<h3>Added the re-uploading files function in the resource center</h3>
+<p>The function of re-uploading files has been added to the resource center. When the user needs to modify the execution, automatical updating of the execution script can be realized without the requirement to reconfigure the task parameters.</p>
+<h3>Jump to the list page directly when modifying the workflow</h3>
+<p>Changed the status that the page remained on the DAG page after modifying the workflow. After optimization, it can jump to the list page, which is convenient for users to follow-up operations.</p>
+<h3>Markdown information type added to DingTalk alert plugin</h3>
+<p>Adds the Markdown information type to the alarm content of the DingTalk alarm plugin to enrich the information type support.</p>
+<h2>Bug Fix</h2>
+<p>[<a href="https://github.com/apache/dolphinscheduler/issues/8213">#8213</a>] The task run incorrectly when the worker group contains uppercase letters.</p>
+<p>[<a href="https://github.com/apache/dolphinscheduler/pull/8347">#8347</a>] Fixed the problem of workflow cannot be stopped when the task fails and retries</p>
+<p>[<a href="https://github.com/apache/dolphinscheduler/issues/8135">#8135</a>] JDBC connection parameter cannot input '@'</p>
+<p>[<a href="https://github.com/apache/dolphinscheduler/issues/8367">#8367</a>] Fixed complement may not end normally</p>
+<p>[<a href="https://github.com/apache/dolphinscheduler/issues/8170">#8170</a>] Fix the problem of failing to enter the sub-workflow from the page</p>
+<p>2.0.5 Download address:</p>
+<p><a href="https://dolphinscheduler.apache.org/en-us/download/download.html">https://dolphinscheduler.apache.org/en-us/download/download.html</a></p>
+<p>Release Note: <a href="https://github.com/apache/dolphinscheduler/releases/tag/2.0.5">https://github.com/apache/dolphinscheduler/releases/tag/2.0.5</a></p>
+<h2>Thanks to Contributors</h2>
+<p>Thanks to the contributors of Apache DolphinScheduler 2.0.5 version, the list of contributor GitHub IDs is as follows (in no particular order):</p>
+<div align=center>
+<img src="/img/2022-3-7/4.png"/>
+</div>
+</section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+  <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
+  <script>window.rootPath = '';</script>
+  <script src="/build/vendor.81f6e56.js"></script>
+  <script src="/build/blog.md.f25cabd.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e7b4b400dd31fa015018a435c64d06f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-899J8PYKJZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-899J8PYKJZ');
+  </script>
+</body>
+</html>
