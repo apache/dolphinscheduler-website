@@ -1,9 +1,9 @@
-## System Architecture Design
+# System Architecture Design
 
 Before explaining the architecture of the scheduling system, let's first understand the commonly used terms of the
 scheduling system
 
-### 1.Glossary
+## Glossary
 
 **DAG：** The full name is Directed Acyclic Graph, referred to as DAG. Task tasks in the workflow are assembled in the
 form of a directed acyclic graph, and topological traversal is performed from nodes with zero degrees of entry until
@@ -52,7 +52,7 @@ process fails and ends
 
 **Complement**: Supplement historical data，Supports **interval parallel and serial** two complement methods
 
-### 2.Module introduction
+## Module Introduction
 
 - dolphinscheduler-alert alarm module, providing AlertServer service.
 
@@ -66,12 +66,12 @@ process fails and ends
 
 - dolphinscheduler-server MasterServer and WorkerServer services
 
-- dolphinscheduler-service service module, including Quartz, Zookeeper, log client access service, easy to call server
+- dolphinscheduler-service service module, including Quartz, ZooKeeper, log client access service, easy to call server
   module and api module
 
 - dolphinscheduler-ui front-end module
 
-### Sum up
+## Sum Up
 
 From the perspective of scheduling, this article preliminarily introduces the architecture principles and implementation
 ideas of the big data distributed workflow scheduling system-DolphinScheduler. To be continued

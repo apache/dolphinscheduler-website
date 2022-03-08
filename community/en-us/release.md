@@ -428,13 +428,6 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION
 
 ### Find DolphinScheduler in staging repository and click `Release`
 
-###. Update the download page
-
-```
-https://dolphinscheduler.apache.org/en-us/download/download.html
-https://dolphinscheduler.apache.org/zh-cn/download/download.html
-```
-
 ### Send e-mail to `dev@dolphinscheduler.apache.org` to announce the release is finished
 
 Announcement e-mail template：

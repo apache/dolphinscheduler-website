@@ -4,7 +4,7 @@
 
 Spark task type for executing Spark programs. For Spark nodes, the worker submits the task by using the spark command `spark submit`. See [spark-submit](https://spark.apache.org/docs/3.2.1/submitting-applications.html#launching-applications-with-spark-submit) for more details.
 
-## Create task
+## Create Task
 
 - Click Project Management -> Project Name -> Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
 - Drag the <img src="/img/tasks/icons/spark.png" width="15"/> from the toolbar to the drawing board.
@@ -39,11 +39,11 @@ Spark task type for executing Spark programs. For Spark nodes, the worker submit
 
 ## Task Example
 
-### Execute the WordCount program
+### Execute the WordCount Program
 
 This is a common introductory case in the Big Data ecosystem, which often applied to computational frameworks such as MapReduce, Flink and Spark. The main purpose is to count the number of identical words in the input text.
 
-#### Uploading the main package
+#### Upload the Main Package
 
 When using the Spark task node, you will need to use the Resource Center to upload the jar package for the executable. Refer to the [resource center](../resource.md).
 
@@ -51,7 +51,7 @@ After configuring the Resource Center, you can upload the required target files 
 
 ![resource_upload](/img/tasks/demo/upload_spark.png)
 
-#### Configuring Spark nodes
+#### Configure Spark Nodes
 
 Simply configure the required content according to the parameter descriptions above.
 

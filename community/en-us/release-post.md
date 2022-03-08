@@ -13,13 +13,14 @@ For example, after the release of `x.y.z`, the following updates are required:
      - `kubernetes-deployment.md`
      - `standalone-deployment.md`
      - `upgrade.md`
+ - `docs/en-us/release/history-versions.md` and `docs/zh-cn/release/history-versions.md`: Add the new version and link for x.y.z
+ - `download/en-us/download.md` and `download/zh-cn/download.md`: add the download of the x.y.z release package
  - `site_config/docsx-y-z.js`: copy the old configuration file to the new version, and keep the content link same with x.y.z
  - `site_config/site.js`:
    - `docsLatest`: update to x.y.z
    - `docs0`: The `text` of two places of `en-us/zh-cn` needs to be updated to `latest(x.y.z)`
    - `docsxyz`: Add a drop-down menu with `key` as `docsxyz` and `text` as `x.y.z` in `children` of two places of `en-us/zh-cn`
  - `src/pages/docs/index.md.jsx`: Add `'x.y.z': docsxyzConfig,`
- - `download/en-us/download.md` and `download/zh-cn/download.md`: add the download of the x.y.z release package
 
 ## Add New Version To GitHub's bug-report.yml
 
@@ -39,3 +40,8 @@ docker login # enter the username and password
 docker push apache/dolphinscheduler:x.y.z
 docker push apache/dolphinscheduler:latest
 ```
+
+## Release to PyPI
+
+Python API need to release to PyPI for easier download and use, you can see more detail in [Python API release](https://github.com/apache/dolphinscheduler/blob/dev/dolphinscheduler-python/pydolphinscheduler/RELEASE.md#to-pypi)
+to finish PyPI release.

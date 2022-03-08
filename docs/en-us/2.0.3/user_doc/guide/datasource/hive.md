@@ -20,7 +20,7 @@
 > configure `common.properties`. It is helpful when you try to set env before running HIVE SQL. Parameter
 > `support.hive.oneSession` default value is `false` and SQL would run in different session if their more than one.
 
-## Use HiveServer2 HA Zookeeper
+## Use HiveServer2 HA ZooKeeper
 
  <p align="center">
     <img src="/img/hive1-en.png" width="80%" />

@@ -1,11 +1,10 @@
-# WebexTeams
+# Webex Teams
 
-If you need to use WebexTeams to alert, please create an alarm Instance in warning instance manage, and then choose the WebexTeams plugin. The configuration example of enterprise WebexTeams is as follows:
+If you need to use Webex Teams to alert, please create an alarm Instance in warning instance manage, and then choose the WebexTeams plugin. The configuration example of enterprise WebexTeams is as follows:
 
 ![enterprise-webexteams-plugin](/img/alert/enterprise-webexteams-plugin.png)
 
-
-parameter configuration
+## Parameter Configuration
 
 * botAccessToken
   > The robot's access token you were given

@@ -38,11 +38,17 @@ git checkout -b dev-1.0 upstream/dev-1.0
 git push --set-upstream origin dev-1.0
 ```
 
-* After modifying the code locally, submit it to your own repository:
+* Create new branch
+```
+git checkout -b xxx origin/dev
+```
+
+Make sure that the branch `xxx` is building successfully on the latest code of the official dev branch
+* After modifying the code locally in the new branch, submit it to your own repository:
   
 `git commit -m 'commit content'`
     
-`git push`
+`git push origin xxx --set-upstream`
 
 * Submit changes to the remote repository
 

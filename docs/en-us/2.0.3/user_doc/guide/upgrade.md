@@ -1,18 +1,17 @@
+# DolphinScheduler Upgrade Documentation
 
-# DolphinScheduler upgrade documentation
+## Back Up Previous Version's Files and Database
 
-## 1. Back Up Previous Version's Files and Database.
-
-## 2. Stop All Services of DolphinScheduler.
+## Stop All Services of DolphinScheduler
 
  `sh ./script/stop-all.sh`
 
-## 3. Download the New Version's Installation Package.
+## Download the New Version's Installation Package
 
 - [Download](/en-us/download/download.html) the latest version of the installation packages.
 - The following upgrade operations need to be performed in the new version's directory.
 
-## 4. Database Upgrade
+## Database Upgrade
 - Modify the following properties in `conf/config/install_config.conf`.
 
 - If you use MySQL as the database to run DolphinScheduler, please comment out PostgreSQL related configurations, and add mysql connector jar into lib dir, here we download mysql-connector-java-8.0.16.jar, and then correctly config database connect information. You can download mysql connector jar [here](https://downloads.MySQL.com/archives/c-j/). Alternatively, if you use Postgres as database, you just need to comment out Mysql related configurations, and correctly config database connect information.
@@ -31,9 +30,9 @@ SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
 
     `sh ./script/create-dolphinscheduler.sh`
 
-## 5. Backend Service Upgrade.
+## Backend Service Upgrade
 
-### 5.1 Modify the Content in `conf/config/install_config.conf` File.
+### Modify the Content in `conf/config/install_config.conf` File
 - Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](./installation/standalone.md).
 - Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](./installation/cluster.md).
 
@@ -55,7 +54,7 @@ To keep worker group config consistent with the previous version, we need to mod
 workers="ds1:service1,ds2:service2,ds3:service2"
 ```
 
-### 5.2 Execute Deploy Script.
+### Execute Deploy Script
 ```shell
 `sh install.sh`
 ```

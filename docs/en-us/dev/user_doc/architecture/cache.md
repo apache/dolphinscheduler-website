@@ -1,12 +1,12 @@
-### Cache
+# Cache
 
-#### Purpose
+## Purpose
 
-Due to the master-server scheduling process, there will be a large number of database read operations, such as `tenant`, `user`, `processDefinition`, etc. On the one hand, it will put a lot of pressure on the DB, and on the other hand, it will slow down the entire core scheduling process. 
+Due to the large database read operations during the master-server scheduling process. Such as read tables like `tenant`, `user`, `processDefinition`, etc. Operations stress read pressure to the DB, and slow down the entire core scheduling process.
 
-Considering that this part of the business data is a scenario where more reads and less writes are performed, a cache module is introduced to reduce the DB read pressure and speed up the core scheduling process;
+By considering this part of the business data is a high-read and low-write scenario, a cache module is introduced to reduce the DB read pressure and speed up the core scheduling process.
 
-#### Cache settings
+## Cache Settings
 
 ```yaml
 spring:
@@ -23,20 +23,20 @@ spring:
       spec: maximumSize=100,expireAfterWrite=300s,recordStats
 ```
 
-The cache-module use [spring-cache](https://spring.io/guides/gs/caching/), so you can set cache config in the spring application.yaml directly. Default disable cache, and you can enable it by `type: caffeine`.
+The cache module uses [spring-cache](https://spring.io/guides/gs/caching/), so you can set cache config like whether to enable cache (`none` to disable by default), cache types in the spring `application.yaml` directly.
 
-With the config of [caffeine](https://github.com/ben-manes/caffeine), you can set the cache size, expire time, etc.
+Currently, implements the config of [caffeine](https://github.com/ben-manes/caffeine), you can assign cache configs like cache size, expire time, etc.
 
-#### Cache Read
+## Cache Read
 
-The cache adopts the annotation `@Cacheable` of spring-cache and is configured in the mapper layer. For example: `TenantMapper`.
+The cache module adopts the `@Cacheable` annotation from spring-cache and you can annotate the annotation in the related mapper layer. Refer to the `TenantMapper`.
 
-#### Cache Evict
+## Cache Evict
 
-The business data update comes from the api-server, and the cache end is in the master-server. So it is necessary to monitor the data update of the api-server (aspect intercept `@CacheEvict`), and the master-server will be notified when the cache eviction is required. 
+The business data updates come from the api-server, and the cache side is in the master-server. Then it is necessary to monitor the data updates from the api-server (use aspect point cut interceptor `@CacheEvict`), and notify the master-server of `cacheEvictCommand` when processing a cache eviction.
 
-It should be noted that the final strategy for cache update comes from the user's expiration strategy configuration in caffeine, so please configure it in conjunction with the business;
+Note: the final strategy for cache update comes from the expiration strategy configuration in caffeine, therefore configure it under the business scenarios;
 
-The sequence diagram is shown in the following figure:
+The sequence diagram shows below:
 
 <img src="/img/cache-evict.png" alt="cache-evict" style="zoom: 67%;" />

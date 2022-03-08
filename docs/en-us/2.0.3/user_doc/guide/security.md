@@ -1,10 +1,9 @@
-
 # Security
 
 * Only the administrator account in the security center has the authority to operate. It has functions such as queue management, tenant management, user management, alarm group management, worker group management, token management, etc. In the user management module, resources, data sources, projects, etc. Authorization
 * Administrator login, default user name and password: admin/dolphinscheduler123
 
-## Create queue
+## Create Queue
 
 - Queue is used when the "queue" parameter is needed to execute programs such as spark and mapreduce.
 - The administrator enters the Security Center->Queue Management page and clicks the "Create Queue" button to create a queue.
@@ -12,7 +11,7 @@
    <img src="/img/create-queue-en.png" width="80%" />
  </p>
 
-## Add tenant
+## Add Tenant
 
 - The tenant corresponds to the Linux user, which is used by the worker to submit the job. Task will fail if Linux does not exists this user. You can set the parameter `worker.tenant.auto.create` as `true` in configuration file `worker.properties`. After that DolphinScheduler would create user if not exists, The property `worker.tenant.auto.create=true` requests worker run `sudo` command without password.
 - Tenant Code: **Tenant Code is the only user on Linux and cannot be repeated**
@@ -22,7 +21,7 @@
     <img src="/img/addtenant-en.png" width="80%" />
   </p>
 
-## Create normal user
+## Create Normal User
 
 - Users are divided into **administrator users** and **normal users**
 
@@ -45,7 +44,7 @@
 - The administrator enters the Security Center->User Management page and clicks the "Edit" button. When editing user information, enter the new password to modify the user password.
 - After a normal user logs in, click the user information in the user name drop-down box to enter the password modification page, enter the password and confirm the password and click the "Edit" button, then the password modification is successful.
 
-## Create alarm group
+## Create Alarm Group
 
 - The alarm group is a parameter set at startup. After the process ends, the status of the process and other information will be sent to the alarm group in the form of email.
 
@@ -54,7 +53,7 @@
   <p align="center">
     <img src="/img/mail-en.png" width="80%" />
 
-## Token management
+## Token Management
 
 > Since the back-end interface has login check, token management provides a way to perform various operations on the system by calling the interface.
 
@@ -121,7 +120,7 @@
 
 - Resources, data sources, and UDF function authorization are the same as project authorization.
 
-## Worker grouping
+## Worker Grouping
 
 Each worker node will belong to its own worker group, and the default group is "default".
 

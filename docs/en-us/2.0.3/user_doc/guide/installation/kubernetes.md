@@ -10,7 +10,7 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
  - [Kubernetes](https://kubernetes.io/) 1.12+
  - PV provisioner support in the underlying infrastructure
 
-## Installing the Chart
+## Install the Chart
 
 Please download the source code package apache-dolphinscheduler-2.0.3-src.tar.gz, download address: [download](/en-us/download/download.html)
 
@@ -69,7 +69,7 @@ The default username is `admin` and the default password is `dolphinscheduler123
 
 Please refer to the `Quick Start` in the chapter [Quick Start](../quick-start.md) to explore how to use DolphinScheduler
 
-## Uninstalling the Chart
+## Uninstall the Chart
 
 To uninstall/delete the `dolphinscheduler` deployment:
 
@@ -128,7 +128,7 @@ The configuration file is `values.yaml`, and the [Appendix-Configuration](#appen
 
 ## FAQ
 
-### How to view the logs of a pod container?
+### How to View the Logs of a Pod Container?
 
 List all pods (aka `po`):
 
@@ -145,7 +145,7 @@ kubectl logs -f dolphinscheduler-master-0 # follow log output
 kubectl logs --tail 10 dolphinscheduler-master-0 -n test # show last 10 lines from the end of the logs
 ```
 
-### How to scale api, master and worker on Kubernetes?
+### How to Scale api, master and worker on Kubernetes?
 
 List all deployments (aka `deploy`):
 
@@ -182,7 +182,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker
 kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
 ```
 
-### How to use MySQL as the DolphinScheduler's database instead of PostgreSQL?
+### How to Use MySQL as the DolphinScheduler's Database Instead of PostgreSQL?
 
 > Because of the commercial license, we cannot directly use the driver of MySQL.
 >
@@ -225,7 +225,7 @@ externalDatabase:
 
 8. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
 
-### How to support MySQL datasource in `Datasource manage`?
+### How to Support MySQL Datasource in `Datasource manage`?
 
 > Because of the commercial license, we cannot directly use the driver of MySQL.
 >
@@ -254,7 +254,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 7. Add a MySQL datasource in `Datasource manage`
 
-### How to support Oracle datasource in `Datasource manage`?
+### How to Support Oracle Datasource in `Datasource manage`?
 
 > Because of the commercial license, we cannot directly use the driver of Oracle.
 >
@@ -283,7 +283,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 7. Add an Oracle datasource in `Datasource manage`
 
-### How to support Python 2 pip and custom requirements.txt?
+### How to Support Python 2 pip and Custom requirements.txt?
 
 1. Create a new `Dockerfile` to install pip:
 
@@ -316,7 +316,7 @@ docker build -t apache/dolphinscheduler:pip .
 
 6. Verify pip under a new Python task
 
-### How to support Python 3?
+### How to Support Python 3?
 
 1. Create a new `Dockerfile` to install Python 3:
 
@@ -349,7 +349,7 @@ docker build -t apache/dolphinscheduler:python3 .
 
 7. Verify Python 3 under a new Python task
 
-### How to support Hadoop, Spark, Flink, Hive or DataX?
+### How to Support Hadoop, Spark, Flink, Hive or DataX?
 
 Take Spark 2.4.7 as an example:
 
@@ -407,7 +407,7 @@ Spark on YARN (Deploy Mode is `cluster` or `client`) requires Hadoop support. Si
 
 Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` exists
 
-### How to support Spark 3?
+### How to Support Spark 3?
 
 In fact, the way to submit applications with `spark-submit` is the same, regardless of Spark 1, 2 or 3. In other words, the semantics of `SPARK_HOME2` is the second `SPARK_HOME` instead of `SPARK2`'s `HOME`, so just set `SPARK_HOME2=/path/to/spark3`
 
@@ -448,7 +448,7 @@ $SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_H
 
 Check whether the task log contains the output like `Pi is roughly 3.146015`
 
-### How to support shared storage between Master, Worker and Api server?
+### How to Support Shared Storage Between Master, Worker and Api Server?
 
 For example, Master, Worker and API server may use Hadoop at the same time
 
@@ -473,7 +473,7 @@ common:
 
 3. Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` are correct
 
-### How to support local file resource storage instead of HDFS and S3?
+### How to Support Local File Resource Storage Instead of HDFS and S3?
 
 Modify the following configurations in `values.yaml`
 
@@ -495,7 +495,7 @@ common:
 
 > **Note**: `storageClassName` must support the access mode: `ReadWriteMany`
 
-### How to support S3 resource storage like MinIO?
+### How to Support S3 Resource Storage Like MinIO?
 
 Take MinIO as an example: Modify the following configurations in `values.yaml`
 
@@ -514,7 +514,7 @@ common:
 
 > **Note**: `MINIO_IP` can only use IP instead of domain name, because DolphinScheduler currently doesn't support S3 path style access
 
-### How to configure SkyWalking?
+### How to Configure SkyWalking?
 
 Modify SKYWALKING configurations in `values.yaml`:
 
@@ -554,14 +554,14 @@ common:
 | `externalDatabase.database`                                                       | If exists external PostgreSQL, and set `postgresql.enabled` value to false. DolphinScheduler's database database will use it   | `dolphinscheduler`                                    |
 | `externalDatabase.params`                                                         | If exists external PostgreSQL, and set `postgresql.enabled` value to false. DolphinScheduler's database params will use it     | `characterEncoding=utf8`                              |
 |                                                                                   |                                                                                                                                |                                                       |
-| `zookeeper.enabled`                                                               | If not exists external Zookeeper, by default, the DolphinScheduler will use a internal Zookeeper                               | `true`                                                |
+| `zookeeper.enabled`                                                               | If not exists external ZooKeeper, by default, the DolphinScheduler will use a internal Zookeeper                               | `true`                                                |
 | `zookeeper.fourlwCommandsWhitelist`                                               | A list of comma separated Four Letter Words commands to use                                                                    | `srvr,ruok,wchs,cons`                                 |
 | `zookeeper.persistence.enabled`                                                   | Set `zookeeper.persistence.enabled` to `true` to mount a new volume for internal Zookeeper                                     | `false`                                               |
 | `zookeeper.persistence.size`                                                      | `PersistentVolumeClaim` size                                                                                                   | `20Gi`                                                |
-| `zookeeper.persistence.storageClass`                                              | Zookeeper data persistent volume storage class. If set to "-", storageClassName: "", which disables dynamic provisioning       | `-`                                                   |
+| `zookeeper.persistence.storageClass`                                              | ZooKeeper data persistent volume storage class. If set to "-", storageClassName: "", which disables dynamic provisioning       | `-`                                                   |
 | `zookeeper.zookeeperRoot`                                                         | Specify dolphinscheduler root directory in Zookeeper                                                                           | `/dolphinscheduler`                                   |
-| `externalZookeeper.zookeeperQuorum`                                               | If exists external Zookeeper, and set `zookeeper.enabled` value to false. Specify Zookeeper quorum                             | `127.0.0.1:2181`                                      |
-| `externalZookeeper.zookeeperRoot`                                                 | If exists external Zookeeper, and set `zookeeper.enabled` value to false. Specify dolphinscheduler root directory in Zookeeper | `/dolphinscheduler`                                   |
+| `externalZookeeper.zookeeperQuorum`                                               | If exists external ZooKeeper, and set `zookeeper.enabled` value to false. Specify Zookeeper quorum                             | `127.0.0.1:2181`                                      |
+| `externalZookeeper.zookeeperRoot`                                                 | If exists external ZooKeeper, and set `zookeeper.enabled` value to false. Specify dolphinscheduler root directory in Zookeeper | `/dolphinscheduler`                                   |
 |                                                                                   |                                                                                                                                |                                                       |
 | `common.configmap.DOLPHINSCHEDULER_OPTS`                                          | The jvm options for dolphinscheduler, suitable for all servers                                                                 | `""`                                                  |
 | `common.configmap.DATA_BASEDIR_PATH`                                              | User data directory path, self configuration, please make sure the directory exists and have read write permissions            | `/tmp/dolphinscheduler`                               |

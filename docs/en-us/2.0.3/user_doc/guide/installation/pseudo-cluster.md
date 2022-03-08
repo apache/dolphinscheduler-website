@@ -18,9 +18,9 @@ Pseudo-cluster deployment of DolphinScheduler requires external software support
 
 > **_Note:_** DolphinScheduler itself does not depend on Hadoop, Hive, Spark, but if you need to run tasks that depend on them, you need to have the corresponding environment support
 
-## DolphinScheduler startup environment
+## DolphinScheduler Startup Environment
 
-### Configure user exemption and permissions
+### Configure User Exemption and Permissions
 
 Create a deployment user, and be sure to configure `sudo` without password. We here make a example for user dolphinscheduler.
 
@@ -44,7 +44,7 @@ chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
 > * Because DolphinScheduler's multi-tenant task switch user by command `sudo -u {linux-user}`, the deployment user needs to have sudo privileges and is password-free. If novice learners don’t understand, you can ignore this point for the time being.
 > * If you find the line "Defaults requirest" in the `/etc/sudoers` file, please comment it
 
-### Configure machine SSH password-free login
+### Configure Machine SSH Password-Free Login
 
 Since resources need to be sent to different machines during installation, SSH password-free login is required between each machine. The steps to configure password-free login are as follows
 
@@ -58,16 +58,16 @@ chmod 600 ~/.ssh/authorized_keys
 
 > **_Notice:_** After the configuration is complete, you can run the command `ssh localhost` to test if it work or not, if you can login with ssh without password.
 
-### Start zookeeper
+### Start ZooKeeper
 
-Go to the zookeeper installation directory, copy configure file `zoo_sample.cfg` to `conf/zoo.cfg`, and change value of dataDir in `conf/zoo.cfg` to `dataDir=./tmp/zookeeper`
+Go to the ZooKeeper installation directory, copy configure file `zoo_sample.cfg` to `conf/zoo.cfg`, and change value of dataDir in `conf/zoo.cfg` to `dataDir=./tmp/zookeeper`
 
 ```shell
-# Start zookeeper
+# Start ZooKeeper
 ./bin/zkServer.sh start
 ```
 
-## Modify configuration
+## Modify Configuration
 
 After completing the preparation of the basic environment, you need to modify the configuration file according to your environment. The configuration file is in the path of `conf/config/install_config.conf`. Generally, you just needs to modify the **INSTALL MACHINE, DolphinScheduler ENV, Database, Registry Server** part to complete the deployment, the following describes the parameters that must be modified
 
@@ -109,11 +109,11 @@ SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
 # ---------------------------------------------------------
 # Registry Server
 # ---------------------------------------------------------
-# Registration center address, the address of zookeeper service
+# Registration center address, the address of ZooKeeper service
 registryServers="localhost:2181"
 ```
 
-## Initialize the database
+## Initialize the Database
 
 DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
 
@@ -150,7 +150,7 @@ sh install.sh
 
 The browser access address http://localhost:12345/dolphinscheduler can login DolphinScheduler UI. The default username and password are **admin/dolphinscheduler123**
 
-## Start or stop server
+## Start or Stop Server
 
 ```shell
 # Stop all DolphinScheduler server
