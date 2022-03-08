@@ -6,17 +6,17 @@ Load balancing refers to the reasonable allocation of server pressure through ro
 
 DolphinScheduler-Master allocates tasks to workers, and by default provides three algorithms:
 
-Weighted random (random)
+- Weighted random (random)
 
-Smoothing polling (roundrobin)
+- Smoothing polling (round-robin)
 
-Linear load (lowerweight)
+- Linear load (lower weight)
 
 The default configuration is the linear load.
 
-As the routing is done on the client side, the master service, you can change master.host.selector in master.properties to configure the algorithm what you want.
+As the routing sets on the client side, the master service, you can change master.host.selector in master.properties to configure the algorithm.
 
-e.g. master.host.selector = random (case-insensitive)
+e.g. master.host.selector=random (case-insensitive)
 
 ## Worker Load Balancing Configuration
 
@@ -24,34 +24,34 @@ The configuration file is worker.properties
 
 ### Weight
 
-All of the above load algorithms are weighted based on weights, which affect the outcome of the triage. You can set different weights for different machines by modifying the worker.weight value.
+All the load algorithms above are weighted based on weights, which affect the routing outcome. You can set different weights for different machines by modifying the `worker.weight` value.
 
 ### Preheating
 
-With JIT optimisation in mind, we will let the worker run at low power for a period of time after startup so that it can gradually reach its optimal state, a process we call preheating. If you are interested, you can read some articles about JIT.
+Consider JIT optimization, worker runs at low power for a period of time after startup, so that it can gradually reach its optimal state, a process we call preheating. If you are interested, you can read some articles about JIT.
 
-So the worker will gradually reach its maximum weight over time after it starts (by default ten minutes, we don't provide a configuration item, you can change it and submit a PR if needed).
+So the worker gradually reaches its maximum weight with time after starts up ( by default ten minutes, there is no configuration about the pre-heating duration, it's recommend to submit a PR if have needs to change the duration).
 
-## Load Balancing Algorithm Breakdown
+## Load Balancing Algorithm in Details
 
 ### Random (Weighted)
 
-This algorithm is relatively simple, one of the matched workers is selected at random (the weighting affects his weighting).
+This algorithm is relatively simple, select a worker by random (the weight affects its weighting).
 
 ### Smoothed Polling (Weighted)
 
-An obvious drawback of the weighted polling algorithm. Namely, under certain specific weights, weighted polling scheduling generates an uneven sequence of instances, and this unsmoothed load may cause some instances to experience transient high loads, leading to a risk of system downtime. To address this scheduling flaw, we provide a smooth weighted polling algorithm.
+An obvious drawback of the weighted polling algorithm, which is under special weights circumstance, weighted polling scheduling generates an imbalanced sequence of instances, and this unsmooth load may cause some instances to experience transient high loads, leading to a risk of system crash. To address this scheduling flaw, we provide a smooth weighted polling algorithm.
 
-Each worker is given two weights, weight (which remains constant after warm-up is complete) and current_weight (which changes dynamically), for each route. The current_weight + weight is iterated over all the workers, and the weight of all the workers is added up and counted as total_weight, then the worker with the largest current_weight is selected as the worker for this task. current_weight-total_weight.
+Each worker has two weights parameters, weight (which remains constant after warm-up is complete) and current_weight (which changes dynamically). For every route, calculate the current_weight + weight and is iterated over all the workers, the weight of all the workers sum up and count as total_weight, then the worker with the largest current_weight is selected as the worker for this task. By meantime, set worker's current_weight-total_weight.
 
 ### Linear Weighting (Default Algorithm)
 
-The algorithm reports its own load information to the registry at regular intervals. We base our judgement on two main pieces of information
+This algorithm reports its own load information to the registry at regular intervals. Make decision on two main pieces of information:
 
 - load average (default is the number of CPU cores * 2)
 - available physical memory (default is 0.3, in G)
 
-If either of the two is lower than the configured item, then this worker will not participate in the load. (no traffic will be allocated)
+If either of these is lower than the configured item, then this worker will not participate in the load. (no traffic will be allocated)
 
 You can customise the configuration by changing the following properties in worker.properties
 
