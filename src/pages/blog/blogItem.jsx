@@ -1,7 +1,6 @@
 import React from 'react';
 import { autobind } from 'core-decorators';
 import { getLink } from '../../../utils';
-
 import './blogItem.scss';
 
 @autobind
