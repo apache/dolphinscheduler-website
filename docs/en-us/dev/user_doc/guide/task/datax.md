@@ -11,22 +11,21 @@ DataX task type for executing DataX programs. For DataX nodes, the worker will e
 
 ## Task Parameter
 
--    **Node name**: The node name in a workflow definition is unique.
--    **Run flag**: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.
--    **Descriptive information**: describe the function of the node.
--    **Task priority**: When the number of worker threads is insufficient, they are executed in order from high to low, and when the priority is the same, they are executed according to the first-in first-out principle.
--    **Worker grouping**: Tasks are assigned to the machines of the worker group to execute. If Default is selected, a worker machine will be randomly selected for execution.
--    **Environment Name**: Configure the environment name in which to run the script.
--    **Number of failed retry attempts**: The number of times the task failed to be resubmitted.
--    **Failed retry interval**: The time, in cents, interval for resubmitting the task after a failed task.
--    **Delayed execution time**: The time, in cents, that a task is delayed in execution.
--    **Timeout alarm**: Check the timeout alarm and timeout failure. When the task exceeds the "timeout period", an alarm email will be sent and the task execution will fail.
--    **Custom template**: Custom the content of the DataX node's json profile when the default data source provided does not meet the required requirements.
--    **json**: json configuration file for DataX synchronization.
--    **Custom parameters**: SQL task type, and stored procedure is a custom parameter order to set values for the method. The custom parameter type and data type are the same as the stored procedure task type. The difference is that the SQL task type custom parameter will replace the \${variable} in the SQL statement.
--    **Data source**: Select the data source from which the data will be extracted.
--    **sql statement**: the sql statement used to extract data from the target database, the sql query column name is automatically parsed when the node is executed, and mapped to the target table synchronization column name. When the source table and target table column names are inconsistent, they can be converted by column alias.
-
+- **Node name**: The node name in a workflow definition is unique.
+- **Run flag**: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.
+- **Descriptive information**: describe the function of the node.
+- **Task priority**: When the number of worker threads is insufficient, they are executed in order from high to low, and when the priority is the same, they are executed according to the first-in first-out principle.
+- **Worker grouping**: Tasks are assigned to the machines of the worker group to execute. If Default is selected, a worker machine will be randomly selected for execution.
+- **Environment Name**: Configure the environment name in which to run the script.
+- **Number of failed retry attempts**: The number of times the task failed to be resubmitted.
+- **Failed retry interval**: The time, in cents, interval for resubmitting the task after a failed task.
+- **Delayed execution time**: The time, in cents, that a task is delayed in execution.
+- **Timeout alarm**: Check the timeout alarm and timeout failure. When the task exceeds the "timeout period", an alarm email will be sent and the task execution will fail.
+- **Custom template**: Custom the content of the DataX node's json profile when the default data source provided does not meet the required requirements.
+- **json**: json configuration file for DataX synchronization.
+- **Custom parameters**: SQL task type, and stored procedure is a custom parameter order to set values for the method. The custom parameter type and data type are the same as the stored procedure task type. The difference is that the SQL task type custom parameter will replace the \${variable} in the SQL statement.
+- **Data source**: Select the data source from which the data will be extracted.
+- **sql statement**: the sql statement used to extract data from the target database, the sql query column name is automatically parsed when the node is executed, and mapped to the target table synchronization column name. When the source table and target table column names are inconsistent, they can be converted by column alias.
 - **Target library**: Select the target library for data synchronization.
 - **Pre-sql**: Pre-sql is executed before the sql statement (executed by the target library).
 - **Post-sql**: Post-sql is executed after the sql statement (executed by the target library).
