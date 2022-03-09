@@ -1,0 +1,6 @@
+{
+  "filename": "task.md",
+  "__html": "<h2>DolphinScheduler Task SPI extension</h2>\n<h4>How to develop task plugins?</h4>\n<p>org.apache.dolphinscheduler.spi.task.TaskChannel</p>\n<p>The plug-in can implement the above interface. It mainly includes creating tasks (task initialization, task running, etc.) and task cancellation. If it is a yarn task, you need to implement org.apache.dolphinscheduler.plugin.task.api.AbstractYarnTask.</p>\n<p>We provide APIs for external access to all tasks in the dolphinscheduler-task-api module, while the dolphinscheduler-spi module is the spi general code library, which defines all the plug-in modules, such as the alarm module, the registry module, etc., you can read and view in detail .</p>\n<p><em>NOTICE</em></p>\n<p>Since the task plug-in involves the front-end page, the front-end SPI has not yet been implemented, so you need to implement the front-end page corresponding to the plug-in separately.</p>\n<p>If there is a class conflict in the task plugin, you can use <a href=\"https://maven.apache.org/plugins/maven-shade-plugin/\">Shade-Relocating Classes</a> to solve this problem.</p>\n",
+  "link": "/dist/en-us/development/backend/spi/task.html",
+  "meta": {}
+}

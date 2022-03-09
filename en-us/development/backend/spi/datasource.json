@@ -1,0 +1,6 @@
+{
+  "filename": "datasource.md",
+  "__html": "<h2>DolphinScheduler Datasource SPI main design</h2>\n<h4>How do I use data sources?</h4>\n<p>The data source center supports POSTGRESQL, HIVE/IMPALA, SPARK, CLICKHOUSE, SQLSERVER data sources by default.</p>\n<p>If you are using MySQL or ORACLE data source, you need to place the corresponding driver package in the lib directory</p>\n<h4>How to do Datasource plugin development?</h4>\n<p>org.apache.dolphinscheduler.spi.datasource.DataSourceChannel\norg.apache.dolphinscheduler.spi.datasource.DataSourceChannelFactory\norg.apache.dolphinscheduler.plugin.datasource.api.client.CommonDataSourceClient</p>\n<ol>\n<li>\n<p>In the first step, the data source plug-in can implement the above interfaces and inherit the general client. For details, refer to the implementation of data source plug-ins such as sqlserver and mysql. The addition methods of all RDBMS plug-ins are the same.</p>\n</li>\n<li>\n<p>Add the driver configuration in the data source plug-in pom.xml</p>\n</li>\n</ol>\n<p>We provide APIs for external access of all data sources in the dolphin scheduler data source API module</p>\n<h4><strong>Future plan</strong></h4>\n<p>Support data sources such as kafka, http, files, sparkSQL, FlinkSQL, etc.</p>\n",
+  "link": "/dist/en-us/development/backend/spi/datasource.html",
+  "meta": {}
+}
