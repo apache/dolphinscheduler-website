@@ -1,6 +1,6 @@
-# Data Source
+# DataSource
 
-Data source center supports MySQL, POSTGRESQL, HIVE/IMPALA, SPARK, CLICKHOUSE, ORACLE, SQLSERVER and other data sources
+DataSource supports MySQL, PostgreSQL, Hive/Impala, Spark, ClickHouse, Oracle, SQL Server and other DataSources.
 
-- Click "Data Source Center -> Create Data Source" to create different types of data sources according to requirements.
-- Click "Test Connection" to test whether the data source can be successfully connected.
+- Click "Data Source Center -> Create Data Source" to create different types of DataSources according to requirements.
+- Click "Test Connection" to test whether the DataSource can connect successfully.
