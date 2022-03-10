@@ -50,13 +50,16 @@
 <h2>任务样例</h2>
 <h3>执行 WordCount 程序</h3>
 <p>本案例为大数据生态中常见的入门案例，常应用于 MapReduce、Flink、Spark 等计算框架。主要为统计输入的文本中，相同的单词的数量有多少。（Flink 的 Releases 附带了此示例作业）</p>
+<h4>在 DolphinScheduler 中配置 flink 环境</h4>
+<p>若生产环境中要是使用到 flink 任务类型，则需要先配置好所需的环境。配置文件如下：<code>/dolphinscheduler/conf/env/dolphinscheduler_env.sh</code>。</p>
+<p><img src="/img/tasks/demo/flink_task01.png" alt="flink-configure"></p>
 <h4>上传主程序包</h4>
 <p>在使用 Flink 任务节点时，需要利用资源中心上传执行程序的 jar 包，可参考<a href="../resource.md">资源中心</a>。</p>
 <p>当配置完成资源中心之后，直接使用拖拽的方式，即可上传所需目标文件。</p>
-<p><img src="/img/tasks/demo/upload_flink.png" alt="resource_upload"></p>
+<p><img src="/img/tasks/demo/upload_jar.png" alt="resource_upload"></p>
 <h4>配置 Flink 节点</h4>
 <p>根据上述参数说明，配置所需的内容即可。</p>
-<p><img src="/img/tasks/demo/flink_task.png" alt="demo-flink-simple"></p>
+<p><img src="/img/tasks/demo/flink_task02.png" alt="demo-flink-simple"></p>
 <h2>注意事项：</h2>
 <p>Java 和 Scala 只是用来标识，没有区别，如果是 Python 开发的 Flink 则没有主函数的 class，其余的都一样。</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="/zh-cn/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/development-environment-setup.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
