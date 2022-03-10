@@ -29,7 +29,7 @@
 <img src="/img/globalParam/image-20210723102938239.png" alt="image-20210723102938239" style="zoom:50%;" />
 <p>节点 【useParam】可以使用到节点【createParam】中设置的变量。而节点 【useParam】与节点【noUseParam】中并没有依赖关系，所以并不会获取到节点【noUseParam】的变量。上图中只是以 shell 节点作为例子，其他类型节点具有相同的使用规则。</p>
 <img src="/img/globalParam/image-20210723103316896.png" alt="image-20210723103316896" style="zoom:50%;" />
-<p>其中节点【createParam】在使用变量时直接使用即可。另外该节点设置了 &quot;key&quot; 和 &quot;key1&quot; 两个变量，这里用户用定义了一个与上游节点传递的变量名相同的变量 key1，并且复制了值为 &quot;12&quot;，但是由于我们设置的优先级的关系，这里的值 &quot;12&quot; 会被抛弃，最终使用上游节点设置的变量值。</p>
+<p>其中节点【createParam】在使用变量时直接使用即可。另外该节点设置了 &quot;key&quot; 和 &quot;key1&quot; 两个变量，这里用户用定义了一个与上游节点传递的变量名相同的变量 key1，并且赋值为 &quot;12&quot;，但是由于我们设置的优先级的关系，这里的值 &quot;12&quot; 会被抛弃，最终使用上游节点设置的变量值。</p>
 <p>2：我们再以 sql 节点来解释另外一种情况</p>
 <img src="/img/globalParam/image-20210723103937052.png" alt="image-20210723103937052" style="zoom:50%;" />
 <p>节点【use_create】的定义如下：</p>
