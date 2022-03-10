@@ -52,16 +52,22 @@ MapReduce(MR) task type used for executing MapReduce programs. For MapReduce nod
 
 This example is a common introductory type of MapReduce application, which used to count the number of identical words in the input text.
 
+#### Configure the MapReduce environment in DolphinScheduler
+
+If you are using the MapReduce task type in a production environment, it is necessary to configure the required environment first. The configuration file is as follows: `/dolphinscheduler/conf/env/dolphinscheduler_env.sh`.
+
+![mr_configure](/img/tasks/demo/mr_task01.png)
+
 #### Upload the Main Package
 
 When using the MapReduce task node, you need to use the Resource Centre to upload the jar package for the execution. Refer to the [resource centre](../resource.md).
 
 After finish the Resource Centre configuration, upload the required target files directly by dragging and dropping.
 
-![resource_upload](/img/tasks/demo/resource_upload.png)
+![resource_upload](/img/tasks/demo/upload_jar.png)
 
 #### Configure MapReduce Nodes
 
 Configure the required content according to the parameter descriptions above.
 
-![demo-mr-simple](/img/tasks/demo/mr.png)
+![demo-mr-simple](/img/tasks/demo/mr_task02.png)

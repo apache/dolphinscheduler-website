@@ -3,41 +3,41 @@
 ## Basic Built-in Parameter
 
 <table>
-    <tr><th>variable</th><th>declaration method</th><th>meaning</th></tr>
+    <tr><th>Variable</th><th>Declaration Method</th><th>Meaning</th></tr>
     <tr>
         <td>system.biz.date</td>
         <td>${system.biz.date}</td>
-        <td>The day before the scheduled time of the daily scheduling instance, the format is yyyyMMdd</td>
+        <td>The day before the schedule time of the daily scheduling instance, the format is yyyyMMdd</td>
     </tr>
     <tr>
         <td>system.biz.curdate</td>
         <td>${system.biz.curdate}</td>
-        <td>The timing time of the daily scheduling instance, the format is yyyyMMdd</td>
+        <td>The schedule time of the daily scheduling instance, the format is yyyyMMdd</td>
     </tr>
     <tr>
         <td>system.datetime</td>
         <td>${system.datetime}</td>
-        <td>The timing time of the daily scheduling instance, the format is yyyyMMddHHmmss</td>
+        <td>The schedule time of the daily scheduling instance, the format is yyyyMMddHHmmss</td>
     </tr>
 </table>
 
 ## Extended Built-in Parameter
 
-- Support custom variable names in the code, declaration method: \${variable name}. It can refer to [basic built-in parameter](#basic-built-in-parameter) or specify "constants".
+- Support custom variables in the code, declaration way: `${variable name}`. Refers to "System Parameter".
 
-- We define this benchmark variable as \$[...] format, \$[yyyyMMddHHmmss] can be decomposed and combined arbitrarily, such as: \$[yyyyMMdd], \$[HHmmss], \$[yyyy-MM-dd], etc.
+- Benchmark variable defines as `$[...]` format, time format `$[yyyyMMddHHmmss]` can be decomposed and combined arbitrarily, such as: `$[yyyyMMdd]`, `$[HHmmss]`, `$[yyyy-MM-dd]`, etc.
 
-- Or the 2 following methods may be useful:
+- Or define by the 2 following ways:
 
-      1. use add_month(yyyyMMdd, offset) function to add/minus number of months
-      the first parameter of this function is yyyyMMdd, representing the time format user will get
-      the second is offset, representing the number of months the user wants to add or minus
+      1. Use add_month(yyyyMMdd, offset) function to add or minus number of months
+      the first parameter of this function is [yyyyMMdd], represents the time format
+      the second parameter is offset, represents the number of months the user wants to add or minus
       * Next N years：$[add_months(yyyyMMdd,12*N)]
       * N years before：$[add_months(yyyyMMdd,-12*N)]
       * Next N months：$[add_months(yyyyMMdd,N)]
       * N months before：$[add_months(yyyyMMdd,-N)]
       *********************************************************************************************************
-      1. add numbers directly after the time format
+      1. Add or minus numbers directly after the time format
       * Next N weeks：$[yyyyMMdd+7*N]
       * First N weeks：$[yyyyMMdd-7*N]
       * Next N days：$[yyyyMMdd+N]

@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Exploration and practice of Tujia Big Data Platform Based on Apache DolphinScheduler',
+                author: 'Debra Chen',
+                dateStr: '2022-3-10',
+                desc: 'Tujia introduced Apache DolphinScheduler in 2019.. ',
+                link: '/en-us/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
+            },
+            {
                 title: 'Release News! Apache DolphinScheduler 2_0_5 optimizes The Fault Tolerance Process of Worker',
                 author: 'Debra Chen',
                 dateStr: '2022-3-7',
@@ -145,6 +152,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '途家大数据平台基于 Apache DolphinScheduler 的探索与实践',
+                author: 'Debra Chen',
+                dateStr: '2022-3-10',
+                desc: '途家在 2019 年引入 Apache DolphinScheduler。',
+                link: '/zh-cn/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
+            },
             {
                 title: 'Apache DolphinScheduler 2_0_5 发布，Worker 容错流程优化',
                 author: 'Debra Chen',

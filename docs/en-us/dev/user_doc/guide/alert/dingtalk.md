@@ -1,6 +1,7 @@
 # DingTalk
 
-If you need to use DingTalk for alerting, please create an alert instance in the alert instance management and select the DingTalk plugin. The configuration example of DingTalk is as follows:
+If you need to use `DingTalk` for alerting, create an alert instance in the alert instance management and select the DingTalk plugin. 
+The `DingTalk` example configuration is as follows:
 
 ![dingtalk-plugin](/img/alert/dingtalk-plugin.png)
 
@@ -15,12 +16,12 @@ If you need to use DingTalk for alerting, please create an alert instance in the
 * MessageType
   > Support both text and markdown types
 
-When a custom bot sends a message, you can specify the "@person list" by your mobile phone number. When the people in the "@people list" receive the message, there will be a @ message reminder. Do not disturb conversations still notify reminders, and "someone @ you" appears on the fold
+When a custom bot sends a message, you can specify the "@person list" by their mobile phone number. When the selected people in the "@people list" receive the message, there will be a `@` message reminder. `No disturb` mode always receives reminders, and "someone @ you" appears in the message.
 * @Mobiles
   > The mobile phone number of the "@person"
 * @UserIds
-  > The userid by "@person"
+  > The user ID by "@person"
 * @All
-  > Is @Everyone
+  > @Everyone
 
 [DingTalk Custom Robot Access Development Documentation](https://open.dingtalk.com/document/robots/custom-robot-access)

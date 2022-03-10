@@ -44,19 +44,25 @@ Flink task type for executing Flink programs. For Flink nodes, the worker submit
 
 This is a common introductory case in the big data ecosystem, which often apply to computational frameworks such as MapReduce, Flink and Spark. The main purpose is to count the number of identical words in the input text. (Flink's releases attach this example job)
 
+#### Configure the flink environment in DolphinScheduler
+
+If you are using the flink task type in a production environment, it is necessary to configure the required environment first. The configuration file is as follows: `/dolphinscheduler/conf/env/dolphinscheduler_env.sh`.
+
+![demo-flink-simple](/img/tasks/demo/flink_task01.png)
+
 #### Upload the Main Package
 
 When using the Flink task node, you need to upload the jar package to the Resource Centre for the execution, refer to the [resource center](../resource.md).
 
 After finish the Resource Centre configuration, upload the required target files directly by dragging and dropping.
 
-![resource_upload](/img/tasks/demo/upload_flink.png)
+![resource_upload](/img/tasks/demo/upload_jar.png)
 
 #### Configure Flink Nodes
 
 Configure the required content according to the parameter descriptions above.
 
-![demo-flink-simple](/img/tasks/demo/flink_task.png)
+![demo-flink-simple](/img/tasks/demo/flink_task02.png)
 
 ## Notice
 

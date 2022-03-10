@@ -44,19 +44,25 @@ Flink 任务类型，用于执行 Flink 程序。对于 Flink 节点，worker �
 
 本案例为大数据生态中常见的入门案例，常应用于 MapReduce、Flink、Spark 等计算框架。主要为统计输入的文本中，相同的单词的数量有多少。（Flink 的 Releases 附带了此示例作业）
 
+#### 在 DolphinScheduler 中配置 flink 环境
+
+若生产环境中要是使用到 flink 任务类型，则需要先配置好所需的环境。配置文件如下：`/dolphinscheduler/conf/env/dolphinscheduler_env.sh`。
+
+![flink-configure](/img/tasks/demo/flink_task01.png)
+
 ####  上传主程序包
 
 在使用 Flink 任务节点时，需要利用资源中心上传执行程序的 jar 包，可参考[资源中心](../resource.md)。
 
 当配置完成资源中心之后，直接使用拖拽的方式，即可上传所需目标文件。
 
-![resource_upload](/img/tasks/demo/upload_flink.png)
+![resource_upload](/img/tasks/demo/upload_jar.png)
 
 #### 配置 Flink 节点
 
 根据上述参数说明，配置所需的内容即可。
 
-![demo-flink-simple](/img/tasks/demo/flink_task.png)
+![demo-flink-simple](/img/tasks/demo/flink_task02.png)
 
 ## 注意事项：
 
