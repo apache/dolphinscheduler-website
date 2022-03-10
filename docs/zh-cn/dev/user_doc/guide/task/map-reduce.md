@@ -52,16 +52,22 @@ MapReduce(MR) 任务类型，用于执行 MapReduce 程序。对于 MapReduce �
 
 该样例为 MapReduce 应用中常见的入门类型，主要为统计输入的文本中，相同单词的数量有多少。
 
+#### 在 DolphinScheduler 中配置 MapReduce 环境
+
+若生产环境中要是使用到 MapReduce 任务类型，则需要先配置好所需的环境。配置文件如下：`/dolphinscheduler/conf/env/dolphinscheduler_env.sh`。
+
+![mr_configure](/img/tasks/demo/mr_task01.png)
+
 #### 上传主程序包
 
 在使用 MapReduce 任务节点时，需要利用资源中心上传执行程序的 jar 包。可参考[资源中心](../resource.md)。
 
 当配置完成资源中心之后，直接使用拖拽的方式，即可上传所需目标文件。
 
-![resource_upload](/img/tasks/demo/resource_upload.png)
+![resource_upload](/img/tasks/demo/upload_jar.png)
 
 #### 配置 MapReduce 节点
 
 根据上述参数说明，配置所需的内容即可。
 
-![demo-mr-simple](/img/tasks/demo/mr.png)
+![demo-mr-simple](/img/tasks/demo/mr_task02.png)
