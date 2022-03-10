@@ -446,9 +446,11 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION
 
 2.在Apache Staging仓库找到DolphinScheduler并点击`Release`
 
-3.发送邮件到`dev@dolphinscheduler.apache.org`通知完成版本发布。
+3.发送公告邮件通知社区
 
-通知邮件模板：
+当完成了上述的发版流程后，需要发送一封公告邮件给社区。你需要将邮件发送到 `dev@dolphinscheduler.apache.org` 并抄送到 `announce@apache.org`。
+
+通知邮件模板如下：
 
 标题：
 
