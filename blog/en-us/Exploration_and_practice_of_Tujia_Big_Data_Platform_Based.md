@@ -15,7 +15,7 @@ Tujia introduced Apache DolphinScheduler in 2019. At the recent Apache DolphinSc
 
 <div align=center>
 
-<img style="width: 30%;" src="/img/2022-3-9/Eng/2.png"/>
+<img style="width: 25%;" src="/img/2022-3-9/Eng/2.png"/>
 
 </div>
 
