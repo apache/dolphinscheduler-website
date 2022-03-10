@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/2022-3-9/1.jpeg',
+          title: '途家大数据平台基于 Apache DolphinScheduler 的探索与实践',
+          content: '途家在 2019 年引入 Apache DolphinScheduler，在不久前的 Apache DolphinScheduler 2...',
+          dateStr: '2022-3-10',
+          link: '/zh-cn/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
+        },
+        {
           img: '/img/2022-3-7/1.png',
           title: 'Apache DolphinScheduler 2.0.5 发布，Worker 容错流程优化',
           content: '今天，Apache DolphinScheduler 宣布 2.0.5 版本正式发布。..',
@@ -67,13 +74,6 @@ export default {
           content: '基于笔者所在公司业务的特性，阐述我们使用 Kubernetes 作为Apache DolphinScheduler的技术底座的原因： ...',
           dateStr: '2022-2-22',
           link: '/zh-cn/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
-        },
-        {
-          img: '/img/2022-02-26/07.png',
-          title: '# 直播报名火热启动 | 2022 年 Apache DolphinScheduler Meetup 首秀！',
-          content: '各位关注 Apache DolphinScheduler 的小伙伴们大家好呀！相信大家都已经从热闹的春节里...',
-          dateStr: '2022-2-18',
-          link: '/zh-cn/blog/Meetup_2022_02_26.html',
         },
       ],
     },
@@ -547,6 +547,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: '/img/2022-3-9/Eng/1.jpeg',
+          title: 'Exploration and practice of Tujia Big Data Platform Based on Apache DolphinScheduler',
+          content: 'Tujia introduced Apache DolphinScheduler in 2019...',
+          dateStr: '2022-3-10',
+          link: '/en-us/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
+        },
+        {
           img: '/img/2022-3-7/1.png',
           title: 'Release News! Apache DolphinScheduler 2_0_5 optimizes The Fault Tolerance Process of Worker',
           content: 'Today, Apache DolphinScheduler announced the official release of version 2.0.5....',
@@ -559,13 +566,6 @@ export default {
           content: 'Kubernetes is a cluster system based on container technology....',
           dateStr: '2022-2-24',
           link: '/en-us/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
-        },
-        {
-          img: '/img/2022-02-26/08.png',
-          title: ' Sign Up to Apache DolphinScheduler Meetup Online | We Are Waiting For You to Join the Grand Gathering on 2.26 2022!\n',
-          content: 'Hello the community! After having adjusted ourselves from the pleasure of...',
-          dateStr: '2022-2-18',
-          link: '/en-us/blog/Meetup_2022_02_26.html',
         },
       ],
     },
