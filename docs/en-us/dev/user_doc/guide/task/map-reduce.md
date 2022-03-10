@@ -52,7 +52,7 @@ MapReduce(MR) task type used for executing MapReduce programs. For MapReduce nod
 
 This example is a common introductory type of MapReduce application, which used to count the number of identical words in the input text.
 
-#### Configure the MapReduce environment in DolphinScheduler
+#### Configure the MapReduce Environment in DolphinScheduler
 
 If you are using the MapReduce task type in a production environment, it is necessary to configure the required environment first. The configuration file is as follows: `/dolphinscheduler/conf/env/dolphinscheduler_env.sh`.
 

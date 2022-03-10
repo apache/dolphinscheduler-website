@@ -43,7 +43,7 @@ Spark task type used to execute Spark program. For Spark nodes, the worker submi
 
 This is a common introductory case in the big data ecosystem, which often apply to computational frameworks such as MapReduce, Flink and Spark. The main purpose is to count the number of identical words in the input text. (Flink's releases attach this example job)
 
-#### Configure the Spark environment in DolphinScheduler
+#### Configure the Spark Environment in DolphinScheduler
 
 If you are using the Spark task type in a production environment, it is necessary to configure the required environment first. The configuration file is as follows: `/dolphinscheduler/conf/env/dolphinscheduler_env.sh`.
 
