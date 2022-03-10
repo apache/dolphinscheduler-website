@@ -2,7 +2,7 @@
 
 ## 综述
 
-Flink 任务类型，用于执行 Flink 程序。对于 Flink 节点，worker 会通过使用 flink 命令 `flink run` 的方式提交任务。更多详情查看 [flink cli](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/deployment/cli/)。
+Flink 任务类型，用于执行 Flink 程序。对于 Flink 节点，worker 会通过使用 flink 命令 `flink run` 的方式提交任务。更多详情查看 [flink cli](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/deployment/cli/)。
 
 ## 创建任务
 
@@ -18,8 +18,8 @@ Flink 任务类型，用于执行 Flink 程序。对于 Flink 节点，worker �
 - Worker 分组：任务分配给 worker 组的机器执行，选择 Default，会随机选择一台 worker 机执行。
 - 环境名称：配置运行脚本的环境。
 - 失败重试次数：任务失败重新提交的次数。
-- 失败重试间隔：任务失败重新提交任务的时间间隔，以分为单位。
-- 延迟执行时间：任务延迟执行的时间，以分为单位。
+- 失败重试间隔：任务失败重新提交任务的时间间隔，以分钟为单位。
+- 延迟执行时间：任务延迟执行的时间，以分钟为单位。
 - 超时告警：勾选超时告警、超时失败，当任务超过"超时时长"后，会发送告警邮件并且任务执行失败。
 - 程序类型：支持 Java、Scala 和 Python 三种语言。
 - 主函数的 Class：Flink 程序的入口 Main Class 的**全路径**。

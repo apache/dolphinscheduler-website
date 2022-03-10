@@ -1,17 +1,17 @@
-# DataX
+# DataX Node
 
-- Drag in the toolbar<img src="/img/datax.png" width="35"/>Task node into the drawing board
+- Drag from the toolbar <img src="/img/datax.png" width="35"/> task node into the canvas, as shown in the figure below:
 
   <p align="center">
    <img src="/img/datax-en.png" width="80%" />
   </p>
 
-- Custom template: When you turn on the custom template switch, you can customize the content of the json configuration file of the datax node (applicable when the control configuration does not meet the requirements)
-- Data source: select the data source to extract the data
-- sql statement: the sql statement used to extract data from the target database, the sql query column name is automatically parsed when the node is executed, and mapped to the target table synchronization column name. When the source table and target table column names are inconsistent, they can be converted by column alias (as)
-- Target library: select the target library for data synchronization
+- Custom template: When you turn on the custom template switch, you can customize the JSON configuration content of the DataX node (applicable when the control configuration does not satisfy requirements)
+- Data source: select the data source to extract data
+- SQL statement: the SQL statement used to extract data from the target database, the SQL query column name is automatically parsed when execute the node, and mapped to the target table to synchronize column name. When the column names of the source table and the target table are inconsistent, they can be converted by column alias (as)
+- Target database: select the target database for data synchronization
 - Target table: the name of the target table for data synchronization
-- Pre-sql: Pre-sql is executed before the sql statement (executed by the target library).
-- Post-sql: Post-sql is executed after the sql statement (executed by the target library).
-- json: json configuration file for datax synchronization
-- Custom parameters: SQL task type, and stored procedure is a custom parameter order to set values for the method. The custom parameter type and data type are the same as the stored procedure task type. The difference is that the SQL task type custom parameter will replace the \${variable} in the SQL statement.
+- Pre-SQL: Pre-SQL executes before the SQL statement (executed by the target database)
+- Post-SQL: Post-SQL executes after the SQL statement (executed by the target database)
+- JSON: JSON configuration file for DataX synchronization
+- Custom parameters: SQL task type, and stored procedure is a custom parameter order, to set customized parameter type and data type for the method is the same as the stored procedure task type. The difference is that the custom parameter of the SQL task type replaces the `${variable}` in the SQL statement.
