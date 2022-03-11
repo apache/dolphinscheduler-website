@@ -15,8 +15,7 @@ Tujia introduced Apache DolphinScheduler in 2019. At the recent Apache DolphinSc
 
 <div align=center>
 
-<img style="width: 60%;" src="/img/2022-3-9/Eng/2.png"/>
-
+<img style="width: 25%;" src="/img/2022-3-9/Eng/2.png"/>
 </div>
 
 Xuchao Zan, Big Data Engineer, Data Development engineer from Tujia, is mainly responsible for the development, maintenance, and tuning of the big data platform.

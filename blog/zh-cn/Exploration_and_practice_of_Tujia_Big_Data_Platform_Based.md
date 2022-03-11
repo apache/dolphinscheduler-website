@@ -6,7 +6,7 @@
 
 >途家在 2019 年引入 Apache DolphinScheduler，在不久前的 Apache DolphinScheduler 2 月份的 Meetup上，**途家大数据工程师 昝绪超** 详细介绍了途家接入 Apache DolphinScheduler 的历程，以及进行的功能改进。
 <div align=center>
-<img style="width: 60%;" src="/img/2022-3-9/2.png"/>
+<img style="width: 25%;" src="/img/2022-3-9/2.png"/>
 </div>
 
 途家大数据工程师数据开发工程师，主要负责大数据平台的开发，维护和调优。
