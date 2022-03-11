@@ -428,9 +428,12 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION
 
 ### Find DolphinScheduler in staging repository and click `Release`
 
-### Send e-mail to `dev@dolphinscheduler.apache.org` to announce the release is finished
+### Send Announcement E-mail Community
 
-Announcement e-mail template：
+You should send announcement E-mail after release process finished. The E-mail should send to `dev@dolphinscheduler.apache.org`
+and cc to `announce@apache.org`.
+
+Announcement e-mail template as below：
 
 Title：
 

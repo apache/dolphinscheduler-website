@@ -2,11 +2,11 @@
 
 ## Scope
 
-Parameters configured on the task definition dialog, the scope of this parameter only for this task, but if you configured follow [Parameter Context](context.md), it could passed follow task.
+Parameters configured on the task definition page, the scope of this parameter is inside this task only. But if you configure according to [Refer to Parameter Context](context.md), it could pass to downstream tasks.
 
 ## Usage
 
-The approach to set local parameters is, double-click on any node while defining the workflow and click the '+' button next to the 'Custom Parameters':
+Usage of local parameters is: at the task define page, click the '+' beside the 'Custom Parameters' and fill in the key and value to save:
 
 <p align="center">
      <img src="/img/supplement_local_parameter_en.png" width="80%" />
@@ -16,4 +16,4 @@ The approach to set local parameters is, double-click on any node while defining
      <img src="/img/global_parameter_en.png" width="80%" />
 </p>
 
-If you want to call the [built-in parameter](built-in.md) in the local parameters, fill in the value corresponding to the built-in parameters in `value`, as in the above figure, `${biz_date}` and `${curdate}`
+If you want to call the [built-in parameter](built-in.md) in the local parameters, fill in thevalue of built-in parameters in `value`. As in the above figure, `${biz_date}` and `${curdate}`.
