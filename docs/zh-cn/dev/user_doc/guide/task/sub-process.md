@@ -24,7 +24,7 @@
 
 ## 任务样例
 
-该样例模拟了常见的任务类型，这里我们使用子结点任务调用 [shell](shell.md) 打印出 ”hello world“。即将一个 shell 任务当作子结点来执行。
+该样例模拟了常见的任务类型，这里我们使用子结点任务调用 [Shell](shell.md) 打印出 ”hello world“。即将一个 shell 任务当作子结点来执行。
 
 ### 创建 shell 任务
 
