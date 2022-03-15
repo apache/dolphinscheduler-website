@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/2022-3-11/1.jpeg',
+          title: '日均处理 10000+ 工作流实例，Apache DolphinScheduler 在 360 数科的实践',
+          content: '从 2020 年起，360 数科全面将调度系统从 Azkaban 迁移到 Apache DolphinScheduler...',
+          dateStr: '2022-3-15',
+          link: '/zh-cn/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
+        },
+        {
           img: '/img/2022-3-9/1.jpeg',
           title: '途家大数据平台基于 Apache DolphinScheduler 的探索与实践',
           content: '途家在 2019 年引入 Apache DolphinScheduler，在不久前的 Apache DolphinScheduler 2...',
@@ -67,13 +74,6 @@ export default {
           content: '今天，Apache DolphinScheduler 宣布 2.0.5 版本正式发布。..',
           dateStr: '2022-3-7',
           link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.5.html',
-        },
-        {
-          img: '/img/2022-02-22/1.jpeg',
-          title: 'Apache DolphinScheduler在Kubernetes体系中的技术实战',
-          content: '基于笔者所在公司业务的特性，阐述我们使用 Kubernetes 作为Apache DolphinScheduler的技术底座的原因： ...',
-          dateStr: '2022-2-22',
-          link: '/zh-cn/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
         },
       ],
     },
@@ -547,6 +547,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: '/img/2022-3-11/1.jpeg',
+          title: 'How Does 360 DIGITECH process 10,000+ workflow instances per day by Apache DolphinScheduler',
+          content: 'ince 2020, 360 DIGITECH has fully migrated its scheduling system from Azkaban to Apache DolphinScheduler....',
+          dateStr: '2022-2-24',
+          link: '/en-us/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
+        },
+        {
           img: '/img/2022-3-9/Eng/1.jpeg',
           title: 'Exploration and practice of Tujia Big Data Platform Based on Apache DolphinScheduler',
           content: 'Tujia introduced Apache DolphinScheduler in 2019...',
@@ -559,13 +566,6 @@ export default {
           content: 'Today, Apache DolphinScheduler announced the official release of version 2.0.5....',
           dateStr: '2022-3-7',
           link: '/en-us/blog/Apache_dolphinScheduler_2.0.5.html',
-        },
-        {
-          img: '/img/2022-02-24/1.jpeg',
-          title: 'Technical Practice of Apache DolphinScheduler in Kubernetes System',
-          content: 'Kubernetes is a cluster system based on container technology....',
-          dateStr: '2022-2-24',
-          link: '/en-us/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
         },
       ],
     },
