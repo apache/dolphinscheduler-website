@@ -35,7 +35,7 @@ Azkaban's web-executor architecture is shown as below:
 
 <div align=center>
 
-<img src="/img/2022-3-11/Eng/3.png"/>
+<img style="width: 40%;" src="/img/2022-3-11/Eng/3.png"/>
 
 </div>
 

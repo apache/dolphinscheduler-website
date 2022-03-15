@@ -22,7 +22,7 @@ Azkaban 是由 Linkedin 开源的批量工作流任务调度器。其安装简�
 Azkaban 的 web-executor 架构如下图所示：
 
 <div align=center>
-<img src="/img/2022-3-11/3.png"/>
+<img style="width: 40%;" src="/img/2022-3-11/3.png"/>
 </div>
 
 
