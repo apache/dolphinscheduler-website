@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'How Does 360 DIGITECH process 10,000+ workflow instances per day by Apache DolphinScheduler',
+                author: 'Debra Chen',
+                dateStr: '2022-3-15',
+                desc: 'ince 2020, 360 DIGITECH has fully migrated its scheduling system from Azkaban to Apache DolphinScheduler.. ',
+                link: '/en-us/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
+            },
+            {
                 title: 'Exploration and practice of Tujia Big Data Platform Based on Apache DolphinScheduler',
                 author: 'Debra Chen',
                 dateStr: '2022-3-10',
@@ -152,6 +159,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '日均处理 10000+ 工作流实例，Apache DolphinScheduler 在 360 数科的实践',
+                author: 'Debra Chen',
+                dateStr: '2022-3-15',
+                desc: '从 2020 年起，360 数科全面将调度系统从 Azkaban 迁移到 Apache DolphinScheduler......',
+                link: '/zh-cn/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
+            },
             {
                 title: '途家大数据平台基于 Apache DolphinScheduler 的探索与实践',
                 author: 'Debra Chen',
