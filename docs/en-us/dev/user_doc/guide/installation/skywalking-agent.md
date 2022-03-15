@@ -1,13 +1,13 @@
 SkyWalking Agent Deployment
 =============================
 
-The dolphinscheduler-skywalking module provides [SkyWalking](https://skywalking.apache.org/) monitor agent for the Dolphinscheduler project.
+The `dolphinscheduler-skywalking` module provides [SkyWalking](https://skywalking.apache.org/) monitor agent for the DolphinScheduler project.
 
-This document describes how to enable SkyWalking 8.4+ support with this module (recommended to use SkyWalking 8.5.0).
+This document describes how to enable SkyWalking version 8.4+ support with this module (recommend using SkyWalking 8.5.0).
 
 ## Installation
 
-The following configuration is used to enable SkyWalking agent.
+The following configuration is used to enable the SkyWalking agent.
 
 ### Through Environment Variable Configuration (for Docker Compose)
 
@@ -20,7 +20,7 @@ SW_GRPC_LOG_SERVER_HOST=127.0.0.1
 SW_GRPC_LOG_SERVER_PORT=11800
 ```
 
-And run
+And run:
 
 ```shell
 $ docker-compose up -d
@@ -69,6 +69,6 @@ Copy the `${dolphinscheduler.home}/ext/skywalking-agent/dashboard/dolphinschedul
 
 #### View DolphinScheduler Dashboard
 
-If you have opened SkyWalking dashboard with a browser before, you need to clear the browser cache.
+If you have opened the SkyWalking dashboard with a browser before, you need to clear the browser cache.
 
 ![img1](/img/skywalking/import-dashboard-1.jpg)
