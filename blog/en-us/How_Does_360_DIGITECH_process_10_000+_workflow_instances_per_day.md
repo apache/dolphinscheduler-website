@@ -35,7 +35,7 @@ Azkaban's web-executor architecture is shown as below:
 
 <div align=center>
 
-<img src="/img/2022-3-11 Eng/3.png"/>
+<img src="/img/2022-3-11/Eng/3.png"/>
 
 </div>
 
@@ -81,7 +81,7 @@ At 360 DIGITECH, DolphinScheduler is not only used by the Big Data department, b
 
 <div align=center>
 
-<img src="/img/2022-3-11 Eng/4.png"/>
+<img src="/img/2022-3-11/Eng/4.png"/>
 
 </div>
 
@@ -97,7 +97,7 @@ The algorithm department mostly uses Python scripts and SQL nodes, timed with bo
 
 <div align=center>
 
-<img src="/img/2022-3-11 Eng/5.png"/>
+<img src="/img/2022-3-11/Eng/5.png"/>
 
 </div>
 
@@ -107,7 +107,7 @@ DolphinScheduler supports Shell, SQL, Python, and Jar task types. Shell supports
 
 <div align=center>
 
-<img src="/img/2022-3-11 Eng/6.png"/>
+<img src="/img/2022-3-11/Eng/6.png"/>
 
 </div>
 
