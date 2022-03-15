@@ -11,19 +11,19 @@ MapReduce(MR) task type used for executing MapReduce programs. For MapReduce nod
 
 ## Task Parameter
 
--    **Node name**: The node name in a workflow definition is unique.
--    **Run flag**: Identifies whether this node schedules normally, if it does not need to execute, select the `prohibition execution`.
--    **Descriptive information**: Describe the function of the node.
--    **Task priority**: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.
--    **Worker grouping**:  Assign tasks to the machines of the worker group to execute. If `Default` is selected, randomly select a worker machine for execution.
--    **Environment Name**: Configure the environment name in which run the script.
--    **Times of failed retry attempts**: The number of times the task failed to resubmit.
--    **Failed retry interval**: The time interval (unit minute) for resubmitting the task after a failed task.
--    **Delayed execution time**: The time (unit minute) that a task delays in execution.
--    **Timeout alarm**: Check the timeout alarm and timeout failure. When the task runs exceed the "timeout", an alarm email will send and the task execution will fail.
--    **Resource**: Refers to the list of resource files that called in the script, and upload or create files by the Resource Center file management.
--    **Custom parameters**: It is a local user-defined parameter for MapReduce, and will replace the content with `${variable}` in the script.
--    **Predecessor task**: Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.
+- **Node name**: The node name in a workflow definition is unique.
+- **Run flag**: Identifies whether this node schedules normally, if it does not need to execute, select the `prohibition execution`.
+- **Descriptive information**: Describe the function of the node.
+- **Task priority**: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.
+- **Worker grouping**:  Assign tasks to the machines of the worker group to execute. If `Default` is selected, randomly select a worker machine for execution.
+- **Environment Name**: Configure the environment name in which run the script.
+- **Times of failed retry attempts**: The number of times the task failed to resubmit.
+- **Failed retry interval**: The time interval (unit minute) for resubmitting the task after a failed task.
+- **Delayed execution time**: The time (unit minute) that a task delays in execution.
+- **Timeout alarm**: Check the timeout alarm and timeout failure. When the task runs exceed the "timeout", an alarm email will send and the task execution will fail.
+- **Resource**: Refers to the list of resource files that called in the script, and upload or create files by the Resource Center file management.
+- **Custom parameters**: It is a local user-defined parameter for MapReduce, and will replace the content with `${variable}` in the script.
+- **Predecessor task**: Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.
 
 ### JAVA or SCALA Program
 

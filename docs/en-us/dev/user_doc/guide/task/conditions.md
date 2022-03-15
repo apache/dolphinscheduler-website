@@ -24,12 +24,12 @@ Drag from the toolbar <img src="/img/conditions.png" width="20"/> task node to c
 - Times of failed retry attempts: The number of times the task failed to resubmit. You can select from drop-down or fill-in a number.
 - Failed retry interval: The time interval for resubmitting the task after a failed task. You can select from drop-down or fill-in a number.
 - Timeout alarm: Check the timeout alarm and timeout failure. When the task runs exceed the "timeout", an alarm email will send and the task execution will fail.
-- Downstream tasks selection: supports two branches: success and failure
-  - Success: When the upstream task runs successfully, run the success branch
-  - Failure: When the upstream task runs failed, run the failure branch
-- Upstream condition selection: can select one or more upstream tasks for conditions
-  - Add an upstream dependency: the first parameter is to choose a specified task name, and the second parameter is to choose the upstream task status to trigger conditions
-  - Select upstream task relationship: use `and` and `or` operators to handle the complex relationship of upstream when there are multiple upstream tasks for conditions
+- Downstream tasks selection: supports two branches success and failure.
+  - Success: When the upstream task runs successfully, run the success branch.
+  - Failure: When the upstream task runs failed, run the failure branch.
+- Upstream condition selection: can select one or more upstream tasks for conditions.
+  - Add an upstream dependency: the first parameter is to choose a specified task name, and the second parameter is to choose the upstream task status to trigger conditions.
+  - Select upstream task relationship: use `and` and `or` operators to handle the complex relationship of upstream when there are multiple upstream tasks for conditions.
 
 ## Related Task
 
