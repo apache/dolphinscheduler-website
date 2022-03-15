@@ -31,7 +31,7 @@
 <p>假设我们三个任务，其依赖关系是 <code>A -&gt; B -&gt; [C, D]</code> 其中task_a是shell任务，task_b是switch任务</p>
 <ul>
 <li>任务A中通过<a href="../parameter/global.md">全局变量</a>定义了名为<code>id</code>的全局变量，声明方式为<code>${setValue(id=1)}</code></li>
-<li>任务B增加条件，使用上游声明的全局变量实现条件判断（注意switch运行时存在的全局变量就行，意味着可以是非直接上游产生的全局变量）。下面我们想要实现当id为1时，运行任务C，其他运行任务D
+<li>任务B增加条件，使用上游声明的全局变量实现条件判断（注意：只要直接、非直接上游在switch运行前对全局变量赋值，switch运行时就可以获取该全局变量）。下面我们想要实现当id为1时，运行任务C，其他运行任务D
 <ul>
 <li>配置当全局变量<code>id=1</code>时，运行任务C。则在任务B的条件中编辑<code>${id} == 1</code>，分支流转选择<code>C</code></li>
 <li>对于其他任务，在分支流转中选择<code>D</code></li>
