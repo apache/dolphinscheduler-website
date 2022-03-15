@@ -1,6 +1,6 @@
 # Pigeon
 
-Pigeon任务类型与通过调用远程websocket服务，实现远程任务的触发，状态、日志的获取，是 DolphinScheduler 通用远程 websocket 服务调用任务
+Pigeon任务类型是通过调用远程websocket服务，实现远程任务的触发，状态、日志的获取，是 DolphinScheduler 通用远程 websocket 服务调用任务
 
 ## 创建任务
 

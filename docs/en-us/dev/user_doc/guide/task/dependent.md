@@ -1,8 +1,8 @@
-# Dependent
+# Dependent Node
 
-- Dependent nodes are **dependency check nodes**. For example, process A depends on the successful execution of process B yesterday, and the dependent node will check whether process B has a successful execution yesterday.
+- Dependent nodes are **dependency check nodes**. For example, process A depends on the successful execution of process B from yesterday, and the dependent node will check whether process B run successful yesterday.
 
-> Drag the ![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_DEPENDENT.png) task node in the toolbar to the drawing board, as shown in the following figure:
+> Drag from the toolbar ![PNG](https://analysys.github.io/easyscheduler_docs_cn/images/toolbar_DEPENDENT.png) task node to the canvas, as shown in the figure below:
 
 <p align="center">
    <img src="/img/dependent-nodes-en.png" width="80%" />
