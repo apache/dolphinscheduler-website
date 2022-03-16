@@ -1,3 +1,3 @@
 # User Manual
 
-User Manual show you how to play with DolphinScheduler, if you do not installed, please see [Quick Start](./quick-start.md) to install DolphinScheduler before going forward.
+The user manual shows common operations about DolphinScheduler. If you still haven't installed DolphinScheduler, refer to the [Quick Start](./quick-start.md) to install DolphinScheduler before going forward.
