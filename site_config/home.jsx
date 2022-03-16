@@ -59,7 +59,7 @@ export default {
           title: '杭州思科对 Apache DolphinScheduler Alert 模块的改造',
           content: '杭州思科已经将 Apache DolphinScheduler 引入公司自建的大数据平台..',
           dateStr: '2022-3-7',
-          link: '/zh-cn/blog/Hangzhou_cisco.md.html',
+          link: '/zh-cn/blog/Hangzhou_cisco.html',
         },
         {
           img: '/img/2022-3-11/1.jpeg',

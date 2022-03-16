@@ -172,7 +172,7 @@ export default {
                 author: 'Debra Chen',
                 dateStr: '2022-3-16',
                 desc: '杭州思科已经将 Apache DolphinScheduler 引入公司自建的大数据平台......',
-                link: '/zh-cn/blog/Hangzhou_cisco.md.html',
+                link: '/zh-cn/blog/Hangzhou_cisco.html',
             },
             {
                 title: '日均处理 10000+ 工作流实例，Apache DolphinScheduler 在 360 数科的实践',
