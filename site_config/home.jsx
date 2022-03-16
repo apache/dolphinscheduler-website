@@ -547,6 +547,7 @@ export default {
       title: 'Events & News',
       list: [
         {
+
           img: '/img/3-16/1.png',
           title: 'Cisco Hangzhou\'s Travel Through Apache DolphinScheduler Alert Module Refactor',
           content: 'Cisco Hangzhou has introduced Apache DolphinScheduler....',

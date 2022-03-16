@@ -1,50 +1,48 @@
-# Flink
+# Flink Node
 
 ## Overview
 
-Flink task type for executing Flink programs. For Flink nodes, the worker submits the task by using the flink command `flink run`. See [flink cli](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/deployment/cli/) for more details.
+Flink task type for executing Flink programs. For Flink nodes, the worker submits the task by using the Flink command `flink run`. See [flink cli](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/deployment/cli/) for more details.
 
 ## Create Task
 
 - Click Project Management -> Project Name -> Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
-- Drag the <img src="/img/tasks/icons/flink.png" width="15"/> from the toolbar to the drawing board.
+- Drag from the toolbar <img src="/img/tasks/icons/flink.png" width="15"/>task node to canvas.
 
 ## Task Parameter
 
 - **Node name**: The node name in a workflow definition is unique.
-- **Run flag**: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.
-- **Descriptive information**: describe the function of the node.
-- **Task priority**: When the number of worker threads is insufficient, they are executed in order from high to low, and when the priority is the same, they are executed according to the first-in first-out principle.
-- **Worker grouping**: Tasks are assigned to the machines of the worker group to execute. If Default is selected, a worker machine will be randomly selected for execution.
-- **Environment Name**: Configure the environment name in which to run the script.
-- **Number of failed retry attempts**: The number of times the task failed to be resubmitted.
-- **Failed retry interval**: The time, in cents, interval for resubmitting the task after a failed task.
-- **Delayed execution time**: the time, in cents, that a task is delayed in execution.
-- **Timeout alarm**: Check the timeout alarm and timeout failure. When the task exceeds the "timeout period", an alarm email will be sent and the task execution will fail.
-- **Program type**: supports Java、Scala and Python.
-- **The class of main function**: is the full path of Main Class, the entry point of the Flink program.
-- **Resource**: Refers to the list of resource files that need to be called in the script, and the files uploaded or created by the resource center-file management.
-- **Main jar package**: is the Flink jar package.
-- **Deployment mode**: support three modes of cluster and local 
-- **Task name** (option): Flink task name.
-- **jobManager memory number**: This is used to set the number of jobManager memories, which can be set according to the actual production environment.
-- **Number of slots**: This is used to set the number of Slots, which can be set according to the actual production environment.
-- **taskManager memory number**: This is used to set the number of taskManager memories, which can be set according to the actual production environment.
-- **Number of taskManage**: This is used to set the number of taskManagers, which can be set according to the actual production environment.
-- **Custom parameters**: It is a user-defined parameter that is part of MapReduce, which will replace the content with ${variable} in the script.
-- **Predecessor task**: Selecting a predecessor task for the current task will set the selected predecessor task as upstream of the current task.
+- **Run flag**: Identifies whether this node schedules normally, if it does not need to execute, select the `prohibition execution`.
+- **Descriptive information**: Describe the function of the node.
+- **Task priority**: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.
+- **Worker grouping**: Assign tasks to the machines of the worker group to execute. If `Default` is selected, randomly select a worker machine for execution.
+- **Environment Name**: Configure the environment name in which run the script.
+- **Times of failed retry attempts**: The number of times the task failed to resubmit.
+- **Failed retry interval**: The time interval (unit minute) for resubmitting the task after a failed task.
+- **Delayed execution time**: The time (unit minute) that a task delays in execution.
+- **Timeout alarm**: Check the timeout alarm and timeout failure. When the task runs exceed the "timeout", an alarm email will send and the task execution will fail.
+- **Program type**: Supports Java, Scala and Python.
+- **The class of main function**: The **full path** of Main Class, the entry point of the Flink program.
+- **Main jar package**: The jar package of the Flink program (upload by Resource Center).
+- **Deployment mode**: Support 2 deployment modes: cluster and local.
+- **Flink version**: Select version according to the execution env.
+- **Task name** (optional): Flink task name.
+- **JobManager memory size**: Used to set the size of jobManager memories, which can be set according to the actual production environment.
+- **Number of slots**: Used to set the number of slots, which can be set according to the actual production environment.
+- **TaskManager memory size**: Used to set the size of taskManager memories, which can be set according to the actual production environment.
+- **Number of TaskManager**: Used to set the number of taskManagers, which can be set according to the actual production environment.
 - **Parallelism**: Used to set the degree of parallelism for executing Flink tasks.
-- **Main program parameters**: et the input parameters of the Flink program and support the substitution of custom parameter variables.
-- **Other parameters**: support `--jars`, `--files`,` --archives`, `--conf` format.
-- **Resource**: If the resource file is referenced in other parameters, you need to select and specify in the resource.
-- **Custom parameter**: It is a local user-defined parameter of Flink, which will replace the content with ${variable} in the script.
-- **Predecessor task**: Selecting a predecessor task for the current task will set the selected predecessor task as upstream of the current task.
+- **Main program parameters**: Set the input parameters for the Flink program and support the substitution of custom parameter variables.
+- **Optional parameters**: Support `--jar`, `--files`,` --archives`, `--conf` format.
+- **Resource**: Appoint resource files in the `Resource` if parameters refer to them.
+- **Custom parameter**: It is a local user-defined parameter for Flink, and will replace the content with `${variable}` in the script.
+- **Predecessor task**: Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.
 
 ## Task Example
 
 ### Execute the WordCount Program
 
-This is a common introductory case in the Big Data ecosystem, which often applied to computational frameworks such as MapReduce, Flink and Spark. The main purpose is to count the number of identical words in the input text. (Flink's releases come with this example job)
+This is a common introductory case in the big data ecosystem, which often apply to computational frameworks such as MapReduce, Flink and Spark. The main purpose is to count the number of identical words in the input text. (Flink's releases attach this example job)
 
 #### Configure the flink environment in DolphinScheduler
 
@@ -54,18 +52,18 @@ If you are using the flink task type in a production environment, it is necessar
 
 #### Upload the Main Package
 
-When using the Flink task node, you will need to use the Resource Centre to upload the jar package for the executable. Refer to the [resource center](../resource.md).
+When using the Flink task node, you need to upload the jar package to the Resource Centre for the execution, refer to the [resource center](../resource.md).
 
-After configuring the Resource Centre, you can upload the required target files directly using drag and drop.
+After finish the Resource Centre configuration, upload the required target files directly by dragging and dropping.
 
 ![resource_upload](/img/tasks/demo/upload_jar.png)
 
 #### Configure Flink Nodes
 
-Simply configure the required content according to the parameter descriptions above.
+Configure the required content according to the parameter descriptions above.
 
 ![demo-flink-simple](/img/tasks/demo/flink_task02.png)
 
 ## Notice
 
-JAVA and Scala are only used for identification, there is no difference, if it is Flink developed by Python, there is no class of the main function, the others are the same.
+JAVA and Scala only used for identification, there is no difference. If use Python to develop Flink, there is no class of the main function and the rest is the same.
