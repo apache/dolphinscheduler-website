@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/3-16/1.png',
+          title: '杭州思科对 Apache DolphinScheduler Alert 模块的改造',
+          content: '杭州思科已经将 Apache DolphinScheduler 引入公司自建的大数据平台..',
+          dateStr: '2022-3-7',
+          link: '/zh-cn/blog/Hangzhou_cisco.md.html',
+        },
+        {
           img: '/img/2022-3-11/1.jpeg',
           title: '日均处理 10000+ 工作流实例，Apache DolphinScheduler 在 360 数科的实践',
           content: '从 2020 年起，360 数科全面将调度系统从 Azkaban 迁移到 Apache DolphinScheduler...',
@@ -67,13 +74,6 @@ export default {
           content: '途家在 2019 年引入 Apache DolphinScheduler，在不久前的 Apache DolphinScheduler 2...',
           dateStr: '2022-3-10',
           link: '/zh-cn/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
-        },
-        {
-          img: '/img/2022-3-7/1.png',
-          title: 'Apache DolphinScheduler 2.0.5 发布，Worker 容错流程优化',
-          content: '今天，Apache DolphinScheduler 宣布 2.0.5 版本正式发布。..',
-          dateStr: '2022-3-7',
-          link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.5.html',
         },
       ],
     },
@@ -547,6 +547,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: '/img/3-16/1.png',
+          title: 'Cisco Hangzhou\'s Travel Through Apache DolphinScheduler Alert Module Refactor',
+          content: 'Cisco Hangzhou has introduced Apache DolphinScheduler....',
+          dateStr: '2022-3-7',
+          link: '/en-us/blog/Hangzhou_cisco.html',
+        },
+        {
           img: '/img/2022-3-11/1.jpeg',
           title: 'How Does 360 DIGITECH process 10,000+ workflow instances per day by Apache DolphinScheduler',
           content: 'ince 2020, 360 DIGITECH has fully migrated its scheduling system from Azkaban to Apache DolphinScheduler....',
@@ -559,13 +566,6 @@ export default {
           content: 'Tujia introduced Apache DolphinScheduler in 2019...',
           dateStr: '2022-3-10',
           link: '/en-us/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
-        },
-        {
-          img: '/img/2022-3-7/1.png',
-          title: 'Release News! Apache DolphinScheduler 2_0_5 optimizes The Fault Tolerance Process of Worker',
-          content: 'Today, Apache DolphinScheduler announced the official release of version 2.0.5....',
-          dateStr: '2022-3-7',
-          link: '/en-us/blog/Apache_dolphinScheduler_2.0.5.html',
         },
       ],
     },

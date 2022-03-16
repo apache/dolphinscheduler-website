@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Cisco Hangzhou\'s Travel Through Apache DolphinScheduler Alert Module Refactor',
+                author: 'Debra Chen',
+                dateStr: '2022-3-16',
+                desc: 'Cisco Hangzhou has introduced Apache DolphinScheduler.. ',
+                link: '/en-us/blog/Hangzhou_cisco.html',
+            },
+            {
                 title: 'How Does 360 DIGITECH process 10,000+ workflow instances per day by Apache DolphinScheduler',
                 author: 'Debra Chen',
                 dateStr: '2022-3-15',
@@ -159,6 +166,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '杭州思科对 Apache DolphinScheduler Alert 模块的改造',
+                author: 'Debra Chen',
+                dateStr: '2022-3-16',
+                desc: '杭州思科已经将 Apache DolphinScheduler 引入公司自建的大数据平台......',
+                link: '/zh-cn/blog/Hangzhou_cisco.md.html',
+            },
             {
                 title: '日均处理 10000+ 工作流实例，Apache DolphinScheduler 在 360 数科的实践',
                 author: 'Debra Chen',
