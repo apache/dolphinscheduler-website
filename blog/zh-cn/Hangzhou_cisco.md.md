@@ -91,7 +91,7 @@ Apache DolphinScheduler 的架构虽然符合实际场景需求，但问题在�
 
 <div align=center>
 
-< img src="/2022-3-15/3-15/9.png"/>
+<img src="/2022-3-15/3-15/9.png"/>
 
 </div>
 
