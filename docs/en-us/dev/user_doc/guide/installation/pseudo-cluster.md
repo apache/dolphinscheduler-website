@@ -1,12 +1,12 @@
 # Pseudo-Cluster Deployment
 
-The purpose of pseudo-cluster deployment is to deploy the DolphinScheduler service on a single machine. In this mode, DolphinScheduler's master, worker, api server, are all on the same machine.
+The purpose of the pseudo-cluster deployment is to deploy the DolphinScheduler service on a single machine. In this mode, DolphinScheduler's master, worker, API server, are all on the same machine.
 
-If you are a green hand and want to experience DolphinScheduler, we recommended you install follow [Standalone](standalone.md). If you want to experience more complete functions or schedule large tasks number, we recommended you install follow [pseudo-cluster deployment](pseudo-cluster.md). If you want to using DolphinScheduler in production, we recommended you follow [cluster deployment](cluster.md) or [kubernetes](kubernetes.md)
+If you are a new hand and want to experience DolphinScheduler functions, we recommend you install follow [Standalone deployment](standalone.md). If you want to experience more complete functions and schedule massive tasks, we recommend you install follow [pseudo-cluster deployment](pseudo-cluster.md). If you want to deploy DolphinScheduler in production, we recommend you follow [cluster deployment](cluster.md) or [Kubernetes deployment](kubernetes.md).
 
-## Prepare
+## Preparation
 
-Pseudo-cluster deployment of DolphinScheduler requires external software support
+Pseudo-cluster deployment of DolphinScheduler requires external software support:
 
 * JDK：Download [JDK][jdk] (1.8+), and configure `JAVA_HOME` to and `PATH` variable. You can skip this step, if it already exists in your environment.
 * Binary package: Download the DolphinScheduler binary package at [download page](https://dolphinscheduler.apache.org/en-us/download/download.html)
@@ -16,13 +16,13 @@ Pseudo-cluster deployment of DolphinScheduler requires external software support
   * `pstree` for macOS
   * `psmisc` for Fedora/Red/Hat/CentOS/Ubuntu/Debian
 
-> **_Note:_** DolphinScheduler itself does not depend on Hadoop, Hive, Spark, but if you need to run tasks that depend on them, you need to have the corresponding environment support
+> **_Note:_** DolphinScheduler itself does not depend on Hadoop, Hive, Spark, but if you need to run tasks that depend on them, you need to have the corresponding environment support.
 
 ## DolphinScheduler Startup Environment
 
 ### Configure User Exemption and Permissions
 
-Create a deployment user, and be sure to configure `sudo` without password. We here make a example for user dolphinscheduler.
+Create a deployment user, and make sure to configure `sudo` without password. Here make an example to create user `dolphinscheduler`:
 
 ```shell
 # To create a user, login as root
@@ -41,12 +41,12 @@ chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
 
 > **_NOTICE:_**
 >
-> * Because DolphinScheduler's multi-tenant task switch user by command `sudo -u {linux-user}`, the deployment user needs to have sudo privileges and is password-free. If novice learners don’t understand, you can ignore this point for the time being.
-> * If you find the line "Defaults requirest" in the `/etc/sudoers` file, please comment it
+> * Due to DolphinScheduler's multi-tenant task switch user using command `sudo -u {linux-user}`, the deployment user needs to have `sudo` privileges and be password-free. If novice learners don’t understand, you can ignore this point for now.
+> * If you find the line "Defaults requirett" in the `/etc/sudoers` file, please comment the content.
 
 ### Configure Machine SSH Password-Free Login
 
-Since resources need to be sent to different machines during installation, SSH password-free login is required between each machine. The steps to configure password-free login are as follows
+Since resources need to be sent to different machines during installation, SSH password-free login is required between each machine. The steps to configure password-free login are as follows:
 
 ```shell
 su dolphinscheduler
@@ -56,11 +56,11 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
 
-> **_Notice:_** After the configuration is complete, you can run the command `ssh localhost` to test if it work or not, if you can login with ssh without password.
+> **_Notice:_** After the configuration is complete, you can run the command `ssh localhost` to test works or not. If you can login with ssh without password stands for successful.
 
 ### Start ZooKeeper
 
-Go to the ZooKeeper installation directory, copy configure file `zoo_sample.cfg` to `conf/zoo.cfg`, and change value of dataDir in `conf/zoo.cfg` to `dataDir=./tmp/zookeeper`
+Go to the ZooKeeper installation directory, copy configure file `zoo_sample.cfg` to `conf/zoo.cfg`, and change value of dataDir in `conf/zoo.cfg` to `dataDir=./tmp/zookeeper`.
 
 ```shell
 # Start ZooKeeper
@@ -78,7 +78,7 @@ spring.datasource.username=dolphinscheduler
 spring.datasource.password=dolphinscheduler
 ```
 
-After modifying and saving, execute the following command to create database table and inti basic data.
+After modifying and saving, execute the following command to create database tables and init basic data.
 
 ```shell
 sh script/create-dolphinscheduler.sh
@@ -87,38 +87,38 @@ sh script/create-dolphinscheduler.sh
 
 ## Modify Configuration
 
-After completing the preparation of the basic environment, you need to modify the configuration file according to your environment. The configuration file is in the path of `conf/config/install_config.conf`. Generally, you just needs to modify the **INSTALL MACHINE, DolphinScheduler ENV, Database, Registry Server** part to complete the deployment, the following describes the parameters that must be modified
+After completing the preparation of the basic environment, you need to modify the configuration file according to your environment. The configuration file is in the path of `conf/config/install_config.conf`. Generally, you just need to modify the **INSTALL MACHINE, DolphinScheduler ENV, Database, Registry Server** part to complete the deployment, the following describes the parameters that must be modified:
 
 ```shell
 # ---------------------------------------------------------
 # INSTALL MACHINE
 # ---------------------------------------------------------
-# Because the master, worker, and API server are deployed on a single node, the IP of the server is the machine IP or localhost
+# Due to the master, worker, and API server being deployed on a single node, the IP of the server is the machine IP or localhost
 ips="localhost"
 masters="localhost"
 workers="localhost:default"
 alertServer="localhost"
 apiServers="localhost"
 
-# DolphinScheduler installation path, it will auto create if not exists
+# DolphinScheduler installation path, it will auto-create if not exists
 installPath="~/dolphinscheduler"
 
-# Deploy user, use what you create in section **Configure machine SSH password-free login**
+# Deploy user, use the user you create in section **Configure machine SSH password-free login**
 deployUser="dolphinscheduler"
 
 # ---------------------------------------------------------
 # DolphinScheduler ENV
 # ---------------------------------------------------------
-# The path of JAVA_HOME, which JDK install path in section **Prepare**
+# The path of JAVA_HOME, which JDK install path in section **Preparation**
 javaHome="/your/java/home/here"
 
 # ---------------------------------------------------------
 # Database
 # ---------------------------------------------------------
-# Database type, username, password, IP, port, metadata. For now dbtype supports `mysql` and `postgresql`
+# Database type, username, password, IP, port, metadata. For now `dbtype` supports `mysql` and `postgresql`
 dbtype="mysql"
 dbhost="localhost:3306"
-# Have to modify if you are not using dolphinscheduler/dolphinscheduler as your username and password
+# Need to modify if you are not using `dolphinscheduler/dolphinscheduler` as your username and password
 username="dolphinscheduler"
 password="dolphinscheduler"
 dbname="dolphinscheduler"
@@ -132,7 +132,7 @@ registryServers="localhost:2181"
 
 ## Initialize the Database
 
-DolphinScheduler metadata is stored in relational database. Currently, PostgreSQL and MySQL are supported. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database
+DolphinScheduler metadata is stored in the relational database. Currently, supports PostgreSQL and MySQL. If you use MySQL, you need to manually download [mysql-connector-java driver][mysql] (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database:
 
 ```shell
 mysql -uroot -p
@@ -146,7 +146,7 @@ mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTI
 mysql> flush privileges;
 ```
 
-After above steps done you would create a new database for DolphinScheduler, then run shortcut Shell scripts to init database
+After the above steps done you would create a new database for DolphinScheduler, then run Shell scripts to init database:
 
 ```shell
 sh script/create-dolphinscheduler.sh
@@ -154,18 +154,18 @@ sh script/create-dolphinscheduler.sh
 
 ## Start DolphinScheduler
 
-Use **deployment user** you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder
+Use **deployment user** you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder.
 
 ```shell
 sh install.sh
 ```
 
-> **_Note:_** For the first time deployment, there maybe occur five times of `sh: bin/dolphinscheduler-daemon.sh: No such file or directory` in terminal
-, this is non-important information and you can ignore it.
+> **_Note:_** For the first time deployment, there maybe occur five times of `sh: bin/dolphinscheduler-daemon.sh: No such file or directory` in the terminal,
+ this is non-important information that you can ignore.
 
 ## Login DolphinScheduler
 
-The browser access address http://localhost:12345/dolphinscheduler can login DolphinScheduler UI. The default username and password are **admin/dolphinscheduler123**
+Access address `http://localhost:12345/dolphinscheduler` and login DolphinScheduler UI. The default username and password are **admin/dolphinscheduler123**
 
 ## Start or Stop Server
 

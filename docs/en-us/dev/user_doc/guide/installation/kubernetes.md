@@ -1,20 +1,20 @@
 # QuickStart in Kubernetes
 
-Kubernetes deployment is deploy DolphinScheduler in a Kubernetes cluster, which can schedule a large number of tasks and can be used in production.
+Kubernetes deployment is DolphinScheduler deployment in a Kubernetes cluster, which can schedule massive tasks and can be used in production.
 
-If you are a green hand and want to experience DolphinScheduler, we recommended you install follow [Standalone](standalone.md). If you want to experience more complete functions or schedule large tasks number, we recommended you install follow [pseudo-cluster deployment](pseudo-cluster.md). If you want to using DolphinScheduler in production, we recommended you follow [cluster deployment](cluster.md) or [kubernetes](kubernetes.md)
+If you are a new hand and want to experience DolphinScheduler functions, we recommend you install follow [Standalone deployment](standalone.md). If you want to experience more complete functions and schedule massive tasks, we recommend you install follow [pseudo-cluster deployment](pseudo-cluster.md). If you want to deploy DolphinScheduler in production, we recommend you follow [cluster deployment](cluster.md) or [Kubernetes deployment](kubernetes.md).
 
 ## Prerequisites
 
- - [Helm](https://helm.sh/) 3.1.0+
- - [Kubernetes](https://kubernetes.io/) 1.12+
+ - [Helm](https://helm.sh/) version 3.1.0+
+ - [Kubernetes](https://kubernetes.io/) version 1.12+
  - PV provisioner support in the underlying infrastructure
 
-## Install the Chart
+## Install DolphinScheduler
 
-Please download the source code package apache-dolphinscheduler-1.3.8-src.tar.gz, download address: [download](/en-us/download/download.html)
+Please download the source code package `apache-dolphinscheduler-1.3.8-src.tar.gz`, download address: [download address](/en-us/download/download.html)
 
-To install the chart with the release name `dolphinscheduler`, please execute the following commands:
+To publish the release name `dolphinscheduler` version, please execute the following commands:
 
 ```
 $ tar -zxvf apache-dolphinscheduler-1.3.8-src.tar.gz
@@ -24,36 +24,36 @@ $ helm dependency update .
 $ helm install dolphinscheduler . --set image.tag=1.3.8
 ```
 
-To install the chart with a namespace named `test`:
+To publish the release name `dolphinscheduler` version to `test` namespace:
 
 ```bash
 $ helm install dolphinscheduler . -n test
 ```
 
-> **Tip**: If a namespace named `test` is used, the option `-n test` needs to be added to the `helm` and `kubectl` command
+> **Tip**: If a namespace named `test` is used, the optional parameter `-n test` needs to be added to the `helm` and `kubectl` commands.
 
-These commands deploy DolphinScheduler on the Kubernetes cluster in the default configuration. The [Appendix-Configuration](#appendix-configuration) section lists the parameters that can be configured during installation.
+These commands are used to deploy DolphinScheduler on the Kubernetes cluster by default. The [Appendix-Configuration](#appendix-configuration) section lists the parameters that can be configured during installation.
 
 > **Tip**: List all releases using `helm list`
 
-The **PostgreSQL** (with username `root`, password `root` and database `dolphinscheduler`) and **ZooKeeper** services will start by default
+The **PostgreSQL** (with username `root`, password `root` and database `dolphinscheduler`) and **ZooKeeper** services will start by default.
 
 ## Access DolphinScheduler UI
 
-If `ingress.enabled` in `values.yaml` is set to `true`, you just access `http://${ingress.host}/dolphinscheduler` in browser.
+If `ingress.enabled` in `values.yaml` is set to `true`, you could access `http://${ingress.host}/dolphinscheduler` in browser.
 
-> **Tip**: If there is a problem with ingress access, please contact the Kubernetes administrator and refer to the [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+> **Tip**: If there is a problem with ingress access, please contact the Kubernetes administrator and refer to the [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
 
-Otherwise, when `api.service.type=ClusterIP` you need to execute port-forward command like:
+Otherwise, when `api.service.type=ClusterIP` you need to execute `port-forward` commands:
 
 ```bash
 $ kubectl port-forward --address 0.0.0.0 svc/dolphinscheduler-api 12345:12345
 $ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:12345 # with test namespace
 ```
 
-> **Tip**: If the error of `unable to do port forwarding: socat not found` appears, you need to install `socat` at first
+> **Tip**: If the error of `unable to do port forwarding: socat not found` appears, you need to install `socat` first.
 
-And then access the web: http://localhost:12345/dolphinscheduler (The local address is http://localhost:12345/dolphinscheduler)
+Access the web: `http://localhost:12345/dolphinscheduler` (Modify the IP address if needed).
 
 Or when `api.service.type=NodePort` you need to execute the command:
 
@@ -63,23 +63,23 @@ NODE_PORT=$(kubectl get svc {{ template "dolphinscheduler.fullname" . }}-api -n 
 echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
 ```
 
-And then access the web: http://$NODE_IP:$NODE_PORT/dolphinscheduler
+Access the web: `http://$NODE_IP:$NODE_PORT/dolphinscheduler`.
 
-The default username is `admin` and the default password is `dolphinscheduler123`
+The default username is `admin` and the default password is `dolphinscheduler123`.
 
-Please refer to the `Quick Start` in the chapter [Quick Start](../quick-start.md) to explore how to use DolphinScheduler
+Please refer to the `Quick Start` in the chapter [Quick Start](../quick-start.md) to explore how to use DolphinScheduler.
 
 ## Uninstall the Chart
 
-To uninstall/delete the `dolphinscheduler` deployment:
+To uninstall or delete the `dolphinscheduler` deployment:
 
 ```bash
 $ helm uninstall dolphinscheduler
 ```
 
-The command removes all the Kubernetes components but PVC's associated with the chart and deletes the release.
+The command removes all the Kubernetes components (except PVC) associated with the `dolphinscheduler` and deletes the release.
 
-To delete the PVC's associated with `dolphinscheduler`:
+Run the command below to delete the PVC's associated with `dolphinscheduler`:
 
 ```bash
 $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
@@ -137,7 +137,7 @@ kubectl get po
 kubectl get po -n test # with test namespace
 ```
 
-View the logs of a pod container named dolphinscheduler-master-0:
+View the logs of a pod container named `dolphinscheduler-master-0`:
 
 ```
 kubectl logs dolphinscheduler-master-0
@@ -145,7 +145,7 @@ kubectl logs -f dolphinscheduler-master-0 # follow log output
 kubectl logs --tail 10 dolphinscheduler-master-0 -n test # show last 10 lines from the end of the logs
 ```
 
-### How to Scale api, master and worker on Kubernetes?
+### How to Scale API, master and worker on Kubernetes?
 
 List all deployments (aka `deploy`):
 
@@ -188,7 +188,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 >
 > If you want to use MySQL, you can build a new image based on the `apache/dolphinscheduler` image as follows.
 
-1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
+1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar).
 
 2. Create a new `Dockerfile` to add MySQL driver:
 
@@ -203,11 +203,11 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 docker build -t apache/dolphinscheduler:mysql-driver .
 ```
 
-4. Push the docker image `apache/dolphinscheduler:mysql-driver` to a docker registry
+4. Push the docker image `apache/dolphinscheduler:mysql-driver` to a docker registry.
 
-5. Modify image `repository` and update `tag` to `mysql-driver` in `values.yaml`
+5. Modify image `repository` and update `tag` to `mysql-driver` in `values.yaml`.
 
-6. Modify postgresql `enabled` to `false` in `values.yaml`
+6. Modify postgresql `enabled` to `false` in `values.yaml`.
 
 7. Modify externalDatabase (especially modify `host`, `username` and `password`) in `values.yaml`:
 
@@ -223,7 +223,7 @@ externalDatabase:
   params: "useUnicode=true&characterEncoding=UTF-8"
 ```
 
-8. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+8. Run a DolphinScheduler release in Kubernetes (See **Install DolphinScheduler**).
 
 ### How to Support MySQL Datasource in `Datasource manage`?
 
@@ -231,7 +231,7 @@ externalDatabase:
 >
 > If you want to add MySQL datasource, you can build a new image based on the `apache/dolphinscheduler` image as follows.
 
-1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
+1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar).
 
 2. Create a new `Dockerfile` to add MySQL driver:
 
@@ -246,13 +246,13 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 docker build -t apache/dolphinscheduler:mysql-driver .
 ```
 
-4. Push the docker image `apache/dolphinscheduler:mysql-driver` to a docker registry
+4. Push the docker image `apache/dolphinscheduler:mysql-driver` to a docker registry.
 
-5. Modify image `repository` and update `tag` to `mysql-driver` in `values.yaml`
+5. Modify image `repository` and update `tag` to `mysql-driver` in `values.yaml`.
 
-6. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+6. Run a DolphinScheduler release in Kubernetes (See **Install DolphinScheduler**).
 
-7. Add a MySQL datasource in `Datasource manage`
+7. Add a MySQL datasource in `Datasource manage`.
 
 ### How to Support Oracle Datasource in `Datasource manage`?
 
@@ -275,13 +275,13 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 docker build -t apache/dolphinscheduler:oracle-driver .
 ```
 
-4. Push the docker image `apache/dolphinscheduler:oracle-driver` to a docker registry
+4. Push the docker image `apache/dolphinscheduler:oracle-driver` to a docker registry.
 
-5. Modify image `repository` and update `tag` to `oracle-driver` in `values.yaml`
+5. Modify image `repository` and update `tag` to `oracle-driver` in `values.yaml`.
 
-6. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+6. Run a DolphinScheduler release in Kubernetes (See **Install DolphinScheduler**).
 
-7. Add an Oracle datasource in `Datasource manage`
+7. Add an Oracle datasource in `Datasource manage`.
 
 ### How to Support Python 2 pip and Custom requirements.txt?
 
@@ -296,7 +296,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 ```
 
-The command will install the default **pip 18.1**. If you upgrade the pip, just add one line
+The command will install the default **pip 18.1**. If you upgrade the pip, just add the following command.
 
 ```
     pip install --no-cache-dir -U pip && \
@@ -308,13 +308,13 @@ The command will install the default **pip 18.1**. If you upgrade the pip, just 
 docker build -t apache/dolphinscheduler:pip .
 ```
 
-3. Push the docker image `apache/dolphinscheduler:pip` to a docker registry
+3. Push the docker image `apache/dolphinscheduler:pip` to a docker registry.
 
-4. Modify image `repository` and update `tag` to `pip` in `values.yaml`
+4. Modify image `repository` and update `tag` to `pip` in `values.yaml`.
 
-5. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+5. Run a DolphinScheduler release in Kubernetes (See **Install DolphinScheduler**).
 
-6. Verify pip under a new Python task
+6. Verify pip under a new Python task.
 
 ### How to Support Python 3?
 
@@ -327,7 +327,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 ```
 
-The command will install the default **Python 3.7.3**. If you also want to install **pip3**, just replace `python3` with `python3-pip` like
+The command will install the default **Python 3.7.3**. If you also want to install **pip3**, just replace `python3` with `python3-pip` like:
 
 ```
     apt-get install -y --no-install-recommends python3-pip && \
@@ -339,36 +339,36 @@ The command will install the default **Python 3.7.3**. If you also want to insta
 docker build -t apache/dolphinscheduler:python3 .
 ```
 
-3. Push the docker image `apache/dolphinscheduler:python3` to a docker registry
+3. Push the docker image `apache/dolphinscheduler:python3` to a docker registry.
 
-4. Modify image `repository` and update `tag` to `python3` in `values.yaml`
+4. Modify image `repository` and update `tag` to `python3` in `values.yaml`.
 
-5. Modify `PYTHON_HOME` to `/usr/bin/python3` in `values.yaml`
+5. Modify `PYTHON_HOME` to `/usr/bin/python3` in `values.yaml`.
 
-6. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+6. Run a DolphinScheduler release in Kubernetes (See **Install DolphinScheduler**).
 
-7. Verify Python 3 under a new Python task
+7. Verify Python 3 under a new Python task.
 
 ### How to Support Hadoop, Spark, Flink, Hive or DataX?
 
 Take Spark 2.4.7 as an example:
 
-1. Download the Spark 2.4.7 release binary `spark-2.4.7-bin-hadoop2.7.tgz`
+1. Download the Spark 2.4.7 release binary `spark-2.4.7-bin-hadoop2.7.tgz`.
 
-2. Ensure that `common.sharedStoragePersistence.enabled` is turned on
+2. Ensure that `common.sharedStoragePersistence.enabled` is turned on.
 
-3. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+3. Run a DolphinScheduler release in Kubernetes (See **Install DolphinScheduler**).
 
-4. Copy the Spark 2.4.7 release binary into the Docker container
+4. Copy the Spark 2.4.7 release binary into the Docker container.
 
 ```bash
 kubectl cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
 kubectl cp -n test spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft # with test namespace
 ```
 
-Because the volume `sharedStoragePersistence` is mounted on `/opt/soft`, all files in `/opt/soft` will not be lost
+Because the volume `sharedStoragePersistence` is mounted on `/opt/soft`, all files in `/opt/soft` will not be lost.
 
-5. Attach the container and ensure that `SPARK_HOME2` exists
+5. Attach the container and ensure that `SPARK_HOME2` exists.
 
 ```bash
 kubectl exec -it dolphinscheduler-worker-0 bash
@@ -380,17 +380,17 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 # or just mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
-The last command will print the Spark version if everything goes well
+The last command will print the Spark version if everything goes well.
 
-6. Verify Spark under a Shell task
+6. Verify Spark under a Shell task.
 
 ```
 $SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.11-2.4.7.jar
 ```
 
-Check whether the task log contains the output like `Pi is roughly 3.146015`
+Check whether the task log contains the output like `Pi is roughly 3.146015`.
 
-7. Verify Spark under a Spark task
+7. Verify Spark under a Spark task.
 
 The file `spark-examples_2.11-2.4.7.jar` needs to be uploaded to the resources first, and then create a Spark task with:
 
@@ -399,34 +399,34 @@ The file `spark-examples_2.11-2.4.7.jar` needs to be uploaded to the resources f
 - Main Package: `spark-examples_2.11-2.4.7.jar`
 - Deploy Mode: `local`
 
-Similarly, check whether the task log contains the output like `Pi is roughly 3.146015`
+Similarly, check whether the task log contains the output like `Pi is roughly 3.146015`.
 
-8. Verify Spark on YARN
+8. Verify Spark on YARN.
 
-Spark on YARN (Deploy Mode is `cluster` or `client`) requires Hadoop support. Similar to Spark support, the operation of supporting Hadoop is almost the same as the previous steps
+Spark on YARN (Deploy Mode is `cluster` or `client`) requires Hadoop support. Similar to Spark support, the operation of supporting Hadoop is almost the same as the previous steps.
 
-Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` exists
+Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` exists.
 
 ### How to Support Spark 3?
 
-In fact, the way to submit applications with `spark-submit` is the same, regardless of Spark 1, 2 or 3. In other words, the semantics of `SPARK_HOME2` is the second `SPARK_HOME` instead of `SPARK2`'s `HOME`, so just set `SPARK_HOME2=/path/to/spark3`
+In fact, the way to submit applications with `spark-submit` is the same, regardless of Spark 1, 2 or 3. In other words, the semantics of `SPARK_HOME2` is the second `SPARK_HOME` instead of `SPARK2`'s `HOME`, so just set `SPARK_HOME2=/path/to/spark3`.
 
 Take Spark 3.1.1 as an example:
 
-1. Download the Spark 3.1.1 release binary `spark-3.1.1-bin-hadoop2.7.tgz`
+1. Download the Spark 3.1.1 release binary `spark-3.1.1-bin-hadoop2.7.tgz`.
 
-2. Ensure that `common.sharedStoragePersistence.enabled` is turned on
+2. Ensure that `common.sharedStoragePersistence.enabled` is turned on.
 
-3. Run a DolphinScheduler release in Kubernetes (See **Installing the Chart**)
+3. Run a DolphinScheduler release in Kubernetes (See **Install DolphinScheduler**).
 
-4. Copy the Spark 3.1.1 release binary into the Docker container
+4. Copy the Spark 3.1.1 release binary into the Docker container.
 
 ```bash
 kubectl cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
 kubectl cp -n test spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft # with test namespace
 ```
 
-5. Attach the container and ensure that `SPARK_HOME2` exists
+5. Attach the container and ensure that `SPARK_HOME2` exists.
 
 ```bash
 kubectl exec -it dolphinscheduler-worker-0 bash
@@ -438,19 +438,19 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 # or just mv
 $SPARK_HOME2/bin/spark-submit --version
 ```
 
-The last command will print the Spark version if everything goes well
+The last command will print the Spark version if everything goes well.
 
-6. Verify Spark under a Shell task
+6. Verify Spark under a Shell task.
 
 ```
 $SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.12-3.1.1.jar
 ```
 
-Check whether the task log contains the output like `Pi is roughly 3.146015`
+Check whether the task log contains the output like `Pi is roughly 3.146015`.
 
 ### How to Support Shared Storage Between Master, Worker and Api Server?
 
-For example, Master, Worker and API server may use Hadoop at the same time
+For example, Master, Worker and API server may use Hadoop at the same time.
 
 1. Modify the following configurations in `values.yaml`
 
@@ -465,17 +465,17 @@ common:
     storage: "20Gi"
 ```
 
-`storageClassName` and `storage` need to be modified to actual values
+Modify `storageClassName` and `storage` to actual environment values.
 
-> **Note**: `storageClassName` must support the access mode: `ReadWriteMany`
+> **Note**: `storageClassName` must support the access mode: `ReadWriteMany`.
 
-2. Copy the Hadoop into the directory `/opt/soft`
+2. Copy the Hadoop into the directory `/opt/soft`.
 
-3. Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` are correct
+3. Ensure that `$HADOOP_HOME` and `$HADOOP_CONF_DIR` are correct.
 
 ### How to Support Local File Resource Storage Instead of HDFS and S3?
 
-Modify the following configurations in `values.yaml`
+Modify the following configurations in `values.yaml`:
 
 ```yaml
 common:
@@ -491,13 +491,13 @@ common:
     storage: "20Gi"
 ```
 
-`storageClassName` and `storage` need to be modified to actual values
+Modify `storageClassName` and `storage` to actual environment values.
 
-> **Note**: `storageClassName` must support the access mode: `ReadWriteMany`
+> **Note**: `storageClassName` must support the access mode: `ReadWriteMany`.
 
 ### How to Support S3 Resource Storage Like MinIO?
 
-Take MinIO as an example: Modify the following configurations in `values.yaml`
+Take MinIO as an example: Modify the following configurations in `values.yaml`:
 
 ```yaml
 common:
@@ -510,13 +510,13 @@ common:
     FS_S3A_SECRET_KEY: "MINIO_SECRET_KEY"
 ```
 
-`BUCKET_NAME`, `MINIO_IP`, `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY` need to be modified to actual values
+Modify `BUCKET_NAME`, `MINIO_IP`, `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`  to actual environment values.
 
-> **Note**: `MINIO_IP` can only use IP instead of domain name, because DolphinScheduler currently doesn't support S3 path style access
+> **Note**: `MINIO_IP` can only use IP instead of the domain name, because DolphinScheduler currently doesn't support S3 path style access.
 
 ### How to Configure SkyWalking?
 
-Modify SKYWALKING configurations in `values.yaml`:
+Modify SkyWalking configurations in `values.yaml`:
 
 ```yaml
 common:
@@ -535,7 +535,7 @@ common:
 |                                                                                   |                                                                                                                                |                                                       |
 | `image.repository`                                                                | Docker image repository for the DolphinScheduler                                                                               | `apache/dolphinscheduler`                             |
 | `image.tag`                                                                       | Docker image version for the DolphinScheduler                                                                                  | `latest`                                              |
-| `image.pullPolicy`                                                                | Image pull policy. One of Always, Never, IfNotPresent                                                                          | `IfNotPresent`                                        |
+| `image.pullPolicy`                                                                | Image pull policy. Options: Always, Never, IfNotPresent                                                                          | `IfNotPresent`                                        |
 | `image.pullSecret`                                                                | Image pull secret. An optional reference to secret in the same namespace to use for pulling any of the images                  | `nil`                                                 |
 |                                                                                   |                                                                                                                                |                                                       |
 | `postgresql.enabled`                                                              | If not exists external PostgreSQL, by default, the DolphinScheduler will use a internal PostgreSQL                             | `true`                                                |
