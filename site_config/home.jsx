@@ -300,7 +300,7 @@ export default {
   'en-us': {
     brand: {
       brandName: 'Apache DolphinScheduler',
-      briefIntroduction: 'A distributed and easy-to-extend visual workflow scheduler system',
+      briefIntroduction: 'A distributed and extensible workflow scheduler platform with powerful DAG visual interfaces',
       buttons: [
         {
           text: 'Quick Start',
@@ -321,7 +321,7 @@ export default {
     },
     introduction: {
       title: 'Apache DolphinScheduler is a distributed and extensible workflow scheduler platform with powerful DAG visual interfaces',
-      desc: 'Dedicated to solving complex job dependencies in the data pipeline and providing various types of jobs available out of box. Its architecture is shown below:',
+      desc: 'Dedicated to solving complex job dependencies in the data pipeline and providing various types of jobs available out of box.',
       img: '/img/archdiagram_es.svg',
     },
     features: {
