@@ -320,8 +320,8 @@ export default {
       releaseDate: 'Released on Aug 05, 2019',
     },
     introduction: {
-      title: 'A distributed and easy-to-extend visual workflow scheduler system',
-      desc: 'Dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing. Its main objectives are as follows:',
+      title: 'Apache DolphinScheduler is a distributed and extensible workflow scheduler platform with powerful DAG visual interfaces',
+      desc: 'Dedicated to solving complex job dependencies in the data pipeline and providing various types of jobs available out of box. Its architecture is shown below:',
       img: '/img/archdiagram_es.svg',
     },
     features: {
