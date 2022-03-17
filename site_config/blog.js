@@ -4,6 +4,49 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+
+                title: 'Cisco Hangzhou\'s Travel Through Apache DolphinScheduler Alert Module Refactor',
+                author: 'Debra Chen',
+                dateStr: '2022-3-16',
+                desc: 'Cisco Hangzhou has introduced Apache DolphinScheduler.. ',
+                link: '/en-us/blog/Hangzhou_cisco.html',
+            },
+            {
+                title: 'How Does 360 DIGITECH process 10,000+ workflow instances per day by Apache DolphinScheduler',
+                author: 'Debra Chen',
+                dateStr: '2022-3-15',
+                desc: 'ince 2020, 360 DIGITECH has fully migrated its scheduling system from Azkaban to Apache DolphinScheduler.. ',
+                link: '/en-us/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
+            },
+            {
+                title: 'Exploration and practice of Tujia Big Data Platform Based on Apache DolphinScheduler',
+                author: 'Debra Chen',
+                dateStr: '2022-3-10',
+                desc: 'Tujia introduced Apache DolphinScheduler in 2019.. ',
+                link: '/en-us/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
+            },
+            {
+                title: 'Release News! Apache DolphinScheduler 2_0_5 optimizes The Fault Tolerance Process of Worker',
+                author: 'Debra Chen',
+                dateStr: '2022-3-7',
+                desc: 'Today, Apache DolphinScheduler announced the official release of version 2.0.5. ',
+                link: '/en-us/blog/Apache_dolphinScheduler_2.0.5.html',
+            },
+            {
+                title: 'Technical Practice of Apache DolphinScheduler in Kubernetes System',
+                author: 'Debra Chen',
+                dateStr: '2022-2-24',
+                desc: 'Kubernetes is a cluster system based on container technology, ',
+                link: '/en-us/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
+            },
+            {
+                title: 'Sign Up to Apache DolphinScheduler Meetup Online | We Are Waiting For You to Join the Grand Gathering on 2.26 2022!',
+                author: 'Debra Chen',
+                dateStr: '2022-2-18',
+                desc: 'Apache DolphinScheduler Meetup Online ',
+                link: '/en-us/blog/Meetup_2022_02_26.html',
+            },
+            {
                 title: 'Apache DolphinScheduler 2.0.3 Release Announcement: DingTalk alert plugin adds signature verification, and supports data sources to obtain links from multiple sessions\n',
                 author: 'Debra Chen',
                 dateStr: '2022-1-27',
@@ -124,6 +167,49 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '杭州思科对 Apache DolphinScheduler Alert 模块的改造',
+                author: 'Debra Chen',
+                dateStr: '2022-3-16',
+                desc: '杭州思科已经将 Apache DolphinScheduler 引入公司自建的大数据平台......',
+                link: '/zh-cn/blog/Hangzhou_cisco.html',
+
+            },
+            {
+                title: '日均处理 10000+ 工作流实例，Apache DolphinScheduler 在 360 数科的实践',
+                author: 'Debra Chen',
+                dateStr: '2022-3-15',
+                desc: '从 2020 年起，360 数科全面将调度系统从 Azkaban 迁移到 Apache DolphinScheduler......',
+                link: '/zh-cn/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
+            },
+            {
+                title: '途家大数据平台基于 Apache DolphinScheduler 的探索与实践',
+                author: 'Debra Chen',
+                dateStr: '2022-3-10',
+                desc: '途家在 2019 年引入 Apache DolphinScheduler。',
+                link: '/zh-cn/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
+            },
+            {
+                title: 'Apache DolphinScheduler 2_0_5 发布，Worker 容错流程优化',
+                author: 'Debra Chen',
+                dateStr: '2022-3-7',
+                desc: '今天，Apache DolphinScheduler 宣布 2.0.5 版本正式发布。',
+                link: '/zh-cn/blog/Apache_dolphinScheduler_2.0.5.html',
+            },
+            {
+                title: 'Apache DolphinScheduler 在 Kubernetes 体系中的技术实战',
+                author: 'Debra Chen',
+                dateStr: '2022-2-18',
+                desc: 'Apache DolphinScheduler 在 Kubernetes 体系中的技术实战',
+                link: '/zh-cn/blog/DolphinScheduler_Kubernetes_Technology_in_action.html',
+            },
+            {
+                title: '直播报名火热启动 | 2022 年 Apache DolphinScheduler Meetup 首秀！',
+                author: 'Debra Chen',
+                dateStr: '2022-2-18',
+                desc: '直播报名火热启动 | 2022 年 Apache DolphinScheduler Meetup 首秀！',
+                link: '/zh-cn/blog/Meetup_2022_02_26.html',
+            },
             {
                 title: 'Apache DolphinScheduler 2.0.3 发布，支持钉钉告警签名校验，数据源可从多个会话获取链接',
                 author: 'Debra Chen',

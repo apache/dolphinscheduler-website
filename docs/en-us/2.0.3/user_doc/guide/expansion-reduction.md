@@ -2,14 +2,14 @@
 
 # DolphinScheduler Expansion and Reduction
 
-## 1. Expansion 
+## Expansion 
 This article describes how to add a new master service or worker service to an existing DolphinScheduler cluster.
 ```
  Attention: There cannot be more than one master service process or worker service process on a physical machine.
        If the physical machine where the expansion master or worker node is located has already installed the scheduled service, skip to [1.4 Modify configuration] Edit the configuration file `conf/config/install_config.conf` on **all ** nodes, add masters or workers parameter, and restart the scheduling cluster.
 ```
 
-### 1.1 Basic software installation (please install the mandatory items yourself)
+### Basic Software Installation
 
 * [required] [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) (1.8+):Must be installed, please install and configure JAVA_HOME and PATH variables under /etc/profile
 * [optional] If the expansion is a worker node, you need to consider whether to install an external client, such as Hadoop, Hive, Spark Client.
@@ -19,7 +19,7 @@ This article describes how to add a new master service or worker service to an e
  Attention: DolphinScheduler itself does not depend on Hadoop, Hive, Spark, but will only call their Client for the corresponding task submission.
 ```
 
-### 1.2 Get installation package
+### Get Installation Package
 - Check which version of DolphinScheduler is used in your existing environment, and get the installation package of the corresponding version, if the versions are different, there may be compatibility problems.
 - Confirm the unified installation directory of other nodes, this article assumes that DolphinScheduler is installed in /opt/ directory, and the full path is /opt/dolphinscheduler.
 - Please download the corresponding version of the installation package to the server installation directory, uncompress it and rename it to dolphinscheduler and store it in the /opt directory. 
@@ -38,7 +38,7 @@ mv apache-dolphinscheduler-2.0.3-bin  dolphinscheduler
  Attention: The installation package can be copied directly from an existing environment to an expanded physical machine for use.
 ```
 
-### 1.3 Create Deployment Users
+### Create Deployment Users
 
 - Create deployment users on **all** expansion machines, and be sure to configure sudo-free. If we plan to deploy scheduling on four expansion machines, ds1, ds2, ds3, and ds4, we first need to create deployment users on each machine
 
@@ -62,7 +62,7 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
  - If resource uploads are used, you also need to assign read and write permissions to the deployment user on `HDFS or MinIO`.
 ```
 
-### 1.4 Modify configuration
+### Modify Configuration
 
 - From an existing node such as Master/Worker, copy the conf directory directly to replace the conf directory in the new node. After copying, check if the configuration items are correct.
     
@@ -126,7 +126,7 @@ workers="existing worker01:default,existing worker02:default,ds3:default,ds4:def
 sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler
 ```
 
-### 1.4. Restart the cluster & verify
+### Restart the Cluster and Verify
 
 - restart the cluster
 
@@ -182,11 +182,11 @@ If the above services are started normally and the scheduling system page is nor
 
 -----------------------------------------------------------------------------
 
-## 2. Reduction
+## Reduction
 The reduction is to reduce the master or worker services for the existing DolphinScheduler cluster.
 There are two steps for shrinking. After performing the following two steps, the shrinking operation can be completed.
 
-### 2.1 Stop the service on the scaled-down node
+### Stop the Service on the Scaled-Down Node
  * If you are scaling down the master node, identify the physical machine where the master service is located, and stop the master service on the physical machine.
  * If the worker node is scaled down, determine the physical machine where the worker service is to be scaled down and stop the worker and logger services on the physical machine.
  
@@ -228,7 +228,7 @@ sh bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
 If the corresponding master service or worker service does not exist, then the master/worker service is successfully shut down.
 
 
-### 2.2 Modify the configuration file
+### Modify the Configuration File
 
  - modify the configuration file `conf/config/install_config.conf` on the **all** nodes, synchronizing the following configuration.
     

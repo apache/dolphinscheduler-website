@@ -8,6 +8,7 @@
 
 - Click Project Management-Project Name-Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
 - Drag the <img src="/img/tasks/icons/mr.png" width="15"/> from the toolbar to the drawing board.
+
 ## Task Parameter
 
 -    **Node name**: The node name in a workflow definition is unique.
@@ -47,11 +48,11 @@
 
 ## Task Example
 
-### Execute the WordCount program
+### Execute the WordCount Program
 
 This example is a common introductory type of MapReduce application, which is designed to count the number of identical words in the input text.
 
-#### Uploading the main package
+#### Upload the Main Package
 
 When using the MapReduce task node, you will need to use the Resource Centre to upload the jar package for the executable. Refer to the [resource centre](../resource.md).
 
@@ -59,7 +60,7 @@ After configuring the Resource Centre, you can upload the required target files 
 
 ![resource_upload](/img/tasks/demo/resource_upload.png)
 
-#### Configuring MapReduce nodes
+#### Configure MapReduce Nodes
 
 Simply configure the required content according to the parameter descriptions above.
 

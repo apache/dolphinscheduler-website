@@ -403,7 +403,7 @@ A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/dolp
 <p align="center">
    <img src="https://user-images.githubusercontent.com/51871547/80302626-b1478d00-87dd-11ea-97d4-08aa2244a6d0.jpg" width="60%" />
  </p>
- 
+
 A: This [bug](https://github.com/apache/dolphinscheduler/issues/1477) describe the problem detail and it has been been solved in version 1.2.1.
 
 For version under 1.2.1, some tips for this situation:
@@ -430,8 +430,8 @@ A: bug fix:
       10.3.57.15 ds1 hadoop1
       4, hostname -i
       10.3.57.15
-   ```   
-   
+   ```
+
    Hostname cmd return server hostname, hostname -i return all matched ips configured in /etc/hosts. So after I delete the hostname matched with 127.0.0.1, and only remain internal ip resolution, instead of remove all the 127.0.0.1 resolution record. As long as hostname cmd return the correct internal ip configured in /etc/hosts can fix this bug. DolphinScheduler use the first record returned by hostname -i command. In my opion, DS should not use hostname -i to get the ip , as in many companies the devops configured the server name, we suggest use ip configured in configuration file or znode instead of /etc/hosts.
 
 ---
@@ -445,16 +445,16 @@ A: The scheduling system not support second frequency task.
 A: 1, cd dolphinscheduler-ui and delete node_modules directory 
 ```
 sudo rm -rf node_modules
-```   
+```
    ​	2, install node-sass through npm.taobao.org
  ```
  sudo npm uninstall node-sass
  sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
- ``` 
+ ```
    3, if the 2nd step failure, please, [referer url](https://dolphinscheduler.apache.org/en-us/development/frontend-development.html)
 ```
  sudo npm rebuild node-sass
- ``` 
+```
 When solved this problem, if you don't want to download this node every time, you can set system environment variable: SASS_BINARY_PATH= /xxx/xxx/xxx/xxx.node.
 
 ---
@@ -468,21 +468,21 @@ A: 1, Edit project root dir maven config file, remove scope test property so tha
 	<version>${mysql.connector.version}</version>
 	<scope>test<scope>
 </dependency>
-```   
+```
    ​	2, Edit application-dao.properties and quzrtz.properties config file to use mysql driver.
    Default is postgresSql driver because of license problem.
-  
+
 ---
- 
+
 ## Q : How does a shell task run
 A: 1, Where is the executed server? Specify one worker to run the task, you can create worker group in Security Center, then the task can be send to the particular worker. If a worker group have multiple servers, which server actually execute is determined by scheduling and has randomness.
 
    ​	2, If it is a shell file of a path on the server, how to point to the path? The server shell file, involving permissions issues, it is not recommended to do so. It is recommended that you use the storage function of the resource center, and then use the resource reference in the shell editor. The system will help you download the script to the execution directory. If the task dependent on resource center files, worker use "hdfs dfs -get" to get the resource files in HDFS, then run the task in /tmp/escheduler/exec/process, this path can be customized when installtion dolphinscheduler.
-   
+
    3, Which user execute the task? Task is run by the tenant through "sudo -u ${tenant}", tenant is a linux user.
 
 ---
-   
+
 ## Q : What’s the best deploy mode you suggest in production env
 A: 1, I suggest you use 3 nodes for stability if you don't have too many tasks to run. And deploy Master/Worker server on different nodes is better. If you only have one node, you of course only can deploy them together! By the way, how many machines you need is determined by your business. The DolphinScheduler system itself does not use too many resources. Test more, and you'll find the right way to use a few machines. 
 
@@ -518,7 +518,7 @@ A: 1, For version 1.2+ is http://apiServerIp:apiServerPort/dolphinscheduler/doc.
  <p align="center">
     <img src="https://user-images.githubusercontent.com/41460919/61437218-1b89f200-a96f-11e9-8e48-3fac47eb2389.png" width="60%" />
   </p>
-  
+
 A: 1, User changed the config api server config file and item
  ![apiServerContextPath](https://user-images.githubusercontent.com/41460919/61678323-1b09a680-ad35-11e9-9707-3ba68bbc70d6.png), thus lead to the problem. After resume to the default value and problem solved.
 
@@ -531,10 +531,9 @@ A: 1, User changed the config api server config file and item
 A: 1, Edit ngnix config file, edit upload max size client_max_body_size 1024m.
      
    ​	2, the version of Google Chrome is old, and the latest version of the browser has been updated.
-   
- 
+
 ---
-  
+
 ## Q : Create a spark data source, click "Test Connection", the system will fall back to the login page
 A: 1, edit nginx config file /etc/nginx/conf.d/escheduler.conf
 ```
@@ -603,6 +602,105 @@ For example, sudo permission management configuration dolphinscheduler OS accoun
 ```shell
 echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
+```
+
+---
+
+## Q：Deploy for multiple YARN clusters
+A：By deploying different worker in different yarn clusters，the steps are as follows(eg: AWS EMR):
+
+   1. Deploying the worker server on the master node of the EMR cluster
+   
+   2. Changing `yarn.application.status.address` to current emr's yarn url in the `conf/common.properties`
+   
+   3. Execute command `bin/dolphinscheduler-daemon.sh start worker-server` and `bin/dolphinscheduler-daemon.sh start logger-server` to start worker-server and logger-server
+
+---
+
+## Q：Update process definition error: Duplicate key TaskDefinition
+
+A：Before DS 2.0.4 (after 2.0.0-alpha), there may be a problem of duplicate keys TaskDefinition due to version switching, which may cause the update workflow to fail; you can refer to the following SQL to delete duplicate data, taking MySQL as an example: (Note: Before operating, be sure to back up the original data, the SQL from pr[#8408](https://github.com/apache/dolphinscheduler/pull/8408))
+
+```SQL
+DELETE FROM t_ds_process_task_relation_log WHERE id IN
+(
+ SELECT
+     x.id
+ FROM
+     (
+         SELECT
+             aa.id
+         FROM
+             t_ds_process_task_relation_log aa
+                 JOIN
+             (
+                 SELECT
+                     a.process_definition_code
+                      ,MAX(a.id) as min_id
+                      ,a.pre_task_code
+                      ,a.pre_task_version
+                      ,a.post_task_code
+                      ,a.post_task_version
+                      ,a.process_definition_version
+                      ,COUNT(*) cnt
+                 FROM
+                     t_ds_process_task_relation_log a
+                         JOIN (
+                         SELECT
+                             code
+                         FROM
+                             t_ds_process_definition
+                         GROUP BY code
+                     )b ON b.code = a.process_definition_code
+                 WHERE 1=1
+                 GROUP BY a.pre_task_code
+                        ,a.post_task_code
+                        ,a.pre_task_version
+                        ,a.post_task_version
+                        ,a.process_definition_code
+                        ,a.process_definition_version
+                 HAVING COUNT(*) > 1
+             )bb ON bb.process_definition_code = aa.process_definition_code
+                 AND bb.pre_task_code = aa.pre_task_code
+                 AND bb.post_task_code = aa.post_task_code
+                 AND bb.process_definition_version = aa.process_definition_version
+                 AND bb.pre_task_version = aa.pre_task_version
+                 AND bb.post_task_version = aa.post_task_version
+                 AND bb.min_id != aa.id
+     )x
+)
+;
+
+DELETE FROM t_ds_task_definition_log WHERE id IN
+(
+   SELECT
+       x.id
+   FROM
+       (
+           SELECT
+               a.id
+           FROM
+               t_ds_task_definition_log a
+                   JOIN
+               (
+                   SELECT
+                       code
+                        ,name
+                        ,version
+                        ,MAX(id) AS min_id
+                   FROM
+                       t_ds_task_definition_log
+                   GROUP BY code
+                          ,name
+                          ,version
+                   HAVING COUNT(*) > 1
+               )b ON b.code = a.code
+                   AND b.name = a.name
+                   AND b.version = a.version
+                   AND b.min_id != a.id
+       )x
+)
+;
 ```
 
 ---

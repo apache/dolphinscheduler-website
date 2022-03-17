@@ -1,6 +1,6 @@
-# Workflow definition
+# Workflow Definition
 
-## <span id=creatDag> Create workflow definition</span>
+## <span id=creatDag> Create Workflow Definition</span>
 
 - Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, and click the "Create Workflow" button to enter the **workflow DAG edit** page, as shown in the following figure:
   <p align="center">
@@ -37,7 +37,7 @@
    </p>
 > For other types of tasks, please refer to [Task Node Type and Parameter Settings](#TaskParamers).
 
-## Workflow definition operation function
+## Workflow Definition Operation Function
 
 Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, as shown below:
 
@@ -59,7 +59,7 @@ The operation functions of the workflow definition list are as follows:
       <img src="/img/tree_en.png" width="80%" />
   </p>
 
-## <span id=runWorkflow>Run the workflow</span>
+## <span id=runWorkflow>Run the Workflow</span>
 
 - Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, as shown in the figure below, click the "Go Online" button <img src="/img/online.png" width="35"/>，Go online workflow.
   <p align="center">
@@ -91,7 +91,7 @@ The operation functions of the workflow definition list are as follows:
 
   > Parallel mode: The tasks from May 1 to may 10 are executed simultaneously, and 10 process instances are generated on the process instance page.
 
-## <span id=creatTiming>Workflow timing</span>
+## <span id=creatTiming>Workflow Timing</span>
 
 - Create timing: Click Project Management->Workflow->Workflow Definition, enter the workflow definition page, go online the workflow, click the "timing" button <img src="/img/timing.png" width="35"/> ,The timing parameter setting dialog box pops up, as shown in the figure below:
   <p align="center">
@@ -109,6 +109,6 @@ The operation functions of the workflow definition list are as follows:
       <img src="/img/time-manage-list-en.png" width="80%" />
   </p>
 
-## Import workflow
+## Import Workflow
 
 Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, click the "Import Workflow" button to import the local workflow file, the workflow definition list displays the imported workflow, and the status is offline.

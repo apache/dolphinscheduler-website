@@ -2,6 +2,10 @@
 
 #### Setup instructions,  are available for each stable version of Apache DolphinScheduler below:
 
+### Versions: 2.0.5
+
+#### Links： [2.0.5 Document](../2.0.5/user_doc/guide/quick-start.md)
+
 ### Versions: 2.0.3
 
 #### Links： [2.0.3 Document](../2.0.3/user_doc/guide/quick-start.md)

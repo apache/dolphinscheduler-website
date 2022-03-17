@@ -1,18 +1,17 @@
-
 # Monitor
 
-## Service management
+## Service Management
 
-- Service management is mainly to monitor and display the health status and basic information of each service in the system
+- Service management is mainly to monitor and display the health status and basic information of each service in the system.
 
-## master monitoring
+## Monitor Master Server
 
 - Mainly related to master information.
 <p align="center">
    <img src="/img/master-jk-en.png" width="80%" />
  </p>
 
-## worker monitoring
+## Monitor Worker Server
 
 - Mainly related to worker information.
 
@@ -20,7 +19,7 @@
    <img src="/img/worker-jk-en.png" width="80%" />
  </p>
 
-## Zookeeper monitoring
+## Monitor ZooKeeper
 
 - Mainly related configuration information of each worker and master in ZooKeeper.
 
@@ -28,21 +27,21 @@
    <img src="/img/zookeeper-monitor-en.png" width="80%" />
  </p>
 
-## DB monitoring
+## Monitor DB
 
-- Mainly the health of the DB
+- Mainly the health status of the DB.
 
 <p align="center">
    <img src="/img/mysql-jk-en.png" width="80%" />
  </p>
 
-## Statistics management
+## Statistics Management
 
 <p align="center">
    <img src="/img/statistics-en.png" width="80%" />
  </p>
 
-- Number of commands to be executed: statistics on the t_ds_command table
-- The number of failed commands: statistics on the t_ds_error_command table
-- Number of tasks to run: Count the data of task_queue in Zookeeper
-- Number of tasks to be killed: Count the data of task_kill in Zookeeper
+- Number of commands wait to be executed: statistics of the `t_ds_command` table data.
+- The number of failed commands: statistics of the `t_ds_error_command` table data.
+- Number of tasks wait to run: count the data of `task_queue` in the ZooKeeper.
+- Number of tasks wait to be killed: count the data of `task_kill` in the ZooKeeper.

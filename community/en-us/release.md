@@ -226,8 +226,13 @@ cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 Add source code packages, binary packages and executable binary packages to SVN working directory.
 
 ```shell
+# Source and binary tarball for main code
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+
+# Source and binary tarball for Python API
+mkdir -p ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
 ```
 
 ### Generate sign files
@@ -235,6 +240,8 @@ cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/
 ```shell
 shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -a 512 python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz >> python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -b -a 512 python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl >> python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
 ```
 
 ### Commit to Apache SVN
@@ -250,6 +257,8 @@ svn --username=${APACHE LDAP username} commit -m "release ${RELEASE.VERSION}"
 ```shell
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -c python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -c python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
 ```
 
 ### Check gpg Signature
@@ -283,6 +292,8 @@ Then, check the gpg signature.
 ```shell
 gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz
 gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz
+gpg --verify python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.asc python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz
+gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.asc python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl
 ```
 
 ### Check Released Files
@@ -417,16 +428,12 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION
 
 ### Find DolphinScheduler in staging repository and click `Release`
 
-###. Update the download page
+### Send Announcement E-mail Community
 
-```
-https://dolphinscheduler.apache.org/en-us/download/download.html
-https://dolphinscheduler.apache.org/zh-cn/download/download.html
-```
+You should send announcement E-mail after release process finished. The E-mail should send to `dev@dolphinscheduler.apache.org`
+and cc to `announce@apache.org`.
 
-### Send e-mail to `dev@dolphinscheduler.apache.org` to announce the release is finished
-
-Announcement e-mail template：
+Announcement e-mail template as below：
 
 Title：
 

@@ -19,6 +19,8 @@
   > 开启代理
 * Proxy
   > 代理地址
+* Port
+  > 代理端口
 * User
   > 代理鉴权用户
 * Password

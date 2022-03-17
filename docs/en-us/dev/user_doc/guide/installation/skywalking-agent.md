@@ -1,15 +1,15 @@
 SkyWalking Agent Deployment
 =============================
 
-The dolphinscheduler-skywalking module provides [SkyWalking](https://skywalking.apache.org/) monitor agent for the Dolphinscheduler project.
+The `dolphinscheduler-skywalking` module provides [SkyWalking](https://skywalking.apache.org/) monitor agent for the DolphinScheduler project.
 
-This document describes how to enable SkyWalking 8.4+ support with this module (recommended to use SkyWalking 8.5.0).
+This document describes how to enable SkyWalking version 8.4+ support with this module (recommend using SkyWalking 8.5.0).
 
-# Installation
+## Installation
 
-The following configuration is used to enable SkyWalking agent.
+The following configuration is used to enable the SkyWalking agent.
 
-### Through environment variable configuration (for Docker Compose)
+### Through Environment Variable Configuration (for Docker Compose)
 
 Modify SkyWalking environment variables in `docker/docker-swarm/config.env.sh`:
 
@@ -20,13 +20,13 @@ SW_GRPC_LOG_SERVER_HOST=127.0.0.1
 SW_GRPC_LOG_SERVER_PORT=11800
 ```
 
-And run
+And run:
 
 ```shell
 $ docker-compose up -d
 ```
 
-### Through environment variable configuration (for Docker)
+### Through Environment Variable Configuration (for Docker)
 
 ```shell
 $ docker run -d --name dolphinscheduler \
@@ -41,7 +41,7 @@ $ docker run -d --name dolphinscheduler \
 apache/dolphinscheduler:1.3.8 all
 ```
 
-### Through install_config.conf configuration (for DolphinScheduler install.sh)
+### Through install_config.conf Configuration (for DolphinScheduler install.sh)
 
 Add the following configurations to `${workDir}/conf/config/install_config.conf`.
 
@@ -59,16 +59,16 @@ skywalkingLogReporterPort="11800"
 
 ```
 
-# Usage
+## Usage
 
 ### Import Dashboard
 
-#### Import DolphinScheduler Dashboard to SkyWalking Sever
+#### Import DolphinScheduler Dashboard to SkyWalking Server
 
 Copy the `${dolphinscheduler.home}/ext/skywalking-agent/dashboard/dolphinscheduler.yml` file into `${skywalking-oap-server.home}/config/ui-initialized-templates/` directory, and restart SkyWalking oap-server.
 
 #### View DolphinScheduler Dashboard
 
-If you have opened SkyWalking dashboard with a browser before, you need to clear the browser cache.
+If you have opened the SkyWalking dashboard with a browser before, you need to clear the browser cache.
 
 ![img1](/img/skywalking/import-dashboard-1.jpg)

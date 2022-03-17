@@ -286,7 +286,7 @@ A： 将 hive pom
 A： 1，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/laster/user_doc/installation/cluster.html) 1.3 小节，创建部署用户和 hosts 映射
 
 ​	2，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/laster/user_doc/installation/cluster.html) 1.4 小节，配置 hosts 映射和 ssh 打通及修改目录权限.
-          1.4 小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限
+​          1.4 小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限
 
 ​	3，复制正在运行的服务器上的部署目录到新机器的同样的部署目录下
 
@@ -302,7 +302,7 @@ A： 1，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/do
 A：1，Apache 项目的发版流程是通过邮件列表完成的。 你可以订阅 DolphinScheduler 的邮件列表，订阅之后如果有发版，你就可以收到邮件。请参照这篇[指引](https://github.com/apache/dolphinscheduler#get-help)来订阅 DolphinScheduler 的邮件列表。
 
    2，当项目发版的时候，会有发版说明告知具体的变更内容，同时也会有从旧版本升级到新版本的升级文档。
-   
+
    3，版本号为 x.y.z, 当 x 增加时代表全新架构的版本。当 y 增加时代表与 y 版本之前的不兼容需要升级脚本或其他人工处理才能升级。当 z 增加代表是 bug 修复，升级完全兼容。无需额外处理。之前有个问题 1.0.2 的升级不兼容 1.0.1 需要升级脚本。
 
 ---
@@ -412,7 +412,7 @@ A：修复 bug：
    10.3.57.15 ds1 hadoop1
    4、hostname -i
    10.3.57.15
-```   
+```
    hostname 命令返回服务器主机名，hostname -i 返回的是服务器主机名在 /etc/hosts 中所有匹配的ip地址。所以我把 /etc/hosts 中 127.0.0.1 中的主机名删掉，只保留内网 ip 的解析就可以了，没必要把 127.0.0.1 整条注释掉, 只要 hostname 命令返回值在 /etc/hosts 中对应的内网 ip 正确就可以，ds 程序取了第一个值，我理解上 ds 程序不应该用 hostname -i 取值这样有点问题，因为好多公司服务器的主机名都是运维配置的，感觉还是直接取配置文件的域名解析的返回 ip 更准确，或者 znode 中存域名信息而不是 /etc/hosts。
 
 ---
@@ -426,16 +426,16 @@ A：调度系统不支持秒级任务。
 A：1，cd dolphinscheduler-ui 然后删除 node_modules 目录 
 ```
 sudo rm -rf node_modules
-```   
+```
    ​	2，通过 npm.taobao.org 下载 node-sass
  ```
  sudo npm uninstall node-sass
  sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
- ``` 
+ ```
    3，如果步骤 2 报错，请重新构建 node-saas [参考链接](https://dolphinscheduler.apache.org/en-us/development/frontend-development.html)
 ```
  sudo npm rebuild node-sass
- ``` 
+```
 当问题解决之后，如果你不想每次编译都下载这个 node，你可以设置系统环境变量：SASS_BINARY_PATH= /xxx/xxx/xxx/xxx.node。
 
 ---
@@ -449,21 +449,21 @@ A：1，修改项目根目录 maven 配置文件，移除 scope 的 test 属性�
 	<version>${mysql.connector.version}</version>
 	<scope>test<scope>
 </dependency>
-```   
+```
    ​	2，修改 application-dao.properties 和 quzrtz.properties 来使用 mysql 驱动
    默认驱动是 postgres 主要由于许可证原因。
-   
+
 ---
 
 ## Q：shell 任务是如何运行的
 A：1，被执行的服务器在哪里配置，以及实际执行的服务器是哪台? 要指定在某个 worker 上去执行，可以在 worker 分组中配置，固定 IP，这样就可以把路径写死。如果配置的 worker 分组有多个 worker，实际执行的服务器由调度决定的，具有随机性。
 
    ​	2，如果是服务器上某个路径的一个 shell 文件，怎么指向这个路径？服务器上某个路径下的 shell 文件，涉及到权限问题，不建议这么做。建议你可以使用资源中心的存储功能，然后在 shell 编辑器里面使用资源引用就可以，系统会帮助你把脚本下载到执行目录下。如果以 hdfs 作为资源中心，在执行的时候，调度器会把依赖的 jar 包，文件等资源拉到 worker 的执行目录上，我这边是 /tmp/escheduler/exec/process，该配置可以在 install.sh 中进行指定。
-   
+
    3，以哪个用户来执行任务？执行任务的时候，调度器会采用 sudo -u 租户的方式去执行，租户是一个 linux 用户。
 
 ---
-   
+
 ## Q：生产环境部署方式有推荐的最佳实践吗
 A：1，如果没有很多任务要运行，出于稳定性考虑我们建议使用 3 个节点，并且最好把 Master/Worder 服务部署在不同的节点。如果你只有一个节点，当然只能把所有的服务部署在同一个节点！通常来说，需要多少节点取决于你的业务，海豚调度系统本身不需要很多的资源。充分测试之后，你们将找到使用较少节点的合适的部署方式。
 
@@ -512,7 +512,7 @@ A：1，编辑 ngnix 配置文件 vi /etc/nginx/nginx.conf，更改上传大小 
    ​	2，更新 google chrome 版本到最新版本。
 
 ---
-   
+
 ## Q：创建 spark 数据源，点击“测试连接”，系统回退回到登入页面
 A：1，edit /etc/nginx/conf.d/escheduler.conf
 ```
@@ -526,11 +526,11 @@ A：1，edit /etc/nginx/conf.d/escheduler.conf
 ## Q：欢迎订阅 DolphinScheduler 开发邮件列表
 A：在使用 DolphinScheduler 的过程中，如果您有任何问题或者想法、建议，都可以通过 Apache 邮件列表参与到 DolphinScheduler 的社区建设中来。
    发送订阅邮件也非常简单，步骤如下:
-   
+
    1，用自己的邮箱向 dev-subscribe@dolphinscheduler.apache.org 发送一封邮件，主题和内容任意。
-   
+
    2， 接收确认邮件并回复。 完成步骤1后，您将收到一封来自 dev-help@dolphinscheduler.apache.org 的确认邮件（如未收到，请确认邮件是否被自动归入垃圾邮件、推广邮件、订阅邮件等文件夹）。然后直接回复该邮件，或点击邮件里的链接快捷回复即可，主题和内容任意。
-   
+
    3， 接收欢迎邮件。 完成以上步骤后，您会收到一封主题为 WELCOME to dev@dolphinscheduler.apache.org 的欢迎邮件，至此您已成功订阅 Apache DolphinScheduler的邮件列表。
 
 ---
@@ -583,6 +583,105 @@ java -jar target/dolphinscheduler-netutils.jar
 ```shell
 echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
+```
+
+---
+
+## Q：Yarn多集群支持
+A：将Worker节点分别部署至多个Yarn集群，步骤如下（例如AWS EMR）：
+
+   1. 将 Worker 节点部署至 EMR 集群的 Master 节点
+   
+   2. 将 `conf/common.properties` 中的 `yarn.application.status.address` 修改为当前集群的 Yarn 的信息
+   
+   3. 通过 `bin/dolphinscheduler-daemon.sh start worker-server` 和 `bin/dolphinscheduler-daemon.sh start logger-server` 分别启动 worker-server 和 logger-server
+
+---
+
+## Q：Update process definition error: Duplicate key TaskDefinition
+
+A：在DS 2.0.4之前（2.0.0-alpha之后），可能存在版本切换的重复键问题，导致更新工作流失败；可参考如下SQL进行重复数据的删除，以MySQL为例：（注意：操作前请务必备份原数据，SQL来源于pr [#8408](https://github.com/apache/dolphinscheduler/pull/8408)）
+
+```SQL
+DELETE FROM t_ds_process_task_relation_log WHERE id IN
+(
+ SELECT
+     x.id
+ FROM
+     (
+         SELECT
+             aa.id
+         FROM
+             t_ds_process_task_relation_log aa
+                 JOIN
+             (
+                 SELECT
+                     a.process_definition_code
+                      ,MAX(a.id) as min_id
+                      ,a.pre_task_code
+                      ,a.pre_task_version
+                      ,a.post_task_code
+                      ,a.post_task_version
+                      ,a.process_definition_version
+                      ,COUNT(*) cnt
+                 FROM
+                     t_ds_process_task_relation_log a
+                         JOIN (
+                         SELECT
+                             code
+                         FROM
+                             t_ds_process_definition
+                         GROUP BY code
+                     )b ON b.code = a.process_definition_code
+                 WHERE 1=1
+                 GROUP BY a.pre_task_code
+                        ,a.post_task_code
+                        ,a.pre_task_version
+                        ,a.post_task_version
+                        ,a.process_definition_code
+                        ,a.process_definition_version
+                 HAVING COUNT(*) > 1
+             )bb ON bb.process_definition_code = aa.process_definition_code
+                 AND bb.pre_task_code = aa.pre_task_code
+                 AND bb.post_task_code = aa.post_task_code
+                 AND bb.process_definition_version = aa.process_definition_version
+                 AND bb.pre_task_version = aa.pre_task_version
+                 AND bb.post_task_version = aa.post_task_version
+                 AND bb.min_id != aa.id
+     )x
+)
+;
+
+DELETE FROM t_ds_task_definition_log WHERE id IN
+(
+   SELECT
+       x.id
+   FROM
+       (
+           SELECT
+               a.id
+           FROM
+               t_ds_task_definition_log a
+                   JOIN
+               (
+                   SELECT
+                       code
+                        ,name
+                        ,version
+                        ,MAX(id) AS min_id
+                   FROM
+                       t_ds_task_definition_log
+                   GROUP BY code
+                          ,name
+                          ,version
+                   HAVING COUNT(*) > 1
+               )b ON b.code = a.code
+                   AND b.name = a.name
+                   AND b.version = a.version
+                   AND b.min_id != a.id
+       )x
+)
+;
 ```
 
 ---

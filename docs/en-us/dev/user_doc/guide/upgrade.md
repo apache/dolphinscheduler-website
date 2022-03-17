@@ -1,21 +1,21 @@
+# DolphinScheduler Upgrade Documentation
 
-# DolphinScheduler upgrade documentation
+## Back-Up Previous Version's Files and Database
 
-## 1. Back Up Previous Version's Files and Database.
-
-## 2. Stop All Services of DolphinScheduler.
+## Stop All Services of DolphinScheduler
 
  `sh ./script/stop-all.sh`
 
-## 3. Download the New Version's Installation Package.
+## Download the Newest Version Installation Package
 
 - [download](/en-us/download/download.html) the latest version of the installation packages.
 - The following upgrade operations need to be performed in the new version's directory.
 
-## 4. Database Upgrade
-- Modify the following properties in conf/datasource.properties.
+## Database Upgrade
 
-- If you use MySQL as the database to run DolphinScheduler, please comment out PostgreSQL related configurations, and add mysql connector jar into lib dir, here we download mysql-connector-java-8.0.16.jar, and then correctly config database connect information. You can download mysql connector jar [here](https://downloads.MySQL.com/archives/c-j/). Alternatively, if you use Postgres as database, you just need to comment out Mysql related configurations, and correctly config database connect information.
+- Modify the following properties in `conf/datasource.properties`.
+
+- If using MySQL as the database to run DolphinScheduler, please comment out PostgreSQL related configurations, and add MYSQL connector jar into lib dir, here we download `mysql-connector-java-8.0.16.jar`, and then correctly configure database connection information. You can download MYSQL connector jar from [here](https://downloads.MySQL.com/archives/c-j/). Alternatively, if you use PostgreSQL as the database, you just need to comment out Mysql related configurations and correctly configure database connect information.
 
     ```properties
       # postgre
@@ -28,52 +28,55 @@
       spring.datasource.password=xxx
     ```
 
-- Execute database upgrade script
+- Execute database upgrade script:
 
     `sh ./script/upgrade-dolphinscheduler.sh`
 
-## 5. Backend Service Upgrade.
+## Backend Service Upgrade
 
-### 5.1 Modify the Content in `conf/config/install_config.conf` File.
+### Modify the Content in `conf/config/install_config.conf` File
 
-- Standalone Deployment please refer the [6, Modify running arguments] in [Standalone-Deployment](./installation/standalone.md).
-- Cluster Deployment please refer the [6, Modify running arguments] in [Cluster-Deployment](./installation/cluster.md).
+- Standalone Deployment please refer to the [Standalone-Deployment](./installation/standalone.md).
+- Cluster Deployment please refer to the [Cluster-Deployment](./installation/cluster.md).
 
 #### Masters Need Attentions
-Create worker group in 1.3.1 version has different design: 
+
+Create worker group in 1.3.1 version has a different design: 
 
 - Before version 1.3.1 worker group can be created through UI interface.
-- Since version 1.3.1 worker group can be created by modify the worker configuration. 
+- Since version 1.3.1 worker group can be created by modifying the worker configuration. 
 
-#### When Upgrade from Version Before 1.3.1 to 1.3.2, Below Operations are What We Need to Do to Keep Worker Group Config Consist with Previous.
+#### When Upgrade from Version Before 1.3.1 to 1.3.2, the Below Operations are What We Need to Do to Keep Worker Group Configuration Consist with Previous
 
-1, Go to the backup database, search records in t_ds_worker_group table, mainly focus id, name and IP three columns.
+1. Go to the backup database, search records in `t_ds_worker_group table`, mainly focus `id, name and IP` three columns.
 
 | id | name | ip_list    |
 | :---         |     :---:      |          ---: |
 | 1   | service1     | 192.168.xx.10    |
 | 2   | service2     | 192.168.xx.11,192.168.xx.12      |
 
-2、Modify the workers config item in conf/config/install_config.conf file.
+2. Modify the worker configuration in `conf/config/install_config.conf` file.
 
-Imaging bellow are the machine worker service to be deployed:
+Assume bellow are the machine worker service to be deployed:
 | hostname | ip |
 | :---  | :---:  |
 | ds1   | 192.168.xx.10     |
 | ds2   | 192.168.xx.11     |
 | ds3   | 192.168.xx.12     |
 
-To keep worker group config consistent with the previous version, we need to modify workers config item as below:
+To keep worker group config consistent with the previous version, we need to modify workers configuration as below:
 
 ```shell
 #worker service is deployed on which machine, and also specify which worker group this worker belongs to. 
 workers="ds1:service1,ds2:service2,ds3:service2"
 ```
 
-#### The Worker Group has Been Enhanced in Version 1.3.2.
-Worker in 1.3.1 can't belong to more than one worker group, in 1.3.2 it's supported. So in 1.3.1 it's not supported when workers="ds1:service1,ds1:service2", and in 1.3.2 it's supported. 
-  
-### 5.2 Execute Deploy Script.
+#### The Worker Group has Been Enhanced in Version 1.3.2
+
+Workers in 1.3.1 can't belong to more than one worker group, but in 1.3.2 it's supported. So in 1.3.1 it's not supported when `workers="ds1:service1,ds1:service2"`, and in 1.3.2 it's supported. 
+
+### Execute Deploy Script
+
 ```shell
 `sh install.sh`
 ```

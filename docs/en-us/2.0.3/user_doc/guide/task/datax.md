@@ -1,5 +1,4 @@
-
-# DATAX
+# DataX
 
 - Drag in the toolbar<img src="/img/datax.png" width="35"/>Task node into the drawing board
 

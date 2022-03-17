@@ -245,9 +245,13 @@ cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 将源码包和二进制包添加至SVN工作目录。
 
 ```shell
+# 主程序源码包和二进制包
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
 
+# Python API 源码和二进制包
+mkdir -p ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
 ```
 
 ### 生成文件签名
@@ -255,6 +259,8 @@ cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/
 ```shell
 shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -a 512 python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz >> python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -b -a 512 python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl >> python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
 ```
 
 ### 提交Apache SVN
@@ -271,6 +277,8 @@ svn --username=${APACHE LDAP 用户名} commit -m "release ${RELEASE.VERSION}"
 ```shell
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -c python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -c python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
 ```
 
 ### 检查gpg签名
@@ -303,6 +311,8 @@ Your decision? 5
 ```shell
 gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz
 gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz
+gpg --verify python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.asc python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz
+gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.asc python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl
 ```
 
 ### 检查发布文件内容
@@ -436,16 +446,11 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION
 
 2.在Apache Staging仓库找到DolphinScheduler并点击`Release`
 
-3.更新下载页面
+3.发送公告邮件通知社区
 
-```
-https://dolphinscheduler.apache.org/en-us/download/download.html
-https://dolphinscheduler.apache.org/zh-cn/download/download.html
-```
+当完成了上述的发版流程后，需要发送一封公告邮件给社区。你需要将邮件发送到 `dev@dolphinscheduler.apache.org` 并抄送到 `announce@apache.org`。
 
-4.发送邮件到`dev@dolphinscheduler.apache.org`通知完成版本发布。
-
-通知邮件模板：
+通知邮件模板如下：
 
 标题：
 

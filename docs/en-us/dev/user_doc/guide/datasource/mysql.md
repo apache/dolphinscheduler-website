@@ -1,16 +1,16 @@
 # MySQL
 
-
-- Data source: select MYSQL
-- Data source name: enter the name of the data source
-- Description: Enter a description of the data source
-- IP hostname: enter the IP to connect to MySQL
-- Port: Enter the port to connect to MySQL
-- Username: Set the username for connecting to MySQL
-- Password: Set the password for connecting to MySQL
-- Database name: Enter the name of the database connected to MySQL
-- Jdbc connection parameters: parameter settings for MySQL connection, filled in in JSON form
-
 <p align="center">
    <img src="/img/mysql-en.png" width="80%" />
  </p>
+
+- Datasource: select MYSQL
+- Datasource name: enter the name of the DataSource
+- Description: enter a description of the DataSource
+- IP/Host Name: enter the MYSQL service IP
+- Port: enter the MYSQL service port
+- Username: set the username for MYSQL connection
+- Password: set the password for MYSQL connection
+- Database name: enter the database name of the MYSQL connection
+- Jdbc connection parameters: parameter settings for MYSQL connection, in JSON format
+

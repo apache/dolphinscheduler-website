@@ -1,6 +1,6 @@
 # Project
 
-## Create project
+## Create Project
 
 - Click "Project Management" to enter the project management page, click the "Create Project" button, enter the project name, project description, and click "Submit" to create a new project.
 
@@ -8,7 +8,7 @@
       <img src="/img/create_project_en1.png" width="80%" />
   </p>
 
-## Project home
+## Project Home
 
 - Click the project name link on the project management page to enter the project home page, as shown in the figure below, the project home page contains the task status statistics, process status statistics, and workflow definition statistics of the project. The introduction for those metric:
 

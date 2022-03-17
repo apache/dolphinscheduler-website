@@ -1,6 +1,5 @@
 # MySQL
 
-
 - Data source: select MYSQL
 - Data source name: enter the name of the data source
 - Description: Enter a description of the data source
