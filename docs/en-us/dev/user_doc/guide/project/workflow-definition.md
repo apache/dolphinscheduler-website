@@ -44,7 +44,7 @@ Click Project Management -> Workflow -> Workflow Definition to enter the workflo
 <p align="center">
 <img src="/img/work_list_en.png" width="80%" />
 </p>
-The operation functions of the workflow definition list are as follows:
+The following are the operation functions of the workflow definition list:
 
 - **Edit:** Only "Offline" workflow definitions can be edited. Workflow DAG editing is the same as [Create Workflow Definition](#creatDag)
 - **Online:** When the workflow status is "Offline", used to make workflow online. Only the workflow in the "Online" state can run, but cannot edit

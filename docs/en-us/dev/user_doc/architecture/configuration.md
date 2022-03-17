@@ -270,7 +270,7 @@ install_config.conf is a bit complicated and is mainly used in the following two
 
 > The system will load masters, workers, alert-server, API-servers and other parameters inside the file to startup or shutdown DS cluster.
 
-#### File Content as Follows:
+#### File Content
 
 ```bash
 

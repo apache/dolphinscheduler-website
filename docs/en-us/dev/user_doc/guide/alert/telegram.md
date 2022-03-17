@@ -1,7 +1,7 @@
 # Telegram
 
 If you need `Telegram` to alert, create an alert instance in the alert instance management, and choose the `Telegram` plugin.
-The `Telegram` example configuration is as follows:
+The following shows the `Telegram` configuration example:
 
 ![telegram-plugin](/img/alert/telegram-plugin.png)
 

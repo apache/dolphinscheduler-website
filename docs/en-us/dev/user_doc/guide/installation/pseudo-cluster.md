@@ -46,7 +46,7 @@ chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
 
 ### Configure Machine SSH Password-Free Login
 
-Since resources need to be sent to different machines during installation, SSH password-free login is required between each machine. The steps to configure password-free login are as follows:
+Since resources need to be sent to different machines during installation, SSH password-free login is required between each machine. The following shows the steps to configure password-free login:
 
 ```shell
 su dolphinscheduler

@@ -1,14 +1,14 @@
 # DingTalk
 
 If you need to use `DingTalk` for alerting, create an alert instance in the alert instance management and select the DingTalk plugin. 
-The `DingTalk` example configuration is as follows:
+The following shows the `DingTalk` configuration example:
 
 ![dingtalk-plugin](/img/alert/dingtalk-plugin.png)
 
 ## Parameter Configuration
 
 * Webhook
-  > The format is as follows: https://oapi.dingtalk.com/robot/send?access_token=XXXXXX
+  > The format is: https://oapi.dingtalk.com/robot/send?access_token=XXXXXX
 * Keyword
   > Custom keywords for security settings
 * Secret

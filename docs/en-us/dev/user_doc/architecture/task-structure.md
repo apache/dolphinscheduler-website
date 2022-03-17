@@ -60,7 +60,7 @@ Data example:
 
 ### Shell Nodes
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task Id|
@@ -135,7 +135,7 @@ No.|parameter name||type|description |notes
 
 Perform data query and update operations on the specified datasource through SQL.
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 No.|parameter name||type|description |note
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String|task id|
@@ -231,12 +231,12 @@ No.|parameter name||type|description |note
 
 ### Procedure [stored procedures] Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 **Node data example:**
 
 ### Spark Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -334,7 +334,7 @@ No.|parameter name||type|description |notes
 
 ### MapReduce(MR) Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -418,7 +418,7 @@ No.|parameter name||type|description |notes
 
 ### Python Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String|  task Id|
@@ -491,7 +491,7 @@ No.|parameter name||type|description |notes
 
 ### Flink Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -586,7 +586,7 @@ No.|parameter name||type|description |notes
 
 ### HTTP Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
@@ -671,7 +671,7 @@ No.|parameter name||type|description |notes
 
 ### DataX Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task Id|
@@ -758,7 +758,7 @@ No.|parameter name||type|description |notes
 
 ### Sqoop Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String|task ID|
@@ -833,7 +833,7 @@ No.|parameter name||type|description |notes
 
 ### Condition Branch Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task ID|
@@ -897,7 +897,7 @@ No.|parameter name||type|description |notes
 
 ### Subprocess Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task ID|
@@ -956,7 +956,7 @@ No.|parameter name||type|description |notes
 
 ### DEPENDENT Node
 
-**The node data structure is as follows:**
+**The following shows the node data structure:**
 No.|parameter name||type|description |notes
 -------- | ---------| ---------| -------- | --------- | ---------
 1|id | |String| task ID|

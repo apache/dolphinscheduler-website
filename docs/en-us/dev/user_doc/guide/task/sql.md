@@ -34,7 +34,7 @@ This example creates a temporary table `tmp_hello_world` in Hive and writes a ro
 
 ### After Running the Task Successfully, Query the Results in Hive
 
-Log in to the bigdata cluster and use 'hive' command or 'beeline' or 'JDBC' and other methods to connect to the 'Apache Hive' for the query. The query SQL is `select * from tmp_hello_world_{yyyyMMdd}`, please replace `{yyyyMMdd}` with the date of the running day. The query screenshot is as follows:
+Log in to the bigdata cluster and use 'hive' command or 'beeline' or 'JDBC' and other methods to connect to the 'Apache Hive' for the query. The query SQL is `select * from tmp_hello_world_{yyyyMMdd}`, please replace `{yyyyMMdd}` with the date of the running day. The following shows the query screenshot:
 
 ![hive-sql](/img/tasks/demo/hive-result.png)
 

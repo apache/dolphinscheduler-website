@@ -4,7 +4,7 @@ Before explain the architecture of the scheduling system, let's first get to kno
 
 ## Glossary
 
-**DAG：** The full name is Directed Acyclic Graph, the abbreviation is DAG. Tasks in the workflow are assembled in the form of a directed acyclic graph, and topological traversal performs from zero degree entry nodes until there are no subsequent nodes. Examples are as follows:
+**DAG：** The full name is Directed Acyclic Graph, the abbreviation is DAG. Tasks in the workflow are assembled in the form of a directed acyclic graph, and topological traversal performs from zero degree entry nodes until there are no subsequent nodes. The following are the examples:
 
 <p align="center">
   <img src="/img/dag_examples_cn.jpg" alt="dag example"  width="60%" />
@@ -140,7 +140,7 @@ Problems in centralized thought design:
 #### Distributed Lock Practice
 
 DolphinScheduler uses ZooKeeper distributed lock to implement only one Master executes Scheduler at the same time, or only one Worker executes the submission of tasks.
-1. The core process algorithm for acquiring distributed locks is as follows:
+1. The following shows the core process algorithm for acquiring distributed locks:
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock.png" alt="Obtain distributed lock process"  width="50%" />
  </p>
@@ -233,7 +233,7 @@ If there is a task failure in the workflow that reaches the maximum retry times,
 
 #### Task Priority Design
 
-In the early schedule design, if there is no priority design and use the fair scheduling, the task submitted first may complete at the same time with the task submitted later, thus invalid the priority of process or task. So we have re-designed this, and our current design is as follows:
+In the early schedule design, if there is no priority design and use the fair scheduling, the task submitted first may complete at the same time with the task submitted later, thus invalid the priority of process or task. So we have re-designed this, and the following is our current design:
 
 -  According to **the priority of different process instances** prior over **priority of the same process instance** prior over **priority of tasks within the same process** prior over **tasks within the same process**, process task submission order from highest to Lowest.
     - The specific implementation is to parse the priority according to the JSON of the task instance, and then save the **process instance priority_process instance id_task priority_task id** information to the ZooKeeper task queue. When obtain from the task queue, we can get the highest priority task by comparing string.
@@ -261,7 +261,7 @@ In the early schedule design, if there is no priority design and use the fair sc
  </p>
 
 - We use the customized FileAppender and Filter functions from Logback to implement each task instance generates one log file.
-- FileAppender is mainly implemented as follows：
+- The following is the FileAppender implementation：
 
 ```java
  /**
@@ -293,7 +293,7 @@ Generate logs in the form of /process definition id /process instance id /task i
 
 - Filter to match the thread name starting with TaskLogInfo:
 
-- TaskLogFilter is implemented as follows：
+- The following shows the TaskLogFilter implementation:
 
  ```java
  /**

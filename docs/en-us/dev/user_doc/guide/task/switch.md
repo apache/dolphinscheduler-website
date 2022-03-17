@@ -29,7 +29,7 @@ Here we have three tasks, the dependencies are `A -> B -> [C, D]`, and `task_a` 
   - Configure task C to run when the global variable `id=1`. Then edit `${id} == 1` in the condition of task B, and select `C` as branch flow
   - For other tasks, select `D` as branch flow
 
-Switch task configuration is as follows:
+The following shows the switch task configuration:
 
 ![task-switch-configure](../../../../../../img/switch_configure.jpg)
 
