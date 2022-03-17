@@ -1,7 +1,7 @@
 # Enterprise WeChat
 
-If you need to use `Enterprise WeChat` to alert, create an alert instance in the alert instance management, and choose the WeChat plugin. 
-The `WeChat` example configuration is as follows:
+If you need to use `Enterprise WeChat` to alert, create an alert instance in the alert instance management, and choose the WeChat plugin.
+The following is the `WeChat` configuration example:
 
 ![enterprise-wechat-plugin](/img/alert/enterprise-wechat-plugin.png)
 

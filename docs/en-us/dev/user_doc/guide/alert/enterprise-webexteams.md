@@ -1,7 +1,7 @@
 # Webex Teams
 
-If you need to use `Webex Teams` to alert, create an alert instance in the alert instance management, and choose the WebexTeams plugin. 
-The `WebexTeams` example configuration is as follows:
+If you need to use `Webex Teams` to alert, create an alert instance in the alert instance management, and choose the WebexTeams plugin.
+The following is the `WebexTeams` configuration example:
 
 ![enterprise-webexteams-plugin](/img/alert/enterprise-webexteams-plugin.png)
 

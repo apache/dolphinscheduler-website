@@ -30,17 +30,17 @@ If the result of the SQL node has multiple rows, one or more fields, the name of
 
 Let's make an example of the SQL node process in the above picture:
 
-The [createParam1] node in the above figure defines as follows:
+The following defines the [createParam1] node in the above figure:
 
 ![png05](/img/globalParam/image-20210723104957031.png)
 
-The [createParam2] node defines as follows:
+The following defines the [createParam2] node:
 
 ![png06](/img/globalParam/image-20210723105026924.png)
 
 Find the value of the variable in the [Workflow Instance] page corresponding to the node instance.
 
-Node instance [createparam1] is as follows:
+The following shows the Node instance [createparam1]:
 
 ![png07](/img/globalParam/image-20210723105131381.png)
 

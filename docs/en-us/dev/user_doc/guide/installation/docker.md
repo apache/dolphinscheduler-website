@@ -370,7 +370,7 @@ done
 
 > Because of the commercial license, we cannot directly use the driver of MySQL.
 >
-> If you want to use MySQL, you can build a new image based on the `apache/dolphinscheduler` image as follows.
+> If you want to use MySQL, you can build a new image based on the `apache/dolphinscheduler` image follow the following instructions:
 
 1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar).
 
@@ -416,7 +416,7 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 
 > Because of the commercial license, we cannot directly use the driver of MySQL.
 >
-> If you want to add MySQL datasource, you can build a new image based on the `apache/dolphinscheduler` image as follows.
+> If you want to add MySQL datasource, you can build a new image based on the `apache/dolphinscheduler` image follow the following instructions:
 
 1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar).
 
@@ -445,7 +445,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 > Because of the commercial license, we cannot directly use the driver of Oracle.
 >
-> If you want to add Oracle datasource, you can build a new image based on the `apache/dolphinscheduler` image as follows.
+> If you want to add Oracle datasource, you can build a new image based on the `apache/dolphinscheduler` image follow the following instructions:
 
 1. Download the Oracle driver [ojdbc8.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/) (such as `ojdbc8-19.9.0.0.jar`).
 
