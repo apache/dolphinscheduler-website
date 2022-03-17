@@ -31,7 +31,7 @@ The [createParam] node can use parameters directly. In addition, the node create
 
 ![png03](/img/globalParam/image-20210723103937052.png)
 
-The definition of the [use_create] node is as follows:
+The following shows the definition of the [use_create] node:
 
 ![png04](/img/globalParam/image-20210723104411489.png)
 

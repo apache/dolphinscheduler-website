@@ -16,7 +16,7 @@ DolphinScheduler, as an open-source distributed workflow task scheduling system,
 
 ## Recommended Server Configuration
 
-DolphinScheduler supports 64-bit hardware platforms with Intel x86-64 architecture. The recommended server requirements in a production environment are as follow:
+DolphinScheduler supports 64-bit hardware platforms with Intel x86-64 architecture. The following shows the recommended server requirements in a production environment:
 
 ### Production Environment
 
