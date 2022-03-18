@@ -26,7 +26,7 @@ This node is used to perform http type tasks such as the common POST and GET req
 - **Request parameters**: Support Parameter, Body, Headers.
 - **Verification conditions**: support default response code, custom response code, content included, content not included.
 - **Verification content**: When the verification condition selects a custom response code, the content contains, and the content does not contain, the verification content is required.
-- **Custom parameter**: It is a user-defined parameter of http part, which will replace the content with \${variable} in the script.
+- **Custom parameter**: It is a user-defined parameter of http part, which will replace the content with `${variable}` in the script.
 - **Predecessor task**: Selecting a predecessor task for the current task will set the selected predecessor task as upstream of the current task.
 
 ## Example
