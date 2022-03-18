@@ -6,7 +6,7 @@ Spark task type used to execute Spark program. For Spark nodes, the worker submi
 
 ## Create Task
 
-- Click Project Management -> Project Name -> Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
+- Click `Project -> Management-Project -> Name-Workflow Definition`, and click the `Create Workflow` button to enter the DAG editing page.
 - Drag from the toolbar <img src="/img/tasks/icons/spark.png" width="15"/> to the canvas.
 
 ## Task Parameter

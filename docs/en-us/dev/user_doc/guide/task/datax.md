@@ -6,7 +6,7 @@ DataX task type for executing DataX programs. For DataX nodes, the worker will e
 
 ## Create Task
 
-- Click Project Management -> Project Name -> Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
+- Click `Project -> Management-Project -> Name-Workflow Definition`, and click the `Create Workflow` button to enter the DAG editing page.
 - Drag from the toolbar <img src="/img/tasks/icons/datax.png" width="15"/> task node to canvas.
 
 ## Task Parameter
