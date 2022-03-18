@@ -6,54 +6,55 @@ export default {
                 children: [
                     {
                         title: 'Introduction',
-                        link: '/en-us/docs/dev/user_doc/About_DolphinScheduler/About_DolphinScheduler.html',
+                        link: '/en-us/docs/dev/user_doc/about/introduction.html',
+                    },
+                    {
+                        title: 'Hardware Environment',
+                        link: '/en-us/docs/dev/user_doc/about/hardware.html',
+                    },
+                    {
+                        title: 'Glossary',
+                        link: '/en-us/docs/dev/user_doc/about/glossary.html',
                     },
                 ],
             },
             {
-                title: 'User Manual',
+                title: 'Quick Start',
                 children: [
                     {
-                        title: 'Introduction',
-                        link: '/en-us/docs/dev/user_doc/guide/introduction.html',
-                    },
-                    {
                         title: 'Quick Start',
-                        link: '/en-us/docs/dev/user_doc/guide/quick-start.html',
+                        link: '/en-us/docs/dev/user_doc/guide/start/quick-start.html',
                     },
                     {
-                        title: 'Installation',
-                        children: [
-                            {
-                                title: 'Hardware Environment',
-                                link: '/en-us/docs/dev/user_doc/guide/installation/hardware.html',
-                            },
-                            {
-                                title: 'Standalone Deployment',
-                                link: '/en-us/docs/dev/user_doc/guide/installation/standalone.html',
-                            },
-                            {
-                                title: 'Pseudo Cluster Deployment',
-                                link: '/en-us/docs/dev/user_doc/guide/installation/pseudo-cluster.html',
-                            },
-                            {
-                                title: 'Cluster Deployment',
-                                link: '/en-us/docs/dev/user_doc/guide/installation/cluster.html',
-                            },
-                            {
-                                title: 'Docker Deployment',
-                                link: '/en-us/docs/dev/user_doc/guide/installation/docker.html',
-                            },
-                            {
-                                title: 'Kubernetes Deployment',
-                                link: '/en-us/docs/dev/user_doc/guide/installation/kubernetes.html',
-                            },
-                            {
-                                title: 'SkyWalking-Agent Deployment',
-                                link: '/en-us/docs/dev/user_doc/guide/installation/skywalking-agent.html',
-                            },
-                        ],
+                        title: 'Docker Deployment',
+                        link: '/en-us/docs/dev/user_doc/guide/start/docker.html',
                     },
+                ],
+            },
+            {
+                title: 'Installation',
+                children: [
+                    {
+                        title: 'Standalone Deployment',
+                        link: '/en-us/docs/dev/user_doc/guide/installation/standalone.html',
+                    },
+                    {
+                        title: 'Pseudo Cluster Deployment',
+                        link: '/en-us/docs/dev/user_doc/guide/installation/pseudo-cluster.html',
+                    },
+                    {
+                        title: 'Cluster Deployment',
+                        link: '/en-us/docs/dev/user_doc/guide/installation/cluster.html',
+                    },
+                    {
+                        title: 'Kubernetes Deployment',
+                        link: '/en-us/docs/dev/user_doc/guide/installation/kubernetes.html',
+                    },
+                ],
+            },
+            {
+                title: 'Introduction to Functions',
+                children: [
                     {
                         title: 'Workflow Overview',
                         link: '/en-us/docs/dev/user_doc/guide/homepage.html',
@@ -250,15 +251,15 @@ export default {
                 ],
             },
             {
-                title: 'Architecture Design',
+                title: 'Architecture Guide',
                 children: [
-                    {
-                        title: 'Metadata',
-                        link: '/en-us/docs/dev/user_doc/architecture/metadata.html',
-                    },
                     {
                         title: 'Architecture Design',
                         link: '/en-us/docs/dev/user_doc/architecture/design.html',
+                    },
+                    {
+                        title: 'Metadata',
+                        link: '/en-us/docs/dev/user_doc/architecture/metadata.html',
                     },
                     {
                         title: 'Configuration File',
@@ -279,11 +280,30 @@ export default {
                 ],
             },
             {
+                title: 'Observability',
+                children: [
+
+                    {
+                        title: 'SkyWalking-Agent',
+                        link: '/en-us/docs/dev/user_doc/guide/installation/skywalking-agent.html',
+                    },
+                ],
+            },
+            {
                 title: 'FAQ',
                 children: [
                     {
                         title: 'FAQ',
                         link: '/en-us/docs/release/faq.html',
+                    },
+                ],
+            },
+            {
+                title: 'Older Versions',
+                children: [
+                    {
+                        title: 'Older Versions',
+                        link: '/en-us/docs/release/history-versions.html',
                     },
                 ],
             },
@@ -297,54 +317,55 @@ export default {
                 children: [
                     {
                         title: '简介',
-                        link: '/zh-cn/docs/dev/user_doc/About_DolphinScheduler/About_DolphinScheduler.html',
+                        link: '/zh-cn/docs/dev/user_doc/about/introduction.html',
+                    },
+                    {
+                        title: '建议配置',
+                        link: '/zh-cn/docs/dev/user_doc/about/hardware.html',
+                    },
+                    {
+                        title: '名词解释',
+                        link: '/zh-cn/docs/dev/user_doc/about/glossary.html',
                     },
                 ],
             },
             {
-                title: '用户手册',
+                title: '快速上手',
                 children: [
                     {
-                        title: '简介',
-                        link: '/zh-cn/docs/dev/user_doc/guide/introduction.html',
-                    },
-                    {
                         title: '快速上手',
-                        link: '/zh-cn/docs/dev/user_doc/guide/quick-start.html',
+                        link: '/zh-cn/docs/dev/user_doc/guide/start/quick-start.html',
                     },
                     {
-                        title: '部署',
-                        children: [
-                            {
-                                title: '软硬件环境建议配置',
-                                link: '/zh-cn/docs/dev/user_doc/guide/installation/hardware.html',
-                            },
-                            {
-                                title: '单机部署(Standalone)',
-                                link: '/zh-cn/docs/dev/user_doc/guide/installation/standalone.html',
-                            },
-                            {
-                                title: '伪集群部署(Pseudo-Cluster)',
-                                link: '/zh-cn/docs/dev/user_doc/guide/installation/pseudo-cluster.html',
-                            },
-                            {
-                                title: '集群部署(Cluster)',
-                                link: '/zh-cn/docs/dev/user_doc/guide/installation/cluster.html',
-                            },
-                            {
-                                title: 'Docker部署(Docker)',
-                                link: '/zh-cn/docs/dev/user_doc/guide/installation/docker.html',
-                            },
-                            {
-                                title: 'Kubernetes部署(Kubernetes)',
-                                link: '/zh-cn/docs/dev/user_doc/guide/installation/kubernetes.html',
-                            },
-                            {
-                                title: 'SkyWalking-Agent部署(SkyWalking)',
-                                link: '/zh-cn/docs/dev/user_doc/guide/installation/skywalking-agent.html',
-                            },
-                        ],
+                        title: 'Docker部署(Docker)',
+                        link: '/zh-cn/docs/dev/user_doc/guide/start/docker.html',
                     },
+                ],
+            },
+            {
+                title: '部署指南',
+                children: [
+                    {
+                        title: '单机部署(Standalone)',
+                        link: '/zh-cn/docs/dev/user_doc/guide/installation/standalone.html',
+                    },
+                    {
+                        title: '伪集群部署(Pseudo-Cluster)',
+                        link: '/zh-cn/docs/dev/user_doc/guide/installation/pseudo-cluster.html',
+                    },
+                    {
+                        title: '集群部署(Cluster)',
+                        link: '/zh-cn/docs/dev/user_doc/guide/installation/cluster.html',
+                    },
+                    {
+                        title: 'Kubernetes部署(Kubernetes)',
+                        link: '/zh-cn/docs/dev/user_doc/guide/installation/kubernetes.html',
+                    },
+                ],
+            },
+            {
+                title: '功能介绍',
+                children: [
                     {
                         title: '指标总览',
                         link: '/zh-cn/docs/dev/user_doc/guide/homepage.html',
@@ -570,11 +591,29 @@ export default {
                 ],
             },
             {
+                title: '可观测性',
+                children: [
+                    {
+                        title: 'SkyWalking-Agent',
+                        link: '/zh-cn/docs/dev/user_doc/guide/installation/skywalking-agent.html',
+                    },
+                ],
+            },
+            {
                 title: 'FAQ',
                 children: [
                     {
                         title: 'FAQ',
                         link: '/zh-cn/docs/release/faq.html',
+                    },
+                ],
+            },
+            {
+                title: '历史版本',
+                children: [
+                    {
+                        title: '历史版本',
+                        link: '/zh-cn/docs/release/history-versions.html',
                     },
                 ],
             },
