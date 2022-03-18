@@ -68,4 +68,4 @@
 
 ### Versions：Dev
 
-#### Links：[Dev Document](docs/en-us/dev/user_doc/start/quick-start.md)
+#### Links：[Dev Document](../dev/user_doc/guide/about/introduction.md)
