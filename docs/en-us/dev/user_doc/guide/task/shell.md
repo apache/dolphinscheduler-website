@@ -6,7 +6,7 @@ Shell task used to create a shell task type and execute a series of shell script
 
 ## Create Task
 
-- Click Project Management-Project->Name-Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
+- Click `Project -> Management-Project -> Name-Workflow Definition`, and click the `Create Workflow` button to enter the DAG editing page.
 - Drag  from the toolbar <img src="/img/tasks/icons/shell.png" width="15"/> to the canvas.
 
 ## Task Parameter

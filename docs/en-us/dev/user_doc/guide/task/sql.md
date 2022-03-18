@@ -10,7 +10,7 @@ Refer to [DataSource](../datasource/introduction.md)
 
 ## Create Task
 
-- Click Project Management-Project Name-Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
+- Click `Project -> Management-Project -> Name-Workflow Definition`, and click the "Create Workflow" button to enter the DAG editing page.
 - Drag from the toolbar <img src="/img/tasks/icons/sql.png" width="25"/> to the canvas.
 
 ## Task Parameter

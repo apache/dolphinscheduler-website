@@ -6,7 +6,7 @@ Flink task type for executing Flink programs. For Flink nodes, the worker submit
 
 ## Create Task
 
-- Click Project Management -> Project Name -> Workflow Definition, and click the "Create Workflow" button to enter the DAG editing page.
+- Click `Project -> Management-Project -> Name-Workflow Definition`, and click the "Create Workflow" button to enter the DAG editing page.
 - Drag from the toolbar <img src="/img/tasks/icons/flink.png" width="15"/>task node to canvas.
 
 ## Task Parameter
