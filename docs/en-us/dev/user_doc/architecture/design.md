@@ -1,7 +1,5 @@
 # System Architecture Design
 
-Before explain the architecture of the scheduling system, let's first get to know the terms commonly used in scheduling system.
-
 ## System Structure
 
 ### System Architecture Diagram
