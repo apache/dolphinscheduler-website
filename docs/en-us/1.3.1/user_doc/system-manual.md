@@ -127,7 +127,7 @@ Add a Shell task to the drawing board, as shown in the figure below:
     <p align="center">
         <img src="/img/timer-en.png" width="80%" />
     </p>
-  - Failure strategy, notification strategy, process priority, Worker grouping, notification group, recipient, and CC are the same [workflow running parameters](#runParamers)。
+  - Failure strategy, notification strategy, process priority, Worker grouping, notification group, recipient, and CC are the same [workflow running parameters](#runParamers)。 <!-- markdown-link-check-disable-line -->
   - 点Click the "Create" button, and the timing is successfully created. At this time, the timing status is "**Offline**", and the timing needs to be **Online** to take effect.
   - Timed online: Click the "Timing Management" button<img src="/img/timeManagement.png" width="35"/>，Enter the timing management page, click the "online" button, the timing status will change to "online", as shown in the figure below, the workflow takes effect regularly.
     <p align="center">
@@ -152,7 +152,7 @@ Add a Shell task to the drawing board, as shown in the figure below:
       <p align="center">
         <img src="/img/instanceViewLog-en.png" width="80%" />
       </p>
-   - Click "View Log", a log pop-up box will pop up, as shown in the figure below, the task log can also be viewed on the task instance page, refer to [Task View Log](#taskLog)。
+   - Click "View Log", a log pop-up box will pop up, as shown in the figure below, the task log can also be viewed on the task instance page, refer to [Task View Log](#taskLog)。 <!-- markdown-link-check-disable-line -->
       <p align="center">
         <img src="/img/task-log-en.png" width="80%" />
       </p>

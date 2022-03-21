@@ -126,7 +126,7 @@
     <p align="center">
         <img src="/img/time-schedule2.png" width="80%" />
     </p>
-  - 失败策略、通知策略、流程优先级、Worker分组、通知组、收件人、抄送人同[工作流运行参数](#runParamers)。
+  - 失败策略、通知策略、流程优先级、Worker分组、通知组、收件人、抄送人同[工作流运行参数](#runParamers)。 <!-- markdown-link-check-disable-line -->
   - 点击"创建"按钮，创建定时成功，此时定时状态为"**下线**"，定时需**上线**才生效。
   - 定时上线：点击"定时管理"按钮<img src="/img/timeManagement.png" width="35"/>，进入定时管理页面，点击"上线"按钮，定时状态变为"上线"，如下图所示，工作流定时生效。
     <p align="center">
@@ -150,7 +150,7 @@
       <p align="center">
         <img src="/img/instanceViewLog.png" width="80%" />
       </p>
-   - 点击"查看日志"，弹出日志弹框，如下图所示,任务实例页面也可查看任务日志，参考[任务查看日志](#taskLog)。
+   - 点击"查看日志"，弹出日志弹框，如下图所示,任务实例页面也可查看任务日志，参考[任务查看日志](#taskLog)。 <!-- markdown-link-check-disable-line -->
       <p align="center">
         <img src="/img/task-log.png" width="80%" />
       </p>
