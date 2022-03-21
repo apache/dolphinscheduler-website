@@ -69,6 +69,9 @@ Add a Shell task to the drawing board, as shown in the figure below:</li>
 <li>Select &quot;Task Priority&quot;: When the number of worker threads is insufficient, high-level tasks will be executed first in the execution queue, and tasks with the same priority will be executed in the order of first in, first out;</li>
 <li>Timeout alarm (not required): Check the timeout alarm, timeout failure, and fill in the &quot;timeout period&quot;. When the task execution time exceeds <strong>timeout period</strong>, an alert email will be sent and the task timeout fails;</li>
 <li>Resources (optional). The resource file is a file created or uploaded on the Resource Center -&gt; File Management page. For example, the file name is <code>test.sh</code>, and the resource call command in the script is <code>sh test.sh</code>;</li>
+</ol>
+  <!-- markdown-link-check-disable-next-line -->
+<ol start="6">
 <li>Custom parameters (not required), refer to <a href="#UserDefinedParameters">Custom Parameters</a>;</li>
 <li>Click the &quot;Confirm Add&quot; button to save the task settings.</li>
 </ol>
@@ -85,12 +88,13 @@ Add a Shell task to the drawing board, as shown in the figure below:</li>
      <img src="/img/dag7.png" width="80%" />
   </p>
 </li>
-<li>
-<p><strong>Save the workflow definition：</strong> Click the &quot;Save&quot; button, and the &quot;Set DAG Diagram Name&quot; pop-up box will pop up, as shown in the figure below, enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to <a href="#UserDefinedParameters">Custom Parameters</a>) , Click the &quot;Add&quot; button, the workflow definition is created successfully.</p>
-  <p align="center">
+</ul>
+<!-- markdown-link-check-disable-next-line -->
+<ul>
+<li><strong>Save the workflow definition：</strong> Click the &quot;Save&quot; button, and the &quot;Set DAG Diagram Name&quot; pop-up box will pop up, as shown in the figure below, enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to <a href="#UserDefinedParameters">Custom Parameters</a>) , Click the &quot;Add&quot; button, the workflow definition is created successfully.  <p align="center">
      <img src="/img/dag8.png" width="80%" />
    </p>
-> For other types of tasks, please refer to [Task Node Type and Parameter Settings](#TaskParamers).
+> For other types of tasks, please refer to [Task Node Type and Parameter Settings](#TaskParamers). <!-- markdown-link-check-disable-line -->
 </li>
 </ul>
 <h4>2.3.2  Workflow definition operation function</h4>
@@ -100,11 +104,11 @@ Add a Shell task to the drawing board, as shown in the figure below:</li>
 </p>
 The operation functions of the workflow definition list are as follows:</p>
 <ul>
-<li><strong>edit：</strong> Only &quot;offline&quot; workflow definitions can be edited. Workflow DAG editing is the same as <a href="#creatDag">Create Workflow Definition</a>.</li>
+<li><strong>edit：</strong> Only &quot;offline&quot; workflow definitions can be edited. Workflow DAG editing is the same as <a href="#creatDag">Create Workflow Definition</a>.<!-- markdown-link-check-disable-line --></li>
 <li><strong>online：</strong> When the workflow status is &quot;offline&quot;, the workflow is online. Only the workflow in the &quot;online&quot; state can run, but cannot be edited.</li>
 <li><strong>Offline：</strong> When the workflow status is &quot;online&quot;, the offline workflow and the offline workflow can be edited but not run。</li>
-<li><strong>run：</strong> Only online workflows can run. See [2.3.3 Run Workflow] for the operation steps(#runWorkflow)</li>
-<li><strong>timing：</strong> Only the online workflow can set the timing, and the system automatically schedules the workflow to run regularly. The status after creating a timing is &quot;offline&quot;, and the timing must be online on the timing management page to take effect. For timing operation steps, please refer to <a href="#creatTiming">2.3.4 Workflow Timing</a>.</li>
+<li><strong>run：</strong> Only online workflows can run. See [2.3.3 Run Workflow] for the operation steps(#runWorkflow) <!-- markdown-link-check-disable-line --></li>
+<li><strong>timing：</strong> Only the online workflow can set the timing, and the system automatically schedules the workflow to run regularly. The status after creating a timing is &quot;offline&quot;, and the timing must be online on the timing management page to take effect. For timing operation steps, please refer to <a href="#creatTiming">2.3.4 Workflow Timing</a>. <!-- markdown-link-check-disable-line --></li>
 <li><strong>Timing management：</strong> The timing management page can be edited, online/offline, and deleted.</li>
 <li><strong>delete：</strong> Delete the workflow definition.</li>
 <li><strong>download：</strong> Download the workflow definition to the local.</li>
@@ -163,8 +167,8 @@ The operation functions of the workflow definition list are as follows:</p>
     <img src="/img/timer-en.png" width="80%" />
 </p>
 </li>
-<li>Failure strategy, notification strategy, process priority, Worker grouping, notification group, recipient, and CC are the same <a href="#runParamers">workflow running parameters</a>。</li>
-<li>点Click the &quot;Create&quot; button, and the timing is successfully created. At this time, the timing status is &quot;<strong>Offline</strong>&quot;, and the timing needs to be <strong>Online</strong> to take effect.</li>
+<li>Failure strategy, notification strategy, process priority, Worker grouping, notification group, recipient, and CC are the same <a href="#runParamers">workflow running parameters</a>。. <!-- markdown-link-check-disable-line --></li>
+<li>Click the &quot;Create&quot; button, and the timing is successfully created. At this time, the timing status is &quot;<strong>Offline</strong>&quot;, and the timing needs to be <strong>Online</strong> to take effect.</li>
 <li>Timed online: Click the &quot;Timing Management&quot; button<img src="/img/timeManagement.png" width="35"/>，Enter the timing management page, click the &quot;online&quot; button, the timing status will change to &quot;online&quot;, as shown in the figure below, the workflow takes effect regularly.<p align="center">
     <img src="/img/time-manage-list-en.png" width="80%" />
 </p>
@@ -190,7 +194,7 @@ The operation functions of the workflow definition list are as follows:</p>
    <img src="/img/instanceViewLog-en.png" width="80%" />
  </p>
 </li>
-<li>Click &quot;View Log&quot;, a log pop-up box will pop up, as shown in the figure below, the task log can also be viewed on the task instance page, refer to <a href="#taskLog">Task View Log</a>。 <p align="center">
+<li>Click &quot;View Log&quot;, a log pop-up box will pop up, as shown in the figure below, the task log can also be viewed on the task instance page, refer to <a href="#taskLog">Task View Log</a>。 <!-- markdown-link-check-disable-line --> <p align="center">
    <img src="/img/task-log-en.png" width="80%" />
  </p>
 </li>

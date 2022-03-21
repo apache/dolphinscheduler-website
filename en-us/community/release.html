@@ -109,9 +109,12 @@ git checkout -b ${RELEASE.VERSION}-release
 git push origin ${RELEASE.VERSION}-release
 </code></pre>
 <h3>Pre-Release Check</h3>
-<pre><code class="language-shell">mvn release:prepare -Prelease -Darguments=&quot;-DskipTests&quot; -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github username}
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> make gpg <span class="hljs-built_in">command</span> could be run <span class="hljs-keyword">in</span> maven correct</span>
+export GPG_TTY=$(tty)
+
+mvn release:prepare -Prelease,python -Darguments=&quot;-DskipTests&quot; -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github username}
 </code></pre>
-<p>-Prelease: choose release profile, which will pack all the source codes, jar files and executable binary packages.</p>
+<p>-Prelease,python: choose release and python profile, which will pack all the source codes, jar files and executable binary packages, and Python distribute package.</p>
 <p>-DautoVersionSubmodules=true：it can make the version number is inputted only once and not for each sub-module.</p>
 <p>-DdryRun=true：rehearsal, which means not to generate or submit new version number and new tag.</p>
 <h3>Prepare for the Release</h3>
@@ -119,7 +122,7 @@ git push origin ${RELEASE.VERSION}-release
 <pre><code class="language-shell">mvn release:clean
 </code></pre>
 <p>Then, prepare to execute the release.</p>
-<pre><code class="language-shell">mvn release:prepare -Prelease -Darguments=&quot;-DskipTests&quot; -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github username}
+<pre><code class="language-shell">mvn release:prepare -Prelease,python -Darguments=&quot;-DskipTests&quot; -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github username}
 </code></pre>
 <p>It is basically the same as the previous rehearsal command, but deleting -DdryRun=true parameter.</p>
 <p>-DpushChanges=false：do not submit the edited version number and tag to GitHub automatically.</p>
@@ -128,7 +131,7 @@ git push origin ${RELEASE.VERSION}-release
 git push origin --tags
 </code></pre>
 <h3>Deploy the Release</h3>
-<pre><code class="language-shell">mvn release:perform -Prelease -Darguments=&quot;-DskipTests&quot; -DautoVersionSubmodules=true -Dusername=${Github username}
+<pre><code class="language-shell">mvn release:perform -Prelease,python -Darguments=&quot;-DskipTests&quot; -DautoVersionSubmodules=true -Dusername=${Github username}
 </code></pre>
 <p>After that command is executed, the version to be released will be uploaded to Apache staging repository automatically.
 Visit <a href="https://repository.apache.org/#stagingRepositories">https://repository.apache.org/#stagingRepositories</a> and use Apache LDAP account to log in; then you can see the uploaded version, the content of <code>Repository</code> column is the ${STAGING.REPOSITORY}.
@@ -210,7 +213,7 @@ gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.
 </code></pre>
 <h3>Check Released Files</h3>
 <h4>Check source package</h4>
-<p>Decompress <code>apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz</code> and check the following items:</p>
+<p>Decompress <code>apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz</code> and <code>apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz</code> in <code>python</code> directory then check the following items:</p>
 <ul>
 <li>Check whether source tarball is oversized for including nonessential files</li>
 <li><code>LICENSE</code> and <code>NOTICE</code> files exist</li>
