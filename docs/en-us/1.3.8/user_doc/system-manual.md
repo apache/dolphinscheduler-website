@@ -54,6 +54,7 @@ The home page contains task status statistics, process status statistics, and wo
 3. Select "Task Priority": When the number of worker threads is insufficient, high-level tasks will be executed first in the execution queue, and tasks with the same priority will be executed in the order of first in, first out;
 4. Timeout alarm (optional): Check the timeout alarm, timeout failure, and fill in the "timeout period". When the task execution time exceeds **timeout period**, an alert email will be sent and the task timeout fails;
 5. Resources (optional). Resource files are files created or uploaded on the Resource Center -> File Management page. For example, the file name is `test.sh`, and the command to call the resource in the script is `sh test.sh`;
+<!-- markdown-link-check-disable-next-line -->
 6. Custom parameters (optional), refer to [Custom Parameters](#UserDefinedParameters);
 7. Click the "Confirm Add" button to save the task settings.
 
@@ -68,6 +69,7 @@ The home page contains task status statistics, process status statistics, and wo
      <img src="/img/dag7.png" width="80%" />
   </p>
 
+<!-- markdown-link-check-disable-next-line -->
 - **Save workflow definition:** Click the "Save" button, and the "Set DAG chart name" pop-up box will pop up, as shown in the figure below. Enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to [ Custom parameters](#UserDefinedParameters)), click the "Add" button, and the workflow definition is created successfully.
   <p align="center">
      <img src="/img/dag8.png" width="80%" />

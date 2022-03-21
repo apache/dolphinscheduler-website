@@ -48,6 +48,7 @@ Add a Shell task to the drawing board, as shown in the figure below:
   3. Select "Task Priority": When the number of worker threads is insufficient, high-level tasks will be executed first in the execution queue, and tasks with the same priority will be executed in the order of first in, first out;
   4. Timeout alarm (not required): Check the timeout alarm, timeout failure, and fill in the "timeout period". When the task execution time exceeds **timeout period**, an alert email will be sent and the task timeout fails;
   5. Resources (optional). The resource file is a file created or uploaded on the Resource Center -> File Management page. For example, the file name is `test.sh`, and the resource call command in the script is `sh test.sh`;
+  <!-- markdown-link-check-disable-next-line -->
   6. Custom parameters (not required), refer to [Custom Parameters](#UserDefinedParameters);
   7. Click the "Confirm Add" button to save the task settings.
   
@@ -62,6 +63,7 @@ Add a Shell task to the drawing board, as shown in the figure below:
        <img src="/img/dag7.png" width="80%" />
     </p>
 
+<!-- markdown-link-check-disable-next-line -->
 - **Save the workflow definition：** Click the "Save" button, and the "Set DAG Diagram Name" pop-up box will pop up, as shown in the figure below, enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to [Custom Parameters](#UserDefinedParameters)) , Click the "Add" button, the workflow definition is created successfully.
     <p align="center">
        <img src="/img/dag8.png" width="80%" />
