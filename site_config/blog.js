@@ -9,7 +9,7 @@ export default {
                 author: 'Debra Chen',
                 dateStr: '2022-3-21',
                 desc: 'K8s is the future of the cloud and is the only infrastructure platform.. ',
-                link: '/en-us/blog/K8s_ Cisco_Hangzhou.html',
+                link: '/en-us/blog/K8s_Cisco_Hangzhou.html',
             },
             {
 
@@ -180,7 +180,7 @@ export default {
                 author: 'Debra Chen',
                 dateStr: '2022-3-21',
                 desc: 'K8s 打通了主流公私云之间的壁垒，成为唯一连通公私云的基础架构平台......',
-                link: '/zh-cn/blog/K8s_ Cisco_Hangzhou.html',
+                link: '/zh-cn/blog/K8s_Cisco_Hangzhou.html',
 
             },
             {
