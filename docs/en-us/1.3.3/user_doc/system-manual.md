@@ -55,7 +55,7 @@ The home page contains task status statistics, process status statistics, and wo
 4. Timeout alarm (optional): Check the timeout alarm, timeout failure, and fill in the "timeout period". When the task execution time exceeds **timeout period**, an alert email will be sent and the task timeout fails;
 5. Resources (optional). Resource files are files created or uploaded on the Resource Center -> File Management page. For example, the file name is `test.sh`, and the command to call the resource in the script is `sh test.sh`;
 <!-- markdown-link-check-disable-next-line -->
-6. Custom parameters (optional), refer to [Custom Parameters](#UserDefinedParameters);
+6. Customize parameters (optional), refer to [Custom Parameters](#UserDefinedParameters);
 7. Click the "Confirm Add" button to save the task settings.
 
 - **Increase the order of task execution:** Click the icon in the upper right corner <img src="/img/line.png" width="35"/> to connect the task; as shown in the figure below, task 2 and task 3 are executed in parallel, When task 1 finished execute, tasks 2 and 3 will be executed simultaneously.
