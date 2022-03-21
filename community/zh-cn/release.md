@@ -152,10 +152,14 @@ git push origin ${RELEASE.VERSION}-release
 ### 发布预校验
 
 ```shell
-mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github用户名}
+# 保证 python profile 的 gpg 可以正常运行
+export GPG_TTY=$(tty)
+
+# 运行发版校验
+mvn release:prepare -Prelease,python -Darguments="-DskipTests" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github用户名}
 ```
 
--Prelease: 选择release的profile，这个profile会打包所有源码、jar文件以及可执行二进制包。
+-Prelease,python: 选择release和python的profile，这个profile会打包所有源码、jar文件以及可执行二进制包，以及Python的二进制包。
 
 -DautoVersionSubmodules=true：作用是发布过程中版本号只需要输入一次，不必为每个子模块都输入一次。
 
@@ -172,7 +176,7 @@ mvn release:clean
 然后准备执行发布。
 
 ```shell
-mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github用户名}
+mvn release:prepare -Prelease,python -Darguments="-DskipTests" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github用户名}
 ```
 
 和上一步演练的命令基本相同，去掉了-DdryRun=true参数。
@@ -199,7 +203,7 @@ git push origin --tags
 ### 部署发布
 
 ```shell
-mvn release:perform -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -Dusername=${Github用户名}
+mvn release:perform -Prelease,python -Darguments="-DskipTests" -DautoVersionSubmodules=true -Dusername=${Github用户名}
 ```
 
 执行完该命令后，待发布版本会自动上传到Apache的临时筹备仓库(staging repository)。
@@ -319,7 +323,7 @@ gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.
 
 #### 检查源码包的文件内容
 
-解压缩`apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz`，进行如下检查:
+解压缩`apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz`以及Python文件夹下的`apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz`，进行如下检查:
 
 - 检查源码包是否包含由于包含不必要文件，致使tarball过于庞大
 - 存在`LICENSE`和`NOTICE`文件

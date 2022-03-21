@@ -142,10 +142,13 @@ git push origin ${RELEASE.VERSION}-release
 ### Pre-Release Check
 
 ```shell
-mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github username}
+# make gpg command could be run in maven correct
+export GPG_TTY=$(tty)
+
+mvn release:prepare -Prelease,python -Darguments="-DskipTests" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github username}
 ```
 
--Prelease: choose release profile, which will pack all the source codes, jar files and executable binary packages.
+-Prelease,python: choose release and python profile, which will pack all the source codes, jar files and executable binary packages, and Python distribute package.
 
 -DautoVersionSubmodules=true：it can make the version number is inputted only once and not for each sub-module.
 
@@ -162,7 +165,7 @@ mvn release:clean
 Then, prepare to execute the release.
 
 ```shell
-mvn release:prepare -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github username}
+mvn release:prepare -Prelease,python -Darguments="-DskipTests" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github username}
 ```
 
 It is basically the same as the previous rehearsal command, but deleting -DdryRun=true parameter.
@@ -179,7 +182,7 @@ git push origin --tags
 ### Deploy the Release
 
 ```shell
-mvn release:perform -Prelease -Darguments="-DskipTests" -DautoVersionSubmodules=true -Dusername=${Github username}
+mvn release:perform -Prelease,python -Darguments="-DskipTests" -DautoVersionSubmodules=true -Dusername=${Github username}
 ```
 
 After that command is executed, the version to be released will be uploaded to Apache staging repository automatically.
@@ -300,7 +303,7 @@ gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.
 
 #### Check source package
 
-Decompress `apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz` and check the following items:
+Decompress `apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz` and `apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz` in `python` directory then check the following items:
 
 *   Check whether source tarball is oversized for including nonessential files
 *   `LICENSE` and `NOTICE` files exist
