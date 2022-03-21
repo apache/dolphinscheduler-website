@@ -35,7 +35,7 @@
   <p align="center">
      <img src="/img/dag8.png" width="80%" />
    </p>
-> For other types of tasks, please refer to [Task Node Type and Parameter Settings](#TaskParamers).
+> For other types of tasks, please refer to [Task Node Type and Parameter Settings](#TaskParamers). <!-- markdown-link-check-disable-line -->
 
 ## Workflow Definition Operation Function
 

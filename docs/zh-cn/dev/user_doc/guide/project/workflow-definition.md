@@ -32,7 +32,7 @@
     <p align="center">
        <img src="/img/dag4.png" width="80%" />
      </p>
-  > 其他类型任务，请参考 [任务节点类型和参数设置](#TaskParamers)。
+  > 其他类型任务，请参考 [任务节点类型和参数设置](#TaskParamers)。 <!-- markdown-link-check-disable-line -->
 
 ## 工作流定义操作功能
 

@@ -68,7 +68,7 @@ Add a Shell task to the drawing board, as shown in the figure below:
     <p align="center">
        <img src="/img/dag8.png" width="80%" />
      </p>
-  > For other types of tasks, please refer to [Task Node Type and Parameter Settings](#TaskParamers).
+  > For other types of tasks, please refer to [Task Node Type and Parameter Settings](#TaskParamers). <!-- markdown-link-check-disable-line -->
 #### 2.3.2  Workflow definition operation function
   Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, as shown below:
       <p align="center">
