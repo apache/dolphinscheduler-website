@@ -1,6 +1,6 @@
 # Workflow Definition
 
-## <span id=creatDag> Create Workflow Definition</span>
+## Create workflow definition
 
 - Click Project Management -> Workflow -> Workflow Definition, enter the workflow definition page, and click the "Create Workflow" button to enter the **workflow DAG edit** page, as shown in the following figure:
   <p align="center">
