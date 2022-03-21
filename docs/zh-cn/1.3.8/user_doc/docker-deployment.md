@@ -161,7 +161,7 @@ apache/dolphinscheduler:1.3.8 alert-server
 
 ## 环境变量
 
-Docker 容器通过环境变量进行配置，[附录-环境变量](#appendix-environment-variables) 列出了 DolphinScheduler 的可配置环境变量及其默认值
+Docker 容器通过环境变量进行配置，[附录-环境变量](#appendix-environment-variables) 列出了 DolphinScheduler 的可配置环境变量及其默认值  <!-- markdown-link-check-disable-line -->
 
 特别地，在 Docker Compose 和 Docker Swarm 中，可以通过环境变量配置文件 `config.env.sh` 进行配置
 

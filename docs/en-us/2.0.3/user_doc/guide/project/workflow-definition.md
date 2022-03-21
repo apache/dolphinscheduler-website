@@ -1,6 +1,6 @@
 # Workflow Definition
 
-## <span id=creatDag> Create Workflow Definition</span>
+## Create workflow definition
 
 - Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, and click the "Create Workflow" button to enter the **workflow DAG edit** page, as shown in the following figure:
   <p align="center">
@@ -17,7 +17,7 @@
 3. Select "Task Priority": When the number of worker threads is insufficient, high-level tasks will be executed first in the execution queue, and tasks with the same priority will be executed in the order of first in, first out;
 4. Timeout alarm (optional): Check the timeout alarm, timeout failure, and fill in the "timeout period". When the task execution time exceeds **timeout period**, an alert email will be sent and the task timeout fails;
 5. Resources (optional). Resource files are files created or uploaded on the Resource Center -> File Management page. For example, the file name is `test.sh`, and the command to call the resource in the script is `sh test.sh`;
-6. Custom parameters (optional), refer to [Custom Parameters](#UserDefinedParameters);
+6. Customize parameters (optional);
 7. Click the "Confirm Add" button to save the task settings.
 
 - **Increase the order of task execution:** Click the icon in the upper right corner <img src="/img/line.png" width="35"/> to connect the task; as shown in the figure below, task 2 and task 3 are executed in parallel, When task 1 finished executing, tasks 2 and 3 will be executed simultaneously.
@@ -31,11 +31,11 @@
      <img src="/img/dag7.png" width="80%" />
   </p>
 
-- **Save workflow definition:** Click the "Save" button, and the "Set DAG chart name" pop-up box will pop up, as shown in the figure below. Enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to [ Custom parameters](#UserDefinedParameters)), click the "Add" button, and the workflow definition is created successfully.
+- **Save workflow definition:** Click the "Save" button, and the "Set DAG chart name" pop-up box will pop up, as shown in the figure below. Enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to [global parameters](../parameter/global.md)), click the "Add" button, and the workflow definition is created successfully.
   <p align="center">
      <img src="/img/dag8.png" width="80%" />
    </p>
-> For other types of tasks, please refer to [Task Node Type and Parameter Settings](#TaskParamers).
+> For other types of tasks, please refer to [Task Node Type and Parameter Settings](#TaskParamers). <!-- markdown-link-check-disable-line -->
 
 ## Workflow Definition Operation Function
 
@@ -46,11 +46,11 @@ Click Project Management -> Workflow -> Workflow Definition to enter the workflo
 </p>
 The operation functions of the workflow definition list are as follows:
 
-- **Edit:** Only "offline" workflow definitions can be edited. Workflow DAG editing is the same as [Create Workflow Definition](#creatDag).
+- **Edit:** Only "offline" workflow definitions can be edited. Workflow DAG editing is the same as [Create Workflow Definition](#create-workflow-definition).
 - **Online:** When the workflow status is "Offline", used to online workflow. Only the workflow in the "Online" state can run, but cannot be edited.
 - **Offline:** When the workflow status is "Online", used to offline workflow. Only the workflow in the "Offline" state can be edited, but not run.
-- **Run:** Only workflow in the online state can run. See [2.3.3 Run Workflow](#runWorkflow) for the operation steps
-- **Timing:** Timing can only be set in online workflows, and the system automatically schedules the workflow to run on a regular basis. The status after creating a timing is "offline", and the timing must be online on the timing management page to take effect. See [2.3.4 Workflow Timing](#creatTiming) for timing operation steps.
+- **Run:** Only workflow in the online state can run. See [2.3.3 Run Workflow](#run-the-workflow) for the operation steps.
+- **Timing:** Timing can only be set in online workflows, and the system automatically schedules the workflow to run on a regular basis. The status after creating a timing is "offline", and the timing must be online on the timing management page to take effect. See [2.3.4 Workflow Timing](#workflow-timing) for timing operation steps.
 - **Timing Management:** The timing management page can be edited, online/offline, and deleted.
 - **Delete:** Delete the workflow definition.
 - **Download:** Download workflow definition to local.
@@ -59,7 +59,7 @@ The operation functions of the workflow definition list are as follows:
       <img src="/img/tree_en.png" width="80%" />
   </p>
 
-## <span id=runWorkflow>Run the Workflow</span>
+## Run the Workflow
 
 - Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, as shown in the figure below, click the "Go Online" button <img src="/img/online.png" width="35"/>，Go online workflow.
   <p align="center">
@@ -70,7 +70,7 @@ The operation functions of the workflow definition list are as follows:
      <p align="center">
        <img src="/img/run_work_en.png" width="80%" />
      </p>  
-  <span id=runParamers>Description of workflow operating parameters:</span> 
+  Description of workflow operating parameters: 
        
       * Failure strategy: When a task node fails to execute, other parallel task nodes need to execute the strategy. "Continue" means: after a certain task fails, other task nodes execute normally; "End" means: terminate all tasks being executed, and terminate the entire process.
       * Notification strategy: When the process is over, the process execution information notification email is sent according to the process status, including any status is not sent, successful sent, failed sent, successful or failed sent.
@@ -91,7 +91,7 @@ The operation functions of the workflow definition list are as follows:
 
   > Parallel mode: The tasks from May 1 to may 10 are executed simultaneously, and 10 process instances are generated on the process instance page.
 
-## <span id=creatTiming>Workflow Timing</span>
+## Workflow Timing
 
 - Create timing: Click Project Management->Workflow->Workflow Definition, enter the workflow definition page, go online the workflow, click the "timing" button <img src="/img/timing.png" width="35"/> ,The timing parameter setting dialog box pops up, as shown in the figure below:
   <p align="center">
@@ -102,7 +102,7 @@ The operation functions of the workflow definition list are as follows:
   <p align="center">
       <img src="/img/timer-en.png" width="80%" />
   </p>
-- Failure strategy, notification strategy, process priority, worker group, notification group, recipient, and CC are the same as [workflow running parameters](#runParamers).
+- Failure strategy, notification strategy, process priority, worker group, notification group, recipient, and CC are the same as workflow running parameters.
 - Click the "Create" button to create the timing successfully. At this time, the timing status is "**Offline**" and the timing needs to be **Online** to take effect.
 - Timing online: Click the "timing management" button <img src="/img/timeManagement.png" width="35"/>, enter the timing management page, click the "online" button, the timing status will change to "online", as shown in the below figure, the workflow takes effect regularly.
   <p align="center">
