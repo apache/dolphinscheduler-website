@@ -47,7 +47,7 @@ integer in [All DSIPs][all-DSIPs] issues.
 下面是邮件的模板
 
 - 标题: `[DISCUSS][DSIP-XXX] <CHANGE-TO-YOUR-LOVELY-PROPOSAL-TITLE>`, 将 `XXX` 修改为 to special integer you just change in
-  [GitHub Issue](#create-github-issue), and also change proposal title.
+  GitHub Issue, and also change proposal title.
 - 内容:
 
   ```text
