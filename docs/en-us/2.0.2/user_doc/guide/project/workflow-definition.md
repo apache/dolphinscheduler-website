@@ -70,7 +70,7 @@ The operation functions of the workflow definition list are as follows:
      <p align="center">
        <img src="/img/run_work_en.png" width="80%" />
      </p>  
-  <span id=runParamers>Description of workflow operating parameters:</span> 
+  Description of workflow operating parameters 
        
       * Failure strategy: When a task node fails to execute, other parallel task nodes need to execute the strategy. "Continue" means: after a certain task fails, other task nodes execute normally; "End" means: terminate all tasks being executed, and terminate the entire process.
       * Notification strategy: When the process is over, the process execution information notification email is sent according to the process status, including any status is not sent, successful sent, failed sent, successful or failed sent.
@@ -102,7 +102,7 @@ The operation functions of the workflow definition list are as follows:
   <p align="center">
       <img src="/img/timer-en.png" width="80%" />
   </p>
-- Failure strategy, notification strategy, process priority, worker group, notification group, recipient, and CC are the same as [workflow running parameters](#runParamers).
+- Failure strategy, notification strategy, process priority, worker group, notification group, recipient, and CC are the same as workflow running parameters
 - Click the "Create" button to create the timing successfully. At this time, the timing status is "**Offline**" and the timing needs to be **Online** to take effect.
 - Timing online: Click the "timing management" button <img src="/img/timeManagement.png" width="35"/>, enter the timing management page, click the "online" button, the timing status will change to "online", as shown in the below figure, the workflow takes effect regularly.
   <p align="center">
