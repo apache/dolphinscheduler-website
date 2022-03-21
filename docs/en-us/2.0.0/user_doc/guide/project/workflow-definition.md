@@ -49,7 +49,7 @@ The operation functions of the workflow definition list are as follows:
 - **Edit:** Only "offline" workflow definitions can be edited. Workflow DAG editing is the same as [Create Workflow Definition](#create-workflow-definition).
 - **Online:** When the workflow status is "Offline", used to online workflow. Only the workflow in the "Online" state can run, but cannot be edited.
 - **Offline:** When the workflow status is "Online", used to offline workflow. Only the workflow in the "Offline" state can be edited, but not run.
-- **Run:** Only workflow in the online state can run. See [2.3.3 Run Workflow](#run-the-workflow) for the operation steps
+- **Run:** Only workflow in the online state can run. See [2.3.3 Run Workflow](#run-the-workflow) for the operation steps.
 - **Timing Management:** The timing management page can be edited, online/offline, and deleted.
 - **Timing:** Timing can only be set in online workflows, and the system automatically schedules the workflow to run on a regular basis. The status after creating a timing is "offline", and the timing must be online on the timing management page to take effect. See [2.3.4 Workflow Timing](#workflow-timing) for timing operation steps.
 - **Delete:** Delete the workflow definition.
@@ -102,7 +102,7 @@ The operation functions of the workflow definition list are as follows:
   <p align="center">
       <img src="/img/timer-en.png" width="80%" />
   </p>
-- Failure strategy, notification strategy, process priority, worker group, notification group, recipient, and CC are the same as workflow running parameters
+- Failure strategy, notification strategy, process priority, worker group, notification group, recipient, and CC are the same as workflow running parameters.
 - Click the "Create" button to create the timing successfully. At this time, the timing status is "**Offline**" and the timing needs to be **Online** to take effect.
 - Timing online: Click the "timing management" button <img src="/img/timeManagement.png" width="35"/>, enter the timing management page, click the "online" button, the timing status will change to "online", as shown in the below figure, the workflow takes effect regularly.
   <p align="center">

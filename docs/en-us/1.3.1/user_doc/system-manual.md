@@ -127,8 +127,8 @@ Add a Shell task to the drawing board, as shown in the figure below:
     <p align="center">
         <img src="/img/timer-en.png" width="80%" />
     </p>
-  - Failure strategy, notification strategy, process priority, Worker grouping, notification group, recipient, and CC are the same [workflow running parameters](#runParamers)。 <!-- markdown-link-check-disable-line -->
-  - 点Click the "Create" button, and the timing is successfully created. At this time, the timing status is "**Offline**", and the timing needs to be **Online** to take effect.
+  - Failure strategy, notification strategy, process priority, Worker grouping, notification group, recipient, and CC are the same [workflow running parameters](#runParamers)。\. <!-- markdown-link-check-disable-line -->
+  - Click the "Create" button, and the timing is successfully created. At this time, the timing status is "**Offline**", and the timing needs to be **Online** to take effect.
   - Timed online: Click the "Timing Management" button<img src="/img/timeManagement.png" width="35"/>，Enter the timing management page, click the "online" button, the timing status will change to "online", as shown in the figure below, the workflow takes effect regularly.
     <p align="center">
         <img src="/img/time-manage-list-en.png" width="80%" />
