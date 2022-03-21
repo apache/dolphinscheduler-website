@@ -5,6 +5,14 @@ export default {
         list: [
             {
 
+                title: 'Fully Embracing K8s, Cisco Hangzhou Seeks to Support K8s Tasks Based on ApacheDolphinScheduler',
+                author: 'Debra Chen',
+                dateStr: '2022-3-21',
+                desc: 'K8s is the future of the cloud and is the only infrastructure platform.. ',
+                link: '/en-us/blog/K8s_Cisco_Hangzhou.html',
+            },
+            {
+
                 title: 'Cisco Hangzhou\'s Travel Through Apache DolphinScheduler Alert Module Refactor',
                 author: 'Debra Chen',
                 dateStr: '2022-3-16',
@@ -167,6 +175,14 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '全面拥抱 K8s，ApacheDolphinScheduler 应用与支持 K8s 任务的探索',
+                author: 'Debra Chen',
+                dateStr: '2022-3-21',
+                desc: 'K8s 打通了主流公私云之间的壁垒，成为唯一连通公私云的基础架构平台......',
+                link: '/zh-cn/blog/K8s_Cisco_Hangzhou.html',
+
+            },
             {
                 title: '杭州思科对 Apache DolphinScheduler Alert 模块的改造',
                 author: 'Debra Chen',

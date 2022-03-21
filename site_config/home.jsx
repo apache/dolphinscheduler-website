@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/2022-03-21/1.png',
+          title: '全面拥抱 K8s，ApacheDolphinScheduler 应用与支持 K8s 任务的探索',
+          content: 'K8s 打通了主流公私云之间的壁垒，成为唯一连通公私云的基础架构平台...',
+          dateStr: '2022-3-21',
+          link: '/zh-cn/blog/K8s_Cisco_Hangzhou.html',
+        },
+        {
           img: '/img/3-16/1.png',
           title: '杭州思科对 Apache DolphinScheduler Alert 模块的改造',
           content: '杭州思科已经将 Apache DolphinScheduler 引入公司自建的大数据平台..',
@@ -67,13 +74,6 @@ export default {
           content: '从 2020 年起，360 数科全面将调度系统从 Azkaban 迁移到 Apache DolphinScheduler...',
           dateStr: '2022-3-15',
           link: '/zh-cn/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
-        },
-        {
-          img: '/img/2022-3-9/1.jpeg',
-          title: '途家大数据平台基于 Apache DolphinScheduler 的探索与实践',
-          content: '途家在 2019 年引入 Apache DolphinScheduler，在不久前的 Apache DolphinScheduler 2...',
-          dateStr: '2022-3-10',
-          link: '/zh-cn/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
         },
       ],
     },
@@ -547,6 +547,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: '/img/2022-03-21/1.png',
+          title: 'Fully Embracing K8s, Cisco Hangzhou Seeks to Support K8s Tasks Based on ApacheDolphinScheduler',
+          content: 'K8s is the future of the cloud and is the only infrastructure platform...',
+          dateStr: '2022-3-10',
+          link: '/en-us/blog/K8s_ Cisco_Hangzhou.html',
+        },
+        {
 
           img: '/img/3-16/1.png',
           title: 'Cisco Hangzhou\'s Travel Through Apache DolphinScheduler Alert Module Refactor',
@@ -560,13 +567,6 @@ export default {
           content: 'ince 2020, 360 DIGITECH has fully migrated its scheduling system from Azkaban to Apache DolphinScheduler....',
           dateStr: '2022-2-24',
           link: '/en-us/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
-        },
-        {
-          img: '/img/2022-3-9/Eng/1.jpeg',
-          title: 'Exploration and practice of Tujia Big Data Platform Based on Apache DolphinScheduler',
-          content: 'Tujia introduced Apache DolphinScheduler in 2019...',
-          dateStr: '2022-3-10',
-          link: '/en-us/blog/Exploration_and_practice_of_Tujia_Big_Data_Platform_Based.html',
         },
       ],
     },
