@@ -49,7 +49,7 @@ The following are the operation functions of the workflow definition list:
 - **Edit:** Only "Offline" workflow definitions can be edited. Workflow DAG editing is the same as [Create Workflow Definition](#creatDag)
 - **Online:** When the workflow status is "Offline", used to make workflow online. Only the workflow in the "Online" state can run, but cannot edit
 - **Offline:** When the workflow status is "Online", used to make workflow offline. Only the workflow in the "Offline" state can be edited, but cannot run
-- **Run:** Only workflow in the online state can run. See [2.3.3 Run Workflow](#runWorkflow) for the operation steps
+- **Run:** Only workflow in the online state can run. See [2.3.3 Run Workflow](#run-the-workflow) for the operation steps
 - **Timing:** Timing can only set to online workflows, and the system automatically schedules to run the workflow on time. The status after creating a timing setting is "offline", and the timing must set online on the timing management page to make effect. See [2.3.4 Workflow Timing](#creatTiming) for timing operation steps
 - **Timing Management:** The timing management page can edit, online or offline and delete timing
 - **Delete:** Delete the workflow definition
@@ -59,7 +59,7 @@ The following are the operation functions of the workflow definition list:
       <img src="/img/tree_en.png" width="80%" />
   </p>
 
-## <span id=runWorkflow>Run the Workflow</span>
+## Run the Workflow
 
 - Click Project Management -> Workflow -> Workflow Definition to enter the workflow definition page, as shown in the figure below, click the "Go Online" button <img src="/img/online.png" width="35"/>to make workflow online.
   <p align="center">
