@@ -50,7 +50,7 @@ The following are the operation functions of the workflow definition list:
 - **Online:** When the workflow status is "Offline", used to make workflow online. Only the workflow in the "Online" state can run, but cannot edit
 - **Offline:** When the workflow status is "Online", used to make workflow offline. Only the workflow in the "Offline" state can be edited, but cannot run
 - **Run:** Only workflow in the online state can run. See [2.3.3 Run Workflow](#run-the-workflow) for the operation steps
-- **Timing:** Timing can only set to online workflows, and the system automatically schedules to run the workflow on time. The status after creating a timing setting is "offline", and the timing must set online on the timing management page to make effect. See [2.3.4 Workflow Timing](#creatTiming) for timing operation steps
+- **Timing:** Timing can only set to online workflows, and the system automatically schedules to run the workflow on time. The status after creating a timing setting is "offline", and the timing must set online on the timing management page to make effect. See [2.3.4 Workflow Timing](#workflow-timing) for timing operation steps
 - **Timing Management:** The timing management page can edit, online or offline and delete timing
 - **Delete:** Delete the workflow definition
 - **Download:** Download workflow definition to local
@@ -91,7 +91,7 @@ The following are the operation functions of the workflow definition list:
 
   > Parallel mode: The tasks from 1st May to 10th May execute simultaneously, and the process instance page generates 10 process instances;
 
-## <span id=creatTiming>Workflow Timing</span>
+## Workflow Timing
 
 - Create timing: Click Project Management->Workflow->Workflow Definition, enter the workflow definition page, make the workflow online, click the "timing" button <img src="/img/timing.png" width="35"/> , the timing parameter setting dialog box pops up, as shown in the figure below:
   <p align="center">
