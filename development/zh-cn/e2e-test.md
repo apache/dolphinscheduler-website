@@ -176,8 +176,12 @@ public final class LoginPage extends NavBarPage {
 https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-e2e/dolphinscheduler-e2e-case/src/test/java/org/apache/dolphinscheduler/e2e/cases
 
 ## 三、补充
+在本地运行的时候，首先需要启动相应的本地服务，可以参考该页面: [环境搭建](https://dolphinscheduler.apache.
+org/zh-cn/development/development-environment-setup.html)
 
 在本地运行 E2E 测试的时候，可以配置 `-Dlocal=true` 参数，用于连接本地，方便对于 UI 界面的更改。
+
+如果是`M1`芯片的机器，可以使用`-Dm1_chip=true` 参数,用于配置使用`ARM64`支持的容器。
 
 ![Dlocal](../../img/e2e-test/Dlocal.png)
 

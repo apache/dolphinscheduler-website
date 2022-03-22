@@ -32,7 +32,7 @@ SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
 
 - 执行数据库升级脚本
 
-`sh ./script/create-dolphinscheduler.sh`
+`sh ./script/upgrade-dolphinscheduler.sh`
 
 ## 5. 服务升级
 
