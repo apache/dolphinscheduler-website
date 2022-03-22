@@ -1,10 +1,8 @@
 # Spark数据源
 
-<p align="center">
-   <img src="/img/spark_datesource.png" width="80%" />
- </p>
+![sparksql](/img/new_ui/dev/datasource/sparksql.png)
 
-- 数据源：选择Spark
+- 数据源：选择 Spark
 - 数据源名称：输入数据源的名称
 - 描述：输入数据源的描述
 - IP/主机名：输入连接Spark的IP

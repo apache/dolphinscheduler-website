@@ -1,8 +1,6 @@
 # Spark
 
-<p align="center">
-   <img src="/img/spark-en.png" width="80%" />
- </p>
+![sparksql](/img/new_ui/dev/datasource/sparksql.png)
 
 - Datasource: select Spark
 - Datasource name: enter the name of the DataSource

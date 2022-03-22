@@ -56,9 +56,7 @@ $ docker-compose up -d
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
-<p align="center">
-  <img src="/img/login.png" width="60%" />
-</p>
+![login](/img/new_ui/dev/quick-start/login.png)
 
 请参考用户手册章节的[快速上手](../start/quick-start.md)查看如何使用DolphinScheduler
 
