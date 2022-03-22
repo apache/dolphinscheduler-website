@@ -29,7 +29,7 @@ SPRING_DATASOURCE_PASSWORD="dolphinscheduler"
 
 - Execute database upgrade script
 
-    `sh ./script/create-dolphinscheduler.sh`
+    `sh ./script/upgrade-dolphinscheduler.sh`
 
 ## 5. Backend Service Upgrade.
 
