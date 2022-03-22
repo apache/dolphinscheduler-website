@@ -152,7 +152,12 @@
 <p>The rest are similar cases and can be understood by referring to the specific source code.</p>
 <p><a href="https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-e2e/dolphinscheduler-e2e-case/src/test/java/org/apache/dolphinscheduler/e2e/cases">https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-e2e/dolphinscheduler-e2e-case/src/test/java/org/apache/dolphinscheduler/e2e/cases</a></p>
 <h2>III. Supplements</h2>
+<p>When running E2E tests locally, First, you need to start the local service, you can refer to this page:
+[development-environment-setup](<a href="https://dolphinscheduler.apache">https://dolphinscheduler.apache</a>.
+org/en-us/development/development-environment-setup.html)</p>
 <p>When running E2E tests locally, the <code>-Dlocal=true</code> parameter can be configured to connect locally and facilitate changes to the UI.</p>
+<p>When running E2E tests with <code>M1</code> chip, you can use <code>-Dm1_chip=true</code> parameter to configure containers supported by
+<code>ARM64</code>.</p>
 <p><img src="../../img/e2e-test/Dlocal.png" alt="Dlocal"></p>
 <p>If a connection timeout occurs during a local run, increase the load time to a recommended 30 and above.</p>
 <p><img src="../../img/e2e-test/timeout.png" alt="timeout"></p>
