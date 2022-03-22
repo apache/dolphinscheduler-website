@@ -551,7 +551,7 @@ export default {
           title: 'Fully Embracing K8s, Cisco Hangzhou Seeks to Support K8s Tasks Based on ApacheDolphinScheduler',
           content: 'K8s is the future of the cloud and is the only infrastructure platform...',
           dateStr: '2022-3-10',
-          link: '/en-us/blog/K8s_ Cisco_Hangzhou.html',
+          link: '/en-us/blog/K8s_Cisco_Hangzhou.html',
         },
         {
 
