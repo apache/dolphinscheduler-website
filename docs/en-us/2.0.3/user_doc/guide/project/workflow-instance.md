@@ -17,7 +17,7 @@
    <p align="center">
      <img src="/img/instanceViewLog-en.png" width="80%" />
    </p>
-- Click "View Log", a log pop-up box will pop up, as shown in the figure below, the task log can also be viewed on the task instance page, refer to [Task View Log](#taskLog)。
+- Click "View Log", a log pop-up box will pop up, as shown in the figure below, the task log can also be viewed on the task instance page, refer to [Task View Log](#taskLog)。 <!-- markdown-link-check-disable-line -->
    <p align="center">
      <img src="/img/task-log-en.png" width="80%" />
    </p>

@@ -5,7 +5,7 @@
           <img src="/img/task-list.png" width="80%" />
        </p>
 
-- <span id=taskLog>查看日志：</span>点击操作列中的“查看日志”按钮，可以查看任务执行的日志情况。
+- 查看日志：点击操作列中的“查看日志”按钮，可以查看任务执行的日志情况。
        <p align="center">
           <img src="/img/task-log2.png" width="80%" />
        </p>

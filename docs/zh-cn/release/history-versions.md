@@ -67,4 +67,4 @@
 
 ### 版本：Dev
 
-#### 地址：[Dev 文档](../dev/user_doc/guide/quick-start.md)
+#### 地址：[Dev 文档](../dev/user_doc/about/introduction.md)

@@ -47,6 +47,7 @@
   1. 选择“任务优先级”：当worker线程数不足时，级别高的任务在执行队列中会优先执行，相同优先级的任务按照先进先出的顺序执行；
   1. 超时告警（非必选）：勾选超时告警、超时失败，填写“超时时长”，当任务执行时间超过**超时时长**，会发送告警邮件并且任务超时失败；
   1. 资源（非必选）。资源文件是资源中心->文件管理页面创建或上传的文件，如文件名为`test.sh`，脚本中调用资源命令为`sh test.sh`；
+<!-- markdown-link-check-disable-next-line -->
   1. 自定义参数（非必填），参考[自定义参数](#UserDefinedParameters)；
   1. 点击"确认添加"按钮，保存任务设置。
   
@@ -61,22 +62,23 @@
        <img src="/img/dag3.png" width="100%" />
     </p>
 
+<!-- markdown-link-check-disable-next-line -->
   - **保存工作流定义：** 点击”保存“按钮，弹出"设置DAG图名称"弹框，如下图所示，输入工作流定义名称，工作流定义描述，设置全局参数（选填，参考[自定义参数](#UserDefinedParameters)），点击"添加"按钮，工作流定义创建成功。
     <p align="center">
        <img src="/img/dag4.png" width="100%" />
      </p>
-  > 其他类型任务，请参考 [任务节点类型和参数设置](#TaskParamers)。
+  > 其他类型任务，请参考 [任务节点类型和参数设置](#TaskParamers)。 <!-- markdown-link-check-disable-line -->
 #### 2.3.2  工作流定义操作功能
   点击项目管理->工作流->工作流定义，进入工作流定义页面，如下图所示:
       <p align="center">
           <img src="/img/work_list.png" width="100%" />
       </p>
   工作流定义列表的操作功能如下：
-  - **编辑：** 只能编辑"下线"的工作流定义。工作流DAG编辑同[创建工作流定义](#creatDag)。
+  - **编辑：** 只能编辑"下线"的工作流定义。工作流DAG编辑同[创建工作流定义](#creatDag)。 <!-- markdown-link-check-disable-line -->
   - **上线：** 工作流状态为"下线"时，上线工作流，只有"上线"状态的工作流能运行，但不能编辑。
   - **下线：** 工作流状态为"上线"时，下线工作流，下线状态的工作流可以编辑，但不能运行。
-  - **运行：** 只有上线的工作流能运行。运行操作步骤见[2.3.3 运行工作流](#runWorkflow)
-  - **定时：** 只有上线的工作流能设置定时，系统自动定时调度工作流运行。创建定时后的状态为"下线"，需在定时管理页面上线定时才生效。定时操作步骤见[2.3.4 工作流定时](#creatTiming)。
+  - **运行：** 只有上线的工作流能运行。运行操作步骤见[2.3.3 运行工作流](#runWorkflow) <!-- markdown-link-check-disable-line -->
+  - **定时：** 只有上线的工作流能设置定时，系统自动定时调度工作流运行。创建定时后的状态为"下线"，需在定时管理页面上线定时才生效。定时操作步骤见[2.3.4 工作流定时](#creatTiming)。 <!-- markdown-link-check-disable-line -->
   - **定时管理：** 定时管理页面可编辑、上线/下线、删除定时。
   - **删除：** 删除工作流定义。
   - **下载：** 下载工作流定义到本地。
@@ -124,7 +126,7 @@
     <p align="center">
         <img src="/img/time-schedule2.png" width="100%" />
     </p>
-  - 失败策略、通知策略、流程优先级、Worker分组、通知组、收件人、抄送人同[工作流运行参数](#runParamers)。
+  - 失败策略、通知策略、流程优先级、Worker分组、通知组、收件人、抄送人同[工作流运行参数](#runParamers)。 <!-- markdown-link-check-disable-line -->
   - 点击"创建"按钮，创建定时成功，此时定时状态为"**下线**"，定时需**上线**才生效。
   - 定时上线：点击"定时管理"按钮<img src="/img/timeManagement.png" width="35"/>，进入定时管理页面，点击"上线"按钮，定时状态变为"上线"，如下图所示，工作流定时生效。
     <p align="center">
@@ -148,7 +150,7 @@
       <p align="center">
         <img src="/img/instanceViewLog.png" width="100%" />
       </p>
-   - 点击"查看日志"，弹出日志弹框，如下图所示,任务实例页面也可查看任务日志，参考[任务查看日志](#taskLog)。
+   - 点击"查看日志"，弹出日志弹框，如下图所示,任务实例页面也可查看任务日志，参考[任务查看日志](#taskLog)。 <!-- markdown-link-check-disable-line -->
       <p align="center">
         <img src="/img/task-log.png" width="100%" />
       </p>

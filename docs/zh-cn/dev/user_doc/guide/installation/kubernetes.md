@@ -33,7 +33,7 @@ $ helm install dolphinscheduler . -n test
 
 > **提示**: 如果名为 `test` 的命名空间被使用, 选项参数 `-n test` 需要添加到 `helm` 和 `kubectl` 命令中
 
-这些命令以默认配置在 Kubernetes 集群上部署 DolphinScheduler，[附录-配置](#appendix-configuration)部分列出了可以在安装过程中配置的参数
+这些命令以默认配置在 Kubernetes 集群上部署 DolphinScheduler，[附录-配置](#appendix-configuration)部分列出了可以在安装过程中配置的参数  <!-- markdown-link-check-disable-line -->
 
 > **提示**: 列出所有已发布的版本，使用 `helm list`
 
@@ -68,7 +68,7 @@ echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
 
 默认的用户是`admin`，默认的密码是`dolphinscheduler123`
 
-请参考用户手册章节的[快速上手](../quick-start.md)查看如何使用DolphinScheduler
+请参考用户手册章节的[快速上手](../start/quick-start.md)查看如何使用DolphinScheduler
 
 ## 卸载 dolphinscheduler
 
@@ -90,7 +90,7 @@ $ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
 
 ## 配置
 
-配置文件为 `values.yaml`，[附录-配置](#appendix-configuration) 表格列出了 DolphinScheduler 的可配置参数及其默认值
+配置文件为 `values.yaml`，[附录-配置](#appendix-configuration) 表格列出了 DolphinScheduler 的可配置参数及其默认值  <!-- markdown-link-check-disable-line -->
 
 ## 支持矩阵
 

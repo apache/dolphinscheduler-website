@@ -17,7 +17,7 @@
     <p align="center">
         <img src="/img/instanceViewLog.png" width="80%" />
     </p>
-- 点击"查看日志"，弹出日志弹框，如下图所示,任务实例页面也可查看任务日志，参考[任务查看日志](#taskLog)。
+- 点击"查看日志"，弹出日志弹框，如下图所示,任务实例页面也可查看任务日志，参考[任务查看日志](./task-instance.md)。
     <p align="center">
         <img src="/img/task-log.png" width="80%" />
     </p>

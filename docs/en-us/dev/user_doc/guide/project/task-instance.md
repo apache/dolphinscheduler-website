@@ -5,7 +5,7 @@
         <img src="/img/task-list-en.png" width="80%" />
      </p>
 
-- <span id=taskLog>View log：</span>Click the "view log" button in the operation column to view task execution log.
+- View log：Click the "view log" button in the operation column to view task execution log.
      <p align="center">
         <img src="/img/task-log2-en.png" width="80%" />
      </p>

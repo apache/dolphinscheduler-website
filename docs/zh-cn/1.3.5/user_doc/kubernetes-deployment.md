@@ -28,7 +28,7 @@ $ helm install dolphinscheduler . -n test
 
 > **提示**: 如果名为 `test` 的命名空间被使用, 选项参数 `-n test` 需要添加到 `helm` 和 `kubectl` 命令中
 
-这些命令以默认配置在 Kubernetes 集群上部署 DolphinScheduler，[配置](#configuration)部分列出了可以在安装过程中配置的参数
+这些命令以默认配置在 Kubernetes 集群上部署 DolphinScheduler，[配置](#configuration)部分列出了可以在安装过程中配置的参数  <!-- markdown-link-check-disable-line -->
 
 > **提示**: 列出所有已发布的版本，使用 `helm list`
 

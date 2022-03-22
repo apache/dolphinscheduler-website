@@ -31,7 +31,7 @@ The homepage contains task status statistics, process status statistics, and wor
   - Fill in the Node Name, Description, and Script fields.
   - Selecting "task priority" will give priority to high-level tasks in the execution queue. Tasks with the same priority will be executed in the first-in-first-out order.
   - Timeout alarm. Fill in "Overtime Time". When the task execution time exceeds the overtime, it can alarm and fail over time.
-  - Fill in "Custom Parameters" and refer to [Custom Parameters](#CustomParameters)
+  - Fill in "Custom Parameters" and refer to [Custom Parameters](#CustomParameters) <!-- markdown-link-check-disable-line -->
     <p align="center">
     <img src="/img/process_definitions_en.png" width="80%" />
       </p>
@@ -52,7 +52,7 @@ The homepage contains task status statistics, process status statistics, and wor
    <img src="/img/global_parameters_en.png" width="80%" />
  </p>
 
-  - For other types of nodes, refer to [task node types and parameter settings](#TaskNodeType)
+  - For other types of nodes, refer to [task node types and parameter settings](#TaskNodeType) <!-- markdown-link-check-disable-line -->
 
 ### Execution process definition
   - **The process definition of the off-line state can be edited, but not run**, so the on-line workflow is the first step.
