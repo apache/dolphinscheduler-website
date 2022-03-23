@@ -42,24 +42,18 @@ conf/common.properties
 
 > It is the management of various resource files, including creating basic `txt/log/sh/conf/py/java` and jar packages and other type files, and can do edit, rename, download, delete and other operations to the files.
 
-  <p align="center">
-   <img src="/img/file-manage-en.png" width="80%" />
- </p>
+![file-manage](/img/new_ui/dev/resource/file-manage.png)
 
 - Create a file
   > The file format supports the following types: txt, log, sh, conf, cfg, py, java, sql, xml, hql, properties.
 
-<p align="center">
-   <img src="/img/file_create_en.png" width="80%" />
- </p>
+![create-file](/img/new_ui/dev/resource/create-file.png)
 
 - upload files
 
 > Upload file: Click the "Upload File" button to upload, drag the file to the upload area, the file name will be automatically completed with the uploaded file name.
 
-<p align="center">
-   <img src="/img/file-upload-en.png" width="80%" />
- </p>
+![upload-file](/img/new_ui/dev/resource/upload-file.png)
 
 - File View
 
@@ -75,9 +69,7 @@ conf/common.properties
 
 - File rename
 
-<p align="center">
-   <img src="/img/file_rename_en.png" width="80%" />
- </p>
+![rename-file](/img/new_ui/dev/resource/rename-file.png)
 
 - delete
   > File list -> Click the "Delete" button to delete the specified file.
@@ -112,9 +104,7 @@ conf/common.properties
 - Package name Class name: enter the full path of the UDF function.
 - UDF resource: set the resource file corresponding to the created UDF function.
 
-<p align="center">
-   <img src="/img/udf_edit_en.png" width="80%" />
- </p>
+![create-udf](/img/new_ui/dev/resource/create-udf.png)
  
 ## Task Group Settings
 
@@ -124,15 +114,11 @@ The task group is mainly used to control the concurrency of task instances and i
 
 #### Create Task Group 
 
-<p align="center">
-    <img src="/img/task_group_manage_eng.png" width="80%" />
-</p>
+![create-taskGroup](/img/new_ui/dev/resource/create-taskGroup.png)
 
 The user clicks [Resources] - [Task Group Management] - [Task Group option] - [Create Task Group] 
 
-<p align="center">
-<img src="/img/task_group_create_eng.png" width="80%" />
-</p> 
+![create-taskGroup](/img/new_ui/dev/resource/create-taskGroup.png) 
 
 You need to enter the information inside the picture:
 
@@ -144,23 +130,17 @@ You need to enter the information inside the picture:
 
 #### View Task Group Queue 
 
-<p align="center">
-    <img src="/img/task_group_conf_eng.png" width="80%" />
-</p>
+![view-queue](/img/new_ui/dev/resource/view-queue.png) 
 
 Click the button to view task group usage information:
 
-<p align="center">
-    <img src="/img/task_group_queue_list_eng.png" width="80%" />
-</p>
+![view-queue](/img/new_ui/dev/resource/view-groupQueue.png) 
 
 #### Use of Task Groups 
 
 **Note**: The usage of task groups is applicable to tasks executed by workers, such as [switch] nodes, [condition] nodes, [sub_process] and other node types executed by the master are not controlled by the task group. Let's take the shell node as an example: 
 
-<p align="center">
-    <img src="/img/task_group_use_eng.png" width="80%" />
-</p>        
+![use-queue](/img/new_ui/dev/resource/use-queue.png)                 
 
 Regarding the configuration of the task group, all you need to do is to configure these parts in the red box:
 

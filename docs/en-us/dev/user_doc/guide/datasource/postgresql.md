@@ -1,8 +1,6 @@
 # PostgreSQL
 
-<p align="center">
-   <img src="/img/postgresql-en.png" width="80%" />
- </p>
+![postgresql](/img/new_ui/dev/datasource/postgresql.png)
 
 - Datasource: select POSTGRESQL
 - Datasource name: enter the name of the DataSource

@@ -40,25 +40,20 @@ conf/common.properties
 
 ## 文件管理
 
-> 是对各种资源文件的管理，包括创建基本的txt/log/sh/conf/py/java等文件、上传jar包等各种类型文件，可进行编辑、重命名、下载、删除等操作。
-  <p align="center">
-   <img src="/img/file-manage.png" width="80%" />
- </p>
+> 是对各种资源文件的管理，包括创建基本的 `txt/log/sh/conf/py/java` 等文件、上传jar包等各种类型文件，可进行编辑、重命名、下载、删除等操作。
+
+![file-manage](/img/new_ui/dev/resource/file-manage.png)
 
 * 创建文件
 
   > 文件格式支持以下几种类型：txt、log、sh、conf、cfg、py、java、sql、xml、hql、properties
 
-    <p align="center">
-        <img src="/img/file_create.png" width="80%" />
-    </p>
+![create-file](/img/new_ui/dev/resource/create-file.png)
 
 * 上传文件
   > 上传文件：点击"上传文件"按钮进行上传，将文件拖拽到上传区域，文件名会自动以上传的文件名称补全
 
-    <p align="center">
-        <img src="/img/file_upload.png" width="80%" />
-    </p>
+![upload-file](/img/new_ui/dev/resource/upload-file.png)
 
 * 文件查看
 
@@ -74,9 +69,7 @@ conf/common.properties
 
 * 文件重命名
 
-<p align="center">
-   <img src="/img/file_rename.png" width="80%" />
- </p>
+![rename-file](/img/new_ui/dev/resource/rename-file.png)
 
 * 删除
 
@@ -103,19 +96,16 @@ conf/common.properties
 
 ### 函数管理
 
-* 创建udf函数
+* 创建 UDF 函数
 
-  > 点击“创建UDF函数”，输入udf函数参数，选择udf资源，点击“提交”，创建udf函数。
+  > 点击“创建 UDF 函数”，输入 UDF 函数参数，选择udf资源，点击“提交”，创建udf函数。
   > 目前只支持HIVE的临时UDF函数
 
-- UDF函数名称：输入UDF函数时的名称
+- UDF 函数名称：输入UDF函数时的名称
 - 包名类名：输入UDF函数的全路径  
-- UDF资源：设置创建的UDF对应的资源文件
+- UDF 资源：设置创建的 UDF 对应的资源文件
 
-<p align="center">
-   <img src="/img/udf_edit.png" width="80%" />
- </p>
- 
+![create-udf](/img/new_ui/dev/resource/create-udf.png)
  
  ## 任务组设置
 
@@ -125,15 +115,11 @@ conf/common.properties
 
 #### 新建任务组   
 
-<p align="center">
-    <img src="/img/task_group_manage.png" width="80%" />
-</p>
+![taskGroup](/img/new_ui/dev/resource/taskGroup.png)
 
 用户点击【资源中心】-【任务组管理】-【任务组配置】-新建任务组
 
-<p align="center">
-<img src="/img/task_group_create.png" width="80%" />
-</p> 
+![create-taskGroup](/img/new_ui/dev/resource/create-taskGroup.png) 
 
 您需要输入图片中信息，其中
 
@@ -145,37 +131,31 @@ conf/common.properties
 
 #### 查看任务组队列
 
-<p align="center">
-    <img src="/img/task_group_conf.png" width="80%" />
-</p>
+![view-queue](/img/new_ui/dev/resource/view-queue.png) 
 
 点击按钮查看任务组使用信息
 
-<p align="center">
-    <img src="/img/task_group_queue_list.png" width="80%" />
-</p>
+![view-queue](/img/new_ui/dev/resource/view-groupQueue.png) 
 
 #### 任务组的使用
 
-注：任务组的使用适用于由worker执行的任务，例如【switch】节点、【condition】节点、【sub_process】等由master负责执行的节点类型不受任务组控制。
+注：任务组的使用适用于由 worker 执行的任务，例如【switch】节点、【condition】节点、【sub_process】等由 master 负责执行的节点类型不受任务组控制。
 
-我们以shell节点为例：
+我们以 shell 节点为例：
 
-<p align="center">
-    <img src="/img/task_group_use.png" width="80%" />
-</p>        
+![use-queue](/img/new_ui/dev/resource/use-queue.png)         
 
 关于任务组的配置，您需要做的只需要配置红色框内的部分，其中：
 
 【任务组名称】：任务组配置页面显示的任务组名称，这里只能看到该项目有权限的任务组（新建任务组时选择了该项目），或作用在全局的任务组（新建任务组时没有选择项目）
 
-【组内优先级】：在出现等待资源时，优先级高的任务会最先被master分发给worker执行，该部分数值越大，优先级越高。
+【组内优先级】：在出现等待资源时，优先级高的任务会最先被 master 分发给 worker 执行，该部分数值越大，优先级越高。
 
 ### 任务组的实现逻辑
 
 #### 获取任务组资源：
 
-Master在分发任务时判断该任务是否配置了任务组，如果任务没有配置，则正常抛给worker运行；如果配置了任务组，在抛给worker执行之前检查任务组资源池剩余大小是否满足当前任务运行，如果满足资源池-1，继续运行；如果不满足则退出任务分发，等待其他任务结束唤醒。
+Master 在分发任务时判断该任务是否配置了任务组，如果任务没有配置，则正常抛给 worker 运行；如果配置了任务组，在抛给 worker 执行之前检查任务组资源池剩余大小是否满足当前任务运行，如果满足资源池 -1，继续运行；如果不满足则退出任务分发，等待其他任务结束唤醒。
 
 #### 释放与唤醒：
 

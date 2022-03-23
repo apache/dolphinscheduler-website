@@ -1,8 +1,6 @@
 # MySQL
 
-<p align="center">
-   <img src="/img/mysql-en.png" width="80%" />
- </p>
+![mysql](/img/new_ui/dev/datasource/mysql.png)
 
 - Datasource: select MYSQL
 - Datasource name: enter the name of the DataSource

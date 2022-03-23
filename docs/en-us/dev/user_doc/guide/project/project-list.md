@@ -4,9 +4,7 @@
 
 - Click "Project Management" to enter the project management page, click the "Create Project" button, enter the project name, project description, and click "Submit" to create a new project.
 
-  <p align="center">
-      <img src="/img/create_project_en1.png" width="80%" />
-  </p>
+![project-list](/img/new_ui/dev/project/project-list.png)
 
 ## Project Home
 
@@ -16,6 +14,5 @@
 - Process status statistics: within the specified time range, count the number of workflow instances status as submission success, running, ready to pause, pause, ready to stop, stop, failure, success, need fault tolerance, kill and waiting threads
 - Workflow definition statistics: count the workflow definitions created by this user and granted by the administrator
 
-  <p align="center">
-     <img src="/img/project_home_en.png" width="80%" />
-  </p>
+![project-overview](/img/new_ui/dev/project/project-overview.png)
+
