@@ -4,54 +4,48 @@
 
 
 * 管理员用户登录
-  >地址：http://localhost:12345/dolphinscheduler 用户名密码：admin/dolphinscheduler123
+  >地址：http://localhost:12345/dolphinscheduler 用户名/密码：admin/dolphinscheduler123
 
-<p align="center">
-   <img src="/img/login.png" width="60%" />
- </p>
+![login](/img/new_ui/dev/quick-start/login.png)
 
 * 创建队列
-<p align="center">
-   <img src="/img/create-queue.png" width="60%" />
- </p>
 
-  * 创建租户
-   <p align="center">
-    <img src="/img/addtenant.png" width="60%" />
-  </p>
+![create-queue](/img/new_ui/dev/quick-start/create-queue.png)
 
-  * 创建普通用户
-<p align="center">
-   <img src="/img/useredit2.png" width="60%" />
- </p>
+* 创建租户
 
-  * 创建告警组
- <p align="center">
-    <img src="/img/mail_edit.png" width="60%" />
-  </p>
+![create-tenant](/img/new_ui/dev/quick-start/create-tenant.png)
 
- * 创建Worker分组
- <p align="center">
-    <img src="/img/worker_group.png" width="60%" />
-  </p>
+* 创建普通用户
+
+![create-user](/img/new_ui/dev/quick-start/create-user.png)
+
+* 创建告警组实例
+
+![create-alarmInstance](/img/new_ui/dev/quick-start/create-alarmInstance.png)
+
+* 创建告警组
+
+![create-alarmGroup](/img/new_ui/dev/quick-start/create-alarmGroup.png)
+
+ * 创建 Worker 分组
+
+![create-workerGroup](/img/new_ui/dev/quick-start/create-workerGroup.png)
 
 * 创建环境
- <p align="center">
-    <img src="/img/create-environment.png" width="60%" />
-  </p>
+![create-environment](/img/new_ui/dev/quick-start/create-environment.png)
  
- * 创建token令牌
- <p align="center">
-    <img src="/img/creat_token.png" width="60%" />
-  </p>
+ * 创建 Token 令牌
 
-  * 使用普通用户登录
-  > 点击右上角用户名“退出”，重新使用普通用户登录。
+![create-token](/img/new_ui/dev/quick-start/create-token.png)
 
-  * 项目管理->创建项目->点击项目名称
-<p align="center">
-   <img src="/img/project.png" width="60%" />
- </p>
+
+* 使用普通用户登录
+> 点击右上角用户名“退出”，重新使用普通用户登录。
+
+* 项目管理->创建项目->点击项目名称
+
+![project](/img/new_ui/dev/quick-start/project.png)
 
   * 点击工作流定义->创建工作流定义->上线工作流定义
 

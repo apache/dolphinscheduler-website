@@ -7,9 +7,8 @@
 
 - Configure `queue` parameter to execute programs such as Spark and MapReduce.
 - The administrator enters the `Security Center->Queue Management` page and clicks the "Create Queue" button to create a new queue.
-<p align="center">
-   <img src="/img/create-queue-en.png" width="80%" />
- </p>
+
+![create-queue](/img/new_ui/dev/security/create-queue.png)
 
 ## Add Tenant
 
@@ -17,9 +16,7 @@
 - Tenant Code: **Tenant Code is the only user on Linux and cannot be repeated**
 - The administrator enters the `Security Center->Tenant Management` page and clicks the `Create Tenant` button to create a tenant.
 
- <p align="center">
-    <img src="/img/addtenant-en.png" width="80%" />
-  </p>
+![create-tenant](/img/new_ui/dev/security/create-tenant.png)
 
 ## Create Normal User
 
@@ -30,9 +27,8 @@
   - **Note**: If the user switches tenants, all resources under the tenant to which the user belongs will be copied to the new tenant that is switched.
 
 - The administrator enters the `Security Center -> User Management` page and clicks the `Create User` button to create a user.
-<p align="center">
-   <img src="/img/user-en.png" width="80%" />
- </p>
+
+![create-user](/img/new_ui/dev/security/create-user.png)
 
 > **Edit user information**
 
@@ -50,8 +46,7 @@
 
 * The administrator enters the `Security Center -> Alarm Group Management` page and clicks the `Create Alarm Group` button to create an alarm group.
 
-  <p align="center">
-    <img src="/img/mail-en.png" width="80%" />
+![create-alarmInstance](/img/new_ui/dev/security/create-alarmInstance.png)
 
 ## Token Management
 
@@ -59,9 +54,7 @@
 
 - The administrator enters the `Security Center -> Token Management page`, clicks the `Create Token` button, selects the expiration time and user, clicks the `Generate Token` button, and clicks the `Submit` button, then create the selected user's token successfully.
 
-  <p align="center">
-      <img src="/img/create-token-en.png" width="80%" />
-   </p>
+![create-token](/img/new_ui/dev/security/create-token.png)
 
 - After a normal user logs in, click the user information in the username drop-down box, enter the token management page, select the expiration time, click the `Generate Token` button, and click the `Submit` button, then the user creates a token successfully.
 - Call example:
@@ -149,14 +142,10 @@ worker.groups=default,test
 
 - The environment configuration is equivalent to the configuration in the `dolphinscheduler_env.sh` file.
 
-  <p align="center">
-      <img src="/img/create-environment.png" width="80%" />
-  </p>
+![create-environment](/img/new_ui/dev/security/create-environment.png)
 
 > Usage environment
 
 - Create a task node in the workflow definition, select the worker group and the environment corresponding to the worker group. When executing the task, the Worker will execute the environment first before executing the task.
 
-    <p align="center">
-        <img src="/img/use-environment.png" width="80%" />
-    </p>
+![use-environment](/img/new_ui/dev/security/use-environment.png)

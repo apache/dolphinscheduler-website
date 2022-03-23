@@ -7,39 +7,24 @@
 ## Monitor Master Server
 
 - Mainly related to master information.
-<p align="center">
-   <img src="/img/master-jk-en.png" width="80%" />
- </p>
+
+![master](/img/new_ui/dev/monitor/master.png)
 
 ## Monitor Worker Server
 
 - Mainly related to worker information.
 
-<p align="center">
-   <img src="/img/worker-jk-en.png" width="80%" />
- </p>
-
-## Monitor ZooKeeper
-
-- Mainly related configuration information of each worker and master in ZooKeeper.
-
-<p alignlinux ="center">
-   <img src="/img/zookeeper-monitor-en.png" width="80%" />
- </p>
+![worker](/img/new_ui/dev/monitor/worker.png)
 
 ## Monitor DB
 
 - Mainly the health status of the DB.
 
-<p align="center">
-   <img src="/img/mysql-jk-en.png" width="80%" />
- </p>
+![db](/img/new_ui/dev/monitor/db.png)
 
 ## Statistics Management
 
-<p align="center">
-   <img src="/img/statistics-en.png" width="80%" />
- </p>
+![statistics](/img/new_ui/dev/monitor/statistics.png)
 
 - Number of commands wait to be executed: statistics of the `t_ds_command` table data.
 - The number of failed commands: statistics of the `t_ds_error_command` table data.

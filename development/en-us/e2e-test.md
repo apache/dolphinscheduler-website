@@ -178,7 +178,14 @@ https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-e2e/dolphin
 
 ##  III. Supplements
 
+When running E2E tests locally, First, you need to start the local service, you can refer to this page: 
+[development-environment-setup](https://dolphinscheduler.apache.
+org/en-us/development/development-environment-setup.html)
+
 When running E2E tests locally, the `-Dlocal=true` parameter can be configured to connect locally and facilitate changes to the UI.
+
+When running E2E tests with `M1` chip, you can use `-Dm1_chip=true` parameter to configure containers supported by 
+`ARM64`.
 
 ![Dlocal](../../img/e2e-test/Dlocal.png)
 

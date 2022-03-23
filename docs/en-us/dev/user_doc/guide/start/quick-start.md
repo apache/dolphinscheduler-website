@@ -8,60 +8,46 @@
 
   > Address：http://localhost:12345/dolphinscheduler  Username and password: `admin/dolphinscheduler123`
 
-<p align="center">
-   <img src="/img/login_en.png" width="60%" />
- </p>
+![login](/img/new_ui/dev/quick-start/login.png)
 
 * Create a queue
 
-<p align="center">
-   <img src="/img/create-queue-en.png" width="60%" />
- </p>
+![create-queue](/img/new_ui/dev/quick-start/create-queue.png)
 
 * Create a tenant
 
-<p align="center">
-  <img src="/img/create-tenant-en.png" width="60%" />
-</p>
+![create-tenant](/img/new_ui/dev/quick-start/create-tenant.png)
 
-* Creating Ordinary Users
-<p align="center">
-      <img src="/img/create-user-en.png" width="60%" />
- </p>
+* Create Ordinary Users
+
+![create-user](/img/new_ui/dev/quick-start/create-user.png)
+
+* Create an alarm instance
+
+![create-alarmInstance](/img/new_ui/dev/quick-start/create-alarmInstance.png)
 
 * Create an alarm group
 
- <p align="center">
-    <img src="/img/alarm-group-en.png" width="60%" />
-  </p>
-
+![create-alarmGroup](/img/new_ui/dev/quick-start/create-alarmGroup.png)
   
 * Create a worker group
-  
-   <p align="center">
-      <img src="/img/worker-group-en.png" width="60%" />
-    </p>
+
+![create-workerGroup](/img/new_ui/dev/quick-start/create-workerGroup.png)
 
  * Create environment
 
-   <p align="center">
-    <img src="/img/create-environment.png" width="60%" />
-   </p>
+![create-environment](/img/new_ui/dev/quick-start/create-environment.png)
     
 * Create a token
   
-<p align="center">
-  <img src="/img/token-en.png" width="60%" />
-</p>
+![create-token](/img/new_ui/dev/quick-start/create-token.png)
      
-  
 * Login with regular users
   > Click on the user name in the upper right corner to "exit" and re-use the normal user login.
 
 * `Project Management - > Create Project - > Click on Project Name`
-<p align="center">
-      <img src="/img/create_project_en.png" width="60%" />
- </p>
+
+![project](/img/new_ui/dev/quick-start/project.png)
 
 * `Click Workflow Definition - > Create Workflow Definition - > Online Process Definition`
 
