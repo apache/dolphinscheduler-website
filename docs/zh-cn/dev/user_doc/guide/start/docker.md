@@ -104,15 +104,13 @@ apache/dolphinscheduler:1.3.8 all
 在容器启动时，会自动启动以下服务：
 
 ```
-    MasterServer         ----- master服务
-    WorkerServer         ----- worker服务
-    ApiApplicationServer ----- api服务
-    AlertServer          ----- alert服务
+    MasterServer         ----- master 服务
+    WorkerServer         ----- worker 服务
+    ApiApplicationServer ----- api 服务
+    AlertServer          ----- alert 服务
 ```
 
-如果你只是想运行 dolphinscheduler 中的部分服务
-
-你可以够通执行以下命令来运行dolphinscheduler中的部分服务
+如果你只是想运行 dolphinscheduler 中的部分服务,你可以够通执行以下命令来运行 dolphinscheduler 中的部分服务
 
 * 启动一个 **master server**, 如下:
 
@@ -154,7 +152,7 @@ $ docker run -d --name dolphinscheduler-alert \
 apache/dolphinscheduler:1.3.8 alert-server
 ```
 
-**注意**: 当你运行dolphinscheduler中的部分服务时，你必须指定这些环境变量 `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_DATABASE`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`, `ZOOKEEPER_QUORUM`。
+**注意**: 当你运行 dolphinscheduler 中的部分服务时，你必须指定这些环境变量 `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_DATABASE`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`, `ZOOKEEPER_QUORUM`。
 
 ## 环境变量
 
@@ -349,11 +347,12 @@ export SECURITY_AUTHENTICATION_TYPE=PASSWORD
 ```
 
 当添加以上环境变量后，你应该在相应的模板文件`application-api.properties.tpl`中添加这个环境变量配置:
+
 ```
 security.authentication.type=${SECURITY_AUTHENTICATION_TYPE}
 ```
 
-`/root/start-init-conf.sh`将根据模板文件动态的生成配置文件：
+`/root/start-init-conf.sh` 将根据模板文件动态的生成配置文件：
 
 ```sh
 echo "generate dolphinscheduler config"
@@ -577,7 +576,7 @@ $SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_H
 文件 `spark-examples_2.11-2.4.7.jar` 需要先被上传到资源中心，然后创建一个 Spark 任务并设置:
 
 - Spark版本: `SPARK2`
-- 主函数的Class: `org.apache.spark.examples.SparkPi`
+- 主函数的 Class: `org.apache.spark.examples.SparkPi`
 - 主程序包: `spark-examples_2.11-2.4.7.jar`
 - 部署方式: `local`
 
