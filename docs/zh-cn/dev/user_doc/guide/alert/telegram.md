@@ -27,6 +27,7 @@
   > 代理鉴权密码
 
 **注意**：用户配置的WebHook需要能够接收和使用与DolphinScheduler构造的HTTP POST请求BODY相同的结构，JSON结构如下：
+
 ```json
 {
     "text": "[{\"projectId\":1,\"projectName\":\"p1\",\"owner\":\"admin\",\"processId\":35,\"processDefinitionCode\":4928367293568,\"processName\":\"s11-3-20220324084708668\",\"taskCode\":4928359068928,\"taskName\":\"s1\",\"taskType\":\"SHELL\",\"taskState\":\"FAILURE\",\"taskStartTime\":\"2022-03-24 08:47:08\",\"taskEndTime\":\"2022-03-24 08:47:09\",\"taskHost\":\"192.168.1.103:1234\",\"logPath\":\"\"}]",
