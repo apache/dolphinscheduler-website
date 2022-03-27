@@ -125,6 +125,14 @@
     <span class="sd">&quot;&quot;&quot;process definition object, will define process definition attribute, task, relation.</span>
 
 <span class="sd">    TODO: maybe we should rename this class, currently use DS object name.</span>
+
+<span class="sd">    :param user: The user for current process definition. Will create a new one if it do not exists. If your</span>
+<span class="sd">        parameter ``project`` already exists but project&#39;s create do not belongs to ``user``, will grant</span>
+<span class="sd">        ``project`` to ``user`` automatically.</span>
+<span class="sd">    :param project: The project for current process definition. You could see the workflow in this project</span>
+<span class="sd">        thought Web UI after it :func:`submit` or :func:`run`. It will create a new project belongs to</span>
+<span class="sd">        ``user`` if it does not exists. And when ``project`` exists but project&#39;s create do not belongs</span>
+<span class="sd">        to ``user``, will grant `project` to ``user`` automatically.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># key attribute for identify ProcessDefinition object</span>
@@ -161,7 +169,6 @@
         <span class="n">user</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_USER</span><span class="p">,</span>
         <span class="n">project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_PROJECT</span><span class="p">,</span>
         <span class="n">tenant</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_TENANT</span><span class="p">,</span>
-        <span class="n">queue</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_QUEUE</span><span class="p">,</span>
         <span class="n">worker_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">release_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionReleaseState</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">,</span>
@@ -175,7 +182,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_user</span> <span class="o">=</span> <span class="n">user</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span> <span class="o">=</span> <span class="n">tenant</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span> <span class="o">=</span> <span class="n">queue</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span> <span class="o">=</span> <span class="n">worker_group</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">release_state</span> <span class="o">=</span> <span class="n">release_state</span>
@@ -218,15 +224,7 @@
 
 <span class="sd">        For now we just get from python side but not from java gateway side, so it may not correct.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">User</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
-            <span class="n">configuration</span><span class="o">.</span><span class="n">USER_PASSWORD</span><span class="p">,</span>
-            <span class="n">configuration</span><span class="o">.</span><span class="n">USER_EMAIL</span><span class="p">,</span>
-            <span class="n">configuration</span><span class="o">.</span><span class="n">USER_PHONE</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">,</span>
-            <span class="n">configuration</span><span class="o">.</span><span class="n">USER_STATE</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ProcessDefinition._parse_datetime"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition._parse_datetime">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_parse_datetime</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -401,8 +399,6 @@
 <span class="sd">        :class:`pydolphinscheduler.constants.ProcessDefinitionDefault`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO used metaclass for more pythonic</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tenant</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">)</span>
-        <span class="c1"># model User have to create after Tenant created</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">()</span>
         <span class="c1"># Project model need User object exists</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">)</span></div>
