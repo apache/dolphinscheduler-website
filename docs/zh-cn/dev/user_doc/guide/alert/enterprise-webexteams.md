@@ -43,7 +43,7 @@ WebexTeams的配置样例如下:
 `用户邮箱`是用户注册Email地址。
 `用户`我们可以从新建房间返回的`creatorId`中获取。
 
-![enterprise-webexteams-private-message-form](/img/alert/webexteams-private.png)
+![enterprise-webexteams-private-message-form](/img/alert/enterprise-webexteams-private-form.png)
 
 ### 私聊告警样例
 
@@ -54,7 +54,7 @@ WebexTeams的配置样例如下:
 通过这种方式，你可以通过`房间`向一个房间发送告警，填入`房间` 和 `访问令牌`并选择`描述` `roomId`。
 `房间`我们可以从新建房间API返回的`id`中获取。
 
-![enterprise-webexteams-group-form](/img/alert/webexteams-group.png)
+![enterprise-webexteams-group-form](/img/alert/enterprise-webexteams-group-form.png)
 
 ### 群聊告警消息样例
 
