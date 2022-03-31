@@ -32,7 +32,9 @@ jobs:
       - name: Prepare Related Resource
         run: ./scripts/prepare_docs.sh
       - run: sudo npm install -g markdown-link-check@3.10.0
+      # We need to delete directory swap before markdown checker
       - run: |
+          rm -rf ./swap
           for file in $(find . -name "*.md"); do
             markdown-link-check -c .dlc.json -q "$file"
           done
