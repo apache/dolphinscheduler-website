@@ -28,18 +28,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
+      - run: sudo npm install -g markdown-link-check@3.10.0
       - name: Prepare Related Resource
-        run: |
-          - ./script/prepare_docs.sh
-
-      - name: Install markdown-link-check
-        run: sudo npm install -g markdown-link-check@3.10.0
-
-      - name: Run Dead Link Check
+        run: ./script/prepare_docs.sh
       - run: |
           for file in $(find . -name "*.md"); do
             markdown-link-check -c .dlc.json -q "$file"
           done
+
