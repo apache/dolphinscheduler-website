@@ -29,9 +29,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v2
-      - run: sudo npm install -g markdown-link-check@3.10.0
       - name: Prepare Related Resource
-        run: ./script/prepare_docs.sh
+        run: ./scripts/prepare_docs.sh
+      - run: sudo npm install -g markdown-link-check@3.10.0
       - run: |
           for file in $(find . -name "*.md"); do
             markdown-link-check -c .dlc.json -q "$file"
