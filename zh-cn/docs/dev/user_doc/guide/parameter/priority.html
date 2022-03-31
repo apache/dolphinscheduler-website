@@ -17,8 +17,8 @@
 <li><a href="context.md">上游任务传递的参数</a>：上游任务传递过来的参数</li>
 <li><a href="local.md">本地参数</a>：节点的自有变量，用户在“自定义参数”定义的变量，并且用户可以在工作流定义时定义该部分变量的值</li>
 </ul>
-<p>因为参数的值存在多个来源，当参数名相同时，就需要会存在参数优先级的问题。DolphinScheduler 参数的优先级从高到低为：<code>全局参数 &gt; 上游任务传递的参数 &gt; 本地参数</code></p>
-<p>在上游任务传递的参数的情况下，由于上游可能存在多个任务向下游传递参数。当上游传递的参数名称相同时：</p>
+<p>因为参数的值存在多个来源，当参数名相同时，就需要会存在参数优先级的问题。DolphinScheduler 参数的优先级从高到低为：<code>本地参数 &gt; 上游任务传递的参数 &gt; 全局参数</code></p>
+<p>在上游任务传递的参数中，由于上游可能存在多个任务向下游传递参数，当上游传递的参数名称相同时：</p>
 <ul>
 <li>下游节点会优先使用值为非空的参数</li>
 <li>如果存在多个值为非空的参数，则按照上游任务的完成时间排序，选择完成时间最早的上游任务对应的参数</li>
@@ -29,12 +29,12 @@
 <img src="/img/globalParam/image-20210723102938239.png" alt="image-20210723102938239" style="zoom:50%;" />
 <p>节点 【useParam】可以使用到节点【createParam】中设置的变量。而节点 【useParam】与节点【noUseParam】中并没有依赖关系，所以并不会获取到节点【noUseParam】的变量。上图中只是以 shell 节点作为例子，其他类型节点具有相同的使用规则。</p>
 <img src="/img/globalParam/image-20210723103316896.png" alt="image-20210723103316896" style="zoom:50%;" />
-<p>其中节点【createParam】在使用变量时直接使用即可。另外该节点设置了 &quot;key&quot; 和 &quot;key1&quot; 两个变量，这里用户用定义了一个与上游节点传递的变量名相同的变量 key1，并且赋值为 &quot;12&quot;，但是由于我们设置的优先级的关系，这里的值 &quot;12&quot; 会被抛弃，最终使用上游节点设置的变量值。</p>
+<p>其中节点【createParam】在使用变量时直接使用即可。另外该节点设置了 &quot;key&quot; 和 &quot;key1&quot; 两个变量，这里用户用定义了一个与上游节点传递的变量名相同的变量 key1，并且赋值为 &quot;12&quot;，但是由于我们设置的优先级的关系，这里的值 &quot;12&quot; 会被使用，最终上游节点设置的变量值会被抛弃。</p>
 <p>2：我们再以 sql 节点来解释另外一种情况</p>
 <img src="/img/globalParam/image-20210723103937052.png" alt="image-20210723103937052" style="zoom:50%;" />
 <p>节点【use_create】的定义如下：</p>
 <p><img src="/img/globalParam/image-20210723104411489.png" alt="image-20210723104411489"></p>
-<p>&quot;status&quot; 是当前节点设置的节点的自有变量。但是用户在保存时也同样设置了 &quot;status&quot; 变量，并且赋值为 -1。那在该 SQL 执行时，status 的值为优先级更高的 -1。抛弃了节点的自有变量的值。</p>
+<p>&quot;status&quot; 是当前节点设置的节点的自有变量。但是用户在保存工作流时也同样设置了 &quot;status&quot; 变量（全局参数），并且赋值为 -1。那在该 SQL 执行时，status 的值为优先级更高的 2。抛弃了全局变量中的值。</p>
 <p>这里的 &quot;id&quot; 是上游节点设置的变量，用户在节点【createParam1】、节点【createParam2】中设置了相同参数名 &quot;id&quot; 的参数。而节点【use_create】中使用了最先结束的【createParam1】的值。</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="/zh-cn/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/development-environment-setup.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
