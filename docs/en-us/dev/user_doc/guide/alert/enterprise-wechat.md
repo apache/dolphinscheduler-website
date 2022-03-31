@@ -14,7 +14,7 @@ The parameter `send.type` corresponds to sending messages to Enterprise WeChat c
 The APP sends type means to notify the alert results via Enterprise WeChat customized APPs, supports sending messages to both specified users and all members. Currently, send to specified enterprise department and tags are not supported, a new PR to contribute is welcomed.
 The following is the `APP` alert message example:
 
-![enterprise-wechat-app-msg](/img/alert/enterprise-wechat-app-msg.png)
+![enterprise-wechat-app-msg](/img/alert/enterprise-wechat-app-msg-en.png)
 
 #### Prerequisites
 
@@ -38,7 +38,7 @@ APP: https://work.weixin.qq.com/api/doc/90000/90135/90236
 The Group Chat send type means to notify the alert results via group chat created by Enterprise WeChat API, sending messages to all members of the group and specified users are not supported.
 The following is the `Group Chat` alert message example:
 
-![enterprise-wechat-group-msg](/img/alert/enterprise-wechat-group-msg.png)
+![enterprise-wechat-group-msg](/img/alert/enterprise-wechat-group-msg-en.png)
 
 #### Prerequisites
 
