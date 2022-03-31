@@ -204,7 +204,7 @@ function prepare_docs() {
     rsync_wrapper "${PROJECT_DIR}/docs/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md"
     rsync_wrapper "${PROJECT_DIR}/docs/docs/zh/*.md" "${PROJECT_SITE_DOC_DIR}/zh-cn/release"
     echo "  ---> Sync dev img."
-#    rsync_wrapper "${PROJECT_DIR}/docs/images" "${PROJECT_SITE_IMG_DIR}"
+    rsync_wrapper "${PROJECT_DIR}/docs/img" "${SOURCE_PATH}/img"
     echo "  ---> Sync dev configs."
     rsync_wrapper "${PROJECT_DIR}/docs/configs/site.js" "${SOURCE_PATH}/site_config/site.js"
     rsync_wrapper "${PROJECT_DIR}/docs/configs/index.md.jsx" "${SOURCE_PATH}/src/pages/docs/index.md.jsx"
