@@ -8,6 +8,26 @@ DolphinScheduler website is powered by [docsite](https://github.com/chengshiwen/
 
 Please also make sure your node version is 10+, version lower than 10.x is not supported yet.
 
+## Prepare All Related Resource
+
+Our latest documents are in DolphinScheduler [main repository](https://github.com/apache/dolphinscheduler.git) directory
+`docs`, and the history documents is in branch [history-docs](https://github.com/apache/dolphinscheduler-website/tree/history-docs)
+in this repository. In this case, you have to collect them from somewhere to current working path before you compile
+them to HTML format.
+
+Of course, you could collect all content manually, but we already provider convenience script to do that, all you have to
+do is run a single command:
+
+```shell
+./scripts/prepare_docs.sh
+```
+
+It would do all prepare things for you.
+
+> Note: When you failed to run the command and see some log like "unable to access" in your terminal, you can set and
+> environment variable `export DEV_MODE=true` and then run command `./scripts/prepare_docs.sh` again. After setting the
+> variable will clone source code in SSH instead of HTTPS, it will stable and fast in some cases.
+
 ## Build instruction 
 
 1. Run `npm install` in the root directory to install the dependencies.
