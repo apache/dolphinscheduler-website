@@ -83,13 +83,12 @@ apache/dolphinscheduler:1.3.8 all
 <p>同上</p>
 <h3>三、运行 DolphinScheduler 中的独立服务</h3>
 <p>在容器启动时，会自动启动以下服务：</p>
-<pre><code>    MasterServer         ----- master服务
-    WorkerServer         ----- worker服务
-    ApiApplicationServer ----- api服务
-    AlertServer          ----- alert服务
+<pre><code>    MasterServer         ----- master 服务
+    WorkerServer         ----- worker 服务
+    ApiApplicationServer ----- api 服务
+    AlertServer          ----- alert 服务
 </code></pre>
-<p>如果你只是想运行 dolphinscheduler 中的部分服务</p>
-<p>你可以够通执行以下命令来运行dolphinscheduler中的部分服务</p>
+<p>如果你只是想运行 dolphinscheduler 中的部分服务,你可以够通执行以下命令来运行 dolphinscheduler 中的部分服务</p>
 <ul>
 <li>启动一个 <strong>master server</strong>, 如下:</li>
 </ul>
@@ -126,7 +125,7 @@ apache/dolphinscheduler:1.3.8 api-server
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
 apache/dolphinscheduler:1.3.8 alert-server
 </code></pre>
-<p><strong>注意</strong>: 当你运行dolphinscheduler中的部分服务时，你必须指定这些环境变量 <code>DATABASE_HOST</code>, <code>DATABASE_PORT</code>, <code>DATABASE_DATABASE</code>, <code>DATABASE_USERNAME</code>, <code>DATABASE_PASSWORD</code>, <code>ZOOKEEPER_QUORUM</code>。</p>
+<p><strong>注意</strong>: 当你运行 dolphinscheduler 中的部分服务时，你必须指定这些环境变量 <code>DATABASE_HOST</code>, <code>DATABASE_PORT</code>, <code>DATABASE_DATABASE</code>, <code>DATABASE_USERNAME</code>, <code>DATABASE_PASSWORD</code>, <code>ZOOKEEPER_QUORUM</code>。</p>
 <h2>环境变量</h2>
 <p>Docker 容器通过环境变量进行配置，<a href="#appendix-environment-variables">附录-环境变量</a> 列出了 DolphinScheduler 的可配置环境变量及其默认值 <!-- markdown-link-check-disable-line --></p>
 <p>特别地，在 Docker Compose 和 Docker Swarm 中，可以通过环境变量配置文件 <code>config.env.sh</code> 进行配置</p>
@@ -379,7 +378,7 @@ $ bash ./docker/build/hooks/build x
 <p>当添加以上环境变量后，你应该在相应的模板文件<code>application-api.properties.tpl</code>中添加这个环境变量配置:</p>
 <pre><code>security.authentication.type=${SECURITY_AUTHENTICATION_TYPE}
 </code></pre>
-<p><code>/root/start-init-conf.sh</code>将根据模板文件动态的生成配置文件：</p>
+<p><code>/root/start-init-conf.sh</code> 将根据模板文件动态的生成配置文件：</p>
 <pre><code class="language-sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;generate dolphinscheduler config&quot;</span>
 ls <span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/conf/ | grep <span class="hljs-string">&quot;.tpl&quot;</span> | <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> line; <span class="hljs-keyword">do</span>
 <span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;cat &lt;&lt; EOF
@@ -617,7 +616,7 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># 或者 mv</s
 <p>文件 <code>spark-examples_2.11-2.4.7.jar</code> 需要先被上传到资源中心，然后创建一个 Spark 任务并设置:</p>
 <ul>
 <li>Spark版本: <code>SPARK2</code></li>
-<li>主函数的Class: <code>org.apache.spark.examples.SparkPi</code></li>
+<li>主函数的 Class: <code>org.apache.spark.examples.SparkPi</code></li>
 <li>主程序包: <code>spark-examples_2.11-2.4.7.jar</code></li>
 <li>部署方式: <code>local</code></li>
 </ul>
