@@ -367,9 +367,9 @@ done
 
 > Due to commercial licensing, we cannot use MySQL driver packages directly.
 >
-> If you want to use MySQL, you can build it based on the official image `apache/dolphinscheduler`. 1.
+> If you want to use MySQL, you can build it based on the official image `apache/dolphinscheduler`.
 
-Download the MySQL driver package [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-) java-8.0.16.jar)
+1. Download the MySQL driver package [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-) java-8.0.16.jar)
 
 2. Create a new `Dockerfile` to add the MySQL driver package:
 
@@ -381,14 +381,14 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 3. Build a new image containing the MySQL driver package:
 
 ```
-docker build -t apache/dolphinscheduler:mysql-driver .
+docker build -t apache/dolphinscheduler:mysql-driver
 ```
 
 4. Modify all the image fields in the `docker-compose.yml` file to `apache/dolphinscheduler:mysql-driver`.
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you need to modify `docker-stack.yml`. 5.
+> If you want to deploy dolphinscheduler on Docker Swarm, you need to modify `docker-stack.yml`.
 
-5. Comment out the `dolphinscheduler-postgresql` block in the `docker-compose.yml` file. 6.
+5. Comment out the `dolphinscheduler-postgresql` block in the `docker-compose.yml` file.
 
 6. Add the `dolphinscheduler-mysql` service to the `docker-compose.yml` file (**optional**, you can use an external MySQL database directly).
 
@@ -432,9 +432,9 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 
 4. Change all `image` fields in the `docker-compose.yml` file to `apache/dolphinscheduler:mysql-driver`.
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you will need to modify `docker-stack.yml`. 5.
+> If you want to deploy dolphinscheduler on Docker Swarm, you will need to modify `docker-stack.yml`.
 
-5. Run dolphinscheduler (see **How to use a docker image** for details). 6.
+5. Run dolphinscheduler (see **How to use a docker image** for details).
 
 6. Add a MySQL data source to the data source centre.
 
@@ -444,7 +444,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 >
 > If you want to add an Oracle datasource, you can build it based on the official image `apache/dolphinscheduler`.
 
-1. Download the Oracle driver package [ojdbc8.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/) (such as `ojdbc8-19.9.0.0.jar`). 2.
+1. Download the Oracle driver package [ojdbc8.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/) (such as `ojdbc8-19.9.0.0.jar`).
 
 2. Create a new `Dockerfile` to add the Oracle driver package:
 
@@ -461,9 +461,9 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 
 4. Change all `image` fields in the `docker-compose.yml` file to `apache/dolphinscheduler:oracle-driver`.
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you will need to modify `docker-stack.yml`. 5.
+> If you want to deploy dolphinscheduler on Docker Swarm, you will need to modify `docker-stack.yml`.
 
-5. Run dolphinscheduler (see **How to use a docker image** for details). 6.
+5. Run dolphinscheduler (see **How to use a docker image** for details).
 
 6. Add an Oracle data source to the data source centre.
 
@@ -495,9 +495,9 @@ docker build -t apache/dolphinscheduler:pip .
 
 3. Change all `image` fields in the `docker-compose.yml` file to `apache/dolphinscheduler:pip`.
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you will need to modify `docker-stack.yml`. 4.
+> If you want to deploy dolphinscheduler on Docker Swarm, you will need to modify `docker-stack.yml`.
 
-4. Run dolphinscheduler (see **How to use docker images** for details). 5.
+4. Run dolphinscheduler (see **How to use docker images** for details).
 
 5. Verify pip under a new Python task.
 
@@ -526,11 +526,11 @@ docker build -t apache/dolphinscheduler:python3 .
 
 3. Change all `image` fields in the `docker-compose.yml` file to `apache/dolphinscheduler:python3`.
 
-> If you want to deploy dolphinscheduler on Docker Swarm, you will need to modify `docker-stack.yml`. 4.
+> If you want to deploy dolphinscheduler on Docker Swarm, you will need to modify `docker-stack.yml`.
 
-Modify `PYTHON_HOME` to `/usr/bin/python3` in the `config.env.sh` file.
+4. Modify `PYTHON_HOME` to `/usr/bin/python3` in the `config.env.sh` file.
 
-5. Run dolphinscheduler (see **How to use docker images** for details). 6.
+5. Run dolphinscheduler (see **How to use docker images** for details).
 
 6. Verify Python 3 under a new Python task.
 
@@ -596,7 +596,7 @@ Let's take Spark 3.1.1 as an example:
 
 1. Download the Spark 3.1.1 release binary package `spark-3.1.1-bin-hadoop2.7.tgz`.
 
-2. Run dolphinscheduler (see **How to use a docker image** for details). 3.
+2. Run dolphinscheduler (see **How to use a docker image** for details).
 
 3. Copy the Spark 3.1.1 binary package to the Docker container
 
