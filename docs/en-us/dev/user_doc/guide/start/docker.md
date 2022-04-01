@@ -369,7 +369,7 @@ done
 >
 > If you want to use MySQL, you can build it based on the official image `apache/dolphinscheduler`.
 
-1. Download the MySQL driver package [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-) java-8.0.16.jar)
+1. Download the MySQL driver package [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. Create a new `Dockerfile` to add the MySQL driver package:
 
@@ -415,7 +415,7 @@ DATABASE_PARAMS=useUnicode=true&characterEncoding=UTF-8
 >
 > If you want to add a MySQL datasource, you can build it based on the official image `apache/dolphinscheduler`.
 
-1. Download MySQL driver package [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector- java-8.0.16.jar)
+1. Download MySQL driver package [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. Create a new `Dockerfile` to add the MySQL driver package:
 
