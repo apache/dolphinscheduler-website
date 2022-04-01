@@ -51,6 +51,11 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | ShunFeng Cai  | caishunfeng  | [@caishunfeng](https://github.com/caishunfeng)           |
 | Wenjun Ruan   | wenjun       | [@ruanwenjun](https://github.com/ruanwenjun)             |
 | Jian Song     | songjian     | [@songjianet](https://github.com/songjianet)             |
+| Zhaohe Sun    | zixi0825     | [@zixi0825](https://github.com/zixi0825)                 |
+| Tianqi Yan    | tianqiyan    | [@Tianqi-Dotes](https://github.com/Tianqi-Dotes)         |
+| Dongkai Liu   | liudongkai   | [@devosend](https://github.com/devosend)                 |
+| Hua Jiang     | huajiang     | [@calvinjiang](https://github.com/calvinjiang)           |
+| Zihao Xiang   | zihaoxiang   | [@SbloodyS](https://github.com/SbloodyS)                 |
 
 ## 贡献者
 
