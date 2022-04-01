@@ -155,7 +155,7 @@ apache/dolphinscheduler:1.3.8 alert-server
 
 ## Environment variables
 
-Docker containers are configured via environment variables, [appendix-environment-variables](#appendix-environment-variables) lists the configurable environment variables for DolphinScheduler and their default values <! -- markdown-link-check-disable-line -->
+Docker containers are configured via environment variables, appendix-environment-variables lists the configurable environment variables for DolphinScheduler and their default values <! -- markdown-link-check-disable-line -->
 
 In particular, in Docker Compose and Docker Swarm, this can be configured via the environment variable configuration file `config.env.sh`.
 
