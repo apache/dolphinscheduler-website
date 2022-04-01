@@ -143,6 +143,10 @@ export default {
                                 title: 'Amazon EMR',
                                 link: '/en-us/docs/dev/user_doc/guide/task/emr.html',
                             },
+                            {
+                                title: 'Blocking',
+                                link: '/en-us/docs/dev/user_doc/guide/task/blocking.html',
+                            },
                         ],
                     },
                     {
@@ -453,6 +457,10 @@ export default {
                             {
                                 title: 'Amazon EMR',
                                 link: '/zh-cn/docs/dev/user_doc/guide/task/emr.html',
+                            },
+                            {
+                                title: 'Blocking',
+                                link: '/zh-cn/docs/dev/user_doc/guide/task/blocking.html',
                             },
                         ],
                     },
