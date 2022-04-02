@@ -24,6 +24,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  img-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get File From Main Repo
+        run: |
+          wget https://raw.githubusercontent.com/apache/dolphinscheduler/dev/docs/img_utils.py
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Test Img
+        run: |
+          python img_utils.py -v check
+
   CheckDeadLinks:
     runs-on: ubuntu-latest
     timeout-minutes: 30
