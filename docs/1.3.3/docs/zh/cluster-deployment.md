@@ -455,7 +455,7 @@ sh ./bin/dolphinscheduler-daemon.sh stop alert-server
     <p align="center">
       <img src="/img/network/network_config.png" width="60%" />
     </p>
-   
+<!-- markdown-link-check-disable-next-line -->
    如果ip地址获取依然错误，请下载[dolphinscheduler-netutils.jar](/asset/dolphinscheduler-netutils.jar)到相应机器，执行以下命令以进一步排障，并反馈给社区开发人员：
 
    ```
