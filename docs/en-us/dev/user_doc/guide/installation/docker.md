@@ -978,7 +978,7 @@ This environment variable sets mail server port for `alert-server`. The default 
 
 This environment variable sets mail sender for `alert-server`. The default value is empty.
 
-**`MAIL_USER=`**
+**`MAIL_USER`**
 
 This environment variable sets mail user for `alert-server`. The default value is empty.
 
