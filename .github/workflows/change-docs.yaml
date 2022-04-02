@@ -18,8 +18,8 @@ name: Docs
 
 on:
   pull_request:
-#    branches:
-#      - master
+    branches:
+      - master
 
 env:
   DOCS_FLAG: ^docs
@@ -37,7 +37,7 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Get Branch origin/dev
         run: |
           git fetch --no-tags --prune --depth=1 origin master
@@ -45,5 +45,5 @@ jobs:
         run: |
           if git diff --name-only origin/master HEAD | grep -q -E "${{ env.DOCS_FLAG }}"; then
 #            exit 1
-            echo "tmp stkip"
+               echo "tmp stkip"
           fi
