@@ -44,5 +44,5 @@ jobs:
       - name: Fail When Docs Dir Change
         run: |
           if git diff --name-only origin/master HEAD | grep -q -E "${{ env.DOCS_FLAG }}"; then
-            echo 1
+            exit 1
           fi
