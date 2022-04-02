@@ -468,7 +468,7 @@ enterprise.wechat.user.send.msg={\"touser\":\"{toUser}\",\"agentid\":\"{agentId}
    # dolphin.scheduler.network.priority.strategy=default
   ```
   以上配置修改后重启服务生效
-
+<!-- markdown-link-check-disable-next-line -->
 如果 ip 地址获取依然错误，请下载 [dolphinscheduler-netutils.jar](/asset/dolphinscheduler-netutils.jar) 到相应机器，执行以下命令以进一步排障，并反馈给社区开发人员：
 
 ```

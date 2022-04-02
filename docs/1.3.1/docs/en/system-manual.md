@@ -188,7 +188,7 @@ Add a Shell task to the drawing board, as shown in the figure below:
   - **Delete:** Delete the workflow instance and the task instance under the workflow instance
   - **Gantt chart:** The vertical axis of the Gantt chart is the topological sorting of task instances under a certain workflow instance, and the horizontal axis is the running time of the task instances, as shown in the figure:         
        <p align="center">
-           <img src="/img/gant-en.png" width="80%" />
+           <img src="/img/gantt-en.png" width="80%" />
        </p>
 
 #### 2.5 Task instance
@@ -440,7 +440,7 @@ Note: If you enable **kerberos**, you need to fill in **Principal**
   - The administrator enters the Security Center -> Token Management page, clicks the "Create Token" button, selects the expiration time and user, clicks the "Generate Token" button, and clicks the "Submit" button, then the selected user's token is created successfully.
 
   <p align="center">
-      <img src="/img/creat-token-en.png" width="80%" />
+      <img src="/img/create-token-en.png" width="80%" />
    </p>
   
   - After an ordinary user logs in, click the user information in the user name drop-down box, enter the token management page, select the expiration time, click the "generate token" button, and click the "submit" button, then the user creates a token successfully.
@@ -496,7 +496,7 @@ Note: If you enable **kerberos**, you need to fill in **Principal**
   - Select the project to authorize the project.
 
 <p align="center">
-   <img src="/img/authproject-en.png" width="80%" />
+   <img src="/img/auth-project-en.png" width="80%" />
  </p>
   
   - Resources, data sources, and UDF function authorization are the same as project authorization.
