@@ -23,8 +23,7 @@ SOURCE_PATH="$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")" )" && pwd)"
 
 # Codebase Repository
 PROJECT_NAME="dolphinscheduler"
-# TODO
-PROJECT_BRANCH_NAME="migrate-dev-docs-to-main"
+PROJECT_BRANCH_NAME="dev"
 PROJECT_WEBSITE_NAME="${PROJECT_NAME}-website"
 PROJECT_WEBSITE_BRANCH_NAME="history-docs"
 
