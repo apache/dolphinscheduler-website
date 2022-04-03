@@ -54,6 +54,7 @@ class Header extends React.Component {
       language: props.language,
       search: siteConfig.defaultSearch,
       searchValue: '',
+      showBanner: true
     };
   }
 
@@ -149,9 +150,14 @@ class Header extends React.Component {
     });
   }
 
+  handleBannerClose = () => {
+    this.state.showBanner = false
+    this.setState({...this.state})
+  }
+
   render() {
     const { type, logo, onLanguageChange } = this.props;
-    const { mobileMemuVisible, language, search, searchVisible } = this.state;
+    const { mobileMemuVisible, language, search, searchVisible, showBanner } = this.state;
     return (
       <header
         className={
@@ -161,6 +167,17 @@ class Header extends React.Component {
           })
         }
       >
+        {
+          showBanner ?
+          <div className="banner-tips">
+            <div>
+              {siteConfig[language].banner.text}
+              <a className="link-tips" href={siteConfig[language].banner.link}>join #dolphinscheduler channel</a>
+              ! 🌟
+            </div>
+            {/* <div className="banner-close" onClick={this.handleBannerClose}></div> */}
+          </div> : null
+        }
         <div className="header-body">
           <span
             className={classnames({
