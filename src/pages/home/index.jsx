@@ -126,7 +126,7 @@ class Home extends Language {
   }
 
   render() {
-    const { starCount, forkCount, isMobile } = this.state;
+    const { starCount, forkCount, isMobile, showBanner } = this.state;
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;
