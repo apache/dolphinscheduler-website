@@ -54,7 +54,7 @@ There is only the value of "id". Although the user-defined sql looks up the fiel
 
 prop is user-specified. The direction is selected as OUT. The output is defined as a parameter only when the direction is OUT. Data type can choose different data structures as needed; the value part is not required to be filled. The user needs to pass the parameter, and when defining the shell script, the output format of ${setValue(key=value)} statement is required, key is the prop of the corresponding parameter, and value is the value of the parameter.
 
-For example, ` echo '${setValue (trans = Hello trans)}' `, set "trans" to "Hello trans", and the variable trans can be used in downstream tasks:
+For example, `echo '${setValue(trans = Hello trans)}'`, set "trans" to "Hello trans", and the variable trans can be used in downstream tasks:
 
 <img src="/img/globalParam/trans-shell.png" alt="trans-shell" style="zoom:50%;" />
 
