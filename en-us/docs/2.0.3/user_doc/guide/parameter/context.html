@@ -41,7 +41,7 @@
 <p>There is only the value of &quot;id&quot;. Although the user-defined sql looks up the fields &quot;id&quot; and &quot;database_name&quot;, only one parameter is set because only one parameter &quot;id&quot; is defined for out. For display reasons, the length of the list is already checked for you here as 10.</p>
 <h3>SHELL</h3>
 <p>prop is user-specified. The direction is selected as OUT. The output is defined as a parameter only when the direction is OUT. Data type can choose different data structures as needed; the value part is not required to be filled. The user needs to pass the parameter, and when defining the shell script, the output format of ${setValue(key=value)} statement is required, key is the prop of the corresponding parameter, and value is the value of the parameter.</p>
-<p>For example, <code>echo '${setValue (trans = Hello trans)}'</code>, set &quot;trans&quot; to &quot;Hello trans&quot;, and the variable trans can be used in downstream tasks:</p>
+<p>For example, <code>echo '${setValue(trans = Hello trans)}'</code>, set &quot;trans&quot; to &quot;Hello trans&quot;, and the variable trans can be used in downstream tasks:</p>
 <img src="/img/globalParam/trans-shell.png" alt="trans-shell" style="zoom:50%;" />
 <p>When the shell node is defined, when the log detects the format of ${setValue (key = value1)}, value1 will be assigned to the key, and the downstream node can directly use the value of the variable key. Similarly, you can find the corresponding node instance on the workflow instance page to view the value of the variable.</p>
 <img src="/img/globalParam/use-parameter-shell.png" alt="use-parameter-shell" style="zoom:50%;" />
