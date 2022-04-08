@@ -42,7 +42,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#installing-python">Installing Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-pydolphinscheduler">Installing PyDolphinScheduler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-pydolphinscheduler-in-dev">Installing PyDolphinScheduler In Dev</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#start-python-gateway-server">Start Python Gateway Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#start-python-gateway-service">Start Python Gateway Service</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-s-more">What’s More</a></li>
 </ul>
 </li>
@@ -109,7 +109,7 @@ Python <span class="m">3</span>.8.7
 </pre></div>
 </div>
 <p>The latest version of <em>PyDolphinScheduler</em> would be installed after you run above
-command in your terminal. You could go and <a class="reference internal" href="#start-python-gateway-server">start Python Gateway Server</a> to finish
+command in your terminal. You could go and <a class="reference internal" href="#start-python-gateway-service">start Python Gateway Service</a> to finish
 the prepare, and then go to <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> to make your hand dirty. But if you
 want to install the unreleased version of <em>PyDolphinScheduler</em>, you could go and see
 section <a class="reference internal" href="#installing-pydolphinscheduler-in-dev">installing PyDolphinScheduler in dev</a> for more detail.</p>
@@ -125,27 +125,33 @@ $ git clone git@github.com:apache/dolphinscheduler.git
 $ <span class="nb">cd</span> dolphinscheduler-python/pydolphinscheduler <span class="o">&amp;&amp;</span> pip install -e .
 </pre></div>
 </div>
-<p>After you installed <em>PyDolphinScheduler</em>, please remember <a class="reference internal" href="#start-python-gateway-server">start Python Gateway Server</a>
+<p>After you installed <em>PyDolphinScheduler</em>, please remember <a class="reference internal" href="#start-python-gateway-service">start Python Gateway Service</a>
 which waiting for <em>PyDolphinScheduler</em>’s workflow definition require.</p>
 </section>
-<section id="start-python-gateway-server">
-<h2>Start Python Gateway Server<a class="headerlink" href="#start-python-gateway-server" title="Permalink to this headline"></a></h2>
+<section id="start-python-gateway-service">
+<h2>Start Python Gateway Service<a class="headerlink" href="#start-python-gateway-service" title="Permalink to this headline"></a></h2>
 <p>Since <strong>PyDolphinScheduler</strong> is Python API for <a class="reference external" href="https://dolphinscheduler.apache.org">Apache DolphinScheduler</a>, it
 could define workflow and tasks structure, but could not run it unless you
-<a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a> and start Python gateway server. We only
-and some key steps here and you could go <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a>
-for more detail</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start pythonGatewayServer</span>
-$ ./bin/dolphinscheduler-daemon.sh start pythonGatewayServer
+<a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a> and start its API server which including
+Python gateway service in it. We only and some key steps here and you could
+go <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a> for more detail</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start DolphinScheduler api-server which including python gateway service</span>
+$ ./bin/dolphinscheduler-daemon.sh start api-server
 </pre></div>
 </div>
 <p>To check whether the server is alive or not, you could run <code class="code docutils literal notranslate"><span class="pre">jps</span></code>. And
-the server is health if keyword <cite>PythonGatewayServer</cite> in the console.</p>
+the server is health if keyword <cite>ApiApplicationServer</cite> in the console.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ jps
 ....
-<span class="m">201472</span> PythonGatewayServer
+<span class="m">201472</span> ApiApplicationServer
 ....
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please make sure you already enabled started Python gateway service along with <cite>api-server</cite>. The configuration is in
+yaml config path <cite>python-gateway.enabled : true</cite> in api-server’s configuration path in <cite>api-server/conf/application.yaml</cite>.
+The default value is true and Python gateway service start when api server is been started.</p>
 </div>
 </section>
 <section id="what-s-more">
