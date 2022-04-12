@@ -43,13 +43,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#installing-pydolphinscheduler">Installing PyDolphinScheduler</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-pydolphinscheduler-in-dev">Installing PyDolphinScheduler In Dev</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#start-python-gateway-service">Start Python Gateway Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-an-example">Run an Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-s-more">What’s More</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="concept.html">Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">How To</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 </ul>
 
@@ -152,6 +155,30 @@ the server is health if keyword <cite>ApiApplicationServer</cite> in the console
 <p>Please make sure you already enabled started Python gateway service along with <cite>api-server</cite>. The configuration is in
 yaml config path <cite>python-gateway.enabled : true</cite> in api-server’s configuration path in <cite>api-server/conf/application.yaml</cite>.
 The default value is true and Python gateway service start when api server is been started.</p>
+</div>
+</section>
+<section id="run-an-example">
+<h2>Run an Example<a class="headerlink" href="#run-an-example" title="Permalink to this headline"></a></h2>
+<p>Before run an example for pydolphinscheduler, you should get the example code from it source code. You could run
+single bash command to get it</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget https://raw.githubusercontent.com/apache/dolphinscheduler/dev/dolphinscheduler-python/pydolphinscheduler/src/pydolphinscheduler/examples/tutorial.py
+</pre></div>
+</div>
+<p>or you could copy-paste the content from <a class="reference external" href="https://raw.githubusercontent.com/apache/dolphinscheduler/dev/dolphinscheduler-python/pydolphinscheduler/src/pydolphinscheduler/examples/tutorial.py">tutorial source code</a>. And then you could run the example in your
+terminal</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python tutorial.py
+</pre></div>
+</div>
+<p>If you want to submit your workflow to a remote API server, which means that your workflow script is different
+from the API server, you should first change pydolphinscheduler configuration and then submit the workflow script</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pydolphinscheduler config --init
+$ pydolphinscheduler config --set java_gateway.address &lt;your-api-server-ip-or-hostname&gt;
+$ python tutorial.py
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You could see more information in <a class="reference internal" href="config.html"><span class="doc">Configuration</span></a> about all the configurations pydolphinscheduler supported.</p>
 </div>
 </section>
 <section id="what-s-more">
