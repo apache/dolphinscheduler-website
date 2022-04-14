@@ -87,6 +87,7 @@ When an Issue need to create Pull Requests, you could also labeled it from below
 
 ### Pull Requests
 
+<!-- markdown-link-check-disable -->
 Review Pull mean discussing in [Pull Requests][all-PRs] in GitHub and giving suggestions to it. DolphinScheduler's 
 Pull Requests reviewing are the same as [GitHub's reviewing changes in pull requests][gh-review-pr]. You can give your
 suggestions in Pull Requests
@@ -97,6 +98,7 @@ suggestions in Pull Requests
   [GitHub's reviewing changes in pull requests][gh-review-pr]. And when you think issues that must be fixed before they
   merged, please follow "Request changes" in [GitHub's reviewing changes in pull requests][gh-review-pr] to ask contributors
   modify it.
+<!-- markdown-link-check-enable -->
 
 Labeled Pull Requests is an important part. Reasonable classification can save a lot of time for reviewers. The good news
 is that the label's name and usage of Pull Requests are the same in [Issues](#issues), which can reduce the memory. For

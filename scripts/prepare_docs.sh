@@ -30,6 +30,7 @@ PROJECT_WEBSITE_BRANCH_NAME="history-docs"
 # Repository Website(current) Directory And Files
 SWAP_DIR="${SOURCE_PATH}/swap"
 PROJECT_SITE_DOC_DIR="${SOURCE_PATH}/docs"
+PROJECT_SITE_DEVELOP_DIR="${SOURCE_PATH}/development"
 PROJECT_DIR="${SWAP_DIR}/${PROJECT_NAME}"
 PROJECT_WEBSITE_DIR="${SWAP_DIR}/${PROJECT_WEBSITE_NAME}"
 
@@ -176,7 +177,7 @@ function prepare_docs() {
 
     echo "===>>> Prepare directories and files"
     echo "  ---> Rebuild docsite directory which need for docsite build."
-    rebuild_dirs "${SOURCE_PATH}/docs" "${SWAP_DIR}"
+    rebuild_dirs "${PROJECT_SITE_DOC_DIR}" "${PROJECT_SITE_DEVELOP_DIR}" "${SWAP_DIR}"
 
     echo "===>>> Clone repository."
     echo "  ---> Clone history documents from ${PROJECT_WEBSITE_REPO} branch ${PROJECT_WEBSITE_BRANCH_NAME}."
@@ -197,11 +198,14 @@ function prepare_docs() {
     echo "  ---> Sync history img."
     rsync_wrapper "${PROJECT_WEBSITE_DIR}/img"/ "${SOURCE_PATH}/img"
 
-    echo "  ---> Sync dev content."
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md"
+    echo "  ---> Sync dev user document content."
+    rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md --exclude=development"
     rsync_wrapper "${PROJECT_DIR}/docs/docs/en/*.md" "${PROJECT_SITE_DOC_DIR}/en-us/release"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md"
+    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md --exclude=development"
     rsync_wrapper "${PROJECT_DIR}/docs/docs/zh/*.md" "${PROJECT_SITE_DOC_DIR}/zh-cn/release"
+    echo "  ---> Sync development document content."
+    rsync_wrapper "${PROJECT_DIR}/docs/docs/en/development" "${PROJECT_SITE_DEVELOP_DIR}/en-us"
+    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh/development" "${PROJECT_SITE_DEVELOP_DIR}/zh-cn"
     echo "  ---> Sync dev img."
     rsync_wrapper "${PROJECT_DIR}/docs/img" "${SOURCE_PATH}/img"
     echo "  ---> Sync dev configs."
