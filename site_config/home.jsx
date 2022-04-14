@@ -55,7 +55,7 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
-          img: '/img/3-16/1.png',
+          img: '/img/2022-03-29/1.png',
           title: '极速开发扩充 Apache DolphinScheduler Task 类型 | 实用教程',
           content: '目前在大数据生态中，调度系统是不可或缺的一个重要组件..',
           dateStr: '2022-4-14',
@@ -547,8 +547,7 @@ export default {
       title: 'Events & News',
       list: [
         {
-
-          img: '/img/2022-03-29/En/1.png"',
+          img: '/img/2022-03-29/En/1.png',
           title: 'Fast Task Type Expanding On Apache DolphinScheduler | Tutorial',
           content: 'At present, the scheduler plays an indispensable role in big data ecology....',
           dateStr: '2022-4-14',
