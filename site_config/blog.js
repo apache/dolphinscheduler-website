@@ -5,6 +5,14 @@ export default {
         list: [
             {
 
+                title: 'Fast Task Type Expanding On Apache DolphinScheduler | Tutorial',
+                author: 'Debra Chen',
+                dateStr: '2022-4-14',
+                desc: 'At present, the scheduler plays an indispensable role in big data ecology... ',
+                link: '/en-us/blog/Fast_Task_Type_Expanding_On_Apache_DolphinScheduler_Tutorial.html',
+            },
+            {
+
                 title: 'First Anniversary Celebration of Apache DolphinScheduler\'s Graduation From ASF Incubator! Here Comes the Project Status Report!',
                 author: 'Debra Chen',
                 dateStr: '2022-4-14',
@@ -184,9 +192,16 @@ export default {
         postsTitle: '所有文章',
         list: [
             {
+                title: '极速开发扩充 Apache DolphinScheduler Task 类型 | 实用教程',
+                author: 'Debra Chen',
+                dateStr: '2022-4-14',
+                desc: '目前在大数据生态中，调度系统是不可或缺的一个重要组件......',
+                link: '/zh-cn/blog/Fast_Task_Type_Expanding_On_Apache_DolphinScheduler_Tutorial.html',
+            },
+            {
                 title: 'Apache DolphinScheduler ASF 孵化器毕业一周年，汇报来了！',
                 author: 'Debra Chen',
-                dateStr: '2022-3-21',
+                dateStr: '2022-4-14',
                 desc: '不知不觉，Apache DolphinScheduler 已经从......',
                 link: '/zh-cn/blog/Apache_DolphinScheduler_s_Graduation_From_ASF_Incubator.html',
             },
