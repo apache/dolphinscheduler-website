@@ -15,7 +15,7 @@
 <h3>1.名词解释</h3>
 <p><strong>DAG：</strong> 全称Directed Acyclic Graph，简称DAG。工作流中的Task任务以有向无环图的形式组装起来，从入度为零的节点进行拓扑遍历，直到无后继节点为止。举例如下图：</p>
 <p align="center">
-  <img src="/img/architecture-design/dag_examples_ch_zn.png" alt="dag示例"  width="80%" />
+  <img src="/img/architecture-design/dag_examples.png" alt="dag示例"  width="80%" />
   <p align="center">
         <em>dag示例</em>
   </p>
@@ -132,13 +132,13 @@ MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeepe
 <li>获取分布式锁的核心流程算法如下</li>
 </ol>
  <p align="center">
-   <img src="/img/architecture-design/distributed_lock_ch_zn.png" alt="获取分布式锁流程"  width="70%" />
+   <img src="/img/architecture-design/distributed_lock.png" alt="获取分布式锁流程"  width="70%" />
  </p>
 <ol start="2">
 <li>DolphinScheduler中Scheduler线程分布式锁实现流程图：</li>
 </ol>
  <p align="center">
-   <img src="/img/architecture-design/distributed_lock_procss_ch_zn.png" alt="获取分布式锁流程" />
+   <img src="/img/architecture-design/distributed_lock_procss.png" alt="获取分布式锁流程" />
  </p>
 <h5>三、线程不足循环等待问题</h5>
 <ul>
@@ -146,7 +146,7 @@ MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeepe
 <li>如果一个大的DAG中嵌套了很多子流程，如下图则会产生“死等”状态：</li>
 </ul>
  <p align="center">
-   <img src="/img/architecture-design/lack_thread_ch_zn.png" alt="线程不足循环等待问题"  width="70%" />
+   <img src="/img/architecture-design/lack_thread.png" alt="线程不足循环等待问题"  width="70%" />
  </p>
 上图中MainFlowThread等待SubFlowThread1结束，SubFlowThread1等待SubFlowThread2结束， SubFlowThread2等待SubFlowThread3结束，而SubFlowThread3等待线程池有新线程，则整个DAG流程不能结束，从而其中的线程也不能释放。这样就形成的子父流程循环等待的状态。此时除非启动新的Master来增加线程来打破这样的”僵局”，否则调度集群将不能再使用。
 <p>对于启动新Master来打破僵局，似乎有点差强人意，于是我们提出了以下三种方案来降低这种风险：</p>
@@ -162,21 +162,21 @@ MasterServer服务启动时向Zookeeper注册临时节点，通过监听Zookeepe
 <h6>1. 宕机容错</h6>
 <p>服务容错设计依赖于ZooKeeper的Watcher机制，实现原理如图：</p>
  <p align="center">
-   <img src="/img/architecture-design/fault-tolerant_ch_zn.png" alt="DolphinScheduler容错设计"  width="70%" />
+   <img src="/img/architecture-design/fault-tolerant.png" alt="DolphinScheduler容错设计"  width="70%" />
  </p>
 其中Master监控其他Master和Worker的目录，如果监听到remove事件，则会根据具体的业务逻辑进行流程实例容错或者任务实例容错。
 <ul>
 <li>Master容错流程图：</li>
 </ul>
  <p align="center">
-   <img src="/img/architecture-design/fault-tolerant_master_ch_zn.png" alt="Master容错流程图"  width="70%" />
+   <img src="/img/architecture-design/fault-tolerant_master.png" alt="Master容错流程图"  width="70%" />
  </p>
 ZooKeeper Master容错完成之后则重新由DolphinScheduler中Scheduler线程调度，遍历 DAG 找到”正在运行”和“提交成功”的任务，对”正在运行”的任务监控其任务实例的状态，对”提交成功”的任务需要判断Task Queue中是否已经存在，如果存在则同样监控任务实例的状态，如果不存在则重新提交任务实例。
 <ul>
 <li>Worker容错流程图：</li>
 </ul>
  <p align="center">
-   <img src="/img/architecture-design/fault-tolerant_worker_ch_zn.png" alt="Worker容错流程图"  width="70%" />
+   <img src="/img/architecture-design/fault-tolerant_worker.png" alt="Worker容错流程图"  width="70%" />
  </p>
 <p>Master Scheduler线程一旦发现任务实例为” 需要容错”状态，则接管任务并进行重新提交。</p>
 <p>注意：由于” 网络抖动”可能会使得节点短时间内失去和ZooKeeper的心跳，从而发生节点的remove事件。对于这种情况，我们使用最简单的方式，那就是节点一旦和ZooKeeper发生超时连接，则直接将Master或Worker服务停掉。</p>
