@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/3-16/1.png',
+          title: '极速开发扩充 Apache DolphinScheduler Task 类型 | 实用教程',
+          content: '目前在大数据生态中，调度系统是不可或缺的一个重要组件..',
+          dateStr: '2022-4-14',
+          link: '/zh-cn/blog/Fast_Task_Type_Expanding_On_Apache_DolphinScheduler_Tutorial.html',
+        },
+        {
           img: '/img/2022-4-14/1.png',
           title: 'Apache DolphinScheduler ASF 孵化器毕业一周年，汇报来了！',
           content: '不知不觉，Apache DolphinScheduler 已经从 Apache 软件基金会（以下简称 ASF）孵化器毕业一年啦...',
@@ -67,20 +74,6 @@ export default {
           content: 'K8s 打通了主流公私云之间的壁垒，成为唯一连通公私云的基础架构平台...',
           dateStr: '2022-3-21',
           link: '/zh-cn/blog/K8s_Cisco_Hangzhou.html',
-        },
-        {
-          img: '/img/3-16/1.png',
-          title: '杭州思科对 Apache DolphinScheduler Alert 模块的改造',
-          content: '杭州思科已经将 Apache DolphinScheduler 引入公司自建的大数据平台..',
-          dateStr: '2022-3-7',
-          link: '/zh-cn/blog/Hangzhou_cisco.html',
-        },
-        {
-          img: '/img/2022-3-11/1.jpeg',
-          title: '日均处理 10000+ 工作流实例，Apache DolphinScheduler 在 360 数科的实践',
-          content: '从 2020 年起，360 数科全面将调度系统从 Azkaban 迁移到 Apache DolphinScheduler...',
-          dateStr: '2022-3-15',
-          link: '/zh-cn/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
         },
       ],
     },
@@ -554,6 +547,14 @@ export default {
       title: 'Events & News',
       list: [
         {
+
+          img: '/img/2022-03-29/En/1.png"',
+          title: 'Fast Task Type Expanding On Apache DolphinScheduler | Tutorial',
+          content: 'At present, the scheduler plays an indispensable role in big data ecology....',
+          dateStr: '2022-4-14',
+          link: '/en-us/blog/Fast_Task_Type_Expanding_On_Apache_DolphinScheduler_Tutorial.html',
+        },
+        {
           img: '/img/2022-4-14/3.png',
           title: 'First Anniversary Celebration of Apache DolphinScheduler\'s Graduation From ASF Incubator! Here Comes the Project Status Report!\n',
           content: 'Before you know it, Apache DolphinScheduler has graduated from the Apache Software Foundation ...',
@@ -567,21 +568,7 @@ export default {
           dateStr: '2022-3-10',
           link: '/en-us/blog/K8s_Cisco_Hangzhou.html',
         },
-        {
 
-          img: '/img/3-16/1.png',
-          title: 'Cisco Hangzhou\'s Travel Through Apache DolphinScheduler Alert Module Refactor',
-          content: 'Cisco Hangzhou has introduced Apache DolphinScheduler....',
-          dateStr: '2022-3-7',
-          link: '/en-us/blog/Hangzhou_cisco.html',
-        },
-        {
-          img: '/img/2022-3-11/1.jpeg',
-          title: 'How Does 360 DIGITECH process 10,000+ workflow instances per day by Apache DolphinScheduler',
-          content: 'ince 2020, 360 DIGITECH has fully migrated its scheduling system from Azkaban to Apache DolphinScheduler....',
-          dateStr: '2022-2-24',
-          link: '/en-us/blog/How_Does_360_DIGITECH_process_10_000+_workflow_instances_per_day.html',
-        },
       ],
     },
     userreview: {
