@@ -3,7 +3,6 @@
 <div align=center>
 
 <img src="/img/2022-4-14/1.png"/>
-
 </div>
 
 不知不觉，Apache DolphinScheduler 已经从 Apache 软件基金会（以下简称 ASF）孵化器毕业一年啦！
