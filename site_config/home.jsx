@@ -55,7 +55,7 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
-          img: 'img/2022-4-14/1.png',
+          img: '/img/2022-4-14/1.png',
           title: 'Apache DolphinScheduler ASF 孵化器毕业一周年，汇报来了！',
           content: '不知不觉，Apache DolphinScheduler 已经从 Apache 软件基金会（以下简称 ASF）孵化器毕业一年啦...',
           dateStr: '2022-4-14',
@@ -554,7 +554,7 @@ export default {
       title: 'Events & News',
       list: [
         {
-          img: 'img/2022-4-14/3.png',
+          img: '/img/2022-4-14/3.png',
           title: 'First Anniversary Celebration of Apache DolphinScheduler\'s Graduation From ASF Incubator! Here Comes the Project Status Report!\n',
           content: 'Before you know it, Apache DolphinScheduler has graduated from the Apache Software Foundation ...',
           dateStr: '2022-4-14',
