@@ -49,7 +49,7 @@ SPI 全称为 (Service Provider Interface) ，是 JDK 内置的一种服务提�
 
 * dubbo
 * common-logging
-## **4 Apache DolphinScheduler SPI Process?**![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
+## **4 Apache DolphinScheduler SPI Process?**
 
 
 <div align=center>
