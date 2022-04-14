@@ -79,6 +79,7 @@ Review Issues 是指在 GitHub 中参与 [Issues][all-issues] 的讨论，并在
 
 ### Pull Requests
 
+<!-- markdown-link-check-disable -->
 Review Pull 是指在 GitHub 中参与 [Pull Requests][all-PRs] 的讨论，并在对应的 Pull Requests 给出建议。DolphinScheduler review
 Pull Requests 与 [GitHub 的 reviewing changes in pull requests][gh-review-pr] 一样。你可以为 Pull Requests 提出自己的看法，
 
@@ -87,6 +88,7 @@ Pull Requests 与 [GitHub 的 reviewing changes in pull requests][gh-review-pr] 
 * 当你觉得这个 Pull Requests 需要被修改时，可以根据 [GitHub 的 reviewing changes in pull requests][gh-review-pr] 的 comment
   流程评论这个 Pull Requests。当你认为存在一定要先修复才能合并的问题，请参照 [GitHub 的 reviewing changes in pull requests][gh-review-pr]
   的 Request changes 流程要求贡献者修改 Pull Requests 的内容。
+<!-- markdown-link-check-enable -->
 
 为 Pull Requests 打上标签也是非常重要的一个环节，合理的分类能为后来的 reviewer 节省大量的时间。值得高兴的是，Pull Requests 的标签和 [Issues](#issues)
 中提及的标签和用法是一致的，这能减少 reviewer 对标签的记忆。例如这个 Pull Requests 是和 docker 并且直接影响到用户部署的，我们可以为他
