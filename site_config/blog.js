@@ -5,6 +5,14 @@ export default {
         list: [
             {
 
+                title: 'First Anniversary Celebration of Apache DolphinScheduler\'s Graduation From ASF Incubator! Here Comes the Project Status Report!',
+                author: 'Debra Chen',
+                dateStr: '2022-4-14',
+                desc: 'Before you know it, Apache DolphinScheduler.. ',
+                link: '/en-us/blog/Apache_DolphinScheduler_s_Graduation_From_ASF_Incubator.html',
+            },
+            {
+
                 title: 'Fully Embracing K8s, Cisco Hangzhou Seeks to Support K8s Tasks Based on ApacheDolphinScheduler',
                 author: 'Debra Chen',
                 dateStr: '2022-3-21',
@@ -175,6 +183,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: 'Apache DolphinScheduler ASF 孵化器毕业一周年，汇报来了！',
+                author: 'Debra Chen',
+                dateStr: '2022-3-21',
+                desc: '不知不觉，Apache DolphinScheduler 已经从......',
+                link: '/zh-cn/blog/Apache_DolphinScheduler_s_Graduation_From_ASF_Incubator.html',
+            },
             {
                 title: '全面拥抱 K8s，ApacheDolphinScheduler 应用与支持 K8s 任务的探索',
                 author: 'Debra Chen',

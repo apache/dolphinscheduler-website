@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: 'img/2022-4-14/1.png',
+          title: 'Apache DolphinScheduler ASF 孵化器毕业一周年，汇报来了！',
+          content: '不知不觉，Apache DolphinScheduler 已经从 Apache 软件基金会（以下简称 ASF）孵化器毕业一年啦...',
+          dateStr: '2022-4-14',
+          link: '/zh-cn/blog/Apache_DolphinScheduler_s_Graduation_From_ASF_Incubator.html',
+        },
+        {
           img: '/img/2022-03-21/1.png',
           title: '全面拥抱 K8s，ApacheDolphinScheduler 应用与支持 K8s 任务的探索',
           content: 'K8s 打通了主流公私云之间的壁垒，成为唯一连通公私云的基础架构平台...',
@@ -546,6 +553,13 @@ export default {
     events: {
       title: 'Events & News',
       list: [
+        {
+          img: 'img/2022-4-14/3.png',
+          title: 'First Anniversary Celebration of Apache DolphinScheduler\'s Graduation From ASF Incubator! Here Comes the Project Status Report!\n',
+          content: 'Before you know it, Apache DolphinScheduler has graduated from the Apache Software Foundation ...',
+          dateStr: '2022-4-14',
+          link: '/en-us/blog/Apache_DolphinScheduler_s_Graduation_From_ASF_Incubator.html',
+        },
         {
           img: '/img/2022-03-21/1.png',
           title: 'Fully Embracing K8s, Cisco Hangzhou Seeks to Support K8s Tasks Based on ApacheDolphinScheduler',
