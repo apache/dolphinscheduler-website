@@ -7,7 +7,7 @@ description: Before you know it, Apache DolphinScheduler has graduated from the 
 
 <div align=center>
 
-<img src="img/2022-4-14/3.png"/>
+<img src="/img/2022-4-14/3.png"/>
 
 </div>
 
@@ -47,7 +47,7 @@ dev@dolphinscheduler.apache.org Traffic increased by 64% compared to last quarte
 
 <div align=center>
 
-<img src="img/2022-4-14/2.png"/>
+<img src="/img/2022-4-14/2.png"/>
 
 </div>
 

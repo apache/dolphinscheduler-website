@@ -2,7 +2,7 @@
 
 <div align=center>
 
-<img src="img/2022-4-14/1.png"/>
+<img src="/img/2022-4-14/1.png"/>
 
 </div>
 
@@ -37,7 +37,7 @@
 * dev@dolphinscheduler.apache.org 流量较上季度增加了 64%
 <div align=center>
 
-<img src="img/2022-4-14/2.png"/>
+<img src="/img/2022-4-14/2.png"/>
 
 </div>
 
