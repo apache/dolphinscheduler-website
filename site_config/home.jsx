@@ -547,7 +547,6 @@ export default {
       title: 'Events & News',
       list: [
         {
-
           img: '/img/2022-03-29/En/1.png',
           title: 'Fast Task Type Expanding On Apache DolphinScheduler | Tutorial',
           content: 'At present, the scheduler plays an indispensable role in big data ecology....',
