@@ -18,10 +18,13 @@
 <p>DolphinScheduler 支持两种类型的内置主题，包括 <code>Dark</code> 和 <code>Light</code>。当您想改变主题时，只需单击顶部控制栏在 <a href="#%E8%AF%AD%E8%A8%80">语言</a> 左侧名为 <code>Dark</code>(or <code>Light</code>)
 的按钮即可。</p>
 <h2>时区</h2>
-<p>DolphinScheduler 支持时区设置。默认时区基于您运行 DolphinScheduler 服务器的时区。如果你想要切换时区，可以点击 <a href="#%E8%AF%AD%E8%A8%80">语言</a> 按钮右侧的时区按钮，
+<p>DolphinScheduler 支持时区设置。</p>
+<p>服务时区</p>
+<p>使用脚本 <code>bin/dolphinshceduler_daemon.sh</code>启动服务， 服务的默认时区为UTC， 可以在<code>bin/env/dolphinscheduler_env.sh</code>中进行修改， 如<code>export SPRING_JACKSON_TIME_ZONE=${SPRING_JACKSON_TIME_ZONE:-Asia/Shanghai}</code>。<br>
+IDEA 启动服务默认时区为本地时区，可以加jvm参数如<code>-Duser.timezone=UTC</code>来修改时区。 时区选择详见<a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">List of tz database time zones</a></p>
+<p>用户时区</p>
+<p>用户的默认时区基于您运行 DolphinScheduler 服务的时区。如果你想要切换时区，可以点击 <a href="#%E8%AF%AD%E8%A8%80">语言</a> 按钮右侧的时区按钮，
 然后点击 <code>请选择时区</code> 进行时区选择。当切换完成后，所有与时间相关的组件都将更改。</p>
-<p>DolphinScheduler 内部通讯，以及任务主流程中使用 UTC 时间，在界面上显示的时间均是在 UTC 时间基础上进行时区格式化的，意味着当你切换了时区后，
-只是将格式化的时间从一个时区切换到另一个时区。</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="/zh-cn/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/development-environment-setup.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
