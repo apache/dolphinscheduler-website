@@ -21,7 +21,7 @@ set -euo pipefail
 
 SOURCE_PATH="$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")" )" && pwd)"
 
-source "${SOURCE_PATH}/scripts/release.conf.sh"
+source "${SOURCE_PATH}/scripts/conf.sh"
 
 # Choose the protocol for git communication to server, default is HTTP because it do not requests password or secret key,
 # run command `export PROTOCOL_MODE=ssh` in terminal change protocol to SSH which in is faster and stable in many cases,

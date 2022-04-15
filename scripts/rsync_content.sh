@@ -21,7 +21,7 @@ set -euo pipefail
 
 SOURCE_PATH="$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")" )" && pwd)"
 
-source "${SOURCE_PATH}/scripts/release.conf.sh"
+source "${SOURCE_PATH}/scripts/conf.sh"
 
 ##############################################################
 #
