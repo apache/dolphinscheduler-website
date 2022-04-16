@@ -6,6 +6,7 @@
   <title>pydolphinscheduler.tasks.python &mdash; pydolphinscheduler 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -14,6 +15,7 @@
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/tabs.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -39,7 +41,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../concept.html">Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tasks/index.html">Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../howto/index.html">How To</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../howto/index.html">HOWTOs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command Line Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../config.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
@@ -90,36 +92,87 @@
 <span class="sd">&quot;&quot;&quot;Task Python.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">types</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span>
 
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="Python"><a class="viewcode-back" href="../../../tasks/python.html#pydolphinscheduler.tasks.Python">[docs]</a><span class="k">class</span> <span class="nc">Python</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task Python object, declare behavior for Python task to dolphinscheduler.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Task Python object, declare behavior for Python task to dolphinscheduler.</span>
+
+<span class="sd">    Python task support two types of parameters for :param:``code``, and here is an example:</span>
+
+<span class="sd">    Using str type of :param:``code``</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        python_task = Python(name=&quot;str_type&quot;, code=&quot;print(&#39;Hello Python task.&#39;)&quot;)</span>
+
+<span class="sd">    Or using Python callable type of :param:``code``</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        def foo():</span>
+<span class="sd">            print(&quot;Hello Python task.&quot;)</span>
+
+<span class="sd">        python_task = Python(name=&quot;str_type&quot;, code=foo)</span>
+
+<span class="sd">    :param name: The name for Python task. It define the task name.</span>
+<span class="sd">    :param definition: String format of Python script you want to execute or Python callable you</span>
+<span class="sd">        want to execute.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;raw_script&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">definition</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">PYTHON</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_code</span> <span class="o">=</span> <span class="n">code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">definition</span> <span class="o">=</span> <span class="n">definition</span>
+
+<div class="viewcode-block" id="Python._build_exe_str"><a class="viewcode-back" href="../../../tasks/python.html#pydolphinscheduler.tasks.Python._build_exe_str">[docs]</a>    <span class="k">def</span> <span class="nf">_build_exe_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Build executable string from given definition.</span>
+
+<span class="sd">        Attribute ``self.definition`` almost is a function, we need to call this function after parsing it</span>
+<span class="sd">        to string. The easier way to call a function is using syntax ``func()`` and we use it to call it too.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">):</span>
+            <span class="n">py_function</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">)</span>
+            <span class="n">func_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">py_function</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">()&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s2">&quot;^def (</span><span class="se">\\</span><span class="s2">w+)</span><span class="se">\\</span><span class="s2">(&quot;</span><span class="p">)</span>
+            <span class="n">find</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">find</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;Python definition is simple script instead of function, with value </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">definition</span>
+            <span class="c1"># Keep function str and function callable always have one blank line</span>
+            <span class="n">func_str</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="si">}{</span><span class="n">find</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">()&quot;</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">find</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">()&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">func_str</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">raw_script</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Get python task define attribute `raw_script`.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_code</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_code</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">):</span>
-            <span class="n">py_function</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_code</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">py_function</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_exe_str</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
-                <span class="s2">&quot;Parameter code do not support </span><span class="si">% f</span><span class="s2">or now.&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_code</span><span class="p">)</span>
+                <span class="s2">&quot;Parameter definition do not support </span><span class="si">% f</span><span class="s2">or now.&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">)</span>
             <span class="p">)</span></div>
 </pre></div>
 

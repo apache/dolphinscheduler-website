@@ -7,6 +7,7 @@
   <title>Python &mdash; pydolphinscheduler 0.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -15,6 +16,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/tabs.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -42,6 +44,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="func_wrap.html">Python Function Wrapper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Python</a></li>
@@ -57,7 +60,7 @@
 <li class="toctree-l2"><a class="reference internal" href="sub_process.html">Sub Process</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">How To</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">HOWTOs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cli.html">Command Line Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../config.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
@@ -93,9 +96,38 @@
 <p>Task Python.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.python.Python">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.python.</span></span><span class="sig-name descname"><span class="pre">Python</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/python.html#Python"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.python.Python" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.python.</span></span><span class="sig-name descname"><span class="pre">Python</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/python.html#Python"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.python.Python" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.task.Task</span></code></a></p>
 <p>Task Python object, declare behavior for Python task to dolphinscheduler.</p>
+<p>Python task support two types of parameters for :param:<code class="docutils literal notranslate"><span class="pre">code</span></code>, and here is an example:</p>
+<p>Using str type of :param:<code class="docutils literal notranslate"><span class="pre">code</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python_task</span> <span class="o">=</span> <span class="n">Python</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;str_type&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;print(&#39;Hello Python task.&#39;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or using Python callable type of :param:<code class="docutils literal notranslate"><span class="pre">code</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello Python task.&quot;</span><span class="p">)</span>
+
+<span class="n">python_task</span> <span class="o">=</span> <span class="n">Python</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;str_type&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – The name for Python task. It define the task name.</p></li>
+<li><p><strong>definition</strong> – String format of Python script you want to execute or Python callable you
+want to execute.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.python.Python._build_exe_str">
+<span class="sig-name descname"><span class="pre">_build_exe_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/python.html#Python._build_exe_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.python.Python._build_exe_str" title="Permalink to this definition"></a></dt>
+<dd><p>Build executable string from given definition.</p>
+<p>Attribute <code class="docutils literal notranslate"><span class="pre">self.definition</span></code> almost is a function, we need to call this function after parsing it
+to string. The easier way to call a function is using syntax <code class="docutils literal notranslate"><span class="pre">func()</span></code> and we use it to call it too.</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.python.Python._downstream_task_codes">
 <span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.python.Python._downstream_task_codes" title="Permalink to this definition"></a></dt>

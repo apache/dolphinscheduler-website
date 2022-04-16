@@ -7,6 +7,7 @@
   <title>Configuration &mdash; pydolphinscheduler 0.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -15,6 +16,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/tabs.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -42,12 +44,22 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="concept.html">Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="howto/index.html">How To</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">HOWTOs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#export-configuration-file">Export Configuration File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#change-configuration">Change Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#all-configurations">All Configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-environment-variables">Using Environment Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#by-bash">By Bash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#by-python-os-module">By Python OS Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#all-configurations-in-environment-variables">All Configurations in Environment Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-configuration-file">Using Configuration File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#export-configuration-file">Export Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-configuration">Change Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#all-configurations-in-file">All Configurations in File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#priority">Priority</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
@@ -79,28 +91,152 @@
              
   <section id="configuration">
 <h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h1>
+<p>pydolphinscheduler has a built-in module setting necessary configuration to start and run your workflow code.
+You could directly use them if you only want to run a quick start or for a simple job like POC. But if you
+want to deep use pydolphinscheduler and even use it in production. You should probably need to modify and
+change the built-in configuration.</p>
+<p>We have two ways to modify the configuration:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-environment-variables">Using Environment Variables</a>: The more lightweight way to modify the configuration. it is useful in
+containerization scenarios, like docker and k8s, or when you like to temporarily override configs in the
+configuration file.</p></li>
+<li><p><a class="reference internal" href="#using-configuration-file">Using Configuration File</a>: The more general way to modify the configuration. It is useful when you want
+to persist and manage configuration files in one single file.</p></li>
+</ul>
+<section id="using-environment-variables">
+<h2>Using Environment Variables<a class="headerlink" href="#using-environment-variables" title="Permalink to this headline"></a></h2>
+<p>You could change the configuration by adding or modifying the operating system’s environment variables. No
+matter what way you used, as long as you can successfully modify the environment variables. We use two common
+ways, <a class="reference external" href="bybash">Bash</a> and <a class="reference external" href="bypythonosmodule">Python OS Module</a>, as examples:</p>
+<section id="by-bash">
+<h3>By Bash<a class="headerlink" href="#by-bash" title="Permalink to this headline"></a></h3>
+<p>Setting environment variables via <cite>Bash</cite> is the most straightforward and easiest way. We give some examples about
+how to change them by Bash.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modify Java Gateway Address</span>
+$ <span class="nb">export</span> <span class="nv">PYDS_JAVA_GATEWAY_ADDRESS</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span>
+
+<span class="c1"># Modify Workflow Default User</span>
+$ <span class="nb">export</span> <span class="nv">PYDS_WORKFLOW_USER</span><span class="o">=</span><span class="s2">&quot;custom-user&quot;</span>
+</pre></div>
+</div>
+<p>After executing the commands above, both <code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_ADDRESS</span></code> and <code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_USER</span></code> will be changed.
+The next time you execute and submit your workflow, it will submit to host <cite>192.168.1.1</cite>, and with workflow’s user
+named <cite>custom-user</cite>.</p>
+</section>
+<section id="by-python-os-module">
+<h3>By Python OS Module<a class="headerlink" href="#by-python-os-module" title="Permalink to this headline"></a></h3>
+<p>pydolphinscheduler is a Python API for Apache DolphinScheduler, and you could modify or add system environment
+variables via Python <code class="docutils literal notranslate"><span class="pre">os</span></code> module. In this example, we change variables as the same value as we change in
+<a class="reference external" href="bybash">Bash</a>. It will take effect the next time you run your workflow, and call workflow <code class="docutils literal notranslate"><span class="pre">run</span></code> or <code class="docutils literal notranslate"><span class="pre">submit</span></code>
+method next to <code class="docutils literal notranslate"><span class="pre">os.environ</span></code> statement.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="c1"># Modify Java Gateway Address</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYDS_JAVA_GATEWAY_ADDRESS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;192.168.1.1&quot;</span>
+
+<span class="c1"># Modify Workflow Default User</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYDS_WORKFLOW_USER&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;custom-user&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="all-configurations-in-environment-variables">
+<h3>All Configurations in Environment Variables<a class="headerlink" href="#all-configurations-in-environment-variables" title="Permalink to this headline"></a></h3>
+<p>All environment variables as below, and you could modify their value via <a class="reference external" href="bybash">Bash</a> or <a class="reference external" href="bypythonosmodule">Python OS Module</a></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 21%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable Section</p></th>
+<th class="head"><p>Variable Name</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="3"><p>Java Gateway</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_ADDRESS</span></code></p></td>
+<td><p>Default Java gateway address, will use its value when it is set.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_PORT</span></code></p></td>
+<td><p>Default Java gateway port, will use its value when it is set.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_AUTO_CONVERT</span></code></p></td>
+<td><p>Default boolean Java gateway auto convert, will use its value when it is set.</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="5"><p>Default User</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_NAME</span></code></p></td>
+<td><p>Default user name, will use when user’s <code class="docutils literal notranslate"><span class="pre">name</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_PASSWORD</span></code></p></td>
+<td><p>Default user password, will use when user’s <code class="docutils literal notranslate"><span class="pre">password</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_EMAIL</span></code></p></td>
+<td><p>Default user email, will use when user’s <code class="docutils literal notranslate"><span class="pre">email</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_PHONE</span></code></p></td>
+<td><p>Default user phone, will use when user’s <code class="docutils literal notranslate"><span class="pre">phone</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_STATE</span></code></p></td>
+<td><p>Default user state, will use when user’s <code class="docutils literal notranslate"><span class="pre">state</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-even"><td rowspan="6"><p>Default Workflow</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_PROJECT</span></code></p></td>
+<td><p>Default workflow project name, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">project</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_TENANT</span></code></p></td>
+<td><p>Default workflow tenant, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">tenant</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_USER</span></code></p></td>
+<td><p>Default workflow user, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">user</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_QUEUE</span></code></p></td>
+<td><p>Default workflow queue, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">queue</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_WORKER_GROUP</span></code></p></td>
+<td><p>Default workflow worker group, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">worker_group</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_TIME_ZONE</span></code></p></td>
+<td><p>Default workflow worker group, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">timezone</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The scope of setting configuration via environment variable is in the workflow, and it will not change the
+value of the configuration file. The <a class="reference internal" href="cli.html"><span class="doc">CLI</span></a> command <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span></code> and <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">--set</span></code> operate
+the value of the configuration file, so the command <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span></code> may return a different value from what
+you set in the environment variable, and command <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span></code> will never change your environment variable.</p>
+</div>
+</section>
+</section>
+<section id="using-configuration-file">
+<h2>Using Configuration File<a class="headerlink" href="#using-configuration-file" title="Permalink to this headline"></a></h2>
+<p>If you want to persist and manage configuration in a file instead of environment variables, or maybe you want
+want to save your configuration file to a version control system, like Git or SVN, and the way to change
+configuration by file is the best choice.</p>
 <section id="export-configuration-file">
-<h2>Export Configuration File<a class="headerlink" href="#export-configuration-file" title="Permalink to this headline"></a></h2>
+<h3>Export Configuration File<a class="headerlink" href="#export-configuration-file" title="Permalink to this headline"></a></h3>
 <p>pydolphinscheduler allows you to change the built-in configurations via CLI or editor you like. pydolphinscheduler
 integrated built-in configurations in its package, but you could also export it locally by CLI</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pydolphinscheduler config --init
 </pre></div>
 </div>
 <p>And it will create a new YAML file in the path <cite>~/pydolphinscheduler/config.yaml</cite> by default. If you want to export
-it to another path, you should set <cite>PYDOLPHINSCHEDULER_HOME</cite> before you run command <code class="code docutils literal notranslate"><span class="pre">pydolphinscheduler</span> <span class="pre">config</span> <span class="pre">--init</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PYDOLPHINSCHEDULER_HOME</span><span class="o">=</span>&lt;CUSTOM_PATH&gt;
+it to another path, you should set <cite>PYDS_HOME</cite> before you run command <code class="code docutils literal notranslate"><span class="pre">pydolphinscheduler</span> <span class="pre">config</span> <span class="pre">--init</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PYDS_HOME</span><span class="o">=</span>&lt;CUSTOM_PATH&gt;
 $ pydolphinscheduler config --init
 </pre></div>
 </div>
 <p>After that, your configuration file will export into <cite>&lt;CUSTOM_PATH&gt;/config.yaml</cite> instead of the default path.</p>
 </section>
 <section id="change-configuration">
-<h2>Change Configuration<a class="headerlink" href="#change-configuration" title="Permalink to this headline"></a></h2>
+<h3>Change Configuration<a class="headerlink" href="#change-configuration" title="Permalink to this headline"></a></h3>
 <p>In section <a class="reference internal" href="#export-configuration-file">export configuration file</a> you export the configuration file locally, and as a local file, you could
 edit it with any editor you like. After you save your change in your editor, the latest configuration will work
 when you run your workflow code.</p>
 <p>You could also query or change the configuration via CLI <code class="code docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span> <span class="pre">&lt;config&gt;</span></code> or <code class="code docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span> <span class="pre">&lt;config&gt;</span> <span class="pre">&lt;val&gt;</span></code>.
-Both <cite>–get</cite> and <cite>–set</cite> could be call one or more times in single command, and you could only set the leaf
+Both <cite>–get</cite> and <cite>–set</cite> could be called one or more times in single command, and you could only set the leaf
 node of the configuration but could get the parent configuration, there are simple examples below:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get single configuration in the leaf node</span>
 $ pydolphinscheduler config --get java_gateway.address
@@ -136,8 +272,8 @@ Raise error.
 </div>
 <p>For more information about our CLI, you could see document <a class="reference internal" href="cli.html"><span class="doc">Command Line Interface</span></a>.</p>
 </section>
-<section id="all-configurations">
-<h2>All Configurations<a class="headerlink" href="#all-configurations" title="Permalink to this headline"></a></h2>
+<section id="all-configurations-in-file">
+<h3>All Configurations in File<a class="headerlink" href="#all-configurations-in-file" title="Permalink to this headline"></a></h3>
 <p>Here are all our configurations for pydolphinscheduler.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting about Java gateway server</span><span class="w"></span>
 <span class="nt">java_gateway</span><span class="p">:</span><span class="w"></span>
@@ -175,6 +311,17 @@ Raise error.
 <span class="w">    </span><span class="nt">time_zone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Asia/Shanghai</span><span class="w"></span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="priority">
+<h2>Priority<a class="headerlink" href="#priority" title="Permalink to this headline"></a></h2>
+<p>We have two ways to modify the configuration and there is a built-in config in pydolphinscheduler too. It is
+very important to understand the priority of the configuration when you use them. The overview of configuration
+priority is.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Environment</span> <span class="pre">Variables</span> <span class="pre">&gt;</span> <span class="pre">Configurations</span> <span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Built-in</span> <span class="pre">Configurations</span></code></p>
+<p>This means that your setting in environment variables or configurations file will overwrite the built-in one.
+And you could temporarily modify configurations by setting environment variables without modifying the global
+config in the configuration file.</p>
 </section>
 </section>
 

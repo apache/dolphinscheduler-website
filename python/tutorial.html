@@ -7,6 +7,7 @@
   <title>Tutorial &mdash; pydolphinscheduler 0.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -15,6 +16,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/tabs.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -51,7 +53,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="concept.html">Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="howto/index.html">How To</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">HOWTOs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
@@ -83,14 +85,25 @@
              
   <section id="tutorial">
 <h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline"></a></h1>
-<p>This tutorial show you the basic concept of <em>PyDolphinScheduler</em> and tell all
+<p>This tutorial shows you the basic concept of <em>PyDolphinScheduler</em> and tells all
 things you should know before you submit or run your first workflow. If you
-still not install <em>PyDolphinScheduler</em> and start Apache DolphinScheduler, you
-could go and see <a class="reference internal" href="start.html#getting-started"><span class="std std-ref">how to getting start PyDolphinScheduler</span></a></p>
+still have not installed <em>PyDolphinScheduler</em> and start DolphinScheduler, you
+could go and see <a class="reference internal" href="start.html#getting-started"><span class="std std-ref">how to getting start PyDolphinScheduler</span></a> firstly.</p>
 <section id="overview-of-tutorial">
 <h2>Overview of Tutorial<a class="headerlink" href="#overview-of-tutorial" title="Permalink to this headline"></a></h2>
-<p>Here have an overview of our tutorial, and it look a little complex but do not
-worry about that because we explain this example below as detailed as possible.</p>
+<p>Here have an overview of our tutorial, and it looks a little complex but does not
+worry about that because we explain this example below as detail as possible.</p>
+<p>There are two types of tutorials: traditional and task decorator.</p>
+<ul class="simple">
+<li><p><strong>Traditional Way</strong>: More general, support many <a class="reference internal" href="tasks/index.html"><span class="doc">built-in task types</span></a>, it is convenient
+when you build your workflow at the beginning.</p></li>
+<li><p><strong>Task Decorator</strong>: A Python decorator allow you to wrap your function into pydolphinscheduler’s task. Less
+versatility to the traditional way because it only supported Python functions and without build-in tasks
+supported. But it is helpful if your workflow is all built with Python or if you already have some Python
+workflow code and want to migrate them to pydolphinscheduler.</p></li>
+</ul>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Tradition</label><div class="tab-content docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># [start package_import]</span>
 <span class="c1"># Import ProcessDefinition object to define your workflow attributes</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
@@ -127,13 +140,75 @@ worry about that because we explain this example below as detailed as possible.<
     <span class="c1"># [end submit_or_run]</span>
 </pre></div>
 </div>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># [start package_import]</span>
+<span class="c1"># Import ProcessDefinition object to define your workflow attributes</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
+
+<span class="c1"># Import task Shell object cause we would create some shell tasks later</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.func_wrap</span> <span class="kn">import</span> <span class="n">task</span>
+
+<span class="c1"># [end package_import]</span>
+
+
+<span class="c1"># [start task_declare]</span>
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">task_parent</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">task_child_one</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">task_child_two</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">task_union</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Last task in this workflow.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># [end task_declare]</span>
+
+
+<span class="c1"># [start workflow_declare]</span>
+<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_decorator&quot;</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+    <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+    <span class="c1"># [end workflow_declare]</span>
+
+    <span class="c1"># [start task_relation_declare]</span>
+    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">(),</span> <span class="n">task_child_two</span><span class="p">()]</span>
+    <span class="n">task_parent</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+
+    <span class="n">task_union</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+    <span class="c1"># [end task_relation_declare]</span>
+
+    <span class="c1"># [start submit_or_run]</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="c1"># [end submit_or_run]</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="import-necessary-module">
 <h2>Import Necessary Module<a class="headerlink" href="#import-necessary-module" title="Permalink to this headline"></a></h2>
-<p>First of all, we should importing necessary module which we would use later just
-like other Python package. We just create a minimum demo here, so we just import
-<code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.process_definition</span></code> and
-<a class="reference internal" href="tasks/shell.html#module-pydolphinscheduler.tasks.shell" title="pydolphinscheduler.tasks.shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.shell</span></code></a>.</p>
+<p>First of all, we should import the necessary module which we would use later just like other Python packages.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Tradition</label><div class="tab-content docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import ProcessDefinition object to define your workflow attributes</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
 
@@ -142,19 +217,35 @@ like other Python package. We just create a minimum demo here, so we just import
 
 </pre></div>
 </div>
-<p>If you want to use other task type you could click and
-<a class="reference internal" href="tasks/index.html"><span class="doc">see all tasks we support</span></a></p>
+<p>In tradition tutorial we import <a class="reference internal" href="api.html#pydolphinscheduler.core.ProcessDefinition" title="pydolphinscheduler.core.process_definition.ProcessDefinition"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.process_definition.ProcessDefinition</span></code></a> and
+<a class="reference internal" href="tasks/shell.html#pydolphinscheduler.tasks.shell.Shell" title="pydolphinscheduler.tasks.shell.Shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.shell.Shell</span></code></a>.</p>
+<p>If you want to use other task type you could click and <a class="reference internal" href="tasks/index.html"><span class="doc">see all tasks we support</span></a></p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import ProcessDefinition object to define your workflow attributes</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
+
+<span class="c1"># Import task Shell object cause we would create some shell tasks later</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.func_wrap</span> <span class="kn">import</span> <span class="n">task</span>
+
+</pre></div>
+</div>
+<p>In task decorator tutorial we import <a class="reference internal" href="api.html#pydolphinscheduler.core.ProcessDefinition" title="pydolphinscheduler.core.process_definition.ProcessDefinition"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.process_definition.ProcessDefinition</span></code></a> and
+<a class="reference internal" href="tasks/func_wrap.html#pydolphinscheduler.tasks.func_wrap.task" title="pydolphinscheduler.tasks.func_wrap.task"><code class="xref py py-func docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.func_wrap.task()</span></code></a>.</p>
+</div>
+</div>
 </section>
 <section id="process-definition-declaration">
 <h2>Process Definition Declaration<a class="headerlink" href="#process-definition-declaration" title="Permalink to this headline"></a></h2>
-<p>We should instantiate object after we import them from <a class="reference internal" href="#import-necessary-module">import necessary module</a>.
-Here we declare basic arguments for process definition(aka, workflow). We define
-the name of process definition, using <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#context-manager-types">Python context manager</a> and it
-<strong>the only required argument</strong> for object process definition. Beside that we also
-declare three arguments named <cite>schedule</cite>, <cite>start_time</cite> which setting workflow schedule
-interval and schedule start_time, and argument <cite>tenant</cite> which changing workflow’s
-task running user in the worker, <a class="reference internal" href="concept.html#tenant"><span class="std std-ref">section tenant</span></a> in <em>PyDolphinScheduler</em>
-<a class="reference internal" href="concept.html"><span class="doc">Concepts</span></a> page have more detail information.</p>
+<p>We should instantiate <a class="reference internal" href="api.html#pydolphinscheduler.core.ProcessDefinition" title="pydolphinscheduler.core.process_definition.ProcessDefinition"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.process_definition.ProcessDefinition</span></code></a> object after we
+import them from <a class="reference internal" href="#import-necessary-module">import necessary module</a>. Here we declare basic arguments for process definition(aka, workflow).
+We define the name of <code class="code docutils literal notranslate"><span class="pre">ProcessDefinition</span></code>, using <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#context-manager-types">Python context manager</a> and it <strong>the only required argument</strong>
+for <cite>ProcessDefinition</cite>. Besides, we also declare three arguments named <code class="code docutils literal notranslate"><span class="pre">schedule</span></code> and <code class="code docutils literal notranslate"><span class="pre">start_time</span></code>
+which setting workflow schedule interval and schedule start_time, and argument <code class="code docutils literal notranslate"><span class="pre">tenant</span></code> defines which tenant
+will be running this task in the DolphinScheduler worker. See <a class="reference internal" href="concept.html#tenant"><span class="std std-ref">section tenant</span></a> in
+<em>PyDolphinScheduler</em> <a class="reference internal" href="concept.html"><span class="doc">Concepts</span></a> for more information.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Tradition</label><div class="tab-content docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial&quot;</span><span class="p">,</span>
     <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
@@ -163,73 +254,143 @@ task running user in the worker, <a class="reference internal" href="concept.htm
 <span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
 </pre></div>
 </div>
-<p>We could find more detail about process definition in
-<a class="reference internal" href="concept.html#process-definition"><span class="std std-ref">concept about process definition</span></a> if you interested in it.
-For all arguments of object process definition, you could find in the
-<code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.process_definition</span></code> api documentation.</p>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_decorator&quot;</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+    <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could find more detail about <code class="code docutils literal notranslate"><span class="pre">ProcessDefinition</span></code> in <a class="reference internal" href="concept.html#process-definition"><span class="std std-ref">concept about process definition</span></a>
+if you are interested in it. For all arguments of object process definition, you could find in the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.process_definition</span></code> API documentation.</p>
 </section>
 <section id="task-declaration">
 <h2>Task Declaration<a class="headerlink" href="#task-declaration" title="Permalink to this headline"></a></h2>
-<p>Here we declare four tasks, and bot of them are simple task of
-<a class="reference internal" href="tasks/shell.html#module-pydolphinscheduler.tasks.shell" title="pydolphinscheduler.tasks.shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.shell</span></code></a> which running <cite>echo</cite> command in terminal.
-Beside the argument <cite>command</cite>, we also need setting argument <cite>name</cite> for each task <em>(not
-only shell task, `name` is required for each type of task)</em>.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">Tradition</label><div class="tab-content docutils container">
+<p>We declare four tasks to show how to create tasks, and both of them are simple tasks of
+<a class="reference internal" href="tasks/shell.html#module-pydolphinscheduler.tasks.shell" title="pydolphinscheduler.tasks.shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.shell</span></code></a> which runs <cite>echo</cite> command in the terminal. Besides the argument
+<cite>command</cite> with <code class="code docutils literal notranslate"><span class="pre">echo</span></code> command, we also need to set the argument <cite>name</cite> for each task
+<em>(not only shell task, `name` is required for each type of task)</em>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
     <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
     <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
     <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Beside shell task, <em>PyDolphinScheduler</em> support multiple tasks and you could
-find in <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
+<p>Besides shell task, <em>PyDolphinScheduler</em> supports multiple tasks and you could find in <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">Task Decorator</label><div class="tab-content docutils container">
+<p>We declare four tasks to show how to create tasks, and both of them are created by the task decorator which
+using <a class="reference internal" href="tasks/func_wrap.html#pydolphinscheduler.tasks.func_wrap.task" title="pydolphinscheduler.tasks.func_wrap.task"><code class="xref py py-func docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.func_wrap.task()</span></code></a>. All we have to do is add a decorator named
+<code class="code docutils literal notranslate"><span class="pre">&#64;task</span></code> to existing Python function, and then use them inside <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.process_definition</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">task_parent</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">task_child_one</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">task_child_two</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">task_union</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Last task in this workflow.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+<p>It makes our workflow more Pythonic, but be careful that when we use task decorator mode mean we only use
+Python function as a task and could not use the <a class="reference internal" href="tasks/index.html"><span class="doc">built-in tasks</span></a> most of the cases.</p>
+</div>
+</div>
 </section>
 <section id="setting-task-dependence">
 <h2>Setting Task Dependence<a class="headerlink" href="#setting-task-dependence" title="Permalink to this headline"></a></h2>
-<p>After we declare both process definition and task, we have one workflow with
-four tasks, both all tasks is independent so that they would run in parallel.
-We should reorder the sort and the dependence of tasks. It useful when we need
-run prepare task before we run actual task or we need tasks running is specific
-rule. We both support attribute <cite>set_downstream</cite> and <cite>set_upstream</cite>, or bitwise
-operators <cite>&gt;&gt;</cite> and <cite>&lt;&lt;</cite>.</p>
-<p>In this example, we set task <cite>task_parent</cite> is the upstream task of task
-<cite>task_child_one</cite> and <cite>task_child_two</cite>, and task <cite>task_union</cite> is the downstream
-task of both these two task.</p>
+<p>After we declare both process definition and task, we have four tasks that are independent and will be running
+in parallel. If you want to start one task until some task is finished, you have to set dependence on those
+tasks.</p>
+<p>Set task dependence is quite easy by task’s attribute <code class="code docutils literal notranslate"><span class="pre">set_downstream</span></code> and <code class="code docutils literal notranslate"><span class="pre">set_upstream</span></code> or by
+bitwise operators <code class="code docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> and <code class="code docutils literal notranslate"><span class="pre">&lt;&lt;</span></code></p>
+<p>In this tutorial, task <cite>task_parent</cite> is the leading task of the whole workflow, then task <cite>task_child_one</cite> and
+task <cite>task_child_two</cite> are its downstream tasks. Task <cite>task_union</cite> will not run unless both task <cite>task_child_one</cite>
+and task <cite>task_child_two</cite> was done, because both two task is <cite>task_union</cite>’s upstream.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">Tradition</label><div class="tab-content docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">,</span> <span class="n">task_child_two</span><span class="p">]</span>
     <span class="n">task_parent</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
 
     <span class="n">task_union</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
 </pre></div>
 </div>
-<p>Please notice that we could grouping some tasks and set dependence if they have
-same downstream or upstream. We declare task <cite>task_child_one</cite> and <cite>task_child_two</cite>
-as a group here, named as <cite>task_group</cite> and set task <cite>task_parent</cite> as upstream of
-both of them. You could see more detail in <a class="reference internal" href="concept.html#tasks-dependence"><span class="std std-ref">Tasks Dependence</span></a> section in concept
-documentation.</p>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">(),</span> <span class="n">task_child_two</span><span class="p">()]</span>
+    <span class="n">task_parent</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+
+    <span class="n">task_union</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We could set task dependence in batch mode if they have the same downstream or upstream by declaring those
+tasks as task groups. In tutorial, We declare task <cite>task_child_one</cite> and <cite>task_child_two</cite> as task group named
+<cite>task_group</cite>, then set <cite>task_group</cite> as downstream of task <cite>task_parent</cite>. You could see more detail in
+<a class="reference internal" href="concept.html#tasks-dependence"><span class="std std-ref">Tasks Dependence</span></a> for more detail about how to set task dependence.</p>
+</div>
 </section>
 <section id="submit-or-run-workflow">
 <h2>Submit Or Run Workflow<a class="headerlink" href="#submit-or-run-workflow" title="Permalink to this headline"></a></h2>
-<p>Now we finish our workflow definition, with task and task dependence, but all
-these things are in local, we should let Apache DolphinScheduler daemon know what we
-define our workflow. So the last thing we have to do here is submit our workflow to
-Apache DolphinScheduler daemon.</p>
-<p>We here in the example using <cite>ProcessDefinition</cite> attribute <cite>run</cite> to submit workflow
-to the daemon, and set the schedule time we just declare in <a class="reference internal" href="#process-definition-declaration">process definition declaration</a>.</p>
-<p>Now, we could run the Python code like other Python script, for the basic usage run
-<code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">tutorial.py</span></code> to trigger and run it.</p>
+<p>After that, we finish our workflow definition, with four tasks and task dependence, but all these things are
+local, we should let the DolphinScheduler daemon know how the definition of workflow. So the last thing we
+have to do is submit the workflow to the DolphinScheduler daemon.</p>
+<p>Fortunately, we have a convenient method to submit workflow via <cite>ProcessDefinition</cite> attribute <code class="code docutils literal notranslate"><span class="pre">run</span></code> which
+will create workflow definition as well as workflow schedule.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">Tradition</label><div class="tab-content docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>If you not start your Apache DolphinScheduler server, you could find the way in
-<a class="reference internal" href="start.html#start-python-gateway-service"><span class="std std-ref">Start Python Gateway Service</span></a> and it would have more detail about related server
-start. Beside attribute <cite>run</cite>, we have attribute <cite>submit</cite> for object <cite>ProcessDefinition</cite>
-and it just submit workflow to the daemon but not setting the schedule information. For
-more detail you could see <a class="reference internal" href="concept.html#process-definition"><span class="std std-ref">Process Definition</span></a>.</p>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At last, we could execute this workflow code in your terminal like other Python scripts, running
+<code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">tutorial.py</span></code> to trigger and execute it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you do not start your DolphinScheduler API server, you could find how to start it in
+<a class="reference internal" href="start.html#start-python-gateway-service"><span class="std std-ref">Start Python Gateway Service</span></a> for more detail. Besides attribute <code class="code docutils literal notranslate"><span class="pre">run</span></code>, we have attribute
+<code class="code docutils literal notranslate"><span class="pre">submit</span></code> for object <cite>ProcessDefinition</cite> which just submits workflow to the daemon but does not set
+the workflow schedule information. For more detail, you could see <a class="reference internal" href="concept.html#process-definition"><span class="std std-ref">Process Definition</span></a>.</p>
+</div>
 </section>
 <section id="dag-graph-after-tutorial-run">
 <h2>DAG Graph After Tutorial Run<a class="headerlink" href="#dag-graph-after-tutorial-run" title="Permalink to this headline"></a></h2>
-<p>After we run the tutorial code, you could login Apache DolphinScheduler web UI,
-go and see the <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/project.html">DolphinScheduler project page</a>. they is a new process definition be
-created and named “Tutorial”. It create by <em>PyDolphinScheduler</em> and the DAG graph as below</p>
+<p>After we run the tutorial code, you could log in DolphinScheduler web UI, go and see the
+<a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/project.html">DolphinScheduler project page</a>. They is a new process definition be created by <em>PyDolphinScheduler</em> and it
+named “tutorial” or “tutorial_decorator”. The task graph of workflow like below:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                  --&gt; task_child_one
                 /                    \
 task_parent --&gt;                        --&gt;  task_union
