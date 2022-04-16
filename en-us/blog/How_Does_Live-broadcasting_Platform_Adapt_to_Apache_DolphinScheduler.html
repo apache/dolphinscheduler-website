@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup">
+  <meta name="description" content="Background on the introduction of Apache DolphinScheduler to YY Live">
+  <title>How Does Live-broadcasting Platform Adapt to Apache DolphinScheduler?</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/build/vendor.eeae4ed.css">
+  <link rel="stylesheet" href="/build/blog.md.055b3f1.css">
+</head>
+<body>
+  <div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-dark"><div class="banner-tips"><div>🤔 Have queries regarding Apache DolphinScheduler, Join Slack channel to disscuss them <a class="link-tips" href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw">join #dolphinscheduler channel</a>! 🌟</div></div><div class="header-body"><span class="mobile-menu-btn mobile-menu-btn-dark"></span><a href="/en-us/index.html"><img class="logo" src="/img/hlogo_white.svg"/></a><div class="search search-dark"><span class="icon-search"></span></div><span class="language-switch language-switch-dark">中</span><div class="header-menu"><div><ul class="ant-menu whiteClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/download/download.html" target="_self">DOWNLOAD</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item ant-menu-item-selected" role="menuitem"><a href="/en-us/blog/index.html" target="_self">BLOG</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/community/team.html" target="_self">COMMUNITY</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="https://www.apache.org/" target="_blank">ASF</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/user/index.html" target="_self">USER</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div><div class="mobile-menu"><div class="mobile-menu-content"><div class="mobile-menu-list"><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/index.html" target="_self">HOME</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">DOCS</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="/en-us/docs/latest/user_doc/guide/quick-start.html" target="_self">latest(2.0.5)</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/1.3.9/user_doc/quick-start.html" target="_self">1.3.9</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/release/history-versions.html" target="_self">Older Versions</a></div><div class="mobile-sub-menu-item"><a href="/python/index.html" target="_self">PyDolphinScheduler</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/dev/user_doc/about/introduction.html" target="_self">dev</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/download/download.html" target="_self">DOWNLOAD</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/blog/index.html" target="_self">BLOG</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/development/development-environment-setup.html" target="_self">DEVELOPMENT</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/community/team.html" target="_self">COMMUNITY</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="https://www.apache.org/" target="_blank">ASF</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="https://www.apache.org/" target="_blank">Foundation</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/licenses/" target="_blank">License</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/security/" target="_blank">Security</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/user/index.html" target="_self">USER</a></div></div></div><div class="mobile-menu-dummy"></div></div></div></header><section class="blog-content markdown-body"><h1>How Does Live-broadcasting Platform Adapt to Apache DolphinScheduler?</h1>
+<div align=center>
+<img src="/img/2022-4-11/en/1.png"/>
+</div>
+<blockquote>
+<p><em>At the Apache DolphinScheduler Meetup（3.26）, Yuan Bingze, a software engineer at YY Live, shared the topic of</em> <em>YY Live’s Adaptation and Exploration based on Apache DolphinScheduler</em> <em>with us.</em>
+<em>This presentation consists of four main sections:</em>
+*1.*<em>Background on the introduction of Apache DolphinScheduler to YY Live</em>
+*2.*<em>The introduction process of Apache DolphinScheduler</em>
+*3.*<em>Application and adaptation of Apache DolphinScheduler</em>
+*4.*<em>YY Live’s future plans</em></p>
+</blockquote>
+<h2>Profile.</h2>
+<div align=center>
+<img src="/img/2022-4-11/en/2.png"/>
+</div>
+<p>Yuan Bingze, YY Live Software Engineer, has more than 10 years of working experience in big data risk control platform development. Deeply interested in common big data components.</p>
+<h2>Background</h2>
+<p>YY Live is the leading voice social platform company in China. Currently, our team is mainly responsible for securing the company’s business.</p>
+<h3>01 Technical Status</h3>
+<p>We currently use a layered technical architecture, with the bottom layer being the data source layer, followed by the collection layer, storage layer, management layer, computation, and application layers in descending order.</p>
+<p>In the data source layer, we currently pull relational database data from various business parties, as well as data that is transmitted to us through APIs and streams like Kafka.</p>
+<p>The collection layer uses a data collection system developed by ourselves.</p>
+<p>In the storage layer, we currently put the data mainly in relational databases, such as Clickhouse, and a small portion will be in some non-relational databases, such as Redis and graph libraries. Of course, most of the data is stored in big data systems.</p>
+<p>The management team mainly consisted of a big data management system, combined with a computational scheduling and task management system and service governance platform developed by ourselves.</p>
+<h3>02 Problems we encountered before adopting Apache DolphinScheduler</h3>
+<p>1、Scheduling platform is too complex: In addition to the team’s Xxl-job based task scheduling, some of the older projects have used Crontab, Springboot, Scheduler, Quartz, etc. to manage the start of tasks.</p>
+<p>2、Strong demand for task dependencies: The scheduling we currently use can only set up the execution of individual tasks, and cannot form workflows through task dependencies, which rely heavily on personal experience to set up timing. Many tasks need to have dependencies.</p>
+<p>3、The tasks are complex and diverse: the current tasks are Spark and Flink tasks based on big data systems, various Java services, Shell, Java applications, Python, etc. tasks in the service governance platform.</p>
+<h2>Introducing Apache DolphinScheduler</h2>
+<p>During the research, we found a demanding scheduling platform should meet the following conditions.</p>
+<p><strong>1、Unified management of tasks and dependencies</strong></p>
+<p>With the increasing demand for business computing, especially a variety of graph computing and tasks, which are scattered among various systems, and very difficult to manage. Besides, some of the tasks have certain dependencies on each other, but the configuration of their time relies on personal experience. There is an urgent need for a product that can unify configuration management dependencies.</p>
+<p><strong>2、Compatible with the company’s internal platform system</strong></p>
+<p>The scheduling task platform is aimed to manage our tasks and to come into service quickly, the scheduling platform needed to be compatible with our company’s inner platform systems, such as the internal Datax and Crontab services.</p>
+<p><strong>3、High availability, high performance, high concurrency, and easy to use</strong></p>
+<p>Finally, to ensure business stability, we also need this scheduling platform to be highly available, high performance, concurrent, and easy to use.</p>
+<p>Through our research, we found that Apache DolphinScheduler was perfectly designed for us, and the adaptation process met our needs without much modification.</p>
+<h2>Application and Adaptation</h2>
+<p>Apache DolphinScheduler is a distributed, decentralized, easily scalable visual DAG workflow task scheduling system dedicated to solving the intricate dependencies in the data processing process and making it work out-of-the-box in the data processing, which fits our needs perfectly.</p>
+<p>First, let’s look at the architecture of Apache DolphinScheduler to facilitate understanding the next adaptation cases.</p>
+<div align=center>
+<img src="/img/2022-4-11/en/3.png"/>
+</div>
+<p>Apache DolphinScheduler has 5 main modules: API, master, worker, log, and alert.</p>
+<p>The API interface layer is mainly responsible for handling requests from the front-end UI layer. The service provides RESTful API to provide request services to the outside in a unified manner. The interfaces include workflow creation, definition, query, modification, release, downlink, manual start, stop, pause, resume, start execution from that node, etc.</p>
+<p>The MasterServer adopts the concept of distributed centerless design, and is mainly responsible for DAG task slicing, task submission monitoring, and listening to the health status of other MasterServer and WorkerServer at the same time. The MasterServer service registers temporary nodes with Zookeeper when it starts and performs fault tolerance by listening to the changes of Zookeeper temporary nodes.</p>
+<p>WorkerServer also adopts the distributed centerless design concept, which is mainly responsible for task execution and providing logging services.</p>
+<p>WorkerServer service registers temporary nodes with Zookeeper when it starts and maintains heartbeat, as well as provides logger service.</p>
+<p>Alert provides alarm-related interfaces, which mainly include two types of alarm data storage, query and notification functions. The notification function includes email notification and <strong>SNMP (not yet implemented)</strong>.</p>
+<p>Currently, we are deploying version 2.0 on 4 physical machines, which have born 2 master instances, 2 API instances, 3 worker and logger instances, and one alert instance.</p>
+<p>Next, we share 3 specific cases of adaptation based on Apache DolphinScheduler.</p>
+<p>First is the adaptation to our service governance platform, which aims to do task monitoring; although Apache DolphinScheduler itself provides a task monitoring module, our colleagues have long been accustomed to using the service governance platform to unify management monitoring. So we need to report the status of Apache DolphinScheduler tasks to the service governance platform in time.</p>
+<h3>01 Service Governance platform Adaptation — MasterServer Service Description</h3>
+<p>Before the adaption description, we take a detailed look at the MasterServer service first, which provides:</p>
+<p>1、Distributed Quartz, a distributed scheduling component, is mainly responsible for timing task start and stop operations, when Quartz picks up the task, there will be thread pools inside the Master specifically handling the subsequent operations of the task.</p>
+<p>2、MasterSchedulerThread is a scanning thread that scans the command table in the database at regular intervals and performs different business operations according to different command types.</p>
+<p>3、MasterExecThread (WorkflowExecutThread.java) takes charge of DAG task slicing, task submission monitoring, and logical processing of various command types.</p>
+<p>4、MasterTaskExecThread is mainly responsible for task persistence.</p>
+<h3>02 Service Governance Adaptation-code</h3>
+<p>We require to monitor tasks. Through code analysis, we found that task submission and listening are mainly implemented in the methods of the WorkflowExecuteThread class, which starts multiple instance threads responsible for task execution and listening respectively. The flowchart is as follows:</p>
+<div align=center>
+<img src="/img/2022-4-11/en/4.png"/>
+</div>
+<p>Task submission and monitoring flow chart</p>
+<p>We aim to monitor tasks, and after analyzing the code, we found that WorkflowExecuteThread implements task execution and listening by startprocess and handle events respectively. We inject our service governance platform data collection code in the handleEvents method so that the task monitoring situation can be reported to our service governance platform in time.</p>
+<p>The modified part is as follows:</p>
+<div align=center>
+<img src="/img/2022-4-11/en/5.png"/>
+</div>
+<p>The specific effect of the service governance platform is shown below:</p>
+<p><strong>Task submission</strong></p>
+<div align=center>
+<img src="/img/2022-4-11/en/6.png"/>
+</div>
+<p><strong>Success rate</strong></p>
+<div align=center>
+<img src="/img/2022-4-11/en/7.png"/>
+</div>
+<p>In addition to monitoring the status of our specific tasks, we will also do some monitoring by project, and finally, we will monitor operation through the service governance platform, for example, if some tasks are important, we will configure some telephone alarms, that is, if the task fails or is not executed on time, we will make telephone notifications.</p>
+<h3>03 Datax Service Adaptation Process</h3>
+<p>The second case is about the adaptation of the Datax service. When we were working on Apache DolphinScheduler, we found that it has integrated Datax type tasks, which is very friendly for us. Because we have a significant number of tasks that are implemented through Datax, we have developed some Datax plugins to adapt the data read and write to various internal systems and stores.</p>
+<p>Datax adaptation is divided into two parts, one method is achieved by a custom template, which copies some previous Datax services, and takes slight modification, mainly involving some data interaction between the NoSQL databases.</p>
+<p>For the interaction between SQL databases, we still need to achieve it through the configuration.</p>
+<p>Unfortunately, we encountered a small bug when configuring Clickhouse read and write tasks at the beginning.</p>
+<h3>04 Datax Service Adaptation — Clickhouse Compatible #8092</h3>
+<p>When we used Datax to read data from Clickhouse data source, we found that in the SQL, the submission would fail once we refer to parameters, no matter time parameters or other parameters. We suspected that there might be some bugs, and when we read the error log, we also found that when Apache DolphinScheduler submitted the SQL, the parameters are not replaced, and directly submitted to Clickhouse for execution. Because Clickhouse did not recognize Apache DolphinScheduler parameters, it directly threw an exception. We combed through the process of Apache DolphinScheduler reading Clickhouse when executing a Datax task. One of the processes in converting our Apache DolphinScheduler configuration to a Datax configuration is as follows:</p>
+<div align=center>
+<img src="/img/2022-4-11/en/8.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-4-11/en/9.png"/>
+</div>
+<p>The first thing the system has to do is to parse all the syntax of SQL and then get some column information through the syntax, at which point it has to call the SQL parser. In this process, if the Apache DolphinScheduler does not replace our parameters, errors will occur during the execution of the circle, which will cause the whole task to fail.</p>
+<p>Therefore, in the process of solving, since the parser of Clickhouse may not be obtained, the best way is to directly add a parser. First, we build a JSON file, then format all the chains parsed out, and finally go through a parsing of the syntax, calling it layer by layer, and finally being able to call the target parser.</p>
+<h3>05 Time parameter adaptation</h3>
+<p>The last case is about time parameter adaptation.</p>
+<p>While Apache DolphinScheduler does provide time parameters, most of our data require unixtime that is accurate to the millisecond level. Reading through the Apache DolphinScheduler documentation, we, unfortunately, found that it does not provide an implementation of this type of time parameter. While going through the source code later, we found that Apache DolphinScheduler provides a timestamp function that can provide unixtime values.</p>
+<p>When using timestamp, we found two small problems, firstly, there will be ambiguity when timestamp directly expresses unixtime, and secondly, timestamp is only accurate to the second level, while most of our data needs millisecond level. To make it easier to use, we made some changes.</p>
+<div align=center>
+<img src="/img/2022-4-11/en/10.png"/>
+</div>
+<p><strong>Adaptation process</strong></p>
+<p>The first thing we did was to remove the ambiguity. In Apache DolphinScheduler, Timestamp is the way to express time, which is usually expressed by date plus time, but Unix time uses GMT, from 00:00:00:00 on January 1, 1970, to the present, and does not take into account the microsecond time expression, which uses integers.</p>
+<p>Once requirements are clear, the next step for us is to figure out how to implement them. We found by code analysis that the implementation of the time parameter function is through the API calling layer by layer, and the final main functions are achieved through the TimePlaceHolderUtils class calculateTime method. During the implementation of this method, the constants in the TaskConstants class that express the name of the time function are also called. So we modified some of the constants of the TaskConstants class. And because we need millisecond-level functions, we added a milli_unixtime function, and finally, to meet the needs of device users, we added some functions with higher precision, such as microsecond and nanosecond functions.</p>
+<div align=center>
+<img src="/img/2022-4-11/en/11.png"/>
+</div>
+<p>time parameter adaptation-calling procedure</p>
+<div align=center>
+<img src="/img/2022-4-11/en/12.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-4-11/en/13.png"/>
+</div>
+<div align=center>
+<img src="/img/2022-4-11/en/14.png"/>
+</div>
+<p>After using Apache DolphinScheduler, we only need to check the complementary function when manually executing tasks and fill in the date we want to schedule, then we can directly make the complementary, and we can also fill in the parallelism. This feature is very useful for us, and after Apache DolphinScheduler version 2.0, the problem of time configuration and execution with daily performance difference is also solved, which brings great convenience in use.</p>
+<h2>Future Planning</h2>
+<p>In application, we found that the tasks configured through Apache DolphinScheduler do not currently support a highly available solution in terms of using data sources, which is strongly needed in our case, so we are currently doing the adaptation for high availability as well.</p>
+<p>Secondly, we are currently using Apache DolphinScheduler version 2.0, the community is active and the version upgrade is fast, even a small version upgrade will bring some great features or design changes. For example, in the new version, the alert function has been plugged in, and some complementary date conversion problems have been solved. This also drove our team to upgrade to the new version to experience the new features. Although Apache DolphinScheduler is currently only used internally in our team, we are thinking about the feasibility of making it available to the entire company.</p>
+<p>Although Apache DolphinScheduler is very perfect to solve most of our problems and improve our work efficiency drastically, we still encounter some small bugs in various complex situations, and of course, we have developed some features in use, all of which we will submit to the official after fixing in the future.</p>
+<h2>Join the Community</h2>
+<p>There are many ways to participate and contribute to the DolphinScheduler community, including:</p>
+<p><strong>Documents, translation, Q&amp;A, tests, codes, articles, keynote speeches, etc.</strong></p>
+<p>We assume the first PR (document, code) to contribute to be simple and should be used to familiarize yourself with the submission process and community collaboration style.</p>
+<p>So the community has compiled the following list of issues suitable for novices: <a href="https://github.com/apache/dolphinscheduler/issues/5689">https://github.com/apache/dolphinscheduler/issues/5689</a></p>
+<p>List of non-newbie issues: <a href="https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22">https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22</a></p>
+<p>How to participate in the contribution: <a href="https://dolphinscheduler.apache.org/en-us/community/development/contribute.html">https://dolphinscheduler.apache.org/en-us/community/development/contribute.html</a></p>
+<p><strong>GitHub Code Repository:</strong> <a href="https://github.com/apache/dolphinscheduler">https://github.com/apache/dolphinscheduler</a></p>
+<p><strong>Official Website</strong>：<a href="https://dolphinscheduler.apache.org/">https://dolphinscheduler.apache.org/</a></p>
+<p><strong>MailList</strong>：dev@dolphinscheduler@apache.org</p>
+<p><strong>Twitter</strong>：@DolphinSchedule</p>
+<p><strong>YouTube：</strong><a href="https://www.youtube.com/channel/UCmrPmeE7dVqo8DYhSLHa0vA">https://www.youtube.com/channel/UCmrPmeE7dVqo8DYhSLHa0vA</a></p>
+<p><strong>Slack：</strong><a href="https://s.apache.org/dolphinscheduler-slack">https://s.apache.org/dolphinscheduler-slack</a></p>
+<p><strong>Contributor Guide：</strong><a href="https://dolphinscheduler.apache.org/en-us/community/index.html">https://dolphinscheduler.apache.org/en-us/community/index.html</a></p>
+<p>Your Star for the project is important, don’t hesitate to lighten a Star for Apache DolphinScheduler ❤️</p>
+</section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+  <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
+  <script>window.rootPath = '';</script>
+  <script src="/build/vendor.84aac82.js"></script>
+  <script src="/build/blog.md.f25cabd.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4e7b4b400dd31fa015018a435c64d06f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-899J8PYKJZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-899J8PYKJZ');
+  </script>
+</body>
+</html>
