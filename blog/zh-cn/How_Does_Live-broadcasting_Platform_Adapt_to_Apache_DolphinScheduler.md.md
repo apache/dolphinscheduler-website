@@ -56,8 +56,6 @@ YY直播是中国领先的语音社交视频直播企业，目前我们团队的
 
 ## **引入过程**
 
-![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
-
 
 在需求调研中，我们实际上需要一款调度平台，需要满足如下条件：
 

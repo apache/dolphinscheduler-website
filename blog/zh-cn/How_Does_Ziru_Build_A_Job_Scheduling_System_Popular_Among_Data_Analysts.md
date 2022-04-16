@@ -27,8 +27,7 @@
 
 <img src="/img/2022-4-6/3.png"/>
 
-</div>![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
-
+</div>!
 
 自如大数据平台
 
@@ -56,8 +55,7 @@
 
 <img src="/img/2022-4-6/5.png"/>
 
-</div>![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
-
+</div>
 
 <div align=center>
 
@@ -92,8 +90,7 @@
 
 <img src="/img/2022-4-6/8.png"/>
 
-</div>![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
-
+</div>
 
 由于是在 Hive 的环境中，所以需要看下 Hive  sql 的解析过程。
 
