@@ -5,6 +5,22 @@ export default {
         list: [
             {
 
+                title: 'How Does Live-broadcasting Platform Adapt to Apache DolphinScheduler?',
+                author: 'Debra Chen',
+                dateStr: '2022-4-16',
+                desc: 'Background on the introduction of Apache DolphinScheduler to YY Live... ',
+                link: '/en-us/blog/How_Does_Live-broadcasting_Platform_Adapt_to_Apache_DolphinScheduler.html',
+            },
+            {
+
+                title: 'How Does Ziru Build A Job Scheduling System Popular Among Data Analysts?',
+                author: 'Debra Chen',
+                dateStr: '2022-4-16',
+                desc: 'As one of the creators of enterprise data assets... ',
+                link: '/en-us/blog/How_Does_Ziru_Build_A_Job_Scheduling_System_Popular_Among_Data_Analysts.html',
+            },
+            {
+
                 title: 'Fast Task Type Expanding On Apache DolphinScheduler | Tutorial',
                 author: 'Debra Chen',
                 dateStr: '2022-4-14',
@@ -191,6 +207,20 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '论语音社交视频直播平台与 Apache DolphinScheduler 的适配度有多高',
+                author: 'Debra Chen',
+                dateStr: '2022-4-16',
+                desc: 'YY直播引入Apache DolphinScheduler的背景...',
+                link: '/zh-cn/blog/How_Does_Live-broadcasting_Platform_Adapt_to_Apache_DolphinScheduler.html',
+            },
+            {
+                title: '数据分析师干了专业数仓工程师的活，自如是怎么做到的？',
+                author: 'Debra Chen',
+                dateStr: '2022-4-16',
+                desc: '数据分析师作为企业数据资产的缔造者之一...',
+                link: '/zh-cn/blog/How_Does_Ziru_Build_A_Job_Scheduling_System_Popular_Among_Data_Analysts.html',
+            },
             {
                 title: '极速开发扩充 Apache DolphinScheduler Task 类型 | 实用教程',
                 author: 'Debra Chen',
