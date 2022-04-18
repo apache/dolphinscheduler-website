@@ -304,7 +304,7 @@ export default {
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/latest/user_doc/guide/quick-start.html',
+          link: '/en-us/docs/latest/user_doc/guide/start/quick-start.html',
           type: 'primary',
         },
         {
