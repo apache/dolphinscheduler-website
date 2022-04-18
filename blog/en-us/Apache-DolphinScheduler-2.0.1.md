@@ -135,7 +135,7 @@ For detailed usage documentation, please refer to:
 https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html
 
 Or use Docker to deploy all services with one
-click: https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/docker.html
+click: https://dolphinscheduler.apache.org/en-us/docs/2.0.1/user_doc/guide/installation/docker.html
 
 ### 2 Task parameter transfer function
 
