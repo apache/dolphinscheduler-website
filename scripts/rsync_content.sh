@@ -91,7 +91,7 @@ function rsync_released_docs() {
     for version in "${!DEV_RELEASE_DOCS_VERSIONS[@]}"; do
         echo "  ---> Git checkout to version ${version}."
         git fetch origin "${DEV_RELEASE_DOCS_VERSIONS[$version]}" --no-tags
-        git checkout -b "${version}" "origin/${DEV_RELEASE_DOCS_VERSIONS[$version]}"
+        git checkout -b "${version}" FETCH_HEAD
 
         echo "  ---> Sync released version ${version} docs."
         rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/${version}/user_doc" "--exclude=faq.md --exclude=history-versions.md --exclude=development"
