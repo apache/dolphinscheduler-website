@@ -14,7 +14,7 @@ bug-report.yml
 
 ## Publish Image
 
-Build docker image first, please refer to [How to build a Docker image?](https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/docker.html)
+Build docker image first, please refer to [How to build a Docker image?](https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/start/docker.html)
 
 And then publish image
 
