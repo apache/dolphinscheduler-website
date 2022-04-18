@@ -101,7 +101,7 @@ StandAloneServer 是为了让用户快速体验产品而创建的服务，其中
 
 详细的使用文档请参考：https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/installation/standalone.html
 
-或者使用 Docker 一键部署所有的服务：https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/installation/docker.html
+或者使用 Docker 一键部署所有的服务：https://dolphinscheduler.apache.org/zh-cn/docs/2.0.1/user_doc/guide/installation/docker.html
 
 ### 2 任务参数传递功能
 
