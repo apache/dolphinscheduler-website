@@ -19,7 +19,7 @@
 
 # Codebase Repository
 PROJECT_NAME="dolphinscheduler"
-PROJECT_BRANCH_NAME="dev"
+PROJECT_BRANCH_NAME="doc-deadlink"
 PROJECT_WEBSITE_NAME="${PROJECT_NAME}-website"
 PROJECT_WEBSITE_BRANCH_NAME="history-docs"
 
