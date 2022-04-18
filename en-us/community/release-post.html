@@ -14,39 +14,14 @@
 <h2>Update Official Website</h2>
 <p>For example, after the release of <code>x.y.z</code>, the following updates are required:</p>
 <ul>
-<li><code>docs/en-us/x.y.z</code> and <code>docs/zh-cn/x.y.z</code>: copy the old directory to the new version x.y.z
-<ul>
-<li>The reference links of the included documents keep same with x.y.z, especially pay attention to the following file updates:
-<ul>
-<li><code>architecture-design.md</code></li>
-<li><code>cluster-deployment.md</code></li>
-<li><code>docker-deployment.md</code></li>
-<li><code>expansion-reduction.md</code></li>
-<li><code>kubernetes-deployment.md</code></li>
-<li><code>standalone-deployment.md</code></li>
-<li><code>upgrade.md</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>docs/en-us/release/history-versions.md</code> and <code>docs/zh-cn/release/history-versions.md</code>: Add the new version and link for x.y.z</li>
 <li><code>download/en-us/download.md</code> and <code>download/zh-cn/download.md</code>: add the download of the x.y.z release package</li>
-<li><code>site_config/docsx-y-z.js</code>: copy the old configuration file to the new version, and keep the content link same with x.y.z</li>
-<li><code>site_config/site.js</code>:
-<ul>
-<li><code>docsLatest</code>: update to x.y.z</li>
-<li><code>docs0</code>: The <code>text</code> of two places of <code>en-us/zh-cn</code> needs to be updated to <code>latest(x.y.z)</code></li>
-<li><code>docsxyz</code>: Add a drop-down menu with <code>key</code> as <code>docsxyz</code> and <code>text</code> as <code>x.y.z</code> in <code>children</code> of two places of <code>en-us/zh-cn</code></li>
-</ul>
-</li>
-<li><code>src/pages/docs/index.md.jsx</code>: Add <code>'x.y.z': docsxyzConfig,</code></li>
 </ul>
 <h2>Add New Version To GitHub's bug-report.yml</h2>
 <p>DolphinScheduler's GitHub <a href="https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml">bug-report</a>
 issue template have <strong>Version</strong> selection bottom. So after we release DolphinScheduler we should and the new version to
 bug-report.yml</p>
 <h2>Publish Image</h2>
-<p>Build docker image first, please refer to <a href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/docker.html">How to build a Docker image?</a></p>
+<p>Build docker image first, please refer to <a href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/start/docker.html">How to build a Docker image?</a></p>
 <p>And then publish image</p>
 <pre><code class="language-bash">docker tag apache/dolphinscheduler:x.y.z apache/dolphinscheduler:latest
 docker login <span class="hljs-comment"># enter the username and password</span>
@@ -60,7 +35,7 @@ to finish PyPI release.</p>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.a72896d.js"></script>
+  <script src="/build/vendor.c133513.js"></script>
   <script src="/build/community.md.4b2dc90.js"></script>
   <script>
     var _hmt = _hmt || [];

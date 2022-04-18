@@ -184,8 +184,10 @@ cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolp
 <h3>生成文件签名</h3>
 <pre><code class="language-shell">shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
-shasum -a 512 python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz &gt;&gt; python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
-shasum -b -a 512 python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl &gt;&gt; python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+cd python
+shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -b -a 512 apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl &gt;&gt; apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+cd  ../
 </code></pre>
 <h3>提交Apache SVN</h3>
 <pre><code class="language-shell">cd ~/ds_svn/dev/dolphinscheduler
@@ -196,8 +198,10 @@ svn --username=${APACHE LDAP 用户名} commit -m &quot;release ${RELEASE.VERSIO
 <h3>检查sha512哈希</h3>
 <pre><code class="language-shell">shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+cd python
 shasum -c python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
 shasum -c python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+cd ../
 </code></pre>
 <h3>检查gpg签名</h3>
 <p>首先导入发布人公钥。从svn仓库导入KEYS到本地环境。（发布版本的人不需要再导入，帮助做验证的人需要导入，用户名填发版人的即可）</p>
@@ -374,7 +378,7 @@ DolphinScheduler Resources:
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.a72896d.js"></script>
+  <script src="/build/vendor.c133513.js"></script>
   <script src="/build/community.md.4b2dc90.js"></script>
   <script>
     var _hmt = _hmt || [];

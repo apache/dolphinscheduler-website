@@ -169,8 +169,10 @@ cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolp
 <h3>Generate sign files</h3>
 <pre><code class="language-shell">shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
-shasum -a 512 python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz &gt;&gt; python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
-shasum -b -a 512 python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl &gt;&gt; python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+cd python
+shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz &gt;&gt; apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -b -a 512 apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl &gt;&gt; apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+cd ../
 </code></pre>
 <h3>Commit to Apache SVN</h3>
 <pre><code class="language-shell">svn add *
@@ -180,8 +182,10 @@ svn --username=${APACHE LDAP username} commit -m &quot;release ${RELEASE.VERSION
 <h3>Check sha512 hash</h3>
 <pre><code class="language-shell">shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+cd python
 shasum -c python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
 shasum -c python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+cd ../
 </code></pre>
 <h3>Check gpg Signature</h3>
 <p>First, import releaser's public key.
@@ -364,7 +368,7 @@ DolphinScheduler Resources:
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.a72896d.js"></script>
+  <script src="/build/vendor.c133513.js"></script>
   <script src="/build/community.md.4b2dc90.js"></script>
   <script>
     var _hmt = _hmt || [];
