@@ -30,26 +30,25 @@ After version 3.0.0-alpha, our release document is in repository [apache/dolphin
 directory `docs`. Documentation and code will be released together, so when the new version is released, we need to get
 the corresponding documentation from the released tag.
 
-All you have to do it is add/change variable `DEV_RELEASE_DOCS_VERSIONS` in [release.conf.sh](./scripts/release.conf.sh).
-For example, if you want to add new release docs named `10.0.0` and its docs in apache/dolphinscheduler tag `10.0.0`, you
-could add a new key-value to `DEV_RELEASE_DOCS_VERSIONS`
+All you have to do it is add/change variable `DEV_RELEASE_DOCS_VERSIONS` in [conf.sh](scripts/conf.sh).
+For example, if you want to add new release docs named `10.0.0` and its docs in apache/dolphinscheduler branch `10.0.0-release`,
+you could add a new key-value to `DEV_RELEASE_DOCS_VERSIONS`
 
 ```shell
 declare -A DEV_RELEASE_DOCS_VERSIONS=(
   ...
-  ["10.0.0"]="10.0.0"
+  ["10.0.0"]="10.0.0-release"
   ...
 )
 ```
 
-A few days later, you find out version `10.0.0`'s document has a bug. You fix it and push to apache/dolphinscheduler with
-the new tag named `10.0.0-doc-fix`, and you want to deploy the `docs` in tag `10.0.0-doc-fix` instead of tag `10.0.0`,
-you could change the configuration
+A few days later, you find out version `10.0.0`'s document has a bug. You fix it and push it to apache/dolphinscheduler
+branch `10.0.0-release` to fix the bug, you could keep your configuration in the old content.
 
 ```shell
 declare -A DEV_RELEASE_DOCS_VERSIONS=(
   ...
-  ["10.0.0"]="10.0.0-doc-fix"
+  ["10.0.0"]="10.0.0-release"
   ...
 )
 ```

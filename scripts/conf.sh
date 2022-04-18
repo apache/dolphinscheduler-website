@@ -40,6 +40,6 @@ declare -a HISTORY_DOCS_VERSIONS=(
 declare -A DEV_RELEASE_DOCS_VERSIONS=(
   # The key value is represents of version `key` document is from tag `val` from apache/dolphinscheduler
   # example: ["key"]="val"
-  ["3.0.0"]="3.0.0-alpha"
+  ["3.0.0"]="3.0.0-alpha-release"
 )
 
