@@ -86,7 +86,7 @@ Checkstyle 当中包含针对导入类的格式要求。为了提升代码审查
     <img src="/img/optimize-import-idea.png" alt="optimize import idea configuration" />
 </p>
 
-> *说明*：
+> **说明**：
 > 
 > 1.`Scheme`设置为`Project`可以不影响其他项目。
 > 
