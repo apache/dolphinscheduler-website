@@ -86,8 +86,10 @@ Checkstyle plugins contains format requirements for imported classes, we highly 
     <img src="/img/optimize-import-idea.png" alt="optimize import idea configuration" />
 </p>
 
-> *Describe*：
+> **Describe**：
+> 
 > 1.`Scheme` can be set to `Project` without affecting other projects.
+> 
 > 2.`Import Layout` configure from `style/checkstyle.xml -> Checker -> ImportOrder -> staticGroups/groups`.
 
 Format your codebase in Intellij IDEA before submit your pull request: After you done above steps, you could using the following functions of Intellij IDEA.
