@@ -87,7 +87,9 @@ Checkstyle 当中包含针对导入类的格式要求。为了提升代码审查
 </p>
 
 > *说明*：
+> 
 > 1.`Scheme`设置为`Project`可以不影响其他项目。
+> 
 > 2.`Import Layout`配置内容通过`style/checkstyle.xml -> Checker -> ImportOrder`的`staticGroups`和`groups`获取。
 
 在提交 pull request 前格式化你的代码：完成上面全部后，你可以使用下述功能，格式化代码的最佳时间是将你的修改提交到本地 git 版本库之前。
