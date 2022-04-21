@@ -80,7 +80,22 @@ For now your Checkstyle plugins are setup, it would show codes and files which o
     <img src="/img/code-style-idea.png" alt="code style idea configuration" />
 </p>
 
-1. Format your codebase in Intellij IDEA before submit your pull request: After you done above steps, you could using Intellij IDEA shortcut `Command + L`(for Mac) or `Ctrl+L`(for Windows) to format your code. The best time to format your code is before you commit your change to your local git repository.
+Checkstyle plugins contains format requirements for imported classes, we highly recommend you configure Intellij IDEA `Imports` of code-style for optimize import in Intellij IDEA, you could find this setting in `Preferences -> Editor -> Code Style -> Java -> Imports` and then activate it as screenshot show
+
+<p align="center">
+    <img src="/img/optimize-import-idea.png" alt="optimize import idea configuration" />
+</p>
+
+> *Describe*：
+> 1.`Scheme` can be set to `Project` without affecting other projects.
+> 2.`Import Layout` configure from `style/checkstyle.xml -> Checker -> ImportOrder -> staticGroups/groups`.
+
+Format your codebase in Intellij IDEA before submit your pull request: After you done above steps, you could using the following functions of Intellij IDEA.
+
+1. shortcut `Option+Command+L`(for Mac) or `Ctrl+Alt+L`(for Windows) to format your code(for `Reformat Code`)
+2. shortcut `Option+Command+O`(for Mac) or `Ctrl+Alt+O`(for Windows) to auto import classes(for `Optimize Import`)
+
+The best time to format your code is before you commit your change to your local git repository.
 
 ### Question
 

@@ -80,7 +80,20 @@ waste time。
     <img src="/img/code-style-idea.png" alt="code style idea configuration" />
 </p>
 
-1. 在提交 pull request 前格式化你的代码：完成上面全部后，你可以使用快捷键`Command + L`(Mac用户) or `Ctrl+L`(Windows用户)在 Intellij IDEA 完成自动格式化。格式化代码的最佳时间是将你的修改提交到本地 git 版本库之前
+Checkstyle 当中包含针对导入类的格式要求。为了提升代码审查的通过率和减少合并代码时导入类的冲突，建议配置导入类的格式。 你可以在路径`Preferences -> Editor -> Code Style -> Java -> Imports`找到配置，请参照下图完成其配置
+
+<p align="center">
+    <img src="/img/optimize-import-idea.png" alt="optimize import idea configuration" />
+</p>
+
+> *说明*：
+> 1.`Scheme`设置为`Project`可以不影响其他项目。
+> 2.`Import Layout`配置内容通过`style/checkstyle.xml -> Checker -> ImportOrder`的`staticGroups`和`groups`获取。
+
+在提交 pull request 前格式化你的代码：完成上面全部后，你可以使用下述功能，格式化代码的最佳时间是将你的修改提交到本地 git 版本库之前。
+
+1. 快捷键`Option+Command+L`(Mac用户) or `Ctrl+Alt+L`(Windows用户)在 Intellij IDEA 完成自动格式化(即`Reformat Code`功能)。
+2. 快捷键`Option+Command+O`(Mac用户) or `Ctrl+Alt+O`(Windows用户)在 Intellij IDEA 完成自动导入(即`Optimize Import`功能)。
 
 ### 相关问题
 
