@@ -36,10 +36,11 @@ declare -a HISTORY_DOCS_VERSIONS=(
 "2.0.0" "2.0.1" "2.0.2" "2.0.3" "2.0.5"
 )
 
+# NOTE: We should avoid use syntax `declare -A DEV_RELEASE_DOCS_VERSIONS=(["3.0.0"]="3.0.0-alpha-release")` because
+# option `-A` only works on bash versions above bash 4
 # docs in apache/dolphinscheduler directory `docs` after 3.0.0-alpha(the time we migrate docs to this repo)
-declare -A DEV_RELEASE_DOCS_VERSIONS=(
-  # The key value is represents of version `key` document is from tag `val` from apache/dolphinscheduler
-  # example: ["key"]="val"
-  ["3.0.0"]="3.0.0-alpha-release"
+DEV_RELEASE_DOCS_VERSIONS=(
+  # The key value is represents of, `key` for document version and `val` for source branch apache/dolphinscheduler.
+  # example: "key:val"
+  "3.0.0:3.0.0-alpha-release"
 )
-
