@@ -10,7 +10,9 @@ node version is 10+, version lower than 10.x is not supported yet.
 ## Build Website Locally 
 
 1. Run `npm install` in the root directory to install the dependencies.
-2. Run `./scripts/prepare_docs.sh` prepare all related resources, for more information you could see [how prepare script work](HOW_PREPARE_WOKR.md)
+2. Run commands to collect resources
+   2.1. Run `export PROTOCOL_MODE=ssh` tells Git clone resource via SSH protocol instead of HTTPS protocol
+   2.2. Run `./scripts/prepare_docs.sh` prepare all related resources, for more information you could see [how prepare script work](HOW_PREPARE_WOKR.md)
 3. Run `npm run start` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
 
 ```
