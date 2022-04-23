@@ -22,23 +22,16 @@
 <h2>Database Upgrade</h2>
 <ul>
 <li>
-<p>Modify the following properties in <code>conf/datasource.properties</code>.</p>
+<p>Change <code>username</code> and <code>password</code> in <code>./tools/conf/application.yaml</code> to yours.</p>
 </li>
 <li>
-<p>If using MySQL as the database to run DolphinScheduler, please comment out PostgreSQL related configurations, and add MYSQL connector jar into lib dir, here we download <code>mysql-connector-java-8.0.16.jar</code>, and then correctly configure database connection information. You can download MYSQL connector jar from <a href="https://downloads.MySQL.com/archives/c-j/">here</a>. Alternatively, if you use PostgreSQL as the database, you just need to comment out Mysql related configurations and correctly configure database connect information.</p>
-<pre><code class="language-properties"><span class="hljs-comment">  # postgre</span>
-<span class="hljs-comment">  #spring.datasource.driver-class-name=org.postgresql.Driver</span>
-<span class="hljs-comment">  #spring.datasource.url=jdbc:postgresql://localhost:5432/dolphinscheduler</span>
-<span class="hljs-comment">  # mysql</span>
-  <span class="hljs-meta">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span>
-  <span class="hljs-meta">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://xxx:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true</span>
-  <span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">xxx</span>
-  <span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">xxx</span>
+<p>If using MySQL as the database to run DolphinScheduler, please config it in <code>./tools/bin/dolphinscheduler_env.sh</code>, and add MYSQL connector jar into lib dir <code>./tools/lib</code>, here we download <code>mysql-connector-java-8.0.16.jar</code>, and then correctly configure database connection information. You can download MYSQL connector jar from <a href="https://downloads.MySQL.com/archives/c-j/">here</a>. Otherwise, PostgreSQL is the default database.</p>
+<pre><code class="language-shell">export DATABASE=${DATABASE:-mysql}
 </code></pre>
 </li>
 <li>
 <p>Execute database upgrade script:</p>
-<p><code>sh ./script/upgrade-dolphinscheduler.sh</code></p>
+<p><code>sh ./tools/bin/upgrade-schema.sh</code></p>
 </li>
 </ul>
 <h2>Backend Service Upgrade</h2>

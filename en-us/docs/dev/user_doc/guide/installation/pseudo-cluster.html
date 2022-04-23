@@ -128,19 +128,34 @@ dbname=&quot;dolphinscheduler&quot;
 registryServers=&quot;localhost:2181&quot;
 </code></pre>
 <h2>Initialize the Database</h2>
-<p>DolphinScheduler metadata is stored in the relational database. Currently, supports PostgreSQL and MySQL. If you use MySQL, you need to manually download <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java driver</a> (8.0.16) and move it to the lib directory of DolphinScheduler. Let's take MySQL as an example for how to initialize the database:</p>
+<p>DolphinScheduler metadata is stored in the relational database. Currently, supports PostgreSQL and MySQL. If you use MySQL, you need to manually download <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java driver</a> (8.0.16) and move it to the lib directory of DolphinScheduler, which is <code>tools/libs/</code>. Let's take MySQL as an example for how to initialize the database:</p>
+<p>For mysql 5.6 / 5.7</p>
 <pre><code class="language-shell">mysql -uroot -p
 <span class="hljs-meta">
 mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>
 <span class="hljs-meta">
-#</span><span class="bash"> Change {user} and {password} by requests</span>
+#</span><span class="bash"> Replace {user} and {password} with your username and password</span>
 <span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
 <span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
 <span class="hljs-meta">
 mysql&gt;</span><span class="bash"> flush privileges;</span>
 </code></pre>
+<p>For mysql 8:</p>
+<pre><code class="language-shell">mysql -uroot -p
+<span class="hljs-meta">
+mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>
+<span class="hljs-meta">
+#</span><span class="bash"> Replace {user} and {password} with your username and password</span>
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> CREATE USER <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span>;</span>
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> CREATE USER <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;{password}&#x27;</span>;</span>
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>;</span>
+<span class="hljs-meta">mysql&gt;</span><span class="bash"> FLUSH PRIVILEGES;</span>
+</code></pre>
+<p>Change the username and password in <code>tools/conf/application.yaml</code> to {user} and {password} you set in the previous step.</p>
+<p>Then, modify <code>tools/bin/dolphinscheduler_env.sh</code>, set mysql as default database <code>export DATABASE=${DATABASE:-mysql}</code>.</p>
 <p>After the above steps done you would create a new database for DolphinScheduler, then run Shell scripts to init database:</p>
-<pre><code class="language-shell">sh script/create-dolphinscheduler.sh
+<pre><code class="language-shell">sh tools/bin/create-schema.sh
 </code></pre>
 <h2>Start DolphinScheduler</h2>
 <p>Use <strong>deployment user</strong> you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder.</p>
