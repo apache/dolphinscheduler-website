@@ -942,20 +942,39 @@ alertServer=<span class="hljs-string">&quot;ds3&quot;</span>
 apiServers=<span class="hljs-string">&quot;ds1&quot;</span>
 </code></pre>
 <h3>dolphinscheduler_env.sh [load environment variables configs]</h3>
-<p>When using shell to commit tasks, DS will load environment variables inside dolphinscheduler_env.sh into the host.
-Types of tasks involved are: Shell, Python, Spark, Flink, DataX, etc.</p>
-<pre><code class="language-bash"><span class="hljs-built_in">export</span> HADOOP_HOME=/opt/soft/hadoop
-<span class="hljs-built_in">export</span> HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop
-<span class="hljs-built_in">export</span> SPARK_HOME1=/opt/soft/spark1
-<span class="hljs-built_in">export</span> SPARK_HOME2=/opt/soft/spark2
-<span class="hljs-built_in">export</span> PYTHON_HOME=/opt/soft/python
-<span class="hljs-built_in">export</span> JAVA_HOME=/opt/soft/java
-<span class="hljs-built_in">export</span> HIVE_HOME=/opt/soft/hive
-<span class="hljs-built_in">export</span> FLINK_HOME=/opt/soft/flink
-<span class="hljs-built_in">export</span> DATAX_HOME=/opt/soft/datax/bin/datax.py
+<p>When using shell to commit tasks, DolphinScheduler will export environment variables from <code>bin/env/dolphinscheduler_env.sh</code>. The
+mainly configuration including <code>JAVA_HOME</code>, mata database, registry center, and task configuration.</p>
+<pre><code class="language-bash"><span class="hljs-comment"># JAVA_HOME, will use it to start DolphinScheduler server</span>
+<span class="hljs-built_in">export</span> JAVA_HOME=<span class="hljs-variable">${JAVA_HOME:-/opt/soft/java}</span>
 
-<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HADOOP_HOME</span>/bin:<span class="hljs-variable">$SPARK_HOME1</span>/bin:<span class="hljs-variable">$SPARK_HOME2</span>/bin:<span class="hljs-variable">$PYTHON_HOME</span>:<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$HIVE_HOME</span>/bin:<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$FLINK_HOME</span>/bin:<span class="hljs-variable">$DATAX_HOME</span>:<span class="hljs-variable">$PATH</span>
+<span class="hljs-comment"># Database related configuration, set database type, username and password</span>
+<span class="hljs-built_in">export</span> DATABASE=<span class="hljs-variable">${DATABASE:-postgresql}</span>
+<span class="hljs-built_in">export</span> SPRING_PROFILES_ACTIVE=<span class="hljs-variable">${DATABASE}</span>
+<span class="hljs-built_in">export</span> SPRING_DATASOURCE_DRIVER_CLASS_NAME
+<span class="hljs-built_in">export</span> SPRING_DATASOURCE_URL
+<span class="hljs-built_in">export</span> SPRING_DATASOURCE_USERNAME
+<span class="hljs-built_in">export</span> SPRING_DATASOURCE_PASSWORD
 
+<span class="hljs-comment"># DolphinScheduler server related configuration</span>
+<span class="hljs-built_in">export</span> SPRING_CACHE_TYPE=<span class="hljs-variable">${SPRING_CACHE_TYPE:-none}</span>
+<span class="hljs-built_in">export</span> SPRING_JACKSON_TIME_ZONE=<span class="hljs-variable">${SPRING_JACKSON_TIME_ZONE:-UTC}</span>
+<span class="hljs-built_in">export</span> MASTER_FETCH_COMMAND_NUM=<span class="hljs-variable">${MASTER_FETCH_COMMAND_NUM:-10}</span>
+
+<span class="hljs-comment"># Registry center configuration, determines the type and link of the registry center</span>
+<span class="hljs-built_in">export</span> REGISTRY_TYPE=<span class="hljs-variable">${REGISTRY_TYPE:-zookeeper}</span>
+<span class="hljs-built_in">export</span> REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-variable">${REGISTRY_ZOOKEEPER_CONNECT_STRING:-localhost:2181}</span>
+
+<span class="hljs-comment"># Tasks related configurations, need to change the configuration if you use the related tasks.</span>
+<span class="hljs-built_in">export</span> HADOOP_HOME=<span class="hljs-variable">${HADOOP_HOME:-/opt/soft/hadoop}</span>
+<span class="hljs-built_in">export</span> HADOOP_CONF_DIR=<span class="hljs-variable">${HADOOP_CONF_DIR:-/opt/soft/hadoop/etc/hadoop}</span>
+<span class="hljs-built_in">export</span> SPARK_HOME1=<span class="hljs-variable">${SPARK_HOME1:-/opt/soft/spark1}</span>
+<span class="hljs-built_in">export</span> SPARK_HOME2=<span class="hljs-variable">${SPARK_HOME2:-/opt/soft/spark2}</span>
+<span class="hljs-built_in">export</span> PYTHON_HOME=<span class="hljs-variable">${PYTHON_HOME:-/opt/soft/python}</span>
+<span class="hljs-built_in">export</span> HIVE_HOME=<span class="hljs-variable">${HIVE_HOME:-/opt/soft/hive}</span>
+<span class="hljs-built_in">export</span> FLINK_HOME=<span class="hljs-variable">${FLINK_HOME:-/opt/soft/flink}</span>
+<span class="hljs-built_in">export</span> DATAX_HOME=<span class="hljs-variable">${DATAX_HOME:-/opt/soft/datax}</span>
+
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HADOOP_HOME</span>/bin:<span class="hljs-variable">$SPARK_HOME1</span>/bin:<span class="hljs-variable">$SPARK_HOME2</span>/bin:<span class="hljs-variable">$PYTHON_HOME</span>/bin:<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$HIVE_HOME</span>/bin:<span class="hljs-variable">$FLINK_HOME</span>/bin:<span class="hljs-variable">$DATAX_HOME</span>/bin:<span class="hljs-variable">$PATH</span>
 </code></pre>
 <h3>Services logback configs</h3>
 <table>

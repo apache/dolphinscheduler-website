@@ -68,11 +68,11 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 datasource.properties: database connection information 
 zookeeper.properties: information for connecting zk 
 common.properties: Configuration information about the resource store (if hadoop is set up, please check if the core-site.xml and hdfs-site.xml configuration files exist).
-env/dolphinscheduler<span class="hljs-emphasis">_env.sh: environment Variables
+dolphinscheduler<span class="hljs-emphasis">_env.sh: environment Variables
 </span></code></pre>
 </li>
 <li>
-<p>Modify the <code>dolphinscheduler_env.sh</code> environment variable in the <code>conf/env</code> directory according to the machine configuration (the following is the example that all the used software install under <code>/opt/soft</code>)</p>
+<p>Modify the <code>dolphinscheduler_env.sh</code> environment variable in the <code>bin/env/dolphinscheduler_env.sh</code> directory according to the machine configuration (the following is the example that all the used software install under <code>/opt/soft</code>)</p>
 <pre><code class="language-shell">    export HADOOP_HOME=/opt/soft/hadoop
     export HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop
     # export SPARK_HOME1=/opt/soft/spark1

@@ -87,7 +87,11 @@ sh script/create-dolphinscheduler.sh
 ```
 -->
 <h2>Modify Configuration</h2>
-<p>After completing the preparation of the basic environment, you need to modify the configuration file according to your environment. The configuration file is in the path of <code>conf/config/install_config.conf</code>. Generally, you just need to modify the <strong>INSTALL MACHINE, DolphinScheduler ENV, Database, Registry Server</strong> part to complete the deployment, the following describes the parameters that must be modified:</p>
+<p>After completing the preparation of the basic environment, you need to modify the configuration file according to the
+environment you used. The configuration files are both in directory <code>bin/env</code> and named <code>install_env.sh</code> and <code>dolphinscheduler_env.sh</code>.</p>
+<h3>Modify <code>install_env.sh</code></h3>
+<p>File <code>install_env.sh</code> describes which machines will be installed DolphinScheduler and what server will be installed on
+each machine. You could find this file in the path <code>bin/env/install_env.sh</code> and the detail of the configuration as below.</p>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> ---------------------------------------------------------</span>
 <span class="hljs-meta">#</span><span class="bash"> INSTALL MACHINE</span>
 <span class="hljs-meta">#</span><span class="bash"> ---------------------------------------------------------</span>
@@ -103,29 +107,26 @@ installPath=&quot;~/dolphinscheduler&quot;
 <span class="hljs-meta">
 #</span><span class="bash"> Deploy user, use the user you create <span class="hljs-keyword">in</span> section **Configure machine SSH password-free login**</span>
 deployUser=&quot;dolphinscheduler&quot;
-<span class="hljs-meta">
-#</span><span class="bash"> ---------------------------------------------------------</span>
-<span class="hljs-meta">#</span><span class="bash"> DolphinScheduler ENV</span>
-<span class="hljs-meta">#</span><span class="bash"> ---------------------------------------------------------</span>
-<span class="hljs-meta">#</span><span class="bash"> The path of JAVA_HOME, <span class="hljs-built_in">which</span> JDK install path <span class="hljs-keyword">in</span> section **Preparation**</span>
-javaHome=&quot;/your/java/home/here&quot;
-<span class="hljs-meta">
-#</span><span class="bash"> ---------------------------------------------------------</span>
-<span class="hljs-meta">#</span><span class="bash"> Database</span>
-<span class="hljs-meta">#</span><span class="bash"> ---------------------------------------------------------</span>
-<span class="hljs-meta">#</span><span class="bash"> Database <span class="hljs-built_in">type</span>, username, password, IP, port, metadata. For now `dbtype` supports `mysql` and `postgresql`</span>
-dbtype=&quot;mysql&quot;
-dbhost=&quot;localhost:3306&quot;
-<span class="hljs-meta">#</span><span class="bash"> Need to modify <span class="hljs-keyword">if</span> you are not using `dolphinscheduler/dolphinscheduler` as your username and password</span>
-username=&quot;dolphinscheduler&quot;
-password=&quot;dolphinscheduler&quot;
-dbname=&quot;dolphinscheduler&quot;
-<span class="hljs-meta">
-#</span><span class="bash"> ---------------------------------------------------------</span>
-<span class="hljs-meta">#</span><span class="bash"> Registry Server</span>
-<span class="hljs-meta">#</span><span class="bash"> ---------------------------------------------------------</span>
-<span class="hljs-meta">#</span><span class="bash"> Registration center address, the address of ZooKeeper service</span>
-registryServers=&quot;localhost:2181&quot;
+</code></pre>
+<h3>Modify <code>dolphinscheduler_env.sh</code></h3>
+<p>File <code>dolphinscheduler_env.sh</code> describes the database configuration of DolphinScheduler, which in the path <code>bin/env/dolphinscheduler_env.sh</code>
+and some tasks which need external dependencies or libraries such as <code>JAVA_HOME</code> and <code>SPARK_HOME</code>. You could ignore the
+task external dependencies if you do not use those tasks, but you have to change <code>JAVA_HOME</code>, registry center and database
+related configurations based on your environment.</p>
+<pre><code class="language-sh"><span class="hljs-comment"># JAVA_HOME, will use it to start DolphinScheduler server</span>
+<span class="hljs-built_in">export</span> JAVA_HOME=<span class="hljs-variable">${JAVA_HOME:-/custom/path}</span>
+
+<span class="hljs-comment"># Database related configuration, set database type, username and password</span>
+<span class="hljs-built_in">export</span> DATABASE=<span class="hljs-variable">${DATABASE:-postgresql}</span>
+<span class="hljs-built_in">export</span> SPRING_PROFILES_ACTIVE=<span class="hljs-variable">${DATABASE}</span>
+<span class="hljs-built_in">export</span> SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+<span class="hljs-built_in">export</span> SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;</span>
+<span class="hljs-built_in">export</span> SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;username&quot;</span>
+<span class="hljs-built_in">export</span> SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;password&quot;</span>
+
+<span class="hljs-comment"># Registry center configuration, determines the type and link of the registry center</span>
+<span class="hljs-built_in">export</span> REGISTRY_TYPE=<span class="hljs-variable">${REGISTRY_TYPE:-zookeeper}</span>
+<span class="hljs-built_in">export</span> REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-variable">${REGISTRY_ZOOKEEPER_CONNECT_STRING:-localhost:2181}</span>
 </code></pre>
 <h2>Initialize the Database</h2>
 <p>DolphinScheduler metadata is stored in the relational database. Currently, supports PostgreSQL and MySQL. If you use MySQL, you need to manually download <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java driver</a> (8.0.16) and move it to the lib directory of DolphinScheduler, which is <code>tools/libs/</code>. Let's take MySQL as an example for how to initialize the database:</p>
@@ -159,7 +160,7 @@ mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHA
 </code></pre>
 <h2>Start DolphinScheduler</h2>
 <p>Use <strong>deployment user</strong> you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder.</p>
-<pre><code class="language-shell">sh install.sh
+<pre><code class="language-shell">sh ./bin/install.sh
 </code></pre>
 <blockquote>
 <p><strong><em>Note:</em></strong> For the first time deployment, there maybe occur five times of <code>sh: bin/dolphinscheduler-daemon.sh: No such file or directory</code> in the terminal,
@@ -191,7 +192,13 @@ sh ./bin/dolphinscheduler-daemon.sh start alert-server
 sh ./bin/dolphinscheduler-daemon.sh stop alert-server
 </code></pre>
 <blockquote>
-<p><strong><em>Note:</em></strong>: Please refer to the section of &quot;System Architecture Design&quot; for service usage. Python gateway service is
+<p><strong><em>Note1:</em></strong>: Each server have <code>dolphinscheduler_env.sh</code> file in path <code>&lt;server-name&gt;/conf/dolphinscheduler_env.sh</code> which
+for micro-services need. It means that you could start all servers by command <code>&lt;server-name&gt;/bin/start.sh</code> with different
+environment variable from <code>bin/env/dolphinscheduler_env.sh</code>. But it will use file <code>bin/env/dolphinscheduler_env.sh</code> overwrite
+<code>&lt;server-name&gt;/conf/dolphinscheduler_env.sh</code> if you start server with command <code>/bin/dolphinscheduler-daemon.sh start &lt;server-name&gt;</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong><em>Note2:</em></strong>: Please refer to the section of &quot;System Architecture Design&quot; for service usage. Python gateway service is
 started along with the api-server, and if you do not want to start Python gateway service please disabled it by changing
 the yaml config <code>python-gateway.enabled : false</code> in api-server's configuration path <code>api-server/conf/application.yaml</code></p>
 </blockquote>

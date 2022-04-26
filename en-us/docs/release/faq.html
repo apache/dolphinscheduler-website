@@ -156,7 +156,7 @@ version 1.3 not use grpc, we use netty directly</p>
 <p>​       4, you can define DAG editing for the process, set the running flag of some tasks to <strong>prohibit running</strong>, when the process definition is started, the connection of the node will be removed from the DAG.</p>
 <hr>
 <h2>Q : Python task setting Python version</h2>
-<p>A:	1，<strong>for the version after 1.0.3</strong> only need to modify PYTHON_HOME in conf/env/.dolphinscheduler_env.sh</p>
+<p>A:	1，<strong>for the version after 1.0.3</strong> only need to modify PYTHON_HOME in <code>bin/env/dolphinscheduler_env.sh</code></p>
 <pre><code>export PYTHON_HOME=/bin/python
 </code></pre>
 <p>Note: This is <strong>PYTHON_HOME</strong> , which is the absolute path of the python command, not the simple PYTHON_HOME. Also note that when exporting the PATH, you need to directly</p>

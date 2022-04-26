@@ -14,7 +14,8 @@
 <p>Standalone 仅适用于 DolphinScheduler 的快速体验.</p>
 <p>如果你是新手，想要体验 DolphinScheduler 的功能，推荐使用<a href="standalone.md">Standalone</a>方式体检。如果你想体验更完整的功能，或者更大的任务量，推荐使用<a href="pseudo-cluster.md">伪集群部署</a>。如果你是在生产中使用，推荐使用<a href="cluster.md">集群部署</a>或者<a href="kubernetes.md">kubernetes</a></p>
 <blockquote>
-<p><strong><em>注意:</em></strong> Standalone仅建议20个以下工作流使用，因为其采用 H2 Database, Zookeeper Testing Server，任务过多可能导致不稳定</p>
+<p><strong><em>注意:</em></strong> Standalone仅建议20个以下工作流使用，因为其采用内存式的H2 Database, Zookeeper Testing Server，任务过多可能导致不稳定，并且如果重启或者停止standalone-server会导致内存中数据库里的数据清空。
+如果您要连接外部数据库，比如mysql或者postgresql，请看<a href="#%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93">配置数据库</a></p>
 </blockquote>
 <h2>前置准备工作</h2>
 <ul>
@@ -38,6 +39,25 @@ sh ./bin/dolphinscheduler-daemon.sh start standalone-server
 <span class="hljs-meta">#</span><span class="bash"> 停止 Standalone Server 服务</span>
 sh ./bin/dolphinscheduler-daemon.sh stop standalone-server
 </code></pre>
+<h3>配置数据库</h3>
+<ul>
+<li>这里以mysql为例介绍如何连接外部数据库</li>
+<li>首先，参照 <a href="pseudo-cluster.md">伪集群部署</a> <code>初始化数据库</code> 创建并初始化数据库</li>
+<li>在你的命令行设定下列环境变量，将{user}和{password}改为你数据库的用户名和密码</li>
+</ul>
+<pre><code class="language-shell">export DATABASE=${DATABASE:-mysql}
+export SPRING_PROFILES_ACTIVE=${DATABASE}
+export SPRING_DATASOURCE_USERNAME={user}
+export SPRING_DATASOURCE_PASSWORD={password}
+</code></pre>
+<ul>
+<li>
+<p>将mysql-connector-java驱动加到<code>./standalone-server/libs/standalone-server/</code>目录下, 下载方法见 <a href="pseudo-cluster.md">伪集群部署</a> <code>初始化数据库</code> 一栏</p>
+</li>
+<li>
+<p>启动standalone-server，此时你已经连接上mysql，重启或者停止standalone-server并不会清空您数据库里的数据</p>
+</li>
+</ul>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="/zh-cn/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/development-environment-setup.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
