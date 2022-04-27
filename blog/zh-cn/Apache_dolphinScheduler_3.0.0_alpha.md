@@ -47,7 +47,7 @@
 
 <div align=center>
 
-<img src="/img/2020-04-25/5.png"/>
+<img src="/img/2020-04-25/5.jpeg"/>
 
 </div>
 
@@ -57,8 +57,7 @@ Shell 任务页面
 
 <img src="/img/2020-04-25/6.png"/>
 
-</div>![图片](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
-
+</div>
 
 MySQL 数据源页面
 
@@ -230,7 +229,7 @@ Amazon Redshift 支持
 
 ## **Release Note**
 
-## [https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha](https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha)
+ [https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha](https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha)
 
 ## **感谢贡献者**
 

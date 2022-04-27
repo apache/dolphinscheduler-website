@@ -226,7 +226,6 @@ In addition to the features mentioned above, the 3.0.0-alpha release also buffs 
 
 [https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha](https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha)
 
-
 ## Thanks to contributors
 
 In alphabetical order
