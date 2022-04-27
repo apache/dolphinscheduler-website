@@ -5,6 +5,14 @@ export default {
         list: [
             {
 
+                title: '3.0.0 Alpha Release! Nine New Features and A Brand New UI Unlock New Capabilities For the Scheduling System\n',
+                author: 'Debra Chen',
+                dateStr: '2022-4-16',
+                desc: 'n April 22, 2022, Apache DolphinScheduler officially announced the release of alpha version 3.0.0! ... ',
+                link: '/en-us/blog/Apache_dolphinScheduler_3.0.0_alpha.html',
+            },
+            {
+
                 title: 'How Does Live-broadcasting Platform Adapt to Apache DolphinScheduler?',
                 author: 'Debra Chen',
                 dateStr: '2022-4-16',
@@ -207,6 +215,13 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '3.0.0 alpha 重磅发布！九大新功能、全新 UI 解锁调度系统新能力',
+                author: 'Debra Chen',
+                dateStr: '2022-4-25',
+                desc: '2022 年 4 月 22 日，Apache DolphinScheduler 正式宣布 3.0.0 alpha 版本发布！...',
+                link: '/zh-cn/blog/Apache_dolphinScheduler_3.0.0_alpha.html',
+            },
             {
                 title: '论语音社交视频直播平台与 Apache DolphinScheduler 的适配度有多高',
                 author: 'Debra Chen',

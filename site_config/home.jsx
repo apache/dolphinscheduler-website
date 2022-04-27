@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/2020-04-25/1.jpeg',
+          title: '3.0.0 alpha 重磅发布！九大新功能、全新 UI 解锁调度系统新能力',
+          content: '2022 年 4 月 22 日，Apache DolphinScheduler 正式宣布 3.0.0 alpha 版本发布！...',
+          dateStr: '2022-4-25',
+          link: '/zh-cn/blog/Apache_dolphinScheduler_3.0.0_alpha.html',
+        },
+        {
           img: '/img/2022-03-29/1.png',
           title: '极速开发扩充 Apache DolphinScheduler Task 类型 | 实用教程',
           content: '目前在大数据生态中，调度系统是不可或缺的一个重要组件..',
@@ -67,13 +74,6 @@ export default {
           content: '不知不觉，Apache DolphinScheduler 已经从 Apache 软件基金会（以下简称 ASF）孵化器毕业一年啦...',
           dateStr: '2022-4-14',
           link: '/zh-cn/blog/Apache_DolphinScheduler_s_Graduation_From_ASF_Incubator.html',
-        },
-        {
-          img: '/img/2022-03-21/1.png',
-          title: '全面拥抱 K8s，ApacheDolphinScheduler 应用与支持 K8s 任务的探索',
-          content: 'K8s 打通了主流公私云之间的壁垒，成为唯一连通公私云的基础架构平台...',
-          dateStr: '2022-3-21',
-          link: '/zh-cn/blog/K8s_Cisco_Hangzhou.html',
         },
       ],
     },
@@ -547,6 +547,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: '/img/2020-04-25/en/1.png',
+          title: '3.0.0 Alpha Release! Nine New Features and A Brand New UI Unlock New Capabilities For the Scheduling System\n',
+          content: 'On April 22, 2022, Apache DolphinScheduler officially announced the release of alpha version 3.0.0! ...',
+          dateStr: '2022-3-10',
+          link: '/en-us/blog/Apache_dolphinScheduler_3.0.0_alpha.html',
+        },
+        {
           img: '/img/2022-03-29/En/1.png',
           title: 'Fast Task Type Expanding On Apache DolphinScheduler | Tutorial',
           content: 'At present, the scheduler plays an indispensable role in big data ecology....',
@@ -560,14 +567,6 @@ export default {
           dateStr: '2022-4-14',
           link: '/en-us/blog/Apache_DolphinScheduler_s_Graduation_From_ASF_Incubator.html',
         },
-        {
-          img: '/img/2022-03-21/1.png',
-          title: 'Fully Embracing K8s, Cisco Hangzhou Seeks to Support K8s Tasks Based on ApacheDolphinScheduler',
-          content: 'K8s is the future of the cloud and is the only infrastructure platform...',
-          dateStr: '2022-3-10',
-          link: '/en-us/blog/K8s_Cisco_Hangzhou.html',
-        },
-
       ],
     },
     userreview: {
