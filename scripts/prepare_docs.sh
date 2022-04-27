@@ -21,24 +21,7 @@ set -euo pipefail
 
 SOURCE_PATH="$(cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")" )" && pwd)"
 
-# Codebase Repository
-PROJECT_NAME="dolphinscheduler"
-PROJECT_BRANCH_NAME="dev"
-PROJECT_WEBSITE_NAME="${PROJECT_NAME}-website"
-PROJECT_WEBSITE_BRANCH_NAME="history-docs"
-
-# Repository Website(current) Directory And Files
-SWAP_DIR="${SOURCE_PATH}/swap"
-PROJECT_SITE_DOC_DIR="${SOURCE_PATH}/docs"
-PROJECT_SITE_DEVELOP_DIR="${SOURCE_PATH}/development"
-PROJECT_DIR="${SWAP_DIR}/${PROJECT_NAME}"
-PROJECT_WEBSITE_DIR="${SWAP_DIR}/${PROJECT_WEBSITE_NAME}"
-
-declare -a versions=(
-"1.2.0" "1.2.1" "1.3.1" "1.3.2" "1.3.3" "1.3.4" "1.3.5" "1.3.6" "1.3.8" "1.3.9"
-"2.0.0" "2.0.1" "2.0.2" "2.0.3" "2.0.5"
-)
-
+source "${SOURCE_PATH}/scripts/conf.sh"
 
 # Choose the protocol for git communication to server, default is HTTP because it do not requests password or secret key,
 # run command `export PROTOCOL_MODE=ssh` in terminal change protocol to SSH which in is faster and stable in many cases,
@@ -70,37 +53,6 @@ function rebuild_dirs() {
         fi
         mkdir -p "${dir}"
     done
-}
-
-##############################################################
-#
-# Sync command wrapper about copy from content from src to
-# dest. It will create a directory for dest to make sure the
-# rsync, and support rsync options.
-#
-# Arguments:
-#
-#   src: rsync source parameter
-#   dest: rsync destent parameter
-#   rsync options: rsync command options
-#
-##############################################################
-function rsync_wrapper() {
-    local src="${1}"
-    local dest="${2}"
-    local dir_flag=""
-    # Create directory
-    if [ -d "${src}" ]; then
-        mkdir -p "${dest}"
-        dir_flag="/"
-    else
-        mkdir -p "$(dirname "${dest}")"
-    fi
-    if [ "$#" -eq 2 ]; then
-        rsync -av ${src}${dir_flag} "${dest}"
-    else
-        rsync -av ${3} ${src}${dir_flag} "${dest}"
-    fi
 }
 
 ##############################################################
@@ -185,33 +137,16 @@ function prepare_docs() {
     echo "  ---> Clone dev documents from ${PROJECT_REPO} branch ${PROJECT_BRANCH_NAME}."
     clone_repo "${PROJECT_REPO}" "${PROJECT_BRANCH_NAME}" "${PROJECT_DIR}"
 
+    source "${SOURCE_PATH}/scripts/rsync_content.sh"
     echo "===>>> Sync content from cloned repository."
     echo "  ---> Sync history content."
-    for version in "${versions[@]}"; do
-        echo "   --> Sync version ${version} content"
-        rsync_wrapper "${PROJECT_WEBSITE_DIR}/docs/${version}/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/${version}/user_doc"
-        rsync_wrapper "${PROJECT_WEBSITE_DIR}/docs/${version}/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/${version}/user_doc"
-        echo "  ---> Sync version ${version} configs."
-        local config_file_stem="docs${version//./-}"
-        rsync_wrapper "${PROJECT_WEBSITE_DIR}/docs/${version}/configs/${config_file_stem}.js" "${SOURCE_PATH}/site_config/${config_file_stem}.js"
-    done
-    echo "  ---> Sync history img."
-    rsync_wrapper "${PROJECT_WEBSITE_DIR}/img"/ "${SOURCE_PATH}/img"
+    rsync_history_docs
 
-    echo "  ---> Sync dev user document content."
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md --exclude=development"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/en/*.md" "${PROJECT_SITE_DOC_DIR}/en-us/release"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md --exclude=development"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh/*.md" "${PROJECT_SITE_DOC_DIR}/zh-cn/release"
-    echo "  ---> Sync development document content."
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/en/development" "${PROJECT_SITE_DEVELOP_DIR}/en-us"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh/development" "${PROJECT_SITE_DEVELOP_DIR}/zh-cn"
-    echo "  ---> Sync dev img."
-    rsync_wrapper "${PROJECT_DIR}/docs/img" "${SOURCE_PATH}/img"
-    echo "  ---> Sync dev configs."
-    rsync_wrapper "${PROJECT_DIR}/docs/configs/site.js" "${SOURCE_PATH}/site_config/site.js"
-    rsync_wrapper "${PROJECT_DIR}/docs/configs/index.md.jsx" "${SOURCE_PATH}/src/pages/docs/index.md.jsx"
-    rsync_wrapper "${PROJECT_DIR}/docs/configs/docsdev.js" "${SOURCE_PATH}/site_config/docsdev.js"
+    echo "  ---> Sync released document after migrating docs into apache/dolphinscheduler."
+    rsync_released_docs
+
+    echo "  ---> Sync latest document in dev branch."
+    rsync_latest_docs
 
     echo "===>>> End prepare document."
 }

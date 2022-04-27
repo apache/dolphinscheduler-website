@@ -22,7 +22,7 @@ on:
       - master
 
 env:
-  DOCS_FLAG: ^docs
+  DOCS_FLAG: ^docs|^development
 
 concurrency:
   group: docs-${{ github.event.pull_request.number || github.ref }}
@@ -41,7 +41,7 @@ jobs:
       - name: Get Branch origin/dev
         run: |
           git fetch --no-tags --prune --depth=1 origin master
-      - name: Fail When Docs Dir Change
+      - name: Fail when change directory `docs` or `development`
         run: |
           if git diff --name-only origin/master HEAD | grep -q -E "${{ env.DOCS_FLAG }}"; then
             exit 1
