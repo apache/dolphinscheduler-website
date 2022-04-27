@@ -4,7 +4,6 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
-
                 title: '3.0.0 Alpha Release! Nine New Features and A Brand New UI Unlock New Capabilities For the Scheduling System\n',
                 author: 'Debra Chen',
                 dateStr: '2022-4-16',
@@ -12,7 +11,6 @@ export default {
                 link: '/en-us/blog/Apache_dolphinScheduler_3.0.0_alpha.html',
             },
             {
-
                 title: 'How Does Live-broadcasting Platform Adapt to Apache DolphinScheduler?',
                 author: 'Debra Chen',
                 dateStr: '2022-4-16',

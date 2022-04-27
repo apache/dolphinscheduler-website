@@ -263,8 +263,10 @@ cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolp
 ```shell
 shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
-shasum -a 512 python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz >> python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
-shasum -b -a 512 python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl >> python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+cd python
+shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -b -a 512 apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl >> apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+cd  ../
 ```
 
 ### 提交Apache SVN
@@ -281,8 +283,10 @@ svn --username=${APACHE LDAP 用户名} commit -m "release ${RELEASE.VERSION}"
 ```shell
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+cd python
 shasum -c python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
 shasum -c python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+cd ../
 ```
 
 ### 检查gpg签名
