@@ -88,9 +88,12 @@ function rsync_released_docs() {
     echo "  ---> Directory change to ${PROJECT_DIR}."
     cd "${PROJECT_DIR}"
 
-    for version in "${!DEV_RELEASE_DOCS_VERSIONS[@]}"; do
+    for version_branch in "${DEV_RELEASE_DOCS_VERSIONS[@]}"; do
+        local version="${version_branch%%:*}"
+        local branch="${version_branch##*:}"
+
         echo "  ---> Git checkout to version ${version}."
-        git fetch origin "${DEV_RELEASE_DOCS_VERSIONS[$version]}" --no-tags
+        git fetch origin "${branch}" --no-tags
         git checkout -b "${version}" FETCH_HEAD
 
         echo "  ---> Sync released version ${version} docs."
