@@ -69,23 +69,6 @@ chmod 600 ~/.ssh/authorized_keys
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> Start ZooKeeper</span>
 ./bin/zkServer.sh start
 </code></pre>
-<!--
-Modify the database configuration and initialize
-
-```properties
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-# Modify it if you are not using dolphinscheduler/dolphinscheduler as your username and password
-spring.datasource.username=dolphinscheduler
-spring.datasource.password=dolphinscheduler
-```
-
-After modifying and saving, execute the following command to create database tables and init basic data.
-
-```shell
-sh script/create-dolphinscheduler.sh
-```
--->
 <h2>Modify Configuration</h2>
 <p>After completing the preparation of the basic environment, you need to modify the configuration file according to the
 environment you used. The configuration files are both in directory <code>bin/env</code> and named <code>install_env.sh</code> and <code>dolphinscheduler_env.sh</code>.</p>
@@ -109,24 +92,46 @@ installPath=&quot;~/dolphinscheduler&quot;
 deployUser=&quot;dolphinscheduler&quot;
 </code></pre>
 <h3>Modify <code>dolphinscheduler_env.sh</code></h3>
-<p>File <code>dolphinscheduler_env.sh</code> describes the database configuration of DolphinScheduler, which in the path <code>bin/env/dolphinscheduler_env.sh</code>
-and some tasks which need external dependencies or libraries such as <code>JAVA_HOME</code> and <code>SPARK_HOME</code>. You could ignore the
-task external dependencies if you do not use those tasks, but you have to change <code>JAVA_HOME</code>, registry center and database
+<p>File  <code>./bin/env/dolphinscheduler_env.sh</code> describes the following configurations:</p>
+<ul>
+<li>Database configuration of DolphinScheduler, see <a href="#initialize-the-database">Initialize the Database</a> for detailed instructions.</li>
+<li>Some tasks which need external dependencies or libraries such as <code>JAVA_HOME</code> and <code>SPARK_HOME</code>.</li>
+<li>Registry center <code>zookeeper</code>.</li>
+<li>Server related configuration, such as cache type, timezone, etc.</li>
+</ul>
+<p>You could ignore the task external dependencies if you do not use those tasks, but you have to change <code>JAVA_HOME</code>, registry center and database
 related configurations based on your environment.</p>
-<pre><code class="language-sh"><span class="hljs-comment"># JAVA_HOME, will use it to start DolphinScheduler server</span>
-<span class="hljs-built_in">export</span> JAVA_HOME=<span class="hljs-variable">${JAVA_HOME:-/custom/path}</span>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> JAVA_HOME, will use it to start DolphinScheduler server</span>
+export JAVA_HOME=${JAVA_HOME:-/opt/soft/java}
+<span class="hljs-meta">
+#</span><span class="bash"> Database related configuration, <span class="hljs-built_in">set</span> database <span class="hljs-built_in">type</span>, username and password</span>
+export DATABASE=${DATABASE:-postgresql}
+export SPRING_PROFILES_ACTIVE=${DATABASE}
+export SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+export SPRING_DATASOURCE_URL=jdbc:postgresql://127.0.0.1:5432/dolphinscheduler
+export SPRING_DATASOURCE_USERNAME={user}
+export SPRING_DATASOURCE_PASSWORD={password}
+<span class="hljs-meta">
+#</span><span class="bash"> DolphinScheduler server related configuration</span>
+export SPRING_CACHE_TYPE=${SPRING_CACHE_TYPE:-none}
+export SPRING_JACKSON_TIME_ZONE=${SPRING_JACKSON_TIME_ZONE:-UTC}
+export MASTER_FETCH_COMMAND_NUM=${MASTER_FETCH_COMMAND_NUM:-10}
+<span class="hljs-meta">
+#</span><span class="bash"> Registry center configuration, determines the <span class="hljs-built_in">type</span> and link of the registry center</span>
+export REGISTRY_TYPE=${REGISTRY_TYPE:-zookeeper}
+export REGISTRY_ZOOKEEPER_CONNECT_STRING=${REGISTRY_ZOOKEEPER_CONNECT_STRING:-localhost:2181}
+<span class="hljs-meta">
+#</span><span class="bash"> Tasks related configurations, need to change the configuration <span class="hljs-keyword">if</span> you use the related tasks.</span>
+export HADOOP_HOME=${HADOOP_HOME:-/opt/soft/hadoop}
+export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/opt/soft/hadoop/etc/hadoop}
+export SPARK_HOME1=${SPARK_HOME1:-/opt/soft/spark1}
+export SPARK_HOME2=${SPARK_HOME2:-/opt/soft/spark2}
+export PYTHON_HOME=${PYTHON_HOME:-/opt/soft/python}
+export HIVE_HOME=${HIVE_HOME:-/opt/soft/hive}
+export FLINK_HOME=${FLINK_HOME:-/opt/soft/flink}
+export DATAX_HOME=${DATAX_HOME:-/opt/soft/datax}
 
-<span class="hljs-comment"># Database related configuration, set database type, username and password</span>
-<span class="hljs-built_in">export</span> DATABASE=<span class="hljs-variable">${DATABASE:-postgresql}</span>
-<span class="hljs-built_in">export</span> SPRING_PROFILES_ACTIVE=<span class="hljs-variable">${DATABASE}</span>
-<span class="hljs-built_in">export</span> SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
-<span class="hljs-built_in">export</span> SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;</span>
-<span class="hljs-built_in">export</span> SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;username&quot;</span>
-<span class="hljs-built_in">export</span> SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;password&quot;</span>
-
-<span class="hljs-comment"># Registry center configuration, determines the type and link of the registry center</span>
-<span class="hljs-built_in">export</span> REGISTRY_TYPE=<span class="hljs-variable">${REGISTRY_TYPE:-zookeeper}</span>
-<span class="hljs-built_in">export</span> REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-variable">${REGISTRY_ZOOKEEPER_CONNECT_STRING:-localhost:2181}</span>
+export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME/bin:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME/bin:$PATH
 </code></pre>
 <h2>Initialize the Database</h2>
 <p>DolphinScheduler metadata is stored in the relational database. Currently, supports PostgreSQL and MySQL. If you use MySQL, you need to manually download <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java driver</a> (8.0.16) and move it to the lib directory of DolphinScheduler, which is <code>tools/libs/</code>. Let's take MySQL as an example for how to initialize the database:</p>
@@ -153,9 +158,15 @@ mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHA
 <span class="hljs-meta">mysql&gt;</span><span class="bash"> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class="hljs-string">&#x27;{user}&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>;</span>
 <span class="hljs-meta">mysql&gt;</span><span class="bash"> FLUSH PRIVILEGES;</span>
 </code></pre>
-<p>Change the username and password in <code>tools/conf/application.yaml</code> to {user} and {password} you set in the previous step.</p>
-<p>Then, modify <code>tools/bin/dolphinscheduler_env.sh</code>, set mysql as default database <code>export DATABASE=${DATABASE:-mysql}</code>.</p>
-<p>After the above steps done you would create a new database for DolphinScheduler, then run Shell scripts to init database:</p>
+<p>Then, modify <code>./bin/env/dolphinscheduler_env.sh</code> to use mysql, change {user} and {password} to what you set in the previous step.</p>
+<pre><code class="language-shell">export DATABASE=${DATABASE:-mysql}
+export SPRING_PROFILES_ACTIVE=${DATABASE}
+export SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+export SPRING_DATASOURCE_URL=jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8
+export SPRING_DATASOURCE_USERNAME={user}
+export SPRING_DATASOURCE_PASSWORD={password}
+</code></pre>
+<p>After the above steps done you would create a new database for DolphinScheduler, then run the Shell script to init database:</p>
 <pre><code class="language-shell">sh tools/bin/create-schema.sh
 </code></pre>
 <h2>Start DolphinScheduler</h2>
