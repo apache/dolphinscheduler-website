@@ -154,6 +154,8 @@
         <span class="s2">&quot;_project&quot;</span><span class="p">,</span>
         <span class="s2">&quot;_tenant&quot;</span><span class="p">,</span>
         <span class="s2">&quot;worker_group&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;warning_type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;warning_group_id&quot;</span><span class="p">,</span>
         <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
         <span class="s2">&quot;release_state&quot;</span><span class="p">,</span>
         <span class="s2">&quot;param&quot;</span><span class="p">,</span>
@@ -174,6 +176,8 @@
         <span class="n">project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_PROJECT</span><span class="p">,</span>
         <span class="n">tenant</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_TENANT</span><span class="p">,</span>
         <span class="n">worker_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">warning_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WARNING_TYPE</span><span class="p">,</span>
+        <span class="n">warning_group_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">release_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProcessDefinitionReleaseState</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">,</span>
         <span class="n">param</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -187,6 +191,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span> <span class="o">=</span> <span class="n">tenant</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span> <span class="o">=</span> <span class="n">worker_group</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span> <span class="o">=</span> <span class="n">warning_type</span>
+        <span class="k">if</span> <span class="n">warning_type</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;FAILURE&quot;</span><span class="p">,</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;NONE&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
+                <span class="s2">&quot;Parameter `warning_type` with unexpect value `</span><span class="si">%s</span><span class="s2">`&quot;</span><span class="p">,</span> <span class="n">warning_type</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span> <span class="o">=</span> <span class="n">warning_type</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning_group_id</span> <span class="o">=</span> <span class="n">warning_group_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">release_state</span> <span class="o">=</span> <span class="n">release_state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">param</span>
@@ -435,6 +447,8 @@
             <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_json</span><span class="p">),</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_group_id</span><span class="p">,</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_location</span><span class="p">),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span><span class="p">,</span>
@@ -458,6 +472,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_group_id</span><span class="p">,</span>
             <span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">,</span>
         <span class="p">)</span></div></div>
 </pre></div>
