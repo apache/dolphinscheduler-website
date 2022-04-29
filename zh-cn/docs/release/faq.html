@@ -191,9 +191,8 @@
 <p>​	2，参考官网<a href="https://dolphinscheduler.apache.org/zh-cn/docs/laster/user_doc/installation/cluster.html">部署文档</a> 1.4 小节，配置 hosts 映射和 ssh 打通及修改目录权限.
 ​          1.4 小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限</p>
 <p>​	3，复制正在运行的服务器上的部署目录到新机器的同样的部署目录下</p>
-<p>​	4，到 bin 下，启动 worker server 和 logger server</p>
+<p>​	4，到 bin 下，启动 worker server</p>
 <pre><code>        ./dolphinscheduler-daemon.sh start worker-server
-        ./dolphinscheduler-daemon.sh start logger-server
 </code></pre>
 <hr>
 <h2>Q：DolphinScheduler 什么时候发布新版本，同时新旧版本区别，以及如何升级，版本号规范</h2>
@@ -400,7 +399,7 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <p>将 <code>conf/common.properties</code> 中的 <code>yarn.application.status.address</code> 修改为当前集群的 Yarn 的信息</p>
 </li>
 <li>
-<p>通过 <code>bin/dolphinscheduler-daemon.sh start worker-server</code> 和 <code>bin/dolphinscheduler-daemon.sh start logger-server</code> 分别启动 worker-server 和 logger-server</p>
+<p>通过 <code>bin/dolphinscheduler-daemon.sh start worker-server</code> 启动 worker-server</p>
 </li>
 </ol>
 <hr>

@@ -205,10 +205,9 @@ version 1.3 not use grpc, we use netty directly</p>
 <p>A: 1, Create deployment user and hosts mapping, please refer 1.3 part of <a href="https://dolphinscheduler.apache.org/en-us/docs/laster/user_doc/installation/cluster.html">cluster deployment</a></p>
 <p>​		2, Configure hosts mapping and ssh access and modify directory permissions. please refer 1.4 part of <a href="https://dolphinscheduler.apache.org/en-us/docs/laster/user_doc/installation/cluster.html">cluster deployment</a></p>
 <p>​		3, Copy the deployment directory from worker server that has already deployed</p>
-<p>​		4, Go to bin dir, then start worker server and logger server</p>
+<p>​		4, Go to bin dir, then start worker server</p>
 <pre><code>    ```
     ./dolphinscheduler-daemon.sh start worker-server
-    ./dolphinscheduler-daemon.sh start logger-server
     ```
 </code></pre>
 <hr>
@@ -416,7 +415,7 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <p>Changing <code>yarn.application.status.address</code> to current emr's yarn url in the <code>conf/common.properties</code></p>
 </li>
 <li>
-<p>Execute command <code>bin/dolphinscheduler-daemon.sh start worker-server</code> and <code>bin/dolphinscheduler-daemon.sh start logger-server</code> to start worker-server and logger-server</p>
+<p>Execute command <code>bin/dolphinscheduler-daemon.sh start worker-server</code> to start worker-server</p>
 </li>
 </ol>
 <hr>
