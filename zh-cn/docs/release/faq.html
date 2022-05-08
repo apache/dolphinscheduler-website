@@ -495,14 +495,14 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <p>在 3.0.0-alpha 版本之后，Python gateway server 集成到 api server 中，当您启动 api server 后，Python gateway server 将启动。
 如果您不想在 api server 启动的时候启动 Python gateway server，您可以修改 api server 中的配置文件 <code>api-server/conf/application.yaml</code>
 并更改可选项 <code>python-gateway.enabled</code> 中的值设置为 <code>false</code>。</p>
-<h2>如果构建自定义的 Docker 镜像</h2>
+<h2>如何构建自定义的 Docker 镜像</h2>
 <p>DolphinScheduler 每次发版都会同时发布 Docker 镜像，你可以在 docker hub 中找到这些镜像，如果你因为个性化需求想要自己打包 docker 镜像，最佳实践是基于 DolphinScheduler 对应镜像编写 Dockerfile 文件</p>
 <pre><code class="language-Dockerfile"><span class="hljs-keyword">FROM</span> dolphinscheduler-standalone-server
 <span class="hljs-keyword">RUN</span><span class="bash"> apt update ; \
     apt install -y &lt;YOUR-CUSTOM-DEPENDENCE&gt; ; \
 </span></code></pre>
-<p>如果你想基于源码进行改造，打包并分发你的镜像，可以在代码改造完成后运行</p>
-<pre><code class="language-shell">./mvnw -B clean deploy \
+<p>如果你想基于源码进行改造，打包并分发你的镜像，可以在代码改造完成后运行。当命令运行完了后你可以通过 <code>docker images</code> 命令查看刚刚创建的镜像</p>
+<pre><code class="language-shell">./mvnw -B clean install \
   -Dmaven.test.skip \
   -Dmaven.javadoc.skip \
   -Dmaven.checkstyle.skip \
@@ -513,13 +513,14 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <p>如果你不仅需要改造源码，还想要自定义 Docker 镜像打包的依赖，可以在修改源码的同时修改 Dockerfile 的定义，你可以在源码项目根目录中运行以下命令找到所有的 Dockerfile 文件</p>
 <pre><code class="language-shell">find . -iname &#x27;Dockerfile&#x27;
 </code></pre>
+<p>之后再运行上面的 <code>./mvnw -B clean install</code> 命令，当命令运行完成后，你可以通过命令 <code>docker images</code> 查看刚刚创建的 docker 镜像</p>
 <p>我们会持续收集更多的 FAQ。</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="/zh-cn/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/development-environment-setup.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
   <script src="/build/vendor.d064bd2.js"></script>
-  <script src="/build/docs.md.edd1551.js"></script>
+  <script src="/build/docs.md.57786b9.js"></script>
   <script>
     var _hmt = _hmt || [];
     (function() {
