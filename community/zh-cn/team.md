@@ -24,6 +24,10 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Xiaochun Liu      | liuxiaochun  | [@khadgarmage](https://github.com/khadgarmage)       |
 | ZijJian Gong      | millionfor   | [@millionfor](https://github.com/millionfor)         |
 | Calvin Kirs       | kirs         | [@CalvinKirs](https://github.com/CalvinKirs)         |
+| Chong Zhuang      | kerwin       | [@zhuangchong](https://github.com/zhuangchong)       |
+| ShunFeng Cai      | caishunfeng  | [@caishunfeng](https://github.com/caishunfeng)       |
+| Jiajie Zhong      | zhongjiajie  | [@zhongjiajie](https://github.com/zhongjiajie)       |
+| Zhenxu Ke         | kezhenxu94   | [@kezhenxu94](https://github.com/kezhenxu94)         |
 
 ### Committer
 
@@ -31,7 +35,6 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | ------------- | ------------ | -------------------------------------------------------- |
 | BoYi Zhang    | zhangboyi    | [@BoYiZhang](https://github.com/BoYiZhang)               |
 | Caibiao Xiang | break60      | [@break60](https://github.com/break60)                   |
-| Chong Zhuang  | kerwin       | [@zhuangchong](https://github.com/zhuangchong)           |
 | Cong Huang    | chongchongzi | [@chongchongzi](https://github.com/chongchongzi)         |
 | Hemin Wen     | wenhemin     | [@wen-hemin](https://github.com/wen-hemin)               |
 | Kai Zhu       | zhukai       | [@nauu](https://github.com/nauu)                         |
@@ -45,17 +48,18 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Xingchun Chen | chenxingchun | [@xingchun-chen](https://github.com/xingchun-chen)       |
 | Yichao Yang   | yangyichao   | [@yangyichao-mango](https://github.com/yangyichao-mango) |
 | Zongyao Zhang | lfyee        | [@lfyee](https://github.com/lfyee)                       |
-| Zhenxu Ke     | kezhenxu94   | [@kezhenxu94](https://github.com/kezhenxu94)             |
-| Jiajie Zhong  | zhongjiajie  | [@zhongjiajie](https://github.com/zhongjiajie)           |
-| Yizhi Wang    | wangyizhi    | [@Wangyizhi1](https://github.com/Wangyizhi1)             |
-| ShunFeng Cai  | caishunfeng  | [@caishunfeng](https://github.com/caishunfeng)           |
+| JinyLeeChina  | jinyleechina | [@JinyLeeChina](https://github.com/JinyLeeChina)         |
 | Wenjun Ruan   | wenjun       | [@ruanwenjun](https://github.com/ruanwenjun)             |
+| Wang Xingjie  | wangxj       | [@wangxj3](https://github.com/wangxj3)                   |
+| Yizhi Wang    | wangyizhi    | [@Wangyizhi1](https://github.com/Wangyizhi1)             |
 | Jian Song     | songjian     | [@songjianet](https://github.com/songjianet)             |
 | Zhaohe Sun    | zixi0825     | [@zixi0825](https://github.com/zixi0825)                 |
 | Tianqi Yan    | tianqiyan    | [@Tianqi-Dotes](https://github.com/Tianqi-Dotes)         |
 | Dongkai Liu   | liudongkai   | [@devosend](https://github.com/devosend)                 |
 | Hua Jiang     | huajiang     | [@calvinjiang](https://github.com/calvinjiang)           |
 | Zihao Xiang   | zihaoxiang   | [@SbloodyS](https://github.com/SbloodyS)                 |
+| Amy Wang      | wanggenhua   | [@Amy0104](https://github.com/Amy0104)                   |
+| JunJie Xu     | xujunjie     | [@labbomb](https://github.com/labbomb)                   |
 
 ## 贡献者
 
