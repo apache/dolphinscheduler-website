@@ -2,7 +2,7 @@
 
 This project keeps all sources used for building up DolphinScheduler official website which's served at https://dolphinscheduler.incubator.apache.org/.
 
-## Prerequisite
+## Prerequisitesssssss
 
 DolphinScheduler website is powered by [docsite](https://github.com/txd-team/docsite).
 If your version of docsite is less than `1.3.3`,please upgrade to `1.3.3`.
