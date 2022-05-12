@@ -110,8 +110,8 @@
 </code></pre>
 <h2>授予权限</h2>
 <ul>
-<li>授予权限包括项目权限，资源权限，数据源权限，UD F函数权限。</li>
-<li>管理员可以对普通用户进行非其创建的项目、资源、数据源和 UDF 函数进行授权。因为项目、资源、数据源和 UDF 函数授权方式都是一样的，所以以项目授权为例介绍。</li>
+<li>授予权限包括项目权限，资源权限，数据源权限，UDF函数权限，k8s命名空间。</li>
+<li>管理员可以对普通用户进行非其创建的项目、资源、数据源、UDF函数、k8s命名空间。因为项目、资源、数据源、UDF函数、k8s命名空间授权方式都是一样的，所以以项目授权为例介绍。</li>
 <li>注意：对于用户自己创建的项目，该用户拥有所有的权限。则项目列表和已选项目列表中不会显示。</li>
 </ul>
 <ul>
@@ -168,6 +168,20 @@ worker.groups=default,test
 <li>在工作流定义中创建任务节点选择 worker 分组和 worker 分组对应的环境，任务执行时 worker 会先执行环境在执行任务.</li>
 </ul>
 <p><img src="/img/new_ui/dev/security/use-environment.png" alt="use-environment"></p>
+<h2>命名空间管理</h2>
+<blockquote>
+<p>创建/更新 k8s集群</p>
+</blockquote>
+<ul>
+<li>先把k8s集群连接的配置录入 database 的表 <code>t_ds_k8s</code>，后续会通过页面配置.</li>
+</ul>
+<blockquote>
+<p>创建/更新 namespace</p>
+</blockquote>
+<ul>
+<li>创建和授权后，在相关k8s任务选择命名空间时下拉可选，如果k8s集群名字是<code>ds_null_k8s</code>是测试模式，不会真正操作集群.</li>
+</ul>
+<p><img src="/img/new_ui/dev/security/create-namespace.png" alt="create-environment"></p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="/zh-cn/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>文档</h4><ul><li><a href="/zh-cn/development/architecture-design.html"><p>概览</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/guide/quick-start.html"><p>快速开始</p></a></li><li><a href="/zh-cn/development/development-environment-setup.html"><p>开发者指南</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>基金会</p></a></li><li><a href="http://www.apache.org/licenses/"><p>证书</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>事件</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>赞助</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>致谢</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
