@@ -23,7 +23,18 @@
 <h2>任务参数</h2>
 <ul>
 <li>数据源：选择对应的数据源</li>
-<li>sql类型：支持查询和非查询两种，查询是select类型的查询，是有结果集返回的，可以指定邮件通知为表格、附件或表格附件三种模板。非查询是没有结果集返回的，是针对update、delete、insert三种类型的操作。</li>
+<li>sql类型：支持查询和非查询两种。
+<ul>
+<li>查询：支持 <code>DML select</code> 类型的命令，是有结果集返回的，可以指定邮件通知为表格、附件或表格附件三种模板；</li>
+<li>非查询：支持 <code>DDL</code>全部命令 和 <code>DML update、delete、insert</code> 三种类型的命令；
+<ul>
+<li>分段执行符号：提供在数据源不支持一次执行多段SQL语句时，拆分SQL语句的符号来进行多次调用数据源执行方法。
+例子：1.当数据源选择Hive数据源时，不需要填写此参数。因为Hive数据源本身支持一次执行多段SQL语句；
+2.当数据源选择MySQL数据源时，并且要执行多段SQL语句时，需要填写此参数为分号 <code>;</code>。因为MySQL数据源不支持一次执行多段SQL语句；</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>sql参数：输入参数格式为key1=value1;key2=value2…</li>
 <li>sql语句：SQL语句</li>
 <li>UDF函数：对于HIVE类型的数据源，可以引用资源中心中创建的UDF函数，其他类型的数据源暂不支持UDF函数。</li>
