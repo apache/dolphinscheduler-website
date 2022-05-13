@@ -16,27 +16,16 @@ For example, to release `x.y.z`, the following updates are required:
   - `sql`:
     - `dolphinscheduler_mysql.sql`: `t_ds_version` needs to be updated to x.y.z
     - `dolphinscheduler_postgre.sql`: `t_ds_version` needs to be updated to x.y.z
+    - `dolphinscheduler_h2.sql`: `t_ds_version` needs to be updated to x.y.z
     - `upgrade`: whether to add`x.y.z_schema`
     - `soft_version`: need to be updated to x.y.z
-  - `docker/docker-swarm`:
-    - `docker-compose.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler` needs to be updated to x.y.z
-    - `docker-stack.yml`: `image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler` needs to be updated to x.y.z
-  - `docker/kubernetes/dolphinscheduler`:
+  - `deploy/docker/.env`: `HUB` change to `apache`，`TAG` change to `3.0.0-beta-1`
+  - `deploy/kubernetes/dolphinscheduler`:
     - `Chart.yaml`: `appVersion` needs to be updated to x.y.z (`version` is helm chart version，incremented and different from x.y.z)
     - `values.yaml`: `image.tag` needs to be updated to x.y.z
   - `dolphinscheduler-python/pydolphinscheduler/setup.py`: change `version` to x.y.z
 - Version in the docs:
-  - Change the placeholder `<version>` to the `x.y.z`
-    - `docker.md`
-    - `expansion-reduction.md`
-    - `kubernetes.md`
-    - `upgrade.md`
-  - Change configuration file
-    - `docs/configs/site.js`:
-      - `docsLatest`: update to x.y.z
-      - `docs0`: The `text` of two places of `en-us/zh-cn` needs to be updated to `latest(x.y.z)`
-      - `docsxyz`: Add a drop-down menu with `key` as `docsxyz` and `text` as `x.y.z` in `children` of two places of `en-us/zh-cn`
-    - `docs/configs/index.md.jsx`: Add `'x.y.z': docsxyzConfig`
-    - `docs/configs/docsdev.js`: Rename to `docsx-y-z.js` and change its content `/dev/` to `/x.y.z/`
+  - Change the placeholder `<version>`(except `pom`)  to the `x.y.z` in directory `docs`
   - Add new history version
     - `docs/docs/en/history-versions.md` and `docs/docs/zh/history-versions.md`: Add the new version and link for `x.y.z`
+  - `docs/configs/docsdev.js`: change `/dev/` to `/x.y.z/`

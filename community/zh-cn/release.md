@@ -284,8 +284,8 @@ svn --username=${APACHE LDAP 用户名} commit -m "release ${RELEASE.VERSION}"
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
 shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
 cd python
-shasum -c python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
-shasum -c python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+shasum -c apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
+shasum -c apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
 cd ../
 ```
 
@@ -319,8 +319,10 @@ Your decision? 5
 ```shell
 gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz
 gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz
-gpg --verify python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.asc python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz
-gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.asc python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl
+cd python
+gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz
+gpg --verify apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.asc apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl
+cd ../
 ```
 
 ### 检查发布文件内容
