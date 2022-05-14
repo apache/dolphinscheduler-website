@@ -108,7 +108,7 @@ export JAVA_HOME=${JAVA_HOME:-/opt/soft/java}
 export DATABASE=${DATABASE:-postgresql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
 export SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
-export SPRING_DATASOURCE_URL=jdbc:postgresql://127.0.0.1:5432/dolphinscheduler
+export SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}
 <span class="hljs-meta">
@@ -162,12 +162,12 @@ mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHA
 <pre><code class="language-shell">export DATABASE=${DATABASE:-mysql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
 export SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-export SPRING_DATASOURCE_URL=jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8
+export SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}
 </code></pre>
 <p>After the above steps done you would create a new database for DolphinScheduler, then run the Shell script to init database:</p>
-<pre><code class="language-shell">sh tools/bin/create-schema.sh
+<pre><code class="language-shell">sh tools/bin/upgrade-schema.sh
 </code></pre>
 <h2>Start DolphinScheduler</h2>
 <p>Use <strong>deployment user</strong> you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder.</p>

@@ -105,7 +105,7 @@ deployUser=&quot;dolphinscheduler&quot;
 <span class="hljs-built_in">export</span> DATABASE=<span class="hljs-variable">${DATABASE:-postgresql}</span>
 <span class="hljs-built_in">export</span> SPRING_PROFILES_ACTIVE=<span class="hljs-variable">${DATABASE}</span>
 <span class="hljs-built_in">export</span> SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
-<span class="hljs-built_in">export</span> SPRING_DATASOURCE_URL=jdbc:postgresql://127.0.0.1:5432/dolphinscheduler
+<span class="hljs-built_in">export</span> SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;</span>
 <span class="hljs-built_in">export</span> SPRING_DATASOURCE_USERNAME={user}
 <span class="hljs-built_in">export</span> SPRING_DATASOURCE_PASSWORD={password}
 
@@ -159,12 +159,12 @@ mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHA
 <pre><code class="language-shell">export DATABASE=${DATABASE:-mysql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
 export SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-export SPRING_DATASOURCE_URL=jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8
+export SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}
 </code></pre>
 <p>完成上述步骤后，您已经为 DolphinScheduler 创建一个新数据库，现在你可以通过快速的 Shell 脚本来初始化数据库</p>
-<pre><code class="language-shell">sh tools/bin/create-schema.sh
+<pre><code class="language-shell">sh tools/bin/upgrade-schema.sh
 </code></pre>
 <h2>启动 DolphinScheduler</h2>
 <p>使用上面创建的<strong>部署用户</strong>运行以下命令完成部署，部署后的运行日志将存放在 logs 文件夹内</p>
