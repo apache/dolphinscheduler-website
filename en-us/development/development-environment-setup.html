@@ -15,10 +15,9 @@
 <p>Before setting up the DolphinScheduler development environment, please make sure you have installed the software as below:</p>
 <ul>
 <li><a href="https://git-scm.com/downloads">Git</a>: DolphinScheduler version control system</li>
-<li><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a>: DolphinScheduler backend language</li>
+<li><a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a>: DolphinScheduler backend language, have to use version after JDK 1.8</li>
 <li><a href="http://maven.apache.org/download.cgi">Maven</a>: Java Package Management System</li>
-<li><a href="https://nodejs.org/en/download">Node</a>: DolphinScheduler frontend
-language</li>
+<li><a href="https://nodejs.org/en/download">Node</a>: DolphinScheduler frontend, have to use version after Node 12.20.2</li>
 </ul>
 <h3>Clone Git Repository</h3>
 <p>Download the git repository through your git management tool, here we use git-core as an example</p>
@@ -27,7 +26,6 @@ cd dolphinscheduler
 git clone git@github.com:apache/dolphinscheduler.git
 </code></pre>
 <h3>compile source code</h3>
-<p>i. If you use MySQL database, pay attention to modify pom.xml in the root project, and change the scope of the mysql-connector-java dependency to compile.</p>
 <p>ii. Run <code>mvn clean install -Prelease -Dmaven.test.skip=true</code></p>
 <h2>Notice</h2>
 <p>There are two ways to configure the DolphinScheduler development environment, standalone mode and normal mode</p>
@@ -50,7 +48,10 @@ Standalone server is able to connect to external databases like mysql and postgr
 <h3>Start backend server</h3>
 <p>Find the class <code>org.apache.dolphinscheduler.server.StandaloneServer</code> in Intellij IDEA and clikc run main function to startup.</p>
 <h3>Start frontend server</h3>
-<p>Install frontend dependencies and run it</p>
+<p>Install frontend dependencies and run it.</p>
+<blockquote>
+<p>Note: You can see more detail about the frontend setting in <a href="./frontend-development.md">frontend development</a>.</p>
+</blockquote>
 <pre><code class="language-shell">cd dolphinscheduler-ui
 pnpm install
 pnpm run dev
@@ -86,37 +87,29 @@ dataLogDir=/data/zookeeper/datalog
 <p>Open project: Use IDE open the project, here we use Intellij IDEA as an example, after opening it will take a while for Intellij IDEA to complete the dependent download</p>
 </li>
 <li>
-<p>Plugin installation(<strong>Only required for 2.0 or later</strong>)</p>
-</li>
-<li>
-<p>Registry plug-in configuration, take Zookeeper as an example (registry.properties)
-dolphinscheduler-service/src/main/resources/registry.properties</p>
-</li>
-</ul>
-<pre><code class="language-registry.properties"> registry.plugin.name=zookeeper
- registry.servers=127.0.0.1:2181
-</code></pre>
-<ul>
-<li>
 <p>File change</p>
 <ul>
 <li>If you use MySQL as your metadata database, you need to modify <code>dolphinscheduler/pom.xml</code> and change the <code>scope</code> of the <code>mysql-connector-java</code> dependency to <code>compile</code>. This step is not necessary to use PostgreSQL</li>
-<li>Modify database configuration, modify the database configuration in the <code>dolphinscheduler-dao/src/main/resources/application-mysql.yaml</code></li>
+<li>Modify database configuration, modify the database configuration in the <code>dolphinscheduler-master/src/main/resources/application.yaml</code></li>
+<li>Modify database configuration, modify the database configuration in the <code>dolphinscheduler-worker/src/main/resources/application.yaml</code></li>
+<li>Modify database configuration, modify the database configuration in the <code>dolphinscheduler-api/src/main/resources/application.yaml</code></li>
+</ul>
+</li>
 </ul>
 <p>We here use MySQL with database, username, password named dolphinscheduler as an example</p>
-<pre><code class="language-application-mysql.yaml"> spring:
+<pre><code class="language-application.yaml"> spring:
    datasource:
      driver-class-name: com.mysql.jdbc.Driver
      url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8
-     username: ds_user
+     username: dolphinscheduler
      password: dolphinscheduler
 </code></pre>
-</li>
+<ul>
 <li>
 <p>Log level: add a line <code>&lt;appender-ref ref=&quot;STDOUT&quot;/&gt;</code> to the following configuration to enable the log to be displayed on the command line</p>
-<p><code>dolphinscheduler-server/src/main/resources/logback-worker.xml</code></p>
-<p><code>dolphinscheduler-server/src/main/resources/logback-master.xml</code></p>
-<p><code>dolphinscheduler-api/src/main/resources/logback-api.xml</code></p>
+<p><code>dolphinscheduler-master/src/main/resources/logback-spring.xml</code>
+<code>dolphinscheduler-worker/src/main/resources/logback-spring.xml</code>
+<code>dolphinscheduler-api/src/main/resources/logback-spring.xml</code></p>
 <p>here we add the result after modify as below:</p>
 <pre><code class="language-diff">&lt;root level=&quot;INFO&quot;&gt;
 <span class="hljs-addition">+  &lt;appender-ref ref=&quot;STDOUT&quot;/&gt;</span>
@@ -132,9 +125,9 @@ dolphinscheduler-service/src/main/resources/registry.properties</p>
 <h5>Server start</h5>
 <p>There are three services that need to be started, including MasterServer, WorkerServer, ApiApplicationServer.</p>
 <ul>
-<li>MasterServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.server.master.MasterServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-master.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
-<li>WorkerServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.server.worker.WorkerServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-worker.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
-<li>ApiApplicationServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.api.ApiApplicationServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-api.xml -Dspring.profiles.active=api,mysql</code>. After it started, you could find Open API documentation in <a href="http://localhost:12345/dolphinscheduler/doc.html">http://localhost:12345/dolphinscheduler/doc.html</a></li>
+<li>MasterServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.server.master.MasterServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
+<li>WorkerServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.server.worker.WorkerServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
+<li>ApiApplicationServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.api.ApiApplicationServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Dspring.profiles.active=api,mysql</code>. After it started, you could find Open API documentation in <a href="http://localhost:12345/dolphinscheduler/doc.html">http://localhost:12345/dolphinscheduler/doc.html</a></li>
 </ul>
 <blockquote>
 <p>The <code>mysql</code> in the VM Options <code>-Dspring.profiles.active=mysql</code> means specified configuration file</p>
