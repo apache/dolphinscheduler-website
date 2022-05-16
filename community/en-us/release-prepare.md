@@ -19,7 +19,7 @@ For example, to release `x.y.z`, the following updates are required:
     - `dolphinscheduler_h2.sql`: `t_ds_version` needs to be updated to x.y.z
     - `upgrade`: whether to add`x.y.z_schema`
     - `soft_version`: need to be updated to x.y.z
-  - `deploy/docker/.env`: `HUB` change to `apache`，`TAG` change to `3.0.0-beta-1`
+  - `deploy/docker/.env`: `HUB` change to `apache`，`TAG` change to `x.y.z`
   - `deploy/kubernetes/dolphinscheduler`:
     - `Chart.yaml`: `appVersion` needs to be updated to x.y.z (`version` is helm chart version，incremented and different from x.y.z)
     - `values.yaml`: `image.tag` needs to be updated to x.y.z

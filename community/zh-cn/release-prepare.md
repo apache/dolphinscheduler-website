@@ -19,7 +19,7 @@
     - `dolphinscheduler_h2.sql`: `t_ds_version` 版本更新为 x.y.z
     - `upgrade`: 是否新增 `x.y.z_schema`
     - `soft_version`: 版本更新为 x.y.z
-  - `deploy/docker/.env`: `HUB` 改为 `apache`，`TAG` 改为 `3.0.0-beta-1`
+  - `deploy/docker/.env`: `HUB` 改为 `apache`，`TAG` 改为 `x.y.z`
   - `deploy/kubernetes/dolphinscheduler`:
     - `Chart.yaml`: `appVersion` 版本更新为 x.y.z (`version` 为 helm chart 版本, 增量更新但不要设置为 x.y.z)
     - `values.yaml`: `image.tag` 版本更新为 x.y.z
