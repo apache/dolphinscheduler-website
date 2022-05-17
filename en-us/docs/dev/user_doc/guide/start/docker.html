@@ -19,7 +19,7 @@ or zookeeper server already exists.</p>
 <h2>Prepare</h2>
 <ul>
 <li><a href="https://docs.docker.com/engine/install/">Docker</a> 1.13.1+</li>
-<li><a href="https://docs.docker.com/compose/">Docker Compose</a> 1.11.0+</li>
+<li><a href="https://docs.docker.com/compose/">Docker Compose</a> 1.28.0+</li>
 </ul>
 <h2>Start Server</h2>
 <h3>Using standalone-server Docker Image</h3>
@@ -59,9 +59,13 @@ form its source package, and make sure you get the right version. After download
 <span class="hljs-meta">#</span><span class="bash"> Going to docker-compose<span class="hljs-string">&#x27;s location</span></span>
 <span class="hljs-meta">#</span><span class="bash"><span class="hljs-string"> For Mac or Linux users</span></span> 
 <span class="hljs-meta">$</span><span class="bash"><span class="hljs-string"> cd apache-dolphinscheduler-&quot;${DOLPHINSCHEDULER_VERSION}&quot;-src/deploy/docker</span></span>
-<span class="hljs-meta">#</span><span class="bash"><span class="hljs-string"> For Windows users</span></span>
-<span class="hljs-meta">$</span><span class="bash"><span class="hljs-string"> cd apache-dolphinscheduler-&quot;${DOLPHINSCHEDULER_VERSION}&quot;-src\deploy\docker</span></span>
-<span class="hljs-meta">$</span><span class="bash"><span class="hljs-string"> docker-compose up -d</span></span>
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-string"> For Windows users, you should run command `cd apache-dolphinscheduler-&quot;${DOLPHINSCHEDULER_VERSION}&quot;-src\deploy\docker`</span></span>
+<span class="hljs-meta">
+#</span><span class="bash"><span class="hljs-string"> Initialize the database, use profile schema</span></span>
+<span class="hljs-meta">$</span><span class="bash"><span class="hljs-string"> docker-compose --profile schema up -d</span></span>
+<span class="hljs-meta">
+#</span><span class="bash"><span class="hljs-string"> start all dolphinscheduler server, use profile all</span></span>
+<span class="hljs-meta">$</span><span class="bash"><span class="hljs-string"> docker-compose --profile all up -d</span></span>
 </code></pre>
 <blockquote>
 <p>NOTES: It will not only start DolphinScheduler servers but also some others necessary services like PostgreSQL(with <code>root</code>
@@ -79,6 +83,7 @@ container when it up. You could start DolphinScheduler server separately if you 
     -e SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://localhost:5432/&lt;DATABASE&gt;&quot; \
     -e SPRING_DATASOURCE_USERNAME=&quot;&lt;USER&gt;&quot; \
     -e SPRING_DATASOURCE_PASSWORD=&quot;&lt;PASSWORD&gt;&quot; \
+    --net host \
     apache/dolphinscheduler-tools:&quot;${DOLPHINSCHEDULER_VERSION}&quot; bin/create-schema.sh
 <span class="hljs-meta">#</span><span class="bash"> Starting DolphinScheduler service</span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-master \
@@ -88,6 +93,7 @@ container when it up. You could start DolphinScheduler server separately if you 
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-string">&quot;localhost:2181&quot;</span> \
+    --net host \
     -d apache/dolphinscheduler-master:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-worker \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
@@ -96,6 +102,7 @@ container when it up. You could start DolphinScheduler server separately if you 
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-string">&quot;localhost:2181&quot;</span> \
+    --net host \
     -d apache/dolphinscheduler-worker:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-api \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
@@ -104,6 +111,7 @@ container when it up. You could start DolphinScheduler server separately if you 
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-string">&quot;localhost:2181&quot;</span> \
+    --net host \
     -d apache/dolphinscheduler-api:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-alert-server \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
@@ -112,6 +120,7 @@ container when it up. You could start DolphinScheduler server separately if you 
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-string">&quot;localhost:2181&quot;</span> \
+    --net host \
     -d apache/dolphinscheduler-alert-server:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 </code></pre>
 <blockquote>

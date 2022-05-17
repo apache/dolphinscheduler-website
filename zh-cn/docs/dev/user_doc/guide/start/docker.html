@@ -17,7 +17,7 @@
 <h2>前置条件</h2>
 <ul>
 <li><a href="https://docs.docker.com/engine/install/">Docker</a> 1.13.1+</li>
-<li><a href="https://docs.docker.com/compose/">Docker Compose</a> 1.11.0+</li>
+<li><a href="https://docs.docker.com/compose/">Docker Compose</a> 1.28.0+</li>
 </ul>
 <h2>启动服务</h2>
 <h3>使用 standalone-server 镜像</h3>
@@ -52,9 +52,13 @@ apache/dolphinscheduler-standalone-server 仅包含 DolphinScheduler 核心服�
 <span class="hljs-meta">$</span><span class="bash"> tar -zxf apache-dolphinscheduler-<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span>-src.tar.gz</span>
 <span class="hljs-meta">#</span><span class="bash"> Mac Linux 用户</span>
 <span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> apache-dolphinscheduler-<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span>-src/deploy/docker</span>
-<span class="hljs-meta">#</span><span class="bash"> Windows 用户</span>
-<span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> apache-dolphinscheduler-<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span>-src\deploy\docker</span>
-<span class="hljs-meta">$</span><span class="bash"> docker-compose up -d</span>
+<span class="hljs-meta">#</span><span class="bash">  Windows 用户, `<span class="hljs-built_in">cd</span> apache-dolphinscheduler-<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span>-src\deploy\docker`</span>
+<span class="hljs-meta">
+#</span><span class="bash"> 如果需要初始化或者升级数据库结构，需要指定profile为schema</span>
+<span class="hljs-meta">$</span><span class="bash"> docker-compose --profile schema up -d</span>
+<span class="hljs-meta">
+#</span><span class="bash"> 启动dolphinscheduler所有服务，指定profile为all</span>
+<span class="hljs-meta">$</span><span class="bash"> docker-compose --profile all up -d</span>
 </code></pre>
 <blockquote>
 <p>提醒：通过 docker-compose 启动服务时，除了会启动 DolphinScheduler 对应的服务外，还会启动必要依赖服务，如数据库 PostgreSQL(用户
@@ -72,6 +76,7 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
     -e SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://localhost:5432/&lt;DATABASE&gt;&quot; \
     -e SPRING_DATASOURCE_USERNAME=&quot;&lt;USER&gt;&quot; \
     -e SPRING_DATASOURCE_PASSWORD=&quot;&lt;PASSWORD&gt;&quot; \
+    --net host \
     apache/dolphinscheduler-tools:&quot;${DOLPHINSCHEDULER_VERSION}&quot; bin/create-schema.sh
 <span class="hljs-meta">#</span><span class="bash"> 启动 DolphinScheduler 对应的服务</span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-master \
@@ -81,6 +86,7 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-string">&quot;localhost:2181&quot;</span> \
+    --net host \
     -d apache/dolphinscheduler-master:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-worker \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
@@ -89,6 +95,7 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-string">&quot;localhost:2181&quot;</span> \
+    --net host \
     -d apache/dolphinscheduler-worker:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-api \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
@@ -97,6 +104,7 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-string">&quot;localhost:2181&quot;</span> \
+    --net host \
     -d apache/dolphinscheduler-api:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-alert-server \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
@@ -105,6 +113,7 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class="hljs-string">&quot;localhost:2181&quot;</span> \
+    --net host \
     -d apache/dolphinscheduler-alert-server:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 </code></pre>
 <blockquote>

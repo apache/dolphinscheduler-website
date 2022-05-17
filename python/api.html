@@ -331,7 +331,7 @@ upstream task with task_code equal to <cite>0</cite>. This is requests from java
 <dd><p>Check specific condition satisfy before.</p>
 <p>This method should be called before process definition submit to java gateway
 For now, we have below checker:
-* <cite>self.param</cite> should be set if task <cite>switch</cite> in this workflow.</p>
+* <cite>self.param</cite> or at least one local param of task should be set if task <cite>switch</cite> in this workflow.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2257,6 +2257,8 @@ object tries to communicate with Java gateway server.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">Switch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tasks/switch.html#pydolphinscheduler.tasks.switch.SwitchCondition" title="pydolphinscheduler.tasks.switch.SwitchCondition"><span class="pre">pydolphinscheduler.tasks.switch.SwitchCondition</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/switch.html#Switch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Switch" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.task.Task</span></code></a></p>
 <p>Task switch object, declare behavior for switch task to dolphinscheduler.</p>
+<p>Param of process definition or at least one local param of task must be set
+if task <cite>switch</cite> in this workflow.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch._set_dep">
 <span class="sig-name descname"><span class="pre">_set_dep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/switch.html#Switch._set_dep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Switch._set_dep" title="Permalink to this definition"></a></dt>
