@@ -506,42 +506,19 @@ sed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers
 <p>A：The repair can be completed by executing the following SQL in the database:</p>
 <pre><code class="language-SQL">update t_ds_version <span class="hljs-keyword">set</span> version<span class="hljs-operator">=</span><span class="hljs-string">&#x27;2.0.1&#x27;</span>;
 </code></pre>
-<h2>Can not find python-gateway-server in distribute package</h2>
-<p>After version 3.0.0-alpha, Python gateway server integrate into API server, and Python gateway service will start when you
+<hr>
+<h2>Q：Can not find python-gateway-server in distribute package</h2>
+<p>A：After version 3.0.0-alpha, Python gateway server integrate into API server, and Python gateway service will start when you
 start API server. If you want disabled when Python gateway service you could change API server configuration in path
 <code>api-server/conf/application.yaml</code> and change attribute <code>python-gateway.enabled : false</code>.</p>
-<h2>How to Build Custom Docker Image</h2>
-<p>DolphinScheduler will release new Docker images after it released, you could find them in DockerHub. You could create
-custom Docker images base on those images if you want to change image like add some dependencies or upgrade package.</p>
-<pre><code class="language-Dockerfile"><span class="hljs-keyword">FROM</span> apache/dolphinscheduler-standalone-server
-<span class="hljs-keyword">RUN</span><span class="bash"> apt update ; \
-    apt install -y &lt;YOUR-CUSTOM-DEPENDENCE&gt; ; \
-</span></code></pre>
-<p>If you want to modify DolphinScheduler source code, then build and distribute your own images, you can run below command
-to build Docker images and install them locally, which you could find them by command <code>docker imaegs</code>.</p>
-<pre><code class="language-shell">./mvnw -B clean install \
-  -Dmaven.test.skip \
-  -Dmaven.javadoc.skip \
-  -Dmaven.checkstyle.skip \
-  -Dmaven.deploy.skip \
-  -Ddocker.tag=latest \
-  -Pdocker,release
-</code></pre>
-<p>If you want to modify DolphinScheduler source code, but also want to add customize dependencies of Docker image, you can
-modify the definition of Dockerfile after modifying the source code. You can run the following command in root source code
-directory to find all Dockerfile files.</p>
-<pre><code class="language-shell">find . -iname &#x27;Dockerfile&#x27;
-</code></pre>
-<p>Then run the command above start with <code>./mvnw -B clean install</code>. You can see all docker images you just created with
-command <code>docker images</code> after finish commnand <code>mvnw</code>.</p>
 <hr>
-<h2>We will collect more FAQ later</h2>
+<p>We will collect more FAQ later</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-omtdhuio-_JISsxYhiVsltmC5h38yfw"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="//cdn.jsdelivr.net/npm/react@15.6.2/dist/react-with-addons.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/react-dom@15.6.2/dist/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
   <script src="/build/vendor.d064bd2.js"></script>
-  <script src="/build/docs.md.5dde284.js"></script>
+  <script src="/build/docs.md.b26b43c.js"></script>
   <script>
     var _hmt = _hmt || [];
     (function() {

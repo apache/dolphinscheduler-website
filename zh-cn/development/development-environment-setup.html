@@ -29,6 +29,51 @@ git clone git@github.com:apache/dolphinscheduler.git
 <ul>
 <li>运行 <code>mvn clean install -Prelease -Dmaven.test.skip=true</code></li>
 </ul>
+<h2>Docker镜像构建</h2>
+<p>DolphinScheduler 每次发版都会同时发布 Docker 镜像，你可以在 <a href="https://hub.docker.com/search?q=DolphinScheduler">Docker Hub</a> 中找到这些镜像</p>
+<ul>
+<li>如果你想基于源码进行改造，然后在本地构建Docker镜像，可以在代码改造完成后运行</li>
+</ul>
+<pre><code class="language-shell">cd dolphinscheduler
+./mvnw -B clean package \
+       -Dmaven.test.skip \
+       -Dmaven.javadoc.skip \
+       -Dmaven.checkstyle.skip \
+       -Ddocker.tag=&lt;TAG&gt; \
+       -Pdocker,release             
+</code></pre>
+<p>当命令运行完了后你可以通过 <code>docker images</code> 命令查看刚刚创建的镜像</p>
+<ul>
+<li>如果你想基于源码进行改造，然后构建Docker镜像并推送到 &lt;HUB_URL&gt;，可以在代码改造完成后运行</li>
+</ul>
+<pre><code class="language-shell">cd dolphinscheduler
+./mvnw -B clean deploy \
+       -Dmaven.test.skip \
+       -Dmaven.javadoc.skip \
+       -Dmaven.checkstyle.skip \
+       -Dmaven.deploy.skip \
+       -Ddocker.tag=&lt;TAG&gt; \
+       -Ddocker.hub=&lt;HUB_URL&gt; \
+       -Pdocker,release               
+</code></pre>
+<ul>
+<li>如果你不仅需要改造源码，还想要自定义 Docker 镜像打包的依赖，可以在修改源码的同时修改 Dockerfile 的定义。你可以运行以下命令找到所有的 Dockerfile 文件</li>
+</ul>
+<pre><code class="language-shell">cd dolphinscheduler
+find . -iname &#x27;Dockerfile&#x27;
+</code></pre>
+<p>之后再运行上面的构建镜像命令</p>
+<ul>
+<li>如果你因为个性化需求想要自己打包 Docker 镜像，最佳实践是基于 DolphinScheduler 对应镜像编写 Dockerfile 文件</li>
+</ul>
+<pre><code class="language-Dockerfile"><span class="hljs-keyword">FROM</span> dolphinscheduler-standalone-server
+<span class="hljs-keyword">RUN</span><span class="bash"> apt update ; \
+    apt install -y &lt;YOUR-CUSTOM-DEPENDENCE&gt; ; \
+</span></code></pre>
+<blockquote>
+<p><strong><em>注意：</em></strong> Docker默认会构建并推送 linux/amd64,linux/arm64 多架构镜像</p>
+<p>必须使用Docker 19.03及以后的版本，因为19.03及以后的版本包含 buildx</p>
+</blockquote>
 <h2>开发者须知</h2>
 <p>DolphinScheduler 开发环境配置有两个方式，分别是standalone模式，以及普通模式</p>
 <ul>
@@ -37,8 +82,8 @@ git clone git@github.com:apache/dolphinscheduler.git
 </ul>
 <h2>DolphinScheduler Standalone快速开发模式</h2>
 <blockquote>
-<p><strong><em>注意：</em></strong> 仅供单机开发调试使用，默认使用 H2 Database,Zookeeper Testing Server
-Standalone 仅在 DolphinScheduler 1.3.9 及以后的版本支持</p>
+<p><strong><em>注意：</em></strong> 仅供单机开发调试使用，默认使用 H2 Database,Zookeeper Testing Server</p>
+<p>Standalone 仅在 DolphinScheduler 1.3.9 及以后的版本支持</p>
 </blockquote>
 <h3>分支选择</h3>
 <p>开发不同的代码需要基于不同的分支</p>
