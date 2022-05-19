@@ -1,5 +1,18 @@
 # 发版指南
 
+## 检查环境
+
+为确保您可以成功完成 DolphinScheduler 的发布，您应该检查您的环境并确保满足所有条件，如果缺少任何条件，您应该安装它们并确保它们正常工作。
+
+```shell
+# 需要 JDK 1.8 及以上的版本
+java -version
+# 需要 Maven 
+mvn -version
+# 需要 Python 3.6 及以上的版本，并且需要 `python` 关键字能在命令行中运行，且版本符合条件。
+python --version
+```
+
 ## GPG设置
 
 ### 安装GPG

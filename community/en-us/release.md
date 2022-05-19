@@ -1,5 +1,19 @@
 # Release Guide
 
+## Check Your Environment
+
+To make sure you could successfully complete the release for DolphinScheduler, you should check your environment and make sure
+all conditions are met, if any or them are missing, you should install them and make sure them work.
+
+```shell
+# JDK 1.8 above is requests
+java -version
+# Maven requests
+mvn -version
+# Python 3.6 above is requests, and you have to make keyword `python` work in your terminal and version match
+python --version
+```
+
 ## GPG Settings
 
 ### Install GPG
