@@ -106,11 +106,11 @@ function replace_images_path(){
   for file_path in "${replace_dir}"/*; do
     if test -f "${file_path}"; then
       if [ "${file_path##*.}"x = "md"x ] || [ "${file_path##*.}"x = "mdx"x ]; then
-        echo "  ---> Replace images path to /doc/image_en in ${file_path}"
+        echo "  ---> Replace images path to /image in ${file_path}"
         if [[ "$OSTYPE" == "darwin"* ]]; then
-          sed -E -i '' "s/(\.\.\/)*images/\/image_en/g" "${file_path}"
+          sed -E -i '' "s/(\.\.\/)+img/\/img/g" "${file_path}"
         else
-          sed -E -i "s/(\.\.\/)*images/\/image_en/g" "${file_path}"
+          sed -E -i "s/(\.\.\/)+img/\/img/g" "${file_path}"
         fi
       fi
     else
@@ -147,6 +147,9 @@ function prepare_docs() {
 
     echo "  ---> Sync latest document in dev branch."
     rsync_latest_docs
+
+    echo "===>>>: Replace images path in ${PROJECT_SITE_DOC_DIR}"
+    replace_images_path "${PROJECT_SITE_DOC_DIR}"
 
     echo "===>>> End prepare document."
 }
