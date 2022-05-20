@@ -237,7 +237,7 @@ export default {
           {
             key: 'docs1',
             text: '2.0.5',
-            link: '/zh-cn/docs/2.0.5/user_doc/quick-start.html',
+            link: '/zh-cn/docs/2.0.5/user_doc/guide/quick-start.html',
           },
           {
             key: 'docsHistory',
