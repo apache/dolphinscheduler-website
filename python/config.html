@@ -180,7 +180,7 @@ method next to <code class="docutils literal notranslate"><span class="pre">os.e
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_STATE</span></code></p></td>
 <td><p>Default user state, will use when user’s <code class="docutils literal notranslate"><span class="pre">state</span></code> when does not specify.</p></td>
 </tr>
-<tr class="row-even"><td rowspan="7"><p>Default Workflow</p></td>
+<tr class="row-even"><td rowspan="8"><p>Default Workflow</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_PROJECT</span></code></p></td>
 <td><p>Default workflow project name, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">project</span></code>.</p></td>
 </tr>
@@ -196,10 +196,13 @@ method next to <code class="docutils literal notranslate"><span class="pre">os.e
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_WORKER_GROUP</span></code></p></td>
 <td><p>Default workflow worker group, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">worker_group</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_TIME_ZONE</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_RELEASE_STATE</span></code></p></td>
+<td><p>Default workflow release state, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">release_state</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_TIME_ZONE</span></code></p></td>
 <td><p>Default workflow worker group, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">timezone</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_WARNING_TYPE</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_WARNING_TYPE</span></code></p></td>
 <td><p>Default workflow warning type, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">warning_type</span></code>.</p></td>
 </tr>
 </tbody>
@@ -311,7 +314,13 @@ Raise error.
 <span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userPythonGateway</span><span class="w"></span>
 <span class="w">    </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">queuePythonGateway</span><span class="w"></span>
 <span class="w">    </span><span class="nt">worker_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># Release state of workflow, default value is ``online`` which mean setting workflow online when it submits</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># to Java gateway, if you want to set workflow offline set its value to ``offline``</span><span class="w"></span>
+<span class="w">    </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">online</span><span class="w"></span>
 <span class="w">    </span><span class="nt">time_zone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Asia/Shanghai</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># Warning type of the workflow, default value is ``NONE`` mean do not warn user in any cases of workflow state,</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># change to ``FAILURE`` if you want to warn users when workflow failed. All available enum value are</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># ``NONE``, ``SUCCESS``, ``FAILURE``, ``ALL`` </span><span class="w"></span>
 <span class="w">    </span><span class="nt">warning_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NONE</span><span class="w"></span>
 </pre></div>
 </div>

@@ -22,11 +22,11 @@ reproducibility, deployment, and a central model registry.</p>
 </ul>
 <p>The Mlflow plugin currently supports and will support the following:</p>
 <ul>
-<li>[ ] MLflow Projects
+<li>[x] MLflow Projects
 <ul>
-<li>[x] BasicAlgorithm: contains lr, svm, lightgbm, xgboost</li>
+<li>[x] BasicAlgorithm: contains LogisticRegression, svm, lightgbm, xgboost</li>
 <li>[x] AutoML: AutoML tool，contains autosklean, flaml</li>
-<li>[ ] Custom projects: Support for running your own MLflow projects</li>
+<li>[x] Custom projects: Support for running your own MLflow projects</li>
 </ul>
 </li>
 <li>[ ] MLflow Models
@@ -77,9 +77,7 @@ upstream of the current task.</li>
 <p><strong>Task Parameter</strong></p>
 <ul>
 <li><strong>mlflow server tracking uri</strong> ：MLflow server uri, default <a href="http://localhost:5000">http://localhost:5000</a>.</li>
-<li><strong>job type</strong> : The type of task to run, currently including the underlying algorithm and AutoML. (User-defined
-MLFlow project task execution will be supported in the near future)</li>
-<li><strong>experiment name</strong> ：The experiment in which the task is running, if none, is created.</li>
+<li><strong>experiment name</strong> ：Create the experiment where the task is running, if the experiment does not exist. If the name is empty, it is set to <code>Default</code>, the same as MLflow.</li>
 <li><strong>register model</strong> ：Register the model or not. If register is selected, the following parameters are expanded.
 <ul>
 <li><strong>model name</strong> : The registered model name is added to the original model version and registered as
@@ -111,9 +109,7 @@ and using the name after the equal sign to get the corresponding parameter value
 <p><strong>Task Parameter</strong></p>
 <ul>
 <li><strong>mlflow server tracking uri</strong> ：MLflow server uri, default <a href="http://localhost:5000">http://localhost:5000</a>.</li>
-<li><strong>job type</strong> : The type of task to run, currently including the underlying algorithm and AutoML. (User-defined
-MLFlow project task execution will be supported in the near future)</li>
-<li><strong>experiment name</strong> ：The experiment in which the task is running, if none, is created.</li>
+<li><strong>experiment name</strong> ：Create the experiment where the task is running, if the experiment does not exist. If the name is empty, it is set to <code>Default</code>, the same as MLflow.</li>
 <li><strong>register model</strong> ：Register the model or not. If register is selected, the following parameters are expanded.
 <ul>
 <li><strong>model name</strong> : The registered model name is added to the original model version and registered as
@@ -135,6 +131,19 @@ sign to get the corresponding parameter value through <code>python eval()</code>
 supports <a href="https://github.com/automl/auto-sklearn">autosklearn</a>
 and <a href="https://github.com/microsoft/FLAML">flaml</a></li>
 </ul>
+<h4>Custom projects</h4>
+<p><img src="/img/tasks/demo/mlflow-custom-project-template.png" alt="mlflow-custom-project-template.png"></p>
+<p><strong>Task Parameter</strong></p>
+<ul>
+<li><strong>mlflow server tracking uri</strong> ：MLflow server uri, default <a href="http://localhost:5000">http://localhost:5000</a>.</li>
+<li><strong>experiment name</strong> ：Create the experiment where the task is running, if the experiment does not exist. If the name is empty, it is set to <code>Default</code>, the same as MLflow.</li>
+<li><strong>parameters</strong> : <code>--param-list</code> in <code>mlflow run</code>. For example <code>-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9</code></li>
+<li><strong>Repository</strong> : Repository url of MLflow Project，Support git address and directory on worker. If it's in a subdirectory，We add <code>#</code> to support this (same as <code>mlflow run</code>) , for example <code>https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native</code></li>
+<li><strong>Project Version</strong> : Version of the project，default master</li>
+</ul>
+<p>You can now use this feature to run all mlFlow projects on Github (For example <a href="https://github.com/mlflow/mlflow/tree/master/examples">MLflow examples</a> )了。You can also create your own machine learning library to reuse your work, and then use DolphinScheduler to use your library with one click.</p>
+<p>The actual interface is as follows</p>
+<p><img src="/img/tasks/demo/mlflow-custom-project.png" alt="mlflow-custom-project.png"></p>
 <h3>MLflow Models</h3>
 <h4>MLFLOW</h4>
 <p><img src="/img/tasks/demo/mlflow-models-mlflow.png" alt="mlflow-models-mlflow"></p>
