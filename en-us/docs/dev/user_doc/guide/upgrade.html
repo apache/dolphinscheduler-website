@@ -25,7 +25,6 @@
 <p>If using MySQL as the database to run DolphinScheduler, please config it in <code>./bin/env/dolphinscheduler_env.sh</code>, change username and password to yours, and add MYSQL connector jar into lib dir <code>./tools/libs</code>, here we download <code>mysql-connector-java-8.0.16.jar</code>, and then correctly configure database connection information. You can download MYSQL connector jar from <a href="https://downloads.MySQL.com/archives/c-j/">here</a>. Otherwise, PostgreSQL is the default database.</p>
 <pre><code class="language-shell">export DATABASE=${DATABASE:-mysql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
 export SPRING_DATASOURCE_URL=jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}

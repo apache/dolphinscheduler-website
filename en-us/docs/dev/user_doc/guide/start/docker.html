@@ -78,17 +78,14 @@ container when it up. You could start DolphinScheduler server separately if you 
 <span class="hljs-meta">#</span><span class="bash"> Initialize the database, make sure database &lt;DATABASE&gt; already exists</span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-tools \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    <span class="hljs-comment"># Use &quot;com.mysql.cj.jdbc.driver&quot; if you use MySQL</span></span>
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=&quot;org.postgresql.Driver&quot; \
-    -e SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://localhost:5432/&lt;DATABASE&gt;&quot; \
-    -e SPRING_DATASOURCE_USERNAME=&quot;&lt;USER&gt;&quot; \
-    -e SPRING_DATASOURCE_PASSWORD=&quot;&lt;PASSWORD&gt;&quot; \
+    -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/&lt;DATABASE&gt;&quot;</span> \
+    -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
+    -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     --net host \
-    apache/dolphinscheduler-tools:&quot;${DOLPHINSCHEDULER_VERSION}&quot; tools/bin/upgrade-schema.sh 
+    apache/dolphinscheduler-tools:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span> tools/bin/upgrade-schema.sh</span> 
 <span class="hljs-meta">#</span><span class="bash"> Starting DolphinScheduler service</span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-master \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=<span class="hljs-string">&quot;org.postgresql.Driver&quot;</span> \
     -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/dolphinscheduler&quot;</span> \
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
@@ -97,7 +94,6 @@ container when it up. You could start DolphinScheduler server separately if you 
     -d apache/dolphinscheduler-master:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-worker \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=<span class="hljs-string">&quot;org.postgresql.Driver&quot;</span> \
     -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/dolphinscheduler&quot;</span> \
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
@@ -106,7 +102,6 @@ container when it up. You could start DolphinScheduler server separately if you 
     -d apache/dolphinscheduler-worker:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-api \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=<span class="hljs-string">&quot;org.postgresql.Driver&quot;</span> \
     -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/dolphinscheduler&quot;</span> \
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
@@ -115,7 +110,6 @@ container when it up. You could start DolphinScheduler server separately if you 
     -d apache/dolphinscheduler-api:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-alert-server \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=<span class="hljs-string">&quot;org.postgresql.Driver&quot;</span> \
     -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/dolphinscheduler&quot;</span> \
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \

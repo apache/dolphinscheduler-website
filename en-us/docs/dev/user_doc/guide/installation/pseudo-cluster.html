@@ -107,7 +107,6 @@ export JAVA_HOME=${JAVA_HOME:-/opt/soft/java}
 #</span><span class="bash"> Database related configuration, <span class="hljs-built_in">set</span> database <span class="hljs-built_in">type</span>, username and password</span>
 export DATABASE=${DATABASE:-postgresql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
 export SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}
@@ -161,7 +160,6 @@ mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHA
 <p>Then, modify <code>./bin/env/dolphinscheduler_env.sh</code> to use mysql, change {user} and {password} to what you set in the previous step.</p>
 <pre><code class="language-shell">export DATABASE=${DATABASE:-mysql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
 export SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}

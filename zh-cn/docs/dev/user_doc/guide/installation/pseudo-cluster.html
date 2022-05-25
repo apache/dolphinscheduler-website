@@ -104,7 +104,6 @@ deployUser=&quot;dolphinscheduler&quot;
 <span class="hljs-comment"># Database related configuration, set database type, username and password</span>
 <span class="hljs-built_in">export</span> DATABASE=<span class="hljs-variable">${DATABASE:-postgresql}</span>
 <span class="hljs-built_in">export</span> SPRING_PROFILES_ACTIVE=<span class="hljs-variable">${DATABASE}</span>
-<span class="hljs-built_in">export</span> SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
 <span class="hljs-built_in">export</span> SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;</span>
 <span class="hljs-built_in">export</span> SPRING_DATASOURCE_USERNAME={user}
 <span class="hljs-built_in">export</span> SPRING_DATASOURCE_PASSWORD={password}
@@ -158,7 +157,6 @@ mysql&gt;</span><span class="bash"> CREATE DATABASE dolphinscheduler DEFAULT CHA
 <p>然后修改<code>./bin/env/dolphinscheduler_env.sh</code>，将username和password改成你在上一步中设置的用户名{user}和密码{password}</p>
 <pre><code class="language-shell">export DATABASE=${DATABASE:-mysql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
 export SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}

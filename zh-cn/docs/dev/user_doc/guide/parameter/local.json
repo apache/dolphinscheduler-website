@@ -1,6 +1,6 @@
 {
   "filename": "local.md",
-  "__html": "<h1>本地参数</h1>\n<h2>作用域</h2>\n<p>在任务定义页面配置的参数，默认作用域仅限该任务，如果配置了<a href=\"context.md\">参数传递</a>则可将该参数作用到下游任务中。</p>\n<h2>使用方式</h2>\n<p>本地参数配置方式如下：在任务定义页面，点击“自定义参数”右边的加号，填写对应的变量名称和对应的值，保存即可</p>\n<p align=\"center\">\n   <img src=\"/img/supplement_local_parameter.png\" width=\"80%\" />\n </p>\n<p align=\"center\">\n   <img src=\"/img/global_parameter.png\" width=\"80%\" />\n</p>\n<p>如果想要在本地参数中调用系统内置参数，将内置参数对应的值填到<code>value</code>中，如上图中的<code>${biz_date}</code>以及<code>${curdate}</code></p>\n",
+  "__html": "<h1>本地参数</h1>\n<h2>作用域</h2>\n<p>在任务定义页面配置的参数，默认作用域仅限该任务，如果配置了<a href=\"context.md\">参数传递</a>则可将该参数作用到下游任务中。</p>\n<h2>使用方式</h2>\n<p>本地参数配置方式如下：在任务定义页面，点击“自定义参数”右边的加号，填写对应的变量名称和对应的值，保存即可。</p>\n<h2>任务样例</h2>\n<p>本样例展示了如何使用本地参数，打印输出当前日期。创建一个 Shell 任务，并编写脚本内容为 <code>echo ${dt}</code>。点击配置栏中的<strong>自定义参数</strong>，配置如下图所示：</p>\n<p><img src=\"/img/new_ui/dev/parameter/local_parameter01.png\" alt=\"local-parameter01\"></p>\n<p>参数说明：</p>\n<ul>\n<li>dt：参数名</li>\n<li>IN：IN 表示局部参数仅能在当前节点使用，OUT 表示局部参数可以向下游传递</li>\n<li>DATE：数据类型，日期</li>\n<li>$[yyyy-MM-dd]：自定义格式的衍生内置参数</li>\n</ul>\n<p>保存工作流并运行，查看 Shell 任务输出日志。</p>\n<p><img src=\"/img/new_ui/dev/parameter/local_parameter02.png\" alt=\"local-parameter02\"></p>\n<blockquote>\n<p>注：本地参数可以在当前任务节点的工作流中，设置其为 OUT 则可以传递给下游的工作流使用，可以参考：<a href=\"context.md\">参数传递</a></p>\n</blockquote>\n",
   "link": "/dist/zh-cn/docs/dev/user_doc/guide/parameter/local.html",
   "meta": {}
 }

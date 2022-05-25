@@ -71,17 +71,14 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
 <span class="hljs-meta">#</span><span class="bash"> 初始化数据库，其确保数据库 &lt;DATABASE&gt; 已经存在</span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-tools \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    <span class="hljs-comment"># 如果使用 MySQL 则使用 &quot;com.mysql.cj.jdbc.driver&quot;</span></span>
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=&quot;org.postgresql.Driver&quot; \
-    -e SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://localhost:5432/&lt;DATABASE&gt;&quot; \
-    -e SPRING_DATASOURCE_USERNAME=&quot;&lt;USER&gt;&quot; \
-    -e SPRING_DATASOURCE_PASSWORD=&quot;&lt;PASSWORD&gt;&quot; \
+    -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/&lt;DATABASE&gt;&quot;</span> \
+    -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
+    -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
     --net host \
-    apache/dolphinscheduler-tools:&quot;${DOLPHINSCHEDULER_VERSION}&quot; tools/bin/upgrade-schema.sh
+    apache/dolphinscheduler-tools:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span> tools/bin/upgrade-schema.sh</span>
 <span class="hljs-meta">#</span><span class="bash"> 启动 DolphinScheduler 对应的服务</span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-master \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=<span class="hljs-string">&quot;org.postgresql.Driver&quot;</span> \
     -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/dolphinscheduler&quot;</span> \
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
@@ -90,7 +87,6 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
     -d apache/dolphinscheduler-master:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-worker \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=<span class="hljs-string">&quot;org.postgresql.Driver&quot;</span> \
     -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/dolphinscheduler&quot;</span> \
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
@@ -99,7 +95,6 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
     -d apache/dolphinscheduler-worker:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-api \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=<span class="hljs-string">&quot;org.postgresql.Driver&quot;</span> \
     -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/dolphinscheduler&quot;</span> \
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
@@ -108,7 +103,6 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
     -d apache/dolphinscheduler-api:<span class="hljs-string">&quot;<span class="hljs-variable">${DOLPHINSCHEDULER_VERSION}</span>&quot;</span></span>
 <span class="hljs-meta">$</span><span class="bash"> docker run -d --name dolphinscheduler-alert-server \
     -e DATABASE=<span class="hljs-string">&quot;postgresql&quot;</span> \
-    -e SPRING_DATASOURCE_DRIVER_CLASS_NAME=<span class="hljs-string">&quot;org.postgresql.Driver&quot;</span> \
     -e SPRING_DATASOURCE_URL=<span class="hljs-string">&quot;jdbc:postgresql://localhost:5432/dolphinscheduler&quot;</span> \
     -e SPRING_DATASOURCE_USERNAME=<span class="hljs-string">&quot;&lt;USER&gt;&quot;</span> \
     -e SPRING_DATASOURCE_PASSWORD=<span class="hljs-string">&quot;&lt;PASSWORD&gt;&quot;</span> \
