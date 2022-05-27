@@ -620,6 +620,16 @@ Currently, DS just makes a basic config, remember to config further JVM options 
 <td>default</td>
 <td>worker groups separated by comma, e.g., 'worker.groups=default,test' <br> worker will join corresponding group according to this config when startup</td>
 </tr>
+<tr>
+<td>worker.tenant.auto.create</td>
+<td>true</td>
+<td>tenant corresponds to the user of the system, which is used by the worker to submit the job. If system does not have this user, it will be automatically created after the parameter worker.tenant.auto.create is true.</td>
+</tr>
+<tr>
+<td>worker.tenant.distributed.user</td>
+<td>false</td>
+<td>Scenes to be used for distributed users.For example,users created by FreeIpa are stored in LDAP.This parameter only applies to Linux, When this parameter is true, worker.tenant.auto.create has no effect and will not automatically create tenants.</td>
+</tr>
 </tbody>
 </table>
 <h3>alert.properties [alert-service log config]</h3>

@@ -51,13 +51,13 @@ $ kubectl port-forward --address 0.0.0.0 -n <span class="hljs-built_in">test</sp
 <blockquote>
 <p><strong>提示</strong>: 如果出现 <code>unable to do port forwarding: socat not found</code> 错误, 需要先安装 <code>socat</code></p>
 </blockquote>
-<p>访问前端页面：<a href="http://localhost:12345/dolphinscheduler%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%E9%9C%80%E8%A6%81%E8%AF%B7%E4%BF%AE%E6%94%B9%E6%88%90%E5%AF%B9%E5%BA%94%E7%9A%84">http://localhost:12345/dolphinscheduler，如果有需要请修改成对应的</a> IP 地址</p>
+<p>访问前端页面：<a href="http://localhost:12345/dolphinscheduler/ui%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%E9%9C%80%E8%A6%81%E8%AF%B7%E4%BF%AE%E6%94%B9%E6%88%90%E5%AF%B9%E5%BA%94%E7%9A%84">http://localhost:12345/dolphinscheduler/ui，如果有需要请修改成对应的</a> IP 地址</p>
 <p>或者当 <code>api.service.type=NodePort</code> 时，你需要执行命令：</p>
 <pre><code class="language-bash">NODE_IP=$(kubectl get no -n {{ .Release.Namespace }} -o jsonpath=<span class="hljs-string">&quot;{.items[0].status.addresses[0].address}&quot;</span>)
 NODE_PORT=$(kubectl get svc {{ template <span class="hljs-string">&quot;dolphinscheduler.fullname&quot;</span> . }}-api -n {{ .Release.Namespace }} -o jsonpath=<span class="hljs-string">&quot;{.spec.ports[0].nodePort}&quot;</span>)
 <span class="hljs-built_in">echo</span> http://<span class="hljs-variable">$NODE_IP</span>:<span class="hljs-variable">$NODE_PORT</span>/dolphinscheduler
 </code></pre>
-<p>然后访问前端页面: <a href="http://localhost:12345/dolphinscheduler">http://localhost:12345/dolphinscheduler</a></p>
+<p>然后访问前端页面: <a href="http://localhost:12345/dolphinscheduler/ui">http://localhost:12345/dolphinscheduler/ui</a></p>
 <p>默认的用户是<code>admin</code>，默认的密码是<code>dolphinscheduler123</code></p>
 <p>请参考用户手册章节的<a href="../start/quick-start.md">快速上手</a>查看如何使用DolphinScheduler</p>
 <h2>卸载 dolphinscheduler</h2>

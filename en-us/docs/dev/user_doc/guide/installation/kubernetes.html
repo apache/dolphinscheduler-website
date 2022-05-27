@@ -51,7 +51,7 @@ $ kubectl port-forward --address 0.0.0.0 -n <span class="hljs-built_in">test</sp
 <blockquote>
 <p><strong>Tip</strong>: If the error of <code>unable to do port forwarding: socat not found</code> appears, you need to install <code>socat</code> first.</p>
 </blockquote>
-<p>Access the web: <code>http://localhost:12345/dolphinscheduler</code> (Modify the IP address if needed).</p>
+<p>Access the web: <code>http://localhost:12345/dolphinscheduler/ui</code> (Modify the IP address if needed).</p>
 <p>Or when <code>api.service.type=NodePort</code> you need to execute the command:</p>
 <pre><code class="language-bash">NODE_IP=$(kubectl get no -n {{ .Release.Namespace }} -o jsonpath=<span class="hljs-string">&quot;{.items[0].status.addresses[0].address}&quot;</span>)
 NODE_PORT=$(kubectl get svc {{ template <span class="hljs-string">&quot;dolphinscheduler.fullname&quot;</span> . }}-api -n {{ .Release.Namespace }} -o jsonpath=<span class="hljs-string">&quot;{.spec.ports[0].nodePort}&quot;</span>)

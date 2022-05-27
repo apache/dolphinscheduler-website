@@ -619,6 +619,16 @@
 <td>default</td>
 <td>worker分组配置,逗号分隔,例如'worker.groups=default,test' <br> worker启动时会根据该配置自动加入对应的分组</td>
 </tr>
+<tr>
+<td>worker.tenant.auto.create</td>
+<td>true</td>
+<td>租户对应于系统的用户,由worker提交作业.如果系统没有该用户,则在参数worker.tenant.auto.create为true后自动创建。</td>
+</tr>
+<tr>
+<td>worker.tenant.distributed.user</td>
+<td>false</td>
+<td>使用场景为分布式用户例如使用FreeIpa创建的用户存于LDAP中.该参数只适用于Linux,当该参数为true时worker.tenant.auto.create将不生效,不会自动去创建租户</td>
+</tr>
 </tbody>
 </table>
 <h2>8.alert.properties [Alert 告警服务配置]</h2>
