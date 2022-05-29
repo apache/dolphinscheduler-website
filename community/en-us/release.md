@@ -44,9 +44,7 @@ This command indicates `GnuPG-1.x` can be used:
 gpg --gen-key
 ```
 
-Finish the key creation according to instructions:
-
-**Notice: Please use Apache mail for key creation.**
+Finish the key creation according to instructions, **Notice: Please use Apache mails and its password for key creation.**
 
 ```shell
 gpg (GnuPG) 2.0.12; Copyright (C) 2009 Free Software Foundation, Inc.
@@ -81,7 +79,7 @@ You selected this USER-ID:
    "${Inputed username} (${Inputed comment}) <${Inputed email}>"
 
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
-You need a Passphrase to protect your secret key. # Input passwords
+You need a Passphrase to protect your secret key. # Input your Apache mail passwords
 ```
 
 ### Check Generated Key
@@ -109,11 +107,14 @@ gpg --keyserver hkp://pool.sks-keyservers.net --send-key 85E11560
 ```
 
 `pool.sks-keyservers.net` is randomly chosen from [public key server](https://sks-keyservers.net/status/).
-Each server will automatically synchronize with one another, so it would be okay to choose any one.
+Each server will automatically synchronize with one another, so it would be okay to choose any one, a backup keys servers
+is `gpg --keyserver hkp://keyserver.ubuntu.com --send-key <YOUR_KEY_ID>`
 
 ## Apache Maven Central Repository Release
 
-### Set settings.xml
+### Set `settings-security.xml` and `settings.xml`
+
+In this section, we add Apache server maven configuration to prepare release the 
 
 Add the following template to `~/.m2/settings.xml`, all the passwords need to be filled in after encryption.
 For encryption settings, please see [here](http://maven.apache.org/guides/mini/guide-encryption.html).
@@ -363,69 +364,54 @@ After at least 72 hours and with at least 3 `+1 and no -1 PMC member` votes, it 
 
 Title：
 
-```
+```txt
 [VOTE] Release Apache DolphinScheduler ${RELEASE.VERSION}
 ```
 
 Body：
 
-```
+```txt
 Hello DolphinScheduler Community,
 
 This is a call for vote to release Apache DolphinScheduler version ${RELEASE.VERSION}
 
-Release notes:
-https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
+Release notes: https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
 
-The release candidates:
-https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/
+The release candidates: https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/
 
-Maven 2 staging repository:
-https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
+Maven 2 staging repository: https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
 
-Git tag for the release:
-https://github.com/apache/dolphinscheduler/tree/${RELEASE.VERSION}
+Git tag for the release: https://github.com/apache/dolphinscheduler/tree/${RELEASE.VERSION}
 
-Release Commit ID:
-https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
+Release Commit ID: https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
 
-Keys to verify the Release Candidate:
-https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
+Keys to verify the Release Candidate: https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
 
-Look at here for how to verify this release candidate:
-https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
+Look at here for how to verify this release candidate: https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
 
 The vote will be open for at least 72 hours or until necessary number of votes are reached.
 
 Please vote accordingly:
 
 [ ] +1 approve
-
 [ ] +0 no opinion
-
 [ ] -1 disapprove with the reason
 
 Checklist for reference:
 
 [ ] Download links are valid.
-
 [ ] Checksums and PGP signatures are valid.
-
 [ ] Source code artifacts have correct names matching the current release.
-
 [ ] LICENSE and NOTICE files are correct for each DolphinScheduler repo.
-
 [ ] All files have license headers if necessary.
-
 [ ] No compiled archives bundled in source archive.
-
 ```
 
 2. Announce the vote result:
 
 Body：
 
-```
+```txt
 The vote to release Apache DolphinScheduler ${RELEASE.VERSION} has passed.Here is the vote result,
 
 4 PMC member +1 votes:

@@ -42,9 +42,7 @@ gpg --full-gen-key
 gpg --gen-key
 ```
 
-根据提示完成key：
-
-**注意：请使用Apache mail生成GPG的Key。**
+根据提示完成key，**注意：请使用Apache mail 和 对应的密码生成GPG的Key。**
 
 ```shell
 gpg (GnuPG) 2.0.12; Copyright (C) 2009 Free Software Foundation, Inc.
