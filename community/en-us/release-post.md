@@ -1,11 +1,5 @@
 # Release Post
 
-## Add New Version To GitHub's bug-report.yml
-
-DolphinScheduler's GitHub [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)
-issue template have **Version** selection bottom. So after we release DolphinScheduler we should and the new version to
-bug-report.yml
-
 ## Publish Image
 
 Build docker image first, please refer to [How to build a Docker image?](https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/start/docker.html)

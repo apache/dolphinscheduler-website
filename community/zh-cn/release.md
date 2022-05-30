@@ -463,16 +463,20 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/"${VERSION}" http
 
 ### 更新文档
 
-官网应该在您发送通知邮件之前完成更新，本节将告诉您如何更改网站。假设发版的版本是 `x.y.z`，需要进行以下更新（注意，当修改pull requests 被 merge 后就会生效）:
+官网应该在您发送通知邮件之前完成更新，本节将告诉您如何更改网站。假设发版的版本是 `<VERSION>`，需要进行以下更新（注意，当修改pull requests 被 merge 后就会生效）:
 
 - **apache/dolphinscheduler-website** 仓库：
-  - `download/en-us/download.md` 和 `download/zh-cn/download.md`: 增加 `x.y.z` 版本发布包的下载
+  - `download/en-us/download.md` 和 `download/zh-cn/download.md`: 增加 `<VERSION>` 版本发布包的下载
+  - `scripts/conf.sh`: 在变量 `DEV_RELEASE_DOCS_VERSIONS` 中增加版本为 `<VERSION>` 的新键值对
 - **apache/dolphinscheduler** 仓库：
   - `docs/configs/site.js`:
-    - `docsLatest`: 更新为 x.y.z
-    - `docs0`: 两处 `en-us/zh-cn` 的 `text` 更新为 `latest(x.y.z)`
-    - `docsxyz`: 两处 `en-us/zh-cn` 的 `children` 增加 `key` 为 `docsxyz`, `text` 为 `x.y.z` 的下拉菜单
-  - `docs/configs/index.md.jsx`: 增加 `'x.y.z': docsxyzConfig,`
+    - `docsLatest`: 更新为 `<VERSION>`
+    - `docs0`: 两处 `en-us/zh-cn` 的 `text` 更新为 `latest(<VERSION>)`
+    - `docsxyz`: 两处 `en-us/zh-cn` 的 `children` 增加 `key` 为 `docsxyz`, `text` 为 `<VERSION>` 的下拉菜单
+  - `docs/configs/index.md.jsx`: 增加 `'<VERSION>': docsxyzConfig,`
+  - `.github/ISSUE_TEMPLATE/bug-report.yml`: DolphinScheduler 在 GitHub issue 中有版本选择的部分，当有新版本发版后，需要更新这部分的内容。目前与版本关联的是
+    [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)，发版的时候需要
+    向其中的 **Version** 部分增加内容。
 
 ### 在 [apache staging repositories](https://repository.apache.org/#stagingRepositories) 仓库找到 DolphinScheduler 并点击`Release`
 
@@ -508,5 +512,5 @@ Website: https://dolphinscheduler.apache.org/
 DolphinScheduler Resources:
 - Issue: https://github.com/apache/dolphinscheduler/issues/
 - Mailing list: dev@dolphinscheduler.apache.org
-- Documents: https://github.com/apache/dolphinscheduler/blob/<VERSION>/README.md
+- Documents: https://dolphinscheduler.apache.org/zh-cn/docs/<VERSION>/user_doc/about/introduction.html
 ```

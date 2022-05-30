@@ -468,16 +468,20 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/"${VERSION}" http
 ### Update Document
 
 Website should be present before you send the announce mail this section will tell you how to change the website. For example,
-the release version is `x.y.z`, the following updates are required(note it will take effect immediately when the PR is merged):
+the release version is `<VERSION>`, the following updates are required(note it will take effect immediately when the PR is merged):
 
 - Repository **apache/dolphinscheduler-website**:
-  - `download/en-us/download.md` and `download/zh-cn/download.md`: add the download of the `x.y.z` release package
+  - `download/en-us/download.md` and `download/zh-cn/download.md`: add the download of the `<VERSION>` release package
+  - `scripts/conf.sh`: Add new release version `<VERSION>` key-value pair to variable `DEV_RELEASE_DOCS_VERSIONS`
 - Repository **apache/dolphinscheduler**:
   - `docs/configs/site.js`:
-    - `docsLatest`: update to `x.y.z`
-    - `docs0`: The `text` of two places of `en-us/zh-cn` needs to be updated to `latest(x.y.z)`
-    - `docsxyz`: Add a drop-down menu with `key` as `docsxyz` and `text` as `x.y.z` in `children` of two places of `en-us/zh-cn`
-  - `docs/configs/index.md.jsx`: Add `'x.y.z': docsxyzConfig`
+    - `docsLatest`: update to `<VERSION>`
+    - `docs0`: The `text` of two places of `en-us/zh-cn` needs to be updated to `latest(<VERSION>)`
+    - `docsxyz`: Add a drop-down menu with `key` as `docsxyz` and `text` as `<VERSION>` in `children` of two places of `en-us/zh-cn`
+  - `docs/configs/index.md.jsx`: Add `<VERSION>: docsxyzConfig`
+  - `.github/ISSUE_TEMPLATE/bug-report.yml`: DolphinScheduler's GitHub [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)
+    issue template have **Version** selection bottom. So after we release DolphinScheduler we should and the new `<VERSION>` to
+    bug-report.yml
 
 ### Find DolphinScheduler in [apache staging repositories](https://repository.apache.org/#stagingRepositories) and click `Release`
 
@@ -514,5 +518,5 @@ Website: https://dolphinscheduler.apache.org/
 DolphinScheduler Resources:
 - Issue: https://github.com/apache/dolphinscheduler/issues/
 - Mailing list: dev@dolphinscheduler.apache.org
-- Documents: https://github.com/apache/dolphinscheduler/blob/<VERSION>/README.md
+- Documents: https://dolphinscheduler.apache.org/zh-cn/docs/<VERSION>/user_doc/about/introduction.html
 ```

@@ -1,11 +1,5 @@
 # 发版后续
 
-## 更新 GitHub issue 模板
-
-DolphinScheduler 在 GitHub issue 中有版本选择的部分，当有新版本发版后，需要更新这部分的内容。目前与版本关联的是
-[bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)，发版的时候需要
-向其中的 **Version** 部分增加内容。
-
 ## 发布镜像
 
 构建 Docker 镜像，请参考 [如何构建一个 Docker 镜像？](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/start/docker.html)
