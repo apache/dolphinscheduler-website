@@ -478,7 +478,6 @@ the release version is `x.y.z`, the following updates are required(note it will 
     - `docs0`: The `text` of two places of `en-us/zh-cn` needs to be updated to `latest(x.y.z)`
     - `docsxyz`: Add a drop-down menu with `key` as `docsxyz` and `text` as `x.y.z` in `children` of two places of `en-us/zh-cn`
   - `docs/configs/index.md.jsx`: Add `'x.y.z': docsxyzConfig`
-  - `docs/configs/docsdev.js`: Rename to `docsx-y-z.js` and change its content `/dev/` to `/x.y.z/`
 
 ### Find DolphinScheduler in [apache staging repositories](https://repository.apache.org/#stagingRepositories) and click `Release`
 
