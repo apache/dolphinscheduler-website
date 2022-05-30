@@ -256,6 +256,7 @@ Create folder by version number.
 
 ```shell
 mkdir -p ~/ds_svn/dev/dolphinscheduler/"${VERSION}"
+mkdir -p ~/ds_svn/dev/dolphinscheduler/"${VERSION}"/python
 cd ~/ds_svn/dev/dolphinscheduler/"${VERSION}"
 ```
 
@@ -267,7 +268,6 @@ cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolp
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/"${VERSION}"
 
 # Source and binary tarball for Python API
-mkdir -p ~/ds_svn/dev/dolphinscheduler/"${VERSION}"/python
 cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolphinscheduler/"${VERSION}"/python
 ```
 
@@ -339,6 +339,10 @@ gpg --verify apache_dolphinscheduler-python-"${VERSION}"-py3-none-any.whl.asc
 cd ../
 ```
 
+> Note: You have to create gpg signature manually when you can not find your `asc` file, the command
+> `gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-"${VERSION}"-bin.tar.gz` and
+> `gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-"${VERSION}"-src.tar.gz` will create them
+
 ### Check Released Files
 
 #### Check source package
@@ -372,7 +376,9 @@ to check the following items:
 ### Update Release Notes
 
 You should create a release note in GitHub by [new release note](https://github.com/apache/dolphinscheduler/releases/new).
-It should be done before vote mail because we need the release note in the mail
+It should be done before vote mail because we need the release note in the mail. You could use command
+`git log --pretty="- %s" <PREVIOUS-RELEASE-SHA>..<CURRENT-RELEASE-SHA> > changelog.md` to creat the changelog(some log
+maybe not correct, you should filter them by yourself) and classify them and paste them to GitHub release note page
 
 ### Vote procedure
 
