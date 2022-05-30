@@ -455,15 +455,28 @@ Thanks everyone for taking time to check this release and help us.
 
 ## 完成发布
 
-1.将源码和二进制包从svn的dev目录移动到release目录
+### 将源码和二进制包从svn的dev目录移动到release目录
 
 ```shell
 svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/"${VERSION}" https://dist.apache.org/repos/dist/release/dolphinscheduler/
 ```
 
-2.在Apache Staging仓库找到DolphinScheduler并点击`Release`
+### 更新文档
 
-3.发送公告邮件通知社区
+官网应该在您发送通知邮件之前完成更新，本节将告诉您如何更改网站。假设发版的版本是 `x.y.z`，需要进行以下更新（注意，当修改pull requests 被 merge 后就会生效）:
+
+- **apache/dolphinscheduler-website** 仓库：
+  - `download/en-us/download.md` 和 `download/zh-cn/download.md`: 增加 `x.y.z` 版本发布包的下载
+- **apache/dolphinscheduler** 仓库：
+  - `docs/configs/site.js`:
+    - `docsLatest`: 更新为 x.y.z
+    - `docs0`: 两处 `en-us/zh-cn` 的 `text` 更新为 `latest(x.y.z)`
+    - `docsxyz`: 两处 `en-us/zh-cn` 的 `children` 增加 `key` 为 `docsxyz`, `text` 为 `x.y.z` 的下拉菜单
+  - `docs/configs/index.md.jsx`: 增加 `'x.y.z': docsxyzConfig,`
+
+### 在 [apache staging repositories](https://repository.apache.org/#stagingRepositories) 仓库找到 DolphinScheduler 并点击`Release`
+
+### 发送公告邮件通知社区
 
 当完成了上述的发版流程后，需要发送一封公告邮件给社区。你需要将邮件发送到 `dev@dolphinscheduler.apache.org` 并抄送到 `announce@apache.org`。
 

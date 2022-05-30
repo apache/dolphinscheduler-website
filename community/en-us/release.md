@@ -390,7 +390,7 @@ After at least 72 hours and with at least 3 `+1 and no -1 PMC member` votes, it 
 
 ### Vote Templates
 
-1. DolphinScheduler Community Vote Template
+#### DolphinScheduler Community Vote Template
 
 Title：
 
@@ -465,7 +465,22 @@ Thanks everyone for taking time to check this release and help us.
 svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/"${VERSION}" https://dist.apache.org/repos/dist/release/dolphinscheduler/
 ```
 
-### Find DolphinScheduler in staging repository and click `Release`
+### Update Document
+
+Website should be present before you send the announce mail this section will tell you how to change the website. For example,
+the release version is `x.y.z`, the following updates are required(note it will take effect immediately when the PR is merged):
+
+- Repository **apache/dolphinscheduler-website**:
+  - `download/en-us/download.md` and `download/zh-cn/download.md`: add the download of the `x.y.z` release package
+- Repository **apache/dolphinscheduler**:
+  - `docs/configs/site.js`:
+    - `docsLatest`: update to `x.y.z`
+    - `docs0`: The `text` of two places of `en-us/zh-cn` needs to be updated to `latest(x.y.z)`
+    - `docsxyz`: Add a drop-down menu with `key` as `docsxyz` and `text` as `x.y.z` in `children` of two places of `en-us/zh-cn`
+  - `docs/configs/index.md.jsx`: Add `'x.y.z': docsxyzConfig`
+  - `docs/configs/docsdev.js`: Rename to `docsx-y-z.js` and change its content `/dev/` to `/x.y.z/`
+
+### Find DolphinScheduler in [apache staging repositories](https://repository.apache.org/#stagingRepositories) and click `Release`
 
 ### Send Announcement E-mail Community
 

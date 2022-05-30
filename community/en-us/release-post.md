@@ -1,19 +1,5 @@
 # Release Post
 
-## Update Document
-
-For example, after the release of `x.y.z`, the following updates are required(note it will take effect immediately when the PR is merged):
-
-- Repository apache/dolphinscheduler-website:
-  - `download/en-us/download.md` and `download/zh-cn/download.md`: add the download of the `x.y.z` release package
-- Repository apache/dolphinscheduler:
-  - `docs/configs/site.js`:
-    - `docsLatest`: update to `x.y.z`
-    - `docs0`: The `text` of two places of `en-us/zh-cn` needs to be updated to `latest(x.y.z)`
-    - `docsxyz`: Add a drop-down menu with `key` as `docsxyz` and `text` as `x.y.z` in `children` of two places of `en-us/zh-cn`
-  - `docs/configs/index.md.jsx`: Add `'x.y.z': docsxyzConfig`
-  - `docs/configs/docsdev.js`: Rename to `docsx-y-z.js` and change its content `/dev/` to `/x.y.z/`
-
 ## Add New Version To GitHub's bug-report.yml
 
 DolphinScheduler's GitHub [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)

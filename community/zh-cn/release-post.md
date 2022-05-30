@@ -1,18 +1,5 @@
 # 发版后续
 
-## 更新文档
-
-例如已发版 `x.y.z`，需要进行以下更新（注意，当修改pull requests 被 merge 后就会生效）:
-
-- apache/dolphinscheduler-website 仓库：
-  - `download/en-us/download.md` 和 `download/zh-cn/download.md`: 增加 `x.y.z` 版本发布包的下载
-- apache/dolphinscheduler 仓库：
-  - `docs/configs/site.js`:
-    - `docsLatest`: 更新为 x.y.z
-    - `docs0`: 两处 `en-us/zh-cn` 的 `text` 更新为 `latest(x.y.z)`
-    - `docsxyz`: 两处 `en-us/zh-cn` 的 `children` 增加 `key` 为 `docsxyz`, `text` 为 `x.y.z` 的下拉菜单
-  - `docs/configs/index.md.jsx`: 增加 `'x.y.z': docsxyzConfig,`
-
 ## 更新 GitHub issue 模板
 
 DolphinScheduler 在 GitHub issue 中有版本选择的部分，当有新版本发版后，需要更新这部分的内容。目前与版本关联的是
