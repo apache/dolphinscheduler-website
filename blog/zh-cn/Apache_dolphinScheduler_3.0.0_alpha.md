@@ -86,7 +86,7 @@ Amazon EMR 任务定义
 
 Amazon Redshift 支持
 
-对于 Amazon S3，我们扩展了 Apache DolphinScheduler 的资源中心，使其不仅能支持本地资源、HDFS 资源存储，同时支持 Amazon S3 作为资源中心的储存。详情可见：[https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/resource.html](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/resource.html)中的
+对于 Amazon S3，我们扩展了 Apache DolphinScheduler 的资源中心，使其不仅能支持本地资源、HDFS 资源存储，同时支持 Amazon S3 作为资源中心的储存。详情可见：[https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource/configuration.html](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource/configuration.html)中的
 
 ```plain
 `resource.storage.type`
