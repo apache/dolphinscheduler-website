@@ -1,19 +1,32 @@
 # Release Post
 
-## Publish Image
+We still have some publish task to do after we send the announcement mail, currently we have to publish Docker images to
+Docker Hub and also publish pydolphinscheduler to PyPI.
 
-Build docker image first, please refer to [How to build a Docker image?](https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/start/docker.html)
+## Publish Docker Image
 
-And then publish image
+we already have the exists CI to publish the latest Docker image to GitHub container register with [config](https://github.com/apache/dolphinscheduler/blob/d80cf21456265c9d84e642bdb4db4067c7577fc6/.github/workflows/publish-docker.yaml#L55-L63).
+We could reuse the main command the CI run and publish our Docker images to Docker Hub by single command.
 
 ```bash
-docker tag apache/dolphinscheduler:x.y.z apache/dolphinscheduler:latest
-docker login # enter the username and password
-docker push apache/dolphinscheduler:x.y.z
-docker push apache/dolphinscheduler:latest
+# Please change the <VERSION> place hold to the version you release
+./mvnw -B clean deploy \
+    -Dmaven.test.skip \
+    -Dmaven.javadoc.skip \
+    -Dmaven.checkstyle.skip \
+    -Dmaven.deploy.skip \
+    -Ddocker.tag=<VERSION> \
+    -Ddocker.hub=apache \
+    -Pdocker,release
 ```
 
-## Release to PyPI
+## Publish pydolphinscheduler to PyPI
 
 Python API need to release to PyPI for easier download and use, you can see more detail in [Python API release](https://github.com/apache/dolphinscheduler/blob/dev/dolphinscheduler-python/pydolphinscheduler/RELEASE.md#to-pypi)
 to finish PyPI release.
+
+## Get All Contributors
+
+You might need all contributors in current release when you want to publish the release news or announcement, you could
+use the git command `git log --pretty="%an" <PREVIOUS-RELEASE-SHA>..<CURRENT-RELEASE-SHA> | sort | uniq` to auto generate
+the git author name.
