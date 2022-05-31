@@ -209,10 +209,14 @@ git push -u origin "${VERSION}"-release
 git push origin --tags
 ```
 
+<!-- markdown-link-check-disable -->
+
 > 注意1：因为 Github 不再支持在 HTTPS 协议中使用原生密码在，所以在这一步你应该使用 github token 作为密码。你可以通过 https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating -a-personal-access-token
 > 了解更多如果创建 token 的信息。
 
 > 注意2：命令完成后，会自动创建 `release.properties` 文件和 `*.Backup` 文件，它们在下面的命令中是需要的，不要删除它们
+
+<!-- markdown-link-check-enable -->
 
 ### 部署发布
 

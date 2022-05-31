@@ -205,12 +205,16 @@ git push -u origin "${VERSION}"-release
 git push origin --tags
 ```
 
+<!-- markdown-link-check-disable -->
+
 > Note1: In this step, you should use github token for password because native password no longer supported, you can see
 > https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token for more
 > detail about how to create token about it.
 
 > Note2: After the command done, it will auto-created `release.properties` file and `*.Backup` files, their will be need
 > in the following command and DO NOT DELETE THEM
+
+<!-- markdown-link-check-enable -->
 
 ### Deploy the Release
 
