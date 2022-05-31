@@ -1,5 +1,18 @@
 # 发版指南
 
+## 检查环境
+
+为确保您可以成功完成 DolphinScheduler 的发布，您应该检查您的环境并确保满足所有条件，如果缺少任何条件，您应该安装它们并确保它们正常工作。
+
+```shell
+# 需要 JDK 1.8 及以上的版本
+java -version
+# 需要 Maven 
+mvn -version
+# 需要 Python 3.6 及以上的版本，并且需要 `python` 关键字能在命令行中运行，且版本符合条件。
+python --version
+```
+
 ## GPG设置
 
 ### 安装GPG
@@ -29,9 +42,7 @@ gpg --full-gen-key
 gpg --gen-key
 ```
 
-根据提示完成key：
-
-**注意：请使用Apache mail生成GPG的Key。**
+根据提示完成key，**注意：请使用Apache mail 和 对应的密码生成GPG的Key。**
 
 ```shell
 gpg (GnuPG) 2.0.12; Copyright (C) 2009 Free Software Foundation, Inc.
@@ -108,10 +119,10 @@ http://keyserver.ubuntu.com:11371/pks/lookup?search=${用户名}&fingerprint=on&
 
 ## 发布Apache Maven中央仓库
 
-### 设置settings.xml文件
+### 设置 `settings-security.xml` 和 `settings.xml` 文件
 
-将以下模板添加到 `~/.m2/settings.xml`中，所有密码需要加密后再填入。
-加密设置可参考[这里](http://maven.apache.org/guides/mini/guide-encryption.html)。
+在本节中，我们添加 Apache 服务器 maven 配置以准备发布，请参考[这里](http://maven.apache.org/guides/mini/guide-encryption.html) 添加
+`settings-security.xml` 文件，并且像下面这样更改你的 `~/.m2/settings.xml`
 
 ```xml
 <settings>
@@ -130,19 +141,26 @@ http://keyserver.ubuntu.com:11371/pks/lookup?search=${用户名}&fingerprint=on&
 </settings>
 ```
 
-### 更新版本说明
+### 配置环境变量
 
-```
-https://github.com/apache/dolphinscheduler/releases
-```
-
-### 创建发布分支
-从github下载的DolphinScheduler源代码到`~/dolphinscheduler/`目录，假设即将发布的版本为`${RELEASE.VERSION}`
-git clone -b ${RELEASE.VERSION}-release https://github.com/apache/dolphinscheduler.git
-
-创建`${RELEASE.VERSION}-release`分支，接下来的操作都在该分支进行(如果在github官网上手动执行发版分支创建，下面操作可以忽略)。
+我们将多次使用发布版本 `VERSION`，github名称 `GH_USERNAME`，以及 Apache 用户名 `<YOUR-APACHE-USERNAME>`，因此最好将其存储到bash变量中以便于使用。
 
 ```shell
+VERSION=<THE-VERSION-YOU-RELEASE>
+GH_USERNAME=<YOUR-GITHUB-USERNAME>
+A_USERNAME=<YOUR-APACHE-USERNAME>
+```
+
+> 注意：设置环境变量后，我们可以直接在你的 bash 中使用该变量，而无需更改任何内容。例如，我们可以直接使用命令 `git clone -b "${VERSION}"-prepare https://github.com/apache/dolphinscheduler.git`
+> 来克隆发布分支，他会自动将其中的 `"${VERSION}"` 转化成你设置的值 `<THE-VERSION-YOU-RELEASE>`。 但是您必须在一些非 bash 步骤中手动更改 
+> `<VERSION>` 为对应的版本号，例如发起投票中的内容。我们使用 `<VERSION>` 而不是 `"${VERSION}"` 来提示 release manager 他们必须手动更改这部分内容
+
+### 创建发布分支
+
+在本节中，我们从 github 下载源代码并创建新分支以发布
+
+```shell
+git clone -b "${VERSION}"-prepare https://github.com/apache/dolphinscheduler.git
 cd ~/dolphinscheduler/
 git pull
 git checkout -b ${RELEASE.VERSION}-release
@@ -156,14 +174,12 @@ git push origin ${RELEASE.VERSION}-release
 export GPG_TTY=$(tty)
 
 # 运行发版校验
-mvn release:prepare -Prelease,python -Darguments="-DskipTests" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github用户名}
+mvn release:prepare -Prelease,python -Darguments="-Dmaven.test.skip=true -Dcheckstyle.skip=true -Dmaven.javadoc.skip=true" -DautoVersionSubmodules=true -DdryRun=true -Dusername="${GH_USERNAME}"
 ```
 
--Prelease,python: 选择release和python的profile，这个profile会打包所有源码、jar文件以及可执行二进制包，以及Python的二进制包。
-
--DautoVersionSubmodules=true：作用是发布过程中版本号只需要输入一次，不必为每个子模块都输入一次。
-
--DdryRun=true：演练，即不产生版本号提交，不生成新的tag。
+* `-Prelease,python`: 选择release和python的profile，这个profile会打包所有源码、jar文件以及可执行二进制包，以及Python的二进制包。
+* `-DautoVersionSubmodules=true`: 作用是发布过程中版本号只需要输入一次，不必为每个子模块都输入一次。
+* `-DdryRun=true`: 演练，即不产生版本号提交，不生成新的tag。
 
 ### 准备发布
 
@@ -176,40 +192,41 @@ mvn release:clean
 然后准备执行发布。
 
 ```shell
-mvn release:prepare -Prelease,python -Darguments="-DskipTests" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github用户名}
+mvn release:prepare -Prelease,python -Darguments="-Dmaven.test.skip=true -Dcheckstyle.skip=true -Dmaven.javadoc.skip=true" -DautoVersionSubmodules=true -DpushChanges=false -Dusername="${GH_USERNAME}"
 ```
 
-和上一步演练的命令基本相同，去掉了-DdryRun=true参数。
+和上一步演练的命令基本相同，去掉了 `-DdryRun=true` 参数。
 
--DpushChanges=false：不要将修改后的版本号和tag自动提交至GitHub。
-如果遇到以下错误，请配置git邮箱为自己的apache邮箱和apache账号名
-```shell
-[ERROR] *** Please tell me who you are.
-[ERROR]
-[ERROR] Run
-[ERROR]
-[ERROR]   git config --global user.email "you@example.com"
-[ERROR]   git config --global user.name "Your Name"
-```
+* `-DpushChanges=fals`:不要将修改后的版本号和tag自动提交至GitHub。
+
+> 注意：如果你遇到来自 git 的类似 **Please tell me who you are.** 错误信息。您可以通过命令 `git config --global user.email "you@example.com"`
+> 和 `git config --global user.name "Your Name"` 来配置你的用户名和邮箱如果你遇到一些错误。
 
 将本地文件检查无误后，提交至github。
 
-
 ```shell
-git push
+git push -u origin "${VERSION}"-release
 git push origin --tags
 ```
+
+<!-- markdown-link-check-disable -->
+
+> 注意1：因为 Github 不再支持在 HTTPS 协议中使用原生密码在，所以在这一步你应该使用 github token 作为密码。你可以通过 https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating -a-personal-access-token
+> 了解更多如果创建 token 的信息。
+
+> 注意2：命令完成后，会自动创建 `release.properties` 文件和 `*.Backup` 文件，它们在下面的命令中是需要的，不要删除它们
+
+<!-- markdown-link-check-enable -->
 
 ### 部署发布
 
 ```shell
-mvn release:perform -Prelease,python -Darguments="-DskipTests" -DautoVersionSubmodules=true -Dusername=${Github用户名}
+mvn release:perform -Prelease,python -Darguments="-Dmaven.test.skip=true -Dcheckstyle.skip=true -Dmaven.javadoc.skip=true" -DautoVersionSubmodules=true -Dusername="${GH_USERNAME}"
 ```
 
-执行完该命令后，待发布版本会自动上传到Apache的临时筹备仓库(staging repository)。
-访问https://repository.apache.org/#stagingRepositories, 使用Apache的LDAP账户登录后，就会看到上传的版本，`Repository`列的内容即为${STAGING.REPOSITORY}。
-点击`Close`来告诉Nexus这个构建已经完成，只有这样该版本才是可用的。
-如果电子签名等出现问题，`Close`会失败，可以通过`Activity`查看失败信息。
+执行完该命令后，待发布版本会自动上传到Apache的临时筹备仓库(staging repository)。你可以通过访问 [apache staging repositories](https://repository.apache.org/#stagingRepositories)
+, 然后使用Apache的LDAP账户登录后，就会看到上传的版本，`Repository` 列的内容即为 `${STAGING.REPOSITORY}`。
+点击 `Close` 来告诉Nexus这个构建已经完成，只有这样该版本才是可用的。如果电子签名等出现问题，`Close` 会失败，可以通过 `Activity` 查看失败信息。
 
 ## 发布Apache SVN仓库
 
@@ -225,7 +242,7 @@ cd ~/ds_svn/dev/
 创建完毕后，从Apache SVN检出dolphinscheduler发布目录。
 
 ```shell
-svn --username=${APACHE LDAP 用户名} co https://dist.apache.org/repos/dist/dev/dolphinscheduler
+svn --username="${A_USERNAME}" co https://dist.apache.org/repos/dist/dev/dolphinscheduler
 cd ~/ds_svn/dev/dolphinscheduler
 ```
 
@@ -234,7 +251,7 @@ cd ~/ds_svn/dev/dolphinscheduler
 仅第一次部署的账号需要添加，只要`KEYS`中包含已经部署过的账户的公钥即可。
 
 ```shell
-gpg -a --export ${GPG用户名} >> KEYS
+gpg -a --export <YOUR-GPG-KEY-ID> >> KEYS
 ```
 
 ### 将待发布的内容添加至SVN目录
@@ -242,31 +259,31 @@ gpg -a --export ${GPG用户名} >> KEYS
 创建版本号目录。
 
 ```shell
-mkdir -p ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cd ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+mkdir -p ~/ds_svn/dev/dolphinscheduler/"${VERSION}"
+mkdir -p ~/ds_svn/dev/dolphinscheduler/"${VERSION}"/python
+cd ~/ds_svn/dev/dolphinscheduler/"${VERSION}"
 ```
 
 将源码包和二进制包添加至SVN工作目录。
 
 ```shell
 # 主程序源码包和二进制包
-cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
-cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/"${VERSION}"
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/"${VERSION}"
 
 # Python API 源码和二进制包
-mkdir -p ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
-cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolphinscheduler/${RELEASE.VERSION}/python
+cp -f ~/dolphinscheduler/dolphinscheduler-dist/target/python/* ~/ds_svn/dev/dolphinscheduler/"${VERSION}"/python
 ```
 
 ### 生成文件签名
 
 ```shell
-shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
-shasum -b -a 512 apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -a 512 apache-dolphinscheduler-"${VERSION}"-src.tar.gz >> apache-dolphinscheduler-"${VERSION}"-src.tar.gz.sha512
+shasum -b -a 512 apache-dolphinscheduler-"${VERSION}"-bin.tar.gz >> apache-dolphinscheduler-"${VERSION}"-bin.tar.gz.sha512
 cd python
-shasum -a 512 apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz >> apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
-shasum -b -a 512 apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl >> apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
-cd  ../
+shasum -a 512 apache-dolphinscheduler-python-"${VERSION}".tar.gz >> apache-dolphinscheduler-python-"${VERSION}".tar.gz.sha512
+shasum -b -a 512 apache_dolphinscheduler-python-"${VERSION}"-py3-none-any.whl >> apache_dolphinscheduler-python-"${VERSION}"-py3-none-any.whl.sha512
+cd ../
 ```
 
 ### 提交Apache SVN
@@ -274,18 +291,18 @@ cd  ../
 ```shell
 cd ~/ds_svn/dev/dolphinscheduler
 svn add *
-svn --username=${APACHE LDAP 用户名} commit -m "release ${RELEASE.VERSION}"
+svn --username="${A_USERNAME}" commit -m "release ${VERSION}"
 ```
 ## 检查发布结果
 
 ### 检查sha512哈希
 
 ```shell
-shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.sha512
-shasum -c apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.sha512
+shasum -c apache-dolphinscheduler-"${VERSION}"-src.tar.gz.sha512
+shasum -c apache-dolphinscheduler-"${VERSION}"-bin.tar.gz.sha512
 cd python
-shasum -c python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.sha512
-shasum -c python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.sha512
+shasum -c apache-dolphinscheduler-python-"${VERSION}".tar.gz.sha512
+shasum -c apache_dolphinscheduler-python-"${VERSION}"-py3-none-any.whl.sha512
 cd ../
 ```
 
@@ -296,7 +313,7 @@ cd ../
 ```shell
 curl https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS >> KEYS
 gpg --import KEYS
-gpg --edit-key "${发布人的gpg用户名}"
+gpg --edit-key "${A_USERNAME}"
   > trust
 
 Please decide how far you trust this user to correctly verify other users' keys
@@ -317,17 +334,22 @@ Your decision? 5
 然后进行gpg签名检查。
 
 ```shell
-gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz
-gpg --verify apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz.asc apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz
-gpg --verify python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz.asc python/apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz
-gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.asc python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl
+gpg --verify apache-dolphinscheduler-"${VERSION}"-src.tar.gz.asc
+gpg --verify apache-dolphinscheduler-"${VERSION}"-bin.tar.gz.asc
+cd python
+gpg --verify apache-dolphinscheduler-python-"${VERSION}".tar.gz.asc
+gpg --verify apache_dolphinscheduler-python-"${VERSION}"-py3-none-any.whl.asc
+cd ../
 ```
+
+> 注意：当你找不到你的 `asc` 文件时，你必须手动创建 gpg 签名，命令 `gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-"${VERSION}"- bin.tar.gz`
+> 和 `gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-"${VERSION}"-src.tar.gz` 将创建它们
 
 ### 检查发布文件内容
 
 #### 检查源码包的文件内容
 
-解压缩`apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz`以及Python文件夹下的`apache-dolphinscheduler-${RELEASE.VERSION}.tar.gz`，进行如下检查:
+解压缩`apache-dolphinscheduler-<VERSION>-src.tar.gz`以及Python文件夹下的`apache-dolphinscheduler-python-<VERSION>.tar.gz`，进行如下检查:
 
 - 检查源码包是否包含由于包含不必要文件，致使tarball过于庞大
 - 存在`LICENSE`和`NOTICE`文件
@@ -339,7 +361,7 @@ gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.
 
 #### 检查二进制包的文件内容
 
-解压缩`apache-dolphinscheduler-${RELEASE.VERSION}-src.tar.gz`和`apache-dolphinscheduler-${RELEASE.VERSION}-bin.tar.gz`
+解压缩`apache-dolphinscheduler-<VERSION>-src.tar.gz`和`apache-dolphinscheduler-python-<VERSION>-bin.tar.gz`
 进行如下检查:
 
 - 存在`LICENSE`和`NOTICE`文件
@@ -351,6 +373,12 @@ gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.
   - 如果依赖的是Apache许可证并且存在`NOTICE`文件，那么这些`NOTICE`文件也需要加入到版本的`NOTICE`文件中
 
 ## 发起投票
+
+### 更新版本说明
+
+在 GitHub 中通过 [创建新的 release note](https://github.com/apache/dolphinscheduler/releases/new) 创建一个 release note。 这要在
+投票邮件开始之前完成，因为我们需要在邮件中使用 release note。你可以通过命令 `git log --pretty="- %s" <PREVIOUS-RELEASE-SHA>..<CURRENT-RELEASE-SHA> > changelog.md`
+自动生成 changelog（部分可以不太准确，需要人为过滤一遍），然后将他们分类并粘贴到 GitHub 的 release note 中
 
 ### 投票阶段
 
@@ -365,74 +393,59 @@ gpg --verify python/apache_dolphinscheduler-${RELEASE.VERSION}-py3-none-any.whl.
 
 标题：
 
-```
-[VOTE] Release Apache DolphinScheduler ${RELEASE.VERSION}
+```txt
+[VOTE] Release Apache DolphinScheduler <VERSION>
 ```
 
 正文：
 
-```
+```txt
 Hello DolphinScheduler Community,
 
-This is a call for vote to release Apache DolphinScheduler version ${RELEASE.VERSION}
+This is a call for vote to release Apache DolphinScheduler version <VERSION>
 
-Release notes:
-https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
+Release notes: https://github.com/apache/dolphinscheduler/releases/tag/<VERSION>
 
-The release candidates:
-https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/
+The release candidates: https://dist.apache.org/repos/dist/dev/dolphinscheduler/<VERSION>/
 
-Maven 2 staging repository:
-https://repository.apache.org/content/repositories/${STAGING.REPOSITORY}/org/apache/dolphinscheduler/
+Maven 2 staging repository: https://repository.apache.org/content/repositories/<VERSION>/org/apache/dolphinscheduler/
 
-Git tag for the release:
-https://github.com/apache/dolphinscheduler/tree/${RELEASE.VERSION}
+Git tag for the release: https://github.com/apache/dolphinscheduler/tree/<VERSION>
 
-Release Commit ID:
-https://github.com/apache/dolphinscheduler/commit/xxxxxxxxxxxxxxxxxxxxxxx
+Release Commit ID: https://github.com/apache/dolphinscheduler/commit/<SHA-VALUE>
 
-Keys to verify the Release Candidate:
-https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
+Keys to verify the Release Candidate: https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
 
-Look at here for how to verify this release candidate:
-https://github.com/apache/dolphinscheduler/blob/1.2.0-release/README.md
+Look at here for how to verify this release candidate: https://dolphinscheduler.apache.org/en-us/community/release.html
 
 The vote will be open for at least 72 hours or until necessary number of votes are reached.
 
 Please vote accordingly:
 
 [ ] +1 approve
-
 [ ] +0 no opinion
-
 [ ] -1 disapprove with the reason
 
 Checklist for reference:
 
 [ ] Download links are valid.
-
 [ ] Checksums and PGP signatures are valid.
-
 [ ] Source code artifacts have correct names matching the current release.
-
 [ ] LICENSE and NOTICE files are correct for each DolphinScheduler repo.
-
 [ ] All files have license headers if necessary.
-
 [ ] No compiled archives bundled in source archive.
-
 ```
 
 2.宣布投票结果模板
 
 正文：
 
-```
-The vote to release Apache DolphinScheduler ${RELEASE.VERSION} has passed.Here is the vote result,
+```txt
+The vote to release Apache DolphinScheduler <VERSION> has passed.Here is the vote result,
 
 4 PMC member +1 votes:
 
-xxx 
+xxx
 xxx
 xxx
 xxx
@@ -446,15 +459,33 @@ Thanks everyone for taking time to check this release and help us.
 
 ## 完成发布
 
-1.将源码和二进制包从svn的dev目录移动到release目录
+### 将源码和二进制包从svn的dev目录移动到release目录
 
 ```shell
-svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION} https://dist.apache.org/repos/dist/release/dolphinscheduler/
+svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/"${VERSION}" https://dist.apache.org/repos/dist/release/dolphinscheduler/
 ```
 
-2.在Apache Staging仓库找到DolphinScheduler并点击`Release`
+### 更新文档
 
-3.发送公告邮件通知社区
+官网应该在您发送通知邮件之前完成更新，本节将告诉您如何更改网站。假设发版的版本是 `<VERSION>`，需要进行以下更新（注意，当修改pull requests 被 merge 后就会生效）:
+
+- **apache/dolphinscheduler-website** 仓库：
+  - `download/en-us/download.md` 和 `download/zh-cn/download.md`: 增加 `<VERSION>` 版本发布包的下载
+  - `scripts/conf.sh`: 在变量 `DEV_RELEASE_DOCS_VERSIONS` 中增加版本为 `<VERSION>` 的新键值对
+- **apache/dolphinscheduler** 仓库：
+  - `docs/configs/site.js`:
+    - `docsLatest`: 更新为 `<VERSION>`
+    - `docs0`: 两处 `en-us/zh-cn` 的 `text` 更新为 `latest(<VERSION>)`
+    - `docsxyz`: 两处 `en-us/zh-cn` 的 `children` 增加 `key` 为 `docsxyz`, `text` 为 `<VERSION>` 的下拉菜单
+  - `docs/configs/index.md.jsx`: 增加 `'<VERSION>': docsxyzConfig,`
+  - `docs/docs/en/history-versions.md` 和 `docs/docs/zh/history-versions.md`: 增加新的发版版本 `<VERSION>` 的链接
+  - `.github/ISSUE_TEMPLATE/bug-report.yml`: DolphinScheduler 在 GitHub issue 中有版本选择的部分，当有新版本发版后，需要更新这部分的内容。目前与版本关联的是
+    [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)，发版的时候需要
+    向其中的 **Version** 部分增加内容。
+
+### 在 [apache staging repositories](https://repository.apache.org/#stagingRepositories) 仓库找到 DolphinScheduler 并点击`Release`
+
+### 发送公告邮件通知社区
 
 当完成了上述的发版流程后，需要发送一封公告邮件给社区。你需要将邮件发送到 `dev@dolphinscheduler.apache.org` 并抄送到 `announce@apache.org`。
 
@@ -462,16 +493,16 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION
 
 标题：
 
-```
-[ANNOUNCE] Release Apache DolphinScheduler ${RELEASE.VERSION}
+```txt
+[ANNOUNCE] Release Apache DolphinScheduler <VERSION>
 ```
 
 正文：
 
-```
+```txt
 Hi all,
 
-We are glad to announce the release of Apache DolphinScheduler ${RELEASE.VERSION}. Once again I would like to express my thanks to your help.
+We are glad to announce the release of Apache DolphinScheduler <VERSION>. Once again I would like to express my thanks to your help.
 
 Dolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,
 dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.
@@ -479,13 +510,12 @@ dedicated to solving the complex task dependencies in data processing, making th
 
 Download Links: https://dolphinscheduler.apache.org/en-us/download/download.html
 
-Release Notes: https://dist.apache.org/repos/dist/dev/dolphinscheduler/${RELEASE.VERSION}/ReleaseNotes.md
+Release Notes: https://github.com/apache/dolphinscheduler/releases/tag/<VERSION>
 
 Website: https://dolphinscheduler.apache.org/
 
 DolphinScheduler Resources:
 - Issue: https://github.com/apache/dolphinscheduler/issues/
 - Mailing list: dev@dolphinscheduler.apache.org
-- Documents: https://github.com/apache/dolphinscheduler/blob/${RELEASE.VERSION}/README.md
-
+- Documents: https://dolphinscheduler.apache.org/zh-cn/docs/<VERSION>/user_doc/about/introduction.html
 ```
