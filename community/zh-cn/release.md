@@ -474,6 +474,7 @@ svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/"${VERSION}" http
     - `docs0`: 两处 `en-us/zh-cn` 的 `text` 更新为 `latest(<VERSION>)`
     - `docsxyz`: 两处 `en-us/zh-cn` 的 `children` 增加 `key` 为 `docsxyz`, `text` 为 `<VERSION>` 的下拉菜单
   - `docs/configs/index.md.jsx`: 增加 `'<VERSION>': docsxyzConfig,`
+  - `docs/docs/en/history-versions.md` 和 `docs/docs/zh/history-versions.md`: 增加新的发版版本 `<VERSION>` 的链接
   - `.github/ISSUE_TEMPLATE/bug-report.yml`: DolphinScheduler 在 GitHub issue 中有版本选择的部分，当有新版本发版后，需要更新这部分的内容。目前与版本关联的是
     [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)，发版的时候需要
     向其中的 **Version** 部分增加内容。

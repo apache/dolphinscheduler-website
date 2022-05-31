@@ -479,6 +479,7 @@ the release version is `<VERSION>`, the following updates are required(note it w
     - `docs0`: The `text` of two places of `en-us/zh-cn` needs to be updated to `latest(<VERSION>)`
     - `docsxyz`: Add a drop-down menu with `key` as `docsxyz` and `text` as `<VERSION>` in `children` of two places of `en-us/zh-cn`
   - `docs/configs/index.md.jsx`: Add `<VERSION>: docsxyzConfig`
+  - `docs/docs/en/history-versions.md` and `docs/docs/zh/history-versions.md`: Add new `<VERSION>` release docs.
   - `.github/ISSUE_TEMPLATE/bug-report.yml`: DolphinScheduler's GitHub [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)
     issue template have **Version** selection bottom. So after we release DolphinScheduler we should and the new `<VERSION>` to
     bug-report.yml
