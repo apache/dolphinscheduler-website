@@ -27,17 +27,13 @@
 <ul>
 <li><code>dolphinscheduler_mysql.sql</code>: <code>t_ds_version</code> 版本更新为 x.y.z</li>
 <li><code>dolphinscheduler_postgre.sql</code>: <code>t_ds_version</code> 版本更新为 x.y.z</li>
+<li><code>dolphinscheduler_h2.sql</code>: <code>t_ds_version</code> 版本更新为 x.y.z</li>
 <li><code>upgrade</code>: 是否新增 <code>x.y.z_schema</code></li>
 <li><code>soft_version</code>: 版本更新为 x.y.z</li>
 </ul>
 </li>
-<li><code>docker/docker-swarm</code>:
-<ul>
-<li><code>docker-compose.yml</code>: <code>image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler</code> 版本更新为 x.y.z</li>
-<li><code>docker-stack.yml</code>: <code>image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler</code> 版本更新为 x.y.z</li>
-</ul>
-</li>
-<li><code>docker/kubernetes/dolphinscheduler</code>:
+<li><code>deploy/docker/.env</code>: <code>HUB</code> 改为 <code>apache</code>，<code>TAG</code> 改为 <code>x.y.z</code></li>
+<li><code>deploy/kubernetes/dolphinscheduler</code>:
 <ul>
 <li><code>Chart.yaml</code>: <code>appVersion</code> 版本更新为 x.y.z (<code>version</code> 为 helm chart 版本, 增量更新但不要设置为 x.y.z)</li>
 <li><code>values.yaml</code>: <code>image.tag</code> 版本更新为 x.y.z</li>
@@ -48,30 +44,15 @@
 </li>
 <li>修改文档（docs模块）中的版本号:
 <ul>
-<li>将下面文件的占位符 <code>&lt;version&gt;</code> 修改成 <code>x.y.z</code>
-<ul>
-<li><code>docker.md</code></li>
-<li><code>expansion-reduction.md</code></li>
-<li><code>kubernetes.md</code></li>
-<li><code>upgrade.md</code></li>
-</ul>
-</li>
-<li>修改配置文件的版本号
-<ul>
-<li><code>docs/configs/site.js</code>:
-<ul>
-<li><code>docsLatest</code>: 更新为 x.y.z</li>
-<li><code>docs0</code>: 两处 <code>en-us/zh-cn</code> 的 <code>text</code> 更新为 <code>latest(x.y.z)</code></li>
-<li><code>docsxyz</code>: 两处 <code>en-us/zh-cn</code> 的 <code>children</code> 增加 <code>key</code> 为 <code>docsxyz</code>, <code>text</code> 为 <code>x.y.z</code> 的下拉菜单</li>
-</ul>
-</li>
-<li><code>docs/configs/index.md.jsx</code>: 增加 <code>'x.y.z': docsxyzConfig,</code></li>
-<li><code>docs/configs/docsdev.js</code>: 重命名为 <code>docsx-y-z.js</code> 并将其中的 <code>/dev/</code> 修改为 <code>/x.y.z/</code></li>
-</ul>
-</li>
+<li>将 <code>docs</code> 文件夹下文件的占位符 <code>&lt;version&gt;</code> (除了 pom.xml 相关的) 修改成 <code>x.y.z</code></li>
 <li>新增历史版本
 <ul>
 <li><code>docs/docs/en/history-versions.md</code> 和 <code>docs/docs/zh/history-versions.md</code>: 增加新的历史版本为 <code>x.y.z</code></li>
+</ul>
+</li>
+<li>修改文档 sidebar
+<ul>
+<li><code>docs/configs/docsdev.js</code>: 将里面的 <code>/dev/</code> 修改成 <code>/x.y.z/</code></li>
 </ul>
 </li>
 </ul>

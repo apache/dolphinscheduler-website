@@ -27,17 +27,13 @@
 <ul>
 <li><code>dolphinscheduler_mysql.sql</code>: <code>t_ds_version</code> needs to be updated to x.y.z</li>
 <li><code>dolphinscheduler_postgre.sql</code>: <code>t_ds_version</code> needs to be updated to x.y.z</li>
+<li><code>dolphinscheduler_h2.sql</code>: <code>t_ds_version</code> needs to be updated to x.y.z</li>
 <li><code>upgrade</code>: whether to add<code>x.y.z_schema</code></li>
 <li><code>soft_version</code>: need to be updated to x.y.z</li>
 </ul>
 </li>
-<li><code>docker/docker-swarm</code>:
-<ul>
-<li><code>docker-compose.yml</code>: <code>image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler</code> needs to be updated to x.y.z</li>
-<li><code>docker-stack.yml</code>: <code>image: dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler</code> needs to be updated to x.y.z</li>
-</ul>
-</li>
-<li><code>docker/kubernetes/dolphinscheduler</code>:
+<li><code>deploy/docker/.env</code>: <code>HUB</code> change to <code>apache</code>，<code>TAG</code> change to <code>x.y.z</code></li>
+<li><code>deploy/kubernetes/dolphinscheduler</code>:
 <ul>
 <li><code>Chart.yaml</code>: <code>appVersion</code> needs to be updated to x.y.z (<code>version</code> is helm chart version，incremented and different from x.y.z)</li>
 <li><code>values.yaml</code>: <code>image.tag</code> needs to be updated to x.y.z</li>
@@ -48,32 +44,13 @@
 </li>
 <li>Version in the docs:
 <ul>
-<li>Change the placeholder <code>&lt;version&gt;</code> to the <code>x.y.z</code>
-<ul>
-<li><code>docker.md</code></li>
-<li><code>expansion-reduction.md</code></li>
-<li><code>kubernetes.md</code></li>
-<li><code>upgrade.md</code></li>
-</ul>
-</li>
-<li>Change configuration file
-<ul>
-<li><code>docs/configs/site.js</code>:
-<ul>
-<li><code>docsLatest</code>: update to x.y.z</li>
-<li><code>docs0</code>: The <code>text</code> of two places of <code>en-us/zh-cn</code> needs to be updated to <code>latest(x.y.z)</code></li>
-<li><code>docsxyz</code>: Add a drop-down menu with <code>key</code> as <code>docsxyz</code> and <code>text</code> as <code>x.y.z</code> in <code>children</code> of two places of <code>en-us/zh-cn</code></li>
-</ul>
-</li>
-<li><code>docs/configs/index.md.jsx</code>: Add <code>'x.y.z': docsxyzConfig</code></li>
-<li><code>docs/configs/docsdev.js</code>: Rename to <code>docsx-y-z.js</code> and change its content <code>/dev/</code> to <code>/x.y.z/</code></li>
-</ul>
-</li>
+<li>Change the placeholder <code>&lt;version&gt;</code>(except <code>pom</code>)  to the <code>x.y.z</code> in directory <code>docs</code></li>
 <li>Add new history version
 <ul>
 <li><code>docs/docs/en/history-versions.md</code> and <code>docs/docs/zh/history-versions.md</code>: Add the new version and link for <code>x.y.z</code></li>
 </ul>
 </li>
+<li><code>docs/configs/docsdev.js</code>: change <code>/dev/</code> to <code>/x.y.z/</code></li>
 </ul>
 </li>
 </ul>
