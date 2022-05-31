@@ -135,7 +135,7 @@ Amazon Redshift 支持
 
 任务组主要用于控制任务实例并发并明确组内优先级。用户在新建任务定义时，可配置当前任务对应的任务组，并配置任务在任务组内运行的优先级。当任务配置了任务组后，任务的执行除了要满足上游任务全部成功外，还需要满足当前任务组正在运行的任务小于资源池的大小。当大于或者等于资源池大小时，任务会进入等待状态等待下一次检查。当任务组中多个任务同时进到待运行队列中时，会先运行优先级高的任务。
 
-详见链接：[https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource.html](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource.html)
+详见链接：[https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/resource/configuration.html](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/resource/configuration.html)
 
 <div align=center>
 
