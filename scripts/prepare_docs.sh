@@ -93,15 +93,15 @@ function clone_repo() {
 ##############################################################
 #
 # Replace images path in markdown documents, the source path
-# in repo `apache/incubator-seatunnel` is like `images/<name>.png`
-# and we should replace it to `images_en/<name>.png`
+# in repo `apache/dolphinscheduler` is like `../../img/<name>.png`
+# and we should replace it to `/img/<name>.png`
 #
 # Arguments:
 #
 #   replace_dir: The directory to replace the img path
 #
 ##############################################################
-function replace_images_path(){
+function replace_images_path() {
   replace_dir=$1
   for file_path in "${replace_dir}"/*; do
     if test -f "${file_path}"; then
