@@ -1,7 +1,7 @@
 # Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances
 
 <div align=center>
-<img src="/mark/5.25/en/1.jpg"/>
+<img src="/img/2022-05-25/en/1.jpg"/>
 </div>
 
 At XWBank, a large number of task instances are generated every day, with real-time tasks making up the majority. To better handle the task instances, XWBank chose Apache DolphinScheduler to solve this challenge after a comprehensive consideration. Today, several XWBank projects have applied real-time and quasi-real-time batch processing and offline batch processing for metrics management systems in three types of scenarios, i.e. offline data development and task scheduling, quasi-real-time data development and task scheduling, and other non-ETL user-defined data batch processing.
@@ -16,7 +16,7 @@ The sharing was divided into four sessions.
 - 4. The follow-up plan for XWBank to use Apache DolphinScheduler
 
 <div align=center>
-<img src="/mark/5.25/en/2.png"/>
+<img src="/img/2022-05-25/en/2.png"/>
 </div>
 
 Chen Wei
@@ -96,7 +96,7 @@ We look for data sources by name, and it supports data sources such as phoenix. 
 In XWBank, there are about 9000+ task instances generated every day, with real-time tasks making up the majority. Today, we have used Apache DolphinScheduler to run batches in real-time and quasi-real-time tasks for many projects, offline batches for the metrics management system, including batches for the integrated internal SQL tools that support XSQL.
 
 <div align=center>
-<img src="/mark/5.25/en/3.jfif"/>
+<img src="/img/2022-05-25/en/3.jfif"/>
 </div>
 
 In the picture above on the right, we can see that we have made tasks independent, replacing parameters. Also, in terms of task lineage, especially for SQL-type tasks, we can do automatic parsing and also add them manually. This is mainly used for the automatic orchestration of our workflows, such as the internal task maps of the company.
