@@ -547,6 +547,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: '/img/2022-05-25/ch/1.jpg',
+          title: 'Don’t know how to use Apache DolphinScheduler? A community talent writes the usage tutorial of it in one month!（3）',
+          content: 'Apache DolphinScheduler (hereinafter referred to as DS) is a distributed and easily scalable visual DAG workflow task scheduling system...',
+          dateStr: '2022-5-25',
+          link: '/en-us/blog/3_The_most_comprehensive_introductory_tutorial_written_in_a_month.html',
+        },
+        {
           img: '/img/2020-04-25/en/1.png',
           title: '3.0.0 Alpha Release! Nine New Features and A Brand New UI Unlock New Capabilities For the Scheduling System\n',
           content: 'On April 22, 2022, Apache DolphinScheduler officially announced the release of alpha version 3.0.0! ...',
@@ -559,13 +566,6 @@ export default {
           content: 'At present, the scheduler plays an indispensable role in big data ecology....',
           dateStr: '2022-4-14',
           link: '/en-us/blog/Fast_Task_Type_Expanding_On_Apache_DolphinScheduler_Tutorial.html',
-        },
-        {
-          img: '/img/2022-4-14/3.png',
-          title: 'First Anniversary Celebration of Apache DolphinScheduler\'s Graduation From ASF Incubator! Here Comes the Project Status Report!\n',
-          content: 'Before you know it, Apache DolphinScheduler has graduated from the Apache Software Foundation ...',
-          dateStr: '2022-4-14',
-          link: '/en-us/blog/Apache_DolphinScheduler_s_Graduation_From_ASF_Incubator.html',
         },
       ],
     },

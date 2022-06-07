@@ -4,7 +4,35 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
-                title: '3.0.0 Alpha Release! Nine New Features and A Brand New UI Unlock New Capabilities For the Scheduling System\n',
+                title: 'Don’t know how to use Apache DolphinScheduler? A community talent writes the usage tutorial of it in one month!（3）',
+                author: 'Debra Chen',
+                dateStr: '2022-5-25',
+                desc: 'Apache DolphinScheduler (hereinafter referred to as DS) is a distributed and easily scalable visual DAG workflow task scheduling system... ',
+                link: '/en-us/blog/3_The_most_comprehensive_introductory_tutorial_written_in_a_month.html',
+            },
+            {
+                title: 'Don’t know how to use Apache DolphinScheduler? A community talent writes the usage tutorial of it in one month!（2）',
+                author: 'Debra Chen',
+                dateStr: '2022-5-24',
+                desc: 'Apache DolphinScheduler (hereinafter referred to as DS) is a distributed and easily scalable visual DAG workflow task scheduling system... ',
+                link: '/en-us/blog/2_The_most_comprehensive_introductory_tutorial_written_in_a_month.html',
+            },
+            {
+                title: 'Don’t know how to use Apache DolphinScheduler? A community talent writes the usage tutorial of it in one month!（1）',
+                author: 'Debra Chen',
+                dateStr: '2022-5-23',
+                desc: 'Apache DolphinScheduler (hereinafter referred to as DS) is a distributed and easily scalable visual DAG workflow task scheduling system... ',
+                link: '/en-us/blog/The_most_comprehensive_introductory_tutorial_written_in_a_month.html',
+            },
+            {
+                title: 'China Unicom revamps Apache DolphinScheduler Resource Center for cross-cluster calls in billing environments and one-stop access to data scripts',
+                author: 'Debra Chen',
+                dateStr: '2022-5-07',
+                desc: 'Today, Apache DolphinScheduler announced the official release of version 2.0.5 ... ',
+                link: '/en-us/blog/China_Unicom_revamps_Apache_DolphinScheduler.html',
+            },
+            {
+                title: '3.0.0 Alpha Release! Nine New Features and A Brand New UI Unlock New Capabilities For the Scheduling System',
                 author: 'Debra Chen',
                 dateStr: '2022-4-16',
                 desc: 'n April 22, 2022, Apache DolphinScheduler officially announced the release of alpha version 3.0.0! ... ',
@@ -213,6 +241,20 @@ export default {
         barText: '博客',
         postsTitle: '所有文章',
         list: [
+            {
+                title: '还不会用 Apache Dolphinscheduler？大佬用时一个月写出的最全入门教程',
+                author: 'Debra Chen',
+                dateStr: '2022-5-23',
+                desc: '海豚调度(Apache DolphinScheduler，下文简称DS)是分布式易扩展的可视化DAG工作流任务调度系统，...',
+                link: '/zh-cn/blog/The_most_comprehensive_introductory_tutorial_written_in_a_month.html',
+            },
+            {
+                title: '中国联通改造 Apache DolphinScheduler 资源中心，实现计费环境跨集群调用与数据脚本一站式访问',
+                author: 'Debra Chen',
+                dateStr: '2022-5-07',
+                desc: '截止2022年，中国联通用户规模达到4.6亿，占据了全中国人口的30%，...',
+                link: '/zh-cn/blog/China_Unicom_revamps_Apache_DolphinScheduler.html',
+            },
             {
                 title: '3.0.0 alpha 重磅发布！九大新功能、全新 UI 解锁调度系统新能力',
                 author: 'Debra Chen',
