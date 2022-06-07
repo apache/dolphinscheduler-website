@@ -148,8 +148,9 @@ function prepare_docs() {
     echo "  ---> Sync latest document in dev branch."
     rsync_latest_docs
 
-    echo "===>>>: Replace images path in ${PROJECT_SITE_DOC_DIR}"
+    echo "===>>>: Replace images path in ${PROJECT_SITE_DOC_DIR} and ${PROJECT_SITE_DEVELOP_DIR}"
     replace_images_path "${PROJECT_SITE_DOC_DIR}"
+    replace_images_path "${PROJECT_SITE_DEVELOP_DIR}"
 
     echo "===>>> End prepare document."
 }
