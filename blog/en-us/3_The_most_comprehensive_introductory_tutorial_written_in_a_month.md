@@ -1,3 +1,8 @@
+---
+title:# Community Star Series | 3 Don’t know how to use Apache DolphinScheduler? A community talent writes the usage tutorial of it in one month!
+keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup
+description: Apache DolphinScheduler (hereinafter referred to as DS) is a distributed and easily scalable visual DAG workflow task scheduling system
+---
 # Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances
 
 <div align=center>
