@@ -95,7 +95,7 @@
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException(<span class="hljs-string">&quot;Unknown tab: &quot;</span> + tab.getName());
     }
 </code></pre>
-<p><img src="../../../img/e2e-test/SecurityPage.png" alt="SecurityPage"></p>
+<p><img src="/img/e2e-test/SecurityPage.png" alt="SecurityPage"></p>
 <p>For navigation bar options jumping, the goToNav method is provided in <code>org/apache/dolphinscheduler/e2e/pages/common/NavBarPage.java</code>. The currently supported pages are: ProjectPage, SecurityPage and ResourcePage.</p>
 <pre><code class="language-java">    <span class="hljs-keyword">public</span> &lt;T extends NavBarItem&gt; <span class="hljs-function">T <span class="hljs-title">goToNav</span><span class="hljs-params">(Class&lt;T&gt; nav)</span> </span>{
         <span class="hljs-keyword">if</span> (nav == ProjectPage.class) {
@@ -124,7 +124,7 @@
 </code></pre>
 <h3>E2E-Cases</h3>
 <p>Current E2E test cases supported include: File Management, Project Management, Queue Management, Tenant Management, User Management, Worker Group Management and Workflow Test.</p>
-<p><img src="../../../img/e2e-test/E2E_Cases.png" alt="E2E_Cases"></p>
+<p><img src="/img/e2e-test/E2E_Cases.png" alt="E2E_Cases"></p>
 <p>The following is an example of a tenant management test. As explained earlier, we use docker-compose for deployment, so for each test case, we need to import the corresponding file in the form of an annotation.</p>
 <p>The browser is loaded using the RemoteWebDriver provided with Selenium. Before each test case is started there is some preparation work that needs to be done. For example: logging in the user, jumping to the corresponding page (depending on the specific test case).</p>
 <pre><code class="language-java">    <span class="hljs-meta">@BeforeAll</span>
@@ -157,11 +157,11 @@
 <p>When running E2E tests locally, the <code>-Dlocal=true</code> parameter can be configured to connect locally and facilitate changes to the UI.</p>
 <p>When running E2E tests with <code>M1</code> chip, you can use <code>-Dm1_chip=true</code> parameter to configure containers supported by
 <code>ARM64</code>.</p>
-<p><img src="../../../img/e2e-test/Dlocal.png" alt="Dlocal"></p>
+<p><img src="/img/e2e-test/Dlocal.png" alt="Dlocal"></p>
 <p>If a connection timeout occurs during a local run, increase the load time to a recommended 30 and above.</p>
-<p><img src="../../../img/e2e-test/timeout.png" alt="timeout"></p>
+<p><img src="/img/e2e-test/timeout.png" alt="timeout"></p>
 <p>The test run will be available as an MP4 file.</p>
-<p><img src="../../../img/e2e-test/MP4.png" alt="MP4"></p>
+<p><img src="/img/e2e-test/MP4.png" alt="MP4"></p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
