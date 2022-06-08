@@ -10,7 +10,7 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Gang Li           | lgcareer     | [@lgcareer](https://github.com/lgcareer)             |
 | Guo Jiwei         | technoboy    | [@Technoboy-](https://github.com/Technoboy-)         |
 | Guo William       | guowei       | [@William-GuoWei](https://github.com/William-GuoWei) |
-| Jun Gao           | gaojun2048   | [@gaojun2048](https://github.com/gaojun2048)         |
+| Jun Gao           | gaojun2048   | [@EricJoy2048](https://github.com/EricJoy2048/)         |
 | Kevin Ratnasekera | djkevincr    | [@djkevincr](https://github.com/djkevincr)           |
 | Leon Bao          | leonbao      | [@lenboo](https://github.com/lenboo)                 |
 | Liang Chen        | chenliang613 | [@chenliang613](https://github.com/chenliang613)     |
