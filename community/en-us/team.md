@@ -14,7 +14,7 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Kevin Ratnasekera | djkevincr    | [@djkevincr](https://github.com/djkevincr)           |
 | Leon Bao          | leonbao      | [@lenboo](https://github.com/lenboo)                 |
 | Liang Chen        | chenliang613 | [@chenliang613](https://github.com/chenliang613)     |
-| Lidong Dai        | lidongdai    | [@dailidong](https://github.com/dailidong)           |
+| Lidong Dai        | lidongdai    | [@davidzollo](https://github.com/davidzollo)           |
 | Qiao Zhanwei      | journey      | [@qiaozhanwei](https://github.com/qiaozhanwei)       |
 | Shao Feng Shi     | shaofengshi  | [@shaofengshi](https://github.com/shaofengshi)       |
 | Sheng Wu          | wusheng      | [@wu-sheng](https://github.com/wu-sheng)             |
