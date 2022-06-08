@@ -4,11 +4,11 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
-                title: 'Don’t know how to use Apache DolphinScheduler? A community talent writes the usage tutorial of it in one month!（3）',
+                title: 'Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances\n',
                 author: 'Debra Chen',
                 dateStr: '2022-5-25',
-                desc: 'Apache DolphinScheduler (hereinafter referred to as DS) is a distributed and easily scalable visual DAG workflow task scheduling system... ',
-                link: '/en-us/blog/3_The_most_comprehensive_introductory_tutorial_written_in_a_month.html',
+                desc: 'At XWBank, a large number of task instances are generated every day... ',
+                link: '/en-us/blog/Apache_DolphinScheduler_in_XWBank.html',
             },
             {
                 title: 'Don’t know how to use Apache DolphinScheduler? A community talent writes the usage tutorial of it in one month!（2）',
@@ -242,7 +242,21 @@ export default {
         postsTitle: '所有文章',
         list: [
             {
-                title: '还不会用 Apache Dolphinscheduler？大佬用时一个月写出的最全入门教程',
+                title: '金融任务实例实时、离线跑批Apache DolphinScheduler在新网银行的三大场景与五大优化',
+                author: 'Debra Chen',
+                dateStr: '2022-5-23',
+                desc: '在新网银行，每天都有大量的任务实例产生，其中实时任务占据多数...',
+                link: '/zh-cn/blog/Apache_DolphinScheduler_in_XWBank.html',
+            },
+            {
+                title: '还不会用 Apache Dolphinscheduler？大佬用时一个月写出的最全入门教程（2）',
+                author: 'Debra Chen',
+                dateStr: '2022-5-23',
+                desc: '海豚调度(Apache DolphinScheduler，下文简称DS)是分布式易扩展的可视化DAG工作流任务调度系统，...',
+                link: '/zh-cn/blog/2_The_most_comprehensive_introductory_tutorial_written_in_a_month.html',
+            },
+            {
+                title: '还不会用 Apache Dolphinscheduler？大佬用时一个月写出的最全入门教程（1）',
                 author: 'Debra Chen',
                 dateStr: '2022-5-23',
                 desc: '海豚调度(Apache DolphinScheduler，下文简称DS)是分布式易扩展的可视化DAG工作流任务调度系统，...',

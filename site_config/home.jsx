@@ -55,6 +55,13 @@ export default {
       title: '事件 & 新闻',
       list: [
         {
+          img: '/img/2022-05-25/ch/1.jpg',
+          title: '金融任务实例实时、离线跑批Apache DolphinScheduler在新网银行的三大场景与五大优化',
+          content: '在新网银行，每天都有大量的任务实例产生，其中实时任务占据多数。...',
+          dateStr: '2022-5-25',
+          link: '/zh-cn/blog/Apache_DolphinScheduler_in_XWBank.html',
+        },
+        {
           img: '/img/2020-04-25/1.jpeg',
           title: '3.0.0 alpha 重磅发布！九大新功能、全新 UI 解锁调度系统新能力',
           content: '2022 年 4 月 22 日，Apache DolphinScheduler 正式宣布 3.0.0 alpha 版本发布！...',
@@ -67,13 +74,6 @@ export default {
           content: '目前在大数据生态中，调度系统是不可或缺的一个重要组件..',
           dateStr: '2022-4-14',
           link: '/zh-cn/blog/Fast_Task_Type_Expanding_On_Apache_DolphinScheduler_Tutorial.html',
-        },
-        {
-          img: '/img/2022-4-14/1.png',
-          title: 'Apache DolphinScheduler ASF 孵化器毕业一周年，汇报来了！',
-          content: '不知不觉，Apache DolphinScheduler 已经从 Apache 软件基金会（以下简称 ASF）孵化器毕业一年啦...',
-          dateStr: '2022-4-14',
-          link: '/zh-cn/blog/Apache_DolphinScheduler_s_Graduation_From_ASF_Incubator.html',
         },
       ],
     },
@@ -547,9 +547,9 @@ export default {
       title: 'Events & News',
       list: [
         {
-          img: '/img/2022-05-25/ch/1.jpg',
-          title: 'Don’t know how to use Apache DolphinScheduler? A community talent writes the usage tutorial of it in one month!（3）',
-          content: 'Apache DolphinScheduler (hereinafter referred to as DS) is a distributed and easily scalable visual DAG workflow task scheduling system...',
+          img: '/img/2022-05-25/en/1.jpg',
+          title: 'Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances',
+          content: 'At XWBank, a large number of task instances are generated every day...',
           dateStr: '2022-5-25',
           link: '/en-us/blog/3_The_most_comprehensive_introductory_tutorial_written_in_a_month.html',
         },
