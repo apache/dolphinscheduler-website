@@ -12,11 +12,11 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Gang Li           | lgcareer     | [@lgcareer](https://github.com/lgcareer)             |
 | Guo Jiwei         | technoboy    | [@Technoboy-](https://github.com/Technoboy-)         |
 | Guo William       | guowei       | [@William-GuoWei](https://github.com/William-GuoWei) |
-| Jun Gao           | gaojun2048   | [@gaojun2048](https://github.com/gaojun2048)         |
+| Jun Gao           | gaojun2048   | [@EricJoy2048](https://github.com/EricJoy2048/)         |
 | Kevin Ratnasekera | djkevincr    | [@djkevincr](https://github.com/djkevincr)           |
 | Leon Bao          | leonbao      | [@lenboo](https://github.com/lenboo)                 |
 | Liang Chen        | chenliang613 | [@chenliang613](https://github.com/chenliang613)     |
-| Lidong Dai        | lidongdai    | [@dailidong](https://github.com/dailidong)           |
+| Lidong Dai        | lidongdai    | [@davidzollo](https://github.com/davidzollo)           |
 | Qiao Zhanwei      | journey      | [@qiaozhanwei](https://github.com/qiaozhanwei)       |
 | Shao Feng Shi     | shaofengshi  | [@shaofengshi](https://github.com/shaofengshi)       |
 | Sheng Wu          | wusheng      | [@wu-sheng](https://github.com/wu-sheng)             |

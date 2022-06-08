@@ -551,7 +551,7 @@ export default {
           title: 'Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances',
           content: 'At XWBank, a large number of task instances are generated every day...',
           dateStr: '2022-5-25',
-          link: '/en-us/blog/3_The_most_comprehensive_introductory_tutorial_written_in_a_month.html',
+          link: '/en-us/blog/Apache_DolphinScheduler_in_XWBank.html',
         },
         {
           img: '/img/2020-04-25/en/1.png',
