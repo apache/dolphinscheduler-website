@@ -28,6 +28,8 @@
 <li><strong>Environment Name</strong>: Configure the environment name in which to run the script.</li>
 <li><strong>Number of failed retry attempts</strong>: The number of times the task failed to be resubmitted.</li>
 <li><strong>Failed retry interval</strong>: The time, in cents, interval for resubmitting the task after a failed task.</li>
+<li><strong>Cpu quota</strong>: Assign the specified CPU time quota to the task executed. Takes a percentage value. Default -1 means unlimited. For example, the full CPU load of one core is 100%,and that of 16 cores is 1600%. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></li>
+<li><strong>Max memory</strong>：Assign the specified max memory to the task executed. Exceeding this limit will trigger oom to be killed and will not automatically retry. Takes an MB value. Default -1 means unlimited. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></li>
 <li><strong>Delayed execution time</strong>: The time, in cents, that a task is delayed in execution.</li>
 <li><strong>Timeout alarm</strong>: Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will be sent and the task execution will fail.</li>
 <li><strong>Custom template</strong>: Custom the content of the DataX node's json profile when the default data source provided does not meet the required requirements.</li>
