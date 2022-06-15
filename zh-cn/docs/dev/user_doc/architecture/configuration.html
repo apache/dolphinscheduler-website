@@ -520,6 +520,41 @@
 <td>PASSWORD</td>
 <td>权限校验类型</td>
 </tr>
+<tr>
+<td>security.authentication.ldap.user.admin</td>
+<td>read-only-admin</td>
+<td>LDAP登陆时，系统管理员账号</td>
+</tr>
+<tr>
+<td>security.authentication.ldap.urls</td>
+<td>ldap://ldap.forumsys.com:389/</td>
+<td>LDAP urls</td>
+</tr>
+<tr>
+<td>security.authentication.ldap.base.dn</td>
+<td>dc=example,dc=com</td>
+<td>LDAP base dn</td>
+</tr>
+<tr>
+<td>security.authentication.ldap.username</td>
+<td>cn=read-only-admin,dc=example,dc=com</td>
+<td>LDAP账号</td>
+</tr>
+<tr>
+<td>security.authentication.ldap.password</td>
+<td>password</td>
+<td>LDAP密码</td>
+</tr>
+<tr>
+<td>security.authentication.ldap.user.identity.attribute</td>
+<td>uid</td>
+<td>LDAP用户身份标识字段名</td>
+</tr>
+<tr>
+<td>security.authentication.ldap.user.email.attribute</td>
+<td>mail</td>
+<td>LDAP邮箱字段名</td>
+</tr>
 </tbody>
 </table>
 <h2>6.master.properties [Master服务配置]</h2>
@@ -956,7 +991,7 @@ singleYarnIp=<span class="hljs-string">&quot;yarnIp1&quot;</span>
 resourceUploadPath=<span class="hljs-string">&quot;/dolphinscheduler&quot;</span>
 
 
-<span class="hljs-comment"># HDFS/S3  操作用户</span>
+<span class="hljs-comment"># HDFS/S3  操作用户 </span>
 hdfsRootUser=<span class="hljs-string">&quot;hdfs&quot;</span>
 
 <span class="hljs-comment"># 以下为 kerberos 配置</span>
