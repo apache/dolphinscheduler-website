@@ -106,8 +106,8 @@
 <div class="viewcode-block" id="SqlType"><a class="viewcode-back" href="../../../tasks/sql.html#pydolphinscheduler.tasks.SqlType">[docs]</a><span class="k">class</span> <span class="nc">SqlType</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;SQL type, for now it just contain `SELECT` and `NO_SELECT`.&quot;&quot;&quot;</span>
 
-    <span class="n">SELECT</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">NOT_SELECT</span> <span class="o">=</span> <span class="mi">1</span></div>
+    <span class="n">SELECT</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+    <span class="n">NOT_SELECT</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span></div>
 
 
 <div class="viewcode-block" id="Sql"><a class="viewcode-back" href="../../../tasks/sql.html#pydolphinscheduler.tasks.Sql">[docs]</a><span class="k">class</span> <span class="nc">Sql</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
@@ -139,7 +139,7 @@
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">datasource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">sql_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sql_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">pre_statements</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">post_statements</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">display_rows</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
@@ -155,7 +155,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">display_rows</span> <span class="o">=</span> <span class="n">display_rows</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">sql_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">sql_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Judgement sql type, it will return the SQL type for type `SELECT` or `NOT_SELECT`.</span>
 
 <span class="sd">        If `param_sql_type` dot not specific, will use regexp to check</span>

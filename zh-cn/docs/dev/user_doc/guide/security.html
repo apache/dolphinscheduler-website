@@ -168,6 +168,20 @@ worker.groups=default,test
 <li>在工作流定义中创建任务节点选择 worker 分组和 worker 分组对应的环境，任务执行时 worker 会先执行环境在执行任务.</li>
 </ul>
 <p><img src="/img/new_ui/dev/security/use-environment.png" alt="use-environment"></p>
+<h2>集群管理</h2>
+<blockquote>
+<p>创建/更新 集群</p>
+</blockquote>
+<ul>
+<li>每个工作流可以绑定零到若干个集群用来支持多集群，目前先用于k8s。</li>
+</ul>
+<blockquote>
+<p>使用集群</p>
+</blockquote>
+<ul>
+<li>创建和授权后，k8s命名空间和工作流会增加关联集群的功能。每一个集群会有独立的工作流和任务实例独立运行。</li>
+</ul>
+<p><img src="/img/new_ui/dev/security/create-cluster.png" alt="create-cluster"></p>
 <h2>命名空间管理</h2>
 <blockquote>
 <p>创建/更新 k8s集群</p>
