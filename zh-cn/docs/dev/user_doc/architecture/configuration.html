@@ -374,9 +374,44 @@
 <td>资源文件存储类型: HDFS,S3,NONE</td>
 </tr>
 <tr>
-<td>resource.upload.path</td>
+<td>resource.storage.upload.base.path</td>
 <td>/dolphinscheduler</td>
 <td>资源文件存储路径</td>
+</tr>
+<tr>
+<td><a href="http://resource.aws.access.key.id">resource.aws.access.key.id</a></td>
+<td>minioadmin</td>
+<td>S3 access key</td>
+</tr>
+<tr>
+<td>resource.aws.secret.access.key</td>
+<td>minioadmin</td>
+<td>S3 secret access key</td>
+</tr>
+<tr>
+<td>resource.aws.region</td>
+<td>us-east-1</td>
+<td>S3 区域</td>
+</tr>
+<tr>
+<td><a href="http://resource.aws.s3.bucket.name">resource.aws.s3.bucket.name</a></td>
+<td>dolphinscheduler</td>
+<td>S3 存储桶名称</td>
+</tr>
+<tr>
+<td>resource.aws.s3.endpoint</td>
+<td><a href="http://minio:9000">http://minio:9000</a></td>
+<td>s3 endpoint地址</td>
+</tr>
+<tr>
+<td>resource.hdfs.root.user</td>
+<td>hdfs</td>
+<td>如果存储类型为HDFS,需要配置拥有对应操作权限的用户</td>
+</tr>
+<tr>
+<td>resource.hdfs.fs.defaultFS</td>
+<td>hdfs://mycluster:8020</td>
+<td>请求地址如果resource.storage.type=S3,该值类似为: s3a://dolphinscheduler. 如果resource.storage.type=HDFS, 如果 hadoop 配置了 HA,需要复制core-site.xml 和 hdfs-site.xml 文件到conf目录</td>
 </tr>
 <tr>
 <td>hadoop.security.authentication.startup.state</td>
@@ -402,36 +437,6 @@
 <td>kerberos.expire.time</td>
 <td>2</td>
 <td>kerberos过期时间,整数,单位为小时</td>
-</tr>
-<tr>
-<td>resource.view.suffixs</td>
-<td>txt,log,sh,conf,cfg,py,java,sql,hql,xml,properties</td>
-<td>资源中心支持的文件格式</td>
-</tr>
-<tr>
-<td>hdfs.root.user</td>
-<td>hdfs</td>
-<td>如果存储类型为HDFS,需要配置拥有对应操作权限的用户</td>
-</tr>
-<tr>
-<td>fs.defaultFS</td>
-<td>hdfs://mycluster:8020</td>
-<td>请求地址如果resource.storage.type=S3,该值类似为: s3a://dolphinscheduler. 如果resource.storage.type=HDFS, 如果 hadoop 配置了 HA,需要复制core-site.xml 和 hdfs-site.xml 文件到conf目录</td>
-</tr>
-<tr>
-<td>fs.s3a.endpoint</td>
-<td></td>
-<td>s3 endpoint地址</td>
-</tr>
-<tr>
-<td>fs.s3a.access.key</td>
-<td></td>
-<td>s3 access key</td>
-</tr>
-<tr>
-<td>fs.s3a.secret.key</td>
-<td></td>
-<td>s3 secret key</td>
 </tr>
 <tr>
 <td>yarn.resourcemanager.ha.rm.ids</td>
@@ -531,7 +536,7 @@
 <td>LDAP urls</td>
 </tr>
 <tr>
-<td>security.authentication.ldap.base.dn</td>
+<td>security.authentication.ldap.base-dn</td>
 <td>dc=example,dc=com</td>
 <td>LDAP base dn</td>
 </tr>
@@ -546,14 +551,19 @@
 <td>LDAP密码</td>
 </tr>
 <tr>
-<td>security.authentication.ldap.user.identity.attribute</td>
+<td>security.authentication.ldap.user.identity-attribute</td>
 <td>uid</td>
 <td>LDAP用户身份标识字段名</td>
 </tr>
 <tr>
-<td>security.authentication.ldap.user.email.attribute</td>
+<td>security.authentication.ldap.user.email-attribute</td>
 <td>mail</td>
 <td>LDAP邮箱字段名</td>
+</tr>
+<tr>
+<td>security.authentication.ldap.user.not-exist-action</td>
+<td>CREATE</td>
+<td>当LDAP用户不存在时执行的操作。CREATE：当用户不存在时自动新建用户, DENY：当用户不存在时拒绝登陆</td>
 </tr>
 </tbody>
 </table>

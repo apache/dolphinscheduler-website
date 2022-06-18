@@ -18,7 +18,7 @@
 <p>对以下路径的文件进行配置：<code>api-server/conf/common.properties</code> 和 <code>worker-server/conf/common.properties</code></p>
 <ul>
 <li>将 <code>data.basedir.path</code> 改为本地存储路径，请确保部署 DolphinScheduler 的用户拥有读写权限，例如：<code>data.basedir.path=/tmp/dolphinscheduler</code>。当路径不存在时会自动创建文件夹</li>
-<li>修改下列两个参数，分别是 <code>resource.storage.type=HDFS</code> 和 <code>fs.defaultFS=file:///</code>。</li>
+<li>修改下列两个参数，分别是 <code>resource.storage.type=HDFS</code> 和 <code>resource.hdfs.fs.defaultFS=file:///</code>。</li>
 </ul>
 <h2>HDFS 资源配置</h2>
 <p>当需要使用资源中心进行相关文件的创建或者上传操作时，所有的文件和资源都会被存储在 HDFS 上。所以需要进行以下配置：</p>
@@ -49,7 +49,24 @@
 <span class="hljs-comment">
 # resource store on HDFS/S3 path, resource file will store to this hadoop hdfs path, self configuration,</span>
 <span class="hljs-comment"># please make sure the directory exists on hdfs and have read write permissions. &quot;/dolphinscheduler&quot; is recommended</span>
-<span class="hljs-meta">resource.upload.path</span>=<span class="hljs-string">/tmp/dolphinscheduler</span>
+<span class="hljs-meta">resource.storage.upload.base.path</span>=<span class="hljs-string">/tmp/dolphinscheduler</span>
+<span class="hljs-comment">
+# The AWS access key. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>
+<span class="hljs-meta">resource.aws.access.key.id</span>=<span class="hljs-string">minioadmin</span>
+<span class="hljs-comment"># The AWS secret access key. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>
+<span class="hljs-meta">resource.aws.secret.access.key</span>=<span class="hljs-string">minioadmin</span>
+<span class="hljs-comment"># The AWS Region to use. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>
+<span class="hljs-meta">resource.aws.region</span>=<span class="hljs-string">cn-north-1</span>
+<span class="hljs-comment"># The name of the bucket. You need to create them by yourself. Otherwise, the system cannot start. All buckets in Amazon S3 share a single namespace; ensure the bucket is given a unique name.</span>
+<span class="hljs-meta">resource.aws.s3.bucket.name</span>=<span class="hljs-string">dolphinscheduler</span>
+<span class="hljs-comment"># You need to set this parameter when private cloud s3. If S3 uses public cloud, you only need to set resource.aws.region or set to the endpoint of a public cloud such as S3.cn-north-1.amazonaws.com.cn</span>
+<span class="hljs-meta">resource.aws.s3.endpoint</span>=<span class="hljs-string">http://localhost:9000</span>
+<span class="hljs-comment">
+# if resource.storage.type=HDFS, the user must have the permission to create directories under the HDFS root path</span>
+<span class="hljs-meta">resource.hdfs.root.user</span>=<span class="hljs-string">root</span>
+<span class="hljs-comment"># if resource.storage.type=S3, the value like: s3a://dolphinscheduler;</span>
+<span class="hljs-comment"># if resource.storage.type=HDFS and namenode HA is enabled, you need to copy core-site.xml and hdfs-site.xml to conf dir</span>
+<span class="hljs-meta">resource.hdfs.fs.defaultFS</span>=<span class="hljs-string">hdfs://localhost:8020</span>
 <span class="hljs-comment">
 # whether to startup kerberos</span>
 <span class="hljs-meta">hadoop.security.authentication.startup.state</span>=<span class="hljs-string">false</span>
@@ -67,16 +84,8 @@
 <span class="hljs-meta">kerberos.expire.time</span>=<span class="hljs-string">2</span>
 <span class="hljs-comment"># resource view suffixs</span>
 <span class="hljs-comment">#resource.view.suffixs=txt,log,sh,bat,conf,cfg,py,java,sql,xml,hql,properties,json,yml,yaml,ini,js</span>
-<span class="hljs-comment"># if resource.storage.type=HDFS, the user must have the permission to create directories under the HDFS root path</span>
-<span class="hljs-meta">hdfs.root.user</span>=<span class="hljs-string">root</span>
-<span class="hljs-comment"># if resource.storage.type=S3, the value like: s3a://dolphinscheduler;</span>
-<span class="hljs-comment"># if resource.storage.type=HDFS and namenode HA is enabled, you need to copy core-site.xml and hdfs-site.xml to conf dir</span>
-<span class="hljs-meta">fs.defaultFS</span>=<span class="hljs-string">hdfs://localhost:8020</span>
-<span class="hljs-meta">aws.access.key.id</span>=<span class="hljs-string">minioadmin</span>
-<span class="hljs-meta">aws.secret.access.key</span>=<span class="hljs-string">minioadmin</span>
-<span class="hljs-meta">aws.region</span>=<span class="hljs-string">us-east-1</span>
-<span class="hljs-meta">aws.endpoint</span>=<span class="hljs-string">http://localhost:9000</span>
-<span class="hljs-comment"># resourcemanager port, the default value is 8088 if not specified</span>
+<span class="hljs-comment">
+# resourcemanager port, the default value is 8088 if not specified</span>
 <span class="hljs-meta">resource.manager.httpaddress.port</span>=<span class="hljs-string">8088</span>
 <span class="hljs-comment"># if resourcemanager HA is enabled, please set the HA IPs; if resourcemanager is single, keep this value empty</span>
 <span class="hljs-meta">yarn.resourcemanager.ha.rm.ids</span>=<span class="hljs-string">192.168.xx.xx,192.168.xx.xx</span>

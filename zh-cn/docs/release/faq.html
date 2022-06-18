@@ -49,7 +49,8 @@
 <p>注意：<strong>由于服务比较多，建议单机部署最好是 4 核 16G 以上</strong></p>
 <hr>
 <h2>Q：系统支持哪些邮箱？</h2>
-<p>A：支持绝大多数邮箱，qq、163、126、139、outlook、aliyun 等皆支持。支持 <strong>TLS 和 SSL</strong> 协议，可以在 alert.properties 中选择性配置</p>
+<p>A：支持绝大多数邮箱，qq、163、126、139、outlook、aliyun 等皆支持。支持 <strong>TLS 和 SSL</strong> 协议，可以在dolphinscheduler的ui中进行配置：
+<a href="../zh/guide/alert/email.md">如何配置邮箱告警</a>。</p>
 <hr>
 <h2>Q：常用的系统变量时间参数有哪些，如何使用？</h2>
 <p>A：请参考<a href="https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/parameter/built-in.html">使用手册</a> 第8小节</p>
@@ -96,7 +97,7 @@
 <p>​	    2，installPath=&quot;/data1_1T/dolphinscheduler&quot;，<strong>这个目录不能和当前要一键安装的 <a href="http://install.sh">install.sh</a> 目录是一样的</strong></p>
 <p>​	    3，deployUser=&quot;dolphinscheduler&quot;，<strong>部署用户必须具有 sudo 权限</strong>，因为 worker 是通过 sudo -u 租户 sh xxx.command 进行执行的</p>
 <p>​	    4，monitorServerState=&quot;false&quot;，服务监控脚本是否启动，默认是不启动服务监控脚本的。<strong>如果启动服务监控脚本，则每 5 分钟定时来监控 master 和 worker 的服务是否 down 机，如果 down 机则会自动重启</strong></p>
-<p>​	    5，hdfsStartupSate=&quot;false&quot;，是否开启 HDFS 资源上传功能。默认是不开启的，<strong>如果不开启则资源中心是不能使用的</strong>。如果开启，需要 conf/common/hadoop/hadoop.properties 中配置 fs.defaultFS 和 yarn 的相关配置，如果使用 namenode HA，需要将 core-site.xml 和 hdfs-site.xml 复制到conf根目录下</p>
+<p>​	    5，hdfsStartupSate=&quot;false&quot;，是否开启 HDFS 资源上传功能。默认是不开启的，<strong>如果不开启则资源中心是不能使用的</strong>。如果开启，需要 conf/common/hadoop/hadoop.properties 中配置 resource.hdfs.fs.defaultFS 和 yarn 的相关配置，如果使用 namenode HA，需要将 core-site.xml 和 hdfs-site.xml 复制到conf根目录下</p>
 <p>​	注意：<strong>1.0.x 版本是不会自动创建 hdfs 根目录的，需要自行创建，并且需要部署用户有hdfs的操作权限</strong></p>
 <hr>
 <h2>Q：流程定义和流程实例下线异常</h2>

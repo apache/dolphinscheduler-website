@@ -49,7 +49,8 @@
 <p>Note：<strong>Due to the large number of services, it is recommended that the single-machine deployment is preferably 4 cores and 16G or more.</strong></p>
 <hr>
 <h2>Q: Which mailboxes does the system support?</h2>
-<p>A: Support most mailboxes, qq, 163, 126, 139, outlook, aliyun, etc. are supported. Support TLS and SSL protocols, optionally configured in alert.properties</p>
+<p>A: Support most mailboxes, qq, 163, 126, 139, outlook, aliyun, etc. are supported. Support TLS and SSL protocols, these can be configured in the ui of dolphinscheduler:
+<a href="../en/guide/alert/email.md">How to setup email alarm</a>.</p>
 <hr>
 <h2>Q: What are the common system variable time parameters and how do I use them?</h2>
 <p>A: Please refer to 'System parameter' in the system-manual</p>
@@ -101,7 +102,7 @@ version 1.3 not use grpc, we use netty directly</p>
 <p>​       2, installPath=&quot;/data1_1T/dolphinscheduler&quot;, <strong>this directory can not be the same as the <a href="http://install.sh">install.sh</a> directory currently installed with one click.</strong></p>
 <p>​       3, deployUser = &quot;dolphinscheduler&quot;, <strong>the deployment user must have sudo privileges</strong>, because the worker is executed by sudo -u tenant sh xxx.command</p>
 <p>​       4, monitorServerState = &quot;false&quot;, whether the service monitoring script is started, the default is not to start the service monitoring script. <strong>If the service monitoring script is started, the master and worker services are monitored every 5 minutes, and if the machine is down, it will automatically restart.</strong></p>
-<p>​       5, hdfsStartupSate=&quot;false&quot;, whether to enable HDFS resource upload function. The default is not enabled. <strong>If it is not enabled, the resource center cannot be used.</strong> If enabled, you need to configure the configuration of fs.defaultFS and yarn in conf/common/hadoop/hadoop.properties. If you use namenode HA, you need to copy core-site.xml and hdfs-site.xml to the conf root directory.</p>
+<p>​       5, hdfsStartupSate=&quot;false&quot;, whether to enable HDFS resource upload function. The default is not enabled. <strong>If it is not enabled, the resource center cannot be used.</strong> If enabled, you need to configure the configuration of resource.hdfs.fs.defaultFS and yarn in conf/common/hadoop/hadoop.properties. If you use namenode HA, you need to copy core-site.xml and hdfs-site.xml to the conf root directory.</p>
 <p>​    Note: <strong>The 1.0.x version does not automatically create the hdfs root directory, you need to create it yourself, and you need to deploy the user with hdfs operation permission.</strong></p>
 <hr>
 <h2>Q : Process definition and process instance offline exception</h2>

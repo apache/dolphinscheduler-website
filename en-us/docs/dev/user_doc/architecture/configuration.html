@@ -375,9 +375,44 @@ Currently, DS just makes a basic config, remember to config further JVM options 
 <td>type of resource files: HDFS, S3, NONE</td>
 </tr>
 <tr>
-<td>resource.upload.path</td>
+<td>resource.storage.upload.base.path</td>
 <td>/dolphinscheduler</td>
 <td>storage path of resource files</td>
+</tr>
+<tr>
+<td><a href="http://resource.aws.access.key.id">resource.aws.access.key.id</a></td>
+<td>minioadmin</td>
+<td>access key id of S3</td>
+</tr>
+<tr>
+<td>resource.aws.secret.access.key</td>
+<td>minioadmin</td>
+<td>secret access key of S3</td>
+</tr>
+<tr>
+<td>resource.aws.region</td>
+<td>us-east-1</td>
+<td>region of S3</td>
+</tr>
+<tr>
+<td><a href="http://resource.aws.s3.bucket.name">resource.aws.s3.bucket.name</a></td>
+<td>dolphinscheduler</td>
+<td>bucket name of S3</td>
+</tr>
+<tr>
+<td>resource.aws.s3.endpoint</td>
+<td><a href="http://minio:9000">http://minio:9000</a></td>
+<td>endpoint of S3</td>
+</tr>
+<tr>
+<td>resource.hdfs.root.user</td>
+<td>hdfs</td>
+<td>configure users with corresponding permissions if storage type is HDFS</td>
+</tr>
+<tr>
+<td>resource.hdfs.fs.defaultFS</td>
+<td>hdfs://mycluster:8020</td>
+<td>If resource.storage.type=S3, then the request url would be similar to 's3a://dolphinscheduler'. Otherwise if resource.storage.type=HDFS and hadoop supports HA, copy core-site.xml and hdfs-site.xml into 'conf' directory</td>
 </tr>
 <tr>
 <td>hadoop.security.authentication.startup.state</td>
@@ -403,36 +438,6 @@ Currently, DS just makes a basic config, remember to config further JVM options 
 <td>kerberos.expire.time</td>
 <td>2</td>
 <td>kerberos expire time,integer,the unit is hour</td>
-</tr>
-<tr>
-<td>resource.view.suffixs</td>
-<td>txt,log,sh,conf,cfg,py,java,sql,hql,xml,properties</td>
-<td>file types supported by resource center</td>
-</tr>
-<tr>
-<td>hdfs.root.user</td>
-<td>hdfs</td>
-<td>configure users with corresponding permissions if storage type is HDFS</td>
-</tr>
-<tr>
-<td>fs.defaultFS</td>
-<td>hdfs://mycluster:8020</td>
-<td>If resource.storage.type=S3, then the request url would be similar to 's3a://dolphinscheduler'. Otherwise if resource.storage.type=HDFS and hadoop supports HA, copy core-site.xml and hdfs-site.xml into 'conf' directory</td>
-</tr>
-<tr>
-<td>fs.s3a.endpoint</td>
-<td></td>
-<td>s3 endpoint url</td>
-</tr>
-<tr>
-<td>fs.s3a.access.key</td>
-<td></td>
-<td>s3 access key</td>
-</tr>
-<tr>
-<td>fs.s3a.secret.key</td>
-<td></td>
-<td>s3 secret key</td>
 </tr>
 <tr>
 <td>yarn.resourcemanager.ha.rm.ids</td>
@@ -532,7 +537,7 @@ Currently, DS just makes a basic config, remember to config further JVM options 
 <td>LDAP urls</td>
 </tr>
 <tr>
-<td>security.authentication.ldap.base.dn</td>
+<td>security.authentication.ldap.base-dn</td>
 <td>dc=example,dc=com</td>
 <td>LDAP base dn</td>
 </tr>
@@ -547,14 +552,19 @@ Currently, DS just makes a basic config, remember to config further JVM options 
 <td>LDAP password</td>
 </tr>
 <tr>
-<td>security.authentication.ldap.user.identity.attribute</td>
+<td>security.authentication.ldap.user.identity-attribute</td>
 <td>uid</td>
 <td>LDAP user identity attribute</td>
 </tr>
 <tr>
-<td>security.authentication.ldap.user.email.attribute</td>
+<td>security.authentication.ldap.user.email-attribute</td>
 <td>mail</td>
 <td>LDAP user email attribute</td>
+</tr>
+<tr>
+<td>security.authentication.ldap.user.not-exist-action</td>
+<td>CREATE</td>
+<td>action when LDAP user is not exist. Default CREATE: automatically create user when user not exist, DENY: deny log-in when user not exist</td>
 </tr>
 </tbody>
 </table>
