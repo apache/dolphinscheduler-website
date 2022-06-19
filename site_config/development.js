@@ -56,6 +56,10 @@ export default {
             link: '/en-us/development/e2e-test.html',
           },
           {
+            title: 'API Automation Test',
+            link: '/en-us/development/api-test.html',
+          },
+          {
             title: 'Questions & Communications',
             link: '/en-us/development/have-questions.html',
           },
@@ -119,6 +123,10 @@ export default {
           {
             title: 'E2E 自动化测试',
             link: '/zh-cn/development/e2e-test.html',
+          },
+          {
+            title: 'API 自动化测试',
+            link: '/zh-cn/development/api-test.html',
           },
           {
             title: '问题与交流',
