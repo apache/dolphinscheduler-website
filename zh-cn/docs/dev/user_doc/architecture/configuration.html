@@ -565,6 +565,31 @@
 <td>CREATE</td>
 <td>当LDAP用户不存在时执行的操作。CREATE：当用户不存在时自动新建用户, DENY：当用户不存在时拒绝登陆</td>
 </tr>
+<tr>
+<td>traffic.control.global.switch</td>
+<td>false</td>
+<td>流量控制全局开关</td>
+</tr>
+<tr>
+<td>traffic.control.max-global-qps-rate</td>
+<td>300</td>
+<td>全局最大请求数/秒</td>
+</tr>
+<tr>
+<td>traffic.control.tenant-switch</td>
+<td>false</td>
+<td>流量控制租户开关</td>
+</tr>
+<tr>
+<td>traffic.control.default-tenant-qps-rate</td>
+<td>10</td>
+<td>默认租户最大请求数/秒限制</td>
+</tr>
+<tr>
+<td>traffic.control.customize-tenant-qps-rate</td>
+<td></td>
+<td>自定义租户最大请求数/秒限制</td>
+</tr>
 </tbody>
 </table>
 <h2>6.master.properties [Master服务配置]</h2>

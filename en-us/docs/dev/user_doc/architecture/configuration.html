@@ -566,6 +566,31 @@ Currently, DS just makes a basic config, remember to config further JVM options 
 <td>CREATE</td>
 <td>action when LDAP user is not exist. Default CREATE: automatically create user when user not exist, DENY: deny log-in when user not exist</td>
 </tr>
+<tr>
+<td>traffic.control.global.switch</td>
+<td>false</td>
+<td>traffic control global switch</td>
+</tr>
+<tr>
+<td>traffic.control.max-global-qps-rate</td>
+<td>300</td>
+<td>global max request number per second</td>
+</tr>
+<tr>
+<td>traffic.control.tenant-switch</td>
+<td>false</td>
+<td>traffic control tenant switch</td>
+</tr>
+<tr>
+<td>traffic.control.default-tenant-qps-rate</td>
+<td>10</td>
+<td>default tenant max request number per second</td>
+</tr>
+<tr>
+<td>traffic.control.customize-tenant-qps-rate</td>
+<td></td>
+<td>customize tenant max request number per second</td>
+</tr>
 </tbody>
 </table>
 <h3>master.properties [master-service log config]</h3>
