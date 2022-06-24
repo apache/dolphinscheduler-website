@@ -130,7 +130,8 @@ deployUser=&quot;dolphinscheduler&quot;
 <span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HADOOP_HOME</span>/bin:<span class="hljs-variable">$SPARK_HOME1</span>/bin:<span class="hljs-variable">$SPARK_HOME2</span>/bin:<span class="hljs-variable">$PYTHON_HOME</span>/bin:<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$HIVE_HOME</span>/bin:<span class="hljs-variable">$FLINK_HOME</span>/bin:<span class="hljs-variable">$DATAX_HOME</span>/bin:<span class="hljs-variable">$PATH</span>
 </code></pre>
 <h2>初始化数据库</h2>
-<p>DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java 驱动</a> (8.0.16) 并移动到 DolphinScheduler 的 lib目录下（<code>tools/libs/</code>）。下面以 MySQL 为例，说明如何初始化数据库</p>
+<p>DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL，如果使用 MySQL 则需要手动下载 <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java 驱动</a> (8.0.16) 并移动到 DolphinScheduler 的每个模块的 libs 目录下
+其中包括 <code>api-server/libs/</code> 和 <code>alert-server/libs</code> 和 <code>master-server/libs</code> 和 <code>worker-server/libs</code>。下面以 MySQL 为例，说明如何初始化数据库</p>
 <p>对于mysql 5.6 / 5.7：</p>
 <pre><code class="language-shell">mysql -uroot -p
 <span class="hljs-meta">

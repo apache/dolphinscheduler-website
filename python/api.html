@@ -226,6 +226,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Engine.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.core.Engine.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Engine.set_downstream">
 <span class="sig-name descname"><span class="pre">set_downstream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.core.Engine.set_downstream" title="Permalink to this definition"></a></dt>
 <dd><p>Set parameter tasks as downstream to current task.</p>
@@ -272,6 +278,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Engine.process_definition">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition" title="pydolphinscheduler.core.process_definition.ProcessDefinition"><span class="pre">ProcessDefinition</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.core.Engine.process_definition" title="Permalink to this definition"></a></dt>
 <dd><p>Get attribute process_definition.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Engine.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.core.Engine.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -530,6 +542,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Task.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/core/task.html#Task.query_resource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.Task.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Task.set_downstream">
 <span class="sig-name descname"><span class="pre">set_downstream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pydolphinscheduler/core/task.html#Task.set_downstream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.Task.set_downstream" title="Permalink to this definition"></a></dt>
 <dd><p>Set parameter tasks as downstream to current task.</p>
@@ -576,6 +594,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Task.process_definition">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition" title="pydolphinscheduler.core.process_definition.ProcessDefinition"><span class="pre">ProcessDefinition</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.core.Task.process_definition" title="Permalink to this definition"></a></dt>
 <dd><p>Get attribute process_definition.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Task.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.core.Task.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -852,6 +876,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Condition.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition.set_downstream">
 <span class="sig-name descname"><span class="pre">set_downstream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Condition.set_downstream" title="Permalink to this definition"></a></dt>
 <dd><p>Set parameter tasks as downstream to current task.</p>
@@ -916,6 +946,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Condition.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Condition.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Override Task.task_params for Condition task.</p>
@@ -965,6 +1001,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX.get_define_custom">
 <span class="sig-name descname"><span class="pre">get_define_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">set</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.DataX.get_define_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Get object definition attribute by given attr set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.DataX.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1037,6 +1079,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DataX.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DataX.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Override Task.task_params for datax task.</p>
@@ -1078,6 +1126,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent.get_define_custom">
 <span class="sig-name descname"><span class="pre">get_define_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">set</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent.get_define_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Get object definition attribute by given attr set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1145,6 +1199,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Override Task.task_params for dependent task.</p>
@@ -1198,6 +1258,12 @@ object tries to communicate with Java gateway server.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink.get_resource_info">
 <span class="sig-name descname"><span class="pre">get_resource_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_package</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Flink.get_resource_info" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Flink.query_resource" title="Permalink to this definition"></a></dt>
 <dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
@@ -1266,6 +1332,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Flink.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Flink.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Override Task.task_params for engine children task.</p>
@@ -1307,6 +1379,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http.get_define_custom">
 <span class="sig-name descname"><span class="pre">get_define_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">set</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Http.get_define_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Get object definition attribute by given attr set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Http.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1374,6 +1452,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Http.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Http.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Get task parameter object.</p>
@@ -1425,6 +1509,12 @@ object tries to communicate with Java gateway server.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR.get_resource_info">
 <span class="sig-name descname"><span class="pre">get_resource_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_package</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.MR.get_resource_info" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.MR.query_resource" title="Permalink to this definition"></a></dt>
 <dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
@@ -1493,6 +1583,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MR.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MR.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Override Task.task_params for engine children task.</p>
@@ -1545,6 +1641,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure.get_define_custom">
 <span class="sig-name descname"><span class="pre">get_define_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">set</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure.get_define_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Get object definition attribute by given attr set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1609,6 +1711,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure.process_definition">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition" title="pydolphinscheduler.core.process_definition.ProcessDefinition"><span class="pre">ProcessDefinition</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure.process_definition" title="Permalink to this definition"></a></dt>
 <dd><p>Get attribute process_definition.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -1685,6 +1793,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Python.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python.set_downstream">
 <span class="sig-name descname"><span class="pre">set_downstream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Python.set_downstream" title="Permalink to this definition"></a></dt>
 <dd><p>Set parameter tasks as downstream to current task.</p>
@@ -1755,6 +1869,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Get task parameter object.</p>
@@ -1817,6 +1937,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell.get_define_custom">
 <span class="sig-name descname"><span class="pre">get_define_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">set</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Shell.get_define_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Get object definition attribute by given attr set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Shell.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1884,6 +2010,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Shell.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Shell.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Get task parameter object.</p>
@@ -1935,6 +2067,12 @@ object tries to communicate with Java gateway server.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark.get_resource_info">
 <span class="sig-name descname"><span class="pre">get_resource_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">program_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_package</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Spark.get_resource_info" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Spark.query_resource" title="Permalink to this definition"></a></dt>
 <dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
@@ -2003,6 +2141,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Spark.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Spark.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Override Task.task_params for engine children task.</p>
@@ -2055,6 +2199,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql.get_define_custom">
 <span class="sig-name descname"><span class="pre">get_define_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">set</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Sql.get_define_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Get object definition attribute by given attr set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Sql.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2122,6 +2272,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Sql.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql.sql_type">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sql_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Sql.sql_type" title="Permalink to this definition"></a></dt>
 <dd><p>Judgement sql type, it will return the SQL type for type <cite>SELECT</cite> or <cite>NOT_SELECT</cite>.</p>
@@ -2178,6 +2334,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess.get_process_definition_info">
 <span class="sig-name descname"><span class="pre">get_process_definition_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_definition_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/sub_process.html#SubProcess.get_process_definition_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess.get_process_definition_info" title="Permalink to this definition"></a></dt>
 <dd><p>Get process definition info from java gateway, contains process definition id, name, code.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2251,6 +2413,12 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess.task_params">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess.task_params" title="Permalink to this definition"></a></dt>
 <dd><p>Get task parameter object.</p>
@@ -2299,6 +2467,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch.get_define_custom">
 <span class="sig-name descname"><span class="pre">get_define_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">set</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Switch.get_define_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Get object definition attribute by given attr set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.Switch.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2363,6 +2537,12 @@ object tries to communicate with Java gateway server.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch.process_definition">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition" title="pydolphinscheduler.core.process_definition.ProcessDefinition"><span class="pre">ProcessDefinition</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Switch.process_definition" title="Permalink to this definition"></a></dt>
 <dd><p>Get attribute process_definition.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Switch.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -2452,6 +2632,18 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.constants.JavaGatewayDefault.RESULT_STATUS_SUCCESS">
 <span class="sig-name descname"><span class="pre">RESULT_STATUS_SUCCESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SUCCESS'</span></em><a class="headerlink" href="#pydolphinscheduler.constants.JavaGatewayDefault.RESULT_STATUS_SUCCESS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.constants.ResourceKey">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.constants.</span></span><span class="sig-name descname"><span class="pre">ResourceKey</span></span><a class="reference internal" href="_modules/pydolphinscheduler/constants.html#ResourceKey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.constants.ResourceKey" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<p>Constants for key of resource.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.constants.ResourceKey.ID">
+<span class="sig-name descname"><span class="pre">ID</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'id'</span></em><a class="headerlink" href="#pydolphinscheduler.constants.ResourceKey.ID" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

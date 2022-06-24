@@ -133,7 +133,8 @@ export DATAX_HOME=${DATAX_HOME:-/opt/soft/datax}
 export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME/bin:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_HOME/bin:$PATH
 </code></pre>
 <h2>Initialize the Database</h2>
-<p>DolphinScheduler metadata is stored in the relational database. Currently, supports PostgreSQL and MySQL. If you use MySQL, you need to manually download <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java driver</a> (8.0.16) and move it to the lib directory of DolphinScheduler, which is <code>tools/libs/</code>. Let's take MySQL as an example for how to initialize the database:</p>
+<p>DolphinScheduler metadata is stored in the relational database. Currently, supports PostgreSQL and MySQL. If you use MySQL, you need to manually download <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java driver</a> (8.0.16) and move it to the libs directory of DolphinScheduler
+which is <code>api-server/libs/</code> and <code>alert-server/libs</code> and <code>master-server/libs</code> and <code>worker-server/libs</code>. Let's take MySQL as an example for how to initialize the database:</p>
 <p>For mysql 5.6 / 5.7</p>
 <pre><code class="language-shell">mysql -uroot -p
 <span class="hljs-meta">

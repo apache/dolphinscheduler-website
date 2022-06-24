@@ -97,6 +97,7 @@
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Delimiter</span><span class="p">,</span>
+    <span class="n">ResourceKey</span><span class="p">,</span>
     <span class="n">TaskFlag</span><span class="p">,</span>
     <span class="n">TaskPriority</span><span class="p">,</span>
     <span class="n">TaskTimeoutFlag</span><span class="p">,</span>
@@ -230,7 +231,7 @@
 
         <span class="c1"># Attribute for task param</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">local_params</span> <span class="o">=</span> <span class="n">local_params</span> <span class="ow">or</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span> <span class="o">=</span> <span class="n">resource_list</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resource_list</span> <span class="o">=</span> <span class="n">resource_list</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dependence</span> <span class="o">=</span> <span class="n">dependence</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait_start_timeout</span> <span class="o">=</span> <span class="n">wait_start_timeout</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_condition_result</span> <span class="o">=</span> <span class="n">condition_result</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_CONDITION_RESULT</span>
@@ -244,6 +245,22 @@
     <span class="k">def</span> <span class="nf">process_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_definition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProcessDefinition</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;Set attribute process_definition.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition</span> <span class="o">=</span> <span class="n">process_definition</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">resource_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get task define attribute `resource_list`.&quot;&quot;&quot;</span>
+        <span class="n">resources</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+                <span class="n">resources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query_resource</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ResourceKey</span><span class="o">.</span><span class="n">ID</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span> <span class="ow">and</span> <span class="n">resource</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ResourceKey</span><span class="o">.</span><span class="n">ID</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="sd">&quot;&quot;&quot;`resource_list` should be defined using List[str] with resource paths,</span>
+<span class="sd">                       the use of ids to define resources will be remove in version 3.2.0.</span>
+<span class="sd">                    &quot;&quot;&quot;</span>
+                <span class="p">)</span>
+                <span class="n">resources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ResourceKey</span><span class="o">.</span><span class="n">ID</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">[{</span><span class="n">ResourceKey</span><span class="o">.</span><span class="n">ID</span><span class="p">:</span> <span class="n">r</span><span class="p">}</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resources</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">condition_result</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
@@ -352,7 +369,14 @@
         <span class="p">)</span>
         <span class="c1"># result = gateway.entry_point.genTaskCodeList(DefaultTaskCodeNum.DEFAULT)</span>
         <span class="c1"># gateway_result_checker(result)</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Task.query_resource"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.query_resource">[docs]</a>    <span class="k">def</span> <span class="nf">query_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">full_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get resource info from java gateway, contains resource id, name.&quot;&quot;&quot;</span>
+        <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">queryResourcesFileInfo</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">full_name</span>
+        <span class="p">)</span></div></div>
 </pre></div>
 
            </div>
