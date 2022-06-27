@@ -15,21 +15,60 @@
 <p>The sub-process node is to execute an external workflow definition as a task node.</p>
 <h2>Create Task</h2>
 <ul>
-<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
+<li>Click <code>Project Management-&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag from the toolbar <img src="/img/tasks/icons/sub_process.png" width="15"/> task node to canvas to create a new SubProcess task.</li>
 </ul>
 <h2>Task Parameter</h2>
-<ul>
-<li>Node name: The node name in a workflow definition is unique.</li>
-<li>Run flag: Identifies whether this node schedules normally.</li>
-<li>Descriptive information: Describe the function of the node.</li>
-<li>Task priority: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</li>
-<li>Worker grouping: Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</li>
-<li>Environment Name: Configure the environment name in which run the script.</li>
-<li>Timeout alarm: Check the timeout alarm and timeout failure. When the task runs exceed the &quot;timeout&quot;, an alarm email will send and the task execution will fail.</li>
-<li>Sub-node: It is the workflow definition of the selected sub-process. Enter the sub-node in the upper right corner to jump to the workflow definition of the selected sub-process.</li>
-<li>Predecessor task: Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node name</td>
+<td>Unique name of node in workflow definition.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Identifies whether this node schedules normally.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describe the function of the node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</td>
+</tr>
+<tr>
+<td>Task group name</td>
+<td>The group in Resources, if not configured, it will not be used.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment name in which run the script.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check the timeout alarm and timeout failure. When the task runs exceed the &quot;timeout&quot;, an alarm email will send and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Child node</td>
+<td>It is the workflow definition of the selected sub-process. Enter the child node in the upper right corner to jump to the workflow definition of the selected sub-process.</td>
+</tr>
+<tr>
+<td>Pre task</td>
+<td>Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</td>
+</tr>
+</tbody>
+</table>
 <h2>Task Example</h2>
 <p>This example simulates a common task type, here we use a child node task to recall the <a href="shell.md">Shell</a> to print out &quot;hello&quot;. This means executing a shell task as a child node.</p>
 <h3>Create a Shell task</h3>
@@ -40,13 +79,13 @@
 <p><img src="/img/tasks/demo/subprocess_task02.png" alt="subprocess_task02"></p>
 <p>After creating the sub_process, create a corresponding shell task for printing &quot;world&quot; and link both together. Save the current workflow and run it to get the expected result.</p>
 <p><img src="/img/tasks/demo/subprocess_task03.png" alt="subprocess_task03"></p>
-<h2>Notice</h2>
+<h2>Note</h2>
 <p>When using <code>sub_process</code> to recall a sub-node task, you need to ensure that the defined sub-node is online status, otherwise, the sub_process workflow will not work properly.</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.ca86cb0.js"></script>
+  <script src="/build/vendor.a4c65cf.js"></script>
   <script src="/build/docs.md.b5769c9.js"></script>
   <script>
     var _hmt = _hmt || [];

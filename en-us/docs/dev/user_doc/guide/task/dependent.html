@@ -15,21 +15,64 @@
 <p>Dependent nodes are <strong>dependency check nodes</strong>. For example, process A depends on the successful execution of process B from yesterday, and the dependent node will check whether process B run successful yesterday.</p>
 <h2>Create Task</h2>
 <ul>
-<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag from the toolbar <img src="/img/tasks/icons/dependent.png" width="15"/> task node to canvas.</li>
 </ul>
 <h2>Task Parameter</h2>
-<ul>
-<li><strong>Node name</strong>: The node name in a workflow definition is unique.</li>
-<li><strong>Run flag</strong>: Identifies whether this node schedules normally, if it does not need to execute, select the <code>prohibition execution</code>.</li>
-<li><strong>Descriptive information</strong>: Describe the function of the node.</li>
-<li><strong>Task priority</strong>: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</li>
-<li><strong>Worker grouping</strong>: Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</li>
-<li><strong>Environment Name</strong>: Configure the environment name in which run the script.</li>
-<li><strong>Times of failed retry attempts</strong>: The number of times the task failed to resubmit.</li>
-<li><strong>Failed retry interval</strong>: The time interval (unit minute) for resubmitting the task after a failed task.</li>
-<li><strong>Delayed execution time</strong>: The time (unit minute) that a task delays in execution.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node name</td>
+<td>Unique name of node in workflow definition.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Identifies whether this node schedules normally.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describe the function of the node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</td>
+</tr>
+<tr>
+<td>Task group name</td>
+<td>The group in Resources, if not configured, it will not be used.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment name in which run the script.</td>
+</tr>
+<tr>
+<td>Number of failed retries</td>
+<td>The number of times the task failed to resubmit.</td>
+</tr>
+<tr>
+<td>Failed retry interval</td>
+<td>The time interval (unit minute) for resubmitting the task after a failed task.</td>
+</tr>
+<tr>
+<td>Delayed execution time</td>
+<td>The time (unit minute) that a task delays in execution.</td>
+</tr>
+<tr>
+<td>Pre task</td>
+<td>Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</td>
+</tr>
+</tbody>
+</table>
 <h2>Examples</h2>
 <p>The Dependent node provides a logical judgment function, which can detect the execution of the dependent node according to the logic.</p>
 <p>For example, process A is a weekly task, processes B and C are daily tasks, and task A requires tasks B and C to be successfully executed every day of the last week.</p>
@@ -42,7 +85,7 @@
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.ca86cb0.js"></script>
+  <script src="/build/vendor.a4c65cf.js"></script>
   <script src="/build/docs.md.b5769c9.js"></script>
   <script>
     var _hmt = _hmt || [];
