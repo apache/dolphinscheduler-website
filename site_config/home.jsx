@@ -544,6 +544,9 @@ export default {
         {
           img: '/img/ourusers/sutpc.png',
         },
+        {
+          img: '/img/ourusers/yili.png',
+        },
       ],
     },
     events: {
