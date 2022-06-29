@@ -8,6 +8,14 @@
 
 ## Installing the Chart
 
+> NOTE: You need to change your `Chart.yaml` locally to make it work. Due to a change in the Bitnami repo,
+> https://charts.bitnami.com/bitnami was truncated only containing entries for the latest 6 months (from January 2022 on).
+> This URL: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami contains the full 'index.yaml'.
+> See detail here: https://github.com/bitnami/charts/issues/10833.
+>
+> Change you `Chart.yaml` and replace all `repository: https://charts.bitnami.com/bitnami`
+> to `repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami`.
+
 Please download the source code package apache-dolphinscheduler-incubating-1.3.5-src.zip, download address: [download](/en-us/download/download.html)
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
