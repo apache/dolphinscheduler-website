@@ -15,12 +15,12 @@
 <p>Parameters configured on the task definition page, the scope of this parameter is inside this task only. But if you configure according to <a href="context.md">Refer to Parameter Context</a>, it could pass to downstream tasks.</p>
 <h2>Usage</h2>
 <ul>
-<li>If you want to use parameter in single task, see <a href="#use-local-parameter-by-custom-parameter">local parameter with custom parameter</a></li>
+<li>If you want to use parameter in single task, see <a href="#use-local-parameter-by-custom-parameter">local parameter with custom parameter</a>.</li>
 <li>If you want to use set parameter in task and use them in downstream tasks:
 <ul>
-<li>For simple use without using custom parameter, see <a href="#export-local-parameter-by-setvalue">export parameter via <code>setValue</code></a></li>
-<li>Using custom parameter, see <a href="#export-local-parameter-by-setvalue-and-custom-parameter">export parameter via <code>setValue</code> and custom parameter</a></li>
-<li>Using bash variable, see <a href="#export-local-parameter-by-setvalue-and-bash-variable">export parameter via <code>setValue</code> and bash variable</a></li>
+<li>For simple use without using custom parameter, see <a href="#export-local-parameter-by-setvalue">export parameter via <code>setValue</code></a>.</li>
+<li>Using custom parameter, see <a href="#export-local-parameter-by-setvalue-and-custom-parameter">export parameter via <code>setValue</code> and custom parameter</a>.</li>
+<li>Using bash variable, see <a href="#export-local-parameter-by-setvalue-and-bash-variable">export parameter via <code>setValue</code> and bash variable</a>.</li>
 </ul>
 </li>
 </ul>
@@ -31,22 +31,20 @@
 <p><img src="/img/new_ui/dev/parameter/local_parameter01.png" alt="local-parameter01"></p>
 <p>Parameters:</p>
 <ul>
-<li>dt: indicates the parameter name</li>
-<li>in: IN indicates that local parameters can only be used on the current node, and OUT indicates that local parameters can be transmitted to the downstream</li>
-<li>DATE: indicates the DATE of the data type</li>
-<li>$[YYYY-MM-DD] : indicates a built-in parameter derived from a user-defined format</li>
+<li>dt: indicates the parameter name.</li>
+<li>in: IN indicates that local parameters can only be used on the current node, and OUT indicates that local.parameters can be transmitted to the downstream.</li>
+<li>DATE: indicates the DATE of the data type.</li>
+<li>$[YYYY-MM-DD] : indicates a built-in parameter derived from a user-defined format.</li>
 </ul>
 <p>Save the workflow and run it. View Shell task's log.</p>
 <p><img src="/img/new_ui/dev/parameter/local_parameter02.png" alt="local-parameter02"></p>
 <blockquote>
-<p>Note: The local parameter can be used in the workflow of the current task node. If it is set to OUT, it can be passed to the downstream workflow. Please refer to: <a href="context.md">Parameter Context</a></p>
+<p>Note: The local parameter can be used in the workflow of the current task node. If it is set to OUT, it can be passed to the downstream workflow. Please refer to: <a href="context.md">Parameter Context</a>.</p>
 </blockquote>
 <h3>Export Local Parameter by <code>setValue</code></h3>
-<p>If you want to simple export parameters and then use them in downstream tasks, you could use <code>setValue</code> in your task, which
-you can manage your parameters into one single task. You can use syntax <code>echo '${setValue(set_val=123)}'</code>(<strong>do not forget the
-single quote</strong>) in Shell task and add new <code>OUT</code> custom parameter to export it.</p>
+<p>If you want to simple export parameters and then use them in downstream tasks, you could use <code>setValue</code> in your task. And you can manage your parameters into one single task. You can use syntax <code>echo '${setValue(set_val=123)}'</code>(<strong>do not forget the single quote</strong>) in Shell task and add new <code>OUT</code> custom parameter to export it.</p>
 <p><img src="/img/new_ui/dev/parameter/local_param_set_val.png" alt="local-parameter-set-val"></p>
-<p>You could get this value in downstream task using syntax <code>echo '${set_val}'</code>.</p>
+<p>You can get this value in downstream task using syntax <code>echo '${set_val}'</code>.</p>
 <h3>Export Local Parameter by <code>setValue</code> and Custom Parameter</h3>
 <p>If you want to export parameters with custom parameter instead of constants value, and then use them in downstream tasks,
 you could use <code>setValue</code> in your task, which easier to maintain by change &quot;custom parameter&quot; block when you want to
