@@ -17,52 +17,97 @@ FeatureOps solution for production.</p>
 <p>OpenMLDB task plugin used to execute tasks on OpenMLDB cluster.</p>
 <h2>Create Task</h2>
 <ul>
-<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the &quot;Create Workflow&quot; button to enter the
-DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag from the toolbar <img src="/img/tasks/icons/openmldb.png" width="15"/> task node to canvas.</li>
 </ul>
-<h2>Task Example</h2>
-<p>First, introduce some general parameters of DolphinScheduler</p>
-<ul>
-<li><strong>Node name</strong>: The node name in a workflow definition is unique.</li>
-<li><strong>Run flag</strong>: Identifies whether this node schedules normally, if it does not need to execute, select
-the <code>prohibition execution</code>.</li>
-<li><strong>Descriptive information</strong>: Describe the function of the node.</li>
-<li><strong>Task priority</strong>: When the number of worker threads is insufficient, execute in the order of priority from high
-to low, and tasks with the same priority will execute in a first-in first-out order.</li>
-<li><strong>Worker grouping</strong>: Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected,
-randomly select a worker machine for execution.</li>
-<li><strong>Environment Name</strong>: Configure the environment name in which run the script.</li>
-<li><strong>Times of failed retry attempts</strong>: The number of times the task failed to resubmit.</li>
-<li><strong>Failed retry interval</strong>: The time interval (unit minute) for resubmitting the task after a failed task.</li>
-<li><strong>Delayed execution time</strong>: The time (unit minute) that a task delays in execution.</li>
-<li><strong>Timeout alarm</strong>: Check the timeout alarm and timeout failure. When the task runs exceed the &quot;timeout&quot;, an alarm
-email will send and the task execution will fail.</li>
-<li><strong>Predecessor task</strong>: Selecting a predecessor task for the current task, will set the selected predecessor task as
-upstream of the current task.</li>
-</ul>
-<h3>OpenMLDB Parameters</h3>
-<p><strong>Task Parameter</strong></p>
-<ul>
-<li><strong>zookeeper</strong> ：OpenMLDB cluster zookeeper address, e.g. 127.0.0.1:2181.</li>
-<li><strong>zookeeper path</strong> : OpenMLDB cluster zookeeper path, e.g. /openmldb.</li>
-<li><strong>Execute Mode</strong> ：determine the init mode, offline or online. You can switch it in sql statement.</li>
-<li><strong>SQL statement</strong> ：SQL statement.</li>
-<li>Custom parameters: It is the user-defined parameters of Python, which will replace the content with ${variable} in the script.</li>
-</ul>
-<p>Here are some examples:</p>
-<h4>Load data</h4>
+<h2>Task Parameters</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node Name</td>
+<td>Set the name of the task. Node names within a workflow definition are unique.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Indicates whether the node can be scheduled normally. If it is not necessary to execute, you can turn on the prohibiting execution switch.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describes the function of this node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, they are executed in order from high to low according to the priority, and they are executed according to the first-in, first-out principle when the priority is the same.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>The task is assigned to the machines in the worker group for execution. If Default is selected, a worker machine will be randomly selected for execution.</td>
+</tr>
+<tr>
+<td>Task group name</td>
+<td>The group in Resources, if not configured, it will not be used.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment in which to run the script.</td>
+</tr>
+<tr>
+<td>Number of failed retries</td>
+<td>The number of times the task is resubmitted after failure. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Failure Retry Interval</td>
+<td>The time interval for resubmitting the task if the task fails. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check Timeout Alarm and Timeout Failure. When the task exceeds the &quot;timeout duration&quot;, an alarm email will be sent and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Predecessor task</td>
+<td>Selecting the predecessor task of the current task will set the selected predecessor task as the upstream of the current task.</td>
+</tr>
+<tr>
+<td>zookeeper</td>
+<td>OpenMLDB cluster zookeeper address, e.g. 127.0.0.1:2181.</td>
+</tr>
+<tr>
+<td>zookeeper path</td>
+<td>OpenMLDB cluster zookeeper path, e.g. /openmldb.</td>
+</tr>
+<tr>
+<td>Execute Mode</td>
+<td>Determine the init mode, offline or online. You can switch it in sql statement.</td>
+</tr>
+<tr>
+<td>SQL statement</td>
+<td>SQL statement.</td>
+</tr>
+<tr>
+<td>Custom parameters</td>
+<td>It is the user-defined parameters of Python, which will replace the content with ${variable} in the script.</td>
+</tr>
+</tbody>
+</table>
+<h2>Task Examples</h2>
+<h3>Load data</h3>
 <p><img src="/img/tasks/demo/openmldb-load-data.png" alt="load data"></p>
 <p>We use <code>LOAD DATA</code> to load data into OpenMLDB cluster. We select <code>offline</code> here, so it will load to offline storage.</p>
-<h4>Feature extraction</h4>
+<h3>Feature extraction</h3>
 <p><img src="/img/tasks/demo/openmldb-feature-extraction.png" alt="fe"></p>
 <p>We use <code>SELECT INTO</code> to do feature extraction. We select <code>offline</code> here, so it will run sql on offline engine.</p>
-<h2>Environment to prepare</h2>
-<h3>Start the OpenMLDB cluster</h3>
+<h3>Environment to Prepare</h3>
+<h4>Start the OpenMLDB Cluster</h4>
 <p>You should create an OpenMLDB cluster first. If in production env, please check <a href="https://openmldb.ai/docs/en/v0.5/deploy/install_deploy.html">deploy OpenMLDB</a>.</p>
 <p>You can follow <a href="https://openmldb.ai/docs/zh/v0.5/quickstart/openmldb_quickstart.html#id11">run OpenMLDB in docker</a>
 to a quick start.</p>
-<h3>Python env</h3>
+<h4>Python Environment</h4>
 <p>The OpenMLDB task will use OpenMLDB Python SDK to connect OpenMLDB cluster. So you should have the Python env.</p>
 <p>We will use <code>python3</code> by default. You can set <code>PYTHON_HOME</code> to use your custom python env.</p>
 <p>Make sure you have installed OpenMLDB Python SDK in the host where the worker server running, using <code>pip install openmldb</code>.</p>

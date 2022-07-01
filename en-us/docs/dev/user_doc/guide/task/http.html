@@ -15,29 +15,80 @@
 <p>This node is used to perform http type tasks such as the common POST and GET request types, and also supports http request validation and other functions.</p>
 <h2>Create Task</h2>
 <ul>
-<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the &quot;<code>Create Workflow</code>&quot; button to enter the DAG editing page.</li>
 <li>Drag the <img src="/img/tasks/icons/http.png" width="15"/> from the toolbar to the drawing board.</li>
 </ul>
-<h2>Task Parameter</h2>
-<ul>
-<li><strong>Node name</strong>: The node name in a workflow definition is unique.</li>
-<li><strong>Run flag</strong>: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.</li>
-<li><strong>Descriptive information</strong>: describe the function of the node.</li>
-<li><strong>Task priority</strong>: When the number of worker threads is insufficient, they are executed in order from high to low, and when the priority is the same, they are executed according to the first-in first-out principle.</li>
-<li><strong>Worker grouping</strong>: Tasks are assigned to the machines of the worker group to execute. If Default is selected, a worker machine will be randomly selected for execution.</li>
-<li><strong>Environment Name</strong>: Configure the environment name in which to run the script.</li>
-<li><strong>Number of failed retry attempts</strong>: The number of times the task failed to be resubmitted.</li>
-<li><strong>Failed retry interval</strong>: The time, in cents, interval for resubmitting the task after a failed task.</li>
-<li><strong>Delayed execution time</strong>: the time, in cents, that a task is delayed in execution.</li>
-<li><strong>Timeout alarm</strong>: Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will be sent and the task execution will fail.</li>
-<li><strong>Request address</strong>: HTTP request URL.</li>
-<li><strong>Request type</strong>: Support GET, POSt, HEAD, PUT, DELETE.</li>
-<li><strong>Request parameters</strong>: Support Parameter, Body, Headers.</li>
-<li><strong>Verification conditions</strong>: support default response code, custom response code, content included, content not included.</li>
-<li><strong>Verification content</strong>: When the verification condition selects a custom response code, the content contains, and the content does not contain, the verification content is required.</li>
-<li><strong>Custom parameter</strong>: It is a user-defined parameter of http part, which will replace the content with <code>${variable}</code> in the script.</li>
-<li><strong>Predecessor task</strong>: Selecting a predecessor task for the current task will set the selected predecessor task as upstream of the current task.</li>
-</ul>
+<h2>Task Parameters</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node Name</td>
+<td>Set the name of the task. Node names within a workflow definition are unique.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Indicates whether the node can be scheduled normally. If it is not necessary to execute, you can turn on the prohibiting execution switch.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describes the function of this node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, they are executed in order from high to low according to the priority, and they are executed according to the first-in, first-out principle when the priority is the same.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>The task is assigned to the machines in the worker group for execution. If Default is selected, a worker machine will be randomly selected for execution.</td>
+</tr>
+<tr>
+<td>Task group name</td>
+<td>The group in Resources, if not configured, it will not be used.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment in which to run the script.</td>
+</tr>
+<tr>
+<td>Number of failed retries</td>
+<td>The number of times the task is resubmitted after failure. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Failure Retry Interval</td>
+<td>The time interval for resubmitting the task if the task fails. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check Timeout Alarm and Timeout Failure. When the task exceeds the &quot;timeout duration&quot;, an alarm email will be sent and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Request address</td>
+<td>HTTP request URL.</td>
+</tr>
+<tr>
+<td>Request type</td>
+<td>Supports GET, POSt, HEAD, PUT, DELETE.</td>
+</tr>
+<tr>
+<td>Verification content</td>
+<td>When the verification condition selects a custom response code, the content contains, and the content does not contain, the verification content is required.</td>
+</tr>
+<tr>
+<td>Custom parameter</td>
+<td>It is a user-defined parameter of http part, which will replace the content with <code>${variable}</code> in the script.</td>
+</tr>
+<tr>
+<td>Pre tasks</td>
+<td>Selecting a predecessor task for the current task will set the selected predecessor task as upstream of the current task.</td>
+</tr>
+</tbody>
+</table>
 <h2>Example</h2>
 <p>HTTP defines the different methods of interacting with the server, the most basic methods are GET, POST, PUT and DELETE. Here we use the http task node to demonstrate the use of POST to send a request to the system's login page to submit data.</p>
 <p>The main configuration parameters are as follows:</p>
@@ -51,8 +102,6 @@
 </li>
 </ul>
 <p><img src="/img/tasks/demo/http_task01.png" alt="http_task"></p>
-<h2>Notice</h2>
-<p>None</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>

@@ -43,12 +43,16 @@
 <li>后置sql:后置sql在sql语句之后执行。</li>
 </ul>
 <h2>任务样例</h2>
-<h3>在hive中创建临时表并写入数据</h3>
+<h3>Hive表创建示例</h3>
+<h4>在hive中创建临时表并写入数据</h4>
 <p>该样例向hive中创建临时表<code>tmp_hello_world</code>并写入一行数据。选择SQL类型为非查询，在创建临时表之前需要确保该表不存在，所以我们使用自定义参数，在每次运行时获取当天时间作为表名后缀，这样这个任务就可以每天运行。创建的表名格式为：<code>tmp_hello_world_{yyyyMMdd}</code>。</p>
 <p><img src="/img/tasks/demo/hive-sql.png" alt="hive-sql"></p>
-<h3>运行该任务成功之后在hive中查询结果</h3>
+<h4>运行该任务成功之后在hive中查询结果</h4>
 <p>登录集群使用<code>hive</code>命令或使用<code>beeline</code>、<code>JDBC</code>等方式连接<code>apache hive</code>进行查询，查询SQL为<code>select * from tmp_hello_world_{yyyyMMdd}</code>，请将<code>{yyyyMMdd}</code>替换为运行当天的日期，查询截图如下：</p>
 <p><img src="/img/tasks/demo/hive-result.png" alt="hive-sql"></p>
+<h3>使用前置sql和后置sql示例</h3>
+<p>在前置sql中执行建表操作，在sql语句中执行操作，在后置sql中执行清理操作</p>
+<p><img src="/img/tasks/demo/pre_post_sql.png" alt="pre_post_sql"></p>
 <h2>注意事项</h2>
 <ul>
 <li>注意SQL类型的选择，如果是INSERT等操作需要选择非查询类型。</li>

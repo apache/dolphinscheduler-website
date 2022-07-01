@@ -47,118 +47,197 @@ reproducibility, deployment, and a central model registry.</p>
 </ul>
 <h2>Create Task</h2>
 <ul>
-<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the &quot;Create Workflow&quot; button to enter the
-DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag from the toolbar <img src="/img/tasks/icons/mlflow.png" width="15"/> task node to canvas.</li>
 </ul>
-<h2>Task Example</h2>
-<p>First, introduce some general parameters of DolphinScheduler:</p>
-<ul>
-<li><strong>Node name</strong>: The node name in a workflow definition is unique.</li>
-<li><strong>Run flag</strong>: Identifies whether this node schedules normally, if it does not need to execute, select
-the <code>prohibition execution</code>.</li>
-<li><strong>Descriptive information</strong>: Describe the function of the node.</li>
-<li><strong>Task priority</strong>: When the number of worker threads is insufficient, execute in the order of priority from high
-to low, and tasks with the same priority will execute in a first-in first-out order.</li>
-<li><strong>Worker grouping</strong>: Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected,
-randomly select a worker machine for execution.</li>
-<li><strong>Environment Name</strong>: Configure the environment name in which run the script.</li>
-<li><strong>Times of failed retry attempts</strong>: The number of times the task failed to resubmit.</li>
-<li><strong>Failed retry interval</strong>: The time interval (unit minute) for resubmitting the task after a failed task.</li>
-<li><strong>Delayed execution time</strong>: The time (unit minute) that a task delays in execution.</li>
-<li><strong>Timeout alarm</strong>: Check the timeout alarm and timeout failure. When the task runs exceed the &quot;timeout&quot;, an alarm
-email will send and the task execution will fail.</li>
-<li><strong>Predecessor task</strong>: Selecting a predecessor task for the current task, will set the selected predecessor task as
-upstream of the current task.</li>
-</ul>
-<p>Here are some specific parameters for the MLFlow component:</p>
-<ul>
-<li><strong>MLflow Tracking Server URI</strong>: MLflow Tracking Server URI, default <a href="http://localhost:5000">http://localhost:5000</a>.</li>
-<li><strong>Experiment Name</strong>: Create the experiment where the task is running, if the experiment does not exist. If the name is empty, it is set to <code>Default</code>, the same as MLflow.</li>
-</ul>
+<h2>Task Parameters and Example</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node Name</td>
+<td>Set the name of the task. Node names within a workflow definition are unique.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Indicates whether the node can be scheduled normally. If it is not necessary to execute, you can turn on the prohibiting execution switch.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describes the function of this node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, they are executed in order from high to low according to the priority, and they are executed according to the first-in, first-out principle when the priority is the same.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>The task is assigned to the machines in the worker group for execution. If Default is selected, a worker machine will be randomly selected for execution.</td>
+</tr>
+<tr>
+<td>Task group name</td>
+<td>The group in Resources, if not configured, it will not be used.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment in which to run the script.</td>
+</tr>
+<tr>
+<td>Number of failed retries</td>
+<td>The number of times the task is resubmitted after failure. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Failure Retry Interval</td>
+<td>The time interval for resubmitting the task if the task fails. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check Timeout Alarm and Timeout Failure. When the task exceeds the &quot;timeout duration&quot;, an alarm email will be sent and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Predecessor task</td>
+<td>Selecting the predecessor task of the current task will set the selected predecessor task as the upstream of the current task.</td>
+</tr>
+<tr>
+<td>MLflow Tracking Server URI</td>
+<td>MLflow Tracking Server URI, default <a href="http://localhost:5000">http://localhost:5000</a>.</td>
+</tr>
+<tr>
+<td>Experiment Name</td>
+<td>Create the experiment where the task is running, if the experiment does not exist. If the name is empty, it is set to <code>Default</code>, the same as MLflow.</td>
+</tr>
+</tbody>
+</table>
 <h3>MLflow Projects</h3>
 <h4>BasicAlgorithm</h4>
 <p><img src="/img/tasks/demo/mlflow-basic-algorithm.png" alt="mlflow-conda-env"></p>
-<p><strong>Task Parameter</strong></p>
-<ul>
-<li><strong>Register Model</strong>: Register the model or not. If register is selected, the following parameters are expanded.
-<ul>
-<li><strong>Model Name</strong>: The registered model name is added to the original model version and registered as
-Production.</li>
-</ul>
-</li>
-<li><strong>Data Path</strong>: The absolute path of the file or folder. Ends with .csv for file or contain train.csv and
-test.csv for folder（In the suggested way, users should build their own test sets for model evaluation）.</li>
-<li><strong>Parameters</strong>: Parameter when initializing the algorithm/AutoML model, which can be empty. For example
-parameters <code>&quot;time_budget=30;estimator_list=['lgbm']&quot;</code> for flaml 。The convention will be passed with '; ' shards
-each parameter, using the name before the equal sign as the parameter name, and using the name after the equal
-sign to get the corresponding parameter value through <code>python eval()</code>.
-<ul>
-<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression">Logistic Regression</a></li>
-<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html?highlight=svc#sklearn.svm.SVC">SVM</a></li>
-<li><a href="https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.LGBMClassifier.html#lightgbm.LGBMClassifier">lightgbm</a></li>
-<li><a href="https://xgboost.readthedocs.io/en/stable/python/python_api.html#xgboost.XGBClassifier">xgboost</a></li>
-</ul>
-</li>
-<li><strong>Algorithm</strong>：The selected algorithm currently supports <code>LR</code>, <code>SVM</code>, <code>LightGBM</code> and <code>XGboost</code> based
-on <a href="https://scikit-learn.org/">scikit-learn</a> form.</li>
-<li><strong>Parameter Search Space</strong>: Parameter search space when running the corresponding algorithm, which can be
-empty. For example, the parameter <code>max_depth=[5, 10];n_estimators=[100, 200]</code> for lightgbm 。The convention
-will be passed with '; 'shards each parameter, using the name before the equal sign as the parameter name,
-and using the name after the equal sign to get the corresponding parameter value through <code>python eval()</code>.</li>
-</ul>
+<p><strong>Task Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Register Model</td>
+<td>Register the model or not. If register is selected, the following parameters are expanded.</td>
+</tr>
+<tr>
+<td>Model Name</td>
+<td>The registered model name is added to the original model version and registered as Production.</td>
+</tr>
+<tr>
+<td>Data Path</td>
+<td>The absolute path of the file or folder. Ends with .csv for file or contain train.csv and test.csv for folder（In the suggested way, users should build their own test sets for model evaluation.</td>
+</tr>
+<tr>
+<td>Parameters</td>
+<td>Parameter when initializing the algorithm/AutoML model, which can be empty. For example, parameters <code>&quot;time_budget=30;estimator_list=['lgbm']&quot;</code> for flaml 。The convention will be passed with '; ' shards each parameter, using the name before the equal sign as the parameter name, and using the name after the equal sign to get the corresponding parameter value through <code>python eval()</code>. <ul><li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression">Logistic Regression</a></li><li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html?highlight=svc#sklearn.svm.SVC">SVM</a></li><li><a href="https://lightgbm.readthedocs.io/en/latest/pythonapi/lightgbm.LGBMClassifier.html#lightgbm.LGBMClassifier">lightgbm</a></li><li><a href="https://xgboost.readthedocs.io/en/stable/python/python_api.html#xgboost.XGBClassifier">xgboost</a></li></ul></td>
+</tr>
+<tr>
+<td>Algorithm</td>
+<td>The selected algorithm currently supports <code>LR</code>, <code>SVM</code>, <code>LightGBM</code> and <code>XGboost</code> based on <a href="https://scikit-learn.org/">scikit-learn</a> form.</td>
+</tr>
+<tr>
+<td>Parameter Search Space</td>
+<td>Parameter search space when running the corresponding algorithm, which can be empty. For example, the parameter <code>max_depth=[5, 10];n_estimators=[100, 200]</code> for lightgbm 。The convention will be passed with '; 'shards each parameter, using the name before the equal sign as the parameter name, and using the name after the equal sign to get the corresponding parameter value through <code>python eval()</code>.</td>
+</tr>
+</tbody>
+</table>
 <h4>AutoML</h4>
 <p><img src="/img/tasks/demo/mlflow-automl.png" alt="mlflow-automl"></p>
 <p><strong>Task Parameter</strong></p>
-<ul>
-<li><strong>Register Model</strong>: Register the model or not. If register is selected, the following parameters are expanded.
-<ul>
-<li><strong>model name</strong>: The registered model name is added to the original model version and registered as
-Production.</li>
-</ul>
-</li>
-<li><strong>Data Path</strong>: The absolute path of the file or folder. Ends with .csv for file or contain train.csv and
-test.csv for folder(In the suggested way, users should build their own test sets for model evaluation).</li>
-<li><strong>Parameters</strong>: Parameter when initializing the algorithm/AutoML model, which can be empty. For example
-parameters <code>n_estimators=200;learning_rate=0.2</code> for flaml. The convention will be passed with '; 'shards
-each parameter, using the name before the equal sign as the parameter name, and using the name after the equal
-sign to get the corresponding parameter value through <code>python eval()</code>. The detailed parameter list is as follows:
-<ul>
-<li><a href="https://microsoft.github.io/FLAML/docs/reference/automl#automl-objects">flaml</a></li>
-<li><a href="https://automl.github.io/auto-sklearn/master/api.html">autosklearn</a></li>
-</ul>
-</li>
-<li><strong>AutoML tool</strong>: The AutoML tool used, currently
-supports <a href="https://github.com/automl/auto-sklearn">autosklearn</a>
-and <a href="https://github.com/microsoft/FLAML">flaml</a>.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Register Model</td>
+<td>Register the model or not. If register is selected, the following parameters are expanded.</td>
+</tr>
+<tr>
+<td>model name</td>
+<td>The registered model name is added to the original model version and registered as Production.</td>
+</tr>
+<tr>
+<td>Data Path</td>
+<td>The absolute path of the file or folder. Ends with .csv for file or contain train.csv and test.csv for folder(In the suggested way, users should build their own test sets for model evaluation).</td>
+</tr>
+<tr>
+<td>Parameters</td>
+<td>Parameter when initializing the algorithm/AutoML model, which can be empty. For example, parameters <code>n_estimators=200;learning_rate=0.2</code> for flaml. The convention will be passed with '; 'shards each parameter, using the name before the equal sign as the parameter name, and using the name after the equal sign to get the corresponding parameter value through <code>python eval()</code>. The detailed parameter list is as follows: <ul><li><a href="https://microsoft.github.io/FLAML/docs/reference/automl#automl-objects">flaml</a></li><li><a href="https://automl.github.io/auto-sklearn/master/api.html">autosklearn</a></li></ul></td>
+</tr>
+<tr>
+<td>AutoML tool</td>
+<td>The AutoML tool used, currently supports <a href="https://github.com/automl/auto-sklearn">autosklearn</a> and <a href="https://github.com/microsoft/FLAML">flaml</a>.</td>
+</tr>
+</tbody>
+</table>
 <h4>Custom projects</h4>
 <p><img src="/img/tasks/demo/mlflow-custom-project.png" alt="mlflow-custom-project.png"></p>
 <p><strong>Task Parameter</strong></p>
-<ul>
-<li><strong>parameters</strong>: <code>--param-list</code> in <code>mlflow run</code>. For example <code>-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9</code>.</li>
-<li><strong>Repository</strong>: Repository url of MLflow Project，Support git address and directory on worker. If it's in a subdirectory，We add <code>#</code> to support this (same as <code>mlflow run</code>) , for example <code>https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native</code>.</li>
-<li><strong>Project Version</strong>: Version of the project，default master.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parameters</td>
+<td><code>--param-list</code> in <code>mlflow run</code>. For example <code>-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9</code>.</td>
+</tr>
+<tr>
+<td>Repository</td>
+<td>Repository url of MLflow Project，Support git address and directory on worker. If it's in a subdirectory，We add <code>#</code> to support this (same as <code>mlflow run</code>) , for example <code>https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native</code>.</td>
+</tr>
+<tr>
+<td>Project Version</td>
+<td>Version of the project，default master.</td>
+</tr>
+</tbody>
+</table>
 <p>You can now use this feature to run all MLFlow projects on Github (For example <a href="https://github.com/mlflow/mlflow/tree/master/examples">MLflow examples</a> ). You can also create your own machine learning library to reuse your work, and then use DolphinScheduler to use your library with one click.</p>
 <h3>MLflow Models</h3>
-<p>General Parameters:</p>
-<ul>
-<li><strong>Model-URI</strong>: Model-URI of MLflow , support <code>models:/&lt;model_name&gt;/suffix</code> format and <code>runs:/</code> format. See <a href="https://mlflow.org/docs/latest/tracking.html#artifact-stores">https://mlflow.org/docs/latest/tracking.html#artifact-stores</a>.</li>
-<li><strong>Port</strong>: The port to listen on.</li>
-</ul>
-<h4>MLFLOW</h4>
+<p><strong>General Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model-URI</td>
+<td>Model-URI of MLflow , support <code>models:/&lt;model_name&gt;/suffix</code> format and <code>runs:/</code> format. See <a href="https://mlflow.org/docs/latest/tracking.html#artifact-stores">https://mlflow.org/docs/latest/tracking.html#artifact-stores</a></td>
+</tr>
+<tr>
+<td>Port</td>
+<td>The port to listen on.</td>
+</tr>
+</tbody>
+</table>
+<h4>MLflow</h4>
 <p><img src="/img/tasks/demo/mlflow-models-mlflow.png" alt="mlflow-models-mlflow"></p>
 <h4>Docker</h4>
 <p><img src="/img/tasks/demo/mlflow-models-docker.png" alt="mlflow-models-docker"></p>
 <h4>DOCKER COMPOSE</h4>
 <p><img src="/img/tasks/demo/mlflow-models-docker-compose.png" alt="mlflow-models-docker-compose"></p>
-<ul>
-<li><strong>Max Cpu Limit</strong>: For example <code>1.0</code> or <code>0.5</code>, the same as docker compose.</li>
-<li><strong>Max Memory Limit</strong>: For example <code>1G</code> or <code>500M</code>, the same as docker compose.</li>
-</ul>
-<h2>Environment to prepare</h2>
-<h3>Conda env</h3>
+<h2>Environment to Prepare</h2>
+<h3>Conda environment</h3>
 <p>You need to enter the admin account to configure a conda environment variable（Please
 install <a href="https://docs.continuum.io/anaconda/install/">anaconda</a>
 or <a href="https://docs.conda.io/en/latest/miniconda.html#installing">miniconda</a> in advance).</p>
@@ -166,7 +245,7 @@ or <a href="https://docs.conda.io/en/latest/miniconda.html#installing">miniconda
 <p>Note During the configuration task, select the conda environment created above. Otherwise, the program cannot find the
 Conda environment.</p>
 <p><img src="/img/tasks/demo/mlflow-set-conda-env.png" alt="mlflow-set-conda-env"></p>
-<h3>Start the mlflow service</h3>
+<h3>Start the MLflow Service</h3>
 <p>Make sure you have installed MLflow, using 'pip install mlflow'.</p>
 <p>Create a folder where you want to save your experiments and models and start MLflow service.</p>
 <pre><code class="language-sh">mkdir mlflow

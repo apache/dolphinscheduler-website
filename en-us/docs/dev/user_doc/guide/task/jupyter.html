@@ -21,7 +21,7 @@ Click <a href="https://docs.conda.io/en/latest/">here</a> for more information a
 <li><code>conda.path</code> is set to <code>/opt/anaconda3/etc/profile.d/conda.sh</code> by default. If you have no idea where your <code>conda</code> is, simply run <code>conda info | grep -i 'base environment'</code>.</li>
 </ul>
 <blockquote>
-<p>NOTICE: <code>Jupyter Task Plugin</code> uses <code>source</code> command to activate conda environment.
+<p>NOTE: <code>Jupyter Task Plugin</code> uses <code>source</code> command to activate conda environment.
 If your tenant does not have permission to use <code>source</code>, <code>Jupyter Task Plugin</code> will not function.</p>
 </blockquote>
 <h2>Python Dependency Management</h2>
@@ -37,7 +37,7 @@ If your tenant does not have permission to use <code>source</code>, <code>Jupyte
 <li>Select your packed conda environment as <code>resource</code> in your <code>jupyter task</code>, e.g. <code>jupyter_env.tar.gz</code>.</li>
 </ol>
 <blockquote>
-<p><strong><em>Note:</em></strong> Make sure you follow the <a href="https://conda.github.io/conda-pack/">Conda-Pack</a> official instructions.
+<p>NOTE: Make sure you follow the <a href="https://conda.github.io/conda-pack/">Conda-Pack</a> official instructions.
 If you unpack your packed conda environment, the directory structure should be the same as below:</p>
 </blockquote>
 <pre><code>.
@@ -50,37 +50,110 @@ If you unpack your packed conda environment, the directory structure should be t
 └── ssl
 </code></pre>
 <blockquote>
-<p>NOTICE: Please follow the <code>conda pack</code> instructions above strictly, and DO NOT modify <code>bin/activate</code>.
+<p>NOTE: Please follow the <code>conda pack</code> instructions above strictly, and DO NOT modify <code>bin/activate</code>.
 <code>Jupyter Task Plugin</code> uses <code>source</code> command to activate your packed conda environment.
 If you are concerned about using <code>source</code>, choose other options to manage your python dependency.</p>
 </blockquote>
 <h2>Create Task</h2>
 <ul>
-<li>Click Project Management-Project Name-Workflow Definition, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>
+<li>Click <code>Project Management-Project Name-Workflow Definition</code>, and click the &quot;<code>Create Workflow</code>&quot; button to enter the DAG editing page.</li>
 <li>Drag <img src="/img/tasks/icons/jupyter.png" width="15"/> from the toolbar to the canvas.</li>
 </ul>
-<h2>Task Parameter</h2>
-<ul>
-<li>Node name: The node name in a workflow definition is unique.</li>
-<li>Run flag: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.</li>
-<li>Descriptive information: Describe the function of the node.</li>
-<li>Task priority: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</li>
-<li>Worker grouping: Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</li>
-<li>Number of failed retry attempts: The failure task resubmitting times. It supports drop-down and hand-filling.</li>
-<li>Failed retry interval: The time interval for resubmitting the task after a failed task. It supports drop-down and hand-filling.</li>
-<li>Cpu quota: Assign the specified CPU time quota to the task executed. Takes a percentage value. Default -1 means unlimited. For example, the full CPU load of one core is 100%,and that of 16 cores is 1600%. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></li>
-<li>Max memory：Assign the specified max memory to the task executed. Exceeding this limit will trigger oom to be killed and will not automatically retry. Takes an MB value. Default -1 means unlimited. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></li>
-<li>Timeout alarm: Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will send and the task execution will fail.</li>
-<li>Conda Env Name: Name of conda environment or packed conda environment tarball.</li>
-<li>Input Note Path: Path of input jupyter note template.</li>
-<li>Out Note Path: Path of output note.</li>
-<li>Jupyter Parameters: Parameters in json format used for jupyter note parameterization.</li>
-<li>Kernel: Jupyter notebook kernel.</li>
-<li>Engine: Engine to evaluate jupyter notes.</li>
-<li>Jupyter Execution Timeout: Timeout set for each jupyter notebook cell.</li>
-<li>Jupyter Start Timeout: Timeout set for jupyter notebook kernel.</li>
-<li>Others: Other command options for papermill.</li>
-</ul>
+<h2>Task Parameters</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node Name</td>
+<td>Set the name of the task. Node names within a workflow definition are unique.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Indicates whether the node can be scheduled normally. If it is not necessary to execute, you can turn on the prohibiting execution switch.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describes the function of this node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, they are executed in order from high to low according to the priority, and they are executed according to the first-in, first-out principle when the priority is the same.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>The task is assigned to the machines in the worker group for execution. If Default is selected, a worker machine will be randomly selected for execution.</td>
+</tr>
+<tr>
+<td>Task group name</td>
+<td>The group in Resources, if not configured, it will not be used.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment in which to run the script.</td>
+</tr>
+<tr>
+<td>Number of failed retries</td>
+<td>The number of times the task is resubmitted after failure. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Failure Retry Interval</td>
+<td>The time interval for resubmitting the task if the task fails. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Cpu quota</td>
+<td>Assign the specified CPU time quota to the task executed. Takes a percentage value. Default -1 means unlimited. For example, the full CPU load of one core is 100%,and that of 16 cores is 1600%. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a>.</td>
+</tr>
+<tr>
+<td>Max memory</td>
+<td>Assign the specified max memory to the task executed. Exceeding this limit will trigger oom to be killed and will not automatically retry. Takes an MB value. Default -1 means unlimited. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a>.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will send and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Conda Env Name</td>
+<td>Name of conda environment or packed conda environment tarball.</td>
+</tr>
+<tr>
+<td>Input Note Path</td>
+<td>Path of input jupyter note template.</td>
+</tr>
+<tr>
+<td>Out Note Path</td>
+<td>Path of output note.</td>
+</tr>
+<tr>
+<td>Jupyter Parameters</td>
+<td>Parameters in json format used for jupyter note parameterization.</td>
+</tr>
+<tr>
+<td>Kernel</td>
+<td>Jupyter notebook kernel.</td>
+</tr>
+<tr>
+<td>Engine</td>
+<td>Engine to evaluate jupyter notes.</td>
+</tr>
+<tr>
+<td>Jupyter Execution Timeout</td>
+<td>Timeout set for each jupyter notebook cell.</td>
+</tr>
+<tr>
+<td>Jupyter Start Timeout</td>
+<td>Timeout set for jupyter notebook kernel.</td>
+</tr>
+<tr>
+<td>Others</td>
+<td>Other command options for papermill.</td>
+</tr>
+</tbody>
+</table>
 <h2>Task Example</h2>
 <h3>Jupyter Task Example</h3>
 <p>This example illustrates how to create a jupyter task node.</p>

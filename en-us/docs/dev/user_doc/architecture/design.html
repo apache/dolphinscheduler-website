@@ -36,16 +36,25 @@ MasterServer provides monitoring services based on netty.</p>
 <h4>The Service Mainly Includes:</h4>
 <ul>
 <li>
-<p><strong>Distributed Quartz</strong> distributed scheduling component, which is mainly responsible for the start and stop operations of schedule tasks. When Quartz starts the task, there will be a thread pool inside the Master responsible for the follow-up operation of the processing task.</p>
+<p><strong>DistributedQuartz</strong> distributed scheduling component, which is mainly responsible for the start and stop operations of scheduled tasks. When quartz start the task, there will be a thread pool inside the Master responsible for the follow-up operation of the processing task;</p>
 </li>
 <li>
-<p><strong>MasterSchedulerThread</strong> is a scanning thread that regularly scans the <strong>command</strong> table in the database and runs different business operations according to different <strong>command types</strong>.</p>
+<p><strong>MasterSchedulerService</strong> is a scanning thread that regularly scans the <code>t_ds_command</code> table in the database, runs different business operations according to different <strong>command types</strong>;</p>
 </li>
 <li>
-<p><strong>MasterExecThread</strong> is mainly responsible for DAG task segmentation, task submission monitoring, and logical processing to different command types.</p>
+<p><strong>WorkflowExecuteRunnable</strong> is mainly responsible for DAG task segmentation, task submission monitoring, and logical processing of different event types;</p>
 </li>
 <li>
-<p><strong>MasterTaskExecThread</strong> is mainly responsible for the persistence to tasks.</p>
+<p><strong>TaskExecuteRunnable</strong> is mainly responsible for the processing and persistence of tasks, and generates task events and submits them to the event queue of the process instance;</p>
+</li>
+<li>
+<p><strong>EventExecuteService</strong> is mainly responsible for the polling of the event queue of the process instances;</p>
+</li>
+<li>
+<p><strong>StateWheelExecuteThread</strong> is mainly responsible for process instance and task timeout, task retry, task-dependent polling, and generates the corresponding process instance or task event and submits it to the event queue of the process instance;</p>
+</li>
+<li>
+<p><strong>FailoverExecuteThread</strong> is mainly responsible for the logic of Master fault tolerance and Worker fault tolerance;</p>
 </li>
 </ul>
 </li>
@@ -56,7 +65,15 @@ MasterServer provides monitoring services based on netty.</p>
 Server provides monitoring services based on netty.</p>
 <h4>The Service Mainly Includes:</h4>
 <ul>
-<li><strong>Fetch TaskThread</strong> is mainly responsible for continuously getting tasks from the <strong>Task Queue</strong>, and calling <strong>TaskScheduleThread</strong> corresponding executor according to different task types.</li>
+<li>
+<p><strong>WorkerManagerThread</strong> is mainly responsible for the submission of the task queue, continuously receives tasks from the task queue, and submits them to the thread pool for processing;</p>
+</li>
+<li>
+<p><strong>TaskExecuteThread</strong> is mainly responsible for the process of task execution, and the actual processing of tasks according to different task types;</p>
+</li>
+<li>
+<p><strong>RetryReportTaskStatusThread</strong> is mainly responsible for regularly polling to report the task status to the Master until the Master replies to the status ack to avoid the loss of the task status;</p>
+</li>
 </ul>
 </li>
 <li>
@@ -65,17 +82,12 @@ Server provides monitoring services based on netty.</p>
 <p>We have also implemented queues based on Redis, but we hope DolphinScheduler depends on as few components as possible, so we finally removed the Redis implementation.</p>
 </li>
 <li>
-<p><strong>Task Queue</strong></p>
-<p>Provide task queue operation, the current queue is also implement base on ZooKeeper. Due to little information stored in the queue, there is no need to worry about excessive data in the queue. In fact, we have tested the millions of data storage in queues, which has no impact on system stability and performance.</p>
-</li>
-<li>
-<p><strong>Alert</strong></p>
-<p>Provide alarm related interface, the interface mainly includes <strong>alarm</strong> two types of alarm data storage, query and notification functions. Among them, there are <strong>email notification</strong> and <strong>SNMP (not yet implemented)</strong>.</p>
+<p><strong>AlertServer</strong></p>
+<p>Provides alarm services, and implements rich alarm methods through alarm plugins.</p>
 </li>
 <li>
 <p><strong>API</strong></p>
-<p>The API interface layer is mainly responsible for processing requests from the front-end UI layer. The service uniformly provides RESTful APIs to provide request services to external.
-Interfaces include workflow creation, definition, query, modification, release, logoff, manual start, stop, pause, resume, start execution from specific node, etc.</p>
+<p>The API interface layer is mainly responsible for processing requests from the front-end UI layer. The service uniformly provides RESTful APIs to provide request services to external.</p>
 </li>
 <li>
 <p><strong>UI</strong></p>
@@ -108,37 +120,6 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <li>In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly pouring out. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will automatically hold &quot;meetings&quot; to elect new &quot;managers&quot; To preside over the work. The most typical case is Etcd implemented by ZooKeeper and Go language.</li>
 <li>The decentralization of DolphinScheduler is that the Master and Worker register in ZooKeeper, for implement the centerless feature to Master cluster and Worker cluster. Use the ZooKeeper distributed lock to elect one of the Master or Worker as the &quot;manager&quot; to perform the task.</li>
 </ul>
-<h4>Distributed Lock Practice</h4>
-<p>DolphinScheduler uses ZooKeeper distributed lock to implement only one Master executes Scheduler at the same time, or only one Worker executes the submission of tasks.</p>
-<ol>
-<li>The following shows the core process algorithm for acquiring distributed locks:</li>
-</ol>
- <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/distributed_lock.png" alt="Obtain distributed lock process"  width="50%" />
- </p>
-<ol start="2">
-<li>Flow diagram of implementation of Scheduler thread distributed lock in DolphinScheduler:</li>
-</ol>
- <p align="center">
-   <img src="/img/distributed_lock_procss.png" alt="Obtain distributed lock process"  width="50%" />
- </p>
-<h4>Insufficient Thread Loop Waiting Problem</h4>
-<ul>
-<li>If there is no sub-process in a DAG, when the number of data in the Command is greater than the threshold set by the thread pool, the process directly waits or fails.</li>
-<li>If a large DAG nests many sub-processes, there will produce a &quot;dead&quot; state as the following figure:</li>
-</ul>
- <p align="center">
-   <img src="https://analysys.github.io/easyscheduler_docs_cn/images/lack_thread.png" alt="Insufficient threads waiting loop problem"  width="50%" />
- </p>
-In the above figure, MainFlowThread waits for the end of SubFlowThread1, SubFlowThread1 waits for the end of SubFlowThread2, SubFlowThread2 waits for the end of SubFlowThread3, and SubFlowThread3 waits for a new thread in the thread pool, then the entire DAG process cannot finish, and the threads cannot be released. In this situation, the state of the child-parent process loop waiting is formed. At this moment, unless a new Master is started and add threads to break such a "stalemate", the scheduling cluster will no longer use.
-<p>It seems a bit unsatisfactory to start a new Master to break the deadlock, so we proposed the following three solutions to reduce this risk:</p>
-<ol>
-<li>Calculate the sum of all Master threads, and then calculate the number of threads required for each DAG, that is, pre-calculate before the DAG process executes. Because it is a multi-master thread pool, it is unlikely to obtain the total number of threads in real time.</li>
-<li>Judge whether the single-master thread pool is full, let the thread fail directly when fulfilled.</li>
-<li>Add a Command type with insufficient resources. If the thread pool is insufficient, suspend the main process. In this way, there are new threads in the thread pool, which can make the process suspended by insufficient resources wake up to execute again.</li>
-</ol>
-<p>Note: The Master Scheduler thread executes by FIFO when acquiring the Command.</p>
-<p>So we choose the third way to solve the problem of insufficient threads.</p>
 <h4>Fault-Tolerant Design</h4>
 <p>Fault tolerance divides into service downtime fault tolerance and task retry, and service downtime fault tolerance divides into master fault tolerance and worker fault tolerance.</p>
 <h5>Downtime Fault Tolerance</h5>
@@ -176,13 +157,13 @@ Among them, the Master monitors the directories of other Masters and Workers. If
 <p>Next to the main point, we divide the task nodes in the workflow into two types.</p>
 <ul>
 <li>
-<p>One is a business node, which corresponds to an actual script or process command, such as shell node, MR node, Spark node, and dependent node.</p>
+<p>One is a business task, which corresponds to an actual script or process command, such as Shell task, SQL task, and Spark task.</p>
 </li>
 <li>
-<p>Another is a logical node, which does not operate actual script or process command, but only logical processing to the entire process flow, such as sub-process sections.</p>
+<p>Another is a logical task, which does not operate actual script or process command, but only logical processing to the entire process flow, such as sub-process task, dependent task.</p>
 </li>
 </ul>
-<p>Each <strong>business node</strong> can configure the number of failed retries. When the task node fails, it will automatically retry until it succeeds or exceeds the retry times. <strong>Logical node</strong> failure retry is not supported, but the tasks in the logical node support.</p>
+<p><strong>Business node</strong> can configure the number of failed retries. When the task node fails, it will automatically retry until it succeeds or exceeds the retry times. <strong>Logical node</strong> failure retry is not supported.</p>
 <p>If there is a task failure in the workflow that reaches the maximum retry times, the workflow will fail and stop, and the failed workflow can be manually re-run or process recovery operations.</p>
 <h4>Task Priority Design</h4>
 <p>In the early schedule design, if there is no priority design and use the fair scheduling, the task submitted first may complete at the same time with the task submitted later, thus invalid the priority of process or task. So we have re-designed this, and the following is our current design:</p>
@@ -225,55 +206,28 @@ Among them, the Master monitors the directories of other Masters and Workers. If
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc remote access"  width="50%" />
  </p>
 <ul>
-<li>We use the customized FileAppender and Filter functions from Logback to implement each task instance generates one log file.</li>
-<li>The following is the FileAppender implementation：</li>
+<li>For details, please refer to the logback configuration of Master and Worker, as shown in the following example:</li>
 </ul>
-<pre><code class="language-java"> <span class="hljs-comment">/**
-  * task log appender
-  */</span>
- <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogAppender</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FileAppender</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
- 
-     ...
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">append</span><span class="hljs-params">(ILoggingEvent event)</span> </span>{
-
-        <span class="hljs-keyword">if</span> (currentlyActiveFile == <span class="hljs-keyword">null</span>){
-            currentlyActiveFile = getFile();
-        }
-        String activeFile = currentlyActiveFile;
-        <span class="hljs-comment">// thread name： taskThreadName-processDefineId_processInstanceId_taskInstanceId</span>
-        String threadName = event.getThreadName();
-        String[] threadNameArr = threadName.split(<span class="hljs-string">&quot;-&quot;</span>);
-        <span class="hljs-comment">// logId = processDefineId_processInstanceId_taskInstanceId</span>
-        String logId = threadNameArr[<span class="hljs-number">1</span>];
-        ...
-        <span class="hljs-keyword">super</span>.subAppend(event);
-    }
-}
-</code></pre>
-<p>Generate logs in the form of /process definition id /process instance id /task instance id.log</p>
-<ul>
-<li>
-<p>Filter to match the thread name starting with TaskLogInfo:</p>
-</li>
-<li>
-<p>The following shows the TaskLogFilter implementation:</p>
-</li>
-</ul>
-<pre><code class="language-java"><span class="hljs-comment">/**
-*  task log filter
-*/</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskLogFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Filter</span>&lt;<span class="hljs-title">ILoggingEvent</span>&gt; </span>{
-
-   <span class="hljs-meta">@Override</span>
-   <span class="hljs-function"><span class="hljs-keyword">public</span> FilterReply <span class="hljs-title">decide</span><span class="hljs-params">(ILoggingEvent event)</span> </span>{
-       <span class="hljs-keyword">if</span> (event.getThreadName().startsWith(<span class="hljs-string">&quot;TaskLogInfo-&quot;</span>)){
-           <span class="hljs-keyword">return</span> FilterReply.ACCEPT;
-       }
-       <span class="hljs-keyword">return</span> FilterReply.DENY;
-   }
-}
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">conversionRule</span> <span class="hljs-attr">conversionWord</span>=<span class="hljs-string">&quot;messsage&quot;</span> <span class="hljs-attr">converterClass</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.server.log.SensitiveDataConverter&quot;</span>/&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;TASKLOGFILE&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.classic.sift.SiftingAppender&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.server.log.TaskLogFilter&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Discriminator</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.server.log.TaskLogDiscriminator&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>taskAppId<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">logBase</span>&gt;</span>${log.base}<span class="hljs-tag">&lt;/<span class="hljs-name">logBase</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Discriminator</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">sift</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;FILE-${taskAppId}&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.core.FileAppender&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>${log.base}/${taskAppId}.log<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">encoder</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">pattern</span>&gt;</span>
+                            [%level] %date{yyyy-MM-dd HH:mm:ss.SSS Z} [%thread] %logger{96}:[%line] - %messsage%n
+                <span class="hljs-tag">&lt;/<span class="hljs-name">pattern</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">charset</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">charset</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">encoder</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">append</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">append</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">sift</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span>
 </code></pre>
 <h2>Sum Up</h2>
 <p>From the perspective of scheduling, this article preliminarily introduces the architecture principles and implementation ideas of the big data distributed workflow scheduling system: DolphinScheduler. To be continued.</p>

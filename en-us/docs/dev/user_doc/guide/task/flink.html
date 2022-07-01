@@ -23,10 +23,132 @@
 </ol>
 <h2>Create Task</h2>
 <ul>
-<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag from the toolbar <img src="/img/tasks/icons/flink.png" width="15"/>task node to canvas.</li>
 </ul>
-<h2>Task Parameter</h2>
+<h2>Task Parameters</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node name</td>
+<td>The node name in a workflow definition is unique.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Identifies whether this node schedules normally, if it does not need to execute, select the <code>prohibition execution</code>.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describe the function of the node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</td>
+</tr>
+<tr>
+<td>Worker grouping</td>
+<td>Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment name in which run the script.</td>
+</tr>
+<tr>
+<td>Times of failed retry attempts</td>
+<td>The number of times the task failed to resubmit.</td>
+</tr>
+<tr>
+<td>Failed retry interval</td>
+<td>The time interval (unit minute) for resubmitting the task after a failed task.</td>
+</tr>
+<tr>
+<td>Delayed execution time</td>
+<td>The time (unit minute) that a task delays in execution.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check the timeout alarm and timeout failure. When the task runs exceed the &quot;timeout&quot;, an alarm email will send and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Program type</td>
+<td>Support Java, Scala, Python and SQL four languages.</td>
+</tr>
+<tr>
+<td>Class of main function**: The <strong>full path</strong> of Main Class, the entry point of the Flink program.</td>
+<td></td>
+</tr>
+<tr>
+<td>Main jar package</td>
+<td>The jar package of the Flink program (upload by Resource Center).</td>
+</tr>
+<tr>
+<td>Deployment mode</td>
+<td>Support 3 deployment modes: cluster, local and application (Flink 1.11 and later. See also <a href="https://nightlies.apache.org/flink/flink-docs-release-1.11/ops/deployment/yarn_setup.html#run-an-application-in-application-mode">Run an application in Application Mode</a>).</td>
+</tr>
+<tr>
+<td>Initialization script</td>
+<td>Script file to initialize session context.</td>
+</tr>
+<tr>
+<td>Script</td>
+<td>The sql script file developed by the user that should be executed.</td>
+</tr>
+<tr>
+<td>Flink version</td>
+<td>Select version according to the execution environment.</td>
+</tr>
+<tr>
+<td>Task name</td>
+<td>Flink task name.</td>
+</tr>
+<tr>
+<td>JobManager memory size</td>
+<td>Used to set the size of jobManager memories, which can be set according to the actual production environment.</td>
+</tr>
+<tr>
+<td>Number of slots</td>
+<td>Used to set the number of slots, which can be set according to the actual production environment.</td>
+</tr>
+<tr>
+<td>TaskManager memory size</td>
+<td>Used to set the size of taskManager memories, which can be set according to the actual production environment.</td>
+</tr>
+<tr>
+<td>Number of TaskManager</td>
+<td>Used to set the number of taskManagers, which can be set according to the actual production environment.</td>
+</tr>
+<tr>
+<td>Parallelism</td>
+<td>Used to set the degree of parallelism for executing Flink tasks.</td>
+</tr>
+<tr>
+<td>Main program parameters</td>
+<td>Set the input parameters for the Flink program and support the substitution of custom parameter variables.</td>
+</tr>
+<tr>
+<td>Optional parameters</td>
+<td>Support <code>--jar</code>, <code>--files</code>,<code>--archives</code>, <code>--conf</code> format.</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>Appoint resource files in the <code>Resource</code> if parameters refer to them.</td>
+</tr>
+<tr>
+<td>Custom parameter</td>
+<td>It is a local user-defined parameter for Flink, and will replace the content with <code>${variable}</code> in the script.</td>
+</tr>
+<tr>
+<td>Predecessor task</td>
+<td>Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li><strong>Node name</strong>: The node name in a workflow definition is unique.</li>
 <li><strong>Run flag</strong>: Identifies whether this node schedules normally, if it does not need to execute, select the <code>prohibition execution</code>.</li>
@@ -41,7 +163,7 @@
 <li><strong>Program type</strong>: Support Java, Scala, Python and SQL four languages.</li>
 <li><strong>The class of main function</strong>: The <strong>full path</strong> of Main Class, the entry point of the Flink program.</li>
 <li><strong>Main jar package</strong>: The jar package of the Flink program (upload by Resource Center).</li>
-<li><strong>Deployment mode</strong>: Support 2 deployment modes: cluster and local.</li>
+<li><strong>Deployment mode</strong>: Support 3 deployment modes: cluster, local and application (Flink 1.11 and later. See also <a href="https://nightlies.apache.org/flink/flink-docs-release-1.11/ops/deployment/yarn_setup.html#run-an-application-in-application-mode">Run an application in Application Mode</a>).</li>
 <li><strong>Initialization script</strong>: Script file to initialize session context.</li>
 <li><strong>Script</strong>: The sql script file developed by the user that should be executed.</li>
 <li><strong>Flink version</strong>: Select version according to the execution env.</li>
@@ -73,7 +195,7 @@
 <h3>Execute the FlinkSQL Program</h3>
 <p>Configure the required content according to the parameter descriptions above.</p>
 <p><img src="/img/tasks/demo/flink_sql_test.png" alt="demo-flink-sql-simple"></p>
-<h2>Notice</h2>
+<h2>Note</h2>
 <ul>
 <li>
 <p>JAVA and Scala only used for identification, there is no difference. If use Python to develop Flink, there is no class of the main function and the rest is the same.</p>

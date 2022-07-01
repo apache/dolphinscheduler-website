@@ -15,46 +15,147 @@
 <p>MapReduce(MR) task type used for executing MapReduce programs. For MapReduce nodes, the worker submits the task by using the Hadoop command <code>hadoop jar</code>. See <a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/CommandsManual.html#jar">Hadoop Command Manual</a> for more details.</p>
 <h2>Create Task</h2>
 <ul>
-<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag from the toolbar <img src="/img/tasks/icons/mr.png" width="15"/> to the canvas.</li>
 </ul>
-<h2>Task Parameter</h2>
-<ul>
-<li><strong>Node name</strong>: The node name in a workflow definition is unique.</li>
-<li><strong>Run flag</strong>: Identifies whether this node schedules normally, if it does not need to execute, select the <code>prohibition execution</code>.</li>
-<li><strong>Descriptive information</strong>: Describe the function of the node.</li>
-<li><strong>Task priority</strong>: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</li>
-<li><strong>Worker grouping</strong>:  Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</li>
-<li><strong>Environment Name</strong>: Configure the environment name in which run the script.</li>
-<li><strong>Times of failed retry attempts</strong>: The number of times the task failed to resubmit.</li>
-<li><strong>Failed retry interval</strong>: The time interval (unit minute) for resubmitting the task after a failed task.</li>
-<li><strong>Delayed execution time</strong>: The time (unit minute) that a task delays in execution.</li>
-<li><strong>Timeout alarm</strong>: Check the timeout alarm and timeout failure. When the task runs exceed the &quot;timeout&quot;, an alarm email will send and the task execution will fail.</li>
-<li><strong>Resource</strong>: Refers to the list of resource files that called in the script, and upload or create files by the Resource Center file management.</li>
-<li><strong>Custom parameters</strong>: It is a local user-defined parameter for MapReduce, and will replace the content with <code>${variable}</code> in the script.</li>
-<li><strong>Predecessor task</strong>: Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</li>
-</ul>
+<h2>Task Parameters</h2>
+<h3>General</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node Name</td>
+<td>Set the name of the task. Node names within a workflow definition are unique.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Indicates whether the node can be scheduled normally. If it is not necessary to execute, you can turn on the prohibiting execution switch.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describes the function of this node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, they are executed in order from high to low according to the priority, and they are executed according to the first-in, first-out principle when the priority is the same.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>The task is assigned to the machines in the worker group for execution. If Default is selected, a worker machine will be randomly selected for execution.</td>
+</tr>
+<tr>
+<td>Task group name</td>
+<td>The group in Resources, if not configured, it will not be used.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment in which to run the script.</td>
+</tr>
+<tr>
+<td>Number of failed retries</td>
+<td>The number of times the task is resubmitted after failure. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Failure Retry Interval</td>
+<td>The time interval for resubmitting the task if the task fails. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check Timeout Alarm and Timeout Failure. When the task exceeds the &quot;timeout duration&quot;, an alarm email will be sent and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>Refers to the list of resource files that called in the script, and upload or create files by the Resource Center file management.</td>
+</tr>
+<tr>
+<td>Custom parameters</td>
+<td>It is a local user-defined parameter for MapReduce, and will replace the content with <code>${variable}</code> in the script.</td>
+</tr>
+<tr>
+<td>Predecessor task</td>
+<td>Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</td>
+</tr>
+</tbody>
+</table>
 <h3>JAVA or SCALA Program</h3>
-<ul>
-<li><strong>Program type</strong>: Select JAVA or SCALA program.</li>
-<li><strong>The class of the main function</strong>: The <strong>full path</strong> of Main Class, the entry point of the MapReduce program.</li>
-<li><strong>Main jar package</strong>: The jar package of the MapReduce program.</li>
-<li><strong>Task name</strong> (optional): MapReduce task name.</li>
-<li><strong>Command line parameters</strong>: Set the input parameters of the MapReduce program and support the substitution of custom parameter variables.</li>
-<li><strong>Other parameters</strong>: support <code>-D</code>, <code>-files</code>, <code>-libjars</code>, <code>-archives</code> format.</li>
-<li><strong>Resource</strong>: Appoint resource files in the <code>Resource</code> if parameters refer to them.</li>
-<li><strong>User-defined parameter</strong>: It is a local user-defined parameter for MapReduce, and will replace the content with <code>${variable}</code> in the script.</li>
-</ul>
-<h2>Python Program</h2>
-<ul>
-<li><strong>Program type</strong>: Select Python language.</li>
-<li><strong>Main jar package</strong>: The Python jar package for running MapReduce.</li>
-<li><strong>Other parameters</strong>: support <code>-D</code>, <code>-mapper</code>, <code>-reducer,</code> <code>-input</code> <code>-output</code> format, and you can set the input of user-defined parameters, such as:</li>
-<li><code>-mapper &quot;mapper.py 1&quot;</code> <code>-file mapper.py</code> <code>-reducer reducer.py</code> <code>-file reducer.py</code> <code>–input /journey/words.txt</code> <code>-output /journey/out/mr/\${currentTimeMillis}</code></li>
-<li>The <code>mapper.py 1</code> after <code>-mapper</code> is two parameters, the first parameter is <code>mapper.py</code>, and the second parameter is <code>1</code>.</li>
-<li><strong>Resource</strong>: Appoint resource files in the <code>Resource</code> if parameters refer to them.</li>
-<li><strong>User-defined parameter</strong>: It is a local user-defined parameter for MapReduce, and will replace the content with <code>${variable}</code> in the script.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Program type</td>
+<td>Select JAVA or SCALA program.</td>
+</tr>
+<tr>
+<td>The class of the main function</td>
+<td>The <strong>full path</strong> of Main Class, the entry point of the MapReduce program.</td>
+</tr>
+<tr>
+<td>Main jar package</td>
+<td>The jar package of the MapReduce program.</td>
+</tr>
+<tr>
+<td>Task name</td>
+<td>MapReduce task name.</td>
+</tr>
+<tr>
+<td>Command line parameters</td>
+<td>Set the input parameters of the MapReduce program and support the substitution of custom parameter variables.</td>
+</tr>
+<tr>
+<td>Other parameters</td>
+<td>Support <code>-D</code>, <code>-files</code>, <code>-libjars</code>, <code>-archives</code> format.</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>Appoint resource files in the <code>Resource</code> if parameters refer to them.</td>
+</tr>
+<tr>
+<td>User-defined parameter</td>
+<td>It is a local user-defined parameter for MapReduce, and will replace the content with <code>${variable}</code> in the script.</td>
+</tr>
+</tbody>
+</table>
+<h3>Python Program</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Program type</td>
+<td>Select Python language.</td>
+</tr>
+<tr>
+<td>Main jar package</td>
+<td>The Python jar package for running MapReduce.</td>
+</tr>
+<tr>
+<td>Other parameters</td>
+<td>Support <code>-D</code>, <code>-mapper</code>, <code>-reducer,</code> <code>-input</code> <code>-output</code> format, and you can set the input of user-defined parameters, such as:<ul><li><code>-mapper &quot;mapper.py 1&quot;</code> <code>-file mapper.py</code> <code>-reducer reducer.py</code> <code>-file reducer.py</code> <code>–input /journey/words.txt</code> <code>-output /journey/out/mr/${currentTimeMillis}</code></li><li>The <code>mapper.py 1</code> after <code>-mapper</code> is two parameters, the first parameter is <code>mapper.py</code>, and the second parameter is <code>1</code>. </li></ul></td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>Appoint resource files in the <code>Resource</code> if parameters refer to them.</td>
+</tr>
+<tr>
+<td>User-defined parameter</td>
+<td>It is a local user-defined parameter for MapReduce, and will replace the content with <code>${variable}</code> in the script.</td>
+</tr>
+</tbody>
+</table>
 <h2>Task Example</h2>
 <h3>Execute the WordCount Program</h3>
 <p>This example is a common introductory type of MapReduce application, which used to count the number of identical words in the input text.</p>

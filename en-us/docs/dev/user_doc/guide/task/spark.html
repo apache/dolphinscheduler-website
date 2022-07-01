@@ -17,39 +17,124 @@
 <p>(2) <code>spark sql</code> method to submit tasks. See <a href="https://spark.apache.org/docs/3.2.1/sql-ref-syntax.html">spark sql</a> for more details.</p>
 <h2>Create Task</h2>
 <ul>
-<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag from the toolbar <img src="/img/tasks/icons/spark.png" width="15"/> to the canvas.</li>
 </ul>
-<h2>Task Parameter</h2>
-<ul>
-<li><strong>Node name</strong>: The node name in a workflow definition is unique.</li>
-<li><strong>Run flag</strong>: Identifies whether this node schedules normally, if it does not need to execute, select the <code>prohibition execution</code>.</li>
-<li><strong>Descriptive information</strong>: Describe the function of the node.</li>
-<li><strong>Task priority</strong>: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</li>
-<li><strong>Worker grouping</strong>: Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</li>
-<li><strong>Environment Name</strong>: Configure the environment name in which run the script.</li>
-<li><strong>Times of failed retry attempts</strong>: The number of times the task failed to resubmit.</li>
-<li><strong>Failed retry interval</strong>: The time interval (unit minute) for resubmitting the task after a failed task.</li>
-<li><strong>Delayed execution time</strong>: The time (unit minute) that a task delays in execution.</li>
-<li><strong>Timeout alarm</strong>: Check the timeout alarm and timeout failure. When the task runs exceed the &quot;timeout&quot;, an alarm email will send and the task execution will fail.</li>
-<li><strong>Program type</strong>: Supports Java, Scala, Python and SQL.</li>
-<li><strong>Spark version</strong>: Support Spark1 and Spark2.</li>
-<li><strong>The class of main function</strong>: The <strong>full path</strong> of Main Class, the entry point of the Spark program.</li>
-<li><strong>Main jar package</strong>: The Spark jar package (upload by Resource Center).</li>
-<li><strong>SQL scripts</strong>: SQL statements in .sql files that Spark sql runs.</li>
-<li><strong>Deployment mode</strong>: (1) spark submit supports three modes: yarn-clusetr, yarn-client and local.
-(2) spark sql supports yarn-client and local modes.</li>
-<li><strong>Task name</strong> (optional): Spark task name.</li>
-<li><strong>Driver core number</strong>: Set the number of Driver core, which can be set according to the actual production environment.</li>
-<li><strong>Driver memory size</strong>: Set the size of Driver memories, which can be set according to the actual production environment.</li>
-<li><strong>Number of Executor</strong>: Set the number of Executor, which can be set according to the actual production environment.</li>
-<li><strong>Executor memory size</strong>: Set the size of Executor memories, which can be set according to the actual production environment.</li>
-<li><strong>Main program parameters</strong>: Set the input parameters of the Spark program and support the substitution of custom parameter variables.</li>
-<li><strong>Optional parameters</strong>: support <code>--jars</code>, <code>--files</code>,<code>--archives</code>, <code>--conf</code> format.</li>
-<li><strong>Resource</strong>: Appoint resource files in the <code>Resource</code> if parameters refer to them.</li>
-<li><strong>Custom parameter</strong>: It is a local user-defined parameter for Spark, and will replace the content with <code>${variable}</code> in the script.</li>
-<li><strong>Predecessor task</strong>: Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</li>
-</ul>
+<h2>Task Parameters</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node Name</td>
+<td>Set the name of the task. Node names within a workflow definition are unique.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Indicates whether the node can be scheduled normally. If it is not necessary to execute, you can turn on the prohibiting execution switch.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describes the function of this node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, they are executed in order from high to low according to the priority, and they are executed according to the first-in, first-out principle when the priority is the same.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>The task is assigned to the machines in the worker group for execution. If Default is selected, a worker machine will be randomly selected for execution.</td>
+</tr>
+<tr>
+<td>Task group name</td>
+<td>The group in Resources, if not configured, it will not be used.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment in which to run the script.</td>
+</tr>
+<tr>
+<td>Number of failed retries</td>
+<td>The number of times the task is resubmitted after failure. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Failure Retry Interval</td>
+<td>The time interval for resubmitting the task if the task fails. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check Timeout Alarm and Timeout Failure. When the task exceeds the &quot;timeout duration&quot;, an alarm email will be sent and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Program type</td>
+<td>Supports Java, Scala, Python, and SQL.</td>
+</tr>
+<tr>
+<td>Spark version</td>
+<td>Support Spark1 and Spark2.</td>
+</tr>
+<tr>
+<td>The class of main function</td>
+<td>The <strong>full path</strong> of Main Class, the entry point of the Spark program.</td>
+</tr>
+<tr>
+<td>Main jar package</td>
+<td>The Spark jar package (upload by Resource Center).</td>
+</tr>
+<tr>
+<td>SQL scripts</td>
+<td>SQL statements in .sql files that Spark sql runs.</td>
+</tr>
+<tr>
+<td>Deployment mode</td>
+<td><ul><li>spark submit supports three modes: yarn-clusetr, yarn-client and local.</li><li>spark sql supports yarn-client and local modes.</li></ul></td>
+</tr>
+<tr>
+<td>Task name</td>
+<td>Spark task name.</td>
+</tr>
+<tr>
+<td>Driver core number</td>
+<td>Set the number of Driver core, which can be set according to the actual production environment.</td>
+</tr>
+<tr>
+<td>Driver memory size</td>
+<td>Set the size of Driver memories, which can be set according to the actual production environment.</td>
+</tr>
+<tr>
+<td>Number of Executor</td>
+<td>Set the number of Executor, which can be set according to the actual production environment.</td>
+</tr>
+<tr>
+<td>Executor memory size</td>
+<td>Set the size of Executor memories, which can be set according to the actual production environment.</td>
+</tr>
+<tr>
+<td>Main program parameters</td>
+<td>Set the input parameters of the Spark program and support the substitution of custom parameter variables.</td>
+</tr>
+<tr>
+<td>Optional parameters</td>
+<td>Support <code>--jars</code>, <code>--files</code>,<code>--archives</code>, <code>--conf</code> format.</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>Appoint resource files in the <code>Resource</code> if parameters refer to them.</td>
+</tr>
+<tr>
+<td>Custom parameter</td>
+<td>It is a local user-defined parameter for Spark, and will replace the content with <code>${variable}</code> in the script.</td>
+</tr>
+<tr>
+<td>Predecessor task</td>
+<td>Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</td>
+</tr>
+</tbody>
+</table>
 <h2>Task Example</h2>
 <h3>spark submit</h3>
 <h4>Execute the WordCount Program</h4>
@@ -64,11 +149,11 @@
 <h5>Configure Spark Nodes</h5>
 <p>Configure the required content according to the parameter descriptions above.</p>
 <p><img src="/img/tasks/demo/spark_task02.png" alt="demo-spark-simple"></p>
-<h3>spark sql</h3>
+<h3>Spark sql</h3>
 <h4>Execute DDL and DML statements</h4>
 <p>This case is to create a view table terms and write three rows of data and a table wc in parquet format and determine whether the table exists. The program type is SQL. Insert the data of the view table terms into the table wc in parquet format.</p>
 <p><img src="/img/tasks/demo/spark_sql.png" alt="spark_sql"></p>
-<h2>Notice</h2>
+<h2>Note</h2>
 <p>JAVA and Scala are only used for identification, and there is no difference when you use the Spark task. If your application is developed by Python, you could just ignore the parameter <strong>Main Class</strong> in the form. Parameter <strong>SQL scripts</strong> is only for SQL type and could be ignored in JAVA, Scala and Python.</p>
 <p>SQL does not currently support cluster mode.</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>

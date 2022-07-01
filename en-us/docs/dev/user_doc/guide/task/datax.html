@@ -15,36 +15,116 @@
 <p>DataX task type for executing DataX programs. For DataX nodes, the worker will execute <code>${DATAX_HOME}/bin/datax.py</code> to analyze the input json file.</p>
 <h2>Create Task</h2>
 <ul>
-<li>Click Project Management -&gt; Project Name -&gt; Workflow Definition, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag the <img src="/img/tasks/icons/datax.png" width="15"/> from the toolbar to the drawing board.</li>
 </ul>
-<h2>Task Parameter</h2>
-<ul>
-<li><strong>Node name</strong>: The node name in a workflow definition is unique.</li>
-<li><strong>Run flag</strong>: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.</li>
-<li><strong>Descriptive information</strong>: describe the function of the node.</li>
-<li><strong>Task priority</strong>: When the number of worker threads is insufficient, they are executed in order from high to low, and when the priority is the same, they are executed according to the first-in first-out principle.</li>
-<li><strong>Worker grouping</strong>: Tasks are assigned to the machines of the worker group to execute. If Default is selected, a worker machine will be randomly selected for execution.</li>
-<li><strong>Environment Name</strong>: Configure the environment name in which to run the script.</li>
-<li><strong>Number of failed retry attempts</strong>: The number of times the task failed to be resubmitted.</li>
-<li><strong>Failed retry interval</strong>: The time, in cents, interval for resubmitting the task after a failed task.</li>
-<li><strong>Cpu quota</strong>: Assign the specified CPU time quota to the task executed. Takes a percentage value. Default -1 means unlimited. For example, the full CPU load of one core is 100%,and that of 16 cores is 1600%. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></li>
-<li><strong>Max memory</strong>：Assign the specified max memory to the task executed. Exceeding this limit will trigger oom to be killed and will not automatically retry. Takes an MB value. Default -1 means unlimited. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></li>
-<li><strong>Delayed execution time</strong>: The time, in cents, that a task is delayed in execution.</li>
-<li><strong>Timeout alarm</strong>: Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will be sent and the task execution will fail.</li>
-<li><strong>Custom template</strong>: Custom the content of the DataX node's json profile when the default data source provided does not meet the required requirements.</li>
-<li><strong>json</strong>: json configuration file for DataX synchronization.</li>
-<li><strong>Custom parameters</strong>: SQL task type, and stored procedure is a custom parameter order to set values for the method. The custom parameter type and data type are the same as the stored procedure task type. The difference is that the SQL task type custom parameter will replace the ${variable} in the SQL statement.</li>
-<li><strong>Data source</strong>: Select the data source from which the data will be extracted.</li>
-<li><strong>sql statement</strong>: the sql statement used to extract data from the target database, the sql query column name is automatically parsed when the node is executed, and mapped to the target table synchronization column name. When the source table and target table column names are inconsistent, they can be converted by column alias.</li>
-<li><strong>Target library</strong>: Select the target library for data synchronization.</li>
-<li><strong>Pre-sql</strong>: Pre-sql is executed before the sql statement (executed by the target library).</li>
-<li><strong>Post-sql</strong>: Post-sql is executed after the sql statement (executed by the target library).</li>
-<li><strong>Stream limit (number of bytes)</strong>: Limits the number of bytes in the query.</li>
-<li><strong>Limit flow (number of records)</strong>: Limit the number of records for a query.</li>
-<li><strong>Running memory</strong>: the minimum and maximum memory required can be configured to suit the actual production environment.</li>
-<li><strong>Predecessor task</strong>: Selecting a predecessor task for the current task will set the selected predecessor task as upstream of the current task.</li>
-</ul>
+<h2>Task Parameters</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node name</td>
+<td>The node name in a workflow definition is unique.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Identifies whether this node schedules normally, if it does not need to execute, select the prohibition execution.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describe the function of the node.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment name in which run the script.</td>
+</tr>
+<tr>
+<td>Number of failed retries</td>
+<td>The number of times the task failed to resubmit.</td>
+</tr>
+<tr>
+<td>Failed retry interval</td>
+<td>The time interval (unit minute) for resubmitting the task after a failed task.</td>
+</tr>
+<tr>
+<td>Cpu quota</td>
+<td>Assign the specified CPU time quota to the task executed. Takes a percentage value. Default -1 means unlimited. For example, the full CPU load of one core is 100%,and that of 16 cores is 1600%. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></td>
+</tr>
+<tr>
+<td>Max memory</td>
+<td>Assign the specified max memory to the task executed. Exceeding this limit will trigger oom to be killed and will not automatically retry. Takes an MB value. Default -1 means unlimited. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></td>
+</tr>
+<tr>
+<td>Delayed execution time</td>
+<td>The time, in cents, that a task is delayed in execution.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will be sent and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Custom template</td>
+<td>Custom the content of the DataX node's json profile when the default data source provided does not meet the required requirements.</td>
+</tr>
+<tr>
+<td>json</td>
+<td>json configuration file for DataX synchronization.</td>
+</tr>
+<tr>
+<td>Custom parameters</td>
+<td>SQL task type, and stored procedure is a custom parameter order to set values for the method. The custom parameter type and data type are the same as the stored procedure task type. The difference is that the SQL task type custom parameter will replace the ${variable} in the SQL statement.</td>
+</tr>
+<tr>
+<td>Data source</td>
+<td>Select the data source from which the data will be extracted.</td>
+</tr>
+<tr>
+<td>sql statement</td>
+<td>the sql statement used to extract data from the target database, the sql query column name is automatically parsed when the node is executed, and mapped to the target table synchronization column name. When the source table and target table column names are inconsistent, they can be converted by column alias.</td>
+</tr>
+<tr>
+<td>Target library</td>
+<td>Select the target library for data synchronization.</td>
+</tr>
+<tr>
+<td>Pre-sql</td>
+<td>Pre-sql is executed before the sql statement (executed by the target library).</td>
+</tr>
+<tr>
+<td>Post-sql</td>
+<td>Post-sql is executed after the sql statement (executed by the target library).</td>
+</tr>
+<tr>
+<td>Stream limit (number of bytes)</td>
+<td>Limits the number of bytes in the query.</td>
+</tr>
+<tr>
+<td>Limit flow (number of records)</td>
+<td>Limit the number of records for a query.</td>
+</tr>
+<tr>
+<td>Running memory</td>
+<td>the minimum and maximum memory required can be configured to suit the actual production environment.</td>
+</tr>
+<tr>
+<td>Predecessor task</td>
+<td>Selecting a predecessor task for the current task will set the selected predecessor task as upstream of the current task.</td>
+</tr>
+</tbody>
+</table>
 <h2>Task Example</h2>
 <p>This example demonstrates importing data from Hive into MySQL.</p>
 <h3>Configuring the DataX environment in DolphinScheduler</h3>
@@ -57,7 +137,7 @@
 <p><img src="/img/tasks/demo/datax_task02.png" alt="datax_task02"></p>
 <h3>View run results</h3>
 <p><img src="/img/tasks/demo/datax_task03.png" alt="datax_task03"></p>
-<h3>Notice</h3>
+<h3>Note</h3>
 <p>If the default data source provided does not meet your needs, you can configure the writer and reader of DataX according to the actual usage environment in the custom template option, available at <a href="https://github.com/alibaba/DataX">https://github.com/alibaba/DataX</a>.</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="/asset/js/react/react-with-addons.min.js"></script>

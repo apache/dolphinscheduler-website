@@ -17,39 +17,64 @@
 <p>Refer to <a href="../datasource/introduction.md">DataSource</a></p>
 <h2>Create Task</h2>
 <ul>
-<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag from the toolbar <img src="/img/tasks/icons/sql.png" width="25"/> to the canvas.</li>
 </ul>
 <h2>Task Parameter</h2>
-<ul>
-<li>Data source: Select the corresponding DataSource.</li>
-<li>SQL type: Supports query and non-query.
-<ul>
-<li>Query: supports <code>DML select</code> type commands, which return a result set. You can specify three templates for email notification as form, attachment or form attachment;</li>
-<li>Non-query: support <code>DDL</code> all commands and <code>DML update, delete, insert</code> three types of commands;
-<ul>
-<li>Segmented execution symbol: When the data source does not support executing multiple SQL statements at a time, the symbol for splitting SQL statements is provided to call the data source execution method multiple times.
-Example: 1. When the Hive data source is selected as the data source, this parameter does not need to be filled in. Because the Hive data source itself supports executing multiple SQL statements at one time;
-2. When the MySQL data source is selected as the data source, and multi-segment SQL statements are to be executed, this parameter needs to be filled in with a semicolon <code>;</code>. Because the MySQL data source does not support executing multiple SQL statements at one time;</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>SQL parameter: The input parameter format is <code>key1=value1;key2=value2...</code>.</li>
-<li>SQL statement: SQL statement.</li>
-<li>UDF function: For Hive DataSources, you can refer to UDF functions created in the resource center, but other DataSource do not support UDF functions.</li>
-<li>Custom parameters: SQL task type, and stored procedure is a custom parameter order, to set customized parameter type and data type for the method is the same as the stored procedure task type. The difference is that the custom parameter of the SQL task type replaces the <code>${variable}</code> in the SQL statement.</li>
-<li>Pre-SQL: Pre-SQL executes before the SQL statement.</li>
-<li>Post-SQL: Post-SQL executes after the SQL statement.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data source</td>
+<td>Select the corresponding DataSource.</td>
+</tr>
+<tr>
+<td>SQL type</td>
+<td>Supports query and non-query. <ul><li>Query: supports <code>DML select</code> type commands, which return a result set. You can specify three templates for email notification as form, attachment or form attachment;</li><li>Non-query: support <code>DDL</code> all commands and <code>DML update, delete, insert</code> three types of commands;<ul><li>Segmented execution symbol: When the data source does not support executing multiple SQL statements at a time, the symbol for splitting SQL statements is provided to call the data source execution method multiple times. Example: 1. When the Hive data source is selected as the data source, this parameter does not need to be filled in. Because the Hive data source itself supports executing multiple SQL statements at one time; 2. When the MySQL data source is selected as the data source, and multi-segment SQL statements are to be executed, this parameter needs to be filled in with a semicolon `;. Because the MySQL data source does not support executing multiple SQL statements at one time.</li></ul></li></ul></td>
+</tr>
+<tr>
+<td>SQL parameter</td>
+<td>The input parameter format is <code>key1=value1;key2=value2...</code>.</td>
+</tr>
+<tr>
+<td>SQL statement</td>
+<td>SQL statement.</td>
+</tr>
+<tr>
+<td>UDF function</td>
+<td>For Hive DataSources, you can refer to UDF functions created in the resource center, but other DataSource do not support UDF functions.</td>
+</tr>
+<tr>
+<td>Custom parameters</td>
+<td>SQL task type, and stored procedure is a custom parameter order, to set customized parameter type and data type for the method is the same as the stored procedure task type. The difference is that the custom parameter of the SQL task type replaces the <code>${variable}</code> in the SQL statement.</td>
+</tr>
+<tr>
+<td>Pre-SQL</td>
+<td>Pre-SQL executes before the SQL statement.</td>
+</tr>
+<tr>
+<td>Post-SQL</td>
+<td>Post-SQL executes after the SQL statement.</td>
+</tr>
+</tbody>
+</table>
 <h2>Task Example</h2>
-<h3>Create a Temporary Table in Hive and Write Data</h3>
+<h3>Hive Table Create Example</h3>
+<h4>Create a Temporary Table in Hive and Write Data</h4>
 <p>This example creates a temporary table <code>tmp_hello_world</code> in Hive and writes a row of data. Before creating a temporary table, we need to ensure that the table does not exist. So we use custom parameters to obtain the time of the day as the suffix of the table name every time we run, this task can run every different day. The format of the created table name is: <code>tmp_hello_world_{yyyyMMdd}</code>.</p>
 <p><img src="/img/tasks/demo/hive-sql.png" alt="hive-sql"></p>
-<h3>After Running the Task Successfully, Query the Results in Hive</h3>
+<h4>After Running the Task Successfully, Query the Results in Hive</h4>
 <p>Log in to the bigdata cluster and use 'hive' command or 'beeline' or 'JDBC' and other methods to connect to the 'Apache Hive' for the query. The query SQL is <code>select * from tmp_hello_world_{yyyyMMdd}</code>, please replace <code>{yyyyMMdd}</code> with the date of the running day. The following shows the query screenshot:</p>
 <p><img src="/img/tasks/demo/hive-result.png" alt="hive-sql"></p>
-<h2>Notice</h2>
+<h3>Use Pre-SQL and Post-SQL Example</h3>
+<p>Table created in the Pre-SQL, after use in the SQL statement, cleaned in the Post-SQL</p>
+<p><img src="/img/tasks/demo/pre_post_sql.png" alt="pre_post_sql"></p>
+<h2>Note</h2>
 <p>Pay attention to the selection of SQL type. If it is an insert operation, need to change to &quot;Non-Query&quot; type.</p>
 <p>To compatible with long session,UDF function are created by the syntax(CREATE OR REPLACE)</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>

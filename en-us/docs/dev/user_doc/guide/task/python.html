@@ -16,26 +16,84 @@
 it will generate a temporary python script, and executes the script by the Linux user with the same name as the tenant.</p>
 <h2>Create Task</h2>
 <ul>
-<li>Click Project Management-Project Name-Workflow Definition, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>
+<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>
 <li>Drag <img src="/img/tasks/icons/python.png" width="15"/> from the toolbar to the canvas.</li>
 </ul>
 <h2>Task Parameter</h2>
-<ul>
-<li>Node name: The node name in a workflow definition is unique.</li>
-<li>Run flag: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.</li>
-<li>Descriptive information: Describe the function of the node.</li>
-<li>Task priority: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</li>
-<li>Worker grouping: Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</li>
-<li>Environment Name: Configure the environment name in which to run the script.</li>
-<li>Number of failed retry attempts: The failure task resubmitting times. It supports drop-down and hand-filling.</li>
-<li>Failed retry interval: The time interval for resubmitting the task after a failed task. It supports drop-down and hand-filling.</li>
-<li>Cpu quota: Assign the specified CPU time quota to the task executed. Takes a percentage value. Default -1 means unlimited. For example, the full CPU load of one core is 100%,and that of 16 cores is 1600%. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></li>
-<li>Max memory：Assign the specified max memory to the task executed. Exceeding this limit will trigger oom to be killed and will not automatically retry. Takes an MB value. Default -1 means unlimited. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a></li>
-<li>Timeout alarm: Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will send and the task execution will fail.</li>
-<li>Script: Python program developed by the user.</li>
-<li>Resource: Refers to the list of resource files that need to be called in the script, and the files uploaded or created by the resource center-file management.</li>
-<li>Custom parameters: It is the user-defined parameters of Python, which will replace the content with ${variable} in the script.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node Name</td>
+<td>Set the name of the task. Node names within a workflow definition are unique.</td>
+</tr>
+<tr>
+<td>Run flag</td>
+<td>Indicates whether the node can be scheduled normally. If it is not necessary to execute, you can turn on the prohibiting execution switch.</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Describes the function of this node.</td>
+</tr>
+<tr>
+<td>Task priority</td>
+<td>When the number of worker threads is insufficient, they are executed in order from high to low according to the priority, and they are executed according to the first-in, first-out principle when the priority is the same.</td>
+</tr>
+<tr>
+<td>Worker group</td>
+<td>The task is assigned to the machines in the worker group for execution. If Default is selected, a worker machine will be randomly selected for execution.</td>
+</tr>
+<tr>
+<td>Task group name</td>
+<td>The group in Resources, if not configured, it will not be used.</td>
+</tr>
+<tr>
+<td>Environment Name</td>
+<td>Configure the environment in which to run the script.</td>
+</tr>
+<tr>
+<td>Number of failed retries</td>
+<td>The number of times the task is resubmitted after failure. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Failure Retry Interval</td>
+<td>The time interval for resubmitting the task if the task fails. It supports drop-down and manual filling.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check Timeout Alarm and Timeout Failure. When the task exceeds the &quot;timeout duration&quot;, an alarm email will be sent and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Cpu quota</td>
+<td>Assign the specified CPU time quota to the task executed. Takes a percentage value. Default -1 means unlimited. For example, the full CPU load of one core is 100%,and that of 16 cores is 1600%. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a>.</td>
+</tr>
+<tr>
+<td>Max memory</td>
+<td>Assign the specified max memory to the task executed. Exceeding this limit will trigger oom to be killed and will not automatically retry. Takes an MB value. Default -1 means unlimited. This function is controlled by <a href="../../architecture/configuration.md">task.resource.limit.state</a>.</td>
+</tr>
+<tr>
+<td>Timeout alarm</td>
+<td>Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will send and the task execution will fail.</td>
+</tr>
+<tr>
+<td>Script</td>
+<td>Python program developed by the user.</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>Refers to the list of resource files that need to be called in the script, and the files uploaded or created by the resource center-file management.</td>
+</tr>
+<tr>
+<td>Custom parameters</td>
+<td>It is the user-defined parameters of Python, which will replace the content with ${variable} in the script.</td>
+</tr>
+</tbody>
+</table>
 <h2>Task Example</h2>
 <h3>Simply Print</h3>
 <p>This example simulates a common task that runs by a simple command. The example is to print one line in the log file, as shown in the following figure:
@@ -50,8 +108,6 @@ After running this example, we would see &quot;param_val&quot; print in the log.
 <p><img src="/img/tasks/demo/python_custom_param_ui_next.jpg" alt="demo-python-custom-param"></p>
 <pre><code class="language-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;${param_key}&quot;</span>)
 </code></pre>
-<h2>Notice</h2>
-<p>None</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
