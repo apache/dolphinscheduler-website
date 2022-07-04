@@ -14,7 +14,7 @@
 <h2>Create workflow definition</h2>
 <ul>
 <li>
-<p>Click Project Management -&gt; Workflow -&gt; Workflow Definition, enter the workflow definition page, and click the &quot;Create Workflow&quot; button to enter the <strong>workflow DAG edit</strong> page, as shown in the following figure:</p>
+<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Definition</code>, enter the <code>Workflow Definition</code> page, and click the <code>Create Workflow</code> button to enter the <strong>workflow DAG edit</strong> page, as shown in the following figure:</p>
 <p><img src="/img/new_ui/dev/project/workflow-dag.png" alt="workflow-dag"></p>
 </li>
 <li>
@@ -26,13 +26,13 @@
 </li>
 </ul>
 <ol>
-<li>Fill in the &quot;Node Name&quot;, &quot;Description&quot; and &quot;Script&quot; fields;</li>
-<li>Check “Normal” for “Run Flag”. If “Prohibit Execution” is checked, the task will not execute when the workflow runs;</li>
-<li>Select &quot;Task Priority&quot;: when the number of worker threads is insufficient, high priority tasks will execute first in the execution queue, and tasks with the same priority will execute in the order of first in, first out;</li>
+<li>Fill in the <code>Node Name</code>, <code>Description</code> and <code>Script</code> fields;</li>
+<li>Check “<code>Normal</code>” for “<code>Run Flag</code>”. If “<code>Prohibit Execution</code>” is checked, the task will not execute when the workflow runs;</li>
+<li>Select <code>Task Priority</code>: when the number of worker threads is insufficient, high priority tasks will execute first in the execution queue, and tasks with the same priority will execute in the order of first in, first out;</li>
 <li>Timeout alarm (optional): check the timeout alarm, timeout failure, and fill in the &quot;timeout period&quot;. When the task execution time exceeds <strong>timeout period</strong>, an alert email will send and the task timeout fails;</li>
-<li>Resources (optional). Resources are files create or upload in the Resource Center -&gt; File Management page. For example, the file name is <code>test.sh</code>, and the command to call the resource in the script is <code>sh test.sh</code>;</li>
+<li>Resources (optional). Resources are files create or upload in the <code>Resource Center -&gt; File Management</code> page. For example, the file name is <code>test.sh</code>, and the command to call the resource in the script is <code>sh test.sh</code>;</li>
 <li>Customize parameters (optional);</li>
-<li>Click the &quot;Confirm Add&quot; button to save the task settings.</li>
+<li>Click the <code>Confirm Add</code> button to save the task settings.</li>
 </ol>
 <ul>
 <li>
@@ -44,7 +44,7 @@
 <p><img src="/img/new_ui/dev/project/workflow-delete.png" alt="workflow-delete"></p>
 </li>
 <li>
-<p><strong>Save workflow definition:</strong> Click the &quot;Save&quot; button, and the &quot;Set DAG chart name&quot; window pops up, as shown in the figure below. Enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to <a href="../parameter/global.md">global parameters</a>), click the &quot;Add&quot; button to finish workflow definition creation.</p>
+<p><strong>Save workflow definition:</strong> Click the <code>Save</code> button, and the &quot;Set DAG chart name&quot; window pops up, as shown in the figure below. Enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to <a href="../parameter/global.md">global parameters</a>), click the <code>Add</code> button to finish workflow definition creation.</p>
 <p><img src="/img/new_ui/dev/project/workflow-save.png" alt="workflow-save"></p>
 </li>
 </ul>
@@ -52,60 +52,60 @@
 <p>For other types of tasks, please refer to <a href="#TaskParamers">Task Node Type and Parameter Settings</a>. <!-- markdown-link-check-disable-line --></p>
 </blockquote>
 <h2>Workflow Definition Operation Function</h2>
-<p>Click Project Management -&gt; Workflow -&gt; Workflow Definition to enter the workflow definition page, as shown below:</p>
+<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Definition</code> to enter the workflow definition page, as shown below:</p>
 <p><img src="/img/new_ui/dev/project/workflow-list.png" alt="workflow-list"></p>
 <p>The following are the operation functions of the workflow definition list:</p>
 <ul>
 <li><strong>Edit:</strong> Only &quot;Offline&quot; workflow definitions can be edited. Workflow DAG editing is the same as <a href="#creatDag">Create Workflow Definition</a> <!-- markdown-link-check-disable-line --></li>
-<li><strong>Online:</strong> When the workflow status is &quot;Offline&quot;, used to make workflow online. Only the workflow in the &quot;Online&quot; state can run, but cannot edit</li>
-<li><strong>Offline:</strong> When the workflow status is &quot;Online&quot;, used to make workflow offline. Only the workflow in the &quot;Offline&quot; state can be edited, but cannot run</li>
+<li><strong>Online:</strong> When the workflow status is &quot;Offline&quot;, used to make workflow online. Only the workflow in the &quot;Online&quot; state can run, but cannot edit.</li>
+<li><strong>Offline:</strong> When the workflow status is &quot;Online&quot;, used to make workflow offline. Only the workflow in the &quot;Offline&quot; state can be edited, but cannot run.</li>
 <li><strong>Run:</strong> Only workflow in the online state can run. See <a href="#run-the-workflow">2.3.3 Run Workflow</a> for the operation steps.</li>
-<li><strong>Timing:</strong> Timing can only set to online workflows, and the system automatically schedules to run the workflow on time. The status after creating a timing setting is &quot;offline&quot;, and the timing must set online on the timing management page to make effect. See <a href="#workflow-timing">2.3.4 Workflow Timing</a> for timing operation steps</li>
-<li><strong>Timing Management:</strong> The timing management page can edit, online or offline and delete timing</li>
+<li><strong>Timing:</strong> Timing can only set to online workflows, and the system automatically schedules to run the workflow on time. The status after creating a timing setting is &quot;offline&quot;, and the timing must set online on the timing management page to make effect. See <a href="#workflow-timing">2.3.4 Workflow Timing</a> for timing operation steps.</li>
+<li><strong>Timing Management:</strong> The timing management page can edit, online or offline and delete timing.</li>
 <li><strong>Delete:</strong> Delete the workflow definition. In the same project, only the workflow definition created by yourself can be deleted, and the workflow definition of other users cannot be deleted. If you need to delete it, please contact the user who created it or the administrator.</li>
-<li><strong>Download:</strong> Download workflow definition to local</li>
+<li><strong>Download:</strong> Download workflow definition to local.</li>
 <li><strong>Tree Diagram:</strong> Display the task node type and task status in a tree structure, as shown in the figure below:</li>
 </ul>
 <p><img src="/img/new_ui/dev/project/workflow-tree.png" alt="workflow-tree"></p>
 <h2>Run the Workflow</h2>
 <ul>
-<li>Click Project Management -&gt; Workflow -&gt; Workflow Definition to enter the workflow definition page, as shown in the figure below, click the &quot;Go Online&quot; button <img src="/img/online.png" width="35"/>to make workflow online.</li>
+<li>Click <code>Project Management -&gt; Workflow -&gt; Workflow Definition</code> to enter the workflow definition page, as shown in the figure below, click the &quot;Go Online&quot; button <img src="/img/online.png" width="35"/>to make workflow online.</li>
 </ul>
 <p><img src="/img/new_ui/dev/project/workflow-online.png" alt="workflow-online"></p>
 <ul>
-<li>Click the &quot;Run&quot; button to pop up the startup parameter setting window, as shown in the figure below, set the startup parameters, click the &quot;Run&quot; button in the pop-up box, the workflow starts running, and the workflow instance page generates a workflow instance.</li>
+<li>Click the <code>Run</code> button to pop up the startup parameter setting window, as shown in the figure below, set the startup parameters, click the <code>Run</code> button in the pop-up box, the workflow starts running, and the workflow instance page generates a workflow instance.</li>
 </ul>
 <p><img src="/img/new_ui/dev/project/workflow-run.png" alt="workflow-run"></p>
 <p>Description of workflow operating parameters:</p>
 <ul>
 <li>
-<p>Failure strategy: When a task node fails to execute, other parallel task nodes need to execute this strategy. &quot;Continue&quot; means: after a certain task fails, other task nodes execute normally; &quot;End&quot; means: terminate all tasks execution, and terminate the entire process</p>
+<p>Failure strategy: When a task node fails to execute, other parallel task nodes need to execute this strategy. &quot;Continue&quot; means: after a certain task fails, other task nodes execute normally; &quot;End&quot; means: terminate all tasks execution, and terminate the entire process.</p>
 </li>
 <li>
-<p>Notification strategy: When the process is over, send the process execution result notification email according to the process status, options including no send, send if sucess, send of failure, send whatever result</p>
+<p>Notification strategy: When the process is over, send the process execution result notification email according to the process status, options including no send, send if sucess, send of failure, send whatever result.</p>
 </li>
 <li>
-<p>Process priority: The priority of process operation, divide into five levels: highest (HIGHEST), high (HIGH), medium (MEDIUM), low (LOW), and lowest (LOWEST). When the number of master threads is insufficient, high priority processes will execute first in the execution queue, and processes with the same priority will execute in the order of first in, first out;</p>
+<p>Process priority: The priority of process operation, divide into five levels: highest (HIGHEST), high (HIGH), medium (MEDIUM), low (LOW), and lowest (LOWEST). When the number of master threads is insufficient, high priority processes will execute first in the execution queue, and processes with the same priority will execute in the order of first in, first out.</p>
 </li>
 <li>
-<p>Worker group: The process can only be executed in the specified worker machine group. The default is <code>Default</code>, which can execute on any worker</p>
+<p>Worker group: The process can only be executed in the specified worker machine group. The default is <code>Default</code>, which can execute on any worker.</p>
 </li>
 <li>
-<p>Notification group: select notification strategy||timeout alarm||when fault tolerance occurs, process result information or email will send to all members in the notification group</p>
+<p>Notification group: select notification strategy||timeout alarm||when fault tolerance occurs, process result information or email will send to all members in the notification group.</p>
 </li>
 <li>
-<p>Recipient: select notification policy||timeout alarm||when fault tolerance occurs, process result information or alarm email will be sent to the recipient list</p>
+<p>Recipient: select notification policy||timeout alarm||when fault tolerance occurs, process result information or alarm email will be sent to the recipient list.</p>
 </li>
 <li>
-<p>Cc: select notification policy||timeout alarm||when fault tolerance occurs, the process result information or warning email will be copied to the CC list</p>
+<p>Cc: select notification policy||timeout alarm||when fault tolerance occurs, the process result information or warning email will be copied to the CC list.</p>
 </li>
 <li>
-<p>Startup parameter: Set or overwrite global parameter values when starting a new process instance</p>
+<p>Startup parameter: Set or overwrite global parameter values when starting a new process instance.</p>
 </li>
 <li>
 <p>Complement: includes serial complement and parallel complement and supports manual date input and date selection. Serial complement defines, within the specified time range, executes the complements from the start date to the end date by sequential and N process instances are generated in sequence. Parallel complement defines executing the complement concurrently in the multiple days to generate N process instances within the specified time range. Manual date input defines: manually input the date following the date format <code>yyyy-MM-dd HH:mm:ss</code> and separate dates by a comma. Date selection defines: to select dates via UI.</p>
 <ul>
-<li>Dependent Mode: Trigger the complement of workflow instances that the downstream dependent node depends on the current workflow(It is required that the scheduled status of the workflow instance of the current replenishment is online, and only the downstream supplement directly dependent on the current workflow will be triggered)</li>
+<li>Dependent Mode: Trigger the complement of workflow instances that the downstream dependent node depends on the current workflow(It is required that the scheduled status of the workflow instance of the current replenishment is online, and only the downstream supplement directly dependent on the current workflow will be triggered).</li>
 <li>You can select complement time range (When the scheduled configuration is not online, the daily complement will be performed by default according to the selected time range.If the timing configuration is online, it will be complemented according to the selected time range in combination with the timing configuration) when executing a timing workflow definition. For example, need to fill in the data from 1st May to 10th May, as shown in the figure below:</li>
 </ul>
 <p><img src="/img/new_ui/dev/project/workflow-date.png" alt="workflow-date"></p>
@@ -129,17 +129,17 @@
 </ul>
 <h2>Run the task alone</h2>
 <ul>
-<li>Right-click the task and click the &quot;Start&quot; button (only online tasks can be clicked to run)</li>
+<li>Right-click the task and click the <code>Start</code> button (only online tasks can be clicked to run).</li>
 </ul>
 <p><img src="/img/new_ui/dev/project/workflow-task-run.png" alt="workflow-task-run"></p>
 <ul>
-<li>The startup parameter setting dialog box is displayed, and the parameter description is the same as <a href="#run-the-workflow">run the workflow</a></li>
+<li>The startup parameter setting dialog box is displayed, and the parameter description is the same as <a href="#run-the-workflow">run the workflow</a>.</li>
 </ul>
 <p><img src="/img/new_ui/dev/project/workflow-task-run-config.png" alt="workflow-task-run-config"></p>
 <h2>Workflow Timing</h2>
 <ul>
 <li>
-<p>Create timing: Click Project Management-&gt;Workflow-&gt;Workflow Definition, enter the workflow definition page, make the workflow online, click the &quot;timing&quot; button <img src="/img/timing.png" width="35"/> , the timing parameter setting dialog box pops up, as shown in the figure below:</p>
+<p>Create timing: Click <code>Project Management -&gt; Workflow-&gt; Workflow Definition</code>, enter the workflow definition page, make the workflow online, click the &quot;timing&quot; button <img src="/img/timing.png" width="35"/> , the timing parameter setting dialog box pops up, as shown in the figure below:</p>
 <p><img src="/img/new_ui/dev/project/workflow-time01.png" alt="workflow-time01"></p>
 </li>
 <li>
@@ -156,12 +156,12 @@
 <p>Click the &quot;Create&quot; button to create the timing. Now the timing status is &quot;<strong>Offline</strong>&quot; and the timing needs to be <strong>Online</strong> to make effect.</p>
 </li>
 <li>
-<p>Timing online: Click the &quot;Timing Management&quot; button <img src="/img/timeManagement.png" width="35"/>, enter the timing management page, click the &quot;online&quot; button, the timing status will change to &quot;online&quot;, as shown in the below figure, the workflow makes effect regularly.</p>
+<p>Timing online: Click the <code>Timing Management</code> button <img src="/img/timeManagement.png" width="35"/>, enter the timing management page, click the <code>online</code> button, the timing status will change to <code>online</code>, as shown in the below figure, the workflow makes effect regularly.</p>
 <p><img src="/img/new_ui/dev/project/workflow-time03.png" alt="workflow-time03"></p>
 </li>
 </ul>
 <h2>Import Workflow</h2>
-<p>Click Project Management -&gt; Workflow -&gt; Workflow Definition to enter the workflow definition page, click the &quot;Import Workflow&quot; button to import the local workflow file, the workflow definition list displays the imported workflow and the status is offline.</p>
+<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Definition</code> to enter the workflow definition page, click the <code>Import Workflow</code> button to import the local workflow file, the workflow definition list displays the imported workflow and the status is offline.</p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="/en-us/community/development/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li><li><a href="https://stackoverflow.com/questions/tagged/apache-dolphinscheduler"><img class="img-base" src="/img/stackoverflow.png"/><img class="img-change" src="/img/stackoverflow-selected.png"/><p>Stack Overflow</p></a></li><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li></ul></div><div class="cols-container"><div class="docu-container"><h4>Documentation</h4><ul><li><a href="/en-us/development/architecture-design.html"><p>Overview</p></a></li><li><a href="/en-us/docs/latest/user_doc/guide/quick-start.html"><p>Quick start</p></a></li><li><a href="/en-us/development/development-environment-setup.html"><p>Developer guide</p></a></li></ul></div><div></div><div class="asf-container"><h4>ASF</h4><ul><li><a href="http://www.apache.org"><p>Foundation</p></a></li><li><a href="http://www.apache.org/licenses/"><p>License</p></a></li><li><a href="http://www.apache.org/events/current-event"><p>Events</p></a></li><li><a href="http://www.apache.org/foundation/sponsorship.html"><p>Sponsorship</p></a></li><li><a href="http://www.apache.org/foundation/thanks.html"><p>Thanks</p></a></li></ul></div></div><div class="copyright"><span>Copyright © 2019-2021 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
