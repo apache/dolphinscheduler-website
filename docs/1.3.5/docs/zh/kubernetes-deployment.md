@@ -12,7 +12,8 @@
 > 仅包含最近 6 个月（从 2022 年 1 月起）的条目。 只有这个 url 才包含了：https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami 完整的 index.yaml。
 > 如果您想了解更多细节，请访问：https://github.com/bitnami/charts/issues/10833。
 >
-> 更改您的 `Chart.yaml` 并将所有 `repository: https://charts.bitnami.com/bitnami` 替换为 `repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami`
+> 下载源代码后，更改路径 `apache-dolphinscheduler-incubating-1.3.5-src-release/docker/kubernetes/dolphinscheduler` 中的 `Chart.yaml` 文件，需要同时修改两个地方，
+> 将 `repository: https://charts.bitnami.com/bitnami` 替换成 `repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami`
 
 请下载源码包 apache-dolphinscheduler-incubating-1.3.5-src.zip，下载地址: [下载](/zh-cn/download/download.html)
 
