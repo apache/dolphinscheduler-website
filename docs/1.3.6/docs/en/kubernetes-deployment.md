@@ -8,6 +8,16 @@
 
 ## Installing the Chart
 
+> NOTE: You need to change your `Chart.yaml` locally to make it work. Due to a change in the Bitnami repo,
+> https://charts.bitnami.com/bitnami was truncated only containing entries for the latest 6 months (from January 2022 on).
+> This URL: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami contains the full 'index.yaml'.
+>
+> See detail here: https://github.com/bitnami/charts/issues/10833.
+>
+> Change you `Chart.yaml` in path `apache-dolphinscheduler-1.3.6-src/docker/kubernetes/dolphinscheduler` after you download the source code
+> and replace two places from `repository: https://charts.bitnami.com/bitnami`
+> to `repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami`
+
 Please download the source code package apache-dolphinscheduler-1.3.6-src.tar.gz, download address: [download](/en-us/download/download.html)
 
 To install the chart with the release name `dolphinscheduler`, please execute the following commands:
