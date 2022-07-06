@@ -18,7 +18,7 @@ If you are a green hand and want to experience DolphinScheduler, we recommended 
 >
 > See detail here: https://github.com/bitnami/charts/issues/10833.
 >
-> Change you `Chart.yaml` in path `apache-dolphinscheduler-2.0.5-src/docker/kubernetes/dolphinscheduler` after you download from GitHub
+> Change you `Chart.yaml` in path `apache-dolphinscheduler-2.0.5-src/docker/kubernetes/dolphinscheduler` after you download the source code
 > and replace two places from `repository: https://charts.bitnami.com/bitnami`
 > to `repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami`
 
