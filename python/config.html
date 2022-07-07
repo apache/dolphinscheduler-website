@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -18,6 +19,8 @@
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/tabs.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -114,10 +117,10 @@ ways, <a class="reference external" href="bybash">Bash</a> and <a class="referen
 <p>Setting environment variables via <cite>Bash</cite> is the most straightforward and easiest way. We give some examples about
 how to change them by Bash.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modify Java Gateway Address</span>
-$ <span class="nb">export</span> <span class="nv">PYDS_JAVA_GATEWAY_ADDRESS</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span>
+<span class="nb">export</span> <span class="nv">PYDS_JAVA_GATEWAY_ADDRESS</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span>
 
 <span class="c1"># Modify Workflow Default User</span>
-$ <span class="nb">export</span> <span class="nv">PYDS_WORKFLOW_USER</span><span class="o">=</span><span class="s2">&quot;custom-user&quot;</span>
+<span class="nb">export</span> <span class="nv">PYDS_WORKFLOW_USER</span><span class="o">=</span><span class="s2">&quot;custom-user&quot;</span>
 </pre></div>
 </div>
 <p>After executing the commands above, both <code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_ADDRESS</span></code> and <code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_USER</span></code> will be changed.
@@ -226,13 +229,13 @@ configuration by file is the best choice.</p>
 <h3>Export Configuration File<a class="headerlink" href="#export-configuration-file" title="Permalink to this heading"></a></h3>
 <p>pydolphinscheduler allows you to change the built-in configurations via CLI or editor you like. pydolphinscheduler
 integrated built-in configurations in its package, but you could also export it locally by CLI</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pydolphinscheduler config --init
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler config --init
 </pre></div>
 </div>
 <p>And it will create a new YAML file in the path <cite>~/pydolphinscheduler/config.yaml</cite> by default. If you want to export
 it to another path, you should set <cite>PYDS_HOME</cite> before you run command <code class="code docutils literal notranslate"><span class="pre">pydolphinscheduler</span> <span class="pre">config</span> <span class="pre">--init</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PYDS_HOME</span><span class="o">=</span>&lt;CUSTOM_PATH&gt;
-$ pydolphinscheduler config --init
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PYDS_HOME</span><span class="o">=</span>&lt;CUSTOM_PATH&gt;
+pydolphinscheduler config --init
 </pre></div>
 </div>
 <p>After that, your configuration file will export into <cite>&lt;CUSTOM_PATH&gt;/config.yaml</cite> instead of the default path.</p>
@@ -245,36 +248,37 @@ when you run your workflow code.</p>
 <p>You could also query or change the configuration via CLI <code class="code docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span> <span class="pre">&lt;config&gt;</span></code> or <code class="code docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span> <span class="pre">&lt;config&gt;</span> <span class="pre">&lt;val&gt;</span></code>.
 Both <cite>–get</cite> and <cite>–set</cite> could be called one or more times in single command, and you could only set the leaf
 node of the configuration but could get the parent configuration, there are simple examples below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get single configuration in the leaf node</span>
-$ pydolphinscheduler config --get java_gateway.address
-The configuration query as below:
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get single configuration in the leaf node,</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># java_gateway.address = 127.0.0.1</span>
+pydolphinscheduler config --get java_gateway.address
 
-java_gateway.address <span class="o">=</span> <span class="m">127</span>.0.0.1
+<span class="c1"># Get multiple configuration in the leaf node,</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># java_gateway.address = 127.0.0.1</span>
+<span class="c1"># java_gateway.port = 25333</span>
+pydolphinscheduler config --get java_gateway.address --get java_gateway.port
 
-<span class="c1"># Get multiple configuration in the leaf node</span>
-$ pydolphinscheduler config --get java_gateway.address --get java_gateway.port
-The configuration query as below:
 
-java_gateway.address <span class="o">=</span> <span class="m">127</span>.0.0.1
-java_gateway.port <span class="o">=</span> <span class="m">25333</span>
+<span class="c1"># Get parent configuration which contain multiple leaf nodes,</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># java_gateway = ordereddict([(&#39;address&#39;, &#39;127.0.0.1&#39;), (&#39;port&#39;, 25333), (&#39;auto_convert&#39;, True)])</span>
+pydolphinscheduler config --get java_gateway
 
-<span class="c1"># Get parent configuration which contain multiple leaf nodes</span>
-$ pydolphinscheduler config --get java_gateway
-The configuration query as below:
-
-<span class="nv">java_gateway</span> <span class="o">=</span> ordereddict<span class="o">([(</span><span class="s1">&#39;address&#39;</span>, <span class="s1">&#39;127.0.0.1&#39;</span><span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;port&#39;</span>, <span class="m">25333</span><span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;auto_convert&#39;</span>, True<span class="o">)])</span>
-
-<span class="c1"># Set single configuration</span>
-$ pydolphinscheduler config --set java_gateway.address <span class="m">192</span>.168.1.1
-Set configuration <span class="k">done</span>.
+<span class="c1"># Set single configuration,</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># Set configuration done.</span>
+pydolphinscheduler config --set java_gateway.address <span class="m">192</span>.168.1.1
 
 <span class="c1"># Set multiple configuration</span>
-$ pydolphinscheduler config --set java_gateway.address <span class="m">192</span>.168.1.1 --set java_gateway.port <span class="m">25334</span>
-Set configuration <span class="k">done</span>.
+<span class="c1"># The output look like below:</span>
+<span class="c1"># Set configuration done.</span>
+pydolphinscheduler config --set java_gateway.address <span class="m">192</span>.168.1.1 --set java_gateway.port <span class="m">25334</span>
 
 <span class="c1"># Set configuration not in leaf node will fail</span>
-$ pydolphinscheduler config --set java_gateway <span class="m">192</span>.168.1.1,25334,True
-Raise error.
+<span class="c1"># The output look like below:</span>
+<span class="c1"># Raise error.</span>
+pydolphinscheduler config --set java_gateway <span class="m">192</span>.168.1.1,25334,True
 </pre></div>
 </div>
 <p>For more information about our CLI, you could see document <a class="reference internal" href="cli.html"><span class="doc">Command Line Interface</span></a>.</p>

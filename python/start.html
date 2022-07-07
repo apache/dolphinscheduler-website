@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -18,6 +19,8 @@
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/tabs.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -44,7 +47,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installing-python">Installing Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-pydolphinscheduler">Installing PyDolphinScheduler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-pydolphinscheduler-in-dev">Installing PyDolphinScheduler In Dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-pydolphinscheduler-in-dev-branch">Installing PyDolphinScheduler In DEV Branch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#start-python-gateway-service">Start Python Gateway Service</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#run-an-example">Run an Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-s-more">What’s More</a></li>
@@ -102,33 +105,41 @@ of <em>Pre-releases</em>.</p>
 typing and running <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> to check whether the installation
 is correct or not. If all thing good, you could see the version in console
 without error(here is a example after Python 3.8.7 installed)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python --version
-Python <span class="m">3</span>.8.7
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python --version
 </pre></div>
 </div>
+<p>Will see detail of Python version, such as <em>Python 3.8.7</em></p>
 </section>
 <section id="installing-pydolphinscheduler">
 <h2>Installing PyDolphinScheduler<a class="headerlink" href="#installing-pydolphinscheduler" title="Permalink to this heading"></a></h2>
 <p>After Python is already installed on your machine following section
 <a class="reference internal" href="#installing-python">installing Python</a>, it easy to <em>PyDolphinScheduler</em> by pip.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install apache-dolphinscheduler
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install apache-dolphinscheduler
 </pre></div>
 </div>
 <p>The latest version of <em>PyDolphinScheduler</em> would be installed after you run above
 command in your terminal. You could go and <a class="reference internal" href="#start-python-gateway-service">start Python Gateway Service</a> to finish
 the prepare, and then go to <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> to make your hand dirty. But if you
 want to install the unreleased version of <em>PyDolphinScheduler</em>, you could go and see
-section <a class="reference internal" href="#installing-pydolphinscheduler-in-dev">installing PyDolphinScheduler in dev</a> for more detail.</p>
+section <a class="reference internal" href="#installing-pydolphinscheduler-in-dev-branch">installing PyDolphinScheduler in dev branch</a> for more detail.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, we released multiple pre-release package in PyPI, you can see all released package
+including pre-release in <a class="reference external" href="https://pypi.org/project/apache-dolphinscheduler/#history">release history</a>.
+You can fix the the package version if you want to install pre-release package, for example if
+you want to install version <cite>3.0.0-beta-2</cite> package, you can run command
+<code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">apache-dolphinscheduler==3.0.0b2</span></code>.</p>
+</div>
 </section>
-<section id="installing-pydolphinscheduler-in-dev">
-<h2>Installing PyDolphinScheduler In Dev<a class="headerlink" href="#installing-pydolphinscheduler-in-dev" title="Permalink to this heading"></a></h2>
+<section id="installing-pydolphinscheduler-in-dev-branch">
+<h2>Installing PyDolphinScheduler In DEV Branch<a class="headerlink" href="#installing-pydolphinscheduler-in-dev-branch" title="Permalink to this heading"></a></h2>
 <p>Because the project is developing and some of the features still not release.
 If you want to try some thing unreleased you could install from the source code
 which we hold in GitHub</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clone Apache DolphinScheduler repository</span>
-$ git clone git@github.com:apache/dolphinscheduler.git
+git clone git@github.com:apache/dolphinscheduler.git
 <span class="c1"># Install PyDolphinScheduler in develop mode</span>
-$ <span class="nb">cd</span> dolphinscheduler-python/pydolphinscheduler <span class="o">&amp;&amp;</span> pip install -e .
+<span class="nb">cd</span> dolphinscheduler-python/pydolphinscheduler <span class="o">&amp;&amp;</span> python -m pip install -e .
 </pre></div>
 </div>
 <p>After you installed <em>PyDolphinScheduler</em>, please remember <a class="reference internal" href="#start-python-gateway-service">start Python Gateway Service</a>
@@ -142,15 +153,15 @@ could define workflow and tasks structure, but could not run it unless you
 Python gateway service in it. We only and some key steps here and you could
 go <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a> for more detail</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start DolphinScheduler api-server which including python gateway service</span>
-$ ./bin/dolphinscheduler-daemon.sh start api-server
+./bin/dolphinscheduler-daemon.sh start api-server
 </pre></div>
 </div>
 <p>To check whether the server is alive or not, you could run <code class="code docutils literal notranslate"><span class="pre">jps</span></code>. And
 the server is health if keyword <cite>ApiApplicationServer</cite> in the console.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ jps
-....
-<span class="m">201472</span> ApiApplicationServer
-....
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jps
+<span class="c1"># ....</span>
+<span class="c1"># 201472 ApiApplicationServer</span>
+<span class="c1"># ....</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -164,19 +175,19 @@ The default value is true and Python gateway service start when api server is be
 <h2>Run an Example<a class="headerlink" href="#run-an-example" title="Permalink to this heading"></a></h2>
 <p>Before run an example for pydolphinscheduler, you should get the example code from it source code. You could run
 single bash command to get it</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget https://raw.githubusercontent.com/apache/dolphinscheduler/dev/dolphinscheduler-python/pydolphinscheduler/src/pydolphinscheduler/examples/tutorial.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://raw.githubusercontent.com/apache/dolphinscheduler/dev/dolphinscheduler-python/pydolphinscheduler/src/pydolphinscheduler/examples/tutorial.py
 </pre></div>
 </div>
 <p>or you could copy-paste the content from <a class="reference external" href="https://raw.githubusercontent.com/apache/dolphinscheduler/dev/dolphinscheduler-python/pydolphinscheduler/src/pydolphinscheduler/examples/tutorial.py">tutorial source code</a>. And then you could run the example in your
 terminal</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python tutorial.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python tutorial.py
 </pre></div>
 </div>
 <p>If you want to submit your workflow to a remote API server, which means that your workflow script is different
 from the API server, you should first change pydolphinscheduler configuration and then submit the workflow script</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pydolphinscheduler config --init
-$ pydolphinscheduler config --set java_gateway.address &lt;your-api-server-ip-or-hostname&gt;
-$ python tutorial.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler config --init
+pydolphinscheduler config --set java_gateway.address &lt;YOUR-API-SERVER-IP-OR-HOSTNAME&gt;
+python tutorial.py
 </pre></div>
 </div>
 <div class="admonition note">

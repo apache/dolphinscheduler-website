@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -18,6 +19,8 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/tabs.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -92,21 +95,21 @@ in your server machine and submit the workflow code from your development machin
 is supported by pydolphinscheduler out of box with one or two single command lines.</p>
 <section id="export-configuration-file">
 <h2>Export Configuration File<a class="headerlink" href="#export-configuration-file" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pydolphinscheduler config --init
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler config --init
 </pre></div>
 </div>
 <p>your could find more detail in <a class="reference internal" href="../config.html#export-configuration-file"><span class="std std-ref">configuration exporting</span></a></p>
 </section>
 <section id="run-api-server-in-other-host">
 <h2>Run API Server in Other Host<a class="headerlink" href="#run-api-server-in-other-host" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pydolphinscheduler config --set java_gateway.address &lt;your-api-server-ip-or-hostname&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler config --set java_gateway.address &lt;your-api-server-ip-or-hostname&gt;
 </pre></div>
 </div>
 <p>your could find more detail in <a class="reference internal" href="../config.html#change-configuration"><span class="std std-ref">configuration setting</span></a></p>
 </section>
 <section id="run-api-server-in-other-port">
 <h2>Run API Server in Other Port<a class="headerlink" href="#run-api-server-in-other-port" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pydolphinscheduler config --set java_gateway.port &lt;your-python-gateway-service-port&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler config --set java_gateway.port &lt;your-python-gateway-service-port&gt;
 </pre></div>
 </div>
 <p>your could find more detail in <a class="reference internal" href="../config.html#change-configuration"><span class="std std-ref">configuration setting</span></a></p>

@@ -20,6 +20,15 @@
 <li>PV provisioner support in the underlying infrastructure</li>
 </ul>
 <h2>Install the Chart</h2>
+<blockquote>
+<p>NOTE: You need to change your <code>Chart.yaml</code> locally to make it work. Due to a change in the Bitnami repo,
+<a href="https://charts.bitnami.com/bitnami">https://charts.bitnami.com/bitnami</a> was truncated only containing entries for the latest 6 months (from January 2022 on).
+This URL: <a href="https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami">https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami</a> contains the full 'index.yaml'.</p>
+<p>See detail here: <a href="https://github.com/bitnami/charts/issues/10833">https://github.com/bitnami/charts/issues/10833</a>.</p>
+<p>Change you <code>Chart.yaml</code> in path <code>apache-dolphinscheduler-2.0.3-src/docker/kubernetes/dolphinscheduler</code> after you download the source code
+and replace two places from <code>repository: https://charts.bitnami.com/bitnami</code>
+to <code>repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami</code></p>
+</blockquote>
 <p>Please download the source code package apache-dolphinscheduler-2.0.3-src.tar.gz, download address: <a href="/en-us/download/download.html">download</a></p>
 <p>To install the chart with the release name <code>dolphinscheduler</code>, please execute the following commands:</p>
 <pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.3-src.tar.gz
@@ -1738,8 +1747,8 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.3e36ada.js"></script>
-  <script src="/build/docs.md.1d6328a.js"></script>
+  <script src="/build/vendor.a476297.js"></script>
+  <script src="/build/docs.md.56ff332.js"></script>
   <script>
     var _hmt = _hmt || [];
     (function() {

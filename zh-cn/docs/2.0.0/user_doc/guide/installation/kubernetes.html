@@ -20,6 +20,13 @@
 <li>PV 供应(需要基础设施支持)</li>
 </ul>
 <h2>安装 dolphinscheduler</h2>
+<blockquote>
+<p>注意：您需要在本地更改 <code>Chart.yaml</code> 文件才能使其正常工作。 由于 Bitnami 存储库的更改，<a href="https://charts.bitnami.com/bitnami">https://charts.bitnami.com/bitnami</a> 被截断，
+仅包含最近 6 个月（从 2022 年 1 月起）的条目。 只有这个 url 才包含了：<a href="https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami">https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami</a> 完整的 index.yaml。
+如果您想了解更多细节，请访问：<a href="https://github.com/bitnami/charts/issues/10833%E3%80%82">https://github.com/bitnami/charts/issues/10833。</a></p>
+<p>下载源代码后，更改路径 <code>apache-dolphinscheduler-2.0.0-src/docker/kubernetes/dolphinscheduler</code> 中的 <code>Chart.yaml</code> 文件，需要同时修改两个地方，
+将 <code>repository: https://charts.bitnami.com/bitnami</code> 替换成 <code>repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami</code></p>
+</blockquote>
 <p>请下载源码包 apache-dolphinscheduler-2.0.0-src.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a></p>
 <p>发布一个名为 <code>dolphinscheduler</code> 的版本(release)，请执行以下命令：</p>
 <pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.0-src.tar.gz
@@ -1734,8 +1741,8 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.3e36ada.js"></script>
-  <script src="/build/docs.md.1d6328a.js"></script>
+  <script src="/build/vendor.a476297.js"></script>
+  <script src="/build/docs.md.56ff332.js"></script>
   <script>
     var _hmt = _hmt || [];
     (function() {
