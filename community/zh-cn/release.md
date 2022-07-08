@@ -465,6 +465,19 @@ Thanks everyone for taking time to check this release and help us.
 svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/"${VERSION}" https://dist.apache.org/repos/dist/release/dolphinscheduler/
 ```
 
+### 将 gpg KEYS svn的dev目录移动到release目录
+
+只有你第一次使用该 KEY 发版时才需要，如果之前已经发过版且 KEY 没有变化则不需要
+
+```shell
+mkdir -p ~/ds_svn/release/
+cd ~/ds_svn/release/
+svn --username="${A_USERNAME}" co https://dist.apache.org/repos/dist/release/dolphinscheduler
+gpg -a --export <YOUR-GPG-KEY-ID> >> KEYS
+svn add *
+svn --username="${A_USERNAME}" commit -m "new key <YOUR-GPG-KEY-ID> add"
+```
+
 ### 更新文档
 
 官网应该在您发送通知邮件之前完成更新，本节将告诉您如何更改网站。假设发版的版本是 `<VERSION>`，需要进行以下更新（注意，当修改pull requests 被 merge 后就会生效）:
