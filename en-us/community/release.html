@@ -369,8 +369,17 @@ xxx
 Thanks everyone for taking time to check this release and help us.
 </code></pre>
 <h2>Finish the Release</h2>
-<h3>Move source packages, binary packages and KEYS from the <code>dev</code> directory to <code>release</code> directory</h3>
+<h3>Move source packages, binary packages from the <code>dev</code> directory to <code>release</code> directory</h3>
 <pre><code class="language-shell">svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/&quot;${VERSION}&quot; https://dist.apache.org/repos/dist/release/dolphinscheduler/
+</code></pre>
+<h3>Export you new gpg KEYS from dev to release(optional)</h3>
+<p>Only if the first time you release with this gpg KEY, including it is you first release or you change your KEY</p>
+<pre><code class="language-shell">mkdir -p ~/ds_svn/release/
+cd ~/ds_svn/release/
+svn --username=&quot;${A_USERNAME}&quot; co https://dist.apache.org/repos/dist/release/dolphinscheduler
+gpg -a --export &lt;YOUR-GPG-KEY-ID&gt; &gt;&gt; KEYS
+svn add *
+svn --username=&quot;${A_USERNAME}&quot; commit -m &quot;new key &lt;YOUR-GPG-KEY-ID&gt; add&quot;
 </code></pre>
 <h3>Update Document</h3>
 <p>Website should be present before you send the announce mail this section will tell you how to change the website. For example,
