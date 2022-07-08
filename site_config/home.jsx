@@ -269,6 +269,12 @@ export default {
         {
           img: '/img/ourusers/sutpc.png',
         },
+        {
+          img: '/img/ourusers/yili.png',
+        },
+        {
+          img: '/img/ourusers/atguigu.png',
+        },
       ],
     },
     userreview: {
@@ -540,6 +546,12 @@ export default {
         },
         {
           img: '/img/ourusers/sutpc.png',
+        },
+        {
+          img: '/img/ourusers/yili.png',
+        },
+        {
+          img: '/img/ourusers/atguigu.png',
         },
       ],
     },
