@@ -272,6 +272,9 @@ export default {
         {
           img: '/img/ourusers/yili.png',
         },
+        {
+          img: '/img/ourusers/atguigu.png',
+        },
       ],
     },
     userreview: {
@@ -546,6 +549,9 @@ export default {
         },
         {
           img: '/img/ourusers/yili.png',
+        },
+        {
+          img: '/img/ourusers/atguigu.png',
         },
       ],
     },
