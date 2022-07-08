@@ -463,10 +463,23 @@ Thanks everyone for taking time to check this release and help us.
 
 ## Finish the Release
 
-### Move source packages, binary packages and KEYS from the `dev` directory to `release` directory
+### Move source packages, binary packages from the `dev` directory to `release` directory
 
 ```shell
 svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/"${VERSION}" https://dist.apache.org/repos/dist/release/dolphinscheduler/
+```
+
+### Export you new gpg KEYS from dev to release(optional)
+
+Only if the first time you release with this gpg KEY, including it is you first release or you change your KEY
+
+```shell
+mkdir -p ~/ds_svn/release/
+cd ~/ds_svn/release/
+svn --username="${A_USERNAME}" co https://dist.apache.org/repos/dist/release/dolphinscheduler
+gpg -a --export <YOUR-GPG-KEY-ID> >> KEYS
+svn add *
+svn --username="${A_USERNAME}" commit -m "new key <YOUR-GPG-KEY-ID> add"
 ```
 
 ### Update Document
