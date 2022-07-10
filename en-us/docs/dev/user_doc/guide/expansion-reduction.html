@@ -131,19 +131,19 @@ workers=&quot;existing worker01:default,existing worker02:default,ds3:default,ds
 
 bin/stop-all.sh # stop all services
 
-sh bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
-sh bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-sh bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
-sh bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
+bash bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
+bash bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
+bash bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
+bash bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
 <span class="hljs-meta">
 
 #</span><span class="bash"> start <span class="hljs-built_in">command</span>::</span>
 bin/start-all.sh # start all services
 
-sh bin/dolphinscheduler-daemon.sh start master-server  # start master service
-sh bin/dolphinscheduler-daemon.sh start worker-server  # start worker service
-sh bin/dolphinscheduler-daemon.sh start api-server     # start api    service
-sh bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service
+bash bin/dolphinscheduler-daemon.sh start master-server  # start master service
+bash bin/dolphinscheduler-daemon.sh start worker-server  # start worker service
+bash bin/dolphinscheduler-daemon.sh start api-server     # start api    service
+bash bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service
 
 </code></pre>
 <pre><code> Attention: When using `stop-all.sh` or `stop-all.sh`, if the physical machine execute the command is not configured to be ssh-free on all machines, it will prompt to enter the password
@@ -176,19 +176,19 @@ There are two steps for shrinking. After performing the following two steps, the
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> stop <span class="hljs-built_in">command</span>:</span>
 bin/stop-all.sh # stop all services
 
-sh bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
-sh bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-sh bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
-sh bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
+bash bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
+bash bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
+bash bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
+bash bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
 <span class="hljs-meta">
 
 #</span><span class="bash"> start <span class="hljs-built_in">command</span>:</span>
 bin/start-all.sh # start all services
 
-sh bin/dolphinscheduler-daemon.sh start master-server # start master service
-sh bin/dolphinscheduler-daemon.sh start worker-server # start worker service
-sh bin/dolphinscheduler-daemon.sh start api-server    # start api    service
-sh bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
+bash bin/dolphinscheduler-daemon.sh start master-server # start master service
+bash bin/dolphinscheduler-daemon.sh start worker-server # start worker service
+bash bin/dolphinscheduler-daemon.sh start api-server    # start api    service
+bash bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
 
 </code></pre>
 <pre><code> Attention: When using `stop-all.sh` or `stop-all.sh`, if the machine without the command is not configured to be ssh-free for all machines, it will prompt to enter the password

@@ -28,16 +28,16 @@ When Standalone stops or restarts, in-memory H2 database will clear up. To use S
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> Extract and start Standalone Server</span>
 tar -xvzf apache-dolphinscheduler-*-bin.tar.gz
 cd apache-dolphinscheduler-*-bin
-sh ./bin/dolphinscheduler-daemon.sh start standalone-server
+bash ./bin/dolphinscheduler-daemon.sh start standalone-server
 </code></pre>
 <h3>Login DolphinScheduler</h3>
 <p>Access address <code>http://localhost:12345/dolphinscheduler/ui</code> and login DolphinScheduler UI. The default username and password are <strong>admin/dolphinscheduler123</strong></p>
 <h3>Start or Stop Server</h3>
 <p>The script <code>./bin/dolphinscheduler-daemon.sh</code>can be used not only quickly start standalone, but also to stop the service operation. The following are all the commands:</p>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> Start Standalone Server</span>
-sh ./bin/dolphinscheduler-daemon.sh start standalone-server
+bash ./bin/dolphinscheduler-daemon.sh start standalone-server
 <span class="hljs-meta">#</span><span class="bash"> Stop Standalone Server</span>
-sh ./bin/dolphinscheduler-daemon.sh stop standalone-server
+bash ./bin/dolphinscheduler-daemon.sh stop standalone-server
 </code></pre>
 <blockquote>
 <p>Note: Python gateway service is started along with the api-server, and if you do not want to start Python gateway

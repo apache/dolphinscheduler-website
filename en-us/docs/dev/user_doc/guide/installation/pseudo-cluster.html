@@ -136,7 +136,7 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME/bin:
 <p>Follow the instructions in <a href="../howto/datasource-setting.md">datasource-setting</a> <code>Pseudo-Cluster/Cluster Initialize the Database</code> section to create and initialize database</p>
 <h2>Start DolphinScheduler</h2>
 <p>Use <strong>deployment user</strong> you created above, running the following command to complete the deployment, and the server log will be stored in the logs folder.</p>
-<pre><code class="language-shell">sh ./bin/install.sh
+<pre><code class="language-shell">bash ./bin/install.sh
 </code></pre>
 <blockquote>
 <p><strong><em>Note:</em></strong> For the first time deployment, there maybe occur five times of <code>sh: bin/dolphinscheduler-daemon.sh: No such file or directory</code> in the terminal,
@@ -146,26 +146,26 @@ this is non-important information that you can ignore.</p>
 <p>Access address <code>http://localhost:12345/dolphinscheduler/ui</code> and login DolphinScheduler UI. The default username and password are <strong>admin/dolphinscheduler123</strong></p>
 <h2>Start or Stop Server</h2>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> Stop all DolphinScheduler server</span>
-sh ./bin/stop-all.sh
+bash ./bin/stop-all.sh
 <span class="hljs-meta">
 #</span><span class="bash"> Start all DolphinScheduler server</span>
-sh ./bin/start-all.sh
+bash ./bin/start-all.sh
 <span class="hljs-meta">
 #</span><span class="bash"> Start or stop DolphinScheduler Master</span>
-sh ./bin/dolphinscheduler-daemon.sh stop master-server
-sh ./bin/dolphinscheduler-daemon.sh start master-server
+bash ./bin/dolphinscheduler-daemon.sh stop master-server
+bash ./bin/dolphinscheduler-daemon.sh start master-server
 <span class="hljs-meta">
 #</span><span class="bash"> Start or stop DolphinScheduler Worker</span>
-sh ./bin/dolphinscheduler-daemon.sh start worker-server
-sh ./bin/dolphinscheduler-daemon.sh stop worker-server
+bash ./bin/dolphinscheduler-daemon.sh start worker-server
+bash ./bin/dolphinscheduler-daemon.sh stop worker-server
 <span class="hljs-meta">
 #</span><span class="bash"> Start or stop DolphinScheduler Api</span>
-sh ./bin/dolphinscheduler-daemon.sh start api-server
-sh ./bin/dolphinscheduler-daemon.sh stop api-server
+bash ./bin/dolphinscheduler-daemon.sh start api-server
+bash ./bin/dolphinscheduler-daemon.sh stop api-server
 <span class="hljs-meta">
 #</span><span class="bash"> Start or stop Alert</span>
-sh ./bin/dolphinscheduler-daemon.sh start alert-server
-sh ./bin/dolphinscheduler-daemon.sh stop alert-server
+bash ./bin/dolphinscheduler-daemon.sh start alert-server
+bash ./bin/dolphinscheduler-daemon.sh stop alert-server
 </code></pre>
 <blockquote>
 <p><strong><em>Note1:</em></strong>: Each server have <code>dolphinscheduler_env.sh</code> file in path <code>&lt;server-name&gt;/conf/dolphinscheduler_env.sh</code> which

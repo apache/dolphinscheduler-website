@@ -28,16 +28,16 @@
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 解压并运行 Standalone Server</span>
 tar -xvzf apache-dolphinscheduler-*-bin.tar.gz
 cd apache-dolphinscheduler-*-bin
-sh ./bin/dolphinscheduler-daemon.sh start standalone-server
+bash ./bin/dolphinscheduler-daemon.sh start standalone-server
 </code></pre>
 <h3>登录 DolphinScheduler</h3>
 <p>浏览器访问地址 <a href="http://localhost:12345/dolphinscheduler/ui">http://localhost:12345/dolphinscheduler/ui</a> 即可登录系统UI。默认的用户名和密码是 <strong>admin/dolphinscheduler123</strong></p>
 <h2>启停服务</h2>
 <p>脚本 <code>./bin/dolphinscheduler-daemon.sh</code> 除了可以快捷启动 standalone 外，还能停止服务运行，全部命令如下</p>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 启动 Standalone Server 服务</span>
-sh ./bin/dolphinscheduler-daemon.sh start standalone-server
+bash ./bin/dolphinscheduler-daemon.sh start standalone-server
 <span class="hljs-meta">#</span><span class="bash"> 停止 Standalone Server 服务</span>
-sh ./bin/dolphinscheduler-daemon.sh stop standalone-server
+bash ./bin/dolphinscheduler-daemon.sh stop standalone-server
 </code></pre>
 <h2>配置数据库</h2>
 <p>Standalone server 使用 H2 数据库作为其元数据存储数据，这是为了上手简单，用户在启动服务器之前不需要启动数据库。但是如果用户想将元数据库存储在

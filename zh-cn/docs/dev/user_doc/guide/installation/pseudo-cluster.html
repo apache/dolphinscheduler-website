@@ -133,7 +133,7 @@ deployUser=&quot;dolphinscheduler&quot;
 <p>请参考 <a href="../howto/datasource-setting.md">数据源配置</a> <code>伪分布式/分布式安装初始化数据库</code> 创建并初始化数据库</p>
 <h2>启动 DolphinScheduler</h2>
 <p>使用上面创建的<strong>部署用户</strong>运行以下命令完成部署，部署后的运行日志将存放在 logs 文件夹内</p>
-<pre><code class="language-shell">sh ./bin/install.sh
+<pre><code class="language-shell">bash ./bin/install.sh
 </code></pre>
 <blockquote>
 <p><strong><em>注意:</em></strong> 第一次部署的话，可能出现 5 次<code>sh: bin/dolphinscheduler-daemon.sh: No such file or directory</code>相关信息，次为非重要信息直接忽略即可</p>
@@ -142,26 +142,26 @@ deployUser=&quot;dolphinscheduler&quot;
 <p>浏览器访问地址 <a href="http://localhost:12345/dolphinscheduler/ui">http://localhost:12345/dolphinscheduler/ui</a> 即可登录系统UI。默认的用户名和密码是 <strong>admin/dolphinscheduler123</strong></p>
 <h2>启停服务</h2>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 一键停止集群所有服务</span>
-sh ./bin/stop-all.sh
+bash ./bin/stop-all.sh
 <span class="hljs-meta">
 #</span><span class="bash"> 一键开启集群所有服务</span>
-sh ./bin/start-all.sh
+bash ./bin/start-all.sh
 <span class="hljs-meta">
 #</span><span class="bash"> 启停 Master</span>
-sh ./bin/dolphinscheduler-daemon.sh stop master-server
-sh ./bin/dolphinscheduler-daemon.sh start master-server
+bash ./bin/dolphinscheduler-daemon.sh stop master-server
+bash ./bin/dolphinscheduler-daemon.sh start master-server
 <span class="hljs-meta">
 #</span><span class="bash"> 启停 Worker</span>
-sh ./bin/dolphinscheduler-daemon.sh start worker-server
-sh ./bin/dolphinscheduler-daemon.sh stop worker-server
+bash ./bin/dolphinscheduler-daemon.sh start worker-server
+bash ./bin/dolphinscheduler-daemon.sh stop worker-server
 <span class="hljs-meta">
 #</span><span class="bash"> 启停 Api</span>
-sh ./bin/dolphinscheduler-daemon.sh start api-server
-sh ./bin/dolphinscheduler-daemon.sh stop api-server
+bash ./bin/dolphinscheduler-daemon.sh start api-server
+bash ./bin/dolphinscheduler-daemon.sh stop api-server
 <span class="hljs-meta">
 #</span><span class="bash"> 启停 Alert</span>
-sh ./bin/dolphinscheduler-daemon.sh start alert-server
-sh ./bin/dolphinscheduler-daemon.sh stop alert-server
+bash ./bin/dolphinscheduler-daemon.sh start alert-server
+bash ./bin/dolphinscheduler-daemon.sh stop alert-server
 </code></pre>
 <blockquote>
 <p><strong><em>注意1:</em></strong>: 每个服务在路径 <code>&lt;server-name&gt;/conf/dolphinscheduler_env.sh</code> 中都有 <code>dolphinscheduler_env.sh</code> 文件，这是可以为微
