@@ -78,7 +78,7 @@ docker compose up
 <li>ds.task.execution.count.by.type: (counter) the number of task executions grouped by tag <code>task_type</code></li>
 <li>ds.task.running: (gauge) the number of running tasks</li>
 <li>ds.task.prepared: (gauge) the number of tasks prepared for task queue</li>
-<li>ds.task.execution.count: (histogram) the number of executed tasks</li>
+<li>ds.task.execution.count: (counter) the number of executed tasks</li>
 <li>ds.task.execution.duration: (histogram) duration of task executions</li>
 </ul>
 <h3>Workflow Related Metrics</h3>
@@ -106,6 +106,9 @@ docker compose up
 <ul>
 <li>ds.worker.overload.count: (counter) the number of times the worker overloaded</li>
 <li>ds.worker.full.submit.queue.count: (counter) the number of times the worker's submit queue being full</li>
+<li>ds.worker.resource.download.count: (counter) the number of downloaded resource files on workers, sliced by tag <code>status</code></li>
+<li>ds.worker.resource.download.duration: (histogram) the time cost of resource download on workers</li>
+<li>ds.worker.resource.download.size: (histogram) the sizes of downloaded resource files on workers (bytes)</li>
 </ul>
 <h3>Api Server Metrics</h3>
 <ul>

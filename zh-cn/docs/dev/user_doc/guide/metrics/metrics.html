@@ -107,6 +107,9 @@ docker compose up
 <ul>
 <li>ds.worker.overload.count: (counter) worker过载次数</li>
 <li>ds.worker.full.submit.queue.count: (counter) worker提交队列全满次数</li>
+<li>ds.worker.resource.download.count: (counter) worker下载资源文件的次数，可由<code>status</code>标签切分</li>
+<li>ds.worker.resource.download.duration: (histogram) worker下载资源文件时花费的时间分布</li>
+<li>ds.worker.resource.download.size: (histogram) worker下载资源文件大小的分布（bytes）</li>
 </ul>
 <h3>Api Server指标</h3>
 <ul>
