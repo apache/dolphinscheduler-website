@@ -141,6 +141,9 @@
 <span class="sd">        thought Web UI after it :func:`submit` or :func:`run`. It will create a new project belongs to</span>
 <span class="sd">        ``user`` if it does not exists. And when ``project`` exists but project&#39;s create do not belongs</span>
 <span class="sd">        to ``user``, will grant `project` to ``user`` automatically.</span>
+<span class="sd">    :param resource_list: Resource files required by the current process definition.You can create and modify</span>
+<span class="sd">        resource files from this field. When the process definition is submitted, these resource files are also</span>
+<span class="sd">        submitted along with it.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># key attribute for identify ProcessDefinition object</span>
@@ -166,6 +169,7 @@
         <span class="s2">&quot;tasks&quot;</span><span class="p">,</span>
         <span class="s2">&quot;task_definition_json&quot;</span><span class="p">,</span>
         <span class="s2">&quot;task_relation_json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resource_list&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -185,6 +189,7 @@
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">release_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_RELEASE_STATE</span><span class="p">,</span>
         <span class="n">param</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="n">schedule</span>
@@ -210,6 +215,7 @@
         <span class="c1"># TODO how to fix circle import</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="s2">&quot;TaskRelation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># noqa: F821</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition_code</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span> <span class="o">=</span> <span class="n">resource_list</span> <span class="ow">or</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ProcessDefinition&quot;</span><span class="p">:</span>
         <span class="n">ProcessDefinitionContext</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -485,6 +491,14 @@
             <span class="kc">None</span><span class="p">,</span>
             <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">:</span>
+                <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">createOrUpdateResource</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+                <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition_code</span></div>
 
 <div class="viewcode-block" id="ProcessDefinition.start"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
