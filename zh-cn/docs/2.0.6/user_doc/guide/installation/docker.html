@@ -34,21 +34,21 @@
 <li><strong>WSL 2 模式</strong>：参考 <a href="https://docs.microsoft.com/zh-cn/windows/wsl/wsl-config#configure-global-options-with-wslconfig">WSL 2 utility VM</a></li>
 </ul>
 <h4>1、下载源码包</h4>
-<p>请下载源码包 apache-dolphinscheduler-2.0.5-src.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a></p>
+<p>请下载源码包 apache-dolphinscheduler-2.0.6-src.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a></p>
 <h4>2、拉取镜像并启动服务</h4>
 <blockquote>
 <p>对于 Mac 和 Linux 用户，打开 <strong>Terminal</strong>
 对于 Windows Docker Toolbox 用户，打开 <strong>Docker Quickstart Terminal</strong>
 对于 Windows Docker Desktop 用户，打开 <strong>Windows PowerShell</strong></p>
 </blockquote>
-<pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.5-src.tar.gz
-$ cd apache-dolphinscheduler-2.0.5-src/docker/docker-swarm
-$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
-$ docker tag apache/dolphinscheduler:2.0.5 apache/dolphinscheduler:latest
+<pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.6-src.tar.gz
+$ cd apache-dolphinscheduler-2.0.6-src/docker/docker-swarm
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
+$ docker tag apache/dolphinscheduler:2.0.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 </code></pre>
 <blockquote>
-<p>PowerShell 应该使用 <code>cd apache-dolphinscheduler-2.0.5-src\docker\docker-swarm</code></p>
+<p>PowerShell 应该使用 <code>cd apache-dolphinscheduler-2.0.6-src\docker\docker-swarm</code></p>
 </blockquote>
 <p><strong>PostgreSQL</strong> (用户 <code>root</code>, 密码 <code>root</code>, 数据库 <code>dolphinscheduler</code>) 和 <strong>ZooKeeper</strong> 服务将会默认启动</p>
 <h4>3、登录系统</h4>
@@ -70,7 +70,7 @@ $ docker-compose up -d
 <h4>3、初始化数据库，导入 <code>sql/dolphinscheduler_postgre.sql</code> 进行创建表及基础数据导入</h4>
 <h4>4、下载 DolphinScheduler 镜像</h4>
 <p>我们已将面向用户的 DolphinScheduler 镜像上传至 docker 仓库，用户无需在本地构建镜像，直接执行以下命令从 docker 仓库 pull 镜像：</p>
-<pre><code>docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 </code></pre>
 <h4>5、运行一个 DolphinScheduler 实例</h4>
 <pre><code>$ docker run -d --name dolphinscheduler \
@@ -78,7 +78,7 @@ $ docker-compose up -d
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
 -e ZOOKEEPER_QUORUM=&quot;192.168.x.x:2181&quot; \
 -p 12345:12345 \
-apache/dolphinscheduler:2.0.5 all
+apache/dolphinscheduler:2.0.6 all
 </code></pre>
 <p>注：数据库用户 test 和密码 test 需要替换为实际的 PostgreSQL 用户和密码，192.168.x.x 需要替换为 PostgreSQL 和 ZooKeeper 的主机 IP</p>
 <h4>6、登录系统</h4>
@@ -101,7 +101,7 @@ apache/dolphinscheduler:2.0.5 all
 -e DATABASE_HOST=&quot;192.168.x.x&quot; -e DATABASE_PORT=&quot;5432&quot; -e DATABASE_DATABASE=&quot;dolphinscheduler&quot; \
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
 -e ZOOKEEPER_QUORUM=&quot;192.168.x.x:2181&quot; \
-apache/dolphinscheduler:2.0.5 master-server
+apache/dolphinscheduler:2.0.6 master-server
 </code></pre>
 <ul>
 <li>启动一个 <strong>worker server</strong> (包括 <strong>logger server</strong>), 如下:</li>
@@ -110,7 +110,7 @@ apache/dolphinscheduler:2.0.5 master-server
 -e DATABASE_HOST=&quot;192.168.x.x&quot; -e DATABASE_PORT=&quot;5432&quot; -e DATABASE_DATABASE=&quot;dolphinscheduler&quot; \
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
 -e ZOOKEEPER_QUORUM=&quot;192.168.x.x:2181&quot; \
-apache/dolphinscheduler:2.0.5 worker-server
+apache/dolphinscheduler:2.0.6 worker-server
 </code></pre>
 <ul>
 <li>启动一个 <strong>api server</strong>, 如下:</li>
@@ -120,7 +120,7 @@ apache/dolphinscheduler:2.0.5 worker-server
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
 -e ZOOKEEPER_QUORUM=&quot;192.168.x.x:2181&quot; \
 -p 12345:12345 \
-apache/dolphinscheduler:2.0.5 api-server
+apache/dolphinscheduler:2.0.6 api-server
 </code></pre>
 <ul>
 <li>启动一个 <strong>alert server</strong>, 如下:</li>
@@ -128,7 +128,7 @@ apache/dolphinscheduler:2.0.5 api-server
 <pre><code>$ docker run -d --name dolphinscheduler-alert \
 -e DATABASE_HOST=&quot;192.168.x.x&quot; -e DATABASE_PORT=&quot;5432&quot; -e DATABASE_DATABASE=&quot;dolphinscheduler&quot; \
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
-apache/dolphinscheduler:2.0.5 alert-server
+apache/dolphinscheduler:2.0.6 alert-server
 </code></pre>
 <ul>
 <li>启动一个 <strong>python gateway server</strong>, 如下:</li>
@@ -136,7 +136,7 @@ apache/dolphinscheduler:2.0.5 alert-server
 <pre><code>$ docker run -d --name dolphinscheduler-python-gateway \
 -e DATABASE_HOST=&quot;192.168.x.x&quot; -e DATABASE_PORT=&quot;5432&quot; -e DATABASE_DATABASE=&quot;dolphinscheduler&quot; \
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
-apache/dolphinscheduler:2.0.5 python-gateway-server
+apache/dolphinscheduler:2.0.6 python-gateway-server
 </code></pre>
 <p><strong>注意</strong>: 当你运行dolphinscheduler中的部分服务时，你必须指定这些环境变量 <code>DATABASE_HOST</code>, <code>DATABASE_PORT</code>, <code>DATABASE_DATABASE</code>, <code>DATABASE_USERNAME</code>, <code>DATABASE_PASSWORD</code>, <code>ZOOKEEPER_QUORUM</code>。</p>
 <h2>环境变量</h2>
@@ -366,12 +366,12 @@ docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # 显示倒数10行日
 </span></code></pre>
 <p>如果你不理解 <code>./docker/build/hooks/build</code> <code>./docker/build/hooks/build.bat</code> 这些脚本，请阅读里面的内容</p>
 <h4>从二进制包构建 (不需要 Maven 3.3+ &amp; JDK 1.8+)</h4>
-<p>请下载二进制包 apache-dolphinscheduler-2.0.5-bin.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a>. 然后将 apache-dolphinscheduler-2.0.5-bin.tar.gz 放到 <code>apache-dolphinscheduler-2.0.5-src/docker/build</code> 目录里，在 Terminal 或 PowerShell 中执行:</p>
-<pre><code>$ cd apache-dolphinscheduler-2.0.5-src/docker/build
-$ docker build --build-arg VERSION=2.0.5 -t apache/dolphinscheduler:2.0.5 .
+<p>请下载二进制包 apache-dolphinscheduler-2.0.6-bin.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a>. 然后将 apache-dolphinscheduler-2.0.6-bin.tar.gz 放到 <code>apache-dolphinscheduler-2.0.6-src/docker/build</code> 目录里，在 Terminal 或 PowerShell 中执行:</p>
+<pre><code>$ cd apache-dolphinscheduler-2.0.6-src/docker/build
+$ docker build --build-arg VERSION=2.0.6 -t apache/dolphinscheduler:2.0.6 .
 </code></pre>
 <blockquote>
-<p>PowerShell 应该使用 <code>cd apache-dolphinscheduler-2.0.5-src/docker/build</code></p>
+<p>PowerShell 应该使用 <code>cd apache-dolphinscheduler-2.0.6-src/docker/build</code></p>
 </blockquote>
 <h4>构建多平台架构镜像</h4>
 <p>目前支持构建 <code>linux/amd64</code> 和 <code>linux/arm64</code> 平台架构的镜像，要求：</p>
@@ -413,7 +413,7 @@ EOF
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 MySQL 的驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -466,7 +466,7 @@ DATABASE_PARAMS=useUnicode=true&amp;characterEncoding=UTF-8
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 MySQL 驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -501,7 +501,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 Oracle 驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -527,7 +527,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <ol>
 <li>创建一个新的 <code>Dockerfile</code>，用于安装 pip:</li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY requirements.txt /tmp
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python-pip &amp;&amp; \
@@ -560,7 +560,7 @@ RUN apt-get update &amp;&amp; \
 <ol>
 <li>创建一个新的 <code>Dockerfile</code>，用于安装 Python 3:</li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python3 &amp;&amp; \
     rm -rf /var/lib/apt/lists/*

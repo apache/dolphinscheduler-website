@@ -34,21 +34,21 @@
 <li><strong>WSL 2 mode</strong>: Refer to <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig">WSL 2 utility VM</a></li>
 </ul>
 <h4>1. Download the Source Code Package</h4>
-<p>Please download the source code package apache-dolphinscheduler-2.0.5-src.tar.gz, download address: <a href="/en-us/download/download.html">download</a></p>
+<p>Please download the source code package apache-dolphinscheduler-2.0.6-src.tar.gz, download address: <a href="/en-us/download/download.html">download</a></p>
 <h4>2. Pull Image and Start the Service</h4>
 <blockquote>
 <p>For Mac and Linux user, open <strong>Terminal</strong>
 For Windows Docker Toolbox user, open <strong>Docker Quickstart Terminal</strong>
 For Windows Docker Desktop user, open <strong>Windows PowerShell</strong></p>
 </blockquote>
-<pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.5-src.tar.gz
-$ cd apache-dolphinscheduler-2.0.5-src/docker/docker-swarm
-$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
-$ docker tag apache/dolphinscheduler:2.0.5 apache/dolphinscheduler:latest
+<pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.6-src.tar.gz
+$ cd apache-dolphinscheduler-2.0.6-src/docker/docker-swarm
+$ docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
+$ docker tag apache/dolphinscheduler:2.0.6 apache/dolphinscheduler:latest
 $ docker-compose up -d
 </code></pre>
 <blockquote>
-<p>PowerShell should use <code>cd apache-dolphinscheduler-2.0.5-src\docker\docker-swarm</code></p>
+<p>PowerShell should use <code>cd apache-dolphinscheduler-2.0.6-src\docker\docker-swarm</code></p>
 </blockquote>
 <p>The <strong>PostgreSQL</strong> (with username <code>root</code>, password <code>root</code> and database <code>dolphinscheduler</code>) and <strong>ZooKeeper</strong> services will start by default</p>
 <h4>3. Login</h4>
@@ -70,7 +70,7 @@ $ docker-compose up -d
 <h4>3. Initialize the database, import <code>sql/dolphinscheduler_postgre.sql</code> to create tables and initial data</h4>
 <h4>4. Download the DolphinScheduler Image</h4>
 <p>We have already uploaded user-oriented DolphinScheduler image to the Docker repository so that you can pull the image from the docker repository:</p>
-<pre><code>docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>docker pull dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 </code></pre>
 <h4>5. Run a DolphinScheduler Instance</h4>
 <pre><code>$ docker run -d --name dolphinscheduler \
@@ -78,7 +78,7 @@ $ docker-compose up -d
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
 -e ZOOKEEPER_QUORUM=&quot;192.168.x.x:2181&quot; \
 -p 12345:12345 \
-apache/dolphinscheduler:2.0.5 all
+apache/dolphinscheduler:2.0.6 all
 </code></pre>
 <p>Note: database username test and password test need to be replaced with your actual PostgreSQL username and password, 192.168.x.x need to be replaced with your relate PostgreSQL and ZooKeeper host IP</p>
 <h4>6. Login</h4>
@@ -101,7 +101,7 @@ apache/dolphinscheduler:2.0.5 all
 -e DATABASE_HOST=&quot;192.168.x.x&quot; -e DATABASE_PORT=&quot;5432&quot; -e DATABASE_DATABASE=&quot;dolphinscheduler&quot; \
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
 -e ZOOKEEPER_QUORUM=&quot;192.168.x.x:2181&quot; \
-apache/dolphinscheduler:2.0.5 master-server
+apache/dolphinscheduler:2.0.6 master-server
 </code></pre>
 <ul>
 <li>Start a <strong>worker server</strong> (including <strong>logger server</strong>), For example:</li>
@@ -110,7 +110,7 @@ apache/dolphinscheduler:2.0.5 master-server
 -e DATABASE_HOST=&quot;192.168.x.x&quot; -e DATABASE_PORT=&quot;5432&quot; -e DATABASE_DATABASE=&quot;dolphinscheduler&quot; \
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
 -e ZOOKEEPER_QUORUM=&quot;192.168.x.x:2181&quot; \
-apache/dolphinscheduler:2.0.5 worker-server
+apache/dolphinscheduler:2.0.6 worker-server
 </code></pre>
 <ul>
 <li>Start a <strong>api server</strong>, For example:</li>
@@ -120,7 +120,7 @@ apache/dolphinscheduler:2.0.5 worker-server
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
 -e ZOOKEEPER_QUORUM=&quot;192.168.x.x:2181&quot; \
 -p 12345:12345 \
-apache/dolphinscheduler:2.0.5 api-server
+apache/dolphinscheduler:2.0.6 api-server
 </code></pre>
 <ul>
 <li>Start a <strong>alert server</strong>, For example:</li>
@@ -128,7 +128,7 @@ apache/dolphinscheduler:2.0.5 api-server
 <pre><code>$ docker run -d --name dolphinscheduler-alert \
 -e DATABASE_HOST=&quot;192.168.x.x&quot; -e DATABASE_PORT=&quot;5432&quot; -e DATABASE_DATABASE=&quot;dolphinscheduler&quot; \
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
-apache/dolphinscheduler:2.0.5 alert-server
+apache/dolphinscheduler:2.0.6 alert-server
 </code></pre>
 <ul>
 <li>Start a <strong>python gateway server</strong>, For example:</li>
@@ -136,7 +136,7 @@ apache/dolphinscheduler:2.0.5 alert-server
 <pre><code>$ docker run -d --name dolphinscheduler-python-gateway \
 -e DATABASE_HOST=&quot;192.168.x.x&quot; -e DATABASE_PORT=&quot;5432&quot; -e DATABASE_DATABASE=&quot;dolphinscheduler&quot; \
 -e DATABASE_USERNAME=&quot;test&quot; -e DATABASE_PASSWORD=&quot;test&quot; \
-apache/dolphinscheduler:2.0.5 python-gateway
+apache/dolphinscheduler:2.0.6 python-gateway
 </code></pre>
 <p><strong>Note</strong>: You must be specify <code>DATABASE_HOST</code>, <code>DATABASE_PORT</code>, <code>DATABASE_DATABASE</code>, <code>DATABASE_USERNAME</code>, <code>DATABASE_PASSWORD</code>, <code>ZOOKEEPER_QUORUM</code> when start a standalone dolphinscheduler server.</p>
 <h2>Environment Variables</h2>
@@ -366,12 +366,12 @@ docker logs --tail 10 docker-swarm_dolphinscheduler-api_1 # show last 10 lines f
 </span></code></pre>
 <p>Please read <code>./docker/build/hooks/build</code> <code>./docker/build/hooks/build.bat</code> script files if you don't understand</p>
 <h4>Build from the binary distribution (Not require Maven 3.3+ &amp; JDK 1.8+)</h4>
-<p>Please download the binary distribution package apache-dolphinscheduler-2.0.5-bin.tar.gz, download address: <a href="/en-us/download/download.html">download</a>. And put apache-dolphinscheduler-2.0.5-bin.tar.gz into the <code>apache-dolphinscheduler-2.0.5-src/docker/build</code> directory, execute in Terminal or PowerShell:</p>
-<pre><code>$ cd apache-dolphinscheduler-2.0.5-src/docker/build
-$ docker build --build-arg VERSION=2.0.5 -t apache/dolphinscheduler:2.0.5 .
+<p>Please download the binary distribution package apache-dolphinscheduler-2.0.6-bin.tar.gz, download address: <a href="/en-us/download/download.html">download</a>. And put apache-dolphinscheduler-2.0.6-bin.tar.gz into the <code>apache-dolphinscheduler-2.0.6-src/docker/build</code> directory, execute in Terminal or PowerShell:</p>
+<pre><code>$ cd apache-dolphinscheduler-2.0.6-src/docker/build
+$ docker build --build-arg VERSION=2.0.6 -t apache/dolphinscheduler:2.0.6 .
 </code></pre>
 <blockquote>
-<p>PowerShell should use <code>cd apache-dolphinscheduler-2.0.5-src/docker/build</code></p>
+<p>PowerShell should use <code>cd apache-dolphinscheduler-2.0.6-src/docker/build</code></p>
 </blockquote>
 <h4>Build multi-platform images</h4>
 <p>Currently support to build images including <code>linux/amd64</code> and <code>linux/arm64</code> platform architecture, requirements:</p>
@@ -413,7 +413,7 @@ EOF
 <p>Create a new <code>Dockerfile</code> to add MySQL driver:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -466,7 +466,7 @@ DATABASE_PARAMS=useUnicode=true&amp;characterEncoding=UTF-8
 <p>Create a new <code>Dockerfile</code> to add MySQL driver:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -501,7 +501,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>Create a new <code>Dockerfile</code> to add Oracle driver:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -527,7 +527,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <ol>
 <li>Create a new <code>Dockerfile</code> to install pip:</li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY requirements.txt /tmp
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python-pip &amp;&amp; \
@@ -560,7 +560,7 @@ RUN apt-get update &amp;&amp; \
 <ol>
 <li>Create a new <code>Dockerfile</code> to install Python 3:</li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python3 &amp;&amp; \
     rm -rf /var/lib/apt/lists/*

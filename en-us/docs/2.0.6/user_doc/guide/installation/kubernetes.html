@@ -25,17 +25,17 @@
 <a href="https://charts.bitnami.com/bitnami">https://charts.bitnami.com/bitnami</a> was truncated only containing entries for the latest 6 months (from January 2022 on).
 This URL: <a href="https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami">https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami</a> contains the full 'index.yaml'.</p>
 <p>See detail here: <a href="https://github.com/bitnami/charts/issues/10833">https://github.com/bitnami/charts/issues/10833</a>.</p>
-<p>Change you <code>Chart.yaml</code> in path <code>apache-dolphinscheduler-2.0.5-src/docker/kubernetes/dolphinscheduler</code> after you download the source code
+<p>Change you <code>Chart.yaml</code> in path <code>apache-dolphinscheduler-2.0.6-src/docker/kubernetes/dolphinscheduler</code> after you download the source code
 and replace two places from <code>repository: https://charts.bitnami.com/bitnami</code>
 to <code>repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami</code></p>
 </blockquote>
-<p>Please download the source code package apache-dolphinscheduler-2.0.5-src.tar.gz, download address: <a href="/en-us/download/download.html">download</a></p>
+<p>Please download the source code package apache-dolphinscheduler-2.0.6-src.tar.gz, download address: <a href="/en-us/download/download.html">download</a></p>
 <p>To install the chart with the release name <code>dolphinscheduler</code>, please execute the following commands:</p>
-<pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.5-src.tar.gz
-$ cd apache-dolphinscheduler-2.0.5-src/docker/kubernetes/dolphinscheduler
+<pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.6-src.tar.gz
+$ cd apache-dolphinscheduler-2.0.6-src/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
-$ helm install dolphinscheduler . --set image.tag=2.0.5
+$ helm install dolphinscheduler . --set image.tag=2.0.6
 </code></pre>
 <p>To install the chart with a namespace named <code>test</code>:</p>
 <pre><code class="language-bash">$ helm install dolphinscheduler . -n <span class="hljs-built_in">test</span>
@@ -289,7 +289,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 <p>Create a new <code>Dockerfile</code> to add MySQL driver:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -337,7 +337,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>Create a new <code>Dockerfile</code> to add MySQL driver:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -372,7 +372,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>Create a new <code>Dockerfile</code> to add Oracle driver:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -398,7 +398,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <ol>
 <li>Create a new <code>Dockerfile</code> to install pip:</li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY requirements.txt /tmp
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python-pip &amp;&amp; \
@@ -431,7 +431,7 @@ RUN apt-get update &amp;&amp; \
 <ol>
 <li>Create a new <code>Dockerfile</code> to install Python 3:</li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python3 &amp;&amp; \
     rm -rf /var/lib/apt/lists/*

@@ -24,16 +24,16 @@
 <p>注意：您需要在本地更改 <code>Chart.yaml</code> 文件才能使其正常工作。 由于 Bitnami 存储库的更改，<a href="https://charts.bitnami.com/bitnami">https://charts.bitnami.com/bitnami</a> 被截断，
 仅包含最近 6 个月（从 2022 年 1 月起）的条目。 只有这个 url 才包含了：<a href="https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami">https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami</a> 完整的 index.yaml。
 如果您想了解更多细节，请访问：<a href="https://github.com/bitnami/charts/issues/10833%E3%80%82">https://github.com/bitnami/charts/issues/10833。</a></p>
-<p>下载源代码后，更改路径 <code>apache-dolphinscheduler-2.0.5-src/docker/kubernetes/dolphinscheduler</code> 中的 <code>Chart.yaml</code> 文件，需要同时修改两个地方，
+<p>下载源代码后，更改路径 <code>apache-dolphinscheduler-2.0.6-src/docker/kubernetes/dolphinscheduler</code> 中的 <code>Chart.yaml</code> 文件，需要同时修改两个地方，
 将 <code>repository: https://charts.bitnami.com/bitnami</code> 替换成 <code>repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami</code></p>
 </blockquote>
-<p>请下载源码包 apache-dolphinscheduler-2.0.5-src.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a></p>
+<p>请下载源码包 apache-dolphinscheduler-2.0.6-src.tar.gz，下载地址: <a href="/zh-cn/download/download.html">下载</a></p>
 <p>发布一个名为 <code>dolphinscheduler</code> 的版本(release)，请执行以下命令：</p>
-<pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.5-src.tar.gz
-$ cd apache-dolphinscheduler-2.0.5-src/docker/kubernetes/dolphinscheduler
+<pre><code>$ tar -zxvf apache-dolphinscheduler-2.0.6-src.tar.gz
+$ cd apache-dolphinscheduler-2.0.6-src/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
-$ helm install dolphinscheduler . --set image.tag=2.0.5
+$ helm install dolphinscheduler . --set image.tag=2.0.6
 </code></pre>
 <p>将名为 <code>dolphinscheduler</code> 的版本(release) 发布到 <code>test</code> 的命名空间中：</p>
 <pre><code class="language-bash">$ helm install dolphinscheduler . -n <span class="hljs-built_in">test</span>
@@ -283,7 +283,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 <li>下载 MySQL 驱动包 <a href="https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar">mysql-connector-java-8.0.16.jar</a></li>
 <li>创建一个新的 <code>Dockerfile</code>，用于添加 MySQL 的驱动包:</li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -331,7 +331,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 MySQL 驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -366,7 +366,7 @@ COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 <p>创建一个新的 <code>Dockerfile</code>，用于添加 Oracle 驱动包:</p>
 </li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 </code></pre>
 <ol start="3">
@@ -392,7 +392,7 @@ COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 <ol>
 <li>创建一个新的 <code>Dockerfile</code>，用于安装 pip:</li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY requirements.txt /tmp
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python-pip &amp;&amp; \
@@ -425,7 +425,7 @@ RUN apt-get update &amp;&amp; \
 <ol>
 <li>创建一个新的 <code>Dockerfile</code>，用于安装 Python 3:</li>
 </ol>
-<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+<pre><code>FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 RUN apt-get update &amp;&amp; \
     apt-get install -y --no-install-recommends python3 &amp;&amp; \
     rm -rf /var/lib/apt/lists/*
