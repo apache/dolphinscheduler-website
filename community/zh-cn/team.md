@@ -60,6 +60,7 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Zihao Xiang   | zihaoxiang   | [@SbloodyS](https://github.com/SbloodyS)                 |
 | Amy Wang      | wanggenhua   | [@Amy0104](https://github.com/Amy0104)                   |
 | JunJie Xu     | xujunjie     | [@labbomb](https://github.com/labbomb)                   |
+| Chufeng Gao   | chufenggao   | [@EricGao888](https://github.com/EricGao888)             |
 
 ## 贡献者
 

@@ -58,6 +58,7 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Zihao Xiang   | zihaoxiang   | [@SbloodyS](https://github.com/SbloodyS)                 |
 | Amy Wang      | wanggenhua   | [@Amy0104](https://github.com/Amy0104)                   |
 | JunJie Xu     | xujunjie     | [@labbomb](https://github.com/labbomb)                   |
+| Chufeng Gao   | chufenggao   | [@EricGao888](https://github.com/EricGao888)             |
 
 ## Contributors
 
