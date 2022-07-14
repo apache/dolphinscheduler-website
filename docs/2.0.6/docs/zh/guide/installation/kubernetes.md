@@ -17,19 +17,19 @@ Kubernetes部署目的是在Kubernetes集群中部署 DolphinScheduler 服务，
 > 仅包含最近 6 个月（从 2022 年 1 月起）的条目。 只有这个 url 才包含了：https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami 完整的 index.yaml。
 > 如果您想了解更多细节，请访问：https://github.com/bitnami/charts/issues/10833。
 >
-> 下载源代码后，更改路径 `apache-dolphinscheduler-2.0.5-src/docker/kubernetes/dolphinscheduler` 中的 `Chart.yaml` 文件，需要同时修改两个地方，
+> 下载源代码后，更改路径 `apache-dolphinscheduler-2.0.6-src/docker/kubernetes/dolphinscheduler` 中的 `Chart.yaml` 文件，需要同时修改两个地方，
 > 将 `repository: https://charts.bitnami.com/bitnami` 替换成 `repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami`
 
-请下载源码包 apache-dolphinscheduler-2.0.5-src.tar.gz，下载地址: [下载](/zh-cn/download/download.html)
+请下载源码包 apache-dolphinscheduler-2.0.6-src.tar.gz，下载地址: [下载](/zh-cn/download/download.html)
 
 发布一个名为 `dolphinscheduler` 的版本(release)，请执行以下命令：
 
 ```
-$ tar -zxvf apache-dolphinscheduler-2.0.5-src.tar.gz
-$ cd apache-dolphinscheduler-2.0.5-src/docker/kubernetes/dolphinscheduler
+$ tar -zxvf apache-dolphinscheduler-2.0.6-src.tar.gz
+$ cd apache-dolphinscheduler-2.0.6-src/docker/kubernetes/dolphinscheduler
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm dependency update .
-$ helm install dolphinscheduler . --set image.tag=2.0.5
+$ helm install dolphinscheduler . --set image.tag=2.0.6
 ```
 
 将名为 `dolphinscheduler` 的版本(release) 发布到 `test` 的命名空间中：
@@ -200,7 +200,7 @@ kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test names
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
@@ -243,7 +243,7 @@ externalDatabase:
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 驱动包:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/lib
 ```
 
@@ -272,7 +272,7 @@ docker build -t apache/dolphinscheduler:mysql-driver .
 2. 创建一个新的 `Dockerfile`，用于添加 Oracle 驱动包:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/lib
 ```
 
@@ -295,7 +295,7 @@ docker build -t apache/dolphinscheduler:oracle-driver .
 1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -328,7 +328,7 @@ docker build -t apache/dolphinscheduler:pip .
 1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.5
+FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler:2.0.6
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*

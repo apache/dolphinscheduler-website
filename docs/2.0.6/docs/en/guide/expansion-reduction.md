@@ -29,9 +29,9 @@ This article describes how to add a new master service or worker service to an e
 mkdir -p /opt
 cd /opt
 # decompress
-tar -zxvf apache-dolphinscheduler-2.0.5-bin.tar.gz -C /opt 
+tar -zxvf apache-dolphinscheduler-2.0.6-bin.tar.gz -C /opt 
 cd /opt
-mv apache-dolphinscheduler-2.0.5-bin  dolphinscheduler
+mv apache-dolphinscheduler-2.0.6-bin  dolphinscheduler
 ```
 
 ```markdown
