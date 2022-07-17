@@ -22,11 +22,13 @@ Make sure that your node version is 10+, docsite does not yet support versions h
 
 1. Run `npm install` in the root directory to install the dependencies.
 
-2. Run `npm run start` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
+2.Run commands to collect resources 2.1. Run export PROTOCOL_MODE=ssh tells Git clone resource via SSH protocol instead of HTTPS protocol 2.2. Run ./scripts/prepare_docs.sh prepare all related resources, for more information you could see how prepare script work.
 
-3. Run `npm run build` to build source code into dist directory.
+3. Run `npm run start` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
 
-4. Verify your change locally: `python -m SimpleHTTPServer 8000`, when your python version is 3 use :`python3 -m http.server 8000` instead.
+4. Run `npm run build` to build source code into dist directory.
+
+5. Verify your change locally: `python -m SimpleHTTPServer 8000`, when your python version is 3 use :`python3 -m http.server 8000` instead.
 
 If the latest version of node is installed locally, consider using `nvm` to allow different versions of `node` to run on your computer.
 
