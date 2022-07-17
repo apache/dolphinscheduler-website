@@ -22,7 +22,7 @@ DolphinScheduler 网站由 [docsite](https://github.com/chengshiwen/docsite-ext)
 
 1. 在根目录中运行 `npm install` 以安装依赖项。
 
-2.运行命令收集资源 2.1. 运行 export PROTOCOL_MODE=ssh 通过 SSH 协议而不是 HTTPS 协议 2.2 告诉 Git 克隆资源。 运行 ./scripts/prepare_docs.sh 准备所有相关资源，有关更多信息，您可以查看准备脚本的工作方式。
+2. 运行命令收集资源 2.1. 运行 export PROTOCOL_MODE=ssh 通过 SSH 协议而不是 HTTPS 协议 2.2 告诉 Git 克隆资源。 运行 ./scripts/prepare_docs.sh 准备所有相关资源，有关更多信息，您可以查看准备脚本的工作方式。
 
 3. 在根目录下运行 `npm run start` 启动本地服务器，其将允许在 http://localhost:8080。
 
