@@ -22,11 +22,13 @@ DolphinScheduler 网站由 [docsite](https://github.com/chengshiwen/docsite-ext)
 
 1. 在根目录中运行 `npm install` 以安装依赖项。
 
-2. 在根目录下运行 `npm run start` 启动本地服务器，其将允许在 http://localhost:8080。
+2. 运行命令收集资源：2.1.运行 `export PROTOCOL_MODE=ssh` 告诉Git克隆资源，通过SSH协议而不是HTTPS协议。 2.2.运行 `./scripts/prepare_docs.sh` 准备所有相关资源，关更多信息，您可以查看[how prepare script work](https://github.com/apache/dolphinscheduler-website/blob/master/HOW_PREPARE_WOKR.md)。
 
-3. 运行 `npm run build` 可以生成文档网站源代码。
+3. 在根目录下运行 `npm run start` 启动本地服务器，其将允许在 http://localhost:8080。
 
-4. 在本地验证你的更改：`python -m SimpleHTTPServer 8000`，当 python 版本为 3 时，请使用：`python3 -m http.server 8000`。
+4. 运行 `npm run build` 可以生成文档网站源代码。
+
+5. 在本地验证你的更改：`python -m SimpleHTTPServer 8000`，当 python 版本为 3 时，请使用：`python3 -m http.server 8000`。
 
 如果本地安装了更高版本的 node，可以考虑使用 `nvm` 来允许不同版本的 `node` 在你的计算机上运行。
 
