@@ -33,7 +33,18 @@
 <li>Zeppelin Note ID：Zeppelin Note对应的唯一ID。</li>
 <li>Zeppelin Paragraph ID：Zeppelin Paragraph对应的唯一ID。如果你想一次性调度整个note，这一栏不填即可。</li>
 <li>Zeppelin Rest Endpoint：您的Zeppelin服务的REST Endpoint。</li>
+<li>Zeppelin Production Note Directory：生产模式下存放克隆note的目录。</li>
 <li>Zeppelin Parameters: 用于传入Zeppelin Dynamic Form的参数。</li>
+</ul>
+<h2>生产（克隆）模式</h2>
+<ul>
+<li>填上<code>Zeppelin Production Note Directory</code>参数以启动<code>生产模式</code>。</li>
+<li>在<code>生产模式</code>下，目标note会被克隆到您所填的<code>Zeppelin Production Note Directory</code>目录下。
+<code>Zeppelin任务插件</code>将会执行克隆出来的note并在执行成功后自动清除它。
+因为在此模式下，如果您不小心修改了正在被<code>Dolphin Scheduler</code>调度的note，也不会影响到生产任务的执行，
+从而提高了稳定性。</li>
+<li>如果您选择不填<code>Zeppelin Production Note Directory</code>这个参数，<code>Zeppelin任务插件</code>将会执行您的原始note。
+'Zeppelin Production Note Directory'参数在格式上应该以<code>斜杠</code>开头和结尾，例如 <code>/production_note_directory/</code>。</li>
 </ul>
 <h2>Task Example</h2>
 <h3>Zeppelin Paragraph Task Example</h3>

@@ -77,6 +77,10 @@ it will call <code>Zeppelin Client API</code> to trigger zeppelin notebook parag
 <td>The unique paragraph id for a zeppelin notebook paragraph. If you want to schedule a whole note at a time, leave this field blank.</td>
 </tr>
 <tr>
+<td>Zeppelin Production Note Directory</td>
+<td>The directory for cloned note in production mode.</td>
+</tr>
+<tr>
 <td>Zeppelin Rest Endpoint</td>
 <td>The REST endpoint of your zeppelin server</td>
 </tr>
@@ -86,6 +90,17 @@ it will call <code>Zeppelin Client API</code> to trigger zeppelin notebook parag
 </tr>
 </tbody>
 </table>
+<h2>Production (Clone) Mode</h2>
+<ul>
+<li>Fill in the optional <code>Zeppelin Production Note Directory</code> parameter to enable <code>Production Mode</code>.</li>
+<li>In <code>Production Mode</code>, the target note gets copied to the <code>Zeppelin Production Note Directory</code> you choose.
+<code>Zeppelin Task Plugin</code> will execute the cloned note instead of the original one. Once execution done,
+<code>Zeppelin Task Plugin</code> will delete the cloned note automatically.
+Therefore, it increases the stability as the modification to a running note triggered by <code>Dolphin Scheduler</code>
+will not affect the production task.</li>
+<li>If you leave the <code>Zeppelin Production Note Directory</code> empty, <code>Zeppelin Task Plugin</code> will execute the original note.</li>
+<li>'Zeppelin Production Note Directory' should both start and end with a <code>slash</code>. e.g. <code>/production_note_directory/</code></li>
+</ul>
 <h2>Task Example</h2>
 <h3>Zeppelin Paragraph Task Example</h3>
 <p>This example illustrates how to create a zeppelin paragraph task node.</p>
