@@ -28,6 +28,8 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | ShunFeng Cai      | caishunfeng  | [@caishunfeng](https://github.com/caishunfeng)       |
 | Jiajie Zhong      | zhongjiajie  | [@zhongjiajie](https://github.com/zhongjiajie)       |
 | Zhenxu Ke         | kezhenxu94   | [@kezhenxu94](https://github.com/kezhenxu94)         |
+| Wenjun Ruan       | wenjun       | [@ruanwenjun](https://github.com/ruanwenjun)         |
+| Zihao Xiang       | zihaoxiang   | [@SbloodyS](https://github.com/SbloodyS)             |
 
 ### Committer
 
@@ -49,7 +51,6 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Yichao Yang   | yangyichao   | [@yangyichao-mango](https://github.com/yangyichao-mango) |
 | Zongyao Zhang | lfyee        | [@lfyee](https://github.com/lfyee)                       |
 | JinyLeeChina  | jinyleechina | [@JinyLeeChina](https://github.com/JinyLeeChina)         |
-| Wenjun Ruan   | wenjun       | [@ruanwenjun](https://github.com/ruanwenjun)             |
 | Wang Xingjie  | wangxj       | [@wangxj3](https://github.com/wangxj3)                   |
 | Yizhi Wang    | wangyizhi    | [@Wangyizhi1](https://github.com/Wangyizhi1)             |
 | Jian Song     | songjian     | [@songjianet](https://github.com/songjianet)             |
@@ -57,7 +58,6 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Tianqi Yan    | tianqiyan    | [@Tianqi-Dotes](https://github.com/Tianqi-Dotes)         |
 | Dongkai Liu   | liudongkai   | [@devosend](https://github.com/devosend)                 |
 | Hua Jiang     | huajiang     | [@calvinjiang](https://github.com/calvinjiang)           |
-| Zihao Xiang   | zihaoxiang   | [@SbloodyS](https://github.com/SbloodyS)                 |
 | Amy Wang      | wanggenhua   | [@Amy0104](https://github.com/Amy0104)                   |
 | JunJie Xu     | xujunjie     | [@labbomb](https://github.com/labbomb)                   |
 | Chufeng Gao   | chufenggao   | [@EricGao888](https://github.com/EricGao888)             |
