@@ -10,11 +10,11 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Gang Li           | lgcareer     | [@lgcareer](https://github.com/lgcareer)             |
 | Guo Jiwei         | technoboy    | [@Technoboy-](https://github.com/Technoboy-)         |
 | Guo William       | guowei       | [@William-GuoWei](https://github.com/William-GuoWei) |
-| Jun Gao           | gaojun2048   | [@EricJoy2048](https://github.com/EricJoy2048/)         |
+| Jun Gao           | gaojun2048   | [@EricJoy2048](https://github.com/EricJoy2048/)      |
 | Kevin Ratnasekera | djkevincr    | [@djkevincr](https://github.com/djkevincr)           |
 | Leon Bao          | leonbao      | [@lenboo](https://github.com/lenboo)                 |
 | Liang Chen        | chenliang613 | [@chenliang613](https://github.com/chenliang613)     |
-| Lidong Dai        | lidongdai    | [@davidzollo](https://github.com/davidzollo)           |
+| Lidong Dai        | lidongdai    | [@davidzollo](https://github.com/davidzollo)         |
 | Qiao Zhanwei      | journey      | [@qiaozhanwei](https://github.com/qiaozhanwei)       |
 | Shao Feng Shi     | shaofengshi  | [@shaofengshi](https://github.com/shaofengshi)       |
 | Sheng Wu          | wusheng      | [@wu-sheng](https://github.com/wu-sheng)             |
@@ -56,7 +56,6 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Tianqi Yan    | tianqiyan    | [@Tianqi-Dotes](https://github.com/Tianqi-Dotes)         |
 | Dongkai Liu   | liudongkai   | [@devosend](https://github.com/devosend)                 |
 | Hua Jiang     | huajiang     | [@calvinjiang](https://github.com/calvinjiang)           |
-
 | Amy Wang      | wanggenhua   | [@Amy0104](https://github.com/Amy0104)                   |
 | JunJie Xu     | xujunjie     | [@labbomb](https://github.com/labbomb)                   |
 | Chufeng Gao   | chufenggao   | [@EricGao888](https://github.com/EricGao888)             |
