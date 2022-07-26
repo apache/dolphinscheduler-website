@@ -1890,6 +1890,134 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">SageMaker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sagemaker_request_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/sagemaker.html#SageMaker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
+<p>Task SageMaker object, declare behavior for SageMaker task to dolphinscheduler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – A unique, meaningful string for the SageMaker task.</p></li>
+<li><p><strong>sagemaker_request_json</strong> – Request parameters of StartPipelineExecution，
+see also <a class="reference external" href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StartPipelineExecution.html">AWS API</a></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._set_deps">
+<span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._set_deps" title="Permalink to this definition"></a></dt>
+<dd><p>Set parameter tasks dependent to current task.</p>
+<p>it is a wrapper for <a class="reference internal" href="#pydolphinscheduler.tasks.SageMaker.set_upstream" title="pydolphinscheduler.tasks.SageMaker.set_upstream"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_upstream()</span></code></a> and <a class="reference internal" href="#pydolphinscheduler.tasks.SageMaker.set_downstream" title="pydolphinscheduler.tasks.SageMaker.set_downstream"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_downstream()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.gen_code_and_version">
+<span class="sig-name descname"><span class="pre">gen_code_and_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.gen_code_and_version" title="Permalink to this definition"></a></dt>
+<dd><p>Generate task code and version from java gateway.</p>
+<p>If task name do not exists in process definition before, if will generate new code and version id
+equal to 0 by java gateway, otherwise if will return the exists code and version.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.get_define">
+<span class="sig-name descname"><span class="pre">get_define</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.get_define" title="Permalink to this definition"></a></dt>
+<dd><p>Get object definition attribute communicate to Java gateway server.</p>
+<p>use attribute <cite>self._DEFINE_ATTR</cite> to determine which attributes should including when
+object tries to communicate with Java gateway server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.get_define_custom">
+<span class="sig-name descname"><span class="pre">get_define_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camel_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">set</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.get_define_custom" title="Permalink to this definition"></a></dt>
+<dd><p>Get object definition attribute by given attr set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.query_resource">
+<span class="sig-name descname"><span class="pre">query_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.query_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Get resource info from java gateway, contains resource id, name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.set_downstream">
+<span class="sig-name descname"><span class="pre">set_downstream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.set_downstream" title="Permalink to this definition"></a></dt>
+<dd><p>Set parameter tasks as downstream to current task.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.set_upstream">
+<span class="sig-name descname"><span class="pre">set_upstream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.set_upstream" title="Permalink to this definition"></a></dt>
+<dd><p>Set parameter tasks as upstream to current task.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.DEFAULT_CONDITION_RESULT">
+<span class="sig-name descname"><span class="pre">DEFAULT_CONDITION_RESULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'failedNode':</span> <span class="pre">[''],</span> <span class="pre">'successNode':</span> <span class="pre">['']}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.DEFAULT_CONDITION_RESULT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._DEFAULT_ATTR">
+<span class="sig-name descname"><span class="pre">_DEFAULT_ATTR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._DEFAULT_ATTR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._DEFINE_ATTR">
+<span class="sig-name descname"><span class="pre">_DEFINE_ATTR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'code',</span> <span class="pre">'delay_time',</span> <span class="pre">'description',</span> <span class="pre">'fail_retry_interval',</span> <span class="pre">'fail_retry_times',</span> <span class="pre">'flag',</span> <span class="pre">'name',</span> <span class="pre">'task_params',</span> <span class="pre">'task_priority',</span> <span class="pre">'task_type',</span> <span class="pre">'timeout',</span> <span class="pre">'timeout_flag',</span> <span class="pre">'timeout_notify_strategy',</span> <span class="pre">'version',</span> <span class="pre">'worker_group'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._DEFINE_ATTR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._KEY_ATTR">
+<span class="sig-name descname"><span class="pre">_KEY_ATTR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'description',</span> <span class="pre">'name'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._KEY_ATTR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._task_custom_attr">
+<span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'sagemaker_request_json'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.condition_result">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">condition_result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.condition_result" title="Permalink to this definition"></a></dt>
+<dd><p>Get attribute condition_result.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.process_definition">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition" title="pydolphinscheduler.core.process_definition.ProcessDefinition"><span class="pre">ProcessDefinition</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.process_definition" title="Permalink to this definition"></a></dt>
+<dd><p>Get attribute process_definition.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.resource_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.resource_list" title="Permalink to this definition"></a></dt>
+<dd><p>Get task define attribute <cite>resource_list</cite>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.task_params">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.task_params" title="Permalink to this definition"></a></dt>
+<dd><p>Get task parameter object.</p>
+<p>Will get result to combine _task_custom_attr and custom_attr.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">Shell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/shell.html#Shell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Shell" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
