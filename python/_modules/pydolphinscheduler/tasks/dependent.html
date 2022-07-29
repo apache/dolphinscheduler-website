@@ -98,10 +98,10 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.base</span> <span class="kn">import</span> <span class="n">Base</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSJavaGatewayException</span><span class="p">,</span> <span class="n">PyDSParamException</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.models.base</span> <span class="kn">import</span> <span class="n">Base</span>
 
 <span class="n">DEPENDENT_ALL_TASK_IN_WORKFLOW</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
 
@@ -109,8 +109,8 @@
 <div class="viewcode-block" id="DependentDate"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentDate">[docs]</a><span class="k">class</span> <span class="nc">DependentDate</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Constant of Dependent date value.</span>
 
-<span class="sd">    These values set according to Java server side, if you want to add and change it,</span>
-<span class="sd">    please change Java server side first.</span>
+<span class="sd">    These values set according to Java server models, if you want to add and change it,</span>
+<span class="sd">    please change Java server models first.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># TODO Maybe we should add parent level to DependentDate for easy to use, such as</span>

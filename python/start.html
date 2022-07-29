@@ -144,6 +144,12 @@ git clone git@github.com:apache/dolphinscheduler.git
 </div>
 <p>After you installed <em>PyDolphinScheduler</em>, please remember <a class="reference internal" href="#start-python-gateway-service">start Python Gateway Service</a>
 which waiting for <em>PyDolphinScheduler</em>’s workflow definition require.</p>
+<p>Above command will clone whole dolphinscheduler source code to local, maybe you want to install latest pydolphinscheduler
+package directly and do not care about other code(including Python gateway service code), you can execute command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Must escape the &#39;&amp;&#39; character by adding &#39;\&#39;</span>
+pip install -e <span class="s2">&quot;git+https://github.com/apache/dolphinscheduler.git#egg=apache-dolphinscheduler&amp;subdirectory=dolphinscheduler-python/pydolphinscheduler&quot;</span>
+</pre></div>
+</div>
 </section>
 <section id="start-python-gateway-service">
 <h2>Start Python Gateway Service<a class="headerlink" href="#start-python-gateway-service" title="Permalink to this heading"></a></h2>

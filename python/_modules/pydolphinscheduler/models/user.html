@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pydolphinscheduler.side.user &mdash; pydolphinscheduler 0.0.1 documentation</title>
+  <title>pydolphinscheduler.models.user &mdash; pydolphinscheduler 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
@@ -66,7 +66,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>pydolphinscheduler.side.user</li>
+      <li>pydolphinscheduler.models.user</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -75,7 +75,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pydolphinscheduler.side.user</h1><div class="highlight"><pre>
+  <h1>Source code for pydolphinscheduler.models.user</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
 <span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
 <span class="c1"># distributed with this work for additional information</span>
@@ -97,13 +97,12 @@
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core</span> <span class="kn">import</span> <span class="n">configuration</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.base_side</span> <span class="kn">import</span> <span class="n">BaseSide</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler</span> <span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.side.tenant</span> <span class="kn">import</span> <span class="n">Tenant</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">BaseSide</span><span class="p">,</span> <span class="n">Tenant</span>
 
 
-<div class="viewcode-block" id="User"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseSide</span><span class="p">):</span>
+<div class="viewcode-block" id="User"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseSide</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;DolphinScheduler User object.&quot;&quot;&quot;</span>
 
     <span class="n">_KEY_ATTR</span> <span class="o">=</span> <span class="p">{</span>
@@ -134,12 +133,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span>
 
-<div class="viewcode-block" id="User.create_tenant_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.User.create_tenant_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_tenant_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="User.create_tenant_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.create_tenant_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_tenant_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Create tenant object.&quot;&quot;&quot;</span>
         <span class="n">tenant</span> <span class="o">=</span> <span class="n">Tenant</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tenant</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span>
         <span class="n">tenant</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="User.create_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.User.create_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="User.create_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.create_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create User if not exists.&quot;&quot;&quot;</span>
         <span class="c1"># Should make sure queue already exists.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_tenant_if_not_exists</span><span class="p">()</span>

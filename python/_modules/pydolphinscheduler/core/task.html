@@ -98,6 +98,7 @@
 <span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
+<span class="kn">from</span> <span class="nn">pydolphinscheduler</span> <span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Delimiter</span><span class="p">,</span>
     <span class="n">ResourceKey</span><span class="p">,</span>
@@ -105,13 +106,12 @@
     <span class="n">TaskPriority</span><span class="p">,</span>
     <span class="n">TaskTimeoutFlag</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core</span> <span class="kn">import</span> <span class="n">configuration</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.base</span> <span class="kn">import</span> <span class="n">Base</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">ProcessDefinition</span><span class="p">,</span>
     <span class="n">ProcessDefinitionContext</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">Base</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 

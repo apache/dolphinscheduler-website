@@ -99,12 +99,11 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
 
+<span class="kn">from</span> <span class="nn">pydolphinscheduler</span> <span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core</span> <span class="kn">import</span> <span class="n">configuration</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.base</span> <span class="kn">import</span> <span class="n">Base</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyDSTaskNoFoundException</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.side</span> <span class="kn">import</span> <span class="n">Project</span><span class="p">,</span> <span class="n">Tenant</span><span class="p">,</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">Base</span><span class="p">,</span> <span class="n">Project</span><span class="p">,</span> <span class="n">Tenant</span><span class="p">,</span> <span class="n">User</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.utils.date</span> <span class="kn">import</span> <span class="n">MAX_DATETIME</span><span class="p">,</span> <span class="n">conv_from_str</span><span class="p">,</span> <span class="n">conv_to_schedule</span>
 
 
@@ -248,7 +247,7 @@
     <span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Get user object.</span>
 
-<span class="sd">        For now we just get from python side but not from java gateway side, so it may not correct.</span>
+<span class="sd">        For now we just get from python models but not from java gateway models, so it may not correct.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">)</span>
 
@@ -436,10 +435,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="ProcessDefinition._ensure_side_model_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition._ensure_side_model_exists">[docs]</a>    <span class="k">def</span> <span class="nf">_ensure_side_model_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Ensure process definition side model exists.</span>
+        <span class="sd">&quot;&quot;&quot;Ensure process definition models model exists.</span>
 
-<span class="sd">        For now, side object including :class:`pydolphinscheduler.side.project.Project`,</span>
-<span class="sd">        :class:`pydolphinscheduler.side.tenant.Tenant`, :class:`pydolphinscheduler.side.user.User`.</span>
+<span class="sd">        For now, models object including :class:`pydolphinscheduler.models.project.Project`,</span>
+<span class="sd">        :class:`pydolphinscheduler.models.tenant.Tenant`, :class:`pydolphinscheduler.models.user.User`.</span>
 <span class="sd">        If these model not exists, would create default value in</span>
 <span class="sd">        :class:`pydolphinscheduler.constants.ProcessDefinitionDefault`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

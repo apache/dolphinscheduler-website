@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pydolphinscheduler.side.project &mdash; pydolphinscheduler 0.0.1 documentation</title>
+  <title>pydolphinscheduler.models.project &mdash; pydolphinscheduler 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
@@ -66,7 +66,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>pydolphinscheduler.side.project</li>
+      <li>pydolphinscheduler.models.project</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -75,7 +75,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pydolphinscheduler.side.project</h1><div class="highlight"><pre>
+  <h1>Source code for pydolphinscheduler.models.project</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
 <span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
 <span class="c1"># distributed with this work for additional information</span>
@@ -97,12 +97,12 @@
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core</span> <span class="kn">import</span> <span class="n">configuration</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.base_side</span> <span class="kn">import</span> <span class="n">BaseSide</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler</span> <span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">BaseSide</span>
 
 
-<div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.Project">[docs]</a><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">BaseSide</span><span class="p">):</span>
+<div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.Project">[docs]</a><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">BaseSide</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;DolphinScheduler Project object.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -112,7 +112,7 @@
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Project.create_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.Project.create_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">USER_NAME</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Project.create_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.Project.create_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">USER_NAME</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Create Project if not exists.&quot;&quot;&quot;</span>
         <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>
         <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">createOrGrantProject</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></div></div>

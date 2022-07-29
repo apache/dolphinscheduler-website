@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pydolphinscheduler.side.queue &mdash; pydolphinscheduler 0.0.1 documentation</title>
+  <title>pydolphinscheduler.models.tenant &mdash; pydolphinscheduler 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
@@ -66,7 +66,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>pydolphinscheduler.side.queue</li>
+      <li>pydolphinscheduler.models.tenant</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -75,7 +75,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pydolphinscheduler.side.queue</h1><div class="highlight"><pre>
+  <h1>Source code for pydolphinscheduler.models.tenant</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
 <span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
 <span class="c1"># distributed with this work for additional information</span>
@@ -93,31 +93,34 @@
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;DolphinScheduler User object.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;DolphinScheduler Tenant object.&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core</span> <span class="kn">import</span> <span class="n">configuration</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.base_side</span> <span class="kn">import</span> <span class="n">BaseSide</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">gateway_result_checker</span><span class="p">,</span> <span class="n">launch_gateway</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler</span> <span class="kn">import</span> <span class="n">configuration</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">BaseSide</span>
 
 
-<div class="viewcode-block" id="Queue"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.Queue">[docs]</a><span class="k">class</span> <span class="nc">Queue</span><span class="p">(</span><span class="n">BaseSide</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;DolphinScheduler Queue object.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Tenant"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.Tenant">[docs]</a><span class="k">class</span> <span class="nc">Tenant</span><span class="p">(</span><span class="n">BaseSide</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;DolphinScheduler Tenant object.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_QUEUE</span><span class="p">,</span>
-        <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_TENANT</span><span class="p">,</span>
+        <span class="n">queue</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_QUEUE</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
 
-<div class="viewcode-block" id="Queue.create_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.Queue.create_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">USER_NAME</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Create Queue if not exists.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Tenant.create_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.Tenant.create_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">queue_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">USER_NAME</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create Tenant if not exists.&quot;&quot;&quot;</span>
         <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>
-        <span class="c1"># Here we set Queue.name and Queue.queueName same as self.name</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">createProject</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">gateway_result_checker</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div></div>
+        <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">createTenant</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">queue_name</span><span class="p">)</span></div></div>
+        <span class="c1"># gateway_result_checker(result, None)</span>
 </pre></div>
 
            </div>
