@@ -12,11 +12,11 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Gang Li           | lgcareer     | [@lgcareer](https://github.com/lgcareer)             |
 | Guo Jiwei         | technoboy    | [@Technoboy-](https://github.com/Technoboy-)         |
 | Guo William       | guowei       | [@William-GuoWei](https://github.com/William-GuoWei) |
-| Jun Gao           | gaojun2048   | [@EricJoy2048](https://github.com/EricJoy2048/)         |
+| Jun Gao           | gaojun2048   | [@EricJoy2048](https://github.com/EricJoy2048/)      |
 | Kevin Ratnasekera | djkevincr    | [@djkevincr](https://github.com/djkevincr)           |
 | Leon Bao          | leonbao      | [@lenboo](https://github.com/lenboo)                 |
 | Liang Chen        | chenliang613 | [@chenliang613](https://github.com/chenliang613)     |
-| Lidong Dai        | lidongdai    | [@davidzollo](https://github.com/davidzollo)           |
+| Lidong Dai        | lidongdai    | [@davidzollo](https://github.com/davidzollo)         |
 | Qiao Zhanwei      | journey      | [@qiaozhanwei](https://github.com/qiaozhanwei)       |
 | Shao Feng Shi     | shaofengshi  | [@shaofengshi](https://github.com/shaofengshi)       |
 | Sheng Wu          | wusheng      | [@wu-sheng](https://github.com/wu-sheng)             |
@@ -30,11 +30,12 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Zhenxu Ke         | kezhenxu94   | [@kezhenxu94](https://github.com/kezhenxu94)         |
 | Wenjun Ruan       | wenjun       | [@ruanwenjun](https://github.com/ruanwenjun)         |
 | Zihao Xiang       | zihaoxiang   | [@SbloodyS](https://github.com/SbloodyS)             |
+| JinyLeeChina      | jinyleechina | [@JinyLeeChina](https://github.com/JinyLeeChina)     |
 
 ### Committer
 
 | Public Name   | Apache ID    | GitHub ID                                                |
-| ------------- | ------------ | -------------------------------------------------------- |
+| ------------- | ------------ |----------------------------------------------------------|
 | BoYi Zhang    | zhangboyi    | [@BoYiZhang](https://github.com/BoYiZhang)               |
 | Caibiao Xiang | break60      | [@break60](https://github.com/break60)                   |
 | Cong Huang    | chongchongzi | [@chongchongzi](https://github.com/chongchongzi)         |
@@ -50,7 +51,6 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Xingchun Chen | chenxingchun | [@xingchun-chen](https://github.com/xingchun-chen)       |
 | Yichao Yang   | yangyichao   | [@yangyichao-mango](https://github.com/yangyichao-mango) |
 | Zongyao Zhang | lfyee        | [@lfyee](https://github.com/lfyee)                       |
-| JinyLeeChina  | jinyleechina | [@JinyLeeChina](https://github.com/JinyLeeChina)         |
 | Wang Xingjie  | wangxj       | [@wangxj3](https://github.com/wangxj3)                   |
 | Yizhi Wang    | wangyizhi    | [@Wangyizhi1](https://github.com/Wangyizhi1)             |
 | Jian Song     | songjian     | [@songjianet](https://github.com/songjianet)             |
@@ -61,6 +61,7 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Amy Wang      | wanggenhua   | [@Amy0104](https://github.com/Amy0104)                   |
 | JunJie Xu     | xujunjie     | [@labbomb](https://github.com/labbomb)                   |
 | Chufeng Gao   | chufenggao   | [@EricGao888](https://github.com/EricGao888)             |
+| JiPeng Wang   | wangjipeng   | [@WangJPLeo](https://github.com/WangJPLeo)               |
 
 ## 贡献者
 
