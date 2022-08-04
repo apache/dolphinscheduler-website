@@ -125,9 +125,10 @@ docker compose up
 </ul>
 <h3>Alert Server指标</h3>
 <ul>
-<li>目前我们尚未提供任何Alert Server指标</li>
+<li>ds.alert.send.count: (counter) 已发送的告警数量，可由标签<code>status</code>切分</li>
+<li>ds.alert.pending: (gauge) 等待发送的告警数量</li>
 </ul>
-<p>在每个server中都有一些系统层面（如数据库链接、JVM）的默认指标，为了您的检阅方便，我们也将它们列在了这里：</p>
+<p><strong>在每个server中都有一些系统层面（如数据库链接、JVM）的默认指标，为了您的检阅方便，我们也将它们列在了这里：</strong></p>
 <h3>数据库相关指标（默认）</h3>
 <ul>
 <li>hikaricp.connections: 连接综述</li>

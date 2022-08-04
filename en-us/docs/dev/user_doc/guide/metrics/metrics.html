@@ -124,9 +124,10 @@ docker compose up
 </ul>
 <h3>Alert Server Related</h3>
 <ul>
-<li>Currently, we have not embedded any metrics in Alert Server.</li>
+<li>ds.alert.send.count: (counter) the number of sent alerts, sliced by tag <code>status</code></li>
+<li>ds.alert.pending: (gauge) the number of alerts waiting to get fired</li>
 </ul>
-<p>In each server, there are some default system-level metrics related to <code>database connection</code>, <code>JVM</code>, etc. We list them below for your reference:</p>
+<p><strong>In each server, there are some default system-level metrics related to <code>database connection</code>, <code>JVM</code>, etc. We list them below for your reference:</strong></p>
 <h3>Database Related Metrics (Default)</h3>
 <ul>
 <li>hikaricp.connections: the total number of connections</li>
