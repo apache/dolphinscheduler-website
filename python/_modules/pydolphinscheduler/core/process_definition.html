@@ -101,6 +101,7 @@
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler</span> <span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource</span> <span class="kn">import</span> <span class="n">Resource</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyDSTaskNoFoundException</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">Base</span><span class="p">,</span> <span class="n">Project</span><span class="p">,</span> <span class="n">Tenant</span><span class="p">,</span> <span class="n">User</span>
@@ -188,7 +189,7 @@
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">release_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_RELEASE_STATE</span><span class="p">,</span>
         <span class="n">param</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">resource_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Resource</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="n">schedule</span>
@@ -492,12 +493,8 @@
         <span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">:</span>
-                <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">createOrUpdateResource</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
-                    <span class="n">res</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                    <span class="n">res</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
-                    <span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-                <span class="p">)</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">user_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">create_or_update_resource</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition_code</span></div>
 
 <div class="viewcode-block" id="ProcessDefinition.start"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.ProcessDefinition.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
