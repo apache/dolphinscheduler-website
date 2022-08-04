@@ -28,6 +28,7 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Zhenxu Ke         | kezhenxu94   | [@kezhenxu94](https://github.com/kezhenxu94)         |
 | Wenjun Ruan       | wenjun       | [@ruanwenjun](https://github.com/ruanwenjun)         |
 | Zihao Xiang       | zihaoxiang   | [@SbloodyS](https://github.com/SbloodyS)             |
+| JinyLeeChina      | jinyleechina | [@JinyLeeChina](https://github.com/JinyLeeChina)     |
 
 ### Committer
 
@@ -48,7 +49,6 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Xingchun Chen | chenxingchun | [@xingchun-chen](https://github.com/xingchun-chen)       |
 | Yichao Yang   | yangyichao   | [@yangyichao-mango](https://github.com/yangyichao-mango) |
 | Zongyao Zhang | lfyee        | [@lfyee](https://github.com/lfyee)                       |
-| JinyLeeChina  | jinyleechina | [@JinyLeeChina](https://github.com/JinyLeeChina)         |
 | Wang Xingjie  | wangxj       | [@wangxj3](https://github.com/wangxj3)                   |
 | Yizhi Wang    | wangyizhi    | [@Wangyizhi1](https://github.com/Wangyizhi1)             |
 | Jian Song     | songjian     | [@songjianet](https://github.com/songjianet)             |
@@ -59,6 +59,7 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Amy Wang      | wanggenhua   | [@Amy0104](https://github.com/Amy0104)                   |
 | JunJie Xu     | xujunjie     | [@labbomb](https://github.com/labbomb)                   |
 | Chufeng Gao   | chufenggao   | [@EricGao888](https://github.com/EricGao888)             |
+| JiPeng Wang   | wangjipeng   | [@WangJPLeo](https://github.com/WangJPLeo)               |
 
 ## Contributors
 
