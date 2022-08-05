@@ -1,8 +1,19 @@
-# DolphinScheduler 团队
+# 社区
 
-DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 DolphinScheduler 项目的源代码并积极地开发代码库。 贡献者通过向成员提交补丁和建议来改善项目。 该项目的贡献者数量是无限的。 无论是琐碎的清理工作，重要的新功能还是其他重大的奖励，对 DolphinScheduler 所做的所有贡献都将受到极大的赞赏。
+## 参与社区
+
+### 邮件列表
+
+如果您想参与最新的社区讨论或获得最新的消息，您可以订阅我们的邮件列表，编辑任何内容并发送到电子邮件[dev-subscribe@dolphinscheduler.apache.org](mailto:dev-subscribe@dolphinscheduler.apache.org)，
+参见[subscribe](/en-us/docs/dev/user_doc/contribute/join/subscribe.html)了解更多细节。
+
+### 提交 Issue 或者功能请求
+
+如果您发现一些bug或需要新功能，您可以在[new issue](https://github.com/apache/dolphinscheduler/issues/new/choose)中添加一个新问题。
 
 ## 成员
+
+DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 DolphinScheduler 项目的源代码并积极地开发代码库。 贡献者通过向成员提交补丁和建议来改善项目。 该项目的贡献者数量是无限的。 无论是琐碎的清理工作，重要的新功能还是其他重大的奖励，对 DolphinScheduler 所做的所有贡献都将受到极大的赞赏。
 
 ### PMC
 
@@ -63,7 +74,7 @@ DolphinScheduler 团队由成员和贡献者组成。 成员可以直接访问 D
 | Chufeng Gao   | chufenggao   | [@EricGao888](https://github.com/EricGao888)             |
 | JiPeng Wang   | wangjipeng   | [@WangJPLeo](https://github.com/WangJPLeo)               |
 
-## 贡献者
+### 贡献者
 
 DolphinScheduler 有数百个贡献者，您可以在我们存储库的贡献列表中找到他们。
 
@@ -72,7 +83,7 @@ DolphinScheduler 有数百个贡献者，您可以在我们存储库的贡献列
 - [DolphinScheduler maven plugin](https://github.com/apache/dolphinscheduler-maven-plugin/graphs/contributors)
 - [DolphinScheduler ambari](https://github.com/apache/dolphinscheduler-ambari/graphs/contributors)
 
-## 成为一个提交者
+### 成为一个提交者
 
 DolphinScheduler 遵循 Apache 的方式来构建社区。 只要为项目做出了足够的贡献并赢得了信任，任何人都可以成为提交者。 阅读[贡献者指南](https://dolphinscheduler.apache.org/zh-cn/community/development/contribute.html)参与社区。
 

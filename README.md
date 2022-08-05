@@ -63,21 +63,5 @@ description: some description
 3. Run docsite start locally to verify the blog can be displayed correctly.
 4. Send the pull request contains the .md and blog.js only.
 
-
-### Add a new article for development
-
-1. Add new .md file under docs/en-us/development or docs/zh-cn/development.
-2. Update site_config/development.js, add a new entry in either en-us or zh-cn.
-3. Run docsite start locally to verify the article can be displayed correctly.
-4. Send the pull request contains the *.md and development.js only.
-
-
-### Add a new article for docs
-
-1. Add new .md file under docs/en-us or docs/zh-cn.
-2. Update site_config/docs.js, add a new entry in either en-us or zh-cn.
-3. Run docsite start locally to verify the article can be displayed correctly.
-4. Send the pull request contains the *.md and docs.js only.
-
 Best Regards.  
 				Thanks for reading :)

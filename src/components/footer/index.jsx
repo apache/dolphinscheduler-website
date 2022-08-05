@@ -35,37 +35,6 @@ class Footer extends React.Component {
               }
             </ul>
           </div>
-          <div className="cols-container">
-            <div className="docu-container">
-              <h4>{dataSource.documentation.title}</h4>
-              <ul>
-                {
-                  dataSource.documentation.list.map((docu, i) => (
-                    <li key={i}>
-                      <a href={getLink(docu.link)}>
-                        <p>{docu.text}</p>
-                      </a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
-            <div />
-            <div className="asf-container">
-              <h4>{dataSource.asf.title}</h4>
-              <ul>
-                {
-                  dataSource.asf.list.map((asf, i) => (
-                    <li key={i}>
-                      <a href={getLink(asf.link)}>
-                        <p>{asf.text}</p>
-                      </a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
-          </div>
           <div className="copyright"><span>{dataSource.copyright}</span></div>
         </div>
       </footer>

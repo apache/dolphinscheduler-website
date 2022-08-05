@@ -1,8 +1,22 @@
-# DolphinScheduler Team
+# Community
+
+## Join Community
+
+### Mailing List
+
+If you want to join the latest community discussion or get the latest news, you can subscribe our mailing list by send any content to
+E-mail [dev-subscribe@dolphinscheduler.apache.org](mailto:dev-subscribe@dolphinscheduler.apache.org), see [subscribe](/en-us/docs/dev/user_doc/contribute/join/subscribe.html)
+for more detail.
+
+### Submit Issue or Feature Requests
+
+If you find some bug or need for new functionality, you can add a new issue in [new issue](https://github.com/apache/dolphinscheduler/issues/new/choose).
+
+## Team
 
 The DolphinScheduler team is comprised of Members and Contributors. Members have direct access to the source of DolphinScheduler project and actively evolve the code-base. Contributors improve the project through submission of patches and suggestions to the Members. The number of Contributors to the project is unbounded. All contributions to DolphinScheduler are greatly appreciated, whether for trivial cleanups, big new features or other material rewards.
 
-## Members
+### Members
 
 | Public Name       | Apache ID    | GitHub ID                                            |
 |-------------------| ------------ | ---------------------------------------------------- |
@@ -61,7 +75,7 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Chufeng Gao   | chufenggao   | [@EricGao888](https://github.com/EricGao888)             |
 | JiPeng Wang   | wangjipeng   | [@WangJPLeo](https://github.com/WangJPLeo)               |
 
-## Contributors
+### Contributors
 
 DolphinScheduler have hundreds of contributors, you could find them in our repositories' contribution list.
 
@@ -70,7 +84,7 @@ DolphinScheduler have hundreds of contributors, you could find them in our repos
 - [DolphinScheduler maven plugin](https://github.com/apache/dolphinscheduler-maven-plugin/graphs/contributors)
 - [DolphinScheduler ambari](https://github.com/apache/dolphinscheduler-ambari/graphs/contributors)
 
-## Becoming a Committer
+### Becoming a Committer
 
 DolphinScheduler follows the Apache way to build the community. Anyone can become a committer once they have contributed sufficiently to the project and earned the trust. Read [Contributing Guides](https://dolphinscheduler.apache.org/en-us/community/development/contribute.html) to take part in the community.
 
