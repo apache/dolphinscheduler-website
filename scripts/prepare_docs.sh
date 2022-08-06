@@ -129,7 +129,7 @@ function prepare_docs() {
 
     echo "===>>> Prepare directories and files"
     echo "  ---> Rebuild docsite directory which need for docsite build."
-    rebuild_dirs "${PROJECT_SITE_DOC_DIR}" "${PROJECT_SITE_DEVELOP_DIR}" "${SWAP_DIR}"
+    rebuild_dirs "${PROJECT_SITE_DOC_DIR}" "${SWAP_DIR}"
 
     echo "===>>> Clone repository."
     echo "  ---> Clone history documents from ${PROJECT_WEBSITE_REPO} branch ${PROJECT_WEBSITE_BRANCH_NAME}."
@@ -148,9 +148,8 @@ function prepare_docs() {
     echo "  ---> Sync latest document in dev branch."
     rsync_latest_docs
 
-    echo "===>>>: Replace images path in ${PROJECT_SITE_DOC_DIR} and ${PROJECT_SITE_DEVELOP_DIR}"
+    echo "===>>>: Replace images path in ${PROJECT_SITE_DOC_DIR}"
     replace_images_path "${PROJECT_SITE_DOC_DIR}"
-    replace_images_path "${PROJECT_SITE_DEVELOP_DIR}"
 
     echo "===>>> End prepare document."
 }

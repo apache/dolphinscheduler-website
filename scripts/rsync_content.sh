@@ -124,14 +124,10 @@ function rsync_latest_docs() {
     git checkout "${PROJECT_BRANCH_NAME}"
 
     echo "  ---> Sync dev docs."
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md --exclude=development"
+    rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md"
     rsync_wrapper "${PROJECT_DIR}/docs/docs/en/*.md" "${PROJECT_SITE_DOC_DIR}/en-us/release"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md --exclude=development"
+    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md"
     rsync_wrapper "${PROJECT_DIR}/docs/docs/zh/*.md" "${PROJECT_SITE_DOC_DIR}/zh-cn/release"
-
-    echo "  ---> Sync development document content."
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/en/development" "${PROJECT_SITE_DEVELOP_DIR}/en-us"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh/development" "${PROJECT_SITE_DEVELOP_DIR}/zh-cn"
 
     echo "  ---> Sync dev img."
     rsync_wrapper "${PROJECT_DIR}/docs/img" "${SOURCE_PATH}/img"
