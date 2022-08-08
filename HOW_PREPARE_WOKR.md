@@ -52,3 +52,24 @@ declare -A DEV_RELEASE_DOCS_VERSIONS=(
   ...
 )
 ```
+
+## How to Change Document Build Configuration Like Organization or Branch
+
+All the configurations is in [conf.sh](./scripts/conf.sh), and their can be change by environment variable. For example, you can point
+documentation source file to your fork of [apache/dolphinscheudler](https://github.com/apache/dolphinscheduler) when you add some change
+and want to start website locally for testing, you can run below command to change `./script/prepare_docs.sh` behavior.
+
+```shell
+# your github id already fork apache/dolphinscheduler
+export PROJECT_ORG="<YOUR-GITHUB-ID>"
+# the branch name you want to fetch and deploy website's document
+export PROJECT_BRANCH_NAME="<DEPLOY-BRANCH-OF-FORK>"
+```
+
+After you export the environment, you can fetch the document source markdown file from `<YOUR-GITHUB-ID>/dolphinscheduler` branch
+`<DEPLOY-BRANCH-OF-FORK>`. it is useful when you try to test your local change before merging to apache/dolphinscheudler. For all
+parameter can set from environment you can see in [conf.sh](./scripts/conf.sh)
+
+> NOTE: You have to make sure the branch config named with `DEV_RELEASE_DOCS_VERSIONS` in [conf.sh](./scripts/conf.sh) exist in your
+> fork, when you try to deploy or test base on your fork instead of official repo. You can rebase to apache/dolphinscheduler and then
+> run `git push <REMOTE> --all` to push all barnacles to your fork.

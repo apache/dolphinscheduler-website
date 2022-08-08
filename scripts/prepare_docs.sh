@@ -27,11 +27,11 @@ source "${SOURCE_PATH}/scripts/conf.sh"
 # run command `export PROTOCOL_MODE=ssh` in terminal change protocol to SSH which in is faster and stable in many cases,
 # such as local development where we already have RSA public key.
 if [ "${PROTOCOL_MODE:-HTTP}" == "ssh" ]; then
-    PROJECT_REPO="git@github.com:apache/${PROJECT_NAME}.git"
-    PROJECT_WEBSITE_REPO="git@github.com:apache/${PROJECT_WEBSITE_NAME}.git"
+    PROJECT_REPO="git@github.com:${PROJECT_ORG}/${PROJECT_NAME}.git"
+    PROJECT_WEBSITE_REPO="git@github.com:${PROJECT_WEBSITE_ORG}/${PROJECT_WEBSITE_NAME}.git"
 else
-    PROJECT_REPO="https://github.com/apache/${PROJECT_NAME}.git"
-    PROJECT_WEBSITE_REPO="https://github.com/apache/${PROJECT_WEBSITE_NAME}.git"
+    PROJECT_REPO="https://github.com/${PROJECT_ORG}/${PROJECT_NAME}.git"
+    PROJECT_WEBSITE_REPO="https://github.com/${PROJECT_WEBSITE_ORG}/${PROJECT_WEBSITE_NAME}.git"
 fi
 
 ##############################################################
