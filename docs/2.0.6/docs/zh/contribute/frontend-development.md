@@ -521,7 +521,7 @@ dag 相关接口 `src/js/conf/home/store/dag/actions.js`
 
 ##### 1.增加节点
 
-(1) 先将节点的icon小图标放置`src/js/conf/home/pages/dag/img`文件夹内，注意 `toolbar_${后台定义的节点的英文名称 例如:SHELL}.png`
+(1) 先将节点的icon小图标放置`src/js/conf/home/pages/dag`文件夹内，注意 `toolbar_${后台定义的节点的英文名称 例如:SHELL}.png`
 
 (2) 找到 `src/js/conf/home/pages/dag/_source/config.js` 里的 `tasksType` 对象，往里增加
 ```

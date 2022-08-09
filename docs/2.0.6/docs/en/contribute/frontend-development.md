@@ -521,7 +521,7 @@ User Center Related Interfaces `src/js/conf/home/store/user/actions.js`
 
 ##### 1.Add node
 
-(1) First place the icon icon of the node in the `src/js/conf/home/pages/dag/img `folder, and note the English name of the node defined by the `toolbar_${in the background. For example: SHELL}.png`
+(1) First place the icon icon of the node in the `src/js/conf/home/pages/dag `folder, and note the English name of the node defined by the `toolbar_${in the background. For example: SHELL}.png`
 
 (2)  Find the `tasksType` object in `src/js/conf/home/pages/dag/_source/config.js` and add it to it.
 ```
