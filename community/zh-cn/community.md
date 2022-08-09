@@ -85,7 +85,7 @@ DolphinScheduler 有数百个贡献者，您可以在我们存储库的贡献列
 
 ### 成为一个提交者
 
-DolphinScheduler 遵循 Apache 的方式来构建社区。 只要为项目做出了足够的贡献并赢得了信任，任何人都可以成为提交者。 阅读[贡献者指南](https://dolphinscheduler.apache.org/zh-cn/community/development/contribute.html)参与社区。
+DolphinScheduler 遵循 Apache 的方式来构建社区。 只要为项目做出了足够的贡献并赢得了信任，任何人都可以成为提交者。 阅读[贡献者指南](https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/join/review.html)参与社区。
 
 DolphinScheduler 社区在接受新提交者时遵循 [Apache 社区的流程](http://community.apache.org/newcommitter.html)。
 

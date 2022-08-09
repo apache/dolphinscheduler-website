@@ -36,7 +36,7 @@ The Alert mode of Apache DolphinScheduler version 1.0 uses configuring alert.pro
 
 [https://github.com/apache/dolphinscheduler/issues/3049](https://github.com/apache/dolphinscheduler/issues/3049)
 
-[https://dolphinscheduler.apache.org/en-us/development/backend/spi/alert.html](https://dolphinscheduler.apache.org/en-us/development/backend/spi/alert.html)
+[https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html](https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html)
 
 The Apache DolphinScheduler alert module is an independently started service, and one of the cores is the AlertPluginManager class. The alarm module integrates many plug-ins, such as DingTalk, WeChat, Feishu, mail, etc., which are written in the source code in an independent form. When the service is started, the plug-in will be parsed and the configured parameters will be formatted into JSON, by which the front-end page will automatically be rendered. AlertPluginManager caches plugins in memory at startup. The AlertServer class will start the thread pool and scan the DB regularly.
 

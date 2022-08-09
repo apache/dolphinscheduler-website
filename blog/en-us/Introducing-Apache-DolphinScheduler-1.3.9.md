@@ -68,7 +68,7 @@ There are many ways to participate in and contribute to the Apache DolphinSchedu
 * Contribute to the first PR (document, code). We hope it to be simple and a try to get yourself familiar with the submission process and community collaboration.
 * We have compiled a list of issues suitable for novices: [Good First Issues](https://github.com/apache/dolphinscheduler/issues/5689)
 * And a list of issues for non-newbie: [Volunteer Wanted](https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22)
-* How to participate in the contribution: [Participate in Contributing](https://dolphinscheduler.apache.org/en-us/community/development/contribute.html)
+* How to participate in the contribution: [Participate in Contributing](https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/join/review.html)
 
 Apache DolphinScheduler Community needs you! Even if a small piece of tile will make a big differnce.
 

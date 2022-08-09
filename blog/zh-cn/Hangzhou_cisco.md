@@ -35,7 +35,7 @@ Apache DolphinScheduler 1.0 版本的 Alert 模式使用配置alert.properties�
 
 [https://github.com/apache/dolphinscheduler/issues/3049](https://github.com/apache/dolphinscheduler/issues/3049)
 
-[https://dolphinscheduler.apache.org/zh-cn/development/backend/spi/alert.html](https://dolphinscheduler.apache.org/zh-cn/development/backend/spi/alert.html)
+[https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html](https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html)
 
 
 Apache DolphinScheduler 告警模块是一个独立启动的服务，核心之一是 AlertPluginManager 类。告警模块集成了很多插件，如钉钉、微信、飞书、邮件等，以独立的形式写在源码中，启动服务时会解析插件并将配置的参数格式化成JSON形式，前端通过JSON自动渲染出页面。AlertPluginManager 在启动时会缓存插件到内存中。AlertServer类会启动线程池，定时扫描DB。

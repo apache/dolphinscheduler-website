@@ -38,6 +38,6 @@ YouTube ：https://www.youtube.com/channel/UCmrPmeE7dVqo8DYhSLHa0vA
 
 Slack ：https://s.apache.org/dolphinscheduler-slack
 
-Contributor Guide：https://dolphinscheduler.apache.org/en-us/community/index.html
+Contributor Guide：https://dolphinscheduler.apache.org/en-us/community/community.html
 
 如果对漏洞有任何疑问，欢迎参与讨论，竭诚解决大家的疑虑：
