@@ -372,7 +372,7 @@ So the community has compiled the following list of issues suitable for novices:
 
 List of non-newbie issues: [https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22](https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22)
 
-How to participate in the contribution: [https://dolphinscheduler.apache.org/en-us/community/development/contribute.html](https://dolphinscheduler.apache.org/en-us/community/development/contribute.html)
+How to participate in the contribution:  https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/join/review.html
 
 **GitHub Code Repository:** [https://github.com/apache/dolphinscheduler](https://github.com/apache/dolphinscheduler)
 
@@ -386,7 +386,7 @@ How to participate in the contribution: [https://dolphinscheduler.apache.org/en
 
 **Slack：**[https://s.apache.org/dolphinscheduler-slack](https://s.apache.org/dolphinscheduler-slack)
 
-**Contributor Guide：**[https://dolphinscheduler.apache.org/en-us/community/index.html](https://dolphinscheduler.apache.org/en-us/community/index.html)
+**Contributor Guide：**[https://dolphinscheduler.apache.org/en-us/community/community.html](https://dolphinscheduler.apache.org/en-us/community/community.html)
 
 Your Star for the project is important, don’t hesitate to lighten a Star for Apache DolphinScheduler ❤️
 

@@ -52,13 +52,6 @@ export default {
           dateStr: 'May 12nd，2018',
           link: '/en-us/blog/architecture-design.html',
         },
-        {
-          img: '/img/review_img4.png',
-          title: 'DolphinScheduler beijing meetup has been held successfully',
-          content: 'DolphinScheduler beijing meetup has been held successfully',
-          dateStr: 'May 12nd，2018',
-          link: '/en-us/development/architecture-design.html',
-        },
       ],
     },
     contacts: {
@@ -168,13 +161,6 @@ export default {
           content: '一个分布式易扩展的可视化DAG工作流任务调度系统',
           dateStr: 'May 12nd，2018',
           link: '/zh-cn/blog/architecture-design.html',
-        },
-        {
-          img: '/img/review_img4.png',
-          title: 'DolphinScheduler 开发者大会在北京成功举行',
-          content: 'DolphinScheduler 开发者大会在北京成功举行',
-          dateStr: 'May 12nd，2018',
-          link: '/zh-cn/development/architecture-design.html',
         },
       ],
     },
