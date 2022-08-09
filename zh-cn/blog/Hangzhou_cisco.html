@@ -31,7 +31,7 @@
 <p>DolphinScheduler Alert 模块的设计</p>
 <p>Apache DolphinScheduler 1.0 版本的 Alert 模式使用配置alert.properties的方式，通过配置邮箱、短信等实现告警，但这样的方式已经不适用于当前的场景了。官方也进行过告警模块重构，详情设计思路参考官方文档：</p>
 <p><a href="https://github.com/apache/dolphinscheduler/issues/3049">https://github.com/apache/dolphinscheduler/issues/3049</a></p>
-<p><a href="https://dolphinscheduler.apache.org/zh-cn/development/backend/spi/alert.html">https://dolphinscheduler.apache.org/zh-cn/development/backend/spi/alert.html</a></p>
+<p><a href="https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html">https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html</a></p>
 <p>Apache DolphinScheduler 告警模块是一个独立启动的服务，核心之一是 AlertPluginManager 类。告警模块集成了很多插件，如钉钉、微信、飞书、邮件等，以独立的形式写在源码中，启动服务时会解析插件并将配置的参数格式化成JSON形式，前端通过JSON自动渲染出页面。AlertPluginManager 在启动时会缓存插件到内存中。AlertServer类会启动线程池，定时扫描DB。</p>
 <p>当工作流配置了通知策略，同时Worker 执行工作流结束，执行结果匹配通知策略成功后，DB插入告警数据后，线程池扫描 DB，调用AlertSender 类的send方法传入告警数据。告警数据绑定的是告警组，一个告警组对应了多个告警实例。AlertSender类遍历告警实例，通过AlertPluginManager类获取插件实例，调用实例的发送方法，最后更新结果。这是 Apache DolphinScheduler 的整个告警流程。</p>
 <p>需要注意的是，Alert server 启动的同时也启动了 RPC 服务，这是一种针对特殊类型任务，如 SQL 查询报表而设计的告警方式，可以让 Worker 通过 RPC 直接访问 Alert  Server，利用 Alert 模块完成告警，这个数据不写入 DB。但从整体上来说，Apache DolphinScheduler 的告警模式还是以写 DB，异步交互的方式为主。</p>
@@ -91,7 +91,7 @@ Apache DolphinScheduler 的架构虽然符合实际场景需求，但问题在�
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.e671d63.js"></script>
+  <script src="/build/vendor.5f7fd5f.js"></script>
   <script src="/build/blog.md.ee0f188.js"></script>
   <script>
     var _hmt = _hmt || [];

@@ -33,7 +33,7 @@ Today, I will share the reform journey of the Alert module.</p>
 <p>Design of the DolphinScheduler Alert module
 The Alert mode of Apache DolphinScheduler version 1.0 uses configuring alert.properties to  send alerts by configuring emails, SMS, etc., but this method is no longer suitable for the current scenario. The official has also refactored the alarm module. For details of the design ideas, please refer to the official documents:</p>
 <p><a href="https://github.com/apache/dolphinscheduler/issues/3049">https://github.com/apache/dolphinscheduler/issues/3049</a></p>
-<p><a href="https://dolphinscheduler.apache.org/en-us/development/backend/spi/alert.html">https://dolphinscheduler.apache.org/en-us/development/backend/spi/alert.html</a></p>
+<p><a href="https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html">https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html</a></p>
 <p>The Apache DolphinScheduler alert module is an independently started service, and one of the cores is the AlertPluginManager class. The alarm module integrates many plug-ins, such as DingTalk, WeChat, Feishu, mail, etc., which are written in the source code in an independent form. When the service is started, the plug-in will be parsed and the configured parameters will be formatted into JSON, by which the front-end page will automatically be rendered. AlertPluginManager caches plugins in memory at startup. The AlertServer class will start the thread pool and scan the DB regularly.</p>
 <p>When the workflow is configured with a notification policy, the Worker executes the workflow, and the execution result matches the notification policy successfully. After inserting the alarm data into the DB, the thread pool scans the DB and calls the send method of the AlertSender class to transfer the alarm data. Alarm data is bound to an alarm group, which corresponds to multiple alarm instances. The AlertSender class traverses the alert instance, obtains the plug-in instance through the AlertPluginManager class, calls the instance's sending method, and finally updates the result. This is the entire alerting process of Apache DolphinScheduler.</p>
 <p>It should be noted that the RPC service is also started when the Alert server is started. This is an alarm method designed for special types of tasks, such as SQL query reports. It allows workers to directly access the Alert server through RPC, and use the Alert module to complete the alarm, while the data is not written to DB. But on the whole, the alarm mode of Apache DolphinScheduler is still based on the way of writing DB and asynchronous interaction.</p>
@@ -93,7 +93,7 @@ The last but not least, big data practitioners probably are not skilled with the
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
   <script>window.rootPath = '';</script>
-  <script src="/build/vendor.e671d63.js"></script>
+  <script src="/build/vendor.5f7fd5f.js"></script>
   <script src="/build/blog.md.ee0f188.js"></script>
   <script>
     var _hmt = _hmt || [];
