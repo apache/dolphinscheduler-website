@@ -103,7 +103,7 @@
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource</span> <span class="kn">import</span> <span class="n">Resource</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyDSTaskNoFoundException</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">JavaGate</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">Base</span><span class="p">,</span> <span class="n">Project</span><span class="p">,</span> <span class="n">Tenant</span><span class="p">,</span> <span class="n">User</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.utils.date</span> <span class="kn">import</span> <span class="n">MAX_DATETIME</span><span class="p">,</span> <span class="n">conv_from_str</span><span class="p">,</span> <span class="n">conv_to_schedule</span>
 
@@ -470,14 +470,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_side_model_exists</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pre_submit_check</span><span class="p">()</span>
 
-        <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition_code</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">createOrUpdateProcessDefinition</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition_code</span> <span class="o">=</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">create_or_update_process_definition</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_json</span><span class="p">),</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">warning_group_id</span><span class="p">,</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_location</span><span class="p">),</span>
@@ -488,6 +486,7 @@
             <span class="c1"># TODO add serialization function</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_relation_json</span><span class="p">),</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_definition_json</span><span class="p">),</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="kc">None</span><span class="p">,</span>
             <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
@@ -502,8 +501,7 @@
 
 <span class="sd">        which post to `start-process-instance` to java gateway</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>
-        <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">execProcessInstance</span><span class="p">(</span>
+        <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">exec_process_instance</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>

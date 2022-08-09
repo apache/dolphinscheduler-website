@@ -100,7 +100,7 @@
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSJavaGatewayException</span><span class="p">,</span> <span class="n">PyDSParamException</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">JavaGate</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.models.base</span> <span class="kn">import</span> <span class="n">Base</span>
 
 <span class="n">DEPENDENT_ALL_TASK_IN_WORKFLOW</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
@@ -243,9 +243,8 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_code</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">getDependentInfo</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">code_parameter</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_code</span> <span class="o">=</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">get_dependent_info</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">code_parameter</span><span class="p">)</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">PyDSJavaGatewayException</span><span class="p">(</span><span class="s2">&quot;Function get_code_from_gateway error.&quot;</span><span class="p">)</span></div></div>
