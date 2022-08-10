@@ -72,12 +72,13 @@ chmod 600 ~/.ssh/authorized_keys
 <h2>修改相关配置</h2>
 <p>完成基础环境的准备后，需要根据你的机器环境修改配置文件。配置文件可以在目录 <code>bin/env</code> 中找到，他们分别是 并命名为 <code>install_env.sh</code> 和 <code>dolphinscheduler_env.sh</code>。</p>
 <h3>修改 <code>install_env.sh</code> 文件</h3>
-<p>文件 <code>install_env.sh</code> 描述了哪些机器将被安装 DolphinScheduler 以及每台机器对应安装哪些服务。您可以在路径 <code>bin/env/install_env.sh</code> 中找到此文件，配置详情如下。</p>
+<p>文件 <code>install_env.sh</code> 描述了哪些机器将被安装 DolphinScheduler 以及每台机器对应安装哪些服务。您可以在路径 <code>bin/env/install_env.sh</code> 中找到此文件，可通过以下方式更改env变量,export &lt;ENV_NAME&gt;=<VALUE>，配置详情如下。</p>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> ---------------------------------------------------------</span>
 <span class="hljs-meta">#</span><span class="bash"> INSTALL MACHINE</span>
 <span class="hljs-meta">#</span><span class="bash"> ---------------------------------------------------------</span>
 <span class="hljs-meta">#</span><span class="bash"> Due to the master, worker, and API server being deployed on a single node, the IP of the server is the machine IP or localhost</span>
 ips=&quot;localhost&quot;
+sshPort=&quot;22&quot;
 masters=&quot;localhost&quot;
 workers=&quot;localhost:default&quot;
 alertServer=&quot;localhost&quot;

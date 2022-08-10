@@ -106,28 +106,49 @@
 <p>Startup parameter: Set or overwrite global parameter values when starting a new process instance.</p>
 </li>
 <li>
-<p>Complement: includes serial complement and parallel complement and supports manual date input and date selection. Serial complement defines, within the specified time range, executes the complements from the start date to the end date by sequential and N process instances are generated in sequence. Parallel complement defines executing the complement concurrently in the multiple days to generate N process instances within the specified time range. Manual date input defines: manually input the date following the date format <code>yyyy-MM-dd HH:mm:ss</code> and separate dates by a comma. Date selection defines: to select dates via UI.</p>
+<p>Complement: refers to running the workflow definition within the specified date range and generating the corresponding workflow instance according to the complement policy. The complement policy includes two modes: <strong>serial complement</strong> and <strong>parallel complement</strong>. The date can be selected on the page or entered manually.</p>
 <ul>
-<li>Dependent Mode: Trigger the complement of workflow instances that the downstream dependent node depends on the current workflow(It is required that the scheduled status of the workflow instance of the current replenishment is online, and only the downstream supplement directly dependent on the current workflow will be triggered).</li>
-<li>You can select complement time range (When the scheduled configuration is not online, the daily complement will be performed by default according to the selected time range.If the timing configuration is online, it will be complemented according to the selected time range in combination with the timing configuration) when executing a timing workflow definition. For example, need to fill in the data from 1st May to 10th May, as shown in the figure below:</li>
+<li>
+<p>Serial complement: within the specified time range, complement is executed from the start date to the end date, and multiple process instances are generated in turn; Click Run workflow and select the serial complement mode: for example, from July 9 to July 10, execute in sequence, and generate two process instances in sequence on the process instance page.</p>
+<p><img src="/img/new_ui/dev/project/workflow-serial.png" alt="workflow-serial"></p>
+</li>
+<li>
+<p>Parallel Replenishment: within the specified time range, replenishment is performed simultaneously for multiple days, and multiple process instances are generated at the same time. Enter date manually: manually enter a date in the comma separated date format of 'yyyy MM DD hh:mm:ss'.Click Run workflow and select the parallel complement mode: for example, execute the workflow definition from July 9 to July 10 at the same time, and generate two process instances on the process instance page at the same time.</p>
+<p><img src="/img/new_ui/dev/project/workflow-parallel.png" alt="workflow-parallel"></p>
+</li>
+<li>
+<p>Concurrency: refers to the maximum number of instances executed in parallel in the parallel complement mode.For example, if tasks from July 6 to July 10 are executed at the same time, and the concurrency is 2, then the process instance is:</p>
+<p><img src="/img/new_ui/dev/project/workflow-concurrency-from.png" alt="workflow-concurrency-from"></p>
+<p><img src="/img/new_ui/dev/project/workflow-concurrency.png" alt="workflow-concurrency"></p>
+</li>
+<li>
+<p>Dependency mode: whether to trigger the replenishment of workflow instances that downstream dependent nodes depend on the current workflow (the timing status of workflow instances that require the current replenishment is online, which will only trigger the replenishment of downstream directly dependent on the current workflow).</p>
+<p><img src="/img/new_ui/dev/project/workflow-dependency.png" alt="workflow-dependency"></p>
+</li>
+<li>
+<p>Date selection:</p>
+<ol>
+<li>Select the date through the page:</li>
+</ol>
+<p><img src="/img/new_ui/dev/project/workflow-pageSelection.png" alt="workflow-pageSelection"></p>
+<ol start="2">
+<li>Manual input:</li>
+</ol>
+<p><img src="/img/new_ui/dev/project/workflow-input.png" alt="workflow-input"></p>
+</li>
+<li>
+<p>Relationship between complement and timing configuration:</p>
+<ol>
+<li>Unconfigured timing: When there is no timing configuration, the daily replenishment will be performed by default according to the selected time range. For example, the workflow scheduling date is July 7 to July 10. If timing is not configured, the process instance is:</li>
+</ol>
+<p><img src="/img/new_ui/dev/project/workflow-unconfiguredTimingResult.png" alt="workflow-unconfiguredTimingResult"></p>
+<ol start="2">
+<li>Configured timing: If there is a timing configuration, it will be supplemented according to the selected time range in combination with the timing configuration. For example, the workflow scheduling date is July 7 to July 10, and the timing is configured (running every 5 a.m.). The process example is:</li>
+</ol>
+<p><img src="/img/new_ui/dev/project/workflow-configuredTiming.png" alt="workflow-configuredTiming"></p>
+<p><img src="/img/new_ui/dev/project/workflow-configuredTimingResult.png" alt="workflow-configuredTimingResult"></p>
+</li>
 </ul>
-<p><img src="/img/new_ui/dev/project/workflow-date.png" alt="workflow-date"></p>
-<blockquote>
-<p>Serial mode: the complement execute sequentially from 9th May to 10th May, and the process instance page generates 2 process instances;</p>
-</blockquote>
-<blockquote>
-<p>Parallel mode: The tasks from 9th May to 10th May execute simultaneously, and the process instance page generates 2 process instances;</p>
-</blockquote>
-<ul>
-<li>You can manually enter the complement dates (independent from the timing configuration) to execute the complement data to workflow definitions. The figure below is an example to make complement data from 9th May to 10th May:</li>
-</ul>
-<p><img src="/img/new_ui/dev/project/workflow_date_manual.png" alt="workflow-date"></p>
-<blockquote>
-<p>Serial mode: the complement execute sequentially from 9th May to 10th May, and the process instance page generates 2 process instances;</p>
-</blockquote>
-<blockquote>
-<p>Parallel mode: The tasks from 9th May to 10th May execute simultaneously, and the process instance page generates 2 process instances;</p>
-</blockquote>
 </li>
 </ul>
 <h2>Run the task alone</h2>

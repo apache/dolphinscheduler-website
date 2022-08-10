@@ -71,7 +71,7 @@ chmod 600 ~/.ssh/authorized_keys
 </code></pre>
 <h2>Modify Configuration</h2>
 <p>After completing the preparation of the basic environment, you need to modify the configuration file according to the
-environment you used. The configuration files are both in directory <code>bin/env</code> and named <code>install_env.sh</code> and <code>dolphinscheduler_env.sh</code>.</p>
+environment you used. Change the environment configurations via <code>export &lt;ENV_NAME&gt;=&lt;VALUE&gt;</code>. The configuration files are located in directory <code>bin/env</code> as <code>install_env.sh</code> and <code>dolphinscheduler_env.sh</code>.</p>
 <h3>Modify <code>install_env.sh</code></h3>
 <p>File <code>install_env.sh</code> describes which machines will be installed DolphinScheduler and what server will be installed on
 each machine. You could find this file in the path <code>bin/env/install_env.sh</code> and the detail of the configuration as below.</p>
@@ -80,6 +80,7 @@ each machine. You could find this file in the path <code>bin/env/install_env.sh<
 <span class="hljs-meta">#</span><span class="bash"> ---------------------------------------------------------</span>
 <span class="hljs-meta">#</span><span class="bash"> Due to the master, worker, and API server being deployed on a single node, the IP of the server is the machine IP or localhost</span>
 ips=&quot;localhost&quot;
+sshPort=&quot;22&quot;
 masters=&quot;localhost&quot;
 workers=&quot;localhost:default&quot;
 alertServer=&quot;localhost&quot;
