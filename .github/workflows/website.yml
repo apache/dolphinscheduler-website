@@ -39,7 +39,7 @@ jobs:
       run: |
         python -m pip install --upgrade ${{ env.DEPENDENCES }}
         python -m tox -vv -e doc-build-multi
-        cp -r docs/build/html/versions dist/python
+        cp -r docs/build/html/versions ${GITHUB_WORKSPACE}/dist/python
 
 #    - name: Deploy
 #      uses: peaceiris/actions-gh-pages@v3
