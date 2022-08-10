@@ -10,6 +10,7 @@ on:
 
 env:
   PYDS_HOME: swap/dolphinscheduler/dolphinscheduler-python/pydolphinscheduler
+  DEPENDENCES: pip setuptools wheel tox
 
 jobs:
   build-website-deploy:
@@ -29,14 +30,17 @@ jobs:
     - name: Build Main Document
       run: npm install && npm run build
 
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
     - name: Build Python Multiple Version Document
       working-directory: ${{ env.PYDS_HOME }}
+      # We have to create new directory `dist/python` for python versions docs
       run: |
-        git fetch --tags
-        pip install -e '.[doc]'
-        cd docs
-        make clean && make multiversion
         mkdir -p dist/python
+        python -m pip install --upgrade ${{ env.DEPENDENCES }}
+        python -m tox -vv -e doc-build-multi
         cp -r ${{ env.PYDS_HOME }}/docs/build/html/versions dist/python
 
 #    - name: Deploy
