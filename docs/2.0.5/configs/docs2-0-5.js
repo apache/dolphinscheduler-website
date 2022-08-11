@@ -281,7 +281,7 @@ export default {
           },
           {
             title: 'PyDolphinScheduler',
-            link: '/python/2.0.6/index.html',
+            link: '/python/2.0.5/index.html',
           },
         ],
       },
@@ -588,7 +588,7 @@ export default {
           },
           {
             title: 'PyDolphinScheduler',
-            link: '/python/2.0.6/index.html',
+            link: '/python/2.0.5/index.html',
           },
         ],
       },
