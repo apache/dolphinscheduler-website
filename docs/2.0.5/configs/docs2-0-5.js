@@ -221,10 +221,6 @@ export default {
             link: '/en-us/docs/2.0.5/user_doc/guide/security.html',
           },
           {
-            title: 'Open API',
-            link: '/en-us/docs/2.0.5/user_doc/guide/open-api.html',
-          },
-          {
             title: 'Flink',
             link: '/en-us/docs/2.0.5/user_doc/guide/flink-call.html',
           },
@@ -275,6 +271,19 @@ export default {
             link: '/en-us/docs/2.0.5/user_doc/guide/observability/skywalking-agent.html',
           },
         ]
+      },
+      {
+        title: 'API',
+        children: [
+          {
+            title: 'Open API',
+            link: '/en-us/docs/2.0.6/user_doc/guide/open-api.html',
+          },
+          {
+            title: 'PyDolphinScheduler',
+            link: '/python/2.0.5/index.html',
+          },
+        ],
       },
       {
         title: 'FAQ',
@@ -519,10 +528,6 @@ export default {
             link: '/zh-cn/docs/2.0.5/user_doc/guide/security.html',
           },
           {
-            title: 'API调用',
-            link: '/zh-cn/docs/2.0.5/user_doc/guide/open-api.html',
-          },
-          {
             title: 'Flink调用',
             link: '/zh-cn/docs/2.0.5/user_doc/guide/flink-call.html',
           },
@@ -573,6 +578,19 @@ export default {
             link: '/zh-cn/docs/2.0.5/user_doc/guide/observability/skywalking-agent.html',
           },
         ]
+      },
+      {
+        title: 'API',
+        children: [
+          {
+            title: 'API调用',
+            link: '/zh-cn/docs/2.0.6/user_doc/guide/open-api.html',
+          },
+          {
+            title: 'PyDolphinScheduler',
+            link: '/python/2.0.5/index.html',
+          },
+        ],
       },
       {
         title: 'FAQ',
