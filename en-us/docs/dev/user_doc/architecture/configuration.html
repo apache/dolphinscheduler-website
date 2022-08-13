@@ -686,6 +686,16 @@ Currently, DolphinScheduler just makes a basic config, remember to config furthe
 <td>true</td>
 <td>whether to kill yarn job when failover taskInstance</td>
 </tr>
+<tr>
+<td>master.registry-disconnect-strategy.strategy</td>
+<td>stop</td>
+<td>Used when the master disconnect from registry, default value: stop. Optional values include stop, waiting</td>
+</tr>
+<tr>
+<td>master.registry-disconnect-strategy.max-waiting-time</td>
+<td>100s</td>
+<td>Used when the master disconnect from registry, and the disconnect strategy is waiting, this config means the master will waiting to reconnect to registry in given times, and after the waiting times, if the master still cannot connect to registry, will stop itself, if the value is 0s, the Master will waitting infinitely</td>
+</tr>
 </tbody>
 </table>
 <h3>Worker Server related configuration</h3>
@@ -748,6 +758,16 @@ Currently, DolphinScheduler just makes a basic config, remember to config furthe
 <td>worker.alert-listen-port</td>
 <td>50052</td>
 <td>the alert listen port of worker</td>
+</tr>
+<tr>
+<td>worker.registry-disconnect-strategy.strategy</td>
+<td>stop</td>
+<td>Used when the worker disconnect from registry, default value: stop. Optional values include stop, waiting</td>
+</tr>
+<tr>
+<td>worker.registry-disconnect-strategy.max-waiting-time</td>
+<td>100s</td>
+<td>Used when the worker disconnect from registry, and the disconnect strategy is waiting, this config means the worker will waiting to reconnect to registry in given times, and after the waiting times, if the worker still cannot connect to registry, will stop itself, if the value is 0s, will waitting infinitely</td>
 </tr>
 </tbody>
 </table>
