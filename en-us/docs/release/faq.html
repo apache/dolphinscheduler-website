@@ -171,9 +171,9 @@ version 1.3 not use grpc, we use netty directly</p>
 <h2>Q ： How to use the queue in DolphinScheduler, what does the user queue and tenant queue mean?</h2>
 <p>A ： The queue in the DolphinScheduler can be configured on the user or the tenant. <strong>The priority of the queue specified by the user is higher than the priority of the tenant queue.</strong> For example, to specify a queue for an MR task, the queue is specified by mapreduce.job.queuename.</p>
 <p>Note: When using the above method to specify the queue, the MR uses the following methods:</p>
-<pre><code>	      Configuration conf = new Configuration();
-        GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
-        String[] remainingArgs = optionParser.getRemainingArgs();
+<pre><code>   Configuration conf = new Configuration();
+GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
+String[] remainingArgs = optionParser.getRemainingArgs();
 </code></pre>
 <p>If it is a Spark task --queue mode specifies the queue</p>
 <hr>
@@ -256,8 +256,8 @@ A： This bug have fix in dev and in Requirement/TODO list.
    <img src="https://user-images.githubusercontent.com/18378986/81293969-c3101680-90a0-11ea-87e5-ac9f0dd53f5e.png" width="60%" />
  </p>
 A: Session timeout is too short, only 0.3 seconds. Change the config item in zookeeper.properties:
-<pre><code>   zookeeper.session.timeout=60000
-   zookeeper.connection.timeout=30000
+<pre><code>zookeeper.session.timeout=60000
+zookeeper.connection.timeout=30000
 </code></pre>
 <hr>
 <h2>Q : Started using the docker-compose default configuration and display zookeeper errors</h2>
@@ -265,8 +265,8 @@ A: Session timeout is too short, only 0.3 seconds. Change the config item in zoo
    <img src="https://user-images.githubusercontent.com/42579056/80374318-13c98780-88c9-11ea-8d5f-53448b957f02.png" width="60%" />
  </p>
 A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/dolphinscheduler/pull/2595) has solved this bug, brief change log:
-<pre><code>    1. add zookeeper environment variable ZOO_4LW_COMMANDS_WHITELIST in docker-compose.yml file.
-    2. change the data type of minLatency, avgLatency and maxLatency from int to float.
+<pre><code>1. add zookeeper environment variable ZOO_4LW_COMMANDS_WHITELIST in docker-compose.yml file.
+2. change the data type of minLatency, avgLatency and maxLatency from int to float.
 </code></pre>
 <hr>
 <h2>Q : Interface show some task would be running all the time when db delayed and log show task instance is null</h2>
@@ -285,17 +285,17 @@ A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/dolp
 <hr>
 <h2>Q : Zookeeper masters znode list ip address is 127.0.0.1, instead of wanted ip eth0 or eth1, and may can't see task log</h2>
 <p>A: bug fix:</p>
-<pre><code>   1, confirm hostname
-   $hostname
-   hadoop1
-   2, hostname -i
-   127.0.0.1 10.3.57.15
-   3, edit /etc/hosts,delete hadoop1 from 127.0.0.1 record
-   $cat /etc/hosts
-   127.0.0.1 localhost
-   10.3.57.15 ds1 hadoop1
-   4, hostname -i
-   10.3.57.15
+<pre><code>1, confirm hostname
+$hostname
+hadoop1
+2, hostname -i
+127.0.0.1 10.3.57.15
+3, edit /etc/hosts,delete hadoop1 from 127.0.0.1 record
+$cat /etc/hosts
+127.0.0.1 localhost
+10.3.57.15 ds1 hadoop1
+4, hostname -i
+10.3.57.15
 </code></pre>
 <p>Hostname cmd return server hostname, hostname -i return all matched ips configured in /etc/hosts. So after I delete the hostname matched with 127.0.0.1, and only remain internal ip resolution, instead of remove all the 127.0.0.1 resolution record. As long as hostname cmd return the correct internal ip configured in /etc/hosts can fix this bug. DolphinScheduler use the first record returned by hostname -i command. In my opion, DS should not use hostname -i to get the ip , as in many companies the devops configured the server name, we suggest use ip configured in configuration file or znode instead of /etc/hosts.</p>
 <hr>
@@ -311,7 +311,7 @@ A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/dolp
 sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 </code></pre>
 <p>3, if the 2nd step failure, please, <a href="https://dolphinscheduler.apache.org/en-us/development/frontend-development.html">referer url</a></p>
-<pre><code> sudo npm rebuild node-sass
+<pre><code>sudo npm rebuild node-sass
 </code></pre>
 <p>When solved this problem, if you don't want to download this node every time, you can set system environment variable: SASS_BINARY_PATH= /xxx/xxx/xxx/xxx.node.</p>
 <hr>
@@ -369,9 +369,9 @@ A: 1, Edit ngnix config file, edit upload max size client_max_body_size 1024m.
 <hr>
 <h2>Q : Create a spark data source, click &quot;Test Connection&quot;, the system will fall back to the login page</h2>
 <p>A: 1, edit nginx config file /etc/nginx/conf.d/escheduler.conf</p>
-<pre><code>     proxy_connect_timeout 300s;
-     proxy_read_timeout 300s;
-     proxy_send_timeout 300s;
+<pre><code>proxy_connect_timeout 300s;
+proxy_read_timeout 300s;
+proxy_send_timeout 300s;
 </code></pre>
 <hr>
 <h2>Q : Workflow Dependency</h2>
