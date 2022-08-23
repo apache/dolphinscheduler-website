@@ -19,7 +19,8 @@
 </ul>
 <h2>对接本地文件系统</h2>
 <h3>配置 <code>common.properties</code> 文件</h3>
-<p>对以下路径的文件进行配置：<code>api-server/conf/common.properties</code> 和 <code>worker-server/conf/common.properties</code></p>
+<p>如果您以 <code>集群</code> 模式或者 <code>伪集群</code> 模式部署DolphinScheduler，您需要对以下路径的文件进行配置：<code>api-server/conf/common.properties</code> 和 <code>worker-server/conf/common.properties</code>；
+若您以 <code>单机</code> 模式部署DolphinScheduler，您只需要配置 <code>standalone-server/conf/common.properties</code>，具体配置如下：</p>
 <ul>
 <li>将 <code>resource.storage.upload.base.path</code> 改为本地存储路径，请确保部署 DolphinScheduler 的用户拥有读写权限，例如：<code>resource.storage.upload.base.path=/tmp/dolphinscheduler</code>。当路径不存在时会自动创建文件夹</li>
 <li>修改 <code>resource.storage.type=HDFS</code> 和 <code>resource.hdfs.fs.defaultFS=file:///</code>。</li>

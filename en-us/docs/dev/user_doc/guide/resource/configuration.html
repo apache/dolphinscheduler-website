@@ -19,7 +19,8 @@
 </ul>
 <h2>Use Local File System</h2>
 <h3>Configure <code>common.properties</code></h3>
-<p>Configure <code>api-server/conf/common.properties</code> and <code>worker-server/conf/common.properties</code> as follows:</p>
+<p>If you deploy DolphinScheduler in <code>Cluster</code> or <code>Pseudo-Cluster</code> mode, you need to configure <code>api-server/conf/common.properties</code> and <code>worker-server/conf/common.properties</code>.
+If you deploy DolphinScheduler in <code>Standalone</code> mode, you only need to configure <code>standalone-server/conf/common.properties</code> as follows:</p>
 <ul>
 <li>Change <code>resource.storage.upload.base.path</code> to your local directory path. Please make sure the <code>tenant resource.hdfs.root.user</code> has read and write permissions for <code>resource.storage.upload.base.path</code>, e,g. <code>/tmp/dolphinscheduler</code>. <code>DolphinScheduler</code> will create the directory you configure if it does not exist.</li>
 <li>Modify <code>resource.storage.type=HDFS</code> and <code>resource.hdfs.fs.defaultFS=file:///</code>.</li>
