@@ -15,6 +15,7 @@
 <p>DolphinScheduler 正在处于微内核 + 插件化的架构更改之中，所有核心能力如任务、资源存储、注册中心等都将被设计为扩展点，我们希望通过 SPI 来提高 DolphinScheduler 本身的灵活性以及友好性（扩展性）。</p>
 <p>告警相关代码可以参考 <code>dolphinscheduler-alert-api</code> 模块。该模块定义了告警插件扩展的接口以及一些基础代码，当我们需要实现相关功能的插件化的时候，建议先阅读此块的代码，当然，更建议你阅读文档，这会减少很多时间，不过文档有一定的后滞性，当文档缺失的时候，建议以源码为准（如果有兴趣，我们也欢迎你来提交相关文档），此外，我们几乎不会对扩展接口做变更（不包括新增），除非重大架构调整，出现不兼容升级版本，因此，现有文档一般都能够满足。</p>
 <p>我们采用了原生的 JAVA-SPI，当你需要扩展的时候，事实上你只需要关注扩展<code>org.apache.dolphinscheduler.alert.api.AlertChannelFactory</code>接口即可，底层相关逻辑如插件加载等内核已经实现，这让我们的开发更加专注且简单。</p>
+<p>另外，<code>AlertChannelFactory</code> 继承自 <code>PrioritySPI</code>，这意味着你可以设置插件的优先级，当你有两个插件同名时，你可以通过重写 <code>getIdentify</code> 方法来自定义优先级。高优先级的插件会被加载，但是如果你有两个同名且优先级相同的插件，加载插件时服务器会抛出 <code>IllegalArgumentException</code>。</p>
 <p>顺便提一句，我们采用了一款优秀的前端组件 form-create，它支持基于 json 生成前端 ui 组件，如果插件开发牵扯到前端，我们会通过 json 来生成相关前端 UI 组件，org.apache.dolphinscheduler.spi.params 里面对插件的参数做了封装，它会将相关参数全部全部转化为对应的 json，这意味这你完全可以通过 Java 代码的方式完成前端组件的绘制（这里主要是表单，我们只关心前后端交互的数据）。</p>
 <p>本文主要着重讲解 Alert 告警相关设计以及开发。</p>
 <h4>主要模块</h4>
