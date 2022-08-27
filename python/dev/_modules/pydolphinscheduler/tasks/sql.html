@@ -176,7 +176,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_sql_type</span>
         <span class="n">pattern_select_str</span> <span class="o">=</span> <span class="p">(</span>
             <span class="s2">&quot;^(?!(.* |)insert |(.* |)delete |(.* |)drop &quot;</span>
-            <span class="s2">&quot;|(.* |)update |(.* |)alter |(.* |)create ).*&quot;</span>
+            <span class="s2">&quot;|(.* |)update |(.* |)truncate |(.* |)alter |(.* |)create ).*&quot;</span>
         <span class="p">)</span>
         <span class="n">pattern_select</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern_select_str</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">pattern_select</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
