@@ -177,23 +177,22 @@
         <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">num_branch_default</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">condition</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">SwitchBranch</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">num_branch_default</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">Default</span><span class="p">):</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;next_node&quot;</span><span class="p">)</span>
-                        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;next_node&quot;</span><span class="p">,</span> <span class="n">condition</span><span class="o">.</span><span class="n">next_node</span><span class="p">)</span>
-                        <span class="n">num_branch_default</span> <span class="o">+=</span> <span class="mi">1</span>
-                    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">Branch</span><span class="p">):</span>
-                        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">condition</span><span class="o">.</span><span class="n">get_define</span><span class="p">())</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
-                        <span class="s2">&quot;Task Switch&#39;s parameter only support exactly one default branch.&quot;</span>
-                    <span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">SwitchBranch</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
                     <span class="s2">&quot;Task Switch&#39;s parameter only support SwitchBranch but got </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span>
                     <span class="nb">type</span><span class="p">(</span><span class="n">condition</span><span class="p">),</span>
                 <span class="p">)</span>
+            <span class="c1"># Default number branch checker</span>
+            <span class="k">if</span> <span class="n">num_branch_default</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">Default</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
+                    <span class="s2">&quot;Task Switch&#39;s parameter only support exactly one default branch.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">Default</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;next_node&quot;</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;next_node&quot;</span><span class="p">,</span> <span class="n">condition</span><span class="o">.</span><span class="n">next_node</span><span class="p">)</span>
+                <span class="n">num_branch_default</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">Branch</span><span class="p">):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">condition</span><span class="o">.</span><span class="n">get_define</span><span class="p">())</span>
         <span class="c1"># Handle switch default branch, default value is `&quot;&quot;` if not provide.</span>
         <span class="k">if</span> <span class="n">num_branch_default</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;next_node&quot;</span><span class="p">)</span>
