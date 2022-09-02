@@ -21,13 +21,13 @@
 │
 ├── licenses                                    licenses存放目录
 │
-├── bin                                         DolphinScheduler命令和环境变量配置存放目录 
+├── bin                                         DolphinScheduler命令和环境变量配置存放目录
 │   ├── dolphinscheduler-daemon.sh              启动/关闭DolphinScheduler服务脚本
 │   ├── env                                     环境变量配置存放目录
-│   │   ├── dolphinscheduler_env.sh             当使用`dolphinscheduler-daemon.sh`脚本起停服务时，运行此脚本加载环境变量配置文件 [如：JAVA_HOME,HADOOP_HOME, HIVE_HOME ...] 
-│   │   └── install_env.sh                      当使用`install.sh` `start-all.sh` `stop-all.sh` `status-all.sh`脚本时，运行此脚本为DolphinScheduler安装加载环境变量配置 
-│   ├── install.sh                              当使用`集群`模式或`伪集群`模式部署DolphinScheduler时，运行此脚本自动安装服务  
-│   ├── remove-zk-node.sh                       清理zookeeper缓存文件脚本 
+│   │   ├── dolphinscheduler_env.sh             当使用`dolphinscheduler-daemon.sh`脚本起停服务时，运行此脚本加载环境变量配置文件 [如：JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]
+│   │   └── install_env.sh                      当使用`install.sh` `start-all.sh` `stop-all.sh` `status-all.sh`脚本时，运行此脚本为DolphinScheduler安装加载环境变量配置
+│   ├── install.sh                              当使用`集群`模式或`伪集群`模式部署DolphinScheduler时，运行此脚本自动安装服务
+│   ├── remove-zk-node.sh                       清理zookeeper缓存文件脚本
 │   ├── scp-hosts.sh                            安装文件传输脚本
 │   ├── start-all.sh                            当使用`集群`模式或`伪集群`模式部署DolphinScheduler时，运行此脚本启动所有服务
 │   ├── status-all.sh                           当使用`集群`模式或`伪集群`模式部署DolphinScheduler时，运行此脚本获取所有服务状态
@@ -38,7 +38,8 @@
 │   │   └── start.sh                            DolphinScheduler alert-server启动脚本
 │   ├── conf
 │   │   ├── application.yaml                    alert-server配置文件
-│   │   ├── common.properties                   公共服务（存储等信息）配置文件 
+│   │   ├── bootstrap.yaml                      Spring Cloud 启动阶段配置文件, 通常不需要修改
+│   │   ├── common.properties                   公共服务（存储等信息）配置文件
 │   │   ├── dolphinscheduler_env.sh             alert-server环境变量配置加载脚本
 │   │   └── logback-spring.xml                  alert-service日志配置文件
 │   └── libs                                    alert-server依赖jar包存放目录
@@ -48,17 +49,19 @@
 │   │   └── start.sh                            DolphinScheduler api-server启动脚本
 │   ├── conf
 │   │   ├── application.yaml                    api-server配置文件
+│   │   ├── bootstrap.yaml                      Spring Cloud 启动阶段配置文件, 通常不需要修改
 │   │   ├── common.properties                   公共服务（存储等信息）配置文件
 │   │   ├── dolphinscheduler_env.sh             api-server环境变量配置加载脚本
 │   │   └── logback-spring.xml                  api-service日志配置文件
 │   ├── libs                                    api-server依赖jar包存放目录
-│   └── ui                                      api-server相关前端WEB资源存放目录 
+│   └── ui                                      api-server相关前端WEB资源存放目录
 │
 ├── master-server                               DolphinScheduler master-server命令、配置和依赖存放目录
-│   ├── bin                                
+│   ├── bin
 │   │   └── start.sh                            DolphinScheduler master-server启动脚本
 │   ├── conf
 │   │   ├── application.yaml                    master-server配置文件
+│   │   ├── bootstrap.yaml                      Spring Cloud 启动阶段配置文件, 通常不需要修改
 │   │   ├── common.properties                   公共服务（存储等信息）配置文件
 │   │   ├── dolphinscheduler_env.sh             master-server环境变量配置加载脚本
 │   │   └── logback-spring.xml                  master-service日志配置文件
@@ -69,13 +72,14 @@
 │   │   └── start.sh                            DolphinScheduler standalone-server启动脚本
 │   ├── conf
 │   │   ├── application.yaml                    standalone-server配置文件
+│   │   ├── bootstrap.yaml                      Spring Cloud 启动阶段配置文件, 通常不需要修改
 │   │   ├── common.properties                   公共服务（存储等信息）配置文件
 │   │   ├── dolphinscheduler_env.sh             standalone-server环境变量配置加载脚本
 │   │   ├── logback-spring.xml                  standalone-service日志配置文件
 │   │   └── sql                                 DolphinScheduler元数据创建/升级sql文件
 │   ├── libs                                    standalone-server依赖jar包存放目录
 │   └── ui                                      standalone-server相关前端WEB资源存放目录
-│       
+│  
 ├── tools                                       DolphinScheduler元数据工具命令、配置和依赖存放目录
 │   ├── bin
 │   │   └── upgrade-schema.sh                   DolphinScheduler元数据创建/升级脚本
@@ -84,12 +88,13 @@
 │   │   └── common.properties                   公共服务（存储等信息）配置文件
 │   ├── libs                                    元数据工具依赖jar包存放目录
 │   └── sql                                     DolphinScheduler元数据创建/升级sql文件
-│     
+│  
 ├── worker-server                               DolphinScheduler worker-server命令、配置和依赖存放目录
 │       ├── bin
 │       │   └── start.sh                        DolphinScheduler worker-server启动脚本
 │       ├── conf
 │       │   ├── application.yaml                worker-server配置文件
+│       │   ├── bootstrap.yaml                  Spring Cloud 启动阶段配置文件, 通常不需要修改
 │       │   ├── common.properties               公共服务（存储等信息）配置文件
 │       │   ├── dolphinscheduler_env.sh         worker-server环境变量配置加载脚本
 │       │   └── logback-spring.xml              worker-service日志配置文件
@@ -104,14 +109,14 @@
 目前DolphinScheduler只是做了一个基本的设置,JVM参数请根据各自资源的实际情况自行设置.</p>
 <p>默认简化参数如下:</p>
 <pre><code class="language-bash"><span class="hljs-built_in">export</span> DOLPHINSCHEDULER_OPTS=<span class="hljs-string">&quot;
--server 
--Xmx16g 
--Xms1g 
--Xss512k 
--XX:+UseConcMarkSweepGC 
--XX:+CMSParallelRemarkEnabled 
--XX:+UseFastAccessorMethods 
--XX:+UseCMSInitiatingOccupancyOnly 
+-server
+-Xmx16g
+-Xms1g
+-Xss512k
+-XX:+UseConcMarkSweepGC
+-XX:+CMSParallelRemarkEnabled
+-XX:+UseFastAccessorMethods
+-XX:+UseCMSInitiatingOccupancyOnly
 -XX:CMSInitiatingOccupancyFraction=70
 &quot;</span>
 </code></pre>
