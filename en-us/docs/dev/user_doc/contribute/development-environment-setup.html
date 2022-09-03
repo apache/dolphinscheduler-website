@@ -53,7 +53,7 @@ fix things for you.</p>
        -Dmaven.javadoc.skip \
        -Dmaven.checkstyle.skip \
        -Ddocker.tag=&lt;TAG&gt; \
-       -Pdocker,release              
+       -Pdocker,release
 </code></pre>
 <p>When the command is finished you could find them by command <code>docker imaegs</code>.</p>
 <ul>
@@ -67,7 +67,7 @@ fix things for you.</p>
        -Dmaven.deploy.skip \
        -Ddocker.tag=&lt;TAG&gt; \
        -Ddocker.hub=&lt;HUB_URL&gt; \
-       -Pdocker,release           
+       -Pdocker,release
 </code></pre>
 <ul>
 <li>If you want to modify DolphinScheduler source code, and also want to add customize dependencies of Docker image, you can modify the definition of Dockerfile after modifying the source code. You can run the following command to find all Dockerfile files.</li>
@@ -187,7 +187,7 @@ dataLogDir=/data/zookeeper/datalog
 <ul>
 <li>MasterServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.server.master.MasterServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
 <li>WorkerServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.server.worker.WorkerServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
-<li>ApiApplicationServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.api.ApiApplicationServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Dspring.profiles.active=api,mysql</code>. After it started, you could find Open API documentation in <a href="http://localhost:12345/dolphinscheduler/doc.html">http://localhost:12345/dolphinscheduler/doc.html</a></li>
+<li>ApiApplicationServer：Execute function <code>main</code> in the class <code>org.apache.dolphinscheduler.api.ApiApplicationServer</code> by Intellij IDEA, with the configuration <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Dspring.profiles.active=api,mysql</code>. After it started, you could find Open API documentation in <a href="http://localhost:12345/dolphinscheduler/swagger-ui/index.html">http://localhost:12345/dolphinscheduler/swagger-ui/index.html</a></li>
 </ul>
 <blockquote>
 <p>The <code>mysql</code> in the VM Options <code>-Dspring.profiles.active=mysql</code> means specified configuration file</p>

@@ -51,7 +51,7 @@ git clone git@github.com:apache/dolphinscheduler.git
        -Dmaven.javadoc.skip \
        -Dmaven.checkstyle.skip \
        -Ddocker.tag=&lt;TAG&gt; \
-       -Pdocker,release             
+       -Pdocker,release
 </code></pre>
 <p>当命令运行完了后你可以通过 <code>docker images</code> 命令查看刚刚创建的镜像</p>
 <ul>
@@ -65,7 +65,7 @@ git clone git@github.com:apache/dolphinscheduler.git
        -Dmaven.deploy.skip \
        -Ddocker.tag=&lt;TAG&gt; \
        -Ddocker.hub=&lt;HUB_URL&gt; \
-       -Pdocker,release               
+       -Pdocker,release
 </code></pre>
 <ul>
 <li>如果你不仅需要改造源码，还想要自定义 Docker 镜像打包的依赖，可以在修改源码的同时修改 Dockerfile 的定义。你可以运行以下命令找到所有的 Dockerfile 文件</li>
@@ -178,7 +178,7 @@ dataLogDir=/data/zookeeper/datalog
 <ul>
 <li>MasterServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.server.master.MasterServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
 <li>WorkerServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.server.worker.WorkerServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Ddruid.mysql.usePingMethod=false -Dspring.profiles.active=mysql</code></li>
-<li>ApiApplicationServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.api.ApiApplicationServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Dspring.profiles.active=api,mysql</code>。启动完成可以浏览 Open API 文档，地址为 <a href="http://localhost:12345/dolphinscheduler/doc.html">http://localhost:12345/dolphinscheduler/doc.html</a></li>
+<li>ApiApplicationServer：在 Intellij IDEA 中执行 <code>org.apache.dolphinscheduler.api.ApiApplicationServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-Dlogging.config=classpath:logback-spring.xml -Dspring.profiles.active=api,mysql</code>。启动完成可以浏览 Open API 文档，地址为 <a href="http://localhost:12345/dolphinscheduler/swagger-ui/index.html">http://localhost:12345/dolphinscheduler/swagger-ui/index.html</a></li>
 </ul>
 <blockquote>
 <p>VM Options <code>-Dspring.profiles.active=mysql</code> 中 <code>mysql</code> 表示指定的配置文件</p>
