@@ -51,7 +51,10 @@
 <li class="toctree-l2"><a class="reference internal" href="func_wrap.html">Python Function Wrapper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Python</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="condition.html">Condition</a></li>
@@ -161,6 +164,24 @@ to string. The easier way to call a function is using syntax <code class="docuti
 
 </dd></dl>
 
+<section id="yaml-file-example">
+<h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Python&quot;</span><span class="w"></span>
+
+<span class="c1"># Define the tasks under the workflow</span><span class="w"></span>
+<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Python</span><span class="w"></span>
+<span class="w">    </span><span class="nt">definition</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">      </span><span class="no">import os</span><span class="w"></span>
+<span class="w">      </span><span class="no">print(os)</span><span class="w"></span>
+<span class="w">      </span><span class="no">print(&quot;1&quot;)</span><span class="w"></span>
+<span class="w">      </span><span class="no">print(&quot;2&quot;)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

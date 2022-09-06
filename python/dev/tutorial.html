@@ -53,6 +53,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#setting-task-dependence">Setting Task Dependence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#submit-or-run-workflow">Submit Or Run Workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dag-graph-after-tutorial-run">DAG Graph After Tutorial Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-process-using-yaml-file">Create Process Using YAML File</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="concept.html">Concepts</a></li>
@@ -105,6 +106,8 @@ when you build your workflow at the beginning.</p></li>
 versatility to the traditional way because it only supported Python functions and without build-in tasks
 supported. But it is helpful if your workflow is all built with Python or if you already have some Python
 workflow code and want to migrate them to pydolphinscheduler.</p></li>
+<li><p><strong>YAML File</strong>: We can use pydolphinscheduler CLI to create process using YAML file: <code class="code docutils literal notranslate"><span class="pre">pydolphinscheduler</span> <span class="pre">yaml</span> <span class="pre">-f</span> <span class="pre">tutorial.yaml</span></code>.
+We can find more YAML file examples in <a class="reference external" href="https://github.com/apache/dolphinscheduler/tree/py-yaml/dolphinscheduler-python/pydolphinscheduler/examples/yaml_define">examples/yaml_define</a></p></li>
 </ul>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Tradition</label><div class="tab-content docutils container">
@@ -206,6 +209,39 @@ workflow code and want to migrate them to pydolphinscheduler.</p></li>
 </pre></div>
 </div>
 </div>
+<input class="tab-input" id="tab-set--0-input--3" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--3">YAML File</label><div class="tab-content docutils container">
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">tenant</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tenant_exists&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+
+<span class="c1"># Define the tasks under the workflow</span><span class="w"></span>
+<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="import-necessary-module">
@@ -269,6 +305,18 @@ will be running this task in the DolphinScheduler worker. See <a class="referenc
 </pre></div>
 </div>
 </div>
+<input class="tab-input" id="tab-set--2-input--3" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--3">YAML File</label><div class="tab-content docutils container">
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">tenant</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tenant_exists&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
 </div>
 <p>We could find more detail about <code class="code docutils literal notranslate"><span class="pre">ProcessDefinition</span></code> in <a class="reference internal" href="concept.html#process-definition"><span class="std std-ref">concept about process definition</span></a>
 if you are interested in it. For all arguments of object process definition, you could find in the
@@ -323,6 +371,29 @@ using <a class="reference internal" href="tasks/func_wrap.html#pydolphinschedule
 <p>It makes our workflow more Pythonic, but be careful that when we use task decorator mode mean we only use
 Python function as a task and could not use the <a class="reference internal" href="tasks/index.html"><span class="doc">built-in tasks</span></a> most of the cases.</p>
 </div>
+<input class="tab-input" id="tab-set--3-input--3" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--3">YAML File</label><div class="tab-content docutils container">
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="setting-task-dependence">
@@ -349,6 +420,30 @@ and task <cite>task_child_two</cite> was done, because both two task is <cite>ta
     <span class="n">task_parent</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
 
     <span class="n">task_union</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--4-input--3" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--3">YAML File</label><div class="tab-content docutils container">
+<p>We can use <code class="code docutils literal notranslate"><span class="pre">deps:[]</span></code> to set task dependence</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -379,6 +474,15 @@ will create workflow definition as well as workflow schedule.</p>
 </pre></div>
 </div>
 </div>
+<input class="tab-input" id="tab-set--5-input--3" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--3">YAML File</label><div class="tab-content docutils container">
+<p>pydolphinscheduler YAML CLI always submit workflow. We can run the workflow if we set <code class="code docutils literal notranslate"><span class="pre">run:</span> <span class="pre">true</span></code></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
 </div>
 <p>At last, we could execute this workflow code in your terminal like other Python scripts, running
 <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">tutorial.py</span></code> to trigger and execute it.</p>
@@ -402,6 +506,50 @@ task_parent --&gt;                        --&gt;  task_union
                   --&gt; task_child_two
 </pre></div>
 </div>
+</section>
+<section id="create-process-using-yaml-file">
+<h2>Create Process Using YAML File<a class="headerlink" href="#create-process-using-yaml-file" title="Permalink to this heading"></a></h2>
+<p>We can use pydolphinscheduler CLI to create process using YAML file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler yaml -f Shell.yaml
+</pre></div>
+</div>
+<p>We can use the following three special grammars to define workflows more flexibly.</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">$FILE{&quot;file_name&quot;}</span></code>: Read the file (<code class="code docutils literal notranslate"><span class="pre">file_name</span></code>) contents and replace them to that location.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;other_workflow.yaml&quot;}</span></code>: Refer to another process defined using YAML file (<code class="code docutils literal notranslate"><span class="pre">other_workflow.yaml</span></code>) and replace the process name in this location.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$ENV{env_name}</span></code>: Read the environment variable (<code class="code docutils literal notranslate"><span class="pre">env_name</span></code>) and replace it to that location.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">${CONFIG.key_name}</span></code>: Read the configuration value of key (<code class="code docutils literal notranslate"><span class="pre">key_name</span></code>) and it them to that location.</p></li>
+</ul>
+<p>In addition, when loading the file path use <code class="code docutils literal notranslate"><span class="pre">$FILE{&quot;file_name&quot;}</span></code> or <code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;other_workflow.yaml&quot;}</span></code>, pydolphinscheduler will search in the path of the YAMl file if the file does not exist.</p>
+<p>For exmaples, our file directory structure is as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
+└── yaml_define
+    ├── Condition.yaml
+    ├── DataX.yaml
+    ├── Dependent_External.yaml
+    ├── Dependent.yaml
+    ├── example_datax.json
+    ├── example_sql.sql
+    ├── example_subprocess.yaml
+    ├── Flink.yaml
+    ├── Http.yaml
+    ├── MapReduce.yaml
+    ├── MoreConfiguration.yaml
+    ├── Procedure.yaml
+    ├── Python.yaml
+    ├── Shell.yaml
+    ├── Spark.yaml
+    ├── Sql.yaml
+    ├── SubProcess.yaml
+    └── Switch.yaml
+</pre></div>
+</div>
+<p>After we run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler yaml -file yaml_define/SubProcess.yaml
+</pre></div>
+</div>
+<p>the <code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;example_sub_workflow.yaml&quot;}</span></code> will be set to <code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;yaml_define/example_sub_workflow.yaml&quot;}</span></code>, because <code class="code docutils literal notranslate"><span class="pre">./example_subprocess.yaml</span></code> does not exist and <code class="code docutils literal notranslate"><span class="pre">yaml_define/example_sub_workflow.yaml</span></code> does.</p>
+<p>Furthermore, this feature supports recursion all the way down.</p>
 </section>
 </section>
 

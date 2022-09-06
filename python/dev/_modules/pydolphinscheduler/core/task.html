@@ -168,6 +168,7 @@
         <span class="s2">&quot;flag&quot;</span><span class="p">,</span>
         <span class="s2">&quot;task_priority&quot;</span><span class="p">,</span>
         <span class="s2">&quot;worker_group&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;environment_code&quot;</span><span class="p">,</span>
         <span class="s2">&quot;delay_time&quot;</span><span class="p">,</span>
         <span class="s2">&quot;fail_retry_times&quot;</span><span class="p">,</span>
         <span class="s2">&quot;fail_retry_interval&quot;</span><span class="p">,</span>
@@ -188,6 +189,7 @@
         <span class="n">flag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaskFlag</span><span class="o">.</span><span class="n">YES</span><span class="p">,</span>
         <span class="n">task_priority</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaskPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span>
         <span class="n">worker_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">environment_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">delay_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">fail_retry_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">fail_retry_interval</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -207,6 +209,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">task_priority</span> <span class="o">=</span> <span class="n">task_priority</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span> <span class="o">=</span> <span class="n">worker_group</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_environment_name</span> <span class="o">=</span> <span class="n">environment_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fail_retry_times</span> <span class="o">=</span> <span class="n">fail_retry_times</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fail_retry_interval</span> <span class="o">=</span> <span class="n">fail_retry_interval</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delay_time</span> <span class="o">=</span> <span class="n">delay_time</span>
@@ -223,6 +226,7 @@
         <span class="c1"># move attribute code and version after _process_definition and process_definition declare</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_code_and_version</span><span class="p">()</span>
         <span class="c1"># Add task to process definition, maybe we could put into property process_definition latter</span>
+
         <span class="k">if</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
             <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">tasks</span>
@@ -383,7 +387,14 @@
         <span class="p">)</span>
         <span class="c1"># result = gateway.entry_point.genTaskCodeList(DefaultTaskCodeNum.DEFAULT)</span>
         <span class="c1"># gateway_result_checker(result)</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">environment_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Convert environment name to code.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_environment_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">query_environment_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_environment_name</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

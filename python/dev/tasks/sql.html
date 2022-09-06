@@ -50,7 +50,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="func_wrap.html">Python Function Wrapper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">SQL</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SQL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
@@ -171,6 +174,47 @@ directly set as python property, so we Override Task.task_params here.</p>
 
 </dd></dl>
 
+<section id="yaml-file-example">
+<h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Sql&quot;</span><span class="w"></span>
+
+<span class="c1"># Define the tasks under the workflow</span><span class="w"></span>
+<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_base</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sql</span><span class="w"></span>
+<span class="w">    </span><span class="nt">datasource_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;db&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">sql</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">show tables;</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_multi_line</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sql</span><span class="w"></span>
+<span class="w">    </span><span class="nt">datasource_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;db&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">sql</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">      </span><span class="no">show tables;</span><span class="w"></span>
+<span class="w">      </span><span class="no">select id from version where id=1;</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_file</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sql</span><span class="w"></span>
+<span class="w">    </span><span class="nt">datasource_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;db&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">sql</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$FILE{&quot;example_sql.sql&quot;}</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1"># Or you can define task &quot;task_union&quot; it with one line</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Sql&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_base_one_line&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;datasource_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;db&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;sql&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;select</span><span class="nv"> </span><span class="s">id</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">version</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">id=1;&quot;</span><span class="p p-Indicator">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1"># Or you can define task &quot;task_union&quot; it with one line</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Sql&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_file_one_line&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;datasource_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;db&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;sql&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&#39;$FILE{&quot;example_sql.sql&quot;}&#39;</span><span class="p p-Indicator">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>example_sql.sql:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">version</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">version</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">version</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">version</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">version</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

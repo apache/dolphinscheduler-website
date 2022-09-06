@@ -59,7 +59,10 @@
 <li class="toctree-l2"><a class="reference internal" href="spark.html">Spark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Procedure</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sub_process.html">Sub Process</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sagemaker.html">SageMaker</a></li>
@@ -145,6 +148,21 @@ directly set as python property, so we Override Task.task_params here.</p>
 
 </dd></dl>
 
+<section id="yaml-file-example">
+<h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Procedure&quot;</span><span class="w"></span>
+
+<span class="c1"># Define the tasks under the workflow</span><span class="w"></span>
+<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Procedure</span><span class="w"></span>
+<span class="w">    </span><span class="nt">datasource_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span><span class="w"></span>
+<span class="w">    </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">show tables;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

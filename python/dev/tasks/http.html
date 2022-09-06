@@ -52,7 +52,10 @@
 <li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="condition.html">Condition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dependent.html">Dependent</a></li>
@@ -190,6 +193,31 @@
 
 </dd></dl>
 
+<section id="yaml-file-example">
+<h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Http&quot;</span><span class="w"></span>
+
+<span class="c1"># Define the tasks under the workflow</span><span class="w"></span>
+<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Http</span><span class="w"></span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://httpbin.org/get&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">http_method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GET&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">http_params</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;prop&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;httpParametersType&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;PARAMETER&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;value&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;prop&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;httpParametersType&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;PARAMETER&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;value&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;prop&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Content-Type&quot;</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;httpParametersType&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;header&quot;</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;value&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;test&quot;</span><span class="p p-Indicator">,</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">http_check_condition</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;STATUS_CODE_CUSTOM&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;404&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

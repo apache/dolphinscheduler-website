@@ -60,6 +60,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Flink</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.flink">Dive Into</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
@@ -186,6 +187,23 @@
 
 </dd></dl>
 
+</section>
+<section id="yaml-file-example">
+<h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Flink&quot;</span><span class="w"></span>
+
+<span class="c1"># Define the tasks under the workflow</span><span class="w"></span>
+<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Flink</span><span class="w"></span>
+<span class="w">    </span><span class="nt">main_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.apache.flink.streaming.examples.wordcount.WordCount</span><span class="w"></span>
+<span class="w">    </span><span class="nt">main_package</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test_java.jar</span><span class="w"></span>
+<span class="w">    </span><span class="nt">program_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JAVA</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span><span class="w"></span>
+</pre></div>
+</div>
 </section>
 </section>
 

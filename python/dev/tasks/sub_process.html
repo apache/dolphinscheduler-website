@@ -61,7 +61,10 @@
 <li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
 <li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Sub Process</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sub Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="sagemaker.html">SageMaker</a></li>
 </ul>
 </li>
@@ -138,6 +141,33 @@
 
 </dd></dl>
 
+<section id="yaml-file-example">
+<h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SubWorkflow&quot;</span><span class="w"></span>
+
+<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_workflow</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SubProcess</span><span class="w"></span>
+<span class="w">    </span><span class="nt">process_definition_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{&quot;example_sub_workflow.yaml&quot;}</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;deps&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">example_workflow</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_3&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">3&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>example_subprocess.yaml:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example_workflow_for_sub_workflow&quot;</span><span class="w"></span>
+
+<span class="c1"># Define the tasks under the workflow</span><span class="w"></span>
+<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_1&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">1&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;deps&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_1</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_2&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">2&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;deps&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_2</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_3&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">3&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
