@@ -157,9 +157,9 @@
 <h2>Q：DolphinScheduler 中的队列怎么用，用户队列和租户队列是什么意思</h2>
 <p>A ： DolphinScheduler 中的队列可以在用户或者租户上指定队列，<strong>用户指定的队列优先级是高于租户队列的优先级的。</strong>，例如：对 MR 任务指定队列，是通过 mapreduce.job.queuename 来指定队列的。</p>
 <p>注意：MR 在用以上方法指定队列的时候，传递参数请使用如下方式：</p>
-<pre><code>	Configuration conf = new Configuration();
-        GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
-        String[] remainingArgs = optionParser.getRemainingArgs();
+<pre><code>Configuration conf = new Configuration();
+   GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
+   String[] remainingArgs = optionParser.getRemainingArgs();
 </code></pre>
 <p>如果是 Spark 任务 --queue 方式指定队列</p>
 <h2>Q：Master 或者 Worker 报如下告警</h2>
@@ -176,7 +176,7 @@
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;
     &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;
-    &lt;version&gt;2.1.0&lt;/version&gt;
+    &lt;version&gt;2.3.3&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
 <p>修改为</p>
@@ -193,7 +193,7 @@
 ​          1.4 小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限</p>
 <p>​	3，复制正在运行的服务器上的部署目录到新机器的同样的部署目录下</p>
 <p>​	4，到 bin 下，启动 worker server</p>
-<pre><code>        ./dolphinscheduler-daemon.sh start worker-server
+<pre><code>./dolphinscheduler-daemon.sh start worker-server
 </code></pre>
 <hr>
 <h2>Q：DolphinScheduler 什么时候发布新版本，同时新旧版本区别，以及如何升级，版本号规范</h2>
@@ -241,8 +241,8 @@ A：这个 Bug 在 dev 分支已修复，并加入到需求/待做列表。
    <img src="https://user-images.githubusercontent.com/18378986/81293969-c3101680-90a0-11ea-87e5-ac9f0dd53f5e.png" width="60%" />
 </p>
 A：会话超时时间太短了，只有 0.3 秒，修改 zookeeper.properties 的配置项：
-<pre><code>   zookeeper.session.timeout=60000
-   zookeeper.connection.timeout=30000
+<pre><code>zookeeper.session.timeout=60000
+zookeeper.connection.timeout=30000
 </code></pre>
 <hr>
 <h2>Q：使用 docker-compose 默认配置启动，显示 zookeeper 错误</h2>
@@ -250,8 +250,8 @@ A：会话超时时间太短了，只有 0.3 秒，修改 zookeeper.properties �
    <img src="https://user-images.githubusercontent.com/42579056/80374318-13c98780-88c9-11ea-8d5f-53448b957f02.png" width="60%" />
  </p>
 A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/apache/dolphinscheduler/pull/2595) 已经解决了这个 bug，主要的改动点：
-<pre><code>    在docker-compose.yml文件中增加zookeeper的环境变量ZOO_4LW_COMMANDS_WHITELIST。
-    把minLatency,avgLatency and maxLatency的类型从int改成float。
+<pre><code>在docker-compose.yml文件中增加zookeeper的环境变量ZOO_4LW_COMMANDS_WHITELIST。
+把minLatency,avgLatency and maxLatency的类型从int改成float。
 </code></pre>
 <hr>
 <h2>Q：界面上显示任务一直运行，结束不了，从日志上看任务实例为空</h2>
@@ -270,17 +270,17 @@ A：这个 [bug](https://github.com/apache/dolphinscheduler/issues/1477)  描述
 <hr>
 <h2>Q：zk 中注册的 master 信息 ip 地址是 127.0.0.1，而不是配置的域名所对应或者解析的 ip 地址，可能导致不能查看任务日志</h2>
 <p>A：修复 bug：</p>
-<pre><code>   1、confirm hostname
-   $hostname
-   hadoop1
-   2、hostname -i
-   127.0.0.1 10.3.57.15
-   3、edit /etc/hosts,delete hadoop1 from 127.0.0.1 record
-   $cat /etc/hosts
-   127.0.0.1 localhost
-   10.3.57.15 ds1 hadoop1
-   4、hostname -i
-   10.3.57.15
+<pre><code>1、confirm hostname
+$hostname
+hadoop1
+2、hostname -i
+127.0.0.1 10.3.57.15
+3、edit /etc/hosts,delete hadoop1 from 127.0.0.1 record
+$cat /etc/hosts
+127.0.0.1 localhost
+10.3.57.15 ds1 hadoop1
+4、hostname -i
+10.3.57.15
 </code></pre>
 <p>hostname 命令返回服务器主机名，hostname -i 返回的是服务器主机名在 /etc/hosts 中所有匹配的ip地址。所以我把 /etc/hosts 中 127.0.0.1 中的主机名删掉，只保留内网 ip 的解析就可以了，没必要把 127.0.0.1 整条注释掉, 只要 hostname 命令返回值在 /etc/hosts 中对应的内网 ip 正确就可以，ds 程序取了第一个值，我理解上 ds 程序不应该用 hostname -i 取值这样有点问题，因为好多公司服务器的主机名都是运维配置的，感觉还是直接取配置文件的域名解析的返回 ip 更准确，或者 znode 中存域名信息而不是 /etc/hosts。</p>
 <hr>
@@ -296,7 +296,7 @@ A：这个 [bug](https://github.com/apache/dolphinscheduler/issues/1477)  描述
 sudo npm i node-sass --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
 </code></pre>
 <p>3，如果步骤 2 报错，请重新构建 node-saas <a href="https://dolphinscheduler.apache.org/en-us/development/frontend-development.html">参考链接</a></p>
-<pre><code> sudo npm rebuild node-sass
+<pre><code>sudo npm rebuild node-sass
 </code></pre>
 <p>当问题解决之后，如果你不想每次编译都下载这个 node，你可以设置系统环境变量：SASS_BINARY_PATH= /xxx/xxx/xxx/xxx.node。</p>
 <hr>
@@ -353,9 +353,9 @@ A：1，编辑 ngnix 配置文件 vi /etc/nginx/nginx.conf，更改上传大小 
 <hr>
 <h2>Q：创建 spark 数据源，点击“测试连接”，系统回退回到登入页面</h2>
 <p>A：1，edit /etc/nginx/conf.d/escheduler.conf</p>
-<pre><code>     proxy_connect_timeout 300s;
-     proxy_read_timeout 300s;
-     proxy_send_timeout 300s;
+<pre><code>proxy_connect_timeout 300s;
+proxy_read_timeout 300s;
+proxy_send_timeout 300s;
 </code></pre>
 <hr>
 <h2>Q：工作流依赖</h2>
