@@ -108,7 +108,7 @@ versatility to the traditional way because it only supported Python functions an
 supported. But it is helpful if your workflow is all built with Python or if you already have some Python
 workflow code and want to migrate them to pydolphinscheduler.</p></li>
 <li><p><strong>YAML File</strong>: We can use pydolphinscheduler CLI to create process using YAML file: <code class="code docutils literal notranslate"><span class="pre">pydolphinscheduler</span> <span class="pre">yaml</span> <span class="pre">-f</span> <span class="pre">tutorial.yaml</span></code>.
-We can find more YAML file examples in <a class="reference external" href="https://github.com/apache/dolphinscheduler/tree/py-yaml/dolphinscheduler-python/pydolphinscheduler/examples/yaml_define">examples/yaml_define</a></p></li>
+We can find more YAML file examples in <a class="reference external" href="https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-python/pydolphinscheduler/examples/yaml_define">examples/yaml_define</a></p></li>
 </ul>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Tradition</label><div class="tab-content docutils container">
@@ -514,7 +514,7 @@ task_parent --&gt;                        --&gt;  task_union
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler yaml -f Shell.yaml
 </pre></div>
 </div>
-<p>We can use the following three special grammars to define workflows more flexibly.</p>
+<p>We can use the following four special grammars to define workflows more flexibly.</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">$FILE{&quot;file_name&quot;}</span></code>: Read the file (<code class="code docutils literal notranslate"><span class="pre">file_name</span></code>) contents and replace them to that location.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;other_workflow.yaml&quot;}</span></code>: Refer to another process defined using YAML file (<code class="code docutils literal notranslate"><span class="pre">other_workflow.yaml</span></code>) and replace the process name in this location.</p></li>
