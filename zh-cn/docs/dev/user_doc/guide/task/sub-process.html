@@ -40,7 +40,7 @@
 <p>创建一个 shell 任务，用于打印 “hello”。并为该工作流定义为 test_dag01。</p>
 <p><img src="/img/tasks/demo/subprocess_task01.png" alt="subprocess_task01"></p>
 <h3>创建 sub_process 任务</h3>
-<p>在使用 sub_process 的过程中，需要创建所需的子结点任务，也就是我们第一步所创建的 shell 任务。然后如下图所示，在 ⑤ 的位置选择对应的子结点即可。</p>
+<p>在使用 sub_process 的过程中，需要创建所需的子结点任务，也就是我们第一步所创建的 test_dag01 工作流。然后如下图所示，在 ⑤ 的位置选择对应的子结点即可。</p>
 <p><img src="/img/tasks/demo/subprocess_task02.png" alt="subprocess_task02"></p>
 <p>创建 sub_process 完成之后，再创建一个对应的 shell 任务，用于打印 “world”，并将二者连接起来。保存当前工作流，并上线运行，即可得到想要的结果。</p>
 <p><img src="/img/tasks/demo/subprocess_task03.png" alt="subprocess_task03"></p>
