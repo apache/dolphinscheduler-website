@@ -4,7 +4,14 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
-                title: 'Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances\n',
+                title: 'pache DolphinScheduler Extends Capabilities Through Python API and AWS Support',
+                author: 'Debra Chen',
+                dateStr: '2022-8-26',
+                desc: 'In the ever-changing world of technology, data is abundant. ... ',
+                link: '/en-us/blog/Python_API_and_AWS_Support.html',
+            },
+            {
+                title: 'Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances',
                 author: 'Debra Chen',
                 dateStr: '2022-5-25',
                 desc: 'At XWBank, a large number of task instances are generated every day... ',
