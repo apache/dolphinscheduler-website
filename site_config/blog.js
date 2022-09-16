@@ -412,13 +412,6 @@ export default {
                 link: '/zh-cn/blog/Apache-DolphinScheduler-2.0.1.html',
             },
             {
-                title: '从 Airflow 到 Apache DolphinScheduler，有赞大数据开发平台的调度系统演进',
-                author: 'Debra Chen',
-                dateStr: '2021-12-10',
-                desc: 'YouZan case study',
-                link: '/zh-cn/blog/YouZan-case-study.html',
-            },
-            {
                 title: '荔枝机器学习平台与大数据调度系统“双剑合璧”，打造未来数据处理新模式!',
                 author: 'Debra Chen',
                 dateStr: '2021-11-23',
