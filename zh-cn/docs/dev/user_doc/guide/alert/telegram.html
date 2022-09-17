@@ -16,52 +16,29 @@
 <p><img src="/img/new_ui/dev/alert/alert_telegram.png" alt="alert-telegram"></p>
 <p>参数配置:</p>
 <ul>
-<li>WebHook:
+<li>WebHook:</li>
+</ul>
 <blockquote>
 <p>使用 Telegram 的机器人，发送消息的 WebHook。</p>
-</blockquote>
-</li>
+<ul>
 <li>botToken
-<blockquote>
-<p>创建 Telegram 的机器人，获取的访问令牌。</p>
-</blockquote>
-</li>
+创建 Telegram 的机器人，获取的访问令牌。</li>
 <li>chatId
-<blockquote>
-<p>订阅的 Telegram 频道</p>
-</blockquote>
-</li>
+订阅的 Telegram 频道</li>
 <li>parseMode
-<blockquote>
-<p>消息解析类型, 支持: txt、markdown、markdownV2、html</p>
-</blockquote>
-</li>
+消息解析类型, 支持: txt、markdown、markdownV2、html</li>
 <li>EnableProxy
-<blockquote>
-<p>开启代理</p>
-</blockquote>
-</li>
+开启代理</li>
 <li>Proxy
-<blockquote>
-<p>代理地址</p>
-</blockquote>
-</li>
+代理地址</li>
 <li>Port
-<blockquote>
-<p>代理端口</p>
-</blockquote>
-</li>
+代理端口</li>
 <li>User
-<blockquote>
-<p>代理鉴权用户</p>
-</blockquote>
-</li>
+代理鉴权用户</li>
 <li>Password
-<blockquote>
-<p>代理鉴权密码</p>
-</blockquote>
-</li>
+代理鉴权密码</li>
 </ul>
+</blockquote>
 <p><strong>注意</strong>：用户配置的 WebHook 需要能够接收和使用与 DolphinScheduler 构造的 HTTP POST 请求 BODY 相同的结构，JSON 结构如下：</p>
 <pre><code class="language-json">{
     <span class="hljs-attr">&quot;text&quot;</span>: <span class="hljs-string">&quot;[{\&quot;projectId\&quot;:1,\&quot;projectName\&quot;:\&quot;p1\&quot;,\&quot;owner\&quot;:\&quot;admin\&quot;,\&quot;processId\&quot;:35,\&quot;processDefinitionCode\&quot;:4928367293568,\&quot;processName\&quot;:\&quot;s11-3-20220324084708668\&quot;,\&quot;taskCode\&quot;:4928359068928,\&quot;taskName\&quot;:\&quot;s1\&quot;,\&quot;taskType\&quot;:\&quot;SHELL\&quot;,\&quot;taskState\&quot;:\&quot;FAILURE\&quot;,\&quot;taskStartTime\&quot;:\&quot;2022-03-24 08:47:08\&quot;,\&quot;taskEndTime\&quot;:\&quot;2022-03-24 08:47:09\&quot;,\&quot;taskHost\&quot;:\&quot;192.168.1.103:1234\&quot;,\&quot;logPath\&quot;:\&quot;\&quot;}]&quot;</span>,

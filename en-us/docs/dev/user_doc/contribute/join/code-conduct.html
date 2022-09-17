@@ -55,19 +55,15 @@
 </ul>
 <h2>Unit test specifications</h2>
 <ul>
-<li>
-<p>Test code and production code are subject to the same code specifications.</p>
-</li>
-<li>
-<p>Unit tests are subject to AIR (Automatic, Independent, Repeatable) Design concept.</p>
+<li>Test code and production code are subject to the same code specifications.</li>
+<li>Unit tests are subject to AIR (Automatic, Independent, Repeatable) Design concept.
 <ul>
 <li>Automatic: Unit tests should be fully automated, not interactive. Manual checking of output results is prohibited, <code>System.out</code>, <code>log</code>, etc. are not allowed, and must be verified with assertions.</li>
 <li>Independent: It is prohibited to call each other between unit test cases and to rely on the order of execution. Each unit test can be run independently.</li>
 <li>Repeatable: Unit tests cannot be affected by the external environment and can be repeated.</li>
 </ul>
 </li>
-<li>
-<p>Unit tests are subject to BCDE（Border, Correct, Design, Error) Design principles.</p>
+<li>Unit tests are subject to BCDE（Border, Correct, Design, Error) Design principles.
 <ul>
 <li>Border (Boundary value test): The expected results are obtained by entering the boundaries of loop boundaries, special values, data order, etc.</li>
 <li>Correct (Correctness test): The expected results are obtained with the correct input.</li>
@@ -75,35 +71,16 @@
 <li>Error (Fault tolerance test): The expected results are obtained through incorrect input such as illegal data, abnormal flow, etc.</li>
 </ul>
 </li>
-<li>
-<p>If there is no special reason, the test needs to be fully covered.</p>
-</li>
-<li>
-<p>Each test case needs to be accurately asserted.</p>
-</li>
-<li>
-<p>Prepare the environment for code separation from the test code.</p>
-</li>
-<li>
-<p>Only jUnit <code>Assert</code>，hamcrest <code>CoreMatchers</code>，Mockito Correlation can use static import.</p>
-</li>
-<li>
-<p>Single-data assertions should use <code>assertTrue</code>，<code>assertFalse</code>，<code>assertNull</code> and <code>assertNotNull</code>.</p>
-</li>
-<li>
-<p>Multi-data assertions should use <code>assertThat</code>.</p>
-</li>
-<li>
-<p>Accurate assertion, try not to use <code>not</code>，<code>containsString</code> assertion.</p>
-</li>
-<li>
-<p>The true value of the test case should be named actualXXX, and the expected value should be named expectedXXX.</p>
-</li>
-<li>
-<p>Classes and Methods with <code>@Test</code> labels do not require javadoc.</p>
-</li>
-<li>
-<p>Public specifications.</p>
+<li>If there is no special reason, the test needs to be fully covered.</li>
+<li>Each test case needs to be accurately asserted.</li>
+<li>Prepare the environment for code separation from the test code.</li>
+<li>Only jUnit <code>Assert</code>，hamcrest <code>CoreMatchers</code>，Mockito Correlation can use static import.</li>
+<li>Single-data assertions should use <code>assertTrue</code>，<code>assertFalse</code>，<code>assertNull</code> and <code>assertNotNull</code>.</li>
+<li>Multi-data assertions should use <code>assertThat</code>.</li>
+<li>Accurate assertion, try not to use <code>not</code>，<code>containsString</code> assertion.</li>
+<li>The true value of the test case should be named actualXXX, and the expected value should be named expectedXXX.</li>
+<li>Classes and Methods with <code>@Test</code> labels do not require javadoc.</li>
+<li>Public specifications.
 <ul>
 <li>Each line is no longer than <code>200</code> in length, ensuring that each line is semantically complete for easy understanding.</li>
 </ul>

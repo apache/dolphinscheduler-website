@@ -170,15 +170,17 @@ Among them, the Master monitors the directories of other Masters and Workers. If
 <ul>
 <li>According to <strong>the priority of different process instances</strong> prior over <strong>priority of the same process instance</strong> prior over <strong>priority of tasks within the same process</strong> prior over <strong>tasks within the same process</strong>, process task submission order from highest to Lowest.
 <ul>
-<li>
-<p>The specific implementation is to parse the priority according to the JSON of the task instance, and then save the <strong>process instance priority_process instance id_task priority_task id</strong> information to the ZooKeeper task queue. When obtain from the task queue, we can get the highest priority task by comparing string.</p>
-<pre><code>- The priority of the process definition is to consider that some processes need to process before other processes. Configure the priority when the process starts or schedules. There are 5 levels in total, which are HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below
-  &lt;p align=&quot;center&quot;&gt;
-     &lt;img src=&quot;https://user-images.githubusercontent.com/10797147/146744784-eb351b14-c94a-4ed6-8ba4-5132c2a3d116.png&quot; alt=&quot;Process priority configuration&quot;  width=&quot;40%&quot; /&gt;
-   &lt;/p&gt;
-</code></pre>
+<li>The specific implementation is to parse the priority according to the JSON of the task instance, and then save the <strong>process instance priority_process instance id_task priority_task id</strong> information to the ZooKeeper task queue. When obtain from the task queue, we can get the highest priority task by comparing string.
 <ul>
-<li>The priority of the task is also divides into 5 levels, ordered by HIGHEST, HIGH, MEDIUM, LOW, LOWEST. As shown below:  <p align="center">
+<li>
+<p>The priority of the process definition is to consider that some processes need to process before other processes. Configure the priority when the process starts or schedules. There are 5 levels in total, which are HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below</p>
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/10797147/146744784-eb351b14-c94a-4ed6-8ba4-5132c2a3d116.png" alt="Process priority configuration"  width="40%" />
+ </p>
+</li>
+<li>
+<p>The priority of the task is also divides into 5 levels, ordered by HIGHEST, HIGH, MEDIUM, LOW, LOWEST. As shown below:</p>
+  <p align="center">
      <img src="https://user-images.githubusercontent.com/10797147/146744830-5eac611f-5933-4f53-a0c6-31613c283708.png" alt="Task priority configuration"  width="35%" />
    </p>
 </li>
@@ -189,18 +191,10 @@ Among them, the Master monitors the directories of other Masters and Workers. If
 </ul>
 <h4>Logback and Netty Implement Log Access</h4>
 <ul>
-<li>
-<p>Since Web (UI) and Worker are not always on the same machine, to view the log cannot be like querying a local file. There are two options:</p>
-</li>
-<li>
-<p>Put logs on the ES search engine.</p>
-</li>
-<li>
-<p>Obtain remote log information through netty communication.</p>
-</li>
-<li>
-<p>In consideration of the lightness of DolphinScheduler as much as possible, so choose gRPC to achieve remote access to log information.</p>
-</li>
+<li>Since Web (UI) and Worker are not always on the same machine, to view the log cannot be like querying a local file. There are two options:</li>
+<li>Put logs on the ES search engine.</li>
+<li>Obtain remote log information through netty communication.</li>
+<li>In consideration of the lightness of DolphinScheduler as much as possible, so choose gRPC to achieve remote access to log information.</li>
 </ul>
  <p align="center">
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png" alt="grpc remote access"  width="50%" />

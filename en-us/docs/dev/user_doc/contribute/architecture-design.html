@@ -117,18 +117,10 @@ Interfaces include workflow creation, definition, query, modification, release, 
    <img src="https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png" alt="decentralized" width="50%" />
  </p>
 <ul>
-<li>
-<p>In the decentralized design, there is usually no Master/Slave concept, all roles are the same, the status is equal, the global Internet is a typical decentralized distributed system, networked arbitrary node equipment down machine , all will only affect a small range of features.</p>
-</li>
-<li>
-<p>The core design of decentralized design is that there is no &quot;manager&quot; that is different from other nodes in the entire distributed system, so there is no single point of failure problem. However, since there is no &quot;manager&quot; node, each node needs to communicate with other nodes to get the necessary machine information, and the unreliable line of distributed system communication greatly increases the difficulty of implementing the above functions.</p>
-</li>
-<li>
-<p>In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly emerging. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will spontaneously hold &quot;meetings&quot; to elect new &quot;managers&quot;. Go to preside over the work. The most typical case is the Etcd implemented in ZooKeeper and Go.</p>
-</li>
-<li>
-<p>Decentralization of DolphinScheduler is the registration of Master/Worker to ZooKeeper. The Master Cluster and the Worker Cluster are not centered, and the Zookeeper distributed lock is used to elect one Master or Worker as the “manager” to perform the task.</p>
-</li>
+<li>In the decentralized design, there is usually no Master/Slave concept, all roles are the same, the status is equal, the global Internet is a typical decentralized distributed system, networked arbitrary node equipment down machine , all will only affect a small range of features.</li>
+<li>The core design of decentralized design is that there is no &quot;manager&quot; that is different from other nodes in the entire distributed system, so there is no single point of failure problem. However, since there is no &quot;manager&quot; node, each node needs to communicate with other nodes to get the necessary machine information, and the unreliable line of distributed system communication greatly increases the difficulty of implementing the above functions.</li>
+<li>In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly emerging. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will spontaneously hold &quot;meetings&quot; to elect new &quot;managers&quot;. Go to preside over the work. The most typical case is the Etcd implemented in ZooKeeper and Go.</li>
+<li>Decentralization of DolphinScheduler is the registration of Master/Worker to ZooKeeper. The Master Cluster and the Worker Cluster are not centered, and the Zookeeper distributed lock is used to elect one Master or Worker as the “manager” to perform the task.</li>
 </ul>
 <h5>二、Distributed lock practice</h5>
 <p>DolphinScheduler uses ZooKeeper distributed locks to implement only one Master to execute the Scheduler at the same time, or only one Worker to perform task submission.</p>
@@ -201,11 +193,9 @@ Interfaces include workflow creation, definition, query, modification, release, 
 <h5>V. Task priority design</h5>
 <p>In the early scheduling design, if there is no priority design and fair scheduling design, it will encounter the situation that the task submitted first may be completed simultaneously with the task submitted subsequently, but the priority of the process or task cannot be set. We have redesigned this, and we are currently designing it as follows:</p>
 <ul>
-<li>
-<p>According to <strong>different process instance priority</strong> prioritizes <strong>same process instance priority</strong> prioritizes <strong>task priority within the same process</strong> takes precedence over <strong>same process</strong> commit order from high Go to low for task processing.</p>
+<li>According to <strong>different process instance priority</strong> prioritizes <strong>same process instance priority</strong> prioritizes <strong>task priority within the same process</strong> takes precedence over <strong>same process</strong> commit order from high Go to low for task processing.
 <ul>
-<li>
-<p>The specific implementation is to resolve the priority according to the json of the task instance, and then save the <strong>process instance priority _ process instance id_task priority _ task id</strong> information in the ZooKeeper task queue, when obtained from the task queue, Through string comparison, you can get the task that needs to be executed first.</p>
+<li>The specific implementation is to resolve the priority according to the json of the task instance, and then save the <strong>process instance priority _ process instance id_task priority _ task id</strong> information in the ZooKeeper task queue, when obtained from the task queue, Through string comparison, you can get the task that needs to be executed first.
 <ul>
 <li>
 <p>The priority of the process definition is that some processes need to be processed before other processes. This can be configured at the start of the process or at the time of scheduled start. There are 5 levels, followed by HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below</p>

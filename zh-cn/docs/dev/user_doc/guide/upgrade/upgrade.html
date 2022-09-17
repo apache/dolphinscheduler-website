@@ -25,13 +25,13 @@
 <p>设置相关环境变量（{user}和{password}改成你数据库的用户名和密码），然后运行升级脚本。</p>
 <p>下面以 MySQL 为例，别的数据库仅需要修改成对应的配置即可。请先手动下载 <a href="https://downloads.MySQL.com/archives/c-j/">mysql-connector-java 驱动 jar</a>
 jar 包 并添加到 <code>./tools/libs</code> 目录下，设置以下环境变量</p>
-<pre><code>```shell
-export DATABASE=${DATABASE:-mysql}
-export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;
-export SPRING_DATASOURCE_USERNAME={user}
-export SPRING_DATASOURCE_PASSWORD={password}
-```
+<pre><code>    ```shell
+    export DATABASE=${DATABASE:-mysql}
+    export SPRING_PROFILES_ACTIVE=${DATABASE}
+    export SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;
+    export SPRING_DATASOURCE_USERNAME={user}
+    export SPRING_DATASOURCE_PASSWORD={password}
+    ```
 </code></pre>
 <p>执行数据库升级脚本：<code>sh ./tools/bin/upgrade-schema.sh</code></p>
 <h3>服务升级</h3>

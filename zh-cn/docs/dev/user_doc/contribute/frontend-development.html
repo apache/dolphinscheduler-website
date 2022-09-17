@@ -26,16 +26,14 @@ Lodash 高性能的 JavaScript 实用工具库
 </code></pre>
 <h3>开发环境搭建</h3>
 <ul>
-<li>
-<h4>Node安装</h4>
-</li>
+<li></li>
 </ul>
+<h4>Node安装</h4>
 <p>Node包下载 (注意版本 v12.20.2) <code>https://nodejs.org/download/release/v12.20.2/</code></p>
 <ul>
-<li>
-<h4>前端项目构建</h4>
-</li>
+<li></li>
 </ul>
+<h4>前端项目构建</h4>
 <p>用命令行模式 <code>cd</code>  进入 <code>dolphinscheduler-ui</code>项目目录并执行 <code>npm install</code> 拉取项目依赖包</p>
 <blockquote>
 <p>如果 <code>npm install</code> 速度非常慢，你可以设置淘宝镜像</p>
@@ -48,15 +46,14 @@ Lodash 高性能的 JavaScript 实用工具库
 <pre><code># 代理的接口地址（自行修改）
 API_BASE = http://127.0.0.1:12345
 </code></pre>
-<blockquote>
 <h5>！！！这里特别注意 项目如果在拉取依赖包的过程中报 &quot; node-sass error &quot; 错误，请在执行完后再次执行以下命令</h5>
-</blockquote>
 <pre><code class="language-bash">npm install node-sass --unsafe-perm <span class="hljs-comment">#单独安装node-sass依赖</span>
 </code></pre>
 <ul>
-<li>
+<li></li>
+</ul>
 <h4>开发环境运行</h4>
-</li>
+<ul>
 <li><code>npm start</code> 项目开发环境 (启动后访问地址 <a href="http://localhost:8888">http://localhost:8888</a>)</li>
 </ul>
 <h4>前端项目发布</h4>
@@ -150,7 +147,7 @@ API_BASE = http://127.0.0.1:12345
 <h2>路由和状态管理</h2>
 <p>项目 <code>src/js/conf/home</code> 下分为</p>
 <p><code>pages</code> =&gt; 路由指向页面目录</p>
-<pre><code> 路由地址对应的页面文件
+<pre><code>路由地址对应的页面文件
 </code></pre>
 <p><code>router</code> =&gt; 路由管理</p>
 <pre><code>vue的路由器，在每个页面的入口文件index.js 都会注册进来 具体操作：https://router.vuejs.org/zh/
@@ -500,7 +497,7 @@ test.then(res =&gt; {
 },
 </code></pre>
 <p>(2) 在<code>src/js/conf/home/pages</code> 建一个 <code>test</code> 文件夹，在文件夹里建一个<code>index.vue</code>入口文件。</p>
-<pre><code>这样就可以直接访问 `http://localhost:8888/#/test`
+<pre><code>    这样就可以直接访问 `http://localhost:8888/#/test`
 </code></pre>
 <h5>4.增加预置邮箱</h5>
 <p>找到<code>src/lib/localData/email.js</code>启动和定时邮箱地址输入可以自动下拉匹配。</p>

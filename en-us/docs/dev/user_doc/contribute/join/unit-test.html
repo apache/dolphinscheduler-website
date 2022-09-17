@@ -79,16 +79,16 @@
 <p>For example @Ignore(&quot;see #1&quot;).</p>
 <p>3: try-catch Unit test exception</p>
 <p>The test will fail when the code in the unit test throws an exception. Therefore, there is no need to use try-catch to catch exceptions.</p>
-<pre><code> ```java
- @Test
- public void testMethod() {
-   try {
-             // Some code
-   } catch (MyException e) {
-     Assert.fail(e.getMessage());  // Noncompliant
-   }
- }
- ```
+<pre><code>    ```java
+    @Test
+    public void testMethod() {
+      try {
+                // Some code
+      } catch (MyException e) {
+        Assert.fail(e.getMessage());  // Noncompliant
+      }
+    }
+    ```
 </code></pre>
 <p>You should this:</p>
 <pre><code class="language-java"><span class="hljs-meta">@Test</span>

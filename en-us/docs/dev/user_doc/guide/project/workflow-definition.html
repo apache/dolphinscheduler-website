@@ -84,32 +84,15 @@
 <p><img src="/img/new_ui/dev/project/workflow-run.png" alt="workflow-run"></p>
 <p>Description of workflow operating parameters:</p>
 <ul>
-<li>
-<p>Failure strategy: When a task node fails to execute, other parallel task nodes need to execute this strategy. &quot;Continue&quot; means: after a certain task fails, other task nodes execute normally; &quot;End&quot; means: terminate all tasks execution, and terminate the entire process.</p>
-</li>
-<li>
-<p>Notification strategy: When the process is over, send the process execution result notification email according to the process status, options including no send, send if sucess, send of failure, send whatever result.</p>
-</li>
-<li>
-<p>Process priority: The priority of process operation, divide into five levels: highest (HIGHEST), high (HIGH), medium (MEDIUM), low (LOW), and lowest (LOWEST). When the number of master threads is insufficient, high priority processes will execute first in the execution queue, and processes with the same priority will execute in the order of first in, first out.</p>
-</li>
-<li>
-<p>Worker group: The process can only be executed in the specified worker machine group. The default is <code>Default</code>, which can execute on any worker.</p>
-</li>
-<li>
-<p>Notification group: select notification strategy||timeout alarm||when fault tolerance occurs, process result information or email will send to all members in the notification group.</p>
-</li>
-<li>
-<p>Recipient: select notification policy||timeout alarm||when fault tolerance occurs, process result information or alarm email will be sent to the recipient list.</p>
-</li>
-<li>
-<p>Cc: select notification policy||timeout alarm||when fault tolerance occurs, the process result information or warning email will be copied to the CC list.</p>
-</li>
-<li>
-<p>Startup parameter: Set or overwrite global parameter values when starting a new process instance.</p>
-</li>
-<li>
-<p>Complement: refers to running the workflow definition within the specified date range and generating the corresponding workflow instance according to the complement policy. The complement policy includes two modes: <strong>serial complement</strong> and <strong>parallel complement</strong>. The date can be selected on the page or entered manually.</p>
+<li>Failure strategy: When a task node fails to execute, other parallel task nodes need to execute this strategy. &quot;Continue&quot; means: after a certain task fails, other task nodes execute normally; &quot;End&quot; means: terminate all tasks execution, and terminate the entire process.</li>
+<li>Notification strategy: When the process is over, send the process execution result notification email according to the process status, options including no send, send if sucess, send of failure, send whatever result.</li>
+<li>Process priority: The priority of process operation, divide into five levels: highest (HIGHEST), high (HIGH), medium (MEDIUM), low (LOW), and lowest (LOWEST). When the number of master threads is insufficient, high priority processes will execute first in the execution queue, and processes with the same priority will execute in the order of first in, first out.</li>
+<li>Worker group: The process can only be executed in the specified worker machine group. The default is <code>Default</code>, which can execute on any worker.</li>
+<li>Notification group: select notification strategy||timeout alarm||when fault tolerance occurs, process result information or email will send to all members in the notification group.</li>
+<li>Recipient: select notification policy||timeout alarm||when fault tolerance occurs, process result information or alarm email will be sent to the recipient list.</li>
+<li>Cc: select notification policy||timeout alarm||when fault tolerance occurs, the process result information or warning email will be copied to the CC list.</li>
+<li>Startup parameter: Set or overwrite global parameter values when starting a new process instance.</li>
+<li>Complement: refers to running the workflow definition within the specified date range and generating the corresponding workflow instance according to the complement policy. The complement policy includes two modes: <strong>serial complement</strong> and <strong>parallel complement</strong>. The date can be selected on the page or entered manually.
 <ul>
 <li>
 <p>Serial complement: within the specified time range, complement is executed from the start date to the end date, and multiple process instances are generated in turn; Click Run workflow and select the serial complement mode: for example, from July 9 to July 10, execute in sequence, and generate two process instances in sequence on the process instance page.</p>

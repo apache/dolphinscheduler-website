@@ -55,12 +55,12 @@
 }
 </code></pre>
 <p>这可以以方法级别或者类级别来运行基准测试，命令行的参数会覆盖annotation上的参数。</p>
-<pre><code class="language-java">    <span class="hljs-meta">@Benchmark</span> <span class="hljs-comment">//方法注解，表示该方法是需要进行 benchmark 的对象。</span>
-    <span class="hljs-meta">@BenchmarkMode(Mode.AverageTime)</span> <span class="hljs-comment">//可选基准测试模式通过枚举Mode得到</span>
-    <span class="hljs-meta">@OutputTimeUnit(TimeUnit.MICROSECONDS)</span> <span class="hljs-comment">// 输出的时间单位</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">enumStaticMapTest</span><span class="hljs-params">()</span> </span>{
-        TestTypeEnum.newGetNameByType(testNum);
-    }
+<pre><code class="language-java"><span class="hljs-meta">@Benchmark</span> <span class="hljs-comment">//方法注解，表示该方法是需要进行 benchmark 的对象。</span>
+<span class="hljs-meta">@BenchmarkMode(Mode.AverageTime)</span> <span class="hljs-comment">//可选基准测试模式通过枚举Mode得到</span>
+<span class="hljs-meta">@OutputTimeUnit(TimeUnit.MICROSECONDS)</span> <span class="hljs-comment">// 输出的时间单位</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">enumStaticMapTest</span><span class="hljs-params">()</span> </span>{
+    TestTypeEnum.newGetNameByType(testNum);
+}
 </code></pre>
 <p>当你的基准测试编写完成后，你可以运行它查看具体的测试情况：（实际结果取决于你的系统配置情况）</p>
 <p>首先它会对我们的代码进行预热，</p>

@@ -24,7 +24,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="HOWTOs" href="../howto/index.html" />
+    <link rel="next" title="Pytorch" href="pytorch.html" />
     <link rel="prev" title="Sub Process" href="sub_process.html" /> 
 </head>
 
@@ -65,8 +65,10 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">SageMaker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.sagemaker">Dive Into</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch.html">Pytorch</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../howto/index.html">HOWTOs</a></li>
@@ -176,6 +178,42 @@ see also <a class="reference external" href="https://docs.aws.amazon.com/sagemak
 </dd></dl>
 
 </section>
+<section id="yaml-file-example">
+<h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
+<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Sagemaker&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="w"></span>
+
+<span class="c1"># Define the tasks under the process</span><span class="w"></span>
+<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sagemaker</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sagemaker</span><span class="w"></span>
+<span class="w">    </span><span class="nt">sagemaker_request_json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$FILE{&quot;example_sagemaker_params.json&quot;}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>example_sagemaker_params.json:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ParallelismConfiguration&quot;</span><span class="p">:{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;MaxParallelExecutionSteps&quot;</span><span class="p">:</span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;PipelineExecutionDescription&quot;</span><span class="p">:</span><span class="s2">&quot;run pipeline using ds&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;PipelineExecutionDisplayName&quot;</span><span class="p">:</span><span class="s2">&quot;ds-sagemaker-pipeline&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;PipelineName&quot;</span><span class="p">:</span><span class="s2">&quot;DsSagemakerPipeline&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;PipelineParameters&quot;</span><span class="p">:[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;InputData&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3://sagemaker/dataset/dataset.csv&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;InferenceData&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3://sagemaker/dataset/inference.csv&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -183,7 +221,7 @@ see also <a class="reference external" href="https://docs.aws.amazon.com/sagemak
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="sub_process.html" class="btn btn-neutral float-left" title="Sub Process" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../howto/index.html" class="btn btn-neutral float-right" title="HOWTOs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pytorch.html" class="btn btn-neutral float-right" title="Pytorch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

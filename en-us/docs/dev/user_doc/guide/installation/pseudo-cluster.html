@@ -173,8 +173,6 @@ bash ./bin/dolphinscheduler-daemon.sh stop alert-server
 for micro-services need. It means that you could start all servers by command <code>&lt;service&gt;/bin/start.sh</code> with different
 environment variable from <code>&lt;service&gt;/conf/dolphinscheduler_env.sh</code>. But it will use file <code>bin/env/dolphinscheduler_env.sh</code> overwrite
 <code>&lt;service&gt;/conf/dolphinscheduler_env.sh</code> if you start server with command <code>/bin/dolphinscheduler-daemon.sh start &lt;service&gt;</code>.</p>
-</blockquote>
-<blockquote>
 <p><strong><em>Note2:</em></strong>: Please refer to the section of &quot;System Architecture Design&quot; for service usage. Python gateway service is
 started along with the api-server, and if you do not want to start Python gateway service please disabled it by changing
 the yaml config <code>python-gateway.enabled : false</code> in api-server's configuration path <code>api-server/conf/application.yaml</code></p>

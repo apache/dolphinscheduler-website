@@ -55,19 +55,15 @@
 </ul>
 <h2>单元测试规范</h2>
 <ul>
-<li>
-<p>测试代码和生产代码需遵守相同代码规范。</p>
-</li>
-<li>
-<p>单元测试需遵循AIR（Automatic, Independent, Repeatable）设计理念。</p>
+<li>测试代码和生产代码需遵守相同代码规范。</li>
+<li>单元测试需遵循AIR（Automatic, Independent, Repeatable）设计理念。
 <ul>
 <li>自动化（Automatic）：单元测试应全自动执行，而非交互式。禁止人工检查输出结果，不允许使用<code>System.out</code>，<code>log</code>等，必须使用断言进行验证。</li>
 <li>独立性（Independent）：禁止单元测试用例间的互相调用，禁止依赖执行的先后次序。每个单元测试均可独立运行。</li>
 <li>可重复执行（Repeatable）：单元测试不能受到外界环境的影响，可以重复执行。</li>
 </ul>
 </li>
-<li>
-<p>单元测试需遵循BCDE（Border, Correct, Design, Error）设计原则。</p>
+<li>单元测试需遵循BCDE（Border, Correct, Design, Error）设计原则。
 <ul>
 <li>边界值测试（Border）：通过循环边界、特殊数值、数据顺序等边界的输入，得到预期结果。</li>
 <li>正确性测试（Correct）：通过正确的输入，得到预期结果。</li>
@@ -75,35 +71,16 @@
 <li>容错性测试（Error）：通过非法数据、异常流程等错误的输入，得到预期结果。</li>
 </ul>
 </li>
-<li>
-<p>如无特殊理由，测试需全覆盖。</p>
-</li>
-<li>
-<p>每个测试用例需精确断言。</p>
-</li>
-<li>
-<p>准备环境的代码和测试代码分离。</p>
-</li>
-<li>
-<p>只有junit <code>Assert</code>，hamcrest <code>CoreMatchers</code>，Mockito相关可以使用static import。</p>
-</li>
-<li>
-<p>单数据断言，应使用<code>assertTrue</code>，<code>assertFalse</code>，<code>assertNull</code>和<code>assertNotNull</code>。</p>
-</li>
-<li>
-<p>多数据断言，应使用<code>assertThat</code>。</p>
-</li>
-<li>
-<p>精确断言，尽量不使用<code>not</code>，<code>containsString</code>断言。</p>
-</li>
-<li>
-<p>测试用例的真实值应名为为actualXXX，期望值应命名为expectedXXX。</p>
-</li>
-<li>
-<p>测试类和<code>@Test</code>标注的方法无需javadoc。</p>
-</li>
-<li>
-<p>公共规范</p>
+<li>如无特殊理由，测试需全覆盖。</li>
+<li>每个测试用例需精确断言。</li>
+<li>准备环境的代码和测试代码分离。</li>
+<li>只有junit <code>Assert</code>，hamcrest <code>CoreMatchers</code>，Mockito相关可以使用static import。</li>
+<li>单数据断言，应使用<code>assertTrue</code>，<code>assertFalse</code>，<code>assertNull</code>和<code>assertNotNull</code>。</li>
+<li>多数据断言，应使用<code>assertThat</code>。</li>
+<li>精确断言，尽量不使用<code>not</code>，<code>containsString</code>断言。</li>
+<li>测试用例的真实值应名为为actualXXX，期望值应命名为expectedXXX。</li>
+<li>测试类和<code>@Test</code>标注的方法无需javadoc。</li>
+<li>公共规范
 <ul>
 <li>每行长度不超过<code>200</code>个字符，保证每一行语义完整以便于理解。</li>
 </ul>
