@@ -50,10 +50,10 @@ For Amazon Redshift, we have now extended support for Amazon Redshift data sourc
 ### Amazon Redshift support
 ![](https://miro.medium.com/max/1260/1*T6tX2rqiosbkuxNFKuEuWg.png)
 
-For **Amazon S3**, we have extended the Apache DolphinScheduler’s resource center to support not only local resources, HDFS resource storage but also Amazon S3 as a resource centre for storage. Details can be found at: https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/resource.html in `resource.storage.type` We will be supporting more AWS tasks as users need them, so stay tuned.
+For **Amazon S3**, we have extended the Apache DolphinScheduler’s resource center to support not only local resources, HDFS resource storage but also Amazon S3 as a resource centre for storage. Details can be found at: https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/resource/intro.html in `resource.storage.type` We will be supporting more AWS tasks as users need them, so stay tuned.
 
 ### Service Separation
-While the new UI is the biggest change to the front end of 3.0.0-alpha, the biggest change to the back end is the separation of services. Given the growing buzz around containers and microservices, the Apache DolphinScheduler developers made the decision to classify the backend services. By function, we split the service into the following parts.
+While the new UI is the biggest change to the front end of 3.0.0-alpha, the biggest change to the back end is the separation of services. Given the growing buzz around containers and microservices, the Apache DolphinScheduler developers made the decision to class https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/resource/intro.html ify the backend services. By function, we split the service into the following parts.
 
 * master-server: master service
 * worker-server: worker service
