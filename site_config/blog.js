@@ -15,7 +15,7 @@ export default {
                 author: 'Debra Chen',
                 dateStr: '2022-8-30',
                 desc: 'At the ApacheCon Asia 2022, big data engineers Li Xinkai & Zhao Yuwei at T3Go ... ',
-                link: '/en-us/blog/DolphinScheduler_in T3Go_One-stop_Platform.html',
+                link: '/en-us/blog/DolphinScheduler_in_T3Go_One-stop_Platform.html',
             },
             {
                 title: 'pache DolphinScheduler Extends Capabilities Through Python API and AWS Support',

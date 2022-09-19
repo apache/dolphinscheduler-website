@@ -578,7 +578,7 @@ export default {
           title: 'ApacheCon Asia 2022 Review | Application of DolphinScheduler in T3Go One-stop Platform',
           content: 'At the ApacheCon Asia 2022, big data engineers Li Xinkai & Zhao Yuwei at T3Go shared...',
           dateStr: '2022-8-26',
-          link: '/en-us/blog/DolphinScheduler_in T3Go_One-stop_Platform.html',
+          link: '/en-us/blog/DolphinScheduler_in_T3Go_One-stop_Platform.html',
         },
 
       ],
