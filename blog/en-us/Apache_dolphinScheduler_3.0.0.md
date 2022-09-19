@@ -6,6 +6,7 @@ description:The official version 3.0.0 has undergone the most significant change
 # Apache DolphinScheduler 3.0.0 Official Version Released!
 ![](https://miro.medium.com/max/1260/1*zwulVh_I1ROhSYrlE3OW6A.png)
 
+
 The official version 3.0.0 has undergone the most significant changes since its release, adding many new functions and features, aiming to bring users a brand-new experience and more value.
 
 The iterative 3.0.0 official version is roughly the same as the primary function and feature updates, optimizations, and bug fixes described in the previous 3.0.0 alpha version update, including the four keywords summary “faster, stronger, more modern, and easier to maintain” of this version.
@@ -214,3 +215,4 @@ Download: [https://dolphinscheduler.apache.org/en-us/download/download.html](htt
 In alphabetical order
 
 `Aaron Lin、Amy0104、Assert、BaoLiang、Benedict Jin、BenjaminWenqiYu、Brennan Fox、Dannila、Desperado2、Devosend、DingPengfei、DuChaoJiaYou、EdwardYang、Eric Gao、Frank Chen、GaoTianDuo、HanayoZz、HeChuan、HomminLee、Hua Jiang、Hwting、Ivan0626、Jeff Zhan、Jiajie Zhong、JieguangZhou、Jiezhi.G、JinYong Li、J·Y、Kerwin、Kevin.Shin、KingsleyY、Kirs、KyoYang、LinKai、LiuBodong、LongJGun、Luke Yan、Lyle Shaw、Manhua、Martin Huang、Maxwell、Molin Wang、Mr.An、OS、PJ Fanning、Paul Zhang、QuakeWang、ReonYu、SbloodyS、Sheldon、Shiwen Cheng、ShuiMuNianHuaLP、ShuoTiann、SongTao Zhuang、Stalary、Sunny Lei、Tom、Town、Tq、WangJPLeo、Wenjun Ruan、X&Z、XiaochenNan、Yanbin Lin、Yao WANG、Yiming Guo、Zonglei Dong、aCodingAddict、aaronlinv、aiwenmo、caishunfeng、calvin、calvinit、cheney、chouc、chuxing、czeming、devosend、exmy、gaojun2048、guodong、guoshupei、hjli、hstdream、huangxiaohai、janeHe13、jegger、jiachuan.zhu、jon-qj、juzimao、kezhenxu94、labbomb、leiwingqueen、lgcareer、lhjzmn、lidongdai、lifeng、lilyzhou、litiliu、liubo1990、liudi1184、longtb、lvshaokang、lyq、mans2singh、mask、mazhong、mgduoduo、myangle1120、naziD、nobolity、ououtt、ouyangyewei、pinkhello、qianli2022、qinchaofeng、rickchengx、rockfang、ronyang1985、seagle、shuai hou、simsicon、sneh-wha、songjianet、sparklezzz、springmonster、sq-q、syyangs799、uh001、wangbowen、wangqiang、wangxj3、wangyang、wangyizhi、wind、worry、wqxs、xiangzihao、xiaodi wang、xiaoguaiguai、xuhhui、yangyunxi、yc322、yihong、yimaixinchen、youzipi、zchong、zekai-li、zhang、zhangxinruu、zhanqian、zhuxt2015、zixi0825、zwZjut、天仇、小张、弘树丶、张俊杰、旭旭同學、时光、旺阳、王强、百岁、秋天、罗铭涛、阿福Chris、陈家名、陈爽、飞侠美如画`
+
