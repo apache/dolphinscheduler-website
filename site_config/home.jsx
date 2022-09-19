@@ -559,6 +559,14 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: 'https://miro.medium.com/max/1260/1*zwulVh_I1ROhSYrlE3OW6A.png',
+          title: 'Apache DolphinScheduler 3.0.0 Official Version Released!',
+          content: 'The official version 3.0.0 has undergone the most significant changes since its release ...',
+          dateStr: '2022-9-2',
+          link: '/en-us/blog/Apache_dolphinScheduler_3.0.0.html',
+        },
+
+        {
           img: 'https://miro.medium.com/max/630/0*Ep9rZFSTviU8SjmP',
           title: 'Apache DolphinScheduler Extends Capabilities Through Python API and AWS Support',
           content: 'In the ever-changing world of technology, data is abundant. In fact,....',
@@ -566,18 +574,11 @@ export default {
           link: '/en-us/blog/Python_API_and_AWS_Support.html',
         },
         {
-          img: '/img/2022-05-25/en/1.jpg',
-          title: 'Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances',
-          content: 'At XWBank, a large number of task instances are generated every day...',
-          dateStr: '2022-5-25',
-          link: '/en-us/blog/Apache_DolphinScheduler_in_XWBank.html',
-        },
-        {
-          img: '/img/2020-04-25/en/1.png',
-          title: '3.0.0 Alpha Release! Nine New Features and A Brand New UI Unlock New Capabilities For the Scheduling System\n',
-          content: 'On April 22, 2022, Apache DolphinScheduler officially announced the release of alpha version 3.0.0! ...',
-          dateStr: '2022-3-10',
-          link: '/en-us/blog/Apache_dolphinScheduler_3.0.0_alpha.html',
+          img: 'https://miro.medium.com/max/1260/1*9rnrDrko9bRkgkICrPJbQA.png',
+          title: 'ApacheCon Asia 2022 Review | Application of DolphinScheduler in T3Go One-stop Platform',
+          content: 'At the ApacheCon Asia 2022, big data engineers Li Xinkai & Zhao Yuwei at T3Go shared...',
+          dateStr: '2022-8-26',
+          link: '/en-us/blog/DolphinScheduler_in_T3Go_One-stop_Platform.html',
         },
 
       ],
