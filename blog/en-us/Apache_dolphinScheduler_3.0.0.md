@@ -81,7 +81,7 @@ Data quality verification is now natively supported in 3.0.0-alpha, with support
 
 Task groups are used to control the concurrency of task instances and to define the group's priority. When creating a new task definition, the user can configure the task group corresponding to the current task and configure the priority of the task to run within the task group. When a task is configured with a task group, the task can be executed only meeting the condition that all upstream tasks run successfully but also the task currently running in the task group is smaller than the size of the resource pool. When it is greater than or equal to the size of the resource pool, the task will wait until the next check. When multiple tasks in a task group are in the pending queue at the same time, the task with the highest priority will be run first.
 
-See the link for details: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource.html](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource.html)
+
 ![](https://miro.medium.com/max/1260/1*p06af-2CI7Juk5q9ntjXRA.png)
 
 ### Customizing time zones
