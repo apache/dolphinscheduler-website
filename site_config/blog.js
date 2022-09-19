@@ -4,6 +4,20 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Apache DolphinScheduler 3.0.0 Official Version Released!',
+                author: 'Debra Chen',
+                dateStr: '2022-9-2',
+                desc: 'The official version 3.0.0 has undergone the most significant changes since its release... ',
+                link: '/en-us/blog/Apache_dolphinScheduler_3.0.0.html',
+            },
+            {
+                title: 'ApacheCon Asia 2022 Review | Application of DolphinScheduler in T3Go One-stop Platform',
+                author: 'Debra Chen',
+                dateStr: '2022-8-30',
+                desc: 'At the ApacheCon Asia 2022, big data engineers Li Xinkai & Zhao Yuwei at T3Go ... ',
+                link: '/en-us/blog/DolphinScheduler_in T3Go_One-stop_Platform.html',
+            },
+            {
                 title: 'pache DolphinScheduler Extends Capabilities Through Python API and AWS Support',
                 author: 'Debra Chen',
                 dateStr: '2022-8-26',
