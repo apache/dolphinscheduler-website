@@ -559,6 +559,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: 'https://miro.medium.com/max/630/0*Ep9rZFSTviU8SjmP',
+          title: 'Apache DolphinScheduler Extends Capabilities Through Python API and AWS Support',
+          content: 'In the ever-changing world of technology, data is abundant. In fact,....',
+          dateStr: '2022-8-26',
+          link: '/en-us/blog/Python_API_and_AWS_Support.html',
+        },
+        {
           img: '/img/2022-05-25/en/1.jpg',
           title: 'Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances',
           content: 'At XWBank, a large number of task instances are generated every day...',
@@ -572,13 +579,7 @@ export default {
           dateStr: '2022-3-10',
           link: '/en-us/blog/Apache_dolphinScheduler_3.0.0_alpha.html',
         },
-        {
-          img: '/img/2022-03-29/En/1.png',
-          title: 'Fast Task Type Expanding On Apache DolphinScheduler | Tutorial',
-          content: 'At present, the scheduler plays an indispensable role in big data ecology....',
-          dateStr: '2022-4-14',
-          link: '/en-us/blog/Fast_Task_Type_Expanding_On_Apache_DolphinScheduler_Tutorial.html',
-        },
+
       ],
     },
     userreview: {

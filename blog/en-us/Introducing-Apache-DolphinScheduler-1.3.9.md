@@ -1,6 +1,5 @@
 # Introducing Apache DolphinScheduler 1.3.9, StandaloneServer is Available!
 
-[![_5fc2f5f0697d2457db591583571c1a50_25072.md.jpg](https://s1.imgpp.com/2021/10/25/_5fc2f5f0697d2457db591583571c1a50_25072.md.jpg)](https://imgpp.com/image/OQFd4)
 
 On October 22, 2021, we are excited to announce the release of Apache DolphinScheduler 1.3.9. After a month and a half，Apache DolphinScheduler 1.3.9 brings StandaloneServer to users with the joint efforts of the community. StandaloneServer is a major update of this version, which means a huge leap in ease of use, and the details will be introduced below. In addition, this upgrade also fixes two critical bugs in 1.3.8.
 
@@ -57,7 +56,6 @@ DolphinScheduler assembles Tasks in the form of DAG (Directed Acyclic Graph), wh
 
 According to incomplete statistics, as of October 2020, 600+ companies and institutions have adopted DolphinScheduler in production environments. Partial cases are shown as below (in no particular order).
 
-[![logo.md.png](https://s1.imgpp.com/2021/10/25/logo.md.png)](https://imgpp.com/image/OQylI)
 
 ## 3 Participate in Contribution
 
