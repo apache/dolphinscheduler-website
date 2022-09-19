@@ -94,7 +94,7 @@ DSS workflow is similar to Apache DolphinScheduler, which is also in JSON format
 ![](https://miro.medium.com/max/1260/1*MnUAQ_Jm1qk3Eba4AeD35A.png)
 After storage, a task flow that conforms to its style is formed in DolphinScheduler. Now, the node types we supported cover SQL, shell scripts, and depends components, SeaTunnel(watedrop) tasks, Spark tasks and Python, etc.
 
-https://miro.medium.com/max/1260/1*DvrmN2PmLJPuN9eKRrvLMA.png![](https://miro.medium.com/max/1260/1*DvrmN2PmLJPuN9eKRrvLMA.png)
+![](https://miro.medium.com/max/1260/1*DvrmN2PmLJPuN9eKRrvLMA.png)
 We use DSS workflow for version management. In essence, it’s an up-and-down-online process of multiple versions corresponding to the DolphinScheduler task flow. If the online version is selected, the corresponding version workflow on the DS side will go online, and the workflow of the non-selected version will go offline.
 
 The compliment, timing schedule, and other operations are performed on DolphinScheduler, which is much more powerful than DSS.
