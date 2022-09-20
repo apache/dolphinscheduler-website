@@ -149,7 +149,7 @@ mvn release:prepare -Prelease,python -Darguments=&quot;-Dmaven.test.skip=true -D
 </code></pre>
 <p>It is basically the same as the previous rehearsal command, but deleting <code>-DdryRun=true</code> parameter.</p>
 <ul>
-<li><code>-DpushChanges=fals</code>: do not submit the edited version number and tag to GitHub automatically.</li>
+<li><code>-DpushChanges=false</code>: do not submit the edited version number and tag to GitHub automatically.</li>
 </ul>
 <blockquote>
 <p>Note: You have to config your git <code>user.name</code> and <code>user.password</code> by command <code>git config --global user.email &quot;you@example.com&quot;</code>
@@ -321,7 +321,7 @@ Release notes: https://github.com/apache/dolphinscheduler/releases/tag/&lt;VERSI
 
 The release candidates: https://dist.apache.org/repos/dist/dev/dolphinscheduler/&lt;VERSION&gt;/
 
-Maven 2 staging repository: https://repository.apache.org/content/repositories/&lt;VERSION&gt;/org/apache/dolphinscheduler/
+Maven 2 staging repository: https://repository.apache.org/content/repositories/&lt;STAGING.REPOSITORY&gt;/org/apache/dolphinscheduler/
 
 Git tag for the release: https://github.com/apache/dolphinscheduler/tree/&lt;VERSION&gt;
 
@@ -329,7 +329,7 @@ Release Commit ID: https://github.com/apache/dolphinscheduler/commit/&lt;SHA-VAL
 
 Keys to verify the Release Candidate: https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
 
-Look at here for how to verify this release candidate: https://dolphinscheduler.apache.org/en-us/community/release.html
+Look at here for how to verify this release candidate: https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/contribute/release/release.html
 
 The vote will be open for at least 72 hours or until necessary number of votes are reached.
 
