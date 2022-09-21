@@ -32,7 +32,6 @@
 <ul>
 <li>MLFLOW: 直接使用 <code>mlflow models serve</code> 部署模型。</li>
 <li>Docker: 打包 DOCKER 镜像后部署模型。</li>
-<li>Docker Compose: 使用Docker Compose 部署模型，将会取代上面的Docker部署。</li>
 </ul>
 </li>
 </ul>
@@ -177,30 +176,17 @@
 <p><img src="/img/tasks/demo/mlflow-models-mlflow.png" alt="mlflow-models-mlflow"></p>
 <h4>Docker</h4>
 <p><img src="/img/tasks/demo/mlflow-models-docker.png" alt="mlflow-models-docker"></p>
-<h4>DOCKER COMPOSE</h4>
-<p><img src="/img/tasks/demo/mlflow-models-docker-compose.png" alt="mlflow-models-docker-compose"></p>
-<table>
-<thead>
-<tr>
-<th><strong>任务参数</strong></th>
-<th><strong>描述</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>最大CPU限制</td>
-<td>如 <code>1.0</code> 或者 <code>0.5</code>，与 docker compose 一致</td>
-</tr>
-<tr>
-<td>最大内存限制</td>
-<td>如 <code>1G</code> 或者 <code>500M</code>，与 docker compose 一致</td>
-</tr>
-</tbody>
-</table>
 <h2>环境准备</h2>
 <h3>conda 环境配置</h3>
-<p>你需要进入admin账户配置一个conda环境变量（请提前<a href="https://docs.continuum.io/anaconda/install/">安装anaconda</a>
-或者<a href="https://docs.conda.io/en/latest/miniconda.html#installing">安装miniconda</a> )。</p>
+<p>请提前<a href="https://docs.continuum.io/anaconda/install/">安装anaconda</a> 或者<a href="https://docs.conda.io/en/latest/miniconda.html#installing">安装miniconda</a></p>
+<p><strong>方法A：</strong></p>
+<p>配置文件：/dolphinscheduler/conf/env/dolphinscheduler_env.sh。</p>
+<p>在文件最后添加内容</p>
+<pre><code># 配置你的conda环境路径
+export PATH=/opt/anaconda3/bin:$PATH
+</code></pre>
+<p><strong>方法B：</strong></p>
+<p>你需要进入admin账户配置一个conda环境变量。</p>
 <p><img src="/img/tasks/demo/mlflow-conda-env.png" alt="mlflow-conda-env"></p>
 <p>后续注意配置任务时，环境选择上面创建的conda环境，否则程序会找不到conda环境。</p>
 <p><img src="/img/tasks/demo/mlflow-set-conda-env.png" alt="mlflow-set-conda-env"></p>
@@ -214,6 +200,13 @@ mlflow server -h 0.0.0.0 -p 5000 --serve-artifacts --backend-store-uri sqlite://
 <p>运行后会启动一个MLflow服务。</p>
 <p>可以通过访问 MLflow service (<code>http://localhost:5000</code>) 页面查看实验与模型。</p>
 <p><img src="/img/tasks/demo/mlflow-server.png" alt="mlflow-server"></p>
+<h3>内置算法仓库配置</h3>
+<p>如果遇到github无法访问的情况，可以修改<code>commom.properties</code>配置文件的以下字段，将github地址替换能访问的地址。</p>
+<pre><code class="language-yaml"><span class="hljs-comment"># mlflow task plugin preset repository</span>
+<span class="hljs-string">ml.mlflow.preset_repository=https://github.com/apache/dolphinscheduler-mlflow</span>
+<span class="hljs-comment"># mlflow task plugin preset repository version</span>
+<span class="hljs-string">ml.mlflow.preset_repository_version=&quot;main&quot;</span>
+</code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-1e36toy4n-5n9U2R__FDM05R~MJFFVBg"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/contribute/join/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li></ul></div><div class="copyright"><span>Copyright © 2019-2022 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>

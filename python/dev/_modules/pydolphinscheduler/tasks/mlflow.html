@@ -121,8 +121,7 @@
     <span class="sd">&quot;&quot;&quot;MLflow deploy type.&quot;&quot;&quot;</span>
 
     <span class="n">MLFLOW</span> <span class="o">=</span> <span class="s2">&quot;MLFLOW&quot;</span>
-    <span class="n">DOCKER</span> <span class="o">=</span> <span class="s2">&quot;DOCKER&quot;</span>
-    <span class="n">DOCKER_COMPOSE</span> <span class="o">=</span> <span class="s2">&quot;DOCKER COMPOSE&quot;</span></div>
+    <span class="n">DOCKER</span> <span class="o">=</span> <span class="s2">&quot;DOCKER&quot;</span></div>
 
 
 <span class="n">DEFAULT_MLFLOW_TRACKING_URI</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:5000&quot;</span>
@@ -162,10 +161,8 @@
 <span class="sd">    :param model_uri: Model-URI of MLflow , support models:/&lt;model_name&gt;/suffix format and runs:/ format.</span>
 <span class="sd">        See https://mlflow.org/docs/latest/tracking.html#artifact-stores</span>
 <span class="sd">    :param mlflow_tracking_uri: MLflow tracking server uri, default is http://127.0.0.1:5000</span>
-<span class="sd">    :param deploy_mode: MLflow deploy mode, support MLFLOW, DOCKER, DOCKER COMPOSE, default is DOCKER</span>
+<span class="sd">    :param deploy_mode: MLflow deploy mode, support MLFLOW, DOCKER, default is DOCKER</span>
 <span class="sd">    :param port: deploy port, default is 7000</span>
-<span class="sd">    :param cpu_limit: cpu limit, default is 1.0</span>
-<span class="sd">    :param memory_limit: memory limit, default is 500M</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">mlflow_task_type</span> <span class="o">=</span> <span class="n">MLflowTaskType</span><span class="o">.</span><span class="n">MLFLOW_MODELS</span>
@@ -174,8 +171,6 @@
         <span class="s2">&quot;deploy_type&quot;</span><span class="p">,</span>
         <span class="s2">&quot;deploy_model_key&quot;</span><span class="p">,</span>
         <span class="s2">&quot;deploy_port&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;cpu_limit&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;memory_limit&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -185,8 +180,6 @@
         <span class="n">mlflow_tracking_uri</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULT_MLFLOW_TRACKING_URI</span><span class="p">,</span>
         <span class="n">deploy_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">MLflowDeployType</span><span class="o">.</span><span class="n">DOCKER</span><span class="p">,</span>
         <span class="n">port</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7000</span><span class="p">,</span>
-        <span class="n">cpu_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-        <span class="n">memory_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;500M&quot;</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
@@ -194,9 +187,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deploy_type</span> <span class="o">=</span> <span class="n">deploy_mode</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deploy_model_key</span> <span class="o">=</span> <span class="n">model_uri</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">deploy_port</span> <span class="o">=</span> <span class="n">port</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cpu_limit</span> <span class="o">=</span> <span class="n">cpu_limit</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">memory_limit</span> <span class="o">=</span> <span class="n">memory_limit</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deploy_port</span> <span class="o">=</span> <span class="n">port</span></div>
 
 
 <div class="viewcode-block" id="MLFlowProjectsCustom"><a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLFlowProjectsCustom">[docs]</a><span class="k">class</span> <span class="nc">MLFlowProjectsCustom</span><span class="p">(</span><span class="n">BaseMLflow</span><span class="p">):</span>

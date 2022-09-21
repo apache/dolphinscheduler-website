@@ -53,9 +53,9 @@ If you deploy DolphinScheduler in <code>Standalone</code> mode, you only need to
 # resource view suffixs</span>
 <span class="hljs-comment">#resource.view.suffixs=txt,log,sh,bat,conf,cfg,py,java,sql,xml,hql,properties,json,yml,yaml,ini,js</span>
 <span class="hljs-comment">
-# resource storage type: HDFS, S3, NONE</span>
+# resource storage type: HDFS, S3, OSS, NONE</span>
 <span class="hljs-meta">resource.storage.type</span>=<span class="hljs-string">NONE</span>
-<span class="hljs-comment"># resource store on HDFS/S3 path, resource file will store to this base path, self configuration, please make sure the directory exists on hdfs and have read write permissions. &quot;/dolphinscheduler&quot; is recommended</span>
+<span class="hljs-comment"># resource store on HDFS/S3/OSS path, resource file will store to this base path, self configuration, please make sure the directory exists on hdfs and have read write permissions. &quot;/dolphinscheduler&quot; is recommended</span>
 <span class="hljs-meta">resource.storage.upload.base.path</span>=<span class="hljs-string">/tmp/dolphinscheduler</span>
 <span class="hljs-comment">
 # The AWS access key. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>
@@ -68,6 +68,17 @@ If you deploy DolphinScheduler in <code>Standalone</code> mode, you only need to
 <span class="hljs-meta">resource.aws.s3.bucket.name</span>=<span class="hljs-string">dolphinscheduler</span>
 <span class="hljs-comment"># You need to set this parameter when private cloud s3. If S3 uses public cloud, you only need to set resource.aws.region or set to the endpoint of a public cloud such as S3.cn-north-1.amazonaws.com.cn</span>
 <span class="hljs-meta">resource.aws.s3.endpoint</span>=<span class="hljs-string">http://localhost:9000</span>
+<span class="hljs-comment">
+# alibaba cloud access key id, required if you set resource.storage.type=OSS </span>
+<span class="hljs-meta">resource.alibaba.cloud.access.key.id</span>=<span class="hljs-string">&lt;your-access-key-id&gt;</span>
+<span class="hljs-comment"># alibaba cloud access key secret, required if you set resource.storage.type=OSS</span>
+<span class="hljs-meta">resource.alibaba.cloud.access.key.secret</span>=<span class="hljs-string">&lt;your-access-key-secret&gt;</span>
+<span class="hljs-comment"># alibaba cloud region, required if you set resource.storage.type=OSS</span>
+<span class="hljs-meta">resource.alibaba.cloud.region</span>=<span class="hljs-string">cn-hangzhou</span>
+<span class="hljs-comment"># oss bucket name, required if you set resource.storage.type=OSS</span>
+<span class="hljs-meta">resource.alibaba.cloud.oss.bucket.name</span>=<span class="hljs-string">dolphinscheduler</span>
+<span class="hljs-comment"># oss bucket endpoint, required if you set resource.storage.type=OSS</span>
+<span class="hljs-meta">resource.alibaba.cloud.oss.endpoint</span>=<span class="hljs-string">https://oss-cn-hangzhou.aliyuncs.com</span>
 <span class="hljs-comment">
 # if resource.storage.type=HDFS, the user must have the permission to create directories under the HDFS root path</span>
 <span class="hljs-meta">resource.hdfs.root.user</span>=<span class="hljs-string">hdfs</span>

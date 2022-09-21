@@ -138,17 +138,6 @@
         <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;xgboost&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="c1"># Using MLFLOW to deploy model from custom mlflow project</span>
-    <span class="n">deploy_mlflow</span> <span class="o">=</span> <span class="n">MLflowModels</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;deploy_mlflow&quot;</span><span class="p">,</span>
-        <span class="n">model_uri</span><span class="o">=</span><span class="s2">&quot;models:/xgboost_native/Production&quot;</span><span class="p">,</span>
-        <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
-        <span class="n">deploy_mode</span><span class="o">=</span><span class="n">MLflowDeployType</span><span class="o">.</span><span class="n">MLFLOW</span><span class="p">,</span>
-        <span class="n">port</span><span class="o">=</span><span class="mi">7001</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="n">train_custom</span> <span class="o">&gt;&gt;</span> <span class="n">deploy_mlflow</span>
-
     <span class="c1"># run automl to train model</span>
     <span class="n">train_automl</span> <span class="o">=</span> <span class="n">MLFlowProjectsAutoML</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;train_automl&quot;</span><span class="p">,</span>
@@ -183,16 +172,16 @@
         <span class="n">search_params</span><span class="o">=</span><span class="s2">&quot;max_depth=[5, 10];n_estimators=[100, 200]&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="c1"># Using DOCKER COMPOSE to deploy model from train_basic_algorithm</span>
-    <span class="n">deploy_docker_compose</span> <span class="o">=</span> <span class="n">MLflowModels</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;deploy_docker_compose&quot;</span><span class="p">,</span>
+    <span class="c1"># Using MLFLOW to deploy model from training lightgbm project</span>
+    <span class="n">deploy_mlflow</span> <span class="o">=</span> <span class="n">MLflowModels</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;deploy_mlflow&quot;</span><span class="p">,</span>
         <span class="n">model_uri</span><span class="o">=</span><span class="s2">&quot;models:/iris_B/Production&quot;</span><span class="p">,</span>
         <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
-        <span class="n">deploy_mode</span><span class="o">=</span><span class="n">MLflowDeployType</span><span class="o">.</span><span class="n">DOCKER_COMPOSE</span><span class="p">,</span>
-        <span class="n">port</span><span class="o">=</span><span class="mi">7003</span><span class="p">,</span>
+        <span class="n">deploy_mode</span><span class="o">=</span><span class="n">MLflowDeployType</span><span class="o">.</span><span class="n">MLFLOW</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">7001</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">train_basic_algorithm</span> <span class="o">&gt;&gt;</span> <span class="n">deploy_docker_compose</span>
+    <span class="n">train_basic_algorithm</span> <span class="o">&gt;&gt;</span> <span class="n">deploy_mlflow</span>
 
     <span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 
@@ -409,11 +398,6 @@ for example <a class="reference external" href="https://github.com/mlflow/mlflow
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowDeployType.DOCKER_COMPOSE">
-<span class="sig-name descname"><span class="pre">DOCKER_COMPOSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DOCKER</span> <span class="pre">COMPOSE'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowDeployType.DOCKER_COMPOSE" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowDeployType.MLFLOW">
 <span class="sig-name descname"><span class="pre">MLFLOW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLFLOW'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowDeployType.MLFLOW" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -444,7 +428,7 @@ for example <a class="reference external" href="https://github.com/mlflow/mlflow
 
 <dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowModels">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">MLflowModels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mlflow_tracking_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'http://127.0.0.1:5000'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deploy_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'DOCKER'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'500M'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#MLflowModels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">MLflowModels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mlflow_tracking_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'http://127.0.0.1:5000'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deploy_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'DOCKER'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#MLflowModels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow" title="pydolphinscheduler.tasks.mlflow.BaseMLflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMLflow</span></code></a></p>
 <p>Task MLflow models object, declare behavior for MLflow models task to dolphinscheduler.</p>
 <p>Deploy machine learning models in diverse serving environments.</p>
@@ -455,16 +439,14 @@ for example <a class="reference external" href="https://github.com/mlflow/mlflow
 <li><p><strong>model_uri</strong> – Model-URI of MLflow , support models:/&lt;model_name&gt;/suffix format and runs:/ format.
 See https://mlflow.org/docs/latest/tracking.html#artifact-stores</p></li>
 <li><p><strong>mlflow_tracking_uri</strong> – MLflow tracking server uri, default is <a class="reference external" href="http://127.0.0.1:5000">http://127.0.0.1:5000</a></p></li>
-<li><p><strong>deploy_mode</strong> – MLflow deploy mode, support MLFLOW, DOCKER, DOCKER COMPOSE, default is DOCKER</p></li>
+<li><p><strong>deploy_mode</strong> – MLflow deploy mode, support MLFLOW, DOCKER, default is DOCKER</p></li>
 <li><p><strong>port</strong> – deploy port, default is 7000</p></li>
-<li><p><strong>cpu_limit</strong> – cpu limit, default is 1.0</p></li>
-<li><p><strong>memory_limit</strong> – memory limit, default is 500M</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowModels._child_task_mlflow_attr">
-<span class="sig-name descname"><span class="pre">_child_task_mlflow_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cpu_limit',</span> <span class="pre">'deploy_model_key',</span> <span class="pre">'deploy_port',</span> <span class="pre">'deploy_type',</span> <span class="pre">'memory_limit'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels._child_task_mlflow_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_child_task_mlflow_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'deploy_model_key',</span> <span class="pre">'deploy_port',</span> <span class="pre">'deploy_type'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels._child_task_mlflow_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -525,15 +507,6 @@ See https://mlflow.org/docs/latest/tracking.html#artifact-stores</p></li>
 <span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9</span><span class="w"></span>
 <span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xgboost</span><span class="w"></span>
 
-
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy_mlflow</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">train_xgboost_native</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLflowModels</span><span class="w"> </span>
-<span class="w">    </span><span class="nt">model_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">models:/xgboost_native/Production</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFLOW</span><span class="w"></span>
-<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7001</span><span class="w"></span>
-
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_automl</span><span class="w"></span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFlowProjectsAutoML</span><span class="w"> </span>
 <span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span><span class="w"></span>
@@ -561,14 +534,13 @@ See https://mlflow.org/docs/latest/tracking.html#artifact-stores</p></li>
 <span class="w">    </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/examples/iris</span><span class="w"></span>
 <span class="w">    </span><span class="nt">search_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">max_depth=[5, 10];n_estimators=[100, 200]</span><span class="w"></span>
 
-
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy_docker_compose</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLflowModels</span><span class="w"> </span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy_mlflow</span><span class="w"></span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">train_basic_algorithm</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLflowModels</span><span class="w"></span>
 <span class="w">    </span><span class="nt">model_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">models:/iris_B/Production</span><span class="w"></span>
 <span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOCKER COMPOSE</span><span class="w"></span>
-<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7003</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFLOW</span><span class="w"></span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7001</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
