@@ -111,16 +111,52 @@
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_TENANT</span><span class="p">,</span>
         <span class="n">queue</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_QUEUE</span><span class="p">,</span>
         <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tenant_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">user_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tenant_id</span> <span class="o">=</span> <span class="n">tenant_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_name</span> <span class="o">=</span> <span class="n">user_name</span>
 
 <div class="viewcode-block" id="Tenant.create_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.Tenant.create_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">queue_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">USER_NAME</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Create Tenant if not exists.&quot;&quot;&quot;</span>
-        <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">create_tenant</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">queue_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></div></div>
+        <span class="n">tenant</span> <span class="o">=</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">create_tenant</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">queue_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tenant_id</span> <span class="o">=</span> <span class="n">tenant</span><span class="o">.</span><span class="n">getId</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">tenant</span><span class="o">.</span><span class="n">getTenantCode</span><span class="p">()</span></div>
         <span class="c1"># gateway_result_checker(result, None)</span>
+
+<div class="viewcode-block" id="Tenant.get_tenant"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.Tenant.get_tenant">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_tenant</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Tenant&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get Tenant list.&quot;&quot;&quot;</span>
+        <span class="n">tenant</span> <span class="o">=</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">query_tenant</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tenant</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">tenant</span><span class="o">.</span><span class="n">getDescription</span><span class="p">(),</span>
+            <span class="n">tenant_id</span><span class="o">=</span><span class="n">tenant</span><span class="o">.</span><span class="n">getId</span><span class="p">(),</span>
+            <span class="n">code</span><span class="o">=</span><span class="n">tenant</span><span class="o">.</span><span class="n">getTenantCode</span><span class="p">(),</span>
+            <span class="n">queue</span><span class="o">=</span><span class="n">tenant</span><span class="o">.</span><span class="n">getQueueId</span><span class="p">(),</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Tenant.update"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.Tenant.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">USER_NAME</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">queue_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Update Tenant.&quot;&quot;&quot;</span>
+        <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">update_tenant</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">queue_id</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="c1"># TODO: check queue_id and queue_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">queue_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">description</span></div>
+
+<div class="viewcode-block" id="Tenant.delete"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.Tenant.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Delete Tenant.&quot;&quot;&quot;</span>
+        <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">delete_tenant</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tenant_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delete_all</span><span class="p">()</span></div></div>
 </pre></div>
 
            </div>

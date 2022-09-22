@@ -459,7 +459,7 @@ kubectl cp -n <span class="hljs-built_in">test</span> spark-2.4.7-bin-hadoop2.7.
 </code></pre>
 <p>因为存储卷 <code>sharedStoragePersistence</code> 被挂载到 <code>/opt/soft</code>, 因此 <code>/opt/soft</code> 中的所有文件都不会丢失</p>
 <ol start="5">
-<li>登录到容器并确保 <code>SPARK_HOME2</code> 存在</li>
+<li>登录到容器并确保 <code>SPARK_HOME</code> 存在</li>
 </ol>
 <pre><code class="language-bash">kubectl <span class="hljs-built_in">exec</span> -it dolphinscheduler-worker-0 bash
 kubectl <span class="hljs-built_in">exec</span> -n <span class="hljs-built_in">test</span> -it dolphinscheduler-worker-0 bash <span class="hljs-comment"># with test namespace</span>
@@ -467,13 +467,13 @@ kubectl <span class="hljs-built_in">exec</span> -n <span class="hljs-built_in">t
 tar zxf spark-2.4.7-bin-hadoop2.7.tgz
 rm -f spark-2.4.7-bin-hadoop2.7.tgz
 ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
-<span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
+<span class="hljs-variable">$SPARK_HOME</span>/bin/spark-submit --version
 </code></pre>
 <p>如果一切执行正常，最后一条命令将会打印 Spark 版本信息</p>
 <ol start="6">
 <li>在一个 Shell 任务下验证 Spark</li>
 </ol>
-<pre><code>$SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.11-2.4.7.jar
+<pre><code>$SPARK_HOME/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME/examples/jars/spark-examples_2.11-2.4.7.jar
 </code></pre>
 <p>检查任务日志是否包含输出 <code>Pi is roughly 3.146015</code></p>
 <ol start="7">
@@ -481,7 +481,6 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </ol>
 <p>文件 <code>spark-examples_2.11-2.4.7.jar</code> 需要先被上传到资源中心，然后创建一个 Spark 任务并设置:</p>
 <ul>
-<li>Spark版本: <code>SPARK2</code></li>
 <li>主函数的Class: <code>org.apache.spark.examples.SparkPi</code></li>
 <li>主程序包: <code>spark-examples_2.11-2.4.7.jar</code></li>
 <li>部署方式: <code>local</code></li>
@@ -492,44 +491,6 @@ ln -s spark-2.4.7-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 </ol>
 <p>Spark on YARN (部署方式为 <code>cluster</code> 或 <code>client</code>) 需要 Hadoop 支持. 类似于 Spark 支持, 支持 Hadoop 的操作几乎和前面的步骤相同</p>
 <p>确保 <code>$HADOOP_HOME</code> 和 <code>$HADOOP_CONF_DIR</code> 存在</p>
-<h3>如何支持 Spark 3？</h3>
-<p>事实上，使用 <code>spark-submit</code> 提交应用的方式是相同的, 无论是 Spark 1, 2 或 3. 换句话说，<code>SPARK_HOME2</code> 的语义是第二个 <code>SPARK_HOME</code>, 而非 <code>SPARK2</code> 的 <code>HOME</code>, 因此只需设置 <code>SPARK_HOME2=/path/to/spark3</code> 即可</p>
-<p>以 Spark 3.1.1 为例:</p>
-<ol>
-<li>
-<p>下载 Spark 3.1.1 发布的二进制包 <code>spark-3.1.1-bin-hadoop2.7.tgz</code></p>
-</li>
-<li>
-<p>确保 <code>common.sharedStoragePersistence.enabled</code> 开启</p>
-</li>
-<li>
-<p>部署 dolphinscheduler (详见<strong>安装 dolphinscheduler</strong>)</p>
-</li>
-<li>
-<p>复制 Spark 3.1.1 二进制包到 Docker 容器中</p>
-</li>
-</ol>
-<pre><code class="language-bash">kubectl cp spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
-kubectl cp -n <span class="hljs-built_in">test</span> spark-3.1.1-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft <span class="hljs-comment"># with test namespace</span>
-</code></pre>
-<ol start="5">
-<li>登录到容器并确保 <code>SPARK_HOME2</code> 存在</li>
-</ol>
-<pre><code class="language-bash">kubectl <span class="hljs-built_in">exec</span> -it dolphinscheduler-worker-0 bash
-kubectl <span class="hljs-built_in">exec</span> -n <span class="hljs-built_in">test</span> -it dolphinscheduler-worker-0 bash <span class="hljs-comment"># with test namespace</span>
-<span class="hljs-built_in">cd</span> /opt/soft
-tar zxf spark-3.1.1-bin-hadoop2.7.tgz
-rm -f spark-3.1.1-bin-hadoop2.7.tgz
-ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</span>
-<span class="hljs-variable">$SPARK_HOME2</span>/bin/spark-submit --version
-</code></pre>
-<p>如果一切执行正常，最后一条命令将会打印 Spark 版本信息</p>
-<ol start="6">
-<li>在一个 Shell 任务下验证 Spark</li>
-</ol>
-<pre><code>$SPARK_HOME2/bin/spark-submit --class org.apache.spark.examples.SparkPi $SPARK_HOME2/examples/jars/spark-examples_2.12-3.1.1.jar
-</code></pre>
-<p>检查任务日志是否包含输出 <code>Pi is roughly 3.146015</code></p>
 <h3>如何在 Master、Worker 和 Api 服务之间支持共享存储？</h3>
 <p>例如, Master、Worker 和 Api 服务可能同时使用 Hadoop</p>
 <ol>
@@ -889,14 +850,9 @@ ln -s spark-3.1.1-bin-hadoop2.7 spark2 <span class="hljs-comment"># or just mv</
 <td><code>/opt/soft/hadoop/etc/hadoop</code></td>
 </tr>
 <tr>
-<td><code>common.configmap.SPARK_HOME1</code></td>
-<td>Set <code>SPARK_HOME1</code> for DolphinScheduler's task environment</td>
-<td><code>/opt/soft/spark1</code></td>
-</tr>
-<tr>
-<td><code>common.configmap.SPARK_HOME2</code></td>
-<td>Set <code>SPARK_HOME2</code> for DolphinScheduler's task environment</td>
-<td><code>/opt/soft/spark2</code></td>
+<td><code>common.configmap.SPARK_HOME</code></td>
+<td>Set <code>SPARK_HOME</code> for DolphinScheduler's task environment</td>
+<td><code>/opt/soft/spark</code></td>
 </tr>
 <tr>
 <td><code>common.configmap.PYTHON_HOME</code></td>

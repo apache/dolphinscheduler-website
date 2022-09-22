@@ -127,6 +127,7 @@
         <span class="n">status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">USER_STATE</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">phone</span> <span class="o">=</span> <span class="n">phone</span>
@@ -143,7 +144,7 @@
         <span class="sd">&quot;&quot;&quot;Create User if not exists.&quot;&quot;&quot;</span>
         <span class="c1"># Should make sure queue already exists.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_tenant_if_not_exists</span><span class="p">()</span>
-        <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
@@ -151,9 +152,61 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">tenant</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">,</span>
-        <span class="p">)</span></div></div>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">getId</span><span class="p">()</span></div>
         <span class="c1"># TODO recover result checker</span>
         <span class="c1"># gateway_result_checker(result, None)</span>
+
+<div class="viewcode-block" id="User.get_user"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.get_user">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;User&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get User.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">query_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">getId</span><span class="p">()</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">getUserName</span><span class="p">(),</span>
+            <span class="n">password</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">getUserPassword</span><span class="p">(),</span>
+            <span class="n">email</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">getEmail</span><span class="p">(),</span>
+            <span class="n">phone</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">getPhone</span><span class="p">(),</span>
+            <span class="n">tenant</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">getTenantCode</span><span class="p">(),</span>
+            <span class="n">queue</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">getQueueName</span><span class="p">(),</span>
+            <span class="n">status</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">getState</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">user_id</span>
+        <span class="k">return</span> <span class="n">user</span></div>
+
+<div class="viewcode-block" id="User.update"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">email</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">phone</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">tenant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">queue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">status</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Update User.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">update_user</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">password</span><span class="p">,</span>
+            <span class="n">email</span><span class="p">,</span>
+            <span class="n">phone</span><span class="p">,</span>
+            <span class="n">tenant</span><span class="p">,</span>
+            <span class="n">queue</span><span class="p">,</span>
+            <span class="n">status</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">getId</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">getUserName</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">getUserPassword</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">getEmail</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phone</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">getPhone</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">getQueueName</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">getState</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="User.delete"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Delete User.&quot;&quot;&quot;</span>
+        <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">delete_user</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delete_all</span><span class="p">()</span></div></div>
 </pre></div>
 
            </div>

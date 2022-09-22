@@ -150,7 +150,7 @@
 <pre><code>export PYTHON_HOME=/bin/python
 </code></pre>
 <p>注意：这了 <strong>PYTHON_HOME</strong> ，是 python 命令的绝对路径，而不是单纯的 PYTHON_HOME，还需要注意的是 export PATH 的时候，需要直接</p>
-<pre><code>export PATH=$HADOOP_HOME/bin:$SPARK_HOME1/bin:$SPARK_HOME2/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH
+<pre><code>export PATH=$HADOOP_HOME/bin:$SPARK_HOME/bin:$PYTHON_HOME:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH
 </code></pre>
 <h2>Q：Worker Task 通过 sudo -u 租户 sh xxx.command 会产生子进程，在 kill 的时候，是否会杀掉</h2>
 <p>A： 我们会在 1.0.4 中增加 kill 任务同时，kill 掉任务产生的各种所有子进程</p>

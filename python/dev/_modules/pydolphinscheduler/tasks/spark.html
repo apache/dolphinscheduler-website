@@ -102,13 +102,6 @@
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.engine</span> <span class="kn">import</span> <span class="n">Engine</span><span class="p">,</span> <span class="n">ProgramType</span>
 
 
-<div class="viewcode-block" id="SparkVersion"><a class="viewcode-back" href="../../../tasks/spark.html#pydolphinscheduler.tasks.SparkVersion">[docs]</a><span class="k">class</span> <span class="nc">SparkVersion</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Spark version, for now it just contain `SPARK1` and `SPARK2`.&quot;&quot;&quot;</span>
-
-    <span class="n">SPARK1</span> <span class="o">=</span> <span class="s2">&quot;SPARK1&quot;</span>
-    <span class="n">SPARK2</span> <span class="o">=</span> <span class="s2">&quot;SPARK2&quot;</span></div>
-
-
 <div class="viewcode-block" id="DeployMode"><a class="viewcode-back" href="../../../tasks/spark.html#pydolphinscheduler.tasks.DeployMode">[docs]</a><span class="k">class</span> <span class="nc">DeployMode</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;SPARK deploy mode, for now it just contain `LOCAL`, `CLIENT` and `CLUSTER`.&quot;&quot;&quot;</span>
 
@@ -122,7 +115,6 @@
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;deploy_mode&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;spark_version&quot;</span><span class="p">,</span>
         <span class="s2">&quot;driver_cores&quot;</span><span class="p">,</span>
         <span class="s2">&quot;driver_memory&quot;</span><span class="p">,</span>
         <span class="s2">&quot;num_executors&quot;</span><span class="p">,</span>
@@ -140,7 +132,6 @@
         <span class="n">main_package</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">program_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProgramType</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProgramType</span><span class="o">.</span><span class="n">SCALA</span><span class="p">,</span>
         <span class="n">deploy_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DeployMode</span><span class="p">]</span> <span class="o">=</span> <span class="n">DeployMode</span><span class="o">.</span><span class="n">CLUSTER</span><span class="p">,</span>
-        <span class="n">spark_version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SparkVersion</span><span class="p">]</span> <span class="o">=</span> <span class="n">SparkVersion</span><span class="o">.</span><span class="n">SPARK2</span><span class="p">,</span>
         <span class="n">app_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">driver_cores</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">driver_memory</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;512M&quot;</span><span class="p">,</span>
@@ -162,7 +153,6 @@
             <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deploy_mode</span> <span class="o">=</span> <span class="n">deploy_mode</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">spark_version</span> <span class="o">=</span> <span class="n">spark_version</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app_name</span> <span class="o">=</span> <span class="n">app_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver_cores</span> <span class="o">=</span> <span class="n">driver_cores</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">driver_memory</span> <span class="o">=</span> <span class="n">driver_memory</span>
