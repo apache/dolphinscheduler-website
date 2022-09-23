@@ -59,6 +59,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="resource-plugin.html">ResourcePlugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="local.html">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github.html">GitHub</a></li>
 </ul>
 </li>
 </ul>
@@ -91,7 +92,7 @@
   <section id="how-to-develop">
 <h1>How to develop<a class="headerlink" href="#how-to-develop" title="Permalink to this heading"></a></h1>
 <p>When you want to create a new resource plugin, you need to add a new class in the module <cite>resources_plugin</cite>.</p>
-<p>The resource plug-in class needs to inherit the abstract class <cite>ResourcePlugin</cite> and implement its abstract method <cite>read_file</cite> function.</p>
+<p>The resource plugin class needs to inherit the abstract class <cite>ResourcePlugin</cite> and implement its abstract method <cite>read_file</cite> function.</p>
 <p>The parameter of the <cite>__init__</cite> function of <cite>ResourcePlugin</cite> is the prefix of STR type. You can override this function when necessary.</p>
 <p>The <cite>read_file</cite> function parameter of <cite>ResourcePlugin</cite> is the file suffix of STR type, and its return value is the file content, if it exists and is readable.</p>
 <section id="example">
@@ -107,7 +108,7 @@
 <ul class="simple">
 <li><p>Method <cite>read_file</cite>: Get content from the given URI, The function parameter is the suffix of the file path.</p></li>
 </ul>
-<p>The file prefix has been initialized in init of the resource plug-in.</p>
+<p>The file prefix has been initialized in init of the resource plugin.</p>
 <p>The prefix plus suffix is the absolute path of the file in this resource.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suf</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the content of the file.</span>

@@ -61,6 +61,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="local.html">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github.html">GitHub</a></li>
 </ul>
 </li>
 </ul>
@@ -119,6 +120,14 @@ All resource plugins need to inherit and override its abstract methods.</p>
 
     <span class="c1"># [end abstractmethod read_file]</span>
 
+    <span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the subscript of the nth occurrence of the X character in the string s.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">all_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">x</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">all_index</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyResPluginException</span><span class="p">(</span><span class="s2">&quot;Incomplete path.&quot;</span><span class="p">)</span>
+
 
 </pre></div>
 </div>
@@ -162,6 +171,12 @@ All resource plugins need to inherit and override its abstract methods.</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.resource_plugin.ResourcePlugin.get_index">
+<span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/core/resource_plugin.html#ResourcePlugin.get_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin.get_index" title="Permalink to this definition"></a></dt>
+<dd><p>Find the subscript of the nth occurrence of the X character in the string s.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.resource_plugin.ResourcePlugin.read_file">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/core/resource_plugin.html#ResourcePlugin.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin.read_file" title="Permalink to this definition"></a></dt>
 <dd><p>Get the content of the file.</p>
@@ -178,9 +193,9 @@ All resource plugins need to inherit and override its abstract methods.</p>
 </section>
 <section id="how-to-use">
 <h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading"></a></h2>
-<p>Resource plug-ins can be used in task subclasses and workflows. You can use the resource plug-ins by adding the <cite>resource_plugin</cite> parameter when they are initialized.
-For example, local resource plug-ins, add <cite>resource_plugin = Local(“/tmp”)</cite>.</p>
-<p>The resource plug-ins we currently support is <cite>local</cite>.</p>
+<p>Resource plugin can be used in task subclasses and workflows. You can use the resource plugin by adding the <cite>resource_plugin</cite> parameter when they are initialized.
+For example, local resource plugin, add <cite>resource_plugin = Local(“/tmp”)</cite>.</p>
+<p>The resource plugin we currently support are <cite>local</cite>, <cite>github</cite>.</p>
 <p>Here is an example.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_resource_plugin&quot;</span><span class="p">,</span>
