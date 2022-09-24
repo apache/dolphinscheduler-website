@@ -190,6 +190,14 @@ In either case, this is followed by: for k in F:  D[k] = F[k]</p>
 <p>This is the parent class of spark, flink and mr tasks,
 and is used to provide the programType, mainClass and mainJar task parameters for reuse.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Engine._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.core.Engine._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Engine._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.core.Engine._set_deps" title="Permalink to this definition"></a></dt>
 <dd><p>Set parameter tasks dependent to current task.</p>
@@ -279,6 +287,16 @@ process_definition.resource_plugin.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Engine._task_custom_attr">
 <span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.core.Engine._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Engine._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.core.Engine._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Engine._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.core.Engine._task_ignore_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -543,6 +561,14 @@ for now, and schedule run will coming soon.
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.models.Base" title="pydolphinscheduler.models.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></a></p>
 <p>Task object, parent class for all exactly task type.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Task._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pydolphinscheduler/core/task.html#Task._get_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.Task._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Task._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pydolphinscheduler/core/task.html#Task._set_deps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.Task._set_deps" title="Permalink to this definition"></a></dt>
 <dd><p>Set parameter tasks dependent to current task.</p>
@@ -620,6 +646,16 @@ process_definition.resource_plugin.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Task._task_custom_attr">
 <span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.core.Task._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Task._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.core.Task._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.core.Task._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.core.Task._task_ignore_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -1069,6 +1105,14 @@ object tries to communicate with Java gateway server.</p>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
 <p>Task condition object, declare behavior for condition task to dolphinscheduler.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Condition._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition._set_dep">
 <span class="sig-name descname"><span class="pre">_set_dep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/condition.html#Condition._set_dep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Condition._set_dep" title="Permalink to this definition"></a></dt>
 <dd><p>Set upstream according to parameter <cite>condition</cite>.</p>
@@ -1160,6 +1204,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Condition._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Condition._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Condition._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1226,6 +1280,14 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
 <p>Task CustomDatax object, declare behavior for custom DataX task to dolphinscheduler.</p>
 <p>You provider json template for DataX, it can synchronize data according to the template you provided.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.CustomDataX._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.CustomDataX._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX._set_deps" title="Permalink to this definition"></a></dt>
@@ -1317,6 +1379,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.CustomDataX._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.CustomDataX._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.CustomDataX._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1380,6 +1452,14 @@ process_definition.resource_plugin.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">DVCDownload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path_in_dvc_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path_in_worker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/dvc.html#DVCDownload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.DVCDownload" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="tasks/dvc.html#pydolphinscheduler.tasks.dvc.BaseDVC" title="pydolphinscheduler.tasks.dvc.BaseDVC"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDVC</span></code></a></p>
 <p>Task DVC Download object, declare behavior for DVC Download task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCDownload._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.DVCDownload._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCDownload._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.DVCDownload._set_deps" title="Permalink to this definition"></a></dt>
@@ -1471,6 +1551,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCDownload._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCDownload._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCDownload._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCDownload._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCDownload._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCDownload._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1538,6 +1628,14 @@ process_definition.resource_plugin.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">DVCInit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/dvc.html#DVCInit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.DVCInit" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="tasks/dvc.html#pydolphinscheduler.tasks.dvc.BaseDVC" title="pydolphinscheduler.tasks.dvc.BaseDVC"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDVC</span></code></a></p>
 <p>Task DVC Init object, declare behavior for DVC Init task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCInit._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.DVCInit._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCInit._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.DVCInit._set_deps" title="Permalink to this definition"></a></dt>
@@ -1629,6 +1727,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCInit._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCInit._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCInit._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCInit._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCInit._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCInit._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1696,6 +1804,14 @@ process_definition.resource_plugin.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">DVCUpload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path_in_worker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path_in_dvc_repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/dvc.html#DVCUpload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.DVCUpload" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="tasks/dvc.html#pydolphinscheduler.tasks.dvc.BaseDVC" title="pydolphinscheduler.tasks.dvc.BaseDVC"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDVC</span></code></a></p>
 <p>Task DVC Upload object, declare behavior for DVC Upload task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCUpload._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.DVCUpload._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCUpload._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.DVCUpload._set_deps" title="Permalink to this definition"></a></dt>
@@ -1787,6 +1903,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCUpload._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCUpload._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCUpload._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCUpload._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCUpload._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCUpload._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1861,6 +1987,14 @@ process_definition.resource_plugin.</p>
 - SQLServer
 You provider datasource_name and datatarget_name contain connection information, it decisions which
 database type and database instance would synchronous data.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.DataX._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.DataX._set_deps" title="Permalink to this definition"></a></dt>
@@ -1952,6 +2086,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DataX._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DataX._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DataX._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -2016,6 +2160,14 @@ directly set as python property, so we Override Task.task_params here.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">Dependent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tasks/dependent.html#pydolphinscheduler.tasks.dependent.DependentOperator" title="pydolphinscheduler.tasks.dependent.DependentOperator"><span class="pre">DependentOperator</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/dependent.html#Dependent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
 <p>Task dependent object, declare behavior for dependent task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent._set_deps" title="Permalink to this definition"></a></dt>
@@ -2102,6 +2254,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -2167,6 +2329,14 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">Flink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">program_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">ProgramType</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'SCALA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deploy_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="tasks/flink.html#pydolphinscheduler.tasks.flink.DeployMode" title="pydolphinscheduler.tasks.flink.DeployMode"><span class="pre">DeployMode</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cluster'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flink_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="tasks/flink.html#pydolphinscheduler.tasks.flink.FlinkVersion" title="pydolphinscheduler.tasks.flink.FlinkVersion"><span class="pre">FlinkVersion</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'&lt;1.10'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_manager_memory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'1G'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_manager_memory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2G'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallelism</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">others</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/flink.html#Flink"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Flink" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Engine" title="pydolphinscheduler.core.engine.Engine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Engine</span></code></a></p>
 <p>Task flink object, declare behavior for flink task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Flink._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Flink._set_deps" title="Permalink to this definition"></a></dt>
@@ -2265,6 +2435,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Flink._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Flink._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Flink._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -2329,6 +2509,14 @@ directly set as python property, so we Override Task.task_params here.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">Http</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">http_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'GET'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">http_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">http_check_condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'STATUS_CODE_DEFAULT'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connect_timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">socket_timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/http.html#Http"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Http" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
 <p>Task HTTP object, declare behavior for HTTP task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Http._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Http._set_deps" title="Permalink to this definition"></a></dt>
@@ -2415,6 +2603,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Http._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Http._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Http._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -2491,6 +2689,14 @@ process_definition.resource_plugin.</p>
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsAutoML._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsAutoML._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsAutoML._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsAutoML._set_deps" title="Permalink to this definition"></a></dt>
@@ -2582,6 +2788,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsAutoML._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsAutoML._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsAutoML._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsAutoML._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsAutoML._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsAutoML._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -2669,6 +2885,14 @@ based on scikit-learn form.</p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._set_deps" title="Permalink to this definition"></a></dt>
@@ -2760,6 +2984,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -2846,6 +3080,14 @@ for example <a class="reference external" href="https://github.com/mlflow/mlflow
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsCustom._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsCustom._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsCustom._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsCustom._set_deps" title="Permalink to this definition"></a></dt>
@@ -2937,6 +3179,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsCustom._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsCustom._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsCustom._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsCustom._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsCustom._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsCustom._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -3022,6 +3274,14 @@ See https://mlflow.org/docs/latest/tracking.html#artifact-stores</p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLflowModels._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MLflowModels._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLflowModels._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MLflowModels._set_deps" title="Permalink to this definition"></a></dt>
@@ -3113,6 +3373,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLflowModels._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLflowModels._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLflowModels._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLflowModels._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLflowModels._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLflowModels._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -3180,6 +3450,14 @@ process_definition.resource_plugin.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">MR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">program_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">ProgramType</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'SCALA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">others</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/map_reduce.html#MR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.MR" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Engine" title="pydolphinscheduler.core.engine.Engine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Engine</span></code></a></p>
 <p>Task mr object, declare behavior for mr task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MR._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.MR._set_deps" title="Permalink to this definition"></a></dt>
@@ -3278,6 +3556,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MR._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MR._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MR._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -3353,6 +3641,14 @@ directly set as python property, so we Override Task.task_params here.</p>
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.OpenMLDB._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.OpenMLDB._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.OpenMLDB._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.OpenMLDB._set_deps" title="Permalink to this definition"></a></dt>
@@ -3439,6 +3735,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.OpenMLDB._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.OpenMLDB._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.OpenMLDB._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.OpenMLDB._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.OpenMLDB._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.OpenMLDB._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -3513,6 +3819,14 @@ process_definition.resource_plugin.</p>
 - SQLServer
 You provider datasource_name contain connection information, it decisions which
 database type and database instance would run this sql.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure._set_deps" title="Permalink to this definition"></a></dt>
@@ -3596,6 +3910,16 @@ process_definition.resource_plugin.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure._task_custom_attr">
 <span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'method'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure._task_ignore_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -3693,6 +4017,14 @@ to string. The easier way to call a function is using syntax <code class="docuti
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Python._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Python._set_deps" title="Permalink to this definition"></a></dt>
 <dd><p>Set parameter tasks dependent to current task.</p>
@@ -3775,6 +4107,16 @@ process_definition.resource_plugin.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python._task_custom_attr">
 <span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'raw_script'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python._task_ignore_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -3864,6 +4206,14 @@ process_definition.resource_plugin.</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Pytorch._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Pytorch._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Pytorch._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Pytorch._set_deps" title="Permalink to this definition"></a></dt>
 <dd><p>Set parameter tasks dependent to current task.</p>
@@ -3949,6 +4299,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Pytorch._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Pytorch._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Pytorch._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Pytorch._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Pytorch._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Pytorch._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -4027,6 +4387,14 @@ see also <a class="reference external" href="https://docs.aws.amazon.com/sagemak
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._set_deps" title="Permalink to this definition"></a></dt>
@@ -4110,6 +4478,16 @@ process_definition.resource_plugin.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._task_custom_attr">
 <span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'sagemaker_request_json'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker._task_ignore_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -4199,6 +4577,14 @@ process_definition.resource_plugin.</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Shell._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Shell._set_deps" title="Permalink to this definition"></a></dt>
 <dd><p>Set parameter tasks dependent to current task.</p>
@@ -4284,6 +4670,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Shell._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Shell._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Shell._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Shell._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -4347,6 +4743,14 @@ process_definition.resource_plugin.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">Spark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">program_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">ProgramType</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'SCALA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deploy_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="tasks/spark.html#pydolphinscheduler.tasks.spark.DeployMode" title="pydolphinscheduler.tasks.spark.DeployMode"><span class="pre">DeployMode</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cluster'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">driver_cores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">driver_memory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'512M'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_executors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor_memory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'2G'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executor_cores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">others</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/spark.html#Spark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Spark" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Engine" title="pydolphinscheduler.core.engine.Engine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Engine</span></code></a></p>
 <p>Task spark object, declare behavior for spark task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Spark._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Spark._set_deps" title="Permalink to this definition"></a></dt>
@@ -4445,6 +4849,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Spark._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Spark._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Spark._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -4520,6 +4934,14 @@ directly set as python property, so we Override Task.task_params here.</p>
 - SQLServer
 You provider datasource_name contain connection information, it decisions which
 database type and database instance would run this sql.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Sql._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Sql._set_deps" title="Permalink to this definition"></a></dt>
@@ -4606,6 +5028,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Sql._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Sql._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Sql._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -4679,6 +5111,14 @@ directly set as python property, so we Override Task.task_params here.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">SubProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_definition_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/sub_process.html#SubProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
 <p>Task SubProcess object, declare behavior for SubProcess task to dolphinscheduler.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess._set_deps">
 <span class="sig-name descname"><span class="pre">_set_deps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess._set_deps" title="Permalink to this definition"></a></dt>
@@ -4771,6 +5211,16 @@ process_definition.resource_plugin.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess._task_ignore_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess._task_relation">
 <span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess._task_relation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -4842,6 +5292,14 @@ process_definition.resource_plugin.</p>
 <p>Task switch object, declare behavior for switch task to dolphinscheduler.</p>
 <p>Param of process definition or at least one local param of task must be set
 if task <cite>switch</cite> in this workflow.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch._get_attr">
+<span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.Switch._get_attr" title="Permalink to this definition"></a></dt>
+<dd><p>Get final task task_params attribute.</p>
+<p>Base on <cite>_task_default_attr</cite>, append attribute from <cite>_task_custom_attr</cite> and subtract attribute from
+<cite>_task_ignore_attr</cite>.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch._set_dep">
 <span class="sig-name descname"><span class="pre">_set_dep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/switch.html#Switch._set_dep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Switch._set_dep" title="Permalink to this definition"></a></dt>
@@ -4931,6 +5389,16 @@ process_definition.resource_plugin.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch._task_custom_attr">
 <span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Switch._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch._task_default_attr">
+<span class="sig-name descname"><span class="pre">_task_default_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence',</span> <span class="pre">'local_params',</span> <span class="pre">'resource_list',</span> <span class="pre">'wait_start_timeout'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Switch._task_default_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch._task_ignore_attr">
+<span class="sig-name descname"><span class="pre">_task_ignore_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'condition_result',</span> <span class="pre">'dependence'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Switch._task_ignore_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">

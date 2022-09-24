@@ -95,7 +95,7 @@
 <span class="c1"># under the License.</span>
 
 <span class="sd">&quot;&quot;&quot;DolphinScheduler Task and TaskRelation object.&quot;&quot;&quot;</span>
-
+<span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
@@ -179,6 +179,17 @@
         <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
+    <span class="c1"># task default attribute will into `task_params` property</span>
+    <span class="n">_task_default_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;local_params&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resource_list&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dependence&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;wait_start_timeout&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;condition_result&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="c1"># task attribute ignore from _task_default_attr and will not into `task_params` property</span>
+    <span class="n">_task_ignore_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="c1"># task custom attribute define in sub class and will append to `task_params` property</span>
     <span class="n">_task_custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="n">ext</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span>
@@ -299,20 +310,24 @@
         <span class="sd">&quot;&quot;&quot;Set attribute condition_result.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_condition_result</span> <span class="o">=</span> <span class="n">condition_result</span>
 
+<div class="viewcode-block" id="Task._get_attr"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task._get_attr">[docs]</a>    <span class="k">def</span> <span class="nf">_get_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get final task task_params attribute.</span>
+
+<span class="sd">        Base on `_task_default_attr`, append attribute from `_task_custom_attr` and subtract attribute from</span>
+<span class="sd">        `_task_ignore_attr`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">attr</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_default_attr</span><span class="p">)</span>
+        <span class="n">attr</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_ignore_attr</span>
+        <span class="n">attr</span> <span class="o">|=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span>
+        <span class="k">return</span> <span class="n">attr</span></div>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Get task parameter object.</span>
 
 <span class="sd">        Will get result to combine _task_custom_attr and custom_attr.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">custom_attr</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;local_params&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;resource_list&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;dependence&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;wait_start_timeout&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;condition_result&quot;</span><span class="p">,</span>
-        <span class="p">}</span>
-        <span class="n">custom_attr</span> <span class="o">|=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span>
+        <span class="n">custom_attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_attr</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_define_custom</span><span class="p">(</span><span class="n">custom_attr</span><span class="o">=</span><span class="n">custom_attr</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Task.get_plugin"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.get_plugin">[docs]</a>    <span class="k">def</span> <span class="nf">get_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

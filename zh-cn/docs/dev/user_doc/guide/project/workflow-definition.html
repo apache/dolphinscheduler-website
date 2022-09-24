@@ -52,7 +52,23 @@
 <p>其他类型任务，请参考 <a href="#TaskParamers">任务节点类型和参数设置</a>。 <!-- markdown-link-check-disable-line --></p>
 </blockquote>
 </li>
+<li>
+<p><strong>执行策略</strong></p>
+</li>
+<li>
+<p><code>并行</code>：如果对于同一个工作流定义，同时有多个工作流实例，则并行执行工作流实例。</p>
+</li>
+<li>
+<p><code>串行等待</code>：如果对于同一个工作流定义，同时有多个工作流实例，则并行执行工作流实例。</p>
+</li>
+<li>
+<p><code>串行抛弃</code>：如果对于同一个工作流定义，同时有多个工作流实例，则抛弃后生成的工作流实例并杀掉正在跑的实例。</p>
+</li>
+<li>
+<p><code>串行优先</code>：如果对于同一个工作流定义，同时有多个工作流实例，则按照优先级串行执行工作流实例。</p>
+</li>
 </ul>
+<p><img src="/img/new_ui/dev/project/workflow-execution-type.png" alt="workflow-execution-type"></p>
 <h2>工作流定义操作功能</h2>
 <p>点击项目管理-&gt;工作流-&gt;工作流定义，进入工作流定义页面，如下图所示:</p>
 <p><img src="/img/new_ui/dev/project/workflow-list.png" alt="workflow-list"></p>
@@ -96,12 +112,6 @@
 <p>通知组：选择通知策略||超时报警||发生容错时，会发送流程信息或邮件到通知组里的所有成员。</p>
 </li>
 <li>
-<p>收件人：选择通知策略||超时报警||发生容错时，会发送流程信息或告警邮件到收件人列表。</p>
-</li>
-<li>
-<p>抄送人：选择通知策略||超时报警||发生容错时，会抄送流程信息或告警邮件到抄送人列表。</p>
-</li>
-<li>
 <p>启动参数: 在启动新的流程实例时，设置或覆盖全局参数的值。</p>
 </li>
 <li>
@@ -138,11 +148,11 @@
 <li>
 <p>补数与定时配置的关系：</p>
 <ol>
-<li>未配置定时：当没有定时配置时默认会根据所选时间范围进行每天一次的补数，比如该工作流调度日期为7月 7号到7月10号，未配置定时，流程实例为：</li>
+<li>未配置定时：当没有定时配置时默认会根据所选时间范围进行每天一次的补数，比如该工作流调度日期为7月7号到7月10号，未配置定时，流程实例为：</li>
 </ol>
 <p><img src="/img/new_ui/dev/project/workflow-unconfiguredTimingResult.png" alt="workflow-unconfiguredTimingResult"></p>
 <ol start="2">
-<li>已配置定时：如果有定时配置则会根据所选的时间范围结合定时配置进行补数，比如该工作流调度日期为7月 7号到7月10号，配置了定时（每日凌晨5点运行），流程实例为：</li>
+<li>已配置定时：如果有定时配置则会根据所选的时间范围结合定时配置进行补数，比如该工作流调度日期为7月7号到7月10号，配置了定时（每日凌晨5点运行），流程实例为：</li>
 </ol>
 <p><img src="/img/new_ui/dev/project/workflow-configuredTiming.png" alt="workflow-configuredTiming"></p>
 <p><img src="/img/new_ui/dev/project/workflow-configuredTimingResult.png" alt="workflow-configuredTimingResult"></p>

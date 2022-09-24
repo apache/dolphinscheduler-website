@@ -41,22 +41,81 @@
 <h3>Save workflow definition</h3>
 <p>Click the <code>Save</code> button, and the &quot;Set DAG chart name&quot; window pops up, as shown in the figure below. Enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to <a href="../parameter/global.md">global parameters</a>), click the <code>Add</code> button to finish workflow definition creation.</p>
 <p><img src="/img/new_ui/dev/project/workflow-save.png" alt="workflow-save"></p>
+<h3>Configure workflow (process) execution type</h3>
+<p>Click the <code>Save</code> button and configure <code>process execution type</code> in the pop-up window. There are four process execution types:</p>
+<ul>
+<li><code>Parallel</code>: If there are multiple instances of the same workflow definition, execute the instances in parallel.</li>
+<li><code>Serial Wait</code>: If there are multiple instances of the same workflow definition, execute the instances in serial.</li>
+<li><code>Serial Discard</code>: If there are multiple instances of the same workflow definition, discard the later ones and kill the current running ones.</li>
+<li><code>Serial Priority</code>: If there are multiple instances of the same workflow definition, execute the instances according to the priority in serial.</li>
+</ul>
+<p><img src="/img/new_ui/dev/project/workflow-execution-type.png" alt="workflow-execution-type"></p>
 <h2>Workflow Definition Operation Function</h2>
 <p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Definition</code> to enter the workflow definition page, as shown below:</p>
 <p><img src="/img/new_ui/dev/project/workflow-list.png" alt="workflow-list"></p>
 <p>Workflow running parameter description:</p>
 <ul>
-<li><strong>Failure strategy</strong>: When a task node fails to execute, other parallel task nodes need to execute the strategy. &quot;Continue&quot; means: After a task fails, other task nodes execute normally; &quot;End&quot; means: Terminate all tasks being executed, and terminate the entire process.</li>
-<li><strong>Notification strategy</strong>: When the process ends, send process execution information notification emails according to the process status, including no status, success, failure, success or failure.</li>
-<li><strong>Process priority</strong>: the priority of process operation, divided into five levels: the highest (HIGHEST), high (HIGH), medium (MEDIUM), low (LOW), the lowest (LOWEST). When the number of master threads is insufficient, processes with higher levels will be executed first in the execution queue, and processes with the same priority will be executed in the order of first-in, first-out.</li>
-<li><strong>Worker grouping</strong>: This process can only be executed in the specified worker machine group. The default is Default, which can be executed on any worker.</li>
-<li><strong>Notification Group</strong>: Select Notification Policy||Timeout Alarm||When fault tolerance occurs, process information or emails will be sent to all members in the notification group.</li>
-<li><strong>Recipient</strong>: Select Notification Policy||Timeout Alarm||When fault tolerance occurs, process information or alarm email will be sent to the recipient list.</li>
-<li><strong>Cc</strong>: Select Notification Policy||Timeout Alarm||When fault tolerance occurs, the process information or alarm email will be copied to the Cc list.</li>
-<li><strong>Startup parameters</strong>: Set or override the value of global parameters when starting a new process instance.</li>
-<li><strong>Complement</strong>: There are 2 modes of serial complement and parallel complement. Serial complement: within the specified time range, perform complements in sequence from the start date to the end date, and generate N process instances in turn; parallel complement: within the specified time range, perform multiple complements at the same time, and generate N process instances at the same time .
+<li>
+<p><strong>Failure strategy</strong>: When a task node fails to execute, other parallel task nodes need to execute the strategy. &quot;Continue&quot; means: After a task fails, other task nodes execute normally; &quot;End&quot; means: Terminate all tasks being executed, and terminate the entire process.</p>
+</li>
+<li>
+<p><strong>Notification strategy</strong>: When the process ends, send process execution information notification emails according to the process status, including no status, success, failure, success or failure.</p>
+</li>
+<li>
+<p><strong>Process priority</strong>: The priority of process execution, there are five different priorities: the highest (HIGHEST), high (HIGH), medium (MEDIUM), low (LOW), the lowest (LOWEST). When the number of master threads is insufficient, processes with higher priorities in the execution queue will run first. Processes with the same priority will run in first-come-first-served fashion.</p>
+</li>
+<li>
+<p><strong>Worker grouping</strong>: This process can only be executed in the specified worker machine group. The default is Default, which can be executed on any worker.</p>
+</li>
+<li>
+<p><strong>Notification Group</strong>: Select Notification Policy||Timeout Alarm||When fault tolerance occurs, process information or emails will be sent to all members in the notification group.</p>
+</li>
+<li>
+<p><strong>Startup parameters</strong>: Set or override the value of global parameters when starting a new process instance.</p>
+</li>
+<li>
+<p><strong>Complement(Backfill)</strong>: Run workflow for a specified historical period. There are two strategies: serial complement and parallel complement. You could select the time period or fill in it manually in UI.</p>
 <ul>
-<li><strong>Complement</strong>: Execute the workflow definition of the specified date, you can select the time range of the supplement (currently only supports the supplement for consecutive days), for example, the data from May 1st to May 10th needs to be supplemented, as shown in the following figure:</li>
+<li>Serial complement: Run the workflow from start date to end date according to the time period you set in serial.</li>
+</ul>
+<p><img src="/img/new_ui/dev/project/workflow-serial.png" alt="workflow-serial"></p>
+<ul>
+<li>Parallel complement: Run the workflow from start date to end date according to the time period you set in parallel.</li>
+</ul>
+<p><img src="/img/new_ui/dev/project/workflow-parallel.png" alt="workflow-parallel"></p>
+<ul>
+<li>Parallelism: The max number of workflow instances of the workflow definition you choose for complement.
+<img src="/img/new_ui/dev/project/workflow-concurrency-from.png" alt="workflow-concurrency-from"></li>
+</ul>
+<p><img src="/img/new_ui/dev/project/workflow-concurrency.png" alt="workflow-concurrency"></p>
+<ul>
+<li>Mode of dependent: Whether to trigger downstream workflow definition for complement.</li>
+</ul>
+<p><img src="/img/new_ui/dev/project/workflow-dependency.png" alt="workflow-dependency"></p>
+<ul>
+<li>
+<p>Schedule date：</p>
+<ol>
+<li>Select from pop-up window:</li>
+</ol>
+<p><img src="/img/new_ui/dev/project/workflow-pageSelection.png" alt="workflow-pageSelection"></p>
+<ol start="2">
+<li>Fill in the time period manually:</li>
+</ol>
+<p><img src="/img/new_ui/dev/project/workflow-input.png" alt="workflow-input"></p>
+</li>
+<li>
+<p>Complement with or without scheduling：</p>
+<ol>
+<li>Without scheduling: Run workflow every day from start date to end date according to the time period you set. e.g. Do complement from July 7th to 10th without scheduling:</li>
+</ol>
+<p><img src="/img/new_ui/dev/project/workflow-unconfiguredTimingResult.png" alt="workflow-unconfiguredTimingResult"></p>
+<ol start="2">
+<li>With scheduling: Run workflow from start date to end date on schedule according to the time period and schedule you set. e.g. Do complement from July 7th to 10th with the schedule of 5 AM every day:</li>
+</ol>
+<p><img src="/img/new_ui/dev/project/workflow-configuredTiming.png" alt="workflow-configuredTiming"></p>
+<p><img src="/img/new_ui/dev/project/workflow-configuredTimingResult.png" alt="workflow-configuredTimingResult"></p>
+</li>
 </ul>
 </li>
 </ul>
