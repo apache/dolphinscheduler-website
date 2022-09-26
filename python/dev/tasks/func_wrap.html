@@ -18,6 +18,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/tabs.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
@@ -50,7 +51,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Python Function Wrapper</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.func_wrap">Dive Into</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dive-into">Dive Into</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.func_wrap._get_func_str"><code class="docutils literal notranslate"><span class="pre">_get_func_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.func_wrap.task"><code class="docutils literal notranslate"><span class="pre">task()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
@@ -170,10 +175,10 @@
 </pre></div>
 </div>
 </section>
-<section id="module-pydolphinscheduler.tasks.func_wrap">
-<span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.tasks.func_wrap" title="Permalink to this heading"></a></h2>
+<section id="dive-into">
+<h2>Dive Into<a class="headerlink" href="#dive-into" title="Permalink to this heading"></a></h2>
 <p>Task function wrapper allows using decorator to create a task.</p>
-<dl class="py function">
+<span class="target" id="module-pydolphinscheduler.tasks.func_wrap"></span><dl class="py function">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.func_wrap._get_func_str">
 <span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.func_wrap.</span></span><span class="sig-name descname"><span class="pre">_get_func_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/func_wrap.html#_get_func_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.func_wrap._get_func_str" title="Permalink to this definition"></a></dt>
 <dd><p>Get Python function string without indent from decorator.</p>

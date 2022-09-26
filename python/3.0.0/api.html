@@ -18,6 +18,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/tabs.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
@@ -51,11 +52,529 @@
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.core">Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.side">Sides</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.tasks">Tasks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.constants">Constants</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#core">Core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.core.Database"><code class="docutils literal notranslate"><span class="pre">Database</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.clear"><code class="docutils literal notranslate"><span class="pre">Database.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.copy"><code class="docutils literal notranslate"><span class="pre">Database.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.fromkeys"><code class="docutils literal notranslate"><span class="pre">Database.fromkeys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.get"><code class="docutils literal notranslate"><span class="pre">Database.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.get_database_info"><code class="docutils literal notranslate"><span class="pre">Database.get_database_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.items"><code class="docutils literal notranslate"><span class="pre">Database.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.keys"><code class="docutils literal notranslate"><span class="pre">Database.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.pop"><code class="docutils literal notranslate"><span class="pre">Database.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.popitem"><code class="docutils literal notranslate"><span class="pre">Database.popitem()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.setdefault"><code class="docutils literal notranslate"><span class="pre">Database.setdefault()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.update"><code class="docutils literal notranslate"><span class="pre">Database.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.values"><code class="docutils literal notranslate"><span class="pre">Database.values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.database_id"><code class="docutils literal notranslate"><span class="pre">Database.database_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.database_type"><code class="docutils literal notranslate"><span class="pre">Database.database_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.core.Engine"><code class="docutils literal notranslate"><span class="pre">Engine</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine._set_deps"><code class="docutils literal notranslate"><span class="pre">Engine._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Engine.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.get_define"><code class="docutils literal notranslate"><span class="pre">Engine.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Engine.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.get_jar_id"><code class="docutils literal notranslate"><span class="pre">Engine.get_jar_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.get_resource_info"><code class="docutils literal notranslate"><span class="pre">Engine.get_resource_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.query_resource"><code class="docutils literal notranslate"><span class="pre">Engine.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.set_downstream"><code class="docutils literal notranslate"><span class="pre">Engine.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.set_upstream"><code class="docutils literal notranslate"><span class="pre">Engine.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Engine.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Engine._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Engine._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Engine._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Engine._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.condition_result"><code class="docutils literal notranslate"><span class="pre">Engine.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.process_definition"><code class="docutils literal notranslate"><span class="pre">Engine.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.resource_list"><code class="docutils literal notranslate"><span class="pre">Engine.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Engine.task_params"><code class="docutils literal notranslate"><span class="pre">Engine.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition._ensure_side_model_exists"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition._ensure_side_model_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition._handle_root_relation"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition._handle_root_relation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition._parse_datetime"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition._parse_datetime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition._pre_submit_check"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition._pre_submit_check()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.add_task"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.add_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.add_tasks"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.add_tasks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.get_define"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.get_define_custom"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.get_one_task_by_name"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.get_one_task_by_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.get_task"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.get_task()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.get_tasks_by_name"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.get_tasks_by_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.run"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.start"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.submit"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.submit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.end_time"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.end_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.param_json"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.param_json</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.project"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.project</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.release_state"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.release_state</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.schedule_json"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.schedule_json</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.start_time"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.task_definition_json"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.task_definition_json</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.task_list"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.task_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.task_location"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.task_location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.task_relation_json"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.task_relation_json</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.tenant"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.tenant</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.ProcessDefinition.user"><code class="docutils literal notranslate"><span class="pre">ProcessDefinition.user</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.core.Task"><code class="docutils literal notranslate"><span class="pre">Task</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task._set_deps"><code class="docutils literal notranslate"><span class="pre">Task._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Task.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.get_define"><code class="docutils literal notranslate"><span class="pre">Task.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Task.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.query_resource"><code class="docutils literal notranslate"><span class="pre">Task.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.set_downstream"><code class="docutils literal notranslate"><span class="pre">Task.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.set_upstream"><code class="docutils literal notranslate"><span class="pre">Task.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Task.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Task._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Task._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Task._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Task._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.condition_result"><code class="docutils literal notranslate"><span class="pre">Task.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.process_definition"><code class="docutils literal notranslate"><span class="pre">Task.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.resource_list"><code class="docutils literal notranslate"><span class="pre">Task.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Task.task_params"><code class="docutils literal notranslate"><span class="pre">Task.task_params</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sides">Sides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.side.Project"><code class="docutils literal notranslate"><span class="pre">Project</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Project.create_if_not_exists"><code class="docutils literal notranslate"><span class="pre">Project.create_if_not_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Project.get_define"><code class="docutils literal notranslate"><span class="pre">Project.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Project.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Project.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Project._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Project._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Project._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Project._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Project._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Project._KEY_ATTR</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.side.Queue"><code class="docutils literal notranslate"><span class="pre">Queue</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Queue.create_if_not_exists"><code class="docutils literal notranslate"><span class="pre">Queue.create_if_not_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Queue.get_define"><code class="docutils literal notranslate"><span class="pre">Queue.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Queue.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Queue.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Queue._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Queue._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Queue._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Queue._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Queue._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Queue._KEY_ATTR</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.side.Tenant"><code class="docutils literal notranslate"><span class="pre">Tenant</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Tenant.create_if_not_exists"><code class="docutils literal notranslate"><span class="pre">Tenant.create_if_not_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Tenant.get_define"><code class="docutils literal notranslate"><span class="pre">Tenant.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Tenant.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Tenant.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Tenant._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Tenant._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Tenant._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Tenant._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.Tenant._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Tenant._KEY_ATTR</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.side.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.User.create_if_not_exists"><code class="docutils literal notranslate"><span class="pre">User.create_if_not_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.User.create_tenant_if_not_exists"><code class="docutils literal notranslate"><span class="pre">User.create_tenant_if_not_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.User.get_define"><code class="docutils literal notranslate"><span class="pre">User.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.User.get_define_custom"><code class="docutils literal notranslate"><span class="pre">User.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.User._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">User._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.User._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">User._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.User._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">User._KEY_ATTR</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.side.WorkerGroup"><code class="docutils literal notranslate"><span class="pre">WorkerGroup</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.WorkerGroup.create_if_not_exists"><code class="docutils literal notranslate"><span class="pre">WorkerGroup.create_if_not_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.WorkerGroup.get_define"><code class="docutils literal notranslate"><span class="pre">WorkerGroup.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.WorkerGroup.get_define_custom"><code class="docutils literal notranslate"><span class="pre">WorkerGroup.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.WorkerGroup._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">WorkerGroup._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.WorkerGroup._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">WorkerGroup._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.side.WorkerGroup._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">WorkerGroup._KEY_ATTR</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition"><code class="docutils literal notranslate"><span class="pre">Condition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._set_dep"><code class="docutils literal notranslate"><span class="pre">Condition._set_dep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._set_deps"><code class="docutils literal notranslate"><span class="pre">Condition._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Condition.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.get_define"><code class="docutils literal notranslate"><span class="pre">Condition.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Condition.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.query_resource"><code class="docutils literal notranslate"><span class="pre">Condition.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.set_downstream"><code class="docutils literal notranslate"><span class="pre">Condition.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.set_upstream"><code class="docutils literal notranslate"><span class="pre">Condition.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Condition.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Condition._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Condition._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Condition._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Condition._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Condition._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._task_relation"><code class="docutils literal notranslate"><span class="pre">Condition._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Condition._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.condition_result"><code class="docutils literal notranslate"><span class="pre">Condition.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.process_definition"><code class="docutils literal notranslate"><span class="pre">Condition.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.resource_list"><code class="docutils literal notranslate"><span class="pre">Condition.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition.task_params"><code class="docutils literal notranslate"><span class="pre">Condition.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX"><code class="docutils literal notranslate"><span class="pre">DataX</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX._set_deps"><code class="docutils literal notranslate"><span class="pre">DataX._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">DataX.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.get_define"><code class="docutils literal notranslate"><span class="pre">DataX.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.get_define_custom"><code class="docutils literal notranslate"><span class="pre">DataX.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.query_resource"><code class="docutils literal notranslate"><span class="pre">DataX.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.set_downstream"><code class="docutils literal notranslate"><span class="pre">DataX.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.set_upstream"><code class="docutils literal notranslate"><span class="pre">DataX.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.CUSTOM_CONFIG"><code class="docutils literal notranslate"><span class="pre">DataX.CUSTOM_CONFIG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">DataX.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">DataX._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">DataX._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">DataX._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">DataX._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">DataX._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX._task_relation"><code class="docutils literal notranslate"><span class="pre">DataX._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">DataX._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.condition_result"><code class="docutils literal notranslate"><span class="pre">DataX.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.process_definition"><code class="docutils literal notranslate"><span class="pre">DataX.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.resource_list"><code class="docutils literal notranslate"><span class="pre">DataX.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.DataX.task_params"><code class="docutils literal notranslate"><span class="pre">DataX.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent"><code class="docutils literal notranslate"><span class="pre">Dependent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent._set_deps"><code class="docutils literal notranslate"><span class="pre">Dependent._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Dependent.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.get_define"><code class="docutils literal notranslate"><span class="pre">Dependent.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Dependent.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.query_resource"><code class="docutils literal notranslate"><span class="pre">Dependent.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.set_downstream"><code class="docutils literal notranslate"><span class="pre">Dependent.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.set_upstream"><code class="docutils literal notranslate"><span class="pre">Dependent.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Dependent.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Dependent._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Dependent._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Dependent._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Dependent._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Dependent._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent._task_relation"><code class="docutils literal notranslate"><span class="pre">Dependent._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Dependent._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.condition_result"><code class="docutils literal notranslate"><span class="pre">Dependent.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.process_definition"><code class="docutils literal notranslate"><span class="pre">Dependent.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.resource_list"><code class="docutils literal notranslate"><span class="pre">Dependent.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Dependent.task_params"><code class="docutils literal notranslate"><span class="pre">Dependent.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink"><code class="docutils literal notranslate"><span class="pre">Flink</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink._set_deps"><code class="docutils literal notranslate"><span class="pre">Flink._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Flink.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.get_define"><code class="docutils literal notranslate"><span class="pre">Flink.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Flink.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.get_jar_id"><code class="docutils literal notranslate"><span class="pre">Flink.get_jar_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.get_resource_info"><code class="docutils literal notranslate"><span class="pre">Flink.get_resource_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.query_resource"><code class="docutils literal notranslate"><span class="pre">Flink.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.set_downstream"><code class="docutils literal notranslate"><span class="pre">Flink.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.set_upstream"><code class="docutils literal notranslate"><span class="pre">Flink.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Flink.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Flink._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Flink._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Flink._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Flink._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Flink._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink._task_relation"><code class="docutils literal notranslate"><span class="pre">Flink._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Flink._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.condition_result"><code class="docutils literal notranslate"><span class="pre">Flink.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.process_definition"><code class="docutils literal notranslate"><span class="pre">Flink.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.resource_list"><code class="docutils literal notranslate"><span class="pre">Flink.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Flink.task_params"><code class="docutils literal notranslate"><span class="pre">Flink.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Http"><code class="docutils literal notranslate"><span class="pre">Http</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http._set_deps"><code class="docutils literal notranslate"><span class="pre">Http._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Http.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.get_define"><code class="docutils literal notranslate"><span class="pre">Http.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Http.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.query_resource"><code class="docutils literal notranslate"><span class="pre">Http.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.set_downstream"><code class="docutils literal notranslate"><span class="pre">Http.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.set_upstream"><code class="docutils literal notranslate"><span class="pre">Http.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Http.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Http._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Http._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Http._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Http._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Http._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http._task_relation"><code class="docutils literal notranslate"><span class="pre">Http._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Http._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.condition_result"><code class="docutils literal notranslate"><span class="pre">Http.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.process_definition"><code class="docutils literal notranslate"><span class="pre">Http.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.resource_list"><code class="docutils literal notranslate"><span class="pre">Http.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Http.task_params"><code class="docutils literal notranslate"><span class="pre">Http.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.MR"><code class="docutils literal notranslate"><span class="pre">MR</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR._set_deps"><code class="docutils literal notranslate"><span class="pre">MR._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">MR.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.get_define"><code class="docutils literal notranslate"><span class="pre">MR.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.get_define_custom"><code class="docutils literal notranslate"><span class="pre">MR.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.get_jar_id"><code class="docutils literal notranslate"><span class="pre">MR.get_jar_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.get_resource_info"><code class="docutils literal notranslate"><span class="pre">MR.get_resource_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.query_resource"><code class="docutils literal notranslate"><span class="pre">MR.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.set_downstream"><code class="docutils literal notranslate"><span class="pre">MR.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.set_upstream"><code class="docutils literal notranslate"><span class="pre">MR.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">MR.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">MR._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">MR._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">MR._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">MR._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">MR._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR._task_relation"><code class="docutils literal notranslate"><span class="pre">MR._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">MR._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.condition_result"><code class="docutils literal notranslate"><span class="pre">MR.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.process_definition"><code class="docutils literal notranslate"><span class="pre">MR.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.resource_list"><code class="docutils literal notranslate"><span class="pre">MR.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.MR.task_params"><code class="docutils literal notranslate"><span class="pre">MR.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure"><code class="docutils literal notranslate"><span class="pre">Procedure</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure._set_deps"><code class="docutils literal notranslate"><span class="pre">Procedure._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Procedure.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.get_define"><code class="docutils literal notranslate"><span class="pre">Procedure.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Procedure.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.query_resource"><code class="docutils literal notranslate"><span class="pre">Procedure.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.set_downstream"><code class="docutils literal notranslate"><span class="pre">Procedure.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.set_upstream"><code class="docutils literal notranslate"><span class="pre">Procedure.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Procedure.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Procedure._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Procedure._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Procedure._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Procedure._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Procedure._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure._task_relation"><code class="docutils literal notranslate"><span class="pre">Procedure._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Procedure._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.condition_result"><code class="docutils literal notranslate"><span class="pre">Procedure.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.process_definition"><code class="docutils literal notranslate"><span class="pre">Procedure.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.resource_list"><code class="docutils literal notranslate"><span class="pre">Procedure.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Procedure.task_params"><code class="docutils literal notranslate"><span class="pre">Procedure.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Python"><code class="docutils literal notranslate"><span class="pre">Python</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python._build_exe_str"><code class="docutils literal notranslate"><span class="pre">Python._build_exe_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python._set_deps"><code class="docutils literal notranslate"><span class="pre">Python._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Python.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.get_define"><code class="docutils literal notranslate"><span class="pre">Python.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Python.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.query_resource"><code class="docutils literal notranslate"><span class="pre">Python.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.set_downstream"><code class="docutils literal notranslate"><span class="pre">Python.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.set_upstream"><code class="docutils literal notranslate"><span class="pre">Python.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Python.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Python._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Python._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Python._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Python._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Python._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python._task_relation"><code class="docutils literal notranslate"><span class="pre">Python._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Python._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.condition_result"><code class="docutils literal notranslate"><span class="pre">Python.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.process_definition"><code class="docutils literal notranslate"><span class="pre">Python.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.raw_script"><code class="docutils literal notranslate"><span class="pre">Python.raw_script</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.resource_list"><code class="docutils literal notranslate"><span class="pre">Python.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Python.task_params"><code class="docutils literal notranslate"><span class="pre">Python.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell"><code class="docutils literal notranslate"><span class="pre">Shell</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell._set_deps"><code class="docutils literal notranslate"><span class="pre">Shell._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Shell.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.get_define"><code class="docutils literal notranslate"><span class="pre">Shell.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Shell.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.query_resource"><code class="docutils literal notranslate"><span class="pre">Shell.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.set_downstream"><code class="docutils literal notranslate"><span class="pre">Shell.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.set_upstream"><code class="docutils literal notranslate"><span class="pre">Shell.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Shell.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Shell._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Shell._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Shell._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Shell._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Shell._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell._task_relation"><code class="docutils literal notranslate"><span class="pre">Shell._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Shell._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.condition_result"><code class="docutils literal notranslate"><span class="pre">Shell.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.process_definition"><code class="docutils literal notranslate"><span class="pre">Shell.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.resource_list"><code class="docutils literal notranslate"><span class="pre">Shell.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Shell.task_params"><code class="docutils literal notranslate"><span class="pre">Shell.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark"><code class="docutils literal notranslate"><span class="pre">Spark</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark._set_deps"><code class="docutils literal notranslate"><span class="pre">Spark._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Spark.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.get_define"><code class="docutils literal notranslate"><span class="pre">Spark.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Spark.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.get_jar_id"><code class="docutils literal notranslate"><span class="pre">Spark.get_jar_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.get_resource_info"><code class="docutils literal notranslate"><span class="pre">Spark.get_resource_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.query_resource"><code class="docutils literal notranslate"><span class="pre">Spark.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.set_downstream"><code class="docutils literal notranslate"><span class="pre">Spark.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.set_upstream"><code class="docutils literal notranslate"><span class="pre">Spark.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Spark.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Spark._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Spark._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Spark._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Spark._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Spark._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark._task_relation"><code class="docutils literal notranslate"><span class="pre">Spark._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Spark._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.condition_result"><code class="docutils literal notranslate"><span class="pre">Spark.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.process_definition"><code class="docutils literal notranslate"><span class="pre">Spark.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.resource_list"><code class="docutils literal notranslate"><span class="pre">Spark.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Spark.task_params"><code class="docutils literal notranslate"><span class="pre">Spark.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql"><code class="docutils literal notranslate"><span class="pre">Sql</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql._set_deps"><code class="docutils literal notranslate"><span class="pre">Sql._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Sql.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.get_define"><code class="docutils literal notranslate"><span class="pre">Sql.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Sql.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.query_resource"><code class="docutils literal notranslate"><span class="pre">Sql.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.set_downstream"><code class="docutils literal notranslate"><span class="pre">Sql.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.set_upstream"><code class="docutils literal notranslate"><span class="pre">Sql.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Sql.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Sql._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Sql._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Sql._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Sql._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Sql._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql._task_relation"><code class="docutils literal notranslate"><span class="pre">Sql._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Sql._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.condition_result"><code class="docutils literal notranslate"><span class="pre">Sql.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.process_definition"><code class="docutils literal notranslate"><span class="pre">Sql.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.resource_list"><code class="docutils literal notranslate"><span class="pre">Sql.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.sql_type"><code class="docutils literal notranslate"><span class="pre">Sql.sql_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Sql.task_params"><code class="docutils literal notranslate"><span class="pre">Sql.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess"><code class="docutils literal notranslate"><span class="pre">SubProcess</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess._set_deps"><code class="docutils literal notranslate"><span class="pre">SubProcess._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">SubProcess.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.get_define"><code class="docutils literal notranslate"><span class="pre">SubProcess.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.get_define_custom"><code class="docutils literal notranslate"><span class="pre">SubProcess.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.get_process_definition_info"><code class="docutils literal notranslate"><span class="pre">SubProcess.get_process_definition_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.query_resource"><code class="docutils literal notranslate"><span class="pre">SubProcess.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.set_downstream"><code class="docutils literal notranslate"><span class="pre">SubProcess.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.set_upstream"><code class="docutils literal notranslate"><span class="pre">SubProcess.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">SubProcess.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">SubProcess._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">SubProcess._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">SubProcess._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">SubProcess._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">SubProcess._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess._task_relation"><code class="docutils literal notranslate"><span class="pre">SubProcess._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">SubProcess._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.condition_result"><code class="docutils literal notranslate"><span class="pre">SubProcess.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.process_definition"><code class="docutils literal notranslate"><span class="pre">SubProcess.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.process_definition_code"><code class="docutils literal notranslate"><span class="pre">SubProcess.process_definition_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.resource_list"><code class="docutils literal notranslate"><span class="pre">SubProcess.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubProcess.task_params"><code class="docutils literal notranslate"><span class="pre">SubProcess.task_params</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch"><code class="docutils literal notranslate"><span class="pre">Switch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch._set_dep"><code class="docutils literal notranslate"><span class="pre">Switch._set_dep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch._set_deps"><code class="docutils literal notranslate"><span class="pre">Switch._set_deps()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.gen_code_and_version"><code class="docutils literal notranslate"><span class="pre">Switch.gen_code_and_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.get_define"><code class="docutils literal notranslate"><span class="pre">Switch.get_define()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Switch.get_define_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.query_resource"><code class="docutils literal notranslate"><span class="pre">Switch.query_resource()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.set_downstream"><code class="docutils literal notranslate"><span class="pre">Switch.set_downstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.set_upstream"><code class="docutils literal notranslate"><span class="pre">Switch.set_upstream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.DEFAULT_CONDITION_RESULT"><code class="docutils literal notranslate"><span class="pre">Switch.DEFAULT_CONDITION_RESULT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch._DEFAULT_ATTR"><code class="docutils literal notranslate"><span class="pre">Switch._DEFAULT_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch._DEFINE_ATTR"><code class="docutils literal notranslate"><span class="pre">Switch._DEFINE_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch._KEY_ATTR"><code class="docutils literal notranslate"><span class="pre">Switch._KEY_ATTR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Switch._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Switch._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch._task_relation"><code class="docutils literal notranslate"><span class="pre">Switch._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Switch._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.condition_result"><code class="docutils literal notranslate"><span class="pre">Switch.condition_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.process_definition"><code class="docutils literal notranslate"><span class="pre">Switch.process_definition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.resource_list"><code class="docutils literal notranslate"><span class="pre">Switch.resource_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch.task_params"><code class="docutils literal notranslate"><span class="pre">Switch.task_params</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.DefaultTaskCodeNum"><code class="docutils literal notranslate"><span class="pre">DefaultTaskCodeNum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.DefaultTaskCodeNum.DEFAULT"><code class="docutils literal notranslate"><span class="pre">DefaultTaskCodeNum.DEFAULT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.Delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Delimiter.BAR"><code class="docutils literal notranslate"><span class="pre">Delimiter.BAR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Delimiter.COLON"><code class="docutils literal notranslate"><span class="pre">Delimiter.COLON</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Delimiter.DASH"><code class="docutils literal notranslate"><span class="pre">Delimiter.DASH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Delimiter.DIRECTION"><code class="docutils literal notranslate"><span class="pre">Delimiter.DIRECTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Delimiter.UNDERSCORE"><code class="docutils literal notranslate"><span class="pre">Delimiter.UNDERSCORE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.JavaGatewayDefault"><code class="docutils literal notranslate"><span class="pre">JavaGatewayDefault</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.JavaGatewayDefault.RESULT_DATA"><code class="docutils literal notranslate"><span class="pre">JavaGatewayDefault.RESULT_DATA</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.JavaGatewayDefault.RESULT_MESSAGE_KEYWORD"><code class="docutils literal notranslate"><span class="pre">JavaGatewayDefault.RESULT_MESSAGE_KEYWORD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.JavaGatewayDefault.RESULT_MESSAGE_SUCCESS"><code class="docutils literal notranslate"><span class="pre">JavaGatewayDefault.RESULT_MESSAGE_SUCCESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.JavaGatewayDefault.RESULT_STATUS_KEYWORD"><code class="docutils literal notranslate"><span class="pre">JavaGatewayDefault.RESULT_STATUS_KEYWORD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.JavaGatewayDefault.RESULT_STATUS_SUCCESS"><code class="docutils literal notranslate"><span class="pre">JavaGatewayDefault.RESULT_STATUS_SUCCESS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.ResourceKey"><code class="docutils literal notranslate"><span class="pre">ResourceKey</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.ResourceKey.ID"><code class="docutils literal notranslate"><span class="pre">ResourceKey.ID</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.TaskFlag"><code class="docutils literal notranslate"><span class="pre">TaskFlag</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskFlag.NO"><code class="docutils literal notranslate"><span class="pre">TaskFlag.NO</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskFlag.YES"><code class="docutils literal notranslate"><span class="pre">TaskFlag.YES</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.TaskPriority"><code class="docutils literal notranslate"><span class="pre">TaskPriority</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskPriority.HIGH"><code class="docutils literal notranslate"><span class="pre">TaskPriority.HIGH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskPriority.HIGHEST"><code class="docutils literal notranslate"><span class="pre">TaskPriority.HIGHEST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskPriority.LOW"><code class="docutils literal notranslate"><span class="pre">TaskPriority.LOW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskPriority.LOWEST"><code class="docutils literal notranslate"><span class="pre">TaskPriority.LOWEST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskPriority.MEDIUM"><code class="docutils literal notranslate"><span class="pre">TaskPriority.MEDIUM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.TaskTimeoutFlag"><code class="docutils literal notranslate"><span class="pre">TaskTimeoutFlag</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskTimeoutFlag.CLOSE"><code class="docutils literal notranslate"><span class="pre">TaskTimeoutFlag.CLOSE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType"><code class="docutils literal notranslate"><span class="pre">TaskType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.CONDITIONS"><code class="docutils literal notranslate"><span class="pre">TaskType.CONDITIONS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.DATAX"><code class="docutils literal notranslate"><span class="pre">TaskType.DATAX</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.DEPENDENT"><code class="docutils literal notranslate"><span class="pre">TaskType.DEPENDENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.FLINK"><code class="docutils literal notranslate"><span class="pre">TaskType.FLINK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.HTTP"><code class="docutils literal notranslate"><span class="pre">TaskType.HTTP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.MR"><code class="docutils literal notranslate"><span class="pre">TaskType.MR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.PROCEDURE"><code class="docutils literal notranslate"><span class="pre">TaskType.PROCEDURE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.PYTHON"><code class="docutils literal notranslate"><span class="pre">TaskType.PYTHON</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.SHELL"><code class="docutils literal notranslate"><span class="pre">TaskType.SHELL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.SPARK"><code class="docutils literal notranslate"><span class="pre">TaskType.SPARK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.SQL"><code class="docutils literal notranslate"><span class="pre">TaskType.SQL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.SUB_PROCESS"><code class="docutils literal notranslate"><span class="pre">TaskType.SUB_PROCESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.TaskType.SWITCH"><code class="docutils literal notranslate"><span class="pre">TaskType.SWITCH</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.Time"><code class="docutils literal notranslate"><span class="pre">Time</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Time.FMT_DASH_DATE"><code class="docutils literal notranslate"><span class="pre">Time.FMT_DASH_DATE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Time.FMT_NO_COLON_TIME"><code class="docutils literal notranslate"><span class="pre">Time.FMT_NO_COLON_TIME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Time.FMT_SHORT_DATE"><code class="docutils literal notranslate"><span class="pre">Time.FMT_SHORT_DATE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Time.FMT_STD_DATE"><code class="docutils literal notranslate"><span class="pre">Time.FMT_STD_DATE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Time.FMT_STD_TIME"><code class="docutils literal notranslate"><span class="pre">Time.FMT_STD_TIME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Time.LEN_SHORT_DATE"><code class="docutils literal notranslate"><span class="pre">Time.LEN_SHORT_DATE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Time.LEN_STD_DATE"><code class="docutils literal notranslate"><span class="pre">Time.LEN_STD_DATE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#exceptions">Exceptions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.exceptions.PyDSBaseException"><code class="docutils literal notranslate"><span class="pre">PyDSBaseException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.exceptions.PyDSConfException"><code class="docutils literal notranslate"><span class="pre">PyDSConfException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.exceptions.PyDSJavaGatewayException"><code class="docutils literal notranslate"><span class="pre">PyDSJavaGatewayException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.exceptions.PyDSParamException"><code class="docutils literal notranslate"><span class="pre">PyDSParamException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.exceptions.PyDSProcessDefinitionNotAssignException"><code class="docutils literal notranslate"><span class="pre">PyDSProcessDefinitionNotAssignException</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.exceptions.PyDSTaskNoFoundException"><code class="docutils literal notranslate"><span class="pre">PyDSTaskNoFoundException</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -86,10 +605,10 @@
              
   <section id="api">
 <h1>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h1>
-<section id="module-pydolphinscheduler.core">
-<span id="core"></span><h2>Core<a class="headerlink" href="#module-pydolphinscheduler.core" title="Permalink to this heading"></a></h2>
+<section id="core">
+<h2>Core<a class="headerlink" href="#core" title="Permalink to this heading"></a></h2>
 <p>Init pydolphinscheduler.core package.</p>
-<dl class="py class">
+<span class="target" id="module-pydolphinscheduler.core"></span><dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Database">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.core.</span></span><span class="sig-name descname"><span class="pre">Database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_key</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/core/database.html#Database"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.Database" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
@@ -618,10 +1137,10 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 </section>
-<section id="module-pydolphinscheduler.side">
-<span id="sides"></span><h2>Sides<a class="headerlink" href="#module-pydolphinscheduler.side" title="Permalink to this heading"></a></h2>
+<section id="sides">
+<h2>Sides<a class="headerlink" href="#sides" title="Permalink to this heading"></a></h2>
 <p>Init Side package, Side package keep object related to DolphinScheduler but not in the Core part.</p>
-<dl class="py class">
+<span class="target" id="module-pydolphinscheduler.side"></span><dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.side.Project">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.side.</span></span><span class="sig-name descname"><span class="pre">Project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'project-pydolphin'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/side/project.html#Project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.side.Project" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSide</span></code></p>
@@ -838,10 +1357,10 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 </section>
-<section id="module-pydolphinscheduler.tasks">
-<span id="tasks"></span><h2>Tasks<a class="headerlink" href="#module-pydolphinscheduler.tasks" title="Permalink to this heading"></a></h2>
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading"></a></h2>
 <p>Init pydolphinscheduler.tasks package.</p>
-<dl class="py class">
+<span class="target" id="module-pydolphinscheduler.tasks"></span><dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">Condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tasks/condition.html#pydolphinscheduler.tasks.condition.ConditionOperator" title="pydolphinscheduler.tasks.condition.ConditionOperator"><span class="pre">ConditionOperator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">success_task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">failed_task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/condition.html#Condition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Condition" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
@@ -2563,10 +3082,10 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 </dd></dl>
 
 </section>
-<section id="module-pydolphinscheduler.constants">
-<span id="constants"></span><h2>Constants<a class="headerlink" href="#module-pydolphinscheduler.constants" title="Permalink to this heading"></a></h2>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this heading"></a></h2>
 <p>Constants for pydolphinscheduler.</p>
-<dl class="py class">
+<span class="target" id="module-pydolphinscheduler.constants"></span><dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.constants.DefaultTaskCodeNum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.constants.</span></span><span class="sig-name descname"><span class="pre">DefaultTaskCodeNum</span></span><a class="reference internal" href="_modules/pydolphinscheduler/constants.html#DefaultTaskCodeNum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.constants.DefaultTaskCodeNum" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
@@ -2830,10 +3349,10 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 </dd></dl>
 
 </section>
-<section id="module-pydolphinscheduler.exceptions">
-<span id="exceptions"></span><h2>Exceptions<a class="headerlink" href="#module-pydolphinscheduler.exceptions" title="Permalink to this heading"></a></h2>
+<section id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h2>
 <p>Exceptions for pydolphinscheduler.</p>
-<dl class="py exception">
+<span class="target" id="module-pydolphinscheduler.exceptions"></span><dl class="py exception">
 <dt class="sig sig-object py" id="pydolphinscheduler.exceptions.PyDSBaseException">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.exceptions.</span></span><span class="sig-name descname"><span class="pre">PyDSBaseException</span></span><a class="reference internal" href="_modules/pydolphinscheduler/exceptions.html#PyDSBaseException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.exceptions.PyDSBaseException" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>

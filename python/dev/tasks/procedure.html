@@ -18,6 +18,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/tabs.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
@@ -60,6 +61,14 @@
 <li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Procedure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.procedure.Procedure"><code class="docutils literal notranslate"><span class="pre">Procedure</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.procedure.Procedure._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Procedure._downstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.procedure.Procedure._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Procedure._task_custom_attr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.procedure.Procedure._task_relation"><code class="docutils literal notranslate"><span class="pre">Procedure._task_relation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.procedure.Procedure._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Procedure._upstream_task_codes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.procedure.Procedure.task_params"><code class="docutils literal notranslate"><span class="pre">Procedure.task_params</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
 </ul>
 </li>
@@ -104,10 +113,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-pydolphinscheduler.tasks.procedure">
-<span id="procedure"></span><h1>Procedure<a class="headerlink" href="#module-pydolphinscheduler.tasks.procedure" title="Permalink to this heading"></a></h1>
+  <section id="procedure">
+<h1>Procedure<a class="headerlink" href="#procedure" title="Permalink to this heading"></a></h1>
 <p>Task procedure.</p>
-<dl class="py class">
+<span class="target" id="module-pydolphinscheduler.tasks.procedure"></span><dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.procedure.Procedure">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.procedure.</span></span><span class="sig-name descname"><span class="pre">Procedure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/procedure.html#Procedure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.procedure.Procedure" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
