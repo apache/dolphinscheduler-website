@@ -44,4 +44,5 @@ DEV_RELEASE_DOCS_VERSIONS=(
   # The key value is represents of, `key` for document version and `val` for source branch apache/dolphinscheduler.
   # example: "key:val"
   "3.0.0:3.0.0-release"
+  "3.0.1:3.0.1-release"
 )
