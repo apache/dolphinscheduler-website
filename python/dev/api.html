@@ -53,7 +53,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#core">Core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.core">Core</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.core.Database"><code class="docutils literal notranslate"><span class="pre">Database</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.clear"><code class="docutils literal notranslate"><span class="pre">Database.clear()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.core.Database.copy"><code class="docutils literal notranslate"><span class="pre">Database.copy()</span></code></a></li>
@@ -160,7 +160,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#models">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.models">Models</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.models.Base"><code class="docutils literal notranslate"><span class="pre">Base</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.models.Base.get_define"><code class="docutils literal notranslate"><span class="pre">Base.get_define()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.models.Base.get_define_custom"><code class="docutils literal notranslate"><span class="pre">Base.get_define_custom()</span></code></a></li>
@@ -241,7 +241,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.tasks">Tasks</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition"><code class="docutils literal notranslate"><span class="pre">Condition</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._get_attr"><code class="docutils literal notranslate"><span class="pre">Condition._get_attr()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.Condition._set_dep"><code class="docutils literal notranslate"><span class="pre">Condition._set_dep()</span></code></a></li>
@@ -997,7 +997,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.constants">Constants</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.DefaultTaskCodeNum"><code class="docutils literal notranslate"><span class="pre">DefaultTaskCodeNum</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.DefaultTaskCodeNum.DEFAULT"><code class="docutils literal notranslate"><span class="pre">DefaultTaskCodeNum.DEFAULT</span></code></a></li>
 </ul>
@@ -1072,7 +1072,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#exceptions">Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-pydolphinscheduler.exceptions">Exceptions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.exceptions.PyDSBaseException"><code class="docutils literal notranslate"><span class="pre">PyDSBaseException</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.exceptions.PyDSConfException"><code class="docutils literal notranslate"><span class="pre">PyDSConfException</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.exceptions.PyDSJavaGatewayException"><code class="docutils literal notranslate"><span class="pre">PyDSJavaGatewayException</span></code></a></li>
@@ -1113,10 +1113,10 @@
              
   <section id="api">
 <h1>API<a class="headerlink" href="#api" title="Permalink to this heading"></a></h1>
-<section id="core">
-<h2>Core<a class="headerlink" href="#core" title="Permalink to this heading"></a></h2>
+<section id="module-pydolphinscheduler.core">
+<span id="core"></span><h2>Core<a class="headerlink" href="#module-pydolphinscheduler.core" title="Permalink to this heading"></a></h2>
 <p>Init pydolphinscheduler.core package.</p>
-<span class="target" id="module-pydolphinscheduler.core"></span><dl class="py class">
+<dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Database">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.core.</span></span><span class="sig-name descname"><span class="pre">Database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database_key</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/core/database.html#Database"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.Database" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
@@ -1733,10 +1733,10 @@ process_definition.resource_plugin.</p>
 </dd></dl>
 
 </section>
-<section id="models">
-<h2>Models<a class="headerlink" href="#models" title="Permalink to this heading"></a></h2>
+<section id="module-pydolphinscheduler.models">
+<span id="models"></span><h2>Models<a class="headerlink" href="#module-pydolphinscheduler.models" title="Permalink to this heading"></a></h2>
 <p>Init Models package, keeping object related to DolphinScheduler covert from Java Gateway Service.</p>
-<span class="target" id="module-pydolphinscheduler.models"></span><dl class="py class">
+<dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.models.Base">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.models.</span></span><span class="sig-name descname"><span class="pre">Base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/models/base.html#Base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.models.Base" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -2121,10 +2121,10 @@ object tries to communicate with Java gateway server.</p>
 </dd></dl>
 
 </section>
-<section id="tasks">
-<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading"></a></h2>
+<section id="module-pydolphinscheduler.tasks">
+<span id="tasks"></span><h2>Tasks<a class="headerlink" href="#module-pydolphinscheduler.tasks" title="Permalink to this heading"></a></h2>
 <p>Init pydolphinscheduler.tasks package.</p>
-<span class="target" id="module-pydolphinscheduler.tasks"></span><dl class="py class">
+<dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.</span></span><span class="sig-name descname"><span class="pre">Condition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tasks/condition.html#pydolphinscheduler.tasks.condition.ConditionOperator" title="pydolphinscheduler.tasks.condition.ConditionOperator"><span class="pre">ConditionOperator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">success_task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">failed_task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><span class="pre">Task</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pydolphinscheduler/tasks/condition.html#Condition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.Condition" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
@@ -6488,10 +6488,10 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 </dd></dl>
 
 </section>
-<section id="constants">
-<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this heading"></a></h2>
+<section id="module-pydolphinscheduler.constants">
+<span id="constants"></span><h2>Constants<a class="headerlink" href="#module-pydolphinscheduler.constants" title="Permalink to this heading"></a></h2>
 <p>Constants for pydolphinscheduler.</p>
-<span class="target" id="module-pydolphinscheduler.constants"></span><dl class="py class">
+<dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.constants.DefaultTaskCodeNum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.constants.</span></span><span class="sig-name descname"><span class="pre">DefaultTaskCodeNum</span></span><a class="reference internal" href="_modules/pydolphinscheduler/constants.html#DefaultTaskCodeNum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.constants.DefaultTaskCodeNum" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
@@ -6780,10 +6780,10 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 </dd></dl>
 
 </section>
-<section id="exceptions">
-<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h2>
+<section id="module-pydolphinscheduler.exceptions">
+<span id="exceptions"></span><h2>Exceptions<a class="headerlink" href="#module-pydolphinscheduler.exceptions" title="Permalink to this heading"></a></h2>
 <p>Exceptions for pydolphinscheduler.</p>
-<span class="target" id="module-pydolphinscheduler.exceptions"></span><dl class="py exception">
+<dl class="py exception">
 <dt class="sig sig-object py" id="pydolphinscheduler.exceptions.PyDSBaseException">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.exceptions.</span></span><span class="sig-name descname"><span class="pre">PyDSBaseException</span></span><a class="reference internal" href="_modules/pydolphinscheduler/exceptions.html#PyDSBaseException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.exceptions.PyDSBaseException" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
