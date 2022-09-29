@@ -38,8 +38,13 @@ git clone git@github.com:apache/dolphinscheduler.git
 您可以执行如下的命令，<code>Spotless</code>将会为您自动检查并修复代码风格和格式问题。</p>
 <pre><code class="language-shell">./mvnw spotless:apply
 </code></pre>
-<p>您可将<code>/style/pre-commit</code>目录下的<code>pre-commit hook</code>文件拷贝到您的<code>.git/hooks/</code>
-目录下，这样您每次使用<code>git commit</code>命令时，<code>Spotless</code>将会自动为您修复代码风格和格式问题。</p>
+<p>我们也提供了一个<code>pre-commit</code>配置文件，方便您配置。要使用它，您需要先安装python，然后通过运行以下命令安装<code>pre-commit</code>：</p>
+<pre><code class="language-shell">python -m pip install pre-commit
+</code></pre>
+<p>之后，您可以运行以下命令安装<code>pre-commit</code>钩子：</p>
+<pre><code class="language-shell">pre-commit install
+</code></pre>
+<p>现在，每次您提交代码时，<code>pre-commit</code>都会自动运行<code>Spotless</code>来检查代码风格和格式。</p>
 <h2>Docker镜像构建</h2>
 <p>DolphinScheduler 每次发版都会同时发布 Docker 镜像，你可以在 <a href="https://hub.docker.com/search?q=DolphinScheduler">Docker Hub</a> 中找到这些镜像</p>
 <ul>

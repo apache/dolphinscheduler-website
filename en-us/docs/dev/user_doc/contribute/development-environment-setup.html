@@ -39,9 +39,14 @@ You could run the following command and <code>Spotless</code> will automatically
 the code style and formatting errors for you:</p>
 <pre><code class="language-shell">./mvnw spotless:apply
 </code></pre>
-<p>You could copy the <code>pre-commit hook</code> file <code>/style/pre-commit</code> to your <code>.git/hooks/</code>
-directory so that every time you commit your code with <code>git commit</code>, <code>Spotless</code> will automatically
-fix things for you.</p>
+<p>We also have provided a <code>pre-commit</code> config file for easy configuration. To use it, you need to have python installed
+and then install <code>pre-commit</code> by running the following command:</p>
+<pre><code class="language-shell">python -m pip install pre-commit
+</code></pre>
+<p>After that, you can run the following command to install the <code>pre-commit</code> hook:</p>
+<pre><code class="language-shell">pre-commit install
+</code></pre>
+<p>Now, every time you commit your code, <code>pre-commit</code> will automatically run <code>Spotless</code> to check the code style and formatting.</p>
 <h2>Docker image build</h2>
 <p>DolphinScheduler will release new Docker images after it released, you could find them in <a href="https://hub.docker.com/search?q=DolphinScheduler">Docker Hub</a>.</p>
 <ul>
