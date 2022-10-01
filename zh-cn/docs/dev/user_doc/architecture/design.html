@@ -202,10 +202,10 @@ WorkerServer基于netty提供监听服务。</p>
 <ul>
 <li>详情可参考Master和Worker的logback配置，如下示例：</li>
 </ul>
-<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">conversionRule</span> <span class="hljs-attr">conversionWord</span>=<span class="hljs-string">&quot;messsage&quot;</span> <span class="hljs-attr">converterClass</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.server.log.SensitiveDataConverter&quot;</span>/&gt;</span>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">conversionRule</span> <span class="hljs-attr">conversionWord</span>=<span class="hljs-string">&quot;messsage&quot;</span> <span class="hljs-attr">converterClass</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.service.log.SensitiveDataConverter&quot;</span>/&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;TASKLOGFILE&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.classic.sift.SiftingAppender&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.server.log.TaskLogFilter&quot;</span>/&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Discriminator</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.server.log.TaskLogDiscriminator&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.service.log.TaskLogFilter&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Discriminator</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.service.log.TaskLogDiscriminator&quot;</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>taskAppId<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">logBase</span>&gt;</span>${log.base}<span class="hljs-tag">&lt;/<span class="hljs-name">logBase</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">Discriminator</span>&gt;</span>

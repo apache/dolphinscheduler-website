@@ -202,10 +202,10 @@ Among them, the Master monitors the directories of other Masters and Workers. If
 <ul>
 <li>For details, please refer to the logback configuration of Master and Worker, as shown in the following example:</li>
 </ul>
-<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">conversionRule</span> <span class="hljs-attr">conversionWord</span>=<span class="hljs-string">&quot;messsage&quot;</span> <span class="hljs-attr">converterClass</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.server.log.SensitiveDataConverter&quot;</span>/&gt;</span>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">conversionRule</span> <span class="hljs-attr">conversionWord</span>=<span class="hljs-string">&quot;messsage&quot;</span> <span class="hljs-attr">converterClass</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.service.log.SensitiveDataConverter&quot;</span>/&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;TASKLOGFILE&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.classic.sift.SiftingAppender&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.server.log.TaskLogFilter&quot;</span>/&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Discriminator</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.server.log.TaskLogDiscriminator&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">filter</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.service.log.TaskLogFilter&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Discriminator</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.apache.dolphinscheduler.service.log.TaskLogDiscriminator&quot;</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>taskAppId<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">logBase</span>&gt;</span>${log.base}<span class="hljs-tag">&lt;/<span class="hljs-name">logBase</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">Discriminator</span>&gt;</span>
