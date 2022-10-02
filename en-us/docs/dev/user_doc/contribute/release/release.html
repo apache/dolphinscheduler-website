@@ -186,11 +186,19 @@ cd ~/ds_svn/dev/
 <pre><code class="language-shell">svn --username=&quot;${A_USERNAME}&quot; co https://dist.apache.org/repos/dist/dev/dolphinscheduler
 cd ~/ds_svn/dev/dolphinscheduler
 </code></pre>
-<h3>Add gpg Public Key</h3>
-<p>Only the account in its first deployment needs to add that.
-It is alright for <code>KEYS</code> to only include the public key of the deployed account.</p>
-<pre><code class="language-shell">gpg -a --export &lt;YOUR-GPG-KEY-ID&gt; &gt;&gt; KEYS
+<h3>Export your new gpg KEYS to release(optional)</h3>
+<p>Only if the first time you release with this gpg KEY, including it is you first release, or you change your KEY. You should
+change working directory to another one because this step need checkout and change KEYS in release directory.</p>
+<pre><code class="language-shell">mkdir -p ~/ds_svn/release/
+cd ~/ds_svn/release/
+svn --username=&quot;${A_USERNAME}&quot; co https://dist.apache.org/repos/dist/release/dolphinscheduler
+gpg -a --export &lt;YOUR-GPG-KEY-ID&gt; &gt;&gt; KEYS
+svn add *
+svn --username=&quot;${A_USERNAME}&quot; commit -m &quot;new key &lt;YOUR-GPG-KEY-ID&gt; add&quot;
 </code></pre>
+<blockquote>
+<p>NOTE: it may take a few minutes to sync to the mirror in your first time checkout, because it will download all the files</p>
+</blockquote>
 <h3>Add the Release Content to SVN Directory</h3>
 <p>Create folder by version number.</p>
 <pre><code class="language-shell">mkdir -p ~/ds_svn/dev/dolphinscheduler/&quot;${VERSION}&quot;
@@ -230,7 +238,7 @@ cd ../
 <h3>Check gpg Signature</h3>
 <p>First, import releaser's public key.
 Import KEYS from SVN repository to local. (The releaser does not need to import again; the checking assistant needs to import it, with the user name filled as the releaser's. )</p>
-<pre><code class="language-shell">curl https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS &gt;&gt; KEYS
+<pre><code class="language-shell">curl https://dist.apache.org/repos/dist/release/dolphinscheduler/KEYS &gt;&gt; KEYS
 gpg --import KEYS
 gpg --edit-key &quot;${A_USERNAME}&quot;
 <span class="hljs-meta">  &gt;</span><span class="bash"> trust</span>
@@ -327,7 +335,7 @@ Git tag for the release: https://github.com/apache/dolphinscheduler/tree/&lt;VER
 
 Release Commit ID: https://github.com/apache/dolphinscheduler/commit/&lt;SHA-VALUE&gt;
 
-Keys to verify the Release Candidate: https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS
+Keys to verify the Release Candidate: https://downloads.apache.org/dolphinscheduler/KEYS
 
 Look at here for how to verify this release candidate: https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/contribute/release/release.html
 
@@ -369,15 +377,6 @@ Thanks everyone for taking time to check this release and help us.
 <h2>Finish the Release</h2>
 <h3>Move source packages, binary packages from the <code>dev</code> directory to <code>release</code> directory</h3>
 <pre><code class="language-shell">svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/&quot;${VERSION}&quot; https://dist.apache.org/repos/dist/release/dolphinscheduler/
-</code></pre>
-<h3>Export you new gpg KEYS from dev to release(optional)</h3>
-<p>Only if the first time you release with this gpg KEY, including it is you first release or you change your KEY</p>
-<pre><code class="language-shell">mkdir -p ~/ds_svn/release/
-cd ~/ds_svn/release/
-svn --username=&quot;${A_USERNAME}&quot; co https://dist.apache.org/repos/dist/release/dolphinscheduler
-gpg -a --export &lt;YOUR-GPG-KEY-ID&gt; &gt;&gt; KEYS
-svn add *
-svn --username=&quot;${A_USERNAME}&quot; commit -m &quot;new key &lt;YOUR-GPG-KEY-ID&gt; add&quot;
 </code></pre>
 <h3>Update Document</h3>
 <p>Website should be present before you send the announce mail this section will tell you how to change the website. For example,
