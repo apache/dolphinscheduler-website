@@ -84,7 +84,7 @@ org.apache.dolphinscheduler.spi.params 里对插件的参数做了封装，它�
 2.0.1 增加了版本自动升级功能，用户可以从 1.x 版本自动升级到 2.0.1 版本。只需要运行一个使用脚本，即可无感知地使用新版本运行以前的工作流：
 sh ./script/create-dolphinscheduler.sh
 
-**具体升级文档请参考：** https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/upgrade.html
+**具体升级文档请参考：** https://dolphinscheduler.apache.org/zh-cn/docs/2.0.1/user_doc/guide/upgrade.html
 
 另外，Apache DolphinScheduler 将来的版本均可实现自动升级，省去手动升级的麻烦。
 

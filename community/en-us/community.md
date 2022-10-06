@@ -43,11 +43,12 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Wenjun Ruan       | wenjun       | [@ruanwenjun](https://github.com/ruanwenjun)         |
 | Zihao Xiang       | zihaoxiang   | [@SbloodyS](https://github.com/SbloodyS)             |
 | JinyLeeChina      | jinyleechina | [@JinyLeeChina](https://github.com/JinyLeeChina)     |
+| Jian Song         | songjian     | [@songjianet](https://github.com/songjianet)         |
 
 ### Committer
 
 | Public Name   | Apache ID    | GitHub ID                                                |
-| ------------- | ------------ | -------------------------------------------------------- |
+| ------------- | ------------ |----------------------------------------------------------|
 | BoYi Zhang    | zhangboyi    | [@BoYiZhang](https://github.com/BoYiZhang)               |
 | Caibiao Xiang | break60      | [@break60](https://github.com/break60)                   |
 | Cong Huang    | chongchongzi | [@chongchongzi](https://github.com/chongchongzi)         |
@@ -65,7 +66,6 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | Zongyao Zhang | lfyee        | [@lfyee](https://github.com/lfyee)                       |
 | Wang Xingjie  | wangxj       | [@wangxj3](https://github.com/wangxj3)                   |
 | Yizhi Wang    | wangyizhi    | [@Wangyizhi1](https://github.com/Wangyizhi1)             |
-| Jian Song     | songjian     | [@songjianet](https://github.com/songjianet)             |
 | Zhaohe Sun    | zixi0825     | [@zixi0825](https://github.com/zixi0825)                 |
 | Tianqi Yan    | tianqiyan    | [@Tianqi-Dotes](https://github.com/Tianqi-Dotes)         |
 | Dongkai Liu   | liudongkai   | [@devosend](https://github.com/devosend)                 |
@@ -74,6 +74,9 @@ The DolphinScheduler team is comprised of Members and Contributors. Members have
 | JunJie Xu     | xujunjie     | [@labbomb](https://github.com/labbomb)                   |
 | Chufeng Gao   | chufenggao   | [@EricGao888](https://github.com/EricGao888)             |
 | JiPeng Wang   | wangjipeng   | [@WangJPLeo](https://github.com/WangJPLeo)               |
+| Lifeng Nie    | nielifeng    | [@nielifeng](https://github.com/nielifeng)               |
+| WenCheng Dai  | nobolity     | [@nobolity](https://github.com/nobolity)                 |
+| Jieguang Zhou | zhoujieguang | [@zhoujieguang](https://github.com/jieguangzhou)         |
 
 ### Contributors
 
