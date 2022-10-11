@@ -66,6 +66,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="local.html">Local</a></li>
 <li class="toctree-l2"><a class="reference internal" href="github.html">GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oss.html">OSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="s3.html">S3</a></li>
 </ul>
 </li>
 </ul>
@@ -199,7 +202,7 @@ All resource plugins need to inherit and override its abstract methods.</p>
 <h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading"></a></h2>
 <p>Resource plugin can be used in task subclasses and workflows. You can use the resource plugin by adding the <cite>resource_plugin</cite> parameter when they are initialized.
 For example, local resource plugin, add <cite>resource_plugin = Local(“/tmp”)</cite>.</p>
-<p>The resource plugin we currently support are <cite>local</cite>, <cite>github</cite>.</p>
+<p>The resource plugin we currently support are <cite>local</cite>, <cite>github</cite>, <cite>gitlab</cite>, <cite>OSS</cite>, <cite>S3</cite>.</p>
 <p>Here is an example.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_resource_plugin&quot;</span><span class="p">,</span>

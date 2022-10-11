@@ -194,6 +194,8 @@
       <ul>
         <li><a href="resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub._abc_impl">(pydolphinscheduler.resources_plugin.github.GitHub attribute)</a>
 </li>
+        <li><a href="resources_plugin/gitlab.html#pydolphinscheduler.resources_plugin.gitlab.GitLab._abc_impl">(pydolphinscheduler.resources_plugin.gitlab.GitLab attribute)</a>
+</li>
         <li><a href="resources_plugin/local.html#pydolphinscheduler.resources_plugin.local.Local._abc_impl">(pydolphinscheduler.resources_plugin.local.Local attribute)</a>
 </li>
       </ul></li>
@@ -548,6 +550,8 @@
 </li>
       </ul></li>
       <li><a href="tasks/func_wrap.html#pydolphinscheduler.tasks.func_wrap._get_func_str">_get_func_str() (in module pydolphinscheduler.tasks.func_wrap)</a>
+</li>
+      <li><a href="resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub._git_file_info">_git_file_info (pydolphinscheduler.resources_plugin.github.GitHub attribute)</a>
 </li>
       <li><a href="api.html#pydolphinscheduler.core.ProcessDefinition._handle_root_relation">_handle_root_relation() (pydolphinscheduler.core.ProcessDefinition method)</a>
 </li>
@@ -1101,14 +1105,16 @@
 </li>
       <li><a href="api.html#pydolphinscheduler.core.ProcessDefinition.add_tasks">add_tasks() (pydolphinscheduler.core.ProcessDefinition method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tasks/condition.html#pydolphinscheduler.tasks.condition.And">And (class in pydolphinscheduler.tasks.condition)</a>
 
       <ul>
         <li><a href="tasks/dependent.html#pydolphinscheduler.tasks.dependent.And">(class in pydolphinscheduler.tasks.dependent)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="resources_plugin/gitlab.html#pydolphinscheduler.resources_plugin.gitlab.GitLab.authentication">authentication() (pydolphinscheduler.resources_plugin.gitlab.GitLab method)</a>
+</li>
       <li><a href="tasks/mlflow.html#pydolphinscheduler.tasks.mlflow.MLflowJobType.AUTOML">AUTOML (pydolphinscheduler.tasks.mlflow.MLflowJobType attribute)</a>
 </li>
   </ul></td>
@@ -1938,7 +1944,11 @@
 </li>
       </ul></li>
       <li><a href="resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub.get_git_file_info">get_git_file_info() (pydolphinscheduler.resources_plugin.github.GitHub method)</a>
+
+      <ul>
+        <li><a href="resources_plugin/gitlab.html#pydolphinscheduler.resources_plugin.gitlab.GitLab.get_git_file_info">(pydolphinscheduler.resources_plugin.gitlab.GitLab method)</a>
 </li>
+      </ul></li>
       <li><a href="resources_plugin/resource-plugin.html#pydolphinscheduler.core.resource_plugin.ResourcePlugin.get_index">get_index() (pydolphinscheduler.core.resource_plugin.ResourcePlugin method)</a>
 </li>
       <li><a href="api.html#pydolphinscheduler.core.Engine.get_jar_id">get_jar_id() (pydolphinscheduler.core.Engine method)</a>
@@ -2036,6 +2046,8 @@
       <li><a href="api.html#pydolphinscheduler.models.User.get_user">get_user() (pydolphinscheduler.models.User class method)</a>
 </li>
       <li><a href="resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub">GitHub (class in pydolphinscheduler.resources_plugin.github)</a>
+</li>
+      <li><a href="resources_plugin/gitlab.html#pydolphinscheduler.resources_plugin.gitlab.GitLab">GitLab (class in pydolphinscheduler.resources_plugin.gitlab)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -2245,8 +2257,6 @@
       </ul></li>
       <li><a href="tasks/mlflow.html#pydolphinscheduler.tasks.mlflow.MLflowTaskType">MLflowTaskType (class in pydolphinscheduler.tasks.mlflow)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     module
 
@@ -2263,7 +2273,13 @@
 </li>
         <li><a href="resources_plugin/github.html#module-pydolphinscheduler.resources_plugin.github">pydolphinscheduler.resources_plugin.github</a>
 </li>
+        <li><a href="resources_plugin/gitlab.html#module-pydolphinscheduler.resources_plugin.gitlab">pydolphinscheduler.resources_plugin.gitlab</a>
+</li>
         <li><a href="resources_plugin/local.html#module-pydolphinscheduler.resources_plugin.local">pydolphinscheduler.resources_plugin.local</a>
+</li>
+        <li><a href="resources_plugin/oss.html#module-pydolphinscheduler.resources_plugin.OSS">pydolphinscheduler.resources_plugin.OSS</a>
+</li>
+        <li><a href="resources_plugin/s3.html#module-pydolphinscheduler.resources_plugin.S3">pydolphinscheduler.resources_plugin.S3</a>
 </li>
         <li><a href="api.html#module-pydolphinscheduler.tasks">pydolphinscheduler.tasks</a>
 </li>
@@ -2306,6 +2322,8 @@
         <li><a href="tasks/switch.html#module-pydolphinscheduler.tasks.switch">pydolphinscheduler.tasks.switch</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#pydolphinscheduler.tasks.MR">MR (class in pydolphinscheduler.tasks)</a>
 
       <ul>
@@ -2334,6 +2352,8 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="resources_plugin/gitlab.html#pydolphinscheduler.resources_plugin.gitlab.GitLab.OAuth_token">OAuth_token() (pydolphinscheduler.resources_plugin.gitlab.GitLab method)</a>
+</li>
       <li><a href="api.html#pydolphinscheduler.tasks.OpenMLDB">OpenMLDB (class in pydolphinscheduler.tasks)</a>
 
       <ul>
@@ -2369,6 +2389,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api.html#pydolphinscheduler.core.ProcessDefinition.param_json">param_json (pydolphinscheduler.core.ProcessDefinition property)</a>
+</li>
+      <li><a href="api.html#pydolphinscheduler.constants.Symbol.POINT">POINT (pydolphinscheduler.constants.Symbol attribute)</a>
 </li>
       <li><a href="api.html#pydolphinscheduler.core.Database.pop">pop() (pydolphinscheduler.core.Database method)</a>
 </li>
@@ -2519,8 +2541,6 @@
         <li><a href="api.html#module-pydolphinscheduler.exceptions">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     pydolphinscheduler.models
 
@@ -2528,6 +2548,8 @@
         <li><a href="api.html#module-pydolphinscheduler.models">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     pydolphinscheduler.resources_plugin.github
 
@@ -2536,10 +2558,31 @@
 </li>
       </ul></li>
       <li>
+    pydolphinscheduler.resources_plugin.gitlab
+
+      <ul>
+        <li><a href="resources_plugin/gitlab.html#module-pydolphinscheduler.resources_plugin.gitlab">module</a>
+</li>
+      </ul></li>
+      <li>
     pydolphinscheduler.resources_plugin.local
 
       <ul>
         <li><a href="resources_plugin/local.html#module-pydolphinscheduler.resources_plugin.local">module</a>
+</li>
+      </ul></li>
+      <li>
+    pydolphinscheduler.resources_plugin.OSS
+
+      <ul>
+        <li><a href="resources_plugin/oss.html#module-pydolphinscheduler.resources_plugin.OSS">module</a>
+</li>
+      </ul></li>
+      <li>
+    pydolphinscheduler.resources_plugin.S3
+
+      <ul>
+        <li><a href="resources_plugin/s3.html#module-pydolphinscheduler.resources_plugin.S3">module</a>
 </li>
       </ul></li>
       <li>
@@ -2738,6 +2781,8 @@
 
       <ul>
         <li><a href="resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub.read_file">(pydolphinscheduler.resources_plugin.github.GitHub method)</a>
+</li>
+        <li><a href="resources_plugin/gitlab.html#pydolphinscheduler.resources_plugin.gitlab.GitLab.read_file">(pydolphinscheduler.resources_plugin.gitlab.GitLab method)</a>
 </li>
         <li><a href="resources_plugin/local.html#pydolphinscheduler.resources_plugin.local.Local.read_file">(pydolphinscheduler.resources_plugin.local.Local method)</a>
 </li>
@@ -2970,6 +3015,8 @@
       </ul></li>
       <li><a href="api.html#pydolphinscheduler.constants.TaskType.SHELL">SHELL (pydolphinscheduler.constants.TaskType attribute)</a>
 </li>
+      <li><a href="api.html#pydolphinscheduler.constants.Symbol.SLASH">SLASH (pydolphinscheduler.constants.Symbol attribute)</a>
+</li>
       <li><a href="api.html#pydolphinscheduler.tasks.Spark">Spark (class in pydolphinscheduler.tasks)</a>
 
       <ul>
@@ -3029,6 +3076,8 @@
       <li><a href="tasks/switch.html#pydolphinscheduler.tasks.switch.SwitchBranch">SwitchBranch (class in pydolphinscheduler.tasks.switch)</a>
 </li>
       <li><a href="tasks/switch.html#pydolphinscheduler.tasks.switch.SwitchCondition">SwitchCondition (class in pydolphinscheduler.tasks.switch)</a>
+</li>
+      <li><a href="api.html#pydolphinscheduler.constants.Symbol">Symbol (class in pydolphinscheduler.constants)</a>
 </li>
   </ul></td>
 </tr></table>

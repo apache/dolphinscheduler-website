@@ -102,6 +102,7 @@
 
 <span class="kn">import</span> <span class="nn">requests</span>
 
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">Symbol</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource_plugin</span> <span class="kn">import</span> <span class="n">ResourcePlugin</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.resources_plugin.base.git</span> <span class="kn">import</span> <span class="n">Git</span><span class="p">,</span> <span class="n">GitHubFileInfo</span>
 
@@ -119,6 +120,8 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">access_token</span>
 
+    <span class="n">_git_file_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GitHubFileInfo</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
 <div class="viewcode-block" id="GitHub.build_req_api"><a class="viewcode-back" href="../../../resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub.build_req_api">[docs]</a>    <span class="k">def</span> <span class="nf">build_req_api</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -134,8 +137,8 @@
 
 <div class="viewcode-block" id="GitHub.get_git_file_info"><a class="viewcode-back" href="../../../resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub.get_git_file_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_git_file_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get file information from the file url, like repository name, user, branch, and file path.&quot;&quot;&quot;</span>
-        <span class="n">elements</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">SLASH</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Symbol</span><span class="o">.</span><span class="n">SLASH</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
         <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">file_info</span> <span class="o">=</span> <span class="n">GitHubFileInfo</span><span class="p">(</span>
             <span class="n">user</span><span class="o">=</span><span class="n">elements</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
