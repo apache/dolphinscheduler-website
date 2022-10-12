@@ -297,8 +297,12 @@ cd ../
 <h2>发起投票</h2>
 <h3>更新版本说明</h3>
 <p>在 GitHub 中通过 <a href="https://github.com/apache/dolphinscheduler/releases/new">创建新的 release note</a> 创建一个 release note。 这要在
-投票邮件开始之前完成，因为我们需要在邮件中使用 release note。你可以通过命令 <code>git log --pretty=&quot;- %s&quot; &lt;PREVIOUS-RELEASE-SHA&gt;..&lt;CURRENT-RELEASE-SHA&gt; &gt; changelog.md</code>
-自动生成 changelog（部分可以不太准确，需要人为过滤一遍），然后将他们分类并粘贴到 GitHub 的 release note 中</p>
+投票邮件开始之前完成，因为我们需要在邮件中使用 release note。你可以在 <code>tools/release</code> 目录中运行 <code>python release.py changelog</code> 自动创建
+changelog.</p>
+<blockquote>
+<p>备注： 如果你更加倾向于手动创建 changelog，你可以通过命令 <code>git log --pretty=&quot;- %s&quot; &lt;PREVIOUS-RELEASE-SHA&gt;..&lt;CURRENT-RELEASE-SHA&gt; &gt; changelog.md</code>
+生成 changelog（部分可以不太准确，需要人为过滤一遍），然后将他们分类并粘贴到 GitHub 的 release note 中</p>
+</blockquote>
 <h3>投票阶段</h3>
 <ol>
 <li>

@@ -302,8 +302,11 @@ to check the following items:</p>
 <h3>Update Release Notes</h3>
 <p>You should create a release note in GitHub by <a href="https://github.com/apache/dolphinscheduler/releases/new">new release note</a>.
 It should be done before vote mail because we need the release note in the mail. You could use command
-<code>git log --pretty=&quot;- %s&quot; &lt;PREVIOUS-RELEASE-SHA&gt;..&lt;CURRENT-RELEASE-SHA&gt; &gt; changelog.md</code> to creat the changelog(some log
-maybe not correct, you should filter them by yourself) and classify them and paste them to GitHub release note page</p>
+<code>python release.py changelog</code> in directory <code>tools/release</code> to creat the changelog.</p>
+<blockquote>
+<p>NOTE: Or if you prefer to create manually, you can use command <code>git log --pretty=&quot;- %s&quot; &lt;PREVIOUS-RELEASE-SHA&gt;..&lt;CURRENT-RELEASE-SHA&gt; &gt; changelog.md</code>
+(some log maybe not correct, you should filter them by yourself) and classify them and paste them to GitHub release note page</p>
+</blockquote>
 <h3>Vote procedure</h3>
 <ol>
 <li>
