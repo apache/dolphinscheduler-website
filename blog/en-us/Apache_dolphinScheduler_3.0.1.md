@@ -26,7 +26,7 @@ Task, workflow instance priority causes NPE(Null Pointer Exception)
 * Dependent downstream error trigger
 * Fixed workflow instance possibly cause failing over multiple times
 * The task group gets the task status as running error
-* Fix the issue of triggering OOM( Out of Memory) when the worker kills the task
+* Fix the issue of triggering OOM(Out of Memory) when the worker kills the task
 
 ## 2 UI-related optimization
 
