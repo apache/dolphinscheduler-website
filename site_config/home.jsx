@@ -559,6 +559,14 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: 'https://miro.medium.com/max/1400/1*zgkZk3lhn3UhLAKkHM9wzQ.png',
+          title: 'ApacheCon Asia 2022 Review | Application of DolphinScheduler in T3Go One-stop Platform',
+          content: 'hanks to this Release Manager — @zhuangchong, who led the release of the 3.0.1...\n...',
+          dateStr: '2022-9-26',
+          link: '/en-us/blog/Apache_dolphinScheduler_3.0.1.html',
+        },
+
+        {
           img: 'https://miro.medium.com/max/1260/1*zwulVh_I1ROhSYrlE3OW6A.png',
           title: 'Apache DolphinScheduler 3.0.0 Official Version Released!',
           content: 'The official version 3.0.0 has undergone the most significant changes since its release ...',
@@ -572,13 +580,6 @@ export default {
           content: 'In the ever-changing world of technology, data is abundant. In fact,....',
           dateStr: '2022-8-26',
           link: '/en-us/blog/Python_API_and_AWS_Support.html',
-        },
-        {
-          img: 'https://miro.medium.com/max/1260/1*9rnrDrko9bRkgkICrPJbQA.png',
-          title: 'ApacheCon Asia 2022 Review | Application of DolphinScheduler in T3Go One-stop Platform',
-          content: 'At the ApacheCon Asia 2022, big data engineers Li Xinkai & Zhao Yuwei at T3Go shared...',
-          dateStr: '2022-8-26',
-          link: '/en-us/blog/DolphinScheduler_in_T3Go_One-stop_Platform.html',
         },
 
       ],

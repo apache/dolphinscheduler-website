@@ -4,6 +4,13 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'Apache DolphinScheduler 3.0.1 released, with the scheduling kernel and UI optimized',
+                author: 'Debra Chen',
+                dateStr: '2022-9-28',
+                desc: 'hanks to this Release Manager — @zhuangchong, who led the release of the 3.0.1...... ',
+                link: '/en-us/blog/Apache_dolphinScheduler_3.0.1.html',
+            },
+            {
                 title: 'Apache DolphinScheduler 3.0.0 Official Version Released!',
                 author: 'Debra Chen',
                 dateStr: '2022-9-2',
