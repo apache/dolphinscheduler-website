@@ -45,7 +45,7 @@ The new version of Apache DolphinScheduler complements some reminder languages, 
 
 The errors in the documents are corrected, such as workflow-related descriptions, creating worker groups, Python API jump links, some spelling mistakes, and community email slack links;
 
-##5 Python API
+## 5 Python API
 
 The support of Python 10 and Python 11-dev is implemented in this version, and the switch task type and the SQL task truncate syntax recognition errors are fixed. In addition, the problem of only the latest version of Python API documentation being available is solved.
 
@@ -110,7 +110,7 @@ The support of Python 10 and Python 11-dev is implemented in this version, and t
 * Process definition length too long when copying or importing #10621 (#11893)
 
 
-## 4 DOCs
+## 7 DOCs
 
 * [Doc] Upgrade license. (#9967)
 * [Doc] Update README. (#9970)
@@ -147,7 +147,7 @@ The support of Python 10 and Python 11-dev is implemented in this version, and t
 * [fix][doc] Update the registry related configuration in values.yaml (#11444) (#11980)
 
 
-## 7 Acknowledgement
+## 8 Acknowledgement
 
 Thanks to all the contributors of version 3.0.1:
 
