@@ -22,18 +22,12 @@
 </ul>
 <h2>任务参数</h2>
 <ul>
-<li>默认参数说明请参考<a href="appendix.md#%E9%BB%98%E8%AE%A4%E4%BB%BB%E5%8A%A1%E5%8F%82%E6%95%B0">DolphinScheduler任务参数附录</a>。</li>
+<li>默认参数说明请参考<a href="appendix.md">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>
 <li>数据源：选择对应的数据源</li>
-<li>sql类型：支持查询和非查询两种。
-<ul>
+<li>sql类型：支持查询和非查询两种。</li>
 <li>查询：支持 <code>DML select</code> 类型的命令，是有结果集返回的，可以指定邮件通知为表格、附件或表格附件三种模板；</li>
-<li>非查询：支持 <code>DDL</code>全部命令 和 <code>DML update、delete、insert</code> 三种类型的命令；
-<ul>
+<li>非查询：支持 <code>DDL</code>全部命令 和 <code>DML update、delete、insert</code> 三种类型的命令；</li>
 <li>默认采用<code>;\n</code>作为SQL分隔符,拆分成多段SQL语句执行。Hive支持一次执行多段SQL语句,故不会拆分。</li>
-</ul>
-</li>
-</ul>
-</li>
 <li>sql参数：输入参数格式为key1=value1;key2=value2…</li>
 <li>sql语句：SQL语句</li>
 <li>UDF函数：对于HIVE类型的数据源，可以引用资源中心中创建的UDF函数，其他类型的数据源暂不支持UDF函数。</li>

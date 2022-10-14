@@ -22,6 +22,9 @@
 </li>
 </ul>
 <h1>Task Parameters</h1>
+<ul>
+<li>Please refer to <a href="appendix.md">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -30,46 +33,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Node Name</td>
-<td>The name of the set task. The node name in a workflow definition is unique.</td>
-</tr>
-<tr>
-<td>Run Flag</td>
-<td>Indicates whether the node is scheduled properly and turns on the kill switch, if not needed.</td>
-</tr>
-<tr>
-<td>Description</td>
-<td>Describes the functionality of the node.</td>
-</tr>
-<tr>
-<td>Task Priority</td>
-<td>When the number of worker threads is insufficient, the worker executes tasks according to the priority. When the priority is the same, the worker executes tasks by order.</td>
-</tr>
-<tr>
-<td>Worker Group</td>
-<td>The group of machines who execute the tasks. If selecting <code>Default</code>, DolphinScheduler will randomly choose a worker machine to execute the task.</td>
-</tr>
-<tr>
-<td>Environment Name</td>
-<td>Configure the environment in which the task runs.</td>
-</tr>
-<tr>
-<td>Number Of Failed Retries</td>
-<td>Number of resubmitted tasks that failed. You can choose the number in the drop-down menu or fill it manually.</td>
-</tr>
-<tr>
-<td>Failed Retry Interval</td>
-<td>the interval between the failure and resubmission of a task. You can choose the number in the drop-down menu or fill it manually.</td>
-</tr>
-<tr>
-<td>Delayed Execution Time</td>
-<td>the amount of time a task is delayed, in units.</td>
-</tr>
-<tr>
-<td>Timeout Alarm</td>
-<td>Check timeout warning, timeout failure, when the task exceeds the“Timeout length”, send a warning message and the task execution fails.</td>
-</tr>
 <tr>
 <td>Module Path</td>
 <td>pick Java 9 + 's modularity feature, put all resources into-module-path, and require that the JDK version in your worker supports modularity.</td>
@@ -89,14 +52,6 @@
 <tr>
 <td>Resources</td>
 <td>External JAR packages or other resource files that are added to the classpath or module path and can be easily retrieved in your JAVA script.</td>
-</tr>
-<tr>
-<td>Custom parameter</td>
-<td>A user-defined parameter that is part of HTTP and replaces <code>${ variable }</code> in the script .</td>
-</tr>
-<tr>
-<td>Pre Tasks</td>
-<td>Selects a pre-task for the current task and sets the pre-task as the upstream of the current task.</td>
 </tr>
 </tbody>
 </table>

@@ -1023,8 +1023,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.Symbol"><code class="docutils literal notranslate"><span class="pre">Symbol</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Symbol.COMMA"><code class="docutils literal notranslate"><span class="pre">Symbol.COMMA</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Symbol.POINT"><code class="docutils literal notranslate"><span class="pre">Symbol.POINT</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Symbol.SLASH"><code class="docutils literal notranslate"><span class="pre">Symbol.SLASH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.constants.Symbol.UNDERLINE"><code class="docutils literal notranslate"><span class="pre">Symbol.UNDERLINE</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.constants.TaskFlag"><code class="docutils literal notranslate"><span class="pre">TaskFlag</span></code></a><ul>
@@ -1348,7 +1350,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Engine.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.core.Engine.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.core.Engine.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -1707,7 +1709,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.Task.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.core.Task.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.core.Task.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -2272,7 +2274,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Condition.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Condition.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Condition.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -2442,12 +2444,12 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.CustomDataX.ext">
-<span class="sig-name descname"><span class="pre">ext</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX.ext" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'.json'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX.ext" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.CustomDataX.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_json'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -2624,7 +2626,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCDownload.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCDownload.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCDownload.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -2800,7 +2802,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCInit.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCInit.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCInit.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -2976,7 +2978,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DVCUpload.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCUpload.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DVCUpload.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -3149,12 +3151,12 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX.ext">
-<span class="sig-name descname"><span class="pre">ext</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DataX.ext" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'.sql'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DataX.ext" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.DataX.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DataX.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_sql'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.DataX.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -3322,7 +3324,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Dependent.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Dependent.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -3503,7 +3505,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Flink.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Flink.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Flink.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -3671,7 +3673,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Http.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Http.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Http.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -3856,7 +3858,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsAutoML.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsAutoML.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsAutoML.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -4052,7 +4054,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -4247,7 +4249,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLFlowProjectsCustom.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsCustom.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLFlowProjectsCustom.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -4441,7 +4443,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MLflowModels.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLflowModels.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MLflowModels.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -4624,7 +4626,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.MR.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MR.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.MR.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -4803,7 +4805,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.OpenMLDB.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.OpenMLDB.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.OpenMLDB.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -4981,7 +4983,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Procedure.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Procedure.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -5136,7 +5138,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python._task_custom_attr">
-<span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'raw_script'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python._task_custom_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'definition',</span> <span class="pre">'raw_script'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python._task_custom_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -5173,12 +5175,12 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python.ext">
-<span class="sig-name descname"><span class="pre">ext</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python.ext" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'.py'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python.ext" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Python.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_definition'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Python.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -5367,7 +5369,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Pytorch.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Pytorch.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Pytorch.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -5549,7 +5551,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SageMaker.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SageMaker.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -5917,7 +5919,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Spark.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Spark.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Spark.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -6091,12 +6093,12 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql.ext">
-<span class="sig-name descname"><span class="pre">ext</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Sql.ext" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'.sql'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Sql.ext" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Sql.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Sql.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_sql'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Sql.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -6279,7 +6281,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubProcess.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubProcess.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -6460,7 +6462,7 @@ process_definition.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.Switch.ext_attr">
-<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Switch.ext_attr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ext_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">function</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.Switch.ext_attr" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -6590,6 +6592,11 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
 <p>Constants for symbol.</p>
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.constants.Symbol.COMMA">
+<span class="sig-name descname"><span class="pre">COMMA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">','</span></em><a class="headerlink" href="#pydolphinscheduler.constants.Symbol.COMMA" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.constants.Symbol.POINT">
 <span class="sig-name descname"><span class="pre">POINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.'</span></em><a class="headerlink" href="#pydolphinscheduler.constants.Symbol.POINT" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -6597,6 +6604,11 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.constants.Symbol.SLASH">
 <span class="sig-name descname"><span class="pre">SLASH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/'</span></em><a class="headerlink" href="#pydolphinscheduler.constants.Symbol.SLASH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.constants.Symbol.UNDERLINE">
+<span class="sig-name descname"><span class="pre">UNDERLINE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_'</span></em><a class="headerlink" href="#pydolphinscheduler.constants.Symbol.UNDERLINE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

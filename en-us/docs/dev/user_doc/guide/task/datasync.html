@@ -38,23 +38,8 @@ DAG editing page.</li>
 <li>Drag from the toolbar <img src="/img/tasks/icons/datasync.png" width="15"/> task node to canvas.</li>
 </ul>
 <h2>Task Example</h2>
-<p>First, introduce some general parameters of DolphinScheduler:</p>
 <ul>
-<li><strong>Node name</strong>: The name of the task. Node names within the same workflow must be unique.</li>
-<li><strong>Run flag</strong>: Indicating whether to schedule the task. If you do not need to execute the task, you can turn on the <code>Prohibition execution</code> switch.</li>
-<li><strong>Description</strong>: Describing the function of this node.</li>
-<li><strong>Task priority</strong>: When the number of the worker threads is insufficient, the worker executes task according to the priority. When two tasks have the same priority, the worker will execute them in <code>first come first served</code> fashion.</li>
-<li><strong>Worker group</strong>: Machines which execute the tasks. If you choose <code>default</code>, scheduler will send the task to a random worker.</li>
-<li><strong>Task group name</strong>: Resource group of tasks. It will not take effect if not configured.</li>
-<li><strong>Environment name</strong>: Environment to execute the task.</li>
-<li><strong>Number of failed retries</strong>: The number of task retries for failures. You could select it by drop-down menu or fill it manually.</li>
-<li><strong>Failure retry interval</strong>: Interval of task retries for failures. You could select it by drop-down menu or fill it manually.</li>
-<li><strong>CPU quota</strong>: Assign the specified CPU time quota to the task executed. Takes a percentage value. Default -1 means unlimited. For example, the full CPU load of one core is 100%, and that of 16 cores is 1600%. You could configure it by <a href="../../architecture/configuration.md">task.resource.limit.state</a>.</li>
-<li><strong>Max memory</strong>: Assign the specified max memory to the task executed. Exceeding this limit will trigger oom to be killed and will not automatically retry. Takes an MB value. Default -1 means unlimited. You could configure it by <a href="../../architecture/configuration.md">task.resource.limit.state</a>.</li>
-<li><strong>Timeout alarm</strong>: Alarm for task timeout. When the task exceeds the &quot;timeout threshold&quot;, an alarm email will send.</li>
-<li><strong>Delayed execution time</strong>: The time that a task delays for execution in minutes.</li>
-<li><strong>Resources</strong>: 	Resources which your task node uses.</li>
-<li><strong>Predecessor task</strong>: 	The upstream task of the current task node.</li>
+<li>Please refer to <a href="appendix.md">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>
 </ul>
 <p>Here are some specific parameters for the DataSync plugin:</p>
 <ul>

@@ -139,6 +139,9 @@
         <span class="s2">&quot;display_rows&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
+    <span class="n">ext</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;.sql&quot;</span><span class="p">}</span>
+    <span class="n">ext_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;_sql&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -151,8 +154,8 @@
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sql</span> <span class="o">=</span> <span class="n">sql</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">SQL</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="n">sql</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param_sql_type</span> <span class="o">=</span> <span class="n">sql_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span> <span class="o">=</span> <span class="n">datasource_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pre_statements</span> <span class="o">=</span> <span class="n">pre_statements</span> <span class="ow">or</span> <span class="p">[]</span>
@@ -181,7 +184,7 @@
             <span class="s2">&quot;|(.* |)update |(.* |)truncate |(.* |)alter |(.* |)create ).*&quot;</span>
         <span class="p">)</span>
         <span class="n">pattern_select</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern_select_str</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">pattern_select</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pattern_select</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sql</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">SqlType</span><span class="o">.</span><span class="n">NOT_SELECT</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">SqlType</span><span class="o">.</span><span class="n">SELECT</span>

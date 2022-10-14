@@ -22,31 +22,30 @@
 <h2>任务参数</h2>
 <ul>
 <li>
-<p>默认参数说明请参考<a href="appendix.md#%E9%BB%98%E8%AE%A4%E4%BB%BB%E5%8A%A1%E5%8F%82%E6%95%B0">DolphinScheduler任务参数附录</a>。</p>
+<p>默认参数说明请参考<a href="appendix.md">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</p>
 </li>
 <li>
 <p>引擎：支持 FLINK 和 SPARK</p>
-<ul>
-<li>FLINK
-<ul>
-<li>运行模型：支持 <code>run</code> 和 <code>run-application</code> 两种模式</li>
-<li>选项参数：用于添加 Flink 引擎本身参数，例如 <code>-m yarn-cluster -ynm seatunnel</code></li>
-</ul>
 </li>
-<li>SPARK
-<ul>
+<li>
+<p>FLINK</p>
+</li>
+<li>
+<p>运行模型：支持 <code>run</code> 和 <code>run-application</code> 两种模式</p>
+</li>
+<li>
+<p>选项参数：用于添加 Flink 引擎本身参数，例如 <code>-m yarn-cluster -ynm seatunnel</code></p>
+</li>
+<li>
+<p>SPARK</p>
+</li>
 <li>
 <p>部署方式：指定部署模式，<code>cluster</code> <code>client</code> <code>local</code></p>
 </li>
 <li>
 <p>Master：指定 <code>Master</code> 模型，<code>yarn</code> <code>local</code> <code>spark</code> <code>mesos</code>，其中 <code>spark</code> 和 <code>mesos</code> 需要指定 <code>Master</code> 服务地址，例如：127.0.0.1:7077</p>
-<blockquote>
-<p>点击 <a href="https://seatunnel.apache.org/docs/2.1.2/command/usage">这里</a> 获取更多关于<code>Apache SeaTunnel command</code> 使用的信息</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>    &gt; 点击 [这里](https://seatunnel.apache.org/docs/2.1.2/command/usage) 获取更多关于`Apache SeaTunnel command` 使用的信息
+</code></pre>
 </li>
 <li>
 <p>自定义配置：支持自定义配置或从资源中心选择配置文件</p>

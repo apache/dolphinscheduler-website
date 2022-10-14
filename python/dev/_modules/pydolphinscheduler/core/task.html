@@ -97,6 +97,7 @@
 
 <span class="sd">&quot;&quot;&quot;DolphinScheduler Task and TaskRelation object.&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
@@ -104,6 +105,7 @@
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Delimiter</span><span class="p">,</span>
     <span class="n">ResourceKey</span><span class="p">,</span>
+    <span class="n">Symbol</span><span class="p">,</span>
     <span class="n">TaskFlag</span><span class="p">,</span>
     <span class="n">TaskPriority</span><span class="p">,</span>
     <span class="n">TaskTimeoutFlag</span><span class="p">,</span>
@@ -194,7 +196,7 @@
     <span class="n">_task_custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="n">ext</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">ext_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ext_attr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="n">DEFAULT_CONDITION_RESULT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;successNode&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="s2">&quot;failedNode&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]}</span>
 
@@ -351,23 +353,26 @@
         <span class="sd">&quot;&quot;&quot;Get the file content according to the resource plugin.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
-
         <span class="n">_ext_attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="p">)</span>
-
         <span class="k">if</span> <span class="n">_ext_attr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">_ext_attr</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ext</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_ext_attr</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">_ext_attr</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ext</span><span class="p">)):</span>
                 <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">()</span>
                 <span class="n">content</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">_ext_attr</span><span class="p">)</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">),</span> <span class="n">content</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">UNDERLINE</span><span class="p">),</span> <span class="n">content</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">index</span> <span class="o">=</span> <span class="n">_ext_attr</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;This task does not support files with suffix </span><span class="si">{}</span><span class="s2">, only supports </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                            <span class="n">_ext_attr</span><span class="p">[</span><span class="n">index</span><span class="p">:],</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">suf</span><span class="p">)</span> <span class="k">for</span> <span class="n">suf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="p">):</span>
+                    <span class="n">index</span> <span class="o">=</span> <span class="n">_ext_attr</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">&quot;This task does not support files with suffix </span><span class="si">{}</span><span class="s2">, only supports </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                <span class="n">_ext_attr</span><span class="p">[</span><span class="n">index</span><span class="p">:],</span>
+                                <span class="n">Symbol</span><span class="o">.</span><span class="n">COMMA</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">suf</span><span class="p">)</span> <span class="k">for</span> <span class="n">suf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext</span><span class="p">),</span>
+                            <span class="p">)</span>
                         <span class="p">)</span>
-                    <span class="p">)</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">),</span> <span class="n">_ext_attr</span><span class="p">)</span></div>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">UNDERLINE</span><span class="p">),</span> <span class="n">_ext_attr</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
