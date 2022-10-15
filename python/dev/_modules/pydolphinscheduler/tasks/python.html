@@ -113,22 +113,22 @@
 <div class="viewcode-block" id="Python"><a class="viewcode-back" href="../../../tasks/python.html#pydolphinscheduler.tasks.Python">[docs]</a><span class="k">class</span> <span class="nc">Python</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Task Python object, declare behavior for Python task to dolphinscheduler.</span>
 
-<span class="sd">    Python task support two types of parameters for :param:``code``, and here is an example:</span>
+<span class="sd">    Python task support two types of parameters for :param:``definition``, and here is an example:</span>
 
-<span class="sd">    Using str type of :param:``code``</span>
+<span class="sd">    Using str type of :param:``definition``</span>
 
 <span class="sd">    .. code-block:: python</span>
 
-<span class="sd">        python_task = Python(name=&quot;str_type&quot;, code=&quot;print(&#39;Hello Python task.&#39;)&quot;)</span>
+<span class="sd">        python_task = Python(name=&quot;str_type&quot;, definition=&quot;print(&#39;Hello Python task.&#39;)&quot;)</span>
 
-<span class="sd">    Or using Python callable type of :param:``code``</span>
+<span class="sd">    Or using Python callable type of :param:``definition``</span>
 
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        def foo():</span>
 <span class="sd">            print(&quot;Hello Python task.&quot;)</span>
 
-<span class="sd">        python_task = Python(name=&quot;str_type&quot;, code=foo)</span>
+<span class="sd">        python_task = Python(name=&quot;str_type&quot;, definition=foo)</span>
 
 <span class="sd">    :param name: The name for Python task. It define the task name.</span>
 <span class="sd">    :param definition: String format of Python script you want to execute or Python callable you</span>
