@@ -68,8 +68,8 @@
 <p>测试代码中尽量不要使用 Thread.sleep，这让测试变得不稳定，可能会因为环境或者负载而意外导致失败。建议采用以下方式：</p>
 <p>Awaitility.await().atMost(…)</p>
 <p>2:忽略某些测试类</p>
-<p>@Ignore 注解应该附上相关 issue 地址，方便后续开发者追踪了解该测试被忽略的历史原因。</p>
-<p>如 @Ignore(&quot;see #1&quot;)</p>
+<p>@Disabled 注解应该附上相关 issue 地址，方便后续开发者追踪了解该测试被忽略的历史原因。</p>
+<p>如 @Disabled(&quot;see #1&quot;)</p>
 <p>3: try-catch 单元测试异常</p>
 <p>当单元测试中的代码引发异常的时候，测试将失败,因此，不需要使用 try-catch 捕获异常。</p>
 <pre><code>@Test

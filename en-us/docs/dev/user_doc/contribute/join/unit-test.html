@@ -75,8 +75,8 @@
 <p>Try not to use Thread.sleep in your test code, it makes the test unstable and may fail unexpectedly due to the environment or load. The following approach is recommended.</p>
 <p><code>Awaitility.await().atMost(...)</code></p>
 <p>2: Ignore some test classes</p>
-<p>The @Ignore annotation should be linked to the relevant issue address so that subsequent developers can track the history of why the test was ignored.</p>
-<p>For example @Ignore(&quot;see #1&quot;).</p>
+<p>The @Disabled annotation should be linked to the relevant issue address so that subsequent developers can track the history of why the test was ignored.</p>
+<p>For example @Disabled(&quot;see #1&quot;).</p>
 <p>3: try-catch Unit test exception</p>
 <p>The test will fail when the code in the unit test throws an exception. Therefore, there is no need to use try-catch to catch exceptions.</p>
 <pre><code>    ```java
