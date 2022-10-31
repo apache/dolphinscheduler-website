@@ -312,7 +312,7 @@
 </table>
 <p>DolphinScheduler同样可以通过<code>bin/env/dolphinscheduler_env.sh</code>进行Zookeeper相关的配置。</p>
 <h2>common.properties [hadoop、s3、yarn配置]</h2>
-<p>common.properties配置文件目前主要是配置hadoop/s3/yarn相关的配置，配置文件位置：</p>
+<p>common.properties配置文件目前主要是配置hadoop/s3/yarn/applicationId收集相关的配置，配置文件位置：</p>
 <table>
 <thead>
 <tr>
@@ -488,6 +488,11 @@
 <td>zeppelin.rest.url</td>
 <td><a href="http://localhost:8080">http://localhost:8080</a></td>
 <td>zeppelin RESTful API 接口地址</td>
+</tr>
+<tr>
+<td>appId.collect</td>
+<td>log</td>
+<td>收集applicationId方式， 如果用aop方法，将配置log替换为aop，并将<code>bin/env/dolphinscheduler_env.sh</code>自动收集applicationId相关环境变量配置的注释取消掉，注意：aop不支持远程主机提交yarn作业的方式比如Beeline客户端提交，且如果用户环境覆盖了dolphinscheduler_env.sh收集applicationId相关环境变量配置，aop方法会失效</td>
 </tr>
 </tbody>
 </table>
@@ -919,6 +924,13 @@
 <span class="hljs-built_in">export</span> DATAX_HOME=<span class="hljs-variable">${DATAX_HOME:-/opt/soft/datax}</span>
 
 <span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HADOOP_HOME</span>/bin:<span class="hljs-variable">$SPARK_HOME</span>/bin:<span class="hljs-variable">$PYTHON_HOME</span>/bin:<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$HIVE_HOME</span>/bin:<span class="hljs-variable">$FLINK_HOME</span>/bin:<span class="hljs-variable">$DATAX_HOME</span>/bin:<span class="hljs-variable">$PATH</span>
+
+<span class="hljs-comment"># applicationId auto collection related configuration, the following configurations are unnecessary if setting appId.collect=log</span>
+<span class="hljs-built_in">export</span> HADOOP_CLASSPATH=`hadoop classpath`:<span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/tools/libs/*
+<span class="hljs-built_in">export</span> SPARK_DIST_CLASSPATH=<span class="hljs-variable">$HADOOP_CLASSPATH</span>:<span class="hljs-variable">$SPARK_DIST_CLASS_PATH</span>
+<span class="hljs-built_in">export</span> HADOOP_CLIENT_OPTS=<span class="hljs-string">&quot;-javaagent:<span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/tools/libs/aspectjweaver-1.9.7.jar&quot;</span>:<span class="hljs-variable">$HADOOP_CLIENT_OPTS</span>
+<span class="hljs-built_in">export</span> SPARK_SUBMIT_OPTS=<span class="hljs-string">&quot;-javaagent:<span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/tools/libs/aspectjweaver-1.9.7.jar&quot;</span>:<span class="hljs-variable">$SPARK_SUBMIT_OPTS</span>
+<span class="hljs-built_in">export</span> FLINK_ENV_JAVA_OPTS=<span class="hljs-string">&quot;-javaagent:<span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/tools/libs/aspectjweaver-1.9.7.jar&quot;</span>:<span class="hljs-variable">$FLINK_ENV_JAVA_OPTS</span>
 </code></pre>
 <h2>日志相关配置</h2>
 <table>

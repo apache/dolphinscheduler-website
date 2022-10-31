@@ -490,6 +490,11 @@ Currently, DolphinScheduler just makes a basic config, remember to config furthe
 <td><a href="http://localhost:8080">http://localhost:8080</a></td>
 <td>the RESTful API url of zeppelin</td>
 </tr>
+<tr>
+<td>appId.collect</td>
+<td>log</td>
+<td>way to collect applicationId, if use aop, alter the configuration from log to aop, annotation of applicationId auto collection related configuration in <code>bin/env/dolphinscheduler_env.sh</code> should be removed. Note: Aop way doesn't support submitting yarn job on remote host by client mode like Beeline, and will failure if override applicationId collection-related environment configuration in dolphinscheduler_env.sh, and .</td>
+</tr>
 </tbody>
 </table>
 <h3>Api-server related configuration</h3>
@@ -921,6 +926,13 @@ mainly configuration including <code>JAVA_HOME</code> and other environment path
 <span class="hljs-built_in">export</span> DATAX_HOME=<span class="hljs-variable">${DATAX_HOME:-/opt/soft/datax}</span>
 
 <span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HADOOP_HOME</span>/bin:<span class="hljs-variable">$SPARK_HOME</span>/bin:<span class="hljs-variable">$PYTHON_HOME</span>/bin:<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$HIVE_HOME</span>/bin:<span class="hljs-variable">$FLINK_HOME</span>/bin:<span class="hljs-variable">$DATAX_HOME</span>/bin:<span class="hljs-variable">$PATH</span>
+
+<span class="hljs-comment"># applicationId auto collection related configuration, the following configurations are unnecessary if setting appId.collect=log</span>
+<span class="hljs-built_in">export</span> HADOOP_CLASSPATH=`hadoop classpath`:<span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/tools/libs/*
+<span class="hljs-built_in">export</span> SPARK_DIST_CLASSPATH=<span class="hljs-variable">$HADOOP_CLASSPATH</span>:<span class="hljs-variable">$SPARK_DIST_CLASS_PATH</span>
+<span class="hljs-built_in">export</span> HADOOP_CLIENT_OPTS=<span class="hljs-string">&quot;-javaagent:<span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/tools/libs/aspectjweaver-1.9.7.jar&quot;</span>:<span class="hljs-variable">$HADOOP_CLIENT_OPTS</span>
+<span class="hljs-built_in">export</span> SPARK_SUBMIT_OPTS=<span class="hljs-string">&quot;-javaagent:<span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/tools/libs/aspectjweaver-1.9.7.jar&quot;</span>:<span class="hljs-variable">$SPARK_SUBMIT_OPTS</span>
+<span class="hljs-built_in">export</span> FLINK_ENV_JAVA_OPTS=<span class="hljs-string">&quot;-javaagent:<span class="hljs-variable">${DOLPHINSCHEDULER_HOME}</span>/tools/libs/aspectjweaver-1.9.7.jar&quot;</span>:<span class="hljs-variable">$FLINK_ENV_JAVA_OPTS</span>
 </code></pre>
 <h3>Log related configuration</h3>
 <table>
