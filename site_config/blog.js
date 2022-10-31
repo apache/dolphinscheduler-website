@@ -4,6 +4,27 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
+                title: 'How did Yili explore a “path” for digital transformation based on DolphinScheduler?,
+                author: 'Debra Chen',
+                dateStr: '2022-10-31',
+                desc: 'People in general know about Yili. Every year, 1.3 billion... ',
+                link: '/en-us/blog/How_did_Yili_explore_a_path_for_digital_transformation_based_on_DolphinScheduler.html',
+            },
+            {
+                title: 'How can more people benefit from big data?',
+                author: 'Debra Chen',
+                dateStr: '2022-10-29',
+                desc: 'During the ApacheCon Asia 2022, Chen Wei, who has more than 10 years... ',
+                link: '/en-us/blog/How_can_more_people_benefit_from_big_data.html',
+            },
+            {
+                title: 'Apache DolphinScheduler 2.0.7 released, fixes complement and fault tolerance',
+                author: 'Debra Chen',
+                dateStr: '2022-10-28',
+                desc: 'Recently, Apache DolphinScheduler version 2.0.7 was officially released...... ',
+                link: '/en-us/blog/Apache_DolphinScheduler_2.0.7.html',
+            },
+            {
                 title: 'Apache DolphinScheduler 3.0.1 released, with the scheduling kernel and UI optimized',
                 author: 'Debra Chen',
                 dateStr: '2022-9-28',

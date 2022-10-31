@@ -559,6 +559,13 @@ export default {
       title: 'Events & News',
       list: [
         {
+          img: 'https://miro.medium.com/max/630/0*Ep9rZFSTviU8SjmP',
+          title: 'Apache DolphinScheduler 2.0.7 released, fixes complement and fault tolerance',
+          content: 'Recently, Apache DolphinScheduler version 2.0.7 was officially released...',
+          dateStr: '2022-9-28',
+          link: '/en-us/blog/Apache_DolphinScheduler_2.0.7.html',
+        },
+        {
           img: 'https://miro.medium.com/max/1400/1*zgkZk3lhn3UhLAKkHM9wzQ.png',
           title: 'ApacheCon Asia 2022 Review | Application of DolphinScheduler in T3Go One-stop Platform',
           content: 'hanks to this Release Manager — @zhuangchong, who led the release of the 3.0.1...\n...',
@@ -572,14 +579,6 @@ export default {
           content: 'The official version 3.0.0 has undergone the most significant changes since its release ...',
           dateStr: '2022-9-2',
           link: '/en-us/blog/Apache_dolphinScheduler_3.0.0.html',
-        },
-
-        {
-          img: 'https://miro.medium.com/max/630/0*Ep9rZFSTviU8SjmP',
-          title: 'Apache DolphinScheduler Extends Capabilities Through Python API and AWS Support',
-          content: 'In the ever-changing world of technology, data is abundant. In fact,....',
-          dateStr: '2022-8-26',
-          link: '/en-us/blog/Python_API_and_AWS_Support.html',
         },
 
       ],
