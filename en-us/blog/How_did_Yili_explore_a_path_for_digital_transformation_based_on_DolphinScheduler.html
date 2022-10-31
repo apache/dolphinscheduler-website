@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup">
+  <meta name="description" content="People in general know about Yili. Every year, 1.3 billion...">
+  <title># How did Yili explore a “path” for digital transformation based on DolphinScheduler?</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/build/blog.md.css">
+</head>
+<body>
+  <div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-dark"><div class="banner-tips"><div>🤔 Have queries regarding Apache DolphinScheduler, Join Slack channel to disscuss them <a class="link-tips" href="https://s.apache.org/dolphinscheduler-slack">join #dolphinscheduler channel</a>! 🌟</div></div><div class="header-body"><span class="mobile-menu-btn mobile-menu-btn-dark"></span><a href="/en-us/index.html"><img class="logo" src="/img/hlogo_white.svg"/></a><div class="search search-dark"><span class="icon-search"></span></div><span class="language-switch language-switch-dark">中</span><div class="header-menu"><div><ul class="ant-menu whiteClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="/en-us/docs/latest/user_doc/about/introduction.html" target="_self">DOCS</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/download/download.html" target="_self">DOWNLOAD</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item ant-menu-item-selected" role="menuitem"><a href="/en-us/blog/index.html" target="_self">BLOG</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/community/community.html" target="_self">COMMUNITY</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="https://www.apache.org/" target="_blank">ASF</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/user/index.html" target="_self">USER</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div><div class="mobile-menu"><div class="mobile-menu-content"><div class="mobile-menu-list"><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/index.html" target="_self">HOME</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/docs/latest/user_doc/about/introduction.html" target="_self">DOCS</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="/en-us/docs/latest/user_doc/about/introduction.html" target="_self">latest(3.1.0)</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/3.0.1/user_doc/about/introduction.html" target="_self">3.0.1</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/2.0.7/user_doc/guide/quick-start.html" target="_self">2.0.7</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/release/history-versions.html" target="_self">Older Versions</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/download/download.html" target="_self">DOWNLOAD</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/blog/index.html" target="_self">BLOG</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/community/community.html" target="_self">COMMUNITY</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="https://www.apache.org/" target="_blank">ASF</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="https://www.apache.org/" target="_blank">Foundation</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/licenses/" target="_blank">License</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/security/" target="_blank">Security</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/user/index.html" target="_self">USER</a></div></div></div><div class="mobile-menu-dummy"></div></div></div></header><section class="blog-content markdown-body"><h1>How did Yili explore a “path” for digital transformation based on DolphinScheduler?</h1>
+<p><img src="https://miro.medium.com/max/1400/1*m9up--yqrOqWkvVCAF7QWA.png" alt=""></p>
+<h1>Background and introduction of application</h1>
+<h2>Introduction of Yili</h2>
+<p>People in general know about Yili. Every year, 1.3 billion national consumers consume an average of 100 million packs of Yili products every day. The starting point of Yili’s business can be traced back to the cultivation of grass, the breeding of a cow, the production of a cup of milk, and finally delivered to consumers through a complex supply chain system, which involves the primary, secondary and tertiary industries.</p>
+<h2>Background of the application</h2>
+<p>There is a complex application matrix behind the huge business volume, which poses a great challenge to our technical architecture.</p>
+<p><strong>· The current multi-cloud distribution of applications makes cross-cloud data migration and multi-cloud unified scheduling a rigid requirement</strong>
+Currently, in the process of cooperation with cloud service providers, Yili does not only consider the IaaS and PaaS abilities supported by cloud service providers, but also the ecology behind them, including private domain ecology, e-commerce, logistics, etc. Therefore, our applications are more distributed on multiple clouds, and the data generated by these applications are also found on multiple clouds. The current centralized data structure requires a large amount of physical data relocation, and we need to migrate 8,000 tables per day, involving more than 80 systems. Stable and scalable multi-cloud data integration is thus crucial.</p>
+<p>· Unified technical architecture to combat entropy increase, reduce cost and increase efficiency</p>
+<p>The first challenge we faced was the ease of use, stability, and scalability of data integration and scheduling abilities due to massive relocation requirements. The second one came from the effect of entropy increase brought by the landing of a large number of applications. In the case of limited technical resources, it was difficult for us to effectively control our costs and improve our efficiency, especially in the face of data integration. We were facing the following core issues:</p>
+<p>• Duplicate construction of similar tools and products: Due to a lack of unified planning, duplicate construction of similar functional products exists.</p>
+<p>• Miscellaneous technology selection: AirFlow, Azkaban, Oozie, self-developed scheduling, etc.</p>
+<p>• High construction and derivative costs: costs such as personnel resource reserves, operation and maintenance, and operation training for multiple technology stacks.</p>
+<p>• Extensibility issues: extensive support for localized individual requirements.</p>
+<p>Before the introduction of Apache DolphinScheduler, our overall technical architecture was not unified in scheduling and data integration. To meet our internal rigid requirements, and with the consideration of scalability and stability, we planned to build a unified scheduling &amp; data integration service system. After researching a large number of scheduling products, we decided to use Apache DolphinScheduler as our core engine and make localized transformations on top of it.</p>
+<h2>The positioning and application of the status of the Yili Big Data Scheduling System</h2>
+<p>With limited technical resources, it is challenging to initiate the development of a tool. We must be clear about who our core users are, what the core positioning of this product is, and in what circumstances is this product used.</p>
+<p>After sufficient research, we have clarified the core positioning of this tool. It is not a scheduling platform for simple workflow, but a development platform of integrated data that suits the multi-cloud business of Yili. Application developers support the integration of internal and external data, scheduling requirements of the application, visual orchestration, and scheduling of data tasks.</p>
+<p>Judging from the current application of Yili, the number of daily scheduling tasks has reached 13,000, there are 15 nodes of clusters and more than 8000 tables are relocated every day.</p>
+<p>We have built a unified data platform for data integration, development, scheduling, operation, and maintenance on the multi-cloud infrastructure for big data. Through this platform, we can hide the differences between multi-cloud big data platforms and provide users with a unified development experience.</p>
+<p>**· System Overview of the Data Scheduling Service Platform of Yili
+**
+We have re-abstracted the 2.0.2 version of the entire model of DolphinScheduler, with the project as the top model, abstracting the three concepts of resources, roles, and tools, and bound them to the project. Among them, the toolset is the most important. All the tools used in the data development process would be expanded here. Users can complete data integration, development, operation and maintenance, asset management, and other tasks by authorizing projects in the platform. We have also integrated the tenants of Apache DolphinScheduler with the tenants of the big data platform and completed the fine management of resource quotas and permissions through the tenant management system of Ranger+Ldap+Kerberos on the big data platform.</p>
+<h1>Practice &amp; Exploration</h1>
+<p>We have upgraded three times based on Apache DolphinScheduler 2.0.2 version with many function optimization, but there is a logic that runs through our product design and development process, that is, to meet the core needs of users to build new functions, improve user experience and to optimize the old functions. We aim to make the product easy to use, easy to get used to, user-friendly, and with reasonable moving lines.</p>
+<h2>Scenario-oriented data integration</h2>
+<p>What is scenario-oriented data integration? Our products are completely open to users. When developers do data integration, they have a very clear context, such as synchronizing Mysql data to Hive, ES data to StarRocks, etc. Therefore, we provide a large number of integration components, which can complete the integration based on the configuration method. In the whole process, no code is needed. This improves the efficiency of data integration development.</p>
+<p>Before planning the core functions of data integration, we had the following main problems:</p>
+<ol>
+<li>
+<p>Multiple data integration components or technologies make it difficult for users to choose</p>
+</li>
+<li>
+<p>An inconsistent technical structure that leads to increased maintenance costs</p>
+</li>
+<li>
+<p>The configuration of data integration is troublesome</p>
+</li>
+<li>
+<p>Poor scalability for secondary development</p>
+</li>
+</ol>
+<p>We implemented the following strategies for these four problems :</p>
+<ol>
+<li>
+<p>We only gave users the best choice — there are often no choices to choose from, so we will just provide the best one.</p>
+</li>
+<li>
+<p>Based on the structure of DataX unified data integration, we solved problems related to resources and reduced operation and maintenance costs</p>
+</li>
+<li>
+<p>For business applications, we used the template generator to generate task templates to simplify operations</p>
+</li>
+<li>
+<p>We implemented a reasonable code design</p>
+</li>
+</ol>
+<h2>A lightened asset management</h2>
+<p>The core requirement corresponding to this function is as follows: when applying the native big data capability to build a lightened data warehouse, it is necessary to gain a clear insight into the technical metadata information, including library, table, field, and basic attributes. We listed some business tag information, including subject domains, topics, etc., to facilitate the use of data by analysts. Based on such demands, we extended this lightened asset management function on the platform.</p>
+<p><strong>Forward and reverse table building are the core functions</strong>. Forward table building refers to supporting users to create table models on the platform and materialize the table models on the big data platform. Reverse table building is used more often. In many cases, users still use traditional development methods to write scripts on the ETL server and submit them to the big data platform for calculation. At this time, the table already exists in advance, rather than being created visually. To reverse building a table is to automatically scan the metadata and register it on the asset platform.</p>
+<p>Asset retrieval provides asset retrieval functions for development and business analysis. It can perform lightweight retrieval based on subject domains, tags, field names, etc., and display asset cards, and upstream and downstream bloodline information.</p>
+<h2>Scheduling of multi-cloud tasks</h2>
+<p>Scheduling of multi-cloud tasks is to solve the integrated scheduling problem of multi-cloud platforms. As mentioned above, Yili’s applications are distributed in multiple clouds, and this function can complete cross-cloud task scheduling based on a canvas. We made some extensions and transformations based on Apache DolphinScheduler. The binding relationship between the environment and the worker group is flexibly used, and the big data infrastructure is used to solve the problem of Kerberos cross-domain and mutual trust of multi-cluster Keytab.</p>
+<p>We can separately trigger data integration tasks, including data processing tasks on different clouds. After the processing is completed, data calculation and business application-oriented planning are triggered on another cloud, and data services are provided finally. In this way, multi-cloud scheduling is done.</p>
+<h2>Optimization of monitoring dashboard</h2>
+<p>Based on the original Apache DolphinScheduler dashboard, we did some optimization and upgrade. By focusing on operation and maintenance, we built the core indicators that the operation and maintenance work focuses on and displayed the indicators visually.</p>
+<p>The entire monitoring board is divided into task monitoring and cluster service monitoring.</p>
+<p>For task monitoring, we design key indicators like the number of projects, workflow (online/offline), the number of tasks to be scheduled, the number of tasks that have been successfully scheduled, an overview of the hourly operation, the TOP5 statistics on running failures, and the TOP5 statistics on running time.</p>
+<p>For service monitoring, key indicators include CPU, memory, average load, worker load in each cloud environment, and hourly worker operation overview.</p>
+<h2>Upgrade and optimization of users’ experience</h2>
+<p>We also upgraded and optimized the user experience, such as the optimization of users’ timed configuration and the overall layout, which aims to optimize the user experience and make it easier to use.</p>
+<h1>Plans</h1>
+<p>Lastly, these are the plans for DolphinScheduler.</p>
+<h2>Long-term planning</h2>
+<p>In the long run, both the community and our company need to have a clear positioning for DolphinScheduler. It is not a scheduling platform for simple workflow, but a one-stop intelligent data development platform. There are at least three important characteristics of this platform:</p>
+<ol>
+<li>
+<p>Multi-cloud unification: It can perfectly fit with the new decentralized data structure, which is a very important direction;</p>
+</li>
+<li>
+<p>Low-code: From the user’s point of view, it can support one-stop visual modeling, development, and analysis experience for the whole link;</p>
+</li>
+<li>
+<p>Intelligent management: The current data structure is based on reducing the complexity of data management, metadata-driven governance, and realizing intelligent data quality management will also be an important proposition.</p>
+</li>
+</ol>
+<h2>Short and mid-range plans:</h2>
+<p>Three important points will be focused on in the short term :</p>
+<ol>
+<li>
+<p>The combination of cloud-native: The DolphinScheduler community has provided deployment services based on k8S, so our master, worker, and other services will be transformed based on containerization;</p>
+</li>
+<li>
+<p>Introduce the testing and online process: add roles such as developers and reviewers in the project, and control the online actions, and the metadata will be automatically synchronized after getting online;</p>
+</li>
+<li>
+<p>Quality module: DolphinScheduler 3.0 has added the data quality module. We will integrate this part and carry out the localized expansion, including pre-defining data quality, auditing, introducing data blood relationships, etc.</p>
+</li>
+</ol>
+<h1>Reflects on open-source</h1>
+<p>During the process of introducing DolphinScheduler, Yili was driven and inspired by some thoughts on collaboration. That is it’s very important to build a good collaboration between the company and open-source.</p>
+<p>Internally, we will assign specific personnel to follow up on the dynamics of open-source communities. The R&amp;D team will proactively find bugs and submit them to the community, and submit PRs after they are fixed.</p>
+<p>At the same time, we will also actively interact with the community and check the trends through weekly and monthly meetings. Companies with limited technical research and development resources should find an open-source product that fits the actual use, and truly understand and implement the meaning of open-source. It is a powerful tool, as it can solve many problems internally, and notice issues that were never noticed before. Therefore, companies need to implement a suitable process for open-source and grow with the community.</p>
+<p>That’s all of my talks. Thank you!</p>
+<h1>How to contribute:</h1>
+<ul>
+<li>
+<p>GitHub Code Repository: <a href="https://github.com/apache/dolphinscheduler">https://github.com/apache/dolphinscheduler</a></p>
+</li>
+<li>
+<p>Official Website:<a href="https://dolphinscheduler.apache.org/">https://dolphinscheduler.apache.org/</a></p>
+</li>
+<li>
+<p>Mail List:dev@dolphinscheduler@apache.org</p>
+</li>
+<li>
+<p>Twitter:@DolphinSchedule</p>
+</li>
+</ul>
+</section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li><li><a href="/en-us/docs/latest/user_doc/contribute/join/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li></ul></div><div class="copyright"><span>Copyright © 2019-2022 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+  <script src="/asset/js/react/react-with-addons.min.js"></script>
+  <script src="/asset/js/react/react-dom.min.js"></script>
+  <script>window.rootPath = '';</script>
+  <script src="/build/blog.md.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6bc736fd9885d9a5dc938425ac062ad";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-899J8PYKJZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-899J8PYKJZ');
+  </script>
+</body>
+</html>

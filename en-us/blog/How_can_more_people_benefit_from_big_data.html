@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup">
+  <meta name="description" content="During the ApacheCon Asia 2022, Chen Wei, who has more than 10 years of experience in Big Data...">
+  <title># How can more people benefit from big data?</title>
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" href="/build/blog.md.css">
+</head>
+<body>
+  <div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-dark"><div class="banner-tips"><div>🤔 Have queries regarding Apache DolphinScheduler, Join Slack channel to disscuss them <a class="link-tips" href="https://s.apache.org/dolphinscheduler-slack">join #dolphinscheduler channel</a>! 🌟</div></div><div class="header-body"><span class="mobile-menu-btn mobile-menu-btn-dark"></span><a href="/en-us/index.html"><img class="logo" src="/img/hlogo_white.svg"/></a><div class="search search-dark"><span class="icon-search"></span></div><span class="language-switch language-switch-dark">中</span><div class="header-menu"><div><ul class="ant-menu whiteClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="/en-us/docs/latest/user_doc/about/introduction.html" target="_self">DOCS</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/download/download.html" target="_self">DOWNLOAD</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item ant-menu-item-selected" role="menuitem"><a href="/en-us/blog/index.html" target="_self">BLOG</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/community/community.html" target="_self">COMMUNITY</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper"><a href="https://www.apache.org/" target="_blank">ASF</a></span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/user/index.html" target="_self">USER</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div><div class="mobile-menu"><div class="mobile-menu-content"><div class="mobile-menu-list"><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/index.html" target="_self">HOME</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/docs/latest/user_doc/about/introduction.html" target="_self">DOCS</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="/en-us/docs/latest/user_doc/about/introduction.html" target="_self">latest(3.1.0)</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/3.0.1/user_doc/about/introduction.html" target="_self">3.0.1</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/2.0.7/user_doc/guide/quick-start.html" target="_self">2.0.7</a></div><div class="mobile-sub-menu-item"><a href="/en-us/docs/release/history-versions.html" target="_self">Older Versions</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/download/download.html" target="_self">DOWNLOAD</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/blog/index.html" target="_self">BLOG</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/community/community.html" target="_self">COMMUNITY</a></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="https://www.apache.org/" target="_blank">ASF</a><em class="mobile-menu-icon"></em><div class="mobile-sub-menus"><div class="mobile-sub-menu-item"><a href="https://www.apache.org/" target="_blank">Foundation</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/licenses/" target="_blank">License</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/security/" target="_blank">Security</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></div><div class="mobile-sub-menu-item"><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></div></div></div><div class="mobile-menu-item"><a class="mobile-menu-title" href="/en-us/user/index.html" target="_self">USER</a></div></div></div><div class="mobile-menu-dummy"></div></div></div></header><section class="blog-content markdown-body"><h1>How can more people benefit from big data?</h1>
+<p><img src="https://miro.medium.com/max/640/1*2sUnAfzJd8nRlTKYDfIsvw.jpeg" alt="">
+<u>During the ApacheCon Asia 2022, Chen Wei, who has more than 10 years of experience in Big Data development and is head of an offline data factory development tool from a bank, delivered a keynote speech on how to enable more people to benefit from Big Data.</p>
+<p>Many thanks to volunteer Guan Bo for your text editing work, your contribution to Apache DolphinScheduler is what keeps the community moving forward!</u></p>
+<p>This presentation focused on the following four key elements.</p>
+<h1>Background Information</h1>
+<p>Business managers would like access to reliable data to help them make better business decisions.</p>
+<p>End-users want to get their data quickly within a few minutes or hours. They don’t want to go through the traditional process where they need to submit requirements to colleagues to the data department and wait weeks to get the data about requirement changes, development, and online implementation.</p>
+<p>Data development teams are getting bigger and more sophisticated to manage than ever before. Everyone who works with data wants immediate access to business data to help them make decisions.</p>
+<p>Data sources are becoming more complex, such as databases, web pages, logs, files, ERP, external data, etc.</p>
+<h2>User Needs</h2>
+<p>Advanced users are looking for limited self-service, with easy, analytical access to data through self-service.</p>
+<p>Application developers only care about the business logic, not the specific underlying technology, they also don’t want to go deeper into the configuration associated with platform operations and maintenance.</p>
+<p>Hiding as much technical detail as possible, allows business developers as well as business users to focus more on the business logic and achieving business goals.</p>
+<p>More user-friendly for system administrators, allowing them to quickly and easily manage the data platform effectively.</p>
+<p>Based on the above user requirements, we believe that DataOps is the way to go, and DataOps built on top of DevOps is the best way to achieve data agility.</p>
+<h2>What is DataOps?</h2>
+<p>DataOps is a collaborative data management practice focused on improving the communication, integration, and automation of data flows between data administrators, data consumers, and data developers within an organization.</p>
+<p>The goal of DataOps is to deliver value quicker by establishing predictable delivery as well as managing change to data, data models, and related artifacts.</p>
+<p>DataOps uses technology to automate the design, deployment, and management of data delivery through suitable levels of governance and uses metadata to improve the availability and value of data in a dynamic environment.</p>
+<p>DataOps helps us achieve rapid data innovation, deliver insights to the business customer at a faster rate, and provide data quality to support data personnel.</p>
+<p>In 2018, DataOps was included in the Technology Maturity Curve for Data Management, marking the official adoption and rollout of DataOps by the wider industry. Although DataOps can lower the barriers to data analytics, it does not make data analytics a simple task.</p>
+<h2>Focus of DataOps</h2>
+<ul>
+<li>Rapid innovation and experimentation to deliver better value to customers at an ever-increasing rate</li>
+<li>Delivering extremely high-quality data with very low error rates.</li>
+<li>Delivers interactive value through collaboration between complex arrays of people as well as technologies and environments.</li>
+<li>Clarity of measurement and monitoring and transparency of results.</li>
+</ul>
+<h2>DataOps Core Component</h2>
+<h3>Job Scheduler</h3>
+<p>Provides scheduling of workflows, and offline data development and enables data developers to focus on the implementation of business logic and improve development efficiency.</p>
+<h3>DevTools</h3>
+<p>Mainly provides development tools such as traditional scripting languages SQL, Python, etc. for quick and easy integration with the scheduling platform.</p>
+<h3>Migration and Deployment tools</h3>
+<p>Data migration and deployment management tools. Aimed towards industries where the development and testing environment is network isolated, it requires effective import and export functions for proper deployment to the production environment.</p>
+<h3>Management and monitoring tools</h3>
+<p>Administrator-friendly management, monitoring, and alert tools for offline tasks related to operations and maintenance.</p>
+<h1>Job Scheduler</h1>
+<p>Next, we will compare different job schedulers together with you.</p>
+<h2>Advantages and disadvantages of mainstream job scheduler</h2>
+<ul>
+<li>
+<p><strong>Oozie</strong>
+Oozie is an open-source workflow engine-based framework that provides job scheduling and coordination for Hadoop MapReduce, and Pig Jobs. Oozie needs to be deployed to the Java Servlet container to function. It is mainly used for scheduling tasks at regular intervals and multiple tasks can be scheduled in sequential logical order of execution.</p>
+</li>
+<li>
+<p><strong>Airflow</strong>
+Airflow is an open-source project for Airbnb’s Workflow, Python-based task management, job scheduling, and monitoring workflow platform. Airflow is a DAG (directed acyclic graph) based job scheduling system, which can be interpreted as an advanced version of crontab, but it solves the task dependency problem that Crontab cannot handle. Compared to Crontab, Airflow makes it easy to monitor the status of tasks (if they were executed successfully or not, time of execution, execution dependencies, etc.), track the history of tasks, receive email notifications when tasks fail, and view error logs.</p>
+</li>
+<li>
+<p><strong>Apache Dolphinscheduler</strong>
+DolphinScheduler is a decentralized, scalable and easily visualized DAG workflow job scheduling platform. Dedicated to solving the complex dependencies in the data processing process and enabling scheduling systems to be used right out of the box in the data processing process.</p>
+</li>
+<li>
+<p><strong>Control-M</strong>
+Control-M is a commercial version of a cross-platform job scheduling management software with powerful features but a lesser degree of programmability.</p>
+</li>
+<li>
+<p><strong>Azkaban</strong>
+Azkaban is a bulk workflow job scheduler released by Linkedin to execute a set of jobs and processes within a workflow in a specific order. Azkaban uses job profiles to establish dependencies between jobs and provides an easy-to-use web user interface to maintain and track your workflows. Azkaban requires all nodes to be deployed on a peer-to-peer basis, but under certain circumstances does not require full node peering as long as it supports high availability.</p>
+</li>
+</ul>
+<h2>Scheduler Services</h2>
+<ul>
+<li><strong>Timer Service</strong></li>
+</ul>
+<p>Provides a scheduled service of Crontab expressions to execute workflows on a scheduled cycle.</p>
+<ul>
+<li>
+<p><strong>DAG Computation</strong>
+DAG computing often refers to the internal division of a computational job into several smaller jobs, which are logically related or sequentially constructed into a DAG (directed acyclic graph) structure.</p>
+</li>
+<li>
+<p><strong>Task Execution</strong>
+Task Execution is run by the scheduling system’s execution engine according to the type of task, parameters, environment, referenced data source, etc.</p>
+</li>
+<li>
+<p><strong>Environment Manage</strong>
+Targeting distributed scheduling engines, need to provide node management capabilities to facilitate task execution at different nodes. This enables tasks to run at a scale well beyond the limits of a single machine.</p>
+</li>
+<li>
+<p><strong>Alert Service</strong>
+Notify users and system administrators when tasks fail, time out, or are not completed within a specified time.</p>
+</li>
+<li>
+<p><strong>What’s more?</strong></p>
+</li>
+</ul>
+<p>In addition to the above, we hope that the scheduler can provide environment and data source management functions. After the workflow has been configured with an environment parameter, all tasks can then directly refer to it. Data sources can be made available for other tasks in an injection method, depending on the type of task.</p>
+<h2>Job Meta</h2>
+<p><img src="https://miro.medium.com/max/640/1*gjwDaN8MfRQiLZkrvW_RRw.png" alt=""></p>
+<ul>
+<li><strong>Task Execution Cycle</strong></li>
+</ul>
+<p>(minutes, hourly, daily, weekly &amp; monthly)</p>
+<ul>
+<li><strong>Dependency Meta</strong></li>
+</ul>
+<p>Upstream metadata information (files, tables, etc.) depending on the task.</p>
+<ul>
+<li><strong>Output Meta</strong></li>
+</ul>
+<p>Downstream metadata information (files, tables, etc.) depends on the task.</p>
+<ul>
+<li><strong>Dependency Meta Classification</strong></li>
+</ul>
+<p>Classify and differentiate the sources of dependent metadata.</p>
+<ul>
+<li><strong>Dependency Meta Source</strong></li>
+</ul>
+<p>Reverse processing of task-dependent metadata to obtain upstream and downstream tasks, providing a logical basis for automatic workflow scheduling and initiation.</p>
+<ul>
+<li><strong>Job Parallel Execution Info(parallel, serial)</strong></li>
+</ul>
+<p>Controls the parallel execution status of jobs (parallel, serial).</p>
+<ul>
+<li><strong>Job Type</strong></li>
+</ul>
+<p>Type of job (SQL, SHELL, PYTHON, PROCEDURE, etc.)</p>
+<h2>Job Development</h2>
+<p>Integration IDE(script language,shell,SQL,python etc)</p>
+<p>Integrated IDE development environment (Script language, Shell, SQL, Python tasks, etc.)</p>
+<p>configurable resource file(jar，spark, etc)</p>
+<p>Configurable resource files（jar, spark, tasks that cannot be edited using text, etc.）</p>
+<p>custom components</p>
+<p>Customizable components, such as off-line data platforms where data synchronization is a specific component, require only a simple configuration of data synchronization to implement the synchronization process.</p>
+<h1>Third-Party Job</h1>
+<p>Third-party job, where a specific application generates a custom script to accomplish the job goal.</p>
+<p>Third-Party Job Integration</p>
+<p>There are two methods of integration with third-party jobs, with the second method being the primary method used.</p>
+<p><strong>First method: pull</strong></p>
+<ul>
+<li>The job scheduler provides an interface that can be accessed by the third-party system.</li>
+<li>Development within the system and configuring the scheduler in the scheduler system. Configure the job in the third-party system, configure the scheduler in the scheduling system and execute the job.</li>
+<li>Single-point of failure and bottleneck for job execution.
+<strong>Disadvantages</strong>: Requires multiple developments in third-party systems and configuration of the scheduler in the scheduling system.</li>
+</ul>
+<p><strong>Second method: push</strong></p>
+<ul>
+<li>The scheduling system provides a programmable API.</li>
+<li>Third-party systems create jobs and push them to the scheduling system, where they are automatically configured and scheduled.</li>
+</ul>
+<h2>Job Execution And Notification</h2>
+<p><img src="https://miro.medium.com/max/1400/1*gjwDaN8MfRQiLZkrvW_RRw.png" alt="">
+<strong>Job execution</strong>: automatically triggered, based on conditions, upstream task dependencies</p>
+<p><strong>Job notifications</strong>: progress and status of job execution sent to third-party systems as a push message</p>
+<h2>Sample Configuration For Data Integration</h2>
+<p><img src="https://miro.medium.com/max/1400/1*hGJaLA6xnDdwwIe63Qst_Q.png" alt="">
+<strong>Sample configurations for third-party system integration are listed above.</strong></p>
+<p>The job scheduling system provides a programmable interface to enable the injection of environmental information. You only need to specify the different types of data sources in the third-party system, you do not need to configure the details of each data source e.g. (IP, port, username, password, etc.), this part is configured in the scheduling system and the data source and environment information are injected to the job. The job then parses the data source and environment from the parameters and accesses the corresponding data source and environment. This simplifies the management of data sources for ETL jobs.</p>
+<h2>Job Assignments</h2>
+<p>Traditional job scheduling was implemented by users dragging and connecting links, but we have improved the process by:</p>
+<ul>
+<li>Integrating job scheduling into the workflow.</li>
+<li>The configuration of upstream and downstream jobs is achieved through job-dependent metadata information.</li>
+<li>Some of the tables (some dimension tables) in ETL jobs are immutable and can be added to a whitelist. The workflow eliminates the need to look for business logic upstream of the corresponding table in the whitelist when making automatic changes and resolving dependencies.</li>
+<li>Views are an important factor affecting workflow automation. Views do not have ETL jobs, so we need to consider the view as a virtual job and import the view data into the scheduling platform so that the scheduling system is aware that the jobs that depend on the view are fundamentally dependent on the tasks corresponding to the underlying tables in the view.</li>
+</ul>
+<h2>Job Impact Analysis</h2>
+<p>Thanks to the existence of metadata information, analysis of the impact of jobs is very straightforward.</p>
+<ul>
+<li>The dependencies of the upstream and downstream metadata are used to resolve the upstream jobs which are job-dependent, avoiding the use of the manual configuration to reduce the probability of errors.</li>
+<li>The calculation of some of the latest impacts, e.g. job suspension, failure, and impact of downstream jobs.</li>
+</ul>
+<h2>Low Code Platform</h2>
+<ul>
+<li>For general situations, it is a good choice to build template jobs that can be reused to calculate processes for a large number of job configurations, requiring only a single configuration of the core process to set up the parameters.</li>
+<li>Support of specific systems, such as metrics management systems, tagging systems, data desensitization systems, etc.</li>
+<li>Coding friendly, able to perform coding when required.</li>
+<li>User friendly, under certain circumstances, the system coding is used rather than through user coding, the user can obtain the required data to assemble a specific data model without having to re-code it, e.g. the user can assemble a derivative tag based on the base tag by simple click configuration.</li>
+</ul>
+<h1>How to contribute:</h1>
+<ul>
+<li>
+<p>GitHub Code Repository: <a href="https://github.com/apache/dolphinscheduler">https://github.com/apache/dolphinscheduler</a></p>
+</li>
+<li>
+<p>Official Website:<a href="https://dolphinscheduler.apache.org/">https://dolphinscheduler.apache.org/</a></p>
+</li>
+<li>
+<p>Mail List:dev@dolphinscheduler@apache.org</p>
+</li>
+<li>
+<p>Twitter:@DolphinSchedule</p>
+</li>
+</ul>
+</section><footer class="footer-container"><div class="footer-body"><div><h3>About us</h3><h4>Do you need feedback? Please contact us through the following ways.</h4></div><div class="contact-container"><ul><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li><li><a href="/en-us/docs/latest/user_doc/contribute/join/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>Email List</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li></ul></div><div class="copyright"><span>Copyright © 2019-2022 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+  <script src="/asset/js/react/react-with-addons.min.js"></script>
+  <script src="/asset/js/react/react-dom.min.js"></script>
+  <script>window.rootPath = '';</script>
+  <script src="/build/blog.md.js"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d6bc736fd9885d9a5dc938425ac062ad";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-899J8PYKJZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-899J8PYKJZ');
+  </script>
+</body>
+</html>
