@@ -711,6 +711,11 @@ Currently, DolphinScheduler just makes a basic config, remember to config furthe
 <td>100s</td>
 <td>Used when the master disconnect from registry, and the disconnect strategy is waiting, this config means the master will waiting to reconnect to registry in given times, and after the waiting times, if the master still cannot connect to registry, will stop itself, if the value is 0s, the Master will waitting infinitely</td>
 </tr>
+<tr>
+<td>master.worker-group-refresh-interval</td>
+<td>10s</td>
+<td>The interval to refresh worker group from db to memory</td>
+</tr>
 </tbody>
 </table>
 <h3>Worker Server related configuration</h3>

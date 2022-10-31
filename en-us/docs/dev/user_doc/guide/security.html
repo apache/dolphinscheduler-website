@@ -87,18 +87,20 @@
 <ul>
 <li>Granted permissions include project permissions, resource permissions, data source permissions, and UDF function permissions.</li>
 <li>Administrators can authorize projects, resources, data sources, and UDF functions that ordinary users do not create. Because the authorization methods of projects, resources, data sources and UDF functions are all the same, the project authorization is used as an example to introduce.</li>
-<li>Note: For projects created by the user, the user has all permissions. The item list and the selected items list are not displayed.</li>
+<li>Note: For projects created by the user, the user has all permissions. Therefore, permission changes to projects created by users themselves are not valid.</li>
+</ul>
+<ul>
 <li>The administrator enters the <code>Security Center -&gt; User Management</code> page, and clicks the &quot;Authorize&quot; button of the user to be authorized, as shown in the following figure:</li>
 </ul>
-<p align="center">
-  <img src="/img/auth-en.png" width="80%" />
-</p>
+<p><img src="/img/new_ui/dev/security/project-authroize-step-1.png" alt="project-authroize-step-1"></p>
 <ul>
-<li>Select the project to authorize the project.</li>
+<li>Select one or more projects and click the button above to authorize the project. The upper buttons from left to right correspond to <code>revoke all permissions</code>, <code>grant read permissions</code>, and <code>grant all permissions</code> (which including both read and write permissions).</li>
 </ul>
-<p align="center">
-   <img src="/img/auth-project-en.png" width="80%" />
-</p>
+<p><img src="/img/new_ui/dev/security/project-authroize-step-2.png" alt="project-authroize-step-2"></p>
+<ul>
+<li>If a user has only the read permission but not the write permission for a project, and the user is trying to do something like delete or update the project, an error message is displayed indicating that the user has no write permission and cannot complete the operation.</li>
+</ul>
+<p><img src="/img/new_ui/dev/security/no-permission-error.png" alt="no-permission-error"></p>
 <ul>
 <li>Resources, data sources, and UDF function authorization are the same as project authorization.</li>
 </ul>
