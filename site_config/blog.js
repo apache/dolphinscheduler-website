@@ -4,7 +4,7 @@ export default {
         postsTitle: 'All posts',
         list: [
             {
-                title: 'How did Yili explore a “path” for digital transformation based on DolphinScheduler?,
+                title: 'How did Yili explore a “path” for digital transformation based on DolphinScheduler?',
                 author: 'Debra Chen',
                 dateStr: '2022-10-31',
                 desc: 'People in general know about Yili. Every year, 1.3 billion... ',
