@@ -45,6 +45,22 @@
 <p>Master模块和Worker模块的日志打印使用如下格式。即在打印的日志中使用MDC注入工作流实例ID和任务实例ID，因此开发者在打印这两个模块中与工作流实例和任务实例有关的日志前，需要获取ID并注入；在打印完成后，需要移除相关ID。</p>
 <pre><code class="language-xml">[%level] %date{yyyy-MM-dd HH:mm:ss.SSS Z} %logger{96}:[%line] - [WorkflowInstance-%X{workflowInstanceId:-0}][TaskInstance-%X{taskInstanceId:-0}] - %msg%n
 </code></pre>
+<h2>日志配置修改</h2>
+<p>DolphinScheduler使用<a href="https://docs.spring.io/spring-boot/docs/2.1.8.RELEASE/reference/html/howto-logging.html"><code>LogBack</code></a>作为日志工具。若您要修改某个包的日志打点级别，您需要修改对应模块的<code>logback-spring.xml</code>文件。
+举例来说，若您需要将<code>standalone</code>模式下<code>org.springframework.web</code>包日志提升到<code>DEBUG</code>级别，您需要在<code>apache-dolphinscheduler-dev-SNAPSHOT-bin/standalone-server/conf/logback-spring.xml</code>文件中加入如下配置：</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span> <span class="hljs-attr">scan</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">scanPeriod</span>=<span class="hljs-string">&quot;120 seconds&quot;</span>&gt;</span>
+
+......
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">logger</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;org.springframework.web&quot;</span> <span class="hljs-attr">level</span>=<span class="hljs-string">&quot;DEBUG&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;STANDALONELOGFILE&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;TASKLOGFILE&quot;</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">logger</span>&gt;</span>
+
+......
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
+</code></pre>
 <h2>注意事项</h2>
 <ul>
 <li>禁止使用标准输出打印日志。标准输出会极大影响系统性能。</li>
