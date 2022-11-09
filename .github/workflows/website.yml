@@ -9,13 +9,14 @@ on:
 
 env:
   # We use the repo in swap/dolphinscheduler to build all python versions docs
-  PYDS_HOME: swap/dolphinscheduler/dolphinscheduler-python/pydolphinscheduler
+  PYDS_HOME: swap/dolphinscheduler-sdk-python
   DEPENDENCES: pip setuptools wheel tox
 
 jobs:
   build-website-deploy:
     runs-on: ubuntu-latest
     steps:
+    # Build main document: DolphinScheduler documentation
     - name: Checkout
       uses: actions/checkout@master
 
@@ -30,6 +31,7 @@ jobs:
     - name: Build Main Document
       run: npm install && npm run build
 
+    # Build Python API document: from https://github.com/apache/dolphinscheduler-sdk-python
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
       with:

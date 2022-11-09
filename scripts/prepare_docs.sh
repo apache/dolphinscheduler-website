@@ -29,9 +29,11 @@ source "${SOURCE_PATH}/scripts/conf.sh"
 if [ "${PROTOCOL_MODE:-HTTP}" == "ssh" ]; then
     PROJECT_REPO="git@github.com:${PROJECT_ORG}/${PROJECT_NAME}.git"
     PROJECT_WEBSITE_REPO="git@github.com:${PROJECT_WEBSITE_ORG}/${PROJECT_WEBSITE_NAME}.git"
+    PROJECT_PYTHON_REPO="git@github.com:${PROJECT_PYTHON_ORG}/${PROJECT_PYTHON_NAME}.git"
 else
     PROJECT_REPO="https://github.com/${PROJECT_ORG}/${PROJECT_NAME}.git"
     PROJECT_WEBSITE_REPO="https://github.com/${PROJECT_WEBSITE_ORG}/${PROJECT_WEBSITE_NAME}.git"
+    PROJECT_PYTHON_REPO="https://github.com/${PROJECT_PYTHON_ORG}/${PROJECT_PYTHON_NAME}.git"
 fi
 
 ##############################################################
@@ -134,8 +136,10 @@ function prepare_docs() {
     echo "===>>> Clone repository."
     echo "  ---> Clone history documents from ${PROJECT_WEBSITE_REPO} branch ${PROJECT_WEBSITE_BRANCH_NAME}."
     clone_repo "${PROJECT_WEBSITE_REPO}" "${PROJECT_WEBSITE_BRANCH_NAME}" "${PROJECT_WEBSITE_DIR}"
-    echo "  ---> Clone dev documents from ${PROJECT_REPO} branch ${PROJECT_BRANCH_NAME}."
+    echo "  ---> Clone DolphinScheduler latest documents from ${PROJECT_REPO} branch ${PROJECT_BRANCH_NAME}."
     clone_repo "${PROJECT_REPO}" "${PROJECT_BRANCH_NAME}" "${PROJECT_DIR}"
+    echo "  ---> Clone Python API latest documents from ${PROJECT_PYTHON_REPO} branch ${PROJECT_PYTHON_BRANCH_NAME}."
+    clone_repo "${PROJECT_PYTHON_REPO}" "${PROJECT_PYTHON_BRANCH_NAME}" "${PROJECT_PYTHON_DIR}"
 
     source "${SOURCE_PATH}/scripts/rsync_content.sh"
     echo "===>>> Sync content from cloned repository."
