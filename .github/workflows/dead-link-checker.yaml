@@ -17,7 +17,12 @@
 name: Dead Link Checker
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
+  schedule:
+    - cron: "0 5 * * *"
 
 concurrency:
   group: dlc-${{ github.event.pull_request.number || github.ref }}
@@ -30,6 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Prepare Related Resource
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master' || github.event_name == 'schedule'
         run: ./scripts/prepare_docs.sh
       - run: sudo npm install -g markdown-link-check@3.10.0
       # We need to delete directory swap before markdown checker
