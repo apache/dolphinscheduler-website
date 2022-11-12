@@ -90,6 +90,38 @@ Tenant is the user who run task command in machine or in virtual machine. it cou
 
    Make should tenant exists in target machine, otherwise it will raise an error when you try to run command
 
+Execution Type
+~~~~~~~~~~~~~~
+
+Decision which behavior to run when process definition have multiple instances. when process definition
+schedule interval is too short, it may cause multiple instances run at the same time. We can use this
+parameter to control the behavior about how to run those process definition instances. Currently we
+have four execution type:
+
+* ``parallel`` (default value): it means all instances will allow to run even though the previous
+  instance is not finished.
+* ``serial_wait``: it means the all instance will wait for the previous instance to finish, and
+  all the waiting instances will be executed base on scheduling order.
+* ``serial_discard``: it means the all instance will be discard(abandon) if the previous instance
+  is not finished.
+* ``serial_priority``: it means the all instance will wait for the previous instance to finish,
+  and all the waiting instances will be executed base on process definition priority order.
+
+Parameter ``execution type`` can be set in
+
+* Direct assign statement. You can pick execute type from above and direct assign to parameter
+  ``execution_type``.
+
+  .. code-block:: python
+
+     pd = ProcessDefinition(
+         name="process-definition",
+         execution_type="parallel"
+     )
+
+* Via environment variables, configurations file setting, for more detail about those way setting, you can see
+  you can read :doc:`config` section.
+
 Tasks
 -----
 

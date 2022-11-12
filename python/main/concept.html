@@ -51,6 +51,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#process-definition">Process Definition</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#schedule">Schedule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tenant">Tenant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#execution-type">Execution Type</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a><ul>
@@ -153,6 +154,37 @@ asterisks expression, and each of the meaning of position as below</p>
 <p class="admonition-title">Note</p>
 <p>Make should tenant exists in target machine, otherwise it will raise an error when you try to run command</p>
 </div>
+</section>
+<section id="execution-type">
+<h3>Execution Type<a class="headerlink" href="#execution-type" title="Permalink to this heading"></a></h3>
+<p>Decision which behavior to run when process definition have multiple instances. when process definition
+schedule interval is too short, it may cause multiple instances run at the same time. We can use this
+parameter to control the behavior about how to run those process definition instances. Currently we
+have four execution type:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parallel</span></code> (default value): it means all instances will allow to run even though the previous
+instance is not finished.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">serial_wait</span></code>: it means the all instance will wait for the previous instance to finish, and
+all the waiting instances will be executed base on scheduling order.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">serial_discard</span></code>: it means the all instance will be discard(abandon) if the previous instance
+is not finished.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">serial_priority</span></code>: it means the all instance will wait for the previous instance to finish,
+and all the waiting instances will be executed base on process definition priority order.</p></li>
+</ul>
+<p>Parameter <code class="docutils literal notranslate"><span class="pre">execution</span> <span class="pre">type</span></code> can be set in</p>
+<ul>
+<li><p>Direct assign statement. You can pick execute type from above and direct assign to parameter
+<code class="docutils literal notranslate"><span class="pre">execution_type</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span> <span class="o">=</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;process-definition&quot;</span><span class="p">,</span>
+    <span class="n">execution_type</span><span class="o">=</span><span class="s2">&quot;parallel&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Via environment variables, configurations file setting, for more detail about those way setting, you can see
+you can read <a class="reference internal" href="config.html"><span class="doc">Configuration</span></a> section.</p></li>
+</ul>
 </section>
 </section>
 <section id="tasks">

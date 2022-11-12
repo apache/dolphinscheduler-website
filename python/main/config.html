@@ -186,7 +186,7 @@ method next to <code class="docutils literal notranslate"><span class="pre">os.e
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_STATE</span></code></p></td>
 <td><p>Default user state, will use when user’s <code class="docutils literal notranslate"><span class="pre">state</span></code> when does not specify.</p></td>
 </tr>
-<tr class="row-even"><td rowspan="8"><p>Default Workflow</p></td>
+<tr class="row-even"><td rowspan="9"><p>Default Workflow</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_PROJECT</span></code></p></td>
 <td><p>Default workflow project name, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">project</span></code>.</p></td>
 </tr>
@@ -210,6 +210,9 @@ method next to <code class="docutils literal notranslate"><span class="pre">os.e
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_WARNING_TYPE</span></code></p></td>
 <td><p>Default workflow warning type, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">warning_type</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_EXECUTION_TYPE</span></code></p></td>
+<td><p>Default workflow execution type, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">execution_type</span></code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -329,6 +332,9 @@ pydolphinscheduler config --set java_gateway <span class="m">192</span>.168.1.1,
 <span class="w">    </span><span class="c1"># change to ``FAILURE`` if you want to warn users when workflow failed. All available enum value are</span><span class="w"></span>
 <span class="w">    </span><span class="c1"># ``NONE``, ``SUCCESS``, ``FAILURE``, ``ALL`` </span><span class="w"></span>
 <span class="w">    </span><span class="nt">warning_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NONE</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># Default execution type about how to run multiple workflow instances, default value is ``parallel`` which</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># mean run all workflow instances parallel and the other value is ``SERIAL_WAIT``, ``SERIAL_DISCARD``, ``SERIAL_PRIORITY``</span><span class="w"></span>
+<span class="w">    </span><span class="nt">execution_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parallel</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
