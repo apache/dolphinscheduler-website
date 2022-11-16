@@ -155,7 +155,14 @@ from the API server, you should first change pydolphinscheduler configuration an
    You could see more information in :doc:`config` about all the configurations pydolphinscheduler supported.
 
 After that, you could go and see your DolphinScheduler web UI to find out a new workflow created by pydolphinscheduler,
-and the path of web UI is `Project -> Workflow -> Workflow Definition`.
+and the path of web UI is `Project -> Workflow -> Workflow Definition`, and you can see a workflow and workflow instance
+had been created and DAG is auto formatter by web UI.
+
+.. note::
+
+   We have default authentication token when in first launch dolphinscheduler and pydolphinscheduler. Please change
+   the parameter ``auth_token`` when you deploy in production environment or test dolphinscheduler in public network.
+   See :ref:`authentication token <concept:authentication token>` for more detail.
 
 
 What's More

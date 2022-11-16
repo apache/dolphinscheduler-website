@@ -59,6 +59,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#task-with-process-definition">Task With Process Definition</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-token">Authentication Token</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a></li>
@@ -237,6 +238,13 @@ decide workflow of task. You could set <cite>process_definition</cite> in both n
 </div>
 <p>With both <a class="reference internal" href="#process-definition">Process Definition</a>, <a class="reference internal" href="#tasks">Tasks</a>  and <a class="reference internal" href="#tasks-dependence">Tasks Dependence</a>, we could build a workflow with multiple tasks.</p>
 </section>
+</section>
+<section id="authentication-token">
+<h2>Authentication Token<a class="headerlink" href="#authentication-token" title="Permalink to this heading"></a></h2>
+<p>pydolphinscheduler use token as authentication when communication with dolphinscheduler server, and we have a default auth
+token to make it out-of-box. For security reason, we highly recommend you to change your own auth token when you
+deploy in production environment or test dolphinscheduler in public network. The auth token keyword in <code class="docutils literal notranslate"><span class="pre">auth_token</span></code>
+and it can be set in multiple ways which you can read <a class="reference internal" href="config.html"><span class="doc">Configuration</span></a> section for more detail.</p>
 </section>
 </section>
 

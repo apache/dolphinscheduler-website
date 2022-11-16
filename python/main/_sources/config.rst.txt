@@ -81,6 +81,8 @@ All environment variables as below, and you could modify their value via `Bash <
 +------------------+------------------------------------+---------------------------------------------------------------------------------------------------------------------+
 | Variable Section | Variable Name                      | description                                                                                                         |
 +==================+====================================+=====================================================================================================================+
+|                  | ``PYDS_JAVA_GATEWAY_AUTH_TOKEN``   | Default Java gateway auth token, should changed to custom value when deploy in public network or in production.     |
++                  +------------------------------------+---------------------------------------------------------------------------------------------------------------------+
 |                  | ``PYDS_JAVA_GATEWAY_ADDRESS``      | Default Java gateway address, will use its value when it is set.                                                    |
 +                  +------------------------------------+---------------------------------------------------------------------------------------------------------------------+
 |   Java Gateway   | ``PYDS_JAVA_GATEWAY_PORT``         | Default Java gateway port, will use its value when it is set.                                                       |

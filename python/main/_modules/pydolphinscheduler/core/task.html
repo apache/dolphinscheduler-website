@@ -117,7 +117,7 @@
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource</span> <span class="kn">import</span> <span class="n">Resource</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource_plugin</span> <span class="kn">import</span> <span class="n">ResourcePlugin</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyResPluginException</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">JavaGate</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">gateway</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">Base</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -449,7 +449,7 @@
 <span class="sd">        equal to 0 by java gateway, otherwise if will return the exists code and version.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO get code from specific project process definition and task name</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">get_code_and_version</span><span class="p">(</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">get_code_and_version</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
         <span class="p">)</span>
         <span class="c1"># result = gateway.entry_point.genTaskCodeList(DefaultTaskCodeNum.DEFAULT)</span>
@@ -461,7 +461,7 @@
         <span class="sd">&quot;&quot;&quot;Convert environment name to code.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_environment_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">JavaGate</span><span class="p">()</span><span class="o">.</span><span class="n">query_environment_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_environment_name</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">gateway</span><span class="o">.</span><span class="n">query_environment_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_environment_name</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

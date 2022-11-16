@@ -181,3 +181,11 @@ decide workflow of task. You could set `process_definition` in both normal assig
        shell_task = Shell(name="shell", command="echo shell task",
 
 With both `Process Definition`_, `Tasks`_  and `Tasks Dependence`_, we could build a workflow with multiple tasks.
+
+Authentication Token
+--------------------
+
+pydolphinscheduler use token as authentication when communication with dolphinscheduler server, and we have a default auth
+token to make it out-of-box. For security reason, we highly recommend you to change your own auth token when you
+deploy in production environment or test dolphinscheduler in public network. The auth token keyword in ``auth_token``
+and it can be set in multiple ways which you can read :doc:`config` section for more detail.
