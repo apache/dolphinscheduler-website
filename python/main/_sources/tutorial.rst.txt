@@ -37,7 +37,7 @@ There are two types of tutorials: traditional and task decorator.
   versatility to the traditional way because it only supported Python functions and without build-in tasks
   supported. But it is helpful if your workflow is all built with Python or if you already have some Python
   workflow code and want to migrate them to pydolphinscheduler.
-- **YAML File**: We can use pydolphinscheduler CLI to create process using YAML file: :code:`pydolphinscheduler yaml -f tutorial.yaml`. 
+- **YAML File**: We can use pydolphinscheduler CLI to create workflow using YAML file: :code:`pydolphinscheduler yaml -f tutorial.yaml`. 
   We can find more YAML file examples in `examples/yaml_define <https://github.com/apache/dolphinscheduler-sdk-python/tree/main/examples/yaml_define>`_
 
 .. tab:: Tradition
@@ -72,7 +72,7 @@ First of all, we should import the necessary module which we would use later jus
       :start-after: [start package_import]
       :end-before: [end package_import]
 
-   In tradition tutorial we import :class:`pydolphinscheduler.core.process_definition.ProcessDefinition` and
+   In tradition tutorial we import :class:`pydolphinscheduler.core.workflow.Workflow` and
    :class:`pydolphinscheduler.tasks.shell.Shell`.
 
    If you want to use other task type you could click and :doc:`see all tasks we support <tasks/index>`
@@ -84,16 +84,16 @@ First of all, we should import the necessary module which we would use later jus
       :start-after: [start package_import]
       :end-before: [end package_import]
 
-   In task decorator tutorial we import :class:`pydolphinscheduler.core.process_definition.ProcessDefinition` and
+   In task decorator tutorial we import :class:`pydolphinscheduler.core.workflow.Workflow` and
    :func:`pydolphinscheduler.tasks.func_wrap.task`.
 
-Process Definition Declaration
-------------------------------
+workflow Declaration
+--------------------
 
-We should instantiate :class:`pydolphinscheduler.core.process_definition.ProcessDefinition` object after we
-import them from `import necessary module`_. Here we declare basic arguments for process definition(aka, workflow).
-We define the name of :code:`ProcessDefinition`, using `Python context manager`_ and it **the only required argument**
-for `ProcessDefinition`. Besides, we also declare three arguments named :code:`schedule` and :code:`start_time`
+We should instantiate :class:`pydolphinscheduler.core.workflow.Workflow` object after we
+import them from `import necessary module`_. Here we declare basic arguments for workflow.
+We define the name of :code:`Workflow`, using `Python context manager`_ and it **the only required argument**
+for `Workflow`. Besides, we also declare three arguments named :code:`schedule` and :code:`start_time`
 which setting workflow schedule interval and schedule start_time, and argument :code:`tenant` defines which tenant
 will be running this task in the DolphinScheduler worker. See :ref:`section tenant <concept:tenant>` in
 *PyDolphinScheduler* :doc:`concept` for more information.
@@ -116,12 +116,12 @@ will be running this task in the DolphinScheduler worker. See :ref:`section tena
 
    .. literalinclude:: ../../examples/yaml_define/tutorial.yaml
       :start-after: # under the License.
-      :end-before: # Define the tasks under the workflow
+      :end-before: # Define the tasks within the workflow
       :language: yaml
 
-We could find more detail about :code:`ProcessDefinition` in :ref:`concept about process definition <concept:process definition>`
-if you are interested in it. For all arguments of object process definition, you could find in the
-:class:`pydolphinscheduler.core.process_definition` API documentation.
+We could find more detail about :code:`Workflow` in :ref:`concept about workflow <concept:workflow>`
+if you are interested in it. For all arguments of object workflow, you could find in the
+:class:`pydolphinscheduler.core.workflow` API documentation.
 
 Task Declaration
 ----------------
@@ -144,7 +144,7 @@ Task Declaration
 
    We declare four tasks to show how to create tasks, and both of them are created by the task decorator which
    using :func:`pydolphinscheduler.tasks.func_wrap.task`. All we have to do is add a decorator named
-   :code:`@task` to existing Python function, and then use them inside :class:`pydolphinscheduler.core.process_definition`
+   :code:`@task` to existing Python function, and then use them inside :class:`pydolphinscheduler.core.workflow`
 
    .. literalinclude:: ../../src/pydolphinscheduler/examples/tutorial_decorator.py
       :dedent: 0
@@ -157,13 +157,13 @@ Task Declaration
 .. tab:: YAML File
 
    .. literalinclude:: ../../examples/yaml_define/tutorial.yaml
-      :start-after: # Define the tasks under the workflow 
+      :start-after: # Define the tasks within the workflow 
       :language: yaml
 
 Setting Task Dependence
 -----------------------
 
-After we declare both process definition and task, we have four tasks that are independent and will be running
+After we declare both workflow and task, we have four tasks that are independent and will be running
 in parallel. If you want to start one task until some task is finished, you have to set dependence on those
 tasks.
 
@@ -193,7 +193,7 @@ and task `task_child_two` was done, because both two task is `task_union`'s upst
    We can use :code:`deps:[]` to set task dependence
 
    .. literalinclude:: ../../examples/yaml_define/tutorial.yaml
-      :start-after: # Define the tasks under the workflow 
+      :start-after: # Define the tasks within the workflow 
       :language: yaml
 
 .. note::
@@ -210,7 +210,7 @@ After that, we finish our workflow definition, with four tasks and task dependen
 local, we should let the DolphinScheduler daemon know how the definition of workflow. So the last thing we
 have to do is submit the workflow to the DolphinScheduler daemon.
 
-Fortunately, we have a convenient method to submit workflow via `ProcessDefinition` attribute :code:`run` which
+Fortunately, we have a convenient method to submit workflow via `Workflow` attribute :code:`run` which
 will create workflow definition as well as workflow schedule.
 
 .. tab:: Tradition
@@ -245,24 +245,24 @@ At last, we could execute this workflow code in your terminal like other Python 
 
    If you do not start your DolphinScheduler API server, you could find how to start it in
    :ref:`start:start Python gateway service` for more detail. Besides attribute :code:`run`, we have attribute
-   :code:`submit` for object `ProcessDefinition` which just submits workflow to the daemon but does not set
-   the workflow schedule information. For more detail, you could see :ref:`concept:process definition`.
+   :code:`submit` for object `Workflow` which just submits workflow to the daemon but does not set
+   the workflow schedule information. For more detail, you could see :ref:`concept:workflow`.
 
 DAG Graph After Tutorial Run
 ----------------------------
 
 After we run the tutorial code, you could log in DolphinScheduler web UI, go and see the
-`DolphinScheduler project page`_. They is a new process definition be created by *PyDolphinScheduler* and it
+`DolphinScheduler project page`_. They is a new workflow be created by *PyDolphinScheduler* and it
 named "tutorial" or "tutorial_decorator". The task graph of workflow like below:
 
 .. literalinclude:: ../../src/pydolphinscheduler/examples/tutorial.py
    :language: text
    :lines: 24-28
 
-Create Process Using YAML File
-------------------------------
+Create Workflow Using YAML File
+-------------------------------
 
-We can use pydolphinscheduler CLI to create process using YAML file
+We can use pydolphinscheduler CLI to create workflow using YAML file
 
 .. code-block:: bash
 
@@ -271,7 +271,7 @@ We can use pydolphinscheduler CLI to create process using YAML file
 We can use the following four special grammars to define workflows more flexibly.
 
 - :code:`$FILE{"file_name"}`: Read the file (:code:`file_name`) contents and replace them to that location.
-- :code:`$WORKFLOW{"other_workflow.yaml"}`: Refer to another process defined using YAML file (:code:`other_workflow.yaml`) and replace the process name in this location.
+- :code:`$WORKFLOW{"other_workflow.yaml"}`: Refer to another workflow defined using YAML file (:code:`other_workflow.yaml`) and replace the workflow name in this location.
 - :code:`$ENV{env_name}`: Read the environment variable (:code:`env_name`) and replace it to that location.
 - :code:`${CONFIG.key_name}`: Read the configuration value of key (:code:`key_name`) and it them to that location.
 
@@ -290,7 +290,7 @@ For exmaples, our file directory structure is as follows:
        ├── Dependent.yaml
        ├── example_datax.json
        ├── example_sql.sql
-       ├── example_subprocess.yaml
+       ├── example_sub_workflow.yaml
        ├── Flink.yaml
        ├── Http.yaml
        ├── MapReduce.yaml
@@ -300,17 +300,17 @@ For exmaples, our file directory structure is as follows:
        ├── Shell.yaml
        ├── Spark.yaml
        ├── Sql.yaml
-       ├── SubProcess.yaml
+       ├── SubWorkflow.yaml
        └── Switch.yaml
 
 After we run
 
 .. code-block:: bash
 
-   pydolphinscheduler yaml -file yaml_define/SubProcess.yaml
+   pydolphinscheduler yaml -file yaml_define/SubWorkflow.yaml
 
 
-the :code:`$WORKFLOW{"example_sub_workflow.yaml"}` will be set to :code:`$WORKFLOW{"yaml_define/example_sub_workflow.yaml"}`, because :code:`./example_subprocess.yaml` does not exist and :code:`yaml_define/example_sub_workflow.yaml` does.
+the :code:`$WORKFLOW{"example_sub_workflow.yaml"}` will be set to :code:`$WORKFLOW{"yaml_define/example_sub_workflow.yaml"}`, because :code:`./example_sub_workflow.yaml` does not exist and :code:`yaml_define/example_sub_workflow.yaml` does.
 
 Furthermore, this feature supports recursion all the way down.
 

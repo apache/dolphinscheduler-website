@@ -69,8 +69,9 @@
 <li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
 <li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes.html">Kubernetes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_process.html">Sub Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sub_workflow.html">Sub Workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sagemaker.html">SageMaker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mlflow.html">MLflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openmldb.html">OpenMLDB</a></li>
@@ -116,8 +117,8 @@
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># [start package_import]</span>
-<span class="c1"># Import ProcessDefinition object to define your workflow attributes</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
+<span class="c1"># Import Workflow object to define your workflow attributes</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.workflow</span> <span class="kn">import</span> <span class="n">Workflow</span>
 
 <span class="c1"># Import task Shell object cause we would create some shell tasks later</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.func_wrap</span> <span class="kn">import</span> <span class="n">task</span>
@@ -154,7 +155,7 @@
 
 
 <span class="c1"># [start workflow_declare]</span>
-<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_decorator&quot;</span><span class="p">,</span>
     <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
     <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>

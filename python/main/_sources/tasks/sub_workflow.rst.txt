@@ -15,22 +15,22 @@
    specific language governing permissions and limitations
    under the License.
 
-Sub Process
-===========
+Sub Workflow
+============
 
-.. automodule:: pydolphinscheduler.tasks.sub_process
+.. automodule:: pydolphinscheduler.tasks.sub_workflow
 
 
 YAML file example
 -----------------
 
-.. literalinclude:: ../../../examples/yaml_define/SubProcess.yaml
+.. literalinclude:: ../../../examples/yaml_define/SubWorkflow.yaml
    :start-after: # under the License.
    :language: yaml
 
 
 
-example_subprocess.yaml:
+example_sub_workflow.yaml:
 
 .. literalinclude:: ../../../examples/yaml_define/example_sub_workflow.yaml
    :start-after: # under the License.

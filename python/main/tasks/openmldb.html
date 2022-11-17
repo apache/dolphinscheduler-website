@@ -61,8 +61,9 @@
 <li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
 <li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
 <li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes.html">Kubernetes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_process.html">Sub Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sub_workflow.html">Sub Workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sagemaker.html">SageMaker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mlflow.html">MLflow</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">OpenMLDB</a><ul>
@@ -117,7 +118,7 @@
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A example workflow for task openmldb.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="n">ProcessDefinition</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.workflow</span> <span class="kn">import</span> <span class="n">Workflow</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.openmldb</span> <span class="kn">import</span> <span class="n">OpenMLDB</span>
 
 <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;USE demo_db;</span>
@@ -126,7 +127,7 @@
 <span class="s2">INTO TABLE talkingdata OPTIONS(mode=&#39;overwrite&#39;);</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
-<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_openmldb_example&quot;</span><span class="p">,</span>
     <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
@@ -190,7 +191,7 @@
 <span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;OpenMLDB&quot;</span><span class="w"></span>
 
-<span class="c1"># Define the tasks under the workflow</span><span class="w"></span>
+<span class="c1"># Define the tasks within the workflow</span><span class="w"></span>
 <span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OpenMLDB</span><span class="w"></span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OpenMLDB</span><span class="w"></span>

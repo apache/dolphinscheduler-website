@@ -110,12 +110,9 @@
     <span class="n">TaskPriority</span><span class="p">,</span>
     <span class="n">TaskTimeoutFlag</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.process_definition</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ProcessDefinition</span><span class="p">,</span>
-    <span class="n">ProcessDefinitionContext</span><span class="p">,</span>
-<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource</span> <span class="kn">import</span> <span class="n">Resource</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource_plugin</span> <span class="kn">import</span> <span class="n">ResourcePlugin</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.workflow</span> <span class="kn">import</span> <span class="n">Workflow</span><span class="p">,</span> <span class="n">WorkflowContext</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyResPluginException</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">gateway</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">Base</span>
@@ -127,7 +124,7 @@
     <span class="sd">&quot;&quot;&quot;TaskRelation object, describe the relation of exactly two tasks.&quot;&quot;&quot;</span>
 
     <span class="c1"># Add attr `_KEY_ATTR` to overwrite :func:`__eq__`, it is make set</span>
-    <span class="c1"># `Task.process_definition._task_relations` work correctly.</span>
+    <span class="c1"># `Task.workflow._task_relations` work correctly.</span>
     <span class="n">_KEY_ATTR</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;pre_task_code&quot;</span><span class="p">,</span>
         <span class="s2">&quot;post_task_code&quot;</span><span class="p">,</span>
@@ -215,7 +212,7 @@
         <span class="n">timeout_flag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">TaskTimeoutFlag</span><span class="o">.</span><span class="n">CLOSE</span><span class="p">,</span>
         <span class="n">timeout_notify_strategy</span><span class="p">:</span> <span class="n">Optional</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">process_definition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProcessDefinition</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">workflow</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Workflow</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">local_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">resource_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">dependence</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -236,25 +233,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout_flag</span> <span class="o">=</span> <span class="n">timeout_flag</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout_notify_strategy</span> <span class="o">=</span> <span class="n">timeout_notify_strategy</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="p">:</span> <span class="n">ProcessDefinition</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">process_definition</span> <span class="ow">or</span> <span class="n">ProcessDefinitionContext</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="p">:</span> <span class="n">Workflow</span> <span class="o">=</span> <span class="n">workflow</span> <span class="ow">or</span> <span class="n">WorkflowContext</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_upstream_task_codes</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_downstream_task_codes</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_relation</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">TaskRelation</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="c1"># move attribute code and version after _process_definition and process_definition declare</span>
+        <span class="c1"># move attribute code and version after _workflow and workflow declare</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_code_and_version</span><span class="p">()</span>
-        <span class="c1"># Add task to process definition, maybe we could put into property process_definition latter</span>
+        <span class="c1"># Add task to workflow, maybe we could put into property workflow latter</span>
 
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">tasks</span>
-        <span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                <span class="s2">&quot;Task code </span><span class="si">%d</span><span class="s2"> already in process definition, prohibit re-add task.&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Task code </span><span class="si">%d</span><span class="s2"> already in workflow, prohibit re-add task.&quot;</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
             <span class="p">)</span>
 
@@ -268,14 +260,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">get_content</span><span class="p">()</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">process_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProcessDefinition</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get attribute process_definition.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition</span>
+    <span class="k">def</span> <span class="nf">workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Workflow</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get attribute workflow.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span>
 
-    <span class="nd">@process_definition</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">process_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_definition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProcessDefinition</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Set attribute process_definition.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition</span> <span class="o">=</span> <span class="n">process_definition</span>
+    <span class="nd">@workflow</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Workflow</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;Set attribute workflow.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span> <span class="o">=</span> <span class="n">workflow</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">resource_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
@@ -297,9 +289,9 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">user_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Return user name of process definition.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span>
+        <span class="sd">&quot;&quot;&quot;Return user name of workflow.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span><span class="s2">&quot;`user_name` cannot be empty.&quot;</span><span class="p">)</span>
 
@@ -337,11 +329,11 @@
         <span class="sd">&quot;&quot;&quot;Return the resource plug-in.</span>
 
 <span class="sd">        according to parameter resource_plugin and parameter</span>
-<span class="sd">        process_definition.resource_plugin.</span>
+<span class="sd">        workflow.resource_plugin.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">resource_plugin</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">resource_plugin</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">PyResPluginException</span><span class="p">(</span>
                     <span class="s2">&quot;The execution command of this task is a file, but the resource plugin is empty&quot;</span>
@@ -361,8 +353,8 @@
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">UNDERLINE</span><span class="p">),</span> <span class="n">content</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="p">):</span>
                     <span class="n">index</span> <span class="o">=</span> <span class="n">_ext_attr</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
@@ -413,24 +405,24 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_upstream_task_codes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
                 <span class="n">task</span><span class="o">.</span><span class="n">_downstream_task_codes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
 
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span><span class="p">:</span>
                     <span class="n">task_relation</span> <span class="o">=</span> <span class="n">TaskRelation</span><span class="p">(</span>
                         <span class="n">pre_task_code</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
                         <span class="n">post_task_code</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
                         <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">Delimiter</span><span class="o">.</span><span class="n">DIRECTION</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
                     <span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task_relation</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task_relation</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_downstream_task_codes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
                 <span class="n">task</span><span class="o">.</span><span class="n">_upstream_task_codes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
 
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span><span class="p">:</span>
                     <span class="n">task_relation</span> <span class="o">=</span> <span class="n">TaskRelation</span><span class="p">(</span>
                         <span class="n">pre_task_code</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
                         <span class="n">post_task_code</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
                         <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">Delimiter</span><span class="o">.</span><span class="n">DIRECTION</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
                     <span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task_relation</span><span class="p">)</span></div>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task_relation</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Task.set_upstream"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.set_upstream">[docs]</a>    <span class="k">def</span> <span class="nf">set_upstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Set parameter tasks as upstream to current task.&quot;&quot;&quot;</span>
@@ -440,17 +432,17 @@
         <span class="sd">&quot;&quot;&quot;Set parameter tasks as downstream to current task.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_deps</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">upstream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
-    <span class="c1"># TODO code should better generate in bulk mode when :ref: processDefinition run submit or start</span>
+    <span class="c1"># TODO code should better generate in bulk mode when :ref: workflow run submit or start</span>
 <div class="viewcode-block" id="Task.gen_code_and_version"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.gen_code_and_version">[docs]</a>    <span class="k">def</span> <span class="nf">gen_code_and_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate task code and version from java gateway.</span>
 
-<span class="sd">        If task name do not exists in process definition before, if will generate new code and version id</span>
+<span class="sd">        If task name do not exists in workflow before, if will generate new code and version id</span>
 <span class="sd">        equal to 0 by java gateway, otherwise if will return the exists code and version.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO get code from specific project process definition and task name</span>
+        <span class="c1"># TODO get code from specific project workflow and task name</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">get_code_and_version</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
         <span class="p">)</span>
         <span class="c1"># result = gateway.entry_point.genTaskCodeList(DefaultTaskCodeNum.DEFAULT)</span>
         <span class="c1"># gateway_result_checker(result)</span>

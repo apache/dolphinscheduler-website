@@ -48,7 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Concepts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#process-definition">Process Definition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#schedule">Schedule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tenant">Tenant</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#execution-type">Execution Type</a></li>
@@ -56,7 +56,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tasks-dependence">Tasks Dependence</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#task-with-process-definition">Task With Process Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-with-workflow">Task With Workflow</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#authentication-token">Authentication Token</a></li>
@@ -97,21 +97,21 @@
   <section id="concepts">
 <h1>Concepts<a class="headerlink" href="#concepts" title="Permalink to this heading"></a></h1>
 <p>In this section, you would know the core concepts of <em>PyDolphinScheduler</em>.</p>
-<section id="process-definition">
-<h2>Process Definition<a class="headerlink" href="#process-definition" title="Permalink to this heading"></a></h2>
-<p>Process definition describe the whole things except <a class="reference internal" href="#tasks">tasks</a> and <a class="reference internal" href="#tasks-dependence">tasks dependence</a>, which including
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading"></a></h2>
+<p>Workflow describe the whole things except <a class="reference internal" href="#tasks">tasks</a> and <a class="reference internal" href="#tasks-dependence">tasks dependence</a>, which including
 name, schedule interval, schedule start time and end time. You would know scheduler</p>
-<p>Process definition could be initialized in normal assign statement or in context manger.</p>
+<p>Workflow could be initialized in normal assign statement or in context manger.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization with assign statement</span>
-<span class="n">pd</span> <span class="o">=</span> <span class="n">ProcessDefinition</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first process definition&quot;</span><span class="p">)</span>
+<span class="n">pd</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
 
 <span class="c1"># Or context manger</span>
-<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first process definition&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
     <span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Process definition is the main object communicate between <em>PyDolphinScheduler</em> and DolphinScheduler daemon.
-After process definition and task is be declared, you could use <cite>submit</cite> and <cite>run</cite> notify server your definition.</p>
+<p>Workflow is the main object communicate between <em>PyDolphinScheduler</em> and DolphinScheduler daemon.
+After workflow and task is be declared, you could use <cite>submit</cite> and <cite>run</cite> notify server your definition.</p>
 <p>If you just want to submit your definition and create workflow, without run it, you should use attribute <cite>submit</cite>.
 But if you want to run the workflow after you submit it, you could use attribute <cite>run</cite>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Just submit definition, without run it</span>
@@ -148,7 +148,7 @@ asterisks expression, and each of the meaning of position as below</p>
 <h3>Tenant<a class="headerlink" href="#tenant" title="Permalink to this heading"></a></h3>
 <p>Tenant is the user who run task command in machine or in virtual machine. it could be assign by simple string.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
-<span class="n">pd</span> <span class="o">=</span> <span class="n">ProcessDefinition</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;process definition tenant&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">)</span>
+<span class="n">pd</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;workflow tenant&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -158,9 +158,9 @@ asterisks expression, and each of the meaning of position as below</p>
 </section>
 <section id="execution-type">
 <h3>Execution Type<a class="headerlink" href="#execution-type" title="Permalink to this heading"></a></h3>
-<p>Decision which behavior to run when process definition have multiple instances. when process definition
+<p>Decision which behavior to run when workflow have multiple instances. when workflow
 schedule interval is too short, it may cause multiple instances run at the same time. We can use this
-parameter to control the behavior about how to run those process definition instances. Currently we
+parameter to control the behavior about how to run those workflow instances. Currently we
 have four execution type:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">parallel</span></code> (default value): it means all instances will allow to run even though the previous
@@ -170,14 +170,14 @@ all the waiting instances will be executed base on scheduling order.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">serial_discard</span></code>: it means the all instance will be discard(abandon) if the previous instance
 is not finished.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">serial_priority</span></code>: it means the all instance will wait for the previous instance to finish,
-and all the waiting instances will be executed base on process definition priority order.</p></li>
+and all the waiting instances will be executed base on workflow priority order.</p></li>
 </ul>
 <p>Parameter <code class="docutils literal notranslate"><span class="pre">execution</span> <span class="pre">type</span></code> can be set in</p>
 <ul>
 <li><p>Direct assign statement. You can pick execute type from above and direct assign to parameter
 <code class="docutils literal notranslate"><span class="pre">execution_type</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span> <span class="o">=</span> <span class="n">ProcessDefinition</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;process-definition&quot;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;workflow_name&quot;</span><span class="p">,</span>
     <span class="n">execution_type</span><span class="o">=</span><span class="s2">&quot;parallel&quot;</span>
 <span class="p">)</span>
 </pre></div>
@@ -201,7 +201,7 @@ what you want to in the task. It have some required parameter to make uniqueness
 <p>If you want to see all type of tasks, you could see <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
 <section id="tasks-dependence">
 <h3>Tasks Dependence<a class="headerlink" href="#tasks-dependence" title="Permalink to this heading"></a></h3>
-<p>You could define many tasks in on single <a class="reference internal" href="#process-definition">Process Definition</a>. If all those task is in parallel processing,
+<p>You could define many tasks in on single <a class="reference internal" href="#workflow">Workflow</a>. If all those task is in parallel processing,
 then you could leave them alone without adding any additional information. But if there have some tasks should
 not be run unless pre task in workflow have be done, we should set task dependence to them. Set tasks dependence
 have two mainly way and both of them is easy. You could use bitwise operator <cite>&gt;&gt;</cite> and <cite>&lt;&lt;</cite>, or task attribute
@@ -223,20 +223,20 @@ have two mainly way and both of them is easy. You could use bitwise operator <ci
 </pre></div>
 </div>
 </section>
-<section id="task-with-process-definition">
-<h3>Task With Process Definition<a class="headerlink" href="#task-with-process-definition" title="Permalink to this heading"></a></h3>
-<p>In most of data orchestration cases, you should assigned attribute <cite>process_definition</cite> to task instance to
-decide workflow of task. You could set <cite>process_definition</cite> in both normal assign or in context manger mode</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal assign, have to explicit declaration and pass `ProcessDefinition` instance to task</span>
-<span class="n">pd</span> <span class="o">=</span> <span class="n">ProcessDefinition</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first process definition&quot;</span><span class="p">)</span>
-<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span> <span class="n">process_definition</span><span class="o">=</span><span class="n">pd</span><span class="p">)</span>
+<section id="task-with-workflow">
+<h3>Task With Workflow<a class="headerlink" href="#task-with-workflow" title="Permalink to this heading"></a></h3>
+<p>In most of data orchestration cases, you should assigned attribute <cite>workflow</cite> to task instance to
+decide workflow of task. You could set <cite>workflow</cite> in both normal assign or in context manger mode</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal assign, have to explicit declaration and pass `Workflow` instance to task</span>
+<span class="n">pd</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
+<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span> <span class="n">workflow</span><span class="o">=</span><span class="n">pd</span><span class="p">)</span>
 
-<span class="c1"># Context manger, `ProcessDefinition` instance pd would implicit declaration to task</span>
-<span class="k">with</span> <span class="n">ProcessDefinition</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first process definition&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+<span class="c1"># Context manger, `Workflow` instance pd would implicit declaration to task</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
     <span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span>
 </pre></div>
 </div>
-<p>With both <a class="reference internal" href="#process-definition">Process Definition</a>, <a class="reference internal" href="#tasks">Tasks</a>  and <a class="reference internal" href="#tasks-dependence">Tasks Dependence</a>, we could build a workflow with multiple tasks.</p>
+<p>With both <a class="reference internal" href="#workflow">Workflow</a>, <a class="reference internal" href="#tasks">Tasks</a>  and <a class="reference internal" href="#tasks-dependence">Tasks Dependence</a>, we could build a workflow with multiple tasks.</p>
 </section>
 </section>
 <section id="authentication-token">

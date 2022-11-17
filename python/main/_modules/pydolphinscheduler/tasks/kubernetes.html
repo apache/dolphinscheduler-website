@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pydolphinscheduler.tasks.sub_process &mdash; pydolphinscheduler 0.0.1 documentation</title>
+  <title>pydolphinscheduler.tasks.kubernetes &mdash; pydolphinscheduler 0.0.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
@@ -68,7 +68,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pydolphinscheduler.tasks.sub_process</li>
+      <li class="breadcrumb-item active">pydolphinscheduler.tasks.kubernetes</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -77,7 +77,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pydolphinscheduler.tasks.sub_process</h1><div class="highlight"><pre>
+  <h1>Source code for pydolphinscheduler.tasks.kubernetes</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
 <span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
 <span class="c1"># distributed with this work for additional information</span>
@@ -95,43 +95,44 @@
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;Task sub_process.&quot;&quot;&quot;</span>
-
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
-
+<span class="sd">&quot;&quot;&quot;Task Kubernetes.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSProcessDefinitionNotAssignException</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">gateway</span>
 
 
-<div class="viewcode-block" id="SubProcess"><a class="viewcode-back" href="../../../tasks/sub_process.html#pydolphinscheduler.tasks.SubProcess">[docs]</a><span class="k">class</span> <span class="nc">SubProcess</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task SubProcess object, declare behavior for SubProcess task to dolphinscheduler.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Kubernetes"><a class="viewcode-back" href="../../../tasks/kubernetes.html#pydolphinscheduler.tasks.Kubernetes">[docs]</a><span class="k">class</span> <span class="nc">Kubernetes</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Task Kubernetes object, declare behavior for Kubernetes task to dolphinscheduler.</span>
 
-    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;process_definition_code&quot;</span><span class="p">}</span>
+<span class="sd">    :param name: task name</span>
+<span class="sd">    :param image: the registry url for image.</span>
+<span class="sd">    :param namespace: the namespace for running Kubernetes task.</span>
+<span class="sd">    :param min_cpu_cores: min CPU requirement for running Kubernetes task.</span>
+<span class="sd">    :param min_memory_space: min memory requirement for running Kubernetes task.</span>
+<span class="sd">    :param params_map: It is a local user-defined parameter for Kubernetes task.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">process_definition_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">SUB_PROCESS</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">process_definition_name</span> <span class="o">=</span> <span class="n">process_definition_name</span>
+    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;image&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;namespace&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;min_cpu_cores&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;min_memory_space&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">process_definition_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get process definition code, a wrapper for :func:`get_process_definition_info`.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_process_definition_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">process_definition_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="s2">&quot;code&quot;</span>
-        <span class="p">)</span>
-
-<div class="viewcode-block" id="SubProcess.get_process_definition_info"><a class="viewcode-back" href="../../../tasks/sub_process.html#pydolphinscheduler.tasks.SubProcess.get_process_definition_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_process_definition_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_definition_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get process definition info from java gateway, contains process definition id, name, code.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">PyDSProcessDefinitionNotAssignException</span><span class="p">(</span>
-                <span class="s2">&quot;ProcessDefinition must be provider for task SubProcess.&quot;</span>
-            <span class="p">)</span>
-        <span class="k">return</span> <span class="n">gateway</span><span class="o">.</span><span class="n">get_process_definition_info</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">process_definition_name</span><span class="p">,</span>
-        <span class="p">)</span></div></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">image</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">min_cpu_cores</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">min_memory_space</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">KUBERNETES</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_cpu_cores</span> <span class="o">=</span> <span class="n">min_cpu_cores</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_memory_space</span> <span class="o">=</span> <span class="n">min_memory_space</span></div>
 </pre></div>
 
            </div>
@@ -173,7 +174,7 @@
     </dl>
     <dl>
       <dt>Branches</dt>
-      <dd><a href="sub_process.html">main</a></dd>
+      <dd><a href="kubernetes.html">main</a></dd>
     </dl>
   </div>
 </div><script>

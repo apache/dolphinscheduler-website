@@ -20,25 +20,25 @@ Concepts
 
 In this section, you would know the core concepts of *PyDolphinScheduler*.
 
-Process Definition
-------------------
+Workflow
+--------
 
-Process definition describe the whole things except `tasks`_ and `tasks dependence`_, which including
+Workflow describe the whole things except `tasks`_ and `tasks dependence`_, which including
 name, schedule interval, schedule start time and end time. You would know scheduler 
 
-Process definition could be initialized in normal assign statement or in context manger.
+Workflow could be initialized in normal assign statement or in context manger.
 
 .. code-block:: python
 
    # Initialization with assign statement
-   pd = ProcessDefinition(name="my first process definition")
+   pd = Workflow(name="my first workflow")
 
    # Or context manger 
-   with ProcessDefinition(name="my first process definition") as pd:
+   with Workflow(name="my first workflow") as pd:
        pd.submit()
 
-Process definition is the main object communicate between *PyDolphinScheduler* and DolphinScheduler daemon.
-After process definition and task is be declared, you could use `submit` and `run` notify server your definition.
+Workflow is the main object communicate between *PyDolphinScheduler* and DolphinScheduler daemon.
+After workflow and task is be declared, you could use `submit` and `run` notify server your definition.
 
 If you just want to submit your definition and create workflow, without run it, you should use attribute `submit`.
 But if you want to run the workflow after you submit it, you could use attribute `run`.
@@ -84,7 +84,7 @@ Tenant is the user who run task command in machine or in virtual machine. it cou
 .. code-block:: python
 
    # 
-   pd = ProcessDefinition(name="process definition tenant", tenant="tenant_exists")
+   pd = Workflow(name="workflow tenant", tenant="tenant_exists")
 
 .. note::
 
@@ -93,9 +93,9 @@ Tenant is the user who run task command in machine or in virtual machine. it cou
 Execution Type
 ~~~~~~~~~~~~~~
 
-Decision which behavior to run when process definition have multiple instances. when process definition
+Decision which behavior to run when workflow have multiple instances. when workflow
 schedule interval is too short, it may cause multiple instances run at the same time. We can use this
-parameter to control the behavior about how to run those process definition instances. Currently we
+parameter to control the behavior about how to run those workflow instances. Currently we
 have four execution type:
 
 * ``parallel`` (default value): it means all instances will allow to run even though the previous
@@ -105,7 +105,7 @@ have four execution type:
 * ``serial_discard``: it means the all instance will be discard(abandon) if the previous instance
   is not finished.
 * ``serial_priority``: it means the all instance will wait for the previous instance to finish,
-  and all the waiting instances will be executed base on process definition priority order.
+  and all the waiting instances will be executed base on workflow priority order.
 
 Parameter ``execution type`` can be set in
 
@@ -114,8 +114,8 @@ Parameter ``execution type`` can be set in
 
   .. code-block:: python
 
-     pd = ProcessDefinition(
-         name="process-definition",
+     pd = Workflow(
+         name="workflow_name",
          execution_type="parallel"
      )
 
@@ -141,7 +141,7 @@ If you want to see all type of tasks, you could see :doc:`tasks/index`.
 Tasks Dependence
 ~~~~~~~~~~~~~~~~
 
-You could define many tasks in on single `Process Definition`_. If all those task is in parallel processing,
+You could define many tasks in on single `Workflow`_. If all those task is in parallel processing,
 then you could leave them alone without adding any additional information. But if there have some tasks should
 not be run unless pre task in workflow have be done, we should set task dependence to them. Set tasks dependence
 have two mainly way and both of them is easy. You could use bitwise operator `>>` and `<<`, or task attribute 
@@ -164,23 +164,23 @@ have two mainly way and both of them is easy. You could use bitwise operator `>>
    # for some tasks have same dependence.
    task1 >> [task2, task3]
 
-Task With Process Definition
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Task With Workflow
+~~~~~~~~~~~~~~~~~~
 
-In most of data orchestration cases, you should assigned attribute `process_definition` to task instance to
-decide workflow of task. You could set `process_definition` in both normal assign or in context manger mode
+In most of data orchestration cases, you should assigned attribute `workflow` to task instance to
+decide workflow of task. You could set `workflow` in both normal assign or in context manger mode
 
 .. code-block:: python
 
-   # Normal assign, have to explicit declaration and pass `ProcessDefinition` instance to task
-   pd = ProcessDefinition(name="my first process definition")
-   shell_task = Shell(name="shell", command="echo shell task", process_definition=pd)
+   # Normal assign, have to explicit declaration and pass `Workflow` instance to task
+   pd = Workflow(name="my first workflow")
+   shell_task = Shell(name="shell", command="echo shell task", workflow=pd)
 
-   # Context manger, `ProcessDefinition` instance pd would implicit declaration to task
-   with ProcessDefinition(name="my first process definition") as pd:
+   # Context manger, `Workflow` instance pd would implicit declaration to task
+   with Workflow(name="my first workflow") as pd:
        shell_task = Shell(name="shell", command="echo shell task",
 
-With both `Process Definition`_, `Tasks`_  and `Tasks Dependence`_, we could build a workflow with multiple tasks.
+With both `Workflow`_, `Tasks`_  and `Tasks Dependence`_, we could build a workflow with multiple tasks.
 
 Authentication Token
 --------------------
