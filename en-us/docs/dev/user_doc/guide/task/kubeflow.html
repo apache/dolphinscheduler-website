@@ -30,8 +30,30 @@
 <h3>Here are some specific parameters for the Kubeflow plugin</h3>
 <ul>
 <li><strong>Namespace</strong>：The namespace parameter of the cluster</li>
-<li><strong>yamlContent</strong>：CRD YAML file content</li>
+<li><strong>yamlContent</strong>：CRD YAML file content, for example:</li>
 </ul>
+<pre><code class="language-yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">&quot;kubeflow.org/v1&quot;</span>
+<span class="hljs-attr">kind:</span> <span class="hljs-string">TFJob</span>
+<span class="hljs-attr">metadata:</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">tfjob-simple</span>
+  <span class="hljs-attr">namespace:</span> <span class="hljs-string">kubeflow-user-example-com</span>
+<span class="hljs-attr">spec:</span>
+  <span class="hljs-attr">tfReplicaSpecs:</span>
+    <span class="hljs-attr">Worker:</span>
+      <span class="hljs-attr">replicas:</span> <span class="hljs-number">2</span>
+      <span class="hljs-attr">restartPolicy:</span> <span class="hljs-string">OnFailure</span>
+      <span class="hljs-attr">template:</span>
+        <span class="hljs-attr">metadata:</span>
+          <span class="hljs-attr">annotations:</span>
+            <span class="hljs-attr">sidecar.istio.io/inject:</span> <span class="hljs-string">&quot;false&quot;</span>
+        <span class="hljs-attr">spec:</span>
+          <span class="hljs-attr">containers:</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">tensorflow</span>
+              <span class="hljs-attr">image:</span> <span class="hljs-string">gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0</span>
+              <span class="hljs-attr">command:</span>
+                <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;python&quot;</span>
+                <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;/var/tf_mnist/mnist_with_summaries.py&quot;</span>
+</code></pre>
 <h2>Environment Configuration</h2>
 <p><strong>Configure Kubernetes environment</strong></p>
 <p>Reference <a href="../security.md">Cluster Management and Namespace Management</a>.</p>
