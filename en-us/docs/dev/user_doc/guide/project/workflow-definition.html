@@ -147,7 +147,7 @@
 <p>Description of workflow operating parameters:</p>
 <ul>
 <li>Failure strategy: When a task node fails to execute, other parallel task nodes need to execute this strategy. &quot;Continue&quot; means: after a certain task fails, other task nodes execute normally; &quot;End&quot; means: terminate all tasks execution, and terminate the entire process.</li>
-<li>Notification strategy: When the process is over, send the process execution result notification email according to the process status, options including no send, send if sucess, send of failure, send whatever result.</li>
+<li>Notification strategy: When the process is over, send the process execution result notification email according to the process status, options including no send, send if success, send of failure, send whatever result.</li>
 <li>Process priority: The priority of process operation, divide into five levels: highest (HIGHEST), high (HIGH), medium (MEDIUM), low (LOW), and lowest (LOWEST). When the number of master threads is insufficient, high priority processes will execute first in the execution queue, and processes with the same priority will execute in the order of first in, first out.</li>
 <li>Worker group: The process can only be executed in the specified worker machine group. The default is <code>Default</code>, which can execute on any worker.</li>
 <li>Notification group: select notification strategy||timeout alarm||when fault tolerance occurs, process result information or email will send to all members in the notification group.</li>
