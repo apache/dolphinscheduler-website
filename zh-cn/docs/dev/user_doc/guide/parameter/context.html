@@ -20,6 +20,7 @@
 <li><a href="../task/shell.md">Shell</a></li>
 <li><a href="../task/sql.md">SQL</a></li>
 <li><a href="../task/stored-procedure.md">Procedure</a></li>
+<li><a href="../task/python.md">Python</a></li>
 </ul>
 <p>当定义上游节点时，如果有需要将该节点的结果传递给有依赖关系的下游节点，需要在【当前节点设置】的【自定义参数】设置一个方向是 OUT 的变量。目前我们主要针对 SQL 和 SHELL 节点做了可以向下传递参数的功能。</p>
 <blockquote>
@@ -61,6 +62,10 @@
 <p><img src="/img/new_ui/dev/parameter/context_log03.png" alt="context-log03"></p>
 <p>虽然在 Node_A 的脚本中为 output 赋值为 1，但日志中显示的值仍然为 100。但根据<a href="priority.md">参数优先级</a>的原则：<code>本地参数 &gt; 上游任务传递的参数 &gt; 全局参数</code>，在 Node_B 中输出的值为 1。则证明 output 参数参照预期的值在该工作流中传递，并在 Node_mysql 中使用该值完成查询操作。</p>
 <p>但是 value 的值却只有在 Node_A 中输出为 66，其原因为 value 的方向选择为 IN，只有当方向为 OUT 时才会被定义为变量输出。</p>
+<h4>Python 任务传递参数</h4>
+<p>使用 <code>print('${setValue(key=%s)}' % value)</code>，DolphinScheduler会捕捉输出中的 <code>${setValue(key=value}</code>来进行参数捕捉，从而传递到下游</p>
+<p>如
+<img src="/img/new_ui/dev/parameter/python_context_param.png" alt="img.png"></p>
 </div></section><footer class="footer-container"><div class="footer-body"><div><h3>联系我们</h3><h4>有问题需要反馈？请通过以下方式联系我们。</h4></div><div class="contact-container"><ul><li><a href="https://s.apache.org/dolphinscheduler-slack"><img class="img-base" src="/img/slack.png"/><img class="img-change" src="/img/slack-selected.png"/><p>Slack</p></a></li><li><a href="/zh-cn/docs/latest/user_doc/contribute/join/subscribe.html"><img class="img-base" src="/img/emailgray.png"/><img class="img-change" src="/img/emailblue.png"/><p>邮件列表</p></a></li><li><a href="https://twitter.com/dolphinschedule"><img class="img-base" src="/img/twittergray.png"/><img class="img-change" src="/img/twitterblue.png"/><p>Twitter</p></a></li></ul></div><div class="copyright"><span>Copyright © 2019-2022 The Apache Software Foundation. Apache DolphinScheduler, DolphinScheduler, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
   <script src="/asset/js/react/react-with-addons.min.js"></script>
   <script src="/asset/js/react/react-dom.min.js"></script>
