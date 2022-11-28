@@ -31,11 +31,12 @@ concurrency:
 jobs:
   CheckDeadLinks:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # Will check all history docs when event is schedule, will cost many times in this case, so we need more time
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v2
       - name: Prepare Related Resource
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master' || github.event_name == 'schedule'
+        if: github.event_name == 'schedule'
         run: ./scripts/prepare_docs.sh
       - run: sudo npm install -g markdown-link-check@3.10.0
       # We need to delete directory swap before markdown checker
