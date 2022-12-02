@@ -59,6 +59,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#task-with-workflow">Task With Workflow</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-files">Resource Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#authentication-token">Authentication Token</a></li>
 </ul>
 </li>
@@ -238,6 +239,72 @@ decide workflow of task. You could set <cite>workflow</cite> in both normal assi
 </div>
 <p>With both <a class="reference internal" href="#workflow">Workflow</a>, <a class="reference internal" href="#tasks">Tasks</a>  and <a class="reference internal" href="#tasks-dependence">Tasks Dependence</a>, we could build a workflow with multiple tasks.</p>
 </section>
+</section>
+<section id="resource-files">
+<h2>Resource Files<a class="headerlink" href="#resource-files" title="Permalink to this heading"></a></h2>
+<p>During workflow running, we may need some resource files to help us run task usually. One of a common situation
+is that we already have some executable files locally, and we need to schedule in specific time, or add them
+to existing workflow by adding the new tasks. Of cause, we can upload those files to target machine and run them
+in <a class="reference internal" href="tasks/shell.html"><span class="doc">shell task</span></a> by reference the absolute path of file. But if we have more than one machine
+to run task, we have to upload those files to each of them. And it is not convenient and not flexible, because
+we may need to change our resource files sometimes.</p>
+<p>The more pydolphinscheduler way is to upload those files together with <a class="reference internal" href="#workflow">workflow</a>, and use them in task to run.
+For example, you have a bash script named <code class="docutils literal notranslate"><span class="pre">echo-ten.sh</span></code> locally, and it contains some code like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/env bash</span>
+<span class="nv">max</span><span class="o">=</span><span class="m">10</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> i &lt;<span class="o">=</span> <span class="nv">$max</span><span class="p">;</span> ++i<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>and you want to use it in workflow but do not want to copy-paste it to shell task parameter <code class="docutils literal notranslate"><span class="pre">command</span></code>. You could
+use this mechanism to upload it to resource center when you create workflow</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read file content</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;echo-ten.sh&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;upload_and_run&quot;</span><span class="p">,</span>
+   <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
+      <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">),</span>
+   <span class="p">],</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>And when we call <code class="code docutils literal notranslate"><span class="pre">workflow.run()</span></code> the new file named <code class="docutils literal notranslate"><span class="pre">echo-ten.sh</span></code> would be uploaded to dolphinscheduler
+resource center.</p>
+<p>After that we can use this file in our task by reference it by name, in this case we could use <a class="reference internal" href="tasks/shell.html"><span class="doc">shell task</span></a>
+to run it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We use `shell` task to run `echo-ten.sh` file</span>
+<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;run&quot;</span><span class="p">,</span>
+   <span class="n">command</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;bash </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+   <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
+      <span class="n">file_name</span>
+   <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>During workflow running, the file would be downloaded to the task runtime working directory which mean you could
+execute them. We execute file by <code class="docutils literal notranslate"><span class="pre">bash</span></code> but reference it by name directly.</p>
+<p>Please notice that we could also reference the resource file already in dolphinscheduler resource center, which
+mean we could use resource center files in task by name without upload it again. And we can upload files to
+resource center bare without workflow.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Upload file to resource center</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource</span> <span class="kn">import</span> <span class="n">Resource</span>
+
+<span class="n">resource</span> <span class="o">=</span> <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;bare-create.py&quot;</span><span class="p">,</span> <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;&lt;USER-MUST-EXISTS-WITH-TENANT&gt;&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;print(&#39;Bareh create resource&#39;)&quot;</span><span class="p">)</span>
+<span class="n">resource</span><span class="o">.</span><span class="n">create_or_update_resource</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After that, we could see new file named <code class="docutils literal notranslate"><span class="pre">bare-create.py</span></code> is be created in resource center.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both parameter <code class="docutils literal notranslate"><span class="pre">resource_list</span></code> in workflow and task is list of string which mean you could upload and reference
+multiple files. For more complex usage, you could read <a class="reference internal" href="howto/multi-resources.html"><span class="doc">Upload and Use Multiple Resources</span></a>.</p>
+</div>
 </section>
 <section id="authentication-token">
 <h2>Authentication Token<a class="headerlink" href="#authentication-token" title="Permalink to this heading"></a></h2>

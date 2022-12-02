@@ -182,6 +182,84 @@ decide workflow of task. You could set `workflow` in both normal assign or in co
 
 With both `Workflow`_, `Tasks`_  and `Tasks Dependence`_, we could build a workflow with multiple tasks.
 
+Resource Files
+--------------
+
+During workflow running, we may need some resource files to help us run task usually. One of a common situation
+is that we already have some executable files locally, and we need to schedule in specific time, or add them
+to existing workflow by adding the new tasks. Of cause, we can upload those files to target machine and run them
+in :doc:`shell task <tasks/shell>` by reference the absolute path of file. But if we have more than one machine
+to run task, we have to upload those files to each of them. And it is not convenient and not flexible, because
+we may need to change our resource files sometimes.
+
+The more pydolphinscheduler way is to upload those files together with `workflow`_, and use them in task to run.
+For example, you have a bash script named ``echo-ten.sh`` locally, and it contains some code like this:
+
+.. code-block:: bash
+
+   #!/bin/env bash
+   max=10
+   for ((i=1; i <= $max; ++i)); do
+       echo "$i"
+   done
+
+and you want to use it in workflow but do not want to copy-paste it to shell task parameter ``command``. You could
+use this mechanism to upload it to resource center when you create workflow
+
+.. code-block:: python
+
+   # Read file content
+   file_name = "echo-ten.sh"
+   
+   with open(file_name, "r") as f:
+         content = f.read()
+
+   with Workflow(
+      name="upload_and_run",
+      resource_list=[
+         Resource(name=file_name, content=content),
+      ],
+   ) as workflow:
+
+And when we call :code:`workflow.run()` the new file named ``echo-ten.sh`` would be uploaded to dolphinscheduler
+resource center.
+
+After that we can use this file in our task by reference it by name, in this case we could use :doc:`shell task <tasks/shell>`
+to run it.
+
+.. code-block:: python
+
+   # We use `shell` task to run `echo-ten.sh` file
+   shell_task = Shell(
+      name="run",
+      command=f"bash {file_name}",
+      resource_list=[
+         file_name
+      ],
+   )
+
+During workflow running, the file would be downloaded to the task runtime working directory which mean you could
+execute them. We execute file by ``bash`` but reference it by name directly.
+
+Please notice that we could also reference the resource file already in dolphinscheduler resource center, which
+mean we could use resource center files in task by name without upload it again. And we can upload files to
+resource center bare without workflow. 
+
+.. code-block:: python
+
+   # Upload file to resource center
+   from pydolphinscheduler.core.resource import Resource
+
+   resource = Resource(name="bare-create.py", user_name="<USER-MUST-EXISTS-WITH-TENANT>", content="print('Bareh create resource')")
+   resource.create_or_update_resource()
+
+After that, we could see new file named ``bare-create.py`` is be created in resource center.
+
+.. note::
+
+   Both parameter ``resource_list`` in workflow and task is list of string which mean you could upload and reference
+   multiple files. For more complex usage, you could read :doc:`howto/multi-resources`.
+
 Authentication Token
 --------------------
 

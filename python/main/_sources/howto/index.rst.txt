@@ -28,3 +28,4 @@ Currently, the HOWTOs are:
    :maxdepth: 2
    
    remote-submit
+   multi-resources

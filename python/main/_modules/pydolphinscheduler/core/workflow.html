@@ -499,6 +499,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_side_model_exists</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pre_submit_check</span><span class="p">()</span>
 
+        <span class="c1"># resource should be created before workflow</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">:</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">user_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">create_or_update_resource</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_workflow_code</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">create_or_update_workflow</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span>
@@ -518,10 +524,6 @@
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">:</span>
-                <span class="n">res</span><span class="o">.</span><span class="n">user_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user</span>
-                <span class="n">res</span><span class="o">.</span><span class="n">create_or_update_resource</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workflow_code</span></div>
 
 <div class="viewcode-block" id="Workflow.start"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
