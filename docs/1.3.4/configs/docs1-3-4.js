@@ -87,6 +87,15 @@ export default {
           },
         ],
       },
+      {
+        title: 'Change Log',
+        children: [
+          {
+            title: 'Change Log',
+            link: '/en-us/docs/1.3.4/user_doc/changelog.html',
+          },
+        ],
+      },
     ],
     barText: 'Documentation',
   },
@@ -124,7 +133,6 @@ export default {
             title: '用户手册',
             link: '/zh-cn/docs/1.3.4/user_doc/system-manual.html',
           },
-
         ],
       },
       {

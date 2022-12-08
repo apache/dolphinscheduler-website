@@ -57,6 +57,15 @@ export default {
           },
         ],
       },
+      {
+        title: 'Change Log',
+        children: [
+          {
+            title: 'Change Log',
+            link: '/en-us/docs/1.2.0/user_doc/changelog.html',
+          },
+        ],
+      },
     ],
     barText: 'Documentation',
   },

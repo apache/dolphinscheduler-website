@@ -1,0 +1,17 @@
+# Change Log
+
+- [Fix-8645][api] Resource Re Upload, name duplicate (#8811)
+- [Feature][dag] Jump back to the list page after the workflow is saved. (#8989)
+- [Fix-8929][dao]Description Failed to upload the file because the full name was too long (#9020)
+- [Fix-8544][api] The folder's size can't be updated when creating, updating or deleting a resource file int the folder. (#9107)
+- [BUG][alert-server]validate script before alert script (#9834)
+- [Fix-10386]LDAP user create with status enable version 2.0.6 (#10508)
+- [Fix-10517] Some important bugs in version 2.0.5 (#10541)
+- [Fix][ui] Fix bytesToSize function calculation error. (#10628)
+- to #9801: fix delete job of quartz not work (#10645)
+- to #9595: fix param lost when execute failed task (#10646)
+- [Improvement] heartbeat info improvement (#10699)
+- [Fix-10672] Dependent task retry bug (#10707)
+- [Fix-10443][server]fix dependent task always running (#10708)
+- [Fix-10673] Workflow recovery bug with failed tasks (#10722)
+- [Fix-10762] [bug] Dependent tasks wait for the workflow to end (#10765)

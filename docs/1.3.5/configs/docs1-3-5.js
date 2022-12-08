@@ -95,6 +95,15 @@ export default {
           },
         ],
       },
+      {
+        title: 'Change Log',
+        children: [
+          {
+            title: 'Change Log',
+            link: '/en-us/docs/1.3.5/user_doc/changelog.html',
+          },
+        ],
+      },
     ],
     barText: 'Documentation',
   },
@@ -140,7 +149,6 @@ export default {
             title: 'API调用',
             link: '/zh-cn/docs/1.3.5/user_doc/open-api.html',
           },
-
         ],
       },
       {
