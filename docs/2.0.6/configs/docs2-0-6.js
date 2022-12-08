@@ -28,9 +28,9 @@ export default {
           {
             title: 'Docker Deployment',
             link: '/en-us/docs/2.0.6/user_doc/guide/installation/docker.html',
-           },
-            ],
           },
+        ],
+      },
       {
         title: 'Installation',
         children: [
@@ -78,7 +78,7 @@ export default {
                 title: 'Task Instance',
                 link: '/en-us/docs/2.0.6/user_doc/guide/project/task-instance.html',
               },
-            ]
+            ],
           },
           {
             title: 'Task',
@@ -270,7 +270,7 @@ export default {
             title: 'SkyWalking-Agent',
             link: '/en-us/docs/2.0.6/user_doc/guide/observability/skywalking-agent.html',
           },
-        ]
+        ],
       },
       {
         title: 'API',
@@ -440,6 +440,15 @@ export default {
           },
         ],
       },
+      {
+        title: 'Change Log',
+        children: [
+          {
+            title: 'Change Log',
+            link: '/en-us/docs/2.0.6/user_doc/changelog.html',
+          },
+        ],
+      },
     ],
     barText: 'Documentation',
   },
@@ -459,7 +468,7 @@ export default {
           {
             title: '名称解释',
             link: '/zh-cn/docs/2.0.6/user_doc/architecture/designplus.html',
-          },          
+          },
         ],
       },
       {
@@ -474,14 +483,14 @@ export default {
             link: '/zh-cn/docs/2.0.6/user_doc/guide/installation/docker.html',
           },
         ],
-      }, 
+      },
       {
         title: '部署指南',
         children: [
           {
             title: '单机部署(Standalone)',
             link: '/zh-cn/docs/2.0.6/user_doc/guide/installation/standalone.html',
-          },          
+          },
           {
             title: '伪集群部署(Pseudo-Cluster)',
             link: '/zh-cn/docs/2.0.6/user_doc/guide/installation/pseudo-cluster.html',
@@ -495,8 +504,8 @@ export default {
             link: '/zh-cn/docs/2.0.6/user_doc/guide/installation/kubernetes.html',
           },
         ],
-      }, 
-      {          
+      },
+      {
         title: '功能介绍',
         children: [
           {
@@ -522,7 +531,7 @@ export default {
                 title: '任务实例',
                 link: '/zh-cn/docs/2.0.6/user_doc/guide/project/task-instance.html',
               },
-            ]
+            ],
           },
           {
             title: '任务类型',
@@ -714,20 +723,20 @@ export default {
             title: 'SkyWalking-Agent',
             link: '/zh-cn/docs/2.0.6/user_doc/guide/observability/skywalking-agent.html',
           },
-        ]
+        ],
       },
       {
-          title: 'API',
-          children: [
-              {
-                title: 'API调用',
-                link: '/zh-cn/docs/2.0.6/user_doc/guide/open-api.html',
-              },
-              {
-                  title: 'PyDolphinScheduler',
-                  link: '/python/2.0.6/index.html',
-              },
-          ],
+        title: 'API',
+        children: [
+          {
+            title: 'API调用',
+            link: '/zh-cn/docs/2.0.6/user_doc/guide/open-api.html',
+          },
+          {
+            title: 'PyDolphinScheduler',
+            link: '/python/2.0.6/index.html',
+          },
+        ],
       },
       {
         title: '贡献指南',

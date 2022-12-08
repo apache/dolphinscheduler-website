@@ -87,7 +87,7 @@ export default {
             title: 'SkyWalking-Agent',
             link: '/en-us/docs/1.3.9/user_doc/skywalking-agent-deployment.html',
           },
-        ]
+        ],
       },
       {
         title: 'Integration',
@@ -122,6 +122,15 @@ export default {
           {
             title: 'FAQ',
             link: '/en-us/docs/release/faq.html',
+          },
+        ],
+      },
+      {
+        title: 'Change Log',
+        children: [
+          {
+            title: 'Change Log',
+            link: '/en-us/docs/1.3.9/user_doc/changelog.html',
           },
         ],
       },
@@ -216,7 +225,7 @@ export default {
             title: 'SkyWalking-Agent',
             link: '/zh-cn/docs/1.3.9/user_doc/skywalking-agent-deployment.html',
           },
-        ]
+        ],
       },
       {
         title: '版本升级',
