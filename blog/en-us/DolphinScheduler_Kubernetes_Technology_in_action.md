@@ -75,7 +75,7 @@ Official website document address
 https://dolphinscheduler.apache.org/en-us/docs/1.3.9/user_doc/kubernetes-deployment.html
 
 GitHub folder address
-https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler
+https://github.com/apache/dolphinscheduler/tree/1.3.9/docker/kubernetes/dolphinscheduler
 
 Modify the image in the value.yaml file for offline installation (air-gap install);
 
@@ -107,7 +107,7 @@ tag: "1.3.9"
 pullPolicy: "Always"
 ```
 
-Copy the entire directory of https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler to a host that can execute the Helm command, and then execute
+Copy the entire directory of https://github.com/apache/dolphinscheduler/tree/1.3.9/docker/kubernetes/dolphinscheduler to a host that can execute the Helm command, and then execute
 ```
 kubectl create ns ds139
 helm install dolphinscheduler . -n ds139 following the official website instruction to install offline.
