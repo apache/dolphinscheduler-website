@@ -2,11 +2,13 @@
 
 Use the links below to download the Apache DolphinScheduler from one of our mirrors.
 
-**Only source code releases are official Apache releases: Windows and Linux binary distributions are just for end user convenience.**
+**Only source coqde releases are official Apache releases: Windows and Linux binary distributions are just for end user convenience.**
 
 ## DolphinScheduler
 | Date | Version| | Downloads |
 |:---:|:--:|:--:|:--:|
+| Dec. 11st, 2022 | 3.1.2 | Total Source Code | [[src]](https://www.apache.org/dyn/closer.lua/dolphinscheduler/3.1.2/apache-dolphinscheduler-3.1.2-src.tar.gz) [[asc]](https://downloads.apache.org/dolphinscheduler/3.1.2/apache-dolphinscheduler-3.1.2-src.tar.gz.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/3.1.2/apache-dolphinscheduler-3.1.2-src.tar.gz.sha512) |
+|  | | Total Binary Distribution | [[bin]](https://www.apache.org/dyn/closer.lua/dolphinscheduler/3.1.2/apache-dolphinscheduler-3.1.2-bin.tar.gz) [[asc]](https://downloads.apache.org/dolphinscheduler/3.1.2/apache-dolphinscheduler-3.1.2-bin.tar.gz.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/3.1.2/apache-dolphinscheduler-3.1.2-bin.tar.gz.sha512) |
 | Dec. 8th, 2022 | 3.0.3 | Total Source Code | [[src]](https://www.apache.org/dyn/closer.lua/dolphinscheduler/3.0.3/apache-dolphinscheduler-3.0.3-src.tar.gz) [[asc]](https://downloads.apache.org/dolphinscheduler/3.0.3/apache-dolphinscheduler-3.0.3-src.tar.gz.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/3.0.3/apache-dolphinscheduler-3.0.3-src.tar.gz.sha512) |
 |  | | Total Binary Distribution | [[bin]](https://www.apache.org/dyn/closer.lua/dolphinscheduler/3.0.3/apache-dolphinscheduler-3.0.3-bin.tar.gz) [[asc]](https://downloads.apache.org/dolphinscheduler/3.0.3/apache-dolphinscheduler-3.0.3-bin.tar.gz.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/3.0.3/apache-dolphinscheduler-3.0.3-bin.tar.gz.sha512) |
 | Nov. 21st, 2022 | 3.0.2 | Total Source Code | [[src]](https://www.apache.org/dyn/closer.lua/dolphinscheduler/3.0.2/apache-dolphinscheduler-3.0.2-src.tar.gz) [[asc]](https://downloads.apache.org/dolphinscheduler/3.0.2/apache-dolphinscheduler-3.0.2-src.tar.gz.asc) [[sha512]](https://downloads.apache.org/dolphinscheduler/3.0.2/apache-dolphinscheduler-3.0.2-src.tar.gz.sha512) |

@@ -31,7 +31,7 @@ Apache DolphinScheduler是当前非常优秀的分布式易扩展的可视化工
 
 官网文档地址 https://dolphinscheduler.apache.org/zh-cn/docs/1.3.9/user_doc/kubernetes-deployment.html
 
-GitHub文件夹地址  https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler/
+GitHub文件夹地址  https://github.com/apache/dolphinscheduler/tree/1.3.9/docker/kubernetes/dolphinscheduler/
 
 + 在value.yaml文件中修改镜像，以实现离线安装（air-gap install）；
   https://about.gitlab.com/topics/gitops/
@@ -61,7 +61,7 @@ GitHub文件夹地址  https://github.com/apache/dolphinscheduler/tree/1.3.9-rel
     pullPolicy: "Always"GitHub
   ~~~
 
-  把 https://github.com/apache/dolphinscheduler/tree/1.3.9-release/docker/kubernetes/dolphinscheduler/ 整个目录copy到可以执行helm命令的主机，然后按照官网执行
+  把 https://github.com/apache/dolphinscheduler/tree/1.3.9/docker/kubernetes/dolphinscheduler/ 整个目录copy到可以执行helm命令的主机，然后按照官网执行
 
 
   ~~~shell
