@@ -2,7 +2,7 @@
 
 Use the links below to download the Apache DolphinScheduler from one of our mirrors.
 
-**Only source code releases are official Apache releases: Windows and Linux binary distributions are just for end user convenience.**
+**Only source coqde releases are official Apache releases: Windows and Linux binary distributions are just for end user convenience.**
 
 ## DolphinScheduler
 | Date | Version| | Downloads |
