@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
-const path = require('path');
-const fs = require('fs-extra');
-const parseMd = require('./parse_md.js');
+const path = require("path");
+const fs = require("fs-extra");
+const parseMd = require("./parse_md.js");
 
 const BASE = process.cwd();
 
-const downloadJson = require(path.join(BASE, 'config/download.json'));
+const downloadJson = require(path.join(BASE, "config/download.json"));
 
 const deploymentData = {
   Standalone: [],
-  'Pseudo Cluster': [],
+  "Pseudo Cluster": [],
   Cluster: [],
   Kubernetes: [],
   Cloud: [],
@@ -18,31 +18,31 @@ const deploymentData = {
 
 const versionData = [];
 const docSearchData = {
-  'en-us': [],
-  'zh-cn': [],
+  "en-us": [],
+  "zh-cn": [],
 };
 
 const getVersion = (name) => {
   const result = name.match(/(\d+)-(\d+)-(\d+)/);
-  return result[1] + '.' + result[2] + '.' + result[3];
+  return result[1] + "." + result[2] + "." + result[3];
 };
 
 const formateFile = (filePath) => {
   const fileContent = fs.readFileSync(filePath);
   const formatContent = fileContent
     .toString()
-    .replace(/export default/, 'module.exports =');
+    .replace(/export default/, "module.exports =");
   fs.removeSync(filePath);
   fs.writeFileSync(filePath, formatContent);
 };
 
 const parseStructure = (html, index, parent) => {
-  const regex = new RegExp(`<h${index}>(.*?)</h${index}>`, 'g');
+  const regex = new RegExp(`<h${index}>(.*?)</h${index}>`, "g");
   const matched = [...html.matchAll(regex)];
   if (matched.length) {
     matched.forEach((match) => {
       const item = {
-        title: match[1].replace(/<.*?>/g, ''),
+        title: match[1].replace(/<.*?>/g, ""),
         children: [],
       };
       item.anchor = getAnchor(item.title);
@@ -61,13 +61,13 @@ const parseStructure = (html, index, parent) => {
   }
 };
 
-const getAnchor = (name) => name.toLowerCase().replace(/\s/g, '_');
+const getAnchor = (name) => name.toLowerCase().replace(/\s/g, "_");
 
 const addAnchors = (html) => {
   let index = 1;
   let str = html;
   while (index < 7) {
-    const regex = new RegExp(`<h${index}>(.*?)</h${index}>`, 'g');
+    const regex = new RegExp(`<h${index}>(.*?)</h${index}>`, "g");
     str = str.replace(
       regex,
       (a, b) => `<h${index} id="${getAnchor(b)}">${b}</h${index}>`
@@ -81,11 +81,11 @@ const getMenu = (list, data, version, lang, isDeployment, location) => {
   list.forEach((item) => {
     if (
       [
-        'FAQ',
-        'Older Versions',
-        'Contribution',
-        '历史版本',
-        '贡献指南',
+        "FAQ",
+        "Older Versions",
+        "Contribution",
+        "历史版本",
+        "贡献指南",
       ].includes(item.title)
     ) {
       return;
@@ -96,15 +96,15 @@ const getMenu = (list, data, version, lang, isDeployment, location) => {
       location: [item.title],
     };
 
-    if (isDeployment && lang === 'en-us' && !item.children?.length) {
-      const deploymentName = item.title.replace(/ Deployment/, '');
+    if (isDeployment && lang === "en-us" && !item.children?.length) {
+      const deploymentName = item.title.replace(/ Deployment/, "");
       deploymentData[deploymentName] &&
         deploymentData[deploymentName].push(version);
 
       if (downloadJson[version] && deploymentData[deploymentName]) {
-        downloadJson[version]['deployment']
-          ? downloadJson[version]['deployment'].push(deploymentName)
-          : (downloadJson[version]['deployment'] = [deploymentName]);
+        downloadJson[version]["deployment"]
+          ? downloadJson[version]["deployment"].push(deploymentName)
+          : (downloadJson[version]["deployment"] = [deploymentName]);
       }
     }
 
@@ -114,19 +114,19 @@ const getMenu = (list, data, version, lang, isDeployment, location) => {
 
     if (item.link && item.link.includes(version)) {
       const baseLink = item.link.split(version)[1];
-      temp.key = baseLink.replace(/.html/, '').replace(/\/user_doc/, '');
+      temp.key = baseLink.replace(/.html/, "").replace(/\/user_doc/, "");
       const mdPath = `${BASE}/docs/${lang}/${version}${baseLink.replace(
         /.html/,
-        '.md'
+        ".md"
       )}`;
 
       const mdInfo = parseMd(mdPath);
-      const onlyText = mdInfo['__html'].replace(/<.*?>/g, '');
+      const onlyText = mdInfo["__html"].replace(/<.*?>/g, "");
 
       const structure = [];
       parseStructure(mdInfo.__html, 2, structure);
       const matchedTitle = /<h1>(.*?)<\/h1>/.exec(mdInfo.__html);
-      let title = '';
+      let title = "";
       if (matchedTitle !== null) {
         title = matchedTitle[1];
       } else if (structure.length) {
@@ -143,7 +143,7 @@ const getMenu = (list, data, version, lang, isDeployment, location) => {
         });
       }
       const htmlData = {
-        __html: addAnchors(mdInfo['__html']),
+        __html: addAnchors(mdInfo["__html"]),
         location: temp.location,
         time: downloadJson[version]?.time,
         structure,
@@ -155,32 +155,33 @@ const getMenu = (list, data, version, lang, isDeployment, location) => {
       fs.ensureFileSync(targetDocPath);
       fs.writeFileSync(
         targetDocPath,
-        JSON.stringify(htmlData, null, 2, 'utf8')
+        JSON.stringify(htmlData, null, 2, "utf8")
       );
     }
 
     if (!temp.key) {
-      let key = '';
-      temp.location.forEach((item) => {
-        key += '/' + getAnchor(item);
+      let key = "";
+      temp.location.forEach((item, i) => {
+        key +=
+          "/" +
+          getAnchor(item) +
+          (i === temp.location.length - 1 ? "" : "_menu");
       });
       temp.key = key;
     }
 
-    if (item.children?.length)
+    if (item.children?.length) {
       getMenu(
         item.children,
         temp.children,
         version,
         lang,
-        ['部署指南', '集成', 'Installation', 'integration'].includes(
+        ["部署指南", "集成", "Installation", "integration"].includes(
           item.title
         ),
         temp.location
       );
-
-    if (item.children?.length) {
-      temp.key += '_menu';
+      temp.key += "_menu";
     }
 
     data.push(temp);
@@ -192,7 +193,7 @@ const wirteFileByLang = (data, lang, fileName) => {
   fs.ensureDirSync(targetPath);
   fs.writeFileSync(
     `${targetPath}/${getVersion(fileName)}.json`,
-    JSON.stringify(data, null, 2, 'utf8')
+    JSON.stringify(data, null, 2, "utf8")
   );
 };
 
@@ -201,7 +202,7 @@ const wirteDeployment = () => {
   fs.ensureDirSync(targetDataPath);
   fs.writeFileSync(
     `${targetDataPath}/deployment.json`,
-    JSON.stringify(deploymentData, null, 2, 'utf8')
+    JSON.stringify(deploymentData, null, 2, "utf8")
   );
 };
 
@@ -210,7 +211,7 @@ const wirteDownload = () => {
   fs.ensureDirSync(targetDataPath);
   fs.writeFileSync(
     `${targetDataPath}/download.json`,
-    JSON.stringify(downloadJson, null, 2, 'utf8')
+    JSON.stringify(downloadJson, null, 2, "utf8")
   );
 };
 
@@ -218,23 +219,23 @@ const wirteVersion = () => {
   fs.ensureDirSync(`${BASE}/public/fetch`);
   fs.writeFileSync(
     `${BASE}/public/fetch/version.json`,
-    JSON.stringify(versionData, null, 2, 'utf8')
+    JSON.stringify(versionData, null, 2, "utf8")
   );
 };
 
 const wirteSearchDocData = () => {
-  ['en-us', 'zh-cn'].forEach((lang) => {
+  ["en-us", "zh-cn"].forEach((lang) => {
     const targetSearchPath = `${BASE}/public/data/doc/${lang}.json`;
     fs.ensureFileSync(targetSearchPath);
     fs.writeFileSync(
       targetSearchPath,
-      JSON.stringify(docSearchData[lang], null, 2, 'utf8')
+      JSON.stringify(docSearchData[lang], null, 2, "utf8")
     );
   });
 };
 
 const parseDocsMenu = () => {
-  const sourcePath = BASE + '/config/docs';
+  const sourcePath = BASE + "/config/docs";
   const docs = fs.readdirSync(sourcePath);
   docs.forEach((doc) => {
     const filePath = path.join(sourcePath, doc);
@@ -246,13 +247,13 @@ const parseDocsMenu = () => {
 
     const version = getVersion(fileInfo.name);
 
-    getMenu(fileContent['en-us'].sidemenu, enUs, version, 'en-us', false);
-    getMenu(fileContent['zh-cn'].sidemenu, zhCn, version, 'zh-cn', false);
+    getMenu(fileContent["en-us"].sidemenu, enUs, version, "en-us", false);
+    getMenu(fileContent["zh-cn"].sidemenu, zhCn, version, "zh-cn", false);
 
     versionData.push(version);
 
-    wirteFileByLang(enUs, 'en-us', fileInfo.name);
-    wirteFileByLang(zhCn, 'zh-cn', fileInfo.name);
+    wirteFileByLang(enUs, "en-us", fileInfo.name);
+    wirteFileByLang(zhCn, "zh-cn", fileInfo.name);
   });
   wirteSearchDocData();
   wirteDeployment();

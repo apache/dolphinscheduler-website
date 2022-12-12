@@ -1,4 +1,4 @@
-import { formatName } from '../../utils/formatName';
+import { formatName } from "../../utils/formatName";
 
 export const getChildrenByKey = (data, key) => {
   let child;
@@ -18,14 +18,14 @@ export const getChildrenByKey = (data, key) => {
 };
 
 export const getLinkFromLocation = (location, index) => {
-  if (!location || !Array.isArray(location)) return '';
-  let link = '';
+  if (!location || !Array.isArray(location)) return "";
+  let link = "";
   location.some((item, i) => {
     if (i <= index) {
-      link += '/' + formatName(item);
+      link += "/" + formatName(item);
     }
-    if (i === 0) link += '_menu';
-    return i > index;
+    if (i !== location.length - 1) link += "_menu";
+    return i >= index;
   });
   return link;
 };
