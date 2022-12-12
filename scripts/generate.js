@@ -15,6 +15,9 @@ const generate = () => {
   generateDocs();
   generateUser();
   generateFaq();
+
+  fs.copySync(`${BASE}/LICENSE`, `${BASE}/public/LICENSE`);
+  fs.copySync(`${BASE}/.asf.yaml`, `${BASE}/public/.asf.yaml`);
 };
 
 generate();
