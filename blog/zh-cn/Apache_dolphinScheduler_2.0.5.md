@@ -6,12 +6,11 @@
 
 今天，Apache DolphinScheduler 宣布 2.0.5 版本正式发布。此次版本进行了一些功能优化，如 Worker 的容错流程优化，在资源中心增加了重新上传文件的功能，并进行了若干 Bug 修复。
 
-
 ## 优化
 
 ### Worker 容错流程
 
-2.0.5 版本优化了 worker 的容错流程，使得服务器由于压力过大导致 worker 服务中断时，可以正常将任务转移至其他worker 上继续执行，避免任务中断。
+2.0.5 版本优化了 worker 的容错流程，使得服务器由于压力过大导致 worker 服务中断时，可以正常将任务转移至其他 worker 上继续执行，避免任务中断。
 
 ### 禁止运行任务页面标志
 
@@ -53,13 +52,13 @@
 
 [[#8135](https://github.com/apache/dolphinscheduler/issues/8135)] 修复了 jdbc 连接参数不能输入‘@’的问题；
 
-[[#8367](https://github.com/apache/dolphinscheduler/issues/8367)]  修复了补数时可能不会正常结束的问题；
+[[#8367](https://github.com/apache/dolphinscheduler/issues/8367)] 修复了补数时可能不会正常结束的问题；
 
-[[#8170](https://github.com/apache/dolphinscheduler/issues/8170)]  修复了从页面上不能进入子工作流的问题。
+[[#8170](https://github.com/apache/dolphinscheduler/issues/8170)] 修复了从页面上不能进入子工作流的问题。
 
 **2.0.5 下载地址**：
 
-[https://dolphinscheduler.apache.org/zh-cn/download/download.html](https://dolphinscheduler.apache.org/zh-cn/download/download.html)
+[https://dolphinscheduler.apache.org/#/zh-cn/download](https://dolphinscheduler.apache.org/#/zh-cn/download)
 
 **Release Note：**[https://github.com/apache/dolphinscheduler/releases/tag/2.0.5](https://github.com/apache/dolphinscheduler/releases/tag/2.0.5)
 
@@ -72,4 +71,3 @@
 <img src="/img/2022-3-7/4.png"/>
 
 </div>
-

@@ -3,6 +3,7 @@ title:# Community Star Series | 1 Don’t know how to use Apache DolphinSchedule
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup
 description: Apache DolphinScheduler (hereinafter referred to as DS) is a distributed and easily scalable visual DAG workflow task scheduling system
 ---
+
 # Community Star Series | 1 Don’t know how to use Apache DolphinScheduler? A community talent writes the usage tutorial of it in one month!
 
 <div align=center>
@@ -19,18 +20,15 @@ The scripts are all located in the script folder in the root directory and are e
 - The dolphinscheduler-daemon.sh script will first execute the dolphinscheduler-env.sh script, which serves to introduce the environment, including the Hadoop, Spark, Flink, Hive environments, etc. As DS needs to schedule these tasks, if these environments are not introduced, the execution will not succeed even if the scheduling is completed.
 - Immediately afterward, the dolphinscheduler-daemon.sh script loops through bin/start.sh under the four modules mentioned above, as shown in the following image.
 
-
 <div align=center>
 <img src="/img/2022-05-23/en/2.png"/>
 </div>
 
 As shown in the picture below: the execution of dolphinscheduler-daemon.sh start master-server will go to the master module’s src/main/bin and execute start.sh. After opening start.sh, you can find that a MasterServer is started. And the other Worker, Alert and API modules are started as the same.
 
-
 <div align=center>
 <img src="/img/2022-05-23/en/3.png"/>
 </div>
-
 
 This is the end of the scripting process, and we will now describe the main purpose of the four modules: Master is responsible for DAG task slicing, task submission monitoring, and listening to the health status of other Masters and Workers; Worker is responsible for task execution; Alert aims to the alert service; API works for the business logic of DS, i.e. project management, resource management, security management, etc. as seen on the web.
 
@@ -48,10 +46,9 @@ Master and Worker are started through SpringBoot, and the objects created are al
 
 - DS is all managed by SpringBoot, so if you have never worked with SpringBoot or Spring, you can refer to the following URLs and other relevant information on the web. https://spring.io/quickstart
 
-
 Know more about the warning module, please refer to the link below or consult other community members.
 
-https://dolphinscheduler.apache.org/zh-cn/blog/Hangzhou_cisco.html
+https://dolphinscheduler.apache.org/#/en-us/blog/Hangzhou_cisco
 
 The official website of the Apache DolphinScheduler project can be found at: https://github.com/apache/dolphinscheduler
 

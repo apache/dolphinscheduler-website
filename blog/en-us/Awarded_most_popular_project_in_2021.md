@@ -1,5 +1,5 @@
 ---
-title:  Apache DolphinScheduler Won the「2021 OSC Most Popular Projects」award, and Whaleops Open Source Technology Received the honor of「Outstanding Chinese Open Source Original Startups」!
+title: Apache DolphinScheduler Won the「2021 OSC Most Popular Projects」award, and Whaleops Open Source Technology Received the honor of「Outstanding Chinese Open Source Original Startups」!
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,2021
 description: Recently, the "2021 OSC Best China Open Source Projects Poll」initiated by OSCHINA announced the selection results.
 ---
@@ -37,24 +37,15 @@ The team provides commercial services based on upstream open source projects
 
 OSCHINA has evaluated open-source native commercial companies in their entrepreneurial stage from the perspective of the company's related open source project communities status, the technical field development prospects of the company's related open source projects, and the company's development status. After professional evaluation, Whaleops Open Source Technology was rewaded the 「Excellent Chinese Open Source Native Startups」award.
 
-
 ## About Apache DolphinScheduler
 
-
 Apache DolphinScheduler is a top-level project incubated by the Apache Software Foundation. As a new generation of distributed big data workflow task scheduler, it is committed to "solving the intricate dependencies between big data tasks and making the entire data process intuitive and visible". DolphinScheduler assembles Tasks in the form of DAG (Directed Acyclic Graph), which can monitor the running status of tasks in real-time. At the same time, it supports operations such as retry, recovery from designated nodes, suspend and Kill tasks, and focuses on continuously improving the 6 capabilities of DAG visualization,  rich task types, history, task log/alarm mechanism, and complement.
-
-
-
 
 So far, the Apache DolphinScheduler community consists of 280+ experienced code contributors and 110+ non-code contributors, including PMC or Committer from other top Apache projects. Since its creation, the Apache DolphinScheduler open source community has continued to grow, and the WeChat user base has reached 6000+ people. As of January 2022, 600+ companies and institutions have adopted Apache DolphinScheduler in their production environments.
 
 Finally, we would like to thank OSCHINA for recognizing Apache DolphinScheduler and its commercial operating company Whaleops Open Source Technology, especially to every participant that is inseparable in the community build-up.
 
-
-
-
-In the future, we believe the community will scale new heights with this valuable honor, as well as the joint force of every contributor! 
-
+In the future, we believe the community will scale new heights with this valuable honor, as well as the joint force of every contributor!
 
 ## The Way to Join US
 
@@ -66,12 +57,10 @@ We assume the first PR (document, code) to contribute to be simple and should be
 - So the community has compiled the following list of issues suitable for novices: https://github.com/apache/dolphinscheduler/issues/5689
 
 - List of non-newbie issues: https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22
-- How to participate in the contribution: https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/join/review.html
+- How to participate in the contribution: https://dolphinscheduler.apache.org/#/en-us/community
 
 - Community Official Website
-https://dolphinscheduler.apache.org/
+  https://dolphinscheduler.apache.org/
 - GitHub Code repository: https://github.com/apache/dolphinscheduler
 
 Your Star for the project is important, don’t hesitate to lighten a Star for [Apache DolphinScheduler](https://github.com/apache/dolphinscheduler) ❤️
-
-

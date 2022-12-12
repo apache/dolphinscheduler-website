@@ -31,7 +31,7 @@ export const useSearch = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = (value) => {
-    if (loading) return;
+    if (loading || !value) return;
     setLoading(true);
     window.WORKER.postMessage({
       type: "search",

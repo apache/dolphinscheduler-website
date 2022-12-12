@@ -6,7 +6,7 @@ import {
   MailFilled,
 } from "@ant-design/icons";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { SLACK_LINK } from "../../config";
+import { SLACK_LINK, GITHUB_LINK, TWITTER_LINK, EMAIL } from "../../config";
 import { useTranslation } from "../../hooks";
 import "./index.scss";
 
@@ -82,7 +82,15 @@ const Community = () => {
             <div className="community-contact-desc">
               {t("participate_on_gitHub")}
             </div>
-            <Button type="primary" shape="round" size="large" ghost>
+            <Button
+              type="primary"
+              shape="round"
+              size="large"
+              ghost
+              onClick={() => {
+                window.open(GITHUB_LINK, "_blank");
+              }}
+            >
               {t("view_on_github")}
             </Button>
           </div>
@@ -91,7 +99,15 @@ const Community = () => {
               <SlackOutlined />
             </div>
             <div className="community-contact-desc">{t("chat_slack")}</div>
-            <Button type="primary" shape="round" size="large" ghost>
+            <Button
+              type="primary"
+              shape="round"
+              size="large"
+              ghost
+              onClick={() => {
+                window.open(SLACK_LINK, "_blank");
+              }}
+            >
               {t("join_slack")}
             </Button>
           </div>
@@ -100,7 +116,15 @@ const Community = () => {
               <TwitterOutlined />
             </div>
             <div className="community-contact-desc">{t("twitter_tips")}</div>
-            <Button type="primary" shape="round" size="large" ghost>
+            <Button
+              type="primary"
+              shape="round"
+              size="large"
+              ghost
+              onClick={() => {
+                window.open(TWITTER_LINK, "_blank");
+              }}
+            >
               {t("follow_twitter")}
             </Button>
           </div>
@@ -111,7 +135,7 @@ const Community = () => {
             <div className="community-contact-mail-desc">
               <span>{t("support_email")}</span>
               <a
-                href={SLACK_LINK}
+                href={`mailto:${EMAIL}`}
                 target="_blank"
                 rel="noreferrer"
                 className="community-contact-mail-link"

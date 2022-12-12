@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from "react";
 import {
   Input,
   Space,
@@ -9,21 +9,21 @@ import {
   Typography,
   Spin,
   Collapse,
-} from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
-import { useSearchParams, useParams } from 'react-router-dom';
-import { useSearch } from './useSearch';
-import './index.scss';
+} from "antd";
+import { CaretRightOutlined } from "@ant-design/icons";
+import { useSearchParams, useParams } from "react-router-dom";
+import { useSearch } from "./useSearch";
+import "./index.scss";
 
 const Search = () => {
   const params = useParams();
   const { tabs, loading, handleSearch, handleSort } = useSearch();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchVal, setSearchVal] = useState();
+  const searchRef = useRef(searchParams.get("t"));
 
   useEffect(() => {
-    if (searchParams.get('t')) {
-      handleSearch(searchParams.get('t'));
+    if (searchParams.get("t")) {
+      handleSearch(searchParams.get("t"));
     }
     // eslint-disable-next-line
   }, []);
@@ -36,19 +36,17 @@ const Search = () => {
             <Input
               className="search-input"
               allowClear
-              value={searchVal}
-              defaultValue={searchParams.get('t')}
-              onChange={(e) => {
-                setSearchVal(e.target.value);
-              }}
+              ref={searchRef}
+              defaultValue={searchParams.get("t")}
             />
             <Button
               className="search-btn"
               type="primary"
               shape="round"
               onClick={() => {
-                handleSearch(searchVal);
-                setSearchParams(`t=${searchVal}`);
+                const searchValue = searchRef.current.input.value;
+                handleSearch(searchValue);
+                setSearchParams(`t=${searchValue}`);
               }}
             >
               Search
@@ -69,8 +67,8 @@ const Search = () => {
                     value={tab.sort}
                     style={{ width: 110 }}
                     options={[
-                      { value: '0', label: 'Relevancy' },
-                      { value: '1', label: 'Date' },
+                      { value: "0", label: "Relevancy" },
+                      { value: "1", label: "Date" },
                     ]}
                     onSelect={(value) => {
                       handleSort(value, i);
@@ -78,11 +76,11 @@ const Search = () => {
                     size="small"
                   />
                 </Space>
-                {tab.key !== 'faq' && (
+                {tab.key !== "faq" && (
                   <List
                     dataSource={tab.list}
                     renderItem={(item) => {
-                      if (tab.key === 'doc') {
+                      if (tab.key === "doc") {
                         const link = `${window.location.origin}/#/${params.locale}/docs/${item.version}${item.link}`;
                         return (
                           <div className="search-item">
@@ -100,7 +98,7 @@ const Search = () => {
                           </div>
                         );
                       }
-                      if (tab.key === 'blog') {
+                      if (tab.key === "blog") {
                         const link = `${window.location.origin}/#/${params.locale}/blog/${item.name}`;
                         return (
                           <div className="search-item">
@@ -118,7 +116,7 @@ const Search = () => {
                           </div>
                         );
                       }
-                      if (tab.key === 'event') {
+                      if (tab.key === "event") {
                         return (
                           <div className="search-item">
                             <div
@@ -131,7 +129,7 @@ const Search = () => {
                     }}
                   />
                 )}
-                {tab.key === 'faq' && (
+                {tab.key === "faq" && (
                   <Collapse
                     bordered={false}
                     expandIcon={({ isActive }) => (

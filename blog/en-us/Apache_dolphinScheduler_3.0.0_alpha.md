@@ -10,9 +10,9 @@ On April 22, 2022, Apache DolphinScheduler officially announced the release of a
 
 The keywords for 3.0.0-alpha are, in summary, "faster, more modern, more powerful, and easier to maintain".
 
-* Faster and more modern: a reworked UI with a new interface, which is not only tens of times more responsive for users and hundreds of times faster for developers to build but also with a more modern page layout and icon style.
-* More powerful: bringing many exciting new features such as data quality check, custom time zones, support for AWS, and the addition of multiple task plugins and multiple alert plugins.
-* Easier to maintain: back-end service seperation is more in line with the trend toward containerization and microservices, and also makes maintenance easier by clarifying the responsibilities of each service.
+- Faster and more modern: a reworked UI with a new interface, which is not only tens of times more responsive for users and hundreds of times faster for developers to build but also with a more modern page layout and icon style.
+- More powerful: bringing many exciting new features such as data quality check, custom time zones, support for AWS, and the addition of multiple task plugins and multiple alert plugins.
+- Easier to maintain: back-end service seperation is more in line with the trend toward containerization and microservices, and also makes maintenance easier by clarifying the responsibilities of each service.
 
 ## New features and functionality
 
@@ -70,7 +70,7 @@ As the Apache DolphinScheduler user grows, it has attracted many overseas users.
 
 Apache DolphinScheduler now supports AWS for both Amazon EMR and Amazon Redshift task types and has implemented Resource Center support for Amazon S3 storage.
 
-* For **Amazon EMR**, we have created a new task type and provided its Run Job Flow feature, which allows users to submit multiple steps jobs to Amazon EMR and specify the number of resources to be used. Details can be found at: [https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/task/emr.html](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/task/emr.html)
+- For **Amazon EMR**, we have created a new task type and provided its Run Job Flow feature, which allows users to submit multiple steps jobs to Amazon EMR and specify the number of resources to be used. Details can be found at: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/task/emr](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/task/emr)
 <div align=center>
 
 <img src="/img/2020-04-25/en/7.png"/>
@@ -79,7 +79,7 @@ Apache DolphinScheduler now supports AWS for both Amazon EMR and Amazon Redshift
 
 Amazon EMR Task Definition
 
-* For Amazon Redshift, we have now extended support for Amazon Redshift data sources in the SQL task type and users can now run Amazon Redshift tasks by selecting the Redshift data source in the SQL task.
+- For Amazon Redshift, we have now extended support for Amazon Redshift data sources in the SQL task type and users can now run Amazon Redshift tasks by selecting the Redshift data source in the SQL task.
 <div align=center>
 
 <img src="/img/2020-04-25/en/8.png"/>
@@ -88,7 +88,8 @@ Amazon EMR Task Definition
 
 Amazon Redshift support
 
-* For **Amazon S3**, we have extended the Apache DolphinScheduler's resource center to support not only local resources, HDFS resource storage but also Amazon S3 as a resource centre for storage. Details can be found at: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource/configuration.html](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource/configuration.html) in
+- For **Amazon S3**, we have extended the Apache DolphinScheduler's resource center to support not only local resources, HDFS resource storage but also Amazon S3 as a resource centre for storage. Details can be found at: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/resource/configuration](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/resource/configuration) in
+
 ```plain
 `resource.storage.type`
 ```
@@ -99,15 +100,15 @@ We will be supporting more AWS tasks as users need them, so stay tuned.
 
 While the new UI is the biggest change to the front end of 3.0.0-alpha, the biggest change to the back end is the separation of services. Given the growing buzz around containers and microservices, the Apache DolphinScheduler developers made the decision to classify the backend services. By function, we split the service into the following parts.
 
-* master-server: master service
-* worker-server: worker service
-* api-server: API service
-* alert-server: alert service
-* standalone-server: standalone for a quick experience with Apache DolphinScheduler functionality
-* UI: UI resources
-* bin: quick-start scripts, mainly scripts to start individual services
-* tools: tools-related scripts, mainly database creation and scripts update
-All services can be started or stopped by executing the following commands.
+- master-server: master service
+- worker-server: worker service
+- api-server: API service
+- alert-server: alert service
+- standalone-server: standalone for a quick experience with Apache DolphinScheduler functionality
+- UI: UI resources
+- bin: quick-start scripts, mainly scripts to start individual services
+- tools: tools-related scripts, mainly database creation and scripts update
+  All services can be started or stopped by executing the following commands.
 
 ```plain
 `bin/dolphinscheduler-daemon.sh <start|stop> <server-name>`
@@ -135,7 +136,7 @@ Data quality verification is now natively supported in 3.0.0-alpha, with support
 
 Task groups are used to control the concurrency of task instances and to define the priority of the group. When creating a new task definition, the user can configure the task group corresponding to the current task and configure the priority of the task to run within the task group. When a task is configured with a task group, the task can be executed only meeting the condition that all upstream tasks run successfully but also the task currently running in the task group is smaller than the size of the resource pool. When it is greater than or equal to the size of the resource pool, the task will wait until the next check. When multiple tasks in a task group are in the pending queue at the same time, the task with the highest priority will be run first.
 
-See the link for details: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource/configuration.html](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource/configuration.html)
+See the link for details: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/resource/configuration](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/resource/configuration)
 
 <div align=center>
 
@@ -153,13 +154,13 @@ In versions prior to 3.0.0-alpha, Apache DolphinScheduler defaulted to the UTC+8
 
 </div>
 
-See link: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/howto/general-setting.html](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/howto/general-setting.html)
+See link: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/howto/general-setting](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/howto/general-setting)
 
 ### 07 List of task definitions
 
 With previous versions of Apache DolphinScheduler 3.0.0-alpha, if a user wanted to manipulate a task, they needed to find the corresponding workflow and locate the task in the workflow before they could edit it. However, when the number of workflows became large or when a single workflow had a large number of tasks, the process of finding the corresponding task became very painful for users, which was not in line with the easy-to-use philosophy of Apache DolphinScheduler. Therefore, we have added a task definition page in 3.0.0-alpha to allow users to quickly locate and edit tasks by task name, allowing for easy bulk task changes.
 
-See the link for more details: [https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/project/task-definition.html](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/project/task-definition.html)
+See the link for more details: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/project/task-definition](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/project/task-definition)
 
 ### 08 New alert types
 
@@ -221,7 +222,6 @@ In addition to the features mentioned above, the 3.0.0-alpha release also buffs 
 
 [[#9243](https://github.com/apache/dolphinscheduler/issues/9243)] Some types of alarms can't display project name
 
-
 ## Release Note
 
 [https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha](https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha)
@@ -231,4 +231,3 @@ In addition to the features mentioned above, the 3.0.0-alpha release also buffs 
 In alphabetical order
 
 Aaron Lin, Amy0104, Assert, BaoLiang, Benedict Jin, BenjaminWenqiYu, Brennan Fox, Devosend, DingPengfei, DuChaoJiaYou, EdwardYang, Eric Gao, Frank Chen, GaoTianDuo, HanayoZz, Hua Jiang, Ivan0626, Jeff Zhan, Jiajie Zhong, JieguangZhou, Jiezhi.G, JinYong Li, J-Y, Kerwin, Kevin.Shin, KingsleyY, Kirs, KyoYang, LinKai, LiuBodong, Manhua, Martin Huang, Maxwell, Molin Wang, OS, QuakeWang, ReonYu, SbloodyS, Shiwen Cheng, ShuiMuNianHuaLP, ShuoTiann, Sunny Lei, Tom, Tq, Wenjun Ruan, X&Z, XiaochenNan, Yanbin Lin, Yao WANG, Zonglei Dong, aCodingAddict, aaronlinv, caishunfeng, calvin, calvinit, cheney, chouc, gaojun2048, guoshupei, hjli, huangxiaohai, janeHe13, jegger, jon-qj, kezhenxu94, labbomb, lgcareer, lhjzmn, lidongdai, lifeng, lilyzhou, lvshaokang, lyq, mans2singh, mask, mazhong, mgduoduo, myangle1120, nobolity, ououtt, ouyangyewei, pinkhello, qianli2022, ronyang1985, seagle, shuai hou, simsicon, songjianet, sparklezzz, springmonster, uh001, wangbowen, wangqiang, wangxj3, wangyang, wangyizhi, wind , worry, xiangzihao, xiaodi wang, xiaoguaiguai, xuhhui, yangyunxi, yc322, yihong, yimaixinchen, zchong, zekai-li, zhang, zhangxinruu, zhanqian, zhuangchong, zhuxt2015, zixi0825, zwZjut, Tianchou, xiaozhang, shiguang, wangqiang, baisui, hongshu, zhangjunjie, luomingtao
-

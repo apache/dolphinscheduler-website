@@ -3,6 +3,7 @@ title:How Does Ziru Build A Job Scheduling System Popular Among Data Analysts?
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup
 description: As one of the creators of enterprise data assets
 ---
+
 # **How Does Ziru Build A Job Scheduling System Popular Among Data Analysts?**
 
 <div align=center>
@@ -11,9 +12,8 @@ description: As one of the creators of enterprise data assets
 
 </div>
 
->*As one of the creators of enterprise data assets, data analysts need to command certain professional skills such as dimension&metrics management, pedigree analysis, and ETL scheduling platform operations. However, for data analysts with varying levels of programming skills, a scheduling platform that is easy to operate and use will give them wings rather than adding additional learning costs.*
->*Compared with most companies, Ziru differs from others in that a large amount of data warehouse processing on its big data platform is not done by professional warehouse engineers, but by data analysts. The reason why the data analysts of Ziru can do the complex data processing and analysis work that can only be done by professional teams is that their scheduling system is migrated to Apache DolphinScheduler.*
->*At the Apache DolphinScheduler & Apache ShenYu(Incubating) Meetup, Liu Tao, the R&D Manager of Ziru Big Data Platform, shared with us what a popular scheduling system for data analysts looks like.*
+> _As one of the creators of enterprise data assets, data analysts need to command certain professional skills such as dimension&metrics management, pedigree analysis, and ETL scheduling platform operations. However, for data analysts with varying levels of programming skills, a scheduling platform that is easy to operate and use will give them wings rather than adding additional learning costs._ >_Compared with most companies, Ziru differs from others in that a large amount of data warehouse processing on its big data platform is not done by professional warehouse engineers, but by data analysts. The reason why the data analysts of Ziru can do the complex data processing and analysis work that can only be done by professional teams is that their scheduling system is migrated to Apache DolphinScheduler._ >_At the Apache DolphinScheduler & Apache ShenYu(Incubating) Meetup, Liu Tao, the R&D Manager of Ziru Big Data Platform, shared with us what a popular scheduling system for data analysts looks like._
+
 ## **Author Bio**
 
 <div align=center>
@@ -132,7 +132,7 @@ So the community has compiled the following list of issues suitable for novices:
 
 List of non-newbie issues: [https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22](https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22)
 
-How to participate in the contribution: https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/join/review.html
+How to participate in the contribution: https://dolphinscheduler.apache.org/#/en-us/community
 
 **GitHub Code Repository:** [https://github.com/apache/dolphinscheduler](https://github.com/apache/dolphinscheduler)
 
@@ -146,16 +146,6 @@ How to participate in the contribution: https://dolphinscheduler.apache.org/en-
 
 **Slack：**[https://s.apache.org/dolphinscheduler-slack](https://s.apache.org/dolphinscheduler-slack)
 
-**Contributor Guide：**[https://dolphinscheduler.apache.org/en-us/community/community.html](https://dolphinscheduler.apache.org/en-us/community/community.html)
+**Contributor Guide：**[https://dolphinscheduler.apache.org/#/en-us/community](https://dolphinscheduler.apache.org/#/en-us/community)
 
 Your Star for the project is important, don’t hesitate to lighten a Star for Apache DolphinScheduler ❤️
-
-
-
-
-
-
-
-
-
-

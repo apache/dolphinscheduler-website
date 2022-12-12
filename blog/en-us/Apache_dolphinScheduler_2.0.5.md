@@ -3,6 +3,7 @@ title:Release News! Apache DolphinScheduler 2_0_5 optimizes The Fault Tolerance 
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup
 description: Today, Apache DolphinScheduler announced the official release of version 2.0.5.
 ---
+
 <div align=center>
 <img src="/img/2022-3-7/1.png"/>
 </div>
@@ -24,12 +25,12 @@ Optimized the display of flags on pages where tasks are prohibited from running,
 </div>
 
 ### Added prompts to the task box
+
 In version 2.0.5, a prompt is added to the task box to display all the long task names, which is convenient for users.
 
 <div align=center>
 <img src="/img/2022-3-7/3.png"/>
 </div>
-
 
 ### Added the re-uploading files function in the resource center
 
@@ -57,7 +58,7 @@ Adds the Markdown information type to the alarm content of the DingTalk alarm pl
 
 2.0.5 Download address:
 
-[https://dolphinscheduler.apache.org/en-us/download/download.html](https://dolphinscheduler.apache.org/en-us/download/download.html)
+[https://dolphinscheduler.apache.org/#/en-us/download/2.0.5](https://dolphinscheduler.apache.org/#/en-us/download/2.0.5)
 
 Release Note: [https://github.com/apache/dolphinscheduler/releases/tag/2.0.5](https://github.com/apache/dolphinscheduler/releases/tag/2.0.5)
 
