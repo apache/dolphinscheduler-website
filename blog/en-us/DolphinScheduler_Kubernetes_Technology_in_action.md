@@ -74,7 +74,7 @@ First, let's introduce the installation method based on the Helm provided by the
 There are very detailed configuration files and cases on Apache DolphinScheduler official website and GitHub. Here I‘ll highlight some of the FAQs in the community.
 
 Official website document address
-https://dolphinscheduler.apache.org/en-us/docs/1.3.9/user_doc/kubernetes-deployment.html
+https://dolphinscheduler.apache.org/#/en-us/docs/1.3.9/kubernetes-deployment
 
 GitHub folder address
 https://github.com/apache/dolphinscheduler/tree/1.3.9/docker/kubernetes/dolphinscheduler
