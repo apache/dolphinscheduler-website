@@ -1,0 +1,225 @@
+@import "../../styles/size.scss";
+@import "../../styles/mixin.scss";
+
+.community {
+  &-top {
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../images/bg/banner_bg.png");
+    @include bg;
+
+    &-bg {
+      width: 548px;
+      height: 350px;
+      background-image: url("../../images/bg/join.png");
+      @include bg-100;
+
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
+    }
+  }
+  &-title {
+    font-weight: 700;
+    color: #031b3e;
+    font-size: 68px;
+    line-height: 90px;
+    width: 780px;
+
+    @media screen and (max-width: 640px) {
+      width: 100%;
+      font-size: 8vw;
+      text-align: center;
+    }
+  }
+
+  &-content {
+    margin: -50px auto 0px;
+
+    @include content-width;
+  }
+  &-contacts {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 640px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  &-contact {
+    width: 320px;
+    height: 320px;
+    background-color: #ffffff;
+    border-radius: 27px;
+    box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.11);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    transform: scale(1);
+    transition: 0.3s;
+
+    @media screen and (max-width: 640px) {
+      margin-top: 20px;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &-icon {
+      font-size: 60px;
+      color: #0097e0;
+    }
+    &-desc {
+      color: #000000;
+      font-size: 16px;
+      line-height: 30px;
+      text-align: center;
+      margin-top: 30px;
+      height: 110px;
+    }
+    &-mail-desc {
+      font-size: 16px;
+      line-height: 30px;
+      margin-top: 20px;
+      width: 100%;
+      word-break: break-all;
+
+      .ant-btn {
+        display: inline;
+        word-break: break-all;
+        font-size: 16px;
+      }
+    }
+    &-mail-link {
+      color: #0097e0;
+      text-decoration: none;
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+  }
+  &-contribute {
+    padding-top: 70px;
+    &-title {
+      font-weight: 700;
+      color: #031b3e;
+      font-size: 48px;
+      line-height: 1.3;
+      padding-bottom: 30px;
+      text-align: center;
+
+      @media screen and (max-width: 640px) {
+        font-size: 6vw;
+      }
+    }
+    &-desc {
+      color: #000000;
+      font-size: 18px;
+      line-height: 30px;
+      @media screen and (max-width: 640px) {
+        font-size: 14px;
+      }
+    }
+    &-list {
+      padding-top: 50px;
+      padding-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 700px;
+      height: 120px;
+      background-color: #ffffff;
+      border: 1px solid;
+      border-color: rgba(112, 112, 112, 0.6);
+      border-radius: 15px;
+      padding: 0px 28px;
+      box-sizing: border-box;
+      font-size: 24px;
+      margin-bottom: 30px;
+
+      .ant-btn {
+        font-size: 18px;
+      }
+
+      @media screen and (max-width: 640px) {
+        width: 100%;
+        font-size: 16px;
+        padding: 0px 10px;
+        height: 80px;
+        .ant-btn {
+          font-size: 16px;
+          padding: 4px;
+        }
+      }
+    }
+  }
+  &-committer {
+    height: 564px;
+    background-image: linear-gradient(
+      119.03deg,
+      rgba(0, 151, 224, 0.07),
+      rgba(178, 228, 252, 0.07)
+    );
+    @media screen and (max-width: 640px) {
+      height: 500px;
+    }
+    &-title {
+      font-weight: 700;
+      color: #031b3e;
+      font-size: 48px;
+      line-height: 1.3;
+      text-align: center;
+      padding-top: 68px;
+      padding-bottom: 56px;
+
+      @media screen and (max-width: 640px) {
+        font-size: 6vw;
+        padding-top: 40px;
+        padding-bottom: 20px;
+      }
+    }
+    &-desc {
+      border: 1px solid rgba(112, 112, 112, 0.6);
+      border-radius: 15px;
+      margin: 0 auto;
+      padding: 32px;
+      box-sizing: border-box;
+      font-size: 18px;
+
+      @include content-width;
+
+      @media screen and (max-width: 640px) {
+        width: 100%;
+        font-size: 14px;
+      }
+    }
+    &-p {
+      padding-bottom: 10px;
+      @media screen and (max-width: 640px) {
+        line-height: 1.5;
+      }
+    }
+    &-item {
+      line-height: 1.5;
+    }
+    .ant-btn {
+      font-size: 18px;
+      padding-left: 8px;
+
+      @media screen and (max-width: 640px) {
+        font-size: 14px;
+        padding-left: 4px;
+      }
+    }
+  }
+}

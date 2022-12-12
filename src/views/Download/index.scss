@@ -1,0 +1,98 @@
+@import "../../styles/size.scss";
+@import "../../styles/mixin.scss";
+
+.download {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-top {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../images/bg/banner_bg.png");
+    @include bg;
+
+    &-bg {
+      width: 490px;
+      height: 350px;
+      background-image: url("../../images/bg/download.png");
+      margin-top: 10px;
+      @include bg-100;
+    }
+  }
+  &-title {
+    font-weight: 700;
+    color: #031b3e;
+    font-size: 68px;
+    line-height: 90px;
+    width: 900px;
+  }
+  &-subtitle {
+    display: flex;
+    .gradient-text {
+      margin-right: 20px;
+    }
+  }
+  &-item {
+    width: 1200px;
+    height: 260px;
+    background-color: #ffffff;
+    border-radius: 27px;
+    box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.11);
+    box-sizing: border-box;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: relative;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-info {
+      height: 100%;
+    }
+    &-title {
+      font-weight: 700;
+      color: #031b3e;
+      font-size: 30px;
+      line-height: 40px;
+      padding-top: 46px;
+      padding-bottom: 20px;
+    }
+    &-desc {
+      color: #031b3e;
+      font-size: 18px;
+      line-height: 30px;
+    }
+    &-more {
+      padding-left: 0px;
+      font-weight: 700;
+      color: #0097e0;
+      font-size: 18px;
+      position: absolute;
+      left: 40px;
+      bottom: 30px;
+
+      & > span {
+        text-decoration: underline;
+      }
+    }
+    &-img-deployment,
+    &-img-version {
+      width: 455px;
+      height: 215px;
+      @include bg-100;
+    }
+    &-img-deployment {
+      background-image: url("../../images/download/download_1.png");
+    }
+    &-img-version {
+      background-image: url("../../images/download/download_2.png");
+    }
+  }
+  &-content {
+    margin-top: -40px;
+  }
+}

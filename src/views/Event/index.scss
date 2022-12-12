@@ -1,0 +1,100 @@
+@import "../../styles/size.scss";
+@import "../../styles/mixin.scss";
+
+.events {
+  &-top {
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../images/bg/event.png");
+    @include bg;
+  }
+  &-title {
+    @include content-width;
+    font-weight: 700;
+    color: #031b3e;
+    font-size: 68px;
+    line-height: 90px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 8vw;
+    }
+  }
+  &-content {
+    @include content-width;
+    margin: 0 auto;
+  }
+  &-search {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 0px;
+  }
+  &-select {
+    width: 130px;
+
+    .ant-select-selector {
+      border-radius: 22px;
+    }
+  }
+  &-list {
+    padding-bottom: 40px;
+  }
+  &-item {
+    height: 360px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.11);
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    margin-bottom: 40px;
+    position: relative;
+
+    @media screen and (max-width: 640px) {
+      padding: 20px;
+    }
+  }
+  &-img {
+    width: 500px;
+    height: 280px;
+    border-radius: 20px;
+    flex-shrink: 0;
+
+    @media screen and (max-width: 640px) {
+      display: none;
+    }
+  }
+  &-img img {
+    border-radius: 20px;
+  }
+  &-desc {
+    margin-left: 40px;
+  }
+  &-name {
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    line-height: 36px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 18px;
+    }
+  }
+  &-time {
+    color: #031b3e;
+    font-size: 18px;
+    line-height: 48px;
+  }
+  .ant-tag {
+    border-radius: 18px;
+  }
+  &-buttons {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+  }
+  &-empty {
+    height: 300px;
+  }
+}

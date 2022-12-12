@@ -1,0 +1,31 @@
+import { formatName } from '../../utils/formatName';
+
+export const getChildrenByKey = (data, key) => {
+  let child;
+  const loop = (list) => {
+    list.forEach((item) => {
+      if (item.key === key) {
+        child = item;
+        return;
+      }
+      if (item.children.length) {
+        loop(item.children);
+      }
+    });
+  };
+  loop(data);
+  return child;
+};
+
+export const getLinkFromLocation = (location, index) => {
+  if (!location || !Array.isArray(location)) return '';
+  let link = '';
+  location.some((item, i) => {
+    if (i <= index) {
+      link += '/' + formatName(item);
+    }
+    if (i === 0) link += '_menu';
+    return i > index;
+  });
+  return link;
+};

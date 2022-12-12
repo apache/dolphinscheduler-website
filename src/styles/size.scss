@@ -1,0 +1,9 @@
+@use "sass:math";
+
+$header-height: 80px;
+$footer-height: 274px;
+
+@function getVw($size) {
+  $percentage: ($size * 100) / 1920;
+  @return $percentage + vw;
+}

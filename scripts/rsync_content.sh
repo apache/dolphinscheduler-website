@@ -69,11 +69,11 @@ function rsync_history_docs() {
 
         echo "  ---> Sync version ${version} configs."
         local config_file_stem="docs${version//./-}"
-        rsync_wrapper "${PROJECT_WEBSITE_DIR}/docs/${version}/configs/${config_file_stem}.js" "${SOURCE_PATH}/site_config/${config_file_stem}.js"
+        rsync_wrapper "${PROJECT_WEBSITE_DIR}/docs/${version}/configs/${config_file_stem}.js" "${SOURCE_PATH}/config/docs/${config_file_stem}.js"
     done
 
     echo "  ---> Sync history img in batch mode."
-    rsync_wrapper "${PROJECT_WEBSITE_DIR}/img"/ "${SOURCE_PATH}/img"
+    rsync_wrapper "${PROJECT_WEBSITE_DIR}/img"/ "${SOURCE_PATH}/public/img"
 }
 
 ##############################################################
@@ -81,7 +81,7 @@ function rsync_history_docs() {
 # Rsync released document, from cloned repo
 # apache/dolphinscheduler tags after we migrate docs to the
 # main repo(after 3.0.0-alpha), to directory `docs`, `img` and
-# `site_config`.
+# `config`.
 #
 ##############################################################
 function rsync_released_docs() {
@@ -97,43 +97,15 @@ function rsync_released_docs() {
         git checkout -b "${version}" FETCH_HEAD
 
         echo "  ---> Sync released version ${version} docs."
-        rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/${version}/user_doc" "--exclude=faq.md --exclude=history-versions.md --exclude=development"
-        rsync_wrapper "${PROJECT_DIR}/docs/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/${version}/user_doc" "--exclude=faq.md --exclude=history-versions.md --exclude=development"
+        rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/${version}/user_doc" "--exclude=history-versions.md --exclude=development"
+        rsync_wrapper "${PROJECT_DIR}/docs/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/${version}/user_doc" "--exclude=history-versions.md --exclude=development"
 
         echo "  ---> Sync released version ${version} img."
-        rsync_wrapper "${PROJECT_DIR}/docs/img" "${SOURCE_PATH}/img"
+        rsync_wrapper "${PROJECT_DIR}/docs/img" "${SOURCE_PATH}/public/img"
         echo "  ---> Sync released version ${version} configs."
 
         local config_file_stem="docs${version//./-}"
         # To avoid change file `docsdev.js` name each time before release, we change it during our sync process
-        rsync_wrapper "${PROJECT_DIR}/docs/configs/docsdev.js" "${SOURCE_PATH}/site_config/${config_file_stem}.js"
+        rsync_wrapper "${PROJECT_DIR}/docs/configs/docsdev.js" "${SOURCE_PATH}/config/docs/${config_file_stem}.js"
     done
-}
-
-##############################################################
-#
-# Rsync released document, from cloned repo
-# apache/dolphinscheduler branch `dev`(latest), to directory
-# `docs`, `img`, also with rsync config files.
-#
-##############################################################
-function rsync_latest_docs() {
-    echo "  ---> Directory change to ${PROJECT_DIR}."
-    cd "${PROJECT_DIR}"
-    echo "  ---> Git checkout to version ${PROJECT_BRANCH_NAME}."
-    git checkout "${PROJECT_BRANCH_NAME}"
-
-    echo "  ---> Sync dev docs."
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/en/*.md" "${PROJECT_SITE_DOC_DIR}/en-us/release"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh" "${PROJECT_SITE_DOC_DIR}/zh-cn/dev/user_doc" "--exclude=faq.md --exclude=history-versions.md"
-    rsync_wrapper "${PROJECT_DIR}/docs/docs/zh/*.md" "${PROJECT_SITE_DOC_DIR}/zh-cn/release"
-
-    echo "  ---> Sync dev img."
-    rsync_wrapper "${PROJECT_DIR}/docs/img" "${SOURCE_PATH}/img"
-
-    echo "  ---> Sync dev configs."
-    rsync_wrapper "${PROJECT_DIR}/docs/configs/site.js" "${SOURCE_PATH}/site_config/site.js"
-    rsync_wrapper "${PROJECT_DIR}/docs/configs/index.md.jsx" "${SOURCE_PATH}/src/pages/docs/index.md.jsx"
-    rsync_wrapper "${PROJECT_DIR}/docs/configs/docsdev.js" "${SOURCE_PATH}/site_config/docsdev.js"
 }

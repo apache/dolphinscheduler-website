@@ -1,0 +1,126 @@
+.documentation {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  &-sider {
+    width: 315px;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    &-title {
+      color: #031b3e;
+      font-size: 18px;
+      margin-bottom: 18px;
+    }
+    &-select {
+      width: 100%;
+
+      .ant-select-selector {
+        border-radius: 22px;
+      }
+    }
+    &-download {
+      margin-top: 16px;
+      width: 100% !important;
+    }
+    &-content {
+      margin-top: 40px;
+      &-title {
+        color: #b5b5b5;
+        font-size: 18px;
+      }
+      &-tree {
+        margin-top: 10px;
+        background-color: transparent;
+      }
+    }
+    @media screen and (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  &-content {
+    margin-left: 30px;
+    margin-right: 30px;
+    flex-grow: 1;
+    max-width: 800px;
+
+    &-search {
+      display: flex;
+      margin-bottom: 30px;
+
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
+    }
+    &-version {
+      display: none;
+      @media screen and (max-width: 640px) {
+        display: flex;
+        align-items: center;
+        padding-bottom: 30px;
+      }
+    }
+    &-input {
+      flex-grow: 1;
+      margin-right: 20px;
+      border-radius: 22px;
+    }
+  }
+
+  &-structure {
+    position: relative;
+    width: 200px;
+    @media screen and (max-width: 640px) {
+      display: none;
+    }
+    &-title {
+      color: #b5b5b5;
+      font-size: 16px;
+      line-height: 28px;
+    }
+    .ant-btn {
+      color: rgba(3, 27, 62, 1);
+    }
+    .active {
+      color: rgba(0, 151, 224, 1);
+    }
+    .ant-btn > span {
+      width: 170px;
+      text-align: left;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    &-content {
+      position: fixed;
+      width: 200px;
+    }
+  }
+}
+
+.documentation-search {
+  &-top {
+    display: flex;
+    padding-top: 30px;
+  }
+  &-total {
+    padding-top: 10px;
+  }
+  &-list {
+    height: 50vh;
+    padding-top: 20px;
+    overflow-y: auto;
+  }
+  &-item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  .ant-empty {
+    margin-top: 10vh;
+  }
+  .matched-text {
+    color: var(--primary-color);
+  }
+}

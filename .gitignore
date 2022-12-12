@@ -1,52 +1,34 @@
-.git
-.svn
-.hg
-.zip
-.gz
-.DS_Store
-.idea
-.idea/
-.idea/*
-.target
-.target/
-**/**/target/**
-target/*
-*/target
-*/target/*
-.settings
-.nbproject
-.classpath
-.project
-*.iml
-*.ipr
-*.iws
-*.tgz
-.*.swp
-.vim
-.tmp
-node_modules
-npm-debug.log
-.vscode
-logs/*
-.www
-t.*
-yarn.lock
-package-lock.json
-config.gypi
-/md_json
-/404.html
-/index.html
-/build/
-/dist/
-/en-us/
-/zh-cn/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Migrate document to main docs
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+config/docs*.js
+config/site.js
+
 swap/
 docs/
-site_config/docs*.js
-site_config/site.js
-src/pages/docs/index.md.jsx
-# development resource
-development/
-img/architecture-design/
+public/data
+public/img
+public/fetch
+public/pages
+public/user

@@ -130,7 +130,6 @@ function prepare_docs() {
     echo "===>>> Start prepare document."
 
     echo "===>>> Prepare directories and files"
-    echo "  ---> Rebuild docsite directory which need for docsite build."
     rebuild_dirs "${PROJECT_SITE_DOC_DIR}" "${SWAP_DIR}"
 
     echo "===>>> Clone repository."
@@ -148,9 +147,6 @@ function prepare_docs() {
 
     echo "  ---> Sync released document after migrating docs into apache/dolphinscheduler."
     rsync_released_docs
-
-    echo "  ---> Sync latest document in dev branch."
-    rsync_latest_docs
 
     echo "===>>>: Replace images path in ${PROJECT_SITE_DOC_DIR}"
     replace_images_path "${PROJECT_SITE_DOC_DIR}"

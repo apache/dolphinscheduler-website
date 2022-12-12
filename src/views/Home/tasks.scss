@@ -1,0 +1,139 @@
+@import "../../styles/size.scss";
+@import "../../styles/mixin.scss";
+
+.home-tasks {
+  width: 100%;
+  height: 680px;
+  padding-top: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  @media screen and (max-width: 640px) {
+    height: 120vw;
+  }
+
+  &-bg {
+    transform: rotate(-2deg);
+    opacity: 7%;
+    width: 130%;
+    height: 660px;
+    background-image: linear-gradient(
+      119.03deg,
+      #0097e0 0%,
+      #b2e4fc 100%,
+      #000000 100%
+    );
+    position: absolute;
+    z-index: 1;
+
+    @media screen and (max-width: 640px) {
+      height: 100vw;
+    }
+  }
+
+  &-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+
+    @include content-width;
+  }
+
+  &-title {
+    font-weight: 700;
+    color: #031b3e;
+    font-size: 48px;
+    display: flex;
+    margin-top: 80px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 5vw;
+    }
+  }
+  &-total {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 80px;
+    position: relative;
+    top: -30px;
+    @media screen and (max-width: 640px) {
+      font-size: 10vw;
+      top: -2vw;
+    }
+  }
+  &-wrap {
+    display: flex;
+    width: 100%;
+  }
+  &-animation {
+    display: flex;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+  &-list {
+    display: flex;
+    padding-top: 40px;
+  }
+  &-item {
+    margin-left: 50px;
+    display: inline-block;
+    &-img {
+      width: 125px;
+      height: 125px;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      @media screen and (max-width: 640px) {
+        width: 16vw;
+        height: 16vw;
+        background-size: cover;
+      }
+    }
+    &-text {
+      color: #031b3e;
+      font-size: 12px;
+      line-height: 2;
+      text-align: center;
+
+      @media screen and (max-width: 640px) {
+        width: 200%;
+        transform: scale(0.8);
+        margin-left: -50%;
+      }
+    }
+  }
+
+  &-right {
+    animation: 30s linear 0s infinite running slidein;
+  }
+  &-left {
+    animation: 30s linear 0s infinite running slideout;
+  }
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideout {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}

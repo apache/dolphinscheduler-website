@@ -19,25 +19,20 @@
   "replacementPatterns": [
     {
       "pattern": "^/en-us/download/download.html$",
-      "replacement": "https://dolphinscheduler.apache.org/en-us/download/download.html"
+      "replacement": "https://dolphinscheduler.apache.org/#/en-us/download"
     },
     {
       "pattern": "^/zh-cn/download/download.html$",
-      "replacement": "https://dolphinscheduler.apache.org/zh-cn/download/download.html"
+      "replacement": "https://dolphinscheduler.apache.org/#/zh-cn/download"
     },
     {
       "pattern": "^/",
-      "replacement": "{{BASEURL}}/"
+      "replacement": "{{BASEURL}}/public/"
     }
   ],
   "timeout": "10s",
   "retryOn429": true,
   "retryCount": 10,
   "fallbackRetryDelay": "1000s",
-  "aliveStatusCodes": [
-    200,
-    401,
-    403,
-    0
-  ]
+  "aliveStatusCodes": [200, 401, 403, 0]
 }

@@ -3,15 +3,16 @@ title:Technical Practice of Apache DolphinScheduler in Kubernetes System
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Kubernetes
 description:Kubernetes is a cluster system based on container technology
 ---
+
 # Technical Practice of Apache DolphinScheduler in Kubernetes System
 
 <div align=center>
 <img src="/img/2022-02-24/1.jpeg"/>
 </div>
 
-Author | Yang Dian, Data and Algorithm Platform Architect | Shenzhen Transportation Center 
+Author | Yang Dian, Data and Algorithm Platform Architect | Shenzhen Transportation Center
 
-Editor | warrior_
+Editor | warrior\_
 
 > Editor's note：
 
@@ -37,6 +38,7 @@ In the field I'm working in, the application of DolphinScheduler can quickly sol
 - The strong community-based operation, listening to the real voice of customers, constantly adding new functions, and continuously optimizing the customer experience.
 
 I also encountered many new challenges in the projects launching various types of Apache DolphinScheduler:
+
 - How to deploy Apache DolphinScheduler with less human resources, and can a fully automatic cluster installation and deployment mode be realized?
 - How to standardize technical component implementation specifications?
 - Can unmanned supervision and system self-healing be achieved?
@@ -48,8 +50,8 @@ To solve the above challenges, we repeatedly integrated Apache DolphinScheduler 
 
 ## Kubernetes Technical System Bring New Technical Features to Apache DolphinScheduler
 
+After using Kubernetes to manage Apache DolphinScheduler, the overall technical solutions are quickly enriched and efficient technical features added, by which the above practical challenges tackled quickly:
 
-After using Kubernetes to manage Apache DolphinScheduler, the overall technical solutions are quickly enriched and efficient technical features added, by which the above practical challenges  tackled quickly:
 - The development environment and production environment was rapidly established in various independent deployment projects, and all can be implemented by one-key deployment and one-key upgrade;
 - Overall supports offline installation, and the installation speed is faster;
 - Unify the installation configuration information as much as possible to reduce the abnormal configuration of multiple projects. All configuration items can be managed through the internal git of the enterprise based on different projects;
@@ -92,11 +94,10 @@ execute shell commands
 
 ```
 docker pull apache/dolphinscheduler:1.3.9
-dock tag apache/dolphinscheduler:1.3.9 
+dock tag apache/dolphinscheduler:1.3.9
 harbor.abc.com/apache/dolphinscheduler:1.3.9
 docker push apache/dolphinscheduler:1.3.9
 ```
-
 
 Then replace the image information in the value file. Here we recommend using the Always method to pull the image. In the production environment, try to check whether it is the latest image content every time to ensure the correctness of the software product. In addition, many coders are used to writing the tag as latest, and making the image without adding the tag information, which is very dangerous in the production environment. Because the image of the latest will be changed once anyone pushes the image and it is impossible to judge the version of the latest. So, it is recommended to be clear about the tags of each release, and use Always.
 
@@ -108,19 +109,20 @@ pullPolicy: "Always"
 ```
 
 Copy the entire directory of https://github.com/apache/dolphinscheduler/tree/1.3.9/docker/kubernetes/dolphinscheduler to a host that can execute the Helm command, and then execute
+
 ```
 kubectl create ns ds139
 helm install dolphinscheduler . -n ds139 following the official website instruction to install offline.
 ```
+
 to install offline.
 
 - To integrate DataX, MySQL, Oracle client components, first download the following components:
-https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar
-https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/
-https://github.com/alibaba/DataX/blob/master/userGuid.md Compile 
+  https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar
+  https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/
+  https://github.com/alibaba/DataX/blob/master/userGuid.md Compile
 
 build and compile according to the prompt, and the file package is located in {DataX_source_code_home}/target/datax/datax/
-
 
 Create a new dockerfile based on the above plugin components, and the image that has been pushed to the private warehouse can be applied to the basic image.
 
@@ -132,7 +134,6 @@ COPY datax /opt/soft/datax
 ```
 
 Save the dockerfile and execute the shell command
-
 
 ```
 docker build -t harbor.abc.com/apache/dolphinscheduler:1.3.9-mysql-oracle-datax . #Don't forget the last point
@@ -149,9 +150,9 @@ pullPolicy: "Always"
 ```
 
 Execute helm install dolphinscheduler . -n ds139
-or helm upgrade dolphinscheduler -n ds139, or  firstly helm uninstall dolphinscheduler -n ds139, and then execute helm install dolphinscheduler . -n ds139.
+or helm upgrade dolphinscheduler -n ds139, or firstly helm uninstall dolphinscheduler -n ds139, and then execute helm install dolphinscheduler . -n ds139.
 
-- Generally, it is recommended to use an independent external PostgreSQL as the management database in the production environment, and use the independently installed Zookeeper environment (I used the Zookeeper operator  https://github.com/pravega/zookeeper-operator in this case, which is scheduled in the same Kubernetes cluster as Apache DolphinScheduler ). We found that after using the external database, completely deleting  and redeploying the Apache DolphinScheduler in Kubernetes, the task data, tenant data, user data, etc. are retained, which once again verifies the high availability of the system and data integrity. (If the pvc is deleted, the historical job log will be lost)
+- Generally, it is recommended to use an independent external PostgreSQL as the management database in the production environment, and use the independently installed Zookeeper environment (I used the Zookeeper operator https://github.com/pravega/zookeeper-operator in this case, which is scheduled in the same Kubernetes cluster as Apache DolphinScheduler ). We found that after using the external database, completely deleting and redeploying the Apache DolphinScheduler in Kubernetes, the task data, tenant data, user data, etc. are retained, which once again verifies the high availability of the system and data integrity. (If the pvc is deleted, the historical job log will be lost)
 
 ```
 ## If not exists external database, by default, Dolphinscheduler's database will use it.
@@ -176,7 +177,7 @@ username: "admin"
 password: "password"
 database: "dolphinscheduler"
 params: "characterEncoding=utf8"
- 
+
 ## If not exists external zookeeper, by default, Dolphinscheduler's zookeeper will use it.
 zookeeper:
 enabled: false
@@ -203,11 +204,13 @@ Argo CD is a declarative GitOps continuous delivery tool based on Kubernetes. Gi
 </div>
 
 GitOps can bring the following advantages to the implementation of Apache DolphinScheduler.
+
 - Graphical & one-click installation of clustered software;
 - Git records the full release process, one-click rollback;
 - Convenient DolphinScheduler tool log viewing.
 
 Implementation installation steps using Argo CD:
+
 - Download the Apache DolphinScheduler source code from GitHub, modify the value file, and refer to the content that needs to be modified in the helm installation in the previous chapter;
 - Create a new git project in the modified source code directory, and push it to the company's internal GitLab. The directory name of the GitHub source code is docker/kubernetes/dolphinscheduler;
 - Configure GitLab information in Argo CD, we use https mode here;
@@ -236,6 +239,7 @@ Refresh and pull the deployment information in git to complete the final deploym
 </div>
 
 - Relevant resource information can be seen through the kubectl command;
+
 ```
 [root@tpk8s-master01 ~]# kubectl get po -n ds139
 NAME READY STATUS RESTARTS AGE
@@ -282,6 +286,7 @@ dolphinscheduler <none> ds139.abc.com
 </div>
 
 We have configured ingress, and the company can easily use the domain name for access by configuring the pan-domain name within the company;
+
 <div align=center>
 <img src="/img/2022-02-24/11.png"/>
 </div>
@@ -290,8 +295,8 @@ You can log in to the domain name for access：
 
 http:ds.139.abc.com/dolphinscheduler/ui/#/home
 
-
 - The specific configuration can modify the content in the value file:
+
 ```
 ingress:
 enabled: true
@@ -302,6 +307,7 @@ tls:
   secretName: "dolphinscheduler-tls"
 
 ```
+
 - It is convenient to view the internal logs of each component of Apache DolphinScheduler:
 
 <div align=center>
@@ -318,25 +324,26 @@ tls:
 </div>
 
 - Using Argo CD, it is very convenient to modify the number of replicas of components such as master, worker, api, alert, etc. Apache DolphinScheduler's helm configuration also reserves the setting information of CPU and memory. Here we modify the copy value in value. After modification, git push it to the company's internal GitLab.
+
 ```
 master:
- 
+
  ## PodManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down.
 podManagementPolicy: "Parallel"
  ## Replicas is the desired number of replicas of the given Template.
 replicas: "5"
- 
+
 worker:
  ## PodManagementPolicy controls how pods are created during initial scale up, when replacing pods on nodes, or when scaling down.
 podManagementPolicy: "Parallel"
  ## Replicas is the desired number of replicas of the given Template.
 replicas: "5"
- 
- 
+
+
 alert:
  ## Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
 replicas: "3"
- 
+
 api:
  ## Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
 replicas: "3"
@@ -378,6 +385,7 @@ dolphinscheduler-worker-4       1/1  Running 0    2m27s
 How to configure the integration of s3 minio is one of the FAQs in the community. Here is the method of helm configuration based on Kubernetes.
 
 - Modify the s3 part of value, it is recommended to use ip+port to point to the minio server.
+
 ```
 common:
  ##Configmap
@@ -400,9 +408,7 @@ configmap:
 
 ## Apache DolphinScheduler Integrates with Kube-Prometheus Technology
 
-
-
-- We use the Kube-prometheus operator technology in Kubernetes to automatically monitor the resources of each component of  Apache DolphinScheduler after deploying.
+- We use the Kube-prometheus operator technology in Kubernetes to automatically monitor the resources of each component of Apache DolphinScheduler after deploying.
 
 - Please pay attention to that the version of kube-prometheus needs to correspond to the major version of Kubernetes. https://github.com/prometheus-operator/kube-prometheus
 
@@ -418,7 +424,7 @@ configmap:
 
 ## Technical Integration of Apache DolphinScheduler and Service Mesh
 
--  Through the service mesh technology, the observability analysis of API external service calls and internal calls of Apache DolphinScheduler can be realized to optimize the Apache DolphinScheduler product services.
+- Through the service mesh technology, the observability analysis of API external service calls and internal calls of Apache DolphinScheduler can be realized to optimize the Apache DolphinScheduler product services.
 
 We use linkerd as a service mesh product for integration, which is also one of CNCF's excellent graduate projects.
 
@@ -426,12 +432,13 @@ We use linkerd as a service mesh product for integration, which is also one of C
 <img src="/img/2022-02-24/23.png"/>
 </div>
 
-Just modify the annotations in the value file of the Apache  DolphinScheduler helm and redeploy, you can quickly inject the mesh proxy sidecar, as well as master, worker, API, alert and other components.
+Just modify the annotations in the value file of the Apache DolphinScheduler helm and redeploy, you can quickly inject the mesh proxy sidecar, as well as master, worker, API, alert and other components.
 
 ```
 annotations: #{}
    linkerd.io/inject: enabled
 ```
+
 You can observe the quality of service communication between components, the number of requests per second, etc.
 
 <div align=center>
