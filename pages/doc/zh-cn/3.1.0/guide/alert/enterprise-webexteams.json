@@ -1,0 +1,118 @@
+{
+  "__html": "<h1 id=\"webexteams\">WebexTeams</h1>\n<p>如果您需要使用到Webex Teams进行告警，请在告警实例管理里创建告警实例，选择 WebexTeams 插件。\n你可以选择机器人私聊通知或聊天室通知。\nWebexTeams的配置样例如下:</p>\n<p><img src=\"/img/alert/enterprise-webexteams-plugin.png\" alt=\"enterprise-webexteams-plugin\"></p>\n<h2 id=\"参数配置\">参数配置</h2>\n<ul>\n<li>\n<p>botAccessToken</p>\n<blockquote>\n<p>在创建机器人时，获得的访问令牌</p>\n</blockquote>\n</li>\n<li>\n<p>roomID</p>\n<blockquote>\n<p>接受消息的room ID(只支持一个ID)</p>\n</blockquote>\n</li>\n<li>\n<p>toPersonId</p>\n<blockquote>\n<p>接受消息的用户ID(只支持一个ID)</p>\n</blockquote>\n</li>\n<li>\n<p>toPersonEmail</p>\n<blockquote>\n<p>接受消息的用户邮箱(只支持一个邮箱)</p>\n</blockquote>\n</li>\n<li>\n<p>atSomeoneInRoom</p>\n<blockquote>\n<p>如果消息目的地为room，被@人的用户邮箱，多个邮箱用英文逗号分隔</p>\n</blockquote>\n</li>\n<li>\n<p>destination</p>\n<blockquote>\n<p>消息目的地，一条消息只支持一个目的地</p>\n</blockquote>\n</li>\n</ul>\n<h2 id=\"创建一个机器人\">创建一个机器人</h2>\n<p>访问<a href=\"https://developer.webex.com/docs/api/v1/rooms/create-a-room\">官网My-Apps</a>来创建一个机器人，点击<code>Create a New APP</code> 然后选择 <code>Create a Bot</code>，填入机器人信息后获取<code>bot username</code> 和 <code>bot ID</code>以备以下步骤使用。</p>\n<p><img src=\"/img/alert/enterprise-webexteams-bot.png\" alt=\"enterprise-webexteams-bot-info\"></p>\n<h2 id=\"创建一个房间\">创建一个房间</h2>\n<p>访问<a href=\"https://developer.webex.com/docs/api/v1/rooms/create-a-room\">官网开发者APIs</a>来创建一个房间，填入房间名称后获取<code>id</code>(room ID) 和 <code>creatorId</code>以备以下步骤使用。</p>\n<p><img src=\"/img/alert/enterprise-webexteams-room.png\" alt=\"enterprise-webexteams-room-info\"></p>\n<h3 id=\"邀请机器人到房间\">邀请机器人到房间</h3>\n<p>通过机器人的Email(bot username)将机器人添加至房间。</p>\n<h2 id=\"发送私聊消息\">发送私聊消息</h2>\n<p>通过这种方式，你可以通过<code>用户邮箱</code>或<code>用户</code>对一个用户私聊窗口发送告警，填入<code>用户</code> 或 <code>用户邮箱</code>(推荐) 和 <code>访问令牌</code>并选择<code>描述</code> <code>personEmail</code> 或 <code>personId</code>。\n<code>用户邮箱</code>是用户注册Email地址。\n<code>用户</code>我们可以从新建房间返回的<code>creatorId</code>中获取。</p>\n<p><img src=\"/img/alert/enterprise-webexteams-private-form.png\" alt=\"enterprise-webexteams-private-message-form\"></p>\n<h3 id=\"私聊告警样例\">私聊告警样例</h3>\n<p><img src=\"/img/alert/enterprise-webexteams-private-msg.png\" alt=\"enterprise-webexteams-private-message-example\"></p>\n<h2 id=\"发送群聊消息\">发送群聊消息</h2>\n<p>通过这种方式，你可以通过<code>房间</code>向一个房间发送告警，填入<code>房间</code> 和 <code>访问令牌</code>并选择<code>描述</code> <code>roomId</code>。\n<code>房间</code>我们可以从新建房间API返回的<code>id</code>中获取。</p>\n<p><img src=\"/img/alert/enterprise-webexteams-group-form.png\" alt=\"enterprise-webexteams-group-form\"></p>\n<h3 id=\"群聊告警消息样例\">群聊告警消息样例</h3>\n<p><img src=\"/img/alert/enterprise-webexteams-room-msg.png\" alt=\"enterprise-webexteams-room-message-example\"></p>\n<p><a href=\"https://developer.webex.com/docs/bots\">WebexTeams申请机器人文档</a>\n<a href=\"https://developer.webex.com/docs/api/v1/messages/create-a-message\">WebexTeamsMessage开发文档</a></p>\n",
+  "location": [
+    "功能介绍",
+    "告警",
+    "Webexteams"
+  ],
+  "time": "2022-9-30",
+  "structure": [
+    {
+      "title": "参数配置",
+      "children": [
+        {
+          "title": "邀请机器人到房间",
+          "children": [],
+          "anchor": "邀请机器人到房间"
+        },
+        {
+          "title": "私聊告警样例",
+          "children": [],
+          "anchor": "私聊告警样例"
+        },
+        {
+          "title": "群聊告警消息样例",
+          "children": [],
+          "anchor": "群聊告警消息样例"
+        }
+      ],
+      "anchor": "参数配置"
+    },
+    {
+      "title": "创建一个机器人",
+      "children": [
+        {
+          "title": "邀请机器人到房间",
+          "children": [],
+          "anchor": "邀请机器人到房间"
+        },
+        {
+          "title": "私聊告警样例",
+          "children": [],
+          "anchor": "私聊告警样例"
+        },
+        {
+          "title": "群聊告警消息样例",
+          "children": [],
+          "anchor": "群聊告警消息样例"
+        }
+      ],
+      "anchor": "创建一个机器人"
+    },
+    {
+      "title": "创建一个房间",
+      "children": [
+        {
+          "title": "邀请机器人到房间",
+          "children": [],
+          "anchor": "邀请机器人到房间"
+        },
+        {
+          "title": "私聊告警样例",
+          "children": [],
+          "anchor": "私聊告警样例"
+        },
+        {
+          "title": "群聊告警消息样例",
+          "children": [],
+          "anchor": "群聊告警消息样例"
+        }
+      ],
+      "anchor": "创建一个房间"
+    },
+    {
+      "title": "发送私聊消息",
+      "children": [
+        {
+          "title": "邀请机器人到房间",
+          "children": [],
+          "anchor": "邀请机器人到房间"
+        },
+        {
+          "title": "私聊告警样例",
+          "children": [],
+          "anchor": "私聊告警样例"
+        },
+        {
+          "title": "群聊告警消息样例",
+          "children": [],
+          "anchor": "群聊告警消息样例"
+        }
+      ],
+      "anchor": "发送私聊消息"
+    },
+    {
+      "title": "发送群聊消息",
+      "children": [
+        {
+          "title": "邀请机器人到房间",
+          "children": [],
+          "anchor": "邀请机器人到房间"
+        },
+        {
+          "title": "私聊告警样例",
+          "children": [],
+          "anchor": "私聊告警样例"
+        },
+        {
+          "title": "群聊告警消息样例",
+          "children": [],
+          "anchor": "群聊告警消息样例"
+        }
+      ],
+      "anchor": "发送群聊消息"
+    }
+  ],
+  "title": "WebexTeams",
+  "link": "/guide/alert/enterprise-webexteams"
+}
