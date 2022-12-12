@@ -1,6 +1,6 @@
 【安全通报】【影响程度：低】DolphinScheduler 漏洞情况说明
 
-Apache DolphinScheduler 社区邮件列表最近通告了 1个漏洞，考虑到有很多用户并未订阅此邮 件列表，我们特地在此进行情况说明：
+Apache DolphinScheduler 社区邮件列表最近通告了 1 个漏洞，考虑到有很多用户并未订阅此邮 件列表，我们特地在此进行情况说明：
 
 CVE-2021-27644
 
@@ -12,9 +12,9 @@ CVE-2021-27644
 
 漏洞说明：
 
-此问题是由于mysql connectorj 漏洞引起的，DolphinScheduler登陆用户（未登录用户无法执行此操作，建议企业做好账号安全规范）可在数据源管理页面-Mysql数据源填写恶意参数，导致安全隐患。（未使用Mysql数据源的不影响）
+此问题是由于 mysql connectorj 漏洞引起的，DolphinScheduler 登陆用户（未登录用户无法执行此操作，建议企业做好账号安全规范）可在数据源管理页面-Mysql 数据源填写恶意参数，导致安全隐患。（未使用 Mysql 数据源的不影响）
 
-修复建议： 升级到>=1.3.6版本
+修复建议： 升级到>=1.3.6 版本
 
 特别感谢
 
@@ -26,9 +26,9 @@ CVE-2021-27644
 
 贡献
 
-迄今为止，Apache DolphinScheduler 社区已经有近200+ 位代码贡献者，70+位非代码贡献者。其中也不乏其他Apache顶级项目的PMC或者Committer，非常欢迎更多伙伴也能参与到开源社区建设中来，为建造一个更加稳定安全可靠的大数据任务调度系统而努力，同时也为中国开源崛起献上自己的一份力量！
+迄今为止，Apache DolphinScheduler 社区已经有近 200+ 位代码贡献者，70+位非代码贡献者。其中也不乏其他 Apache 顶级项目的 PMC 或者 Committer，非常欢迎更多伙伴也能参与到开源社区建设中来，为建造一个更加稳定安全可靠的大数据任务调度系统而努力，同时也为中国开源崛起献上自己的一份力量！
 
-WebSite ：https://dolphinscheduler.apache.org/
+WebSite ：https://dolphinscheduler.apache.org/#/zh-cn
 
 MailList ：dev@dolphinscheduler@apache.org
 
@@ -38,6 +38,6 @@ YouTube ：https://www.youtube.com/channel/UCmrPmeE7dVqo8DYhSLHa0vA
 
 Slack ：https://s.apache.org/dolphinscheduler-slack
 
-Contributor Guide：https://dolphinscheduler.apache.org/en-us/community/community.html
+Contributor Guide：https://dolphinscheduler.apache.org/#/zh-cn/community
 
 如果对漏洞有任何疑问，欢迎参与讨论，竭诚解决大家的疑虑：

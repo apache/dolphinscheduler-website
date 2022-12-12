@@ -3,6 +3,7 @@ title:How Does Live-broadcasting Platform Adapt to Apache DolphinScheduler?
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup
 description: Background on the introduction of Apache DolphinScheduler to YY Live
 ---
+
 # How Does Live-broadcasting Platform Adapt to Apache DolphinScheduler?
 
 <div align=center>
@@ -11,12 +12,8 @@ description: Background on the introduction of Apache DolphinScheduler to YY Liv
 
 </div>
 
->*At the Apache DolphinScheduler Meetup（3.26）, Yuan Bingze, a software engineer at YY Live, shared the topic of* *YY Live’s Adaptation and Exploration based on Apache DolphinScheduler* *with us.*
->*This presentation consists of four main sections:*
->*1.**Background on the introduction of Apache DolphinScheduler to YY Live*
->*2.**The introduction process of Apache DolphinScheduler*
->*3.**Application and adaptation of Apache DolphinScheduler*
->*4.**YY Live’s future plans*
+> *At the Apache DolphinScheduler Meetup（3.26）, Yuan Bingze, a software engineer at YY Live, shared the topic of* *YY Live’s Adaptation and Exploration based on Apache DolphinScheduler* *with us.* >_This presentation consists of four main sections:_ >_1.\*\*Background on the introduction of Apache DolphinScheduler to YY Live_ >_2.\*\*The introduction process of Apache DolphinScheduler_ >_3.\*\*Application and adaptation of Apache DolphinScheduler_ >_4.\*\*YY Live’s future plans_
+
 ## Profile.
 
 <div align=center>
@@ -251,7 +248,7 @@ So the community has compiled the following list of issues suitable for novices:
 
 List of non-newbie issues: [https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22](https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22)
 
-How to participate in the contribution:  https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/join/review.html
+How to participate in the contribution: https://dolphinscheduler.apache.org/#/en-us/community
 
 **GitHub Code Repository:** [https://github.com/apache/dolphinscheduler](https://github.com/apache/dolphinscheduler)
 
@@ -265,9 +262,6 @@ How to participate in the contribution:  https://dolphinscheduler.apache.org/en
 
 **Slack：**[https://s.apache.org/dolphinscheduler-slack](https://s.apache.org/dolphinscheduler-slack)
 
-**Contributor Guide：**[https://dolphinscheduler.apache.org/en-us/community/community.html](https://dolphinscheduler.apache.org/en-us/community/community.html)
+**Contributor Guide：**[https://dolphinscheduler.apache.org/#/en-us/community](https://dolphinscheduler.apache.org/#/en-us/community)
 
 Your Star for the project is important, don’t hesitate to lighten a Star for Apache DolphinScheduler ❤️
-
-
-

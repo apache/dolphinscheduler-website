@@ -1,8 +1,9 @@
 ---
-title:  Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!
+title: Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop，orchestration, dataops,2.0.1
 description: Good news! Apache DolphinScheduler 2.0.1 version is officially released today!
 ---
+
 ## Apache DolphinScheduler 2.0.1 is here, and the highly anticipated one-click upgrade and plug-in finally come!
 
 Good news! Apache DolphinScheduler 2.0.1 version is officially released today!
@@ -12,7 +13,7 @@ been refactored, and the long-awaited plug-in function has also been emphaticall
 highlights in this upgrade, such as a one-click upgrade to the latest version, "de-ZK" in the registration center, and
 new task parameter transfer functions, etc..
 
-Download Apache DolphinScheduler 2.0.1：https://dolphinscheduler.apache.org/zh-cn/download/download.html
+Download Apache DolphinScheduler 2.0.1：https://dolphinscheduler.apache.org/#/en-us/download/2.0.1
 
 The workflow execution process activities of Apache DolphinScheduler 2.0.1 are shown in the following figure:
 
@@ -25,7 +26,8 @@ Start process activity diagram
 Version 2.0.1 enhanced the system's processing capabilities by optimizing the kernel, thereby greatly improving
 performance. The new UI interface also greatly improved the user experience. More importantly, there are two major
 changes in version 2.0.1: plug-in and refactoring.
-https://dolphinscheduler.apache.org/en-us/docs/2.0.1/user_doc/guide/upgrade.html
+https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/upgrade
+
 ## 01 Plug-in
 
 Previously, some users had feedback that they hoped that Apache DolphinScheduler could be optimized for plug-inization.
@@ -111,7 +113,7 @@ sh ./script/create-dolphinscheduler.sh
 
 For specific upgrade documentation, please refer to:
 
-https://dolphinscheduler.apache.org/en-us/docs/2.0.1/user_doc/guide/upgrade.html
+https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/upgrade
 
 In addition, future versions of Apache DolphinScheduler can be automatically upgraded, saving the trouble of manual
 upgrades.
@@ -132,10 +134,10 @@ improving R&D efficiency.
 
 For detailed usage documentation, please refer to:
 
-https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html
+https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/installation/standalone
 
 Or use Docker to deploy all services with one
-click: https://dolphinscheduler.apache.org/en-us/docs/2.0.1/user_doc/guide/installation/docker.html
+click: https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/installation/docker
 
 ### 2 Task parameter transfer function
 
@@ -184,12 +186,9 @@ generated upstream). Next, we set id as 1, run task C, and others run task D.
 Configure task C to run when the global variable id=1. Then edit ${id} == 1 in the condition of task B, and select C for
 branch circulation. For other tasks, select D in the branch circulation.
 
-
 <div align=center>
 <img src="https://s1.imgpp.com/2021/12/17/636f53ddc809f028ffdfc18fd08b5828.md.jpg"/>
 </div>
-
-
 
 -pigeon task
 
@@ -209,7 +208,6 @@ equivalent to the dolphinscheduler_env.sh file.
 <div align=center>
 <img src="https://s1.imgpp.com/2021/12/17/ef8b444c6dbebe397daaaa3bbadf743f.png"/>
 </div>
-
 
 When creating a task, select the worker group and the corresponding environment variables. When the task is executed,
 the worker will execute the task in the corresponding execution environment.

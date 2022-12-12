@@ -3,7 +3,8 @@ title: Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Lau
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,2.0.2
 description:In the long-awaited, WorkflowAsCode function is finally launched in version 2.0.2 as promised, bringing good news to users who need to dynamically create and update workflows in batches.
 ---
-# Apache DolphinScheduler 2.0.2  Release Announcement:WorkflowAsCode is Launched!
+
+# Apache DolphinScheduler 2.0.2 Release Announcement:WorkflowAsCode is Launched!
 
 <div align=center>
 <img src="/img/2022-1-13/1_3XcwBeN5HkBzZ76zXDcigw.jpeg"/>
@@ -32,7 +33,7 @@ with ProcessDefinition(
     start_time="2021-01-01",
     tenant="tenant_exists",
 ) as pd:
-    # Define 4 tasks, which are all shell tasks, the required parameters of shell tasks are task name, command information, here are all the shell commands of echo   
+    # Define 4 tasks, which are all shell tasks, the required parameters of shell tasks are task name, command information, here are all the shell commands of echo
 
     task_parent = Shell(name="task_parent", command="echo hello pydolphinscheduler")
     task_child_one = Shell(name="task_child_one", command="echo 'child one'")
@@ -49,15 +50,15 @@ with ProcessDefinition(
     task_union << task_group
 
 ```
+
 When the above code runs, you can see workflow in the web UI as follows:
 
-```                  --> task_child_one
+```--> task_child_one
                 / \
 task_parent --> --> task_union
                 \ /
                   --> task_child_two
 ```
-
 
 ### 2 Wecom alarm mode supports group chat message push
 
@@ -67,7 +68,7 @@ In the previous version, the WeChat alarm only supported the message notificatio
 
 ### 1 Simplified metadata initialization process
 
-When Apache DolphinScheduler is first installed, running create-dolphinscheduler.sh requires a step  by step upgrade from the oldest version to the current version. In order to initialize the metadata process more conveniently and quickly, version 2.0.2 allows users to directly install the current version of the database script, which improves the installation speed.
+When Apache DolphinScheduler is first installed, running create-dolphinscheduler.sh requires a step by step upgrade from the oldest version to the current version. In order to initialize the metadata process more conveniently and quickly, version 2.0.2 allows users to directly install the current version of the database script, which improves the installation speed.
 
 ### 2 Remove "+1" (days) in complement dates
 
@@ -90,12 +91,10 @@ Removed the "+1" day in the complement date to avoid user confusion when the UI 
 [#7537] Dependent node retry delay does not work
 [#7392] Failed to add a Hive data source
 
-Download: https://dolphinscheduler.apache.org/zh-cn/download/download.html
+Download: https://dolphinscheduler.apache.org/#/en-us/download
 Release Note: https://github.com/apache/dolphinscheduler/releases/tag/2.0.2
 
-
 ## 04 Thanks
-
 
 As always, we would like to thank all the contributors (in no particular order) who have worked to polish Apache DolphinScheduler 2.0.2 as a better platform. It is your wisdom and efforts to make it more in line with the needs of users.
 
@@ -112,11 +111,10 @@ We assume the first PR (document, code) to contribute to be simple and should be
 
 So the community has compiled the following list of issues suitable for novices: https://github.com/apache/dolphinscheduler/issues/5689
 List of non-newbie issues: https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22
-How to participate in the contribution: https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/join/review.html
+How to participate in the contribution: https://dolphinscheduler.apache.org/#/en-us/community
 
 Community Official Website：
 https://dolphinscheduler.apache.org/
 GitHub Code repository:
 https://github.com/apache/dolphinscheduler
 Your Star for the project is important, don’t hesitate to lighten a Star for Apache DolphinScheduler ❤️
-

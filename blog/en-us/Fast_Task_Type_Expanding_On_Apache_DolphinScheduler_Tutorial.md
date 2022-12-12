@@ -3,6 +3,7 @@ title:Fast Task Type Expanding On Apache DolphinScheduler | Tutorial
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup
 description:At present, the scheduler plays an indispensable role in big data ecology.
 ---
+
 # Fast Task Type Expanding On Apache DolphinScheduler | Tutorial
 
 <div align=center>
@@ -59,9 +60,10 @@ i. Before jdbc4.0, developers need to load the driver based on Class by forName(
 
 **e. More**
 
-* **dubbo**
-* **common-logging**
-* **……**
+- **dubbo**
+- **common-logging**
+- **……**
+
 ## 4 What’s the Apache DolphinScheduler SPI Process?
 
 <div align=center>
@@ -70,9 +72,9 @@ i. Before jdbc4.0, developers need to load the driver based on Class by forName(
 
 </div>
 
-*Note: SPI Rules*
+_Note: SPI Rules_
 
-*When compiling the specific implementation of the service into a JAR, we need to create the META-INF/services/ folder in the dir of the resource, and then create a fully qualified class name with the file name of the service, which is the fully qualified class name of the integrated interface. The content inside is the fully qualified class name of the implementing class.*
+_When compiling the specific implementation of the service into a JAR, we need to create the META-INF/services/ folder in the dir of the resource, and then create a fully qualified class name with the file name of the service, which is the fully qualified class name of the integrated interface. The content inside is the fully qualified class name of the implementing class._
 
 To explain the above diagram, I have divided Apache DolphinScheduler into logical tasks and physical tasks, logical tasks refer to DependTask, SwitchTask, and physical tasks refer to ShellTask, SQLTask, which are the Task for executing tasks. In Apache DolphinScheduler, we generally expand the physical tasks, which are handed over to the Worker to execute, so what we need to understand is that when we have more than one Worker, we have to distribute the custom task to each machine with Worker, and when we start the worker service, the worker will start a ClassLoader to load the corresponding task lib that implements the rules. Note that HiveClient and SeatunnelTasks are user-defined, but only HiveTasks are loaded by Apache DolphinScheduler TaskPluginManage. The reason is that SeatunnelTask does not follow SPI rules. The SPI rules are also described on the diagram, or you can refer to the class java.util.ServiceLoader, which has a simple reference below (part of the code is extracted):
 
@@ -109,6 +111,7 @@ public final class ServiceLoader<S> implements Iterable<S> {
     }
 }
 ```
+
 ## 5 How to extend a data source Task or DataSource ?
 
 ### 5.1 Creating a Maven project
@@ -124,6 +127,7 @@ mvn archetype:generate \
     -Dpackage=org.apache.dolphinscheduler \
     -DinteractiveMode=false
 ```
+
 ### 5.2 Maven dependencies
 
 ```plain
@@ -141,6 +145,7 @@ mvn archetype:generate \
      <scope>${common.lib.scope}</scope>
  </dependency
 ```
+
 ### 5.3 Creating a TaskChannelFactory
 
 First, we need to create the factory for the task service, which mainly targets to help build the TaskChannel and TaskPlugin parameters, and to give the unique identity of the task. The ChannelFactory connects the Task service group of Apache DolphinScheduler, and helps the front and back end interaction to build the TaskChannel.
@@ -170,7 +175,7 @@ public class HiveClientTaskChannelFactory implements TaskChannelFactory {
     }
     /**
      * The front-end pages need to be rendered, mainly into
-     
+
      * @return
      */
     @Override
@@ -196,6 +201,7 @@ public class HiveClientTaskChannelFactory implements TaskChannelFactory {
     }
 }
 ```
+
 ### 5.4 Creating a TaskChannel
 
 After we have a factory, we will create a TaskChannel based on it. The TaskChannel contains two methods, canceling and creating, currently, we only need to focus on creating tasks.
@@ -217,6 +223,7 @@ public class HiveClientTaskChannel implements TaskChannel {
     }
 }
 ```
+
 ### 5.5 Building a Task Implementation
 
 With TaskChannel we get the physical task that can be executed, but we need to add the corresponding implementation to the current task to allow Apache DolphinScheduler to execute your task.
@@ -249,7 +256,9 @@ public class HiveClientParameters extends AbstractParameters {
     }
 }
 ```
+
 After implementing the parameters object, let’s implement the Task. The implementation in the example is relatively simple, which is to write the user’s parameters to a file and execute the task via Hive -f.
+
 ```plain
 package org.apache.dolphinscheduler.plugin.task.hive;
 import org.apache.dolphinscheduler.plugin.task.api.AbstractYarnTask;
@@ -335,6 +344,7 @@ public class HiveClientTask extends AbstractYarnTask {
     }
 }
 ```
+
 ### 5.6 Compliance with SPI Rules
 
 ```plain
@@ -345,9 +355,10 @@ zhang@xiaozhang resources % tree . /
     └── services
         └─ org.apache.dolphinscheduler.spi.task.TaskChannelFactory
 # 2, write the fully qualified class name of the implemented class in the file
-zhang@xiaozhang resources % more META-INF/services/org.apache.dolphinscheduler.spi.task.TaskChannelFactory 
+zhang@xiaozhang resources % more META-INF/services/org.apache.dolphinscheduler.spi.task.TaskChannelFactory
 org.apache.dolphinscheduler.plugin.task.hive.HiveClientTaskChannelFactory
 ```
+
 ### 5.7 Packaging and Deployment
 
 ```plain
@@ -357,8 +368,9 @@ mvn clean install
 cp . /target/dolphinscheduler-task-hiveclient-1.0.jar $DOLPHINSCHEDULER_HOME/lib/
 ## 3,restart dolphinscheduler server
 ```
+
 After the above operation, we check the worker log tail -200f $Apache DolphinScheduler_HOME/log/Apache DolphinScheduler-worker.log.
-That’s all~ The front-end modifications involved above can be found in Apache DolphinScheduler-ui/src/js/conf/home/pages/dag/_source/formModel/
+That’s all~ The front-end modifications involved above can be found in Apache DolphinScheduler-ui/src/js/conf/home/pages/dag/\_source/formModel/
 
 ## Join the Community
 
@@ -372,7 +384,7 @@ So the community has compiled the following list of issues suitable for novices:
 
 List of non-newbie issues: [https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22](https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22)
 
-How to participate in the contribution:  https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/join/review.html
+How to participate in the contribution:  https://dolphinscheduler.apache.org/#/en-us/community
 
 **GitHub Code Repository:** [https://github.com/apache/dolphinscheduler](https://github.com/apache/dolphinscheduler)
 
@@ -386,7 +398,6 @@ How to participate in the contribution:  https://dolphinscheduler.apache.org/en
 
 **Slack：**[https://s.apache.org/dolphinscheduler-slack](https://s.apache.org/dolphinscheduler-slack)
 
-**Contributor Guide：**[https://dolphinscheduler.apache.org/en-us/community/community.html](https://dolphinscheduler.apache.org/en-us/community/community.html)
+**Contributor Guide：**[https://dolphinscheduler.apache.org/#/en-us/community](https://dolphinscheduler.apache.org/#/en-us/community)
 
 Your Star for the project is important, don’t hesitate to lighten a Star for Apache DolphinScheduler ❤️
-

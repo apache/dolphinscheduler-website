@@ -6,11 +6,13 @@
 
 </div>
 
->2022 年 4 月 22 日，Apache DolphinScheduler 正式宣布 3.0.0 alpha 版本发布！此次版本升级迎来了自发版以来的最大变化，众多全新功能和特性为用户带来新的体验和价值。
->3.0.0-alpha 的关键字，总结起来是 “更快、更现代化、更强、更易维护”。
-* **更快、更现代化：** 重构了 UI 界面，新 UI 不仅用户响应速度提高数十倍，开发者构建速度也提高数百倍，且页面布局、图标样式都更加现代化；
-* **更强：** 带来了许多振奋人心的新功能，如数据质量评估、自定义时区、支持 AWS，并新增多个任务插件和多个告警插件；
-* **更易维护：** 后端服务拆分更加符合容器化和微服务化的发展趋势，还能明确各个服务的职责，让维护更加简单。
+> 2022 年 4 月 22 日，Apache DolphinScheduler 正式宣布 3.0.0 alpha 版本发布！此次版本升级迎来了自发版以来的最大变化，众多全新功能和特性为用户带来新的体验和价值。
+> 3.0.0-alpha 的关键字，总结起来是 “更快、更现代化、更强、更易维护”。
+
+- **更快、更现代化：** 重构了 UI 界面，新 UI 不仅用户响应速度提高数十倍，开发者构建速度也提高数百倍，且页面布局、图标样式都更加现代化；
+- **更强：** 带来了许多振奋人心的新功能，如数据质量评估、自定义时区、支持 AWS，并新增多个任务插件和多个告警插件；
+- **更易维护：** 后端服务拆分更加符合容器化和微服务化的发展趋势，还能明确各个服务的职责，让维护更加简单。
+
 ## **新功能和新特性**
 
 ### 全新 UI，前端代码更健壮，速度更快
@@ -59,16 +61,15 @@ Shell 任务页面
 
 </div>
 
-MySQL 数据源页面
+MySQL  数据源页面
 
+### 支持  AWS
 
-### 支持 AWS
+随着 Apache DolphinScheduler 用户群体越来越丰富，吸引了很多海外用户。但在海外业务场景下，用户在调研过程中发现有两个影响用户便捷体验 Apache DolphinScheduler 的点，一个是时区问题，另一个则是对海外云厂商，尤其是对 AWS 的支持不足。为此，我们决定对 AWS 较为重要的组件进行支持，这也是此版本的最重大的变化之一。
 
-随着 Apache DolphinScheduler 用户群体越来越丰富，吸引了很多海外用户。但在海外业务场景下，用户在调研过程中发现有两个影响用户便捷体验 Apache DolphinScheduler 的点，一个是时区问题，另一个则是对海外云厂商，尤其是对 AWS 的支持不足。为此，我们决定对AWS 较为重要的组件进行支持，这也是此版本的最重大的变化之一。
+目前，Apache DolphinScheduler 对 AWS 的支持已经涵盖  **Amazon EMR**  和  **Amazon Redshift**两个 AWS 的任务类型，并实现了资源中心支持  **Amazon S3 存储**。
 
-目前，Apache DolphinScheduler 对 AWS 的支持已经涵盖 **Amazon EMR** 和 **Amazon Redshift**两个 AWS 的任务类型，并实现了资源中心支持 **Amazon S3 存储**。
-
-* 针对 Amazon EMR，我们创建了一个新的任务类型，并提供了其 Run Job Flow 的功能，允许用户向 Amazon EMR 提交多个 steps 作业，并指定使用的资源数量。详情可见：[https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/task/emr.html](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/task/emr.html)
+- 针对 Amazon EMR，我们创建了一个新的任务类型，并提供了其 Run Job Flow 的功能，允许用户向 Amazon EMR 提交多个 steps 作业，并指定使用的资源数量。详情可见：[https://dolphinscheduler.apache.org/#/zh-cn/docs/3.1.2/guide/task/emr](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.1.2/guide/task/emr)
 <div align=center>
 
 <img src="/img/2020-04-25/7.png"/>
@@ -77,7 +78,7 @@ MySQL 数据源页面
 
 Amazon EMR 任务定义
 
-* 对于 Amazon Redshift，我们目前在 SQL 任务类型中扩展了对 Amazon Redshift 数据源的支持，现在用户可以在 SQL 任务中选择 Redshift 数据源来运行 Amazon Redshift 任务。
+- 对于 Amazon Redshift，我们目前在 SQL 任务类型中扩展了对 Amazon Redshift 数据源的支持，现在用户可以在 SQL 任务中选择 Redshift 数据源来运行 Amazon Redshift 任务。
 <div align=center>
 
 <img src="/img/2020-04-25/8.png"/>
@@ -86,7 +87,7 @@ Amazon EMR 任务定义
 
 Amazon Redshift 支持
 
-对于 Amazon S3，我们扩展了 Apache DolphinScheduler 的资源中心，使其不仅能支持本地资源、HDFS 资源存储，同时支持 Amazon S3 作为资源中心的储存。详情可见：[https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource/configuration.html](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/resource/configuration.html)中的
+对于 Amazon S3，我们扩展了 Apache DolphinScheduler 的资源中心，使其不仅能支持本地资源、HDFS 资源存储，同时支持 Amazon S3 作为资源中心的储存。详情可见：[https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/guide/resource/configuration.md](https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/guide/resource/configuration.md)中的
 
 ```plain
 `resource.storage.type`
@@ -98,21 +99,22 @@ Amazon Redshift 支持
 
 全新的 UI 是 3.0.0-alpha 前端的最大变化，而后端最大的变化就是对服务进行拆分。考虑到容器和微服务的概念越来越火热，Apache DolphinScheduler 开发者做出了重大决定：对后端服务进行拆分。按照职能，我们将服务拆分成了以下几部分：
 
-* master-server: master服务
-* worker-server: worker服务
-* api-server: API服务
-* alert-server: 告警服务
-* standalone-server: standalone用于快速体验 dolphinscheduler 功能
-* ui: UI资源
-* bin: 快速启动脚本，主要是启动各个服务的脚本
-* tools: 工具相关脚本，主要包含数据库创建，更新脚本
-所有的服务都可以通过执行下面的命令进行启动或者停止。
+- master-server: master 服务
+- worker-server: worker 服务
+- api-server: API 服务
+- alert-server: 告警服务
+- standalone-server: standalone 用于快速体验 dolphinscheduler 功能
+- ui: UI 资源
+- bin: 快速启动脚本，主要是启动各个服务的脚本
+- tools: 工具相关脚本，主要包含数据库创建，更新脚本
+  所有的服务都可以通过执行下面的命令进行启动或者停止。
 
 ```plain
 `bin/dolphinscheduler-daemon.sh <start|stop> <server-name>`
 ```
 
-### 
+###
+
 ### 数据质量校验
 
 此版本中，用户期待已久的数据质量校验应用功能上线，解决了从源头同步的数据条数准确性，单表或多表周均、月均波动超过阈值告警等数据质量问题。Apache DolphinScheduler 此前版本解决了将任务以特定顺序和时间运行的问题，但数据运行完之后对数据的质量一直没有较为通用的衡量标准，用户需要付出额外的开发成本。
@@ -135,7 +137,7 @@ Amazon Redshift 支持
 
 任务组主要用于控制任务实例并发并明确组内优先级。用户在新建任务定义时，可配置当前任务对应的任务组，并配置任务在任务组内运行的优先级。当任务配置了任务组后，任务的执行除了要满足上游任务全部成功外，还需要满足当前任务组正在运行的任务小于资源池的大小。当大于或者等于资源池大小时，任务会进入等待状态等待下一次检查。当任务组中多个任务同时进到待运行队列中时，会先运行优先级高的任务。
 
-详见链接：[https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/resource/configuration.html](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/resource/configuration.html)
+详见链接：[https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/guide/resource/configuration.md](https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/guide/resource/configuration.md)
 
 <div align=center>
 
@@ -159,13 +161,13 @@ Amazon Redshift 支持
 
 </div>
 
-详见链接：[https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/howto/general-setting.html](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/user_doc/guide/howto/general-setting.html)
+详见链接：[https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/guide/howto/general-setting.md](https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/guide/howto/general-setting.md)
 
 ### 任务定义列表
 
 使用 Apache DolphinScheduler 3.0.0-alpha 此前版本，用户如果想要操作任务，需要先找到对应的工作流，并在工作流中定位到任务的位置之后才能编辑。然而，当工作流数量变多或单个工作流有较多的任务时，找到对应任务的过程将会变得非常痛苦，这不符合 Apache DolphinScheduler 所追求的 easy to use 理念。所以，我们在 3.0.0-alpha 中增加了任务定义页面，让用户可以通过任务名称快速定位到任务，并对任务进行操作，轻松实现批量任务变更。
 
-详见链接：[https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/project/task-definition.html](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/project/task-definition.html)
+详见链接：[https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/project/task-definition](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/project/task-definition)
 
 ### 新增告警类型
 
@@ -209,7 +211,7 @@ Amazon Redshift 支持
 
 [#7896] 修复项目授权时生成一个重复授权项目的问题
 
-[#8089] 修复因无法连接到 PostgreSQL 而启动服务器失败的问题
+[#8089] 修复因无法连接到 PostgreSQL  而启动服务器失败的问题
 
 [#8183] 修复消息显示找不到数据源插件“Spark”的问题
 
@@ -229,13 +231,12 @@ Amazon Redshift 支持
 
 ## **Release Note**
 
- [https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha](https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha)
+[https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha](https://github.com/apache/dolphinscheduler/releases/tag/3.0.0-alpha)
 
 ## **感谢贡献者**
 
 按首字母排序
 
-Aaron Lin, Amy0104, Assert, BaoLiang, Benedict Jin, BenjaminWenqiYu, Brennan Fox, Devosend, DingPengfei, DuChaoJiaYou, EdwardYang, Eric Gao, Frank Chen, GaoTianDuo, HanayoZz, Hua Jiang, Ivan0626, Jeff Zhan, Jiajie Zhong, JieguangZhou, Jiezhi.G, JinYong Li, J·Y, Kerwin, Kevin.Shin, KingsleyY, Kirs, KyoYang, LinKai, LiuBodong, Manhua, Martin Huang, Maxwell, Molin Wang, OS, QuakeWang, ReonYu, SbloodyS, Shiwen Cheng, ShuiMuNianHuaLP, ShuoTiann, Sunny Lei, Tom, Tq, Wenjun Ruan, X&Z, XiaochenNan, Yanbin Lin, Yao WANG, Zonglei Dong, aCodingAddict, aaronlinv, caishunfeng, calvin, calvinit, cheney, chouc, gaojun2048, guoshupei, hjli, huangxiaohai, janeHe13, jegger, jon-qj, kezhenxu94, labbomb, lgcareer, lhjzmn, lidongdai, lifeng, lilyzhou, lvshaokang, lyq, mans2singh, mask, mazhong, mgduoduo, myangle1120, nobolity, ououtt, ouyangyewei, pinkhello, qianli2022, ronyang1985, seagle, shuai hou, simsicon, songjianet, sparklezzz, springmonster, uh001, wangbowen, wangqiang, wangxj3, wangyang, wangyizhi, wind, worry, xiangzihao, xiaodi wang, xiaoguaiguai, xuhhui, yangyunxi, yc322, yihong, yimaixinchen, zchong, zekai-li, zhang, zhangxinruu, zhanqian, zhuangchong, zhuxt2015, zixi0825, zwZjut, 
+Aaron Lin, Amy0104, Assert, BaoLiang, Benedict Jin, BenjaminWenqiYu, Brennan Fox, Devosend, DingPengfei, DuChaoJiaYou, EdwardYang, Eric Gao, Frank Chen, GaoTianDuo, HanayoZz, Hua Jiang, Ivan0626, Jeff Zhan, Jiajie Zhong, JieguangZhou, Jiezhi.G, JinYong Li, J·Y, Kerwin, Kevin.Shin, KingsleyY, Kirs, KyoYang, LinKai, LiuBodong, Manhua, Martin Huang, Maxwell, Molin Wang, OS, QuakeWang, ReonYu, SbloodyS, Shiwen Cheng, ShuiMuNianHuaLP, ShuoTiann, Sunny Lei, Tom, Tq, Wenjun Ruan, X&Z, XiaochenNan, Yanbin Lin, Yao WANG, Zonglei Dong, aCodingAddict, aaronlinv, caishunfeng, calvin, calvinit, cheney, chouc, gaojun2048, guoshupei, hjli, huangxiaohai, janeHe13, jegger, jon-qj, kezhenxu94, labbomb, lgcareer, lhjzmn, lidongdai, lifeng, lilyzhou, lvshaokang, lyq, mans2singh, mask, mazhong, mgduoduo, myangle1120, nobolity, ououtt, ouyangyewei, pinkhello, qianli2022, ronyang1985, seagle, shuai hou, simsicon, songjianet, sparklezzz, springmonster, uh001, wangbowen, wangqiang, wangxj3, wangyang, wangyizhi, wind, worry, xiangzihao, xiaodi wang, xiaoguaiguai, xuhhui, yangyunxi, yc322, yihong, yimaixinchen, zchong, zekai-li, zhang, zhangxinruu, zhanqian, zhuangchong, zhuxt2015, zixi0825, zwZjut,
 
-天仇, 小张, 时光, 王强, 百岁, 弘树, 张俊杰, 罗铭涛
-
+天仇, 小张, 时光, 王强,  百岁, 弘树, 张俊杰, 罗铭涛

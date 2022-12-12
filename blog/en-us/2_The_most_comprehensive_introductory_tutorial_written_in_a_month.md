@@ -3,6 +3,7 @@ title:# Community Star Series | 2 Don’t know how to use Apache DolphinSchedule
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup
 description: Apache DolphinScheduler (hereinafter referred to as DS) is a distributed and easily scalable visual DAG workflow task scheduling system
 ---
+
 # Community Star Series | 2 Apache DolphinScheduler MasterServer start-up tutorial
 
 <div align=center>
@@ -66,7 +67,6 @@ The heartbeat task checks for dead nodes and registers the latest machine inform
 
 Listens for subscriptions and immediately senses any changes to the registered information and prints a log if a machine has been added. If a machine is reduced, it is removed and the log is printed at the same time. This section is shown in the image below:
 
-
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b7rclvhub8eug3d5kdq3.png)
 
 ### 2.3 Running of ServerNodeManger
@@ -116,7 +116,6 @@ The MasterSchedulerService itself inherits from the thread class and executes th
 
 This background thread pool is managed by Spring, of which the maximum number and the core number of threads in the pool are 100 (MasterConfig.getExecThreads). The details are shown below:
 
-
 <div align=center>
 <img src="/img/2022-05-24/en/5.png"/>
 </div>
@@ -130,7 +129,6 @@ Second: If the ProcessInstance found in the SchedulerProcess method is a timeout
 ### 2.6 The StartProcess method is executed in the WorkflowExecutorThread
 
 The StartProcess method is shown in the picture below.
-
 
 <div align=center>
 <img src="/img/2022-05-24/en/6.png"/>
@@ -158,18 +156,19 @@ The basic logic is shown above. Of course, there is some more logic at each step
 
 For those who may be interested in what a DAG is, here is a link to a brief introduction to DAGs, which should not be too difficult to read and understand.
 
-https://dolphinscheduler.apache.org/zh-cn/blog/DAG.html
+https://github.com/apache/dolphinscheduler-website/blob/master/blog/en-us/DAG.md
 
 This is a theoretical introduction to DAG, if you want to have a deeper understanding of DAG in practice, search for the DagHelperTest class in the test folder of the dao module, there are 5 test operations in it, and you can run them all (in Debug form) to get a deeper understanding of DAG.
 
 There are also two links about the modification of task relationships in the DAG. Before version 1.3, the relationships between tasks were only stored as fields, but after it was found to be unfeasible with the amount of data, the fields were split into multiple tables. You can refer to the articles below about it.
 
-https://dolphinscheduler.apache.org/zh-cn/blog/dolphinscheduler_json.html
-https://dolphinscheduler.apache.org/zh-cn/blog/json_split.html
+https://github.com/apache/dolphinscheduler-website/blob/master/blog/zh-cn/dolphinscheduler_json.md
+https://github.com/apache/dolphinscheduler-website/blob/master/blog/en-us/Json_Split.md
 
 The purpose of the DAG (directed acyclic graph) is to drag and drop tasks on the front end to tell the Master the order of execution of the tasks, i.e. to tell the Master which tasks are executed first and which ones are executed later.
 
 ### 2.8 Executing InitTaskQueue method in WorkflowExexutorThread
+
 Three key aims are reached in The InitTaskQueue.
 
 - Initialize four maps, ValidTaskMap, ErrorTaskMap, ActiveTaskProcessorMaps, and CompleteTaskMap, during which the tasks and processes are saved to different maps (these maps take taskCode as the key) by categories of valid (valid), complete (complete), error (failed), and active (running). These maps will be used in the later methods.

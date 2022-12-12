@@ -3,6 +3,7 @@ title:Cisco Hangzhou's Travel Through Apache DolphinScheduler Alert Module Refac
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup,Cisco
 description: Cisco Hangzhou has introduced Apache DolphinScheduler
 ---
+
 # Cisco Hangzhou's Travel Through Apache DolphinScheduler Alert Module Refactor
 
 <div align=center>
@@ -11,7 +12,8 @@ description: Cisco Hangzhou has introduced Apache DolphinScheduler
 
 </div>
 
->Cisco Hangzhou has introduced Apache DolphinScheduler into the company's self-built big data platform. At present, the team of **Qingwang Li, Big Data Engineer from Cisco Hangzhou**has basically completed the Alert Module reform, which aims to build a more complete Alert module to meet the needs of complex alerts in business scenarios.
+> Cisco Hangzhou has introduced Apache DolphinScheduler into the company's self-built big data platform. At present, the team of **Qingwang Li, Big Data Engineer from Cisco Hangzhou**has basically completed the Alert Module reform, which aims to build a more complete Alert module to meet the needs of complex alerts in business scenarios.
+
 <div align=center>
 
 <img src="/img/3-16/Eng/2.png"/>
@@ -32,11 +34,11 @@ Today, I will share the reform journey of the Alert module.
 </div>
 
 Design of the DolphinScheduler Alert module
-The Alert mode of Apache DolphinScheduler version 1.0 uses configuring alert.properties to  send alerts by configuring emails, SMS, etc., but this method is no longer suitable for the current scenario. The official has also refactored the alarm module. For details of the design ideas, please refer to the official documents:
+The Alert mode of Apache DolphinScheduler version 1.0 uses configuring alert.properties to send alerts by configuring emails, SMS, etc., but this method is no longer suitable for the current scenario. The official has also refactored the alarm module. For details of the design ideas, please refer to the official documents:
 
 [https://github.com/apache/dolphinscheduler/issues/3049](https://github.com/apache/dolphinscheduler/issues/3049)
 
-[https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html](https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/contribute/backend/spi/alert.html)
+[https://github.com/apache/dolphinscheduler/tree/dev/docs/docs/en/guide/alert](https://github.com/apache/dolphinscheduler/tree/dev/docs/docs/en/guide/alert)
 
 The Apache DolphinScheduler alert module is an independently started service, and one of the cores is the AlertPluginManager class. The alarm module integrates many plug-ins, such as DingTalk, WeChat, Feishu, mail, etc., which are written in the source code in an independent form. When the service is started, the plug-in will be parsed and the configured parameters will be formatted into JSON, by which the front-end page will automatically be rendered. AlertPluginManager caches plugins in memory at startup. The AlertServer class will start the thread pool and scan the DB regularly.
 
@@ -136,8 +138,7 @@ See the code for details: [https://github.com/apache/dolphinscheduler/pull/8636]
 
 In addition, we also put forward some proposals to the community for the alarm module of Apache DolphinScheduler. Welcome anyone who is interested in this issue to follow up the work together:
 
-* When the workflow starts or goes online or offline, or when parameters are modified, a notification can be triggered;
-* The alarming scenario is for worker monitoring. If the worker hangs up or disconnects from ZK and loses its heartbeat, it will consider the worker is down, trigger an alarm, and match the alarm group with ID 1 by default. This setting is explained in the source code, which is easy to be ignored, and you won't likely to set the alarm group with ID 1, thus fails you to get the notification of worker downtime instantly;
-* The alarm module currently supports Feishu, DingTalk, WeChat, Email, and other plug-ins, which are commonly used by domestic users. While users abroad are more used to plug-ins like Webex Teams, or PagerDuty, a commonly used alarm plug-in abroad. We re-developed these and plug-ins and contributed them to the community. For now, there are some more commonly used plug-ins abroad, such as Microsoft Teams, etc., anyone who is interested in it is recommended to submit a PR to the community.
-The last but not least, big data practitioners probably are not skilled with the front-end stuff and may quit by the front-end page development when developing and alarm plug-ins. But I'd like to point out that you do not need to write front-end code at all when developing the Apache DolphinScheduler alarm plug-in. You only need to configure the parameters to be entered on the page or the buttons to be selected in the Java code when creating a new alarm instance plug-in (see org.apache.dolphinscheduler.spi.params for the source code), the system will automatically format it into JSON, and the front-end can automatically render a page through JSON by form-create. Therefore, you don't have to worry about writing the front end at all.
-
+- When the workflow starts or goes online or offline, or when parameters are modified, a notification can be triggered;
+- The alarming scenario is for worker monitoring. If the worker hangs up or disconnects from ZK and loses its heartbeat, it will consider the worker is down, trigger an alarm, and match the alarm group with ID 1 by default. This setting is explained in the source code, which is easy to be ignored, and you won't likely to set the alarm group with ID 1, thus fails you to get the notification of worker downtime instantly;
+- The alarm module currently supports Feishu, DingTalk, WeChat, Email, and other plug-ins, which are commonly used by domestic users. While users abroad are more used to plug-ins like Webex Teams, or PagerDuty, a commonly used alarm plug-in abroad. We re-developed these and plug-ins and contributed them to the community. For now, there are some more commonly used plug-ins abroad, such as Microsoft Teams, etc., anyone who is interested in it is recommended to submit a PR to the community.
+  The last but not least, big data practitioners probably are not skilled with the front-end stuff and may quit by the front-end page development when developing and alarm plug-ins. But I'd like to point out that you do not need to write front-end code at all when developing the Apache DolphinScheduler alarm plug-in. You only need to configure the parameters to be entered on the page or the buttons to be selected in the Java code when creating a new alarm instance plug-in (see org.apache.dolphinscheduler.spi.params for the source code), the system will automatically format it into JSON, and the front-end can automatically render a page through JSON by form-create. Therefore, you don't have to worry about writing the front end at all.
