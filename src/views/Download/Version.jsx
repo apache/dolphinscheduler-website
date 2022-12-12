@@ -182,7 +182,14 @@ export const Version = () => {
                 .filter((item, i) => (more ? true : i < 3))
                 .map((item, i) => (
                   <li key={i}>
-                    <Button type="link">v{item}</Button>
+                    <Button
+                      type="link"
+                      onClick={() => {
+                        navigate(`/${params.locale}/download/${item}`);
+                      }}
+                    >
+                      v{item}
+                    </Button>
                   </li>
                 ))}
             </ul>
