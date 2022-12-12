@@ -3,6 +3,7 @@ title:Three scenarios and five optimizations of Apache DolphinScheduler in XWBan
 keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Meetup
 description: At XWBank, a large number of task instances are generated every day
 ---
+
 # Three scenarios and five optimizations of Apache DolphinScheduler in XWBank for processing of task instances
 
 <div align=center>
@@ -31,22 +32,27 @@ Senior Big Data Engineer, Big Data Center of XWBank
 He has 11 years of working experience, earlier engaged in data warehouse construction, then focus on the construction of big data infrastructure platforms, scheduling system, etc. He has experience in the traditional financial industry, internet data warehouse, data mart construction, and many years of experience in scheduling system construction, such as MIGU analysis cloud scheduling system design, and report platform design, now mainly responsible for the construction of DataOps system of XWBank (offline development, indicator system, tagging system).
 
 ## 01 Background
+
 We chose Apache DolphinScheduler based on three main requirements: unification of R&D scenarios, optimization of testing scenarios, and optimization of production deployment scenarios.
 
 ### 01 R&D scenarios
+
 In the past, we did not have a unified development tool in the data development process, so we needed to switch back and forth between multiple tools, resulting in excessive development costs.
 
 On the other hand, we were unable to replace parameters during development, could not perform on-the-fly debugging, and had no off-the-shelf tools to support offline tasks in both development and production states.
 
 ### 02 Test scenarios
+
 During the deployment of test scenarios, when our developers provide scripts to the tests, the documentation returned is rather unfriendly. Especially when multiple scenarios are deployed across multiple versions, the testers’ tasks increase dramatically and the visual deployment is relatively weak, making it impossible to automate tests in a more friendly way.
 
 ### 03 Deployment
+
 Complex configuration and poor visualization of the current scheduling system.
 The development and production environment networks are physically isolated, so the process of deploying code from the development environment to the production environment is long and error-prone. The test environment does not fully reflect the configuration of the production environment, and manual configuration files are prone to errors and omissions.
 Insufficient operation and maintenance monitoring capabilities, poor visualization, inability to view logs online, and complex process of logging into the physical machine to access the monitoring room for troubleshooting.
 
 ## 02 Usage scenarios
+
 We use Apache DolphinScheduler in the following scenarios: offline data development and task scheduling, quasi real-time data development and task scheduling, and other non-ETL user-defined data batch processing.
 
 ### 01 Offline Data Development and Task Scheduling
@@ -63,11 +69,12 @@ The quasi-real-time data in XWBank is fused and calculated by Flink from the log
 This application is functionally deployed through some internal low-code platform where we open up the application to a servicer who can self-analyze the use data without the need for developers’ help. After defining, they can run this part of the data in batches on their own.
 
 ### 1. Offline data mining and task scheduling
+
 We use Apache DolphinScheduler in the offline data mining and task scheduling scenario, which mainly involves five sections: task development modulation, historical task integration, workflow and task separation, project environment variables, and data source finding.
 
 1.Task development modulation (SQL, SHELL, PYTHON, XSQL, etc.), online development modulation (under view logs, online log . online SQL query return results view). WEBIDE can automatically replace pop-up variables, and dynamically replace variables according to the user’s settings and default processing.
 
-2.Historical tasks integration 
+2.Historical tasks integration
 
 Most of the warehouses in the banking industry have been established for four or five years and have a lot of historical tasks. Therefore, we do not want our users to need to change the code independently when our new system goes online, which costs relatively high.
 
@@ -92,16 +99,19 @@ We look for data sources by name, and it supports data sources such as phoenix. 
 3. For quasi-real-time workflow single instance running, if there is already an initialized instance, or there is an ongoing workflow instance, the workflow will not be triggered to run even if the next batch is triggered.
 
 ### 3. Other non-ETL user-defined data batch processing
+
 1. We currently have model data calculation tasks pushed from the metrics management platform. The simple user-defined reports will generate SQL dynamically by the platform and subsequently pushed directly to offline scheduling. This process will not involve any developer in the future.
 
 2. In the tag management system, we mainly adapt it to scenario needs by generating special plug-in tasks.
 
 ## 03 Optimisation
+
 ### 1.The status
+
 In XWBank, there are about 9000+ task instances generated every day, with real-time tasks making up the majority. Today, we have used Apache DolphinScheduler to run batches in real-time and quasi-real-time tasks for many projects, offline batches for the metrics management system, including batches for the integrated internal SQL tools that support XSQL.
 
 <div align=center>
-<img src="/img/2022-05-25/en/3.jfif"/>
+<img src="/img/2022-05-25/en/3.png"/>
 </div>
 
 In the picture above on the right, we can see that we have made tasks independent, replacing parameters. Also, in terms of task lineage, especially for SQL-type tasks, we can do automatic parsing and also add them manually. This is mainly used for the automatic orchestration of our workflows, such as the internal task maps of the company.
