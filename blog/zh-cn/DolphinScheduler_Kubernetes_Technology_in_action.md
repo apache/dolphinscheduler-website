@@ -73,38 +73,38 @@ GitHub 文件夹地址 https://github.com/apache/dolphinscheduler/tree/1.3.9/doc
 
 - 集成 DataX MySQL Oracle 客户端组件，首先下载以下组件
 
-  https://repo1.maven.org/maven2/MySQL/MySQL-connector-java/5.1.49/MySQL-connector-java-5.1.49.jar
+https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar
 
-  https://repo1.maven.org/maven2/com/Oracle/database/jdbc/ojdbc8/
+https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/
 
-  https://GitHub.com/alibaba/DataX/blob/master/userGuid.md 根据提示进行编译构建，文件包位于 {DataX_source_code_home}/target/DataX/DataX/
+https://GitHub.com/alibaba/DataX/blob/master/userGuid.md 根据提示进行编译构建，文件包位于 {DataX_source_code_home}/target/DataX/DataX/
 
-  基于以上 plugin 组件新建 dockerfile，基础镜像可以使用已经 push 到私仓的镜像。
+基于以上 plugin 组件新建 dockerfile，基础镜像可以使用已经 push 到私仓的镜像。
 
-  ```dock
-  FROM harbor.abc.com/apache/dolphinscheduler:1.3.9
-  COPY *.jar /opt/dolphinscheduler/lib/
-  RUN mkdir -p /opt/soft/DataX
-  COPY DataX /opt/soft/DataX
-  ```
+```dock
+FROM harbor.abc.com/apache/dolphinscheduler:1.3.9
+COPY *.jar /opt/dolphinscheduler/lib/
+RUN mkdir -p /opt/soft/DataX
+COPY DataX /opt/soft/DataX
+```
 
-  保存 dockerfile，执行 shell 命令
+保存 dockerfile，执行 shell 命令
 
-  ```shell
-  docker build -t harbor.abc.com/apache/dolphinscheduler:1.3.9-MySQL-Oracle-DataX .  #不要忘记最后一个点
-  docker push harbor.abc.com/apache/dolphinscheduler:1.3.9-MySQL-Oracle-DataX
-  ```
+```shell
+docker build -t harbor.abc.com/apache/dolphinscheduler:1.3.9-MySQL-Oracle-DataX .  #不要忘记最后一个点
+docker push harbor.abc.com/apache/dolphinscheduler:1.3.9-MySQL-Oracle-DataX
+```
 
-  修改 value 文件
+修改 value 文件
 
-  ```yaml
-  image:
-    repository: "harbor.abc.com/apache/dolphinscheduler"
-    tag: "1.3.9-MySQL-Oracle-DataX"
-    pullPolicy: "Always"
-  ```
+```yaml
+image:
+  repository: "harbor.abc.com/apache/dolphinscheduler"
+  tag: "1.3.9-MySQL-Oracle-DataX"
+  pullPolicy: "Always"
+```
 
-  执行 helm install dolphinscheduler . -n ds139，或者执行 helm upgrade dolphinscheduler -n ds139，也可以先 helm uninstall dolphinscheduler -n ds139，再执行 helm install dolphinscheduler . -n ds139。
+执行 helm install dolphinscheduler . -n ds139，或者执行 helm upgrade dolphinscheduler -n ds139，也可以先 helm uninstall dolphinscheduler -n ds139，再执行 helm install dolphinscheduler . -n ds139。
 
 - 通常生产环境建议使用独立外置 postgresql 作为管理数据库，并且使用独立安装的 zookeeper 环境（本案例使用了 zookeeper operator https://GitHub.com/pravega/zookeeper-operator ，与 Apache DolphinScheduler 在同一个 Kubernetes 集群中）。
 
