@@ -1,0 +1,60 @@
+@import "../../styles/size.scss";
+.blog-detail {
+  width: 80vw;
+  margin: 0px auto;
+  padding-top: 20px;
+
+  &-title {
+    font-weight: 700;
+    color: #031b3e;
+    font-size: 30px;
+    line-height: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+  }
+  &-tag {
+    display: inline-block;
+    height: 30px;
+    padding: 0px 10px;
+    border-radius: 20px;
+    line-height: 30px;
+    color: #ffffff;
+    font-size: 16px;
+    vertical-align: 5px;
+    margin-right: 10px;
+    @media screen and (max-width: 640px) {
+      font-size: 12px;
+      height: 24px;
+      line-height: 26px;
+    }
+  }
+  &-desc {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(203 213 225);
+  }
+  &-author {
+    color: rgb(100 116 139);
+    font-weight: bold;
+  }
+  &-time {
+    font-size: 14px;
+    color: rgb(148 163 184);
+  }
+  &-content {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    h1 {
+      display: none;
+    }
+    img {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@mixin bg {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@mixin bg-100 {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@mixin content-width {
+  @media screen and (min-width: 1440px) {
+    width: 1440px;
+  }
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+    padding: 0px 3vw;
+    box-sizing: border-box;
+  }
+}

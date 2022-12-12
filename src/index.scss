@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: "Arial", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+:root {
+  --white: #fff;
+  --dark: #000;
+  --white-opactiy: rgba(255, 255, 255, 0.5);
+  --text-color: #333;
+  --primary-color: #0097e0;
+}
+
+#root {
+  box-sizing: border-box;
+}
+
+/* scroll-bar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-image: none;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  border-radius: 0.25rem;
+
+  background-image: linear-gradient(
+    135deg,
+    rgba(112, 112, 112, 0.1),
+    rgba(112, 112, 112, 0.3)
+  );
+
+  transition: all 0.2s;
+}
+
+.gradient-text {
+  display: inline-block;
+  background-image: linear-gradient(
+    to right,
+    rgba(67, 125, 235, 1),
+    rgba(90, 227, 248, 1)
+  );
+  -webkit-background-clip: text;
+  color: #0000;
+}
+.ds-spin {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-video-modal {
+  font-size: 20px;
+  .ant-modal-content {
+    padding: 0px;
+    video {
+      border-radius: 8px;
+    }
+  }
+}

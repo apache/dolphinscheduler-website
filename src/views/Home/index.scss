@@ -1,0 +1,118 @@
+@import "../../styles/size.scss";
+@import "../../styles/mixin.scss";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-desc {
+    @include content-width;
+  }
+  &-github-buttons {
+    margin-top: 42px;
+  }
+  .github-button {
+    display: flex;
+    align-items: center;
+    padding-inline-start: 0px !important;
+
+    &-label {
+      margin-left: 8px;
+    }
+
+    &-left {
+      height: 28px;
+      line-height: 28px;
+      color: #fff;
+      background-color: rgba(112, 112, 112, 1);
+      border-radius: 14px 0px 0px 14px;
+      padding-left: 12px;
+      padding-right: 12px;
+      border: 1px solid rgba(112, 112, 112, 1);
+    }
+    &-right {
+      color: #707070;
+      font-size: 14px;
+      padding-left: 12px;
+    }
+  }
+  .github-fork {
+    color: #707070;
+    .ant-divider-vertical {
+      background-color: #d9d9d9;
+    }
+  }
+  &-desc {
+    display: flex;
+    align-items: center;
+    &-text {
+      flex-shrink: 0;
+    }
+    .ant-carousel {
+      width: 690px;
+
+      @media screen and (max-width: 1440px) {
+        display: none;
+      }
+    }
+    .ant-carousel .slick-dots-bottom {
+      bottom: -40px;
+    }
+  }
+  &-desc-title {
+    font-size: 60px;
+    line-height: 1.5;
+    padding-top: 60px;
+    margin-top: 0px;
+    margin-bottom: 32px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 7vw;
+    }
+  }
+  &-desc-subtitle {
+    width: 634px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 50px;
+
+    @media screen and (max-width: 640px) {
+      width: 90vw;
+      font-size: 3vw;
+    }
+  }
+
+  &-remain {
+    position: relative;
+    width: 100%;
+    padding-top: 80px;
+    padding-bottom: 200px;
+    overflow: hidden;
+
+    &-bg {
+      transform: rotate(-2deg);
+      opacity: 7%;
+      width: 1920px;
+      height: 100%;
+      background-image: linear-gradient(
+        119.03deg,
+        #0097e0 0%,
+        #b2e4fc 100%,
+        #000000 100%
+      );
+      position: absolute;
+      top: 0px;
+      left: -20px;
+      z-index: 1;
+    }
+
+    &-content {
+      position: relative;
+      z-index: 2;
+      margin: 0 auto;
+
+      @include content-width;
+    }
+  }
+}

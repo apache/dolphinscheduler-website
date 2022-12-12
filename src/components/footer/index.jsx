@@ -1,47 +1,97 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import siteConfig from '../../../site_config/site';
-import { getLink } from '../../../utils';
-import './index.scss';
+import { Link } from "react-router-dom";
+import { Divider, Button, Space } from "antd";
+import {
+  GithubOutlined,
+  SlackOutlined,
+  TwitterOutlined,
+} from "@ant-design/icons";
+import { useTranslation } from "../../hooks";
+import { GITHUB_LINK, TWITTER_LINK, SLACK_LINK } from "../../config";
+import "./index.scss";
 
-const propTypes = {
-  // logo: PropTypes.string.isRequired, // logo地址
-  language: PropTypes.oneOf(['zh-cn', 'en-us']),
-};
-
-class Footer extends React.Component {
-  render() {
-    const { language } = this.props;
-    const dataSource = siteConfig[language];
-    return (
-      <footer className="footer-container">
-        <div className="footer-body">
-          <div>
-            <h3>{dataSource.contact.title}</h3>
-            <h4>{dataSource.contact.content}</h4>
-          </div>
-          <div className="contact-container">
-            <ul>
-              {
-                dataSource.contact.list.map((contact, i) => (
-                  <li key={i}>
-                    <a href={getLink(contact.link)}>
-                      <img className="img-base" src={contact.img1} />
-                      <img className="img-change" src={contact.img2} />
-                      <p>{contact.name}</p>
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-          <div className="copyright"><span>{dataSource.copyright}</span></div>
+const Footer = () => {
+  const { locale, t } = useTranslation();
+  return (
+    <footer className="footer">
+      <section className="footer-content">
+        <div className="footer-links">
+          <Link className="footer-link" to={`/${locale}/download`}>
+            {t("download")}
+          </Link>
+          <Divider type="vertical" />
+          <Link className="footer-link" to={`/${locale}/docs`}>
+            {t("doc")}
+          </Link>
+          <Divider type="vertical" />
+          <Link className="footer-link" to={`/${locale}/community`}>
+            {t("community")}
+          </Link>
+          <Divider type="vertical" />
+          <Link className="footer-link" to={`/${locale}/events`}>
+            {t("events")}
+          </Link>
+          <Divider type="vertical" />
+          <Link className="footer-link" to={`/${locale}/blog`}>
+            {t("blog")}
+          </Link>
+          <Divider type="vertical" />
+          <Link className="footer-link" to={`/${locale}/use_case`}>
+            {t("use_case")}
+          </Link>
+          <Divider type="vertical" />
+          <Link className="footer-link" to={`/${locale}/support`}>
+            {t("support")}
+          </Link>
         </div>
-      </footer>
-    );
-  }
-}
-
-Footer.propTypes = propTypes;
+        <div className="footer-desc">
+          <div className="footer-left">
+            <div className="footer-logo">
+              <div className="footer-logo-white"></div>
+            </div>
+            <div className="footer-copyright">
+              Copyright © 2019-{new Date().getFullYear()} The Apache Software
+              Foundation. Apache DolphinScheduler, DolphinScheduler, and its
+              feather logo are trademarks of The Apache Software Foundation.
+            </div>
+          </div>
+          <div className="footer-right">
+            <div className="footer-contacts">
+              <div className="footer-contacts-label">Contacts</div>
+              <Space>
+                <Button
+                  icon={<GithubOutlined />}
+                  type="text"
+                  size="large"
+                  shape="circle"
+                  href={GITHUB_LINK}
+                  target="_blank"
+                />
+                <Button
+                  icon={<SlackOutlined />}
+                  type="text"
+                  size="large"
+                  shape="circle"
+                  href={SLACK_LINK}
+                  target="_blank"
+                />
+                <Button
+                  icon={<TwitterOutlined />}
+                  type="text"
+                  size="large"
+                  shape="circle"
+                  href={TWITTER_LINK}
+                  target="_blank"
+                />
+              </Space>
+            </div>
+            <div className="footer-email">
+              {`${t("email")}: user-subscribe@dolphinscheduler.apache.org`}
+            </div>
+          </div>
+        </div>
+      </section>
+    </footer>
+  );
+};
 
 export default Footer;

@@ -1,0 +1,80 @@
+@import "../../styles/size.scss";
+@import "../../styles/mixin.scss";
+
+.home-events {
+  @include content-width;
+  margin-top: -100px;
+  position: relative;
+  z-index: 3;
+
+  &-item {
+    display: flex;
+    padding: 90px 46px 90px 72px;
+    height: 480px;
+    background-color: #ffffff;
+    border-radius: 27px;
+    box-shadow: 0px 18px 31px rgba(0, 0, 0, 0.11);
+    box-sizing: border-box;
+    position: relative;
+    margin-bottom: 60px;
+
+    @media screen and (max-width: 640px) {
+      padding: 20px;
+      height: 300px;
+    }
+
+    &-img {
+      width: 504px;
+      height: 278px;
+      border-radius: 20px;
+      margin-right: 76px;
+      flex-shrink: 0;
+
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
+    }
+    &-img img {
+      border-radius: 20px;
+    }
+    &-title {
+      font-weight: 700;
+      color: #031b3e;
+      font-size: 60px;
+      display: flex;
+
+      .gradient-text {
+        margin-left: 20px;
+      }
+
+      @media screen and (max-width: 640px) {
+        font-size: 7vw;
+      }
+    }
+
+    &-time {
+      color: #0097e0;
+      font-size: 41px;
+      line-height: 48px;
+      margin-top: 20px;
+
+      @media screen and (max-width: 640px) {
+        font-size: 5vw;
+      }
+    }
+
+    &-text {
+      color: #000000;
+      font-size: 18px;
+      line-height: 32px;
+      margin-top: 20px;
+      height: 128px;
+      overflow: hidden;
+    }
+    &-btn {
+      position: absolute;
+      bottom: 46px;
+      right: 46px;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+@import "../../styles/size.scss";
+@import "../../styles/mixin.scss";
+
+.navbar {
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  height: $header-height;
+  background-color: var(--white);
+  color: var(--text-color);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+  transition: 0.4;
+  display: flex;
+  justify-content: center;
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+
+    @include content-width;
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  &-item.ant-space {
+    flex-grow: 0;
+  }
+
+  .ds-logo {
+    margin-right: 20px;
+    cursor: pointer;
+    width: 200.53px;
+    height: 40px;
+    background-image: url("../../images/logo_black.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media screen and (max-width: 1024px) {
+      width: 40px;
+      margin-right: 0px;
+    }
+  }
+
+  .ant-menu-horizontal {
+    border: none;
+    font-size: 16px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 14px;
+      flex-grow: initial;
+
+      .ant-menu-overflow-item {
+        padding-inline: 8px;
+      }
+    }
+  }
+
+  &-menu {
+    flex-grow: 1;
+
+    @media screen and (max-width: 640px) {
+      width: calc(100% - 40px);
+    }
+  }
+
+  &-item-left {
+    @media screen and (max-width: 640px) {
+      width: 100%;
+    }
+  }
+
+  &-item-right {
+    @media screen and (max-width: 640px) {
+      display: none;
+    }
+  }
+}

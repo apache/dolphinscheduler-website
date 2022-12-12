@@ -1,0 +1,85 @@
+@import "../../styles/size.scss";
+@import "../../styles/mixin.scss";
+
+.home-why {
+  @include content-width;
+  margin-top: 96px;
+
+  @media screen and (max-width: 640px) {
+    margin-top: 0px;
+  }
+  &-title {
+    font-weight: 700;
+    color: #031b3e;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .gradient-text {
+      margin-left: 20px;
+    }
+    margin-bottom: 30px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 8vw;
+    }
+  }
+
+  &-item {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 50px;
+    &-title {
+      padding-top: 40px;
+      font-weight: 700;
+      color: #1a194d;
+      font-size: 40px;
+
+      @media screen and (max-width: 640px) {
+        font-size: 5vw;
+        padding-top: 0px;
+      }
+    }
+    &-slip {
+      margin-top: 30px;
+      margin-bottom: 50px;
+    }
+    &-label {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+    &-img {
+      width: 700px;
+    }
+    &-text {
+      color: #000000;
+      font-size: 16px;
+      padding: 10px 0px;
+      @media screen and (max-width: 640px) {
+        font-size: 14px;
+      }
+    }
+    .ant-image {
+      flex-shrink: 0;
+
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
+    }
+  }
+
+  &-dots {
+    li button {
+      background-color: #000 !important;
+
+      &:hover {
+        background-color: #0097e0 !important;
+      }
+    }
+    li.slick-active button {
+      background-color: #0097e0 !important;
+    }
+  }
+}
