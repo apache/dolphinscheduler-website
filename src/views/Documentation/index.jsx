@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Select,
   Button,
@@ -28,7 +28,6 @@ const Documentation = () => {
     setShowModal,
     searchList,
     searchValue,
-    setSearchValue,
     handleSearch,
     loading,
   } = useSearch(params.version);
@@ -43,6 +42,8 @@ const Documentation = () => {
     handleAnchor,
     navigate,
   } = useDocumentation(params);
+  const searchRef = useRef();
+
   if (!versions.includes(params.version)) {
     return <Navigate to={`/${locale}/docs/${versions[0]}`} replace={true} />;
   }
@@ -103,19 +104,13 @@ const Documentation = () => {
       </div>
       <div className="documentation-content">
         <div className="documentation-content-search">
-          <Input
-            className="documentation-content-input"
-            value={searchValue}
-            onChange={(e) => {
-              setSearchValue(e.target.value);
-            }}
-          />
+          <Input className="documentation-content-input" ref={searchRef} />
           <Button
             type="primary"
             shape="round"
             onClick={() => {
+              handleSearch(searchRef.current.input.value);
               setShowModal(true);
-              handleSearch(searchValue);
             }}
           >
             {t("search")}
