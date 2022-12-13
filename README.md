@@ -14,7 +14,7 @@ node version is 10+, version lower than 10.x is not supported yet.
    2.1. Run `export PROTOCOL_MODE=ssh` tells Git clone resource via SSH protocol instead of HTTPS protocol
    2.2. Run `./scripts/prepare_docs.sh` prepare all related resources, for more information you could see [how prepare script work](HOW_PREPARE_WOKR.md)
 3. Run `yarn generate` in the root directory to format and perpare the data.
-4. Run `yarn start` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
+4. Run `yarn dev` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
 
 ```
 Note: if you clone the code in Windows, not Mac or Linux. Please read the details below.

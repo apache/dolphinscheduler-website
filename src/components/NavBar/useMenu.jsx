@@ -49,7 +49,7 @@ export const useMenu = (t) => {
       children: [
         {
           label: (
-            <a href="https://www.apache.org/" target="_blank">
+            <a href="https://www.apache.org/" target="_blank" rel="noreferrer">
               Foundation
             </a>
           ),
@@ -57,7 +57,11 @@ export const useMenu = (t) => {
         },
         {
           label: (
-            <a href="https://www.apache.org/licenses/" target="_blank">
+            <a
+              href="https://www.apache.org/licenses/"
+              target="_blank"
+              rel="noreferrer"
+            >
               License
             </a>
           ),
