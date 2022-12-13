@@ -1,14 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
-import { Button, Divider, Space, Carousel, Image } from 'antd';
-import { PlayCircleOutlined, GithubOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from '../../hooks';
-import VideoModal from '../../components/VideoModal';
-import { GITHUB_LINK } from '../../config';
+import { useState, useEffect, useRef } from "react";
+import { Button, Divider, Space, Carousel, Image } from "antd";
+import { PlayCircleOutlined, GithubOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "../../hooks";
+import { GITHUB_LINK } from "../../config";
 
 export const Main = ({ star, fork }) => {
   const { t, locale } = useTranslation();
-  const [showModal, setShowModal] = useState(false);
   const [time, setTime] = useState(7000);
   const navigate = useNavigate();
   const timerRef = useRef();
@@ -29,11 +27,11 @@ export const Main = ({ star, fork }) => {
     <div className="home-desc">
       <div className="home-desc-text">
         <h1 className="home-desc-title">
-          <div className="">Agile to Create</div>
-          <div className="gradient-text">High-Performance BigData</div>
-          <div className="">Workflow With Low-Code</div>
+          <div>Agile to Create</div>
+          <div className="gradient-text">High-Performance Workflow</div>
+          <div>With Low-Code</div>
         </h1>
-        <div className="home-desc-subtitle">{t('desc')}</div>
+        <div className="home-desc-subtitle">{t("desc")}</div>
         <div>
           <Space>
             <Button
@@ -44,17 +42,20 @@ export const Main = ({ star, fork }) => {
                 navigate(`/${locale}/download`);
               }}
             >
-              {t('download')}
+              {t("download")}
             </Button>
             <Button
               icon={<PlayCircleOutlined />}
               shape="round"
               size="large"
               onClick={() => {
-                setShowModal(true);
+                window.open(
+                  "https://www.youtube.com/watch?v=RV62U2mMEx4",
+                  "_blank"
+                );
               }}
             >
-              {t('what')}
+              {t("what")}
             </Button>
           </Space>
         </div>
@@ -65,16 +66,16 @@ export const Main = ({ star, fork }) => {
               shape="round"
               size="medium"
               onClick={() => {
-                window.open(GITHUB_LINK, '_blank');
+                window.open(GITHUB_LINK, "_blank");
               }}
             >
               <div className="github-button-left">
                 <GithubOutlined />
               </div>
               <div className="github-button-right">
-                <span>Star {star ? star.toLocaleString('en-us') : '-'}</span>
+                <span>Star {star ? star.toLocaleString("en-us") : "-"}</span>
                 <Divider type="vertical" />
-                <span>Fork {fork ? fork.toLocaleString('en-us') : '-'}</span>
+                <span>Fork {fork ? fork.toLocaleString("en-us") : "-"}</span>
               </div>
             </Button>
           </Space>
@@ -82,7 +83,7 @@ export const Main = ({ star, fork }) => {
       </div>
       <Carousel
         ref={carouselRef}
-        dots={{ className: 'home-why-dots' }}
+        dots={{ className: "home-why-dots" }}
         effect="fade"
         afterChange={() => {
           setTime(30000);
@@ -94,11 +95,6 @@ export const Main = ({ star, fork }) => {
         <Image src="/images/home/home-1-3.png" preview={false} />
         <Image src="/images/home/home-1-4.png" preview={false} />
       </Carousel>
-      <VideoModal
-        url="https://www.youtube.com/embed/RV62U2mMEx4"
-        show={showModal}
-        onClose={() => void setShowModal(false)}
-      />
     </div>
   );
 };

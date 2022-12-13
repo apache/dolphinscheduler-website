@@ -1,3 +1,6 @@
+import { Space } from "antd";
+import { CaretDownOutlined } from "@ant-design/icons";
+
 export const useMenu = (t) => {
   return [
     {
@@ -5,7 +8,12 @@ export const useMenu = (t) => {
       key: "docs",
     },
     {
-      label: t("community"),
+      label: (
+        <Space size="small" align="center">
+          <span>{t("community")}</span>
+          <CaretDownOutlined />
+        </Space>
+      ),
       key: "community-menu",
       children: [
         {
@@ -31,16 +39,17 @@ export const useMenu = (t) => {
       key: "support",
     },
     {
-      label: "Apache",
+      label: (
+        <Space size="small" align="center">
+          <span>Apache</span>
+          <CaretDownOutlined />
+        </Space>
+      ),
       key: "apache",
       children: [
         {
           label: (
-            <a
-              href="https://www.apache.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.apache.org/" target="_blank">
               Foundation
             </a>
           ),
@@ -48,11 +57,7 @@ export const useMenu = (t) => {
         },
         {
           label: (
-            <a
-              href="https://www.apache.org/licenses/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.apache.org/licenses/" target="_blank">
               License
             </a>
           ),
@@ -65,7 +70,7 @@ export const useMenu = (t) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Events
+              Apache Events
             </a>
           ),
           key: "apache-events",

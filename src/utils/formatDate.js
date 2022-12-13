@@ -16,3 +16,8 @@ export const isAfter = (date) => {
     ? dayjs.utc(date).local().isAfter(dayjs())
     : false;
 };
+
+export const formatTimestamp = (date, locale) => {
+  let format = locale !== "zh-cn" ? "MMM DD YYYY" : "YYYY-MM-DD";
+  return dayjs(date).isValid() ? dayjs.utc(date).local().format(format) : date;
+};

@@ -9,10 +9,13 @@ import {
   Typography,
   Spin,
   Collapse,
+  Tag,
 } from "antd";
-import { CaretRightOutlined } from "@ant-design/icons";
-import { useSearchParams, useParams } from "react-router-dom";
+import { useTranslation } from "../../hooks";
+import { CaretRightOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import { useSearchParams, useParams, useNavigate } from "react-router-dom";
 import { useSearch } from "./useSearch";
+import { formatTimestamp, isAfter } from "../../utils/formatDate";
 import "./index.scss";
 
 const Search = () => {
@@ -20,6 +23,8 @@ const Search = () => {
   const { tabs, loading, handleSearch, handleSort } = useSearch();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchRef = useRef(searchParams.get("t"));
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (searchParams.get("t")) {
@@ -118,11 +123,70 @@ const Search = () => {
                       }
                       if (tab.key === "event") {
                         return (
-                          <div className="search-item">
+                          <div className="events-desc">
                             <div
                               dangerouslySetInnerHTML={{ __html: item.title }}
                               className="search-result-title"
                             ></div>
+                            {item.time && (
+                              <div className="events-time">
+                                {formatTimestamp(item.time, params.locale)}
+                              </div>
+                            )}
+                            {item.time && (
+                              <div className="events-tag">
+                                {isAfter(item.time) ? (
+                                  <Tag color="#7d4efc">Coming Soon</Tag>
+                                ) : (
+                                  <Tag color="#8b8b8b">Previous</Tag>
+                                )}
+                              </div>
+                            )}
+
+                            <Space className="events-buttons" size={2}>
+                              {item.time && isAfter(item.time) && item.more && (
+                                <Button
+                                  size="large"
+                                  shape="round"
+                                  onClick={() => {
+                                    navigate(
+                                      `/${params.locale}/events/${item.more}`
+                                    );
+                                  }}
+                                >
+                                  {t("learn_more")}
+                                  <ArrowRightOutlined />
+                                </Button>
+                              )}
+                              {item.vedio_url && (
+                                <Button
+                                  size="large"
+                                  shape="round"
+                                  type="link"
+                                  onClick={() => {
+                                    window.open(item.vedio_url, "_blank");
+                                  }}
+                                >
+                                  {t("watch_now")}
+                                  <ArrowRightOutlined />
+                                </Button>
+                              )}
+                              {item.post && (
+                                <Button
+                                  size="large"
+                                  shape="round"
+                                  type="link"
+                                  onClick={() => {
+                                    navigate(
+                                      `/${params.locale}/blog/${item.post}`
+                                    );
+                                  }}
+                                >
+                                  {t("view_post")}
+                                  <ArrowRightOutlined />
+                                </Button>
+                              )}
+                            </Space>
                           </div>
                         );
                       }

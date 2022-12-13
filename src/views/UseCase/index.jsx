@@ -23,7 +23,11 @@ const UseCase = () => {
       </div>
       <div className="usecase-user">
         <div className="usecase-user-title">{t("user_title")}</div>
-        <div className="usecase-user-list">
+        <div
+          className={`usecase-user-list ${
+            users.length < 14 ? "usecase-user-list-less" : ""
+          }`}
+        >
           {users
             .filter((item, i) => (more ? true : i < 21))
             .map((item, i) => (

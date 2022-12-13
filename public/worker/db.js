@@ -94,6 +94,9 @@ const searchEvent = async (value) => {
         i: index,
         title: replaceStr(item.title, value, 100, index),
         time: new Date(item.time).getTime(),
+        post: item.post,
+        video_url: item.video_url,
+        more: item.more,
       });
     }
   }

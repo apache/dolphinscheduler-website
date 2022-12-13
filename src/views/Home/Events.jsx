@@ -38,7 +38,7 @@ export const Events = () => {
                     {i === 0 ? "Events" : "Post"}
                   </div>
                 </div>
-                {event.startTime && (
+                {event.startTime && i === 0 && (
                   <div className="home-events-item-time">
                     {formatDate(event.startTime, locale)}
                   </div>
