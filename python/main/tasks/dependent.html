@@ -148,16 +148,16 @@
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dependent_external&quot;</span><span class="p">,</span>
     <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
-<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">task_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task 1&quot;</span><span class="p">)</span>
     <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task 2&quot;</span><span class="p">)</span>
     <span class="n">task_3</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_3&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task 3&quot;</span><span class="p">)</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dependent_example&quot;</span><span class="p">,</span>
     <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
-<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">task</span> <span class="o">=</span> <span class="n">Dependent</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dependent&quot;</span><span class="p">,</span>
         <span class="n">dependence</span><span class="o">=</span><span class="n">And</span><span class="p">(</span>
@@ -175,7 +175,7 @@
             <span class="p">)</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>

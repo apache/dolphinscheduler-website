@@ -130,7 +130,7 @@
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dvc_example&quot;</span><span class="p">,</span>
     <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
-<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">init_task</span> <span class="o">=</span> <span class="n">DVCInit</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;init_dvc&quot;</span><span class="p">,</span> <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span> <span class="n">store_url</span><span class="o">=</span><span class="s2">&quot;~/dvc_data&quot;</span><span class="p">)</span>
     <span class="n">upload_task</span> <span class="o">=</span> <span class="n">DVCUpload</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;upload_data&quot;</span><span class="p">,</span>
@@ -151,7 +151,7 @@
 
     <span class="n">init_task</span> <span class="o">&gt;&gt;</span> <span class="n">upload_task</span> <span class="o">&gt;&gt;</span> <span class="n">download_task</span>
 
-    <span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
 </pre></div>
 </div>

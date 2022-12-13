@@ -117,7 +117,7 @@ and in the real word.</p>
         <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">main</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;from dependence import now</span><span class="se">\n</span><span class="s2">print(now)&quot;</span><span class="p">),</span>
     <span class="p">],</span>
     <span class="c1"># [end create_new_resources]</span>
-<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># [start use_exists_resources]</span>
     <span class="n">task_use_resource</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;use-resource&quot;</span><span class="p">,</span>
@@ -129,7 +129,7 @@ and in the real word.</p>
     <span class="p">)</span>
     <span class="c1"># [end use_exists_resources]</span>
 
-    <span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>In this example, we will upload two python files to resource center and use them in one single task, the python

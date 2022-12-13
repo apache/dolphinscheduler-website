@@ -176,7 +176,7 @@
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_datax_example&quot;</span><span class="p">,</span>
     <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">,</span>
-<span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># This task synchronizes the data in `t_ds_project`</span>
     <span class="c1"># of `first_mysql` database to `target_project` of `second_mysql` database.</span>
     <span class="c1"># You have to make sure data source named `first_mysql` and `second_mysql` exists</span>
@@ -192,7 +192,7 @@
     <span class="c1"># You can custom json_template of datax to sync data. This task create a new</span>
     <span class="c1"># datax job same as task1, transfer record from `first_mysql` to `second_mysql`</span>
     <span class="n">task2</span> <span class="o">=</span> <span class="n">CustomDataX</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_custom_datax&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">JSON_TEMPLATE</span><span class="p">))</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>

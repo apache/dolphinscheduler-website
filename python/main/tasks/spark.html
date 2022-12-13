@@ -122,7 +122,7 @@
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.workflow</span> <span class="kn">import</span> <span class="n">Workflow</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.spark</span> <span class="kn">import</span> <span class="n">DeployMode</span><span class="p">,</span> <span class="n">ProgramType</span><span class="p">,</span> <span class="n">Spark</span>
 
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_spark_example&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_spark_example&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">task</span> <span class="o">=</span> <span class="n">Spark</span><span class="p">(</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_spark&quot;</span><span class="p">,</span>
         <span class="n">main_class</span><span class="o">=</span><span class="s2">&quot;org.apache.spark.examples.SparkPi&quot;</span><span class="p">,</span>
@@ -130,7 +130,7 @@
         <span class="n">program_type</span><span class="o">=</span><span class="n">ProgramType</span><span class="o">.</span><span class="n">JAVA</span><span class="p">,</span>
         <span class="n">deploy_mode</span><span class="o">=</span><span class="n">DeployMode</span><span class="o">.</span><span class="n">LOCAL</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>

@@ -104,11 +104,11 @@
 name, schedule interval, schedule start time and end time. You would know scheduler</p>
 <p>Workflow could be initialized in normal assign statement or in context manger.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization with assign statement</span>
-<span class="n">pd</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
+<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
 
 <span class="c1"># Or context manger</span>
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Workflow is the main object communicate between <em>PyDolphinScheduler</em> and DolphinScheduler daemon.
@@ -116,10 +116,10 @@ After workflow and task is be declared, you could use <cite>submit</cite> and <c
 <p>If you just want to submit your definition and create workflow, without run it, you should use attribute <cite>submit</cite>.
 But if you want to run the workflow after you submit it, you could use attribute <cite>run</cite>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Just submit definition, without run it</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+<span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 
 <span class="c1"># Both submit and run definition</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <section id="schedule">
@@ -149,7 +149,7 @@ asterisks expression, and each of the meaning of position as below</p>
 <h3>Tenant<a class="headerlink" href="#tenant" title="Permalink to this heading"></a></h3>
 <p>Tenant is the user who run task command in machine or in virtual machine. it could be assign by simple string.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
-<span class="n">pd</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;workflow tenant&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">)</span>
+<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;workflow tenant&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -177,7 +177,7 @@ and all the waiting instances will be executed base on workflow priority order.<
 <ul>
 <li><p>Direct assign statement. You can pick execute type from above and direct assign to parameter
 <code class="docutils literal notranslate"><span class="pre">execution_type</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;workflow_name&quot;</span><span class="p">,</span>
     <span class="n">execution_type</span><span class="o">=</span><span class="s2">&quot;parallel&quot;</span>
 <span class="p">)</span>
@@ -229,11 +229,11 @@ have two mainly way and both of them is easy. You could use bitwise operator <ci
 <p>In most of data orchestration cases, you should assigned attribute <cite>workflow</cite> to task instance to
 decide workflow of task. You could set <cite>workflow</cite> in both normal assign or in context manger mode</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal assign, have to explicit declaration and pass `Workflow` instance to task</span>
-<span class="n">pd</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
-<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span> <span class="n">workflow</span><span class="o">=</span><span class="n">pd</span><span class="p">)</span>
+<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
+<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span> <span class="n">workflow</span><span class="o">=</span><span class="n">workflow</span><span class="p">)</span>
 
-<span class="c1"># Context manger, `Workflow` instance pd would implicit declaration to task</span>
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pd</span><span class="p">:</span>
+<span class="c1"># Context manger, `Workflow` instance workflow would implicit declaration to task</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span>
 </pre></div>
 </div>

@@ -31,11 +31,11 @@ Workflow could be initialized in normal assign statement or in context manger.
 .. code-block:: python
 
    # Initialization with assign statement
-   pd = Workflow(name="my first workflow")
+   workflow = Workflow(name="my first workflow")
 
    # Or context manger 
-   with Workflow(name="my first workflow") as pd:
-       pd.submit()
+   with Workflow(name="my first workflow") as workflow:
+       workflow.submit()
 
 Workflow is the main object communicate between *PyDolphinScheduler* and DolphinScheduler daemon.
 After workflow and task is be declared, you could use `submit` and `run` notify server your definition.
@@ -46,10 +46,10 @@ But if you want to run the workflow after you submit it, you could use attribute
 .. code-block:: python
 
    # Just submit definition, without run it
-   pd.submit()
+   workflow.submit()
    
    # Both submit and run definition
-   pd.run()
+   workflow.run()
 
 Schedule
 ~~~~~~~~
@@ -84,7 +84,7 @@ Tenant is the user who run task command in machine or in virtual machine. it cou
 .. code-block:: python
 
    # 
-   pd = Workflow(name="workflow tenant", tenant="tenant_exists")
+   workflow = Workflow(name="workflow tenant", tenant="tenant_exists")
 
 .. note::
 
@@ -114,7 +114,7 @@ Parameter ``execution type`` can be set in
 
   .. code-block:: python
 
-     pd = Workflow(
+     workflow = Workflow(
          name="workflow_name",
          execution_type="parallel"
      )
@@ -173,11 +173,11 @@ decide workflow of task. You could set `workflow` in both normal assign or in co
 .. code-block:: python
 
    # Normal assign, have to explicit declaration and pass `Workflow` instance to task
-   pd = Workflow(name="my first workflow")
-   shell_task = Shell(name="shell", command="echo shell task", workflow=pd)
+   workflow = Workflow(name="my first workflow")
+   shell_task = Shell(name="shell", command="echo shell task", workflow=workflow)
 
-   # Context manger, `Workflow` instance pd would implicit declaration to task
-   with Workflow(name="my first workflow") as pd:
+   # Context manger, `Workflow` instance workflow would implicit declaration to task
+   with Workflow(name="my first workflow") as workflow:
        shell_task = Shell(name="shell", command="echo shell task",
 
 With both `Workflow`_, `Tasks`_  and `Tasks Dependence`_, we could build a workflow with multiple tasks.
