@@ -194,6 +194,7 @@ const searchDocVersion = async (value, version) => {
   const array = await db.doc
     .filter((item) => item.version === version)
     .toArray();
+
   const result = [];
   for (let item of array) {
     const titleI = item.content.indexOf(value);
@@ -209,7 +210,7 @@ const searchDocVersion = async (value, version) => {
         i,
         title: replaceStr(item.title, value, 80, titleI),
         desc: replaceStr(item.content, value, 100, contentI),
-        location: JSON.parse(item.location),
+        location: item.location,
       });
     }
   }
