@@ -15,7 +15,7 @@ import Download, { Deployment, Version } from "./views/Download";
 import Blog, { BlogDetail } from "./views/Blog";
 import Event, { EventDetail } from "./views/Event";
 import Support from "./views/Support";
-import NotFound from "./views/404";
+import NotFound from "./views/NotFound";
 import getLocales from "./api/getLocales";
 import getVersions from "./api/getVersions";
 
