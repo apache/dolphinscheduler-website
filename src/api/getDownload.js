@@ -9,11 +9,11 @@ export async function getDeployment() {
 
 export async function getDownloadVersions() {
   try {
-    // const storedData = sessionStorage.getItem("download");
-    // if (storedData) return JSON.parse(storedData);
+    const storedData = sessionStorage.getItem("download");
+    if (storedData) return JSON.parse(storedData);
     const result = await fetch("/fetch/download.json");
     const json = await result.json();
-    // sessionStorage.setItem("download", JSON.stringify(json));
+    sessionStorage.setItem("download", JSON.stringify(json));
     return json;
   } catch (e) {}
   return [];

@@ -14,6 +14,7 @@ export const useSearch = (version) => {
       value,
       version,
     });
+    setSearchValue(value);
   };
 
   useEffect(() => {
@@ -42,7 +43,6 @@ export const useSearch = (version) => {
     setShowModal,
     searchList: list,
     searchValue,
-    setSearchValue,
     handleSearch,
     loading,
   };
