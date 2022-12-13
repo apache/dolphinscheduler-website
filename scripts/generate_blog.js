@@ -76,6 +76,9 @@ const formatEventsData = (lang) => {
       title: event.title,
       desc: event.title,
       time: event.startTime,
+      post: event.post?.name,
+      more: event.more,
+      vedio_url: event.vedio_url,
     });
     if (event.post) {
       events.push(event.post);

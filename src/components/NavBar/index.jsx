@@ -41,6 +41,18 @@ const NavBar = () => {
             <div className="navbar-menu">
               <Menu
                 onSelect={({ key }) => {
+                  if (
+                    [
+                      "apache",
+                      "foundation",
+                      "license",
+                      "apache-events",
+                      "security",
+                      "sponsorship",
+                      "thanks",
+                    ].includes(key)
+                  )
+                    return;
                   navigate(
                     key !== "docs"
                       ? `/${locale}/${key}`
