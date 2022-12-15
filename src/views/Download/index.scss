@@ -20,6 +20,13 @@
       background-image: url("../../images/bg/download.png");
       margin-top: 10px;
       @include bg-100;
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      height: 60vw;
     }
   }
   &-title {
@@ -28,6 +35,13 @@
     font-size: 68px;
     line-height: 90px;
     width: 900px;
+    @media screen and (max-width: 640px) {
+      width: 100%;
+      line-height: 1.5;
+      font-size: 7vw;
+      padding-left: 3vw;
+      box-sizing: border-box;
+    }
   }
   &-subtitle {
     display: flex;
@@ -49,6 +63,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 640px) {
+      width: 96vw;
+      padding-left: 3vw;
+      padding-right: 3vw;
+    }
 
     &-info {
       height: 100%;
@@ -84,6 +104,9 @@
       width: 455px;
       height: 215px;
       @include bg-100;
+      @media screen and (max-width: 640px) {
+        display: none;
+      }
     }
     &-img-deployment {
       background-image: url("../../images/download/download_1.png");

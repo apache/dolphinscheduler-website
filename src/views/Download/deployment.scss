@@ -6,6 +6,9 @@
     height: 206px;
     background-color: #f5f5f5;
     padding-top: 18px;
+    @media screen and (max-width: 640px) {
+      height: 46vw;
+    }
   }
   &-box {
     margin: 0 auto;
@@ -27,11 +30,21 @@
       height: 57px;
       border-radius: 17px;
       @include bg-100;
+
+      @media screen and (max-width: 640px) {
+        width: 10vw;
+        height: 10vw;
+        border-radius: 2vw;
+      }
     }
     &-text {
       color: #000000;
       font-size: 18px;
       line-height: 43px;
+      @media screen and (max-width: 640px) {
+        font-size: 14px;
+        line-height: 2;
+      }
     }
     &.active {
       pointer-events: none;
@@ -56,22 +69,41 @@
       color: #031b3e;
       font-size: 48px;
       line-height: 90px;
+
+      @media screen and (max-width: 640px) {
+        font-size: 24px;
+        line-height: 2;
+      }
     }
     &-bold {
       font-weight: 700;
       color: #000000;
       font-size: 18px;
       line-height: 43px;
+      @media screen and (max-width: 640px) {
+        font-size: 16px;
+        line-height: 1.5;
+      }
     }
     &-tips {
       color: #000000;
       font-size: 16px;
       line-height: 24px;
       padding: 8px 0px;
+      @media screen and (max-width: 640px) {
+        font-size: 14px;
+        line-height: 2;
+        padding: 0px 2vw;
+      }
     }
     .ant-btn {
       padding: 0px 10px;
       font-size: 16px;
+      @media screen and (max-width: 640px) {
+        font-size: 14px;
+        padding: 0px 1vw;
+        height: 20px;
+      }
     }
     .ant-collapse-header {
       font-weight: 700;
@@ -83,6 +115,10 @@
     &-version {
       padding: 20px 30px 0px 30px;
       position: relative;
+      @media screen and (max-width: 640px) {
+        padding: 1vw 1vw 0 1vw;
+        word-break: break-all;
+      }
     }
     &-documentation {
       position: absolute;
