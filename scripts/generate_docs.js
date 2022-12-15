@@ -120,7 +120,7 @@ const getMenu = (list, data, version, lang, isDeployment, location) => {
         ".md"
       )}`;
 
-      const mdInfo = parseMd(mdPath);
+      const mdInfo = parseMd(mdPath, lang, version);
       const onlyText = mdInfo["__html"].replace(/<.*?>/g, "");
 
       const structure = [];
@@ -224,7 +224,7 @@ const wirteVersion = () => {
 };
 
 const wirteSearchDocData = () => {
-  ["en-us", "zh-cn"].forEach((lang) => {
+  [("en-us", "zh-cn")].forEach((lang) => {
     const targetSearchPath = `${BASE}/public/data/doc/${lang}.json`;
     fs.ensureFileSync(targetSearchPath);
     fs.writeFileSync(

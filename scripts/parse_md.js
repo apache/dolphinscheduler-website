@@ -4,6 +4,7 @@ const path = require("path");
 const fs = require("fs-extra");
 const MarkdownIt = require("markdown-it");
 const hljs = require("highlight.js");
+const replaceDeadLinks = require("./replace_links.js");
 
 const MD = new MarkdownIt({
   html: true,
@@ -39,7 +40,7 @@ function splitMetaAndContent(str) {
   return result;
 }
 
-const parseMd = (filePath) => {
+const parseMd = (filePath, lang, version) => {
   const result = {
     meta: {},
     __html: "",
@@ -64,7 +65,12 @@ const parseMd = (filePath) => {
 
       result.meta[key] = value;
     });
-    result.__html = MD.render(splitContent.content);
+
+    let content = splitContent.content;
+    if (lang && version) {
+      content = replaceDeadLinks(content, lang, version);
+    }
+    result.__html = MD.render(content);
   } catch (err) {}
 
   return result;
