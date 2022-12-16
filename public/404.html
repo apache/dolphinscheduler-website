@@ -25,7 +25,38 @@
   </head>
   <body>
     <script>
-      window.location.href = "/";
+      (() => {
+        const href = window.location.href;
+        const lang = href.includes("zh-cn") ? "zh-cn" : "en-us";
+        if (href.includes("download.html")) {
+          window.location.replace(`/#/${lang}/download`);
+          return;
+        }
+        if (href.includes("blog")) {
+          const matchedName = /blog\/(.*?).html/.exec(href);
+          window.location.replace(
+            `/#/${lang}/blog${matchedName ? "/" + matchedName[1] : ""}`
+          );
+          return;
+        }
+        if (href.includes("docs")) {
+          const url = href
+            .replace(/.html/, "")
+            .replace(/\/user_doc/, "")
+            .replace(lang, `#/${lang}`);
+          window.location.replace(url);
+          return;
+        }
+        if (href.includes("community.html")) {
+          window.location.replace(`/#/${lang}/community`);
+          return;
+        }
+        if (href.includes("user/index.html")) {
+          window.location.replace(`/#/${lang}/use_case`);
+          return;
+        }
+        window.location.replace(`/#/${lang}`);
+      })();
     </script>
     <!--
       This HTML file is a template.
