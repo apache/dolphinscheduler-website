@@ -38,10 +38,11 @@ jobs:
           python-version: 3.7
       - name: Build Python Multiple Version Document
         working-directory: ${{ env.PYDS_HOME }}
+        # rsync all files in directory docs/build/html/versions expect .doctrees have sensitive data, so we need to delete it
         run: |
           python -m pip install --upgrade ${{ env.DEPENDENCES }}
           python -m tox -vv -e doc-build-multi
-          cp -r docs/build/html/versions ${GITHUB_WORKSPACE}/build/python
+          rsync -av --progress --exclude .doctrees docs/build/html/versions ${GITHUB_WORKSPACE}/build/python
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
