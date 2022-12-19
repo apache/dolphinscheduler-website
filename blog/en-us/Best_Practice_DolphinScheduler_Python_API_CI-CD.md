@@ -10,14 +10,14 @@ Written by Zhong Jiajie, Apache DolphinScheduler PMC
 
 # DolphinScheduler and Python API Introduction
 Apache DolphinScheduler is a distributed and extensible workflow scheduler platform with powerful DAG visual interfaces. It helps users easier to build and maintain workflow on any scale.
-![](blog/img/media/16714202226727/16714203387608.jpg)
+![](/blog/img/media/16714202226727/16714203387608.jpg)
 In order to meet the needs of all users that have different preferences in the same team, DolphinScheduler provides a variety of ways to create workflows. The most popular way is through the web UI, which creates workflows with simple drag and drop and allows non-engineers to create. If you are an engineer and prefer to define workflows programmatically, you may consider using its Python API or YAML file definition to create it.
 
 PyDolphinScheduler is a Python API for Apache DolphinScheduler, which allows you to define your workflow by Python code, aka workflow-as-codes. You can write python code in any editor you like, just like using other python libraries, to create DolphinScheduler’s users, environment, project, and workflow. For more practice examples, you can refer to [[DolphinScheduler can schedule workflows with Python scripts!](https://medium.com/codex/dolphinscheduler-can-schedule-workflows-with-python-scripts-a882fdd2d862)] for more detail.
 
 # A Simple Python API Example
 As an out-of-box tool, Python API has an example named tutorial, which includes the basic concept and minimum codes to create and run our very first workflows, you can see more detailed code at https://github.com/apache/dolphinscheduler-sdk-python/blob/main/src/pydolphinscheduler/examples/tutorial.py. The core concept of DolphinScheduler and its Python API is DAG, also calls workflow in Python API. More figuratively, it is the whole picture shown in the following figure. Each DAG contains multiple nodes and connections between nodes, like the node named A, B, C and etc, and the link between. In Python API, the task represents the node of DAG and the dependence for the connections between nodes.
-![](blog/img/media/16714202226727/16714204071793.jpg)
+![](/blog/img/media/16714202226727/16714204071793.jpg)
 # How to Trigger Python API Workflow
 ## Single One
 So we already know the basic concept of Python API and we already have an example of it, then how can we trigger it and make it run and get our job done? To make it more pythonic, you can run it just like other Python scripts, via the terminal with a simple command.
