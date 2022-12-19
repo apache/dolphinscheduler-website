@@ -148,9 +148,10 @@ asterisks expression, and each of the meaning of position as below</p>
 </section>
 <section id="tenant">
 <h3>Tenant<a class="headerlink" href="#tenant" title="Permalink to this heading"></a></h3>
-<p>Tenant is the user who run task command in machine or in virtual machine. it could be assign by simple string.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
-<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;workflow tenant&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">)</span>
+<p>Tenant is the user who run task command in machine or in virtual machine. it could be assign by simple string.
+You should change the tenant value to exists tenant in your host, it config in <cite>config.yaml</cite> in your pydolphinscheduler
+<code class="docutils literal notranslate"><span class="pre">PYDS_HOME</span></code>, or via <a class="reference internal" href="cli.html"><span class="doc">CLI</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler config --set default.user.tenant &lt;YOUR-TENANT-NAME&gt;
 </pre></div>
 </div>
 <div class="admonition note">

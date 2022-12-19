@@ -108,7 +108,7 @@
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource_plugin</span> <span class="kn">import</span> <span class="n">ResourcePlugin</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyDSTaskNoFoundException</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">gateway</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">Base</span><span class="p">,</span> <span class="n">Project</span><span class="p">,</span> <span class="n">Tenant</span><span class="p">,</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">Base</span><span class="p">,</span> <span class="n">Project</span><span class="p">,</span> <span class="n">User</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.utils.date</span> <span class="kn">import</span> <span class="n">MAX_DATETIME</span><span class="p">,</span> <span class="n">conv_from_str</span><span class="p">,</span> <span class="n">conv_to_schedule</span>
 
 
@@ -168,7 +168,6 @@
     <span class="n">_KEY_ATTR</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;name&quot;</span><span class="p">,</span>
         <span class="s2">&quot;project&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;tenant&quot;</span><span class="p">,</span>
         <span class="s2">&quot;release_state&quot;</span><span class="p">,</span>
         <span class="s2">&quot;param&quot;</span><span class="p">,</span>
     <span class="p">}</span>
@@ -177,7 +176,6 @@
         <span class="s2">&quot;name&quot;</span><span class="p">,</span>
         <span class="s2">&quot;description&quot;</span><span class="p">,</span>
         <span class="s2">&quot;_project&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;_tenant&quot;</span><span class="p">,</span>
         <span class="s2">&quot;worker_group&quot;</span><span class="p">,</span>
         <span class="s2">&quot;warning_type&quot;</span><span class="p">,</span>
         <span class="s2">&quot;warning_group_id&quot;</span><span class="p">,</span>
@@ -201,7 +199,6 @@
         <span class="n">timezone</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_TIME_ZONE</span><span class="p">,</span>
         <span class="n">user</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_USER</span><span class="p">,</span>
         <span class="n">project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_PROJECT</span><span class="p">,</span>
-        <span class="n">tenant</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_TENANT</span><span class="p">,</span>
         <span class="n">worker_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
         <span class="n">warning_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WARNING_TYPE</span><span class="p">,</span>
         <span class="n">warning_group_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -221,7 +218,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">timezone</span> <span class="o">=</span> <span class="n">timezone</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_user</span> <span class="o">=</span> <span class="n">user</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span> <span class="o">=</span> <span class="n">tenant</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span> <span class="o">=</span> <span class="n">worker_group</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span> <span class="o">=</span> <span class="n">warning_type</span>
         <span class="k">if</span> <span class="n">warning_type</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;FAILURE&quot;</span><span class="p">,</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;NONE&quot;</span><span class="p">):</span>
@@ -260,16 +256,6 @@
         <span class="n">WorkflowContext</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">tenant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tenant</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get attribute tenant.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Tenant</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">)</span>
-
-    <span class="nd">@tenant</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">tenant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tenant</span><span class="p">:</span> <span class="n">Tenant</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set attribute tenant.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span> <span class="o">=</span> <span class="n">tenant</span><span class="o">.</span><span class="n">name</span>
-
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">project</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Project</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Get attribute project.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">)</span>
@@ -285,7 +271,7 @@
 
 <span class="sd">        For now we just get from python models but not from java gateway models, so it may not correct.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Workflow._parse_datetime"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._parse_datetime">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_parse_datetime</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -519,7 +505,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">execution_type</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_tenant</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">release_state</span><span class="p">,</span>
             <span class="c1"># TODO add serialization function</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_relation_json</span><span class="p">),</span>

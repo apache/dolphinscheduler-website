@@ -101,8 +101,6 @@ All environment variables as below, and you could modify their value via `Bash <
 +------------------+------------------------------------+---------------------------------------------------------------------------------------------------------------------+
 |                  | ``PYDS_WORKFLOW_PROJECT``          | Default workflow project name, will use its value when workflow does not specify the attribute ``project``.         |
 +                  +------------------------------------+---------------------------------------------------------------------------------------------------------------------+
-|                  | ``PYDS_WORKFLOW_TENANT``           | Default workflow tenant, will use its value when workflow does not specify the attribute ``tenant``.                |
-+                  +------------------------------------+---------------------------------------------------------------------------------------------------------------------+
 | Default Workflow | ``PYDS_WORKFLOW_USER``             | Default workflow user, will use its value when workflow does not specify the attribute ``user``.                    |
 +                  +------------------------------------+---------------------------------------------------------------------------------------------------------------------+
 |                  | ``PYDS_WORKFLOW_QUEUE``            | Default workflow queue, will use its value when workflow does not specify the attribute ``queue``.                  |

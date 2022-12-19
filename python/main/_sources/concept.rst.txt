@@ -80,11 +80,12 @@ Tenant
 ~~~~~~
 
 Tenant is the user who run task command in machine or in virtual machine. it could be assign by simple string.
+You should change the tenant value to exists tenant in your host, it config in `config.yaml` in your pydolphinscheduler
+``PYDS_HOME``, or via :doc:`CLI <cli>`
 
-.. code-block:: python
+.. code-block:: bash
 
-   # 
-   workflow = Workflow(name="workflow tenant", tenant="tenant_exists")
+   pydolphinscheduler config --set default.user.tenant <YOUR-TENANT-NAME>
 
 .. note::
 
