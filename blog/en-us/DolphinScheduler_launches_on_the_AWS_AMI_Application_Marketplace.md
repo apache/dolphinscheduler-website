@@ -131,7 +131,7 @@ The time it takes depends on your network speed, and after it finishes, your EC2
 After that, you can log in DolphinScheduler service with user/EC2_DYNAMIC_INSTANCE_ID as the default username/password via instance’s [API-SERVER-Public-IPv4-address]:12345/dolphinscheduler/ui or [API-SERVER-Public-IPv4-DNS]:12345 /dolphinscheduler/ui. For about how to use DolphinScheduler you view the detail in the functions of DolphinScheduler.
 
 ## Contributing
-We build AMI through the packer and make it completely open source. We welcome anyone interested in the project to view and contribute. DolphinScheduler AMI source code can be viewed at ami-dolphinscheduler[https://github.com/WhaleOps/packer_tmpl/blob/main/aws/ami/dolphinscheduler/README.md]. For how to contribute code, you can learn how to contribute[https://github.com/WhaleOps/packer_tmpl/blob/main/aws/ami/dolphinscheduler/README.md#contributing].
+We build AMI through the packer and make it completely open source. We welcome anyone interested in the project to view and contribute. DolphinScheduler AMI source code can be viewed at [ami-dolphinscheduler](https://github.com/WhaleOps/packer_tmpl/blob/main/aws/ami/dolphinscheduler/README.md). For how to contribute code, you can learn how to [contribute](https://github.com/WhaleOps/packer_tmpl/blob/main/aws/ami/dolphinscheduler/README.md#contributing).
 
 ## Recap
 
