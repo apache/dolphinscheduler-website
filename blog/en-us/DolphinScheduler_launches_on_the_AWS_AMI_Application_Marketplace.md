@@ -1,3 +1,8 @@
+---
+title: DolphinScheduler launches on the AWS AMI Application Marketplace
+keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Kubernetes
+description: Apache DolphinScheduler has officially launched on the AWS EC2 AMI application marketplace
+---
 # DolphinScheduler launches on the AWS AMI Application Marketplace
 
 ![](/blog/img/media/16714207955368/16714208087579.jpg)

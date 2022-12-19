@@ -1,5 +1,11 @@
+---
+title: Best Practice | DolphinScheduler Python API CI/CD
+keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Kubernetes
+description: Apache DolphinScheduler is a distributed and extensible workflow scheduler platform with
+---
 # Best Practice | DolphinScheduler Python API CI/CD
 ![](https://miro.medium.com/max/720/1*YtC8CaZqJ5y-dTtoLhviNg.webp)
+
 Written by Zhong Jiajie, Apache DolphinScheduler PMC
 
 # DolphinScheduler and Python API Introduction

@@ -1,3 +1,8 @@
+---
+title: DolphinScheduler released version 3.0.3, focusing on fixing 6 bugs
+keywords: Apache,DolphinScheduler,scheduler,big data,ETL,airflow,hadoop,orchestration,dataops,Kubernetes
+description: Recently, Apache DolphinScheduler released version 3.0.3.
+---
 # DolphinScheduler released version 3.0.3, focusing on fixing 6 bugs
 ![](https://miro.medium.com/max/720/1*uM6PQlxRdJbLCEJrH-qemQ.webp)
 
