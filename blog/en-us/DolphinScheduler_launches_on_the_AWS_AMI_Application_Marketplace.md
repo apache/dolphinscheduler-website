@@ -5,7 +5,7 @@ description: Apache DolphinScheduler has officially launched on the AWS EC2 AMI 
 ---
 # DolphinScheduler launches on the AWS AMI Application Marketplace
 
-![](/blog/img/media/16714207955368/16714208087579.jpg)
+![](/img/media/16714207955368/16714208087579.jpg)
 # Introduction
 
 Apache DolphinScheduler has officially launched on the AWS EC2 AMI application marketplace, which means that if you want to use or experience DolphinScheduler in AWS, you can directly use this EC2 AMI to start the DolphinScheduler service. When started, your EC2 instance will start a DolphinScheduler standalone service, which is a complete DolphinScheduler component and can perform various tasks of DolphinScheduler.
@@ -34,17 +34,17 @@ The AMIs officially provided by AWS are all basic images, which generally only c
 
 The way to launch EC2 instance through DolphinScheduler AMI is very simple, just click the launch instance on the EC2 page, then click browse more AMIs, and enter DolphinScheduler in the input box. Then select AMI and fill in the instance type, key pair, network, and click launch instance to start the instance.
 
-![launch instance](/blog/img/media/16714207955368/16714208965363.jpg)
+![launch instance](/img/media/16714207955368/16714208965363.jpg)
 
-![Browse more AMIs](/blog/img/media/16714207955368/16714209112764.jpg)
+![Browse more AMIs](/img/media/16714207955368/16714209112764.jpg)
 
-![Search for dolphinscheduler](/blog/img/media/16714207955368/16714209218058.jpg)
+![Search for dolphinscheduler](/img/media/16714207955368/16714209218058.jpg)
 
-![Launch instance based on DolphinScheduler AMI](/blog/img/media/16714207955368/16714209322012.jpg)
+![Launch instance based on DolphinScheduler AMI](/img/media/16714207955368/16714209322012.jpg)
 
 It takes some time to start the instance. We can check the network configuration at this time. We need to make sure that ports 12345 and 22 are enabled, which are the port of the DolphinScheduler service and the ssh port.
 
-![](/blog/img/media/16714207955368/16714209468073.jpg)
+![](/img/media/16714207955368/16714209468073.jpg)
 
 3–5 minutes later, you can access the DolphinScheduler service through the public DNS or public IPv4 of the EC2 instance plus port 12345. The username and password to log in to the DolphinScheduler service are user and the current EC2 instance id respectively.
 
@@ -67,7 +67,7 @@ Go to EC2 -> Network & Security -> Security Groups -> Create Security Group to c
 * 5678: DolphinScheduler’s WorkerServer point
 * 12345: DolphinScheduler’s web UI point
 
-![](/blog/img/media/16714207955368/16714210083690.jpg)
+![](/img/media/16714207955368/16714210083690.jpg)
 
 
 ## Launch Multiple EC2 Instances
