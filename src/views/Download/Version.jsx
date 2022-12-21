@@ -140,7 +140,7 @@ export const Version = () => {
                   {t("download")}
                 </div>
                 <Button type="link" href={detail.bin.src}>
-                  {detail.bin.bin?.split("/").at(-1)}
+                  {detail.bin.src?.split("/").at(-1)}
                 </Button>
               </div>
               <div className="download-version-item">
