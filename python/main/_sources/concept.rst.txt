@@ -261,6 +261,38 @@ After that, we could see new file named ``bare-create.py`` is be created in reso
    Both parameter ``resource_list`` in workflow and task is list of string which mean you could upload and reference
    multiple files. For more complex usage, you could read :doc:`howto/multi-resources`.
 
+Local Parameters
+----------------
+
+In DolphinScheduler, we can define parameter in task, aka Local Parameter.
+
+We can set parameters to variables in tasks to better manage our tasks.
+
+For example:
+
+
+.. literalinclude:: ../../src/pydolphinscheduler/examples/local_parameter_example.py
+   :start-after: [start parameter example]
+   :end-before: [end parameter example]
+   :language: python
+
+
+There are two ways to define local parameters:
+
+.. literalinclude:: ../../src/pydolphinscheduler/examples/local_parameter_example.py
+   :start-after: [start parameter define]
+   :end-before: [end parameter define]
+   :language: python
+
+
+Full example:
+
+.. literalinclude:: ../../src/pydolphinscheduler/examples/local_parameter_example.py
+   :start-after: [start workflow_declare]
+   :end-before: [end workflow_declare]
+   :language: python
+
+
 Authentication Token
 --------------------
 
