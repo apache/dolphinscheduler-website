@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Function Wrapper &mdash; pydolphinscheduler 0.0.1 documentation</title>
+  <title>Python Function Decorate &mdash; pydolphinscheduler 0.0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
@@ -49,10 +49,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Python Function Wrapper</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python Function Decorate</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.func_wrap">Dive Into</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.func_wrap._get_func_str"><code class="docutils literal notranslate"><span class="pre">_get_func_str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.func_wrap._exists_other_decorator"><code class="docutils literal notranslate"><span class="pre">_exists_other_decorator()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.func_wrap.task"><code class="docutils literal notranslate"><span class="pre">task()</span></code></a></li>
 </ul>
 </li>
@@ -102,7 +102,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Tasks</a></li>
-      <li class="breadcrumb-item active">Python Function Wrapper</li>
+      <li class="breadcrumb-item active">Python Function Decorate</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tasks/func_wrap.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,9 +112,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="python-function-wrapper">
-<h1>Python Function Wrapper<a class="headerlink" href="#python-function-wrapper" title="Permalink to this heading"></a></h1>
-<p>A decorator covert Python function into pydolphinscheduler’s task.</p>
+  <section id="python-function-decorate">
+<h1>Python Function Decorate<a class="headerlink" href="#python-function-decorate" title="Permalink to this heading"></a></h1>
+<p>A decorator covert Python function into pydolphinscheduler’s task. Python function decorator use decorate
+<code class="code docutils literal notranslate"><span class="pre">&#64;task</span></code> from <code class="code docutils literal notranslate"><span class="pre">from</span> <span class="pre">pydolphinscheduler.tasks.func_wrap</span> <span class="pre">import</span> <span class="pre">task</span></code> to convert Python function into
+a single Python task of dolphinscheduler.</p>
+<p>Because we have to covert the whole Python definition into multiple Python task in dolphinscheduler, and all of
+the seperated Python task will be executed in the different Python process, so we need to separate not only the
+python function code, but also the all variables and the imported modules related to decorated function.</p>
+<p>For example, we decorated function <code class="docutils literal notranslate"><span class="pre">depend_import</span></code> in definition</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">depend_import</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and we can see functon <code class="docutils literal notranslate"><span class="pre">depend_import</span></code> depend on other modules, it use <code class="code docutils literal notranslate"><span class="pre">time.sleep(2)</span></code> from module <code class="code docutils literal notranslate"><span class="pre">time</span></code>
+to sleep 2 seconds. So when we want to separate this function into dolphinscheduler task, need to include the imported
+<code class="code docutils literal notranslate"><span class="pre">time</span></code> module.</p>
+<p>which means we not only post code</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">depend_import</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">depend_import</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>to dolphinscheduler Python task, we post the dependencies of this function as well, so you will see this in
+dolphinscheduler Python task to make it work. And if you use the global variables or other function in the
+decorated function, it will also including them as well.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">depend_import</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">depend_import</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We use third party library <a class="reference external" href="https://pypi.org/project/stmdency">stmdency</a> to get the dependencies statement
+of current function, so if you find some unexpected behavior you can report bug to <cite>apache-dolphinscheduler</cite>
+or <cite>stmdency</cite>.</p>
+</div>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># [start package_import]</span>
@@ -126,30 +166,44 @@
 
 <span class="c1"># [end package_import]</span>
 
+<span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;global-var&quot;</span>
+
 
 <span class="c1"># [start task_declare]</span>
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_parent</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">print_something</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_child_one</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">depend_import</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_child_two</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">depend_global_var</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_union</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Last task in this workflow.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">depend_local_var</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
+    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">depend_func</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+    <span class="n">foo</span><span class="p">()</span>
 
 
 <span class="c1"># [end task_declare]</span>
@@ -164,14 +218,14 @@
     <span class="c1"># [end workflow_declare]</span>
 
     <span class="c1"># [start task_relation_declare]</span>
-    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">(),</span> <span class="n">task_child_two</span><span class="p">()]</span>
-    <span class="n">task_parent</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">depend_import</span><span class="p">(),</span> <span class="n">depend_global_var</span><span class="p">()]</span>
+    <span class="n">print_something</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
 
-    <span class="n">task_union</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+    <span class="n">task_group</span> <span class="o">&gt;&gt;</span> <span class="n">depend_local_var</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">depend_func</span><span class="p">()</span>
     <span class="c1"># [end task_relation_declare]</span>
 
     <span class="c1"># [start submit_or_run]</span>
-    <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
     <span class="c1"># [end submit_or_run]</span>
 </pre></div>
 </div>
@@ -180,9 +234,9 @@
 <span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.tasks.func_wrap" title="Permalink to this heading"></a></h2>
 <p>Task function wrapper allows using decorator to create a task.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="pydolphinscheduler.tasks.func_wrap._get_func_str">
-<span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.func_wrap.</span></span><span class="sig-name descname"><span class="pre">_get_func_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/func_wrap.html#_get_func_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.func_wrap._get_func_str" title="Permalink to this definition"></a></dt>
-<dd><p>Get Python function string without indent from decorator.</p>
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.func_wrap._exists_other_decorator">
+<span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.func_wrap.</span></span><span class="sig-name descname"><span class="pre">_exists_other_decorator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/func_wrap.html#_exists_other_decorator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.func_wrap._exists_other_decorator" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the function has other decorators except &#64;task.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>func</strong> – The function which wraps by decorator <code class="docutils literal notranslate"><span class="pre">&#64;task</span></code>.</p>
@@ -193,7 +247,12 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.func_wrap.task">
 <span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.func_wrap.</span></span><span class="sig-name descname"><span class="pre">task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/func_wrap.html#task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.func_wrap.task" title="Permalink to this definition"></a></dt>
-<dd><p>Decorate which covert Python function into pydolphinscheduler task.</p>
+<dd><p>Decorate which covert Python functions into pydolphinscheduler task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> – The function which wraps by decorator <code class="docutils literal notranslate"><span class="pre">&#64;task</span></code>.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

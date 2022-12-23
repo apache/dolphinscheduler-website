@@ -160,30 +160,44 @@ We can find more YAML file examples in <a class="reference external" href="https
 
 <span class="c1"># [end package_import]</span>
 
+<span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;global-var&quot;</span>
+
 
 <span class="c1"># [start task_declare]</span>
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_parent</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">print_something</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_child_one</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">depend_import</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_child_two</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">depend_global_var</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_union</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Last task in this workflow.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">depend_local_var</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
+    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">depend_func</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+    <span class="n">foo</span><span class="p">()</span>
 
 
 <span class="c1"># [end task_declare]</span>
@@ -198,14 +212,14 @@ We can find more YAML file examples in <a class="reference external" href="https
     <span class="c1"># [end workflow_declare]</span>
 
     <span class="c1"># [start task_relation_declare]</span>
-    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">(),</span> <span class="n">task_child_two</span><span class="p">()]</span>
-    <span class="n">task_parent</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">depend_import</span><span class="p">(),</span> <span class="n">depend_global_var</span><span class="p">()]</span>
+    <span class="n">print_something</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
 
-    <span class="n">task_union</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+    <span class="n">task_group</span> <span class="o">&gt;&gt;</span> <span class="n">depend_local_var</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">depend_func</span><span class="p">()</span>
     <span class="c1"># [end task_relation_declare]</span>
 
     <span class="c1"># [start submit_or_run]</span>
-    <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
     <span class="c1"># [end submit_or_run]</span>
 </pre></div>
 </div>
@@ -340,27 +354,39 @@ if you are interested in it. For all arguments of object workflow, you could fin
 using <a class="reference internal" href="tasks/func_wrap.html#pydolphinscheduler.tasks.func_wrap.task" title="pydolphinscheduler.tasks.func_wrap.task"><code class="xref py py-func docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.func_wrap.task()</span></code></a>. All we have to do is add a decorator named
 <code class="code docutils literal notranslate"><span class="pre">&#64;task</span></code> to existing Python function, and then use them inside <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_parent</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">print_something</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_child_one</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">depend_import</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_child_two</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">depend_global_var</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
-<span class="k">def</span> <span class="nf">task_union</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Last task in this workflow.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">depend_local_var</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
+    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">depend_func</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+    <span class="n">foo</span><span class="p">()</span>
 
 
 </pre></div>
@@ -413,10 +439,10 @@ and task <cite>task_child_two</cite> was done, because both two task is <cite>ta
 </div>
 </div>
 <input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">Task Decorator</label><div class="tab-content docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">(),</span> <span class="n">task_child_two</span><span class="p">()]</span>
-    <span class="n">task_parent</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">depend_import</span><span class="p">(),</span> <span class="n">depend_global_var</span><span class="p">()]</span>
+    <span class="n">print_something</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
 
-    <span class="n">task_union</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+    <span class="n">task_group</span> <span class="o">&gt;&gt;</span> <span class="n">depend_local_var</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">depend_func</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -467,7 +493,7 @@ will create workflow definition as well as workflow schedule.</p>
 </div>
 </div>
 <input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">Task Decorator</label><div class="tab-content docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

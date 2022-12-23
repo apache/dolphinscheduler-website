@@ -100,7 +100,7 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.database</span> <span class="kn">import</span> <span class="n">Database</span>
@@ -130,6 +130,18 @@
 <span class="sd">    - SQLServer</span>
 <span class="sd">    You provider datasource_name contain connection information, it decisions which</span>
 <span class="sd">    database type and database instance would run this sql.</span>
+
+<span class="sd">    :param name: SQL task name</span>
+<span class="sd">    :param datasource_name: datasource name in dolphinscheduler, the name must exists and must be ``online``</span>
+<span class="sd">        datasource instead of ``test``.</span>
+<span class="sd">    :param sql: SQL statement, the sql script you want to run. Support resource plugin in this parameter.</span>
+<span class="sd">    :param sql_type: SQL type, whether sql statement is select query or not. If not provided, it will be auto</span>
+<span class="sd">        detected according to sql statement using :func:`pydolphinscheduler.tasks.sql.Sql.sql_type`, and you</span>
+<span class="sd">        can also set it manually. by ``SqlType.SELECT`` for query statement or ``SqlType.NOT_SELECT`` for not</span>
+<span class="sd">        query statement.</span>
+<span class="sd">    :param pre_statements: SQL statements to be executed before the main SQL statement.</span>
+<span class="sd">    :param post_statements: SQL statements to be executed after the main SQL statement.</span>
+<span class="sd">    :param display_rows: The number of record rows number to be displayed in the SQL task log, default is 10.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
@@ -149,8 +161,8 @@
         <span class="n">datasource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">sql_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">pre_statements</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">post_statements</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pre_statements</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">post_statements</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">display_rows</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
@@ -159,9 +171,22 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">SQL</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param_sql_type</span> <span class="o">=</span> <span class="n">sql_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span> <span class="o">=</span> <span class="n">datasource_name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pre_statements</span> <span class="o">=</span> <span class="n">pre_statements</span> <span class="ow">or</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">post_statements</span> <span class="o">=</span> <span class="n">post_statements</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pre_statements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stm_list</span><span class="p">(</span><span class="n">pre_statements</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_statements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stm_list</span><span class="p">(</span><span class="n">post_statements</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">display_rows</span> <span class="o">=</span> <span class="n">display_rows</span>
+
+<div class="viewcode-block" id="Sql.get_stm_list"><a class="viewcode-back" href="../../../tasks/sql.html#pydolphinscheduler.tasks.Sql.get_stm_list">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_stm_list</span><span class="p">(</span><span class="n">stm</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Convert statement to str of list.</span>
+
+<span class="sd">        :param stm: statements string</span>
+<span class="sd">        :return: statements list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">stm</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stm</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">stm</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">stm</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">sql_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>

@@ -18,6 +18,58 @@
 SQL
 ===
 
+An example for SQL task, including how to use it and the detail of it parameters.
+
+This task type can execute multiple type of database SQL, which includes
+
+- MySQL
+- PostgreSQL
+- Oracle
+- SQL Server
+- DB2
+- Hive
+- Presto
+- Trino
+- ClickHouse
+
+Example
+-------
+
+.. literalinclude:: ../../../src/pydolphinscheduler/examples/task_sql_example.py
+   :start-after: [start workflow_declare]
+   :end-before: [end workflow_declare]
+
+You can see that SQL task support three ways to declare SQL, which are
+
+- Bare SQL: Put bare SQL statement in the ``sql`` parameter, such as ``select * from table1``.
+
+   .. literalinclude:: ../../../src/pydolphinscheduler/examples/task_sql_example.py
+      :start-after: [start bare_sql_desc]
+      :end-before: [end bare_sql_desc]
+
+- SQL Files: .
+
+   .. literalinclude:: ../../../src/pydolphinscheduler/examples/task_sql_example.py
+      :start-after: [start sql_file_desc]
+      :end-before: [end sql_file_desc]
+
+If you want to do some preparation before executing SQL, or do some clean up after executing SQL, you can use 
+``pre_statements`` and ``post_statements`` parameters to do that. Both ``pre_statements`` and ``post_statements``
+support one or multiple statements, you can assign type sequence of SQL statements to them if you want to execute
+multiple statements. But if you only need to execute one statement, you can assign a string to them.
+
+   .. literalinclude:: ../../../src/pydolphinscheduler/examples/task_sql_example.py
+      :start-after: [start sql_with_pre_post_desc]
+      :end-before: [end sql_with_pre_post_desc]
+
+.. note::
+
+   Parameter ``pre_statements`` and ``post_statements`` only support not query statements, such as ``create table``,
+   ``drop table``, ``update table`` currently. And also it only support bare SQL instead of SQL files now.
+
+Dive Into
+---------
+
 .. automodule:: pydolphinscheduler.tasks.sql
 
 

@@ -49,24 +49,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="func_wrap.html">Python Function Wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="func_wrap.html">Python Function Decorate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">SQL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql"><code class="docutils literal notranslate"><span class="pre">Sql</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql._downstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Sql._downstream_task_codes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql._task_custom_attr"><code class="docutils literal notranslate"><span class="pre">Sql._task_custom_attr</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql._task_relation"><code class="docutils literal notranslate"><span class="pre">Sql._task_relation</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql._timeout"><code class="docutils literal notranslate"><span class="pre">Sql._timeout</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql._upstream_task_codes"><code class="docutils literal notranslate"><span class="pre">Sql._upstream_task_codes</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql.ext"><code class="docutils literal notranslate"><span class="pre">Sql.ext</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql.ext_attr"><code class="docutils literal notranslate"><span class="pre">Sql.ext_attr</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql.sql_type"><code class="docutils literal notranslate"><span class="pre">Sql.sql_type</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql.task_params"><code class="docutils literal notranslate"><span class="pre">Sql.task_params</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.SqlType"><code class="docutils literal notranslate"><span class="pre">SqlType</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.SqlType.NOT_SELECT"><code class="docutils literal notranslate"><span class="pre">SqlType.NOT_SELECT</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.SqlType.SELECT"><code class="docutils literal notranslate"><span class="pre">SqlType.SELECT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.sql">Dive Into</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql"><code class="docutils literal notranslate"><span class="pre">Sql</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.sql.SqlType"><code class="docutils literal notranslate"><span class="pre">SqlType</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
@@ -124,12 +113,129 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-pydolphinscheduler.tasks.sql">
-<span id="sql"></span><h1>SQL<a class="headerlink" href="#module-pydolphinscheduler.tasks.sql" title="Permalink to this heading"></a></h1>
+  <section id="sql">
+<h1>SQL<a class="headerlink" href="#sql" title="Permalink to this heading"></a></h1>
+<p>An example for SQL task, including how to use it and the detail of it parameters.</p>
+<p>This task type can execute multiple type of database SQL, which includes</p>
+<ul class="simple">
+<li><p>MySQL</p></li>
+<li><p>PostgreSQL</p></li>
+<li><p>Oracle</p></li>
+<li><p>SQL Server</p></li>
+<li><p>DB2</p></li>
+<li><p>Hive</p></li>
+<li><p>Presto</p></li>
+<li><p>Trino</p></li>
+<li><p>ClickHouse</p></li>
+</ul>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="sd">&quot;&quot;&quot;A example workflow for task SQL.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.workflow</span> <span class="kn">import</span> <span class="n">Workflow</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.resources_plugin</span> <span class="kn">import</span> <span class="n">Local</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.sql</span> <span class="kn">import</span> <span class="n">Sql</span><span class="p">,</span> <span class="n">SqlType</span>
+
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_sql_example&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="c1"># [start bare_sql_desc]</span>
+    <span class="n">bare_sql</span> <span class="o">=</span> <span class="n">Sql</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bare_sql&quot;</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;select * from t_ds_version&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># [end bare_sql_desc]</span>
+    <span class="c1"># [start sql_file_desc]</span>
+    <span class="n">sql_file</span> <span class="o">=</span> <span class="n">Sql</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sql_file&quot;</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;ext/example.sql&quot;</span><span class="p">,</span>
+        <span class="n">sql_type</span><span class="o">=</span><span class="n">SqlType</span><span class="o">.</span><span class="n">SELECT</span><span class="p">,</span>
+        <span class="n">resource_plugin</span><span class="o">=</span><span class="n">Local</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">)),</span>
+    <span class="p">)</span>
+    <span class="c1"># [end sql_file_desc]</span>
+    <span class="c1"># [start sql_with_pre_post_desc]</span>
+    <span class="n">sql_with_pre_post</span> <span class="o">=</span> <span class="n">Sql</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sql_with_pre_post&quot;</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;select * from t_ds_version&quot;</span><span class="p">,</span>
+        <span class="n">pre_statements</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;update table_one set version = &#39;1.3.6&#39;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;delete from table_two where version = &#39;1.3.6&#39;&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">post_statements</span><span class="o">=</span><span class="s2">&quot;update table_one set version = &#39;3.0.0&#39;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># [end sql_with_pre_post_desc]</span>
+
+    <span class="n">bare_sql</span> <span class="o">&gt;&gt;</span> <span class="p">[</span>
+        <span class="n">sql_file</span><span class="p">,</span>
+        <span class="n">sql_with_pre_post</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<p>You can see that SQL task support three ways to declare SQL, which are</p>
+<ul>
+<li><p>Bare SQL: Put bare SQL statement in the <code class="docutils literal notranslate"><span class="pre">sql</span></code> parameter, such as <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">*</span> <span class="pre">from</span> <span class="pre">table1</span></code>.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">bare_sql</span> <span class="o">=</span> <span class="n">Sql</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bare_sql&quot;</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;select * from t_ds_version&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>SQL Files: .</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sql_file</span> <span class="o">=</span> <span class="n">Sql</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sql_file&quot;</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;ext/example.sql&quot;</span><span class="p">,</span>
+        <span class="n">sql_type</span><span class="o">=</span><span class="n">SqlType</span><span class="o">.</span><span class="n">SELECT</span><span class="p">,</span>
+        <span class="n">resource_plugin</span><span class="o">=</span><span class="n">Local</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">)),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>If you want to do some preparation before executing SQL, or do some clean up after executing SQL, you can use
+<code class="docutils literal notranslate"><span class="pre">pre_statements</span></code> and <code class="docutils literal notranslate"><span class="pre">post_statements</span></code> parameters to do that. Both <code class="docutils literal notranslate"><span class="pre">pre_statements</span></code> and <code class="docutils literal notranslate"><span class="pre">post_statements</span></code>
+support one or multiple statements, you can assign type sequence of SQL statements to them if you want to execute
+multiple statements. But if you only need to execute one statement, you can assign a string to them.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sql_with_pre_post</span> <span class="o">=</span> <span class="n">Sql</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sql_with_pre_post&quot;</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;metadata&quot;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;select * from t_ds_version&quot;</span><span class="p">,</span>
+        <span class="n">pre_statements</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;update table_one set version = &#39;1.3.6&#39;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;delete from table_two where version = &#39;1.3.6&#39;&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">post_statements</span><span class="o">=</span><span class="s2">&quot;update table_one set version = &#39;3.0.0&#39;&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameter <code class="docutils literal notranslate"><span class="pre">pre_statements</span></code> and <code class="docutils literal notranslate"><span class="pre">post_statements</span></code> only support not query statements, such as <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">table</span></code>,
+<code class="docutils literal notranslate"><span class="pre">drop</span> <span class="pre">table</span></code>, <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">table</span></code> currently. And also it only support bare SQL instead of SQL files now.</p>
+</div>
+</section>
+<section id="module-pydolphinscheduler.tasks.sql">
+<span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.tasks.sql" title="Permalink to this heading"></a></h2>
 <p>Task sql.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.sql.Sql">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.sql.</span></span><span class="sig-name descname"><span class="pre">Sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_statements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_statements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/sql.html#Sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.sql.Sql" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.sql.</span></span><span class="sig-name descname"><span class="pre">Sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_statements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_statements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/sql.html#Sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.sql.Sql" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
 <p>Task SQL object, declare behavior for SQL task to dolphinscheduler.</p>
 <p>It should run sql job in multiply sql lik engine, such as:
@@ -143,6 +249,37 @@
 - SQLServer
 You provider datasource_name contain connection information, it decisions which
 database type and database instance would run this sql.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – SQL task name</p></li>
+<li><p><strong>datasource_name</strong> – datasource name in dolphinscheduler, the name must exists and must be <code class="docutils literal notranslate"><span class="pre">online</span></code>
+datasource instead of <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p></li>
+<li><p><strong>sql</strong> – SQL statement, the sql script you want to run. Support resource plugin in this parameter.</p></li>
+<li><p><strong>sql_type</strong> – SQL type, whether sql statement is select query or not. If not provided, it will be auto
+detected according to sql statement using <a class="reference internal" href="#pydolphinscheduler.tasks.sql.Sql.sql_type" title="pydolphinscheduler.tasks.sql.Sql.sql_type"><code class="xref py py-func docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.sql.Sql.sql_type()</span></code></a>, and you
+can also set it manually. by <code class="docutils literal notranslate"><span class="pre">SqlType.SELECT</span></code> for query statement or <code class="docutils literal notranslate"><span class="pre">SqlType.NOT_SELECT</span></code> for not
+query statement.</p></li>
+<li><p><strong>pre_statements</strong> – SQL statements to be executed before the main SQL statement.</p></li>
+<li><p><strong>post_statements</strong> – SQL statements to be executed after the main SQL statement.</p></li>
+<li><p><strong>display_rows</strong> – The number of record rows number to be displayed in the SQL task log, default is 10.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.sql.Sql.get_stm_list">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_stm_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/sql.html#Sql.get_stm_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.sql.Sql.get_stm_list" title="Permalink to this definition"></a></dt>
+<dd><p>Convert statement to str of list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stm</strong> – statements string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>statements list</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.sql.Sql._downstream_task_codes">
 <span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.sql.Sql._downstream_task_codes" title="Permalink to this definition"></a></dt>
@@ -214,6 +351,7 @@ directly set as python property, so we Override Task.task_params here.</p>
 
 </dd></dl>
 
+</section>
 <section id="yaml-file-example">
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
