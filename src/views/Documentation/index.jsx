@@ -145,7 +145,7 @@ const Documentation = () => {
           <>
             <Breadcrumb>
               <Breadcrumb.Item>
-                <a href={`#/${params.locale}/docs/${params.version}`}>
+                <a href={`/${params.locale}/docs/${params.version}`}>
                   Version {params.version}
                 </a>
               </Breadcrumb.Item>
@@ -153,7 +153,7 @@ const Documentation = () => {
                 child.location.map((item, i) => (
                   <Breadcrumb.Item key={i}>
                     <a
-                      href={`#/${params.locale}/docs/${
+                      href={`/${params.locale}/docs/${
                         params.version
                       }${getLinkFromLocation(child.location, i)}`}
                     >

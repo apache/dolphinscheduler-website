@@ -28,7 +28,7 @@ export const Deployment = () => {
         <div className="deployment-box">
           <Breadcrumb>
             <Breadcrumb.Item>
-              <a href={`#/${locale}/download`}>{t("download")}</a>
+              <a href={`/${locale}/download`}>{t("download")}</a>
             </Breadcrumb.Item>
             <Breadcrumb.Item>{deployments[current].type}</Breadcrumb.Item>
           </Breadcrumb>

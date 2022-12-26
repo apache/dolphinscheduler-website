@@ -26,7 +26,7 @@ export const Version = () => {
     <section className="download-version">
       <Breadcrumb>
         <Breadcrumb.Item>
-          <a href={`#/${params.locale}/download`}>{t("download")}</a>
+          <a href={`/${params.locale}/download`}>{t("download")}</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>{params.version}</Breadcrumb.Item>
       </Breadcrumb>
