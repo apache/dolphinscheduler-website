@@ -1,4 +1,4 @@
-importScripts("https://unpkg.com/dexie@2.0.3/dist/dexie.js");
+importScripts("/dexie.js");
 
 const db = new Dexie(this.name + "_db");
 
