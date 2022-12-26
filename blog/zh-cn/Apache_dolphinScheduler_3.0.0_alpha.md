@@ -69,7 +69,7 @@ MySQL  数据源页面
 
 目前，Apache DolphinScheduler 对 AWS 的支持已经涵盖  **Amazon EMR**  和  **Amazon Redshift**两个 AWS 的任务类型，并实现了资源中心支持  **Amazon S3 存储**。
 
-- 针对 Amazon EMR，我们创建了一个新的任务类型，并提供了其 Run Job Flow 的功能，允许用户向 Amazon EMR 提交多个 steps 作业，并指定使用的资源数量。详情可见：[https://dolphinscheduler.apache.org/#/zh-cn/docs/3.1.2/guide/task/emr](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.1.2/guide/task/emr)
+- 针对 Amazon EMR，我们创建了一个新的任务类型，并提供了其 Run Job Flow 的功能，允许用户向 Amazon EMR 提交多个 steps 作业，并指定使用的资源数量。详情可见：[https://dolphinscheduler.apache.org/zh-cn/docs/3.1.2/guide/task/emr](https://dolphinscheduler.apache.org/zh-cn/docs/3.1.2/guide/task/emr)
 <div align=center>
 
 <img src="/img/2020-04-25/7.png"/>
@@ -167,7 +167,7 @@ Amazon Redshift 支持
 
 使用 Apache DolphinScheduler 3.0.0-alpha 此前版本，用户如果想要操作任务，需要先找到对应的工作流，并在工作流中定位到任务的位置之后才能编辑。然而，当工作流数量变多或单个工作流有较多的任务时，找到对应任务的过程将会变得非常痛苦，这不符合 Apache DolphinScheduler 所追求的 easy to use 理念。所以，我们在 3.0.0-alpha 中增加了任务定义页面，让用户可以通过任务名称快速定位到任务，并对任务进行操作，轻松实现批量任务变更。
 
-详见链接：[https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/project/task-definition](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/project/task-definition)
+详见链接：[https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/project/task-definition](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/project/task-definition)
 
 ### 新增告警类型
 

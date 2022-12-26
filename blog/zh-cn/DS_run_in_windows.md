@@ -5,7 +5,7 @@
 
 1. ## 下载源码
 
-   官网 ：https://dolphinscheduler.apache.org/#/zh-cn
+   官网 ：https://dolphinscheduler.apache.org/zh-cn
 
    地址 ：https://github.com/apache/dolphinscheduler.git
 

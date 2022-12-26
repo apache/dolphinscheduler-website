@@ -29,7 +29,7 @@ Apache DolphinScheduler 是当前非常优秀的分布式易扩展的可视化�
 
 海豚的官网和 GitHub 上有非常详细的配置文件和案例。这里我们重点介绍一些社区中经常出现的咨询和问题。
 
-官网文档地址 https://dolphinscheduler.apache.org/#/zh-cn/docs/1.3.9/kubernetes-deployment
+官网文档地址 https://dolphinscheduler.apache.org/zh-cn/docs/1.3.9/kubernetes-deployment
 
 GitHub 文件夹地址 https://github.com/apache/dolphinscheduler/tree/1.3.9/docker/kubernetes/dolphinscheduler/
 

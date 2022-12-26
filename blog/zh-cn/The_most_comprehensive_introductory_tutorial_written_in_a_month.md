@@ -46,7 +46,7 @@ https://spring.io/quickstart
 
 如果想详细了解警告模块，请参考下方链接以及咨询其他同学。
 
-https://dolphinscheduler.apache.org/#/zh-cn/blog/Hangzhou_cisco
+https://dolphinscheduler.apache.org/zh-cn/blog/Hangzhou_cisco
 
 Apache DolphinScheduler 项目官网的地址为:https://github.com/apache/dolphinscheduler
 

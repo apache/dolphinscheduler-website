@@ -56,7 +56,7 @@ As the Apache DolphinScheduler user grows, it has attracted many overseas users.
 
 Apache DolphinScheduler now supports AWS for both Amazon EMR and Amazon Redshift task types and has implemented Resource Center support for Amazon S3 storage.
 
-- **For Amazon EMR,** we have created a new task type and provided its Run Job Flow feature, which allows users to submit multiple steps jobs to Amazon EMR and specify the number of resources to be used. Details can be found at: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/task/emr](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/task/emr)
+- **For Amazon EMR,** we have created a new task type and provided its Run Job Flow feature, which allows users to submit multiple steps jobs to Amazon EMR and specify the number of resources to be used. Details can be found at: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/task/emr](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/task/emr)
 
 ### Amazon EMR Task Definition
 
@@ -67,11 +67,11 @@ For Amazon Redshift, we have now extended support for Amazon Redshift data sourc
 
 ![](https://miro.medium.com/max/1260/1*T6tX2rqiosbkuxNFKuEuWg.png)
 
-For **Amazon S3**, we have extended the Apache DolphinScheduler’s resource center to support not only local resources, HDFS resource storage but also Amazon S3 as a resource centre for storage. Details can be found at: https://dolphinscheduler.apache.org/#/en-us/docs/3.0.0/guide/resource/intro in `resource.storage.type` We will be supporting more AWS tasks as users need them, so stay tuned.
+For **Amazon S3**, we have extended the Apache DolphinScheduler’s resource center to support not only local resources, HDFS resource storage but also Amazon S3 as a resource centre for storage. Details can be found at: https://dolphinscheduler.apache.org/en-us/docs/3.0.0/guide/resource/intro in `resource.storage.type` We will be supporting more AWS tasks as users need them, so stay tuned.
 
 ### Service Separation
 
-While the new UI is the biggest change to the front end of 3.0.0-alpha, the biggest change to the back end is the separation of services. Given the growing buzz around containers and microservices, the Apache DolphinScheduler developers made the decision to class https://dolphinscheduler.apache.org/#/en-us/docs/3.0.0/guide/resource/intro ify the backend services. By function, we split the service into the following parts.
+While the new UI is the biggest change to the front end of 3.0.0-alpha, the biggest change to the back end is the separation of services. Given the growing buzz around containers and microservices, the Apache DolphinScheduler developers made the decision to class https://dolphinscheduler.apache.org/en-us/docs/3.0.0/guide/resource/intro ify the backend services. By function, we split the service into the following parts.
 
 - master-server: master service
 - worker-server: worker service
@@ -106,13 +106,13 @@ Task groups are used to control the concurrency of task instances and to define 
 
 In versions prior to 3.0.0-alpha, Apache DolphinScheduler defaulted to the UTC+8 time zone, but as the user base expanded, overseas users and those doing business across time zones overseas were often confused by the time zone. 3.0.0-alpha supports time zone switching, which solves the time zone problem for overseas users. For example, if an enterprise business involves a time zone of East 8 and West 5, if you want to use the same DolphinScheduler cluster, you can create multiple users and each user will use their own local time zone, and the time displayed in the corresponding DolphinScheduler object will switch to the local time of the corresponding time zone, which is more in line with local developers’ usage habits. The time displayed in the corresponding DolphinScheduler object will be switched to the local time zone, which is more in line with local developers’ usage habits.
 ![](https://miro.medium.com/max/1260/1*bY1arsC_WlyQNTZs9Hd7qg.png)
-See link: [https://dolphinscheduler.apache.org/#/en-us/docs/3.0.0/guide/howto/general-setting](https://dolphinscheduler.apache.org/#/en-us/docs/3.0.0/guide/howto/general-setting)
+See link: [https://dolphinscheduler.apache.org/en-us/docs/3.0.0/guide/howto/general-setting](https://dolphinscheduler.apache.org/en-us/docs/3.0.0/guide/howto/general-setting)
 
 ## List of task definitions
 
 With previous versions of Apache DolphinScheduler 3.0.0-alpha, if a user wanted to manipulate a task, they needed to find the corresponding workflow and locate the task in the workflow before they could edit it. However, when the number of workflows became large or when a single workflow had a large number of tasks, the process of finding the corresponding task became very painful for users, which was not in line with the easy-to-use philosophy of Apache DolphinScheduler. Therefore, we have added a task definition page in 3.0.0-alpha to allow users to quickly locate and edit tasks by task name, allowing for easy bulk task changes.
 
-See the link for more details: [https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/project/task-definition](https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/project/task-definition)
+See the link for more details: [https://dolphinscheduler.apache.org/en-us/docs/2.0.1/guide/project/task-definition](https://dolphinscheduler.apache.org/en-us/docs/2.0.1/guide/project/task-definition)
 
 ## New alert types
 
@@ -235,7 +235,7 @@ In addition to the above new functions, version 3.0.0 has also carried out many 
 
 GitHub:[https://github.com/apache/dolphinscheduler/releases/tag/3.0.0](https://github.com/apache/dolphinscheduler/releases/tag/3.0.0)
 
-Download: [https://dolphinscheduler.apache.org/#/en-us/download](https://dolphinscheduler.apache.org/#/en-us/download)
+Download: [https://dolphinscheduler.apache.org/en-us/download](https://dolphinscheduler.apache.org/en-us/download)
 
 ## Thanks to contributors
 

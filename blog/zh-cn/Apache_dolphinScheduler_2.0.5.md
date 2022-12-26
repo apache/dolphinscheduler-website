@@ -58,7 +58,7 @@
 
 **2.0.5 下载地址**：
 
-[https://dolphinscheduler.apache.org/#/zh-cn/download](https://dolphinscheduler.apache.org/#/zh-cn/download)
+[https://dolphinscheduler.apache.org/zh-cn/download](https://dolphinscheduler.apache.org/zh-cn/download)
 
 **Release Note：**[https://github.com/apache/dolphinscheduler/releases/tag/2.0.5](https://github.com/apache/dolphinscheduler/releases/tag/2.0.5)
 

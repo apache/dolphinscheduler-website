@@ -70,7 +70,7 @@ As the Apache DolphinScheduler user grows, it has attracted many overseas users.
 
 Apache DolphinScheduler now supports AWS for both Amazon EMR and Amazon Redshift task types and has implemented Resource Center support for Amazon S3 storage.
 
-- For **Amazon EMR**, we have created a new task type and provided its Run Job Flow feature, which allows users to submit multiple steps jobs to Amazon EMR and specify the number of resources to be used. Details can be found at: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/task/emr](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/task/emr)
+- For **Amazon EMR**, we have created a new task type and provided its Run Job Flow feature, which allows users to submit multiple steps jobs to Amazon EMR and specify the number of resources to be used. Details can be found at: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/task/emr](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/task/emr)
 <div align=center>
 
 <img src="/img/2020-04-25/en/7.png"/>
@@ -88,7 +88,7 @@ Amazon EMR Task Definition
 
 Amazon Redshift support
 
-- For **Amazon S3**, we have extended the Apache DolphinScheduler's resource center to support not only local resources, HDFS resource storage but also Amazon S3 as a resource centre for storage. Details can be found at: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/resource/configuration](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/resource/configuration) in
+- For **Amazon S3**, we have extended the Apache DolphinScheduler's resource center to support not only local resources, HDFS resource storage but also Amazon S3 as a resource centre for storage. Details can be found at: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/resource/configuration](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/resource/configuration) in
 
 ```plain
 `resource.storage.type`
@@ -136,7 +136,7 @@ Data quality verification is now natively supported in 3.0.0-alpha, with support
 
 Task groups are used to control the concurrency of task instances and to define the priority of the group. When creating a new task definition, the user can configure the task group corresponding to the current task and configure the priority of the task to run within the task group. When a task is configured with a task group, the task can be executed only meeting the condition that all upstream tasks run successfully but also the task currently running in the task group is smaller than the size of the resource pool. When it is greater than or equal to the size of the resource pool, the task will wait until the next check. When multiple tasks in a task group are in the pending queue at the same time, the task with the highest priority will be run first.
 
-See the link for details: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/resource/configuration](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/resource/configuration)
+See the link for details: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/resource/configuration](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/resource/configuration)
 
 <div align=center>
 
@@ -154,13 +154,13 @@ In versions prior to 3.0.0-alpha, Apache DolphinScheduler defaulted to the UTC+8
 
 </div>
 
-See link: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/howto/general-setting](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/howto/general-setting)
+See link: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/howto/general-setting](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/howto/general-setting)
 
 ### 07 List of task definitions
 
 With previous versions of Apache DolphinScheduler 3.0.0-alpha, if a user wanted to manipulate a task, they needed to find the corresponding workflow and locate the task in the workflow before they could edit it. However, when the number of workflows became large or when a single workflow had a large number of tasks, the process of finding the corresponding task became very painful for users, which was not in line with the easy-to-use philosophy of Apache DolphinScheduler. Therefore, we have added a task definition page in 3.0.0-alpha to allow users to quickly locate and edit tasks by task name, allowing for easy bulk task changes.
 
-See the link for more details: [https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/project/task-definition](https://dolphinscheduler.apache.org/#/zh-cn/docs/3.0.0/guide/project/task-definition)
+See the link for more details: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/project/task-definition](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/project/task-definition)
 
 ### 08 New alert types
 

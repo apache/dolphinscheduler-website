@@ -45,7 +45,7 @@ https://github.com/apache/dolphinscheduler/releases/tag/2.0.7
 
 # Download
 
-https://dolphinscheduler.apache.org/#/en-us/download
+https://dolphinscheduler.apache.org/en-us/download
 
 # Acknowledgement
 

@@ -6,7 +6,7 @@ Hello community, good news! After nearly 10 months of joint efforts by more than
 DolphinScheduler 2.0 alpha mainly refactors the implementation of Master, greatly optimizes the metadata structure and processing flow, adds SPI plug-in capabilities, and improves performance by 20 times. At the same time, the new version has designed a brand new UI interface to bring a better user experience. In addition, 2.0 alpha has newly added and optimized some features that are eagerly demanded in the community, such as parameter transfer, version control, import and export functions.
 Note: The current alpha version does not support automatic upgrades, and we will support this feature in the next version.
 
-2.0 alpha download link: https://dolphinscheduler.apache.org/#/en-us/download
+2.0 alpha download link: https://dolphinscheduler.apache.org/en-us/download
 
 ## Optimize the Kernel and Increase Performance By 20 Times
 

@@ -29,13 +29,13 @@
         const href = window.location.href;
         const lang = href.includes("zh-cn") ? "zh-cn" : "en-us";
         if (href.includes("download.html")) {
-          window.location.replace(`/#/${lang}/download`);
+          window.location.replace(`/${lang}/download`);
           return;
         }
         if (href.includes("blog")) {
           const matchedName = /blog\/(.*?).html/.exec(href);
           window.location.replace(
-            `/#/${lang}/blog${matchedName ? "/" + matchedName[1] : ""}`
+            `/${lang}/blog${matchedName ? "/" + matchedName[1] : ""}`
           );
           return;
         }
@@ -48,14 +48,14 @@
           return;
         }
         if (href.includes("community.html")) {
-          window.location.replace(`/#/${lang}/community`);
+          window.location.replace(`/${lang}/community`);
           return;
         }
         if (href.includes("user/index.html")) {
-          window.location.replace(`/#/${lang}/use_case`);
+          window.location.replace(`/${lang}/use_case`);
           return;
         }
-        window.location.replace(`/#/${lang}`);
+        window.location.replace(`/${lang}`);
       })();
     </script>
     <!--

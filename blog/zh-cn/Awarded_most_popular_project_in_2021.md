@@ -48,7 +48,7 @@ Apache DolphinScheduler 是 Apache 基金会孵化的顶级项目。作为新一
 
 - 非新手问题列表：https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22
 
-- 如何参与贡献链接：https://dolphinscheduler.apache.org/#/en-us/community
+- 如何参与贡献链接：https://dolphinscheduler.apache.org/en-us/community
 
 来吧，DolphinScheduler 开源社区需要您的参与，为中国开源崛起添砖加瓦吧，哪怕只是小小的一块瓦，汇聚起来的力量也是巨大的。
 

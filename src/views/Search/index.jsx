@@ -86,7 +86,7 @@ const Search = () => {
                     dataSource={tab.list}
                     renderItem={(item) => {
                       if (tab.key === "doc") {
-                        const link = `${window.location.origin}/#/${params.locale}/docs/${item.version}${item.link}`;
+                        const link = `${window.location.origin}/${params.locale}/docs/${item.version}${item.link}`;
                         return (
                           <div className="search-item">
                             <div
@@ -104,7 +104,7 @@ const Search = () => {
                         );
                       }
                       if (tab.key === "blog") {
-                        const link = `${window.location.origin}/#/${params.locale}/blog/${item.name}`;
+                        const link = `${window.location.origin}/${params.locale}/blog/${item.name}`;
                         return (
                           <div className="search-item">
                             <div

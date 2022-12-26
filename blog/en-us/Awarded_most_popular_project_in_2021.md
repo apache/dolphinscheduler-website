@@ -57,7 +57,7 @@ We assume the first PR (document, code) to contribute to be simple and should be
 - So the community has compiled the following list of issues suitable for novices: https://github.com/apache/dolphinscheduler/issues/5689
 
 - List of non-newbie issues: https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22
-- How to participate in the contribution: https://dolphinscheduler.apache.org/#/en-us/community
+- How to participate in the contribution: https://dolphinscheduler.apache.org/en-us/community
 
 - Community Official Website
   https://dolphinscheduler.apache.org/
