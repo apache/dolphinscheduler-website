@@ -17,7 +17,7 @@ export const BlogDetail = () => {
         <>
           <Breadcrumb>
             <Breadcrumb.Item>
-              <a href={`#/${locale}/blog`}>Blog</a>
+              <a href={`/${locale}/blog`}>Blog</a>
             </Breadcrumb.Item>
             <Breadcrumb.Item>{detail.title}</Breadcrumb.Item>
           </Breadcrumb>

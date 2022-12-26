@@ -1,11 +1,11 @@
-import { Breadcrumb, Spin, Empty, Space, Button } from 'antd';
-import { LinkOutlined } from '@ant-design/icons';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useDocumentationDetail } from './useDocumentationDetail';
-import { useTranslation } from '../../hooks';
-import { formatDate } from '../../utils/formatDate';
-import { getLinkFromLocation } from './helpers';
-import './detail.scss';
+import { Breadcrumb, Spin, Empty, Space, Button } from "antd";
+import { LinkOutlined } from "@ant-design/icons";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDocumentationDetail } from "./useDocumentationDetail";
+import { useTranslation } from "../../hooks";
+import { formatDate } from "../../utils/formatDate";
+import { getLinkFromLocation } from "./helpers";
+import "./detail.scss";
 
 export const DocumentationDetail = () => {
   const params = useParams();
@@ -18,7 +18,7 @@ export const DocumentationDetail = () => {
         <>
           <Breadcrumb>
             <Breadcrumb.Item>
-              <a href={`#/${params.locale}/docs/${params.version}`}>
+              <a href={`/${params.locale}/docs/${params.version}`}>
                 Version {params.version}
               </a>
             </Breadcrumb.Item>
@@ -27,7 +27,7 @@ export const DocumentationDetail = () => {
                 <Breadcrumb.Item key={i}>
                   {i < detail.location.length - 1 ? (
                     <a
-                      href={`#/${params.locale}/docs/${
+                      href={`/${params.locale}/docs/${
                         params.version
                       }${getLinkFromLocation(detail.location, i)}`}
                     >
@@ -42,18 +42,18 @@ export const DocumentationDetail = () => {
           <div className="documentation-detail-title">{detail.title}</div>
           <div className="documentation-detail-desc">
             <Space className="documentation-detail-time">
-              <span>{t('last_updated')}</span>
+              <span>{t("last_updated")}</span>
               <span>{formatDate(detail.time, locale)}</span>
             </Space>
             <Space className="documentation-detail-support">
-              <span>{t('not_helpful')}</span>
+              <span>{t("not_helpful")}</span>
               <Button
                 type="link"
                 onClick={() => {
                   navigate(`/${params.locale}/support`);
                 }}
               >
-                {t('get_support')} <LinkOutlined />
+                {t("get_support")} <LinkOutlined />
               </Button>
             </Space>
           </div>

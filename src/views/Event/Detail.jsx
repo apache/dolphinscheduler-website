@@ -19,7 +19,7 @@ export const EventDetail = () => {
           <>
             <Breadcrumb>
               <Breadcrumb.Item>
-                <a href={`#/${locale}/events`}>Event</a>
+                <a href={`/${locale}/events`}>Event</a>
               </Breadcrumb.Item>
               <Breadcrumb.Item>{detail.title}</Breadcrumb.Item>
             </Breadcrumb>
