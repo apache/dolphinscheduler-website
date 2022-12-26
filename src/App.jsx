@@ -1,5 +1,5 @@
 import {
-  createHashRouter,
+  createBrowserRouter,
   createRoutesFromElements,
   json,
   Route,
@@ -19,7 +19,7 @@ import NotFound from "./views/NotFound";
 import getLocales from "./api/getLocales";
 import getVersions from "./api/getVersions";
 
-const router = createHashRouter(
+const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Layout />} />
