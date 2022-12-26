@@ -29,7 +29,7 @@ const router = createBrowserRouter(
         loader={async ({ params }) => {
           if (params.locale) {
             if (!window.WORKER) {
-              window.WORKER = new Worker("worker/db.js", {
+              window.WORKER = new Worker("/worker/db.js", {
                 name: params.locale,
               });
             }
