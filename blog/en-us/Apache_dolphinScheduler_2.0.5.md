@@ -58,7 +58,7 @@ Adds the Markdown information type to the alarm content of the DingTalk alarm pl
 
 2.0.5 Download address:
 
-[https://dolphinscheduler.apache.org/#/en-us/download/2.0.5](https://dolphinscheduler.apache.org/#/en-us/download/2.0.5)
+[https://dolphinscheduler.apache.org/en-us/download/2.0.5](https://dolphinscheduler.apache.org/en-us/download/2.0.5)
 
 Release Note: [https://github.com/apache/dolphinscheduler/releases/tag/2.0.5](https://github.com/apache/dolphinscheduler/releases/tag/2.0.5)
 

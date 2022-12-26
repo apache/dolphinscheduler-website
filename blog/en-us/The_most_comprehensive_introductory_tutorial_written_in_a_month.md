@@ -48,7 +48,7 @@ Master and Worker are started through SpringBoot, and the objects created are al
 
 Know more about the warning module, please refer to the link below or consult other community members.
 
-https://dolphinscheduler.apache.org/#/en-us/blog/Hangzhou_cisco
+https://dolphinscheduler.apache.org/en-us/blog/Hangzhou_cisco
 
 The official website of the Apache DolphinScheduler project can be found at: https://github.com/apache/dolphinscheduler
 

@@ -64,13 +64,13 @@ Previously, we use the JdbcDataSourceProvider.createOneSessionJdbcDataSource() m
 
 Since numerous database read operations, such as tenant, user, processDefinition, etc., will occur during the scheduling process of the master server, it will bring enormous pressure on the DB on the one hand, and will slow down the entire core scheduling process on the other hand.
 
-Considering that this part of business data involves more reading than writing, 2.0.3 introduces a cache module, which mainly acts on the Master node to cache business data such as tenants and workflow definitions, thus reduces database query pressure, and speeds up the core scheduling process. Please check the official website documentation for details: https://dolphinscheduler.apache.org/#/en-us/docs/3.1.2/user_doc/architecture/cache
+Considering that this part of business data involves more reading than writing, 2.0.3 introduces a cache module, which mainly acts on the Master node to cache business data such as tenants and workflow definitions, thus reduces database query pressure, and speeds up the core scheduling process. Please check the official website documentation for details: https://dolphinscheduler.apache.org/en-us/docs/3.1.2/user_doc/architecture/cache
 
 ### Optimize complement task's date, the complement time interval from '[left, right)' to '[left, right]'
 
 Previously, the complement time was "left closed and right open" (startDate <= N < endDate), which is actually not conducive to user understanding. After optimization, the deployment time interval is changed to "closed left and closed right".
 
-Complement case: https://dolphinscheduler.apache.org/#/en-us/docs/3.1.2/guide/project/workflow-definition
+Complement case: https://dolphinscheduler.apache.org/en-us/docs/3.1.2/guide/project/workflow-definition
 
 ### Encrypted data source password in the logs
 
@@ -99,7 +99,7 @@ The password in the data source is encrypted to enhance privacy protection.
 
 **Release Note:** https://github.com/apache/dolphinscheduler/releases/tag/2.0.3
 
-**Download:** https://dolphinscheduler.apache.org/#/en-us/download
+**Download:** https://dolphinscheduler.apache.org/en-us/download
 
 ## Thanks to contributors
 

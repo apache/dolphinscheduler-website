@@ -13,7 +13,7 @@ been refactored, and the long-awaited plug-in function has also been emphaticall
 highlights in this upgrade, such as a one-click upgrade to the latest version, "de-ZK" in the registration center, and
 new task parameter transfer functions, etc..
 
-Download Apache DolphinScheduler 2.0.1：https://dolphinscheduler.apache.org/#/en-us/download/2.0.1
+Download Apache DolphinScheduler 2.0.1：https://dolphinscheduler.apache.org/en-us/download/2.0.1
 
 The workflow execution process activities of Apache DolphinScheduler 2.0.1 are shown in the following figure:
 
@@ -26,7 +26,7 @@ Start process activity diagram
 Version 2.0.1 enhanced the system's processing capabilities by optimizing the kernel, thereby greatly improving
 performance. The new UI interface also greatly improved the user experience. More importantly, there are two major
 changes in version 2.0.1: plug-in and refactoring.
-https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/upgrade
+https://dolphinscheduler.apache.org/en-us/docs/2.0.1/guide/upgrade
 
 ## 01 Plug-in
 
@@ -113,7 +113,7 @@ sh ./script/create-dolphinscheduler.sh
 
 For specific upgrade documentation, please refer to:
 
-https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/upgrade
+https://dolphinscheduler.apache.org/en-us/docs/2.0.1/guide/upgrade
 
 In addition, future versions of Apache DolphinScheduler can be automatically upgraded, saving the trouble of manual
 upgrades.
@@ -134,10 +134,10 @@ improving R&D efficiency.
 
 For detailed usage documentation, please refer to:
 
-https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/installation/standalone
+https://dolphinscheduler.apache.org/en-us/docs/2.0.1/guide/installation/standalone
 
 Or use Docker to deploy all services with one
-click: https://dolphinscheduler.apache.org/#/en-us/docs/2.0.1/guide/installation/docker
+click: https://dolphinscheduler.apache.org/en-us/docs/2.0.1/guide/installation/docker
 
 ### 2 Task parameter transfer function
 

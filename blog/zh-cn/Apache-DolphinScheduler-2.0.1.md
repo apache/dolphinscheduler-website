@@ -9,7 +9,7 @@
 > 本版本中，DolphinScheduler 经历了一场微内核+插件化的架构改进，70% 的代码被重构，一直以来备受期待的插件化功能也得到重要优化。此外，本次升级还有不少亮点，如一键升级至最新版本、注册中心“去 ZK 化”、新增任务参数传递功能等。
 
 > Apache DolphinScheduler 2.0.1 下载地址：
-> https://dolphinscheduler.apache.org/#/zh-cn/download/2.0.1
+> https://dolphinscheduler.apache.org/zh-cn/download/2.0.1
 
 Apache DolphinScheduler 2.0.1 的工作流执行流程活动如下图所示：
 
@@ -74,7 +74,7 @@ org.apache.dolphinscheduler.spi.params 里对插件的参数做了封装，它�
 2.0.1 增加了版本自动升级功能，用户可以从 1.x 版本自动升级到 2.0.1 版本。只需要运行一个使用脚本，即可无感知地使用新版本运行以前的工作流：
 sh ./script/create-dolphinscheduler.sh
 
-**具体升级文档请参考：** https://dolphinscheduler.apache.org/#/zh-cn/docs/2.0.1/guide/upgrade
+**具体升级文档请参考：** https://dolphinscheduler.apache.org/zh-cn/docs/2.0.1/guide/upgrade
 
 另外，Apache DolphinScheduler 将来的版本均可实现自动升级，省去手动升级的麻烦。
 
@@ -88,9 +88,9 @@ StandAloneServer 是为了让用户快速体验产品而创建的服务，其中
 
 如果想快速体验，在解压安装包后，用户只需要配置 jdk 环境等即可一键启动 Apache DolphinScheduler 系统，从而减少配置成本，提高研发效率。
 
-详细的使用文档请参考：https://dolphinscheduler.apache.org/#/zh-cn/docs/2.0.1/guide/installation/standalone
+详细的使用文档请参考：https://dolphinscheduler.apache.org/zh-cn/docs/2.0.1/guide/installation/standalone
 
-或者使用 Docker 一键部署所有的服务：https://dolphinscheduler.apache.org/#/zh-cn/docs/2.0.1/guide/installation/docker
+或者使用 Docker 一键部署所有的服务：https://dolphinscheduler.apache.org/zh-cn/docs/2.0.1/guide/installation/docker
 
 ### 2 任务参数传递功能
 
@@ -230,7 +230,7 @@ pigeon 任务，是一个可以和第三方系统对接的一种任务组件，�
 
 - 进阶问题列表：https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22
 
-- 如何参与贡献链接：https://dolphinscheduler.apache.org/#/zh-cn/community
+- 如何参与贡献链接：https://dolphinscheduler.apache.org/zh-cn/community
 
 来吧，DolphinScheduler 开源社区需要您的参与，为中国开源崛起添砖加瓦吧，哪怕只是小小的一块瓦，汇聚起来的力量也是巨大的。
 

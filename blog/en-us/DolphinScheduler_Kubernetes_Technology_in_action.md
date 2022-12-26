@@ -74,7 +74,7 @@ First, let's introduce the installation method based on the Helm provided by the
 There are very detailed configuration files and cases on Apache DolphinScheduler official website and GitHub. Here I‘ll highlight some of the FAQs in the community.
 
 Official website document address
-https://dolphinscheduler.apache.org/#/en-us/docs/1.3.9/kubernetes-deployment
+https://dolphinscheduler.apache.org/en-us/docs/1.3.9/kubernetes-deployment
 
 GitHub folder address
 https://github.com/apache/dolphinscheduler/tree/1.3.9/docker/kubernetes/dolphinscheduler
@@ -293,7 +293,7 @@ We have configured ingress, and the company can easily use the domain name for a
 
 You can log in to the domain name for access：
 
-http:ds.139.abc.com/dolphinscheduler/ui/#/home
+http:ds.139.abc.com/dolphinscheduler/ui/home
 
 - The specific configuration can modify the content in the value file:
 

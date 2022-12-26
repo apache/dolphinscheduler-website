@@ -8,7 +8,7 @@ DolphinScheduler 2.0 alpha 主要重构了 Master 的实现，大幅优化了元
 
 注意：当前 alpha 版本还未支持自动升级，我们将在下个版本中支持这一功能。
 
-**2.0 alpha 下载地址：https://dolphinscheduler.apache.org/#/en-us/download**
+**2.0 alpha 下载地址：https://dolphinscheduler.apache.org/en-us/download**
 
 ## 优化内核，性能提升 20 倍
 
@@ -74,7 +74,7 @@ DolphinScheduler 2.0 alpha 的发布凝聚了众多社区贡献者的智慧和�
 
 进阶问题列表：https://github.com/apache/dolphinscheduler/issues?q=is%3Aopen+is%3Aissue+label%3A%22volunteer+wanted%22
 
-如何参与贡献链接：https://dolphinscheduler.apache.org/#/zh-cn/community
+如何参与贡献链接：https://dolphinscheduler.apache.org/zh-cn/community
 
 来吧，DolphinScheduler 开源社区需要您的参与，为中国开源崛起添砖加瓦吧，哪怕只是小小的一块瓦，汇聚起来的力量也是巨大的。
 

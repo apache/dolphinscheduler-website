@@ -56,7 +56,7 @@
 
 由于主服务器调度进程，中会出现大量的数据库读操作，如 tenant、user、processDefinition 等，这一方面会给 DB 带来巨大压力，另一方面会减慢整个核心调度过程。
 
-考虑到这部分业务数据是多读少写的场景，2.0.3 引入了缓存模块，主要作用于 Master 节点，将业务数据如租户、工作流定义等进行缓存，降低数据库查询压力，加快核心调度进程，详情可查看官网文档：https://dolphinscheduler.apache.org/#/en-us/docs/3.1.2/architecture/cache
+考虑到这部分业务数据是多读少写的场景，2.0.3 引入了缓存模块，主要作用于 Master 节点，将业务数据如租户、工作流定义等进行缓存，降低数据库查询压力，加快核心调度进程，详情可查看官网文档：https://dolphinscheduler.apache.org/en-us/docs/3.1.2/architecture/cache
 
 ### 补数时间区间从 “左闭右开” 改为 “左闭右闭”
 
@@ -89,7 +89,7 @@
 
 **Release Note:** https://github.com/apache/dolphinscheduler/releases/tag/2.0.3
 
-**下载地址：** https://dolphinscheduler.apache.org/#/zh-cn/download
+**下载地址：** https://dolphinscheduler.apache.org/zh-cn/download
 
 ## 感谢贡献者
 

@@ -28,7 +28,7 @@ CVE-2021-27644
 
 迄今为止，Apache DolphinScheduler 社区已经有近 200+ 位代码贡献者，70+位非代码贡献者。其中也不乏其他 Apache 顶级项目的 PMC 或者 Committer，非常欢迎更多伙伴也能参与到开源社区建设中来，为建造一个更加稳定安全可靠的大数据任务调度系统而努力，同时也为中国开源崛起献上自己的一份力量！
 
-WebSite ：https://dolphinscheduler.apache.org/#/zh-cn
+WebSite ：https://dolphinscheduler.apache.org/zh-cn
 
 MailList ：dev@dolphinscheduler@apache.org
 
@@ -38,6 +38,6 @@ YouTube ：https://www.youtube.com/channel/UCmrPmeE7dVqo8DYhSLHa0vA
 
 Slack ：https://s.apache.org/dolphinscheduler-slack
 
-Contributor Guide：https://dolphinscheduler.apache.org/#/zh-cn/community
+Contributor Guide：https://dolphinscheduler.apache.org/zh-cn/community
 
 如果对漏洞有任何疑问，欢迎参与讨论，竭诚解决大家的疑虑：

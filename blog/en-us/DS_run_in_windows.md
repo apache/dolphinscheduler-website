@@ -2,7 +2,7 @@
 
 1. ## Download Source Code
 
-   Official Website: https://dolphinscheduler.apache.org/#/en-us
+   Official Website: https://dolphinscheduler.apache.org/en-us
 
    GitHub Repository: https://github.com/apache/dolphinscheduler.git
 
