@@ -105,7 +105,7 @@
 
 
 <div class="viewcode-block" id="User"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseSide</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;DolphinScheduler User object.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DolphinScheduler User object.&quot;&quot;&quot;</span>
 
     <span class="n">_KEY_ATTR</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;name&quot;</span><span class="p">,</span>
@@ -136,12 +136,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">status</span>
 
 <div class="viewcode-block" id="User.create_tenant_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.User.create_tenant_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_tenant_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Create tenant object.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create tenant object.&quot;&quot;&quot;</span>
         <span class="n">tenant</span> <span class="o">=</span> <span class="n">Tenant</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tenant</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span>
         <span class="n">tenant</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="User.create_if_not_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.side.User.create_if_not_exists">[docs]</a>    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Create User if not exists.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create User if not exists.&quot;&quot;&quot;</span>
         <span class="c1"># Should make sure queue already exists.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_tenant_if_not_exists</span><span class="p">()</span>
         <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>

@@ -152,7 +152,7 @@ asterisks expression, and each of the meaning of position as below</p>
 <p>Tenant is the user who run task command in machine or in virtual machine. it could be assign by simple string.
 You should change the tenant value to exists tenant in your host, it config in <cite>config.yaml</cite> in your pydolphinscheduler
 <code class="docutils literal notranslate"><span class="pre">PYDS_HOME</span></code>, or via <a class="reference internal" href="cli.html"><span class="doc">CLI</span></a></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler config --set default.user.tenant &lt;YOUR-TENANT-NAME&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>default.user.tenant<span class="w"> </span>&lt;YOUR-TENANT-NAME&gt;
 </pre></div>
 </div>
 <div class="admonition note">
@@ -255,8 +255,8 @@ we may need to change our resource files sometimes.</p>
 For example, you have a bash script named <code class="docutils literal notranslate"><span class="pre">echo-ten.sh</span></code> locally, and it contains some code like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/env bash</span>
 <span class="nv">max</span><span class="o">=</span><span class="m">10</span>
-<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span> i &lt;<span class="o">=</span> <span class="nv">$max</span><span class="p">;</span> ++i<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
-    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+<span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span><span class="nv">$max</span><span class="p">;</span><span class="w"> </span>++i<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
 <span class="k">done</span>
 </pre></div>
 </div>

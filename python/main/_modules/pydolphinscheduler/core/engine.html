@@ -108,7 +108,7 @@
 
 
 <span class="k">class</span> <span class="nc">ProgramType</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Type of program engine runs, for now it just contain `JAVA`, `SCALA` and `PYTHON`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Type of program engine runs, for now it just contain `JAVA`, `SCALA` and `PYTHON`.&quot;&quot;&quot;</span>
 
     <span class="n">JAVA</span> <span class="o">=</span> <span class="s2">&quot;JAVA&quot;</span>
     <span class="n">SCALA</span> <span class="o">=</span> <span class="s2">&quot;SCALA&quot;</span>
@@ -116,7 +116,7 @@
 
 
 <div class="viewcode-block" id="Engine"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Engine">[docs]</a><span class="k">class</span> <span class="nc">Engine</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task engine object, declare behavior for engine task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task engine object, declare behavior for engine task to dolphinscheduler.</span>
 
 <span class="sd">    This is the parent class of spark, flink and mr tasks,</span>
 <span class="sd">    and is used to provide the programType, mainClass and mainJar task parameters for reuse.</span>
@@ -139,7 +139,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_resource</span> <span class="o">=</span> <span class="p">{}</span>
 
 <div class="viewcode-block" id="Engine.get_resource_info"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Engine.get_resource_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_resource_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">program_type</span><span class="p">,</span> <span class="n">main_package</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get resource info from java gateway, contains resource id, name.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get resource info from java gateway, contains resource id, name.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource</span>
         <span class="k">else</span><span class="p">:</span>
@@ -153,12 +153,12 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource</span></div>
 
 <div class="viewcode-block" id="Engine.get_jar_id"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Engine.get_jar_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_jar_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get jar id from java gateway, a wrapper for :func:`get_resource_info`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get jar id from java gateway, a wrapper for :func:`get_resource_info`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">program_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_package</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Override Task.task_params for engine children task.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override Task.task_params for engine children task.</span>
 
 <span class="sd">        children task have some specials attribute for task_params, and is odd if we</span>
 <span class="sd">        directly set as python property, so we Override Task.task_params here.</span>

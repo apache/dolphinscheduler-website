@@ -112,7 +112,7 @@
 
 
 <div class="viewcode-block" id="Python"><a class="viewcode-back" href="../../../tasks/python.html#pydolphinscheduler.tasks.Python">[docs]</a><span class="k">class</span> <span class="nc">Python</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task Python object, declare behavior for Python task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task Python object, declare behavior for Python task to dolphinscheduler.</span>
 
 <span class="sd">    Python task support two types of parameters for :param:``definition``, and here is an example:</span>
 
@@ -148,7 +148,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">PYTHON</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Python._build_exe_str"><a class="viewcode-back" href="../../../tasks/python.html#pydolphinscheduler.tasks.Python._build_exe_str">[docs]</a>    <span class="k">def</span> <span class="nf">_build_exe_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Build executable string from given definition.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build executable string from given definition.</span>
 
 <span class="sd">        Attribute ``self.definition`` almost is a function, we need to call this function after parsing it</span>
 <span class="sd">        to string. The easier way to call a function is using syntax ``func()`` and we use it to call it too.</span>
@@ -176,7 +176,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">raw_script</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get python task define attribute `raw_script`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get python task define attribute `raw_script`.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;definition&quot;</span><span class="p">),</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">)):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_exe_str</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>

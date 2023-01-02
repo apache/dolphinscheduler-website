@@ -102,8 +102,8 @@ of <em>Pre-releases</em>.</p>
 typing and running <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> to check whether the installation
 is correct or not. If all thing good, you could see the version in console
 without error(here is a example after Python 3.8.7 installed)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python --version
-Python <span class="m">3</span>.8.7
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>--version
+Python<span class="w"> </span><span class="m">3</span>.8.7
 </pre></div>
 </div>
 </section>
@@ -111,7 +111,7 @@ Python <span class="m">3</span>.8.7
 <h2>Installing PyDolphinScheduler<a class="headerlink" href="#installing-pydolphinscheduler" title="Permalink to this heading"></a></h2>
 <p>After Python is already installed on your machine following section
 <a class="reference internal" href="#installing-python">installing Python</a>, it easy to <em>PyDolphinScheduler</em> by pip.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install apache-dolphinscheduler
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>apache-dolphinscheduler
 </pre></div>
 </div>
 <p>The latest version of <em>PyDolphinScheduler</em> would be installed after you run above
@@ -126,9 +126,9 @@ section <a class="reference internal" href="#installing-pydolphinscheduler-in-de
 If you want to try some thing unreleased you could install from the source code
 which we hold in GitHub</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clone Apache DolphinScheduler repository</span>
-$ git clone git@github.com:apache/dolphinscheduler.git
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:apache/dolphinscheduler.git
 <span class="c1"># Install PyDolphinScheduler in develop mode</span>
-$ <span class="nb">cd</span> dolphinscheduler-python/pydolphinscheduler <span class="o">&amp;&amp;</span> pip install -e .
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>dolphinscheduler-python/pydolphinscheduler<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 </pre></div>
 </div>
 <p>After you installed <em>PyDolphinScheduler</em>, please remember <a class="reference internal" href="#start-python-gateway-server">start Python Gateway Server</a>
@@ -142,14 +142,14 @@ could define workflow and tasks structure, but could not run it unless you
 and some key steps here and you could go <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a>
 for more detail</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start pythonGatewayServer</span>
-$ ./bin/dolphinscheduler-daemon.sh start pythonGatewayServer
+$<span class="w"> </span>./bin/dolphinscheduler-daemon.sh<span class="w"> </span>start<span class="w"> </span>pythonGatewayServer
 </pre></div>
 </div>
 <p>To check whether the server is alive or not, you could run <code class="code docutils literal notranslate"><span class="pre">jps</span></code>. And
 the server is health if keyword <cite>PythonGatewayServer</cite> in the console.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ jps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>jps
 ....
-<span class="m">201472</span> PythonGatewayServer
+<span class="m">201472</span><span class="w"> </span>PythonGatewayServer
 ....
 </pre></div>
 </div>

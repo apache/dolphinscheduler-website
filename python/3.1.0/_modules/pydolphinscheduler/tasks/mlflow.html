@@ -103,14 +103,14 @@
 
 
 <div class="viewcode-block" id="MLflowTaskType"><a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLflowTaskType">[docs]</a><span class="k">class</span> <span class="nc">MLflowTaskType</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;MLflow task type.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MLflow task type.&quot;&quot;&quot;</span>
 
     <span class="n">MLFLOW_PROJECTS</span> <span class="o">=</span> <span class="s2">&quot;MLflow Projects&quot;</span>
     <span class="n">MLFLOW_MODELS</span> <span class="o">=</span> <span class="s2">&quot;MLflow Models&quot;</span></div>
 
 
 <div class="viewcode-block" id="MLflowJobType"><a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLflowJobType">[docs]</a><span class="k">class</span> <span class="nc">MLflowJobType</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;MLflow job type.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MLflow job type.&quot;&quot;&quot;</span>
 
     <span class="n">AUTOML</span> <span class="o">=</span> <span class="s2">&quot;AutoML&quot;</span>
     <span class="n">BASIC_ALGORITHM</span> <span class="o">=</span> <span class="s2">&quot;BasicAlgorithm&quot;</span>
@@ -118,7 +118,7 @@
 
 
 <div class="viewcode-block" id="MLflowDeployType"><a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLflowDeployType">[docs]</a><span class="k">class</span> <span class="nc">MLflowDeployType</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;MLflow deploy type.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MLflow deploy type.&quot;&quot;&quot;</span>
 
     <span class="n">MLFLOW</span> <span class="o">=</span> <span class="s2">&quot;MLFLOW&quot;</span>
     <span class="n">DOCKER</span> <span class="o">=</span> <span class="s2">&quot;DOCKER&quot;</span></div>
@@ -129,7 +129,7 @@
 
 
 <div class="viewcode-block" id="BaseMLflow"><a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.BaseMLflow">[docs]</a><span class="k">class</span> <span class="nc">BaseMLflow</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base MLflow task.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base MLflow task.&quot;&quot;&quot;</span>
 
     <span class="n">mlflow_task_type</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -146,14 +146,14 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Return task params.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return task params.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_child_task_mlflow_attr</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span></div>
 
 
 <div class="viewcode-block" id="MLflowModels"><a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLflowModels">[docs]</a><span class="k">class</span> <span class="nc">MLflowModels</span><span class="p">(</span><span class="n">BaseMLflow</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task MLflow models object, declare behavior for MLflow models task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task MLflow models object, declare behavior for MLflow models task to dolphinscheduler.</span>
 
 <span class="sd">    Deploy machine learning models in diverse serving environments.</span>
 
@@ -183,7 +183,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Init mlflow models task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init mlflow models task.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deploy_type</span> <span class="o">=</span> <span class="n">deploy_mode</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deploy_model_key</span> <span class="o">=</span> <span class="n">model_uri</span>
@@ -191,7 +191,7 @@
 
 
 <div class="viewcode-block" id="MLFlowProjectsCustom"><a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLFlowProjectsCustom">[docs]</a><span class="k">class</span> <span class="nc">MLFlowProjectsCustom</span><span class="p">(</span><span class="n">BaseMLflow</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task MLflow projects object, declare behavior for MLflow Custom projects task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task MLflow projects object, declare behavior for MLflow Custom projects task to dolphinscheduler.</span>
 
 <span class="sd">    :param name: task name</span>
 <span class="sd">    :param repository: Repository url of MLflow Project, Support git address and directory on worker.</span>
@@ -226,7 +226,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Init mlflow projects task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init mlflow projects task.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mlflow_project_repository</span> <span class="o">=</span> <span class="n">repository</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span> <span class="o">=</span> <span class="n">experiment_name</span>
@@ -235,7 +235,7 @@
 
 
 <div class="viewcode-block" id="MLFlowProjectsAutoML"><a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLFlowProjectsAutoML">[docs]</a><span class="k">class</span> <span class="nc">MLFlowProjectsAutoML</span><span class="p">(</span><span class="n">BaseMLflow</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task MLflow projects object, declare behavior for AutoML task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task MLflow projects object, declare behavior for AutoML task to dolphinscheduler.</span>
 
 <span class="sd">    :param name: task name</span>
 <span class="sd">    :param data_path: data path of MLflow Project, Support git address and directory on worker.</span>
@@ -272,7 +272,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Init mlflow projects task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init mlflow projects task.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_path</span> <span class="o">=</span> <span class="n">data_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span> <span class="o">=</span> <span class="n">experiment_name</span>
@@ -283,7 +283,7 @@
 
 
 <div class="viewcode-block" id="MLFlowProjectsBasicAlgorithm"><a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm">[docs]</a><span class="k">class</span> <span class="nc">MLFlowProjectsBasicAlgorithm</span><span class="p">(</span><span class="n">BaseMLflow</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task MLflow projects object, declare behavior for BasicAlgorithm task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task MLflow projects object, declare behavior for BasicAlgorithm task to dolphinscheduler.</span>
 
 <span class="sd">    :param name: task name</span>
 <span class="sd">    :param data_path: data path of MLflow Project, Support git address and directory on worker.</span>
@@ -324,7 +324,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Init mlflow projects task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init mlflow projects task.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_path</span> <span class="o">=</span> <span class="n">data_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span> <span class="o">=</span> <span class="n">experiment_name</span>

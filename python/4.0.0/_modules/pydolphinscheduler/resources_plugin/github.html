@@ -109,7 +109,7 @@
 
 
 <div class="viewcode-block" id="GitHub"><a class="viewcode-back" href="../../../resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub">[docs]</a><span class="k">class</span> <span class="nc">GitHub</span><span class="p">(</span><span class="n">ResourcePlugin</span><span class="p">,</span> <span class="n">Git</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;GitHub resource plugin, a plugin for task and workflow to dolphinscheduler to read resource.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;GitHub resource plugin, a plugin for task and workflow to dolphinscheduler to read resource.</span>
 
 <span class="sd">    :param prefix: A string representing the prefix of GitHub.</span>
 <span class="sd">    :param access_token: A string used for identity authentication of GitHub private repository.</span>
@@ -130,14 +130,14 @@
         <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">api</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Build request file content API.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build request file content API.&quot;&quot;&quot;</span>
         <span class="n">api</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{user}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
         <span class="n">api</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{repo_name}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">repo_name</span><span class="p">)</span>
         <span class="n">api</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{file_path}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">api</span></div>
 
 <div class="viewcode-block" id="GitHub.get_git_file_info"><a class="viewcode-back" href="../../../resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub.get_git_file_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_git_file_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get file information from the file url, like repository name, user, branch, and file path.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get file information from the file url, like repository name, user, branch, and file path.&quot;&quot;&quot;</span>
         <span class="n">elements</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">SLASH</span><span class="p">)</span>
         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Symbol</span><span class="o">.</span><span class="n">SLASH</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
         <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
@@ -150,7 +150,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_git_file_info</span> <span class="o">=</span> <span class="n">file_info</span></div>
 
 <div class="viewcode-block" id="GitHub.get_req_url"><a class="viewcode-back" href="../../../resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub.get_req_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_req_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Build request URL according to file information.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build request URL according to file information.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_req_api</span><span class="p">(</span>
             <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_git_file_info</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
             <span class="n">repo_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_git_file_info</span><span class="o">.</span><span class="n">repo_name</span><span class="p">,</span>
@@ -159,7 +159,7 @@
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="GitHub.read_file"><a class="viewcode-back" href="../../../resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub.read_file">[docs]</a>    <span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suf</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get the content of the file.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the content of the file.</span>
 
 <span class="sd">        The address of the file is the prefix of the resource plugin plus the parameter suf.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -167,7 +167,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">req</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GitHub.req"><a class="viewcode-back" href="../../../resources_plugin/github.html#pydolphinscheduler.resources_plugin.github.GitHub.req">[docs]</a>    <span class="k">def</span> <span class="nf">req</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Send HTTP request, parse response data, and get file content.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send HTTP request, parse response data, and get file content.&quot;&quot;&quot;</span>
         <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json; charset=utf-8&quot;</span><span class="p">,</span>
         <span class="p">}</span>

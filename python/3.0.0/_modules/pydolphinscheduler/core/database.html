@@ -105,7 +105,7 @@
 
 
 <div class="viewcode-block" id="Database"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Database">[docs]</a><span class="k">class</span> <span class="nc">Database</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;database object, get information about database.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;database object, get information about database.</span>
 
 <span class="sd">    You provider database_name contain connection information, it decisions which</span>
 <span class="sd">    database type and database instance would run task.</span>
@@ -120,16 +120,16 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">database_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get database type from java gateway, a wrapper for :func:`get_database_info`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get database type from java gateway, a wrapper for :func:`get_database_info`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_database_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">database_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">database_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get database id from java gateway, a wrapper for :func:`get_database_info`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get database id from java gateway, a wrapper for :func:`get_database_info`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_database_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">database_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Database.get_database_info"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Database.get_database_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_database_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get database info from java gateway, contains database id, type, name.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get database info from java gateway, contains database id, type, name.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_database</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_database</span>
         <span class="k">else</span><span class="p">:</span>

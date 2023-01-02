@@ -246,42 +246,42 @@
 </section>
 <section id="yaml-file-example">
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
-<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pytorch&quot;</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pytorch&quot;</span>
 
-<span class="c1"># Define the tasks within the workflow</span><span class="w"></span>
-<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="c1"># Define the tasks within the workflow</span>
+<span class="nt">tasks</span><span class="p">:</span>
 
-<span class="w">  </span><span class="c1"># run project with existing environment</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_existing_env</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytorch</span><span class="w"></span>
-<span class="w">    </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main.py</span><span class="w"></span>
-<span class="w">    </span><span class="nt">script_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--dry-run --no-cuda</span><span class="w"></span>
-<span class="w">    </span><span class="nt">project_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pytorch/examples#mnist</span><span class="w"></span>
-<span class="w">    </span><span class="nt">python_command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/anaconda3/envs/pytorch/bin/python3</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># run project with existing environment</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_existing_env</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytorch</span>
+<span class="w">    </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main.py</span>
+<span class="w">    </span><span class="nt">script_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--dry-run --no-cuda</span>
+<span class="w">    </span><span class="nt">project_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pytorch/examples#mnist</span>
+<span class="w">    </span><span class="nt">python_command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/anaconda3/envs/pytorch/bin/python3</span>
 
 
-<span class="w">  </span><span class="c1"># run project with creating conda environment</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_conda_env</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytorch</span><span class="w"></span>
-<span class="w">    </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main.py</span><span class="w"></span>
-<span class="w">    </span><span class="nt">script_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--dry-run --no-cuda</span><span class="w"></span>
-<span class="w">    </span><span class="nt">project_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pytorch/examples#mnist</span><span class="w"></span>
-<span class="w">    </span><span class="nt">is_create_environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"></span>
-<span class="w">    </span><span class="nt">python_env_tool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda</span><span class="w"></span>
-<span class="w">    </span><span class="nt">requirements</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requirements.txt</span><span class="w"></span>
-<span class="w">    </span><span class="nt">conda_python_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.7</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># run project with creating conda environment</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_conda_env</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytorch</span>
+<span class="w">    </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main.py</span>
+<span class="w">    </span><span class="nt">script_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--dry-run --no-cuda</span>
+<span class="w">    </span><span class="nt">project_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pytorch/examples#mnist</span>
+<span class="w">    </span><span class="nt">is_create_environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">    </span><span class="nt">python_env_tool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda</span>
+<span class="w">    </span><span class="nt">requirements</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requirements.txt</span>
+<span class="w">    </span><span class="nt">conda_python_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.7</span>
 
-<span class="w">  </span><span class="c1"># run project with creating virtualenv environment</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_virtualenv_env</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytorch</span><span class="w"></span>
-<span class="w">    </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main.py</span><span class="w"></span>
-<span class="w">    </span><span class="nt">script_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--dry-run --no-cuda</span><span class="w"></span>
-<span class="w">    </span><span class="nt">project_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pytorch/examples#mnist</span><span class="w"></span>
-<span class="w">    </span><span class="nt">is_create_environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"></span>
-<span class="w">    </span><span class="nt">python_env_tool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtualenv</span><span class="w"></span>
-<span class="w">    </span><span class="nt">requirements</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requirements.txt</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># run project with creating virtualenv environment</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_virtualenv_env</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytorch</span>
+<span class="w">    </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main.py</span>
+<span class="w">    </span><span class="nt">script_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--dry-run --no-cuda</span>
+<span class="w">    </span><span class="nt">project_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pytorch/examples#mnist</span>
+<span class="w">    </span><span class="nt">is_create_environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">    </span><span class="nt">python_env_tool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtualenv</span>
+<span class="w">    </span><span class="nt">requirements</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">requirements.txt</span>
 </pre></div>
 </div>
 </section>

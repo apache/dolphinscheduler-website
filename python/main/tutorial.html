@@ -166,37 +166,37 @@ We can find more YAML file examples in <a class="reference external" href="https
 <span class="c1"># [start task_declare]</span>
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">print_something</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">depend_import</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">depend_global_var</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">depend_local_var</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
     <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">depend_func</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
     <span class="n">foo</span><span class="p">()</span>
 
 
@@ -225,34 +225,34 @@ We can find more YAML file examples in <a class="reference external" href="https
 </div>
 </div>
 <input class="tab-input" id="tab-set--0-input--3" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--3">YAML File</label><div class="tab-content docutils container">
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
-<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span>
+<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
-<span class="c1"># Define the tasks within the workflow</span><span class="w"></span>
-<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span><span class="w"></span>
+<span class="c1"># Define the tasks within the workflow</span>
+<span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -318,13 +318,13 @@ will be running this task in the DolphinScheduler worker. See <a class="referenc
 </div>
 </div>
 <input class="tab-input" id="tab-set--2-input--3" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--3">YAML File</label><div class="tab-content docutils container">
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
-<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span>
+<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 </div>
@@ -355,37 +355,37 @@ using <a class="reference internal" href="tasks/func_wrap.html#pydolphinschedule
 <code class="code docutils literal notranslate"><span class="pre">&#64;task</span></code> to existing Python function, and then use them inside <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">print_something</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">depend_import</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">depend_global_var</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">depend_local_var</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
     <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">depend_func</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
     <span class="n">foo</span><span class="p">()</span>
 
 
@@ -395,25 +395,25 @@ using <a class="reference internal" href="tasks/func_wrap.html#pydolphinschedule
 Python function as a task and could not use the <a class="reference internal" href="tasks/index.html"><span class="doc">built-in tasks</span></a> most of the cases.</p>
 </div>
 <input class="tab-input" id="tab-set--3-input--3" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--3">YAML File</label><div class="tab-content docutils container">
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -448,25 +448,25 @@ and task <cite>task_child_two</cite> was done, because both two task is <cite>ta
 </div>
 <input class="tab-input" id="tab-set--4-input--3" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--3">YAML File</label><div class="tab-content docutils container">
 <p>We can use <code class="code docutils literal notranslate"><span class="pre">deps:[]</span></code> to set task dependence</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -499,10 +499,10 @@ will create workflow definition as well as workflow schedule.</p>
 </div>
 <input class="tab-input" id="tab-set--5-input--3" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--3">YAML File</label><div class="tab-content docutils container">
 <p>pydolphinscheduler YAML CLI always submit workflow. We can run the workflow if we set <code class="code docutils literal notranslate"><span class="pre">run:</span> <span class="pre">true</span></code></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span><span class="w"></span>
-<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 </div>
@@ -533,7 +533,7 @@ task_parent --&gt;                        --&gt;  task_union
 <section id="create-workflow-using-yaml-file">
 <h2>Create Workflow Using YAML File<a class="headerlink" href="#create-workflow-using-yaml-file" title="Permalink to this heading"></a></h2>
 <p>We can use pydolphinscheduler CLI to create workflow using YAML file</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler yaml -f Shell.yaml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler<span class="w"> </span>yaml<span class="w"> </span>-f<span class="w"> </span>Shell.yaml
 </pre></div>
 </div>
 <p>We can use the following four special grammars to define workflows more flexibly.</p>
@@ -546,29 +546,29 @@ task_parent --&gt;                        --&gt;  task_union
 <p>In addition, when loading the file path use <code class="code docutils literal notranslate"><span class="pre">$FILE{&quot;file_name&quot;}</span></code> or <code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;other_workflow.yaml&quot;}</span></code>, pydolphinscheduler will search in the path of the YAMl file if the file does not exist.</p>
 <p>For exmaples, our file directory structure is as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
-└── yaml_define
-    ├── Condition.yaml
-    ├── DataX.yaml
-    ├── Dependent_External.yaml
-    ├── Dependent.yaml
-    ├── example_datax.json
-    ├── example_sql.sql
-    ├── example_sub_workflow.yaml
-    ├── Flink.yaml
-    ├── Http.yaml
-    ├── MapReduce.yaml
-    ├── MoreConfiguration.yaml
-    ├── Procedure.yaml
-    ├── Python.yaml
-    ├── Shell.yaml
-    ├── Spark.yaml
-    ├── Sql.yaml
-    ├── SubWorkflow.yaml
-    └── Switch.yaml
+└──<span class="w"> </span>yaml_define
+<span class="w">    </span>├──<span class="w"> </span>Condition.yaml
+<span class="w">    </span>├──<span class="w"> </span>DataX.yaml
+<span class="w">    </span>├──<span class="w"> </span>Dependent_External.yaml
+<span class="w">    </span>├──<span class="w"> </span>Dependent.yaml
+<span class="w">    </span>├──<span class="w"> </span>example_datax.json
+<span class="w">    </span>├──<span class="w"> </span>example_sql.sql
+<span class="w">    </span>├──<span class="w"> </span>example_sub_workflow.yaml
+<span class="w">    </span>├──<span class="w"> </span>Flink.yaml
+<span class="w">    </span>├──<span class="w"> </span>Http.yaml
+<span class="w">    </span>├──<span class="w"> </span>MapReduce.yaml
+<span class="w">    </span>├──<span class="w"> </span>MoreConfiguration.yaml
+<span class="w">    </span>├──<span class="w"> </span>Procedure.yaml
+<span class="w">    </span>├──<span class="w"> </span>Python.yaml
+<span class="w">    </span>├──<span class="w"> </span>Shell.yaml
+<span class="w">    </span>├──<span class="w"> </span>Spark.yaml
+<span class="w">    </span>├──<span class="w"> </span>Sql.yaml
+<span class="w">    </span>├──<span class="w"> </span>SubWorkflow.yaml
+<span class="w">    </span>└──<span class="w"> </span>Switch.yaml
 </pre></div>
 </div>
 <p>After we run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler yaml -file yaml_define/SubWorkflow.yaml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler<span class="w"> </span>yaml<span class="w"> </span>-file<span class="w"> </span>yaml_define/SubWorkflow.yaml
 </pre></div>
 </div>
 <p>the <code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;example_sub_workflow.yaml&quot;}</span></code> will be set to <code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;yaml_define/example_sub_workflow.yaml&quot;}</span></code>, because <code class="code docutils literal notranslate"><span class="pre">./example_sub_workflow.yaml</span></code> does not exist and <code class="code docutils literal notranslate"><span class="pre">yaml_define/example_sub_workflow.yaml</span></code> does.</p>

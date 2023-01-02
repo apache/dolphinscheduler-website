@@ -529,56 +529,56 @@ See https://mlflow.org/docs/latest/tracking.html#artifact-stores</p></li>
 </section>
 <section id="yaml-file-example">
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable `mlflow_tracking_uri`</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable `mlflow_tracking_uri`</span>
 <span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;mlflow_tracking_uri</span><span class="w"> </span><span class="s">&quot;http://127.0.0.1:5000&quot;</span><span class="w"> </span>
 
-<span class="c1"># Define the workflow</span><span class="w"></span>
-<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MLflow&quot;</span><span class="w"></span>
+<span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MLflow&quot;</span>
 
-<span class="c1"># Define the tasks within the workflow</span><span class="w"></span>
-<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_xgboost_native</span><span class="w"></span>
+<span class="c1"># Define the tasks within the workflow</span>
+<span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_xgboost_native</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFlowProjectsCustom</span><span class="w"> </span>
-<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9</span><span class="w"></span>
-<span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xgboost</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native</span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9</span>
+<span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xgboost</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_automl</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_automl</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFlowProjectsAutoML</span><span class="w"> </span>
-<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time_budget=30;estimator_list=[&#39;lgbm&#39;]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">automl_iris</span><span class="w"></span>
-<span class="w">    </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iris_A</span><span class="w"></span>
-<span class="w">    </span><span class="nt">automl_tool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flaml</span><span class="w"></span>
-<span class="w">    </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/examples/iris</span><span class="w"></span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time_budget=30;estimator_list=[&#39;lgbm&#39;]</span>
+<span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">automl_iris</span>
+<span class="w">    </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iris_A</span>
+<span class="w">    </span><span class="nt">automl_tool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flaml</span>
+<span class="w">    </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/examples/iris</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy_docker</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy_docker</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLflowModels</span><span class="w"> </span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">train_automl</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">model_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">models:/iris_A/Production</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOCKER</span><span class="w"></span>
-<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7002</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">train_automl</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">model_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">models:/iris_A/Production</span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOCKER</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7002</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_basic_algorithm</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_basic_algorithm</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFlowProjectsBasicAlgorithm</span><span class="w"> </span>
-<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span><span class="w"></span>
-<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">n_estimators=200;learning_rate=0.2</span><span class="w"></span>
-<span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basic_algorithm_iris</span><span class="w"></span>
-<span class="w">    </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iris_B</span><span class="w"></span>
-<span class="w">    </span><span class="nt">algorithm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lightgbm</span><span class="w"></span>
-<span class="w">    </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/examples/iris</span><span class="w"></span>
-<span class="w">    </span><span class="nt">search_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">max_depth=[5, 10];n_estimators=[100, 200]</span><span class="w"></span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">n_estimators=200;learning_rate=0.2</span>
+<span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basic_algorithm_iris</span>
+<span class="w">    </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iris_B</span>
+<span class="w">    </span><span class="nt">algorithm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lightgbm</span>
+<span class="w">    </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/examples/iris</span>
+<span class="w">    </span><span class="nt">search_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">max_depth=[5, 10];n_estimators=[100, 200]</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy_mlflow</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">train_basic_algorithm</span><span class="p p-Indicator">]</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLflowModels</span><span class="w"></span>
-<span class="w">    </span><span class="nt">model_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">models:/iris_B/Production</span><span class="w"></span>
-<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span><span class="w"></span>
-<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFLOW</span><span class="w"></span>
-<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7001</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy_mlflow</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">train_basic_algorithm</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLflowModels</span>
+<span class="w">    </span><span class="nt">model_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">models:/iris_B/Production</span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFLOW</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7001</span>
 </pre></div>
 </div>
 </section>

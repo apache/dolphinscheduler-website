@@ -102,7 +102,7 @@
 
 
 <div class="viewcode-block" id="SubProcess"><a class="viewcode-back" href="../../../tasks/sub_process.html#pydolphinscheduler.tasks.SubProcess">[docs]</a><span class="k">class</span> <span class="nc">SubProcess</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task SubProcess object, declare behavior for SubProcess task to dolphinscheduler.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task SubProcess object, declare behavior for SubProcess task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;process_definition_code&quot;</span><span class="p">}</span>
 
@@ -112,13 +112,13 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">process_definition_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get process definition code, a wrapper for :func:`get_process_definition_info`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get process definition code, a wrapper for :func:`get_process_definition_info`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_process_definition_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">process_definition_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">&quot;code&quot;</span>
         <span class="p">)</span>
 
 <div class="viewcode-block" id="SubProcess.get_process_definition_info"><a class="viewcode-back" href="../../../tasks/sub_process.html#pydolphinscheduler.tasks.SubProcess.get_process_definition_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_process_definition_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_definition_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get process definition info from java gateway, contains process definition id, name, code.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get process definition info from java gateway, contains process definition id, name, code.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PyDSProcessDefinitionNotAssignException</span><span class="p">(</span>
                 <span class="s2">&quot;ProcessDefinition must be provider for task SubProcess.&quot;</span>

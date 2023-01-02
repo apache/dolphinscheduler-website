@@ -104,7 +104,7 @@
 
 
 <div class="viewcode-block" id="DEFAULT"><a class="viewcode-back" href="../../../tasks/pytorch.html#pydolphinscheduler.tasks.DEFAULT">[docs]</a><span class="k">class</span> <span class="nc">DEFAULT</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Default values for Pytorch.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Default values for Pytorch.&quot;&quot;&quot;</span>
 
     <span class="n">is_create_environment</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">project_path</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
@@ -112,7 +112,7 @@
 
 
 <div class="viewcode-block" id="Pytorch"><a class="viewcode-back" href="../../../tasks/pytorch.html#pydolphinscheduler.tasks.Pytorch">[docs]</a><span class="k">class</span> <span class="nc">Pytorch</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task Pytorch object, declare behavior for Pytorch task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task Pytorch object, declare behavior for Pytorch task to dolphinscheduler.</span>
 
 <span class="sd">    See also: `DolphinScheduler Pytorch Task Plugin</span>
 <span class="sd">    &lt;https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/guide/task/pytorch.html&gt;`_</span>
@@ -154,7 +154,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Init Pytorch task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init Pytorch task.&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">PYTORCH</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">script</span> <span class="o">=</span> <span class="n">script</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">script_params</span> <span class="o">=</span> <span class="n">script_params</span>
@@ -167,7 +167,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">other_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return other params.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return other params.&quot;&quot;&quot;</span>
         <span class="n">conds</span> <span class="o">=</span> <span class="p">[</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">is_create_environment</span> <span class="o">!=</span> <span class="n">DEFAULT</span><span class="o">.</span><span class="n">is_create_environment</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">python_path</span> <span class="o">!=</span> <span class="n">DEFAULT</span><span class="o">.</span><span class="n">project_path</span><span class="p">,</span>

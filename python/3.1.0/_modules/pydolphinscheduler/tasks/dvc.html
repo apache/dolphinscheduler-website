@@ -103,7 +103,7 @@
 
 
 <div class="viewcode-block" id="DvcTaskType"><a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.DvcTaskType">[docs]</a><span class="k">class</span> <span class="nc">DvcTaskType</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Constants for dvc task type.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Constants for dvc task type.&quot;&quot;&quot;</span>
 
     <span class="n">INIT</span> <span class="o">=</span> <span class="s2">&quot;Init DVC&quot;</span>
     <span class="n">DOWNLOAD</span> <span class="o">=</span> <span class="s2">&quot;Download&quot;</span>
@@ -111,7 +111,7 @@
 
 
 <div class="viewcode-block" id="BaseDVC"><a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.BaseDVC">[docs]</a><span class="k">class</span> <span class="nc">BaseDVC</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for dvc task.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for dvc task.&quot;&quot;&quot;</span>
 
     <span class="n">dvc_task_type</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -128,14 +128,14 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Return task params.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return task params.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_child_task_dvc_attr</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span></div>
 
 
 <div class="viewcode-block" id="DVCInit"><a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.DVCInit">[docs]</a><span class="k">class</span> <span class="nc">DVCInit</span><span class="p">(</span><span class="n">BaseDVC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task DVC Init object, declare behavior for DVC Init task to dolphinscheduler.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task DVC Init object, declare behavior for DVC Init task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="n">dvc_task_type</span> <span class="o">=</span> <span class="n">DvcTaskType</span><span class="o">.</span><span class="n">INIT</span>
 
@@ -147,7 +147,7 @@
 
 
 <div class="viewcode-block" id="DVCDownload"><a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.DVCDownload">[docs]</a><span class="k">class</span> <span class="nc">DVCDownload</span><span class="p">(</span><span class="n">BaseDVC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task DVC Download object, declare behavior for DVC Download task to dolphinscheduler.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task DVC Download object, declare behavior for DVC Download task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="n">dvc_task_type</span> <span class="o">=</span> <span class="n">DvcTaskType</span><span class="o">.</span><span class="n">DOWNLOAD</span>
 
@@ -174,7 +174,7 @@
 
 
 <div class="viewcode-block" id="DVCUpload"><a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.DVCUpload">[docs]</a><span class="k">class</span> <span class="nc">DVCUpload</span><span class="p">(</span><span class="n">BaseDVC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task DVC Upload object, declare behavior for DVC Upload task to dolphinscheduler.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task DVC Upload object, declare behavior for DVC Upload task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="n">dvc_task_type</span> <span class="o">=</span> <span class="n">DvcTaskType</span><span class="o">.</span><span class="n">UPLOAD</span>
 

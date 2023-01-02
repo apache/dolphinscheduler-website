@@ -107,7 +107,7 @@
 
 
 <div class="viewcode-block" id="SubWorkflow"><a class="viewcode-back" href="../../../tasks/sub_workflow.html#pydolphinscheduler.tasks.SubWorkflow">[docs]</a><span class="k">class</span> <span class="nc">SubWorkflow</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task SubWorkflow object, declare behavior for SubWorkflow task to dolphinscheduler.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task SubWorkflow object, declare behavior for SubWorkflow task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;process_definition_code&quot;</span><span class="p">}</span>
 
@@ -117,7 +117,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">process_definition_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get workflow code, a wrapper for :func:`get_workflow_info`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get workflow code, a wrapper for :func:`get_workflow_info`.</span>
 
 <span class="sd">        We can not change this function name to workflow_code, because it is a keyword used in</span>
 <span class="sd">        dolphinscheduler itself.</span>
@@ -125,7 +125,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_workflow_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workflow_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SubWorkflow.get_workflow_info"><a class="viewcode-back" href="../../../tasks/sub_workflow.html#pydolphinscheduler.tasks.SubWorkflow.get_workflow_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_workflow_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get workflow info from java gateway, contains workflow id, name, code.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get workflow info from java gateway, contains workflow id, name, code.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PyDSWorkflowNotAssignException</span><span class="p">(</span>
                 <span class="s2">&quot;Workflow must be provider for task SubWorkflow.&quot;</span>

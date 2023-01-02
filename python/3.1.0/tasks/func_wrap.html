@@ -127,25 +127,25 @@
 <span class="c1"># [start task_declare]</span>
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">task_parent</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">task_child_one</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">task_child_two</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Child task will be run parallel after task ``task_parent`` finished.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">task_union</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Last task in this workflow.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Last task in this workflow.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
 
 

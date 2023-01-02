@@ -344,35 +344,35 @@
 </section>
 <section id="yaml-file-example">
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable `repository`</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable `repository`</span>
 <span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;repository</span><span class="w"> </span><span class="s">&quot;git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git&quot;</span><span class="w"> </span>
 
-<span class="c1"># Define the workflow</span><span class="w"></span>
-<span class="nt">workflow</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DVC&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span><span class="w"></span>
+<span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DVC&quot;</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
 
-<span class="c1"># Define the tasks within the workflow</span><span class="w"></span>
-<span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<span class="c1"># Define the tasks within the workflow</span>
+<span class="nt">tasks</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">init_dvc</span><span class="w"> </span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DVCInit</span><span class="w"></span>
-<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nv">*repository</span><span class="w"></span>
-<span class="w">    </span><span class="nt">store_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/dvc_data</span><span class="w"></span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DVCInit</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nv">*repository</span>
+<span class="w">    </span><span class="nt">store_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/dvc_data</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">upload_data</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DVCUpload</span><span class="w"></span>
-<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nv">*repository</span><span class="w"></span>
-<span class="w">    </span><span class="nt">data_path_in_dvc_repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iris&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">data_path_in_worker</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/source/iris</span><span class="w"></span>
-<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
-<span class="w">    </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">upload iris data v1</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">upload_data</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DVCUpload</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nv">*repository</span>
+<span class="w">    </span><span class="nt">data_path_in_dvc_repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iris&quot;</span>
+<span class="w">    </span><span class="nt">data_path_in_worker</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/source/iris</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="w">    </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">upload iris data v1</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">download_data</span><span class="w"></span>
-<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DVCDownload</span><span class="w"></span>
-<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nv">*repository</span><span class="w"></span>
-<span class="w">    </span><span class="nt">data_path_in_dvc_repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iris&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">data_path_in_worker</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/target/iris</span><span class="w"></span>
-<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">download_data</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DVCDownload</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nv">*repository</span>
+<span class="w">    </span><span class="nt">data_path_in_dvc_repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iris&quot;</span>
+<span class="w">    </span><span class="nt">data_path_in_worker</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/target/iris</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 </pre></div>
 </div>
 </section>

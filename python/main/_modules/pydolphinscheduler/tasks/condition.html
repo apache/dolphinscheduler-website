@@ -107,7 +107,7 @@
 
 
 <div class="viewcode-block" id="Status"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.Status">[docs]</a><span class="k">class</span> <span class="nc">Status</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class of Condition task status.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class of Condition task status.</span>
 
 <span class="sd">    It a parent class for :class:`SUCCESS` and :class:`FAILURE`. Provider status name</span>
 <span class="sd">    and :func:`get_define` to sub class.</span>
@@ -122,11 +122,11 @@
 
 <div class="viewcode-block" id="Status.status_name"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.Status.status_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">status_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get name for Status or its sub class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get name for Status or its sub class.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Status.get_define"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.Status.get_define">[docs]</a>    <span class="k">def</span> <span class="nf">get_define</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get status definition attribute communicate to Java gateway server.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get status definition attribute communicate to Java gateway server.&quot;&quot;&quot;</span>
         <span class="n">content</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">Task</span><span class="p">):</span>
@@ -139,21 +139,21 @@
 
 
 <div class="viewcode-block" id="SUCCESS"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.SUCCESS">[docs]</a><span class="k">class</span> <span class="nc">SUCCESS</span><span class="p">(</span><span class="n">Status</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Class SUCCESS to task condition, sub class of :class:`Status`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class SUCCESS to task condition, sub class of :class:`Status`.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">tasks</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FAILURE"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.FAILURE">[docs]</a><span class="k">class</span> <span class="nc">FAILURE</span><span class="p">(</span><span class="n">Status</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Class FAILURE to task condition, sub class of :class:`Status`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class FAILURE to task condition, sub class of :class:`Status`.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">tasks</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ConditionOperator"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.ConditionOperator">[docs]</a><span class="k">class</span> <span class="nc">ConditionOperator</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Set ConditionTask or ConditionOperator with specific operator.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set ConditionTask or ConditionOperator with specific operator.&quot;&quot;&quot;</span>
 
     <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;relation&quot;</span><span class="p">,</span>
@@ -168,16 +168,16 @@
 
 <div class="viewcode-block" id="ConditionOperator.operator_name"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.ConditionOperator.operator_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">operator_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get operator name in different class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get operator name in different class.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">relation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get operator name in different class, for function :func:`get_define`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get operator name in different class, for function :func:`get_define`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator_name</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ConditionOperator.set_define_attr"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.ConditionOperator.set_define_attr">[docs]</a>    <span class="k">def</span> <span class="nf">set_define_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set attribute to function :func:`get_define`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute to function :func:`get_define`.</span>
 
 <span class="sd">        It is a wrapper for both `And` and `Or` operator.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -205,7 +205,7 @@
         <span class="k">return</span> <span class="n">attr</span></div>
 
 <div class="viewcode-block" id="ConditionOperator.get_define"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.ConditionOperator.get_define">[docs]</a>    <span class="k">def</span> <span class="nf">get_define</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Overwrite Base.get_define to get task Condition specific get define.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Overwrite Base.get_define to get task Condition specific get define.&quot;&quot;&quot;</span>
         <span class="n">attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_define_attr</span><span class="p">()</span>
         <span class="n">dependent_define_attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">union</span><span class="p">({</span><span class="n">attr</span><span class="p">})</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_define_custom</span><span class="p">(</span>
@@ -214,7 +214,7 @@
 
 
 <div class="viewcode-block" id="And"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.And">[docs]</a><span class="k">class</span> <span class="nc">And</span><span class="p">(</span><span class="n">ConditionOperator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Operator And for task condition.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Operator And for task condition.</span>
 
 <span class="sd">    It could accept both :class:`Task` and children of :class:`ConditionOperator`,</span>
 <span class="sd">    and set AND condition to those args.</span>
@@ -225,7 +225,7 @@
 
 
 <div class="viewcode-block" id="Or"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.Or">[docs]</a><span class="k">class</span> <span class="nc">Or</span><span class="p">(</span><span class="n">ConditionOperator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Operator Or for task condition.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Operator Or for task condition.</span>
 
 <span class="sd">    It could accept both :class:`Task` and children of :class:`ConditionOperator`,</span>
 <span class="sd">    and set OR condition to those args.</span>
@@ -236,7 +236,7 @@
 
 
 <div class="viewcode-block" id="Condition"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.Condition">[docs]</a><span class="k">class</span> <span class="nc">Condition</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task condition object, declare behavior for condition task to dolphinscheduler.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task condition object, declare behavior for condition task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -255,7 +255,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_dep</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Condition._set_dep"><a class="viewcode-back" href="../../../tasks/condition.html#pydolphinscheduler.tasks.Condition._set_dep">[docs]</a>    <span class="k">def</span> <span class="nf">_set_dep</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set upstream according to parameter `condition`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set upstream according to parameter `condition`.&quot;&quot;&quot;</span>
         <span class="n">upstream</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">cond</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cond</span><span class="p">,</span> <span class="n">ConditionOperator</span><span class="p">):</span>
@@ -266,7 +266,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">condition_result</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get condition result define for java gateway.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get condition result define for java gateway.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;successNode&quot;</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">success_task</span><span class="o">.</span><span class="n">code</span><span class="p">],</span>
             <span class="s2">&quot;failedNode&quot;</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">failed_task</span><span class="o">.</span><span class="n">code</span><span class="p">],</span>
@@ -274,7 +274,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Override Task.task_params for Condition task.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override Task.task_params for Condition task.</span>
 
 <span class="sd">        Condition task have some specials attribute `dependence`, and in most of the task</span>
 <span class="sd">        this attribute is None and use empty dict `{}` as default value. We do not use class</span>

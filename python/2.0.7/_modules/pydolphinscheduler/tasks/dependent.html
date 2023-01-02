@@ -105,7 +105,7 @@
 
 
 <div class="viewcode-block" id="DependentDate"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentDate">[docs]</a><span class="k">class</span> <span class="nc">DependentDate</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Constant of Dependent date value.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Constant of Dependent date value.</span>
 
 <span class="sd">    These values set according to Java server side, if you want to add and change it,</span>
 <span class="sd">    please change Java server side first.</span>
@@ -147,7 +147,7 @@
 
 
 <div class="viewcode-block" id="DependentItem"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentItem">[docs]</a><span class="k">class</span> <span class="nc">DependentItem</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Dependent item object, minimal unit for task dependent.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dependent item object, minimal unit for task dependent.</span>
 
 <span class="sd">    It declare which project, process_definition, task are dependent to this task.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -187,17 +187,17 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">project_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get dependent project code.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get dependent project code.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_code_from_gateway</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;projectCode&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">definition_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get dependent definition code.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get dependent definition code.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_code_from_gateway</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;processDefinitionCode&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">dep_task_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get dependent tasks code list.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get dependent tasks code list.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_all_task</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">DEPENDENT_ALL_TASK_IN_WORKFLOW</span>
         <span class="k">else</span><span class="p">:</span>
@@ -206,7 +206,7 @@
     <span class="c1"># TODO Maybe we should get cycle from dependent date class.</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">cycle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get dependent cycle.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get dependent cycle.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="s2">&quot;Hour&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependent_date</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;hour&quot;</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependent_date</span> <span class="o">==</span> <span class="s2">&quot;today&quot;</span> <span class="ow">or</span> <span class="s2">&quot;Days&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependent_date</span><span class="p">:</span>
@@ -218,17 +218,17 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">date_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get dependent date.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get dependent date.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependent_date</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">is_all_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Check whether dependent all tasks or not.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check whether dependent all tasks or not.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependent_task_name</span> <span class="o">==</span> <span class="n">DEPENDENT_ALL_TASK_IN_WORKFLOW</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">code_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get name info parameter to query code.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get name info parameter to query code.&quot;&quot;&quot;</span>
         <span class="n">param</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">project_name</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">process_definition_name</span><span class="p">,</span>
@@ -237,7 +237,7 @@
         <span class="k">return</span> <span class="n">param</span>
 
 <div class="viewcode-block" id="DependentItem.get_code_from_gateway"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentItem.get_code_from_gateway">[docs]</a>    <span class="k">def</span> <span class="nf">get_code_from_gateway</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get project, definition, task code from given parameter.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get project, definition, task code from given parameter.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code</span>
         <span class="k">else</span><span class="p">:</span>
@@ -250,7 +250,7 @@
 
 
 <div class="viewcode-block" id="DependentOperator"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator">[docs]</a><span class="k">class</span> <span class="nc">DependentOperator</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Set DependentItem or dependItemList with specific operator.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set DependentItem or dependItemList with specific operator.&quot;&quot;&quot;</span>
 
     <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;relation&quot;</span><span class="p">,</span>
@@ -265,16 +265,16 @@
 
 <div class="viewcode-block" id="DependentOperator.operator_name"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator.operator_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">operator_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get operator name in different class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get operator name in different class.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">relation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get operator name in different class, for function :func:`get_define`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get operator name in different class, for function :func:`get_define`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator_name</span><span class="p">()</span>
 
 <div class="viewcode-block" id="DependentOperator.set_define_attr"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator.set_define_attr">[docs]</a>    <span class="k">def</span> <span class="nf">set_define_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set attribute to function :func:`get_define`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute to function :func:`get_define`.</span>
 
 <span class="sd">        It is a wrapper for both `And` and `Or` operator.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -300,7 +300,7 @@
         <span class="k">return</span> <span class="n">attr</span></div>
 
 <div class="viewcode-block" id="DependentOperator.get_define"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator.get_define">[docs]</a>    <span class="k">def</span> <span class="nf">get_define</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Overwrite Base.get_define to get task dependent specific get define.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Overwrite Base.get_define to get task dependent specific get define.&quot;&quot;&quot;</span>
         <span class="n">attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_define_attr</span><span class="p">()</span>
         <span class="n">dependent_define_attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">union</span><span class="p">({</span><span class="n">attr</span><span class="p">})</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_define_custom</span><span class="p">(</span>
@@ -309,7 +309,7 @@
 
 
 <div class="viewcode-block" id="And"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.And">[docs]</a><span class="k">class</span> <span class="nc">And</span><span class="p">(</span><span class="n">DependentOperator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Operator And for task dependent.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Operator And for task dependent.</span>
 
 <span class="sd">    It could accept both :class:`DependentItem` and children of :class:`DependentOperator`,</span>
 <span class="sd">    and set AND condition to those args.</span>
@@ -320,7 +320,7 @@
 
 
 <div class="viewcode-block" id="Or"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.Or">[docs]</a><span class="k">class</span> <span class="nc">Or</span><span class="p">(</span><span class="n">DependentOperator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Operator Or for task dependent.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Operator Or for task dependent.</span>
 
 <span class="sd">    It could accept both :class:`DependentItem` and children of :class:`DependentOperator`,</span>
 <span class="sd">    and set OR condition to those args.</span>
@@ -331,7 +331,7 @@
 
 
 <div class="viewcode-block" id="Dependent"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.Dependent">[docs]</a><span class="k">class</span> <span class="nc">Dependent</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task dependent object, declare behavior for dependent task to dolphinscheduler.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task dependent object, declare behavior for dependent task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dependence</span><span class="p">:</span> <span class="n">DependentOperator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">DEPENDENT</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -339,7 +339,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Override Task.task_params for dependent task.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override Task.task_params for dependent task.</span>
 
 <span class="sd">        Dependent task have some specials attribute `dependence`, and in most of the task</span>
 <span class="sd">        this attribute is None and use empty dict `{}` as default value. We do not use class</span>

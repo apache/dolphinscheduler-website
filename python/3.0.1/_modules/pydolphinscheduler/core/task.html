@@ -118,7 +118,7 @@
 
 
 <span class="k">class</span> <span class="nc">TaskRelation</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;TaskRelation object, describe the relation of exactly two tasks.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskRelation object, describe the relation of exactly two tasks.&quot;&quot;&quot;</span>
 
     <span class="c1"># Add attr `_KEY_ATTR` to overwrite :func:`__eq__`, it is make set</span>
     <span class="c1"># `Task.process_definition._task_relations` work correctly.</span>
@@ -155,7 +155,7 @@
 
 
 <div class="viewcode-block" id="Task"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task">[docs]</a><span class="k">class</span> <span class="nc">Task</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Task object, parent class for all exactly task type.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task object, parent class for all exactly task type.&quot;&quot;&quot;</span>
 
     <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;name&quot;</span><span class="p">,</span>
@@ -242,24 +242,24 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">process_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProcessDefinition</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get attribute process_definition.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute process_definition.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition</span>
 
     <span class="nd">@process_definition</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">process_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_definition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProcessDefinition</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Set attribute process_definition.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute process_definition.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_definition</span> <span class="o">=</span> <span class="n">process_definition</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">resource_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get task define attribute `resource_list`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get task define attribute `resource_list`.&quot;&quot;&quot;</span>
         <span class="n">resources</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_list</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
                 <span class="n">resources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">query_resource</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ResourceKey</span><span class="o">.</span><span class="n">ID</span><span class="p">))</span>
             <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span> <span class="ow">and</span> <span class="n">resource</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ResourceKey</span><span class="o">.</span><span class="n">ID</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                    <span class="sd">&quot;&quot;&quot;`resource_list` should be defined using List[str] with resource paths,</span>
+<span class="w">                    </span><span class="sd">&quot;&quot;&quot;`resource_list` should be defined using List[str] with resource paths,</span>
 <span class="sd">                       the use of ids to define resources will be remove in version 3.2.0.</span>
 <span class="sd">                    &quot;&quot;&quot;</span>
                 <span class="p">)</span>
@@ -268,17 +268,17 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">condition_result</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get attribute condition_result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute condition_result.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_condition_result</span>
 
     <span class="nd">@condition_result</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">condition_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">condition_result</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Set attribute condition_result.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute condition_result.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_condition_result</span> <span class="o">=</span> <span class="n">condition_result</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get task parameter object.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get task parameter object.</span>
 
 <span class="sd">        Will get result to combine _task_custom_attr and custom_attr.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -296,29 +296,29 @@
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__lshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]]):</span>
-        <span class="sd">&quot;&quot;&quot;Implement Task &lt;&lt; Task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Implement Task &lt;&lt; Task.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_upstream</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">other</span>
 
     <span class="k">def</span> <span class="fm">__rshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]]):</span>
-        <span class="sd">&quot;&quot;&quot;Implement Task &gt;&gt; Task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Implement Task &gt;&gt; Task.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">other</span>
 
     <span class="k">def</span> <span class="fm">__rrshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]]):</span>
-        <span class="sd">&quot;&quot;&quot;Call for Task &gt;&gt; [Task] because list don&#39;t have __rshift__ operators.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call for Task &gt;&gt; [Task] because list don&#39;t have __rshift__ operators.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="fm">__lshift__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="fm">__rlshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]]):</span>
-        <span class="sd">&quot;&quot;&quot;Call for Task &lt;&lt; [Task] because list don&#39;t have __lshift__ operators.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call for Task &lt;&lt; [Task] because list don&#39;t have __lshift__ operators.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="fm">__rshift__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
 <div class="viewcode-block" id="Task._set_deps"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task._set_deps">[docs]</a>    <span class="k">def</span> <span class="nf">_set_deps</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]],</span> <span class="n">upstream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set parameter tasks dependent to current task.</span>
 
 <span class="sd">        it is a wrapper for :func:`set_upstream` and :func:`set_downstream`.</span>
@@ -351,16 +351,16 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task_relation</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Task.set_upstream"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.set_upstream">[docs]</a>    <span class="k">def</span> <span class="nf">set_upstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set parameter tasks as upstream to current task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set parameter tasks as upstream to current task.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_deps</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">upstream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Task.set_downstream"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.set_downstream">[docs]</a>    <span class="k">def</span> <span class="nf">set_downstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Set parameter tasks as downstream to current task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set parameter tasks as downstream to current task.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_deps</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">upstream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
     <span class="c1"># TODO code should better generate in bulk mode when :ref: processDefinition run submit or start</span>
 <div class="viewcode-block" id="Task.gen_code_and_version"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.gen_code_and_version">[docs]</a>    <span class="k">def</span> <span class="nf">gen_code_and_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate task code and version from java gateway.</span>
 
 <span class="sd">        If task name do not exists in process definition before, if will generate new code and version id</span>
@@ -376,7 +376,7 @@
         <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Task.query_resource"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.query_resource">[docs]</a>    <span class="k">def</span> <span class="nf">query_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">full_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get resource info from java gateway, contains resource id, name.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get resource info from java gateway, contains resource id, name.&quot;&quot;&quot;</span>
         <span class="n">gateway</span> <span class="o">=</span> <span class="n">launch_gateway</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">queryResourcesFileInfo</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">process_definition</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">full_name</span>
