@@ -83,7 +83,7 @@
   <section id="pydolphinscheduler">
 <h1>PyDolphinScheduler<a class="headerlink" href="#pydolphinscheduler" title="Permalink to this heading"></a></h1>
 <p><strong>PyDolphinScheduler</strong> is Python API for <a class="reference external" href="https://dolphinscheduler.apache.org">Apache DolphinScheduler</a>,
-which allow you definition your workflow by Python code, aka workflow-as-codes.</p>
+which allow you define your workflow by Python code, aka workflow-as-codes.</p>
 <section id="history">
 <h2>History<a class="headerlink" href="#history" title="Permalink to this heading"></a></h2>
 <p>We seperated PyDolphinScheduler code base from <a class="reference external" href="https://github.com/apache/dolphinscheduler">Apache dolphinscheduler code base</a>
@@ -94,7 +94,7 @@ and all issue and pull requests should be submitted to this repository.</p>
 <li><p><strong>Clear responsibility</strong>: The code base of PyDolphinScheduler is independent of DolphinScheduler, it has its
 own users and developers, CI and test cases, even the language is different.</p></li>
 <li><p><strong>Independent release cycle</strong>: PyDolphinScheduler is a SDK, it should be released independently of DolphinScheduler.
-before we seperated, we have to release PyDolphinScheduler every time when DolphinScheduler. This brings two
+before we seperated, we have to release PyDolphinScheduler every time when DolphinScheduler released. This brings two
 main problems:</p>
 <ul>
 <li><p>DolphinScheduler release cycle is a little long for PyDolphinScheduler, because PyDolphinScheduler is a new subproject
@@ -120,12 +120,13 @@ Separating PyDolphinScheduler from DolphinScheduler can make CI run faster in bo
 <p>At Nov 7, 2022 we seperated PyDolphinScheduler. And before that, PyDolphinScheduler have the same version with DolphinScheduler.
 So the version of PyDolphinScheduler is the same as DolphinScheduler, for example PyDolphinScheduler 2.0.5 is matched with
 DolphinScheduler 2.0.5. For more details about why we seperated PyDolphinScheduler, please refer to <a class="reference internal" href="#history">History</a>.</p>
-<p>And after we seperated, we will release PyDolphinScheduler independently, and the version of PyDolphinScheduler will
-be different with DolphinScheduler, and some of PyDolphinScheduler version will not match multiple DolphinScheduler version
-because the code do not change in PyDolphinScheduler, and we will release PyDolphinScheduler but support multiple DolphinScheduler
-version due to we do not change
+<p>After being separated from the DolphinScheduler repository, PyDolphinScheduler will be released independently,
+and the version of PyDolphinScheduler will not correspond to the version of DolphinScheduler, which means some
+of the PyDolphinScheduler versions will correspond to multiple DolphinScheduler versions when there is no
+change in the PythonGateway code. While part of the code of PyDolphinScheduler will only correspond to one
+version of DolphinScheduler, if the code of the next version of
 <a class="reference external" href="https://github.com/apache/dolphinscheduler/blob/dev/dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/python/PythonGateway.java">PythonGateway</a>
-code.</p>
+has changed.</p>
 <p>We will release PyDolphinScheduler version <strong>4.0.0</strong> as the first version after we seperated, so please be ware of when you
 use PyDolphinScheduler above version 4.0.0.</p>
 <table class="docutils align-default">
@@ -160,6 +161,10 @@ use PyDolphinScheduler above version 4.0.0.</p>
 <tr class="row-even"><td><p>above 3.1.0 and prior 3.1.2</p></td>
 <td><p>3.1.0</p></td>
 <td><p>before we seperated</p></td>
+</tr>
+<tr class="row-odd"><td><p>above 3.1.2 and prior 3.1.4</p></td>
+<td><p>4.0.0</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>

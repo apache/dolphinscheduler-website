@@ -19,7 +19,7 @@ PyDolphinScheduler
 ==================
 
 **PyDolphinScheduler** is Python API for `Apache DolphinScheduler <https://dolphinscheduler.apache.org>`_,
-which allow you definition your workflow by Python code, aka workflow-as-codes.
+which allow you define your workflow by Python code, aka workflow-as-codes.
 
 History
 -------
@@ -33,7 +33,7 @@ The reason why we seperated is for the following reasons:
 - **Clear responsibility**: The code base of PyDolphinScheduler is independent of DolphinScheduler, it has its
   own users and developers, CI and test cases, even the language is different.
 - **Independent release cycle**: PyDolphinScheduler is a SDK, it should be released independently of DolphinScheduler.
-  before we seperated, we have to release PyDolphinScheduler every time when DolphinScheduler. This brings two
+  before we seperated, we have to release PyDolphinScheduler every time when DolphinScheduler released. This brings two
   main problems:
 
   - DolphinScheduler release cycle is a little long for PyDolphinScheduler, because PyDolphinScheduler is a new subproject
@@ -60,12 +60,13 @@ At Nov 7, 2022 we seperated PyDolphinScheduler. And before that, PyDolphinSchedu
 So the version of PyDolphinScheduler is the same as DolphinScheduler, for example PyDolphinScheduler 2.0.5 is matched with
 DolphinScheduler 2.0.5. For more details about why we seperated PyDolphinScheduler, please refer to `History`_.
 
-And after we seperated, we will release PyDolphinScheduler independently, and the version of PyDolphinScheduler will
-be different with DolphinScheduler, and some of PyDolphinScheduler version will not match multiple DolphinScheduler version
-because the code do not change in PyDolphinScheduler, and we will release PyDolphinScheduler but support multiple DolphinScheduler
-version due to we do not change
+After being separated from the DolphinScheduler repository, PyDolphinScheduler will be released independently,
+and the version of PyDolphinScheduler will not correspond to the version of DolphinScheduler, which means some
+of the PyDolphinScheduler versions will correspond to multiple DolphinScheduler versions when there is no
+change in the PythonGateway code. While part of the code of PyDolphinScheduler will only correspond to one
+version of DolphinScheduler, if the code of the next version of
 `PythonGateway <https://github.com/apache/dolphinscheduler/blob/dev/dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/python/PythonGateway.java>`_
-code.
+has changed.
 
 We will release PyDolphinScheduler version **4.0.0** as the first version after we seperated, so please be ware of when you
 use PyDolphinScheduler above version 4.0.0.
@@ -82,6 +83,8 @@ use PyDolphinScheduler above version 4.0.0.
 | above 3.0.1 and prior 3.1.0 | 3.0.1                      | before we seperated |
 +-----------------------------+----------------------------+---------------------+
 | above 3.1.0 and prior 3.1.2 | 3.1.0                      | before we seperated |
++-----------------------------+----------------------------+---------------------+
+| above 3.1.2 and prior 3.1.4 | 4.0.0                      |                     |
 +-----------------------------+----------------------------+---------------------+
 
 
