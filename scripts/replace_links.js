@@ -131,7 +131,7 @@ const replaceDeadLinks = (content, lang, version) => {
       `/${lang}/docs/${version}/guide/installation/cluster`
     )
     .replaceAll(
-        /((\.\.\/)*(howto\/)?)datasource-setting.md/g,
+      /((\.\.\/)*(howto\/)?)datasource-setting.md/g,
       `https://github.com/apache/dolphinscheduler/blob/${version}-release/docs/docs/${
         lang === "en-us" ? "en" : "zh"
       }/guide/howto/datasource-setting.md`
