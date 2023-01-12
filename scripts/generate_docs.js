@@ -61,7 +61,7 @@ const parseStructure = (html, index, parent) => {
   }
 };
 
-const getAnchor = (name) => name.toLowerCase().replace(/\s/g, "_");
+const getAnchor = (name) => name.toLowerCase().replace(/\s/g, "-");
 
 const addAnchors = (html) => {
   let index = 1;
