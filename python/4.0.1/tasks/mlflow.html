@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLflow &mdash; apache-dolphinscheduler 4.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OpenMLDB" href="openmldb.html" />
+    <link rel="prev" title="SageMaker" href="sagemaker.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="func_wrap.html">Python Function Decorate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condition.html">Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependent.html">Dependent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark.html">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes.html">Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sub_workflow.html">Sub Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sagemaker.html">SageMaker</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MLflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.mlflow">Dive Into</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow"><code class="docutils literal notranslate"><span class="pre">BaseMLflow</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML"><code class="docutils literal notranslate"><span class="pre">MLFlowProjectsAutoML</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm"><code class="docutils literal notranslate"><span class="pre">MLFlowProjectsBasicAlgorithm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom"><code class="docutils literal notranslate"><span class="pre">MLFlowProjectsCustom</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.MLflowDeployType"><code class="docutils literal notranslate"><span class="pre">MLflowDeployType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.MLflowJobType"><code class="docutils literal notranslate"><span class="pre">MLflowJobType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.MLflowModels"><code class="docutils literal notranslate"><span class="pre">MLflowModels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.MLflowTaskType"><code class="docutils literal notranslate"><span class="pre">MLflowTaskType</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#yaml-file-example">YAML file example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="openmldb.html">OpenMLDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dvc.html">DVC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Tasks</a></li>
+      <li class="breadcrumb-item active">MLflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tasks/mlflow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mlflow">
+<h1>MLflow<a class="headerlink" href="#mlflow" title="Permalink to this heading"></a></h1>
+<p>A MLflow task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A example workflow for task mlflow.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.workflow</span> <span class="kn">import</span> <span class="n">Workflow</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.tasks.mlflow</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MLflowDeployType</span><span class="p">,</span>
+    <span class="n">MLflowModels</span><span class="p">,</span>
+    <span class="n">MLFlowProjectsAutoML</span><span class="p">,</span>
+    <span class="n">MLFlowProjectsBasicAlgorithm</span><span class="p">,</span>
+    <span class="n">MLFlowProjectsCustom</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">mlflow_tracking_uri</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:5000&quot;</span>
+
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_mlflow_example&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+
+    <span class="c1"># run custom mlflow project to train model</span>
+    <span class="n">train_custom</span> <span class="o">=</span> <span class="n">MLFlowProjectsCustom</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;train_xgboost_native&quot;</span><span class="p">,</span>
+        <span class="n">repository</span><span class="o">=</span><span class="s2">&quot;https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native&quot;</span><span class="p">,</span>
+        <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="s2">&quot;-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9&quot;</span><span class="p">,</span>
+        <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;xgboost&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># run automl to train model</span>
+    <span class="n">train_automl</span> <span class="o">=</span> <span class="n">MLFlowProjectsAutoML</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;train_automl&quot;</span><span class="p">,</span>
+        <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="s2">&quot;time_budget=30;estimator_list=[&#39;lgbm&#39;]&quot;</span><span class="p">,</span>
+        <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;automl_iris&quot;</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;iris_A&quot;</span><span class="p">,</span>
+        <span class="n">automl_tool</span><span class="o">=</span><span class="s2">&quot;flaml&quot;</span><span class="p">,</span>
+        <span class="n">data_path</span><span class="o">=</span><span class="s2">&quot;/data/examples/iris&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Using DOCKER to deploy model from train_automl</span>
+    <span class="n">deploy_docker</span> <span class="o">=</span> <span class="n">MLflowModels</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;deploy_docker&quot;</span><span class="p">,</span>
+        <span class="n">model_uri</span><span class="o">=</span><span class="s2">&quot;models:/iris_A/Production&quot;</span><span class="p">,</span>
+        <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
+        <span class="n">deploy_mode</span><span class="o">=</span><span class="n">MLflowDeployType</span><span class="o">.</span><span class="n">DOCKER</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">7002</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">train_automl</span> <span class="o">&gt;&gt;</span> <span class="n">deploy_docker</span>
+
+    <span class="c1"># run lightgbm to train model</span>
+    <span class="n">train_basic_algorithm</span> <span class="o">=</span> <span class="n">MLFlowProjectsBasicAlgorithm</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;train_basic_algorithm&quot;</span><span class="p">,</span>
+        <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="s2">&quot;n_estimators=200;learning_rate=0.2&quot;</span><span class="p">,</span>
+        <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;basic_algorithm_iris&quot;</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;iris_B&quot;</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;lightgbm&quot;</span><span class="p">,</span>
+        <span class="n">data_path</span><span class="o">=</span><span class="s2">&quot;/data/examples/iris&quot;</span><span class="p">,</span>
+        <span class="n">search_params</span><span class="o">=</span><span class="s2">&quot;max_depth=[5, 10];n_estimators=[100, 200]&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Using MLFLOW to deploy model from training lightgbm project</span>
+    <span class="n">deploy_mlflow</span> <span class="o">=</span> <span class="n">MLflowModels</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;deploy_mlflow&quot;</span><span class="p">,</span>
+        <span class="n">model_uri</span><span class="o">=</span><span class="s2">&quot;models:/iris_B/Production&quot;</span><span class="p">,</span>
+        <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
+        <span class="n">deploy_mode</span><span class="o">=</span><span class="n">MLflowDeployType</span><span class="o">.</span><span class="n">MLFLOW</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">7001</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">train_basic_algorithm</span> <span class="o">&gt;&gt;</span> <span class="n">deploy_mlflow</span>
+
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+
+</pre></div>
+</div>
+</section>
+<section id="module-pydolphinscheduler.tasks.mlflow">
+<span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.tasks.mlflow" title="Permalink to this heading"></a></h2>
+<p>Task mlflow.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.BaseMLflow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">BaseMLflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mlflow_tracking_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#BaseMLflow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
+<p>Base MLflow task.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.BaseMLflow._child_task_mlflow_attr">
+<span class="sig-name descname"><span class="pre">_child_task_mlflow_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow._child_task_mlflow_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.BaseMLflow._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.BaseMLflow._task_custom_attr">
+<span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'mlflow_task_type',</span> <span class="pre">'mlflow_tracking_uri'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow._task_custom_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.BaseMLflow._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.BaseMLflow._timeout">
+<span class="sig-name descname"><span class="pre">_timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">timedelta</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow._timeout" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.BaseMLflow._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.BaseMLflow.mlflow_task_type">
+<span class="sig-name descname"><span class="pre">mlflow_task_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow.mlflow_task_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.BaseMLflow.task_params">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">task_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow.task_params" title="Permalink to this definition"></a></dt>
+<dd><p>Return task params.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">MLFlowProjectsAutoML</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">automl_tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'flaml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mlflow_tracking_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'http://127.0.0.1:5000'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#MLFlowProjectsAutoML"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow" title="pydolphinscheduler.tasks.mlflow.BaseMLflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMLflow</span></code></a></p>
+<p>Task MLflow projects object, declare behavior for AutoML task to dolphinscheduler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – task name</p></li>
+<li><p><strong>data_path</strong> – data path of MLflow Project, Support git address and directory on worker.</p></li>
+<li><p><strong>automl_tool</strong> – The AutoML tool used, currently supports autosklearn and flaml.</p></li>
+<li><p><strong>mlflow_tracking_uri</strong> – MLflow tracking server uri, default is <a class="reference external" href="http://127.0.0.1:5000">http://127.0.0.1:5000</a></p></li>
+<li><p><strong>experiment_name</strong> – MLflow experiment name, default is empty</p></li>
+<li><p><strong>model_name</strong> – MLflow model name, default is empty</p></li>
+<li><p><strong>parameters</strong> – MLflow project parameters, default is empty</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._child_task_mlflow_attr">
+<span class="sig-name descname"><span class="pre">_child_task_mlflow_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'automl_tool',</span> <span class="pre">'data_path',</span> <span class="pre">'experiment_name',</span> <span class="pre">'mlflow_job_type',</span> <span class="pre">'model_name',</span> <span class="pre">'params',</span> <span class="pre">'register_model'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._child_task_mlflow_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._timeout">
+<span class="sig-name descname"><span class="pre">_timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">timedelta</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._timeout" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML.mlflow_job_type">
+<span class="sig-name descname"><span class="pre">mlflow_job_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AutoML'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML.mlflow_job_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML.mlflow_task_type">
+<span class="sig-name descname"><span class="pre">mlflow_task_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLflow</span> <span class="pre">Projects'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsAutoML.mlflow_task_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">MLFlowProjectsBasicAlgorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'lightgbm'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mlflow_tracking_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'http://127.0.0.1:5000'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#MLFlowProjectsBasicAlgorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow" title="pydolphinscheduler.tasks.mlflow.BaseMLflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMLflow</span></code></a></p>
+<p>Task MLflow projects object, declare behavior for BasicAlgorithm task to dolphinscheduler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – task name</p></li>
+<li><p><strong>data_path</strong> – data path of MLflow Project, Support git address and directory on worker.</p></li>
+<li><p><strong>algorithm</strong> – The selected algorithm currently supports LR, SVM, LightGBM and XGboost
+based on scikit-learn form.</p></li>
+<li><p><strong>mlflow_tracking_uri</strong> – MLflow tracking server uri, default is <a class="reference external" href="http://127.0.0.1:5000">http://127.0.0.1:5000</a></p></li>
+<li><p><strong>experiment_name</strong> – MLflow experiment name, default is empty</p></li>
+<li><p><strong>model_name</strong> – MLflow model name, default is empty</p></li>
+<li><p><strong>parameters</strong> – MLflow project parameters, default is empty</p></li>
+<li><p><strong>search_params</strong> – Whether to search the parameters, default is empty</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._child_task_mlflow_attr">
+<span class="sig-name descname"><span class="pre">_child_task_mlflow_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'algorithm',</span> <span class="pre">'data_path',</span> <span class="pre">'experiment_name',</span> <span class="pre">'mlflow_job_type',</span> <span class="pre">'model_name',</span> <span class="pre">'params',</span> <span class="pre">'register_model',</span> <span class="pre">'search_params'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._child_task_mlflow_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._timeout">
+<span class="sig-name descname"><span class="pre">_timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">timedelta</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._timeout" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm.mlflow_job_type">
+<span class="sig-name descname"><span class="pre">mlflow_job_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BasicAlgorithm'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm.mlflow_job_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm.mlflow_task_type">
+<span class="sig-name descname"><span class="pre">mlflow_task_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLflow</span> <span class="pre">Projects'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsBasicAlgorithm.mlflow_task_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">MLFlowProjectsCustom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mlflow_tracking_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'http://127.0.0.1:5000'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'master'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#MLFlowProjectsCustom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow" title="pydolphinscheduler.tasks.mlflow.BaseMLflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMLflow</span></code></a></p>
+<p>Task MLflow projects object, declare behavior for MLflow Custom projects task to dolphinscheduler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – task name</p></li>
+<li><p><strong>repository</strong> – Repository url of MLflow Project, Support git address and directory on worker.
+If it’s in a subdirectory, We add # to support this (same as mlflow run) ,
+for example <a class="reference external" href="https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native">https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native</a>.</p></li>
+<li><p><strong>mlflow_tracking_uri</strong> – MLflow tracking server uri, default is <a class="reference external" href="http://127.0.0.1:5000">http://127.0.0.1:5000</a></p></li>
+<li><p><strong>experiment_name</strong> – MLflow experiment name, default is empty</p></li>
+<li><p><strong>parameters</strong> – MLflow project parameters, default is empty</p></li>
+<li><p><strong>version</strong> – MLflow project version, default is master</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._child_task_mlflow_attr">
+<span class="sig-name descname"><span class="pre">_child_task_mlflow_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'experiment_name',</span> <span class="pre">'mlflow_job_type',</span> <span class="pre">'mlflow_project_repository',</span> <span class="pre">'mlflow_project_version',</span> <span class="pre">'params'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._child_task_mlflow_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._timeout">
+<span class="sig-name descname"><span class="pre">_timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">timedelta</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._timeout" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom.mlflow_job_type">
+<span class="sig-name descname"><span class="pre">mlflow_job_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CustomProject'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom.mlflow_job_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom.mlflow_task_type">
+<span class="sig-name descname"><span class="pre">mlflow_task_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLflow</span> <span class="pre">Projects'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLFlowProjectsCustom.mlflow_task_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowDeployType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">MLflowDeployType</span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#MLflowDeployType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowDeployType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<p>MLflow deploy type.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowDeployType.DOCKER">
+<span class="sig-name descname"><span class="pre">DOCKER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DOCKER'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowDeployType.DOCKER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowDeployType.MLFLOW">
+<span class="sig-name descname"><span class="pre">MLFLOW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLFLOW'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowDeployType.MLFLOW" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowJobType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">MLflowJobType</span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#MLflowJobType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowJobType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<p>MLflow job type.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowJobType.AUTOML">
+<span class="sig-name descname"><span class="pre">AUTOML</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AutoML'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowJobType.AUTOML" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowJobType.BASIC_ALGORITHM">
+<span class="sig-name descname"><span class="pre">BASIC_ALGORITHM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BasicAlgorithm'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowJobType.BASIC_ALGORITHM" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowJobType.CUSTOM_PROJECT">
+<span class="sig-name descname"><span class="pre">CUSTOM_PROJECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CustomProject'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowJobType.CUSTOM_PROJECT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowModels">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">MLflowModels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mlflow_tracking_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'http://127.0.0.1:5000'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deploy_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'DOCKER'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#MLflowModels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pydolphinscheduler.tasks.mlflow.BaseMLflow" title="pydolphinscheduler.tasks.mlflow.BaseMLflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMLflow</span></code></a></p>
+<p>Task MLflow models object, declare behavior for MLflow models task to dolphinscheduler.</p>
+<p>Deploy machine learning models in diverse serving environments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – task name</p></li>
+<li><p><strong>model_uri</strong> – Model-URI of MLflow , support models:/&lt;model_name&gt;/suffix format and runs:/ format.
+See https://mlflow.org/docs/latest/tracking.html#artifact-stores</p></li>
+<li><p><strong>mlflow_tracking_uri</strong> – MLflow tracking server uri, default is <a class="reference external" href="http://127.0.0.1:5000">http://127.0.0.1:5000</a></p></li>
+<li><p><strong>deploy_mode</strong> – MLflow deploy mode, support MLFLOW, DOCKER, default is DOCKER</p></li>
+<li><p><strong>port</strong> – deploy port, default is 7000</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowModels._child_task_mlflow_attr">
+<span class="sig-name descname"><span class="pre">_child_task_mlflow_attr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'deploy_model_key',</span> <span class="pre">'deploy_port',</span> <span class="pre">'deploy_type'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels._child_task_mlflow_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowModels._downstream_task_codes">
+<span class="sig-name descname"><span class="pre">_downstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels._downstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowModels._task_relation">
+<span class="sig-name descname"><span class="pre">_task_relation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">TaskRelation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels._task_relation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowModels._timeout">
+<span class="sig-name descname"><span class="pre">_timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">timedelta</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels._timeout" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowModels._upstream_task_codes">
+<span class="sig-name descname"><span class="pre">_upstream_task_codes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels._upstream_task_codes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowModels.mlflow_task_type">
+<span class="sig-name descname"><span class="pre">mlflow_task_type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLflow</span> <span class="pre">Models'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowModels.mlflow_task_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowTaskType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.mlflow.</span></span><span class="sig-name descname"><span class="pre">MLflowTaskType</span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/mlflow.html#MLflowTaskType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowTaskType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<p>MLflow task type.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowTaskType.MLFLOW_MODELS">
+<span class="sig-name descname"><span class="pre">MLFLOW_MODELS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLflow</span> <span class="pre">Models'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowTaskType.MLFLOW_MODELS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.mlflow.MLflowTaskType.MLFLOW_PROJECTS">
+<span class="sig-name descname"><span class="pre">MLFLOW_PROJECTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MLflow</span> <span class="pre">Projects'</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.mlflow.MLflowTaskType.MLFLOW_PROJECTS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="yaml-file-example">
+<h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Permalink to this heading"></a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable `mlflow_tracking_uri`</span>
+<span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;mlflow_tracking_uri</span><span class="w"> </span><span class="s">&quot;http://127.0.0.1:5000&quot;</span><span class="w"> </span>
+
+<span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MLflow&quot;</span>
+
+<span class="c1"># Define the tasks within the workflow</span>
+<span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_xgboost_native</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFlowProjectsCustom</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native</span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9</span>
+<span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xgboost</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_automl</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFlowProjectsAutoML</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time_budget=30;estimator_list=[&#39;lgbm&#39;]</span>
+<span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">automl_iris</span>
+<span class="w">    </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iris_A</span>
+<span class="w">    </span><span class="nt">automl_tool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flaml</span>
+<span class="w">    </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/examples/iris</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy_docker</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLflowModels</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">train_automl</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">model_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">models:/iris_A/Production</span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOCKER</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7002</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_basic_algorithm</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFlowProjectsBasicAlgorithm</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">n_estimators=200;learning_rate=0.2</span>
+<span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">basic_algorithm_iris</span>
+<span class="w">    </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iris_B</span>
+<span class="w">    </span><span class="nt">algorithm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lightgbm</span>
+<span class="w">    </span><span class="nt">data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/examples/iris</span>
+<span class="w">    </span><span class="nt">search_params</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">max_depth=[5, 10];n_estimators=[100, 200]</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy_mlflow</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">train_basic_algorithm</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLflowModels</span>
+<span class="w">    </span><span class="nt">model_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">models:/iris_B/Production</span>
+<span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
+<span class="w">    </span><span class="nt">deploy_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFLOW</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7001</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sagemaker.html" class="btn btn-neutral float-left" title="SageMaker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="openmldb.html" class="btn btn-neutral float-right" title="OpenMLDB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.0.1
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../../3.0.0/index.html">3.0.0</a></dd>
+      <dd><a href="../../3.0.1/index.html">3.0.1</a></dd>
+      <dd><a href="../../3.1.0/tasks/mlflow.html">3.1.0</a></dd>
+      <dd><a href="../../4.0.0/tasks/mlflow.html">4.0.0</a></dd>
+      <dd><a href="mlflow.html">4.0.1</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../main/tasks/mlflow.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
