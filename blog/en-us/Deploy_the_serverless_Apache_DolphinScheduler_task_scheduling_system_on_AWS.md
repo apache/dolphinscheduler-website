@@ -246,7 +246,7 @@ spec:
 2. Communicate about DolphinScheduler through the GitHub issue https://github.com/apache/dolphinscheduler
 ## Reference link
 
-* Dolphinschduler architecture design: https://DolphinScheduler.apache.org/zh-cn/docs/3.1.2/architecture/design
+* Dolphinschduler architecture design: https://dolphinScheduler.apache.org/zh-cn/docs/3.1.2/architecture/design
 * EKS subnet tag solution: https://aws.amazon.com/cn/premiumsupport/knowledge-center/eks-load-balancer-controller-subnets/
 * Running stateful workloads with Amazon EKS on AWS Fargate using Amazon EFS: https://aws.amazon.com/blogs/containers/running-stateful-workloads-with-amazon-eks-on-aws-fargate-using-amazon-efs /
 * Serverless on AWS: https://aws.amazon.com/cn/serverless/
