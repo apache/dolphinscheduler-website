@@ -7,33 +7,36 @@ export function useTitle() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (location.pathname.includes("docs")) {
-      document.title = t("documentation_title");
-      return;
+    const pages = [
+      "docs",
+      "community",
+      "events",
+      "blog",
+      "use_case",
+      "support",
+      "download",
+    ];
+
+    let title = "Apache DolphinScheduler";
+    let keywords = "";
+
+    pages.some((item) => {
+      if (location.pathname.includes(item)) {
+        title = t(`${item}_title`);
+        keywords = t(`keywords_${item}`);
+        return true;
+      }
+      return false;
+    });
+
+    document.title = title;
+    const descriptionElement = document.querySelector(`meta[name=description]`);
+    const keywordsElement = document.querySelector(`meta[name=keywords]`);
+    if (keywordsElement) {
+      keywordsElement.setAttribute("content", t(keywords));
     }
-    if (location.pathname.includes("community")) {
-      document.title = t("community_title");
-      return;
-    }
-    if (location.pathname.includes("events")) {
-      document.title = t("event_title");
-      return;
-    }
-    if (location.pathname.includes("blog")) {
-      document.title = t("blog_title");
-      return;
-    }
-    if (location.pathname.includes("use_case")) {
-      document.title = t("cases_title");
-      return;
-    }
-    if (location.pathname.includes("support")) {
-      document.title = t("support_title");
-      return;
-    }
-    if (location.pathname.includes("download")) {
-      document.title = t("download_title");
-      return;
+    if (descriptionElement) {
+      descriptionElement.setAttribute("content", t("description"));
     }
   }, [location, t]);
 }

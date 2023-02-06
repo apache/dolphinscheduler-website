@@ -79,15 +79,7 @@ const addAnchors = (html) => {
 
 const getMenu = (list, data, version, lang, isDeployment, location) => {
   list.forEach((item) => {
-    if (
-      [
-        "FAQ",
-        "Older Versions",
-        "Contribution",
-        "历史版本",
-        "贡献指南",
-      ].includes(item.title)
-    ) {
+    if (["FAQ", "Older Versions", "历史版本"].includes(item.title)) {
       return;
     }
     const temp = {
@@ -237,6 +229,24 @@ const wirteSearchDocData = () => {
 const parseDocsMenu = () => {
   const sourcePath = BASE + "/config/docs";
   const docs = fs.readdirSync(sourcePath);
+  const excludeContributionVersions = [
+    "1.2.0",
+    "1.2.1",
+    "1.3.1",
+    "1.3.2",
+    "1.3.3",
+    "1.3.4",
+    "1.3.5",
+    "1.3.6",
+    "1.3.8",
+    "1.3.9",
+    "2.0.0",
+    "2.0.1",
+    "2.0.2",
+    "2.0.3",
+    "2.0.5",
+    "2.0.6",
+  ];
   docs.forEach((doc) => {
     const filePath = path.join(sourcePath, doc);
     const fileInfo = path.parse(filePath);
@@ -247,8 +257,30 @@ const parseDocsMenu = () => {
 
     const version = getVersion(fileInfo.name);
 
-    getMenu(fileContent["en-us"].sidemenu, enUs, version, "en-us", false);
-    getMenu(fileContent["zh-cn"].sidemenu, zhCn, version, "zh-cn", false);
+    const enMenu = fileContent["en-us"].sidemenu;
+    const zhMenu = fileContent["zh-cn"].sidemenu;
+
+    if (!excludeContributionVersions.includes(version)) {
+      const contributionMenuFn = require(`${BASE}/config/contribution_menu.js`);
+      if (contributionMenuFn && typeof contributionMenuFn === "function") {
+        const contributionMenu = contributionMenuFn(version);
+        enMenu.some((item, index) => {
+          return (
+            item.title === "Contribution" &&
+            (enMenu[index] = contributionMenu["en-us"])
+          );
+        });
+        zhMenu.some((item, index) => {
+          return (
+            item.title === "贡献指南" &&
+            (zhMenu[index] = contributionMenu["zh-cn"])
+          );
+        });
+      }
+    }
+
+    getMenu(enMenu, enUs, version, "en-us", false);
+    getMenu(zhMenu, zhCn, version, "zh-cn", false);
 
     versionData.push(version);
 
