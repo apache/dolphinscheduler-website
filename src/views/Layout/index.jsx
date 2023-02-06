@@ -3,7 +3,18 @@ import { useParams, Navigate, Outlet } from "react-router-dom";
 import { NavBar, Footer } from "../../components";
 import { getLanguageCodeFromLS } from "../../utils/getLanguageCodeFromLS";
 import { LocaleContext } from "../../LocaleContext";
+import { useTitle } from "./useTitle";
 import "./index.scss";
+
+const Content = () => {
+  useTitle();
+
+  return (
+    <section className="ds-content">
+      <Outlet />
+    </section>
+  );
+};
 
 const Layout = () => {
   const params = useParams();
@@ -30,9 +41,7 @@ const Layout = () => {
         >
           <NavBar />
           <article className="ds-main" id="ds-scroll-content">
-            <section className="ds-content">
-              <Outlet />
-            </section>
+            <Content />
             <FloatButton.BackTop
               target={() => document.getElementById("ds-scroll-content")}
             />
