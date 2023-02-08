@@ -6,7 +6,7 @@ DolphinScheduler definition of parameter values ​​involved in may come from 
 * [Parameter Context](context.md): Parameters passed by upstream nodes
 * [Local Parameter](local.md)：The node's own parameters, which is the parameters defined by the user in [Custom Parameters]. The user can define the value of this part of the parameters at the time of workflow definition.
 
-Because the value of a parameter has multiple sources, when the parameter name is the same, there needs to be a parameter priority problem. The priority of DolphinScheduler parameters from high to low is: `Global Parameter > Parameter Context > Local Parameter`
+Because the value of a parameter has multiple sources, when the parameter name is the same, there needs to be a parameter priority problem. The priority of DolphinScheduler parameters from high to low is: `Startup Parameter > Local Parameter > Parameter Context > Global Parameter`
 
 In the case of parameters passed by the upstream task, there may be multiple tasks upstream to pass parameters to the downstream. When the parameter names passed upstream are the same:
 
