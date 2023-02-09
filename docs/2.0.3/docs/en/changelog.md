@@ -2,7 +2,7 @@
 
 ## Download
 
-https://dolphinscheduler.apache.org/en-us/download/download.html
+https://dolphinscheduler.apache.org/en-us/download
 
 ## Features
 
