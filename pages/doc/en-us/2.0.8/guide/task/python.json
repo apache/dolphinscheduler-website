@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"python-node\">Python Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Use <code>Python Task</code> to create a python-type task and execute python scripts. When the worker executes <code>Python Task</code>,\nit will generate a temporary python script, and executes the script by the Linux user with the same name as the tenant.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click Project Management-Project Name-Workflow Definition, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>\n<li>Drag <img src=\"/img/tasks/icons/python.png\" width=\"15\"/> from the toolbar to the canvas.</li>\n</ul>\n<h2 id=\"task-parameter\">Task Parameter</h2>\n<ul>\n<li>Node name: The node name in a workflow definition is unique.</li>\n<li>Run flag: Identifies whether this node can be scheduled normally, if it does not need to be executed, you can turn on the prohibition switch.</li>\n<li>Descriptive information: Describe the function of the node.</li>\n<li>Task priority: When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</li>\n<li>Worker grouping: Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</li>\n<li>Environment Name: Configure the environment name in which to run the script.</li>\n<li>Number of failed retry attempts: The failure task resubmitting times. It supports drop-down and hand-filling.</li>\n<li>Failed retry interval: The time interval for resubmitting the task after a failed task. It supports drop-down and hand-filling.</li>\n<li>Timeout alarm: Check the timeout alarm and timeout failure. When the task exceeds the &quot;timeout period&quot;, an alarm email will send and the task execution will fail.</li>\n<li>Script: Python program developed by the user.</li>\n<li>Resource: Refers to the list of resource files that need to be called in the script, and the files uploaded or created by the resource center-file management.</li>\n<li>Custom parameters: It is the user-defined parameters of Python, which will replace the content with ${variable} in the script.</li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"simply-print\">Simply Print</h3>\n<p>This example simulates a common task that runs by a simple command. The example is to print one line in the log file, as shown in the following figure:\n&quot;This is a demo of python task&quot;.</p>\n<p><img src=\"/img/tasks/demo/python.jpg\" alt=\"demo-python-simple\"></p>\n<pre><code class=\"language-python\"><span class=\"hljs-built_in\">print</span>(<span class=\"hljs-string\">&quot;This is a demo of python task&quot;</span>)\n</code></pre>\n<h3 id=\"custom-parameters\">Custom Parameters</h3>\n<p>This example simulates a custom parameter task. We use parameters for reusing existing tasks as template or coping with the dynamic task. In this case,\nwe declare a custom parameter named &quot;param_key&quot;, with the value &quot;param_val&quot;. Then we use echo to print the parameter &quot;${param_key}&quot; we just declared.\nAfter running this example, we would see &quot;param_val&quot; print in the log.</p>\n<p><img src=\"/img/tasks/demo/python_custom_param.jpg\" alt=\"demo-python-custom-param\"></p>\n<pre><code class=\"language-python\"><span class=\"hljs-built_in\">print</span>(<span class=\"hljs-string\">&quot;${param_key}&quot;</span>)\n</code></pre>\n<h2 id=\"notice\">Notice</h2>\n<p>None</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Python"
+  ],
+  "time": "2023-02-08",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Simply Print",
+          "children": [],
+          "anchor": "simply-print"
+        },
+        {
+          "title": "Custom Parameters",
+          "children": [],
+          "anchor": "custom-parameters"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Simply Print",
+          "children": [],
+          "anchor": "simply-print"
+        },
+        {
+          "title": "Custom Parameters",
+          "children": [],
+          "anchor": "custom-parameters"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameter",
+      "children": [
+        {
+          "title": "Simply Print",
+          "children": [],
+          "anchor": "simply-print"
+        },
+        {
+          "title": "Custom Parameters",
+          "children": [],
+          "anchor": "custom-parameters"
+        }
+      ],
+      "anchor": "task-parameter"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Simply Print",
+          "children": [],
+          "anchor": "simply-print"
+        },
+        {
+          "title": "Custom Parameters",
+          "children": [],
+          "anchor": "custom-parameters"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Notice",
+      "children": [
+        {
+          "title": "Simply Print",
+          "children": [],
+          "anchor": "simply-print"
+        },
+        {
+          "title": "Custom Parameters",
+          "children": [],
+          "anchor": "custom-parameters"
+        }
+      ],
+      "anchor": "notice"
+    }
+  ],
+  "title": "Python Node",
+  "link": "/guide/task/python"
+}
