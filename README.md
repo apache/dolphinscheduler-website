@@ -29,7 +29,7 @@ If you have higher version of node installed, you may consider `nvm` to allow di
 
 1. Follow the [instructions](http://nvm.sh) to install nvm
 2. Run `nvm install v18.12.1` to install node v18
-3. Run `nvm use v18.12.1` to switch the working environment to node v10
+3. Run `nvm use v18.12.1` to switch the working environment to node v18
 
 Then you are all set to run and build the website. Follow the build instruction above for the details.
 
