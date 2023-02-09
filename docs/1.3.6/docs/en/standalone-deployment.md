@@ -14,7 +14,7 @@
 
 # 2、Download the binary tar.gz package.
 
-- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [download](https://dolphinscheduler.apache.org/en-us/download/download.html), download package, move to deployment directory and uncompress it.
+- Please download the latest version installation package to the server deployment directory. For example, use /opt/dolphinscheduler as the installation and deployment directory. Download address: [download](https://dolphinscheduler.apache.org/en-us/download), download package, move to deployment directory and uncompress it.
 
 ```shell
 # Create the deployment directory. Please do not choose a high-privilege directory such as /root or /home.
