@@ -1,0 +1,77 @@
+{
+  "__html": "<h1 id=\"amazon-emr\">Amazon EMR</h1>\n<h2 id=\"综述\">综述</h2>\n<p>Amazon EMR 任务类型，用于在AWS上操作EMR集群并执行计算任务。\n后台使用 <a href=\"https://aws.amazon.com/cn/sdk-for-java/\">aws-java-sdk</a> 将JSON参数转换为任务对象，提交到AWS，目前支持两种程序类型：</p>\n<ul>\n<li><code>RUN_JOB_FLOW</code> 使用 <a href=\"https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html#API_RunJobFlow_Examples\">API_RunJobFlow</a> 提交 <a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/elasticmapreduce/model/RunJobFlowRequest.html\">RunJobFlowRequest</a> 对象</li>\n<li><code>ADD_JOB_FLOW_STEPS</code> 使用 <a href=\"https://docs.aws.amazon.com/emr/latest/APIReference/API_AddJobFlowSteps.html#API_AddJobFlowSteps_Examples\">API_AddJobFlowSteps</a> 提交 <a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/elasticmapreduce/model/AddJobFlowStepsRequest.html\">AddJobFlowStepsRequest</a> 对象</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.1.4/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>程序类型</td>\n<td>选择程序类型，如果是<code>RUN_JOB_FLOW</code>，则需要填写<code>jobFlowDefineJson</code>，如果是<code>ADD_JOB_FLOW_STEPS</code>，则需要填写<code>stepsDefineJson</code></td>\n</tr>\n<tr>\n<td>jobFlowDefineJson</td>\n<td><a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/elasticmapreduce/model/RunJobFlowRequest.html\">RunJobFlowRequest</a> 对象对应的JSON，详细JSON定义参见 <a href=\"https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html#API_RunJobFlow_Examples\">API_RunJobFlow_Examples</a></td>\n</tr>\n<tr>\n<td>stepsDefineJson</td>\n<td><a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/elasticmapreduce/model/AddJobFlowStepsRequest.html\">AddJobFlowStepsRequest</a> 对象对应的JSON，详细JSON定义参见 <a href=\"https://docs.aws.amazon.com/emr/latest/APIReference/API_AddJobFlowSteps.html#API_AddJobFlowSteps_Examples\">API_AddJobFlowSteps_Examples</a></td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"创建emr集群并运行steps\">创建EMR集群并运行Steps</h3>\n<p>该样例展示了如何创建<code>RUN_JOB_FLOW</code>类型<code>EMR</code>任务节点，以执行<code>SparkPi</code>为例，该任务会创建一个<code>EMR</code>集群，并且执行<code>SparkPi</code>示例程序。\n<img src=\"/img/tasks/demo/emr_run_job_flow.png\" alt=\"RUN_JOB_FLOW\"></p>\n<p>jobFlowDefineJson 参数样例</p>\n<pre><code class=\"language-json\"><span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;SparkPi&quot;</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;ReleaseLabel&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;emr-5.34.0&quot;</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;Applications&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n    <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;Spark&quot;</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">]</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;Instances&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;InstanceGroups&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n      <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;Primary node&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;InstanceRole&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;MASTER&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;InstanceType&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;m4.xlarge&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;InstanceCount&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-number\">1</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">]</span><span class=\"hljs-punctuation\">,</span>\n    <span class=\"hljs-attr\">&quot;KeepJobFlowAliveWhenNoSteps&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-literal\"><span class=\"hljs-keyword\">false</span></span><span class=\"hljs-punctuation\">,</span>\n    <span class=\"hljs-attr\">&quot;TerminationProtected&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-literal\"><span class=\"hljs-keyword\">false</span></span>\n  <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;Steps&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n    <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;calculate_pi&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;ActionOnFailure&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;CONTINUE&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;HadoopJarStep&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;Jar&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;command-runner.jar&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;Args&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n          <span class=\"hljs-string\">&quot;/usr/lib/spark/bin/run-example&quot;</span><span class=\"hljs-punctuation\">,</span>\n          <span class=\"hljs-string\">&quot;SparkPi&quot;</span><span class=\"hljs-punctuation\">,</span>\n          <span class=\"hljs-string\">&quot;15&quot;</span>\n        <span class=\"hljs-punctuation\">]</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">]</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;JobFlowRole&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;EMR_EC2_DefaultRole&quot;</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;ServiceRole&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;EMR_DefaultRole&quot;</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre>\n<h3 id=\"向运行中的emr集群添加step\">向运行中的EMR集群添加Step</h3>\n<p>该样例展示了如何创建<code>ADD_JOB_FLOW_STEPS</code>类型<code>EMR</code>任务节点，以执行<code>SparkPi</code>为例，该任务会向运行中的<code>EMR</code>集群添加一个<code>SparkPi</code>示例程序。\n<img src=\"/img/tasks/demo/emr_add_job_flow_steps.png\" alt=\"ADD_JOB_FLOW_STEPS\">\n<img src=\"/img/tasks/demo/emr_jobFlowId.png\" alt=\"JobFlowId\"></p>\n<p>stepsDefineJson 参数样例</p>\n<pre><code class=\"language-json\"><span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;JobFlowId&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;j-3V628TKAERHP8&quot;</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;Steps&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n    <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;calculate_pi&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;ActionOnFailure&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;CONTINUE&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;HadoopJarStep&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;Jar&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;command-runner.jar&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;Args&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n          <span class=\"hljs-string\">&quot;/usr/lib/spark/bin/run-example&quot;</span><span class=\"hljs-punctuation\">,</span>\n          <span class=\"hljs-string\">&quot;SparkPi&quot;</span><span class=\"hljs-punctuation\">,</span>\n          <span class=\"hljs-string\">&quot;15&quot;</span>\n        <span class=\"hljs-punctuation\">]</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">]</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre>\n<h2 id=\"注意事项：\">注意事项：</h2>\n<ul>\n<li>EMR 任务类型的故障转移尚未实现。目前，DolphinScheduler 仅支持对 yarn task type 进行故障转移。其他任务类型，如 EMR 任务、k8s 任务尚未准备好。</li>\n<li><code>stepsDefineJson</code> 一个任务定义仅支持关联单个step，这样可以更好的保证任务状态的可靠性。</li>\n</ul>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Amazon EMR"
+  ],
+  "time": "2023-02-24",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "创建EMR集群并运行Steps",
+          "children": [],
+          "anchor": "创建emr集群并运行steps"
+        },
+        {
+          "title": "向运行中的EMR集群添加Step",
+          "children": [],
+          "anchor": "向运行中的emr集群添加step"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "创建EMR集群并运行Steps",
+          "children": [],
+          "anchor": "创建emr集群并运行steps"
+        },
+        {
+          "title": "向运行中的EMR集群添加Step",
+          "children": [],
+          "anchor": "向运行中的emr集群添加step"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "创建EMR集群并运行Steps",
+          "children": [],
+          "anchor": "创建emr集群并运行steps"
+        },
+        {
+          "title": "向运行中的EMR集群添加Step",
+          "children": [],
+          "anchor": "向运行中的emr集群添加step"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "注意事项：",
+      "children": [
+        {
+          "title": "创建EMR集群并运行Steps",
+          "children": [],
+          "anchor": "创建emr集群并运行steps"
+        },
+        {
+          "title": "向运行中的EMR集群添加Step",
+          "children": [],
+          "anchor": "向运行中的emr集群添加step"
+        }
+      ],
+      "anchor": "注意事项："
+    }
+  ],
+  "title": "Amazon EMR",
+  "link": "/guide/task/emr"
+}

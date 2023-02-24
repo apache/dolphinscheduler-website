@@ -1,0 +1,165 @@
+{
+  "__html": "<h1 id=\"openmldb-节点\">OpenMLDB 节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p><a href=\"https://openmldb.ai/\">OpenMLDB</a> 是一个优秀的开源机器学习数据库，提供生产级数据及特征开发全栈解决方案。</p>\n<p>OpenMLDB任务组件可以连接OpenMLDB集群执行任务。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏的 <img src=\"/img/tasks/icons/openmldb.png\" width=\"15\"/> 任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.1.4/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>zookeeper地址</td>\n<td>OpenMLDB集群连接地址中的zookeeper地址, e.g. 127.0.0.1:2181</td>\n</tr>\n<tr>\n<td>zookeeper路径</td>\n<td>OpenMLDB集群连接地址中的zookeeper路径, e.g. /openmldb</td>\n</tr>\n<tr>\n<td>执行模式</td>\n<td>初始执行模式（离线/在线），你可以在sql语句中随时切换</td>\n</tr>\n<tr>\n<td>SQL语句</td>\n<td>SQL语句</td>\n</tr>\n</tbody>\n</table>\n<p>下面有几个例子：</p>\n<h4 id=\"导入数据\">导入数据</h4>\n<p><img src=\"/img/tasks/demo/openmldb-load-data.png\" alt=\"load data\"></p>\n<p>我们使用<code>LOAD DATA</code>语句导入数据到OpenMLDB集群。因为选择的是离线执行模式，所以将会导入数据到离线存储中。</p>\n<h4 id=\"特征抽取\">特征抽取</h4>\n<p><img src=\"/img/tasks/demo/openmldb-feature-extraction.png\" alt=\"fe\"></p>\n<p>我们使用<code>SELECT INTO</code>进行特征抽取。因为选择的是离线执行模式，所以会使用离线引擎做特征计算。</p>\n<h2 id=\"环境准备\">环境准备</h2>\n<h3 id=\"openmldb-启动\">OpenMLDB 启动</h3>\n<p>执行任务之前，你需要启动OpenMLDB集群。如果是在生产环境，请参考<a href=\"https://openmldb.ai/docs/zh/v0.5/deploy/install_deploy.html\">deploy OpenMLDB</a>.</p>\n<p>你可以参考<a href=\"https://openmldb.ai/docs/zh/v0.5/quickstart/openmldb_quickstart.html#id11\">在docker中运行OpenMLDB集群</a> 快速启动。</p>\n<h3 id=\"python-环境\">Python 环境</h3>\n<p>OpenMLDB任务组件将使用OpenMLDB Python SDK来连接OpenMLDB。所以你需要Python环境。</p>\n<p>我们默认使用<code>python3</code>，你可以通过配置<code>PYTHON_HOME</code>来设置自己的Python环境。</p>\n<p>请确保已通过<code>pip install openmldb</code>，在worker server的主机中安装了OpenMLDB Python SDK。</p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Openmldb"
+  ],
+  "time": "2023-02-24",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "OpenMLDB 启动",
+          "children": [
+            {
+              "title": "导入数据",
+              "children": [],
+              "anchor": "导入数据"
+            },
+            {
+              "title": "特征抽取",
+              "children": [],
+              "anchor": "特征抽取"
+            }
+          ],
+          "anchor": "openmldb-启动"
+        },
+        {
+          "title": "Python 环境",
+          "children": [
+            {
+              "title": "导入数据",
+              "children": [],
+              "anchor": "导入数据"
+            },
+            {
+              "title": "特征抽取",
+              "children": [],
+              "anchor": "特征抽取"
+            }
+          ],
+          "anchor": "python-环境"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "OpenMLDB 启动",
+          "children": [
+            {
+              "title": "导入数据",
+              "children": [],
+              "anchor": "导入数据"
+            },
+            {
+              "title": "特征抽取",
+              "children": [],
+              "anchor": "特征抽取"
+            }
+          ],
+          "anchor": "openmldb-启动"
+        },
+        {
+          "title": "Python 环境",
+          "children": [
+            {
+              "title": "导入数据",
+              "children": [],
+              "anchor": "导入数据"
+            },
+            {
+              "title": "特征抽取",
+              "children": [],
+              "anchor": "特征抽取"
+            }
+          ],
+          "anchor": "python-环境"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "OpenMLDB 启动",
+          "children": [
+            {
+              "title": "导入数据",
+              "children": [],
+              "anchor": "导入数据"
+            },
+            {
+              "title": "特征抽取",
+              "children": [],
+              "anchor": "特征抽取"
+            }
+          ],
+          "anchor": "openmldb-启动"
+        },
+        {
+          "title": "Python 环境",
+          "children": [
+            {
+              "title": "导入数据",
+              "children": [],
+              "anchor": "导入数据"
+            },
+            {
+              "title": "特征抽取",
+              "children": [],
+              "anchor": "特征抽取"
+            }
+          ],
+          "anchor": "python-环境"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "环境准备",
+      "children": [
+        {
+          "title": "OpenMLDB 启动",
+          "children": [
+            {
+              "title": "导入数据",
+              "children": [],
+              "anchor": "导入数据"
+            },
+            {
+              "title": "特征抽取",
+              "children": [],
+              "anchor": "特征抽取"
+            }
+          ],
+          "anchor": "openmldb-启动"
+        },
+        {
+          "title": "Python 环境",
+          "children": [
+            {
+              "title": "导入数据",
+              "children": [],
+              "anchor": "导入数据"
+            },
+            {
+              "title": "特征抽取",
+              "children": [],
+              "anchor": "特征抽取"
+            }
+          ],
+          "anchor": "python-环境"
+        }
+      ],
+      "anchor": "环境准备"
+    }
+  ],
+  "title": "OpenMLDB 节点",
+  "link": "/guide/task/openmldb"
+}
