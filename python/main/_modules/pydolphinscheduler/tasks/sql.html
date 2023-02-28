@@ -107,8 +107,8 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.database</span> <span class="kn">import</span> <span class="n">Database</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.models.datasource</span> <span class="kn">import</span> <span class="n">Datasource</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
 
@@ -164,9 +164,10 @@
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">datasource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">datasource_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">sql_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">pre_statements</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">post_statements</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pre_statements</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">post_statements</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">display_rows</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span>
@@ -175,6 +176,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">SQL</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param_sql_type</span> <span class="o">=</span> <span class="n">sql_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span> <span class="o">=</span> <span class="n">datasource_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">datasource_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pre_statements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stm_list</span><span class="p">(</span><span class="n">pre_statements</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">post_statements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stm_list</span><span class="p">(</span><span class="n">post_statements</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">display_rows</span> <span class="o">=</span> <span class="n">display_rows</span>
@@ -220,6 +222,17 @@
             <span class="k">return</span> <span class="n">SqlType</span><span class="o">.</span><span class="n">SELECT</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">datasource</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get datasource for procedure sql.&quot;&quot;&quot;</span>
+        <span class="n">datasource_task_u</span> <span class="o">=</span> <span class="n">Datasource</span><span class="o">.</span><span class="n">get_task_usage_4j</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasource_type</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;datasource&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Override Task.task_params for sql task.</span>
 
@@ -227,8 +240,7 @@
 <span class="sd">        directly set as python property, so we Override Task.task_params here.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span>
-        <span class="n">datasource</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;datasource&quot;</span><span class="p">)</span>
-        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">datasource</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasource</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">params</span></div>
 </pre></div>
 

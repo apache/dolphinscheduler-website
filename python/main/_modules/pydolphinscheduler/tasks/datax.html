@@ -105,8 +105,8 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.database</span> <span class="kn">import</span> <span class="n">Database</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.models.datasource</span> <span class="kn">import</span> <span class="n">Datasource</span>
 
 
 <div class="viewcode-block" id="CustomDataX"><a class="viewcode-back" href="../../../tasks/datax.html#pydolphinscheduler.tasks.CustomDataX">[docs]</a><span class="k">class</span> <span class="nc">CustomDataX</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
@@ -142,12 +142,21 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task DataX object, declare behavior for DataX task to dolphinscheduler.</span>
 
 <span class="sd">    It should run database datax job in multiply sql link engine, such as:</span>
+
 <span class="sd">    - MySQL</span>
 <span class="sd">    - Oracle</span>
 <span class="sd">    - Postgresql</span>
 <span class="sd">    - SQLServer</span>
+
 <span class="sd">    You provider datasource_name and datatarget_name contain connection information, it decisions which</span>
 <span class="sd">    database type and database instance would synchronous data.</span>
+
+<span class="sd">    :param name: task name.</span>
+<span class="sd">    :param datasource_name: source database name for task datax to extract data.</span>
+<span class="sd">    :param datatarget_name: target database name for task datax to load data.</span>
+<span class="sd">    :param sql: sql statement for task datax to extract data form source database.</span>
+<span class="sd">    :param target_table: target table name for task datax to load data into target database.</span>
+<span class="sd">    :param datasource_type: source database type, dolphinscheduler use</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">CUSTOM_CONFIG</span> <span class="o">=</span> <span class="mi">0</span>
@@ -174,6 +183,8 @@
         <span class="n">datatarget_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">target_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">datasource_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">datatarget_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">job_speed_byte</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">job_speed_record</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
         <span class="n">pre_statements</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -186,7 +197,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_sql</span> <span class="o">=</span> <span class="n">sql</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">DATAX</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">custom_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CUSTOM_CONFIG</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">datasource_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span> <span class="o">=</span> <span class="n">datasource_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datatarget_type</span> <span class="o">=</span> <span class="n">datatarget_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">datatarget_name</span> <span class="o">=</span> <span class="n">datatarget_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_table</span> <span class="o">=</span> <span class="n">target_table</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">job_speed_byte</span> <span class="o">=</span> <span class="n">job_speed_byte</span>
@@ -197,6 +210,28 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">xmx</span> <span class="o">=</span> <span class="n">xmx</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">source_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get source params for datax task.&quot;&quot;&quot;</span>
+        <span class="n">datasource_task_u</span> <span class="o">=</span> <span class="n">Datasource</span><span class="o">.</span><span class="n">get_task_usage_4j</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasource_type</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;dsType&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">&quot;dataSource&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">target_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get target params for datax task.&quot;&quot;&quot;</span>
+        <span class="n">datasource_task_u</span> <span class="o">=</span> <span class="n">Datasource</span><span class="o">.</span><span class="n">get_task_usage_4j</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">datatarget_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">datatarget_type</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;dtType&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">&quot;dataTarget&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Override Task.task_params for datax task.</span>
 
@@ -204,11 +239,8 @@
 <span class="sd">        directly set as python property, so we Override Task.task_params here.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span>
-        <span class="n">datasource</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span><span class="p">,</span> <span class="s2">&quot;dsType&quot;</span><span class="p">,</span> <span class="s2">&quot;dataSource&quot;</span><span class="p">)</span>
-        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">datasource</span><span class="p">)</span>
-
-        <span class="n">datatarget</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datatarget_name</span><span class="p">,</span> <span class="s2">&quot;dtType&quot;</span><span class="p">,</span> <span class="s2">&quot;dataTarget&quot;</span><span class="p">)</span>
-        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">datatarget</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_params</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">params</span></div>
 </pre></div>
 
