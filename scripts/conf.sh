@@ -54,6 +54,7 @@ DEV_RELEASE_DOCS_VERSIONS=(
   "3.0.2:3.0.2-release"
   "3.0.3:3.0.3-release"
   "3.0.4:3.0.4-release"
+  "3.0.5:3.0.5-release"
   "3.1.0:3.1.0-release"
   "3.1.1:3.1.1-release"
   "3.1.2:3.1.2-release"
