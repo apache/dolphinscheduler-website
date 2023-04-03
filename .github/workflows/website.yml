@@ -1,6 +1,9 @@
 name: Build and Deploy
 
 on:
+  pull_request:
+    branches:
+      - master
   push:
     branches:
       - master
@@ -45,6 +48,7 @@ jobs:
           rsync -av --progress --exclude .doctrees docs/build/html/versions/* ${GITHUB_WORKSPACE}/build/python
 
       - name: Deploy
+        if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
