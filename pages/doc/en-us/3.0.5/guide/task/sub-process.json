@@ -1,0 +1,79 @@
+{
+  "__html": "<h1 id=\"subprocess-node\">SubProcess Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>The sub-process node is to execute an external workflow definition as a task node.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management-&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/sub_process.png\" width=\"15\"/> task node to canvas to create a new SubProcess task.</li>\n</ul>\n<h2 id=\"task-parameter\">Task Parameter</h2>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Node name</td>\n<td>Unique name of node in workflow definition.</td>\n</tr>\n<tr>\n<td>Run flag</td>\n<td>Identifies whether this node schedules normally.</td>\n</tr>\n<tr>\n<td>Description</td>\n<td>Describe the function of the node.</td>\n</tr>\n<tr>\n<td>Task priority</td>\n<td>When the number of worker threads is insufficient, execute in the order of priority from high to low, and tasks with the same priority will execute in a first-in first-out order.</td>\n</tr>\n<tr>\n<td>Worker group</td>\n<td>Assign tasks to the machines of the worker group to execute. If <code>Default</code> is selected, randomly select a worker machine for execution.</td>\n</tr>\n<tr>\n<td>Task group name</td>\n<td>The group in Resources, if not configured, it will not be used.</td>\n</tr>\n<tr>\n<td>Environment Name</td>\n<td>Configure the environment name in which run the script.</td>\n</tr>\n<tr>\n<td>Timeout alarm</td>\n<td>Check the timeout alarm and timeout failure. When the task runs exceed the &quot;timeout&quot;, an alarm email will send and the task execution will fail.</td>\n</tr>\n<tr>\n<td>Child node</td>\n<td>It is the workflow definition of the selected sub-process. Enter the child node in the upper right corner to jump to the workflow definition of the selected sub-process.</td>\n</tr>\n<tr>\n<td>Pre task</td>\n<td>Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<p>This example simulates a common task type, here we use a child node task to recall the <a href=\"/en-us/docs/3.0.5/guide/task/shell\">Shell</a> to print out &quot;hello&quot;. This means executing a shell task as a child node.</p>\n<h3 id=\"create-a-shell-task\">Create a Shell task</h3>\n<p>Create a shell task to print &quot;hello&quot; and define the workflow as <code>test_dag01</code>.</p>\n<p><img src=\"/img/tasks/demo/subprocess_task01.png\" alt=\"subprocess_task01\"></p>\n<h2 id=\"create-the-sub_process-task\">Create the Sub_process task</h2>\n<p>To use the sub_process, you need to create the sub-node task, which is the workflow <code>test_dag01</code> we created in the first step. After that, as shown in the diagram below, select the corresponding sub-node in position ⑤.</p>\n<p><img src=\"/img/tasks/demo/subprocess_task02.png\" alt=\"subprocess_task02\"></p>\n<p>After creating the sub_process, create a corresponding shell task for printing &quot;world&quot; and link both together. Save the current workflow and run it to get the expected result.</p>\n<p><img src=\"/img/tasks/demo/subprocess_task03.png\" alt=\"subprocess_task03\"></p>\n<h2 id=\"note\">Note</h2>\n<p>When using <code>sub_process</code> to recall a sub-node task, you need to ensure that the defined sub-node is online status, otherwise, the sub_process workflow will not work properly.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "SubProcess"
+  ],
+  "time": "2023-4-3",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Create a Shell task",
+          "children": [],
+          "anchor": "create-a-shell-task"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Create a Shell task",
+          "children": [],
+          "anchor": "create-a-shell-task"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameter",
+      "children": [
+        {
+          "title": "Create a Shell task",
+          "children": [],
+          "anchor": "create-a-shell-task"
+        }
+      ],
+      "anchor": "task-parameter"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Create a Shell task",
+          "children": [],
+          "anchor": "create-a-shell-task"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Create the Sub_process task",
+      "children": [
+        {
+          "title": "Create a Shell task",
+          "children": [],
+          "anchor": "create-a-shell-task"
+        }
+      ],
+      "anchor": "create-the-sub_process-task"
+    },
+    {
+      "title": "Note",
+      "children": [
+        {
+          "title": "Create a Shell task",
+          "children": [],
+          "anchor": "create-a-shell-task"
+        }
+      ],
+      "anchor": "note"
+    }
+  ],
+  "title": "SubProcess Node",
+  "link": "/guide/task/sub-process"
+}

@@ -1,0 +1,373 @@
+{
+  "__html": "<h1 id=\"mapreduce-node\">MapReduce Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>MapReduce(MR) task type used for executing MapReduce programs. For MapReduce nodes, the worker submits the task by using the Hadoop command <code>hadoop jar</code>. See <a href=\"https://hadoop.apache.org/docs/r3.2.4/hadoop-project-dist/hadoop-common/CommandsManual.html#jar\">Hadoop Command Manual</a> for more details.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/mr.png\" width=\"15\"/> to the canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<h3 id=\"general\">General</h3>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Node Name</td>\n<td>Set the name of the task. Node names within a workflow definition are unique.</td>\n</tr>\n<tr>\n<td>Run flag</td>\n<td>Indicates whether the node can be scheduled normally. If it is not necessary to execute, you can turn on the prohibiting execution switch.</td>\n</tr>\n<tr>\n<td>Description</td>\n<td>Describes the function of this node.</td>\n</tr>\n<tr>\n<td>Task priority</td>\n<td>When the number of worker threads is insufficient, they are executed in order from high to low according to the priority, and they are executed according to the first-in, first-out principle when the priority is the same.</td>\n</tr>\n<tr>\n<td>Worker group</td>\n<td>The task is assigned to the machines in the worker group for execution. If Default is selected, a worker machine will be randomly selected for execution.</td>\n</tr>\n<tr>\n<td>Task group name</td>\n<td>The group in Resources, if not configured, it will not be used.</td>\n</tr>\n<tr>\n<td>Environment Name</td>\n<td>Configure the environment in which to run the script.</td>\n</tr>\n<tr>\n<td>Number of failed retries</td>\n<td>The number of times the task is resubmitted after failure. It supports drop-down and manual filling.</td>\n</tr>\n<tr>\n<td>Failure Retry Interval</td>\n<td>The time interval for resubmitting the task if the task fails. It supports drop-down and manual filling.</td>\n</tr>\n<tr>\n<td>Timeout alarm</td>\n<td>Check Timeout Alarm and Timeout Failure. When the task exceeds the &quot;timeout duration&quot;, an alarm email will be sent and the task execution will fail.</td>\n</tr>\n<tr>\n<td>Resource</td>\n<td>Refers to the list of resource files that called in the script, and upload or create files by the Resource Center file management.</td>\n</tr>\n<tr>\n<td>Custom parameters</td>\n<td>It is a local user-defined parameter for MapReduce, and will replace the content with <code>${variable}</code> in the script.</td>\n</tr>\n<tr>\n<td>Predecessor task</td>\n<td>Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"java-or-scala-program\">JAVA or SCALA Program</h3>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Program type</td>\n<td>Select JAVA or SCALA program.</td>\n</tr>\n<tr>\n<td>The class of the main function</td>\n<td>The <strong>full path</strong> of Main Class, the entry point of the MapReduce program.</td>\n</tr>\n<tr>\n<td>Main jar package</td>\n<td>The jar package of the MapReduce program.</td>\n</tr>\n<tr>\n<td>Task name</td>\n<td>MapReduce task name.</td>\n</tr>\n<tr>\n<td>Command line parameters</td>\n<td>Set the input parameters of the MapReduce program and support the substitution of custom parameter variables.</td>\n</tr>\n<tr>\n<td>Other parameters</td>\n<td>Support <code>-D</code>, <code>-files</code>, <code>-libjars</code>, <code>-archives</code> format.</td>\n</tr>\n<tr>\n<td>Resource</td>\n<td>Appoint resource files in the <code>Resource</code> if parameters refer to them.</td>\n</tr>\n<tr>\n<td>User-defined parameter</td>\n<td>It is a local user-defined parameter for MapReduce, and will replace the content with <code>${variable}</code> in the script.</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"python-program\">Python Program</h3>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Program type</td>\n<td>Select Python language.</td>\n</tr>\n<tr>\n<td>Main jar package</td>\n<td>The Python jar package for running MapReduce.</td>\n</tr>\n<tr>\n<td>Other parameters</td>\n<td>Support <code>-D</code>, <code>-mapper</code>, <code>-reducer,</code> <code>-input</code> <code>-output</code> format, and you can set the input of user-defined parameters, such as:<ul><li><code>-mapper &quot;mapper.py 1&quot;</code> <code>-file mapper.py</code> <code>-reducer reducer.py</code> <code>-file reducer.py</code> <code>–input /journey/words.txt</code> <code>-output /journey/out/mr/${currentTimeMillis}</code></li><li>The <code>mapper.py 1</code> after <code>-mapper</code> is two parameters, the first parameter is <code>mapper.py</code>, and the second parameter is <code>1</code>. </li></ul></td>\n</tr>\n<tr>\n<td>Resource</td>\n<td>Appoint resource files in the <code>Resource</code> if parameters refer to them.</td>\n</tr>\n<tr>\n<td>User-defined parameter</td>\n<td>It is a local user-defined parameter for MapReduce, and will replace the content with <code>${variable}</code> in the script.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"execute-the-wordcount-program\">Execute the WordCount Program</h3>\n<p>This example is a common introductory type of MapReduce application, which used to count the number of identical words in the input text.</p>\n<h4 id=\"configure-the-mapreduce-environment-in-dolphinscheduler\">Configure the MapReduce Environment in DolphinScheduler</h4>\n<p>If you are using the MapReduce task type in a production environment, it is necessary to configure the required environment first. The following is the configuration file: <code>bin/env/dolphinscheduler_env.sh</code>.</p>\n<p><img src=\"/img/tasks/demo/mr_task01.png\" alt=\"mr_configure\"></p>\n<h4 id=\"upload-the-main-package\">Upload the Main Package</h4>\n<p>When using the MapReduce task node, you need to use the Resource Centre to upload the jar package for the execution. Refer to the <a href=\"/en-us/docs/3.0.5/guide/resource/configuration\">resource centre</a>.</p>\n<p>After finish the Resource Centre configuration, upload the required target files directly by dragging and dropping.</p>\n<p><img src=\"/img/tasks/demo/upload_jar.png\" alt=\"resource_upload\"></p>\n<h4 id=\"configure-mapreduce-nodes\">Configure MapReduce Nodes</h4>\n<p>Configure the required content according to the parameter descriptions above.</p>\n<p><img src=\"/img/tasks/demo/mr_task02.png\" alt=\"demo-mr-simple\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "MapReduce"
+  ],
+  "time": "2023-4-3",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "General",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "general"
+        },
+        {
+          "title": "JAVA or SCALA Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "java-or-scala-program"
+        },
+        {
+          "title": "Python Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "python-program"
+        },
+        {
+          "title": "Execute the WordCount Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "execute-the-wordcount-program"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "General",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "general"
+        },
+        {
+          "title": "JAVA or SCALA Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "java-or-scala-program"
+        },
+        {
+          "title": "Python Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "python-program"
+        },
+        {
+          "title": "Execute the WordCount Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "execute-the-wordcount-program"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "General",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "general"
+        },
+        {
+          "title": "JAVA or SCALA Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "java-or-scala-program"
+        },
+        {
+          "title": "Python Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "python-program"
+        },
+        {
+          "title": "Execute the WordCount Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "execute-the-wordcount-program"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "General",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "general"
+        },
+        {
+          "title": "JAVA or SCALA Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "java-or-scala-program"
+        },
+        {
+          "title": "Python Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "python-program"
+        },
+        {
+          "title": "Execute the WordCount Program",
+          "children": [
+            {
+              "title": "Configure the MapReduce Environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-mapreduce-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure MapReduce Nodes",
+              "children": [],
+              "anchor": "configure-mapreduce-nodes"
+            }
+          ],
+          "anchor": "execute-the-wordcount-program"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "MapReduce Node",
+  "link": "/guide/task/map-reduce"
+}

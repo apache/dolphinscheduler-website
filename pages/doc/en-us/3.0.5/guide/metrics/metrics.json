@@ -1,0 +1,218 @@
+{
+  "__html": "<h1 id=\"introduction\">Introduction</h1>\n<p>Apache DolphinScheduler has export some metrics to monitor the system. We use micrometer for the exporter facade, and\nthe default exporter is prometheus, more exporter is coming soon.</p>\n<h2 id=\"quick-start\">Quick Start</h2>\n<p>You can add the following config in master/worker/alert/api's yaml file to open the metrics exporter.</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">metrics:</span>\n  <span class=\"hljs-attr\">enabled:</span> <span class=\"hljs-literal\">true</span>\n</code></pre>\n<p>Once you open the metrics exporter, you can access the metrics by the url: <code>http://ip:port/actuator/prometheus</code></p>\n<p>The exporter port is the <code>server.port</code> defined in application.yaml, e.g: master: <code>server.port: 5679</code>, worker: <code>server.port: 1235</code>, alert: <code>server.port: 50053</code>, api: <code>server.port: 12345</code>.</p>\n<p>For example, you can get the master metrics by <code>curl http://localhost:5679/actuator/prometheus</code></p>\n<p>We have prepared the out-of-the-box Grafana configuration for you, you can find the Grafana dashboard\nat <code>dolphinscheduler-meter/resources/grafana</code>, you can directly import these dashboards to grafana.</p>\n<p>If you want to try at docker, you can use the following command to start the prometheus with grafana:</p>\n<pre><code class=\"language-shell\">cd dolphinscheduler-meter/src/main/resources/grafana-demo\ndocker compose up\n</code></pre>\n<p>Then you can access the grafana by the url: <code>http://localhost/3001</code></p>\n<p><img src=\"/img/metrics/metrics-master.png\" alt=\"image.png\">\n<img src=\"/img/metrics/metrics-worker.png\" alt=\"image.png\">\n<img src=\"/img/metrics/metrics-datasource.png\" alt=\"image.png\"></p>\n<h2 id=\"master-metrics\">Master Metrics</h2>\n<p>Master metrics are exported by the DolphinScheduler master server.</p>\n<h3 id=\"system-metrics\">System Metrics</h3>\n<ul>\n<li>dolphinscheduler_master_overload_count: Indicates the number of times the master has been overloaded.</li>\n<li>dolphinscheduler_master_consume_command_count: Indicates the number of commands has consumed.</li>\n</ul>\n<h3 id=\"process-metrics\">Process Metrics</h3>\n<ul>\n<li>dolphinscheduler_create_command_count: Indicates the number of command has been inserted.</li>\n<li>dolphinscheduler_process_instance_submit_count: Indicates the number of process has been submitted.</li>\n<li>dolphinscheduler_process_instance_running_gauge: Indicates the number of process are running now.</li>\n<li>dolphinscheduler_process_instance_timeout_count: Indicates the number of process has been timeout.</li>\n<li>dolphinscheduler_process_instance_finish_count: Indicates the number of process has been finished, include success or\nfailure.</li>\n<li>dolphinscheduler_process_instance_success_count: Indicates the number of process has been successful.</li>\n<li>dolphinscheduler_process_instance_stop_count: Indicates the number of process has been stopped.</li>\n<li>dolphinscheduler_process_instance_failover_count: Indicates the number of process has been failed over.</li>\n</ul>\n<h3 id=\"task-metrics\">Task Metrics</h3>\n<ul>\n<li>dolphinscheduler_task_timeout_count: Indicates the number of tasks has been timeout.</li>\n<li>dolphinscheduler_task_finish_count: Indicates the number of tasks has been finished, include success or failure.</li>\n<li>dolphinscheduler_task_success_count: Indicates the number of tasks has been successful.</li>\n<li>dolphinscheduler_task_timeout_count: Indicates the number of tasks has been timeout.</li>\n<li>dolphinscheduler_task_retry_count: Indicates the number of tasks has been retry.</li>\n<li>dolphinscheduler_task_failover_count: Indicates the number of tasks has been failover.</li>\n<li>dolphinscheduler_task_dispatch_count: Indicates the number of tasks has been dispatched to worker.</li>\n<li>dolphinscheduler_task_dispatch_failed_count: Indicates the number of tasks dispatched failed, if dispatched failed\nwill retry.</li>\n<li>dolphinscheduler_task_dispatch_error_count: Indicates the number of tasks dispatched error, if dispatched error, means\nthere are exception occur.</li>\n</ul>\n<h2 id=\"worker-metrics\">Worker Metrics</h2>\n<p>Worker metrics are exported by the DolphinScheduler worker server.</p>\n<h3 id=\"system-metrics\">System Metrics</h3>\n<ul>\n<li>dolphinscheduler_worker_overload_count: Indicates the number of times the worker has been overloaded.</li>\n<li>dolphinscheduler_worker_submit_queue_is_full_count: Indicates the number of times the worker's submit queue has been\nfull.</li>\n</ul>\n<h3 id=\"task-metrics\">Task Metrics</h3>\n<ul>\n<li>dolphinscheduler_task_execute_count: Indicates the number of times a task has been executed, it contains a tag -\n<code>task_type</code>.</li>\n<li>dolphinscheduler_task_execution_count: Indicates the total number of task has been executed.</li>\n<li>dolphinscheduler_task_execution_timer: Indicates the time spent executing tasks.</li>\n</ul>\n<h2 id=\"default-system-metrics\">Default System Metrics</h2>\n<p>In each server, there are some default metrics related to the system instance.</p>\n<h3 id=\"database-metrics\">Database Metrics</h3>\n<ul>\n<li>hikaricp_connections_creation_seconds_max: Connection creation time max.</li>\n<li>hikaricp_connections_creation_seconds_count: Connection creation time count.</li>\n<li>hikaricp_connections_creation_seconds_sum: Connection creation time sum.</li>\n<li>hikaricp_connections_acquire_seconds_max: Connection acquire time max.</li>\n<li>hikaricp_connections_acquire_seconds_count: Connection acquire time count.</li>\n<li>hikaricp_connections_acquire_seconds_sum: Connection acquire time sum.</li>\n<li>hikaricp_connections_usage_seconds_max: Connection usage max.</li>\n<li>hikaricp_connections_usage_seconds_count: Connection usage time count.</li>\n<li>hikaricp_connections_usage_seconds_sum: Connection usage time sum.</li>\n<li>hikaricp_connections_max: Max connections.</li>\n<li>hikaricp_connections_min Min connections</li>\n<li>hikaricp_connections_active: Active connections.</li>\n<li>hikaricp_connections_idle: Idle connections.</li>\n<li>hikaricp_connections_pending: Pending connections.</li>\n<li>hikaricp_connections_timeout_total: Timeout connections.</li>\n<li>hikaricp_connections: Total connections</li>\n<li>jdbc_connections_max: Maximum number of active connections that can be allocated at the same time.</li>\n<li>jdbc_connections_min: Minimum number of idle connections in the pool.</li>\n<li>jdbc_connections_idle: Number of established but idle connections.</li>\n<li>jdbc_connections_active: Current number of active connections that have been allocated from the data source.</li>\n</ul>\n<h3 id=\"jvm-metrics\">JVM Metrics</h3>\n<ul>\n<li>jvm_buffer_total_capacity_bytes: An estimate of the total capacity of the buffers in this pool.</li>\n<li>jvm_buffer_count_buffers: An estimate of the number of buffers in the pool.</li>\n<li>jvm_buffer_memory_used_bytes: An estimate of the memory that the Java virtual machine is using for this buffer pool.</li>\n<li>jvm_memory_committed_bytes: The amount of memory in bytes that is committed for the Java virtual machine to use.</li>\n<li>jvm_memory_max_bytes: The maximum amount of memory in bytes that can be used for memory management.</li>\n<li>jvm_memory_used_bytes: The amount of used memory.</li>\n<li>jvm_threads_peak_threads: The peak live thread count since the Java virtual machine started or peak was reset.</li>\n<li>jvm_threads_states_threads: The current number of threads having NEW state.</li>\n<li>jvm_gc_memory_allocated_bytes_total: Incremented for an increase in the size of the (young) heap memory pool after one GC to before the next.</li>\n<li>jvm_gc_max_data_size_bytes: Max size of long-lived heap memory pool.</li>\n<li>jvm_gc_pause_seconds_count: Time spent count in GC pause.</li>\n<li>jvm_gc_pause_seconds_sum: Time spent sum in GC pause.</li>\n<li>jvm_gc_pause_seconds_max: Time spent max in GC pause.</li>\n<li>jvm_gc_live_data_size_bytes: Size of long-lived heap memory pool after reclamation.</li>\n<li>jvm_gc_memory_promoted_bytes_total: Count of positive increases in the size of the old generation memory pool before GC to after GC.</li>\n<li>jvm_classes_loaded_classes: The number of classes that are currently loaded in the Java virtual machine.</li>\n<li>jvm_threads_live_threads: The current number of live threads including both daemon and non-daemon threads.</li>\n<li>jvm_threads_daemon_threads: The current number of live daemon threads.</li>\n<li>jvm_classes_unloaded_classes_total: The total number of classes unloaded since the Java virtual machine has started execution.</li>\n<li>process_cpu_usage: The &quot;recent cpu usage&quot; for the Java Virtual Machine process.</li>\n<li>process_start_time_seconds: Start time of the process since unix epoch.</li>\n<li>process_uptime_seconds: The uptime of the Java virtual machine.</li>\n</ul>\n<h2 id=\"other-metrics\">Other Metrics</h2>\n<ul>\n<li>jetty_threads_config_max: The maximum number of threads in the pool.</li>\n<li>jetty_threads_config_min: The minimum number of threads in the pool.</li>\n<li>jetty_threads_current: The total number of threads in the pool.</li>\n<li>jetty_threads_idle: The number of idle threads in the pool.</li>\n<li>jetty_threads_busy: The number of busy threads in the pool.</li>\n<li>jetty_threads_jobs: Number of jobs queued waiting for a thread.</li>\n<li>process_files_max_files: The maximum file descriptor count.</li>\n<li>process_files_open_files: The open file descriptor count.</li>\n<li>system_cpu_usage: The &quot;recent cpu usage&quot; for the whole system.</li>\n<li>system_cpu_count: The number of processors available to the Java virtual machine.</li>\n<li>system_load_average_1m: The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time.</li>\n<li>logback_events_total: Number of level events that made it to the logs</li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Metrics",
+    "Metrics"
+  ],
+  "time": "2023-4-3",
+  "structure": [
+    {
+      "title": "Quick Start",
+      "children": [
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Process Metrics",
+          "children": [],
+          "anchor": "process-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "Database Metrics",
+          "children": [],
+          "anchor": "database-metrics"
+        },
+        {
+          "title": "JVM Metrics",
+          "children": [],
+          "anchor": "jvm-metrics"
+        }
+      ],
+      "anchor": "quick-start"
+    },
+    {
+      "title": "Master Metrics",
+      "children": [
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Process Metrics",
+          "children": [],
+          "anchor": "process-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "Database Metrics",
+          "children": [],
+          "anchor": "database-metrics"
+        },
+        {
+          "title": "JVM Metrics",
+          "children": [],
+          "anchor": "jvm-metrics"
+        }
+      ],
+      "anchor": "master-metrics"
+    },
+    {
+      "title": "Worker Metrics",
+      "children": [
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Process Metrics",
+          "children": [],
+          "anchor": "process-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "Database Metrics",
+          "children": [],
+          "anchor": "database-metrics"
+        },
+        {
+          "title": "JVM Metrics",
+          "children": [],
+          "anchor": "jvm-metrics"
+        }
+      ],
+      "anchor": "worker-metrics"
+    },
+    {
+      "title": "Default System Metrics",
+      "children": [
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Process Metrics",
+          "children": [],
+          "anchor": "process-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "Database Metrics",
+          "children": [],
+          "anchor": "database-metrics"
+        },
+        {
+          "title": "JVM Metrics",
+          "children": [],
+          "anchor": "jvm-metrics"
+        }
+      ],
+      "anchor": "default-system-metrics"
+    },
+    {
+      "title": "Other Metrics",
+      "children": [
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Process Metrics",
+          "children": [],
+          "anchor": "process-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "System Metrics",
+          "children": [],
+          "anchor": "system-metrics"
+        },
+        {
+          "title": "Task Metrics",
+          "children": [],
+          "anchor": "task-metrics"
+        },
+        {
+          "title": "Database Metrics",
+          "children": [],
+          "anchor": "database-metrics"
+        },
+        {
+          "title": "JVM Metrics",
+          "children": [],
+          "anchor": "jvm-metrics"
+        }
+      ],
+      "anchor": "other-metrics"
+    }
+  ],
+  "title": "Introduction",
+  "link": "/guide/metrics/metrics"
+}

@@ -1,0 +1,115 @@
+{
+  "__html": "<h1 id=\"file-management\">File Management</h1>\n<p>When the third-party jar needs to be used in the scheduling process or the user needs to customize the script, the related operations can be completed on this page. The file types that can be created include: <code>txt</code>, <code>log</code>, <code>sh</code>, <code>conf</code>, <code>py</code>, <code>java</code> etc. And you can edit, rename, download and delete files.</p>\n<p><img src=\"/img/new_ui/dev/resource/file-manage.png\" alt=\"file-manage\"></p>\n<blockquote>\n<p><strong><em>Note:</em></strong></p>\n<ul>\n<li>When you manage files as <code>admin</code>, remember to set up <code>tenant</code> for <code>admin</code> first.</li>\n</ul>\n</blockquote>\n<h2 id=\"basic-operations\">Basic Operations</h2>\n<h3 id=\"create-file\">Create File</h3>\n<p>The file format supports the following types: txt, log, sh, conf, cfg, py, java, sql, xml, hql, properties.</p>\n<p><img src=\"/img/new_ui/dev/resource/create-file.png\" alt=\"create-file\"></p>\n<h3 id=\"upload-file\">Upload File</h3>\n<p>Click the &quot;Upload File&quot; button to upload, drag the file to the upload area, the file name will be automatically completed with the uploaded file name.</p>\n<p><img src=\"/img/new_ui/dev/resource/upload-file.png\" alt=\"upload-file\"></p>\n<h3 id=\"view-file\">View File</h3>\n<p>For viewable file types, click the file name to view the file details.</p>\n<p><img src=\"/img/tasks/demo/file_detail.png\" alt=\"file_detail\"></p>\n<h3 id=\"download-file\">Download File</h3>\n<p>Click the &quot;Download&quot; button in the file list to download the file or click the &quot;Download&quot; button in the upper right corner of the file details to download the file.</p>\n<h3 id=\"rename-file\">Rename File</h3>\n<p><img src=\"/img/new_ui/dev/resource/rename-file.png\" alt=\"rename-file\"></p>\n<h3 id=\"delete-file\">Delete File</h3>\n<p>File list -&gt; Click the &quot;Delete&quot; button to delete the specified file.</p>\n<blockquote>\n<p>Note: File name or source name of your local file can not contain specific characters like <code>.</code> or <code>/</code> when you trying to\nupload, create or rename file in resource center.</p>\n</blockquote>\n<h2 id=\"example\">Example</h2>\n<p>This sample mainly uses a simple shell script to demonstrate how to use Content Center files in a workflow definition. The same is true for tasks such as MR and Spark that require jar packages.</p>\n<h3 id=\"create-a-shell-file\">Create a shell file</h3>\n<p>Create a shell file, print <code>hello world</code>.</p>\n<p><img src=\"/img/new_ui/dev/resource/demo/file-demo01.png\" alt=\"create-shell\"></p>\n<h3 id=\"create-the-workflow-execution-shell\">Create the workflow execution shell</h3>\n<p>In the workflow definition module of project Manage, create a new workflow using a shell task.</p>\n<ul>\n<li>Script: 'sh hello.sh'</li>\n<li>Resource: Select 'hello.sh'</li>\n</ul>\n<blockquote>\n<p>Notice: When using a resource file in the script, the file name needs to be the same as the full path of the selected resource:\nFor example: if the resource path is <code>/resource/hello.sh</code>, you need to use the full path of <code>/resource/hello.sh</code> to use it in the script.</p>\n</blockquote>\n<p><img src=\"/img/new_ui/dev/resource/demo/file-demo02.png\" alt=\"use-shell\"></p>\n<h3 id=\"view-the-results\">View the results</h3>\n<p>You can view the log results of the node running in the workflow instance. As shown below:</p>\n<p><img src=\"/img/new_ui/dev/resource/demo/file-demo03.png\" alt=\"log-shell\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Resource",
+    "File Manage"
+  ],
+  "time": "2023-4-3",
+  "structure": [
+    {
+      "title": "Basic Operations",
+      "children": [
+        {
+          "title": "Create File",
+          "children": [],
+          "anchor": "create-file"
+        },
+        {
+          "title": "Upload File",
+          "children": [],
+          "anchor": "upload-file"
+        },
+        {
+          "title": "View File",
+          "children": [],
+          "anchor": "view-file"
+        },
+        {
+          "title": "Download File",
+          "children": [],
+          "anchor": "download-file"
+        },
+        {
+          "title": "Rename File",
+          "children": [],
+          "anchor": "rename-file"
+        },
+        {
+          "title": "Delete File",
+          "children": [],
+          "anchor": "delete-file"
+        },
+        {
+          "title": "Create a shell file",
+          "children": [],
+          "anchor": "create-a-shell-file"
+        },
+        {
+          "title": "Create the workflow execution shell",
+          "children": [],
+          "anchor": "create-the-workflow-execution-shell"
+        },
+        {
+          "title": "View the results",
+          "children": [],
+          "anchor": "view-the-results"
+        }
+      ],
+      "anchor": "basic-operations"
+    },
+    {
+      "title": "Example",
+      "children": [
+        {
+          "title": "Create File",
+          "children": [],
+          "anchor": "create-file"
+        },
+        {
+          "title": "Upload File",
+          "children": [],
+          "anchor": "upload-file"
+        },
+        {
+          "title": "View File",
+          "children": [],
+          "anchor": "view-file"
+        },
+        {
+          "title": "Download File",
+          "children": [],
+          "anchor": "download-file"
+        },
+        {
+          "title": "Rename File",
+          "children": [],
+          "anchor": "rename-file"
+        },
+        {
+          "title": "Delete File",
+          "children": [],
+          "anchor": "delete-file"
+        },
+        {
+          "title": "Create a shell file",
+          "children": [],
+          "anchor": "create-a-shell-file"
+        },
+        {
+          "title": "Create the workflow execution shell",
+          "children": [],
+          "anchor": "create-the-workflow-execution-shell"
+        },
+        {
+          "title": "View the results",
+          "children": [],
+          "anchor": "view-the-results"
+        }
+      ],
+      "anchor": "example"
+    }
+  ],
+  "title": "File Management",
+  "link": "/guide/resource/file-manage"
+}
