@@ -140,7 +140,7 @@ const Community = () => {
                 rel="noreferrer"
                 className="community-contact-mail-link"
               >
-                user-subscribe@dolphinscheduler.apache.org
+                users-subscribe@dolphinscheduler.apache.org
               </a>{" "}
               <span>{t("email_tips")}</span>
             </div>
