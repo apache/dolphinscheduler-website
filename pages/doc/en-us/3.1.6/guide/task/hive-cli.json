@@ -1,0 +1,68 @@
+{
+  "__html": "<h1 id=\"hive-cli\">Hive CLI</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Use <code>Hive Cli Task</code> to create a <code>Hive Cli</code> type task and execute hive SQL from scripts or files.\nThe workers run <code>hive -e</code> to execute hive sql from scripts or <code>hive -f</code> to execute from files in <code>Resource Center</code>.</p>\n<h2 id=\"hive-cli-task-vs-sql-task-with-hive-datasource\">Hive CLI Task vs SQL Task With Hive Datasource</h2>\n<p>In DolphinScheduler, we have both <code>Hive CLI Task</code> and <code>SQL Task With Hive Datasource</code> for different scenarios.\nYou could choose between these two based on your needs.</p>\n<ul>\n<li>The <code>Hive CLI</code> task plugin connects directly to <code>HDFS</code> and the <code>Hive Metastore</code> for hive task executions,\nwhich requires your workers to have access to those services, such as related <code>Hive</code> libs, <code>Hive</code> and <code>HDFS</code> configuration files.\nHowever, <code>Hive CLI Task</code> provides better stability for scheduling in production.</li>\n<li><code>SQL Task With Hive Datasource</code> does not require access to <code>Hive</code> libs, <code>Hive</code> and\n<code>HDFS</code> configuration files and supports <code>Kerberos</code> for authentication. However, you may encounter <code>HiveServer2</code> failures\nif your hive sql task scheduling puts significant pressure on it.</li>\n</ul>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management-Project Name-Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag <img src=\"/img/tasks/icons/hivecli.png\" width=\"15\"/> from the toolbar to the canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.1.6/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Hive Cli Task Execution Type</td>\n<td>The type of hive cli task execution, choose either <code>FROM_SCRIPT</code> or <code>FROM_FILE</code>.</td>\n</tr>\n<tr>\n<td>Hive SQL Script</td>\n<td>If you choose <code>FROM_SCRIPT</code> for <code>Hive Cli Task Execution Type</code>, you need to fill in your SQL script.</td>\n</tr>\n<tr>\n<td>Hive Cli Options</td>\n<td>Extra options for hive cli, such as <code>--verbose</code> to check execution result.</td>\n</tr>\n<tr>\n<td>Resources</td>\n<td>If you choose <code>FROM_FILE</code> for <code>Hive Cli Task Execution Type</code>, you need to select your SQL file.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"hive-cli-task-example\">Hive Cli Task Example</h3>\n<p>This example below illustrates how to create a <code>Hive CLI</code> task node and execute hive SQL from script:</p>\n<p><img src=\"/img/tasks/demo/hive_cli_from_script.png\" alt=\"demo-hive-cli-from-script\"></p>\n<p>This example below illustrates how to create a <code>Hive CLI</code> task node and execute hive SQL from file:</p>\n<p><img src=\"/img/tasks/demo/hive_cli_from_file.png\" alt=\"demo-hive-cli-from-file\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Hive CLI"
+  ],
+  "time": "2023-05-15",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Hive Cli Task Example",
+          "children": [],
+          "anchor": "hive-cli-task-example"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Hive CLI Task vs SQL Task With Hive Datasource",
+      "children": [
+        {
+          "title": "Hive Cli Task Example",
+          "children": [],
+          "anchor": "hive-cli-task-example"
+        }
+      ],
+      "anchor": "hive-cli-task-vs-sql-task-with-hive-datasource"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Hive Cli Task Example",
+          "children": [],
+          "anchor": "hive-cli-task-example"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Hive Cli Task Example",
+          "children": [],
+          "anchor": "hive-cli-task-example"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Hive Cli Task Example",
+          "children": [],
+          "anchor": "hive-cli-task-example"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "Hive CLI",
+  "link": "/guide/task/hive-cli"
+}

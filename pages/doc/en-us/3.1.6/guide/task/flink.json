@@ -1,0 +1,253 @@
+{
+  "__html": "<h1 id=\"flink-node\">Flink Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Flink task type, used to execute Flink programs. For Flink nodes:</p>\n<ol>\n<li>\n<p>When the program type is Java, Scala or Python, the worker submits the task <code>flink run</code> using the Flink command. See <a href=\"https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/deployment/cli/\">flink cli</a> for more details.</p>\n</li>\n<li>\n<p>When the program type is SQL, the worker submit tasks using <code>sql-client.sh</code>. See <a href=\"https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/sqlclient/\">flink sql client</a> for more details.</p>\n</li>\n</ol>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/flink.png\" width=\"15\"/>task node to canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.1.6/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<p>|      <strong>Parameter</strong>      |                                                                                                                             <strong>Description</strong>                                                                                                                             |\n|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|\n| Program type            | Support Java, Scala, Python and SQL four languages.                                                                                                                                                                                                                     |\n| Class of main function  | The <strong>full path</strong> of Main Class, the entry point of the Flink program.                                                                                                                                                                                                  |\n| Main jar package        | The jar package of the Flink program (upload by Resource Center).                                                                                                                                                                                                       |\n| Deployment mode         | Support 3 deployment modes: cluster, local and application (Flink 1.11 and later. See also <a href=\"https://nightlies.apache.org/flink/flink-docs-release-1.11/ops/deployment/yarn_setup.html#run-an-application-in-application-mode\">Run an application in Application Mode</a>). |\n| Initialization script   | Script file to initialize session context.                                                                                                                                                                                                                              |\n| Script                  | The sql script file developed by the user that should be executed.                                                                                                                                                                                                      |\n| Flink version           | Select version according to the execution environment.                                                                                                                                                                                                                  |\n| Task name               | Flink task name.                                                                                                                                                                                                                                                        |\n| JobManager memory size  | Used to set the size of jobManager memories, which can be set according to the actual production environment.                                                                                                                                                           |\n| Number of slots         | Used to set the number of slots, which can be set according to the actual production environment.                                                                                                                                                                       |\n| TaskManager memory size | Used to set the size of taskManager memories, which can be set according to the actual production environment.                                                                                                                                                          |\n| Number of TaskManager   | Used to set the number of taskManagers, which can be set according to the actual production environment.                                                                                                                                                                |\n| Parallelism             | Used to set the degree of parallelism for executing Flink tasks.                                                                                                                                                                                                        |\n| Main program parameters | Set the input parameters for the Flink program and support the substitution of custom parameter variables.                                                                                                                                                              |\n| Optional parameters     | Support <code>--jar</code>, <code>--files</code>,<code> --archives</code>, <code>--conf</code> format.                                                                                                                                                                                                              |   |\n| Custom parameter        | It is a local user-defined parameter for Flink, and will replace the content with <code>${variable}</code> in the script.                                                                                                                                                          |</p>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"execute-the-wordcount-program\">Execute the WordCount Program</h3>\n<p>This is a common introductory case in the big data ecosystem, which often apply to computational frameworks such as MapReduce, Flink and Spark. The main purpose is to count the number of identical words in the input text. (Flink's releases attach this example job)</p>\n<h4 id=\"configure-the-flink-environment-in-dolphinscheduler\">Configure the flink environment in DolphinScheduler</h4>\n<p>If you are using the flink task type in a production environment, it is necessary to configure the required environment first. The following is the configuration file: <code>bin/env/dolphinscheduler_env.sh</code>.</p>\n<p><img src=\"/img/tasks/demo/flink_task01.png\" alt=\"demo-flink-simple\"></p>\n<h4 id=\"upload-the-main-package\">Upload the Main Package</h4>\n<p>When using the Flink task node, you need to upload the jar package to the Resource Center for the execution, refer to the <a href=\"/en-us/docs/3.1.6/guide/resource/configuration\">resource center</a>.</p>\n<p>After finish the Resource Centre configuration, upload the required target files directly by dragging and dropping.</p>\n<p><img src=\"/img/tasks/demo/upload_jar.png\" alt=\"resource_upload\"></p>\n<h4 id=\"configure-flink-nodes\">Configure Flink Nodes</h4>\n<p>Configure the required content according to the parameter descriptions above.</p>\n<p><img src=\"/img/tasks/demo/flink_task02.png\" alt=\"demo-flink-simple\"></p>\n<h3 id=\"execute-the-flinksql-program\">Execute the FlinkSQL Program</h3>\n<p>Configure the required content according to the parameter descriptions above.</p>\n<p><img src=\"/img/tasks/demo/flink_sql_test.png\" alt=\"demo-flink-sql-simple\"></p>\n<h2 id=\"note\">Note</h2>\n<ul>\n<li>\n<p>JAVA and Scala only used for identification, there is no difference. If use Python to develop Flink, there is no class of the main function and the rest is the same.</p>\n</li>\n<li>\n<p>Use SQL to execute Flink SQL tasks, currently only Flink 1.13 and above are supported.</p>\n</li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Flink"
+  ],
+  "time": "2023-05-15",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Execute the WordCount Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-wordcount-program"
+        },
+        {
+          "title": "Execute the FlinkSQL Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-flinksql-program"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Execute the WordCount Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-wordcount-program"
+        },
+        {
+          "title": "Execute the FlinkSQL Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-flinksql-program"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Execute the WordCount Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-wordcount-program"
+        },
+        {
+          "title": "Execute the FlinkSQL Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-flinksql-program"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Execute the WordCount Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-wordcount-program"
+        },
+        {
+          "title": "Execute the FlinkSQL Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-flinksql-program"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Note",
+      "children": [
+        {
+          "title": "Execute the WordCount Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-wordcount-program"
+        },
+        {
+          "title": "Execute the FlinkSQL Program",
+          "children": [
+            {
+              "title": "Configure the flink environment in DolphinScheduler",
+              "children": [],
+              "anchor": "configure-the-flink-environment-in-dolphinscheduler"
+            },
+            {
+              "title": "Upload the Main Package",
+              "children": [],
+              "anchor": "upload-the-main-package"
+            },
+            {
+              "title": "Configure Flink Nodes",
+              "children": [],
+              "anchor": "configure-flink-nodes"
+            }
+          ],
+          "anchor": "execute-the-flinksql-program"
+        }
+      ],
+      "anchor": "note"
+    }
+  ],
+  "title": "Flink Node",
+  "link": "/guide/task/flink"
+}

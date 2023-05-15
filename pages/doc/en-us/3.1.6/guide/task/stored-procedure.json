@@ -1,0 +1,23 @@
+{
+  "__html": "<h1 id=\"stored-procedure\">Stored Procedure</h1>\n<ul>\n<li>Execute the stored procedure according to the selected DataSource.</li>\n</ul>\n<blockquote>\n<p>Drag from the <code>PROCEDURE</code> task node into the canvas, as shown in the figure below:</p>\n</blockquote>\n<p align=\"center\">\n   <img src=\"/img/procedure_edit.png\" width=\"80%\" />\n </p>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.1.6/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>DataSource</td>\n<td>The DataSource type of the stored procedure supports MySQL and POSTGRESQL, select the corresponding DataSource.</td>\n</tr>\n<tr>\n<td>Method</td>\n<td>The method name of the stored procedure.</td>\n</tr>\n<tr>\n<td>Custom parameters</td>\n<td>The custom parameter types of the stored procedure support <code>IN</code> and <code>OUT</code>, and the data types support: VARCHAR, INTEGER, LONG, FLOAT, DOUBLE, DATE, TIME, TIMESTAMP and BOOLEAN.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"remark\">Remark</h2>\n<ul>\n<li>\n<p>Prepare: Create a stored procedure in the database, e.g.</p>\n<pre><code>CREATE PROCEDURE dolphinscheduler.test(in in1 INT, out out1 INT)\nbegin\nset out1=in1;\nEND\n</code></pre>\n</li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Stored Procedure"
+  ],
+  "time": "2023-05-15",
+  "structure": [
+    {
+      "title": "Task Parameters",
+      "children": [],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Remark",
+      "children": [],
+      "anchor": "remark"
+    }
+  ],
+  "title": "Stored Procedure",
+  "link": "/guide/task/stored-procedure"
+}

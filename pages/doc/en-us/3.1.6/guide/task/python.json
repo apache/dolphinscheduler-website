@@ -1,0 +1,77 @@
+{
+  "__html": "<h1 id=\"python-node\">Python Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Use <code>Python Task</code> to create a python-type task and execute python scripts. When the worker executes <code>Python Task</code>,\nit will generate a temporary python script, and executes the script by the Linux user with the same name as the tenant.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag <img src=\"/img/tasks/icons/python.png\" width=\"15\"/> from the toolbar to the canvas.</li>\n</ul>\n<h2 id=\"task-parameter\">Task Parameter</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.1.6/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Script</td>\n<td>Python program developed by the user.</td>\n</tr>\n<tr>\n<td>Custom parameters</td>\n<td>It is the user-defined parameters of Python, which will replace the content with ${variable} in the script.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"simply-print\">Simply Print</h3>\n<p>This example simulates a common task that runs by a simple command. The example is to print one line in the log file, as shown in the following figure:\n&quot;This is a demo of python task&quot;.</p>\n<p><img src=\"/img/tasks/demo/python_ui_next.jpg\" alt=\"demo-python-simple\"></p>\n<pre><code class=\"language-python\"><span class=\"hljs-built_in\">print</span>(<span class=\"hljs-string\">&quot;This is a demo of python task&quot;</span>)\n</code></pre>\n<h3 id=\"custom-parameters\">Custom Parameters</h3>\n<p>This example simulates a custom parameter task. We use parameters for reusing existing tasks as template or coping with the dynamic task. In this case,\nwe declare a custom parameter named &quot;param_key&quot;, with the value &quot;param_val&quot;. Then we use echo to print the parameter &quot;${param_key}&quot; we just declared.\nAfter running this example, we would see &quot;param_val&quot; print in the log.</p>\n<p><img src=\"/img/tasks/demo/python_custom_param_ui_next.jpg\" alt=\"demo-python-custom-param\"></p>\n<pre><code class=\"language-python\"><span class=\"hljs-built_in\">print</span>(<span class=\"hljs-string\">&quot;${param_key}&quot;</span>)\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Python"
+  ],
+  "time": "2023-05-15",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Simply Print",
+          "children": [],
+          "anchor": "simply-print"
+        },
+        {
+          "title": "Custom Parameters",
+          "children": [],
+          "anchor": "custom-parameters"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Simply Print",
+          "children": [],
+          "anchor": "simply-print"
+        },
+        {
+          "title": "Custom Parameters",
+          "children": [],
+          "anchor": "custom-parameters"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameter",
+      "children": [
+        {
+          "title": "Simply Print",
+          "children": [],
+          "anchor": "simply-print"
+        },
+        {
+          "title": "Custom Parameters",
+          "children": [],
+          "anchor": "custom-parameters"
+        }
+      ],
+      "anchor": "task-parameter"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Simply Print",
+          "children": [],
+          "anchor": "simply-print"
+        },
+        {
+          "title": "Custom Parameters",
+          "children": [],
+          "anchor": "custom-parameters"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "Python Node",
+  "link": "/guide/task/python"
+}
