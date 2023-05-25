@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"python-节点\">Python 节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p>Python 任务类型，用于创建 Python 类型的任务并执行一系列的 Python 脚本。worker 执行该任务的时候，会生成一个临时python脚本，\n并使用与租户同名的 linux 用户执行这个脚本。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击&quot;创建工作流&quot;按钮，进入DAG编辑页面。</li>\n<li>工具栏中拖动 <img src=\"/img/tasks/icons/python.png\" width=\"15\"/> 到画板中，即可完成创建。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.1.7/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>脚本</td>\n<td>用户开发的PYTHON程序</td>\n</tr>\n<tr>\n<td>自定义参数</td>\n<td>是PYTHON局部的用户自定义参数，会替换脚本中以${变量}的内容</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"简单打印一行文字\">简单打印一行文字</h3>\n<p>该样例模拟了常见的简单任务，这些任务只需要简单的一两行命令就能运行起来。我们以打印一行日志为例，该任务仅会在日志文件中打印一行\n&quot;This is a demo of python task&quot;</p>\n<p><img src=\"/img/tasks/demo/python_ui_next.jpg\" alt=\"demo-python-simple\"></p>\n<pre><code class=\"language-python\"><span class=\"hljs-built_in\">print</span>(<span class=\"hljs-string\">&quot;This is a demo of python task&quot;</span>)\n</code></pre>\n<h3 id=\"使用自定义参数\">使用自定义参数</h3>\n<p>该样例模拟了自定义参数任务，为了更方便的复用已有的任务，或者面对动态的需求时，我们会使用变量保证脚本的复用性。本例中，我们先在自定义脚本\n中定义了参数 &quot;param_key&quot;，并将他的值设置为 &quot;param_val&quot;。接着在&quot;脚本&quot;中使用了 print 函数，将参数 &quot;param_key&quot; 打印了出来。当我们保存\n并运行任务后，在日志中会看到将参数 &quot;param_key&quot; 对应的值 &quot;param_val&quot; 打印出来。</p>\n<p><img src=\"/img/tasks/demo/python_custom_param_ui_next.jpg\" alt=\"demo-python-custom-param\"></p>\n<pre><code class=\"language-python\"><span class=\"hljs-built_in\">print</span>(<span class=\"hljs-string\">&quot;${param_key}&quot;</span>)\n</code></pre>\n<h2 id=\"注意事项\">注意事项</h2>\n<p>None</p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Python"
+  ],
+  "time": "2023-05-25",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "注意事项",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "注意事项"
+    }
+  ],
+  "title": "Python 节点",
+  "link": "/guide/task/python"
+}

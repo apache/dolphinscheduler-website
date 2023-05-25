@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"conditions-节点\">Conditions 节点</h1>\n<p>Conditions 是一个条件节点，根据上游任务运行状态，判断应该运行哪个下游任务。截止目前 Conditions 支持多个上游任务，但只支持两个下游任务。当上游任务数超过一个时，可以通过<code>且</code>以及<code>或</code>操作符实现复杂上游依赖</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏中的<img src=\"/img/conditions.png\" width=\"20\"/>任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.1.7/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>下游任务选择</td>\n<td>根据前置任务的状态来跳转到对应的分支：成功分支 - 当上游运行成功时，运行成功选择的分支；失败分支 - 当上游运行失败时，运行失败选择的分支</td>\n</tr>\n<tr>\n<td>上游条件选择</td>\n<td>可以为 Conditions 任务选择一个或多个上游任务：增加上游依赖 - 通过选择第一个参数选择对应的任务名称，通过第二个参数选择触发的 Conditions 任务的状态；上游任务关系选择 - 当有多个上游任务时，可以通过<code>且</code>以及<code>或</code>操作符实现任务的复杂关系。</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"相关任务\">相关任务</h2>\n<p><a href=\"/zh-cn/docs/3.1.7/guide/task/switch\">switch</a>：Condition节点主要依据上游节点的执行状态（成功、失败）执行对应分支。<a href=\"/zh-cn/docs/3.1.7/guide/task/switch\">Switch</a>节点主要依据全局变量的值和用户所编写的表达式判断结果执行对应分支</p>\n<h2 id=\"任务样例\">任务样例</h2>\n<p>该样例通过使用 <a href=\"/zh-cn/docs/3.1.7/guide/task/shell\">Shell</a> 任务来演示 Condition 任务的操作流程。</p>\n<h3 id=\"1、创建工作流\">1、创建工作流</h3>\n<p>进入工作流定义页面，然后分别创建如下任务节点：</p>\n<ul>\n<li>Node_A：Shell 任务，打印输出 ”hello world“，其主要作用是 Condition 的上游分支，根据其执行是否成功来触发对应的分支节点。</li>\n<li>Condition：Conditions 任务，根据上游任务的执行状态，来执行对应的分支。</li>\n<li>Node_Success：Shell 任务，打印输出 “success”，Node_A 执行成功的分支。</li>\n<li>Node_False：Shell 任务，打印输出 ”false“，Node_A 执行失败的分支。</li>\n</ul>\n<p><img src=\"/img/tasks/demo/condition_task01.png\" alt=\"condition_task01\"></p>\n<h3 id=\"2、查看执行结果\">2、查看执行结果</h3>\n<p>当完成创建工作流之后，可以上线运行该工作流。在工作流实例页面可以查看到各个任务的执行状态。如下图所示：</p>\n<p><img src=\"/img/tasks/demo/condition_task02.png\" alt=\"condition_task02\"></p>\n<p>上图中，任务状态标记为绿色对号的，即为成功执行的任务节点。</p>\n<h2 id=\"注意事项\">注意事项</h2>\n<ul>\n<li>Conditions 任务支持多个上游任务，但只支持两个下游任务。</li>\n<li>Conditions 任务以及包含该任务的工作流不支持复制操作。</li>\n<li>Conditions 的前置任务不能连接其分支节点，会造成逻辑混乱，不符合 DAG 调度。如下图所示的情况是<strong>错误</strong>的。</li>\n</ul>\n<p><img src=\"/img/tasks/demo/condition_task03.png\" alt=\"condition_task03\">\n<img src=\"/img/tasks/demo/condition_task04.png\" alt=\"condition_task04\"></p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Conditions"
+  ],
+  "time": "2023-05-25",
+  "structure": [
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "1、创建工作流",
+          "children": [],
+          "anchor": "1、创建工作流"
+        },
+        {
+          "title": "2、查看执行结果",
+          "children": [],
+          "anchor": "2、查看执行结果"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "1、创建工作流",
+          "children": [],
+          "anchor": "1、创建工作流"
+        },
+        {
+          "title": "2、查看执行结果",
+          "children": [],
+          "anchor": "2、查看执行结果"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "相关任务",
+      "children": [
+        {
+          "title": "1、创建工作流",
+          "children": [],
+          "anchor": "1、创建工作流"
+        },
+        {
+          "title": "2、查看执行结果",
+          "children": [],
+          "anchor": "2、查看执行结果"
+        }
+      ],
+      "anchor": "相关任务"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "1、创建工作流",
+          "children": [],
+          "anchor": "1、创建工作流"
+        },
+        {
+          "title": "2、查看执行结果",
+          "children": [],
+          "anchor": "2、查看执行结果"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "注意事项",
+      "children": [
+        {
+          "title": "1、创建工作流",
+          "children": [],
+          "anchor": "1、创建工作流"
+        },
+        {
+          "title": "2、查看执行结果",
+          "children": [],
+          "anchor": "2、查看执行结果"
+        }
+      ],
+      "anchor": "注意事项"
+    }
+  ],
+  "title": "Conditions 节点",
+  "link": "/guide/task/conditions"
+}

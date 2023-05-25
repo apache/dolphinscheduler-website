@@ -1,0 +1,91 @@
+{
+  "__html": "<h1 id=\"本地参数\">本地参数</h1>\n<h2 id=\"作用域\">作用域</h2>\n<p>在任务定义页面配置的参数，默认作用域仅限该任务，如果配置了<a href=\"/zh-cn/docs/3.1.7/guide/parameter/context\">参数传递</a>则可将该参数作用到下游任务中。</p>\n<h2 id=\"使用方式\">使用方式</h2>\n<p>本地参数配置方式如下：在任务定义页面，点击“自定义参数”右边的加号，填写对应的变量名称和对应的值，保存即可。</p>\n<ul>\n<li>如果要在单个任务中使用参数，请参阅通过自定义参数使用</li>\n<li>如果要在任务中使用配置参数并在下游任务中使用它们：\n<ul>\n<li>如果你只是想要简单使用，且不使用自定义参数, 请参阅 通过 <code>setValue</code> 和自定义参数 export 本地参数</li>\n<li>如果想要使用自定义参数, 请参阅 通过 <code>setValue</code> 和自定义参数 export 本地参数</li>\n<li>如果想要使用 Bash 参数, 请参阅 通过 <code>setValue</code> 和 Bash 环境变量参数 export 本地参数</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"通过自定义参数使用\">通过自定义参数使用</h3>\n<p>本样例展示了如何使用本地参数，打印输出当前日期。创建一个 Shell 任务，并编写脚本内容为 <code>echo ${dt}</code>。点击配置栏中的<strong>自定义参数</strong>，配置如下图所示：</p>\n<p><img src=\"/img/new_ui/dev/parameter/local_parameter01.png\" alt=\"local-parameter01\"></p>\n<p>参数说明：</p>\n<ul>\n<li>dt：参数名</li>\n<li>IN：IN 表示局部参数仅能在当前节点使用，OUT 表示局部参数可以向下游传递</li>\n<li>DATE：数据类型，日期</li>\n<li>$[yyyy-MM-dd]：自定义格式的衍生内置参数</li>\n</ul>\n<p>保存工作流并运行，查看 Shell 任务输出日志。</p>\n<p><img src=\"/img/new_ui/dev/parameter/local_parameter02.png\" alt=\"local-parameter02\"></p>\n<blockquote>\n<p>注：本地参数可以在当前任务节点的工作流中，设置其为 OUT 则可以传递给下游的工作流使用，可以参考：<a href=\"/zh-cn/docs/3.1.7/guide/parameter/context\">参数传递</a></p>\n</blockquote>\n<h3 id=\"通过-<code>setvalue</code>-export-本地参数\">通过 <code>setValue</code> export 本地参数</h3>\n<p>如果你想简单 export 参数然后在下游任务中使用它们，你可以在你的任务中使用 <code>setValue</code>，你可以将参数统一在一个任务中管理。在 Shell 任务中使用语法\n<code>echo '${setValue(set_val=123)}'</code>(<strong>不要忘记单引号</strong>) 并添加新的 <code>OUT</code> 自定义参数来 export 它。</p>\n<p><img src=\"/img/new_ui/dev/parameter/local_param_set_val.png\" alt=\"local-parameter-set-val\"></p>\n<p>你可以在下游任务中使用语法 <code>echo '${set_val}'</code> 在获取设定的值。</p>\n<h3 id=\"通过-<code>setvalue</code>-和自定义参数-export-本地参数\">通过 <code>setValue</code> 和自定义参数 export 本地参数</h3>\n<p>如果你想用自定义参数而不是常量值来实现参数 export，并下游任务中使用它们，你可以在通过 <code>setValue</code> 和 自定义参数实现，当你想改变参数的值时可以直接改变\n“自定义参数”模块中的值，这让程序更加容易维护。您可以在 Shell 任务中使用语法 <code>echo &quot;#{setValue(set_val_param=${val})}&quot;</code>（<strong>如果你想要将任何\n变量赋值给 <code>setValue</code></strong> 请不要忘记使用双引号）并添加新的 <code>IN</code> 自定义参数用于输入变量 <code>val</code> 和 <code>OUT</code> 自定义参数用于 export 参数 <code>set_val_param</code>。</p>\n<p><img src=\"/img/new_ui/dev/parameter/local_param_set_val_custom.png\" alt=\"local-parameter-set-val-param\"></p>\n<p>你可以在下游任务中使用语法 <code>echo '${set_val_param}'</code> 在获取设定的值。</p>\n<h3 id=\"通过-<code>setvalue</code>-和-bash-环境变量参数-export-本地参数\">通过 <code>setValue</code> 和 Bash 环境变量参数 export 本地参数</h3>\n<p>If you want to export parameters with bash variable instead of constants value, and then use them in downstream tasks, you could use <code>setValue</code> in your task, which more flexible such as you can get variable for exists local or HTTP resource. You can use syntax like</p>\n<p>如果你想用 bash 变量而不是常量值 export 参数，并在下游任务中使用它们，你可以在通过 <code>setValue</code> 和 Bash 变量实现，它更灵活，例如你动态获取现有的本地\n或 HTTP 资源获取设定变量。 您可以使用类似的语法</p>\n<pre><code class=\"language-shell\">lines_num=$(wget https://raw.githubusercontent.com/apache/dolphinscheduler/dev/README.md -q -O - | wc -l | xargs)\necho &quot;#{setValue(set_val_var=${lines_num})}&quot;\n</code></pre>\n<p>在 Shell 任务中（<strong>如果你想要将任何变量赋值给 <code>setValue</code></strong> 请不要忘记使用双引号）和 <code>OUT</code> 自定义参数用于 export 参数 <code>set_val_var</code>。\n.</p>\n<p><img src=\"/img/new_ui/dev/parameter/local_param_set_val_bash.png\" alt=\"local-parameter-set-val-bash\"></p>\n<p>你可以在下游任务中使用语法 <code>echo '${set_val_var}'</code> 在获取设定的值。</p>\n",
+  "location": [
+    "功能介绍",
+    "参数",
+    "本地参数"
+  ],
+  "time": "2023-05-25",
+  "structure": [
+    {
+      "title": "作用域",
+      "children": [
+        {
+          "title": "通过自定义参数使用",
+          "children": [],
+          "anchor": "通过自定义参数使用"
+        },
+        {
+          "title": "通过 setValue export 本地参数",
+          "children": [],
+          "anchor": "通过-setvalue-export-本地参数"
+        },
+        {
+          "title": "通过 setValue 和自定义参数 export 本地参数",
+          "children": [],
+          "anchor": "通过-setvalue-和自定义参数-export-本地参数"
+        },
+        {
+          "title": "通过 setValue 和 Bash 环境变量参数 export 本地参数",
+          "children": [],
+          "anchor": "通过-setvalue-和-bash-环境变量参数-export-本地参数"
+        }
+      ],
+      "anchor": "作用域"
+    },
+    {
+      "title": "使用方式",
+      "children": [
+        {
+          "title": "通过自定义参数使用",
+          "children": [],
+          "anchor": "通过自定义参数使用"
+        },
+        {
+          "title": "通过 setValue export 本地参数",
+          "children": [],
+          "anchor": "通过-setvalue-export-本地参数"
+        },
+        {
+          "title": "通过 setValue 和自定义参数 export 本地参数",
+          "children": [],
+          "anchor": "通过-setvalue-和自定义参数-export-本地参数"
+        },
+        {
+          "title": "通过 setValue 和 Bash 环境变量参数 export 本地参数",
+          "children": [],
+          "anchor": "通过-setvalue-和-bash-环境变量参数-export-本地参数"
+        }
+      ],
+      "anchor": "使用方式"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "通过自定义参数使用",
+          "children": [],
+          "anchor": "通过自定义参数使用"
+        },
+        {
+          "title": "通过 setValue export 本地参数",
+          "children": [],
+          "anchor": "通过-setvalue-export-本地参数"
+        },
+        {
+          "title": "通过 setValue 和自定义参数 export 本地参数",
+          "children": [],
+          "anchor": "通过-setvalue-和自定义参数-export-本地参数"
+        },
+        {
+          "title": "通过 setValue 和 Bash 环境变量参数 export 本地参数",
+          "children": [],
+          "anchor": "通过-setvalue-和-bash-环境变量参数-export-本地参数"
+        }
+      ],
+      "anchor": "任务样例"
+    }
+  ],
+  "title": "本地参数",
+  "link": "/guide/parameter/local"
+}

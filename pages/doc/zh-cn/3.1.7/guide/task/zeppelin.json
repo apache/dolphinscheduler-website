@@ -1,0 +1,68 @@
+{
+  "__html": "<h1 id=\"apache-zeppelin\">Apache Zeppelin</h1>\n<h2 id=\"综述\">综述</h2>\n<p><code>Zeppelin</code>任务类型，用于创建并执行<code>Zeppelin</code>类型任务。worker 执行该任务的时候，会通过<code>Zeppelin Cient API</code>触发<code>Zeppelin Notebook Paragraph</code>。\n点击<a href=\"https://zeppelin.apache.org/\">这里</a> 获取更多关于<code>Apache Zeppelin Notebook</code>的信息。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击&quot;创建工作流&quot;按钮，进入DAG编辑页面。</li>\n<li>工具栏中拖动 <img src=\"/img/tasks/icons/zeppelin.png\" width=\"15\"/> 到画板中，即可完成创建。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.1.7/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Zeppelin Note ID</td>\n<td>Zeppelin Note对应的唯一ID</td>\n</tr>\n<tr>\n<td>Zeppelin Paragraph ID</td>\n<td>Zeppelin Paragraph对应的唯一ID。如果你想一次性调度整个note，这一栏不填即可</td>\n</tr>\n<tr>\n<td>Zeppelin Rest Endpoint</td>\n<td>您的Zeppelin服务的REST Endpoint</td>\n</tr>\n<tr>\n<td>Zeppelin Production Note Directory</td>\n<td>生产模式下存放克隆note的目录</td>\n</tr>\n<tr>\n<td>Zeppelin Parameters</td>\n<td>用于传入Zeppelin Dynamic Form的参数</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"生产（克隆）模式\">生产（克隆）模式</h2>\n<ul>\n<li>填上<code>Zeppelin Production Note Directory</code>参数以启动<code>生产模式</code>。</li>\n<li>在<code>生产模式</code>下，目标note会被克隆到您所填的<code>Zeppelin Production Note Directory</code>目录下。\n<code>Zeppelin任务插件</code>将会执行克隆出来的note并在执行成功后自动清除它。\n因为在此模式下，如果您不小心修改了正在被<code>Dolphin Scheduler</code>调度的note，也不会影响到生产任务的执行，\n从而提高了稳定性。</li>\n<li>如果您选择不填<code>Zeppelin Production Note Directory</code>这个参数，<code>Zeppelin任务插件</code>将会执行您的原始note。\n'Zeppelin Production Note Directory'参数在格式上应该以<code>斜杠</code>开头和结尾，例如 <code>/production_note_directory/</code>。</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"zeppelin-paragraph-任务样例\">Zeppelin Paragraph 任务样例</h3>\n<p>这个示例展示了如何创建Zeppelin Paragraph任务节点：</p>\n<p><img src=\"/img/tasks/demo/zeppelin.png\" alt=\"demo-zeppelin-paragraph\"></p>\n<p><img src=\"/img/tasks/demo/zeppelin_id.png\" alt=\"demo-get-zeppelin-id\"></p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Apache Zeppelin"
+  ],
+  "time": "2023-05-25",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph 任务样例",
+          "children": [],
+          "anchor": "zeppelin-paragraph-任务样例"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph 任务样例",
+          "children": [],
+          "anchor": "zeppelin-paragraph-任务样例"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph 任务样例",
+          "children": [],
+          "anchor": "zeppelin-paragraph-任务样例"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "生产（克隆）模式",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph 任务样例",
+          "children": [],
+          "anchor": "zeppelin-paragraph-任务样例"
+        }
+      ],
+      "anchor": "生产（克隆）模式"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph 任务样例",
+          "children": [],
+          "anchor": "zeppelin-paragraph-任务样例"
+        }
+      ],
+      "anchor": "任务样例"
+    }
+  ],
+  "title": "Apache Zeppelin",
+  "link": "/guide/task/zeppelin"
+}

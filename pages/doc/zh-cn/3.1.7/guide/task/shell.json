@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"shell\">Shell</h1>\n<h2 id=\"综述\">综述</h2>\n<p>Shell 任务类型，用于创建 Shell 类型的任务并执行一系列的 Shell 脚本。worker 执行该任务的时候，会生成一个临时 shell 脚本，并使用与租户同名的 linux 用户执行这个脚本。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击&quot;创建工作流&quot;按钮，进入 DAG 编辑页面。</li>\n<li>工具栏中拖动 <img src=\"/img/tasks/icons/shell.png\" width=\"15\"/> 到画板中，即可完成创建。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.1.7/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n<li>除上述默认参数，此任务没有其他参数</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"简单打印一行文字\">简单打印一行文字</h3>\n<p>该样例模拟了常见的简单任务，这些任务只需要简单的一两行命令就能运行起来。我们以打印一行日志为例，该任务仅会在日志文件中打印一行\n&quot;This is a demo of shell task&quot;</p>\n<p><img src=\"/img/tasks/demo/shell.jpg\" alt=\"demo-shell-simple\"></p>\n<h3 id=\"使用自定义参数\">使用自定义参数</h3>\n<p>该样例模拟了自定义参数任务，为了更方便的复用已有的任务，或者面对动态的需求时，我们会使用变量保证脚本的复用性。本例中，我们先在自定义脚本\n中定义了参数 &quot;param_key&quot;，并将他的值设置为 &quot;param_val&quot;。接着在&quot;脚本&quot;中声明了 echo 命令，将参数 &quot;param_key&quot; 打印了出来。当我们保存\n并运行任务后，在日志中会看到将参数 &quot;param_key&quot; 对应的值 &quot;param_val&quot; 打印出来。</p>\n<p><img src=\"/img/tasks/demo/shell_custom_param.jpg\" alt=\"demo-shell-custom-param\"></p>\n<h2 id=\"注意事项\">注意事项</h2>\n<p>Shell 任务类型通过解析任务日志是否包含 <code>application_xxx_xxx</code> 的内容来判断是否 Yarn 任务，如果是则会将相应的 <code>application_id</code> 的状态作为当前 Shell 节点的运行状态判断，此时如果操作停止工作流则会 Kill 相应的 <code>application_id</code></p>\n<p>如果 Shell 任务中需要使用到用户自定义的脚本，可通过资源中心来上传对应的文件然后在 Shell 任务中引用他们，可参考：<a href=\"/zh-cn/docs/3.1.7/guide/resource/file-manage\">文件管理</a>。</p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Shell"
+  ],
+  "time": "2023-05-25",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "注意事项",
+      "children": [
+        {
+          "title": "简单打印一行文字",
+          "children": [],
+          "anchor": "简单打印一行文字"
+        },
+        {
+          "title": "使用自定义参数",
+          "children": [],
+          "anchor": "使用自定义参数"
+        }
+      ],
+      "anchor": "注意事项"
+    }
+  ],
+  "title": "Shell",
+  "link": "/guide/task/shell"
+}

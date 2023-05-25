@@ -1,0 +1,322 @@
+{
+  "__html": "<h1 id=\"security-(authorization-system)\">Security (Authorization System)</h1>\n<p>Only the administrator account in the security center has permission to operate, which includes queue management, tenant management, user management, alarm group management, worker group management, token management and other functions. In the user management module, you can authorize resources, data sources, projects, etc.</p>\n<p>Administrator login, default username/password: admin/dolphinscheduler123</p>\n<h2 id=\"create-queue\">Create Queue</h2>\n<ul>\n<li>The queue is used when executing programs such as spark and mapreduce, and the &quot;queue&quot; parameter needs to be used.</li>\n<li>The administrator enters the <code>Security Center-&gt;Queue Management</code> page and clicks the &quot;Create Queue&quot; button to create a new queue.</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/security/create-queue.png\" alt=\"create-queue\"></p>\n<h2 id=\"add-tenant\">Add Tenant</h2>\n<ul>\n<li>The tenant corresponds to the Linux user, which is used by the worker to submit the job. If linux does not have this user, it will cause the task to fail. You can automatically create a linux user when the user does not exist by modifying the parameters in the <code>worker.properties</code> configuration file. The parameter will require that the worker can run the command <code>worker.tenant.auto.create = true; worker.tenant.auto.create = truesudo</code></li>\n<li>Tenant Code: <strong>The tenant code is the user on Linux, unique and cannot be repeated</strong></li>\n<li>The administrator enters the <code>Security Center-&gt;Tenant Management</code> page, and clicks the <code>Create Tenant</code> button to create a tenant.</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/security/create-tenant.png\" alt=\"create-tenant\"></p>\n<h2 id=\"create-normal-user\">Create Normal User</h2>\n<p>Users are divided into <strong>administrator users</strong> and <strong>ordinary users</strong></p>\n<ul>\n<li>Administrators have permissions such as authorization and user management, but do not have permissions to create projects and actions defined by workflows.</li>\n<li>Ordinary users can create projects and create, edit, and execute workflow definitions.</li>\n<li><strong>Note</strong>: If the user switches tenants, all resources under the tenant to which the user belongs will be copied to the new tenant that is switched.</li>\n</ul>\n<p>Go to the <code>Security Center -&gt; User Management</code> page and click the <code>Create User</code> button to create a user, administrator only.</p>\n<p><img src=\"/img/new_ui/dev/security/create-user.png\" alt=\"create-user\"></p>\n<h3 id=\"edit-user-information\">Edit user information</h3>\n<p>The administrator enters the <code>Security Center-&gt;User Management</code> page and clicks the <code>Edit</code> button to edit user information.</p>\n<p>After logging in as an ordinary user, click the user information in the drop-down box of the user name to enter the user information page, and click the <code>Edit</code> button to edit the user information.</p>\n<h3 id=\"modify-user-password\">Modify user password</h3>\n<p>The administrator enters the <code>Security Center -&gt; User Management</code> page and clicks the <code>Edit</code> button. When editing user information, enter the new password to modify the user password.</p>\n<p>After logging in as an ordinary user, click the user information in the user name drop-down box to enter the password modification page, enter the password and confirm the password and click the <code>Edit</code> button, then the password modification is successful.</p>\n<h2 id=\"create-alarm-group\">Create Alarm Group</h2>\n<p>The alarm group is a parameter set at startup. After the process ends, the status of the process and other information will be sent to the alarm group by email.</p>\n<p>The administrator enters the <code>Security Center -&gt; Alarm Group Management</code> page and clicks the <code>Create Alarm Group</code> button to create an alarm group.</p>\n<p><img src=\"/img/new_ui/dev/security/create-alarmInstance.png\" alt=\"create-alarmInstance\"></p>\n<h2 id=\"token-management\">Token Management</h2>\n<p>Since the back-end interface has a login check, token management provides a way to perform various operations on the system by calling the interface.</p>\n<p>The administrator enters the <code>Security Center -&gt; Token Management page</code>, clicks the <code>Create Token</code> button, selects the expiration time and user, clicks the <code>Generate Token</code> button, and clicks the <code>Submit</code> button, then create the selected user's token successfully.</p>\n<p><img src=\"/img/new_ui/dev/security/create-token.png\" alt=\"create-token\"></p>\n<p>After a normal user logs in, click the user information in the username drop-down box, enter the token management page, select the expiration time, click the <code>Generate Token</code> button, and click the <code>Submit</code> button, then the user creates a token successfully.</p>\n<p>Example of calling:</p>\n<pre><code class=\"language-java\"><span class=\"hljs-comment\">/**\n * test token\n */</span>\n<span class=\"hljs-keyword\">public</span>  <span class=\"hljs-keyword\">void</span> <span class=\"hljs-title function_\">doPOSTParam</span><span class=\"hljs-params\">()</span><span class=\"hljs-keyword\">throws</span> Exception{\n    <span class=\"hljs-comment\">// create HttpClient</span>\n    <span class=\"hljs-type\">CloseableHttpClient</span> <span class=\"hljs-variable\">httpclient</span> <span class=\"hljs-operator\">=</span> HttpClients.createDefault();\n    <span class=\"hljs-comment\">// create http post request</span>\n    <span class=\"hljs-type\">HttpPost</span> <span class=\"hljs-variable\">httpPost</span> <span class=\"hljs-operator\">=</span> <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">HttpPost</span>(<span class=\"hljs-string\">&quot;http://127.0.0.1:12345/escheduler/projects/create&quot;</span>);\n    httpPost.setHeader(<span class=\"hljs-string\">&quot;token&quot;</span>, <span class=\"hljs-string\">&quot;123&quot;</span>);\n    <span class=\"hljs-comment\">// set parameters</span>\n    List&lt;NameValuePair&gt; parameters = <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">ArrayList</span>&lt;NameValuePair&gt;();\n    parameters.add(<span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">BasicNameValuePair</span>(<span class=\"hljs-string\">&quot;projectName&quot;</span>, <span class=\"hljs-string\">&quot;qzw&quot;</span>));\n    parameters.add(<span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">BasicNameValuePair</span>(<span class=\"hljs-string\">&quot;desc&quot;</span>, <span class=\"hljs-string\">&quot;qzw&quot;</span>));\n    <span class=\"hljs-type\">UrlEncodedFormEntity</span> <span class=\"hljs-variable\">formEntity</span> <span class=\"hljs-operator\">=</span> <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">UrlEncodedFormEntity</span>(parameters);\n    httpPost.setEntity(formEntity);\n    <span class=\"hljs-type\">CloseableHttpResponse</span> <span class=\"hljs-variable\">response</span> <span class=\"hljs-operator\">=</span> <span class=\"hljs-literal\">null</span>;\n    <span class=\"hljs-keyword\">try</span> {\n        <span class=\"hljs-comment\">// execute</span>\n        response = httpclient.execute(httpPost);\n        <span class=\"hljs-comment\">// response status code 200</span>\n        <span class=\"hljs-keyword\">if</span> (response.getStatusLine().getStatusCode() == <span class=\"hljs-number\">200</span>) {\n            <span class=\"hljs-type\">String</span> <span class=\"hljs-variable\">content</span> <span class=\"hljs-operator\">=</span> EntityUtils.toString(response.getEntity(), <span class=\"hljs-string\">&quot;UTF-8&quot;</span>);\n            System.out.println(content);\n        }\n    } <span class=\"hljs-keyword\">finally</span> {\n        <span class=\"hljs-keyword\">if</span> (response != <span class=\"hljs-literal\">null</span>) {\n            response.close();\n        }\n        httpclient.close();\n    }\n}\n</code></pre>\n<h2 id=\"granted-permissions\">Granted Permissions</h2>\n<ul>\n<li>Granted permissions include project permissions, resource permissions, data source permissions, and UDF function permissions.</li>\n<li>Administrators can authorize projects, resources, data sources, and UDF functions that ordinary users do not create. Because the authorization methods of projects, resources, data sources and UDF functions are all the same, the project authorization is used as an example to introduce.</li>\n<li>Note: For projects created by the user, the user has all permissions. The item list and the selected items list are not displayed.</li>\n<li>The administrator enters the <code>Security Center -&gt; User Management</code> page, and clicks the &quot;Authorize&quot; button of the user to be authorized, as shown in the following figure:</li>\n</ul>\n<p align=\"center\">\n  <img src=\"/img/auth-en.png\" width=\"80%\" />\n</p>\n<ul>\n<li>Select the project to authorize the project.</li>\n</ul>\n<p align=\"center\">\n   <img src=\"/img/auth-project-en.png\" width=\"80%\" />\n</p>\n<ul>\n<li>Resources, data sources, and UDF function authorization are the same as project authorization.</li>\n</ul>\n<h2 id=\"worker-grouping\">Worker Grouping</h2>\n<p>Each worker node belongs to some worker groups, and the default group is <code>default</code>.</p>\n<p>When DolphinScheduler executes a task, it will assign the task to the configured worker group and the worker nodes in the group will execute the task.</p>\n<h3 id=\"add-or-update-worker-groups\">Add or Update Worker Groups</h3>\n<ul>\n<li>Open the <code>worker-server/conf/application.yaml</code> on the worker node where you want to configure the groups and modify the <code>groups</code> parameter in <code>worker</code> section.</li>\n<li>The values of the <code>groups</code> parameter are the names of the groups where the worker node belong. The default value is <code>default</code>.</li>\n<li>If the worker node belongs to multiple groups, list them with hyphens, e.g.</li>\n</ul>\n<pre><code class=\"language-conf\">worker:\n......\n  groups:\n    - default\n    - group-1\n    - group-2\n......\n</code></pre>\n<ul>\n<li>You can add new worker groups for the workers during runtime regardless of the configurations in <code>application.yaml</code> as below:\n<code>Security Center</code> -&gt; <code>Worker Group Manage</code> -&gt; <code>Create Worker Group</code> -&gt; fill in <code>Group Name</code> and <code>Worker Addresses</code> -&gt; click <code>confirm</code>.</li>\n</ul>\n<h2 id=\"environmental-management\">Environmental Management</h2>\n<ul>\n<li>Configure the worker running environment online, a worker can specify multiple environments, each environment is equivalent to the <code>dolphinscheduler_env.sh</code> file.</li>\n<li>The default environment is the <code>dolphinscheduler_env.sh</code> file.</li>\n<li>When the task is executed, the task can be assigned to the specified worker group, and the corresponding environment can be selected according to the worker group, and finally the worker node in the group executes the environment and then executes the task.</li>\n</ul>\n<h3 id=\"add-or-update-environment\">Add or update environment</h3>\n<p>The environment configuration is equivalent to the configuration in the <code>dolphinscheduler_env.sh</code> file.</p>\n<p><img src=\"/img/new_ui/dev/security/create-environment.png\" alt=\"create-environment\"></p>\n<h3 id=\"usage-environment\">Usage environment</h3>\n<p>Create a task node in the workflow definition, select the worker group and the environment corresponding to the worker group. When executing the task, the Worker will execute the environment first before executing the task.</p>\n<p><img src=\"/img/new_ui/dev/security/use-environment.png\" alt=\"use-environment\"></p>\n<blockquote>\n<p>NOTE: Please make sure you have associated the <code>Environments</code> with your <code>worker groups</code> if you can not select the <code>Environment Name</code> in workflow definition page or when triggering workflows.</p>\n</blockquote>\n<h2 id=\"cluster-management\">Cluster Management</h2>\n<blockquote>\n<p>Add or update cluster</p>\n<ul>\n<li>Each process can be related to zero or several clusters to support multiple environment, now just support k8s.</li>\n</ul>\n<p>Usage cluster</p>\n<ul>\n<li>After creation and authorization, k8s namespaces and processes will associate clusters. Each cluster will have separate workflows and task instances running independently.</li>\n</ul>\n</blockquote>\n<p><img src=\"/img/new_ui/dev/security/create-cluster.png\" alt=\"create-cluster\"></p>\n<h2 id=\"namespace-management\">Namespace Management</h2>\n<blockquote>\n<p>Add or update k8s cluster</p>\n</blockquote>\n<ul>\n<li>First enter the configuration of the k8s cluster connection into the table <code>t_ds_k8s</code> in the database for batch job and will removed later, the creation of the namespace now selects the cluster by drop-down options.</li>\n</ul>\n<blockquote>\n<p>Add or update namespace</p>\n</blockquote>\n<ul>\n<li>After creation and authorization, you can select it from the namespace drop down list when edit k8s task, If the k8s cluster name is <code>ds_null_k8s</code> means test mode which will not operate the cluster actually.</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/security/create-namespace.png\" alt=\"create-environment\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Security"
+  ],
+  "time": "2023-05-25",
+  "structure": [
+    {
+      "title": "Create Queue",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "create-queue"
+    },
+    {
+      "title": "Add Tenant",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "add-tenant"
+    },
+    {
+      "title": "Create Normal User",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "create-normal-user"
+    },
+    {
+      "title": "Create Alarm Group",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "create-alarm-group"
+    },
+    {
+      "title": "Token Management",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "token-management"
+    },
+    {
+      "title": "Granted Permissions",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "granted-permissions"
+    },
+    {
+      "title": "Worker Grouping",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "worker-grouping"
+    },
+    {
+      "title": "Environmental Management",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "environmental-management"
+    },
+    {
+      "title": "Cluster Management",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "cluster-management"
+    },
+    {
+      "title": "Namespace Management",
+      "children": [
+        {
+          "title": "Edit user information",
+          "children": [],
+          "anchor": "edit-user-information"
+        },
+        {
+          "title": "Modify user password",
+          "children": [],
+          "anchor": "modify-user-password"
+        },
+        {
+          "title": "Add or Update Worker Groups",
+          "children": [],
+          "anchor": "add-or-update-worker-groups"
+        },
+        {
+          "title": "Add or update environment",
+          "children": [],
+          "anchor": "add-or-update-environment"
+        },
+        {
+          "title": "Usage environment",
+          "children": [],
+          "anchor": "usage-environment"
+        }
+      ],
+      "anchor": "namespace-management"
+    }
+  ],
+  "title": "Security (Authorization System)",
+  "link": "/guide/security"
+}

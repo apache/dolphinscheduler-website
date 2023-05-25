@@ -1,0 +1,43 @@
+{
+  "__html": "<h1 id=\"use-rainbond-deployment\">Use Rainbond Deployment</h1>\n<p>This section describes the one-click deployment of high availability DolphinScheduler clusters through the <a href=\"https://www.rainbond.com/\">Rainbond</a> cloud native application management platform. This method is suitable for users who don't know much about complex technologies such as <code>Kubernetes</code>, lowering the threshold for deploying DolphinScheduler in <code>Kubernetes</code> mode.</p>\n<h2 id=\"prerequisites\">Prerequisites</h2>\n<ul>\n<li>Available Rainbond cloud native application management platform is a prerequisite，please refer to the official <code>Rainbond</code> documentation <a href=\"https://www.rainbond.com/docs/quick-start/quick-install\">Rainbond Quick install</a></li>\n</ul>\n<h2 id=\"dolphinscheduler-cluster-one-click-deployment\">DolphinScheduler Cluster One-click Deployment</h2>\n<ul>\n<li>Logging in and accessing the built-in open source app store, search the keyword <code>dolphinscheduler</code> to find the DolphinScheduler App.</li>\n</ul>\n<p><img src=\"/img/rainbond/appstore-dolphinscheduler.png\" alt=\"\"></p>\n<ul>\n<li>Click <code>install</code> on the right side of DolphinScheduler to go to the installation page. Fill in the corresponding information and click <code>OK</code> to start the installation. You will get automatically redirected to the application view.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th>Select item</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Team name</td>\n<td>user workspace，Isolate by namespace</td>\n</tr>\n<tr>\n<td>Cluster name</td>\n<td>select kubernetes cluster</td>\n</tr>\n<tr>\n<td>Select app</td>\n<td>select application</td>\n</tr>\n<tr>\n<td>app version</td>\n<td>select DolphinScheduler version</td>\n</tr>\n</tbody>\n</table>\n<p><img src=\"/img/rainbond/install-dolphinscheduler.png\" alt=\"\"></p>\n<ul>\n<li>Wait a few minutes, the installation completes and <code>DolphinScheduler</code> will be running.</li>\n</ul>\n<p><img src=\"/img/rainbond/topology-dolphinscheduler.png\" alt=\"\"></p>\n<ul>\n<li>Access DolphinScheduler-API components and the default user credentials are <code>admin</code> / <code>dolphinscheduler123</code>.</li>\n</ul>\n<p><img src=\"/img/rainbond/homepage-dolphinscheduler.png\" alt=\"\"></p>\n<h2 id=\"api-master-worker-node-telescopic\">API Master Worker Node Telescopic</h2>\n<p>DolphinScheduler API、Master、Worker all support scaling multiple instances, ensuring the high availability of the entire service.</p>\n<p>Take <code>worker</code> as an example: enter the <code>component -&gt; Telescopic</code> page, and set the number of instances.</p>\n<p><img src=\"/img/rainbond/dolpscheduler-worker.png\" alt=\"\"></p>\n<p>To verify <code>worker</code> node, enter <code>DolphinScheduler UI -&gt; Monitoring -&gt; Worker</code> page to view detailed node information.</p>\n<p><img src=\"/img/rainbond/monitor-dolphinscheduler.png\" alt=\"\"></p>\n<h2 id=\"configuration-file\">Configuration file</h2>\n<p>API and Worker Services share the configuration file <code>/opt/dolphinscheduler/conf/common.properties</code>. To modify the configurations, you only need to modify that of the API service.</p>\n<h2 id=\"how-to-support-python-3？\">How to support Python 3？</h2>\n<p>Worker service is installed with default <code>Python3</code>，you can add environment variables <code>PYTHON_HOME=/usr/bin/python3</code></p>\n<h2 id=\"how-to-support-hadoop,-spark,-datax-？\">How to support Hadoop, Spark, DataX ？</h2>\n<p>Take <code>DataX</code> as an example:</p>\n<ol>\n<li>Install the plugin。Rainbond Team View -&gt; Plugin -&gt; Install plugin from the App Store -&gt; search <code>initialization plugin</code> Install.</li>\n<li>Open plugin.enter Worker component -&gt; plugin -&gt; open <code>initialization plugin</code> and modify the configuration.\n<ul>\n<li>FILE_URL：http://datax-opensource.oss-cn-hangzhou.aliyuncs.com/datax.tar.gz</li>\n<li>FILE_PATH：/opt/soft</li>\n<li>LOCK_PATH：/opt/soft</li>\n</ul>\n</li>\n<li>Update component, the plug-in <code>Datax</code> will be downloaded automatically and decompress to <code>/opt/soft</code>\n<img src=\"/img/rainbond/plugin.png\" alt=\"\"></li>\n</ol>\n<hr>\n",
+  "location": [
+    "Installation",
+    "integration",
+    "Rainbond Deployment"
+  ],
+  "time": "2023-05-25",
+  "structure": [
+    {
+      "title": "Prerequisites",
+      "children": [],
+      "anchor": "prerequisites"
+    },
+    {
+      "title": "DolphinScheduler Cluster One-click Deployment",
+      "children": [],
+      "anchor": "dolphinscheduler-cluster-one-click-deployment"
+    },
+    {
+      "title": "API Master Worker Node Telescopic",
+      "children": [],
+      "anchor": "api-master-worker-node-telescopic"
+    },
+    {
+      "title": "Configuration file",
+      "children": [],
+      "anchor": "configuration-file"
+    },
+    {
+      "title": "How to support Python 3？",
+      "children": [],
+      "anchor": "how-to-support-python-3？"
+    },
+    {
+      "title": "How to support Hadoop, Spark, DataX ？",
+      "children": [],
+      "anchor": "how-to-support-hadoop,-spark,-datax-？"
+    }
+  ],
+  "title": "Use Rainbond Deployment",
+  "link": "/guide/integration/rainbond"
+}

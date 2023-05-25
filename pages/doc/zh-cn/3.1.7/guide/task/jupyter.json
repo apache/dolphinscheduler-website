@@ -1,0 +1,169 @@
+{
+  "__html": "<h1 id=\"jupyter\">Jupyter</h1>\n<h2 id=\"综述\">综述</h2>\n<p><code>Jupyter</code>任务类型，用于创建并执行<code>Jupyter</code>类型任务。worker 执行该任务的时候，会通过<code>papermill</code>执行<code>jupyter note</code>。\n点击<a href=\"https://papermill.readthedocs.io/en/latest/\">这里</a> 获取更多关于<code>papermill</code>的信息。</p>\n<h2 id=\"conda虚拟环境配置\">Conda虚拟环境配置</h2>\n<ul>\n<li>在<code>common.properties</code>配置<code>conda.path</code>，将其指向您的<code>conda.sh</code>。这里的<code>conda</code>应该是您用来管理您的 <code>papermill</code>和<code>jupyter</code>所在python环境的相同<code>conda</code>。\n点击 <a href=\"https://docs.conda.io/en/latest/\">这里</a> 获取更多关于<code>conda</code>的信息.</li>\n<li><code>conda.path</code>默认设置为<code>/opt/anaconda3/etc/profile.d/conda.sh</code>。 如果您不清楚您的<code>conda</code>环境在哪里，只需要在命令行执行<code>conda info | grep -i 'base environment'</code>即可获得。</li>\n</ul>\n<blockquote>\n<p>注意：<code>Jupyter任务插件</code>使用<code>source</code>命令激活conda环境，\n如果您的租户没有<code>source</code>命令使用权限，<code>Jupyter任务插件</code>将无法使用。</p>\n</blockquote>\n<h2 id=\"python依赖管理\">Python依赖管理</h2>\n<h3 id=\"使用预装好的conda环境\">使用预装好的Conda环境</h3>\n<ol>\n<li>手动或使用<code>shell任务</code>在您的目标机器上创建conda环境。</li>\n<li>在您的<code>jupyter任务</code>中，将<code>condaEnvName</code>设置为您在上一步创建的conda环境名。</li>\n</ol>\n<h3 id=\"使用打包的conda环境\">使用打包的Conda环境</h3>\n<ol>\n<li>使用 <a href=\"https://conda.github.io/conda-pack/\">Conda-Pack</a> 将您的conda环境打包成<code>tarball</code>.</li>\n<li>将您打包好的conda环境上传到<code>资源中心</code>.</li>\n<li>在您的<code>jupyter任务</code>资源设置中，添加您在上一步中上传的conda环境包，如<code>jupyter_env.tar.gz</code>.</li>\n</ol>\n<blockquote>\n<p><strong><em>提示:</em></strong> 请您按照 <a href=\"https://conda.github.io/conda-pack/\">Conda-Pack</a> 官方指导打包conda环境，\n正确打包出的conda环境包解压后文件目录结构应和下图完全一致：</p>\n</blockquote>\n<pre><code>.\n├── bin\n├── conda-meta\n├── etc\n├── include\n├── lib\n├── share\n└── ssl\n</code></pre>\n<blockquote>\n<p>注意: 请严格按照上述<code>conda pack</code>指示操作，并且不要随意修改<code>bin/activate</code>。\n<code>Jupyter任务插件</code>使用<code>source</code>命令激活您打包的conda环境。\n若您对使用<code>source</code>命令有安全性上的担忧，请使用其他方法管理您的python依赖。</p>\n</blockquote>\n<h3 id=\"由依赖需求文本文件临时构建\">由依赖需求文本文件临时构建</h3>\n<ol>\n<li>在<code>资源中心</code>创建或上传<code>.txt</code>格式的python依赖需求文本文件。</li>\n<li>将<code>jupyter任务</code>中的<code>condaEnvName</code>参数设置成您的python依赖需求文本文件，如<code>requirements.txt</code>。</li>\n<li>在您<code>jupyter任务</code>的<code>资源</code>中选取您的python依赖需求文本文件，如<code>requirements.txt</code>。</li>\n</ol>\n<p>如下是一个依赖需求文本文件的样例，通过该文件，<code>jupyter任务插件</code>会自动构建您的python依赖，并执行您的python代码，\n执行完成后会自动释放临时构建的环境。</p>\n<pre><code class=\"language-text\">fastjsonschema==2.15.3\nfonttools==4.33.3\ngeojson==2.5.0\nidentify==2.4.11\nidna==3.3\nimportlib-metadata==4.11.3\nimportlib-resources==5.7.1\nipykernel==5.5.6\nipython==8.2.0\nipython-genutils==0.2.0\njedi==0.18.1\nJinja2==3.1.1\njson5==0.9.6\njsonschema==4.4.0\njupyter-client==7.3.0\njupyter-core==4.10.0\njupyter-server==1.17.0\njupyterlab==3.3.4\njupyterlab-pygments==0.2.2\njupyterlab-server==2.13.0\nkiwisolver==1.4.2\nMarkupSafe==2.1.1\nmatplotlib==3.5.2\nmatplotlib-inline==0.1.3\nmistune==0.8.4\nnbclassic==0.3.7\nnbclient==0.6.0\nnbconvert==6.5.0\nnbformat==5.3.0\nnest-asyncio==1.5.5\nnotebook==6.4.11\nnotebook-shim==0.1.0\nnumpy==1.22.3\npackaging==21.3\npandas==1.4.2\npandocfilters==1.5.0\npapermill==2.3.4\n</code></pre>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击&quot;创建工作流&quot;按钮，进入DAG编辑页面。</li>\n<li>工具栏中拖动 <img src=\"/img/tasks/icons/jupyter.png\" width=\"15\"/> 到画板中，即可完成创建。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.1.7/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Conda Env Name</td>\n<td>Conda环境或打包的Conda环境包名称</td>\n</tr>\n<tr>\n<td>Input Note Path</td>\n<td>输入的jupyter note模板路径</td>\n</tr>\n<tr>\n<td>Output Note Path</td>\n<td>输出的jupyter note路径</td>\n</tr>\n<tr>\n<td>Jupyter Parameters</td>\n<td>用于对接jupyter note参数化的JSON格式参数</td>\n</tr>\n<tr>\n<td>Kernel</td>\n<td>Jupyter notebook 内核</td>\n</tr>\n<tr>\n<td>Engine</td>\n<td>用于执行Jupyter note的引擎名称</td>\n</tr>\n<tr>\n<td>Jupyter Execution Timeout</td>\n<td>对于每个jupyter notebook cell设定的超时时间</td>\n</tr>\n<tr>\n<td>Jupyter Start Timeout</td>\n<td>对于jupyter notebook kernel设定的启动超时时间</td>\n</tr>\n<tr>\n<td>Others</td>\n<td>传入papermill命令的其他参数</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"简单的jupyter任务样例\">简单的Jupyter任务样例</h3>\n<p>这个示例展示了如何创建Jupyter任务节点：</p>\n<p><img src=\"/img/tasks/demo/jupyter.png\" alt=\"demo-jupyter-simple\"></p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Jupyter"
+  ],
+  "time": "2023-05-25",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "使用预装好的Conda环境",
+          "children": [],
+          "anchor": "使用预装好的conda环境"
+        },
+        {
+          "title": "使用打包的Conda环境",
+          "children": [],
+          "anchor": "使用打包的conda环境"
+        },
+        {
+          "title": "由依赖需求文本文件临时构建",
+          "children": [],
+          "anchor": "由依赖需求文本文件临时构建"
+        },
+        {
+          "title": "简单的Jupyter任务样例",
+          "children": [],
+          "anchor": "简单的jupyter任务样例"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "Conda虚拟环境配置",
+      "children": [
+        {
+          "title": "使用预装好的Conda环境",
+          "children": [],
+          "anchor": "使用预装好的conda环境"
+        },
+        {
+          "title": "使用打包的Conda环境",
+          "children": [],
+          "anchor": "使用打包的conda环境"
+        },
+        {
+          "title": "由依赖需求文本文件临时构建",
+          "children": [],
+          "anchor": "由依赖需求文本文件临时构建"
+        },
+        {
+          "title": "简单的Jupyter任务样例",
+          "children": [],
+          "anchor": "简单的jupyter任务样例"
+        }
+      ],
+      "anchor": "conda虚拟环境配置"
+    },
+    {
+      "title": "Python依赖管理",
+      "children": [
+        {
+          "title": "使用预装好的Conda环境",
+          "children": [],
+          "anchor": "使用预装好的conda环境"
+        },
+        {
+          "title": "使用打包的Conda环境",
+          "children": [],
+          "anchor": "使用打包的conda环境"
+        },
+        {
+          "title": "由依赖需求文本文件临时构建",
+          "children": [],
+          "anchor": "由依赖需求文本文件临时构建"
+        },
+        {
+          "title": "简单的Jupyter任务样例",
+          "children": [],
+          "anchor": "简单的jupyter任务样例"
+        }
+      ],
+      "anchor": "python依赖管理"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "使用预装好的Conda环境",
+          "children": [],
+          "anchor": "使用预装好的conda环境"
+        },
+        {
+          "title": "使用打包的Conda环境",
+          "children": [],
+          "anchor": "使用打包的conda环境"
+        },
+        {
+          "title": "由依赖需求文本文件临时构建",
+          "children": [],
+          "anchor": "由依赖需求文本文件临时构建"
+        },
+        {
+          "title": "简单的Jupyter任务样例",
+          "children": [],
+          "anchor": "简单的jupyter任务样例"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "使用预装好的Conda环境",
+          "children": [],
+          "anchor": "使用预装好的conda环境"
+        },
+        {
+          "title": "使用打包的Conda环境",
+          "children": [],
+          "anchor": "使用打包的conda环境"
+        },
+        {
+          "title": "由依赖需求文本文件临时构建",
+          "children": [],
+          "anchor": "由依赖需求文本文件临时构建"
+        },
+        {
+          "title": "简单的Jupyter任务样例",
+          "children": [],
+          "anchor": "简单的jupyter任务样例"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "使用预装好的Conda环境",
+          "children": [],
+          "anchor": "使用预装好的conda环境"
+        },
+        {
+          "title": "使用打包的Conda环境",
+          "children": [],
+          "anchor": "使用打包的conda环境"
+        },
+        {
+          "title": "由依赖需求文本文件临时构建",
+          "children": [],
+          "anchor": "由依赖需求文本文件临时构建"
+        },
+        {
+          "title": "简单的Jupyter任务样例",
+          "children": [],
+          "anchor": "简单的jupyter任务样例"
+        }
+      ],
+      "anchor": "任务样例"
+    }
+  ],
+  "title": "Jupyter",
+  "link": "/guide/task/jupyter"
+}

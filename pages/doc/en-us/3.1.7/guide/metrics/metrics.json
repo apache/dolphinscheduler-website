@@ -1,0 +1,237 @@
+{
+  "__html": "<h1 id=\"introduction\">Introduction</h1>\n<p>Apache DolphinScheduler exports metrics for system observability. We use <a href=\"https://micrometer.io/\">Micrometer</a> as application metrics facade.\nCurrently, we only support <code>Prometheus Exporter</code> but more are coming soon.</p>\n<h2 id=\"quick-start\">Quick Start</h2>\n<ul>\n<li>We enable Apache DolphinScheduler to export metrics in <code>standalone</code> mode to help users get hands dirty easily.</li>\n<li>After triggering tasks in <code>standalone</code> mode, you could access metrics list by visiting url <code>http://localhost:12345/dolphinscheduler/actuator/metrics</code>.</li>\n<li>After triggering tasks in <code>standalone</code> mode, you could access <code>prometheus-format</code> metrics by visiting url <code>http://localhost:12345/dolphinscheduler/actuator/prometheus</code>.</li>\n<li>For a better experience with <code>Prometheus</code> and <code>Grafana</code>, we have prepared the out-of-the-box <code>Grafana</code> configurations for you, you could find the <code>Grafana</code> dashboards\nat <code>dolphinscheduler-meter/resources/grafana</code> and directly import these dashboards to your <code>Grafana</code> instance.</li>\n<li>If you want to try with <code>docker</code>, you can use the following command to start the out-of-the-box <code>Prometheus</code> and <code>Grafana</code>:</li>\n</ul>\n<pre><code class=\"language-shell\">cd dolphinscheduler-meter/src/main/resources/grafana-demo\ndocker compose up\n</code></pre>\n<p>then access the <code>Grafana</code> by the url: <code>http://localhost/3001</code> for dashboards.</p>\n<p><img src=\"/img/metrics/metrics-master.png\" alt=\"image.png\">\n<img src=\"/img/metrics/metrics-worker.png\" alt=\"image.png\">\n<img src=\"/img/metrics/metrics-datasource.png\" alt=\"image.png\"></p>\n<ul>\n<li>If you prefer to have some experiments in <code>cluster</code> mode, please refer to the <a href=\"#configuration\">Configuration</a> section below:</li>\n</ul>\n<h2 id=\"configuration\">Configuration</h2>\n<ul>\n<li>Please add the following config in master/worker/alert/api's yaml file to enable the metrics exporter.</li>\n</ul>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">metrics:</span>\n  <span class=\"hljs-attr\">enabled:</span> <span class=\"hljs-literal\">true</span>\n</code></pre>\n<ul>\n<li>Once the metrics exporter enabled, you could access the metrics by the url <code>http://ip:port/actuator/prometheus</code>.</li>\n</ul>\n<p>The exporter port is the <code>server.port</code> defined in application.yaml, e.g: master: <code>server.port: 5679</code>, worker: <code>server.port: 1235</code>, alert: <code>server.port: 50053</code>, api: <code>server.port: 12345</code>.</p>\n<p>For example, you can get the master metrics by <code>curl http://localhost:5679/actuator/prometheus</code>.</p>\n<h2 id=\"naming-convention-&amp;-mapping\">Naming Convention &amp; Mapping</h2>\n<ul>\n<li>Naming of Apache DolphinScheduler metrics follows the officially-recommended approach by <a href=\"https://github.com/micrometer-metrics/micrometer-docs/blob/main/src/docs/concepts/naming.adoc\">Micrometer</a></li>\n<li><code>Micrometer</code> automatically maps the metrics names to suit the external metrics system you configured. Currently, we only support <code>Prometheus Exporter</code> but more are coming soon.</li>\n</ul>\n<h3 id=\"prometheus\">Prometheus</h3>\n<ul>\n<li>all dots mapped to underscores</li>\n<li>metric name starting with number added with prefix <code>m_</code></li>\n<li>COUNTER: add <code>_total</code> suffix if not ending with it</li>\n<li>LONG_TASK_TIMER: <code>_timer_seconds</code> suffix added if not ending with them</li>\n<li>GAUGE: <code>_baseUnit</code> suffix added if not ending with it</li>\n</ul>\n<h2 id=\"dolphin-scheduler-metrics-cheatsheet\">Dolphin Scheduler Metrics Cheatsheet</h2>\n<ul>\n<li>We categorize metrics by dolphin scheduler components such as <code>master server</code>, <code>worker server</code>, <code>api server</code> and <code>alert server</code>.</li>\n<li>Although task / workflow related metrics exported by <code>master server</code> and <code>worker server</code>, we categorize them separately for users to query them more conveniently.</li>\n</ul>\n<h3 id=\"task-related-metrics\">Task Related Metrics</h3>\n<ul>\n<li>ds.task.instance.count: (counter) the number of task instances, sliced by the tag <code>state</code>:\n<ul>\n<li>timeout: the number of timeout tasks</li>\n<li>finish: the number of finished tasks, both succeeded and failed included</li>\n<li>success: the number of successful tasks</li>\n<li>fail: the number of failed tasks</li>\n<li>stop: the number of stopped tasks</li>\n<li>retry: the number of retried tasks</li>\n<li>submit: the number of submitted tasks</li>\n<li>failover: the number of task fail-overs</li>\n</ul>\n</li>\n<li>ds.task.dispatch.count: (counter) the number of tasks dispatched to worker</li>\n<li>ds.task.dispatch.failure.count: (counter) the number of tasks failed to dispatch, retry failure included</li>\n<li>ds.task.dispatch.error.count: (counter) the number of task dispatch errors</li>\n<li>ds.task.execution.count.by.type: (counter) the number of task executions grouped by tag <code>task_type</code></li>\n<li>ds.task.running: (gauge) the number of running tasks</li>\n<li>ds.task.prepared: (gauge) the number of tasks prepared for task queue</li>\n<li>ds.task.execution.count: (counter) the number of executed tasks</li>\n<li>ds.task.execution.duration: (histogram) duration of task executions</li>\n</ul>\n<h3 id=\"workflow-related-metrics\">Workflow Related Metrics</h3>\n<ul>\n<li>ds.workflow.create.command.count: (counter) the number of commands created and inserted by workflows</li>\n<li>ds.workflow.instance.submit.count: (counter) the number of submitted workflow instances</li>\n<li>ds.workflow.instance.running: (gauge) the number of running workflow instances</li>\n<li>ds.workflow.instance.count: (counter) the number of workflow instances, sliced by the tag <code>state</code>:\n<ul>\n<li>timeout: the number of timeout workflow instances</li>\n<li>finish: the number of finished workflow instances, both successes and failures included</li>\n<li>success: the number of successful workflow instances</li>\n<li>fail: the number of failed workflow instances</li>\n<li>stop: the number of stopped workflow instances</li>\n<li>failover: the number of workflow instance fail-overs</li>\n</ul>\n</li>\n</ul>\n<h3 id=\"master-server-metrics\">Master Server Metrics</h3>\n<ul>\n<li>ds.master.overload.count: (counter) the number of times the master overloaded</li>\n<li>ds.master.consume.command.count: (counter) the number of commands consumed by master</li>\n<li>ds.master.scheduler.failover.check.count: (counter) the number of scheduler (master) fail-over checks</li>\n<li>ds.master.scheduler.failover.check.time: (histogram) the total time cost of scheduler (master) fail-over checks</li>\n<li>ds.master.quartz.job.executed: the total number of quartz jobs executed</li>\n<li>ds.master.quartz.job.execution.time: the total execution time of quartz jobs</li>\n</ul>\n<h3 id=\"worker-server-metrics\">Worker Server Metrics</h3>\n<ul>\n<li>ds.worker.overload.count: (counter) the number of times the worker overloaded</li>\n<li>ds.worker.full.submit.queue.count: (counter) the number of times the worker's submit queue being full</li>\n<li>ds.worker.resource.download.count: (counter) the number of downloaded resource files on workers, sliced by tag <code>status</code></li>\n<li>ds.worker.resource.download.duration: (histogram) the time cost of resource download on workers</li>\n<li>ds.worker.resource.download.size: (histogram) the sizes of downloaded resource files on workers (bytes)</li>\n</ul>\n<h3 id=\"api-server-metrics\">Api Server Metrics</h3>\n<ul>\n<li>Currently, we have not embedded any metrics in Api Server.</li>\n</ul>\n<h3 id=\"alert-server-related\">Alert Server Related</h3>\n<ul>\n<li>ds.alert.send.count: (counter) the number of sent alerts, sliced by tag <code>status</code></li>\n<li>ds.alert.pending: (gauge) the number of alerts waiting to get fired</li>\n</ul>\n<p><strong>In each server, there are some default system-level metrics related to <code>database connection</code>, <code>JVM</code>, etc. We list them below for your reference:</strong></p>\n<h3 id=\"database-related-metrics-(default)\">Database Related Metrics (Default)</h3>\n<ul>\n<li>hikaricp.connections: the total number of connections</li>\n<li>hikaricp.connections.creation: connection creation time (max, count, sum included)</li>\n<li>hikaricp.connections.acquire: connection acquirement time (max, count, sum included)</li>\n<li>hikaricp.connections.usage: connection usage time (max, count, sum included)</li>\n<li>hikaricp.connections.max: the max number of connections</li>\n<li>hikaricp.connections.min: the min number of connections</li>\n<li>hikaricp.connections.active: the number of active connections</li>\n<li>hikaricp.connections.idle: the number of idle connections</li>\n<li>hikaricp.connections.pending: the number of pending connections</li>\n<li>hikaricp.connections.timeout: the total number of timeout connections</li>\n<li>jdbc.connections.max: the max number of active connections that can be allocated at the same time</li>\n<li>jdbc.connections.min: the min number of idle connections in the pool</li>\n<li>jdbc.connections.idle: the number of established but idle connections</li>\n<li>jdbc.connections.active: the current number of active connections allocated from the data source</li>\n</ul>\n<h3 id=\"jvm-related-metrics-(default)\">JVM Related Metrics (Default)</h3>\n<ul>\n<li>jvm.buffer.total.capacity: an estimate of the total capacity of the buffers in the pool</li>\n<li>jvm.buffer.count: an estimate of the number of buffers in the pool</li>\n<li>jvm.buffer.memory.used: an estimate of the memory that the JVM is using for this buffer pool</li>\n<li>jvm.memory.committed: the amount of memory in bytes committed for the JVM to use</li>\n<li>jvm.memory.max: the maximum amount of memory in bytes that can be used for memory management</li>\n<li>jvm.memory.used: the amount of used memory</li>\n<li>jvm.threads.peak: the peak live thread count since the JVM started or peak reset</li>\n<li>jvm.threads.states: the current number of threads having NEW state</li>\n<li>jvm.gc.memory.allocated: incremented for an increase in the size of the (young) heap memory pool after one GC to before the next</li>\n<li>jvm.gc.max.data.size: max size of long-lived heap memory pool</li>\n<li>jvm.gc.pause: time spent in GC pause (count, sum, max included)</li>\n<li>jvm.gc.live.data.size: the size of long-lived heap memory pool after reclamation</li>\n<li>jvm.gc.memory.promoted: the count of positive increases in the size of the old generation memory pool before GC to after GC.</li>\n<li>jvm.classes.loaded: the number of classes currently loaded in the JVM</li>\n<li>jvm.threads.live: the current number of live threads including both daemon and non-daemon threads</li>\n<li>jvm.threads.daemon: the current number of live daemon threads</li>\n<li>jvm.classes.unloaded: the total number of classes unloaded since the JVM started</li>\n<li>process.cpu.usage: the <code>recent cpu usage</code> for the JVM process</li>\n<li>process.start.time: start time of the process since unix epoch</li>\n<li>process.uptime: the uptime of the JVM</li>\n</ul>\n<h3 id=\"others-(default)\">Others (Default)</h3>\n<ul>\n<li>jetty.threads.config.max: the max number of threads in the pool</li>\n<li>jetty.threads.config.min: the min number of threads in the pool</li>\n<li>jetty.threads.current: the total number of threads in the pool</li>\n<li>jetty.threads.idle: the number of idle threads in the pool</li>\n<li>jetty.threads.busy: the number of busy threads in the pool</li>\n<li>jetty.threads.jobs: number of queued jobs waiting for a thread</li>\n<li>process.files.max: the max number of file descriptors</li>\n<li>process.files.open: the number of open file descriptors</li>\n<li>system.cpu.usage: the recent cpu usage for the whole system</li>\n<li>system.cpu.count: the number of processors available to the JVM</li>\n<li>system.load.average.1m: the total number of runnable entities queued to available processors and runnable entities running on the available processors averaged over a period</li>\n<li>logback.events: the number of events that made it to the logs grouped by the tag <code>level</code></li>\n<li>http.server.requests: total number of http requests</li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Metrics",
+    "Metrics"
+  ],
+  "time": "2023-05-25",
+  "structure": [
+    {
+      "title": "Quick Start",
+      "children": [
+        {
+          "title": "Prometheus",
+          "children": [],
+          "anchor": "prometheus"
+        },
+        {
+          "title": "Task Related Metrics",
+          "children": [],
+          "anchor": "task-related-metrics"
+        },
+        {
+          "title": "Workflow Related Metrics",
+          "children": [],
+          "anchor": "workflow-related-metrics"
+        },
+        {
+          "title": "Master Server Metrics",
+          "children": [],
+          "anchor": "master-server-metrics"
+        },
+        {
+          "title": "Worker Server Metrics",
+          "children": [],
+          "anchor": "worker-server-metrics"
+        },
+        {
+          "title": "Api Server Metrics",
+          "children": [],
+          "anchor": "api-server-metrics"
+        },
+        {
+          "title": "Alert Server Related",
+          "children": [],
+          "anchor": "alert-server-related"
+        },
+        {
+          "title": "Database Related Metrics (Default)",
+          "children": [],
+          "anchor": "database-related-metrics-(default)"
+        },
+        {
+          "title": "JVM Related Metrics (Default)",
+          "children": [],
+          "anchor": "jvm-related-metrics-(default)"
+        },
+        {
+          "title": "Others (Default)",
+          "children": [],
+          "anchor": "others-(default)"
+        }
+      ],
+      "anchor": "quick-start"
+    },
+    {
+      "title": "Configuration",
+      "children": [
+        {
+          "title": "Prometheus",
+          "children": [],
+          "anchor": "prometheus"
+        },
+        {
+          "title": "Task Related Metrics",
+          "children": [],
+          "anchor": "task-related-metrics"
+        },
+        {
+          "title": "Workflow Related Metrics",
+          "children": [],
+          "anchor": "workflow-related-metrics"
+        },
+        {
+          "title": "Master Server Metrics",
+          "children": [],
+          "anchor": "master-server-metrics"
+        },
+        {
+          "title": "Worker Server Metrics",
+          "children": [],
+          "anchor": "worker-server-metrics"
+        },
+        {
+          "title": "Api Server Metrics",
+          "children": [],
+          "anchor": "api-server-metrics"
+        },
+        {
+          "title": "Alert Server Related",
+          "children": [],
+          "anchor": "alert-server-related"
+        },
+        {
+          "title": "Database Related Metrics (Default)",
+          "children": [],
+          "anchor": "database-related-metrics-(default)"
+        },
+        {
+          "title": "JVM Related Metrics (Default)",
+          "children": [],
+          "anchor": "jvm-related-metrics-(default)"
+        },
+        {
+          "title": "Others (Default)",
+          "children": [],
+          "anchor": "others-(default)"
+        }
+      ],
+      "anchor": "configuration"
+    },
+    {
+      "title": "Naming Convention &amp; Mapping",
+      "children": [
+        {
+          "title": "Prometheus",
+          "children": [],
+          "anchor": "prometheus"
+        },
+        {
+          "title": "Task Related Metrics",
+          "children": [],
+          "anchor": "task-related-metrics"
+        },
+        {
+          "title": "Workflow Related Metrics",
+          "children": [],
+          "anchor": "workflow-related-metrics"
+        },
+        {
+          "title": "Master Server Metrics",
+          "children": [],
+          "anchor": "master-server-metrics"
+        },
+        {
+          "title": "Worker Server Metrics",
+          "children": [],
+          "anchor": "worker-server-metrics"
+        },
+        {
+          "title": "Api Server Metrics",
+          "children": [],
+          "anchor": "api-server-metrics"
+        },
+        {
+          "title": "Alert Server Related",
+          "children": [],
+          "anchor": "alert-server-related"
+        },
+        {
+          "title": "Database Related Metrics (Default)",
+          "children": [],
+          "anchor": "database-related-metrics-(default)"
+        },
+        {
+          "title": "JVM Related Metrics (Default)",
+          "children": [],
+          "anchor": "jvm-related-metrics-(default)"
+        },
+        {
+          "title": "Others (Default)",
+          "children": [],
+          "anchor": "others-(default)"
+        }
+      ],
+      "anchor": "naming-convention-&amp;-mapping"
+    },
+    {
+      "title": "Dolphin Scheduler Metrics Cheatsheet",
+      "children": [
+        {
+          "title": "Prometheus",
+          "children": [],
+          "anchor": "prometheus"
+        },
+        {
+          "title": "Task Related Metrics",
+          "children": [],
+          "anchor": "task-related-metrics"
+        },
+        {
+          "title": "Workflow Related Metrics",
+          "children": [],
+          "anchor": "workflow-related-metrics"
+        },
+        {
+          "title": "Master Server Metrics",
+          "children": [],
+          "anchor": "master-server-metrics"
+        },
+        {
+          "title": "Worker Server Metrics",
+          "children": [],
+          "anchor": "worker-server-metrics"
+        },
+        {
+          "title": "Api Server Metrics",
+          "children": [],
+          "anchor": "api-server-metrics"
+        },
+        {
+          "title": "Alert Server Related",
+          "children": [],
+          "anchor": "alert-server-related"
+        },
+        {
+          "title": "Database Related Metrics (Default)",
+          "children": [],
+          "anchor": "database-related-metrics-(default)"
+        },
+        {
+          "title": "JVM Related Metrics (Default)",
+          "children": [],
+          "anchor": "jvm-related-metrics-(default)"
+        },
+        {
+          "title": "Others (Default)",
+          "children": [],
+          "anchor": "others-(default)"
+        }
+      ],
+      "anchor": "dolphin-scheduler-metrics-cheatsheet"
+    }
+  ],
+  "title": "Introduction",
+  "link": "/guide/metrics/metrics"
+}
