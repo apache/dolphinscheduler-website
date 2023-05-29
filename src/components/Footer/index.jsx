@@ -85,7 +85,7 @@ const Footer = () => {
               </Space>
             </div>
             <div className="footer-email">
-              {`${t("email")}: user-subscribe@dolphinscheduler.apache.org`}
+              {`${t("email")}: users-subscribe@dolphinscheduler.apache.org`}
             </div>
           </div>
         </div>
