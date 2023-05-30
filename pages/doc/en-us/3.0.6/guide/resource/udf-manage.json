@@ -1,0 +1,91 @@
+{
+  "__html": "<h1 id=\"udf-manage\">UDF Manage</h1>\n<h2 id=\"resource-management\">Resource Management</h2>\n<ul>\n<li>The resource management and file management functions are similar. The difference is that the resource management is the UDF upload function, and the file management uploads the user programs, scripts and configuration files.</li>\n<li>It mainly includes the following operations: rename, download, delete, etc.</li>\n<li>Upload UDF resources: Same as uploading files.</li>\n</ul>\n<h2 id=\"function-management\">Function Management</h2>\n<h3 id=\"create-udf-function\">Create UDF function</h3>\n<p>Click <code>Create UDF Function</code>, enter the UDF function parameters, select the UDF resource, and click <code>Submit</code> to create the UDF function.\nCurrently only temporary UDF functions for HIVE are supported.</p>\n<ul>\n<li>UDF function name: Enter the name of the UDF function.</li>\n<li>Package name Class name: Enter the full path of the UDF function.</li>\n<li>UDF resource: Set the resource file corresponding to the created UDF function.</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/resource/create-udf.png\" alt=\"create-udf\"></p>\n<h2 id=\"example\">Example</h2>\n<h3 id=\"write-udf-functions\">Write UDF functions</h3>\n<p>Users can customize the desired UDF function according to actual production requirements. Here's a function that appends &quot;HelloWorld&quot; to the end of any string. As shown below:</p>\n<p><img src=\"/img/new_ui/dev/resource/demo/udf-demo01.png\" alt=\"code-udf\"></p>\n<h3 id=\"configure-the-udf-function\">Configure the UDF function</h3>\n<p>Before configuring UDF functions, you need to upload the required function jar package through resource management. Then enter the function management and configure the relevant information. As shown below:</p>\n<p><img src=\"/img/new_ui/dev/resource/demo/udf-demo02.png\" alt=\"conf-udf\"></p>\n<h3 id=\"use-udf-functions\">Use UDF functions</h3>\n<p>In the process of using UDF functions, users only need to pay attention to the specific function writing, and upload the configuration through the resource center. The system will automatically configure the create function statement, refer to the following: <a href=\"https://github.com/apache/dolphinscheduler/blob/923f3f38e3271d7f1d22b3abc3497cecb6957e4a/dolphinscheduler-task-plugin/dolphinscheduler-task-sql/src/main/java/org/apache/dolphinscheduler/plugin/task/sql/SqlTask.java#L507-L531\">SqlTask</a></p>\n<p>Enter the workflow to define an SQL node, the data source type is HIVE, and the data source instance type is HIVE/IMPALA.</p>\n<ul>\n<li>SQL statement: <code>select HwUdf(&quot;abc&quot;);</code> This function is used in the same way as the built-in functions, and can be accessed directly using the function name.</li>\n<li>UDF function: Select the one configured for the resource center.</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/resource/demo/udf-demo03.png\" alt=\"use-udf\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Resource",
+    "UDF Manage"
+  ],
+  "time": "2023-5-30",
+  "structure": [
+    {
+      "title": "Resource Management",
+      "children": [
+        {
+          "title": "Create UDF function",
+          "children": [],
+          "anchor": "create-udf-function"
+        },
+        {
+          "title": "Write UDF functions",
+          "children": [],
+          "anchor": "write-udf-functions"
+        },
+        {
+          "title": "Configure the UDF function",
+          "children": [],
+          "anchor": "configure-the-udf-function"
+        },
+        {
+          "title": "Use UDF functions",
+          "children": [],
+          "anchor": "use-udf-functions"
+        }
+      ],
+      "anchor": "resource-management"
+    },
+    {
+      "title": "Function Management",
+      "children": [
+        {
+          "title": "Create UDF function",
+          "children": [],
+          "anchor": "create-udf-function"
+        },
+        {
+          "title": "Write UDF functions",
+          "children": [],
+          "anchor": "write-udf-functions"
+        },
+        {
+          "title": "Configure the UDF function",
+          "children": [],
+          "anchor": "configure-the-udf-function"
+        },
+        {
+          "title": "Use UDF functions",
+          "children": [],
+          "anchor": "use-udf-functions"
+        }
+      ],
+      "anchor": "function-management"
+    },
+    {
+      "title": "Example",
+      "children": [
+        {
+          "title": "Create UDF function",
+          "children": [],
+          "anchor": "create-udf-function"
+        },
+        {
+          "title": "Write UDF functions",
+          "children": [],
+          "anchor": "write-udf-functions"
+        },
+        {
+          "title": "Configure the UDF function",
+          "children": [],
+          "anchor": "configure-the-udf-function"
+        },
+        {
+          "title": "Use UDF functions",
+          "children": [],
+          "anchor": "use-udf-functions"
+        }
+      ],
+      "anchor": "example"
+    }
+  ],
+  "title": "UDF Manage",
+  "link": "/guide/resource/udf-manage"
+}
