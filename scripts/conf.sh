@@ -40,7 +40,7 @@ PROJECT_WEBSITE_DIR=${PROJECT_WEBSITE_DIR:-${SWAP_DIR}/${PROJECT_WEBSITE_NAME}}
 # docs in apache/dolphinscheduler-webstie branch `history-docs`
 declare -a HISTORY_DOCS_VERSIONS=(
 "1.2.0" "1.2.1" "1.3.1" "1.3.2" "1.3.3" "1.3.4" "1.3.5" "1.3.6" "1.3.8" "1.3.9"
-"2.0.0" "2.0.1" "2.0.2" "2.0.3" "2.0.5" "2.0.6" "2.0.7" "2.0.8"
+"2.0.0" "2.0.1" "2.0.2" "2.0.3" "2.0.5" "2.0.6" "2.0.7" "2.0.8" "2.0.9"
 )
 
 # NOTE: We should avoid use syntax `declare -A DEV_RELEASE_DOCS_VERSIONS=(["3.0.0"]="3.0.0-alpha-release")` because
