@@ -1,0 +1,60 @@
+{
+  "__html": "<h1 id=\"standalone\">Standalone</h1>\n<p>Standalone only for quick look for DolphinScheduler.</p>\n<p>If you are a green hand and want to experience DolphinScheduler, we recommended you install follow <a href=\"/en-us/docs/2.0.9/guide/installation/standalone\">Standalone</a>. If you want to experience more complete functions or schedule large tasks number, we recommended you install follow <a href=\"/en-us/docs/2.0.9/guide/installation/pseudo-cluster\">pseudo-cluster deployment</a>. If you want to using DolphinScheduler in production, we recommended you follow <a href=\"/en-us/docs/2.0.9/guide/installation/cluster\">cluster deployment</a> or <a href=\"/en-us/docs/2.0.9/guide/installation/kubernetes\">kubernetes</a></p>\n<blockquote>\n<p><strong><em>Note:</em></strong> Standalone only recommends the use of less than 20 workflows, because it uses H2 Database, Zookeeper Testing Server, too many tasks may cause instability</p>\n</blockquote>\n<h2 id=\"prepare\">Prepare</h2>\n<ul>\n<li>JDK：Download <a href=\"https://www.oracle.com/technetwork/java/javase/downloads/index.html\">JDK</a> (1.8+), and configure <code>JAVA_HOME</code> to and <code>PATH</code> variable. You can skip this step, if it already exists in your environment.</li>\n<li>Binary package: Download the DolphinScheduler binary package at <a href=\"https://dolphinscheduler.apache.org/en-us/download\">download page</a></li>\n</ul>\n<h2 id=\"start-dolphinscheduler-standalone-server\">Start DolphinScheduler Standalone Server</h2>\n<h3 id=\"extract-and-start-dolphinscheduler\">Extract and start DolphinScheduler</h3>\n<p>There is a standalone startup script in the binary compressed package, which can be quickly started after extract. Switch to a user with sudo permission and run the script</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Extract and start Standalone Server</span>\ntar -xvzf apache-dolphinscheduler-*-bin.tar.gz\ncd apache-dolphinscheduler-*-bin\nsh ./bin/dolphinscheduler-daemon.sh start standalone-server\n</code></pre>\n<h3 id=\"login-dolphinscheduler\">Login DolphinScheduler</h3>\n<p>The browser access address http://localhost:12345/dolphinscheduler can login DolphinScheduler UI. The default username and password are <strong>admin/dolphinscheduler123</strong></p>\n<h2 id=\"start/stop-server\">start/stop server</h2>\n<p>The script <code>./bin/dolphinscheduler-daemon.sh</code> can not only quickly start standalone, but also stop the service operation. All the commands are as follows</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Start Standalone Server</span>\nsh ./bin/dolphinscheduler-daemon.sh start standalone-server\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Stop Standalone Server</span>\nsh ./bin/dolphinscheduler-daemon.sh stop standalone-server\n</code></pre>\n",
+  "location": [
+    "Installation",
+    "Standalone Deployment"
+  ],
+  "time": "2023-06-05",
+  "structure": [
+    {
+      "title": "Prepare",
+      "children": [
+        {
+          "title": "Extract and start DolphinScheduler",
+          "children": [],
+          "anchor": "extract-and-start-dolphinscheduler"
+        },
+        {
+          "title": "Login DolphinScheduler",
+          "children": [],
+          "anchor": "login-dolphinscheduler"
+        }
+      ],
+      "anchor": "prepare"
+    },
+    {
+      "title": "Start DolphinScheduler Standalone Server",
+      "children": [
+        {
+          "title": "Extract and start DolphinScheduler",
+          "children": [],
+          "anchor": "extract-and-start-dolphinscheduler"
+        },
+        {
+          "title": "Login DolphinScheduler",
+          "children": [],
+          "anchor": "login-dolphinscheduler"
+        }
+      ],
+      "anchor": "start-dolphinscheduler-standalone-server"
+    },
+    {
+      "title": "start/stop server",
+      "children": [
+        {
+          "title": "Extract and start DolphinScheduler",
+          "children": [],
+          "anchor": "extract-and-start-dolphinscheduler"
+        },
+        {
+          "title": "Login DolphinScheduler",
+          "children": [],
+          "anchor": "login-dolphinscheduler"
+        }
+      ],
+      "anchor": "start/stop-server"
+    }
+  ],
+  "title": "Standalone",
+  "link": "/guide/installation/standalone"
+}

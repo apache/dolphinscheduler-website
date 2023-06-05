@@ -1,0 +1,152 @@
+{
+  "__html": "<h1 id=\"dolphinscheduler-upgrade-documentation\">DolphinScheduler upgrade documentation</h1>\n<h2 id=\"1.-back-up-previous-version's-files-and-database.\">1. Back Up Previous Version's Files and Database.</h2>\n<h2 id=\"2.-stop-all-services-of-dolphinscheduler.\">2. Stop All Services of DolphinScheduler.</h2>\n<p><code>sh ./script/stop-all.sh</code></p>\n<h2 id=\"3.-download-the-new-version's-installation-package.\">3. Download the New Version's Installation Package.</h2>\n<ul>\n<li><a href=\"/en-us/download/download.html\">Download</a> the latest version of the installation packages.</li>\n<li>The following upgrade operations need to be performed in the new version's directory.</li>\n</ul>\n<h2 id=\"4.-database-upgrade\">4. Database Upgrade</h2>\n<ul>\n<li>\n<p>Modify the following properties in <code>conf/config/install_config.conf</code>.</p>\n</li>\n<li>\n<p>If you use MySQL as the database to run DolphinScheduler, please comment out PostgreSQL related configurations, and add mysql connector jar into lib dir, here we download mysql-connector-java-8.0.16.jar, and then correctly config database connect information. You can download mysql connector jar <a href=\"https://downloads.MySQL.com/archives/c-j/\">here</a>. Alternatively, if you use Postgres as database, you just need to comment out Mysql related configurations, and correctly config database connect information.</p>\n</li>\n</ul>\n<pre><code class=\"language-conf\"># Database type, username, password, IP, port, metadata. For now dbtype supports `mysql` and `postgresql`, `H2`\n# Please make sure that the value of configuration is quoted in double quotation marks, otherwise may not take effect\nDATABASE_TYPE=&quot;mysql&quot;\nSPRING_DATASOURCE_URL=&quot;jdbc:mysql://ds1:3306/ds_201_doc?useUnicode=true&amp;characterEncoding=UTF-8&quot;\n# Have to modify if you are not using dolphinscheduler/dolphinscheduler as your username and password\nSPRING_DATASOURCE_USERNAME=&quot;dolphinscheduler&quot;\nSPRING_DATASOURCE_PASSWORD=&quot;dolphinscheduler&quot;\n</code></pre>\n<ul>\n<li>\n<p>Execute database upgrade script</p>\n<p><code>sh ./script/upgrade-dolphinscheduler.sh</code></p>\n</li>\n</ul>\n<h2 id=\"5.-backend-service-upgrade.\">5. Backend Service Upgrade.</h2>\n<h3 id=\"5.1-modify-the-content-in-<code>conf/config/install_config.conf</code>-file.\">5.1 Modify the Content in <code>conf/config/install_config.conf</code> File.</h3>\n<ul>\n<li>Standalone Deployment please refer the [6, Modify running arguments] in <a href=\"./installation//en-us/docs/2.0.9/guide/installation/standalone\">Standalone-Deployment</a>.</li>\n<li>Cluster Deployment please refer the [6, Modify running arguments] in <a href=\"./installation//en-us/docs/2.0.9/guide/installation/cluster\">Cluster-Deployment</a>.</li>\n</ul>\n<h4 id=\"masters-need-attentions\">Masters Need Attentions</h4>\n<p>1、Modify the workers config item in conf/config/install_config.conf file.</p>\n<p>Imaging bellow are the machine worker service to be deployed:</p>\n<table>\n<thead>\n<tr>\n<th style=\"text-align:left\">hostname</th>\n<th style=\"text-align:center\">ip</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left\">ds1</td>\n<td style=\"text-align:center\">192.168.xx.10</td>\n</tr>\n<tr>\n<td style=\"text-align:left\">ds2</td>\n<td style=\"text-align:center\">192.168.xx.11</td>\n</tr>\n<tr>\n<td style=\"text-align:left\">ds3</td>\n<td style=\"text-align:center\">192.168.xx.12</td>\n</tr>\n</tbody>\n</table>\n<p>To keep worker group config consistent with the previous version, we need to modify workers config item as below:</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\">#</span><span class=\"language-bash\">worker service is deployed on <span class=\"hljs-built_in\">which</span> machine, and also specify <span class=\"hljs-built_in\">which</span> worker group this worker belongs to.</span> \nworkers=&quot;ds1:service1,ds2:service2,ds3:service2&quot;\n</code></pre>\n<h3 id=\"5.2-execute-deploy-script.\">5.2 Execute Deploy Script.</h3>\n<pre><code class=\"language-shell\">`sh install.sh`\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Upgrade"
+  ],
+  "time": "2023-06-05",
+  "structure": [
+    {
+      "title": "1. Back Up Previous Version's Files and Database.",
+      "children": [
+        {
+          "title": "5.1 Modify the Content in conf/config/install_config.conf File.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.1-modify-the-content-in-conf/config/install_config.conf-file."
+        },
+        {
+          "title": "5.2 Execute Deploy Script.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.2-execute-deploy-script."
+        }
+      ],
+      "anchor": "1.-back-up-previous-version's-files-and-database."
+    },
+    {
+      "title": "2. Stop All Services of DolphinScheduler.",
+      "children": [
+        {
+          "title": "5.1 Modify the Content in conf/config/install_config.conf File.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.1-modify-the-content-in-conf/config/install_config.conf-file."
+        },
+        {
+          "title": "5.2 Execute Deploy Script.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.2-execute-deploy-script."
+        }
+      ],
+      "anchor": "2.-stop-all-services-of-dolphinscheduler."
+    },
+    {
+      "title": "3. Download the New Version's Installation Package.",
+      "children": [
+        {
+          "title": "5.1 Modify the Content in conf/config/install_config.conf File.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.1-modify-the-content-in-conf/config/install_config.conf-file."
+        },
+        {
+          "title": "5.2 Execute Deploy Script.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.2-execute-deploy-script."
+        }
+      ],
+      "anchor": "3.-download-the-new-version's-installation-package."
+    },
+    {
+      "title": "4. Database Upgrade",
+      "children": [
+        {
+          "title": "5.1 Modify the Content in conf/config/install_config.conf File.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.1-modify-the-content-in-conf/config/install_config.conf-file."
+        },
+        {
+          "title": "5.2 Execute Deploy Script.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.2-execute-deploy-script."
+        }
+      ],
+      "anchor": "4.-database-upgrade"
+    },
+    {
+      "title": "5. Backend Service Upgrade.",
+      "children": [
+        {
+          "title": "5.1 Modify the Content in conf/config/install_config.conf File.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.1-modify-the-content-in-conf/config/install_config.conf-file."
+        },
+        {
+          "title": "5.2 Execute Deploy Script.",
+          "children": [
+            {
+              "title": "Masters Need Attentions",
+              "children": [],
+              "anchor": "masters-need-attentions"
+            }
+          ],
+          "anchor": "5.2-execute-deploy-script."
+        }
+      ],
+      "anchor": "5.-backend-service-upgrade."
+    }
+  ],
+  "title": "DolphinScheduler upgrade documentation",
+  "link": "/guide/upgrade"
+}
