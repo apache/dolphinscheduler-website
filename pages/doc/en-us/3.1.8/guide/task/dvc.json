@@ -1,0 +1,117 @@
+{
+  "__html": "<h1 id=\"dvc-node\">DVC Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p><a href=\"https://dvc.org\">DVC (Data Version Control)</a> is an excellent open-source  version control system for machine learning projects.</p>\n<p>The DVC plugin is used to use the data version management function of DVC on DolphinScheduler, helping users to carry out data version management easily.</p>\n<p>The plugin provides the following three functions:</p>\n<ul>\n<li>Init DVC: Initialize the Git repository as a DVC repository and bind the address where the data is stored to store the actual data.</li>\n<li>Upload: Add or update specific data to the repository and record the version tag.</li>\n<li>Download: Download a specific version of data from the repository.</li>\n</ul>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the &quot;Create Workflow&quot; button to enter the\nDAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/dvc.png\" width=\"15\"/> task node to canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.1.8/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>DVC Task Type</td>\n<td>Upload, Download or Init DVC。</td>\n</tr>\n<tr>\n<td>DVC Repository</td>\n<td>The DVC repository address associated with the task execution.</td>\n</tr>\n<tr>\n<td>Remote Store Url</td>\n<td>The actual data is stored at the address. You can learn about the supported storage types from the <a href=\"https://dvc.org/doc/command-reference/remote/add#supported-storage-types\">DVC supported storage types</a>.</td>\n</tr>\n<tr>\n<td>Data Path in DVC Repository</td>\n<td>The path which the task uploads /downloads data to in the repository.</td>\n</tr>\n<tr>\n<td>Data Path In Worker</td>\n<td>Data path to be uploaded. / Path for saving data after the file is downloaded to the local</td>\n</tr>\n<tr>\n<td>Version</td>\n<td>After the data is uploaded, the version tag for the data will be saved in <code>git tag</code>. / The version of the data to download.</td>\n</tr>\n<tr>\n<td>Version Message</td>\n<td>Version Message.</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"init-dvc\">Init DVC</h3>\n<p>Initialize the Git repository as a DVC repository and add a new data remote to save data.</p>\n<p>After the project is initialized, it is still a Git repository, but with DVC features added.</p>\n<p>The data is not actually stored in a Git repository, but somewhere else, and DVC keeps track of the version and address of the data and handles this relationship.</p>\n<p><img src=\"/img/tasks/demo/dvc_init.png\" alt=\"dvc_init\"></p>\n<p>The example above shows that:\nInitialize repository <code>git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git</code> as a DVC project and bind the remote storage address to <code>~/dvc</code></p>\n<h3 id=\"upload\">Upload</h3>\n<p>Used to upload and update data and record version numbers.</p>\n<p><img src=\"/img/tasks/demo/dvc_upload.png\" alt=\"dvc_upload\"></p>\n<p>The example above shows that:</p>\n<p>Upload data <code>/home/data/iris</code> to the root directory of repository <code>git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git</code>. The file or folder of data is named <code>iris</code>.</p>\n<p>Then run <code>git tag &quot;iris_1.0&quot; -m &quot;init iris data&quot;</code>. Record the version tag <code>iris_1.0</code> and the version message <code>inir iris data</code>.</p>\n<h3 id=\"download\">Download</h3>\n<p>Used to download data for a specific version.</p>\n<p><img src=\"/img/tasks/demo/dvc_download.png\" alt=\"dvc_download\"></p>\n<p>The example above shows that:</p>\n<p>Download the data for iris data at version <code>iris_1.0</code> in repository <code>git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git</code> to the <code>~/dvc_test/iris</code></p>\n<h2 id=\"environment-to-prepare\">Environment to prepare</h2>\n<h3 id=\"install-dvc\">Install DVC</h3>\n<p>Make sure you have installed DVC, if not, you can run <code>pip install dvc</code> command to install it.</p>\n<p>Get the 'dvc' path and configure the environment variables.</p>\n<p>The conda environment is used as an example:</p>\n<p>Install python PIP on Conda and configure conda's environment variables so that the component can correctly find the 'DVC' command</p>\n<pre><code class=\"language-shell\">which dvc\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">&gt;&gt; ~/anaconda3/bin/dvc</span>\n</code></pre>\n<p>You need to enter the admin account to configure a conda environment variable（Please\ninstall <a href=\"https://docs.continuum.io/anaconda/install/\">anaconda</a>\nor <a href=\"https://docs.conda.io/en/latest/miniconda.html#installing\">miniconda</a> in advance).</p>\n<p><img src=\"/img/tasks/demo/dvc_env_config.png\" alt=\"dvc_env_config\"></p>\n<p>Note During the configuration task, select the conda environment created above. Otherwise, the program cannot find the\nConda environment.</p>\n<p><img src=\"/img/tasks/demo/dvc_env_name.png\" alt=\"dvc_env_name\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "DVC"
+  ],
+  "time": "2023-08-07",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Init DVC",
+          "children": [],
+          "anchor": "init-dvc"
+        },
+        {
+          "title": "Upload",
+          "children": [],
+          "anchor": "upload"
+        },
+        {
+          "title": "Download",
+          "children": [],
+          "anchor": "download"
+        },
+        {
+          "title": "Install DVC",
+          "children": [],
+          "anchor": "install-dvc"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Init DVC",
+          "children": [],
+          "anchor": "init-dvc"
+        },
+        {
+          "title": "Upload",
+          "children": [],
+          "anchor": "upload"
+        },
+        {
+          "title": "Download",
+          "children": [],
+          "anchor": "download"
+        },
+        {
+          "title": "Install DVC",
+          "children": [],
+          "anchor": "install-dvc"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Init DVC",
+          "children": [],
+          "anchor": "init-dvc"
+        },
+        {
+          "title": "Upload",
+          "children": [],
+          "anchor": "upload"
+        },
+        {
+          "title": "Download",
+          "children": [],
+          "anchor": "download"
+        },
+        {
+          "title": "Install DVC",
+          "children": [],
+          "anchor": "install-dvc"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Environment to prepare",
+      "children": [
+        {
+          "title": "Init DVC",
+          "children": [],
+          "anchor": "init-dvc"
+        },
+        {
+          "title": "Upload",
+          "children": [],
+          "anchor": "upload"
+        },
+        {
+          "title": "Download",
+          "children": [],
+          "anchor": "download"
+        },
+        {
+          "title": "Install DVC",
+          "children": [],
+          "anchor": "install-dvc"
+        }
+      ],
+      "anchor": "environment-to-prepare"
+    }
+  ],
+  "title": "DVC Node",
+  "link": "/guide/task/dvc"
+}

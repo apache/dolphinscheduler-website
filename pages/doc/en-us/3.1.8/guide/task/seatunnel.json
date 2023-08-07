@@ -1,0 +1,97 @@
+{
+  "__html": "<h1 id=\"apache-seatunnel\">Apache SeaTunnel</h1>\n<h2 id=\"overview\">Overview</h2>\n<p><code>SeaTunnel</code> task type for creating and executing <code>SeaTunnel</code> tasks. When the worker executes this task, it will parse the config file through the <code>start-seatunnel-spark.sh</code> , <code>start-seatunnel-flink.sh</code> or <code>seatunnel.sh</code> command.\nClick <a href=\"https://seatunnel.apache.org/\">here</a> for more information about <code>Apache SeaTunnel</code>.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click Project Management -&gt; Project Name -&gt; Workflow Definition, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>\n<li>Drag the <img src=\"/img/tasks/icons/seatunnel.png\" width=\"15\"/> from the toolbar to the drawing board.</li>\n</ul>\n<h2 id=\"task-parameter\">Task Parameter</h2>\n<ul>\n<li>\n<p>Please refer to <a href=\"/en-us/docs/3.1.8/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</p>\n</li>\n<li>\n<p>Startup script: Select script name to start the task, including <code>seatunnel.sh</code>, <code>start-seatunnel-flink-13-connector-v2.sh</code>, <code>start-seatunnel-flink-15-connector-v2.sh</code>, <code>start-seatunnel-flink-connector-v2.sh</code>, <code>start-seatunnel-flink.sh</code>, <code>start-seatunnel-spark-2-connector-v2.sh</code>, <code>start-seatunnel-spark-3-connector-v2.sh</code>, <code>start-seatunnel-spark-connector-v2.sh</code>, <code>start-seatunnel-spark.sh</code></p>\n</li>\n<li>\n<p>FLINK</p>\n</li>\n<li>\n<p>Run model: supports <code>run</code> and <code>run-application</code> modes</p>\n</li>\n<li>\n<p>Option parameters: used to add the parameters of the Flink engine, such as <code>-m yarn-cluster -ynm seatunnel</code></p>\n</li>\n<li>\n<p>SPARK</p>\n</li>\n<li>\n<p>Deployment mode: specify the deployment mode, <code>cluster</code> <code>client</code></p>\n</li>\n<li>\n<p>Master: Specify the <code>Master</code> model, <code>yarn</code> <code>local</code> <code>spark</code> <code>mesos</code>, where <code>spark</code> and <code>mesos</code> need to specify the <code>Master</code> service address, for example: 127.0.0.1:7077</p>\n</li>\n<li>\n<p>SEATUNNEL_ENGINE</p>\n</li>\n<li>\n<p>Deployment mode: specify the deployment mode, <code>cluster</code> <code>local</code></p>\n<pre><code>    &gt; Click [here](https://seatunnel.apache.org/docs/2.1.2/command/usage) for more information on the usage of `Apache SeaTunnel command`\n</code></pre>\n</li>\n<li>\n<p>Custom Configuration: Supports custom configuration or select configuration file from Resource Center</p>\n<blockquote>\n<p>Click <a href=\"https://seatunnel.apache.org/docs/2.1.2/concept/config\">here</a> for more information about <code>Apache SeaTunnel config</code> file</p>\n</blockquote>\n</li>\n<li>\n<p>Script: Customize configuration information on the task node, including four parts: <code>env</code> <code>source</code> <code>transform</code> <code>sink</code></p>\n</li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<p>This sample demonstrates using the Flink engine to read data from a Fake source and print to the console.</p>\n<h3 id=\"configuring-the-seatunnel-environment-in-dolphinscheduler\">Configuring the SeaTunnel environment in DolphinScheduler</h3>\n<p>If you want to use the SeaTunnel task type in the production environment, you need to configure the required environment first. The configuration file is as follows: <code>/dolphinscheduler/conf/env/dolphinscheduler_env.sh</code>.</p>\n<p><img src=\"/img/tasks/demo/seatunnel_task01.png\" alt=\"seatunnel_task01\"></p>\n<h3 id=\"configuring-seatunnel-task-node\">Configuring SeaTunnel Task Node</h3>\n<p>According to the above parameter description, configure the required content.</p>\n<p><img src=\"/img/tasks/demo/seatunnel_task02.png\" alt=\"seatunnel_task02\"></p>\n<h3 id=\"config-example\">Config example</h3>\n<pre><code class=\"language-Config\">\nenv {\n  execution.parallelism = 1\n}\n\nsource {\n  FakeSource {\n    result_table_name = &quot;fake&quot;\n    field_name = &quot;name,age&quot;\n  }\n}\n\ntransform {\n  sql {\n    sql = &quot;select name,age from fake&quot;\n  }\n}\n\nsink {\n  ConsoleSink {}\n}\n\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "SeaTunnel"
+  ],
+  "time": "2023-08-07",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Configuring the SeaTunnel environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-seatunnel-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring SeaTunnel Task Node",
+          "children": [],
+          "anchor": "configuring-seatunnel-task-node"
+        },
+        {
+          "title": "Config example",
+          "children": [],
+          "anchor": "config-example"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Configuring the SeaTunnel environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-seatunnel-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring SeaTunnel Task Node",
+          "children": [],
+          "anchor": "configuring-seatunnel-task-node"
+        },
+        {
+          "title": "Config example",
+          "children": [],
+          "anchor": "config-example"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameter",
+      "children": [
+        {
+          "title": "Configuring the SeaTunnel environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-seatunnel-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring SeaTunnel Task Node",
+          "children": [],
+          "anchor": "configuring-seatunnel-task-node"
+        },
+        {
+          "title": "Config example",
+          "children": [],
+          "anchor": "config-example"
+        }
+      ],
+      "anchor": "task-parameter"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Configuring the SeaTunnel environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-seatunnel-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring SeaTunnel Task Node",
+          "children": [],
+          "anchor": "configuring-seatunnel-task-node"
+        },
+        {
+          "title": "Config example",
+          "children": [],
+          "anchor": "config-example"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "Apache SeaTunnel",
+  "link": "/guide/task/seatunnel"
+}

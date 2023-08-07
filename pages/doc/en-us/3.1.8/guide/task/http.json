@@ -1,0 +1,33 @@
+{
+  "__html": "<h1 id=\"http-node\">HTTP Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>This node is used to perform http type tasks such as the common POST and GET request types, and also supports http request validation and other functions.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag the <img src=\"/img/tasks/icons/http.png\" width=\"15\"/> from the toolbar to the drawing board.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.1.8/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<p>|    <strong>Parameter</strong>     |                                                                        <strong>Description</strong>                                                                        |\n|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|---|--------------------|---|---|-------------------------|-----------------------------------------------------------------------------------------------|\n| Request address      | HTTP request URL.                                                                                                                                             |\n| Request type         | Supports GET, POSt, HEAD, PUT, DELETE.                                                                                                                           || Request parameters | Supports Parameter, Body, Headers. || Verification conditions | Supports default response code, custom response code, content included, content not included. |\n| Verification content | When the verification condition selects a custom response code, the content contains, and the content does not contain, the verification content is required. |\n| Custom parameter     | It is a user-defined parameter of http part, which will replace the content with <code>${variable}</code> in the script.                                                 |</p>\n<h2 id=\"example\">Example</h2>\n<p>HTTP defines the different methods of interacting with the server, the most basic methods are GET, POST, PUT and DELETE. Here we use the http task node to demonstrate the use of POST to send a request to the system's login page to submit data.</p>\n<p>The main configuration parameters are as follows:</p>\n<ul>\n<li>URL: Address to access the target resource. Here is the system's login page.</li>\n<li>HTTP Parameters:\n<ul>\n<li>userName: Username</li>\n<li>userPassword: User login password</li>\n</ul>\n</li>\n</ul>\n<p><img src=\"/img/tasks/demo/http_task01.png\" alt=\"http_task\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "HTTP"
+  ],
+  "time": "2023-08-07",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Example",
+      "children": [],
+      "anchor": "example"
+    }
+  ],
+  "title": "HTTP Node",
+  "link": "/guide/task/http"
+}

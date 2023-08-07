@@ -1,0 +1,169 @@
+{
+  "__html": "<h1 id=\"jupyter\">Jupyter</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Use <code>Jupyter Task</code> to create a jupyter-type task and execute jupyter notes. When the worker executes <code>Jupyter Task</code>,\nit will use <code>papermill</code> to evaluate jupyter notes. Click <a href=\"https://papermill.readthedocs.io/en/latest/\">here</a> for details about <code>papermill</code>.</p>\n<h2 id=\"conda-configuration\">Conda Configuration</h2>\n<ul>\n<li>Config <code>conda.path</code> in <code>common.properties</code> to the path of your <code>conda.sh</code>, which should be the same <code>conda</code> you use to manage the python environment of your <code>papermill</code> and <code>jupyter</code>.\nClick <a href=\"https://docs.conda.io/en/latest/\">here</a> for more information about <code>conda</code>.</li>\n<li><code>conda.path</code> is set to <code>/opt/anaconda3/etc/profile.d/conda.sh</code> by default. If you have no idea where your <code>conda</code> is, simply run <code>conda info | grep -i 'base environment'</code>.</li>\n</ul>\n<blockquote>\n<p>NOTE: <code>Jupyter Task Plugin</code> uses <code>source</code> command to activate conda environment.\nIf your tenant does not have permission to use <code>source</code>, <code>Jupyter Task Plugin</code> will not function.</p>\n</blockquote>\n<h2 id=\"python-dependency-management\">Python Dependency Management</h2>\n<h3 id=\"use-pre-installed-conda-environment\">Use Pre-Installed Conda Environment</h3>\n<ol>\n<li>Create a conda environment manually or using <code>shell task</code> on your target worker.</li>\n<li>In your <code>jupyter task</code>, set <code>condaEnvName</code> as the name of the conda environment you just created.</li>\n</ol>\n<h3 id=\"use-packed-conda-environment\">Use Packed Conda Environment</h3>\n<ol>\n<li>Use <a href=\"https://conda.github.io/conda-pack/\">Conda-Pack</a> to pack your conda environment into <code>tarball</code>.</li>\n<li>Upload packed conda environment to <code>resource center</code>.</li>\n<li>Set <code>condaEnvName</code> as the name of your packed conda environment in your <code>jupyter task</code>, e.g. <code>jupyter_env.tar.gz</code>.</li>\n<li>Select your packed conda environment as <code>resource</code> in your <code>jupyter task</code>, e.g. <code>jupyter_env.tar.gz</code>.</li>\n</ol>\n<blockquote>\n<p>NOTE: Make sure you follow the <a href=\"https://conda.github.io/conda-pack/\">Conda-Pack</a> official instructions.\nIf you unpack your packed conda environment, the directory structure should be the same as below:</p>\n</blockquote>\n<pre><code>.\n├── bin\n├── conda-meta\n├── etc\n├── include\n├── lib\n├── share\n└── ssl\n</code></pre>\n<blockquote>\n<p>NOTICE: Please follow the <code>conda pack</code> instructions above strictly, and DO NOT modify <code>bin/activate</code>.\n<code>Jupyter Task Plugin</code> uses <code>source</code> command to activate your packed conda environment.\nIf you are concerned about using <code>source</code>, choose other options to manage your python dependency.</p>\n</blockquote>\n<h3 id=\"construct-from-requirements\">Construct From Requirements</h3>\n<ol>\n<li>Upload or create a <code>.txt</code> file of requirements with your python dependencies in <code>Resource Center</code>.</li>\n<li>Set <code>condaEnvName</code> as the name of your file of requirements in your <code>jupyter task</code>, e.g. <code>requirements.txt</code>.</li>\n<li>Select your file of requirements as <code>resource</code> in your <code>jupyter task</code>, e.g. <code>requirements.txt</code>.</li>\n</ol>\n<p>Here is an example file of requirements, from which <code>jupyter task plugin</code> will automatically\nconstruct your python dependencies, run your python code and finally tear down the environment:</p>\n<pre><code class=\"language-text\">fastjsonschema==2.15.3\nfonttools==4.33.3\ngeojson==2.5.0\nidentify==2.4.11\nidna==3.3\nimportlib-metadata==4.11.3\nimportlib-resources==5.7.1\nipykernel==5.5.6\nipython==8.2.0\nipython-genutils==0.2.0\njedi==0.18.1\nJinja2==3.1.1\njson5==0.9.6\njsonschema==4.4.0\njupyter-client==7.3.0\njupyter-core==4.10.0\njupyter-server==1.17.0\njupyterlab==3.3.4\njupyterlab-pygments==0.2.2\njupyterlab-server==2.13.0\nkiwisolver==1.4.2\nMarkupSafe==2.1.1\nmatplotlib==3.5.2\nmatplotlib-inline==0.1.3\nmistune==0.8.4\nnbclassic==0.3.7\nnbclient==0.6.0\nnbconvert==6.5.0\nnbformat==5.3.0\nnest-asyncio==1.5.5\nnotebook==6.4.11\nnotebook-shim==0.1.0\nnumpy==1.22.3\npackaging==21.3\npandas==1.4.2\npandocfilters==1.5.0\npapermill==2.3.4\n</code></pre>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management-Project Name-Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag <img src=\"/img/tasks/icons/jupyter.png\" width=\"15\"/> from the toolbar to the canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.1.8/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Conda Env Name</td>\n<td>Name of conda environment or packed conda environment tarball.</td>\n</tr>\n<tr>\n<td>Input Note Path</td>\n<td>Path of input jupyter note template.</td>\n</tr>\n<tr>\n<td>Out Note Path</td>\n<td>Path of output note.</td>\n</tr>\n<tr>\n<td>Jupyter Parameters</td>\n<td>Parameters in json format used for jupyter note parameterization.</td>\n</tr>\n<tr>\n<td>Kernel</td>\n<td>Jupyter notebook kernel.</td>\n</tr>\n<tr>\n<td>Engine</td>\n<td>Engine to evaluate jupyter notes.</td>\n</tr>\n<tr>\n<td>Jupyter Execution Timeout</td>\n<td>Timeout set for each jupyter notebook cell.</td>\n</tr>\n<tr>\n<td>Jupyter Start Timeout</td>\n<td>Timeout set for jupyter notebook kernel.</td>\n</tr>\n<tr>\n<td>Others</td>\n<td>Other command options for papermill.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"jupyter-task-example\">Jupyter Task Example</h3>\n<p>This example illustrates how to create a jupyter task node.</p>\n<p><img src=\"/img/tasks/demo/jupyter.png\" alt=\"demo-jupyter-simple\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Jupyter"
+  ],
+  "time": "2023-08-07",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Use Pre-Installed Conda Environment",
+          "children": [],
+          "anchor": "use-pre-installed-conda-environment"
+        },
+        {
+          "title": "Use Packed Conda Environment",
+          "children": [],
+          "anchor": "use-packed-conda-environment"
+        },
+        {
+          "title": "Construct From Requirements",
+          "children": [],
+          "anchor": "construct-from-requirements"
+        },
+        {
+          "title": "Jupyter Task Example",
+          "children": [],
+          "anchor": "jupyter-task-example"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Conda Configuration",
+      "children": [
+        {
+          "title": "Use Pre-Installed Conda Environment",
+          "children": [],
+          "anchor": "use-pre-installed-conda-environment"
+        },
+        {
+          "title": "Use Packed Conda Environment",
+          "children": [],
+          "anchor": "use-packed-conda-environment"
+        },
+        {
+          "title": "Construct From Requirements",
+          "children": [],
+          "anchor": "construct-from-requirements"
+        },
+        {
+          "title": "Jupyter Task Example",
+          "children": [],
+          "anchor": "jupyter-task-example"
+        }
+      ],
+      "anchor": "conda-configuration"
+    },
+    {
+      "title": "Python Dependency Management",
+      "children": [
+        {
+          "title": "Use Pre-Installed Conda Environment",
+          "children": [],
+          "anchor": "use-pre-installed-conda-environment"
+        },
+        {
+          "title": "Use Packed Conda Environment",
+          "children": [],
+          "anchor": "use-packed-conda-environment"
+        },
+        {
+          "title": "Construct From Requirements",
+          "children": [],
+          "anchor": "construct-from-requirements"
+        },
+        {
+          "title": "Jupyter Task Example",
+          "children": [],
+          "anchor": "jupyter-task-example"
+        }
+      ],
+      "anchor": "python-dependency-management"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Use Pre-Installed Conda Environment",
+          "children": [],
+          "anchor": "use-pre-installed-conda-environment"
+        },
+        {
+          "title": "Use Packed Conda Environment",
+          "children": [],
+          "anchor": "use-packed-conda-environment"
+        },
+        {
+          "title": "Construct From Requirements",
+          "children": [],
+          "anchor": "construct-from-requirements"
+        },
+        {
+          "title": "Jupyter Task Example",
+          "children": [],
+          "anchor": "jupyter-task-example"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Use Pre-Installed Conda Environment",
+          "children": [],
+          "anchor": "use-pre-installed-conda-environment"
+        },
+        {
+          "title": "Use Packed Conda Environment",
+          "children": [],
+          "anchor": "use-packed-conda-environment"
+        },
+        {
+          "title": "Construct From Requirements",
+          "children": [],
+          "anchor": "construct-from-requirements"
+        },
+        {
+          "title": "Jupyter Task Example",
+          "children": [],
+          "anchor": "jupyter-task-example"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Use Pre-Installed Conda Environment",
+          "children": [],
+          "anchor": "use-pre-installed-conda-environment"
+        },
+        {
+          "title": "Use Packed Conda Environment",
+          "children": [],
+          "anchor": "use-packed-conda-environment"
+        },
+        {
+          "title": "Construct From Requirements",
+          "children": [],
+          "anchor": "construct-from-requirements"
+        },
+        {
+          "title": "Jupyter Task Example",
+          "children": [],
+          "anchor": "jupyter-task-example"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "Jupyter",
+  "link": "/guide/task/jupyter"
+}

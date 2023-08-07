@@ -1,0 +1,237 @@
+{
+  "__html": "<h1 id=\"指标（metrics）使用指南\">指标（Metrics）使用指南</h1>\n<p>Apache DolphinScheduler通过向外透出指标来提高系统的监控告警能力。 我们使用<a href=\"https://micrometer.io/\">Micrometer</a>作为指标采集和透出框架。\n目前，我们只支持<code>Prometheus Exporter</code>，但是多样化的Exporter将会持续贡献给用户。</p>\n<h2 id=\"快速上手\">快速上手</h2>\n<ul>\n<li>我们提供Apache DolphinScheduler <code>standalone</code> 模式下采集并透出指标的能力，提供用户轻松快速的体验。</li>\n<li>当您在<code>standalone</code>模式下触发任务后，您可通过链接 <code>http://localhost:12345/dolphinscheduler/actuator/metrics</code> 访问生成的metrics列表。</li>\n<li>当您在<code>standalone</code>模式下触发任务后，您可通过链接 <code>http://localhost:12345/dolphinscheduler/actuator/prometheus</code> 访问<code>prometheus格式</code>指标。</li>\n<li>为了给您提供一个一站式的<code>Prometheus</code> + <code>Grafana</code>体验, 我们已经为您准备好了开箱即用的 <code>Grafana</code> 配置。您可在<code>dolphinscheduler-meter/resources/grafana</code>找到<code>Grafana</code>面板配置。\n您可直接将这些配置导入您的<code>Grafana</code>实例中。</li>\n<li>如果您想通过<code>docker</code>方式体验，可使用如下命令启动我们为您准备好的开箱即用的<code>Prometheus</code>和<code>Grafana</code>:</li>\n</ul>\n<pre><code class=\"language-shell\">cd dolphinscheduler-meter/src/main/resources/grafana-demo\ndocker compose up\n</code></pre>\n<p>然后，您即可通过http://localhost/3001<code>链接访问</code>Grafana`面板。</p>\n<p><img src=\"/img/metrics/metrics-master.png\" alt=\"image.png\">\n<img src=\"/img/metrics/metrics-worker.png\" alt=\"image.png\">\n<img src=\"/img/metrics/metrics-datasource.png\" alt=\"image.png\"></p>\n<ul>\n<li>如果您想在<code>集群</code>模式下体验指标，请参照下面的<a href=\"#%E9%85%8D%E7%BD%AE\">配置</a>一栏：</li>\n</ul>\n<h2 id=\"配置\">配置</h2>\n<ul>\n<li>请按照如下配置在您的 master/worker/alert/api's yaml 文件里启用metrics exporter：</li>\n</ul>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">metrics:</span>\n  <span class=\"hljs-attr\">enabled:</span> <span class=\"hljs-literal\">true</span>\n</code></pre>\n<ul>\n<li>当您启用metrics exporter后，您可通过链接<code>http://ip:port/actuator/prometheus</code>获取metrics。</li>\n</ul>\n<p>metrics exporter端口<code>server.port</code>是在application.yaml里定义的: master: <code>server.port: 5679</code>, worker: <code>server.port: 1235</code>, alert: <code>server.port: 50053</code>, api: <code>server.port: 12345</code>.</p>\n<p>举例来说，您可通过访问链接获取<code>curl http://localhost:5679/actuator/prometheus</code>master metrics。</p>\n<h2 id=\"命名规则-&amp;-命名映射\">命名规则 &amp; 命名映射</h2>\n<ul>\n<li>Apache DolphinScheduler指标命名遵循<a href=\"https://github.com/micrometer-metrics/micrometer-docs/blob/main/src/docs/concepts/naming.adoc\">Micrometer</a>\n官方推荐的命名方式。</li>\n<li><code>Micrometer</code> 会根据您配置的外部指标系统自动将指标名称转化成适合您指标系统的格式。目前，我们只支持<code>Prometheus Exporter</code>，但是多样化的指标格式将会持续贡献给用户。</li>\n</ul>\n<h3 id=\"prometheus\">Prometheus</h3>\n<ul>\n<li>指标名中的点会被映射为下划线</li>\n<li>以数字开头的指标名会被加上<code>m_</code>前缀</li>\n<li>COUNTER: 如果没有以<code>_total</code>结尾，会自动加上此后缀</li>\n<li>LONG_TASK_TIMER: 如果没有以<code>_timer_seconds</code>结尾，会自动加上此后缀</li>\n<li>GAUGE: 如果没有以<code>_baseUnit</code>结尾，会自动加上此后缀</li>\n</ul>\n<h2 id=\"dolphin-scheduler指标清单\">Dolphin Scheduler指标清单</h2>\n<ul>\n<li>Dolphin Scheduler按照组成部分进行指标分类，如：<code>master server</code>, <code>worker server</code>, <code>api server</code> and <code>alert server</code>。</li>\n<li>尽管任务 / 工作流相关指标是由 <code>master server</code> 和 <code>worker server</code> 透出的，我们将这两块指标单独罗列出来，以方便您对任务 / 工作流的监控。</li>\n</ul>\n<h3 id=\"任务相关指标\">任务相关指标</h3>\n<ul>\n<li>ds.task.instance.count: (counter) 任务实例数量，由tag <code>state</code>按状态切分：\n<ul>\n<li>timeout：超时的任务数量</li>\n<li>finish：完成的任务数量，成功和失败的任务都算在内</li>\n<li>success：成功完成的任务数量</li>\n<li>fail：失败的任务数量</li>\n<li>stop：暂停的任务数量</li>\n<li>retry：重试的任务数量</li>\n<li>submit：已提交的任务数量</li>\n<li>failover：容错的任务数量</li>\n</ul>\n</li>\n<li>ds.task.dispatch.count: (counter) 分发到worker上的任务数量</li>\n<li>ds.task.dispatch.failure.count: (counter) 分发失败的任务数量，重试也包含在内</li>\n<li>ds.task.dispatch.error.count: (counter) 分发任务的错误数量</li>\n<li>ds.task.execution.count.by.type: (counter) 任务执行数量，按标签<code>task_type</code>聚类</li>\n<li>ds.task.running: (gauge) 正在运行的任务数量</li>\n<li>ds.task.prepared: (gauge) 准备好且待提交的任务数量</li>\n<li>ds.task.execution.count: (counter) 已执行的任务数量</li>\n<li>ds.task.execution.duration: (histogram) 任务执行时长</li>\n</ul>\n<h3 id=\"工作流相关指标\">工作流相关指标</h3>\n<ul>\n<li>ds.workflow.create.command.count: (counter) 工作量创建并插入的命令数量</li>\n<li>ds.workflow.instance.running: (gauge) 正在运行的工作流实例数量</li>\n<li>ds.workflow.instance.count: (counter) 工作流实例数量，由tag <code>state</code>按状态切分：\n<ul>\n<li>submit：已提交的工作量实例数量</li>\n<li>timeout：运行超时的工作流实例数量</li>\n<li>finish：已完成的工作流实例数量，包含成功和失败</li>\n<li>success：运行成功的工作流实例数量</li>\n<li>fail：运行失败的工作流实例数量</li>\n<li>stop：停止的工作流实例数量</li>\n<li>failover：容错的工作流实例数量</li>\n</ul>\n</li>\n</ul>\n<h3 id=\"master-server指标\">Master Server指标</h3>\n<ul>\n<li>ds.master.overload.count: (counter) master过载次数</li>\n<li>ds.master.consume.command.count: (counter) master消耗指令数量</li>\n<li>ds.master.scheduler.failover.check.count: (counter) scheduler (master) 容错检查次数</li>\n<li>ds.master.scheduler.failover.check.time: (histogram) scheduler (master) 容错检查耗时</li>\n<li>ds.master.quartz.job.executed: 已执行quartz任务数量</li>\n<li>ds.master.quartz.job.execution.time: 已执行quartz任务总耗时</li>\n</ul>\n<h3 id=\"worker-server指标\">Worker Server指标</h3>\n<ul>\n<li>ds.worker.overload.count: (counter) worker过载次数</li>\n<li>ds.worker.full.submit.queue.count: (counter) worker提交队列全满次数</li>\n<li>ds.worker.resource.download.count: (counter) worker下载资源文件的次数，可由<code>status</code>标签切分</li>\n<li>ds.worker.resource.download.duration: (histogram) worker下载资源文件时花费的时间分布</li>\n<li>ds.worker.resource.download.size: (histogram) worker下载资源文件大小的分布（bytes）</li>\n</ul>\n<h3 id=\"api-server指标\">Api Server指标</h3>\n<ul>\n<li>目前我们尚未提供任何Api Server指标</li>\n</ul>\n<h3 id=\"alert-server指标\">Alert Server指标</h3>\n<ul>\n<li>ds.alert.send.count: (counter) 已发送的告警数量，可由标签<code>status</code>切分</li>\n<li>ds.alert.pending: (gauge) 等待发送的告警数量</li>\n</ul>\n<p><strong>在每个server中都有一些系统层面（如数据库链接、JVM）的默认指标，为了您的检阅方便，我们也将它们列在了这里：</strong></p>\n<h3 id=\"数据库相关指标（默认）\">数据库相关指标（默认）</h3>\n<ul>\n<li>hikaricp.connections: 连接综述</li>\n<li>hikaricp.connections.creation: 连接创建时间 (包含最长时间，创建数量和时间总和)</li>\n<li>hikaricp.connections.acquire: 连接获取时间 (包含最长时间，创建数量和时间总和)</li>\n<li>hikaricp.connections.usage: 连接使用时长 (包含最长时间，创建数量和时间总和)</li>\n<li>hikaricp.connections.max: 最大连接数量</li>\n<li>hikaricp.connections.min: 最小连接数量</li>\n<li>hikaricp.connections.active: 活跃的连接数量</li>\n<li>hikaricp.connections.idle: 闲置的连接数量</li>\n<li>hikaricp.connections.pending: 等待中的连接数量</li>\n<li>hikaricp.connections.timeout: 超时连接数量</li>\n<li>jdbc.connections.max: 可同时分配的最大活跃连接数量</li>\n<li>jdbc.connections.min: 连接池中最小的闲置连接数量</li>\n<li>jdbc.connections.idle: 已创建但闲置的连接总数</li>\n<li>jdbc.connections.active: 当前数据源分配的活跃连接数量</li>\n</ul>\n<h3 id=\"jvm相关指标（默认）\">JVM相关指标（默认）</h3>\n<ul>\n<li>jvm.buffer.total.capacity: 资源池中buffer总容量估计</li>\n<li>jvm.buffer.count: 资源池中buffer总数估计</li>\n<li>jvm.buffer.memory.used: JVM因buffer资源池使用的内存估计</li>\n<li>jvm.memory.committed: 以bytes为单位的提供JVM使用的内存</li>\n<li>jvm.memory.max: 以bytes为单位的可用于内存管理的最大内存</li>\n<li>jvm.memory.used: 已占用的内存量</li>\n<li>jvm.threads.peak: JVM启动以来的峰值线程数</li>\n<li>jvm.threads.states: 当前拥有新状态的线程数</li>\n<li>jvm.gc.memory.allocated: GC时，年轻代分配的内存空间</li>\n<li>jvm.gc.max.data.size: GC时，老年代的最大内存空间</li>\n<li>jvm.gc.pause: GC耗时 (包含次数, 总时长, 最大时长)</li>\n<li>jvm.gc.live.data.size: FullGC时，老年代的内存空间</li>\n<li>jvm.gc.memory.promoted: GC时，老年代分配的内存空间</li>\n<li>jvm.classes.loaded: JVM当前加载的类的数量</li>\n<li>jvm.threads.live: JVM当前活跃线程数（包含守护和非守护线程）</li>\n<li>jvm.threads.daemon: JVM守护线程数</li>\n<li>jvm.classes.unloaded: 未加载的classes数</li>\n<li>process.cpu.usage: 当前JVM进程CPU使用率</li>\n<li>process.start.time: 应用启动时间</li>\n<li>process.uptime: 应用已运行时间</li>\n</ul>\n<h3 id=\"其他指标（默认）\">其他指标（默认）</h3>\n<ul>\n<li>jetty.threads.config.max: 资源池中最大线程数</li>\n<li>jetty.threads.config.min: 资源池中最小线程数</li>\n<li>jetty.threads.current: 资源池中线程总数</li>\n<li>jetty.threads.idle: 资源池中闲置线程数</li>\n<li>jetty.threads.busy: 资源池中繁忙线程数</li>\n<li>jetty.threads.jobs: 队列中等待执行线程的任务数</li>\n<li>process.files.max: 文件描述符最大数量</li>\n<li>process.files.open: 打开状态的文件描述符数量</li>\n<li>system.cpu.usage: 整个系统当前的CPU使用率</li>\n<li>system.cpu.count: JVM可用处理器数量</li>\n<li>system.load.average.1m: 系统的平均负荷（1分钟）</li>\n<li>logback.events: 日志时间数量，以标签<code>level</code>聚类</li>\n<li>http.server.requests: http请求总数</li>\n</ul>\n",
+  "location": [
+    "功能介绍",
+    "指标相关",
+    "指标"
+  ],
+  "time": "2023-08-07",
+  "structure": [
+    {
+      "title": "快速上手",
+      "children": [
+        {
+          "title": "Prometheus",
+          "children": [],
+          "anchor": "prometheus"
+        },
+        {
+          "title": "任务相关指标",
+          "children": [],
+          "anchor": "任务相关指标"
+        },
+        {
+          "title": "工作流相关指标",
+          "children": [],
+          "anchor": "工作流相关指标"
+        },
+        {
+          "title": "Master Server指标",
+          "children": [],
+          "anchor": "master-server指标"
+        },
+        {
+          "title": "Worker Server指标",
+          "children": [],
+          "anchor": "worker-server指标"
+        },
+        {
+          "title": "Api Server指标",
+          "children": [],
+          "anchor": "api-server指标"
+        },
+        {
+          "title": "Alert Server指标",
+          "children": [],
+          "anchor": "alert-server指标"
+        },
+        {
+          "title": "数据库相关指标（默认）",
+          "children": [],
+          "anchor": "数据库相关指标（默认）"
+        },
+        {
+          "title": "JVM相关指标（默认）",
+          "children": [],
+          "anchor": "jvm相关指标（默认）"
+        },
+        {
+          "title": "其他指标（默认）",
+          "children": [],
+          "anchor": "其他指标（默认）"
+        }
+      ],
+      "anchor": "快速上手"
+    },
+    {
+      "title": "配置",
+      "children": [
+        {
+          "title": "Prometheus",
+          "children": [],
+          "anchor": "prometheus"
+        },
+        {
+          "title": "任务相关指标",
+          "children": [],
+          "anchor": "任务相关指标"
+        },
+        {
+          "title": "工作流相关指标",
+          "children": [],
+          "anchor": "工作流相关指标"
+        },
+        {
+          "title": "Master Server指标",
+          "children": [],
+          "anchor": "master-server指标"
+        },
+        {
+          "title": "Worker Server指标",
+          "children": [],
+          "anchor": "worker-server指标"
+        },
+        {
+          "title": "Api Server指标",
+          "children": [],
+          "anchor": "api-server指标"
+        },
+        {
+          "title": "Alert Server指标",
+          "children": [],
+          "anchor": "alert-server指标"
+        },
+        {
+          "title": "数据库相关指标（默认）",
+          "children": [],
+          "anchor": "数据库相关指标（默认）"
+        },
+        {
+          "title": "JVM相关指标（默认）",
+          "children": [],
+          "anchor": "jvm相关指标（默认）"
+        },
+        {
+          "title": "其他指标（默认）",
+          "children": [],
+          "anchor": "其他指标（默认）"
+        }
+      ],
+      "anchor": "配置"
+    },
+    {
+      "title": "命名规则 &amp; 命名映射",
+      "children": [
+        {
+          "title": "Prometheus",
+          "children": [],
+          "anchor": "prometheus"
+        },
+        {
+          "title": "任务相关指标",
+          "children": [],
+          "anchor": "任务相关指标"
+        },
+        {
+          "title": "工作流相关指标",
+          "children": [],
+          "anchor": "工作流相关指标"
+        },
+        {
+          "title": "Master Server指标",
+          "children": [],
+          "anchor": "master-server指标"
+        },
+        {
+          "title": "Worker Server指标",
+          "children": [],
+          "anchor": "worker-server指标"
+        },
+        {
+          "title": "Api Server指标",
+          "children": [],
+          "anchor": "api-server指标"
+        },
+        {
+          "title": "Alert Server指标",
+          "children": [],
+          "anchor": "alert-server指标"
+        },
+        {
+          "title": "数据库相关指标（默认）",
+          "children": [],
+          "anchor": "数据库相关指标（默认）"
+        },
+        {
+          "title": "JVM相关指标（默认）",
+          "children": [],
+          "anchor": "jvm相关指标（默认）"
+        },
+        {
+          "title": "其他指标（默认）",
+          "children": [],
+          "anchor": "其他指标（默认）"
+        }
+      ],
+      "anchor": "命名规则-&amp;-命名映射"
+    },
+    {
+      "title": "Dolphin Scheduler指标清单",
+      "children": [
+        {
+          "title": "Prometheus",
+          "children": [],
+          "anchor": "prometheus"
+        },
+        {
+          "title": "任务相关指标",
+          "children": [],
+          "anchor": "任务相关指标"
+        },
+        {
+          "title": "工作流相关指标",
+          "children": [],
+          "anchor": "工作流相关指标"
+        },
+        {
+          "title": "Master Server指标",
+          "children": [],
+          "anchor": "master-server指标"
+        },
+        {
+          "title": "Worker Server指标",
+          "children": [],
+          "anchor": "worker-server指标"
+        },
+        {
+          "title": "Api Server指标",
+          "children": [],
+          "anchor": "api-server指标"
+        },
+        {
+          "title": "Alert Server指标",
+          "children": [],
+          "anchor": "alert-server指标"
+        },
+        {
+          "title": "数据库相关指标（默认）",
+          "children": [],
+          "anchor": "数据库相关指标（默认）"
+        },
+        {
+          "title": "JVM相关指标（默认）",
+          "children": [],
+          "anchor": "jvm相关指标（默认）"
+        },
+        {
+          "title": "其他指标（默认）",
+          "children": [],
+          "anchor": "其他指标（默认）"
+        }
+      ],
+      "anchor": "dolphin-scheduler指标清单"
+    }
+  ],
+  "title": "指标（Metrics）使用指南",
+  "link": "/guide/metrics/metrics"
+}
