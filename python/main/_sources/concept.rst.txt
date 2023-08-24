@@ -63,7 +63,7 @@ asterisks expression, and each of the meaning of position as below
     ┬ ┬ ┬ ┬ ┬ ┬ ┬
     │ │ │ │ │ │ │
     │ │ │ │ │ │ └─── year
-    │ │ │ │ │ └───── day of week (0 - 7) (0 to 6 are Sunday to Saturday, or use names; 7 is Sunday, the same as 0)
+    │ │ │ │ │ └───── day of week (1 - 7) (1 to 7 are Sunday to Saturday, or use names; 7 is for Sunday, or use `SUN`)
     │ │ │ │ └─────── month (1 - 12)
     │ │ │ └───────── day of month (1 - 31)
     │ │ └─────────── hour (0 - 23)
