@@ -5,17 +5,11 @@ description: 来自杭州思科的大数据工程师李千分享他们基于Apac
 ---
 
 
-![](https://fastly.jsdelivr.net/gh/filess/img1@main/2023/08/08/1691476738278-2c89cad2-5245-4656-b5d0-4df492ef7bb5.png)
-
-
-
 
 K8s 打通了主流公私云之间的壁垒，成为唯一连通公私云的基础架构平台。K8s 是未来云端的趋势，全面拥抱 K8s 成为更多企业推动 IT 现代化的选择。
 
 杭州思科基于 Apache DolphinScheduler，也在进行支持 K8s 的相关探索，且部分功能已经成功上线运行。今天，来自杭州思科的大数据工程师 李千，将为我们分享他们的开发成果。
 
-
-![](https://fastly.jsdelivr.net/gh/filess/img4@main/2023/08/08/1691477016346-0868c752-6a75-40cc-bf8a-01bb27d513b2.png)
 
 
 **李千**
@@ -37,8 +31,6 @@ K8s 打通了主流公私云之间的壁垒，成为唯一连通公私云的基�
 我们可以加一些 Type，即标记的类型，比如某些 Namespace 只允许跑一些特定类型的 job。我们可以统计Namespace 下面的任务数量、pod 数量、请求资源量、请求等，查看队列的资源使用情况，界面默认只有管理员才可以操作。
 
 
-![](https://fastly.jsdelivr.net/gh/filess/img19@main/2023/08/08/1691477025599-cf96d3e3-4128-4871-be1e-4c3b25125ac1.png)
-
 
 ## **多 K8s 集群**
 
@@ -56,7 +48,6 @@ K8s 支持多个集群，我们通过 Apache DolphinScheduler 客户端连接到
 
 比如 ETL 这种提交完之后必须要手动操作才会退出的任务。这种任务一旦提交，就会把数据 sink，这种任务理论上只要不做升级，它永远不会停。
 
-![](https://fastly.jsdelivr.net/gh/filess/img8@main/2023/08/08/1691477032557-1ac41b46-c9d6-4325-b3a9-67c833562719.png)
 
 
 这种任务其实调度可能用不到，因为它只有启停这两种状态。所以，我们把它放在一个实时列表中，并做了一套监控。POD是实时运行的状态，主要是通过一个 Fabris operator 进行交互，可以进行动态进行扩展，以提高资源利用率。
@@ -66,12 +57,8 @@ K8s 支持多个集群，我们通过 Apache DolphinScheduler 客户端连接到
 我们对于 CPU 的管理可以精确到 0.01%，充分利用了 K8s 虚拟 CPU。
 
 
-![](https://fastly.jsdelivr.net/gh/filess/img10@main/2023/08/08/1691477040051-7e64bd7a-88ff-4c73-ab23-4a16e4508379.png)
-
-![](https://fastly.jsdelivr.net/gh/filess/img6@main/2023/08/08/1691477045209-73059fc0-9e66-49bc-ba33-65cf6e3d6ed8.png)
 
 
-![](https://fastly.jsdelivr.net/gh/filess/img10@main/2023/08/08/1691477051064-46c1e041-08f4-41bd-8577-e2f21296a5c7.png)
 
 
 
@@ -90,15 +77,11 @@ Flink 任务支持多种模式镜像版本，因为 K8s 本身就是运行镜像
 我们在最底层增加了一些 Flink 的 batch 和 Spark 的 batch 任务，添加了一些配置，如使用的资源，所运行的 namespace 等。镜像信息可以支持一些自定义参数启动，封装起来后就相当于插件的模式，Apache DolphinScheduler 完美地扩展了它的功能。
 
 
-![](https://fastly.jsdelivr.net/gh/filess/img7@main/2023/08/08/1691477061067-04d2cb74-f4ff-445a-a794-b443edc2cd72.png)
-
 
 ## **Spark 任务**
 
 Spark 任务下可以查看 CPU 等信息，上传文件支持 Spark Jar 包，也可以单独上传配置文件。
 
-
-![](https://fastly.jsdelivr.net/gh/filess/img3@main/2023/08/08/1691477065360-625f4633-f756-4fa0-9d17-ba8315e37f1d.png)
 
 
 这种多线程的上层，可以大幅提高处理速度。
@@ -107,8 +90,6 @@ Spark 任务下可以查看 CPU 等信息，上传文件支持 Spark Jar 包，�
 
 ## **Watch 状态**
 
-
-![](https://fastly.jsdelivr.net/gh/filess/img3@main/2023/08/08/1691477070607-b3a5e2cb-b657-4db8-b7e1-890b3aa5f5dd.png)
 
 
 除了上述改动，我们还对任务运行状态进行了优化。
