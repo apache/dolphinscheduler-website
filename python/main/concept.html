@@ -56,11 +56,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#schedule">Schedule</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tenant">Tenant</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#execution-type">Execution Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alert">Alert</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tasks-dependence">Tasks Dependence</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#task-with-workflow">Task With Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-group">Task Group</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#resource-files">Resource Files</a></li>
@@ -195,6 +197,16 @@ and all the waiting instances will be executed base on workflow priority order.<
 you can read <a class="reference internal" href="config.html"><span class="doc">Configuration</span></a> section.</p></li>
 </ul>
 </section>
+<section id="alert">
+<h3>Alert<a class="headerlink" href="#alert" title="Permalink to this heading"></a></h3>
+<p>Alert is the way to notify user when workflow instance is success or failed. We can set alert with parameter
+<code class="docutils literal notranslate"><span class="pre">warning_type</span></code> and <code class="docutils literal notranslate"><span class="pre">warning_group_id</span></code> in workflow definition.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">warning_type</span></code> represent the type of alert, when workflow instance in those status, it will trigger alert.
+The value of <code class="docutils literal notranslate"><span class="pre">warning_type</span></code> could be one of <code class="docutils literal notranslate"><span class="pre">failure</span></code>, <code class="docutils literal notranslate"><span class="pre">success</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">none</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warning_group_id</span></code> represent the group of alert, you can get the group id from DolphinScheduler web UI.</p></li>
+</ul>
+</section>
 </section>
 <section id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading"></a></h2>
@@ -245,6 +257,38 @@ decide workflow of task. You could set <cite>workflow</cite> in both normal assi
 </pre></div>
 </div>
 <p>With both <a class="reference internal" href="#workflow">Workflow</a>, <a class="reference internal" href="#tasks">Tasks</a>  and <a class="reference internal" href="#tasks-dependence">Tasks Dependence</a>, we could build a workflow with multiple tasks.</p>
+</section>
+<section id="task-group">
+<h3>Task Group<a class="headerlink" href="#task-group" title="Permalink to this heading"></a></h3>
+<p>A task group can manage and control the maximum number of concurrently running tasks. This is particularly
+useful when you want to limit the simultaneous execution of various task types. For instance, in an ETL
+(Extract, Transform, Load) job where data is extracted from a source database, it’s crucial to control the
+parallelism of extract tasks to prevent an excessive number of connections to the source database. This is
+where a task group comes into play. There are two key parameters, <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code> and <code class="docutils literal notranslate"><span class="pre">task_group_priority</span></code>
+that determine the behavior of the task group.</p>
+<p>Task group can control the maximum number of tasks running at the same time. It is useful when you don’t want
+to run too many type of tasks at the same time. For example when you extract data from source database in ELT
+job, you want to control the parallelism of extract task to avoid too many connections to source database.
+Then task group can help you. There are two major parameters <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code> and <code class="docutils literal notranslate"><span class="pre">task_group_priority</span></code>
+to control the behavior of task group.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">task_group_id</span></code>: is an integer used to identify the task group. You can set a <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code> to
+restrict the parallelism of tasks. The <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code> can be find in the DolphinScheduler web UI. The
+default value is <code class="docutils literal notranslate"><span class="pre">0</span></code>, which means there are no restrictions for this task group.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">task_group_priority</span></code>: is an integer used to define the priority of the task group. When different tasks
+share the same <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code>, the task group’s priority comes into play, controlling the order in which
+they run. Higher values indicate higher priority. The default value is <code class="docutils literal notranslate"><span class="pre">0</span></code>, which means there’s no
+specific priority for this task group, and tasks will run in the order they were created.</p></li>
+</ul>
+<p>Here’s an example in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extract</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;extract&quot;</span><span class="p">,</span>
+   <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;Some extract command here&#39;&quot;</span><span class="p">,</span>
+   <span class="n">task_group_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+   <span class="n">task_group_priority</span><span class="o">=</span><span class="mi">123</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="resource-files">
@@ -550,6 +594,7 @@ and it can be set in multiple ways which you can read <a class="reference intern
       <dd><a href="../4.0.1/concept.html">4.0.1</a></dd>
       <dd><a href="../4.0.2/concept.html">4.0.2</a></dd>
       <dd><a href="../4.0.3/concept.html">4.0.3</a></dd>
+      <dd><a href="../4.0.4/concept.html">4.0.4</a></dd>
     </dl>
     <dl>
       <dt>Branches</dt>
