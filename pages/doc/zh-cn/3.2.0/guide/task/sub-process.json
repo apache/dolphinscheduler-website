@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"子流程节点\">子流程节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p>子流程节点，就是把外部的某个工作流定义当做一个节点去执行。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>\n<p>点击项目管理 -&gt; 项目名称 -&gt; 工作流定义，点击”创建工作流”按钮，进入 DAG 编辑页面：</p>\n</li>\n<li>\n<p>拖动工具栏的 <img src=\"/img/tasks/icons/sub_process.png\" width=\"15\"/> 任务节点到画板中。</p>\n</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.2.0/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>子节点</td>\n<td>是选择子流程的工作流定义，右上角进入该子节点可以跳转到所选子流程的工作流定义</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<p>该样例模拟了常见的任务类型，这里我们使用子结点任务调用 <a href=\"/zh-cn/docs/3.2.0/guide/task/shell\">Shell</a> 打印出 ”hello world“。即将一个 shell 任务当作子结点来执行。</p>\n<h3 id=\"创建-shell-任务\">创建 shell 任务</h3>\n<p>创建一个 shell 任务，用于打印 “hello”。并为该工作流定义为 test_dag01。</p>\n<p><img src=\"/img/tasks/demo/subprocess_task01.png\" alt=\"subprocess_task01\"></p>\n<h3 id=\"创建-sub_process-任务\">创建 sub_process 任务</h3>\n<p>在使用 sub_process 的过程中，需要创建所需的子结点任务，也就是我们第一步所创建的 test_dag01 工作流。然后如下图所示，在 ⑤ 的位置选择对应的子结点即可。</p>\n<p><img src=\"/img/tasks/demo/subprocess_task02.png\" alt=\"subprocess_task02\"></p>\n<p>创建 sub_process 完成之后，再创建一个对应的 shell 任务，用于打印 “world”，并将二者连接起来。保存当前工作流，并上线运行，即可得到想要的结果。</p>\n<p><img src=\"/img/tasks/demo/subprocess_task03.png\" alt=\"subprocess_task03\"></p>\n<h2 id=\"注意事项\">注意事项</h2>\n<p>在使用 sub_process 调用子结点任务的时候，需要保证定义的子结点为上线状态，否则 sub_process 的工作流无法正常运行。</p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "SubProcess"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "创建 shell 任务",
+          "children": [],
+          "anchor": "创建-shell-任务"
+        },
+        {
+          "title": "创建 sub_process 任务",
+          "children": [],
+          "anchor": "创建-sub_process-任务"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "创建 shell 任务",
+          "children": [],
+          "anchor": "创建-shell-任务"
+        },
+        {
+          "title": "创建 sub_process 任务",
+          "children": [],
+          "anchor": "创建-sub_process-任务"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "创建 shell 任务",
+          "children": [],
+          "anchor": "创建-shell-任务"
+        },
+        {
+          "title": "创建 sub_process 任务",
+          "children": [],
+          "anchor": "创建-sub_process-任务"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "创建 shell 任务",
+          "children": [],
+          "anchor": "创建-shell-任务"
+        },
+        {
+          "title": "创建 sub_process 任务",
+          "children": [],
+          "anchor": "创建-sub_process-任务"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "注意事项",
+      "children": [
+        {
+          "title": "创建 shell 任务",
+          "children": [],
+          "anchor": "创建-shell-任务"
+        },
+        {
+          "title": "创建 sub_process 任务",
+          "children": [],
+          "anchor": "创建-sub_process-任务"
+        }
+      ],
+      "anchor": "注意事项"
+    }
+  ],
+  "title": "子流程节点",
+  "link": "/guide/task/sub-process"
+}

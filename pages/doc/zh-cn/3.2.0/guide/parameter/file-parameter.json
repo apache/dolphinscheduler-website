@@ -1,0 +1,75 @@
+{
+  "__html": "<h1 id=\"文件参数\">文件参数</h1>\n<p>通过配置文件参数，在同一工作流实例中，可以将上游任务工作目录下的文件(或文件夹，下统一以<strong>文件</strong>代替)传递给下游任务。 如以下场景可能使用到</p>\n<ul>\n<li>在ETL任务中，将多个上游任务处理好的数据文件一起传递给特定的下游任务。</li>\n<li>在机器学习场景中，将上游数据准备任务的数据集文件传递给下游模型训练任务。</li>\n</ul>\n<h2 id=\"使用方式\">使用方式</h2>\n<h3 id=\"配置文件参数\">配置文件参数</h3>\n<p>文件参数配置方式如下：在任务定义页面，点击“自定义参数”右边的加号，即可进行配置。</p>\n<h3 id=\"输出文件给下游任务\">输出文件给下游任务</h3>\n<p><strong>自定义参数四个选项分别为:</strong></p>\n<ul>\n<li>参数名：任务间传递时使用的标识，如下图中使用的<code>KEY1</code>和<code>KEY2</code></li>\n<li>方向：OUT, 则表示输出文件给下游任务</li>\n<li>参数类型：FILE, 表示文件参数</li>\n<li>参数值：输出的文件路径，如下图中的<code>data</code>和<code>data/test2/text.txt</code></li>\n</ul>\n<p>下图的配置表示任务<code>output</code>向下游任务传递两个文件数据，分别为:</p>\n<ul>\n<li>传出文件夹 <code>data</code>, 并标记为<code>dir-data</code>, 下游任务可以通过<code>output.dir-data</code>获取该文件夹</li>\n<li>传出文件 <code>data/test2/text.txt</code>, 并标记为<code>file-text</code>, 下游任务可以通过<code>output.file-text</code>获取该文件夹</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/parameter/file_parameter_output.png\" alt=\"img.png\"></p>\n<h3 id=\"获取上游任务的文件\">获取上游任务的文件</h3>\n<p><strong>自定义参数四个选项分别为:</strong></p>\n<ul>\n<li>参数名：上游文件输入后保存的位置，如下图中使用的<code>input_dir</code></li>\n<li>方向：IN, 则表示从上游任务获取文件</li>\n<li>参数类型：FILE, 表示文件参数</li>\n<li>参数值：上游文件的标识，为 <code>taskName.KEY</code> 的格式 如下图中的<code>output.dir-data</code>, 其中<code>output</code>为上游任务的名称，<code>dir-data</code>为上游任务中输出的文件标识</li>\n</ul>\n<p>下图的配置表示任务从上游任务<code>output</code>中获取标识为<code>dir-data</code>的文件夹，并保存为<code>input_dir</code></p>\n<p><img src=\"/img/new_ui/dev/parameter/file_parameter_input_dir.png\" alt=\"img.png\"></p>\n<p>下图的配置表示任务从上游任务<code>output</code>中获取标识为<code>file-text</code>的文件，并保存为<code>input.txt</code></p>\n<p><img src=\"/img/new_ui/dev/parameter/file_parameter_input_file.png\" alt=\"img.png\"></p>\n<h2 id=\"其他\">其他</h2>\n<h3 id=\"备注\">备注</h3>\n<ul>\n<li>上下游任务间的文件传递基于资源中心作为中转，数据保存在资源中心<code>DATA_TRANSFER</code>的目录下, 因此<strong>必须开启资源中心功能</strong>，详情请参考<a href=\"/zh-cn/docs/3.2.0/guide/resource/configuration\">资源中心配置详情</a>, 否则无法使用文件参数功能。</li>\n<li>文件命名规则为 <code>DATA_TRANSFER/日期/工作流Code/工作流版本_工作流实例ID/任务名称_任务实例ID_文件名</code></li>\n<li>若传输的文件数据为文件夹，则会打包成后缀为<code>.zip</code>的压缩文件再上传，下游任务接到后会解压并保存在对应目录</li>\n<li>若需要删除文件数据，可以在资源中心的<code>DATA_TRANSFER</code>目录下删除对应文件夹即可, 如直接按照日期子目录删除，会删除该日期下所有的文件数据. 也可以使用<code>resources/data-transfer</code><a href=\"../api/open-api.md\">Open API 接口</a>（删除N天前的数据）删除对应文件数据。</li>\n<li>如果存在任务链 task1-&gt;task2-&gt;tas3, 则最下游任务task3也能获取task1的文件数据</li>\n<li>支持一对多传输以及多对一传输</li>\n<li>如果频繁大量传输文件，毫无疑问会因传输的数据量影响到系统IO性能</li>\n</ul>\n<h3 id=\"样例\">样例</h3>\n<p>你可以保存以下YAML文件到本地，然后执行<code>pydolphinscheduler yaml -f data-transfer.yaml</code>即可运行Demo.</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-comment\"># Define the workflow</span>\n<span class=\"hljs-attr\">workflow:</span>\n  <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">&quot;data-transfer&quot;</span>\n  <span class=\"hljs-attr\">run:</span> <span class=\"hljs-literal\">true</span>\n\n<span class=\"hljs-comment\"># Define the tasks under the workflow</span>\n<span class=\"hljs-attr\">tasks:</span>\n  <span class=\"hljs-bullet\">-</span> <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">output</span>\n    <span class=\"hljs-attr\">task_type:</span> <span class=\"hljs-string\">Shell</span>\n    <span class=\"hljs-attr\">command:</span> <span class=\"hljs-string\">|\n      mkdir -p data/test1 data/test2\n      echo &quot;test1 message&quot; &gt;&gt; data/test1/text.txt\n      echo &quot;test2 message&quot; &gt;&gt; data/test2/text.txt\n      tree .\n</span>    <span class=\"hljs-attr\">local_params:</span>\n      <span class=\"hljs-bullet\">-</span> { <span class=\"hljs-attr\">&quot;prop&quot;:</span> <span class=\"hljs-string\">&quot;dir-data&quot;</span>, <span class=\"hljs-attr\">&quot;direct&quot;:</span> <span class=\"hljs-string\">&quot;OUT&quot;</span>, <span class=\"hljs-attr\">&quot;type&quot;:</span> <span class=\"hljs-string\">&quot;FILE&quot;</span>, <span class=\"hljs-attr\">&quot;value&quot;:</span> <span class=\"hljs-string\">&quot;data&quot;</span> }\n      <span class=\"hljs-bullet\">-</span> { <span class=\"hljs-attr\">&quot;prop&quot;:</span> <span class=\"hljs-string\">&quot;file-text&quot;</span>, <span class=\"hljs-attr\">&quot;direct&quot;:</span> <span class=\"hljs-string\">&quot;OUT&quot;</span>, <span class=\"hljs-attr\">&quot;type&quot;:</span> <span class=\"hljs-string\">&quot;FILE&quot;</span>, <span class=\"hljs-attr\">&quot;value&quot;:</span> <span class=\"hljs-string\">&quot;data/test2/text.txt&quot;</span> }\n\n  <span class=\"hljs-bullet\">-</span> <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">input_dir</span>\n    <span class=\"hljs-attr\">task_type:</span> <span class=\"hljs-string\">Shell</span>\n    <span class=\"hljs-attr\">deps:</span> [<span class=\"hljs-string\">output</span>]\n    <span class=\"hljs-attr\">command:</span> <span class=\"hljs-string\">|\n      tree .\n      cat input_dir/test1/text.txt\n      cat input_dir/test2/text.txt\n</span>    <span class=\"hljs-attr\">local_params:</span>\n      <span class=\"hljs-bullet\">-</span> { <span class=\"hljs-attr\">&quot;prop&quot;:</span> <span class=\"hljs-string\">&quot;input_dir&quot;</span>, <span class=\"hljs-attr\">&quot;direct&quot;:</span> <span class=\"hljs-string\">&quot;IN&quot;</span>, <span class=\"hljs-attr\">&quot;type&quot;:</span> <span class=\"hljs-string\">&quot;FILE&quot;</span>, <span class=\"hljs-attr\">&quot;value&quot;:</span> <span class=\"hljs-string\">&quot;output.dir-data&quot;</span> }\n\n\n  <span class=\"hljs-bullet\">-</span> <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">input_file</span>\n    <span class=\"hljs-attr\">task_type:</span> <span class=\"hljs-string\">Shell</span>\n    <span class=\"hljs-attr\">deps:</span> [<span class=\"hljs-string\">output</span>]\n    <span class=\"hljs-attr\">command:</span> <span class=\"hljs-string\">|\n      tree .\n      cat input.txt\n</span>    <span class=\"hljs-attr\">local_params:</span>\n      <span class=\"hljs-bullet\">-</span> { <span class=\"hljs-attr\">&quot;prop&quot;:</span> <span class=\"hljs-string\">&quot;input.txt&quot;</span>, <span class=\"hljs-attr\">&quot;direct&quot;:</span> <span class=\"hljs-string\">&quot;IN&quot;</span>, <span class=\"hljs-attr\">&quot;type&quot;:</span> <span class=\"hljs-string\">&quot;FILE&quot;</span>, <span class=\"hljs-attr\">&quot;value&quot;:</span> <span class=\"hljs-string\">&quot;output.file-text&quot;</span> }\n</code></pre>\n",
+  "location": [
+    "功能介绍",
+    "参数",
+    "文件参数传递"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "使用方式",
+      "children": [
+        {
+          "title": "配置文件参数",
+          "children": [],
+          "anchor": "配置文件参数"
+        },
+        {
+          "title": "输出文件给下游任务",
+          "children": [],
+          "anchor": "输出文件给下游任务"
+        },
+        {
+          "title": "获取上游任务的文件",
+          "children": [],
+          "anchor": "获取上游任务的文件"
+        },
+        {
+          "title": "备注",
+          "children": [],
+          "anchor": "备注"
+        },
+        {
+          "title": "样例",
+          "children": [],
+          "anchor": "样例"
+        }
+      ],
+      "anchor": "使用方式"
+    },
+    {
+      "title": "其他",
+      "children": [
+        {
+          "title": "配置文件参数",
+          "children": [],
+          "anchor": "配置文件参数"
+        },
+        {
+          "title": "输出文件给下游任务",
+          "children": [],
+          "anchor": "输出文件给下游任务"
+        },
+        {
+          "title": "获取上游任务的文件",
+          "children": [],
+          "anchor": "获取上游任务的文件"
+        },
+        {
+          "title": "备注",
+          "children": [],
+          "anchor": "备注"
+        },
+        {
+          "title": "样例",
+          "children": [],
+          "anchor": "样例"
+        }
+      ],
+      "anchor": "其他"
+    }
+  ],
+  "title": "文件参数",
+  "link": "/guide/parameter/file-parameter"
+}

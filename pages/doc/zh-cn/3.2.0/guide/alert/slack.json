@@ -1,0 +1,65 @@
+{
+  "__html": "<h1 id=\"slack\">Slack</h1>\n<p>如果您需要使用到Slack进行告警，请在告警实例管理里创建告警实例，选择 Slack 插件。Slack的配置样例如下:</p>\n<p><img src=\"/img/new_ui/dev/alert/alert_slack.png\" alt=\"alert-slack\"></p>\n<h2 id=\"参数配置\">参数配置</h2>\n<ul>\n<li>\n<p>Webhook</p>\n<blockquote>\n<p>复制APP的<code>Incoming Webhooks</code>地址,如下图所示：</p>\n</blockquote>\n<p><img src=\"/img/new_ui/dev/alert/alert_slack_webhook_addr.png\" alt=\"alert-slack-webhook\"></p>\n</li>\n<li>\n<p>用户名</p>\n<blockquote>\n<p>发送人的昵称（已过时），由于Slack更新原因目前会使用APP名称作为发件人</p>\n</blockquote>\n</li>\n</ul>\n<h2 id=\"如何获取webhook地址\">如何获取Webhook地址</h2>\n<p>请参考官网文章<a href=\"https://api.slack.com/messaging/webhooks\">《Slack：如何通过Incoming Webhooks发送消息？》</a>进行创建。</p>\n<h3 id=\"新建一个slack-app\">新建一个Slack APP</h3>\n<p>打开<a href=\"https://api.slack.com/apps/new\">Slack官网</a>新建一个APP。</p>\n<h3 id=\"激活incoming-webhooks设置\">激活Incoming Webhooks设置</h3>\n<p>新建APP后，在APP页面左侧，选择<code>Feature</code>栏目下的<code>Incoming Webhooks</code>，点击激活<code>Activate Incoming Webhooks</code>到<code>ON</code>。\n<img src=\"/img/new_ui/dev/alert/alert_slack_enable.png\" alt=\"alert-slack-webhook\"></p>\n<h3 id=\"创建一个incoming-webhook\">创建一个Incoming Webhook</h3>\n<p>创建一个新的<code>Incoming Webhook</code>，并选择消息的发送分组。\n<img src=\"/img/new_ui/dev/alert/alert_slack_new.png\" alt=\"select-post-group\"></p>\n<h3 id=\"获取incoming-webhooks地址\">获取Incoming Webhooks地址</h3>\n<p>复制APP的<code>Incoming Webhooks</code>地址,如下图所示：\n<code>Incoming Webhooks</code>的格式为：<code>https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX</code></p>\n<p><img src=\"/img/new_ui/dev/alert/alert_slack_webhook_addr.png\" alt=\"alert-slack-webhook\"></p>\n<p>参考：<a href=\"https://api.slack.com/messaging/webhooks\">Slack：如何通过Incoming Webhooks发送消息？</a></p>\n",
+  "location": [
+    "功能介绍",
+    "告警",
+    "Slack告警"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "参数配置",
+      "children": [
+        {
+          "title": "新建一个Slack APP",
+          "children": [],
+          "anchor": "新建一个slack-app"
+        },
+        {
+          "title": "激活Incoming Webhooks设置",
+          "children": [],
+          "anchor": "激活incoming-webhooks设置"
+        },
+        {
+          "title": "创建一个Incoming Webhook",
+          "children": [],
+          "anchor": "创建一个incoming-webhook"
+        },
+        {
+          "title": "获取Incoming Webhooks地址",
+          "children": [],
+          "anchor": "获取incoming-webhooks地址"
+        }
+      ],
+      "anchor": "参数配置"
+    },
+    {
+      "title": "如何获取Webhook地址",
+      "children": [
+        {
+          "title": "新建一个Slack APP",
+          "children": [],
+          "anchor": "新建一个slack-app"
+        },
+        {
+          "title": "激活Incoming Webhooks设置",
+          "children": [],
+          "anchor": "激活incoming-webhooks设置"
+        },
+        {
+          "title": "创建一个Incoming Webhook",
+          "children": [],
+          "anchor": "创建一个incoming-webhook"
+        },
+        {
+          "title": "获取Incoming Webhooks地址",
+          "children": [],
+          "anchor": "获取incoming-webhooks地址"
+        }
+      ],
+      "anchor": "如何获取webhook地址"
+    }
+  ],
+  "title": "Slack",
+  "link": "/guide/alert/slack"
+}

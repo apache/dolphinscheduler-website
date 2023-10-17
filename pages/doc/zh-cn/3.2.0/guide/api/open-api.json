@@ -1,0 +1,120 @@
+{
+  "__html": "<h1 id=\"api-调用\">API 调用</h1>\n<h2 id=\"背景\">背景</h2>\n<p>一般都是通过页面来创建项目、流程等，但是与第三方系统集成就需要通过调用 API 来管理项目、流程。</p>\n<h2 id=\"操作步骤\">操作步骤</h2>\n<h3 id=\"创建-token\">创建 token</h3>\n<ol>\n<li>登录调度系统，点击 &quot;安全中心&quot;，再点击左侧的 &quot;令牌管理&quot;，点击 &quot;令牌管理&quot; 创建令牌。</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/security/create-token.png\" alt=\"create-token\"></p>\n<ol start=\"2\">\n<li>选择 &quot;失效时间&quot; (Token 有效期)，选择 &quot;用户&quot; (以指定的用户执行接口操作)，点击 &quot;生成令牌&quot; ，拷贝 Token 字符串，然后点击 &quot;提交&quot; 。</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/open-api/token_expiration.png\" alt=\"token-expiration\"></p>\n<h3 id=\"使用案例\">使用案例</h3>\n<h4 id=\"查询项目列表信息\">查询项目列表信息</h4>\n<ol>\n<li>打开 API 文档页面</li>\n</ol>\n<blockquote>\n<p>地址：http://{api server ip}:12345/dolphinscheduler/swagger-ui/index.html?language=zh_CN&amp;lang=cn</p>\n</blockquote>\n<p><img src=\"/img/new_ui/dev/open-api/api_doc.png\" alt=\"api-doc\"></p>\n<ol start=\"2\">\n<li>选一个测试的接口，本次测试选取的接口是：查询所有项目</li>\n</ol>\n<blockquote>\n<p>projects/list</p>\n</blockquote>\n<ol start=\"3\">\n<li>\n<p>打开 Postman，填写接口地址，并在 Headers 中填写 Token，发送请求后即可查看结果</p>\n<pre><code>token: 刚刚生成的 Token\n</code></pre>\n</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/open-api/api_test.png\" alt=\"api-test\"></p>\n<h4 id=\"创建项目\">创建项目</h4>\n<p>这里演示如何使用调用 api 来创建对应的项目。</p>\n<p>通过查阅 api 文档，在 Postman 的 Headers 中配置 KEY 为 Accept，VALUE 为 application/json 的参数。</p>\n<p><img src=\"/img/new_ui/dev/open-api/create_project01.png\" alt=\"create-project01\"></p>\n<p>然后再 Body 中配置所需的 projectName 和 description 参数。</p>\n<p><img src=\"/img/new_ui/dev/open-api/create_project02.png\" alt=\"create-project02\"></p>\n<p>检查 post 请求结果。</p>\n<p><img src=\"/img/new_ui/dev/open-api/create_project03.png\" alt=\"create-project03\"></p>\n<p>返回 msg 信息为 &quot;success&quot;，说明我们已经成功通过 API 的方式创建了项目。</p>\n<p>如果您对创建项目的源码感兴趣，欢迎继续阅读下面内容</p>\n<h3 id=\"附:创建项目源码\">附:创建项目源码</h3>\n<p><img src=\"/img/new_ui/dev/open-api/api_source01.png\" alt=\"api-source01\"></p>\n<p><img src=\"/img/new_ui/dev/open-api/api_source02.png\" alt=\"api-source02\"></p>\n",
+  "location": [
+    "API",
+    "API调用"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "背景",
+      "children": [
+        {
+          "title": "创建 token",
+          "children": [
+            {
+              "title": "查询项目列表信息",
+              "children": [],
+              "anchor": "查询项目列表信息"
+            },
+            {
+              "title": "创建项目",
+              "children": [],
+              "anchor": "创建项目"
+            }
+          ],
+          "anchor": "创建-token"
+        },
+        {
+          "title": "使用案例",
+          "children": [
+            {
+              "title": "查询项目列表信息",
+              "children": [],
+              "anchor": "查询项目列表信息"
+            },
+            {
+              "title": "创建项目",
+              "children": [],
+              "anchor": "创建项目"
+            }
+          ],
+          "anchor": "使用案例"
+        },
+        {
+          "title": "附:创建项目源码",
+          "children": [
+            {
+              "title": "查询项目列表信息",
+              "children": [],
+              "anchor": "查询项目列表信息"
+            },
+            {
+              "title": "创建项目",
+              "children": [],
+              "anchor": "创建项目"
+            }
+          ],
+          "anchor": "附:创建项目源码"
+        }
+      ],
+      "anchor": "背景"
+    },
+    {
+      "title": "操作步骤",
+      "children": [
+        {
+          "title": "创建 token",
+          "children": [
+            {
+              "title": "查询项目列表信息",
+              "children": [],
+              "anchor": "查询项目列表信息"
+            },
+            {
+              "title": "创建项目",
+              "children": [],
+              "anchor": "创建项目"
+            }
+          ],
+          "anchor": "创建-token"
+        },
+        {
+          "title": "使用案例",
+          "children": [
+            {
+              "title": "查询项目列表信息",
+              "children": [],
+              "anchor": "查询项目列表信息"
+            },
+            {
+              "title": "创建项目",
+              "children": [],
+              "anchor": "创建项目"
+            }
+          ],
+          "anchor": "使用案例"
+        },
+        {
+          "title": "附:创建项目源码",
+          "children": [
+            {
+              "title": "查询项目列表信息",
+              "children": [],
+              "anchor": "查询项目列表信息"
+            },
+            {
+              "title": "创建项目",
+              "children": [],
+              "anchor": "创建项目"
+            }
+          ],
+          "anchor": "附:创建项目源码"
+        }
+      ],
+      "anchor": "操作步骤"
+    }
+  ],
+  "title": "API 调用",
+  "link": "/guide/api/open-api"
+}

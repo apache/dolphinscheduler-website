@@ -1,0 +1,33 @@
+{
+  "__html": "<h1 id=\"dependent-节点\">Dependent 节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p>Dependent 节点，就是<strong>依赖检查节点</strong>。比如 A 流程依赖昨天的 B 流程执行成功，依赖节点会去检查 B 流程在昨天是否有执行成功的实例。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理 -&gt; 项目名称 -&gt; 工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏的<img src=\"/img/tasks/icons/dependent.png\" width=\"15\"/> 任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.2.0/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>添加依赖</td>\n<td>配置依赖的上游任务.</td>\n</tr>\n<tr>\n<td>检查间隔</td>\n<td>检查依赖的上游任务状态间隔，默认10s.</td>\n</tr>\n<tr>\n<td>依赖失败策略</td>\n<td>失败: 依赖的上游任务失败当前任务直接失败；等待: 依赖的上游任务失败当前任务继续等待；</td>\n</tr>\n<tr>\n<td>依赖失败等待时间</td>\n<td>当依赖失败策略选择等待时，当前任务等待的时间.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<p>Dependent 节点提供了逻辑判断功能，可以按照逻辑来检测所依赖节点的执行情况。</p>\n<p>例如，A 流程为周报任务，B、C 流程为天任务，A 任务需要 B、C 任务在上周的每一天都执行成功，如图示：</p>\n<p><img src=\"/img/tasks/demo/dependent_task01.png\" alt=\"dependent_task01\"></p>\n<p>例如，A 流程为周报任务，B、C 流程为天任务，A 任务需要 B 或 C 任务在上周的每一天都执行成功，如图示：</p>\n<p><img src=\"/img/tasks/demo/dependent_task02.png\" alt=\"dependent_task02\"></p>\n<p>假如，周报 A 同时还需要自身在上周二执行成功：</p>\n<p><img src=\"/img/tasks/demo/dependent_task03.png\" alt=\"dependent_task03\"></p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Dependent"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [],
+      "anchor": "任务样例"
+    }
+  ],
+  "title": "Dependent 节点",
+  "link": "/guide/task/dependent"
+}

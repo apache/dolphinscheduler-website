@@ -1,0 +1,64 @@
+{
+  "__html": "<h1 id=\"dolphinscheduler-元数据文档\">DolphinScheduler 元数据文档</h1>\n<h2 id=\"表schema\">表Schema</h2>\n<p>详见<code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql</code>目录下的sql文件</p>\n<h2 id=\"e-r图\">E-R图</h2>\n<h3 id=\"用户-队列-数据源\">用户\t队列\t数据源</h3>\n<p><img src=\"/img/metadata-erd/user-queue-datasource.png\" alt=\"image.png\"></p>\n<ul>\n<li>一个租户下可以有多个用户；<br /></li>\n<li><code>t_ds_user</code>中的queue字段存储的是队列表中的<code>queue_name</code>信息，<code>t_ds_tenant</code>下存的是<code>queue_id</code>，在流程定义执行过程中，用户队列优先级最高，用户队列为空则采用租户队列；<br /></li>\n<li><code>t_ds_datasource</code>表中的<code>user_id</code>字段表示创建该数据源的用户，<code>t_ds_relation_datasource_user</code>中的<code>user_id</code>表示对数据源有权限的用户；<br /></li>\n</ul>\n<h3 id=\"项目-资源-告警\">项目\t资源\t告警</h3>\n<p><img src=\"/img/metadata-erd/project-resource-alert.png\" alt=\"image.png\"></p>\n<ul>\n<li>一个用户可以有多个项目，用户项目授权通过<code>t_ds_relation_project_user</code>表完成project_id和user_id的关系绑定；<br /></li>\n<li><code>t_ds_projcet</code>表中的<code>user_id</code>表示创建该项目的用户，<code>t_ds_relation_project_user</code>表中的<code>user_id</code>表示对项目有权限的用户；<br /></li>\n<li><code>t_ds_resources</code>表中的<code>user_id</code>表示创建该资源的用户，<code>t_ds_relation_resources_user</code>中的<code>user_id</code>表示对资源有权限的用户；<br /></li>\n<li><code>t_ds_udfs</code>表中的<code>user_id</code>表示创建该UDF的用户，<code>t_ds_relation_udfs_user</code>表中的<code>user_id</code>表示对UDF有权限的用户；<br /></li>\n</ul>\n<h3 id=\"项目---租户---工作流定义---定时\">项目 - 租户 - 工作流定义 - 定时</h3>\n<p><img src=\"/img/metadata-erd/project_tenant_process_definition_schedule.png\" alt=\"image.png\"></p>\n<ul>\n<li>一个项目可以有多个工作流定义，每个工作流定义只属于一个项目；<br /></li>\n<li>一个租户可以被多个工作流定义使用，每个工作流定义必须且只能选择一个租户；<br /></li>\n<li>一个工作流定义可以有一个或多个定时的配置；<br /></li>\n</ul>\n<h3 id=\"工作流定义和执行\">工作流定义和执行</h3>\n<p><img src=\"/img/metadata-erd/process_definition.png\" alt=\"image.png\"></p>\n<ul>\n<li>一个工作流定义对应多个任务定义，通过<code>t_ds_process_task_relation</code>进行关联，关联的key是<code>code + version</code>，当任务的前置节点为空时，对应的<code>pre_task_node</code>和<code>pre_task_version</code>为0；</li>\n<li>一个工作流定义可以有多个工作流实例<code>t_ds_process_instance</code>，一个工作流实例对应一个或多个任务实例<code>t_ds_task_instance</code>；</li>\n<li><code>t_ds_relation_process_instance</code>表存放的数据用于处理流程定义中含有子流程的情况，<code>parent_process_instance_id</code>表示含有子流程的主流程实例id，<code>process_instance_id</code>表示子流程实例的id，<code>parent_task_instance_id</code>表示子流程节点的任务实例id，流程实例表和任务实例表分别对应<code>t_ds_process_instance</code>表和<code>t_ds_task_instance</code>表；</li>\n</ul>\n",
+  "location": [
+    "架构设计",
+    "元数据文档"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "表Schema",
+      "children": [
+        {
+          "title": "用户\t队列\t数据源",
+          "children": [],
+          "anchor": "用户-队列-数据源"
+        },
+        {
+          "title": "项目\t资源\t告警",
+          "children": [],
+          "anchor": "项目-资源-告警"
+        },
+        {
+          "title": "项目 - 租户 - 工作流定义 - 定时",
+          "children": [],
+          "anchor": "项目---租户---工作流定义---定时"
+        },
+        {
+          "title": "工作流定义和执行",
+          "children": [],
+          "anchor": "工作流定义和执行"
+        }
+      ],
+      "anchor": "表schema"
+    },
+    {
+      "title": "E-R图",
+      "children": [
+        {
+          "title": "用户\t队列\t数据源",
+          "children": [],
+          "anchor": "用户-队列-数据源"
+        },
+        {
+          "title": "项目\t资源\t告警",
+          "children": [],
+          "anchor": "项目-资源-告警"
+        },
+        {
+          "title": "项目 - 租户 - 工作流定义 - 定时",
+          "children": [],
+          "anchor": "项目---租户---工作流定义---定时"
+        },
+        {
+          "title": "工作流定义和执行",
+          "children": [],
+          "anchor": "工作流定义和执行"
+        }
+      ],
+      "anchor": "e-r图"
+    }
+  ],
+  "title": "DolphinScheduler 元数据文档",
+  "link": "/architecture/metadata"
+}

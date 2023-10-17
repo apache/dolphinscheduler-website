@@ -1,0 +1,97 @@
+{
+  "__html": "<h1 id=\"sqoop-节点\">SQOOP 节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p>SQOOP 任务类型，用于执行 SQOOP 程序。对于 SQOOP 节点，worker 会通过执行 <code>sqoop</code> 命令来执行 SQOOP 任务。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理 -&gt; 项目名称 -&gt; 工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏的 <img src=\"/img/tasks/icons/sqoop.png\" width=\"15\"/> 任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.2.0/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>任务名称</td>\n<td>map-reduce 任务名称</td>\n</tr>\n<tr>\n<td>流向</td>\n<td>(1) import：从 RDBMS 导入 HDFS 或Hive  (2) export：从 HDFS 或 Hive 导出到 RDBMS</td>\n</tr>\n<tr>\n<td>Hadoop 参数</td>\n<td>添加自定义 Hadoop 参数</td>\n</tr>\n<tr>\n<td>Sqoop 参数</td>\n<td>添加自定义 Sqoop 参数</td>\n</tr>\n<tr>\n<td>数据来源 - 类型</td>\n<td>选择数据源类型</td>\n</tr>\n<tr>\n<td>数据来源 - 数据源</td>\n<td>选择数据源</td>\n</tr>\n<tr>\n<td>数据来源 - 模式</td>\n<td>(1) 单表：同步单张表的数据，需填写<code>表名</code>和<code>列类型</code>  (2) SQL：同步 SQL 查询的结果，需填写<code>SQL语句</code></td>\n</tr>\n<tr>\n<td>数据来源 - 表名</td>\n<td>设置需要导入 hive 的表名</td>\n</tr>\n<tr>\n<td>数据来源 - 列类型</td>\n<td>(1) 全表导入：导入表中的所有字段  (2) 选择列：导入表中的指定列，需填写<code>列</code>信息</td>\n</tr>\n<tr>\n<td>数据来源 - 列</td>\n<td>填写字段名称，多个字段之间使用英文逗号分割</td>\n</tr>\n<tr>\n<td>数据来源 - SQL 语句</td>\n<td>填写 SQL 查询语句</td>\n</tr>\n<tr>\n<td>数据来源 - Hive 类型映射</td>\n<td>自定义 SQL 与 Hive 类型映射</td>\n</tr>\n<tr>\n<td>数据来源 - Java 类型映射</td>\n<td>自定义 SQL 与 Java 类型映射</td>\n</tr>\n<tr>\n<td>数据目的 - 类型</td>\n<td>选择数据目的类型</td>\n</tr>\n<tr>\n<td>数据目的 - 数据库</td>\n<td>填写 Hive 数据库名称</td>\n</tr>\n<tr>\n<td>数据目的 - 表名</td>\n<td>填写 Hive 表名</td>\n</tr>\n<tr>\n<td>数据目的 - 是否创建新表</td>\n<td>选择是否自动根据导入数据类型创建数据目的表，如果目标表已经存在了，那么创建任务会失败</td>\n</tr>\n<tr>\n<td>数据目的 - 是否删除分隔符</td>\n<td>自动删除字符串中的<code>\\n</code>、<code>\\r</code>和<code>\\01</code>字符</td>\n</tr>\n<tr>\n<td>数据目的 - 是否覆盖数据源</td>\n<td>覆盖 Hive 表中的现有数据</td>\n</tr>\n<tr>\n<td>数据目的 - Hive 目标路径</td>\n<td>自定义 Hive 目标路径</td>\n</tr>\n<tr>\n<td>数据目的 - 替换分隔符</td>\n<td>替换字符串中的<code>\\n</code>、<code>\\r</code>和<code>\\01</code>字符</td>\n</tr>\n<tr>\n<td>数据目的 - Hive 分区键</td>\n<td>填写 Hive 分区键，多个分区键之间使用英文逗号分割</td>\n</tr>\n<tr>\n<td>数据目的 - Hive 分区值</td>\n<td>填写 Hive 分区值，多个分区值之间使用英文逗号分割</td>\n</tr>\n<tr>\n<td>数据目的 - 目标路径</td>\n<td>填写 HDFS 的目标路径</td>\n</tr>\n<tr>\n<td>数据目的 - 是否删除目录</td>\n<td>如果目录已经存在，则删除目录</td>\n</tr>\n<tr>\n<td>数据目的 - 压缩类型</td>\n<td>选择 HDFS 文件压缩类型</td>\n</tr>\n<tr>\n<td>数据目的 - 保存格式</td>\n<td>选择文件保存格式</td>\n</tr>\n<tr>\n<td>数据目的 - 列分隔符</td>\n<td>自定义列分隔符</td>\n</tr>\n<tr>\n<td>数据目的 - 行分隔符</td>\n<td>自定义行分隔符</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<p>该样例演示为从 MySQL 数据导入到 Hive 中。 其中 MySQL 数据库名称为：<code>test</code>，表名称为<code>example</code>。下图为样例数据。</p>\n<p><img src=\"/img/tasks/demo/sqoop_task01.png\" alt=\"sqoop_task01\"></p>\n<h3 id=\"配置-sqoop-环境\">配置 Sqoop 环境</h3>\n<p>若生产环境中要是使用到 Sqoop 任务类型，则需要先配置好所需的环境。确保任务节点可以执行<code>sqoop</code>命令。</p>\n<h3 id=\"配置-sqoop-任务节点\">配置 Sqoop 任务节点</h3>\n<p>可按照下图步骤进行配置节点内容。</p>\n<p><img src=\"/img/tasks/demo/sqoop_task02.png\" alt=\"sqoop_task02\"></p>\n<p>本样例中的关键配置如下表。</p>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>参数值</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>任务名称</td>\n<td>sqoop_mysql_to_hive_test</td>\n</tr>\n<tr>\n<td>流向</td>\n<td>import</td>\n</tr>\n<tr>\n<td>数据来源 - 类型</td>\n<td>MYSQL</td>\n</tr>\n<tr>\n<td>数据来源 - 数据源</td>\n<td>MYSQL MyTestMySQL（您可以将MyTestMySQL改成您自己取的数据源名称）</td>\n</tr>\n<tr>\n<td>数据来源 - 模式</td>\n<td>表单</td>\n</tr>\n<tr>\n<td>数据来源 - 表名</td>\n<td>example</td>\n</tr>\n<tr>\n<td>数据来源 - 列类型</td>\n<td>全表导入</td>\n</tr>\n<tr>\n<td>数据目的 - 类型</td>\n<td>HIVE</td>\n</tr>\n<tr>\n<td>数据目的 - 数据库</td>\n<td>tmp</td>\n</tr>\n<tr>\n<td>数据目的 - 表名</td>\n<td>example</td>\n</tr>\n<tr>\n<td>数据目的 - 是否创建新表</td>\n<td>true</td>\n</tr>\n<tr>\n<td>数据目的 - 是否删除分隔符</td>\n<td>false</td>\n</tr>\n<tr>\n<td>数据目的 - 是否覆盖数据源</td>\n<td>true</td>\n</tr>\n<tr>\n<td>数据目的 - Hive 目标路径</td>\n<td>（无需填写）</td>\n</tr>\n<tr>\n<td>数据目的 - 替换分隔符</td>\n<td>,</td>\n</tr>\n<tr>\n<td>数据目的 - Hive 分区键</td>\n<td>（无需填写）</td>\n</tr>\n<tr>\n<td>数据目的 - Hive 分区值</td>\n<td>（无需填写）</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"查看运行结果\">查看运行结果</h3>\n<p><img src=\"/img/tasks/demo/sqoop_task03.png\" alt=\"sqoop_task03\"></p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Sqoop"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "配置 Sqoop 环境",
+          "children": [],
+          "anchor": "配置-sqoop-环境"
+        },
+        {
+          "title": "配置 Sqoop 任务节点",
+          "children": [],
+          "anchor": "配置-sqoop-任务节点"
+        },
+        {
+          "title": "查看运行结果",
+          "children": [],
+          "anchor": "查看运行结果"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "配置 Sqoop 环境",
+          "children": [],
+          "anchor": "配置-sqoop-环境"
+        },
+        {
+          "title": "配置 Sqoop 任务节点",
+          "children": [],
+          "anchor": "配置-sqoop-任务节点"
+        },
+        {
+          "title": "查看运行结果",
+          "children": [],
+          "anchor": "查看运行结果"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "配置 Sqoop 环境",
+          "children": [],
+          "anchor": "配置-sqoop-环境"
+        },
+        {
+          "title": "配置 Sqoop 任务节点",
+          "children": [],
+          "anchor": "配置-sqoop-任务节点"
+        },
+        {
+          "title": "查看运行结果",
+          "children": [],
+          "anchor": "查看运行结果"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "配置 Sqoop 环境",
+          "children": [],
+          "anchor": "配置-sqoop-环境"
+        },
+        {
+          "title": "配置 Sqoop 任务节点",
+          "children": [],
+          "anchor": "配置-sqoop-任务节点"
+        },
+        {
+          "title": "查看运行结果",
+          "children": [],
+          "anchor": "查看运行结果"
+        }
+      ],
+      "anchor": "任务样例"
+    }
+  ],
+  "title": "SQOOP 节点",
+  "link": "/guide/task/sqoop"
+}

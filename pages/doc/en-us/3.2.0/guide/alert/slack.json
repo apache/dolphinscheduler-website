@@ -1,0 +1,65 @@
+{
+  "__html": "<h1 id=\"slack\">Slack</h1>\n<p>If you need to use <code>Slack</code> for alerting, create an alert instance in the alert instance management and select\nthe <code>Slack</code> plugin.</p>\n<p>The following shows the <code>Slack</code> configuration example:</p>\n<p><img src=\"/img/new_ui/dev/alert/alert_slack.png\" alt=\"alert-slack\"></p>\n<h2 id=\"parameter-configuration\">Parameter Configuration</h2>\n<ul>\n<li>\n<p>Webhook</p>\n<blockquote>\n<p>Copy the <code>Incoming Webhooks</code> address from the APP, check the image below:</p>\n</blockquote>\n<p><img src=\"/img/new_ui/dev/alert/alert_slack_webhook_addr.png\" alt=\"alert-slack-webhook\"></p>\n</li>\n<li>\n<p>UserName</p>\n<blockquote>\n<p>(Deprecated) The sender name. Currently, Slack use APP as the sender name due to the Slack updates.</p>\n</blockquote>\n</li>\n</ul>\n<h2 id=\"how-to-get-webhook\">How to Get Webhook</h2>\n<p>Please refer to the official article <a href=\"https://api.slack.com/messaging/webhooks\">Slack: Sending messages using Incoming Webhooks</a> to create new webhooks.</p>\n<h3 id=\"create-a-new-slack-app\">Create a new Slack APP</h3>\n<p>Visit <a href=\"https://api.slack.com/apps/new\">Slack Official Website</a> and create a new APP.</p>\n<h3 id=\"activate-incoming-webhooks-setting\">Activate Incoming Webhooks Setting</h3>\n<p>When finish creating a new APP, select <code>Incoming Webhooks</code> of the column <code>Feature</code> on the left of the APP page, and switch <code>Activate Incoming Webhooks</code> to <code>ON</code>.\n<img src=\"/img/new_ui/dev/alert/alert_slack_enable.png\" alt=\"alert-slack-webhook\"></p>\n<h3 id=\"create-a-new-incoming-webhook\">Create a New Incoming Webhook</h3>\n<p>Click <code>Add New Webhook to Workspace</code> and select a group to post messages.\n<img src=\"/img/new_ui/dev/alert/alert_slack_new.png\" alt=\"select-post-group\"></p>\n<h3 id=\"acquire-incoming-webhooks-address\">Acquire Incoming Webhooks Address</h3>\n<p>Copy the <code>Incoming Webhooks</code> address to DolphinScheduler, check the image below:\nThe default format of the <code>Incoming Webhooks</code>: <code>https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX</code></p>\n<p><img src=\"/img/new_ui/dev/alert/alert_slack_webhook_addr.png\" alt=\"alert-slack-webhook\"></p>\n<p>Reference：<a href=\"https://api.slack.com/messaging/webhooks\">Slack：Sending messages using Incoming Webhooks</a></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Alert",
+    "Slack"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "Parameter Configuration",
+      "children": [
+        {
+          "title": "Create a new Slack APP",
+          "children": [],
+          "anchor": "create-a-new-slack-app"
+        },
+        {
+          "title": "Activate Incoming Webhooks Setting",
+          "children": [],
+          "anchor": "activate-incoming-webhooks-setting"
+        },
+        {
+          "title": "Create a New Incoming Webhook",
+          "children": [],
+          "anchor": "create-a-new-incoming-webhook"
+        },
+        {
+          "title": "Acquire Incoming Webhooks Address",
+          "children": [],
+          "anchor": "acquire-incoming-webhooks-address"
+        }
+      ],
+      "anchor": "parameter-configuration"
+    },
+    {
+      "title": "How to Get Webhook",
+      "children": [
+        {
+          "title": "Create a new Slack APP",
+          "children": [],
+          "anchor": "create-a-new-slack-app"
+        },
+        {
+          "title": "Activate Incoming Webhooks Setting",
+          "children": [],
+          "anchor": "activate-incoming-webhooks-setting"
+        },
+        {
+          "title": "Create a New Incoming Webhook",
+          "children": [],
+          "anchor": "create-a-new-incoming-webhook"
+        },
+        {
+          "title": "Acquire Incoming Webhooks Address",
+          "children": [],
+          "anchor": "acquire-incoming-webhooks-address"
+        }
+      ],
+      "anchor": "how-to-get-webhook"
+    }
+  ],
+  "title": "Slack",
+  "link": "/guide/alert/slack"
+}

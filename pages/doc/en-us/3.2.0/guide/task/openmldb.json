@@ -1,0 +1,229 @@
+{
+  "__html": "<h1 id=\"openmldb-node\">OpenMLDB Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p><a href=\"https://openmldb.ai/\">OpenMLDB</a> is an excellent open source machine learning database, providing a full-stack\nFeatureOps solution for production.</p>\n<p>OpenMLDB task plugin used to execute tasks on OpenMLDB cluster.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/openmldb.png\" width=\"15\"/> task node to canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.0/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>zookeeper</td>\n<td>OpenMLDB cluster zookeeper address, e.g. 127.0.0.1:2181.</td>\n</tr>\n<tr>\n<td>zookeeper path</td>\n<td>OpenMLDB cluster zookeeper path, e.g. /openmldb.</td>\n</tr>\n<tr>\n<td>Execute Mode</td>\n<td>Determine the init mode, offline or online. You can switch it in sql statement.</td>\n</tr>\n<tr>\n<td>SQL statement</td>\n<td>SQL statement.</td>\n</tr>\n<tr>\n<td>Custom parameters</td>\n<td>It is the user-defined parameters of Python, which will replace the content with ${variable} in the script.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-examples\">Task Examples</h2>\n<h3 id=\"load-data\">Load data</h3>\n<p><img src=\"/img/tasks/demo/openmldb-load-data.png\" alt=\"load data\"></p>\n<p>We use <code>LOAD DATA</code> to load data into OpenMLDB cluster. We select <code>offline</code> here, so it will load to offline storage.</p>\n<h3 id=\"feature-extraction\">Feature extraction</h3>\n<p><img src=\"/img/tasks/demo/openmldb-feature-extraction.png\" alt=\"fe\"></p>\n<p>We use <code>SELECT INTO</code> to do feature extraction. We select <code>offline</code> here, so it will run sql on offline engine.</p>\n<h3 id=\"environment-to-prepare\">Environment to Prepare</h3>\n<h4 id=\"start-the-openmldb-cluster\">Start the OpenMLDB Cluster</h4>\n<p>You should create an OpenMLDB cluster first. If in production env, please check <a href=\"https://openmldb.ai/docs/en/v0.5/deploy/install_deploy.html\">deploy OpenMLDB</a>.</p>\n<p>You can follow <a href=\"https://openmldb.ai/docs/zh/v0.5/quickstart/openmldb_quickstart.html#id11\">run OpenMLDB in docker</a>\nto a quick start.</p>\n<h4 id=\"python-environment\">Python Environment</h4>\n<p>The OpenMLDB task will use OpenMLDB Python SDK to connect OpenMLDB cluster. So you should have the Python env.</p>\n<p>We will use <code>python3</code> by default. You can set <code>PYTHON_LAUNCHER</code> to use your custom python env.</p>\n<p>Make sure you have installed OpenMLDB Python SDK in the host where the worker server running, using <code>pip install openmldb</code>.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Openmldb"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Load data",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "load-data"
+        },
+        {
+          "title": "Feature extraction",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "feature-extraction"
+        },
+        {
+          "title": "Environment to Prepare",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "environment-to-prepare"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Load data",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "load-data"
+        },
+        {
+          "title": "Feature extraction",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "feature-extraction"
+        },
+        {
+          "title": "Environment to Prepare",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "environment-to-prepare"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Load data",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "load-data"
+        },
+        {
+          "title": "Feature extraction",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "feature-extraction"
+        },
+        {
+          "title": "Environment to Prepare",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "environment-to-prepare"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Examples",
+      "children": [
+        {
+          "title": "Load data",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "load-data"
+        },
+        {
+          "title": "Feature extraction",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "feature-extraction"
+        },
+        {
+          "title": "Environment to Prepare",
+          "children": [
+            {
+              "title": "Start the OpenMLDB Cluster",
+              "children": [],
+              "anchor": "start-the-openmldb-cluster"
+            },
+            {
+              "title": "Python Environment",
+              "children": [],
+              "anchor": "python-environment"
+            }
+          ],
+          "anchor": "environment-to-prepare"
+        }
+      ],
+      "anchor": "task-examples"
+    }
+  ],
+  "title": "OpenMLDB Node",
+  "link": "/guide/task/openmldb"
+}

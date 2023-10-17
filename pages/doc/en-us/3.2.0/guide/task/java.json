@@ -1,0 +1,23 @@
+{
+  "__html": "<h1 id=\"overview\">Overview</h1>\n<p>This node is for executing java-type tasks and supports using files and jar packages as program entries.</p>\n<h1 id=\"create-tasks\">Create Tasks</h1>\n<ul>\n<li>\n<p>Click on <code>Project Management</code> -&gt; <code>Project Name</code> -&gt; <code>Workflow Definition</code>, click on the “Create workflow” button, go to the DAG edit page:</p>\n</li>\n<li>\n<p>Drag the toolbar's Java task node to the palette.</p>\n</li>\n</ul>\n<h1 id=\"task-parameters\">Task Parameters</h1>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.0/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Module Path</td>\n<td>pick Java 9 + 's modularity feature, put all resources into-module-path, and require that the JDK version in your worker supports modularity.</td>\n</tr>\n<tr>\n<td>Main Parameter</td>\n<td>Java program main method entry parameter.</td>\n</tr>\n<tr>\n<td>Java VM Parameters</td>\n<td>JVM startup parameters.</td>\n</tr>\n<tr>\n<td>Script</td>\n<td>You need to write Java code if you use the Java run type. The public class must exist in the code without writing a package statement.</td>\n</tr>\n<tr>\n<td>Resources</td>\n<td>External JAR packages or other resource files that are added to the classpath or module path and can be easily retrieved in your JAVA script.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"example\">Example</h2>\n<p>Java type tasks have two modes of execution, here is a demonstration of executing tasks in Java mode.</p>\n<p>The main configuration parameters are as follows:</p>\n<ul>\n<li>Run Type</li>\n<li>Module Path</li>\n<li>Main Parameters</li>\n<li>Java VM Parameters</li>\n<li>Script</li>\n</ul>\n<p><img src=\"/img/tasks/demo/java_task02.png\" alt=\"java_task\"></p>\n<h2 id=\"note\">Note</h2>\n<p>When you run the task in JAVA execution mode, the public class must exist in the code, and you could omit writing a package statement.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Java"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "Example",
+      "children": [],
+      "anchor": "example"
+    },
+    {
+      "title": "Note",
+      "children": [],
+      "anchor": "note"
+    }
+  ],
+  "title": "Overview",
+  "link": "/guide/task/java"
+}

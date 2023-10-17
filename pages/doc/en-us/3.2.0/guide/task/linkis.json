@@ -1,0 +1,117 @@
+{
+  "__html": "<h1 id=\"apache-linkis\">Apache Linkis</h1>\n<h2 id=\"overview\">Overview</h2>\n<p><code>Linkis</code> task type for creating and executing <code>Linkis</code> tasks. When the worker executes this task, it will parse the shell parameters through the <code>linkis-cli</code> command.\nClick <a href=\"https://linkis.apache.org/\">here</a> for more information about <code>Apache Linkis</code>.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click Project Management -&gt; Project Name -&gt; Workflow Definition, and click the &quot;Create Workflow&quot; button to enter the DAG editing page.</li>\n<li>Drag the <img src=\"/img/tasks/icons/linkis.png\" width=\"15\"/> from the toolbar to the drawing board.</li>\n</ul>\n<h2 id=\"task-parameter\">Task Parameter</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.0/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n<li>Please refer to <a href=\"https://linkis.apache.org/zh-CN/docs/latest/user-guide/linkiscli-manual\">Linkis-Cli Task Parameters</a> <code>Linkis Support Parameters</code> section for Linkis parameters.</li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<p>This sample demonstrates using the Spark engine to execute sql script.</p>\n<h3 id=\"configuring-the-linkis-environment-in-dolphinscheduler\">Configuring the Linkis environment in DolphinScheduler</h3>\n<p>If you want to use the Linkis task type in the production environment, you need to configure the required environment first. The configuration file is as follows: <code>/dolphinscheduler/conf/env/dolphinscheduler_env.sh</code>.</p>\n<p><img src=\"/img/tasks/demo/linkis_task01.png\" alt=\"linkis_task01\"></p>\n<h3 id=\"configuring-linkis-task-node\">Configuring Linkis Task Node</h3>\n<p>According to the above parameter description, configure the required content.</p>\n<p><img src=\"/img/tasks/demo/linkis_task02.png\" alt=\"linkis_task02\"></p>\n<h3 id=\"config-example\">Config example</h3>\n<pre><code>\nsh ./bin/linkis-cli -engineType spark-2.4.3 -codeType sql -code &quot;select count(*) from testdb.test;&quot;  -submitUser hadoop -proxyUser hadoop \n\n</code></pre>\n<h3 id=\"attention\">Attention</h3>\n<ul>\n<li>No need to fill <code>sh ./bin/linkis-cli</code> in the configuration column, it has been configured in advance.</li>\n<li>The default configuration is asynchronous submission. You do not need to configure the <code>--async</code> parameter.</li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Apache Linkis"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Configuring the Linkis environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-linkis-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring Linkis Task Node",
+          "children": [],
+          "anchor": "configuring-linkis-task-node"
+        },
+        {
+          "title": "Config example",
+          "children": [],
+          "anchor": "config-example"
+        },
+        {
+          "title": "Attention",
+          "children": [],
+          "anchor": "attention"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Configuring the Linkis environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-linkis-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring Linkis Task Node",
+          "children": [],
+          "anchor": "configuring-linkis-task-node"
+        },
+        {
+          "title": "Config example",
+          "children": [],
+          "anchor": "config-example"
+        },
+        {
+          "title": "Attention",
+          "children": [],
+          "anchor": "attention"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameter",
+      "children": [
+        {
+          "title": "Configuring the Linkis environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-linkis-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring Linkis Task Node",
+          "children": [],
+          "anchor": "configuring-linkis-task-node"
+        },
+        {
+          "title": "Config example",
+          "children": [],
+          "anchor": "config-example"
+        },
+        {
+          "title": "Attention",
+          "children": [],
+          "anchor": "attention"
+        }
+      ],
+      "anchor": "task-parameter"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Configuring the Linkis environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-linkis-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring Linkis Task Node",
+          "children": [],
+          "anchor": "configuring-linkis-task-node"
+        },
+        {
+          "title": "Config example",
+          "children": [],
+          "anchor": "config-example"
+        },
+        {
+          "title": "Attention",
+          "children": [],
+          "anchor": "attention"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "Apache Linkis",
+  "link": "/guide/task/linkis"
+}

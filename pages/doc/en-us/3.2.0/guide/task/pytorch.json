@@ -1,0 +1,358 @@
+{
+  "__html": "<h1 id=\"pytorch-node-(experimental)\">Pytorch Node (experimental)</h1>\n<h2 id=\"overview\">Overview</h2>\n<p><a href=\"https://pytorch.org\">Pytorch</a> is a mainstream Python machine learning library.</p>\n<p><code>Pytorch</code> task plugin enables users to run <code>Pytorch</code> projects in DolphinScheduler more conveniently. In addition, it supports handy Python environment management.</p>\n<p><code>Pytorch task plugin</code> is more than <code>Python task plugin</code>, which allows users to <strong>conveniently use existing Python environments or create new ones (using <code>Virtualenv</code> or <code>Conda</code>)</strong>. <strong>It supports running Python projects (native or Git projects)</strong> instead of just Python scripts.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag <img src=\"/img/tasks/icons/pytorch.png\" width=\"15\"/> from the toolbar to the canvas.</li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<p>The task plugin picture is as follows</p>\n<p><img src=\"/img/tasks/demo/pytorch_en.png\" alt=\"pytorch\"></p>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.0/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<h4 id=\"run-time-parameters\">Run time parameters</h4>\n<ul>\n<li><strong>Python Script</strong> ：Entry to the Python script file that you want to run.</li>\n<li><strong>Script Input Parameters</strong> ：Input parameters at run time.</li>\n</ul>\n<p>The preceding two parameters are used to minimize the running of the configuration. Additional configuration parameters are provided as follows. When you choose to expand more configurations, you can configure more parameters</p>\n<ul>\n<li><strong>Project Path</strong> ：Set environment variable <code>PYTHONPATH</code> to load the Python package/project code at this path when running Python scripts。Support for local paths or Git URL.\n<ul>\n<li>If it is a local path, it is used as environment variable <code>PYTHONPATH</code>.</li>\n<li>If the GIT URL (<code>git @ | https:// | http://</code> prefix), can download the project, and the path after downloading will be set as new <code>Project Path</code>, if need to run a folder under the project, you can add <code>#subdirectory</code> after GIT URL.</li>\n</ul>\n</li>\n</ul>\n<h4 id=\"python-environment-parameters\">Python environment parameters</h4>\n<ul>\n<li><strong>Create An Environment Or Not</strong> ：Whether to create a new Python environment to run the task.</li>\n</ul>\n<p><em>no</em></p>\n<ul>\n<li><strong>Python Command Path</strong> ：Such as <code>/usr/bin/python</code>，The default value is ${PYTHON_LAUNCHER} in environment.</li>\n</ul>\n<p><em>yes</em></p>\n<ul>\n<li><strong>Python Environment Manager Tool</strong> ：You can choose <code>virtualenv</code> or <code>conda</code>.\n<ul>\n<li>if choose <code>virtualenv</code>，that may use <code>virtualenv</code> to create a new environment. Use command <code>virtualenv -p ${PYTHON_LAUNCHER} venv</code>.</li>\n<li>if choose <code>conda</code>, ，that may use <code>conda</code> to create a new environment，And you need to specify the Python version.</li>\n</ul>\n</li>\n<li><strong>Requirement File</strong> ：The default is requirements.txt。</li>\n</ul>\n<p>We can use relative paths of <code>Python Script</code> and <code>Requirement File</code> if we set <code>Project Path</code> which contains the python script or required requirement file.</p>\n<h4 id=\"demo\">Demo</h4>\n<p>Now if we want to run the mnist subproject under <code>https://github.com/pytorch/examples</code>.</p>\n<p>We can run task like below:</p>\n<p><img src=\"/img/tasks/demo/pytorch_note_en.png\" alt=\"pytorch_note\"></p>\n<p>In addition, if the code is stored in the <code>Resource</code>, you can use the <code>Resource</code> parameter to download the code, and write the related parameters into the path of the corresponding resource.</p>\n<h2 id=\"environment-configuration\">Environment configuration</h2>\n<p>The environment configuration mainly depends on the choice of runtime Python environment. You need to configure the corresponding environment variables in the <code>Security</code> - <code>Environment Manage</code>.</p>\n<h3 id=\"specifying-a-python-path\">Specifying a Python path</h3>\n<p>It is applicable to the Python environment where the project has been run on the worker, so you can directly configure the <code>Python Command Path</code> as the corresponding Python environment in the component. If you do not know the environment address, you can use <code>which python</code> to obtain it.</p>\n<h3 id=\"create-a-new-environment-using-<code>conda</code>\">Create a new environment using <code>Conda</code></h3>\n<p>It applies to a new environment to run the project. You need to create an environment in <code>Security</code> - <code>Environment Manage</code>. You can change the environment to the actual environment by referring to the following.</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Add the directory <span class=\"hljs-keyword\">for</span> the conda <span class=\"hljs-built_in\">command</span></span>\nexport PATH=$HOME/anaconda3/bin:$PATH\n</code></pre>\n<h3 id=\"create-a-new-environment-using-<code>virtualenv</code>\">Create a new environment using <code>Virtualenv</code></h3>\n<p>It applies to a new environment to run the project. You need to create an environment in <code>Security</code> - <code>Environment Manage</code>. You can change the environment to the actual environment by referring to the following.</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Add the directory <span class=\"hljs-keyword\">for</span> the virtualenv <span class=\"hljs-built_in\">command</span></span>\nexport PATH=/home/xxx/anaconda3/bin:$PATH\nexport PYTHON_LAUNCHER=/usr/local/bin/python3.7\n</code></pre>\n<h2 id=\"other\">Other</h2>\n<p>This task plugin can also run XGBoost, LightGBM, SkLearn, TensorFlow, Keras and other projects. This task plugin is available as an upgrade to Python task plugin running machine learning tasks.</p>\n<p>If necessary, we can call this task plugin <code>PythonML</code>,which can run machine learning projects easily in DolphinScheduler.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Pytorch"
+  ],
+  "time": "2023-10-17",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Specifying a Python path",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "specifying-a-python-path"
+        },
+        {
+          "title": "Create a new environment using Conda",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-conda"
+        },
+        {
+          "title": "Create a new environment using Virtualenv",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-virtualenv"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Specifying a Python path",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "specifying-a-python-path"
+        },
+        {
+          "title": "Create a new environment using Conda",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-conda"
+        },
+        {
+          "title": "Create a new environment using Virtualenv",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-virtualenv"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Specifying a Python path",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "specifying-a-python-path"
+        },
+        {
+          "title": "Create a new environment using Conda",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-conda"
+        },
+        {
+          "title": "Create a new environment using Virtualenv",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-virtualenv"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Environment configuration",
+      "children": [
+        {
+          "title": "Specifying a Python path",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "specifying-a-python-path"
+        },
+        {
+          "title": "Create a new environment using Conda",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-conda"
+        },
+        {
+          "title": "Create a new environment using Virtualenv",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-virtualenv"
+        }
+      ],
+      "anchor": "environment-configuration"
+    },
+    {
+      "title": "Other",
+      "children": [
+        {
+          "title": "Specifying a Python path",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "specifying-a-python-path"
+        },
+        {
+          "title": "Create a new environment using Conda",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-conda"
+        },
+        {
+          "title": "Create a new environment using Virtualenv",
+          "children": [
+            {
+              "title": "Run time parameters",
+              "children": [],
+              "anchor": "run-time-parameters"
+            },
+            {
+              "title": "Python environment parameters",
+              "children": [],
+              "anchor": "python-environment-parameters"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "create-a-new-environment-using-virtualenv"
+        }
+      ],
+      "anchor": "other"
+    }
+  ],
+  "title": "Pytorch Node (experimental)",
+  "link": "/guide/task/pytorch"
+}
