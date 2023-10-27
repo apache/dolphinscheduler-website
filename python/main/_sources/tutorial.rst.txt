@@ -20,21 +20,21 @@ Tutorial
 
 This tutorial shows you the basic concept of *PyDolphinScheduler* and tells all
 things you should know before you submit or run your first workflow. If you
-still have not installed *PyDolphinScheduler* and start DolphinScheduler, you
-could go and see :ref:`how to getting start PyDolphinScheduler <start:getting started>` firstly.
+still have not installed *PyDolphinScheduler* and started DolphinScheduler, you
+could go and see :ref:`how to get started with PyDolphinScheduler <start:getting started>` firstly.
 
 Overview of Tutorial
 --------------------
 
-Here have an overview of our tutorial, and it looks a little complex but does not
-worry about that because we explain this example below as detail as possible.
+Here, we have an overview of our tutorial, and it looks a little complex but don't
+worry about that because we will explain this example below in as much detail as possible.
 
 There are two types of tutorials: traditional and task decorator.
 
 - **Traditional Way**: More general, support many :doc:`built-in task types <tasks/index>`, it is convenient
   when you build your workflow at the beginning.
-- **Task Decorator**: A Python decorator allow you to wrap your function into pydolphinscheduler's task. Less
-  versatility to the traditional way because it only supported Python functions and without build-in tasks
+- **Task Decorator**: A Python decorator that allows you to wrap your function into pydolphinscheduler's task. Less
+  versatility to the traditional way because it only supports Python functions without build-in tasks
   supported. But it is helpful if your workflow is all built with Python or if you already have some Python
   workflow code and want to migrate them to pydolphinscheduler.
 - **YAML File**: We can use pydolphinscheduler CLI to create workflow using YAML file: :code:`pydolphinscheduler yaml -f tutorial.yaml`. 
@@ -94,7 +94,7 @@ We should instantiate :class:`pydolphinscheduler.core.workflow.Workflow` object 
 import them from `import necessary module`_. Here we declare basic arguments for workflow.
 We define the name of :code:`Workflow`, using `Python context manager`_ and it **the only required argument**
 for `Workflow`. Besides, we also declare three arguments named :code:`schedule` and :code:`start_time`
-which setting workflow schedule interval and schedule start_time, and argument :code:`tenant` defines which tenant
+which sets workflow schedule interval and schedule start_time, and argument :code:`tenant` defines which tenant
 will be running this task in the DolphinScheduler worker. See :ref:`section tenant <concept:tenant>` in
 *PyDolphinScheduler* :doc:`concept` for more information.
 
@@ -119,7 +119,7 @@ will be running this task in the DolphinScheduler worker. See :ref:`section tena
       :end-before: # Define the tasks within the workflow
       :language: yaml
 
-We could find more detail about :code:`Workflow` in :ref:`concept about workflow <concept:workflow>`
+We could find more details about :code:`Workflow` in :ref:`concept about workflow <concept:workflow>`
 if you are interested in it. For all arguments of object workflow, you could find in the
 :class:`pydolphinscheduler.core.workflow` API documentation.
 
@@ -128,7 +128,7 @@ Task Declaration
 
 .. tab:: Tradition
 
-   We declare four tasks to show how to create tasks, and both of them are simple tasks of
+   We declare four tasks to show how to create tasks, and all of them are simple tasks of
    :class:`pydolphinscheduler.tasks.shell` which runs `echo` command in the terminal. Besides the argument
    `command` with :code:`echo` command, we also need to set the argument `name` for each task
    *(not only shell task, `name` is required for each type of task)*.
@@ -142,7 +142,7 @@ Task Declaration
 
 .. tab:: Task Decorator
 
-   We declare four tasks to show how to create tasks, and both of them are created by the task decorator which
+   We declare four tasks to show how to create tasks, and all of them are created by the task decorator which
    using :func:`pydolphinscheduler.tasks.func_wrap.task`. All we have to do is add a decorator named
    :code:`@task` to existing Python function, and then use them inside :class:`pydolphinscheduler.core.workflow`
 
@@ -151,7 +151,7 @@ Task Declaration
       :start-after: [start task_declare]
       :end-before: [end task_declare]
 
-   It makes our workflow more Pythonic, but be careful that when we use task decorator mode mean we only use
+   It makes our workflow more Pythonic, but be careful that when we use task decorator mode, it means we only use
    Python function as a task and could not use the :doc:`built-in tasks <tasks/index>` most of the cases.
 
 .. tab:: YAML File

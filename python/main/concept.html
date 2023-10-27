@@ -108,9 +108,9 @@
 <p>In this section, you would know the core concepts of <em>PyDolphinScheduler</em>.</p>
 <section id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading"></a></h2>
-<p>Workflow describe the whole things except <a class="reference internal" href="#tasks">tasks</a> and <a class="reference internal" href="#tasks-dependence">tasks dependence</a>, which including
+<p>Workflow describes the whole things except <a class="reference internal" href="#tasks">tasks</a> and <a class="reference internal" href="#tasks-dependence">tasks dependence</a>, which includes
 name, schedule interval, schedule start time and end time. You would know scheduler</p>
-<p>Workflow could be initialized in normal assign statement or in context manger.</p>
+<p>Workflow could be initialized in a normal assignment statement or within a context manger.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization with assign statement</span>
 <span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
 
@@ -119,9 +119,9 @@ name, schedule interval, schedule start time and end time. You would know schedu
     <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Workflow is the main object communicate between <em>PyDolphinScheduler</em> and DolphinScheduler daemon.
-After workflow and task is be declared, you could use <cite>submit</cite> and <cite>run</cite> notify server your definition.</p>
-<p>If you just want to submit your definition and create workflow, without run it, you should use attribute <cite>submit</cite>.
+<p>Workflow is the main object communicating between <em>PyDolphinScheduler</em> and DolphinScheduler daemon.
+After workflow and task is declared, you could use <cite>submit</cite> and <cite>run</cite> to notify server your definition.</p>
+<p>If you just want to submit your definition and create workflow, without running it, you should use attribute <cite>submit</cite>.
 But if you want to run the workflow after you submit it, you could use attribute <cite>run</cite>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Just submit definition, without run it</span>
 <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
@@ -132,8 +132,8 @@ But if you want to run the workflow after you submit it, you could use attribute
 </div>
 <section id="schedule">
 <h3>Schedule<a class="headerlink" href="#schedule" title="Permalink to this heading"></a></h3>
-<p>We use parameter <cite>schedule</cite> determine the schedule interval of workflow, <em>PyDolphinScheduler</em> support seven
-asterisks expression, and each of the meaning of position as below</p>
+<p>We use parameter <cite>schedule</cite> to determine the schedule interval of workflow, <em>PyDolphinScheduler</em> supports seven
+asterisks expression, and each of the meaning of position is as below</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>* * * * * * *
 ┬ ┬ ┬ ┬ ┬ ┬ ┬
 │ │ │ │ │ │ │
@@ -210,21 +210,21 @@ The value of <code class="docutils literal notranslate"><span class="pre">warnin
 </section>
 <section id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading"></a></h2>
-<p>Task is the minimum unit running actual job, and it is nodes of DAG, aka directed acyclic graph. You could define
-what you want to in the task. It have some required parameter to make uniqueness and definition.</p>
+<p>Task is the minimum unit running actual job, and it is a node of DAG, aka directed acyclic graph. You could define
+what you want in the task. It has some required parameters to make uniqueness and definition.</p>
 <p>Here we use <a class="reference internal" href="api.html#pydolphinscheduler.tasks.Shell" title="pydolphinscheduler.tasks.Shell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.Shell()</span></code></a> as example, parameter <cite>name</cite> and <cite>command</cite> is required and must be provider. Parameter
 <cite>name</cite> set name to the task, and parameter <cite>command</cite> declare the command you wish to run in this task.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We named this task as &quot;shell&quot;, and just run command `echo shell task`</span>
 <span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you want to see all type of tasks, you could see <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
+<p>If you want to see all types of tasks, you could see <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
 <section id="tasks-dependence">
 <h3>Tasks Dependence<a class="headerlink" href="#tasks-dependence" title="Permalink to this heading"></a></h3>
-<p>You could define many tasks in on single <a class="reference internal" href="#workflow">Workflow</a>. If all those task is in parallel processing,
-then you could leave them alone without adding any additional information. But if there have some tasks should
-not be run unless pre task in workflow have be done, we should set task dependence to them. Set tasks dependence
-have two mainly way and both of them is easy. You could use bitwise operator <cite>&gt;&gt;</cite> and <cite>&lt;&lt;</cite>, or task attribute
+<p>You could define many tasks in on single <a class="reference internal" href="#workflow">Workflow</a>. If all those tasks are in parallel processing,
+then you could leave them alone without adding any additional information. But if there are some tasks that should
+not be run unless pre task in workflow has been done, we should set task dependence to them. Set task dependence
+have two main ways and both of them are easy. You could use bitwise operator <cite>&gt;&gt;</cite> and <cite>&lt;&lt;</cite>, or task attribute
 <cite>set_downstream</cite> and <cite>set_upstream</cite> to do it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set task1 as task2 upstream</span>
 <span class="n">task1</span> <span class="o">&gt;&gt;</span> <span class="n">task2</span>
@@ -245,7 +245,7 @@ have two mainly way and both of them is easy. You could use bitwise operator <ci
 </section>
 <section id="task-with-workflow">
 <h3>Task With Workflow<a class="headerlink" href="#task-with-workflow" title="Permalink to this heading"></a></h3>
-<p>In most of data orchestration cases, you should assigned attribute <cite>workflow</cite> to task instance to
+<p>In most of data orchestration cases, you should assign attribute <cite>workflow</cite> to task instance to
 decide workflow of task. You could set <cite>workflow</cite> in both normal assign or in context manger mode</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal assign, have to explicit declaration and pass `Workflow` instance to task</span>
 <span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
@@ -294,12 +294,12 @@ specific priority for this task group, and tasks will run in the order they were
 <section id="resource-files">
 <h2>Resource Files<a class="headerlink" href="#resource-files" title="Permalink to this heading"></a></h2>
 <p>During workflow running, we may need some resource files to help us run task usually. One of a common situation
-is that we already have some executable files locally, and we need to schedule in specific time, or add them
-to existing workflow by adding the new tasks. Of cause, we can upload those files to target machine and run them
+is that we already have some executable files locally, and we need to schedule a specific time, or add them
+to existing workflow by adding the new tasks. Of course, we can upload those files to target machine and run them
 in <a class="reference internal" href="tasks/shell.html"><span class="doc">shell task</span></a> by reference the absolute path of file. But if we have more than one machine
 to run task, we have to upload those files to each of them. And it is not convenient and not flexible, because
 we may need to change our resource files sometimes.</p>
-<p>The more pydolphinscheduler way is to upload those files together with <a class="reference internal" href="#workflow">workflow</a>, and use them in task to run.
+<p>One more pydolphinscheduler way is to upload those files together with <a class="reference internal" href="#workflow">workflow</a>, and use them in task to run.
 For example, you have a bash script named <code class="docutils literal notranslate"><span class="pre">echo-ten.sh</span></code> locally, and it contains some code like this:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/env bash</span>
 <span class="nv">max</span><span class="o">=</span><span class="m">10</span>

@@ -18,6 +18,27 @@
 Python
 ======
 
+A Python task type's example and dive into information of **PyDolphinScheduler**.
+
+Example
+-------
+
+.. literalinclude:: ../../../src/pydolphinscheduler/examples/task_python_example.py
+   :start-after: [start workflow_declare]
+   :end-before: [end workflow_declare]
+
+Resource Limit Example
+----------------------
+
+We can add resource limit like CPU quota and max memory by passing parameters when declaring tasks.
+
+.. literalinclude:: ../../../src/pydolphinscheduler/examples/task_python_example.py
+   :start-after: [start resource_limit]
+   :end-before: [end resource_limit]
+
+Dive Into
+---------
+
 .. automodule:: pydolphinscheduler.tasks.python
 
 

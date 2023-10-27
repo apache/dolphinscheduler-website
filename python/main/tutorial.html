@@ -99,18 +99,18 @@
 <h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading"></a></h1>
 <p>This tutorial shows you the basic concept of <em>PyDolphinScheduler</em> and tells all
 things you should know before you submit or run your first workflow. If you
-still have not installed <em>PyDolphinScheduler</em> and start DolphinScheduler, you
-could go and see <a class="reference internal" href="start.html#getting-started"><span class="std std-ref">how to getting start PyDolphinScheduler</span></a> firstly.</p>
+still have not installed <em>PyDolphinScheduler</em> and started DolphinScheduler, you
+could go and see <a class="reference internal" href="start.html#getting-started"><span class="std std-ref">how to get started with PyDolphinScheduler</span></a> firstly.</p>
 <section id="overview-of-tutorial">
 <h2>Overview of Tutorial<a class="headerlink" href="#overview-of-tutorial" title="Permalink to this heading"></a></h2>
-<p>Here have an overview of our tutorial, and it looks a little complex but does not
-worry about that because we explain this example below as detail as possible.</p>
+<p>Here, we have an overview of our tutorial, and it looks a little complex but don’t
+worry about that because we will explain this example below in as much detail as possible.</p>
 <p>There are two types of tutorials: traditional and task decorator.</p>
 <ul class="simple">
 <li><p><strong>Traditional Way</strong>: More general, support many <a class="reference internal" href="tasks/index.html"><span class="doc">built-in task types</span></a>, it is convenient
 when you build your workflow at the beginning.</p></li>
-<li><p><strong>Task Decorator</strong>: A Python decorator allow you to wrap your function into pydolphinscheduler’s task. Less
-versatility to the traditional way because it only supported Python functions and without build-in tasks
+<li><p><strong>Task Decorator</strong>: A Python decorator that allows you to wrap your function into pydolphinscheduler’s task. Less
+versatility to the traditional way because it only supports Python functions without build-in tasks
 supported. But it is helpful if your workflow is all built with Python or if you already have some Python
 workflow code and want to migrate them to pydolphinscheduler.</p></li>
 <li><p><strong>YAML File</strong>: We can use pydolphinscheduler CLI to create workflow using YAML file: <code class="code docutils literal notranslate"><span class="pre">pydolphinscheduler</span> <span class="pre">yaml</span> <span class="pre">-f</span> <span class="pre">tutorial.yaml</span></code>.
@@ -139,13 +139,22 @@ We can find more YAML file examples in <a class="reference external" href="https
     <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
     <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
     <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+
+    <span class="c1"># [start resource_limit]</span>
+    <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo resource limit&quot;</span><span class="p">,</span>
+        <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># [end resource_limit]</span>
     <span class="c1"># [end task_declare]</span>
 
     <span class="c1"># [start task_relation_declare]</span>
     <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">,</span> <span class="n">task_child_two</span><span class="p">]</span>
     <span class="n">task_parent</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
 
-    <span class="n">task_union</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+    <span class="n">resource_limit</span> <span class="o">&lt;&lt;</span> <span class="n">task_union</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
     <span class="c1"># [end task_relation_declare]</span>
 
     <span class="c1"># [start submit_or_run]</span>
@@ -299,7 +308,7 @@ We can find more YAML file examples in <a class="reference external" href="https
 import them from <a class="reference internal" href="#import-necessary-module">import necessary module</a>. Here we declare basic arguments for workflow.
 We define the name of <code class="code docutils literal notranslate"><span class="pre">Workflow</span></code>, using <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#context-manager-types">Python context manager</a> and it <strong>the only required argument</strong>
 for <cite>Workflow</cite>. Besides, we also declare three arguments named <code class="code docutils literal notranslate"><span class="pre">schedule</span></code> and <code class="code docutils literal notranslate"><span class="pre">start_time</span></code>
-which setting workflow schedule interval and schedule start_time, and argument <code class="code docutils literal notranslate"><span class="pre">tenant</span></code> defines which tenant
+which sets workflow schedule interval and schedule start_time, and argument <code class="code docutils literal notranslate"><span class="pre">tenant</span></code> defines which tenant
 will be running this task in the DolphinScheduler worker. See <a class="reference internal" href="concept.html#tenant"><span class="std std-ref">section tenant</span></a> in
 <em>PyDolphinScheduler</em> <a class="reference internal" href="concept.html"><span class="doc">Concepts</span></a> for more information.</p>
 <div class="tab-set docutils container">
@@ -333,7 +342,7 @@ will be running this task in the DolphinScheduler worker. See <a class="referenc
 </div>
 </div>
 </div>
-<p>We could find more detail about <code class="code docutils literal notranslate"><span class="pre">Workflow</span></code> in <a class="reference internal" href="concept.html#workflow"><span class="std std-ref">concept about workflow</span></a>
+<p>We could find more details about <code class="code docutils literal notranslate"><span class="pre">Workflow</span></code> in <a class="reference internal" href="concept.html#workflow"><span class="std std-ref">concept about workflow</span></a>
 if you are interested in it. For all arguments of object workflow, you could find in the
 <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow</span></code> API documentation.</p>
 </section>
@@ -341,7 +350,7 @@ if you are interested in it. For all arguments of object workflow, you could fin
 <h2>Task Declaration<a class="headerlink" href="#task-declaration" title="Permalink to this heading"></a></h2>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">Tradition</label><div class="tab-content docutils container">
-<p>We declare four tasks to show how to create tasks, and both of them are simple tasks of
+<p>We declare four tasks to show how to create tasks, and all of them are simple tasks of
 <a class="reference internal" href="tasks/shell.html#module-pydolphinscheduler.tasks.shell" title="pydolphinscheduler.tasks.shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.shell</span></code></a> which runs <cite>echo</cite> command in the terminal. Besides the argument
 <cite>command</cite> with <code class="code docutils literal notranslate"><span class="pre">echo</span></code> command, we also need to set the argument <cite>name</cite> for each task
 <em>(not only shell task, `name` is required for each type of task)</em>.</p>
@@ -349,12 +358,21 @@ if you are interested in it. For all arguments of object workflow, you could fin
     <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
     <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
     <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+
+    <span class="c1"># [start resource_limit]</span>
+    <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo resource limit&quot;</span><span class="p">,</span>
+        <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># [end resource_limit]</span>
 </pre></div>
 </div>
 <p>Besides shell task, <em>PyDolphinScheduler</em> supports multiple tasks and you could find in <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
 </div>
 <input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">Task Decorator</label><div class="tab-content docutils container">
-<p>We declare four tasks to show how to create tasks, and both of them are created by the task decorator which
+<p>We declare four tasks to show how to create tasks, and all of them are created by the task decorator which
 using <a class="reference internal" href="tasks/func_wrap.html#pydolphinscheduler.tasks.func_wrap.task" title="pydolphinscheduler.tasks.func_wrap.task"><code class="xref py py-func docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.func_wrap.task()</span></code></a>. All we have to do is add a decorator named
 <code class="code docutils literal notranslate"><span class="pre">&#64;task</span></code> to existing Python function, and then use them inside <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span>
@@ -395,7 +413,7 @@ using <a class="reference internal" href="tasks/func_wrap.html#pydolphinschedule
 
 </pre></div>
 </div>
-<p>It makes our workflow more Pythonic, but be careful that when we use task decorator mode mean we only use
+<p>It makes our workflow more Pythonic, but be careful that when we use task decorator mode, it means we only use
 Python function as a task and could not use the <a class="reference internal" href="tasks/index.html"><span class="doc">built-in tasks</span></a> most of the cases.</p>
 </div>
 <input class="tab-input" id="tab-set--3-input--3" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--3">YAML File</label><div class="tab-content docutils container">
@@ -438,7 +456,7 @@ and task <cite>task_child_two</cite> was done, because both two task is <cite>ta
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">,</span> <span class="n">task_child_two</span><span class="p">]</span>
     <span class="n">task_parent</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
 
-    <span class="n">task_union</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+    <span class="n">resource_limit</span> <span class="o">&lt;&lt;</span> <span class="n">task_union</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
 </pre></div>
 </div>
 </div>

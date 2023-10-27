@@ -23,10 +23,10 @@ In this section, you would know the core concepts of *PyDolphinScheduler*.
 Workflow
 --------
 
-Workflow describe the whole things except `tasks`_ and `tasks dependence`_, which including
+Workflow describes the whole things except `tasks`_ and `tasks dependence`_, which includes
 name, schedule interval, schedule start time and end time. You would know scheduler 
 
-Workflow could be initialized in normal assign statement or in context manger.
+Workflow could be initialized in a normal assignment statement or within a context manger.
 
 .. code-block:: python
 
@@ -37,10 +37,10 @@ Workflow could be initialized in normal assign statement or in context manger.
    with Workflow(name="my first workflow") as workflow:
        workflow.submit()
 
-Workflow is the main object communicate between *PyDolphinScheduler* and DolphinScheduler daemon.
-After workflow and task is be declared, you could use `submit` and `run` notify server your definition.
+Workflow is the main object communicating between *PyDolphinScheduler* and DolphinScheduler daemon.
+After workflow and task is declared, you could use `submit` and `run` to notify server your definition.
 
-If you just want to submit your definition and create workflow, without run it, you should use attribute `submit`.
+If you just want to submit your definition and create workflow, without running it, you should use attribute `submit`.
 But if you want to run the workflow after you submit it, you could use attribute `run`.
 
 .. code-block:: python
@@ -54,8 +54,8 @@ But if you want to run the workflow after you submit it, you could use attribute
 Schedule
 ~~~~~~~~
 
-We use parameter `schedule` determine the schedule interval of workflow, *PyDolphinScheduler* support seven
-asterisks expression, and each of the meaning of position as below
+We use parameter `schedule` to determine the schedule interval of workflow, *PyDolphinScheduler* supports seven
+asterisks expression, and each of the meaning of position is as below
 
 .. code-block:: text
 
@@ -136,8 +136,8 @@ Alert is the way to notify user when workflow instance is success or failed. We 
 Tasks
 -----
 
-Task is the minimum unit running actual job, and it is nodes of DAG, aka directed acyclic graph. You could define
-what you want to in the task. It have some required parameter to make uniqueness and definition.
+Task is the minimum unit running actual job, and it is a node of DAG, aka directed acyclic graph. You could define
+what you want in the task. It has some required parameters to make uniqueness and definition.
 
 Here we use :py:meth:`pydolphinscheduler.tasks.Shell` as example, parameter `name` and `command` is required and must be provider. Parameter
 `name` set name to the task, and parameter `command` declare the command you wish to run in this task.
@@ -147,15 +147,15 @@ Here we use :py:meth:`pydolphinscheduler.tasks.Shell` as example, parameter `nam
    # We named this task as "shell", and just run command `echo shell task`
    shell_task = Shell(name="shell", command="echo shell task")
 
-If you want to see all type of tasks, you could see :doc:`tasks/index`.
+If you want to see all types of tasks, you could see :doc:`tasks/index`.
 
 Tasks Dependence
 ~~~~~~~~~~~~~~~~
 
-You could define many tasks in on single `Workflow`_. If all those task is in parallel processing,
-then you could leave them alone without adding any additional information. But if there have some tasks should
-not be run unless pre task in workflow have be done, we should set task dependence to them. Set tasks dependence
-have two mainly way and both of them is easy. You could use bitwise operator `>>` and `<<`, or task attribute 
+You could define many tasks in on single `Workflow`_. If all those tasks are in parallel processing,
+then you could leave them alone without adding any additional information. But if there are some tasks that should
+not be run unless pre task in workflow has been done, we should set task dependence to them. Set task dependence
+have two main ways and both of them are easy. You could use bitwise operator `>>` and `<<`, or task attribute 
 `set_downstream` and `set_upstream` to do it.
 
 .. code-block:: python
@@ -178,7 +178,7 @@ have two mainly way and both of them is easy. You could use bitwise operator `>>
 Task With Workflow
 ~~~~~~~~~~~~~~~~~~
 
-In most of data orchestration cases, you should assigned attribute `workflow` to task instance to
+In most of data orchestration cases, you should assign attribute `workflow` to task instance to
 decide workflow of task. You could set `workflow` in both normal assign or in context manger mode
 
 .. code-block:: python
@@ -232,13 +232,13 @@ Resource Files
 --------------
 
 During workflow running, we may need some resource files to help us run task usually. One of a common situation
-is that we already have some executable files locally, and we need to schedule in specific time, or add them
-to existing workflow by adding the new tasks. Of cause, we can upload those files to target machine and run them
+is that we already have some executable files locally, and we need to schedule a specific time, or add them
+to existing workflow by adding the new tasks. Of course, we can upload those files to target machine and run them
 in :doc:`shell task <tasks/shell>` by reference the absolute path of file. But if we have more than one machine
 to run task, we have to upload those files to each of them. And it is not convenient and not flexible, because
 we may need to change our resource files sometimes.
 
-The more pydolphinscheduler way is to upload those files together with `workflow`_, and use them in task to run.
+One more pydolphinscheduler way is to upload those files together with `workflow`_, and use them in task to run.
 For example, you have a bash script named ``echo-ten.sh`` locally, and it contains some code like this:
 
 .. code-block:: bash

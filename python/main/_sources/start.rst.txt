@@ -18,7 +18,7 @@
 Getting Started
 ===============
 
-To get started with *PyDolphinScheduler* you must ensure python and pip
+To get started with *PyDolphinScheduler* you must ensure python and pip are
 installed on your machine, if you're already set up, you can skip straight
 to `Installing PyDolphinScheduler`_, otherwise please continue with
 `Installing Python`_.
@@ -28,16 +28,16 @@ Installing Python
 
 How to install `python` and `pip` depends on what operating system
 you're using. The python wiki provides up to date
-`instructions for all platforms here`_. When you entering the website
-and choice your operating system, you would be offered the choice and
-select python version. *PyDolphinScheduler* recommend use version above
-Python 3.6 and we highly recommend you install *Stable Releases* instead
+`instructions for all platforms here`_. When you enter the website
+and choose your operating system, you would be offered the choice and
+select python version. *PyDolphinScheduler* recommends using a version above
+Python 3.6 and we highly recommend installing *Stable Releases* instead
 of *Pre-releases*.
 
 After you have download and installed Python, you should open your terminal,
-typing and running :code:`python --version` to check whether the installation
-is correct or not. If all thing good, you could see the version in console
-without error(here is a example after Python 3.8.7 installed)
+type and run :code:`python --version` to check whether the installation
+is correct or not. If everything is good, you could see the version in console
+without error(here is an example after Python 3.8.7 is installed)
 
 .. code-block:: bash
 
@@ -49,21 +49,21 @@ Installing PyDolphinScheduler
 -----------------------------
 
 After Python is already installed on your machine following section
-`installing Python`_, it easy to *PyDolphinScheduler* by pip.
+`installing Python`_, it is easy to install *PyDolphinScheduler* using pip.
 
 .. code-block:: bash
 
    python -m pip install apache-dolphinscheduler
 
-The latest version of *PyDolphinScheduler* would be installed after you run above
+The latest version of *PyDolphinScheduler* would be installed after you run the above
 command in your terminal. You could go and `start Python Gateway Service`_ to finish
-the prepare, and then go to :doc:`tutorial` to make your hand dirty. But if you
+the preparation, and then go to :doc:`tutorial` to get your hand dirty. But if you
 want to install the unreleased version of *PyDolphinScheduler*, you could go and see
-section `installing PyDolphinScheduler in dev branch`_ for more detail.
+section `installing PyDolphinScheduler in dev branch`_ for more details.
 
 .. note::
 
-   Currently, we released multiple pre-release package in PyPI, you can see all released package
+   Currently, we have released multiple pre-release packages in PyPI, you can see all released packages
    including pre-release in `release history <https://pypi.org/project/apache-dolphinscheduler/#history>`_.
    You can fix the the package version if you want to install pre-release package, for example if
    you want to install version `3.0.0-beta-2` package, you can run command
@@ -72,9 +72,9 @@ section `installing PyDolphinScheduler in dev branch`_ for more detail.
 Installing PyDolphinScheduler In DEV Branch
 -------------------------------------------
 
-Because the project is developing and some of the features still not release.
-If you want to try some thing unreleased you could install from the source code
-which we hold in GitHub
+Because the project is developing and some of the features are still not released.
+If you want to try something unreleased you could install from the source code
+which we hold on GitHub
 
 .. code-block:: bash
 
@@ -84,10 +84,10 @@ which we hold in GitHub
    python -m pip install -e .
 
 After you installed *PyDolphinScheduler*, please remember `start Python Gateway Service`_
-which waiting for *PyDolphinScheduler*'s workflow definition require.
+which is required for *PyDolphinScheduler*'s workflow definition.
 
-Above command will clone whole dolphinscheduler source code to local, maybe you want to install latest pydolphinscheduler
-package directly and do not care about other code(including Python gateway service code), you can execute command
+Above command will clone whole dolphinscheduler source code to local, maybe you want to install the latest pydolphinscheduler
+package directly and do not care about other code(including Python gateway service code), you can execute the command
 
 .. code-block:: bash
 
@@ -98,10 +98,10 @@ Start Python Gateway Service
 ----------------------------
 
 Since **PyDolphinScheduler** is Python API for `Apache DolphinScheduler`_, it
-could define workflow and tasks structure, but could not run it unless you
-`install Apache DolphinScheduler`_ and start its API server which including
-Python gateway service in it. We only and some key steps here and you could
-go `install Apache DolphinScheduler`_ for more detail
+could define workflow and task structures, but could not run it unless you
+`install Apache DolphinScheduler`_ and start its API server which includes
+Python gateway service in it. We only write some key steps here and you could
+go `install Apache DolphinScheduler`_ for more details
 
 .. code-block:: bash
 
@@ -109,7 +109,7 @@ go `install Apache DolphinScheduler`_ for more detail
    ./bin/dolphinscheduler-daemon.sh start api-server
 
 To check whether the server is alive or not, you could run :code:`jps`. And
-the server is health if keyword `ApiApplicationServer` in the console.
+the server is healthy if keyword `ApiApplicationServer` is in the console.
 
 .. code-block:: bash
 
@@ -120,14 +120,14 @@ the server is health if keyword `ApiApplicationServer` in the console.
 
 .. note::
 
-   Please make sure you already enabled started Python gateway service along with `api-server`. The configuration is in
+   Please make sure you already started Python gateway service along with `api-server`. The configuration is in
    yaml config path `python-gateway.enabled : true` in api-server's configuration path in `api-server/conf/application.yaml`.
-   The default value is true and Python gateway service start when api server is been started.
+   The default value is true and Python gateway service starts when api server is started.
 
 Run an Example
 --------------
 
-Before run an example for pydolphinscheduler, you should get the example code from it source code. You could run
+Before run an example for pydolphinscheduler, you should get the example code from its source code. You could run
 single bash command to get it
 
 .. code-block:: bash
@@ -156,19 +156,19 @@ from the API server, you should first change pydolphinscheduler configuration an
 
 After that, you could go and see your DolphinScheduler web UI to find out a new workflow created by pydolphinscheduler,
 and the path of web UI is `Project -> Workflow -> Workflow Definition`, and you can see a workflow and workflow instance
-had been created and DAG is auto formatter by web UI.
+had been created and DAG is automatically formatted by web UI.
 
 .. note::
 
-   We have default authentication token when in first launch dolphinscheduler and pydolphinscheduler. Please change
+   We have default authentication token when you first launch dolphinscheduler and pydolphinscheduler. Please change
    the parameter ``auth_token`` when you deploy in production environment or test dolphinscheduler in public network.
-   See :ref:`authentication token <concept:authentication token>` for more detail.
+   See :ref:`authentication token <concept:authentication token>` for more details.
 
 
 What's More
 -----------
 
-If you do not familiar with *PyDolphinScheduler*, you could go to :doc:`tutorial` and see how it works. But
+If you are not familiar with *PyDolphinScheduler*, you could go to :doc:`tutorial` and see how it works. But
 if you already know the basic usage or concept of *PyDolphinScheduler*, you could go and play with all
 :doc:`tasks/index` *PyDolphinScheduler* supports, or see our :doc:`howto/index` about useful cases.
 
