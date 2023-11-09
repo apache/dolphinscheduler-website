@@ -34,21 +34,13 @@ Apache Dolphinscheduler作为一个开源的调度平台，目前已经更新到
 
 通过“Failed to submit the workflow instance”，我们在项目里全局搜索，查看报错的逻辑是什么，是如何将报错的工作流处理事件重新添加到处理队列中的。
 
-
-
 ![](/img/2023-10-31/2.png)![](/img/2023-10-31/3.png)
-
-
 
 从上面被红框圈出来的关键处代理，我们可以梳理出一个基本的master服务处理工作流的一个事件流程，工作流的线程类（WorkflowExecuteRunnable）被放到缓存中，缓存的key是工作流实例的ID,同时每一个工作流都有对应的事件，事件中存储工作流实例的ID，每次执行事件时都会从缓存中获取线程类，当线程类执行失败时便重新创建一个事件加入事件队列中执行，依次往复，除非缓存中的数据被清除了，才会结束循环。具体流程如下图：
 
 ![](/img/2023-10-31/4.png)
 
-
-
 通过清理内存中的工作流线程即可解决循环问题。
-
-
 
 ## 三、实际操作
 
@@ -73,8 +65,6 @@ onContext@applicationContext.getBean("processServiceImpl").deleteWorkTaskInstanc
 ```
 
 ![](/img/2023-10-31/5.png)
-
-
 
 ognl表达式参考这个链接 https://arthas.aliyun.com/doc/ognl.html
 
