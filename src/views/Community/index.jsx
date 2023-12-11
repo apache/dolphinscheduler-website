@@ -1,4 +1,4 @@
-import { Button, List, Skeleton, Avatar } from "antd";
+import { Button } from "antd";
 import {
   GithubOutlined,
   SlackOutlined,
@@ -6,7 +6,6 @@ import {
   MailFilled,
 } from "@ant-design/icons";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
 import { SLACK_LINK, GITHUB_LINK, TWITTER_LINK, EMAIL } from "../../config";
 import { useTranslation } from "../../hooks";
 import "./index.scss";
@@ -62,26 +61,7 @@ const subs = [
   },
 ];
 
-const PMCMembers = [
-  {githubId: 'William-GuoWei',	publicName: 'Guo William', image: 'guowei'},
-  {githubId: 'davidzollo',	publicName: 'Lidong Dai', image: 'lidong'},
-  {githubId: 'zhongjiajie',	publicName: 'Jiajie Zhong', image: 'zhongjiajie'},
-  {githubId: 'caishunfeng',	publicName: 'ShunFeng Cai', image: 'caishunfeng'},
-  {githubId: 'ruanwenjun',	publicName: 'Wenjun Ruan', image: 'wenjun'},
-]
-
-const committerMembers = [
-{githubId: 'lenboo',	publicName: 'Leon Bao', image: 'leonbao'},
-{githubId: 'gaojun2048',	publicName: 'EricJoy2048	Jun Gao', image: 'gaojun'},
-{githubId: 'nielifeng', publicName: 'Lifeng Nie', image: 'lifeng'},
-{githubId: 'yifei', publicName: 'Yifei Chen', image: 'yifei'},
-{githubId: 'devosend', publicName: 'Dongkai Liu', image: 'dongkai'},
-{githubId: 'liuli', publicName: 'Li Liu', image: 'liuli'},
-{githubId: 'Niko-Zeng', publicName: 'Hui Zeng', image: 'zenghui'}
-]
-
 const Community = () => {
-  const params = useParams();
   const { t } = useTranslation();
 
   return (
@@ -199,51 +179,6 @@ const Community = () => {
             ))}
           </div>
         </div>
-        {params.locale === 'zh-cn' && <div className="community-team">
-          <div className="community-team-title">
-            团队
-          </div>
-          <div className="community-team-desc">
-            PMC
-          </div>
-          <div className="community-team-list">
-            <List
-              className="demo-loadmore-list"
-              grid={{ gutter: 16, column: 5 }}
-              dataSource={PMCMembers}
-              renderItem={(item) => (
-                <List.Item
-                >
-                  <Skeleton avatar title={false} loading={false} active>
-                    <List.Item.Meta
-                      avatar={<Avatar src={item.image ? `/images/contributor/${item.image}.jpeg` : `https://www.github.com/${item.githubId}.png`} size={64} />}
-                      title={item.publicName}
-                    />
-                  </Skeleton>
-                </List.Item>
-              )}/>
-          </div>
-          <div className="community-team-desc">
-            Committer
-          </div>
-          <div className="community-team-list">
-            <List
-              className="demo-loadmore-list"
-              grid={{ gutter: 16, column: 5 }}
-              dataSource={committerMembers}
-              renderItem={(item) => (
-                <List.Item
-                >
-                  <Skeleton avatar title={false} loading={false} active>
-                    <List.Item.Meta
-                      avatar={<Avatar src={item.image ? `/images/contributor/${item.image}.jpeg` : `https://www.github.com/${item.githubId}.png`} size={64} />}
-                      title={item.publicName}
-                    />
-                  </Skeleton>
-                </List.Item>
-              )}/>
-          </div>
-        </div>}
       </div>
       <div className="community-committer">
         <div className="community-committer-title">
