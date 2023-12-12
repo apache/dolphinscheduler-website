@@ -1,8 +1,8 @@
-```yaml
+---
 title: 数据分析师干了专业数仓工程师的活，自如是怎么做到的？
 keywords: Apache DolphinScheduler, 自如, 血缘分析
 description: 开始引入Apache DolphinScheduler，并在此基础上进行了一系列的改造和优化，其中包括自动生成SQL血缘解析调度，支持Ambari管理Apache DolphinScheduler，详细描绘Apache DolphinScheduler在自如中的应用以及演变过程
-```
+---
 
 ![file](/img/2023-9-19/1.png "file")
 

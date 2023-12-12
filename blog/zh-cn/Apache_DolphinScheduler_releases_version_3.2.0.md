@@ -1,9 +1,9 @@
-﻿```yaml
+﻿---
 title: Apache DolphinScheduler 重磅发布3.2.0版本！
 keywords: Apache DolphinScheduler, 版本发布, 技术动态
 description: 首度公开！Apache DolphinScheduler 3.2.0 全新功能与优化汇总。
 为您带来更加完善的功能体验与系统稳定性。
-```
+---
 
 ![file](/img/2023-10-17/0.png)
 
