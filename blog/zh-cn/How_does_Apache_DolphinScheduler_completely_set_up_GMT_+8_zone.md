@@ -1,10 +1,10 @@
 ### 
 
-```yaml
+---
 title: Apache DolphinScheduler如何完全设置东八区？
 keywords: Apache DolphinScheduler, 时区, 东八区
 description: 为了兼容全世界不同时区，Apache DolphinScheduler 使用的是 UTC 0 时区，包括保存到数据库表中的数据时区，以及展示到页面上的时区。
-```
+---
 
  
 
