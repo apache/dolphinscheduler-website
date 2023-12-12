@@ -2,7 +2,6 @@
 title: 数据平台调度升级改造 | 从Azkaban 平滑过度到Apache DolphinScheduler 的操作实践
 keywords: Apache DolphinScheduler, Azkaban,迁移,最佳实践,Fordeal,二次开发
 description: Fordeal数据平台新版系统决定基于Apache DolphinScheduler进行升级改造。那整个迁移过程中开发人员是如何让使用方平滑过渡到新系统，又做出了哪些努力呢？
-
 ---
 
 
