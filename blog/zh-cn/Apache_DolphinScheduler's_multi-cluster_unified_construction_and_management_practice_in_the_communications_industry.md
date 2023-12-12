@@ -1,8 +1,8 @@
-```yaml
+---
 title: Apache DolphinScheduler在某通信行业的多集群统一建设与管理实践
 keywords: Apache DolphinScheduler, 通信, 多集群
 description: 如果每个集群都独立部署调度系统，将会有多套调度服务管理入口，这对于运维和开发者，无论维护和使用上来说都非常不便。因此，我们决定构建一个统一调度平台，集中管理多个集群的调度任务，也为我们后续深度平台集成提供契机。
-```
+---
 
 ![Alt text](/img/2023-11-17/1.png)
 
