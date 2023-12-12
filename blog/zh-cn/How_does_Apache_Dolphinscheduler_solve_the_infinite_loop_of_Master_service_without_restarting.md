@@ -1,8 +1,8 @@
-```yaml
+---
 title: Apache Dolphinscheduler如何不重启解决Master服务死循环
 keywords: Apache DolphinScheduler, 死循环, Master
 description: 相信不少使用过3.0的用户都遇到过Master服务中存在一些工作流一直不停的死循环的问题，本人到现在也没找到触发的原因，但是通过与同事的摸索，暂时找到了一个可以借助Arthas解决死循环的方法。
-```
+---
 
 # 个人建议
 

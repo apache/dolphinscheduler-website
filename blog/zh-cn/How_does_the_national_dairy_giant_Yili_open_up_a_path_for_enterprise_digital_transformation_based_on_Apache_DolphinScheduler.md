@@ -1,8 +1,8 @@
-```yaml
+---
 title: 国民乳业巨头伊利如何基于 DolphinScheduler 开辟企业数字化转型“蹊径”？
 keywords: Apache DolphinScheduler, 伊利, 数字化转型
 description: 在数据驱动转型的过程中，会存在海量的数据集成任务，整体集成架构的合理性、调度的稳定性会严重影响数据流转的效率，也会制约数据的价值挖掘，伊利基于 Apache DolphinScheduler 构建了统一的调度服务与数据集成体系，加速数据流转，助力企业数字化转型。
-```
+---
 
 ![](/img/2023-10-11/1.png)
 

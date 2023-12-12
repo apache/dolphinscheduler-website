@@ -1,8 +1,8 @@
-```yaml
+---
 title: 大数据调度最佳实践 |  从Airflow迁移到Apache DolphinScheduler
 keywords: Apache DolphinScheduler, 迁移, Airflow
 description: 有部分用户原来是使用 Airflow 作为调度系统的，但是由于 Airflow 只能通过代码来定义工作流，并且没有对资源、项目的粒度划分，导致在部分需要较强权限控制的场景下不能很好的贴合客户需求，所以部分用户需要将调度系统从 Airflow 迁移到 Apache Dolphinscheduler。
-```
+---
 
 ## 迁移背景
 

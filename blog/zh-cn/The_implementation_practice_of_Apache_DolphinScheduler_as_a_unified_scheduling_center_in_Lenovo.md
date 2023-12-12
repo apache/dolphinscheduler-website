@@ -1,8 +1,8 @@
-```yaml
+---
 title: Apache DolphinScheduler 在联想作为统一调度中心的落地实践
 keywords: Apache DolphinScheduler, 联想, 最佳实践
 description: 在 ApacheCon Asia 2022 Meetup上，来自联想的数据架构师、Apache DolphinScheduler PMC & Committer 、Apache Local Community 北京成员 李岗 老师分享了 Apache DolphinScheduler 在联想作为统一调度中心的落地实践。
-```
+---
 
 点亮 ⭐️ Star · 照亮开源之路
 

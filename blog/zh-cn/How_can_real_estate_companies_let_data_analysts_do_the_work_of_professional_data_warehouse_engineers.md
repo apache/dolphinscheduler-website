@@ -1,8 +1,8 @@
-```yaml
+---
 title: 数据分析师干了专业数仓工程师的活，自如是怎么做到的？
 keywords: Apache DolphinScheduler, 自如, 数仓
 description: 本文是自如基于Apache DolphinScheduler面向大数据构建基础平台的最佳实践
-```
+---
 
 ![](/img/2023-9-11/1.png)
 

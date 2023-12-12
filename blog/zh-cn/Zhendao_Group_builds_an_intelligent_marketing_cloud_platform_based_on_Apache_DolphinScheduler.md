@@ -1,8 +1,8 @@
-```yaml
+---
 title: 珍岛集团基于 Apache DolphinScheduler 打造智能营销云平台
 keywords: Apache DolphinScheduler, 珍岛集团, 智能营销
 description: 随着业务的发展，以及数据集成平台和GMA，算法计算平台越来越多的业务需求，开源版本的DolphinScheduler已经不能完全满足需求，迫切地需要对其做一些定制化的开发。
-```
+---
 
 珍岛集团致力于打造全球领先的智能营销云平台，在国内率先推出的Marketingforce（营销力）平台，专注于人工智能、大数据、云计算在数字营销及企业数字化智能化领域的创新与实践，面向全球企业提供营销力软件及服务，以一站式智能营销生态助力企业进行数字化转型。
 
