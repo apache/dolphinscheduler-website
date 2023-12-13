@@ -1,8 +1,9 @@
-```
+
+---
 title: Apache DolphinScheduler 3.0.0 升级到 3.1.8 教程
 keywords: Apache DolphinScheduler, 升级, 教程
 description: 安装部署的流程可参考官网的文档Version 3.1.8/部署指南/伪集群部署安装部署的流程可参考官网的文档
-```
+---
 
 ## 背景介绍
 
