@@ -6,7 +6,7 @@ description: Apache DolphinScheduler 社区在 OSCHINA 平台的评选中荣获�
 
 在开源社区日益繁荣的今天，我们非常荣幸地宣布：Apache DolphinScheduler 社区在 OSCHINA 平台的评选中荣获了“2023 年度优秀开源技术团队”奖项。这一奖项反映了我们社区在过去一年里在内容发表的深度与广度、活动运营影响力以及对开源文化的推广方面所做的突出贡献。
 
-![Alt text](\img\2023-12-18\1.png)
+![Alt text](/img/2023-12-18/1.png)
 
 ### 
 
