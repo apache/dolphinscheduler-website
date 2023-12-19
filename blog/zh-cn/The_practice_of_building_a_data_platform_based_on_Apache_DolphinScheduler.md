@@ -1,8 +1,8 @@
-```
+---
 title: 基于Apache DolphinScheduler构建数据平台的实践分享！
 keywords: Apache DolphinScheduler, 数据平台, 用户实践
 description: 本文主要分享了关于某公司基于构建数据平台的实践经验。将首先介绍DataLink大数据平台，然后讲解调度系统的升级和选型，最后分享如何基于Apache DolphinScheduler构建数据平台的，以及平台的现状和未来的规划。
-```
+---
 
 很荣幸收到社区的邀请来给大家分享一下公司基于构建数据平台的实践。我将首先介绍DataLink大数据平台，然后讲解调度系统的升级和选型，最后分享我们是如何基于Apache DolphinScheduler构建数据平台的，以及平台的现状和未来的规划。
 
