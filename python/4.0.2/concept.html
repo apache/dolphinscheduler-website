@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Concepts &mdash; apache-dolphinscheduler 4.0.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/tabs.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=a084f797"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/tabs.js?v=3ee01567"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -104,10 +103,10 @@
            <div itemprop="articleBody">
              
   <section id="concepts">
-<h1>Concepts<a class="headerlink" href="#concepts" title="Permalink to this heading"></a></h1>
+<h1>Concepts<a class="headerlink" href="#concepts" title="Link to this heading"></a></h1>
 <p>In this section, you would know the core concepts of <em>PyDolphinScheduler</em>.</p>
 <section id="workflow">
-<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading"></a></h2>
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading"></a></h2>
 <p>Workflow describe the whole things except <a class="reference internal" href="#tasks">tasks</a> and <a class="reference internal" href="#tasks-dependence">tasks dependence</a>, which including
 name, schedule interval, schedule start time and end time. You would know scheduler</p>
 <p>Workflow could be initialized in normal assign statement or in context manger.</p>
@@ -131,7 +130,7 @@ But if you want to run the workflow after you submit it, you could use attribute
 </pre></div>
 </div>
 <section id="schedule">
-<h3>Schedule<a class="headerlink" href="#schedule" title="Permalink to this heading"></a></h3>
+<h3>Schedule<a class="headerlink" href="#schedule" title="Link to this heading"></a></h3>
 <p>We use parameter <cite>schedule</cite> determine the schedule interval of workflow, <em>PyDolphinScheduler</em> support seven
 asterisks expression, and each of the meaning of position as below</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>* * * * * * *
@@ -154,7 +153,7 @@ asterisks expression, and each of the meaning of position as below</p>
 </ul>
 </section>
 <section id="tenant">
-<h3>Tenant<a class="headerlink" href="#tenant" title="Permalink to this heading"></a></h3>
+<h3>Tenant<a class="headerlink" href="#tenant" title="Link to this heading"></a></h3>
 <p>Tenant is the user who run task command in machine or in virtual machine. it could be assign by simple string.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
 <span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;workflow tenant&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="s2">&quot;tenant_exists&quot;</span><span class="p">)</span>
@@ -166,7 +165,7 @@ asterisks expression, and each of the meaning of position as below</p>
 </div>
 </section>
 <section id="execution-type">
-<h3>Execution Type<a class="headerlink" href="#execution-type" title="Permalink to this heading"></a></h3>
+<h3>Execution Type<a class="headerlink" href="#execution-type" title="Link to this heading"></a></h3>
 <p>Decision which behavior to run when workflow have multiple instances. when workflow
 schedule interval is too short, it may cause multiple instances run at the same time. We can use this
 parameter to control the behavior about how to run those workflow instances. Currently we
@@ -198,7 +197,7 @@ you can read <a class="reference internal" href="config.html"><span class="doc">
 </section>
 </section>
 <section id="tasks">
-<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading"></a></h2>
+<h2>Tasks<a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
 <p>Task is the minimum unit running actual job, and it is nodes of DAG, aka directed acyclic graph. You could define
 what you want to in the task. It have some required parameter to make uniqueness and definition.</p>
 <p>Here we use <a class="reference internal" href="api.html#pydolphinscheduler.tasks.Shell" title="pydolphinscheduler.tasks.Shell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.Shell()</span></code></a> as example, parameter <cite>name</cite> and <cite>command</cite> is required and must be provider. Parameter
@@ -209,7 +208,7 @@ what you want to in the task. It have some required parameter to make uniqueness
 </div>
 <p>If you want to see all type of tasks, you could see <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
 <section id="tasks-dependence">
-<h3>Tasks Dependence<a class="headerlink" href="#tasks-dependence" title="Permalink to this heading"></a></h3>
+<h3>Tasks Dependence<a class="headerlink" href="#tasks-dependence" title="Link to this heading"></a></h3>
 <p>You could define many tasks in on single <a class="reference internal" href="#workflow">Workflow</a>. If all those task is in parallel processing,
 then you could leave them alone without adding any additional information. But if there have some tasks should
 not be run unless pre task in workflow have be done, we should set task dependence to them. Set tasks dependence
@@ -233,7 +232,7 @@ have two mainly way and both of them is easy. You could use bitwise operator <ci
 </div>
 </section>
 <section id="task-with-workflow">
-<h3>Task With Workflow<a class="headerlink" href="#task-with-workflow" title="Permalink to this heading"></a></h3>
+<h3>Task With Workflow<a class="headerlink" href="#task-with-workflow" title="Link to this heading"></a></h3>
 <p>In most of data orchestration cases, you should assigned attribute <cite>workflow</cite> to task instance to
 decide workflow of task. You could set <cite>workflow</cite> in both normal assign or in context manger mode</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal assign, have to explicit declaration and pass `Workflow` instance to task</span>
@@ -249,7 +248,7 @@ decide workflow of task. You could set <cite>workflow</cite> in both normal assi
 </section>
 </section>
 <section id="resource-files">
-<h2>Resource Files<a class="headerlink" href="#resource-files" title="Permalink to this heading"></a></h2>
+<h2>Resource Files<a class="headerlink" href="#resource-files" title="Link to this heading"></a></h2>
 <p>During workflow running, we may need some resource files to help us run task usually. One of a common situation
 is that we already have some executable files locally, and we need to schedule in specific time, or add them
 to existing workflow by adding the new tasks. Of cause, we can upload those files to target machine and run them
@@ -315,7 +314,7 @@ multiple files. For more complex usage, you could read <a class="reference inter
 </div>
 </section>
 <section id="local-parameters">
-<h2>Local Parameters<a class="headerlink" href="#local-parameters" title="Permalink to this heading"></a></h2>
+<h2>Local Parameters<a class="headerlink" href="#local-parameters" title="Link to this heading"></a></h2>
 <p>In DolphinScheduler, we can define parameter in task, aka Local Parameter.</p>
 <p>We can set parameters to variables in tasks to better manage our tasks.</p>
 <p>For example:</p>
@@ -499,7 +498,7 @@ multiple files. For more complex usage, you could read <a class="reference inter
 </div>
 </section>
 <section id="authentication-token">
-<h2>Authentication Token<a class="headerlink" href="#authentication-token" title="Permalink to this heading"></a></h2>
+<h2>Authentication Token<a class="headerlink" href="#authentication-token" title="Link to this heading"></a></h2>
 <p>pydolphinscheduler use token as authentication when communication with dolphinscheduler server, and we have a default auth
 token to make it out-of-box. For security reason, we highly recommend you to change your own auth token when you
 deploy in production environment or test dolphinscheduler in public network. The auth token keyword in <code class="docutils literal notranslate"><span class="pre">auth_token</span></code>

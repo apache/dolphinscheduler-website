@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pydolphinscheduler.core.task &mdash; apache-dolphinscheduler 4.0.4 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../_static/tabs.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=cf75e343"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/tabs.js?v=3ee01567"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -168,7 +167,9 @@
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pre_task_code</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">Delimiter</span><span class="o">.</span><span class="n">DIRECTION</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">post_task_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Task"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task">[docs]</a><span class="k">class</span> <span class="nc">Task</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<div class="viewcode-block" id="Task">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task">[docs]</a>
+<span class="k">class</span> <span class="nc">Task</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task object, parent class for all exactly task type.</span>
 
 <span class="sd">    :param name: The name of the task. Node names within the same workflow must be unique.</span>
@@ -380,7 +381,9 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute condition_result.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_condition_result</span> <span class="o">=</span> <span class="n">condition_result</span>
 
-<div class="viewcode-block" id="Task._get_attr"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task._get_attr">[docs]</a>    <span class="k">def</span> <span class="nf">_get_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<div class="viewcode-block" id="Task._get_attr">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task._get_attr">[docs]</a>
+    <span class="k">def</span> <span class="nf">_get_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get final task task_params attribute.</span>
 
 <span class="sd">        Base on `_task_default_attr`, append attribute from `_task_custom_attr` and subtract attribute from</span>
@@ -391,6 +394,7 @@
         <span class="n">attr</span> <span class="o">|=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span>
         <span class="k">return</span> <span class="n">attr</span></div>
 
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get task parameter object.</span>
@@ -400,7 +404,9 @@
         <span class="n">custom_attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_attr</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_define_custom</span><span class="p">(</span><span class="n">custom_attr</span><span class="o">=</span><span class="n">custom_attr</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Task.get_plugin"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.get_plugin">[docs]</a>    <span class="k">def</span> <span class="nf">get_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Task.get_plugin">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.get_plugin">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the resource plug-in.</span>
 
 <span class="sd">        according to parameter resource_plugin and parameter</span>
@@ -416,7 +422,10 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_plugin</span></div>
 
-<div class="viewcode-block" id="Task.get_content"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.get_content">[docs]</a>    <span class="k">def</span> <span class="nf">get_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Task.get_content">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.get_content">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the file content according to the resource plugin.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
@@ -441,6 +450,7 @@
                         <span class="p">)</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">UNDERLINE</span><span class="p">),</span> <span class="n">_ext_attr</span><span class="p">)</span></div>
 
+
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
 
@@ -464,7 +474,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="fm">__rshift__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-<div class="viewcode-block" id="Task._set_deps"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task._set_deps">[docs]</a>    <span class="k">def</span> <span class="nf">_set_deps</span><span class="p">(</span>
+<div class="viewcode-block" id="Task._set_deps">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task._set_deps">[docs]</a>
+    <span class="k">def</span> <span class="nf">_set_deps</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]],</span> <span class="n">upstream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -499,16 +511,25 @@
                     <span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task_relation</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Task.set_upstream"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.set_upstream">[docs]</a>    <span class="k">def</span> <span class="nf">set_upstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Task.set_upstream">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.set_upstream">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_upstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set parameter tasks as upstream to current task.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_deps</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">upstream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Task.set_downstream"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.set_downstream">[docs]</a>    <span class="k">def</span> <span class="nf">set_downstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Task.set_downstream">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.set_downstream">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_downstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set parameter tasks as downstream to current task.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_deps</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">upstream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
+
     <span class="c1"># TODO code should better generate in bulk mode when :ref: workflow run submit or start</span>
-<div class="viewcode-block" id="Task.gen_code_and_version"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.gen_code_and_version">[docs]</a>    <span class="k">def</span> <span class="nf">gen_code_and_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+<div class="viewcode-block" id="Task.gen_code_and_version">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.gen_code_and_version">[docs]</a>
+    <span class="k">def</span> <span class="nf">gen_code_and_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate task code and version from java gateway.</span>
 
@@ -522,6 +543,7 @@
         <span class="c1"># result = gateway.entry_point.genTaskCodeList(DefaultTaskCodeNum.DEFAULT)</span>
         <span class="c1"># gateway_result_checker(result)</span>
         <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">environment_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -544,7 +566,9 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">local_params</span>
 
-<div class="viewcode-block" id="Task.add_in"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.add_in">[docs]</a>    <span class="k">def</span> <span class="nf">add_in</span><span class="p">(</span>
+<div class="viewcode-block" id="Task.add_in">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.add_in">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_in</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">BaseDataType</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -564,7 +588,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_input_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
 
-<div class="viewcode-block" id="Task.add_out"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.add_out">[docs]</a>    <span class="k">def</span> <span class="nf">add_out</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Task.add_out">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.add_out">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_out</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">BaseDataType</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -582,7 +609,9 @@
 <span class="sd">            task.add_out(&quot;d&quot;, ParameterType.LONG(123))</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_output_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+</div>
+
 </pre></div>
 
            </div>

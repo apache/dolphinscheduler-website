@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ResourcePlugin &mdash; apache-dolphinscheduler 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/tabs.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/tabs.js?v=3ee01567"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -106,11 +105,11 @@
            <div itemprop="articleBody">
              
   <section id="resourceplugin">
-<h1>ResourcePlugin<a class="headerlink" href="#resourceplugin" title="Permalink to this heading"></a></h1>
+<h1>ResourcePlugin<a class="headerlink" href="#resourceplugin" title="Link to this heading"></a></h1>
 <p><cite>ResourcePlugin</cite> is an abstract class of resource plug-in parameters of task subclass and workflow.
 All resource plugins need to inherit and override its abstract methods.</p>
 <section id="code">
-<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading"></a></h2>
+<h2>Code<a class="headerlink" href="#code" title="Link to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ResourcePlugin</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;ResourcePlugin object, declare resource plugin for task and workflow to dolphinscheduler.</span>
 
@@ -147,7 +146,7 @@ All resource plugins need to inherit and override its abstract methods.</p>
 </div>
 </section>
 <section id="dive-into">
-<h2>Dive Into<a class="headerlink" href="#dive-into" title="Permalink to this heading"></a></h2>
+<h2>Dive Into<a class="headerlink" href="#dive-into" title="Link to this heading"></a></h2>
 <p>It has the following key functions.</p>
 <ul class="simple">
 <li><p>Method <cite>__init__</cite>: The <cite>__init__</cite> function has STR type parameter <cite>prefix</cite>, which means the prefix of the resource.</p></li>
@@ -173,10 +172,10 @@ All resource plugins need to inherit and override its abstract methods.</p>
 
 </pre></div>
 </div>
-<span class="target" id="module-pydolphinscheduler.core.resource_plugin"></span><p>DolphinScheduler ResourcePlugin object.</p>
+<p id="module-pydolphinscheduler.core.resource_plugin">DolphinScheduler ResourcePlugin object.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.resource_plugin.ResourcePlugin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.core.resource_plugin.</span></span><span class="sig-name descname"><span class="pre">ResourcePlugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/core/resource_plugin.html#ResourcePlugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.core.resource_plugin.</span></span><span class="sig-name descname"><span class="pre">ResourcePlugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/core/resource_plugin.html#ResourcePlugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>ResourcePlugin object, declare resource plugin for task and workflow to dolphinscheduler.</p>
 <dl class="field-list simple">
@@ -186,27 +185,27 @@ All resource plugins need to inherit and override its abstract methods.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.resource_plugin.ResourcePlugin.get_index">
-<span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/core/resource_plugin.html#ResourcePlugin.get_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin.get_index" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/core/resource_plugin.html#ResourcePlugin.get_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin.get_index" title="Link to this definition"></a></dt>
 <dd><p>Find the subscript of the nth occurrence of the X character in the string s.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.resource_plugin.ResourcePlugin.read_file">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/core/resource_plugin.html#ResourcePlugin.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin.read_file" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/core/resource_plugin.html#ResourcePlugin.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin.read_file" title="Link to this definition"></a></dt>
 <dd><p>Get the content of the file.</p>
 <p>The address of the file is the prefix of the resource plugin plus the parameter suf.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.core.resource_plugin.ResourcePlugin._abc_impl">
-<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin._abc_impl" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pydolphinscheduler.core.resource_plugin.ResourcePlugin._abc_impl" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="how-to-use">
-<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading"></a></h2>
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Link to this heading"></a></h2>
 <p>Resource plugin can be used in task subclasses and workflows. You can use the resource plugin by adding the <cite>resource_plugin</cite> parameter when they are initialized.
 For example, local resource plugin, add <cite>resource_plugin = Local(“/tmp”)</cite>.</p>
 <p>The resource plugin we currently support are <cite>local</cite>, <cite>github</cite>, <cite>gitlab</cite>, <cite>OSS</cite>, <cite>S3</cite>.</p>

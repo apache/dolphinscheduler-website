@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tutorial &mdash; apache-dolphinscheduler 4.1.0-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/tabs.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=c0b14783"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/tabs.js?v=3ee01567"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -98,13 +97,13 @@
            <div itemprop="articleBody">
              
   <section id="tutorial">
-<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading"></a></h1>
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading"></a></h1>
 <p>This tutorial shows you the basic concept of <em>PyDolphinScheduler</em> and tells all
 things you should know before you submit or run your first workflow. If you
 still have not installed <em>PyDolphinScheduler</em> and started DolphinScheduler, you
 could go and see <a class="reference internal" href="start.html#getting-started"><span class="std std-ref">how to get started with PyDolphinScheduler</span></a> firstly.</p>
 <section id="overview-of-tutorial">
-<h2>Overview of Tutorial<a class="headerlink" href="#overview-of-tutorial" title="Permalink to this heading"></a></h2>
+<h2>Overview of Tutorial<a class="headerlink" href="#overview-of-tutorial" title="Link to this heading"></a></h2>
 <p>Here, we have an overview of our tutorial, and it looks a little complex but don’t
 worry about that because we will explain this example below in as much detail as possible.</p>
 <p>There are two types of tutorials: traditional and task decorator.</p>
@@ -274,7 +273,7 @@ We can find more YAML file examples in <a class="reference external" href="https
 </div>
 </section>
 <section id="import-necessary-module">
-<h2>Import Necessary Module<a class="headerlink" href="#import-necessary-module" title="Permalink to this heading"></a></h2>
+<h2>Import Necessary Module<a class="headerlink" href="#import-necessary-module" title="Link to this heading"></a></h2>
 <p>First of all, we should import the necessary module which we would use later just like other Python packages.</p>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Tradition</label><div class="tab-content docutils container">
@@ -305,7 +304,7 @@ We can find more YAML file examples in <a class="reference external" href="https
 </div>
 </section>
 <section id="workflow-declaration">
-<h2>workflow Declaration<a class="headerlink" href="#workflow-declaration" title="Permalink to this heading"></a></h2>
+<h2>workflow Declaration<a class="headerlink" href="#workflow-declaration" title="Link to this heading"></a></h2>
 <p>We should instantiate <a class="reference internal" href="api.html#pydolphinscheduler.core.Workflow" title="pydolphinscheduler.core.workflow.Workflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow.Workflow</span></code></a> object after we
 import them from <a class="reference internal" href="#import-necessary-module">import necessary module</a>. Here we declare basic arguments for workflow.
 We define the name of <code class="code docutils literal notranslate"><span class="pre">Workflow</span></code>, using <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#context-manager-types">Python context manager</a> and it <strong>the only required argument</strong>
@@ -349,7 +348,7 @@ if you are interested in it. For all arguments of object workflow, you could fin
 <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow</span></code> API documentation.</p>
 </section>
 <section id="task-declaration">
-<h2>Task Declaration<a class="headerlink" href="#task-declaration" title="Permalink to this heading"></a></h2>
+<h2>Task Declaration<a class="headerlink" href="#task-declaration" title="Link to this heading"></a></h2>
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">Tradition</label><div class="tab-content docutils container">
 <p>We declare four tasks to show how to create tasks, and all of them are simple tasks of
@@ -444,7 +443,7 @@ Python function as a task and could not use the <a class="reference internal" hr
 </div>
 </section>
 <section id="setting-task-dependence">
-<h2>Setting Task Dependence<a class="headerlink" href="#setting-task-dependence" title="Permalink to this heading"></a></h2>
+<h2>Setting Task Dependence<a class="headerlink" href="#setting-task-dependence" title="Link to this heading"></a></h2>
 <p>After we declare both workflow and task, we have four tasks that are independent and will be running
 in parallel. If you want to start one task until some task is finished, you have to set dependence on those
 tasks.</p>
@@ -504,7 +503,7 @@ tasks as task groups. In tutorial, We declare task <cite>task_child_one</cite> a
 </div>
 </section>
 <section id="submit-or-run-workflow">
-<h2>Submit Or Run Workflow<a class="headerlink" href="#submit-or-run-workflow" title="Permalink to this heading"></a></h2>
+<h2>Submit Or Run Workflow<a class="headerlink" href="#submit-or-run-workflow" title="Link to this heading"></a></h2>
 <p>After that, we finish our workflow definition, with four tasks and task dependence, but all these things are
 local, we should let the DolphinScheduler daemon know how the definition of workflow. So the last thing we
 have to do is submit the workflow to the DolphinScheduler daemon.</p>
@@ -542,7 +541,7 @@ the workflow schedule information. For more detail, you could see <a class="refe
 </div>
 </section>
 <section id="dag-graph-after-tutorial-run">
-<h2>DAG Graph After Tutorial Run<a class="headerlink" href="#dag-graph-after-tutorial-run" title="Permalink to this heading"></a></h2>
+<h2>DAG Graph After Tutorial Run<a class="headerlink" href="#dag-graph-after-tutorial-run" title="Link to this heading"></a></h2>
 <p>After we run the tutorial code, you could log in DolphinScheduler web UI, go and see the
 <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/project.html">DolphinScheduler project page</a>. They is a new workflow be created by <em>PyDolphinScheduler</em> and it
 named “tutorial” or “tutorial_decorator”. The task graph of workflow like below:</p>
@@ -555,7 +554,7 @@ task_parent --&gt;                        --&gt;  task_union
 </div>
 </section>
 <section id="create-workflow-using-yaml-file">
-<h2>Create Workflow Using YAML File<a class="headerlink" href="#create-workflow-using-yaml-file" title="Permalink to this heading"></a></h2>
+<h2>Create Workflow Using YAML File<a class="headerlink" href="#create-workflow-using-yaml-file" title="Link to this heading"></a></h2>
 <p>We can use pydolphinscheduler CLI to create workflow using YAML file</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler<span class="w"> </span>yaml<span class="w"> </span>-f<span class="w"> </span>Shell.yaml
 </pre></div>

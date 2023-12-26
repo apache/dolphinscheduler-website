@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pydolphinscheduler.tasks.dependent &mdash; apache-dolphinscheduler 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../_static/tabs.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/tabs.js?v=3ee01567"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -113,7 +112,9 @@
 <span class="n">DEPENDENT_ALL_TASK_IN_WORKFLOW</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
 
 
-<div class="viewcode-block" id="DependentDate"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentDate">[docs]</a><span class="k">class</span> <span class="nc">DependentDate</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="DependentDate">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentDate">[docs]</a>
+<span class="k">class</span> <span class="nc">DependentDate</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Constant of Dependent date value.</span>
 
 <span class="sd">    These values set according to Java server side, if you want to add and change it,</span>
@@ -155,7 +156,10 @@
     <span class="n">LAST_MONTH_END</span> <span class="o">=</span> <span class="s2">&quot;lastMonthEnd&quot;</span></div>
 
 
-<div class="viewcode-block" id="DependentItem"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentItem">[docs]</a><span class="k">class</span> <span class="nc">DependentItem</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DependentItem">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentItem">[docs]</a>
+<span class="k">class</span> <span class="nc">DependentItem</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Dependent item object, minimal unit for task dependent.</span>
 
 <span class="sd">    It declare which project, process_definition, task are dependent to this task.</span>
@@ -245,7 +249,9 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">param</span>
 
-<div class="viewcode-block" id="DependentItem.get_code_from_gateway"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentItem.get_code_from_gateway">[docs]</a>    <span class="k">def</span> <span class="nf">get_code_from_gateway</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<div class="viewcode-block" id="DependentItem.get_code_from_gateway">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentItem.get_code_from_gateway">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_code_from_gateway</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get project, definition, task code from given parameter.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code</span>
@@ -255,10 +261,14 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_code</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">entry_point</span><span class="o">.</span><span class="n">getDependentInfo</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">code_parameter</span><span class="p">)</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_code</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">PyDSJavaGatewayException</span><span class="p">(</span><span class="s2">&quot;Function get_code_from_gateway error.&quot;</span><span class="p">)</span></div></div>
+                <span class="k">raise</span> <span class="n">PyDSJavaGatewayException</span><span class="p">(</span><span class="s2">&quot;Function get_code_from_gateway error.&quot;</span><span class="p">)</span></div>
+</div>
 
 
-<div class="viewcode-block" id="DependentOperator"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator">[docs]</a><span class="k">class</span> <span class="nc">DependentOperator</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DependentOperator">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator">[docs]</a>
+<span class="k">class</span> <span class="nc">DependentOperator</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Set DependentItem or dependItemList with specific operator.&quot;&quot;&quot;</span>
 
     <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
@@ -272,17 +282,22 @@
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;depend_task_list&quot;</span>
 
-<div class="viewcode-block" id="DependentOperator.operator_name"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator.operator_name">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="DependentOperator.operator_name">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator.operator_name">[docs]</a>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">operator_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get operator name in different class.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">relation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get operator name in different class, for function :func:`get_define`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator_name</span><span class="p">()</span>
 
-<div class="viewcode-block" id="DependentOperator.set_define_attr"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator.set_define_attr">[docs]</a>    <span class="k">def</span> <span class="nf">set_define_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="DependentOperator.set_define_attr">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator.set_define_attr">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_define_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute to function :func:`get_define`.</span>
 
 <span class="sd">        It is a wrapper for both `And` and `Or` operator.</span>
@@ -308,16 +323,23 @@
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">attr</span></div>
 
-<div class="viewcode-block" id="DependentOperator.get_define"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator.get_define">[docs]</a>    <span class="k">def</span> <span class="nf">get_define</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+
+<div class="viewcode-block" id="DependentOperator.get_define">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.DependentOperator.get_define">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_define</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Overwrite Base.get_define to get task dependent specific get define.&quot;&quot;&quot;</span>
         <span class="n">attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_define_attr</span><span class="p">()</span>
         <span class="n">dependent_define_attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">union</span><span class="p">({</span><span class="n">attr</span><span class="p">})</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_define_custom</span><span class="p">(</span>
             <span class="n">camel_attr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">custom_attr</span><span class="o">=</span><span class="n">dependent_define_attr</span>
-        <span class="p">)</span></div></div>
+        <span class="p">)</span></div>
+</div>
 
 
-<div class="viewcode-block" id="And"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.And">[docs]</a><span class="k">class</span> <span class="nc">And</span><span class="p">(</span><span class="n">DependentOperator</span><span class="p">):</span>
+
+<div class="viewcode-block" id="And">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.And">[docs]</a>
+<span class="k">class</span> <span class="nc">And</span><span class="p">(</span><span class="n">DependentOperator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Operator And for task dependent.</span>
 
 <span class="sd">    It could accept both :class:`DependentItem` and children of :class:`DependentOperator`,</span>
@@ -328,7 +350,10 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Or"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.Or">[docs]</a><span class="k">class</span> <span class="nc">Or</span><span class="p">(</span><span class="n">DependentOperator</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Or">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.Or">[docs]</a>
+<span class="k">class</span> <span class="nc">Or</span><span class="p">(</span><span class="n">DependentOperator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Operator Or for task dependent.</span>
 
 <span class="sd">    It could accept both :class:`DependentItem` and children of :class:`DependentOperator`,</span>
@@ -339,7 +364,10 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Dependent"><a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.Dependent">[docs]</a><span class="k">class</span> <span class="nc">Dependent</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Dependent">
+<a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.Dependent">[docs]</a>
+<span class="k">class</span> <span class="nc">Dependent</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task dependent object, declare behavior for dependent task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dependence</span><span class="p">:</span> <span class="n">DependentOperator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -357,6 +385,7 @@
         <span class="n">params</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span>
         <span class="n">params</span><span class="p">[</span><span class="s2">&quot;dependence&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dependence</span><span class="o">.</span><span class="n">get_define</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">params</span></div>
+
 </pre></div>
 
            </div>

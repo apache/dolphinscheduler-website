@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pydolphinscheduler.core.workflow &mdash; apache-dolphinscheduler 4.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
-        <script src="../../../_static/tabs.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=977c7dfd"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/tabs.js?v=3ee01567"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -139,7 +138,9 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">_context_managed_workflow</span> <span class="o">=</span> <span class="kc">None</span>
 
 
-<div class="viewcode-block" id="Workflow"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow">[docs]</a><span class="k">class</span> <span class="nc">Workflow</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<div class="viewcode-block" id="Workflow">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow">[docs]</a>
+<span class="k">class</span> <span class="nc">Workflow</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Workflow object, will define workflow attribute, task, relation.</span>
 
 <span class="sd">    TODO: maybe we should rename this class, currently use DS object name.</span>
@@ -279,7 +280,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Workflow._parse_datetime"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._parse_datetime">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Workflow._parse_datetime">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._parse_datetime">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_parse_datetime</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">datetime</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">val</span>
@@ -287,6 +290,7 @@
             <span class="k">return</span> <span class="n">conv_from_str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span><span class="s2">&quot;Do not support value type </span><span class="si">%s</span><span class="s2"> for now&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">))</span></div>
+
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">start_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -394,7 +398,9 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return list of tasks objects.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 
-<div class="viewcode-block" id="Workflow._handle_root_relation"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._handle_root_relation">[docs]</a>    <span class="k">def</span> <span class="nf">_handle_root_relation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Workflow._handle_root_relation">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._handle_root_relation">[docs]</a>
+    <span class="k">def</span> <span class="nf">_handle_root_relation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Handle root task property :class:`pydolphinscheduler.core.task.TaskRelation`.</span>
 
 <span class="sd">        Root task in DAG do not have dominant upstream node, but we have to add an exactly default</span>
@@ -410,17 +416,26 @@
                 <span class="n">root_relation</span> <span class="o">=</span> <span class="n">TaskRelation</span><span class="p">(</span><span class="n">pre_task_code</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">post_task_code</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">root_relation</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Workflow.add_task"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.add_task">[docs]</a>    <span class="k">def</span> <span class="nf">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="s2">&quot;Task&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+
+<div class="viewcode-block" id="Workflow.add_task">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.add_task">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="s2">&quot;Task&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a single task to workflow.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">]</span> <span class="o">=</span> <span class="n">task</span>
         <span class="n">task</span><span class="o">.</span><span class="n">_workflow</span> <span class="o">=</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="Workflow.add_tasks"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.add_tasks">[docs]</a>    <span class="k">def</span> <span class="nf">add_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+
+<div class="viewcode-block" id="Workflow.add_tasks">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.add_tasks">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add task sequence to workflow, it a wrapper of :func:`add_task`.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Workflow.get_task"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.get_task">[docs]</a>    <span class="k">def</span> <span class="nf">get_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Task&quot;</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+
+<div class="viewcode-block" id="Workflow.get_task">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.get_task">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Task&quot;</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get task object from workflow by given code.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PyDSTaskNoFoundException</span><span class="p">(</span>
@@ -429,8 +444,11 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="n">code</span><span class="p">]</span></div>
 
+
     <span class="c1"># TODO which tying should return in this case</span>
-<div class="viewcode-block" id="Workflow.get_tasks_by_name"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.get_tasks_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_tasks_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]:</span>  <span class="c1"># noqa: F821</span>
+<div class="viewcode-block" id="Workflow.get_tasks_by_name">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.get_tasks_by_name">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_tasks_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="s2">&quot;Task&quot;</span><span class="p">]:</span>  <span class="c1"># noqa: F821</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get tasks object by given name, if will return all tasks with this name.&quot;&quot;&quot;</span>
         <span class="n">find</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -438,7 +456,10 @@
                 <span class="n">find</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">find</span></div>
 
-<div class="viewcode-block" id="Workflow.get_one_task_by_name"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.get_one_task_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_one_task_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Task&quot;</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+
+<div class="viewcode-block" id="Workflow.get_one_task_by_name">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.get_one_task_by_name">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_one_task_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Task&quot;</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get exact one task from workflow by given name.</span>
 
 <span class="sd">        Function always return one task even though this workflow have more than one task with</span>
@@ -449,7 +470,10 @@
             <span class="k">raise</span> <span class="n">PyDSTaskNoFoundException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can not find task with name </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tasks</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Workflow.run"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Workflow.run">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.run">[docs]</a>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit and Start Workflow instance.</span>
 
 <span class="sd">        Shortcut for function :func:`submit` and function :func:`start`. Only support manual start workflow</span>
@@ -459,7 +483,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Workflow._ensure_side_model_exists"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._ensure_side_model_exists">[docs]</a>    <span class="k">def</span> <span class="nf">_ensure_side_model_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Workflow._ensure_side_model_exists">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._ensure_side_model_exists">[docs]</a>
+    <span class="k">def</span> <span class="nf">_ensure_side_model_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure workflow models model exists.</span>
 
 <span class="sd">        For now, models object including :class:`pydolphinscheduler.models.project.Project`,</span>
@@ -472,7 +499,10 @@
         <span class="c1"># Project model need User object exists</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Workflow._pre_submit_check"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._pre_submit_check">[docs]</a>    <span class="k">def</span> <span class="nf">_pre_submit_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Workflow._pre_submit_check">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._pre_submit_check">[docs]</a>
+    <span class="k">def</span> <span class="nf">_pre_submit_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check specific condition satisfy before.</span>
 
 <span class="sd">        This method should be called before workflow submit to java gateway</span>
@@ -489,7 +519,10 @@
                 <span class="s2">&quot;be provider if task Switch in workflow.&quot;</span>
             <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Workflow.submit"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.submit">[docs]</a>    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Workflow.submit">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.submit">[docs]</a>
+    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit Workflow instance to java gateway.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_side_model_exists</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pre_submit_check</span><span class="p">()</span>
@@ -520,7 +553,10 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workflow_code</span></div>
 
-<div class="viewcode-block" id="Workflow.start"><a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Workflow.start">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.start">[docs]</a>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and start Workflow instance.</span>
 
 <span class="sd">        which post to `start-process-instance` to java gateway</span>
@@ -534,7 +570,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">warning_group_id</span><span class="p">,</span>
             <span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">,</span>
-        <span class="p">)</span></div></div>
+        <span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>
