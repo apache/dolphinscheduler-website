@@ -1,0 +1,125 @@
+{
+  "__html": "<h1 id=\"文件管理\">文件管理</h1>\n<p>当在调度过程中需要使用到第三方的 jar 或者用户需要自定义脚本的情况，可以通过在该页面完成相关操作。可创建的文件类型包括：<code>txt/log/sh/conf/py/java</code> 等。并且可以对文件进行编辑、重命名、下载和删除等操作。</p>\n<blockquote>\n<p><strong><em>注意：</em></strong></p>\n<ul>\n<li>当您以<code>admin</code>身份登入并操作文件时，需要先给<code>admin</code>设置租户</li>\n</ul>\n</blockquote>\n<h2 id=\"基础操作\">基础操作</h2>\n<p><img src=\"/img/new_ui/dev/resource/file-manage.png\" alt=\"file-manage\"></p>\n<h3 id=\"创建文件\">创建文件</h3>\n<p>文件格式支持以下几种类型：txt、log、sh、conf、cfg、py、java、sql、xml、hql、properties</p>\n<p><img src=\"/img/new_ui/dev/resource/create-file.png\" alt=\"create-file\"></p>\n<h3 id=\"上传文件\">上传文件</h3>\n<p>上传文件：点击&quot;上传文件&quot;按钮进行上传，将文件拖拽到上传区域，文件名会自动以上传的文件名称补全</p>\n<p><img src=\"/img/new_ui/dev/resource/upload-file.png\" alt=\"upload-file\"></p>\n<h3 id=\"文件查看\">文件查看</h3>\n<p>对可查看的文件类型，点击文件名称，可查看文件详情</p>\n<p><img src=\"/img/tasks/demo/file_detail.png\" alt=\"file_detail\"></p>\n<h3 id=\"下载文件\">下载文件</h3>\n<p>点击文件列表的&quot;下载&quot;按钮下载文件或者在文件详情中点击右上角&quot;下载&quot;按钮下载文件</p>\n<h3 id=\"文件重命名\">文件重命名</h3>\n<p><img src=\"/img/new_ui/dev/resource/rename-file.png\" alt=\"rename-file\"></p>\n<h3 id=\"删除文件\">删除文件</h3>\n<p>文件列表-&gt;点击&quot;删除&quot;按钮，删除指定文件</p>\n<h3 id=\"重新上传文件\">重新上传文件</h3>\n<p>点击文件列表中的”重新上传文件“按钮进行重新上传文件，将文件拖拽到上传区域，文件名会自动以上传的文件名称补全</p>\n<p><img src=\"/img/reupload_file_en.png\" alt=\"reuplod_file\"></p>\n<blockquote>\n<p>注意：上传、创建、重命名文件时，文件名和源文件名（上传时）均不能带有 <code>.</code> 以及 <code>/</code> 特殊符号。</p>\n</blockquote>\n<h2 id=\"任务样例\">任务样例</h2>\n<p>该样例主要通过一个简单的 shell 脚本，来演示如何在工作流定义中使用资源中心的文件。像 MR、Spark 等任务需要用到 jar 包，也是同理。</p>\n<h3 id=\"创建-shell-文件\">创建 shell 文件</h3>\n<p>创建一个 shell 文件，输出 “hello world”。</p>\n<p><img src=\"/img/new_ui/dev/resource/demo/file-demo01.png\" alt=\"create-shell\"></p>\n<h3 id=\"创建工作流执行文件\">创建工作流执行文件</h3>\n<p>在项目管理的工作流定义模块，创建一个新的工作流，使用 shell 任务。</p>\n<ul>\n<li>脚本：<code>sh hello.sh</code></li>\n<li>资源：选择 <code>hello.sh</code></li>\n</ul>\n<blockquote>\n<p>注意：脚本中选择资源文件时文件名称需要保持和所选择资源全路径一致：\n例如：资源路径为<code>/resource/hello.sh</code> 则脚本中调用需要使用<code>/resource/hello.sh</code>全路径</p>\n</blockquote>\n<p><img src=\"/img/new_ui/dev/resource/demo/file-demo02.png\" alt=\"use-shell\"></p>\n<h3 id=\"查看结果\">查看结果</h3>\n<p>可以在工作流实例中，查看该节点运行的日志结果。如下图：</p>\n<p><img src=\"/img/new_ui/dev/resource/demo/file-demo03.png\" alt=\"log-shell\"></p>\n",
+  "location": [
+    "功能介绍",
+    "资源中心",
+    "文件管理"
+  ],
+  "time": "2023-12-25",
+  "structure": [
+    {
+      "title": "基础操作",
+      "children": [
+        {
+          "title": "创建文件",
+          "children": [],
+          "anchor": "创建文件"
+        },
+        {
+          "title": "上传文件",
+          "children": [],
+          "anchor": "上传文件"
+        },
+        {
+          "title": "文件查看",
+          "children": [],
+          "anchor": "文件查看"
+        },
+        {
+          "title": "下载文件",
+          "children": [],
+          "anchor": "下载文件"
+        },
+        {
+          "title": "文件重命名",
+          "children": [],
+          "anchor": "文件重命名"
+        },
+        {
+          "title": "删除文件",
+          "children": [],
+          "anchor": "删除文件"
+        },
+        {
+          "title": "重新上传文件",
+          "children": [],
+          "anchor": "重新上传文件"
+        },
+        {
+          "title": "创建 shell 文件",
+          "children": [],
+          "anchor": "创建-shell-文件"
+        },
+        {
+          "title": "创建工作流执行文件",
+          "children": [],
+          "anchor": "创建工作流执行文件"
+        },
+        {
+          "title": "查看结果",
+          "children": [],
+          "anchor": "查看结果"
+        }
+      ],
+      "anchor": "基础操作"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "创建文件",
+          "children": [],
+          "anchor": "创建文件"
+        },
+        {
+          "title": "上传文件",
+          "children": [],
+          "anchor": "上传文件"
+        },
+        {
+          "title": "文件查看",
+          "children": [],
+          "anchor": "文件查看"
+        },
+        {
+          "title": "下载文件",
+          "children": [],
+          "anchor": "下载文件"
+        },
+        {
+          "title": "文件重命名",
+          "children": [],
+          "anchor": "文件重命名"
+        },
+        {
+          "title": "删除文件",
+          "children": [],
+          "anchor": "删除文件"
+        },
+        {
+          "title": "重新上传文件",
+          "children": [],
+          "anchor": "重新上传文件"
+        },
+        {
+          "title": "创建 shell 文件",
+          "children": [],
+          "anchor": "创建-shell-文件"
+        },
+        {
+          "title": "创建工作流执行文件",
+          "children": [],
+          "anchor": "创建工作流执行文件"
+        },
+        {
+          "title": "查看结果",
+          "children": [],
+          "anchor": "查看结果"
+        }
+      ],
+      "anchor": "任务样例"
+    }
+  ],
+  "title": "文件管理",
+  "link": "/guide/resource/file-manage"
+}

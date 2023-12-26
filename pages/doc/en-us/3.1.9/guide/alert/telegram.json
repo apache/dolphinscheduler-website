@@ -1,0 +1,35 @@
+{
+  "__html": "<h1 id=\"telegram\">Telegram</h1>\n<p>If you need <code>Telegram</code> to alert, create an alert instance in the alert instance management, and choose the <code>Telegram</code> plugin.\nThe following shows the <code>Telegram</code> configuration example:</p>\n<p><img src=\"/img/new_ui/dev/alert/alert_telegram.png\" alt=\"alert-telegram\"></p>\n<h2 id=\"parameter-configuration\">Parameter Configuration</h2>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>WebHook</td>\n<td>The WebHook of Telegram when use robot to send message.</td>\n</tr>\n<tr>\n<td>botToken</td>\n<td>The access token of robot.</td>\n</tr>\n<tr>\n<td>chatId</td>\n<td>Sub Telegram Channel.</td>\n</tr>\n<tr>\n<td>parseMode</td>\n<td>Message parse type (support txt, markdown, markdownV2, html).</td>\n</tr>\n<tr>\n<td>EnableProxy</td>\n<td>Enable proxy sever.</td>\n</tr>\n<tr>\n<td>Proxy</td>\n<td>The proxy address of the proxy server.</td>\n</tr>\n<tr>\n<td>Port</td>\n<td>The proxy port of proxy server.</td>\n</tr>\n<tr>\n<td>User</td>\n<td>Authentication(Username) for the proxy server.</td>\n</tr>\n<tr>\n<td>Password</td>\n<td>Authentication(Password) for the proxy server.</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"note\">NOTE</h3>\n<p>The webhook needs to be able to receive and use the same JSON body of HTTP POST that DolphinScheduler constructs and the following shows the JSON body:</p>\n<pre><code class=\"language-json\"><span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;text&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;[{\\&quot;projectId\\&quot;:1,\\&quot;projectName\\&quot;:\\&quot;p1\\&quot;,\\&quot;owner\\&quot;:\\&quot;admin\\&quot;,\\&quot;processId\\&quot;:35,\\&quot;processDefinitionCode\\&quot;:4928367293568,\\&quot;processName\\&quot;:\\&quot;s11-3-20220324084708668\\&quot;,\\&quot;taskCode\\&quot;:4928359068928,\\&quot;taskName\\&quot;:\\&quot;s1\\&quot;,\\&quot;taskType\\&quot;:\\&quot;SHELL\\&quot;,\\&quot;taskState\\&quot;:\\&quot;FAILURE\\&quot;,\\&quot;taskStartTime\\&quot;:\\&quot;2022-03-24 08:47:08\\&quot;,\\&quot;taskEndTime\\&quot;:\\&quot;2022-03-24 08:47:09\\&quot;,\\&quot;taskHost\\&quot;:\\&quot;192.168.1.103:1234\\&quot;,\\&quot;logPath\\&quot;:\\&quot;\\&quot;}]&quot;</span><span class=\"hljs-punctuation\">,</span>\n    <span class=\"hljs-attr\">&quot;chat_id&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;chat id number&quot;</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre>\n<h2 id=\"references:\">References:</h2>\n<ul>\n<li><a href=\"https://core.telegram.org/bots\">Telegram Application Bot Guide</a></li>\n<li><a href=\"https://core.telegram.org/bots/api\">Telegram Bots Api</a></li>\n<li><a href=\"https://core.telegram.org/bots/api#sendmessage\">Telegram SendMessage Api</a></li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Alert",
+    "Telegram"
+  ],
+  "time": "2023-12-25",
+  "structure": [
+    {
+      "title": "Parameter Configuration",
+      "children": [
+        {
+          "title": "NOTE",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "parameter-configuration"
+    },
+    {
+      "title": "References:",
+      "children": [
+        {
+          "title": "NOTE",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "references:"
+    }
+  ],
+  "title": "Telegram",
+  "link": "/guide/alert/telegram"
+}

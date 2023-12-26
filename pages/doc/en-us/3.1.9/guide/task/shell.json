@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"shell\">Shell</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Shell task type, used to create a shell type task and execute a series of shell scripts. When the worker executes this task, a temporary shell script is generated and executed using the linux user with the same name as the tenant.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag  from the toolbar <img src=\"/img/tasks/icons/shell.png\" width=\"15\"/> to the canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.1.9/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Script</td>\n<td>A SHELL program developed by the user.</td>\n</tr>\n<tr>\n<td>User-defined parameter</td>\n<td>It is a user-defined parameter of Shell, which will replace the content with <code>${variable}</code> in the script.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"print-a-line\">Print a Line</h3>\n<p>This example shows how to simulate simple tasks with just one or more simple lines of command. In this example, we will see how to print a line in a log file.</p>\n<p><img src=\"/img/tasks/demo/shell.jpg\" alt=\"demo-shell-simple\"></p>\n<h3 id=\"use-custom-parameters\">Use custom parameters</h3>\n<p>This example simulates a custom parameter task. In order to reuse existing tasks more conveniently, or when faced with dynamic requirements, we will use variables to ensure the reusability of scripts. In this example, we first define the parameter &quot;param_key&quot; in the custom script and set its value to &quot;param_val&quot;. Then the echo command is declared in the &quot;script&quot;, and the parameter &quot;param_key&quot; is printed out. When we save and run the task, we will see in the log that the value &quot;param_val&quot; corresponding to the parameter &quot;param_key&quot; is printed out.</p>\n<p><img src=\"/img/tasks/demo/shell_custom_param.jpg\" alt=\"demo-shell-custom-param\"></p>\n<h2 id=\"note\">Note</h2>\n<p>The shell task type resolves whether the task log contains <code>application_xxx_xxx</code> to determine whether is the yarn task. If so, the corresponding application\nwill be use to judge the running state of the current shell node. At this time, if stops the operation of the workflow, the corresponding <code>application_id</code>\nwill be killed.</p>\n<p>If you want to use resource files in Shell tasks, you can upload corresponding files through the resource center and then use the resources in the Shell task. Reference: <a href=\"/en-us/docs/3.1.9/guide/resource/file-manage\">file-manage</a>.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Shell"
+  ],
+  "time": "2023-12-25",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Print a Line",
+          "children": [],
+          "anchor": "print-a-line"
+        },
+        {
+          "title": "Use custom parameters",
+          "children": [],
+          "anchor": "use-custom-parameters"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Print a Line",
+          "children": [],
+          "anchor": "print-a-line"
+        },
+        {
+          "title": "Use custom parameters",
+          "children": [],
+          "anchor": "use-custom-parameters"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Print a Line",
+          "children": [],
+          "anchor": "print-a-line"
+        },
+        {
+          "title": "Use custom parameters",
+          "children": [],
+          "anchor": "use-custom-parameters"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Print a Line",
+          "children": [],
+          "anchor": "print-a-line"
+        },
+        {
+          "title": "Use custom parameters",
+          "children": [],
+          "anchor": "use-custom-parameters"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Note",
+      "children": [
+        {
+          "title": "Print a Line",
+          "children": [],
+          "anchor": "print-a-line"
+        },
+        {
+          "title": "Use custom parameters",
+          "children": [],
+          "anchor": "use-custom-parameters"
+        }
+      ],
+      "anchor": "note"
+    }
+  ],
+  "title": "Shell",
+  "link": "/guide/task/shell"
+}

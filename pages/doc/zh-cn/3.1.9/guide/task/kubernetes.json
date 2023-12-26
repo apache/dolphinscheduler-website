@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"kubernetes\">Kubernetes</h1>\n<h2 id=\"综述\">综述</h2>\n<p>kubernetes任务类型，用于在kubernetes上执行一个短时和批处理的任务。worker最终会通过使用kubernetes client提交任务。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击&quot;创建工作流&quot;按钮，进入DAG编辑页面。</li>\n<li>工具栏中拖动 <img src=\"/img/tasks/icons/kubernetes.png\" width=\"25\"/> 到画板中，选择需要连接的数据源，即可完成创建。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.1.9/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>命名空间</td>\n<td>选择kubernetes集群上存在的命名空间</td>\n</tr>\n<tr>\n<td>最小CPU</td>\n<td>任务在kubernetes上运行所需的最小CPU</td>\n</tr>\n<tr>\n<td>最小内存</td>\n<td>任务在kubernetes上运行所需的最小内存</td>\n</tr>\n<tr>\n<td>镜像</td>\n<td>镜像地址</td>\n</tr>\n<tr>\n<td>自定义参数</td>\n<td>kubernetes任务局部的用户自定义参数，自定义参数最终会通过环境变量形式存在于容器中，提供给kubernetes任务使用</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"在-dolphinscheduler-中配置-kubernetes-集群环境\">在 DolphinScheduler 中配置 kubernetes 集群环境</h3>\n<p>若生产环境中要是使用到 kubernetes 任务类型，则需要预先配置好所需的kubernetes集群环境</p>\n<h3 id=\"配置-kubernetes-任务节点\">配置 kubernetes 任务节点</h3>\n<p>根据上述参数说明，配置所需的内容即可。</p>\n<p><img src=\"/img/tasks/demo/kubernetes-task-en.png\" alt=\"kubernetes\"></p>\n<h2 id=\"注意事项\">注意事项</h2>\n<p>任务名字限制在小写字母、数字和-这三种字符之中</p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Kubernetes"
+  ],
+  "time": "2023-12-25",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "在 DolphinScheduler 中配置 kubernetes 集群环境",
+          "children": [],
+          "anchor": "在-dolphinscheduler-中配置-kubernetes-集群环境"
+        },
+        {
+          "title": "配置 kubernetes 任务节点",
+          "children": [],
+          "anchor": "配置-kubernetes-任务节点"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "在 DolphinScheduler 中配置 kubernetes 集群环境",
+          "children": [],
+          "anchor": "在-dolphinscheduler-中配置-kubernetes-集群环境"
+        },
+        {
+          "title": "配置 kubernetes 任务节点",
+          "children": [],
+          "anchor": "配置-kubernetes-任务节点"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "在 DolphinScheduler 中配置 kubernetes 集群环境",
+          "children": [],
+          "anchor": "在-dolphinscheduler-中配置-kubernetes-集群环境"
+        },
+        {
+          "title": "配置 kubernetes 任务节点",
+          "children": [],
+          "anchor": "配置-kubernetes-任务节点"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "在 DolphinScheduler 中配置 kubernetes 集群环境",
+          "children": [],
+          "anchor": "在-dolphinscheduler-中配置-kubernetes-集群环境"
+        },
+        {
+          "title": "配置 kubernetes 任务节点",
+          "children": [],
+          "anchor": "配置-kubernetes-任务节点"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "注意事项",
+      "children": [
+        {
+          "title": "在 DolphinScheduler 中配置 kubernetes 集群环境",
+          "children": [],
+          "anchor": "在-dolphinscheduler-中配置-kubernetes-集群环境"
+        },
+        {
+          "title": "配置 kubernetes 任务节点",
+          "children": [],
+          "anchor": "配置-kubernetes-任务节点"
+        }
+      ],
+      "anchor": "注意事项"
+    }
+  ],
+  "title": "Kubernetes",
+  "link": "/guide/task/kubernetes"
+}
