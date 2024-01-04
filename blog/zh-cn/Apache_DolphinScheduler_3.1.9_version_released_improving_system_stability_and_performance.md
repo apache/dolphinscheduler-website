@@ -1,8 +1,8 @@
-```
+---
 title: Apache DolphinScheduler 3.1.9 版本发布：提升系统的稳定性和性能
 keywords: Apache DolphinScheduler, 3.1.9, 版本发布
 description: 此版本在 3.1.8 的基础上进行了关键的 bug 修复和文档更新，共计修复了 14 个 bug 和改进了 3 个文档。...
-```
+---
 
  🚀我们很高兴宣布，Apache DolphinScheduler 的最新版本 3.1.9 已正式发布！此版本在 3.1.8 的基础上进行了关键的 bug 修复和文档更新，共计修复了 14 个 bug 和改进了 3 个文档。
 
