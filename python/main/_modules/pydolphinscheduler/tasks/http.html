@@ -105,7 +105,10 @@
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
+<span class="kn">import</span> <span class="nn">warnings</span>
+
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.parameter</span> <span class="kn">import</span> <span class="n">Direction</span><span class="p">,</span> <span class="n">ParameterHelper</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span>
 
@@ -145,7 +148,30 @@
 <div class="viewcode-block" id="Http">
 <a class="viewcode-back" href="../../../tasks/http.html#pydolphinscheduler.tasks.Http">[docs]</a>
 <span class="k">class</span> <span class="nc">Http</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task HTTP object, declare behavior for HTTP task to dolphinscheduler.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task HTTP object, declare behavior for HTTP task to dolphinscheduler.</span>
+
+<span class="sd">        :param name: The name or identifier for the HTTP task.</span>
+<span class="sd">        :param url: The URL endpoint for the HTTP request.</span>
+<span class="sd">        :param http_method: The HTTP method for the request (GET, POST, etc.). Defaults to HttpMethod.GET.</span>
+<span class="sd">        :param http_params: Parameters for the HTTP request. Defaults to None.</span>
+<span class="sd">        :param http_check_condition: Condition for checking the HTTP response status.</span>
+<span class="sd">            Defaults to HttpCheckCondition.STATUS_CODE_DEFAULT.</span>
+<span class="sd">        :param condition: Additional condition to evaluate if `http_check_condition` is not STATUS_CODE_DEFAULT.</span>
+<span class="sd">        :param connect_timeout: Connection timeout for the HTTP request in milliseconds. Defaults to 60000.</span>
+<span class="sd">        :param socket_timeout: Socket timeout for the HTTP request in milliseconds. Defaults to 60000.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        _task_custom_attr (set): A set containing custom attributes specific to the Http task,</span>
+<span class="sd">                                including &#39;url&#39;, &#39;http_method&#39;, &#39;http_params&#39;, and more.</span>
+
+
+<span class="sd">    Raises:</span>
+<span class="sd">        PyDSParamException: Exception raised for invalid parameters, such as unsupported HTTP methods or conditions.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        Usage example for creating an HTTP task:</span>
+<span class="sd">        http_task = Http(name=&quot;http_task&quot;, url=&quot;https://api.example.com&quot;, http_method=&quot;POST&quot;, http_params={&quot;key&quot;: &quot;value&quot;})</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;url&quot;</span><span class="p">,</span>
@@ -162,7 +188,7 @@
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">http_method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">HttpMethod</span><span class="o">.</span><span class="n">GET</span><span class="p">,</span>
-        <span class="n">http_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">http_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">http_check_condition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">HttpCheckCondition</span><span class="o">.</span><span class="n">STATUS_CODE_DEFAULT</span><span class="p">,</span>
         <span class="n">condition</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">connect_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">60000</span><span class="p">,</span>
@@ -176,8 +202,16 @@
             <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
                 <span class="s2">&quot;Parameter http_method </span><span class="si">%s</span><span class="s2"> not support.&quot;</span><span class="p">,</span> <span class="n">http_method</span>
             <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">http_params</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The `http_params` parameter currently accepts a dictionary instead of a list. Your parameter is being ignored.&quot;</span><span class="p">,</span>
+                <span class="ne">DeprecationWarning</span><span class="p">,</span>
+            <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">http_method</span> <span class="o">=</span> <span class="n">http_method</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">http_params</span> <span class="o">=</span> <span class="n">http_params</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_http_params</span> <span class="o">=</span> <span class="n">http_params</span>
+
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">HttpCheckCondition</span><span class="p">,</span> <span class="n">http_check_condition</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
                 <span class="s2">&quot;Parameter http_check_condition </span><span class="si">%s</span><span class="s2"> not support.&quot;</span><span class="p">,</span> <span class="n">http_check_condition</span>
@@ -192,7 +226,16 @@
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">=</span> <span class="n">condition</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span> <span class="o">=</span> <span class="n">connect_timeout</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">socket_timeout</span> <span class="o">=</span> <span class="n">socket_timeout</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">socket_timeout</span> <span class="o">=</span> <span class="n">socket_timeout</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">http_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to convert http_params using ParameterHelper when accessed.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">ParameterHelper</span><span class="o">.</span><span class="n">convert_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_http_params</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http_params</span>
+            <span class="k">else</span> <span class="p">[]</span>
+        <span class="p">)</span></div>
 
 </pre></div>
 
