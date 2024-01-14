@@ -137,7 +137,15 @@ We can find more YAML file examples in <a class="reference external" href="https
     <span class="c1"># [end workflow_declare]</span>
     <span class="c1"># [start task_declare]</span>
     <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
-    <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
+    <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        echo &quot;Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">&quot;</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;param3&quot;</span><span class="p">:</span> <span class="s2">&quot;$[yyyy-MM-dd]&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
     <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
     <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
 
@@ -356,7 +364,15 @@ if you are interested in it. For all arguments of object workflow, you could fin
 <cite>command</cite> with <code class="code docutils literal notranslate"><span class="pre">echo</span></code> command, we also need to set the argument <cite>name</cite> for each task
 <em>(not only shell task, `name` is required for each type of task)</em>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
-    <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
+    <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        echo &quot;Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">&quot;</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;param3&quot;</span><span class="p">:</span> <span class="s2">&quot;$[yyyy-MM-dd]&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
     <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
     <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
 
@@ -545,8 +561,7 @@ the workflow schedule information. For more detail, you could see <a class="refe
 <p>After we run the tutorial code, you could log in DolphinScheduler web UI, go and see the
 <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/project.html">DolphinScheduler project page</a>. They is a new workflow be created by <em>PyDolphinScheduler</em> and it
 named “tutorial” or “tutorial_decorator”. The task graph of workflow like below:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                  --&gt; task_child_one
-                /                    \
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                /                    \
 task_parent --&gt;                        --&gt;  task_union
                 \                    /
                   --&gt; task_child_two

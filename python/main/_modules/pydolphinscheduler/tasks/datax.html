@@ -117,6 +117,38 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task CustomDatax object, declare behavior for custom DataX task to dolphinscheduler.</span>
 
 <span class="sd">    You provider json template for DataX, it can synchronize data according to the template you provided.</span>
+
+<span class="sd">    :param name: task name for this task</span>
+<span class="sd">    :param json: json template string, or json file path for custom DataX task, :class:`CustomDataX` will not</span>
+<span class="sd">        format json template, you should format by yourself.</span>
+
+<span class="sd">          * Use config string directly instead of json file path</span>
+<span class="sd">            * should use :func:`json.dumps` to format it if your json template is dict</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                import json</span>
+
+<span class="sd">                custom = CustomDataX(</span>
+<span class="sd">                    name=&quot;custom_datax&quot;,</span>
+<span class="sd">                    json=json.dumps({&quot;job&quot;: {&quot;content&quot;: [{&quot;reader&quot;: {&quot;name&quot;: &quot;mysqlreader&quot;}}]}}),</span>
+<span class="sd">                )</span>
+
+<span class="sd">            * or format it by manual if your json template is native str.</span>
+<span class="sd">          * Use json file path, the format it shows in web UI is depended on your json file content.</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                import json</span>
+
+<span class="sd">                custom = CustomDataX(</span>
+<span class="sd">                    name=&quot;custom_datax&quot;,</span>
+<span class="sd">                    # web UI datax config will show as json file content</span>
+<span class="sd">                    json=&quot;/path/to/datax.json&quot;,</span>
+<span class="sd">                )</span>
+
+<span class="sd">    :param xms: jvm param about min memory for task datax running, default is 1g</span>
+<span class="sd">    :param xmx: jvm param about max memory for task datax running, default is 1g</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">CUSTOM_CONFIG</span> <span class="o">=</span> <span class="mi">1</span>
@@ -159,12 +191,25 @@
 <span class="sd">    You provider datasource_name and datatarget_name contain connection information, it decisions which</span>
 <span class="sd">    database type and database instance would synchronous data.</span>
 
-<span class="sd">    :param name: task name.</span>
-<span class="sd">    :param datasource_name: source database name for task datax to extract data.</span>
-<span class="sd">    :param datatarget_name: target database name for task datax to load data.</span>
+<span class="sd">    :param name: task name for this task</span>
+<span class="sd">    :param datasource_name: source database name for task datax to extract data, it must exist in</span>
+<span class="sd">        dolphinscheduler&#39;s datasource center otherwise task datax will raise exception.</span>
+<span class="sd">    :param datatarget_name: target database name for task datax to load data, it must exist in</span>
+<span class="sd">        dolphinscheduler&#39;s datasource center otherwise task datax will raise exception.</span>
 <span class="sd">    :param sql: sql statement for task datax to extract data form source database.</span>
 <span class="sd">    :param target_table: target table name for task datax to load data into target database.</span>
-<span class="sd">    :param datasource_type: source database type, dolphinscheduler use</span>
+<span class="sd">    :param datasource_type: source database type, dolphinscheduler use it to find :param:``datasource_name``</span>
+<span class="sd">        in datasource center.</span>
+<span class="sd">    :param datasource_type: target database type, dolphinscheduler use it to find :param:``datatarget_name``</span>
+<span class="sd">        in datasource center.</span>
+<span class="sd">    :param job_speed_byte: task datax job speed byte, default is 0. For more detail you can get from</span>
+<span class="sd">        :seealso: https://github.com/alibaba/DataX</span>
+<span class="sd">    :param job_speed_record: task datax job speed record, default is 1000. For more detail you can get from</span>
+<span class="sd">        :seealso: https://github.com/alibaba/DataX</span>
+<span class="sd">    :param pre_statements: task datax job pre statements, it will execute before task datax job start to load.</span>
+<span class="sd">        default is None.</span>
+<span class="sd">    :param post_statements: task datax job post statements, it will execute after task datax job finish load.</span>
+<span class="sd">        default is None.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">CUSTOM_CONFIG</span> <span class="o">=</span> <span class="mi">0</span>

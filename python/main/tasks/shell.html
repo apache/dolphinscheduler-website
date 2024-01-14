@@ -131,7 +131,15 @@
     <span class="c1"># [end workflow_declare]</span>
     <span class="c1"># [start task_declare]</span>
     <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
-    <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child one&#39;&quot;</span><span class="p">)</span>
+    <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        echo &quot;Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">&quot;</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;param3&quot;</span><span class="p">:</span> <span class="s2">&quot;$[yyyy-MM-dd]&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
     <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
     <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
 

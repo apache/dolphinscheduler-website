@@ -2737,6 +2737,47 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">WorkerResourceMixin</span></code>, <a class="reference internal" href="#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
 <p>Task CustomDatax object, declare behavior for custom DataX task to dolphinscheduler.</p>
 <p>You provider json template for DataX, it can synchronize data according to the template you provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – task name for this task</p></li>
+<li><p><strong>json</strong> – <p>json template string, or json file path for custom DataX task, <a class="reference internal" href="#pydolphinscheduler.tasks.CustomDataX" title="pydolphinscheduler.tasks.CustomDataX"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomDataX</span></code></a> will not
+format json template, you should format by yourself.</p>
+<blockquote>
+<div><ul>
+<li><p>Use config string directly instead of json file path
+* should use <code class="xref py py-func docutils literal notranslate"><span class="pre">json.dumps()</span></code> to format it if your json template is dict</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">custom</span> <span class="o">=</span> <span class="n">CustomDataX</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;custom_datax&quot;</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;reader&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mysqlreader&quot;</span><span class="p">}}]}}),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>or format it by manual if your json template is native str.</p></li>
+</ul>
+</li>
+<li><p>Use json file path, the format it shows in web UI is depended on your json file content.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">custom</span> <span class="o">=</span> <span class="n">CustomDataX</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;custom_datax&quot;</span><span class="p">,</span>
+    <span class="c1"># web UI datax config will show as json file content</span>
+    <span class="n">json</span><span class="o">=</span><span class="s2">&quot;/path/to/datax.json&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>xms</strong> – jvm param about min memory for task datax running, default is 1g</p></li>
+<li><p><strong>xmx</strong> – jvm param about max memory for task datax running, default is 1g</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.CustomDataX._get_attr">
 <span class="sig-name descname"><span class="pre">_get_attr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pydolphinscheduler.tasks.CustomDataX._get_attr" title="Link to this definition"></a></dt>
@@ -3751,12 +3792,25 @@ database type and database instance would synchronous data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> – task name.</p></li>
-<li><p><strong>datasource_name</strong> – source database name for task datax to extract data.</p></li>
-<li><p><strong>datatarget_name</strong> – target database name for task datax to load data.</p></li>
+<li><p><strong>name</strong> – task name for this task</p></li>
+<li><p><strong>datasource_name</strong> – source database name for task datax to extract data, it must exist in
+dolphinscheduler’s datasource center otherwise task datax will raise exception.</p></li>
+<li><p><strong>datatarget_name</strong> – target database name for task datax to load data, it must exist in
+dolphinscheduler’s datasource center otherwise task datax will raise exception.</p></li>
 <li><p><strong>sql</strong> – sql statement for task datax to extract data form source database.</p></li>
 <li><p><strong>target_table</strong> – target table name for task datax to load data into target database.</p></li>
-<li><p><strong>datasource_type</strong> – source database type, dolphinscheduler use</p></li>
+<li><p><strong>datasource_type</strong> – source database type, dolphinscheduler use it to find :param:<code class="docutils literal notranslate"><span class="pre">datasource_name</span></code>
+in datasource center.</p></li>
+<li><p><strong>datasource_type</strong> – target database type, dolphinscheduler use it to find :param:<code class="docutils literal notranslate"><span class="pre">datatarget_name</span></code>
+in datasource center.</p></li>
+<li><p><strong>job_speed_byte</strong> – task datax job speed byte, default is 0. For more detail you can get from
+:seealso: <a class="reference external" href="https://github.com/alibaba/DataX">https://github.com/alibaba/DataX</a></p></li>
+<li><p><strong>job_speed_record</strong> – task datax job speed record, default is 1000. For more detail you can get from
+:seealso: <a class="reference external" href="https://github.com/alibaba/DataX">https://github.com/alibaba/DataX</a></p></li>
+<li><p><strong>pre_statements</strong> – task datax job pre statements, it will execute before task datax job start to load.
+default is None.</p></li>
+<li><p><strong>post_statements</strong> – task datax job post statements, it will execute after task datax job finish load.
+default is None.</p></li>
 </ul>
 </dd>
 </dl>
