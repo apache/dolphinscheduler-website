@@ -1,65 +1,67 @@
 .home-community {
-  padding-top: 100px;
-  &-title {
-    font-weight: 700;
-    color: #031b3e;
-    font-size: 50px;
-    text-align: center;
-    padding-bottom: 60px;
+    padding-top: 100px;
+    &-title {
+        font-weight: 700;
+        color: #031b3e;
+        font-size: 50px;
+        text-align: center;
+        padding-bottom: 60px;
+        @media screen and (max-width: 640px) {
+            font-size: 7vw;
+        }
+    }
+    &-content {
+        display: flex;
+        justify-content: space-between;
+    }
+    &-total {
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    &-item {
+        padding-right: 50px;
+    }
+    &-amount {
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 60px;
+        @media screen and (max-width: 640px) {
+            font-size: 10vw;
+        }
+    }
+    &-text {
+        color: #000000;
+        font-size: 20px;
+        margin-top: 8px;
+        @media screen and (max-width: 640px) {
+            font-size: 16px;
+        }
+    }
+    .ant-divider-vertical {
+        height: 80px;
+        border-color: #707070;
+        margin-right: 50px;
+    }
+    &-icons {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+    .anticon {
+        font-size: 30px;
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+    .ant-image {
+        @media screen and (max-width: 640px) {
+            display: none;
+        }
+    }
+}
 
-    @media screen and (max-width: 640px) {
-      font-size: 7vw;
-    }
-  }
-  &-content {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &-total {
-    display: flex;
-    align-items: center;
-    text-align: center;
-  }
-  &-item {
-    padding-right: 50px;
-  }
-  &-amount {
-    font-weight: 700;
-    color: var(--primary-color);
-    font-size: 60px;
-
-    @media screen and (max-width: 640px) {
-      font-size: 10vw;
-    }
-  }
-  &-text {
-    color: #000000;
-    font-size: 20px;
-    margin-top: 8px;
-
-    @media screen and (max-width: 640px) {
-      font-size: 16px;
-    }
-  }
-  .ant-divider-vertical {
-    height: 80px;
-    border-color: #707070;
-    margin-right: 50px;
-  }
-  &-icons {
-    margin-top: 30px;
-    margin-bottom: 50px;
-  }
-  .anticon {
-    font-size: 30px;
-    &:hover {
-      color: var(--primary-color);
-    }
-  }
-  .ant-image {
-    @media screen and (max-width: 640px) {
-      display: none;
-    }
-  }
+.home-community-icons .home-community-buttons:hover,
+.home-community-icons .home-community-buttons:active,
+.home-community-icons .home-community-buttons:focus {
+    background-color: transparent !important;
 }
