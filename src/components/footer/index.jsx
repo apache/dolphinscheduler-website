@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Divider, Button, Space } from "antd";
+import { useNavigate } from "react-router-dom";
 import {
   GithubOutlined,
   SlackOutlined,
@@ -11,6 +12,7 @@ import "./index.scss";
 
 const Footer = () => {
   const { locale, t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <footer className="footer">
       <section className="footer-content">
@@ -46,7 +48,10 @@ const Footer = () => {
         <div className="footer-desc">
           <div className="footer-left">
             <div className="footer-logo">
-              <div className="footer-logo-white"></div>
+              <div className="footer-logo-white"
+              onClick={() => {
+                navigate(`/${locale}`);
+              }}></div>
             </div>
             <div className="footer-copyright">
               Copyright © 2019-{new Date().getFullYear()} The Apache Software
