@@ -106,14 +106,14 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">BatchTask</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSWorkflowNotAssignException</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">gateway</span>
 
 
 <div class="viewcode-block" id="SubWorkflow">
 <a class="viewcode-back" href="../../../tasks/sub_workflow.html#pydolphinscheduler.tasks.SubWorkflow">[docs]</a>
-<span class="k">class</span> <span class="nc">SubWorkflow</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SubWorkflow</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task SubWorkflow object, declare behavior for SubWorkflow task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;process_definition_code&quot;</span><span class="p">}</span>

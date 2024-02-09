@@ -114,7 +114,7 @@
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.mixin</span> <span class="kn">import</span> <span class="n">WorkerResourceMixin</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">BatchTask</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
@@ -122,7 +122,7 @@
 
 <div class="viewcode-block" id="Python">
 <a class="viewcode-back" href="../../../tasks/python.html#pydolphinscheduler.tasks.Python">[docs]</a>
-<span class="k">class</span> <span class="nc">Python</span><span class="p">(</span><span class="n">WorkerResourceMixin</span><span class="p">,</span> <span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Python</span><span class="p">(</span><span class="n">WorkerResourceMixin</span><span class="p">,</span> <span class="n">BatchTask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task Python object, declare behavior for Python task to dolphinscheduler.</span>
 
 <span class="sd">    Python task support two types of parameters for :param:``definition``, and here is an example:</span>

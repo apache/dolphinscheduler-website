@@ -106,13 +106,13 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">BatchTask</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.models.datasource</span> <span class="kn">import</span> <span class="n">Datasource</span>
 
 
 <div class="viewcode-block" id="Procedure">
 <a class="viewcode-back" href="../../../tasks/procedure.html#pydolphinscheduler.tasks.Procedure">[docs]</a>
-<span class="k">class</span> <span class="nc">Procedure</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Procedure</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task Procedure object, declare behavior for Procedure task to dolphinscheduler.</span>
 
 <span class="sd">    It should run database procedure job in multiply sql lik engine, such as:</span>

@@ -107,7 +107,7 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">BatchTask</span>
 
 
 <div class="viewcode-block" id="DvcTaskType">
@@ -123,7 +123,7 @@
 
 <div class="viewcode-block" id="BaseDVC">
 <a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.BaseDVC">[docs]</a>
-<span class="k">class</span> <span class="nc">BaseDVC</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">BaseDVC</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for dvc task.&quot;&quot;&quot;</span>
 
     <span class="n">dvc_task_type</span> <span class="o">=</span> <span class="kc">None</span>

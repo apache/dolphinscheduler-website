@@ -627,6 +627,184 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_output_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
 </div>
 
+
+
+<span class="k">class</span> <span class="nc">BatchTask</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task object, parent class for all exactly task type.</span>
+
+<span class="sd">    :param name: The name of the task. Node names within the same workflow must be unique.</span>
+<span class="sd">    :param task_type:</span>
+<span class="sd">    :param description: default None</span>
+<span class="sd">    :param flag: default TaskFlag.YES,</span>
+<span class="sd">    :param task_priority: default TaskPriority.MEDIUM</span>
+<span class="sd">    :param worker_group: default configuration.WORKFLOW_WORKER_GROUP</span>
+<span class="sd">    :param environment_name: default None</span>
+<span class="sd">    :param task_group_id: Identify of task group to restrict the parallelism of tasks instance run, default 0.</span>
+<span class="sd">    :param task_group_priority: Priority for same task group to, the higher the value, the higher the</span>
+<span class="sd">        priority, default 0.</span>
+<span class="sd">    :param delay_time: deault 0</span>
+<span class="sd">    :param fail_retry_times: default 0</span>
+<span class="sd">    :param fail_retry_interval: default 1</span>
+<span class="sd">    :param timeout_notify_strategy: default, None</span>
+<span class="sd">    :param timeout: Timeout attribute for task, in minutes. Task is consider as  timed out task when the</span>
+<span class="sd">        running time of a task exceeds than this value. when data type is :class:`datetime.timedelta` will</span>
+<span class="sd">        be converted to int(in minutes). default ``None``</span>
+<span class="sd">    :param resource_list: default None</span>
+<span class="sd">    :param wait_start_timeout: default None</span>
+<span class="sd">    :param condition_result: default None,</span>
+<span class="sd">    :param resource_plugin: default None</span>
+<span class="sd">    :param is_cache: default False</span>
+<span class="sd">    :param input_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    :param output_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;task_execute_type&quot;</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">task_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskFlag</span><span class="o">.</span><span class="n">YES</span><span class="p">,</span>
+        <span class="n">task_priority</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span>
+        <span class="n">worker_group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">environment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">task_group_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">task_group_priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">delay_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_times</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">timeout_notify_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">timedelta</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">workflow</span><span class="p">:</span> <span class="n">Workflow</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dependence</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">wait_start_timeout</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">condition_result</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_plugin</span><span class="p">:</span> <span class="n">ResourcePlugin</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">is_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">task_type</span><span class="p">,</span>
+            <span class="n">description</span><span class="p">,</span>
+            <span class="n">flag</span><span class="p">,</span>
+            <span class="n">task_priority</span><span class="p">,</span>
+            <span class="n">worker_group</span><span class="p">,</span>
+            <span class="n">environment_name</span><span class="p">,</span>
+            <span class="n">task_group_id</span><span class="p">,</span>
+            <span class="n">task_group_priority</span><span class="p">,</span>
+            <span class="n">delay_time</span><span class="p">,</span>
+            <span class="n">fail_retry_times</span><span class="p">,</span>
+            <span class="n">fail_retry_interval</span><span class="p">,</span>
+            <span class="n">timeout_notify_strategy</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="p">,</span>
+            <span class="n">workflow</span><span class="p">,</span>
+            <span class="n">resource_list</span><span class="p">,</span>
+            <span class="n">dependence</span><span class="p">,</span>
+            <span class="n">wait_start_timeout</span><span class="p">,</span>
+            <span class="n">condition_result</span><span class="p">,</span>
+            <span class="n">resource_plugin</span><span class="p">,</span>
+            <span class="n">is_cache</span><span class="p">,</span>
+            <span class="n">input_params</span><span class="p">,</span>
+            <span class="n">output_params</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_execute_type</span> <span class="o">=</span> <span class="s2">&quot;BATCH&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">StreamTask</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task object, parent class for all exactly task type.</span>
+
+<span class="sd">    :param name: The name of the task. Node names within the same workflow must be unique.</span>
+<span class="sd">    :param task_type:</span>
+<span class="sd">    :param description: default None</span>
+<span class="sd">    :param flag: default TaskFlag.YES,</span>
+<span class="sd">    :param task_priority: default TaskPriority.MEDIUM</span>
+<span class="sd">    :param worker_group: default configuration.WORKFLOW_WORKER_GROUP</span>
+<span class="sd">    :param environment_name: default None</span>
+<span class="sd">    :param task_group_id: Identify of task group to restrict the parallelism of tasks instance run, default 0.</span>
+<span class="sd">    :param task_group_priority: Priority for same task group to, the higher the value, the higher the</span>
+<span class="sd">        priority, default 0.</span>
+<span class="sd">    :param delay_time: deault 0</span>
+<span class="sd">    :param fail_retry_times: default 0</span>
+<span class="sd">    :param fail_retry_interval: default 1</span>
+<span class="sd">    :param timeout_notify_strategy: default, None</span>
+<span class="sd">    :param timeout: Timeout attribute for task, in minutes. Task is consider as  timed out task when the</span>
+<span class="sd">        running time of a task exceeds than this value. when data type is :class:`datetime.timedelta` will</span>
+<span class="sd">        be converted to int(in minutes). default ``None``</span>
+<span class="sd">    :param resource_list: default None</span>
+<span class="sd">    :param wait_start_timeout: default None</span>
+<span class="sd">    :param condition_result: default None,</span>
+<span class="sd">    :param resource_plugin: default None</span>
+<span class="sd">    :param is_cache: default False</span>
+<span class="sd">    :param input_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    :param output_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;task_execute_type&quot;</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">task_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskFlag</span><span class="o">.</span><span class="n">YES</span><span class="p">,</span>
+        <span class="n">task_priority</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span>
+        <span class="n">worker_group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">environment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">task_group_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">task_group_priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">delay_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_times</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">timeout_notify_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">timedelta</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">workflow</span><span class="p">:</span> <span class="n">Workflow</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dependence</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">wait_start_timeout</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">condition_result</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_plugin</span><span class="p">:</span> <span class="n">ResourcePlugin</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">is_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">task_type</span><span class="p">,</span>
+            <span class="n">description</span><span class="p">,</span>
+            <span class="n">flag</span><span class="p">,</span>
+            <span class="n">task_priority</span><span class="p">,</span>
+            <span class="n">worker_group</span><span class="p">,</span>
+            <span class="n">environment_name</span><span class="p">,</span>
+            <span class="n">task_group_id</span><span class="p">,</span>
+            <span class="n">task_group_priority</span><span class="p">,</span>
+            <span class="n">delay_time</span><span class="p">,</span>
+            <span class="n">fail_retry_times</span><span class="p">,</span>
+            <span class="n">fail_retry_interval</span><span class="p">,</span>
+            <span class="n">timeout_notify_strategy</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="p">,</span>
+            <span class="n">workflow</span><span class="p">,</span>
+            <span class="n">resource_list</span><span class="p">,</span>
+            <span class="n">dependence</span><span class="p">,</span>
+            <span class="n">wait_start_timeout</span><span class="p">,</span>
+            <span class="n">condition_result</span><span class="p">,</span>
+            <span class="n">resource_plugin</span><span class="p">,</span>
+            <span class="n">is_cache</span><span class="p">,</span>
+            <span class="n">input_params</span><span class="p">,</span>
+            <span class="n">output_params</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_execute_type</span> <span class="o">=</span> <span class="s2">&quot;STREAM&quot;</span>
 </pre></div>
 
            </div>

@@ -109,7 +109,7 @@
 <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Sequence</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">BatchTask</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.models.datasource</span> <span class="kn">import</span> <span class="n">Datasource</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
@@ -127,7 +127,7 @@
 
 <div class="viewcode-block" id="Sql">
 <a class="viewcode-back" href="../../../tasks/sql.html#pydolphinscheduler.tasks.Sql">[docs]</a>
-<span class="k">class</span> <span class="nc">Sql</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Sql</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task SQL object, declare behavior for SQL task to dolphinscheduler.</span>
 
 <span class="sd">    It should run sql job in multiply sql lik engine, such as:</span>

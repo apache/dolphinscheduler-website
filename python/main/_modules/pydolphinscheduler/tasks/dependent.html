@@ -107,7 +107,7 @@
 <span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">BatchTask</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSJavaGatewayException</span><span class="p">,</span> <span class="n">PyDSParamException</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">gateway</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.models.base</span> <span class="kn">import</span> <span class="n">Base</span>
@@ -387,7 +387,7 @@
 
 <div class="viewcode-block" id="Dependent">
 <a class="viewcode-back" href="../../../tasks/dependent.html#pydolphinscheduler.tasks.Dependent">[docs]</a>
-<span class="k">class</span> <span class="nc">Dependent</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Dependent</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task dependent object, declare behavior for dependent task to dolphinscheduler.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dependence</span><span class="p">:</span> <span class="n">DependentOperator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>

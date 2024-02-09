@@ -106,7 +106,7 @@
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.mixin</span> <span class="kn">import</span> <span class="n">WorkerResourceMixin</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">BatchTask</span>
 
 
 <div class="viewcode-block" id="DEFAULT">
@@ -122,7 +122,7 @@
 
 <div class="viewcode-block" id="Pytorch">
 <a class="viewcode-back" href="../../../tasks/pytorch.html#pydolphinscheduler.tasks.Pytorch">[docs]</a>
-<span class="k">class</span> <span class="nc">Pytorch</span><span class="p">(</span><span class="n">WorkerResourceMixin</span><span class="p">,</span> <span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Pytorch</span><span class="p">(</span><span class="n">WorkerResourceMixin</span><span class="p">,</span> <span class="n">BatchTask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task Pytorch object, declare behavior for Pytorch task to dolphinscheduler.</span>
 
 <span class="sd">    See also: `DolphinScheduler Pytorch Task Plugin</span>

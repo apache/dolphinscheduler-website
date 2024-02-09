@@ -107,7 +107,7 @@
 
 <span class="kn">from</span> <span class="nn">py4j.protocol</span> <span class="kn">import</span> <span class="n">Py4JJavaError</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">BatchTask</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">gateway</span>
 
@@ -122,7 +122,7 @@
 
 <div class="viewcode-block" id="Engine">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Engine">[docs]</a>
-<span class="k">class</span> <span class="nc">Engine</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Engine</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task engine object, declare behavior for engine task to dolphinscheduler.</span>
 
 <span class="sd">    This is the parent class of spark, flink and mr tasks,</span>

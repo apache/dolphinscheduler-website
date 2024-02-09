@@ -109,7 +109,7 @@
 
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.core.parameter</span> <span class="kn">import</span> <span class="n">Direction</span><span class="p">,</span> <span class="n">ParameterHelper</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">BatchTask</span>
 <span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span>
 
 
@@ -147,7 +147,7 @@
 
 <div class="viewcode-block" id="Http">
 <a class="viewcode-back" href="../../../tasks/http.html#pydolphinscheduler.tasks.Http">[docs]</a>
-<span class="k">class</span> <span class="nc">Http</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Http</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task HTTP object, declare behavior for HTTP task to dolphinscheduler.</span>
 
 <span class="sd">        :param name: The name or identifier for the HTTP task.</span>

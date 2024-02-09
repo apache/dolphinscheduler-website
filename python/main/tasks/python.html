@@ -68,6 +68,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sub_workflow.html">Sub Workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
 <li class="toctree-l2"><a class="reference internal" href="condition.html">Condition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dependent.html">Dependent</a></li>
@@ -77,7 +78,6 @@
 <li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kubernetes.html">Kubernetes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_workflow.html">Sub Workflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sagemaker.html">SageMaker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mlflow.html">MLflow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="openmldb.html">OpenMLDB</a></li>
@@ -168,7 +168,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.python.Python">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.python.</span></span><span class="sig-name descname"><span class="pre">Python</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">definition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">function</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/python.html#Python"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.python.Python" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">WorkerResourceMixin</span></code>, <a class="reference internal" href="../api.html#pydolphinscheduler.core.Task" title="pydolphinscheduler.core.task.Task"><code class="xref py py-class docutils literal notranslate"><span class="pre">Task</span></code></a></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">WorkerResourceMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BatchTask</span></code></p>
 <p>Task Python object, declare behavior for Python task to dolphinscheduler.</p>
 <p>Python task support two types of parameters for :param:<code class="docutils literal notranslate"><span class="pre">definition</span></code>, and here is an example:</p>
 <p>Using str type of :param:<code class="docutils literal notranslate"><span class="pre">definition</span></code></p>

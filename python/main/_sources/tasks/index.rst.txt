@@ -28,6 +28,7 @@ In this section
    sql
    python
    http
+   sub_workflow
 
    switch
    condition
@@ -40,8 +41,6 @@ In this section
    kubernetes
 
    datax
-   sub_workflow
-
    sagemaker
    mlflow
    openmldb
