@@ -1,0 +1,97 @@
+{
+  "__html": "<h1 id=\"sqoop-node\">Sqoop Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Sqoop task type for executing Sqoop application. The workers run <code>sqoop</code> to execute  sqoop tasks.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/sqoop.png\" width=\"15\"/> to the canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Job Name</td>\n<td>map-reduce job name</td>\n</tr>\n<tr>\n<td>Direct</td>\n<td>(1) import:Imports an individual table from an RDBMS to HDFS or Hive.  (2) export:Exports a set of files from HDFS or Hive back to an RDBMS.</td>\n</tr>\n<tr>\n<td>Hadoop Params</td>\n<td>Hadoop custom param for sqoop job.</td>\n</tr>\n<tr>\n<td>Sqoop Advanced Parameters</td>\n<td>Sqoop advanced param for sqoop job.</td>\n</tr>\n<tr>\n<td>Data Source - Type</td>\n<td>Select the corresponding data source type.</td>\n</tr>\n<tr>\n<td>Data Source - Datasource</td>\n<td>Select the corresponding DataSource.</td>\n</tr>\n<tr>\n<td>Data Source - ModelType</td>\n<td>(1) Form:Synchronize data from a table, need to fill in the <code>Table</code> and <code>ColumnType</code>. (2) SQL:Synchronize data of SQL queries result, need to fill in the <code>SQL Statement</code>.</td>\n</tr>\n<tr>\n<td>Data Source - Table</td>\n<td>Sets the table name to use when importing to Hive.</td>\n</tr>\n<tr>\n<td>Data Source - ColumnType</td>\n<td>(1) All Columns:Import all fields in the selected table.  (2) Some Columns:Import the specified fields in the selected table, need to fill in the <code>Column</code>.</td>\n</tr>\n<tr>\n<td>Data Source - Column</td>\n<td>Fill in the field name, and separate with commas.</td>\n</tr>\n<tr>\n<td>Data Source - SQL Statement</td>\n<td>Fill in SQL query statement.</td>\n</tr>\n<tr>\n<td>Data Source - Map Column Hive</td>\n<td>Override mapping from SQL to Hive type for configured columns.</td>\n</tr>\n<tr>\n<td>Data Source - Map Column Java</td>\n<td>Override mapping from SQL to Java type for configured columns.</td>\n</tr>\n<tr>\n<td>Data Target - Type</td>\n<td>Select the corresponding data target type.</td>\n</tr>\n<tr>\n<td>Data Target - Database</td>\n<td>Fill in the Hive database name.</td>\n</tr>\n<tr>\n<td>Data Target - Table</td>\n<td>Fill in the Hive table name.</td>\n</tr>\n<tr>\n<td>Data Target - CreateHiveTable</td>\n<td>Import a table definition into Hive. If set, then the job will fail if the target hive table exits.</td>\n</tr>\n<tr>\n<td>Data Target - DropDelimiter</td>\n<td>Drops <code>\\n</code>, <code>\\r</code>, and <code>\\01</code> from string fields when importing to Hive.</td>\n</tr>\n<tr>\n<td>Data Target - OverWriteSrc</td>\n<td>Overwrite existing data in the Hive table.</td>\n</tr>\n<tr>\n<td>Data Target - Hive Target Dir</td>\n<td>You can also explicitly choose the target directory.</td>\n</tr>\n<tr>\n<td>Data Target - ReplaceDelimiter</td>\n<td>Replace <code>\\n</code>, <code>\\r</code>, and <code>\\01</code> from string fields with user defined string when importing to Hive.</td>\n</tr>\n<tr>\n<td>Data Target - Hive partition Keys</td>\n<td>Fill in the hive partition keys name, and separate with commas.</td>\n</tr>\n<tr>\n<td>Data Target - Hive partition Values</td>\n<td>Fill in the hive partition Values name, and separate with commas.</td>\n</tr>\n<tr>\n<td>Data Target - Target Dir</td>\n<td>Fill in the HDFS target directory.</td>\n</tr>\n<tr>\n<td>Data Target - DeleteTargetDir</td>\n<td>Delete the target directory if it exists.</td>\n</tr>\n<tr>\n<td>Data Target - CompressionCodec</td>\n<td>Choice the hadoop codec.</td>\n</tr>\n<tr>\n<td>Data Target - FileType</td>\n<td>Choice the storage Type.</td>\n</tr>\n<tr>\n<td>Data Target - FieldsTerminated</td>\n<td>Sets the field separator character.</td>\n</tr>\n<tr>\n<td>Data Target - LinesTerminated</td>\n<td>Sets the end-of-line character.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<p>This example demonstrates importing data from MySQL into Hive. The MySQL database name is <code>test</code> and the table name is <code>example</code>. The following figure shows sample data.</p>\n<p><img src=\"/img/tasks/demo/sqoop_task01.png\" alt=\"sqoop_task01\"></p>\n<h3 id=\"configuring-the-sqoop-environment\">Configuring the Sqoop environment</h3>\n<p>If you are using the Sqoop task type in a production environment, you must ensure that the worker can execute the <code>sqoop</code> command.</p>\n<h3 id=\"configuring-sqoop-task-node\">Configuring Sqoop Task Node</h3>\n<p>you can configure the node content by following the steps in the diagram below.</p>\n<p><img src=\"/img/tasks/demo/sqoop_task02.png\" alt=\"sqoop_task02\"></p>\n<p>The key configuration in this sample is shown in the following table.</p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Value</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Job Name</td>\n<td>sqoop_mysql_to_hive_test</td>\n</tr>\n<tr>\n<td>Data Source - Type</td>\n<td>MYSQL</td>\n</tr>\n<tr>\n<td>Data Source - Datasource</td>\n<td>MYSQL MyTestMySQL(You could change MyTestMySQL to the name you like)</td>\n</tr>\n<tr>\n<td>Data Source - ModelType</td>\n<td>Form</td>\n</tr>\n<tr>\n<td>Data Source - Table</td>\n<td>example</td>\n</tr>\n<tr>\n<td>Data Source - ColumnType</td>\n<td>All Columns</td>\n</tr>\n<tr>\n<td>Data Target - Type</td>\n<td>HIVE</td>\n</tr>\n<tr>\n<td>Data Target - Database</td>\n<td>tmp</td>\n</tr>\n<tr>\n<td>Data Target - Table</td>\n<td>example</td>\n</tr>\n<tr>\n<td>Data Target - CreateHiveTable</td>\n<td>true</td>\n</tr>\n<tr>\n<td>Data Target - DropDelimiter</td>\n<td>false</td>\n</tr>\n<tr>\n<td>Data Target - OverWriteSrc</td>\n<td>true</td>\n</tr>\n<tr>\n<td>Data Target - Hive Target Dir</td>\n<td>(No need to fill in)</td>\n</tr>\n<tr>\n<td>Data Target - ReplaceDelimiter</td>\n<td>,</td>\n</tr>\n<tr>\n<td>Data Target - Hive partition Keys</td>\n<td>(No need to fill in)</td>\n</tr>\n<tr>\n<td>Data Target - Hive partition Values</td>\n<td>(No need to fill in)</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"view-run-results\">View run results</h3>\n<p><img src=\"/img/tasks/demo/sqoop_task03.png\" alt=\"sqoop_task03\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Sqoop"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Configuring the Sqoop environment",
+          "children": [],
+          "anchor": "configuring-the-sqoop-environment"
+        },
+        {
+          "title": "Configuring Sqoop Task Node",
+          "children": [],
+          "anchor": "configuring-sqoop-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Configuring the Sqoop environment",
+          "children": [],
+          "anchor": "configuring-the-sqoop-environment"
+        },
+        {
+          "title": "Configuring Sqoop Task Node",
+          "children": [],
+          "anchor": "configuring-sqoop-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Configuring the Sqoop environment",
+          "children": [],
+          "anchor": "configuring-the-sqoop-environment"
+        },
+        {
+          "title": "Configuring Sqoop Task Node",
+          "children": [],
+          "anchor": "configuring-sqoop-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Configuring the Sqoop environment",
+          "children": [],
+          "anchor": "configuring-the-sqoop-environment"
+        },
+        {
+          "title": "Configuring Sqoop Task Node",
+          "children": [],
+          "anchor": "configuring-sqoop-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "Sqoop Node",
+  "link": "/guide/task/sqoop"
+}

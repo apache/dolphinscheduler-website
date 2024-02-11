@@ -1,0 +1,157 @@
+{
+  "__html": "<h1 id=\"认证方式\">认证方式</h1>\n<ul>\n<li>目前我们支持四种认证方式，Apache DolphinScheduler自身账号密码登录，LDAP, 通过Casdoor实现的SSO登录和通过Oauth2授权登录，并且oauth2授权登录方式可以和其他认证方式同时使用。</li>\n</ul>\n<h2 id=\"修改认证方式\">修改认证方式</h2>\n<blockquote>\n<p>dolphinscheduler-api/src/main/resources/application.yaml</p>\n</blockquote>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-comment\"># Authentication types (supported types: PASSWORD,LDAP,CASDOOR_SSO)</span>\n    <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">PASSWORD</span>\n    <span class=\"hljs-comment\"># IF you set type `LDAP`, below config will be effective</span>\n    <span class=\"hljs-attr\">ldap:</span>\n      <span class=\"hljs-comment\"># ldap server config</span>\n      <span class=\"hljs-attr\">urls:</span> <span class=\"hljs-string\">ldap://ldap.forumsys.com:389/</span>\n      <span class=\"hljs-attr\">base-dn:</span> <span class=\"hljs-string\">dc=example,dc=com</span>\n      <span class=\"hljs-attr\">username:</span> <span class=\"hljs-string\">cn=read-only-admin,dc=example,dc=com</span>\n      <span class=\"hljs-attr\">password:</span> <span class=\"hljs-string\">password</span>\n      <span class=\"hljs-attr\">user:</span>\n        <span class=\"hljs-comment\"># admin userId when you use LDAP login</span>\n        <span class=\"hljs-attr\">admin:</span> <span class=\"hljs-string\">read-only-admin</span>\n        <span class=\"hljs-attr\">identity-attribute:</span> <span class=\"hljs-string\">uid</span>\n        <span class=\"hljs-attr\">email-attribute:</span> <span class=\"hljs-string\">mail</span>\n        <span class=\"hljs-comment\"># action when ldap user is not exist (supported types: CREATE,DENY)</span>\n        <span class=\"hljs-attr\">not-exist-action:</span> <span class=\"hljs-string\">CREATE</span>\n      <span class=\"hljs-attr\">ssl:</span>\n        <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">false</span>\n        <span class=\"hljs-comment\"># jks file absolute path &amp;&amp; password</span>\n        <span class=\"hljs-attr\">trust-store:</span> <span class=\"hljs-string\">&quot;/ldapkeystore.jks&quot;</span>\n        <span class=\"hljs-attr\">trust-store-password:</span> <span class=\"hljs-string\">&quot;password&quot;</span>\n    <span class=\"hljs-attr\">casdoor:</span>\n      <span class=\"hljs-attr\">user:</span>\n        <span class=\"hljs-attr\">admin:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n    <span class=\"hljs-attr\">oauth2:</span>\n      <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">false</span>\n      <span class=\"hljs-attr\">provider:</span>\n        <span class=\"hljs-attr\">github:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">github</span>\n        <span class=\"hljs-attr\">google:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">google</span>\n<span class=\"hljs-attr\">casdoor:</span>\n   <span class=\"hljs-comment\"># Your Casdoor server url</span>\n   <span class=\"hljs-attr\">endpoint:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-attr\">client-id:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-attr\">client-secret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># The certificate may be multi-line, you can use `|-` for ease</span>\n   <span class=\"hljs-attr\">certificate:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># Your organization name added in Casdoor</span>\n   <span class=\"hljs-attr\">organization-name:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># Your application name added in Casdoor</span>\n   <span class=\"hljs-attr\">application-name:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># Doplhinscheduler login url</span>\n   <span class=\"hljs-attr\">redirect-url:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n</code></pre>\n<p>具体字段解释详见：<a href=\"/zh-cn/docs/3.2.1/architecture/configuration\">Api-server相关配置</a></p>\n<h2 id=\"开发者ldap测试\">开发者LDAP测试</h2>\n<p>我们提供了一个单元测试类，可以在不启动项目的情况下测试DolphinScheduler与LDAP的集成。</p>\n<blockquote>\n<p>dolphinscheduler-api/src/test/java/org/apache/dolphinscheduler/api/security/impl/ldap/LdapServiceTest.java</p>\n</blockquote>\n<p>使用步骤如下：</p>\n<ul>\n<li>修改<code>TestPropertySource</code>配置参数为你的LDAP信息;</li>\n<li>修改<code>ldapLogin</code>方法中的userId和userPwd为你的账号密码;</li>\n<li>修改<code>ldapLogin</code>方法中的expected email为正常登陆的返回值;</li>\n<li>执行<code>ldapLogin</code>方法，判断LDAP登陆结果是否为预期;</li>\n</ul>\n<p>如果你要启用ssl，请修改<code>TestPropertySource</code>配置中ssl相关参数为：</p>\n<pre><code>security.authentication.ldap.ssl.enable=false\n// absolute path\nsecurity.authentication.ldap.ssl.trust-store=/ldapkeystore.jks \nsecurity.authentication.ldap.ssl.trust-store-password=yourpassword\n</code></pre>\n<p>运行<code>ldapLoginSSL</code>方法，判断email是否为预期的返回值。</p>\n<h2 id=\"通过-casdoor-实现-sso-登录\">通过 Casdoor 实现 SSO 登录</h2>\n<p>Casdoor 是基于 OAuth 2.0、OIDC、SAML 和 CAS 的面向 UI 的身份访问管理（IAM）/单点登录（SSO）平台。您可以通过以下步骤通过 Casdoor 为 Dolphinscheduler 添加 SSO 功能：</p>\n<h3 id=\"步骤1.-部署-casdoor\">步骤1. 部署 Casdoor</h3>\n<p>首先，需要部署 Casdoor。 您可以参考 Casdoor 官方文档进行<a href=\"https://casdoor.org/docs/basic/server-installation\">安装</a>。 成功部署后，您需要确保：</p>\n<ul>\n<li>Casdoor 服务器在 http://localhost:8000 上成功运行。</li>\n<li>打开您喜欢的浏览器并访问 http://localhost:7001，您将看到 Casdoor 的登录页面。</li>\n<li>输入 admin 和 123，测试登录功能是否正常工作。</li>\n</ul>\n<p>然后，您可以通过以下步骤在自己的应用程序中快速实现基于 Casdoor 的登录页面。</p>\n<h3 id=\"步骤2.-配置-casdoor\">步骤2. 配置 Casdoor</h3>\n<ol>\n<li>创建或使用现有的 Casdoor 应用程序。</li>\n<li>添加您的重定向 URL（您可以在下一节中了解更多关于如何获取重定向 URL 的详细信息）\n<img src=\"/img/casdoor-sso-configuration.png\" alt=\"Casdoor Application Setting\"></li>\n<li>添加您想要的提供程序并补充其他设置。</li>\n</ol>\n<p>不出所料，您可以在应用程序设置页面上获得两个值：<code>Client ID</code> 和 <code>Client secret</code>，如上图所示。我们将在下一步中使用它们。</p>\n<p>打开您喜欢的浏览器并访问：<strong>http://<code>CASDOOR_HOSTNAME</code>/.well-known/openid-configuration</strong>，您将看到 Casdoor 的 OIDC 配置。</p>\n<h3 id=\"步骤3.-配置-dolphinscheduler\">步骤3. 配置 Dolphinscheduler</h3>\n<blockquote>\n<p>dolphinscheduler-api/src/main/resources/application.yaml</p>\n</blockquote>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-comment\"># Authentication types (supported types: PASSWORD,LDAP,CASDOOR_SSO)</span>\n    <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">CASDOOR_SSO</span>\n<span class=\"hljs-attr\">casdoor:</span>\n  <span class=\"hljs-comment\"># Your Casdoor server url</span>\n  <span class=\"hljs-attr\">endpoint:</span>\n  <span class=\"hljs-attr\">client-id:</span>\n  <span class=\"hljs-attr\">client-secret:</span>\n  <span class=\"hljs-comment\"># The certificate may be multi-line, you can use `|-` for ease</span>\n  <span class=\"hljs-attr\">certificate:</span> \n  <span class=\"hljs-comment\"># Your organization name added in Casdoor</span>\n  <span class=\"hljs-attr\">organization-name:</span>\n  <span class=\"hljs-comment\"># Your application name added in Casdoor</span>\n  <span class=\"hljs-attr\">application-name:</span>\n  <span class=\"hljs-comment\"># Doplhinscheduler login url</span>\n  <span class=\"hljs-attr\">redirect-url:</span> <span class=\"hljs-string\">http://localhost:5173/login</span> \n</code></pre>\n<h2 id=\"通过oauth2授权认证登录\">通过OAuth2授权认证登录</h2>\n<p>dolphinscheduler可以同时支持多种OAuth2的provider，只需要在配置文件中打开Oauth2的开关并进行简单的配置即可。</p>\n<h3 id=\"步骤1.-获取oauth2客户端凭据\">步骤1. 获取OAuth2客户端凭据</h3>\n<p><img src=\"/img/security/authentication/create-client-credentials-1.png\" alt=\"create-client-credentials-1\"></p>\n<p><img src=\"/img/security/authentication/create-client-credentials-2.png\" alt=\"create-client-credentials-2\"></p>\n<h3 id=\"步骤2.-在api的配置文件中开启oauth2登录\">步骤2. 在api的配置文件中开启oauth2登录</h3>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-string\">……</span> <span class=\"hljs-comment\"># 省略</span>\n    <span class=\"hljs-attr\">oauth2:</span>\n      <span class=\"hljs-comment\"># 将enable设置为true 开启oauth2登录模式</span>\n      <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">true</span>\n      <span class=\"hljs-attr\">provider:</span>\n        <span class=\"hljs-attr\">github:</span>\n          <span class=\"hljs-comment\"># 设置provider的授权地址，例如https://github.com/login/oauth/authorize</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># dolphinscheduler的后端重定向接口地址，例如http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># oauth2的 clientId</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># oauth2的 clientSecret</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># 设置provider的请求token的地址</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># 设置provider的请求用户信息的地址</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># 登录成功后的重定向地址, http://{ip}:{port}/login</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># 登录页跳转按钮的图片url，不填写则会展示一个文字按钮</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">github</span>\n        <span class=\"hljs-attr\">google:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">google</span>\n        <span class=\"hljs-attr\">gitee:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;https://gitee.com/oauth/authorize&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;https://gitee.com/oauth/token?grant_type=authorization_code&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;https://gitee.com/api/v5/user&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;http://127.0.0.1:5173/login&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">gitee</span>\n</code></pre>\n<h3 id=\"步骤3.使用oauth2登录\">步骤3.使用oauth2登录</h3>\n<p><img src=\"/img/security/authentication/login-with-oauth2.png\" alt=\"login-with-oauth2\"></p>\n",
+  "location": [
+    "功能介绍",
+    "安全中心",
+    "认证方式"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "修改认证方式",
+      "children": [
+        {
+          "title": "步骤1. 部署 Casdoor",
+          "children": [],
+          "anchor": "步骤1.-部署-casdoor"
+        },
+        {
+          "title": "步骤2. 配置 Casdoor",
+          "children": [],
+          "anchor": "步骤2.-配置-casdoor"
+        },
+        {
+          "title": "步骤3. 配置 Dolphinscheduler",
+          "children": [],
+          "anchor": "步骤3.-配置-dolphinscheduler"
+        },
+        {
+          "title": "步骤1. 获取OAuth2客户端凭据",
+          "children": [],
+          "anchor": "步骤1.-获取oauth2客户端凭据"
+        },
+        {
+          "title": "步骤2. 在api的配置文件中开启oauth2登录",
+          "children": [],
+          "anchor": "步骤2.-在api的配置文件中开启oauth2登录"
+        },
+        {
+          "title": "步骤3.使用oauth2登录",
+          "children": [],
+          "anchor": "步骤3.使用oauth2登录"
+        }
+      ],
+      "anchor": "修改认证方式"
+    },
+    {
+      "title": "开发者LDAP测试",
+      "children": [
+        {
+          "title": "步骤1. 部署 Casdoor",
+          "children": [],
+          "anchor": "步骤1.-部署-casdoor"
+        },
+        {
+          "title": "步骤2. 配置 Casdoor",
+          "children": [],
+          "anchor": "步骤2.-配置-casdoor"
+        },
+        {
+          "title": "步骤3. 配置 Dolphinscheduler",
+          "children": [],
+          "anchor": "步骤3.-配置-dolphinscheduler"
+        },
+        {
+          "title": "步骤1. 获取OAuth2客户端凭据",
+          "children": [],
+          "anchor": "步骤1.-获取oauth2客户端凭据"
+        },
+        {
+          "title": "步骤2. 在api的配置文件中开启oauth2登录",
+          "children": [],
+          "anchor": "步骤2.-在api的配置文件中开启oauth2登录"
+        },
+        {
+          "title": "步骤3.使用oauth2登录",
+          "children": [],
+          "anchor": "步骤3.使用oauth2登录"
+        }
+      ],
+      "anchor": "开发者ldap测试"
+    },
+    {
+      "title": "通过 Casdoor 实现 SSO 登录",
+      "children": [
+        {
+          "title": "步骤1. 部署 Casdoor",
+          "children": [],
+          "anchor": "步骤1.-部署-casdoor"
+        },
+        {
+          "title": "步骤2. 配置 Casdoor",
+          "children": [],
+          "anchor": "步骤2.-配置-casdoor"
+        },
+        {
+          "title": "步骤3. 配置 Dolphinscheduler",
+          "children": [],
+          "anchor": "步骤3.-配置-dolphinscheduler"
+        },
+        {
+          "title": "步骤1. 获取OAuth2客户端凭据",
+          "children": [],
+          "anchor": "步骤1.-获取oauth2客户端凭据"
+        },
+        {
+          "title": "步骤2. 在api的配置文件中开启oauth2登录",
+          "children": [],
+          "anchor": "步骤2.-在api的配置文件中开启oauth2登录"
+        },
+        {
+          "title": "步骤3.使用oauth2登录",
+          "children": [],
+          "anchor": "步骤3.使用oauth2登录"
+        }
+      ],
+      "anchor": "通过-casdoor-实现-sso-登录"
+    },
+    {
+      "title": "通过OAuth2授权认证登录",
+      "children": [
+        {
+          "title": "步骤1. 部署 Casdoor",
+          "children": [],
+          "anchor": "步骤1.-部署-casdoor"
+        },
+        {
+          "title": "步骤2. 配置 Casdoor",
+          "children": [],
+          "anchor": "步骤2.-配置-casdoor"
+        },
+        {
+          "title": "步骤3. 配置 Dolphinscheduler",
+          "children": [],
+          "anchor": "步骤3.-配置-dolphinscheduler"
+        },
+        {
+          "title": "步骤1. 获取OAuth2客户端凭据",
+          "children": [],
+          "anchor": "步骤1.-获取oauth2客户端凭据"
+        },
+        {
+          "title": "步骤2. 在api的配置文件中开启oauth2登录",
+          "children": [],
+          "anchor": "步骤2.-在api的配置文件中开启oauth2登录"
+        },
+        {
+          "title": "步骤3.使用oauth2登录",
+          "children": [],
+          "anchor": "步骤3.使用oauth2登录"
+        }
+      ],
+      "anchor": "通过oauth2授权认证登录"
+    }
+  ],
+  "title": "认证方式",
+  "link": "/guide/security/authentication-type"
+}

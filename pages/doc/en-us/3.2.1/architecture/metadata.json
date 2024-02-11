@@ -1,0 +1,64 @@
+{
+  "__html": "<h1 id=\"metadata\">MetaData</h1>\n<h2 id=\"table-schema\">Table Schema</h2>\n<p>see sql files in <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql</code></p>\n<hr>\n<h2 id=\"e-r-diagram\">E-R Diagram</h2>\n<h3 id=\"user-queue-datasource\">User Queue DataSource</h3>\n<p><img src=\"/img/metadata-erd/user-queue-datasource.png\" alt=\"image.png\"></p>\n<ul>\n<li>One tenant can own Multiple users.</li>\n<li>The queue field in the <code>t_ds_user</code> table stores the <code>queue_name</code> information in the <code>t_ds_queue</code> table, <code>t_ds_tenant</code> stores queue information using <code>queue_id</code> column. During the execution of the process definition, the user queue has the highest priority. If the user queue is null, use the tenant queue.</li>\n<li>The <code>user_id</code> field in the <code>t_ds_datasource</code> table shows the user who create the data source. The user_id in <code>t_ds_relation_datasource_user</code> shows the user who has permission to the data source.</li>\n</ul>\n<h3 id=\"project-resource-alert\">Project Resource Alert</h3>\n<p><img src=\"/img/metadata-erd/project-resource-alert.png\" alt=\"image.png\"></p>\n<ul>\n<li>User can have multiple projects, user project authorization completes the relationship binding using <code>project_id</code> and <code>user_id</code> in <code>t_ds_relation_project_user</code> table.</li>\n<li>The <code>user_id</code> in the <code>t_ds_projcet</code> table represents the user who create the project, and the <code>user_id</code> in the <code>t_ds_relation_project_user</code> table represents users who have permission to the project.</li>\n<li>The <code>user_id</code> in the <code>t_ds_resources</code> table represents the user who create the resource, and the <code>user_id</code> in <code>t_ds_relation_resources_user</code> represents the user who has permissions to the resource.</li>\n<li>The <code>user_id</code> in the <code>t_ds_udfs</code> table represents the user who create the UDF, and the <code>user_id</code> in the <code>t_ds_relation_udfs_user</code> table represents a user who has permission to the UDF.</li>\n</ul>\n<h3 id=\"project---tenant---processdefinition---schedule\">Project - Tenant - ProcessDefinition - Schedule</h3>\n<p><img src=\"/img/metadata-erd/project_tenant_process_definition_schedule.png\" alt=\"image.png\"></p>\n<ul>\n<li>A project can have multiple process definitions, and each process definition belongs to only one project.</li>\n<li>A tenant can be used by multiple process definitions, and each process definition must select only one tenant.</li>\n<li>A workflow definition can have one or more schedules.</li>\n</ul>\n<h3 id=\"process-definition-execution\">Process Definition Execution</h3>\n<p><img src=\"/img/metadata-erd/process_definition.png\" alt=\"image.png\"></p>\n<ul>\n<li>A process definition corresponds to multiple task definitions, which are associated through <code>t_ds_process_task_relation</code> and the associated key is <code>code + version</code>. When the pre-task of the task is empty, the corresponding <code>pre_task_node</code> and <code>pre_task_version</code> are 0.</li>\n<li>A process definition can have multiple process instances <code>t_ds_process_instance</code>, one process instance corresponds to one or more task instances <code>t_ds_task_instance</code>.</li>\n<li>The data stored in the <code>t_ds_relation_process_instance</code> table is used to handle the case that the process definition contains sub-processes. <code>parent_process_instance_id</code> represents the id of the main process instance containing the sub-process, <code>process_instance_id</code> represents the id of the sub-process instance, <code>parent_task_instance_id</code> represents the task instance id of the sub-process node. The process instance table and the task instance table correspond to the <code>t_ds_process_instance</code> table and the <code>t_ds_task_instance</code> table, respectively.</li>\n</ul>\n",
+  "location": [
+    "Architecture Guide",
+    "Metadata"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "Table Schema",
+      "children": [
+        {
+          "title": "User Queue DataSource",
+          "children": [],
+          "anchor": "user-queue-datasource"
+        },
+        {
+          "title": "Project Resource Alert",
+          "children": [],
+          "anchor": "project-resource-alert"
+        },
+        {
+          "title": "Project - Tenant - ProcessDefinition - Schedule",
+          "children": [],
+          "anchor": "project---tenant---processdefinition---schedule"
+        },
+        {
+          "title": "Process Definition Execution",
+          "children": [],
+          "anchor": "process-definition-execution"
+        }
+      ],
+      "anchor": "table-schema"
+    },
+    {
+      "title": "E-R Diagram",
+      "children": [
+        {
+          "title": "User Queue DataSource",
+          "children": [],
+          "anchor": "user-queue-datasource"
+        },
+        {
+          "title": "Project Resource Alert",
+          "children": [],
+          "anchor": "project-resource-alert"
+        },
+        {
+          "title": "Project - Tenant - ProcessDefinition - Schedule",
+          "children": [],
+          "anchor": "project---tenant---processdefinition---schedule"
+        },
+        {
+          "title": "Process Definition Execution",
+          "children": [],
+          "anchor": "process-definition-execution"
+        }
+      ],
+      "anchor": "e-r-diagram"
+    }
+  ],
+  "title": "MetaData",
+  "link": "/architecture/metadata"
+}

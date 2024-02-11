@@ -1,0 +1,77 @@
+{
+  "__html": "<h1 id=\"dms-节点\">DMS 节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p><a href=\"https://aws.amazon.com/cn/dms\">AWS Database Migration Service (AWS DMS)</a> 可帮助您快速并安全地将数据库迁移至 AWS。\n源数据库在迁移过程中可继续正常运行，从而最大程度地减少依赖该数据库的应用程序的停机时间。\nAWS Database Migration Service 可以在广泛使用的开源商业数据库之间迁移您的数据。</p>\n<p>DMS任务组件帮助用户在DolphinScheduler中创建和启动DMS任务。</p>\n<p>组件主要包含两个功能：</p>\n<ul>\n<li>创建并启动迁移任务</li>\n<li>重启已存在的迁移任务</li>\n</ul>\n<p>组件的使用方式有两种：</p>\n<ul>\n<li>通过界面创建</li>\n<li>通过Json数据创建</li>\n</ul>\n<p>DolphinScheduler 在 启动DMS 任务后，会跟中DMS任务状态，直至DMS任务完成后才将任务设为成功状态。除了以下情况：</p>\n<p>不跟踪无结束时间的CDC任务，即 当迁移类型为 <code>full-load-and-cdc</code> 或者 <code>cdc</code> 时，且没有配置 <code>cdcStopPosition</code> 参数时，DolphinScheduler 在成功启动任务后，则会将任务状态设为 成功。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏的 <img src=\"/img/tasks/icons/dms.png\" width=\"15\"/> 任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<p>组件图示如下：</p>\n<p><strong>创建并启动迁移任务（通过界面）</strong></p>\n<p><img src=\"/img/tasks/demo/dms_create_and_start.png\" alt=\"dms\"></p>\n<p><strong>重启已存在的迁移任务（通过界面）</strong></p>\n<p><img src=\"/img/tasks/demo/dms_restart.png\" alt=\"dms\"></p>\n<p><strong>创建并启动迁移任务（通过Json数据）</strong></p>\n<p><img src=\"/img/tasks/demo/dms_create_and_start_json.png\" alt=\"dms\"></p>\n<p><strong>重启已存在的迁移任务（通过Json数据）</strong></p>\n<p><img src=\"/img/tasks/demo/dms_restart_json.png\" alt=\"dms\"></p>\n<h3 id=\"首先介绍一些ds通用参数\">首先介绍一些DS通用参数</h3>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.2.1/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<h3 id=\"dms组件独有的参数\">DMS组件独有的参数</h3>\n<ul>\n<li><strong>isRestartTask</strong>：是否重启已存在的迁移任务</li>\n<li><strong>isJsonFormat</strong>：是否使用Json格式的数据创建任务</li>\n<li><strong>jsonData</strong>：Json格式的数据, 是有<code>isJsonFormat</code>为true时才会生效</li>\n</ul>\n<p>创建并启动迁移任务时参数</p>\n<ul>\n<li><strong>migrationType</strong>：迁移类型, 可选值为：[ <code>full-load</code>, <code>full-load-and-cdc</code>, <code>cdc</code>]</li>\n<li><strong>replicationTaskIdentifier</strong>：迁移任务标识符, 任务名称</li>\n<li><strong>replicationInstanceArn</strong>：迁移实例的ARN</li>\n<li><strong>sourceEndpointArn</strong>：源端点的ARN</li>\n<li><strong>targetEndpointArn</strong>：目标端点的ARN</li>\n<li><strong>tableMappings</strong>：表映射</li>\n</ul>\n<p>重启已存在的迁移任务时参数</p>\n<ul>\n<li><strong>replicationTaskArn</strong>：迁移任务的ARN</li>\n</ul>\n<h2 id=\"环境配置\">环境配置</h2>\n<p>需要进行AWS的一些配置，修改<code>common.properties</code>中的以下配置信息</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-comment\"># The AWS access key. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>\n<span class=\"hljs-string\">resource.aws.access.key.id=&lt;YOUR</span> <span class=\"hljs-string\">AWS</span> <span class=\"hljs-string\">ACCESS</span> <span class=\"hljs-string\">KEY&gt;</span>\n<span class=\"hljs-comment\"># The AWS secret access key. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>\n<span class=\"hljs-string\">resource.aws.secret.access.key=&lt;YOUR</span> <span class=\"hljs-string\">AWS</span> <span class=\"hljs-string\">SECRET</span> <span class=\"hljs-string\">KEY&gt;</span>\n<span class=\"hljs-comment\"># The AWS Region to use. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>\n<span class=\"hljs-string\">resource.aws.region=&lt;AWS</span> <span class=\"hljs-string\">REGION&gt;</span>\n</code></pre>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Amazon DMS"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "首先介绍一些DS通用参数",
+          "children": [],
+          "anchor": "首先介绍一些ds通用参数"
+        },
+        {
+          "title": "DMS组件独有的参数",
+          "children": [],
+          "anchor": "dms组件独有的参数"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "首先介绍一些DS通用参数",
+          "children": [],
+          "anchor": "首先介绍一些ds通用参数"
+        },
+        {
+          "title": "DMS组件独有的参数",
+          "children": [],
+          "anchor": "dms组件独有的参数"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "首先介绍一些DS通用参数",
+          "children": [],
+          "anchor": "首先介绍一些ds通用参数"
+        },
+        {
+          "title": "DMS组件独有的参数",
+          "children": [],
+          "anchor": "dms组件独有的参数"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "环境配置",
+      "children": [
+        {
+          "title": "首先介绍一些DS通用参数",
+          "children": [],
+          "anchor": "首先介绍一些ds通用参数"
+        },
+        {
+          "title": "DMS组件独有的参数",
+          "children": [],
+          "anchor": "dms组件独有的参数"
+        }
+      ],
+      "anchor": "环境配置"
+    }
+  ],
+  "title": "DMS 节点",
+  "link": "/guide/task/dms"
+}

@@ -1,0 +1,67 @@
+{
+  "__html": "<h1 id=\"hardware-environment\">Hardware Environment</h1>\n<p>This section briefs about the hardware requirements for DolphinScheduler. DolphinScheduler works as an open-source distributed workflow task scheduling system. It can deploy and run smoothly in Intel architecture server environments and mainstream virtualization environments. It also supports mainstream Linux operating system environments and ARM architecture.</p>\n<h2 id=\"linux-operating-system-version-requirements\">Linux Operating System Version Requirements</h2>\n<p>The Linux operating systems specified below can run on physical servers and mainstream virtualization environments such as VMware, KVM, and XEN.</p>\n<table>\n<thead>\n<tr>\n<th style=\"text-align:left\">Operating System</th>\n<th style=\"text-align:center\">Version</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left\">Red Hat Enterprise Linux</td>\n<td style=\"text-align:center\">7.0 and above</td>\n</tr>\n<tr>\n<td style=\"text-align:left\">CentOS</td>\n<td style=\"text-align:center\">7.0 and above</td>\n</tr>\n<tr>\n<td style=\"text-align:left\">Oracle Enterprise Linux</td>\n<td style=\"text-align:center\">7.0 and above</td>\n</tr>\n<tr>\n<td style=\"text-align:left\">Ubuntu LTS</td>\n<td style=\"text-align:center\">16.04 and above</td>\n</tr>\n</tbody>\n</table>\n<blockquote>\n<p><strong>Note:</strong>\nThe above Linux operating systems can run on physical servers and mainstream virtualization environments such as VMware, KVM, and XEN.</p>\n</blockquote>\n<h2 id=\"server-configuration\">Server Configuration</h2>\n<p>DolphinScheduler supports 64-bit hardware platforms with Intel x86-64 architecture. The following table shows the recommended server requirements in a production environment:</p>\n<h3 id=\"production-environment\">Production Environment</h3>\n<table>\n<thead>\n<tr>\n<th><strong>CPU</strong></th>\n<th><strong>MEM</strong></th>\n<th><strong>HD</strong></th>\n<th><strong>NIC</strong></th>\n<th><strong>Num</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>4 core+</td>\n<td>8 GB+</td>\n<td>SAS</td>\n<td>GbE</td>\n<td>1+</td>\n</tr>\n</tbody>\n</table>\n<blockquote>\n<p><strong>Note:</strong></p>\n<ul>\n<li>The above recommended configuration is the minimum configuration for deploying DolphinScheduler. Higher configuration is strongly recommended for production environments.</li>\n<li>The recommended hard disk size is more than 50GB and separate the system disk and data disk.</li>\n</ul>\n</blockquote>\n<h2 id=\"network-requirements\">Network Requirements</h2>\n<p>DolphinScheduler provides the following network port configurations for normal operation:</p>\n<table>\n<thead>\n<tr>\n<th>Server</th>\n<th>Port</th>\n<th>Desc</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>MasterServer</td>\n<td>5678</td>\n<td>not the communication port, require the native ports do not conflict</td>\n</tr>\n<tr>\n<td>WorkerServer</td>\n<td>1234</td>\n<td>not the communication port, require the native ports do not conflict</td>\n</tr>\n<tr>\n<td>ApiApplicationServer</td>\n<td>12345</td>\n<td>backend communication port</td>\n</tr>\n</tbody>\n</table>\n<blockquote>\n<p><strong>Note:</strong></p>\n<ul>\n<li>MasterServer and WorkerServer do not need to enable communication between the networks. As long as the local ports do not conflict.</li>\n<li>Administrators can adjust relevant ports on the network side and host-side according to the deployment plan of DolphinScheduler components in the actual environment.</li>\n</ul>\n</blockquote>\n<h2 id=\"browser-requirements\">Browser Requirements</h2>\n<p>The minimum supported version of Google Chrome is version 85, but version 90 or above is recommended.</p>\n<h2 id=\"synchronize-clocks\">Synchronize clocks</h2>\n<p>To avoid problems with internal cluster communications that can impact your task execution, make sure that the clocks on all of the cluster nodes are synchronized from a common clock source, such as using Chrony and/or NTP. Synchronizing the time ensures that every node in the cluster has the same time.</p>\n",
+  "location": [
+    "About",
+    "Hardware Environment"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "Linux Operating System Version Requirements",
+      "children": [
+        {
+          "title": "Production Environment",
+          "children": [],
+          "anchor": "production-environment"
+        }
+      ],
+      "anchor": "linux-operating-system-version-requirements"
+    },
+    {
+      "title": "Server Configuration",
+      "children": [
+        {
+          "title": "Production Environment",
+          "children": [],
+          "anchor": "production-environment"
+        }
+      ],
+      "anchor": "server-configuration"
+    },
+    {
+      "title": "Network Requirements",
+      "children": [
+        {
+          "title": "Production Environment",
+          "children": [],
+          "anchor": "production-environment"
+        }
+      ],
+      "anchor": "network-requirements"
+    },
+    {
+      "title": "Browser Requirements",
+      "children": [
+        {
+          "title": "Production Environment",
+          "children": [],
+          "anchor": "production-environment"
+        }
+      ],
+      "anchor": "browser-requirements"
+    },
+    {
+      "title": "Synchronize clocks",
+      "children": [
+        {
+          "title": "Production Environment",
+          "children": [],
+          "anchor": "production-environment"
+        }
+      ],
+      "anchor": "synchronize-clocks"
+    }
+  ],
+  "title": "Hardware Environment",
+  "link": "/about/hardware"
+}

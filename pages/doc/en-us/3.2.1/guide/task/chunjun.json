@@ -1,0 +1,117 @@
+{
+  "__html": "<h1 id=\"chunjun\">ChunJun</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>ChunJun task type for executing ChunJun programs. For ChunJun nodes, the worker will execute <code>${CHUNJUN_HOME}/bin/start-chunjun</code> to analyze the input json file.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag the <img src=\"/img/tasks/icons/chunjun.png\" width=\"15\"/> from the toolbar to the drawing board.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Custom template</td>\n<td>Custom the content of the ChunJun node's json profile.</td>\n</tr>\n<tr>\n<td>json</td>\n<td>json configuration file for ChunJun synchronization.</td>\n</tr>\n<tr>\n<td>Custom parameters</td>\n<td>It is a user-defined parameter, and will replace the content with <code>${variable}</code> in the script.</td>\n</tr>\n<tr>\n<td>Deploy mode</td>\n<td>Execute chunjun task mode, eg local standalone.</td>\n</tr>\n<tr>\n<td>Option Parameters</td>\n<td>Support such as <code>-confProp &quot;{\\&quot;flink.checkpoint.interval\\&quot;:60000}&quot;</code></td>\n</tr>\n<tr>\n<td>Predecessor task</td>\n<td>Selecting a predecessor task for the current task will set the selected predecessor task as upstream of the current task.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<p>This example demonstrates importing data from Hive into MySQL.</p>\n<h3 id=\"configuring-the-chunjun-environment-in-dolphinscheduler\">Configuring the ChunJun environment in DolphinScheduler</h3>\n<p>If you are using the ChunJun task type in a production environment, it is necessary to configure the required environment first. The configuration file is as follows: <code>/dolphinscheduler/conf/env/dolphinscheduler_env.sh</code>.</p>\n<p><img src=\"/img/tasks/demo/chunjun_task01.png\" alt=\"chunjun_task01\"></p>\n<p>After the environment has been configured, DolphinScheduler needs to be restarted.</p>\n<h3 id=\"configuring-chunjun-task-node\">Configuring ChunJun Task Node</h3>\n<p>As the data to be read from Hive, a custom json is required, refer to: <a href=\"https://github.com/DTStack/chunjun/blob/master/chunjun-examples/json/hive/binlog_hive.json\">Hive Json Template</a>.</p>\n<p>After writing the required json file, you can configure the node content by following the steps in the diagram below.</p>\n<p><img src=\"/img/tasks/demo/chunjun_task02.png\" alt=\"chunjun_task02\"></p>\n<h3 id=\"view-run-results\">View run results</h3>\n<p><img src=\"/img/tasks/demo/chunjun_task03.png\" alt=\"chunjun_task03\"></p>\n<h3 id=\"note\">Note</h3>\n<p>Before execute ${CHUNJUN_HOME}/bin/start-chunjun, need to change the shell ${CHUNJUN_HOME}/bin/start-chunjun, remove '&amp;' in order to run in front.</p>\n<p>such as:</p>\n<pre><code class=\"language-shell\">nohup $JAVA_RUN -cp $JAR_DIR $CLASS_NAME $@ &amp;\n</code></pre>\n<p>update to following:</p>\n<pre><code class=\"language-shell\">nohup $JAVA_RUN -cp $JAR_DIR $CLASS_NAME $@\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "ChunJun"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Configuring the ChunJun environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-chunjun-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring ChunJun Task Node",
+          "children": [],
+          "anchor": "configuring-chunjun-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Configuring the ChunJun environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-chunjun-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring ChunJun Task Node",
+          "children": [],
+          "anchor": "configuring-chunjun-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Configuring the ChunJun environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-chunjun-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring ChunJun Task Node",
+          "children": [],
+          "anchor": "configuring-chunjun-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Configuring the ChunJun environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-chunjun-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring ChunJun Task Node",
+          "children": [],
+          "anchor": "configuring-chunjun-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "ChunJun",
+  "link": "/guide/task/chunjun"
+}

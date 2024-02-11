@@ -1,0 +1,129 @@
+{
+  "__html": "<h1 id=\"enterprise-wechat\">Enterprise WeChat</h1>\n<p>If you need to use <code>Enterprise WeChat</code> to alert, create an alert instance in the alert instance management, and choose the <code>WeChat</code> plugin.\nThe following is the <code>WeChat</code> configuration example:</p>\n<p><img src=\"/img/alert/enterprise-wechat-plugin.png\" alt=\"enterprise-wechat-plugin\"></p>\n<h2 id=\"send-type\">Send Type</h2>\n<p>The parameter <code>send.type</code> corresponds to sending messages to Enterprise WeChat customized APP and group chat created by API respectively.</p>\n<h3 id=\"app\">APP</h3>\n<p>The APP sends type means to notify the alert results via Enterprise WeChat customized APPs, supports sending messages to both specified users and all members. Currently, send to specified enterprise department and tags are not supported, a new PR to contribute is welcomed.\nThe following is the <code>APP</code> alert config example:</p>\n<p><img src=\"/img/alert/wechat-app-form-example.png\" alt=\"enterprise-wechat-app-msg-config\"></p>\n<p>The following is the <code>APP</code> <code>MARKDOWN</code> alert message example:</p>\n<p><img src=\"/img/alert/enterprise-wechat-app-msg-md.png\" alt=\"enterprise-wechat-app-msg-markdown\"></p>\n<p>The following is the <code>APP</code> <code>TEXT</code> alert message example:</p>\n<p><img src=\"/img/alert/enterprise-wechat-app-msg.png\" alt=\"enterprise-wechat-app-msg-text\"></p>\n<h4 id=\"prerequisites\">Prerequisites</h4>\n<p>Need to create a new customized APP in Enterprise WeChat before sending messages to APP, create at the <a href=\"https://work.weixin.qq.com/wework_admin/frame#apps\">APP Page</a> and acquire the APP <code>AgentId</code> and set its visible scope to the root of the hierarchy.</p>\n<h4 id=\"send-messages-to-specified-users\">Send Messages to Specified Users</h4>\n<p>The Enterprise WeChat APPs support sending messages to both specified users and all members, using <code>|</code> to separate multiple <code>userIds</code> and using <code>@all</code> to send messages to everyone.\nTo acquire user <code>userId</code> refer to <a href=\"https://developer.work.weixin.qq.com/document/path/95402\">Official Doc</a>, acquire <code>userId</code> by user phone number.\nThe following is the <code>query userId</code> API example:</p>\n<p><img src=\"/img/alert/enterprise-wechat-query-userid.png\" alt=\"enterprise-wechat-create-group\"></p>\n<h4 id=\"references\">References</h4>\n<p>APP: https://work.weixin.qq.com/api/doc/90000/90135/90236</p>\n<h3 id=\"group-chat\">Group Chat</h3>\n<p>The Group Chat send type means to notify the alert results via group chat created by Enterprise WeChat API, sending messages to all members of the group and specified users are not supported.\nThe following is the <code>Group Chat</code> alert config example:</p>\n<p><img src=\"/img/alert/wechat-group-form-example.png\" alt=\"enterprise-wechat-app-msg-config\"></p>\n<p>The following is the <code>APP</code> <code>MARKDOWN</code> alert message example:</p>\n<p><img src=\"/img/alert/enterprise-wechat-group-msg-md.png\" alt=\"enterprise-wechat-group-msg-markdown\"></p>\n<p>The following is the <code>Group Chat</code> <code>TEXT</code> alert message example:</p>\n<p><img src=\"/img/alert/enterprise-wechat-group-msg.png\" alt=\"enterprise-wechat-group-msg-text\"></p>\n<h4 id=\"prerequisites\">Prerequisites</h4>\n<p>Before sending messages to group chat, create a new group chat by Enterprise WeChat API, refer to <a href=\"https://developer.work.weixin.qq.com/document/path/90245\">Official Doc</a> to create a new one and acquire <code>chatid</code>.\nTo acquire user <code>userId</code> refer to <a href=\"https://developer.work.weixin.qq.com/document/path/95402\">Official Doc</a>, acquire <code>userId</code> by user phone number.\nThe following is the <code>create new group chat</code> API and <code>query userId</code> API example:</p>\n<p><img src=\"/img/alert/enterprise-wechat-create-group.png\" alt=\"enterprise-wechat-create-group\"></p>\n<p><img src=\"/img/alert/enterprise-wechat-query-userid.png\" alt=\"enterprise-wechat-create-group\"></p>\n<h2 id=\"reference\">Reference</h2>\n<ul>\n<li>Group Chat：https://work.weixin.qq.com/api/doc/90000/90135/90248</li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Alert",
+    "Enterprise Wechat"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "Send Type",
+      "children": [
+        {
+          "title": "APP",
+          "children": [
+            {
+              "title": "Prerequisites",
+              "children": [],
+              "anchor": "prerequisites"
+            },
+            {
+              "title": "Send Messages to Specified Users",
+              "children": [],
+              "anchor": "send-messages-to-specified-users"
+            },
+            {
+              "title": "References",
+              "children": [],
+              "anchor": "references"
+            },
+            {
+              "title": "Prerequisites",
+              "children": [],
+              "anchor": "prerequisites"
+            }
+          ],
+          "anchor": "app"
+        },
+        {
+          "title": "Group Chat",
+          "children": [
+            {
+              "title": "Prerequisites",
+              "children": [],
+              "anchor": "prerequisites"
+            },
+            {
+              "title": "Send Messages to Specified Users",
+              "children": [],
+              "anchor": "send-messages-to-specified-users"
+            },
+            {
+              "title": "References",
+              "children": [],
+              "anchor": "references"
+            },
+            {
+              "title": "Prerequisites",
+              "children": [],
+              "anchor": "prerequisites"
+            }
+          ],
+          "anchor": "group-chat"
+        }
+      ],
+      "anchor": "send-type"
+    },
+    {
+      "title": "Reference",
+      "children": [
+        {
+          "title": "APP",
+          "children": [
+            {
+              "title": "Prerequisites",
+              "children": [],
+              "anchor": "prerequisites"
+            },
+            {
+              "title": "Send Messages to Specified Users",
+              "children": [],
+              "anchor": "send-messages-to-specified-users"
+            },
+            {
+              "title": "References",
+              "children": [],
+              "anchor": "references"
+            },
+            {
+              "title": "Prerequisites",
+              "children": [],
+              "anchor": "prerequisites"
+            }
+          ],
+          "anchor": "app"
+        },
+        {
+          "title": "Group Chat",
+          "children": [
+            {
+              "title": "Prerequisites",
+              "children": [],
+              "anchor": "prerequisites"
+            },
+            {
+              "title": "Send Messages to Specified Users",
+              "children": [],
+              "anchor": "send-messages-to-specified-users"
+            },
+            {
+              "title": "References",
+              "children": [],
+              "anchor": "references"
+            },
+            {
+              "title": "Prerequisites",
+              "children": [],
+              "anchor": "prerequisites"
+            }
+          ],
+          "anchor": "group-chat"
+        }
+      ],
+      "anchor": "reference"
+    }
+  ],
+  "title": "Enterprise WeChat",
+  "link": "/guide/alert/enterprise-wechat"
+}

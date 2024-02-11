@@ -1,0 +1,117 @@
+{
+  "__html": "<h1 id=\"dvc节点\">DVC节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p><a href=\"https://dvc.org\">DVC（Data Version Control）</a> 是一个MLops领域一个优秀的开机器学习版本管理系统。</p>\n<p>DVC 组件用于在DS上使用DVC的数据版本管理功能，帮助用户简易地进行数据的版本管理。组件提供如下三个功能：</p>\n<ul>\n<li>Init DVC: 将git仓库初始化为DVC仓库，并绑定存储数据的地址用于存储实际的数据。</li>\n<li>Upload: 将特定数据添加或者更新到仓库中，并记录版本号。</li>\n<li>Download: 从仓库中下载特定版本的数据。</li>\n</ul>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏的 <img src=\"/img/tasks/icons/dvc.png\" width=\"15\"/> 任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.2.1/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>DVC任务类型</td>\n<td>可以选择 Upload、Download、Init DVC</td>\n</tr>\n<tr>\n<td>DVC仓库</td>\n<td>任务执行时关联的仓库地址</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"init-dvc\">Init DVC</h3>\n<p>将git仓库初始化为DVC仓库, 并绑定数据储存的地方。</p>\n<p>项目初始化后，仍然为git仓库，不过添加了DVC的特性。</p>\n<p>实际上数据并不保存在git仓库，而是存储在另外的地方，DVC会跟踪数据的版本和地址，并处理好这个关系。</p>\n<p><img src=\"/img/tasks/demo/dvc_init.png\" alt=\"dvc_init\"></p>\n<p><strong>任务参数</strong></p>\n<ul>\n<li><strong>数据存储地址</strong>\n：实际的数据保存的地址，支持的类型可见 <a href=\"https://dvc.org/doc/command-reference/remote/add#supported-storage-types\">DVC supported storage types</a>\n。</li>\n</ul>\n<p>如上述例子表示： 将仓库 <code>git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git</code> 初始化为DVC项目，并绑定远程储存地址为 <code>~/dvc</code></p>\n<h3 id=\"upload\">Upload</h3>\n<p>用于上传和更新数据，并记录版本号。</p>\n<p><img src=\"/img/tasks/demo/dvc_upload.png\" alt=\"dvc_upload\"></p>\n<p><strong>任务参数</strong></p>\n<ul>\n<li><strong>DVC仓库中的数据路径</strong> ：上传的数据保存到仓库的地址。</li>\n<li><strong>Worker中数据路径</strong> ：需要上传的数据的地址。</li>\n<li><strong>数据版本</strong> ：上传数据后，为该版本数据打上的版本号，会保存到 git tag 里面。</li>\n<li><strong>数据版本信息</strong> ：本次上传需要备注的信息。</li>\n</ul>\n<p>如上述例子表示： 将数据 <code>/home/data/iris</code> 上传到仓库 <code>git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git</code>\n的根目录下，数据的文件/文件夹名字为<code>iris</code>。 然后执行 <code>git tag &quot;iris_1.0&quot; -m &quot;init iris data&quot;</code>。 记录版本号 <code>iris_1.0</code>和 版本信息 'inir iris data'</p>\n<h3 id=\"download\">Download</h3>\n<p>用于下载特定版本的数据。</p>\n<p><img src=\"/img/tasks/demo/dvc_download.png\" alt=\"dvc_download\"></p>\n<p><strong>任务参数</strong></p>\n<ul>\n<li><strong>DVC仓库中的数据路径</strong> ：需要下载数据在仓库中的路径。</li>\n<li><strong>Worker中数据路径</strong> ：数据下载到本地后的保存地址。</li>\n<li><strong>数据版本</strong> ：需要下载的数据的版本。</li>\n</ul>\n<p>如上述例子表示： 将仓库 <code>git@github.com:xxxx/dvc-data-repository-example.git</code> 版本为 <code>iris_1.0</code> 的 iris 的数据下载到 <code>~/dvc_test/iris</code></p>\n<h2 id=\"环境准备\">环境准备</h2>\n<h3 id=\"dvc-安装\">dvc 安装</h3>\n<p>确保你已经安装DVC可以使用<code>pip install dvc</code>进行安装。</p>\n<p>获取dvc地址, 并配置环境变量</p>\n<p>下面以 conda 上的 python pip 安装为例子，配置 conda 的环境变量，使得组件能正确找到<code>dvc</code>命令</p>\n<pre><code class=\"language-shell\">which dvc\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">&gt;&gt; ~/anaconda3/bin/dvc</span>\n</code></pre>\n<p>你需要进入admin账户配置一个conda环境变量（请提前<a href=\"https://docs.continuum.io/anaconda/install/\">安装anaconda</a>\n或者<a href=\"https://docs.conda.io/en/latest/miniconda.html#installing\">安装miniconda</a> )。</p>\n<p><img src=\"/img/tasks/demo/dvc_env_config.png\" alt=\"dvc_env_config\"></p>\n<p>后续注意配置任务时，环境选择上面创建的conda环境，否则程序会找不到conda环境。</p>\n<p><img src=\"/img/tasks/demo/dvc_env_name.png\" alt=\"dvc_env_name\"></p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "DVC"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "Init DVC",
+          "children": [],
+          "anchor": "init-dvc"
+        },
+        {
+          "title": "Upload",
+          "children": [],
+          "anchor": "upload"
+        },
+        {
+          "title": "Download",
+          "children": [],
+          "anchor": "download"
+        },
+        {
+          "title": "dvc 安装",
+          "children": [],
+          "anchor": "dvc-安装"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "Init DVC",
+          "children": [],
+          "anchor": "init-dvc"
+        },
+        {
+          "title": "Upload",
+          "children": [],
+          "anchor": "upload"
+        },
+        {
+          "title": "Download",
+          "children": [],
+          "anchor": "download"
+        },
+        {
+          "title": "dvc 安装",
+          "children": [],
+          "anchor": "dvc-安装"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "Init DVC",
+          "children": [],
+          "anchor": "init-dvc"
+        },
+        {
+          "title": "Upload",
+          "children": [],
+          "anchor": "upload"
+        },
+        {
+          "title": "Download",
+          "children": [],
+          "anchor": "download"
+        },
+        {
+          "title": "dvc 安装",
+          "children": [],
+          "anchor": "dvc-安装"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "环境准备",
+      "children": [
+        {
+          "title": "Init DVC",
+          "children": [],
+          "anchor": "init-dvc"
+        },
+        {
+          "title": "Upload",
+          "children": [],
+          "anchor": "upload"
+        },
+        {
+          "title": "Download",
+          "children": [],
+          "anchor": "download"
+        },
+        {
+          "title": "dvc 安装",
+          "children": [],
+          "anchor": "dvc-安装"
+        }
+      ],
+      "anchor": "环境准备"
+    }
+  ],
+  "title": "DVC节点",
+  "link": "/guide/task/dvc"
+}

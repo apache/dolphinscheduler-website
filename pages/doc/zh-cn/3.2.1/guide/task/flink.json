@@ -1,0 +1,253 @@
+{
+  "__html": "<h1 id=\"flink节点\">Flink节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p>Flink 任务类型，用于执行 Flink 程序。对于 Flink 节点：</p>\n<ol>\n<li>\n<p>当程序类型为 Java、Scala 或 Python 时，worker 使用 Flink 命令提交任务 <code>flink run</code>。更多详情查看 <a href=\"https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/deployment/cli/\">flink cli</a> 。</p>\n</li>\n<li>\n<p>当程序类型为 SQL 时，worker 使用<code>sql-client.sh</code> 提交任务。更多详情查看 <a href=\"https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/sqlclient/\">flink sql client</a> 。</p>\n</li>\n</ol>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏的 <img src=\"/img/tasks/icons/flink.png\" width=\"15\"/> 任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.2.1/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>程序类型</td>\n<td>支持 Java、Scala、 Python 和 SQL 四种语言</td>\n</tr>\n<tr>\n<td>主函数的 Class</td>\n<td>Flink 程序的入口 Main Class 的<strong>全路径</strong></td>\n</tr>\n<tr>\n<td>主程序包</td>\n<td>执行 Flink 程序的 jar 包（通过资源中心上传）</td>\n</tr>\n<tr>\n<td>部署方式</td>\n<td>支持 cluster、 local 和 application （Flink 1.11和之后的版本支持，参见 <a href=\"https://nightlies.apache.org/flink/flink-docs-release-1.11/ops/deployment/yarn_setup.html#run-an-application-in-application-mode\">Run an application in Application Mode</a>） 三种模式的部署</td>\n</tr>\n<tr>\n<td>初始化脚本</td>\n<td>用于初始化会话上下文的脚本文件</td>\n</tr>\n<tr>\n<td>脚本</td>\n<td>用户开发的应该执行的 SQL 脚本文件</td>\n</tr>\n<tr>\n<td>Flink 版本</td>\n<td>根据所需环境选择对应的版本即可</td>\n</tr>\n<tr>\n<td>任务名称（选填）</td>\n<td>Flink 程序的名称</td>\n</tr>\n<tr>\n<td>jobManager 内存数</td>\n<td>用于设置 jobManager 内存数，可根据实际生产环境设置对应的内存数</td>\n</tr>\n<tr>\n<td>Slot 数量</td>\n<td>用于设置 Slot 的数量，可根据实际生产环境设置对应的数量</td>\n</tr>\n<tr>\n<td>taskManager 内存数</td>\n<td>用于设置 taskManager 内存数，可根据实际生产环境设置对应的内存数</td>\n</tr>\n<tr>\n<td>taskManager 数量</td>\n<td>用于设置 taskManager 的数量，可根据实际生产环境设置对应的数量</td>\n</tr>\n<tr>\n<td>并行度</td>\n<td>用于设置执行 Flink 任务的并行度</td>\n</tr>\n<tr>\n<td>Yarn 队列</td>\n<td>用于设置 Yarn 队列，默认使用 default 队列</td>\n</tr>\n<tr>\n<td>主程序参数</td>\n<td>设置 Flink 程序的输入参数，支持自定义参数变量的替换</td>\n</tr>\n<tr>\n<td>选项参数</td>\n<td>设置Flink命令的选项参数，例如<code>-D</code>, <code>-C</code>, <code>-yt</code></td>\n</tr>\n<tr>\n<td>自定义参数</td>\n<td>是 Flink 局部的用户自定义参数，会替换脚本中以 ${变量} 的内容</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"执行-wordcount-程序\">执行 WordCount 程序</h3>\n<p>本案例为大数据生态中常见的入门案例，常应用于 MapReduce、Flink、Spark 等计算框架。主要为统计输入的文本中，相同的单词的数量有多少。（Flink 的 Releases 附带了此示例作业）</p>\n<h4 id=\"在-dolphinscheduler-中配置-flink-环境\">在 DolphinScheduler 中配置 flink 环境</h4>\n<p>若生产环境中要是使用到 flink 任务类型，则需要先配置好所需的环境。配置文件如下：<code>bin/env/dolphinscheduler_env.sh</code>。</p>\n<p><img src=\"/img/tasks/demo/flink_task01.png\" alt=\"flink-configure\"></p>\n<h4 id=\"上传主程序包\">上传主程序包</h4>\n<p>在使用 Flink 任务节点时，需要利用资源中心上传执行程序的 jar 包，可参考<a href=\"/zh-cn/docs/3.2.1/guide/resource/configuration\">资源中心</a>。</p>\n<p>当配置完成资源中心之后，直接使用拖拽的方式，即可上传所需目标文件。</p>\n<p><img src=\"/img/tasks/demo/upload_jar.png\" alt=\"resource_upload\"></p>\n<h4 id=\"配置-flink-节点\">配置 Flink 节点</h4>\n<p>根据上述参数说明，配置所需的内容即可。</p>\n<p><img src=\"/img/tasks/demo/flink_task02.png\" alt=\"demo-flink-simple\"></p>\n<h3 id=\"执行-flinksql-程序\">执行 FlinkSQL 程序</h3>\n<p>根据上述参数说明，配置所需的内容即可。</p>\n<p><img src=\"/img/tasks/demo/flink_sql_test.png\" alt=\"demo-flink-sql-simple\"></p>\n<h2 id=\"注意事项：\">注意事项：</h2>\n<ul>\n<li>\n<p>Java 和 Scala 只是用来标识，没有区别，如果是 Python 开发的 Flink 则没有主函数的 class，其余的都一样。</p>\n</li>\n<li>\n<p>使用 SQL 执行 Flink SQL 任务，目前只支持 Flink 1.13及以上版本。</p>\n</li>\n</ul>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Flink"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "执行 WordCount 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-wordcount-程序"
+        },
+        {
+          "title": "执行 FlinkSQL 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-flinksql-程序"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "执行 WordCount 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-wordcount-程序"
+        },
+        {
+          "title": "执行 FlinkSQL 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-flinksql-程序"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "执行 WordCount 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-wordcount-程序"
+        },
+        {
+          "title": "执行 FlinkSQL 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-flinksql-程序"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "执行 WordCount 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-wordcount-程序"
+        },
+        {
+          "title": "执行 FlinkSQL 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-flinksql-程序"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "注意事项：",
+      "children": [
+        {
+          "title": "执行 WordCount 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-wordcount-程序"
+        },
+        {
+          "title": "执行 FlinkSQL 程序",
+          "children": [
+            {
+              "title": "在 DolphinScheduler 中配置 flink 环境",
+              "children": [],
+              "anchor": "在-dolphinscheduler-中配置-flink-环境"
+            },
+            {
+              "title": "上传主程序包",
+              "children": [],
+              "anchor": "上传主程序包"
+            },
+            {
+              "title": "配置 Flink 节点",
+              "children": [],
+              "anchor": "配置-flink-节点"
+            }
+          ],
+          "anchor": "执行-flinksql-程序"
+        }
+      ],
+      "anchor": "注意事项："
+    }
+  ],
+  "title": "Flink节点",
+  "link": "/guide/task/flink"
+}

@@ -1,0 +1,60 @@
+{
+  "__html": "<h1 id=\"cluster-deployment\">Cluster Deployment</h1>\n<p>Cluster deployment is to deploy the DolphinScheduler on multiple machines for running massive tasks in production.</p>\n<p>If you are a new hand and want to experience DolphinScheduler functions, we recommend you install follow <a href=\"/en-us/docs/3.2.1/guide/installation/standalone\">Standalone deployment</a>. If you want to experience more complete functions and schedule massive tasks, we recommend you install follow <a href=\"/en-us/docs/3.2.1/guide/installation/pseudo-cluster\">pseudo-cluster deployment</a>. If you want to deploy DolphinScheduler in production, we recommend you follow <a href=\"/en-us/docs/3.2.1/guide/installation/cluster\">cluster deployment</a> or <a href=\"/en-us/docs/3.2.1/guide/installation/kubernetes\">Kubernetes deployment</a>.</p>\n<h2 id=\"deployment-steps\">Deployment Steps</h2>\n<p>Cluster deployment uses the same scripts and configuration files as <a href=\"/en-us/docs/3.2.1/guide/installation/pseudo-cluster\">pseudo-cluster deployment</a>, so the preparation and deployment steps are the same as pseudo-cluster deployment. The difference is that pseudo-cluster deployment is for one machine, while cluster deployment (Cluster) is for multiple machines. And steps of &quot;Modify Configuration&quot; are quite different between pseudo-cluster deployment and cluster deployment.</p>\n<h3 id=\"prerequisites-and-dolphinscheduler-startup-environment-preparations\">Prerequisites and DolphinScheduler Startup Environment Preparations</h3>\n<p>Configure all the configurations refer to <a href=\"/en-us/docs/3.2.1/guide/installation/pseudo-cluster\">pseudo-cluster deployment</a> on every machine, except sections <code>Prerequisites</code>, <code>Start ZooKeeper</code> and <code>Initialize the Database</code> of the <code>DolphinScheduler Startup Environment</code>.</p>\n<h3 id=\"modify-configuration\">Modify Configuration</h3>\n<p>This step differs quite a lot from <a href=\"/en-us/docs/3.2.1/guide/installation/pseudo-cluster\">pseudo-cluster deployment</a>, because the deployment script transfers the required resources for installation to each deployment machine by using <code>scp</code>. So we only need to modify the configuration of the machine that runs <code>install.sh</code> script and configurations will dispatch to cluster by <code>scp</code>. The configuration file is under the path <code>bin/env/install_env.sh</code>, here we only need to modify section <strong>INSTALL MACHINE</strong>, <strong>DolphinScheduler ENV, Database, Registry Server</strong> and keep other sections the same as [pseudo-cluster deployment](pseudo-cluster .md), the following describes the parameters that must be modified:</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">---------------------------------------------------------</span>\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">INSTALL MACHINE</span>\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">---------------------------------------------------------</span>\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Using IP or machine hostname <span class=\"hljs-keyword\">for</span> the server going to deploy master, worker, API server, the IP of the server</span>\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">If you using a hostname, make sure machines could connect each other by hostname</span>\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">As below, the hostname of the machine deploying DolphinScheduler is ds1, ds2, ds3, ds4, ds5, <span class=\"hljs-built_in\">where</span> ds1, ds2 install the master server, ds3, ds4, and ds5 installs worker server, the alert server is installed <span class=\"hljs-keyword\">in</span> ds4, and the API server is installed <span class=\"hljs-keyword\">in</span> ds5</span>\nips=&quot;ds1,ds2,ds3,ds4,ds5&quot;\nmasters=&quot;ds1,ds2&quot;\nworkers=&quot;ds3:default,ds4:default,ds5:default&quot;\nalertServer=&quot;ds4&quot;\napiServers=&quot;ds5&quot;\n</code></pre>\n<h2 id=\"start-and-login-dolphinscheduler\">Start and Login DolphinScheduler</h2>\n<p>Same as <a href=\"/en-us/docs/3.2.1/guide/installation/pseudo-cluster\">pseudo-cluster</a></p>\n<h2 id=\"start-and-stop-server\">Start and Stop Server</h2>\n<p>Same as <a href=\"/en-us/docs/3.2.1/guide/installation/pseudo-cluster\">pseudo-cluster</a></p>\n",
+  "location": [
+    "Installation",
+    "Cluster Deployment"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "Deployment Steps",
+      "children": [
+        {
+          "title": "Prerequisites and DolphinScheduler Startup Environment Preparations",
+          "children": [],
+          "anchor": "prerequisites-and-dolphinscheduler-startup-environment-preparations"
+        },
+        {
+          "title": "Modify Configuration",
+          "children": [],
+          "anchor": "modify-configuration"
+        }
+      ],
+      "anchor": "deployment-steps"
+    },
+    {
+      "title": "Start and Login DolphinScheduler",
+      "children": [
+        {
+          "title": "Prerequisites and DolphinScheduler Startup Environment Preparations",
+          "children": [],
+          "anchor": "prerequisites-and-dolphinscheduler-startup-environment-preparations"
+        },
+        {
+          "title": "Modify Configuration",
+          "children": [],
+          "anchor": "modify-configuration"
+        }
+      ],
+      "anchor": "start-and-login-dolphinscheduler"
+    },
+    {
+      "title": "Start and Stop Server",
+      "children": [
+        {
+          "title": "Prerequisites and DolphinScheduler Startup Environment Preparations",
+          "children": [],
+          "anchor": "prerequisites-and-dolphinscheduler-startup-environment-preparations"
+        },
+        {
+          "title": "Modify Configuration",
+          "children": [],
+          "anchor": "modify-configuration"
+        }
+      ],
+      "anchor": "start-and-stop-server"
+    }
+  ],
+  "title": "Cluster Deployment",
+  "link": "/guide/installation/cluster"
+}

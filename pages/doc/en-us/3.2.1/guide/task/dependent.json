@@ -1,0 +1,33 @@
+{
+  "__html": "<h1 id=\"dependent\">Dependent</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Dependent nodes are <strong>dependency check nodes</strong>. For example, process A depends on the successful execution of process B from yesterday, and the dependent node will check whether process B run successful yesterday.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/dependent.png\" width=\"15\"/> task node to canvas.</li>\n</ul>\n<h2 id=\"task-parameter\">Task Parameter</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Add Dependencies</td>\n<td>Configure dependent upstream tasks.</td>\n</tr>\n<tr>\n<td>Check interval</td>\n<td>Check the dependent upstream task status interval, the default is 10s.</td>\n</tr>\n<tr>\n<td>Dependency failure policy</td>\n<td>Failure: The dependent upstream task failure and the current task directly failure; Wait: The dependent upstream task failure and the current task continues to wait;</td>\n</tr>\n<tr>\n<td>Dependency failure waiting time</td>\n<td>When the dependency failure policy chooses to wait, the current task wait time.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-examples\">Task Examples</h2>\n<p>The Dependent node provides a logical judgment function, which can detect the execution of the dependent node according to the logic.</p>\n<p>Two dependency modes are supported, including workflow-dependent and task-dependent. The task-dependent mode is divided into two cases: depend on all tasks in the workflow and depend on a single task.\nThe workflow-dependent mode checks the status of the dependent workflow; the all-task-dependent mode checks the status of all tasks in the workflow; and the single-task-dependent mode checks the status of the dependent task.</p>\n<p>When the dependent result is success and the parameter passing option is true, the Dependent node will output the output parameters of the dependency to the downstream task. When the parameter names of multiple dependencies are the same, it involves the priority of the parameters. See also <a href=\"../parameter//en-us/docs/3.2.1/guide/parameter/priority\">Parameter Priority</a></p>\n<p>For example, process A is a weekly task, processes B and C are daily tasks, and task A requires tasks B and C to be successfully executed last week.</p>\n<p><img src=\"/img/tasks/demo/dependent_task01.png\" alt=\"dependent_task01\"></p>\n<p>And another example is that process A is a weekly report task, processes B and C are daily tasks, and task A requires tasks B or C to be successfully executed last week:</p>\n<p><img src=\"/img/tasks/demo/dependent_task02.png\" alt=\"dependent_task02\"></p>\n<p>If the weekly report A also needs to be executed successfully last Tuesday:</p>\n<p><img src=\"/img/tasks/demo/dependent_task03.png\" alt=\"dependent_task03\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Dependent"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameter",
+      "children": [],
+      "anchor": "task-parameter"
+    },
+    {
+      "title": "Task Examples",
+      "children": [],
+      "anchor": "task-examples"
+    }
+  ],
+  "title": "Dependent",
+  "link": "/guide/task/dependent"
+}

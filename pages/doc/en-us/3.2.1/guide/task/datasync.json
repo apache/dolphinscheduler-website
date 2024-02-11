@@ -1,0 +1,33 @@
+{
+  "__html": "<h1 id=\"datasync-node\">DataSync Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p><a href=\"https://console.aws.amazon.com/datasync/\">AWS DataSync</a> is an online data transfer service that simplifies, automates, and accelerates moving data between on-premises storage systems and AWS Storage services, as well as between AWS Storage services.</p>\n<p>DataSync can copy data to and from:</p>\n<ul>\n<li>Network File System (NFS) file servers</li>\n<li>Server Message Block (SMB) file servers</li>\n<li>Hadoop Distributed File System (HDFS)</li>\n<li>Object storage systems</li>\n<li>Amazon Simple Storage Service (Amazon S3) buckets</li>\n<li>Amazon EFS file systems</li>\n<li>Amazon FSx for Windows File Server file systems</li>\n<li>Amazon FSx for Lustre file systems</li>\n<li>Amazon FSx for OpenZFS file systems</li>\n<li>Amazon FSx for NetApp ONTAP file systems</li>\n<li>AWS Snowcone devices</li>\n</ul>\n<p>The follow shows the DolphinScheduler DataSync task plugin features:</p>\n<ul>\n<li>Create an AWS DataSync task and execute, continuously get the execution status until the task completes.</li>\n</ul>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the &quot;Create Workflow&quot; button to enter the\nDAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/datasync.png\" width=\"15\"/> task node to canvas.</li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<p>Here are some specific parameters for the DataSync plugin:</p>\n<ul>\n<li>\n<p><strong>name</strong>: Task name</p>\n</li>\n<li>\n<p><strong>destinationLocationArn</strong>: The Amazon Resource Name (ARN) of an AWS storage resource's location. Visit <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateTask.html#DataSync-CreateTask-request-DestinationLocationArn\">AWS API</a></p>\n</li>\n<li>\n<p><strong>sourceLocationArn</strong>: The Amazon Resource Name (ARN) of the source location for the task. Visit <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateTask.html#DataSync-CreateTask-request-SourceLocationArn\">AWS API</a></p>\n</li>\n<li>\n<p><strong>cloudWatchLogGroupArn</strong>: The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that is used to monitor and log events in the task. Visit <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateTask.html#DataSync-CreateTask-request-CloudWatchLogGroupArn\">AWS API</a></p>\n<p>or</p>\n</li>\n<li>\n<p><strong>json</strong>: JSON parameters to construct datasync task, and supports parameters like options, etc. Visit: [AWS CreateTask API] 的 Request Syntax (https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateTask.html)</p>\n</li>\n<li>\n<p>The following shows the task plugin example:</p>\n</li>\n</ul>\n<p><img src=\"/img/tasks/demo/datasync_task02.png\" alt=\"datasync\"></p>\n<h2 id=\"environment-to-prepare\">Environment to prepare</h2>\n<p>The task requires AWS configurations, modify the value in file <code>common.properties</code></p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-comment\"># Defines AWS access key and is required</span>\n<span class=\"hljs-string\">resource.aws.access.key.id=&lt;YOUR</span> <span class=\"hljs-string\">AWS</span> <span class=\"hljs-string\">ACCESS</span> <span class=\"hljs-string\">KEY&gt;</span>\n<span class=\"hljs-comment\"># Defines AWS secret access key and is required</span>\n<span class=\"hljs-string\">resource.aws.secret.access.key=&lt;YOUR</span> <span class=\"hljs-string\">AWS</span> <span class=\"hljs-string\">SECRET</span> <span class=\"hljs-string\">KEY&gt;</span>\n<span class=\"hljs-comment\"># Defines  AWS Region to use and is required</span>\n<span class=\"hljs-string\">resource.aws.region=&lt;AWS</span> <span class=\"hljs-string\">REGION&gt;</span>\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "AWS Datasync"
+  ],
+  "time": "2024-2-11",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Example",
+      "children": [],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Environment to prepare",
+      "children": [],
+      "anchor": "environment-to-prepare"
+    }
+  ],
+  "title": "DataSync Node",
+  "link": "/guide/task/datasync"
+}
