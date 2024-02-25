@@ -36,8 +36,7 @@ export const Community = ({ star, fork }) => {
           </div>
           <Space className="home-community-icons" size={20}>
             <Button
-              className="home-community-buttons"
-              icon={<GithubOutlined/>}
+              icon={<GithubOutlined />}
               type="text"
               size="large"
               shape="circle"
@@ -45,7 +44,6 @@ export const Community = ({ star, fork }) => {
               target="_blank"
             />
             <Button
-              className="home-community-buttons"
               icon={<SlackOutlined />}
               type="text"
               size="large"
@@ -54,7 +52,6 @@ export const Community = ({ star, fork }) => {
               target="_blank"
             />
             <Button
-              className="home-community-buttons"
               icon={<TwitterOutlined />}
               type="text"
               size="large"
