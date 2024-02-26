@@ -19,6 +19,8 @@ node version is 10+, version lower than 10.x is not supported yet.
 ```
 Note: if you clone the code in Windows, not Mac or Linux. Please read the details below.
 If you execute the commands like the two steps above, you will get the exception "UnhandledPromiseRejectionWarning: Error: EPERM: operation not permitted, symlink '2.0.3' -> 'latest'".
+If you get the exception "Can't resolve 'antd' in xxx",you can run `yarn add antd` and `yarn install`.
+Because the two steps run command `./scripts/prepare_docs.sh` should Linux environment,so if you are a windwos system you can use WSL do it.
 When meeting this problem. You can run two steps in the cmd.exe as an ADMINISTRATOR MEMBER.
 ```
 
