@@ -251,7 +251,7 @@ const parseDocsMenu = () => {
     const filePath = path.join(sourcePath, doc);
     const fileInfo = path.parse(filePath);
     formateFile(filePath);
-    const fileContent = require(`/${filePath}`);
+    const fileContent = require(`${filePath}`);
     const enUs = [];
     const zhCn = [];
 
