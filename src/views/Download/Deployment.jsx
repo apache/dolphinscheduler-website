@@ -80,7 +80,7 @@ export const Deployment = () => {
             <>
               <div className="deployment-content-bold">
                 {deployments[current].versions[0].version} {t("release_tips")}{" "}
-                {deployments[current].versions[0].version}.
+                3.1.9.
               </div>
               <Collapse
                 defaultActiveKey={[0]}
