@@ -35,7 +35,7 @@ picture
 * EKS cluster creation
 * Conveniently, use the AWS console to create an EKS cluster, associate the above VPC and subnet (reference: https://docs.aws.amazon.com/zh_cn/eks/latest/userguide/create-cluster.html), and create a cluster on the springboard Configure communication with the cluster in. We use EKS version 1.24 here.
 * Database and Storage Services
-* Also use the AWS console to create a serverless Aurora PostgreSQL database cluster in the VPC private subnet (reference: https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.create-cluster. html). We use aurora-postgresql version 14.4 here.
+* Also use the AWS console to create a serverless Aurora PostgreSQL database cluster in the VPC private subnet (reference: https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.create-cluster.html). We use aurora-postgresql version 14.4 here.
 
 picture
 * Build DolphinScheduler custom image
