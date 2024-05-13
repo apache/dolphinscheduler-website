@@ -26,6 +26,11 @@ const Footer = () => {
 
     document.body.appendChild(script);
 
+    const meta = document.createElement('meta');
+    meta.httpEquiv = "Content-Security-Policy";
+    meta.content = "frame-src 'self' https://www.google.com/;";
+    document.head.appendChild(meta);
+
     return () => {
       document.body.removeChild(script);
     }
