@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Prepare Related Resource
-        if: github.event_name == 'schedule'
+        if: github.event_name == 'schedule' || github.event_name == 'pull_request'
         run: ./scripts/prepare_docs.sh
       - run: npm install fs-extra --save-dev
       - name: Generate the images of Logs and Events
