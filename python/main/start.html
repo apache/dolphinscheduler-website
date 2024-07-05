@@ -166,7 +166,9 @@ could define workflow and task structures, but could not run it unless you
 <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a> and start its API server which includes
 Python gateway service in it. We only write some key steps here and you could
 go <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a> for more details</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start DolphinScheduler api-server which including python gateway service</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export the environment variable to enabled python-gateway service</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">API_PYTHON_GATEWAY_ENABLED</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+<span class="c1"># Start DolphinScheduler api-server which including python gateway service</span>
 ./bin/dolphinscheduler-daemon.sh<span class="w"> </span>start<span class="w"> </span>api-server
 </pre></div>
 </div>
@@ -180,9 +182,11 @@ the server is healthy if keyword <cite>ApiApplicationServer</cite> is in the con
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please make sure you already started Python gateway service along with <cite>api-server</cite>. The configuration is in
-yaml config path <cite>python-gateway.enabled : true</cite> in api-server’s configuration path in <cite>api-server/conf/application.yaml</cite>.
-The default value is true and Python gateway service starts when api server is started.</p>
+<p>Please make sure you already started Python gateway service along with <cite>api-server</cite>. You can enabled it via</p>
+<ul class="simple">
+<li><p>Environment: <cite>export API_PYTHON_GATEWAY_ENABLED=”true”</cite></p></li>
+<li><p>Configuration File: Set <cite>python-gateway.enabled : true</cite> in <cite>api-server/conf/application.yaml</cite></p></li>
+</ul>
 </div>
 </section>
 <section id="run-an-example">

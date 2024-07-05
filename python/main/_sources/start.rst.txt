@@ -105,6 +105,8 @@ go `install Apache DolphinScheduler`_ for more details
 
 .. code-block:: bash
 
+   # Export the environment variable to enabled python-gateway service
+   export API_PYTHON_GATEWAY_ENABLED="true"
    # Start DolphinScheduler api-server which including python gateway service
    ./bin/dolphinscheduler-daemon.sh start api-server
 
@@ -120,9 +122,10 @@ the server is healthy if keyword `ApiApplicationServer` is in the console.
 
 .. note::
 
-   Please make sure you already started Python gateway service along with `api-server`. The configuration is in
-   yaml config path `python-gateway.enabled : true` in api-server's configuration path in `api-server/conf/application.yaml`.
-   The default value is true and Python gateway service starts when api server is started.
+   Please make sure you already started Python gateway service along with `api-server`. You can enabled it via
+
+   * Environment: `export API_PYTHON_GATEWAY_ENABLED="true"`
+   * Configuration File: Set `python-gateway.enabled : true` in `api-server/conf/application.yaml`
 
 Run an Example
 --------------
