@@ -29,3 +29,19 @@ export const getLinkFromLocation = (location, index) => {
   });
   return link;
 };
+
+export const getSearchItemLinkFromLocation = (searchItem, index) => {
+  debugger
+  const location = searchItem.location;
+  if (!location || !Array.isArray(location)) return "";
+  let link = "";
+  location.some((item, i) => {
+    if (i <= index) {
+      link += "/" + formatName(item);
+    }
+    if (i !== location.length - 1) link += "_menu";
+    if (i === location.length - 1) link = searchItem.link;
+    return i >= index;
+  });
+  return link;
+};
