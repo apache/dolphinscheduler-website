@@ -62,7 +62,7 @@ const SearchModal = ({ open, list, value, onClose, loading, handleSearch }) => {
                       <a
                         href={`/${params.locale}/docs/${
                           params.version
-                        }${getLinkFromLocation(item.location, i)}`}
+                        }${item.link}`}
                       >
                         {slip}
                       </a>
