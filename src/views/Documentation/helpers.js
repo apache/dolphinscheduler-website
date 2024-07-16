@@ -31,7 +31,6 @@ export const getLinkFromLocation = (location, index) => {
 };
 
 export const getSearchItemLinkFromLocation = (searchItem, index) => {
-  debugger
   const location = searchItem.location;
   if (!location || !Array.isArray(location)) return "";
   let link = "";

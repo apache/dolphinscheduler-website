@@ -1,7 +1,7 @@
 import { memo, useState, useEffect } from "react";
 import { Modal, Input, Button, Breadcrumb, Empty, Spin } from "antd";
 import { useParams } from "react-router-dom";
-import {getSearchItemLinkFromLocation} from "./helpers";
+import { getSearchItemLinkFromLocation } from "./helpers";
 
 const SearchModal = ({ open, list, value, onClose, loading, handleSearch }) => {
   const params = useParams();
