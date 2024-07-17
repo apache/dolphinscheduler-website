@@ -214,6 +214,7 @@ const searchDocVersion = async (value, version) => {
         title: replaceStr(item.title, value, 80, titleI),
         desc: replaceStr(item.content, value, 100, contentI),
         location: item.location,
+        link: item.link,
       });
     }
   }
