@@ -216,7 +216,7 @@ const wirteVersion = () => {
 };
 
 const wirteSearchDocData = () => {
-  [("en-us", "zh-cn")].forEach((lang) => {
+  ["en-us", "zh-cn"].forEach((lang) => {
     const targetSearchPath = `${BASE}/public/data/doc/${lang}.json`;
     fs.ensureFileSync(targetSearchPath);
     fs.writeFileSync(
