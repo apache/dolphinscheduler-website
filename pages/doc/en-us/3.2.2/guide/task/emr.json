@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"amazon-emr\">Amazon EMR</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Amazon EMR task type, for operation EMR clusters on AWS and running computing tasks.\nUsing <a href=\"https://aws.amazon.com/cn/sdk-for-java/\">aws-java-sdk</a> in the background code, to transfer JSON parameters to task object and submit to AWS, Two program types are currently supported:</p>\n<ul>\n<li><code>RUN_JOB_FLOW</code> Using <a href=\"https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html#API_RunJobFlow_Examples\">API_RunJobFlow</a> submit <a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/elasticmapreduce/model/RunJobFlowRequest.html\">RunJobFlowRequest</a> object</li>\n<li><code>ADD_JOB_FLOW_STEPS</code> Using <a href=\"https://docs.aws.amazon.com/emr/latest/APIReference/API_AddJobFlowSteps.html#API_AddJobFlowSteps_Examples\">API_AddJobFlowSteps</a> submit <a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/elasticmapreduce/model/AddJobFlowStepsRequest.html\">AddJobFlowStepsRequest</a> object</li>\n</ul>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag <code>AmazonEMR</code> task from the toolbar to the artboard to complete the creation.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.2/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Program Type</td>\n<td>Select the program type. If it is <code>RUN_JOB_FLOW</code>, you need to fill in <code>jobFlowDefineJson</code>, if it is <code>ADD_JOB_FLOW_STEPS</code>, you need to fill in <code>stepsDefineJson</code>.</td>\n</tr>\n<tr>\n<td>jobFlowDefineJson</td>\n<td>JSON corresponding to the <a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/elasticmapreduce/model/RunJobFlowRequest.html\">RunJobFlowRequest</a> object, for details refer to <a href=\"https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html#API_RunJobFlow_Examples\">API_RunJobFlow_Examples</a>.</td>\n</tr>\n<tr>\n<td>stepsDefineJson</td>\n<td>JSON corresponding to the <a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/elasticmapreduce/model/AddJobFlowStepsRequest.html\">AddJobFlowStepsRequest</a> object, for details refer to <a href=\"https://docs.aws.amazon.com/emr/latest/APIReference/API_AddJobFlowSteps.html#API_AddJobFlowSteps_Examples\">API_AddJobFlowSteps_Examples</a>.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"create-an-emr-cluster-and-run-steps\">Create an EMR cluster and run Steps</h3>\n<p>This example shows how to create an <code>EMR</code> task node of type <code>RUN_JOB_FLOW</code>. Taking the execution of <code>SparkPi</code> as an example, the task will create an <code>EMR</code> cluster and execute the <code>SparkPi</code> sample program.\n<img src=\"/img/tasks/demo/emr_run_job_flow.png\" alt=\"RUN_JOB_FLOW\"></p>\n<p>jobFlowDefineJson example</p>\n<pre><code class=\"language-json\"><span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;SparkPi&quot;</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;ReleaseLabel&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;emr-5.34.0&quot;</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;Applications&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n    <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;Spark&quot;</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">]</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;Instances&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;InstanceGroups&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n      <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;Primary node&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;InstanceRole&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;MASTER&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;InstanceType&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;m4.xlarge&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;InstanceCount&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-number\">1</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">]</span><span class=\"hljs-punctuation\">,</span>\n    <span class=\"hljs-attr\">&quot;KeepJobFlowAliveWhenNoSteps&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-literal\"><span class=\"hljs-keyword\">false</span></span><span class=\"hljs-punctuation\">,</span>\n    <span class=\"hljs-attr\">&quot;TerminationProtected&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-literal\"><span class=\"hljs-keyword\">false</span></span>\n  <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;Steps&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n    <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;calculate_pi&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;ActionOnFailure&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;CONTINUE&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;HadoopJarStep&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;Jar&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;command-runner.jar&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;Args&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n          <span class=\"hljs-string\">&quot;/usr/lib/spark/bin/run-example&quot;</span><span class=\"hljs-punctuation\">,</span>\n          <span class=\"hljs-string\">&quot;SparkPi&quot;</span><span class=\"hljs-punctuation\">,</span>\n          <span class=\"hljs-string\">&quot;15&quot;</span>\n        <span class=\"hljs-punctuation\">]</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">]</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;JobFlowRole&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;EMR_EC2_DefaultRole&quot;</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;ServiceRole&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;EMR_DefaultRole&quot;</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre>\n<h3 id=\"add-a-step-to-a-running-emr-cluster\">Add a Step to a Running EMR Cluster</h3>\n<p>This example shows how to create an <code>EMR</code> task node of type <code>ADD_JOB_FLOW_STEPS</code>. Taking the execution of <code>SparkPi</code> as an example, the task will add a <code>SparkPi</code> sample program to the running <code>EMR</code> cluster.\n<img src=\"/img/tasks/demo/emr_add_job_flow_steps.png\" alt=\"ADD_JOB_FLOW_STEPS\">\n<img src=\"/img/tasks/demo/emr_jobFlowId.png\" alt=\"JobFlowId\"></p>\n<p>stepsDefineJson example</p>\n<pre><code class=\"language-json\"><span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;JobFlowId&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;j-3V628TKAERHP8&quot;</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;Steps&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n    <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;Name&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;calculate_pi&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;ActionOnFailure&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;CONTINUE&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;HadoopJarStep&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;Jar&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;command-runner.jar&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;Args&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n          <span class=\"hljs-string\">&quot;/usr/lib/spark/bin/run-example&quot;</span><span class=\"hljs-punctuation\">,</span>\n          <span class=\"hljs-string\">&quot;SparkPi&quot;</span><span class=\"hljs-punctuation\">,</span>\n          <span class=\"hljs-string\">&quot;15&quot;</span>\n        <span class=\"hljs-punctuation\">]</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">]</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre>\n<h2 id=\"notice\">Notice</h2>\n<ul>\n<li>Failover on EMR Task type has not been implemented. In this time, DolphinScheduler only supports failover on yarn task type . Other task type, such as EMR task, k8s task not ready yet.</li>\n<li><code>stepsDefineJson</code> A task definition only supports the association of a single step, which can better ensure the reliability of the task state.</li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Amazon EMR"
+  ],
+  "time": "2024-7-16",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Create an EMR cluster and run Steps",
+          "children": [],
+          "anchor": "create-an-emr-cluster-and-run-steps"
+        },
+        {
+          "title": "Add a Step to a Running EMR Cluster",
+          "children": [],
+          "anchor": "add-a-step-to-a-running-emr-cluster"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Create an EMR cluster and run Steps",
+          "children": [],
+          "anchor": "create-an-emr-cluster-and-run-steps"
+        },
+        {
+          "title": "Add a Step to a Running EMR Cluster",
+          "children": [],
+          "anchor": "add-a-step-to-a-running-emr-cluster"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Create an EMR cluster and run Steps",
+          "children": [],
+          "anchor": "create-an-emr-cluster-and-run-steps"
+        },
+        {
+          "title": "Add a Step to a Running EMR Cluster",
+          "children": [],
+          "anchor": "add-a-step-to-a-running-emr-cluster"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Create an EMR cluster and run Steps",
+          "children": [],
+          "anchor": "create-an-emr-cluster-and-run-steps"
+        },
+        {
+          "title": "Add a Step to a Running EMR Cluster",
+          "children": [],
+          "anchor": "add-a-step-to-a-running-emr-cluster"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Notice",
+      "children": [
+        {
+          "title": "Create an EMR cluster and run Steps",
+          "children": [],
+          "anchor": "create-an-emr-cluster-and-run-steps"
+        },
+        {
+          "title": "Add a Step to a Running EMR Cluster",
+          "children": [],
+          "anchor": "add-a-step-to-a-running-emr-cluster"
+        }
+      ],
+      "anchor": "notice"
+    }
+  ],
+  "title": "Amazon EMR",
+  "link": "/guide/task/emr"
+}

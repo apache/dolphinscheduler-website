@@ -1,0 +1,45 @@
+{
+  "__html": "<h1 id=\"http告警\">HTTP告警</h1>\n<p>如果您需要使用到<code>Http</code>（GET或POST）进行告警，请在告警实例管理里创建告警实例，选择<code>Http</code>插件。</p>\n<h2 id=\"参数配置\">参数配置</h2>\n<ul>\n<li>\n<p>URL</p>\n<blockquote>\n<p>访问的<code>Http</code>连接URL,需要包含协议、Host、路径，如果是GET方法可以添加参数</p>\n</blockquote>\n</li>\n<li>\n<p>请求方式</p>\n<blockquote>\n<p>选择该请求为POST或GET方法</p>\n</blockquote>\n</li>\n<li>\n<p>请求头</p>\n<blockquote>\n<p><code>Http</code>请求的完整请求头，以JSON为格式</p>\n</blockquote>\n</li>\n<li>\n<p>请求体</p>\n<blockquote>\n<p><code>Http</code>请求的完整请求体，以JSON为格式，GET方法不需要写该参数</p>\n</blockquote>\n</li>\n<li>\n<p>内容字段</p>\n<blockquote>\n<p>放置本次告警告警信息的字段名称</p>\n</blockquote>\n</li>\n</ul>\n<h2 id=\"发送类型\">发送类型</h2>\n<p>其中<code>Request Type</code>分别对应使用<code>POST</code>方法和<code>GET</code>方法进行<code>Http</code>告警。</p>\n<h3 id=\"get-http告警\">GET Http告警</h3>\n<p>GET <code>Http</code>告警指将告警结果作为参数通过<code>Http</code> GET方法进行请求。\n下图是GET告警配置的示例:</p>\n<p><img src=\"/img/alert/http-get-example.png\" alt=\"enterprise-wechat-app-msg-config\"></p>\n<h3 id=\"post-http告警\">POST Http告警</h3>\n<p>POST <code>Http</code>告警指将告警结果作为<code>BODY</code>参数通过<code>Http</code>POST方法进行请求。\n下图是POST告警配置的示例:</p>\n<p><img src=\"/img/alert/http-post-example.png\" alt=\"enterprise-wechat-app-msg-config\"></p>\n",
+  "location": [
+    "功能介绍",
+    "告警",
+    "Http告警"
+  ],
+  "time": "2024-7-16",
+  "structure": [
+    {
+      "title": "参数配置",
+      "children": [
+        {
+          "title": "GET Http告警",
+          "children": [],
+          "anchor": "get-http告警"
+        },
+        {
+          "title": "POST Http告警",
+          "children": [],
+          "anchor": "post-http告警"
+        }
+      ],
+      "anchor": "参数配置"
+    },
+    {
+      "title": "发送类型",
+      "children": [
+        {
+          "title": "GET Http告警",
+          "children": [],
+          "anchor": "get-http告警"
+        },
+        {
+          "title": "POST Http告警",
+          "children": [],
+          "anchor": "post-http告警"
+        }
+      ],
+      "anchor": "发送类型"
+    }
+  ],
+  "title": "HTTP告警",
+  "link": "/guide/alert/http"
+}

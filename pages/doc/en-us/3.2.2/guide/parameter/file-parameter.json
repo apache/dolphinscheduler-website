@@ -1,0 +1,75 @@
+{
+  "__html": "<h1 id=\"file-parameter\">FILE Parameter</h1>\n<p>Use the file parameter to pass files (or folders, hereinafter referred to as <strong>files</strong>) in the working directory of the upstream task to the downstream task in the same workflow instance. The following scenarios may be used</p>\n<ul>\n<li>In the ETL task, pass the data files processed by multiple upstream tasks to a specific downstream task.</li>\n<li>In the machine learning scenario, pass the data set file of the upstream data preparation task to the downstream model training task.</li>\n</ul>\n<h2 id=\"usage\">Usage</h2>\n<h3 id=\"configure-file-parameter\">Configure file parameter</h3>\n<p>File parameter configuration method: click the plus sign on the right side of &quot;Custom Parameters&quot; on the task definition page to configure.</p>\n<h3 id=\"output-file-to-downstream-task\">Output file to downstream task</h3>\n<p><strong>Four options of custom parameters are:</strong></p>\n<ul>\n<li>Parameter name: the identifier used when passing tasks, such as <code>KEY1</code> and <code>KEY2</code> in the figure below</li>\n<li>Direction: OUT, which means outputting the file to the downstream task</li>\n<li>Parameter type: FILE, indicating file parameter</li>\n<li>Parameter value: output file path, such as <code>data</code> and <code>data/test2/text.txt</code> in the figure below</li>\n</ul>\n<p>The configuration in the figure below indicates that the <code>output</code> task passes two file data to the downstream task, respectively:</p>\n<ul>\n<li>Pass out the folder <code>data</code>, and mark it as <code>dir-data</code>. The downstream task can get this folder through <code>output.dir-data</code></li>\n<li>Pass out the file <code>data/test2/text.txt</code>, and mark it as <code>file-text</code>. The downstream task can get this folder through <code>output.file-text</code></li>\n</ul>\n<p><img src=\"/img/new_ui/dev/parameter/file_parameter_output.png\" alt=\"img.png\"></p>\n<h3 id=\"get-the-file-from-the-upstream-task\">Get the file from the upstream task</h3>\n<p><strong>Four options of custom parameters are:</strong></p>\n<ul>\n<li>Parameter name: the position where the upstream file is saved after input, such as <code>input_dir</code> used in the figure below</li>\n<li>Direction: IN, which means to get the file from the upstream task</li>\n<li>Parameter type: FILE, indicating file parameter</li>\n<li>Parameter value: the identifier of the upstream file, in the format of <code>taskName.KEY</code>. For example, <code>output.dir-data</code> in the figure below, where <code>output</code> is the name of the upstream task, and <code>dir-data</code> is the file identifier output by the upstream task</li>\n</ul>\n<p>The configuration in the figure below indicates that the task gets the folder identified by <code>dir-data</code> from the upstream task <code>output</code> and saves it as <code>input_dir</code></p>\n<p><img src=\"/img/new_ui/dev/parameter/file_parameter_input_dir.png\" alt=\"img.png\"></p>\n<p>The configuration in the figure below indicates that the task gets the file identified by <code>file-text</code> from the upstream task <code>output</code> and saves it as <code>input.txt</code></p>\n<p><img src=\"/img/new_ui/dev/parameter/file_parameter_input_file.png\" alt=\"img.png\"></p>\n<h2 id=\"other\">Other</h2>\n<h3 id=\"note\">Note</h3>\n<ul>\n<li>The file transfer between upstream and downstream tasks is based on the resource center as a transfer, and the data is saved in the <code>DATA_TRANSFER</code> directory of the resource center. Therefore, <strong>the resource center function must be enabled</strong>, please refer to <a href=\"/en-us/docs/3.2.2/guide/resource/configuration\">Resource Center Configuration Details</a> for details, otherwise the file parameter function cannot be used.</li>\n<li>The file naming rule is <code>DATA_TRANSFER/DATE/ProcessDefineCode/ProcessDefineVersion_ProcessInstanceID/TaskName_TaskInstanceID_FileName</code></li>\n<li>If the transferred file data is a folder, it will be packaged into a compressed file with a suffix of <code>.zip</code> and uploaded. The downstream task will unzip and save it in the corresponding directory after receiving it</li>\n<li>If you need to delete the file data, you can delete the corresponding folder in the <code>DATA_TRANSFER</code> directory of the resource center. If you delete the date subdirectory directly, all the file data under that date will be deleted. You can also use the <a href=\"../api/open-api.md\">Open API interface</a> (<code>resources/data-transfer</code>) to delete the corresponding file data (delete data N days ago).</li>\n<li>If there is a task chain task1-&gt;task2-&gt;tas3, then the downstream task task3 can also get the file data of task1</li>\n<li>Support one-to-many transmission and many-to-one transmission</li>\n<li>If you frequently transfer a large number of files, it is obvious that the system IO performance will be affected by the amount of transferred data</li>\n</ul>\n<h3 id=\"example\">Example</h3>\n<p>You can save the following YAML file locally and then execute <code>pydolphinscheduler yaml -f data-transfer.yaml</code> to run the Demo.</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-comment\"># Define the workflow</span>\n<span class=\"hljs-attr\">workflow:</span>\n  <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">&quot;data-transfer&quot;</span>\n  <span class=\"hljs-attr\">run:</span> <span class=\"hljs-literal\">true</span>\n\n<span class=\"hljs-comment\"># Define the tasks under the workflow</span>\n<span class=\"hljs-attr\">tasks:</span>\n  <span class=\"hljs-bullet\">-</span> <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">output</span>\n    <span class=\"hljs-attr\">task_type:</span> <span class=\"hljs-string\">Shell</span>\n    <span class=\"hljs-attr\">command:</span> <span class=\"hljs-string\">|\n      mkdir -p data/test1 data/test2\n      echo &quot;test1 message&quot; &gt;&gt; data/test1/text.txt\n      echo &quot;test2 message&quot; &gt;&gt; data/test2/text.txt\n      tree .\n</span>    <span class=\"hljs-attr\">local_params:</span>\n      <span class=\"hljs-bullet\">-</span> { <span class=\"hljs-attr\">&quot;prop&quot;:</span> <span class=\"hljs-string\">&quot;dir-data&quot;</span>, <span class=\"hljs-attr\">&quot;direct&quot;:</span> <span class=\"hljs-string\">&quot;OUT&quot;</span>, <span class=\"hljs-attr\">&quot;type&quot;:</span> <span class=\"hljs-string\">&quot;FILE&quot;</span>, <span class=\"hljs-attr\">&quot;value&quot;:</span> <span class=\"hljs-string\">&quot;data&quot;</span> }\n      <span class=\"hljs-bullet\">-</span> { <span class=\"hljs-attr\">&quot;prop&quot;:</span> <span class=\"hljs-string\">&quot;file-text&quot;</span>, <span class=\"hljs-attr\">&quot;direct&quot;:</span> <span class=\"hljs-string\">&quot;OUT&quot;</span>, <span class=\"hljs-attr\">&quot;type&quot;:</span> <span class=\"hljs-string\">&quot;FILE&quot;</span>, <span class=\"hljs-attr\">&quot;value&quot;:</span> <span class=\"hljs-string\">&quot;data/test2/text.txt&quot;</span> }\n\n  <span class=\"hljs-bullet\">-</span> <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">input_dir</span>\n    <span class=\"hljs-attr\">task_type:</span> <span class=\"hljs-string\">Shell</span>\n    <span class=\"hljs-attr\">deps:</span> [<span class=\"hljs-string\">output</span>]\n    <span class=\"hljs-attr\">command:</span> <span class=\"hljs-string\">|\n      tree .\n      cat input_dir/test1/text.txt\n      cat input_dir/test2/text.txt\n</span>    <span class=\"hljs-attr\">local_params:</span>\n      <span class=\"hljs-bullet\">-</span> { <span class=\"hljs-attr\">&quot;prop&quot;:</span> <span class=\"hljs-string\">&quot;input_dir&quot;</span>, <span class=\"hljs-attr\">&quot;direct&quot;:</span> <span class=\"hljs-string\">&quot;IN&quot;</span>, <span class=\"hljs-attr\">&quot;type&quot;:</span> <span class=\"hljs-string\">&quot;FILE&quot;</span>, <span class=\"hljs-attr\">&quot;value&quot;:</span> <span class=\"hljs-string\">&quot;output.dir-data&quot;</span> }\n\n\n  <span class=\"hljs-bullet\">-</span> <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">input_file</span>\n    <span class=\"hljs-attr\">task_type:</span> <span class=\"hljs-string\">Shell</span>\n    <span class=\"hljs-attr\">deps:</span> [<span class=\"hljs-string\">output</span>]\n    <span class=\"hljs-attr\">command:</span> <span class=\"hljs-string\">|\n      tree .\n      cat input.txt\n</span>    <span class=\"hljs-attr\">local_params:</span>\n      <span class=\"hljs-bullet\">-</span> { <span class=\"hljs-attr\">&quot;prop&quot;:</span> <span class=\"hljs-string\">&quot;input.txt&quot;</span>, <span class=\"hljs-attr\">&quot;direct&quot;:</span> <span class=\"hljs-string\">&quot;IN&quot;</span>, <span class=\"hljs-attr\">&quot;type&quot;:</span> <span class=\"hljs-string\">&quot;FILE&quot;</span>, <span class=\"hljs-attr\">&quot;value&quot;:</span> <span class=\"hljs-string\">&quot;output.file-text&quot;</span> }\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Parameter",
+    "File Parameter"
+  ],
+  "time": "2024-7-16",
+  "structure": [
+    {
+      "title": "Usage",
+      "children": [
+        {
+          "title": "Configure file parameter",
+          "children": [],
+          "anchor": "configure-file-parameter"
+        },
+        {
+          "title": "Output file to downstream task",
+          "children": [],
+          "anchor": "output-file-to-downstream-task"
+        },
+        {
+          "title": "Get the file from the upstream task",
+          "children": [],
+          "anchor": "get-the-file-from-the-upstream-task"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        },
+        {
+          "title": "Example",
+          "children": [],
+          "anchor": "example"
+        }
+      ],
+      "anchor": "usage"
+    },
+    {
+      "title": "Other",
+      "children": [
+        {
+          "title": "Configure file parameter",
+          "children": [],
+          "anchor": "configure-file-parameter"
+        },
+        {
+          "title": "Output file to downstream task",
+          "children": [],
+          "anchor": "output-file-to-downstream-task"
+        },
+        {
+          "title": "Get the file from the upstream task",
+          "children": [],
+          "anchor": "get-the-file-from-the-upstream-task"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        },
+        {
+          "title": "Example",
+          "children": [],
+          "anchor": "example"
+        }
+      ],
+      "anchor": "other"
+    }
+  ],
+  "title": "FILE Parameter",
+  "link": "/guide/parameter/file-parameter"
+}

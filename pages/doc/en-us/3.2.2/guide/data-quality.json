@@ -1,0 +1,1566 @@
+{
+  "__html": "<h1 id=\"data-quality\">Data Quality</h1>\n<h2 id=\"introduction\">Introduction</h2>\n<p>The data quality task is used to check the data accuracy during the integration and processing of data. Data quality tasks in this release include single-table checking, single-table custom SQL checking, multi-table accuracy, and two-table value comparisons. The running environment of the data quality task is Spark 2.4.0, and other versions have not been verified, and users can verify by themselves.</p>\n<p>The execution logic of the data quality task is as follows:</p>\n<ul>\n<li>The user defines the task in the interface, and the user input value is stored in <code>TaskParam</code>.</li>\n<li>When running a task, <code>Master</code> will parse <code>TaskParam</code>, encapsulate the parameters required by <code>DataQualityTask</code> and send it to <code>Worker</code>.</li>\n<li>Worker runs the data quality task. After the data quality task finishes running, it writes the statistical results to the specified storage engine.</li>\n<li>The current data quality task result is stored in the <code>t_ds_dq_execute_result</code> table of <code>dolphinscheduler</code>\n<code>Worker</code> sends the task result to <code>Master</code>, after <code>Master</code> receives <code>TaskResponse</code>, it will judge whether the task type is <code>DataQualityTask</code>, if so, it will read the corresponding result from <code>t_ds_dq_execute_result</code> according to <code>taskInstanceId</code>, and then The result is judged according to the check mode, operator and threshold configured by the user.</li>\n<li>If the result is a failure, the corresponding operation, alarm or interruption will be performed according to the failure policy configured by the user.</li>\n<li>If you package <code>data-quality</code> separately, remember to modify the package name to be consistent with <code>data-quality.jar.dir</code> in <code>common.properties</code> with attribute name <code>data-quality.jar.dir</code></li>\n<li>If the old version is upgraded and used, you need to execute the <code>sql</code> update script to initialize the database before running.</li>\n<li><code>dolphinscheduler-data-quality-dev-SNAPSHOT.jar</code> was built with no dependencies. If a <code>JDBC</code> driver is required, you can set the <code>-jars</code> parameter in the <code>node settings</code> <code>Option Parameters</code>, e.g. <code>--jars /lib/jars/mysql-connector-java-8.0.16.jar</code>.</li>\n<li>Currently only <code>MySQL</code>, <code>PostgreSQL</code> and <code>HIVE</code> data sources have been tested, other data sources have not been tested yet.</li>\n<li><code>Spark</code> needs to be configured to read <code>Hive</code> metadata, <code>Spark</code> does not use <code>jdbc</code> to read <code>Hive</code>.</li>\n</ul>\n<h2 id=\"detailed-inspection-logic\">Detailed Inspection Logic</h2>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>CheckMethod</td>\n<td>[CheckFormula][Operator][Threshold], if the result is true, it indicates that the data does not meet expectations, and the failure strategy is executed.</td>\n</tr>\n<tr>\n<td>CheckFormula</td>\n<td><ul><li>Expected-Actual</li><li>Actual-Expected</li><li>(Actual/Expected)x100%</li><li>(Expected-Actual)/Expected x100%</li></ul></td>\n</tr>\n<tr>\n<td>Operator</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, !=</td>\n</tr>\n<tr>\n<td>ExpectedValue</td>\n<td><ul><li>FixValue</li><li>DailyAvg</li><li>WeeklyAvg</li><li>MonthlyAvg</li><li>Last7DayAvg</li><li>Last30DayAvg</li><li>SrcTableTotalRows</li><li>TargetTableTotalRows</li></ul></td>\n</tr>\n<tr>\n<td>Example</td>\n<td><ul><li>CheckFormula：Actual-Expected</li><li>Operator：&gt;</li><li>Threshold：0</li><li>ExpectedValue：FixValue=9</li></ul></td>\n</tr>\n</tbody>\n</table>\n<p>In the example, assuming that the actual value is 10, the operator is &gt;, and the expected value is 9, then the result 10 -9 &gt; 0 is true, which means that the row data in the empty column has exceeded the threshold, and the task is judged to fail.</p>\n<h1 id=\"task-operation-guide\">Task Operation Guide</h1>\n<h2 id=\"null-value-check-for-single-table-check\">Null Value Check for Single Table Check</h2>\n<h3 id=\"inspection-introduction\">Inspection Introduction</h3>\n<p>The goal of the null value check is to check the number of empty rows in the specified column. The number of empty rows can be compared with the total number of rows or a specified threshold. If it is greater than a certain threshold, it will be judged as failure.</p>\n<ul>\n<li>\n<p>The SQL statement that calculates the null of the specified column is as follows:</p>\n<pre><code class=\"language-sql\"><span class=\"hljs-keyword\">SELECT</span> <span class=\"hljs-built_in\">COUNT</span>(<span class=\"hljs-operator\">*</span>) <span class=\"hljs-keyword\">AS</span> miss <span class=\"hljs-keyword\">FROM</span> ${src_table} <span class=\"hljs-keyword\">WHERE</span> (${src_field} <span class=\"hljs-keyword\">is</span> <span class=\"hljs-keyword\">null</span> <span class=\"hljs-keyword\">or</span> ${src_field} <span class=\"hljs-operator\">=</span> <span class=\"hljs-string\">&#x27;&#x27;</span>) <span class=\"hljs-keyword\">AND</span> (${src_filter})\n</code></pre>\n</li>\n<li>\n<p>The SQL to calculate the total number of rows in the table is as follows:</p>\n<pre><code class=\"language-sql\"><span class=\"hljs-keyword\">SELECT</span> <span class=\"hljs-built_in\">COUNT</span>(<span class=\"hljs-operator\">*</span>) <span class=\"hljs-keyword\">AS</span> total <span class=\"hljs-keyword\">FROM</span> ${src_table} <span class=\"hljs-keyword\">WHERE</span> (${src_filter})\n</code></pre>\n</li>\n</ul>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/null_check.png\" alt=\"dataquality_null_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>Drop-down to select the table where the validation data is located.</td>\n</tr>\n<tr>\n<td>Src filter conditions</td>\n<td>Such as the title, it will also be used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Src table check column</td>\n<td>Drop-down to select the check column name.</td>\n</tr>\n<tr>\n<td>Check method</td>\n<td><ul><li>[Expected-Actual]</li><li>[Actual-Expected]</li><li>[Actual/Expected]x100%</li><li>[(Expected-Actual)/Expected]x100%</li></ul></td>\n</tr>\n<tr>\n<td>Check operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Threshold</td>\n<td>The value used in the formula for comparison.</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li></ul></td>\n</tr>\n<tr>\n<td>Expected value type</td>\n<td>Select the desired type from the drop-down menu.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"timeliness-check-of-single-table-check\">Timeliness Check of Single Table Check</h2>\n<h3 id=\"inspection-introduction\">Inspection Introduction</h3>\n<p>The timeliness check is used to check whether the data is processed within the expected time. The start time and end time can be specified to define the time range. If the amount of data within the time range does not reach the set threshold, the check task will be judged as fail.</p>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/timeliness_check.png\" alt=\"dataquality_timeliness_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>Drop-down to select the table where the validation data is located.</td>\n</tr>\n<tr>\n<td>Src filter conditions</td>\n<td>Such as the title, it will also be used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Src table check column</td>\n<td>Drop-down to select check column name.</td>\n</tr>\n<tr>\n<td>Start time</td>\n<td>The start time of a time range.</td>\n</tr>\n<tr>\n<td>end time</td>\n<td>The end time of a time range.</td>\n</tr>\n<tr>\n<td>Time Format</td>\n<td>Set the corresponding time format.</td>\n</tr>\n<tr>\n<td>Check method</td>\n<td><ul><li>[Expected-Actual]</li><li>[Actual-Expected]</li><li>[Actual/Expected]x100%</li><li>[(Expected-Actual)/Expected]x100%</li></ul></td>\n</tr>\n<tr>\n<td>Check operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Threshold</td>\n<td>The value used in the formula for comparison.</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li></ul></td>\n</tr>\n<tr>\n<td>Expected value type</td>\n<td>Select the desired type from the drop-down menu.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"field-length-check-for-single-table-check\">Field Length Check for Single Table Check</h2>\n<h3 id=\"inspection-introduction\">Inspection Introduction</h3>\n<p>The goal of field length verification is to check whether the length of the selected field meets the expectations. If there is data that does not meet the requirements, and the number of rows exceeds the threshold, the task will be judged to fail.</p>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/field_length_check.png\" alt=\"dataquality_length_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>Drop-down to select the table where the validation data is located.</td>\n</tr>\n<tr>\n<td>Src filter conditions</td>\n<td>Such as the title, it will also be used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Src table check column</td>\n<td>Drop-down to select the check column name.</td>\n</tr>\n<tr>\n<td>Logical operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Field length limit</td>\n<td>Like the title.</td>\n</tr>\n<tr>\n<td>Check method</td>\n<td><ul><li>[Expected-Actual]</li><li>[Actual-Expected]</li><li>[Actual/Expected]x100%</li><li>[(Expected-Actual)/Expected]x100%</li></ul></td>\n</tr>\n<tr>\n<td>Check operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Threshold</td>\n<td>The value used in the formula for comparison.</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li></ul></td>\n</tr>\n<tr>\n<td>Expected value type</td>\n<td>Select the desired type from the drop-down menu.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"uniqueness-check-for-single-table-check\">Uniqueness Check for Single Table Check</h2>\n<h3 id=\"inspection-introduction\">Inspection Introduction</h3>\n<p>The goal of the uniqueness check is to check whether the fields are duplicated. It is generally used to check whether the primary key is duplicated. If there are duplicates and the threshold is reached, the check task will be judged to be failed.</p>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/uniqueness_check.png\" alt=\"dataquality_uniqueness_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>Drop-down to select the table where the validation data is located.</td>\n</tr>\n<tr>\n<td>Src filter conditions</td>\n<td>Such as the title, it will also be used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Src table check column</td>\n<td>Drop-down to select the check column name.</td>\n</tr>\n<tr>\n<td>Check method</td>\n<td><ul><li>[Expected-Actual]</li><li>[Actual-Expected]</li><li>[Actual/Expected]x100%</li><li>[(Expected-Actual)/Expected]x100%</li></ul></td>\n</tr>\n<tr>\n<td>Check operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Threshold</td>\n<td>The value used in the formula for comparison.</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li></ul></td>\n</tr>\n<tr>\n<td>Expected value type</td>\n<td>Select the desired type from the drop-down menu.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"regular-expression-check-for-single-table-check\">Regular Expression Check for Single Table Check</h2>\n<h3 id=\"inspection-introduction\">Inspection Introduction</h3>\n<p>The goal of regular expression verification is to check whether the format of the value of a field meets the requirements, such as time format, email format, ID card format, etc. If there is data that does not meet the format and exceeds the threshold, the task will be judged as failed.</p>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/regexp_check.png\" alt=\"dataquality_regex_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>Drop-down to select the table where the validation data is located.</td>\n</tr>\n<tr>\n<td>Src filter conditions</td>\n<td>Such as the title, it will also be used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Src table check column</td>\n<td>Drop-down to select check column name.</td>\n</tr>\n<tr>\n<td>Regular expression</td>\n<td>As title.</td>\n</tr>\n<tr>\n<td>Check method</td>\n<td><ul><li>[Expected-Actual]</li><li>[Actual-Expected]</li><li>[Actual/Expected]x100%</li><li>[(Expected-Actual)/Expected]x100%</li></ul></td>\n</tr>\n<tr>\n<td>Check operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Threshold</td>\n<td>The value used in the formula for comparison.</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li></ul></td>\n</tr>\n<tr>\n<td>Expected value type</td>\n<td>Select the desired type from the drop-down menu.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"enumeration-value-validation-for-single-table-check\">Enumeration Value Validation for Single Table Check</h2>\n<h3 id=\"inspection-introduction\">Inspection Introduction</h3>\n<p>The goal of enumeration value verification is to check whether the value of a field is within the range of the enumeration value. If there is data that is not in the range of the enumeration value and exceeds the threshold, the task will be judged to fail.</p>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/enumeration_check.png\" alt=\"dataquality_enum_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>Drop-down to select the table where the validation data is located.</td>\n</tr>\n<tr>\n<td>Src table filter conditions</td>\n<td>Such as title, also used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Src table check column</td>\n<td>Drop-down to select the check column name.</td>\n</tr>\n<tr>\n<td>List of enumeration values</td>\n<td>Separated by commas.</td>\n</tr>\n<tr>\n<td>Check method</td>\n<td><ul><li>[Expected-Actual]</li><li>[Actual-Expected]</li><li>[Actual/Expected]x100%</li><li>[(Expected-Actual)/Expected]x100%</li></ul></td>\n</tr>\n<tr>\n<td>Check operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Threshold</td>\n<td>The value used in the formula for comparison.</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li></ul></td>\n</tr>\n<tr>\n<td>Expected value type</td>\n<td>Select the desired type from the drop-down menu.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"table-row-number-verification-for-single-table-check\">Table Row Number Verification for Single Table Check</h2>\n<h3 id=\"inspection-introduction\">Inspection Introduction</h3>\n<p>The goal of table row number verification is to check whether the number of rows in the table reaches the expected value. If the number of rows does not meet the standard, the task will be judged as failed.</p>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/table_count_check.png\" alt=\"dataquality_count_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>Drop-down to select the table where the validation data is located.</td>\n</tr>\n<tr>\n<td>Src filter conditions</td>\n<td>Such as the title, it will also be used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Src table check column</td>\n<td>Drop-down to select the check column name.</td>\n</tr>\n<tr>\n<td>Check method</td>\n<td><ul><li>[Expected-Actual]</li><li>[Actual-Expected]</li><li>[Actual/Expected]x100%</li><li>[(Expected-Actual)/Expected]x100%</li></ul></td>\n</tr>\n<tr>\n<td>Check operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Threshold</td>\n<td>The value used in the formula for comparison.</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li></ul></td>\n</tr>\n<tr>\n<td>Expected value type</td>\n<td>Select the desired type from the drop-down menu.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"custom-sql-check-for-single-table-check\">Custom SQL Check for Single Table Check</h2>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/custom_sql_check.png\" alt=\"dataquality_custom_sql_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>Drop-down to select the table where the data to be verified is located.</td>\n</tr>\n<tr>\n<td>Actual value name</td>\n<td>Alias in SQL for statistical value calculation, such as max_num.</td>\n</tr>\n<tr>\n<td>Actual value calculation SQL</td>\n<td>SQL for outputting actual values. Note:<ul><li>The SQL must be statistical SQL, such as counting the number of rows, calculating the maximum value, minimum value, etc.</li><li>Select max(a) as max_num from ${src_table}, the table name must be filled like this.</li></ul></td>\n</tr>\n<tr>\n<td>Src filter conditions</td>\n<td>Such as the title, it will also be used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Check method</td>\n<td><ul><li>[Expected-Actual]</li><li>[Actual-Expected]</li><li>[Actual/Expected]x100%</li><li>[(Expected-Actual)/Expected]x100%</li></ul></td>\n</tr>\n<tr>\n<td>Check operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Threshold</td>\n<td>The value used in the formula for comparison.</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li></ul></td>\n</tr>\n<tr>\n<td>Expected value type</td>\n<td>Select the desired type from the drop-down menu.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"accuracy-check-of-multi-table\">Accuracy Check of Multi-table</h2>\n<h3 id=\"inspection-introduction\">Inspection Introduction</h3>\n<p>Accuracy checks are performed by comparing the accuracy differences of data records for selected fields between two tables, examples are as follows</p>\n<ul>\n<li>table test1</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th style=\"text-align:center\">c1</th>\n<th style=\"text-align:center\">c2</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:center\">a</td>\n<td style=\"text-align:center\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:center\">b</td>\n<td style=\"text-align:center\">2</td>\n</tr>\n</tbody>\n</table>\n<ul>\n<li>table test2</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th style=\"text-align:center\">c21</th>\n<th style=\"text-align:center\">c22</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:center\">a</td>\n<td style=\"text-align:center\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:center\">b</td>\n<td style=\"text-align:center\">3</td>\n</tr>\n</tbody>\n</table>\n<p>If you compare the data in c1 and c21, the tables test1 and test2 are exactly the same. If you compare c2 and c22, the data in table test1 and table test2 are inconsistent.</p>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/multi_table_accuracy_check.png\" alt=\"dataquality_multi_table_accuracy_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>Drop-down to select the table where the data to be verified is located.</td>\n</tr>\n<tr>\n<td>Src filter conditions</td>\n<td>Such as the title, it will also be used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Target data type</td>\n<td>Choose MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Target data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Target data table</td>\n<td>Drop-down to select the table where the data to be verified is located.</td>\n</tr>\n<tr>\n<td>Target filter conditions</td>\n<td>Such as the title, it will also be used when counting the total number of rows in the table, optional.</td>\n</tr>\n<tr>\n<td>Check column</td>\n<td>Fill in the source data column, operator and target data column respectively.</td>\n</tr>\n<tr>\n<td>Verification method</td>\n<td>Select the desired verification method.</td>\n</tr>\n<tr>\n<td>Operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li><ul></td>\n</tr>\n<tr>\n<td>Expected value type</td>\n<td>Select the desired type in the drop-down menu, only <code>SrcTableTotalRow</code>, <code>TargetTableTotalRow</code> and fixed value are suitable for selection here.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"comparison-of-the-values-checked-by-the-two-tables\">Comparison of the values checked by the two tables</h2>\n<h3 id=\"inspection-introduction\">Inspection Introduction</h3>\n<p>Two-table value comparison allows users to customize different SQL statistics for two tables and compare the corresponding values. For example, for the source table A, the total amount of a certain column is calculated, and for the target table, the total amount of a certain column is calculated. value sum2, compare sum1 and sum2 to determine the check result.</p>\n<h3 id=\"interface-operation-guide\">Interface Operation Guide</h3>\n<p><img src=\"/img/tasks/demo/multi_table_comparison_check.png\" alt=\"dataquality_multi_table_comparison_check\"></p>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Source data type</td>\n<td>Select MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Source data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Source data table</td>\n<td>The table where the data is to be verified.</td>\n</tr>\n<tr>\n<td>Actual value name</td>\n<td>Calculate the alias in SQL for the actual value, such as max_age1.</td>\n</tr>\n<tr>\n<td>Actual value calculation SQL</td>\n<td>SQL for outputting actual values. Note: <ul><li>The SQL must be statistical SQL, such as counting the number of rows, calculating the maximum value, minimum value, etc.</li><li>Select max(age) as max_age1 from ${src_table} The table name must be filled like this.</li></ul></td>\n</tr>\n<tr>\n<td>Target data type</td>\n<td>Choose MySQL, PostgreSQL, etc.</td>\n</tr>\n<tr>\n<td>Target data source</td>\n<td>The corresponding data source under the source data type.</td>\n</tr>\n<tr>\n<td>Target data table</td>\n<td>The table where the data is to be verified.</td>\n</tr>\n<tr>\n<td>Expected value name</td>\n<td>Calculate the alias in SQL for the expected value, such as max_age2.</td>\n</tr>\n<tr>\n<td>Expected value calculation SQL</td>\n<td>SQL for outputting expected value. Note: <ul><li>The SQL must be statistical SQL, such as counting the number of rows, calculating the maximum value, minimum value, etc.</li><li>Select max(age) as max_age2 from ${target_table} The table name must be filled like this.</li></ul></td>\n</tr>\n<tr>\n<td>Verification method</td>\n<td>Select the desired verification method.</td>\n</tr>\n<tr>\n<td>Operators</td>\n<td>=, &gt;, &gt;=, &lt;, &lt;=, ! =</td>\n</tr>\n<tr>\n<td>Failure strategy</td>\n<td><ul><li>Alert: The data quality task failed, the DolphinScheduler task result is successful, and an alert is sent.</li><li>Blocking: The data quality task fails, the DolphinScheduler task result is failed, and an alarm is sent.</li></ul></td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-result-view\">Task result view</h2>\n<p><img src=\"/img/tasks/demo/result.png\" alt=\"dataquality_result\"></p>\n<h2 id=\"rule-view\">Rule View</h2>\n<h3 id=\"list-of-rules\">List of rules</h3>\n<p><img src=\"/img/tasks/demo/rule_list.png\" alt=\"dataquality_rule_list\"></p>\n<h3 id=\"rules-details\">Rules Details</h3>\n<p><img src=\"/img/tasks/demo/rule_detail.png\" alt=\"dataquality_rule_detail\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Data Quality"
+  ],
+  "time": "2024-7-16",
+  "structure": [
+    {
+      "title": "Introduction",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "introduction"
+    },
+    {
+      "title": "Detailed Inspection Logic",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "detailed-inspection-logic"
+    },
+    {
+      "title": "Null Value Check for Single Table Check",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "null-value-check-for-single-table-check"
+    },
+    {
+      "title": "Timeliness Check of Single Table Check",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "timeliness-check-of-single-table-check"
+    },
+    {
+      "title": "Field Length Check for Single Table Check",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "field-length-check-for-single-table-check"
+    },
+    {
+      "title": "Uniqueness Check for Single Table Check",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "uniqueness-check-for-single-table-check"
+    },
+    {
+      "title": "Regular Expression Check for Single Table Check",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "regular-expression-check-for-single-table-check"
+    },
+    {
+      "title": "Enumeration Value Validation for Single Table Check",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "enumeration-value-validation-for-single-table-check"
+    },
+    {
+      "title": "Table Row Number Verification for Single Table Check",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "table-row-number-verification-for-single-table-check"
+    },
+    {
+      "title": "Custom SQL Check for Single Table Check",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "custom-sql-check-for-single-table-check"
+    },
+    {
+      "title": "Accuracy Check of Multi-table",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "accuracy-check-of-multi-table"
+    },
+    {
+      "title": "Comparison of the values checked by the two tables",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "comparison-of-the-values-checked-by-the-two-tables"
+    },
+    {
+      "title": "Task result view",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "task-result-view"
+    },
+    {
+      "title": "Rule View",
+      "children": [
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "Inspection Introduction",
+          "children": [],
+          "anchor": "inspection-introduction"
+        },
+        {
+          "title": "Interface Operation Guide",
+          "children": [],
+          "anchor": "interface-operation-guide"
+        },
+        {
+          "title": "List of rules",
+          "children": [],
+          "anchor": "list-of-rules"
+        },
+        {
+          "title": "Rules Details",
+          "children": [],
+          "anchor": "rules-details"
+        }
+      ],
+      "anchor": "rule-view"
+    }
+  ],
+  "title": "Data Quality",
+  "link": "/guide/data-quality"
+}

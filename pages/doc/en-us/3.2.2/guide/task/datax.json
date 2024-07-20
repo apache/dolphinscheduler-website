@@ -1,0 +1,117 @@
+{
+  "__html": "<h1 id=\"datax\">DataX</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>DataX task type for executing DataX programs. For DataX nodes, the worker will execute <code>${DATAX_LAUNCHER}</code> to analyze the input json file.</p>\n<p>Please set environment name <code>PYTHON_LAUNCHER</code> before you run datax task, some of datax release version only support <code>python2.7</code></p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag the <img src=\"/img/tasks/icons/datax.png\" width=\"15\"/> from the toolbar to the drawing board.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.2.2/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Custom template</td>\n<td>Custom the content of the DataX node's json profile when the default data source provided does not meet the required requirements.</td>\n</tr>\n<tr>\n<td>json</td>\n<td>json configuration file for DataX synchronization.</td>\n</tr>\n<tr>\n<td>Resource</td>\n<td>When using custom json, if the cluster has kerberos authentication enabled, and datax needs to use the relevant keytab, xml file, etc. when reading or writing plug-ins such as hdfs and hbase, you can use this option. and the files uploaded or created in Resource Center - File Management.</td>\n</tr>\n<tr>\n<td>Custom parameters</td>\n<td>SQL task type, and stored procedure is a custom parameter order to set values for the method. The custom parameter type and data type are the same as the stored procedure task type. The difference is that the SQL task type custom parameter will replace the ${variable} in the SQL statement.</td>\n</tr>\n<tr>\n<td>Data source</td>\n<td>Select the data source from which the data will be extracted.</td>\n</tr>\n<tr>\n<td>sql statement</td>\n<td>the sql statement used to extract data from the target database, the sql query column name is automatically parsed when the node is executed, and mapped to the target table synchronization column name. When the source table and target table column names are inconsistent, they can be converted by column alias.</td>\n</tr>\n<tr>\n<td>Target library</td>\n<td>Select the target library for data synchronization.</td>\n</tr>\n<tr>\n<td>Pre-sql</td>\n<td>Pre-sql is executed before the sql statement (executed by the target library).</td>\n</tr>\n<tr>\n<td>Post-sql</td>\n<td>Post-sql is executed after the sql statement (executed by the target library).</td>\n</tr>\n<tr>\n<td>Stream limit (number of bytes)</td>\n<td>Limits the number of bytes in the query.</td>\n</tr>\n<tr>\n<td>Limit flow (number of records)</td>\n<td>Limit the number of records for a query.</td>\n</tr>\n<tr>\n<td>Running memory</td>\n<td>the minimum and maximum memory required can be configured to suit the actual production environment.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<p>This example demonstrates importing data from Hive into MySQL.</p>\n<h3 id=\"configuring-the-datax-environment-in-dolphinscheduler\">Configuring the DataX environment in DolphinScheduler</h3>\n<p>If you are using the DataX task type in a production environment, it is necessary to configure the required environment first. The configuration file is as follows: <code>/dolphinscheduler/conf/env/dolphinscheduler_env.sh</code>.</p>\n<p><img src=\"/img/tasks/demo/datax_task01.png\" alt=\"datax_task01\"></p>\n<p>After the environment has been configured, DolphinScheduler needs to be restarted.</p>\n<h3 id=\"configuring-datax-task-node\">Configuring DataX Task Node</h3>\n<p>As the default data source does not contain data to be read from Hive, a custom json is required, refer to: <a href=\"https://github.com/alibaba/DataX/blob/master/hdfswriter/doc/hdfswriter.md\">HDFS Writer</a>. Note: Partition directories exist on the HDFS path, when importing data in real world situations, partitioning is recommended to be passed as a parameter, using custom parameters.</p>\n<p>After writing the required json file, you can configure the node content by following the steps in the diagram below.</p>\n<p><img src=\"/img/tasks/demo/datax_task02.png\" alt=\"datax_task02\"></p>\n<h3 id=\"view-run-results\">View run results</h3>\n<p><img src=\"/img/tasks/demo/datax_task03.png\" alt=\"datax_task03\"></p>\n<h3 id=\"note\">Note</h3>\n<p>If the default data source provided does not meet your needs, you can configure the writer and reader of DataX according to the actual usage environment in the custom template option, available at https://github.com/alibaba/DataX.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "DataX"
+  ],
+  "time": "2024-7-16",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Configuring the DataX environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-datax-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring DataX Task Node",
+          "children": [],
+          "anchor": "configuring-datax-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Configuring the DataX environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-datax-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring DataX Task Node",
+          "children": [],
+          "anchor": "configuring-datax-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Configuring the DataX environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-datax-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring DataX Task Node",
+          "children": [],
+          "anchor": "configuring-datax-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Configuring the DataX environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configuring-the-datax-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configuring DataX Task Node",
+          "children": [],
+          "anchor": "configuring-datax-task-node"
+        },
+        {
+          "title": "View run results",
+          "children": [],
+          "anchor": "view-run-results"
+        },
+        {
+          "title": "Note",
+          "children": [],
+          "anchor": "note"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "DataX",
+  "link": "/guide/task/datax"
+}

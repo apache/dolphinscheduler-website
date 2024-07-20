@@ -1,0 +1,33 @@
+{
+  "__html": "<h1 id=\"sagemaker-节点\">SageMaker 节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p><a href=\"https://aws.amazon.com/cn/pm/sagemaker\">Amazon SageMaker</a> 是一个云机器学习平台。 提供了完整的基础设施，工具和工作流来帮助用户可以创建、训练和发布机器学习模型。</p>\n<p><a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html\">Amazon SageMaker Model Building Pipelines</a> 是一个可以直接使用SageMaker各种集成的机器学习管道构建工具，用户可以使用使用 Amazon SageMaker Pipeline 来构建端到端的机器学习系统。</p>\n<p>对于使用大数据与人工智能的用户，SageMaker 任务组件帮助用户可以串联起大数据工作流与SagaMaker的使用场景。</p>\n<p>DolphinScheduler SageMaker 组件的功能:</p>\n<ul>\n<li>启动 SageMaker Pipeline Execution，并持续获取状态，直至Pipeline执行完成。</li>\n</ul>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏的 <img src=\"/img/tasks/icons/sagemaker.png\" width=\"15\"/> 任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.2.2/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>SagemakerRequestJson</td>\n<td>启动SageMakerPipeline的需要的请求参数，可见 <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StartPipelineExecution.html\">AWS API</a></td>\n</tr>\n</tbody>\n</table>\n<p>组件图示如下：</p>\n<p><img src=\"/img/tasks/demo/sagemaker_pipeline.png\" alt=\"sagemaker_pipeline\"></p>\n<h2 id=\"环境配置\">环境配置</h2>\n<p>需要进行AWS的一些配置，修改<code>common.properties</code>中的<code>xxxxx</code>为你的配置信息</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-comment\"># The AWS access key. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>\n<span class=\"hljs-string\">resource.aws.access.key.id=&lt;YOUR</span> <span class=\"hljs-string\">AWS</span> <span class=\"hljs-string\">ACCESS</span> <span class=\"hljs-string\">KEY&gt;</span>\n<span class=\"hljs-comment\"># The AWS secret access key. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>\n<span class=\"hljs-string\">resource.aws.secret.access.key=&lt;YOUR</span> <span class=\"hljs-string\">AWS</span> <span class=\"hljs-string\">SECRET</span> <span class=\"hljs-string\">KEY&gt;</span>\n<span class=\"hljs-comment\"># The AWS Region to use. if resource.storage.type=S3 or use EMR-Task, This configuration is required</span>\n<span class=\"hljs-string\">resource.aws.region=&lt;AWS</span> <span class=\"hljs-string\">REGION&gt;</span>\n</code></pre>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "SageMaker"
+  ],
+  "time": "2024-7-16",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务样例",
+      "children": [],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "环境配置",
+      "children": [],
+      "anchor": "环境配置"
+    }
+  ],
+  "title": "SageMaker 节点",
+  "link": "/guide/task/sagemaker"
+}

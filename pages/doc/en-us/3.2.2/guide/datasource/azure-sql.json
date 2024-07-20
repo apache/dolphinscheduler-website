@@ -1,0 +1,75 @@
+{
+  "__html": "<h1 id=\"azure-sql\">AZURE SQL</h1>\n<h2 id=\"auth-mode\">AUTH Mode</h2>\n<h3 id=\"sqlpassword\">SqlPassword</h3>\n<p><img src=\"/img/new_ui/dev/datasource/azuresql-server.png\" alt=\"sqlpassword\"></p>\n<p>Use Azure SQL server username and password to login.</p>\n<table>\n<thead>\n<tr>\n<th><strong>Datasource</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Datasource</td>\n<td>Select AZURE SQL.</td>\n</tr>\n<tr>\n<td>Datasource name</td>\n<td>Enter the name of the DataSource.</td>\n</tr>\n<tr>\n<td>Description</td>\n<td>Enter a description of the DataSource.</td>\n</tr>\n<tr>\n<td>IP/Host Name</td>\n<td>Enter the AZURE SQL service Host or IP, eg: xxx.database.windows.net.</td>\n</tr>\n<tr>\n<td>Port</td>\n<td>Enter the AZURE SQL service port, 1433 by default.</td>\n</tr>\n<tr>\n<td>Auth Mode</td>\n<td>Set the connection auth mode. Currently support: SqlPassword,ActiveDirectoryPassword,ActiveDirectoryMSI,ActiveDirectoryServicePrincipal,accessToken.</td>\n</tr>\n<tr>\n<td>Username</td>\n<td>Set the username for AZURE SQL connection.</td>\n</tr>\n<tr>\n<td>Password</td>\n<td>Set the password for AZURE SQL connection.</td>\n</tr>\n<tr>\n<td>Database name</td>\n<td>Enter the database name of the AZURE SQL connection.</td>\n</tr>\n<tr>\n<td>Jdbc connection parameters</td>\n<td>Parameter settings for AZURE SQL connection, in JSON format.</td>\n</tr>\n</tbody>\n</table>\n<p>The following only describes the different attributes.</p>\n<h3 id=\"activedirectorypassword\">ActiveDirectoryPassword</h3>\n<p><img src=\"/img/new_ui/dev/datasource/azuresql-ad.png\" alt=\"AD\"></p>\n<p>Use Azure AD username and password to login.</p>\n<p>Prerequisites: set AD account to be the admin of the Azure SQL server.</p>\n<p><img src=\"/img/new_ui/dev/datasource/azuresql-ad2.png\" alt=\"admin\"></p>\n<ul>\n<li>Azure AD username: Azure AD account name, eg: xx@xx.onmicrosoft.com</li>\n<li>Password: Azure AD password</li>\n</ul>\n<h3 id=\"activedirectorymsi\">ActiveDirectoryMSI</h3>\n<p><img src=\"/img/new_ui/dev/datasource/azuresql-msi.png\" alt=\"msi\"></p>\n<p>Use Azure internal services to login.\nPrerequisites: set Azure virtual machine to be the admin of the Azure SQL server. MSIClientId should be VM's Application ID and it is not required.</p>\n<p><img src=\"/img/new_ui/dev/datasource/azuresql-msi-admin2.png\" alt=\"msi-admin2\">\n<img src=\"/img/new_ui/dev/datasource/azuresql-msi-admin1.png\" alt=\"msi-admin1\"></p>\n<ul>\n<li>MSIClientId: input the clientId of the internal resources (eg: Azure VM, applications or Azure Active Directory application functions) of the ActiveDirectoryMSI mode.</li>\n</ul>\n<h3 id=\"activedirectoryserviceprincipal\">ActiveDirectoryServicePrincipal</h3>\n<p><img src=\"/img/new_ui/dev/datasource/azuresql-principal.png\" alt=\"principal\"></p>\n<p>Use application (client) ID and secret to login.\nPrerequisites: set application to be the admin of the Azure SQL server. Meanwhile, apply for client secret for the application and use both secret and ID to login.</p>\n<p><img src=\"/img/new_ui/dev/datasource/azuresql-principal2.png\" alt=\"principal2\"></p>\n<ul>\n<li>clientId: application (client) ID</li>\n<li>clientSecret: application client secret</li>\n</ul>\n<h3 id=\"accesstoken\">accessToken</h3>\n<p><img src=\"/img/new_ui/dev/datasource/azuresql-token.png\" alt=\"principal\"></p>\n<p>Use application (client) ID and secret to apply for temporary token, and use token to login (not JDBC connection).</p>\n<p><img src=\"/img/new_ui/dev/datasource/azuresql-endpoints.png\" alt=\"principal\"></p>\n<ul>\n<li>clientId: application (client) ID</li>\n<li>clientSecret: application client secret</li>\n<li>OAuth 2.0 token endpoint (v2): application OAuth 2.0 token endpoint (v2)</li>\n</ul>\n<h2 id=\"support-native\">Support Native</h2>\n<p>Yes, can use this datasource directly in SQL task.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Data Source",
+    "Azure SQL Database"
+  ],
+  "time": "2024-7-16",
+  "structure": [
+    {
+      "title": "AUTH Mode",
+      "children": [
+        {
+          "title": "SqlPassword",
+          "children": [],
+          "anchor": "sqlpassword"
+        },
+        {
+          "title": "ActiveDirectoryPassword",
+          "children": [],
+          "anchor": "activedirectorypassword"
+        },
+        {
+          "title": "ActiveDirectoryMSI",
+          "children": [],
+          "anchor": "activedirectorymsi"
+        },
+        {
+          "title": "ActiveDirectoryServicePrincipal",
+          "children": [],
+          "anchor": "activedirectoryserviceprincipal"
+        },
+        {
+          "title": "accessToken",
+          "children": [],
+          "anchor": "accesstoken"
+        }
+      ],
+      "anchor": "auth-mode"
+    },
+    {
+      "title": "Support Native",
+      "children": [
+        {
+          "title": "SqlPassword",
+          "children": [],
+          "anchor": "sqlpassword"
+        },
+        {
+          "title": "ActiveDirectoryPassword",
+          "children": [],
+          "anchor": "activedirectorypassword"
+        },
+        {
+          "title": "ActiveDirectoryMSI",
+          "children": [],
+          "anchor": "activedirectorymsi"
+        },
+        {
+          "title": "ActiveDirectoryServicePrincipal",
+          "children": [],
+          "anchor": "activedirectoryserviceprincipal"
+        },
+        {
+          "title": "accessToken",
+          "children": [],
+          "anchor": "accesstoken"
+        }
+      ],
+      "anchor": "support-native"
+    }
+  ],
+  "title": "AZURE SQL",
+  "link": "/guide/datasource/azure-sql"
+}

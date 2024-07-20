@@ -1,0 +1,523 @@
+{
+  "__html": "<h1 id=\"spark节点\">SPARK节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p>Spark  任务类型用于执行 Spark 应用。对于 Spark 节点，worker 支持两个不同类型的 spark 命令提交任务：</p>\n<p>(1) <code>spark submit</code> 方式提交任务。更多详情查看 <a href=\"https://spark.apache.org/docs/3.2.1/submitting-applications.html#launching-applications-with-spark-submit\">spark-submit</a>。</p>\n<p>(2) <code>spark sql</code> 方式提交任务。更多详情查看 <a href=\"https://spark.apache.org/docs/3.2.1/sql-ref-syntax.html\">spark sql</a>。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>\n<p>点击项目管理 -&gt; 项目名称 -&gt; 工作流定义，点击”创建工作流”按钮，进入 DAG 编辑页面：</p>\n</li>\n<li>\n<p>拖动工具栏的 <img src=\"/img/tasks/icons/spark.png\" width=\"15\"/> 任务节点到画板中。</p>\n</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.2.2/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n<li>程序类型：支持 Java、Scala、Python 和 SQL 四种语言。</li>\n<li>主函数的 Class：Spark 程序的入口 Main class 的全路径。</li>\n<li>主程序包：执行 Spark 程序的 jar 包（通过资源中心上传）。</li>\n<li>Master：执行 Spark 集群的 Master Url。</li>\n<li>SQL脚本：Spark sql 运行的 .sql 文件中的 SQL 语句。</li>\n<li>部署方式：(1) spark submit 支持 cluster、client 和 local 三种模式。\n(2) spark sql 支持 client 和 local 两种模式。</li>\n<li>命名空间（集群）：若选择命名空间（集群），则以原生的方式提交至所选择 K8S 集群执行，未选择则提交至 Yarn 集群执行（默认）。</li>\n<li>任务名称（可选）：Spark 程序的名称。</li>\n<li>Driver 核心数：用于设置 Driver 内核数，可根据实际生产环境设置对应的核心数。</li>\n<li>Driver 内存数：用于设置 Driver 内存数，可根据实际生产环境设置对应的内存数。</li>\n<li>Executor 数量：用于设置 Executor 的数量，可根据实际生产环境设置对应的内存数。</li>\n<li>Executor 内存数：用于设置 Executor 内存数，可根据实际生产环境设置对应的内存数。</li>\n<li>Yarn 队列：用于设置 Yarn 队列，默认使用 default 队列。</li>\n<li>主程序参数：设置 Spark 程序的输入参数，支持自定义参数变量的替换。</li>\n<li>选项参数：设置Spark命令的选项参数，例如<code>--jars</code>、<code>--files</code>、<code>--archives</code>、<code>--conf</code>。</li>\n<li>资源：如果其他参数中引用了资源文件，需要在资源中选择指定。</li>\n<li>自定义参数：是 Spark 局部的用户自定义参数，会替换脚本中以 ${变量} 的内容。</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"spark-submit\">spark submit</h3>\n<h4 id=\"执行-wordcount-程序\">执行 WordCount 程序</h4>\n<p>本案例为大数据生态中常见的入门案例，常应用于 MapReduce、Flink、Spark 等计算框架。主要为统计输入的文本中，相同的单词的数量有多少。</p>\n<h5 id=\"在-dolphinscheduler-中配置-spark-环境\">在 DolphinScheduler 中配置 Spark 环境</h5>\n<p>若生产环境中要是使用到 Spark 任务类型，则需要先配置好所需的环境。配置文件如下：<code>bin/env/dolphinscheduler_env.sh</code>。</p>\n<p><img src=\"/img/tasks/demo/spark_task01.png\" alt=\"spark_configure\"></p>\n<h5 id=\"上传主程序包\">上传主程序包</h5>\n<p>在使用 Spark 任务节点时，需要利用资源中心上传执行程序的 jar 包，可参考<a href=\"/zh-cn/docs/3.2.2/guide/resource/configuration\">资源中心</a>。</p>\n<p>当配置完成资源中心之后，直接使用拖拽的方式，即可上传所需目标文件。</p>\n<p><img src=\"/img/tasks/demo/upload_jar.png\" alt=\"resource_upload\"></p>\n<h5 id=\"配置-spark-节点\">配置 Spark 节点</h5>\n<p>根据上述参数说明，配置所需的内容即可。</p>\n<p><img src=\"/img/tasks/demo/spark_task02.png\" alt=\"demo-spark-simple\"></p>\n<h3 id=\"spark-sql\">spark sql</h3>\n<h4 id=\"执行-ddl-和-dml-语句\">执行 DDL 和 DML 语句</h4>\n<p>本案例为创建一个视图表 terms 并写入三行数据和一个格式为 parquet 的表 wc 并判断该表是否存在。程序类型为 SQL。将视图表 terms 的数据插入到格式为 parquet 的表 wc。</p>\n<p><img src=\"/img/tasks/demo/spark_sql.png\" alt=\"spark_sql\"></p>\n<h2 id=\"注意事项：\">注意事项：</h2>\n<p>注意：</p>\n<p>JAVA 和 Scala 只用于标识，使用 Spark 任务时没有区别。如果应用程序是由 Python 开发的，那么可以忽略表单中的参数<strong>Main Class</strong>。参数<strong>SQL脚本</strong>仅适用于 SQL 类型，在 JAVA、Scala 和 Python 中可以忽略。</p>\n<p>SQL 目前不支持 cluster 模式。</p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Spark"
+  ],
+  "time": "2024-7-16",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "spark sql",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "spark sql",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "spark sql",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "spark sql",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "注意事项：",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "spark sql",
+          "children": [
+            {
+              "title": "执行 WordCount 程序",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-wordcount-程序"
+            },
+            {
+              "title": "执行 DDL 和 DML 语句",
+              "children": [
+                {
+                  "title": "在 DolphinScheduler 中配置 Spark 环境",
+                  "children": [],
+                  "anchor": "在-dolphinscheduler-中配置-spark-环境"
+                },
+                {
+                  "title": "上传主程序包",
+                  "children": [],
+                  "anchor": "上传主程序包"
+                },
+                {
+                  "title": "配置 Spark 节点",
+                  "children": [],
+                  "anchor": "配置-spark-节点"
+                }
+              ],
+              "anchor": "执行-ddl-和-dml-语句"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "注意事项："
+    }
+  ],
+  "title": "SPARK节点",
+  "link": "/guide/task/spark"
+}

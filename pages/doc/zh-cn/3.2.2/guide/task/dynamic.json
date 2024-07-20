@@ -1,0 +1,38 @@
+{
+  "__html": "<h1 id=\"动态节点\">动态节点</h1>\n<h2 id=\"综述\">综述</h2>\n<p>动态节点可以通过输入多个参数列表，通过笛卡尔积计算出多所有的参数组合，然后将每个参数组合作为一个子工作流节点执行。</p>\n<p>比如我们有一个工作流，它具有两个输入参数，a, b。\n我们可以通过动态节点，将这个工作流定义当做一个节点，然后输入参数列表</p>\n<ul>\n<li>参数a：a1, a2</li>\n<li>参数b：b1, b2</li>\n</ul>\n<p>那么动态节点会计算出四个参数组合，分别是</p>\n<ul>\n<li>a1, b1</li>\n<li>a1, b2</li>\n<li>a2, b1</li>\n<li>a2, b2</li>\n</ul>\n<p>然后将这四个参数组合作为子工作流节点的启动参数执行，共生成四个子工作流节点。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>\n<p>点击项目管理 -&gt; 项目名称 -&gt; 工作流定义，点击”创建工作流”按钮，进入 DAG 编辑页面：</p>\n</li>\n<li>\n<p>拖动工具栏的 <img src=\"/img/tasks/icons/dynamic.png\" width=\"15\"/> 任务节点到画板中。</p>\n</li>\n</ul>\n<p>任务定义如下图所示：</p>\n<p><img src=\"/img/tasks/demo/dynamic_definition.png\" alt=\"dynamic_definition\"></p>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.2.2/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>子节点</td>\n<td>是选择子工作流的工作流定义，右上角进入该子节点可以跳转到所选子工作流的工作流定义</td>\n</tr>\n<tr>\n<td>动态生成实例上限</td>\n<td>是指动态生成的子工作流实例的上限，超过该上限后，动态生成的子工作流实例将不再执行</td>\n</tr>\n<tr>\n<td>并行度</td>\n<td>是指动态生成的子工作流实例的并行度，即同时执行的子工作流实例的数量</td>\n</tr>\n<tr>\n<td>取值参数</td>\n<td>是指动态生成的子工作流实例的参数，支持多个参数，参数之间用分隔符分隔</td>\n</tr>\n<tr>\n<td>过滤条件</td>\n<td>是指动态生成的子工作流实例的过滤条件，支持多个过滤值，过滤条件之间用逗号分隔, 如 <code>2022,2023</code>， 则会过来包含2022和2023的值的参数组</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务参数输出\">任务参数输出</h2>\n<p>动态节点的输出参数，是指子工作流的输出参数，所有子工作流的输出参数都会被收集到一个列表中，作为动态节点的输出参数。</p>\n<p>下游任务引用的时候，可以通过 <code>${dynamic.out(TaskName)}</code> 的方式引用。</p>\n<p>值为一个json，样例如下</p>\n<pre><code class=\"language-Json\"><span class=\"hljs-punctuation\">[</span>\n    <span class=\"hljs-punctuation\">{</span> <span class=\"hljs-attr\">&quot;dynParams&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-punctuation\">{</span> <span class=\"hljs-attr\">&quot;a&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-string\">&quot;a1&quot;</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-attr\">&quot;b&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-string\">&quot;b1&quot;</span> <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-attr\">&quot;outputValue&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-punctuation\">{</span> <span class=\"hljs-attr\">&quot;p&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-string\">&quot;a1-b1&quot;</span> <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-attr\">&quot;mappedTimes&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-number\">1</span> <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n    <span class=\"hljs-punctuation\">{</span> <span class=\"hljs-attr\">&quot;dynParams&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-punctuation\">{</span> <span class=\"hljs-attr\">&quot;a&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-string\">&quot;a2&quot;</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-attr\">&quot;b&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-string\">&quot;b1&quot;</span> <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-attr\">&quot;outputValue&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-punctuation\">{</span> <span class=\"hljs-attr\">&quot;p&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-string\">&quot;a2-b1&quot;</span> <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-attr\">&quot;mappedTimes&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-number\">2</span> <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n    <span class=\"hljs-punctuation\">{</span> <span class=\"hljs-attr\">&quot;dynParams&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-punctuation\">{</span> <span class=\"hljs-attr\">&quot;a&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-string\">&quot;a3&quot;</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-attr\">&quot;b&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-string\">&quot;b1&quot;</span> <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-attr\">&quot;outputValue&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-punctuation\">{</span> <span class=\"hljs-attr\">&quot;p&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-string\">&quot;a3-b1&quot;</span> <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span> <span class=\"hljs-attr\">&quot;mappedTimes&quot;</span><span class=\"hljs-punctuation\">:</span><span class=\"hljs-number\">3</span> <span class=\"hljs-punctuation\">}</span>\n<span class=\"hljs-punctuation\">]</span>\n</code></pre>\n<p>其中</p>\n<ul>\n<li><code>dynParams</code> 是子工作流的输入参数</li>\n<li><code>outputValue</code> 是子工作流的输出参数, 如这里的<code>p</code>为将子工作流的输出参数<code>a</code>和<code>b</code>拼接起来的字符串，以变量<code>p</code>的形式输出</li>\n<li><code>mappedTimes</code> 是子工作流的执行的index，从1开始</li>\n</ul>\n<h2 id=\"运行状态\">运行状态</h2>\n<p>Dynamic任务启动后，会根据输入参数列表，计算出所有的参数组合，然后对每一个参数组合，创建一个子工作流实例。</p>\n<p>Dynamic运行时，会定期检测当前所有子工作流实例的统计信息，如果并行度大于运行中的子工作流实例的数量，则会触发启动合适数量的工作流实例（工作流实例是先创建，后续再出发启动）。</p>\n<p>如下如所示。</p>\n<p><img src=\"/img/tasks/demo/dynamic_running.png\" alt=\"dynamic_running\"></p>\n<p>当且进度所有的子工作流实例全部运行成功时，dynamic任务才会运行成功。</p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Dynamic"
+  ],
+  "time": "2024-7-16",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务参数输出",
+      "children": [],
+      "anchor": "任务参数输出"
+    },
+    {
+      "title": "运行状态",
+      "children": [],
+      "anchor": "运行状态"
+    }
+  ],
+  "title": "动态节点",
+  "link": "/guide/task/dynamic"
+}
