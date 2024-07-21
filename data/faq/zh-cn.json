@@ -159,7 +159,7 @@
     "time": "2024-7-16",
     "version": "3.2.2",
     "q": "<h2>Q：hive 版本是 1.1.0+cdh5.15.0，SQL hive 任务连接报错</h2>",
-    "a": "\n<p align=\"center\">\n   <img src=\"https://analysys.github.io/easyscheduler_docs_cn/images/cdh_hive_error.png\" width=\"60%\" />\n </p>\n<p>A： 将 hive pom</p>\n<pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;\n    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;\n    &lt;version&gt;2.3.9&lt;/version&gt;\n&lt;/dependency&gt;\n</code></pre>\n<p>修改为</p>\n<pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;\n    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;\n    &lt;version&gt;1.1.0&lt;/version&gt;\n&lt;/dependency&gt;\n</code></pre>\n<hr>\n"
+    "a": "\n<p align=\"center\">\n   <img src=\"https://analysys.github.io/easyscheduler_docs_cn/images/cdh_hive_error.png\" width=\"60%\" />\n </p>\n<p>A： 将 hive pom</p>\n<pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;\n    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;\n    3.2.22.3.9&lt;/version&gt;\n&lt;/dependency&gt;\n</code></pre>\n<p>修改为</p>\n<pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;\n    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;\n    3.2.21.1.0&lt;/version&gt;\n&lt;/dependency&gt;\n</code></pre>\n<hr>\n"
   },
   {
     "time": "2024-7-16",
@@ -243,7 +243,7 @@
     "time": "2024-7-16",
     "version": "3.2.2",
     "q": "<h2>Q：当使用 mysql 作为 ds 数据库需要如何配置</h2>",
-    "a": "\n<p>A：1，修改项目根目录 maven 配置文件，移除 scope 的 test 属性，这样 mysql 的包就可以在其它阶段被加载</p>\n<pre><code>&lt;dependency&gt;\n\t&lt;groupId&gt;mysql&lt;/groupId&gt;\n\t&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;\n\t&lt;version&gt;${mysql.connector.version}&lt;/version&gt;\n\t&lt;scope&gt;test&lt;scope&gt;\n&lt;/dependency&gt;\n</code></pre>\n<p>​ 2，修改 application-dao.properties 和 quzrtz.properties 来使用 mysql 驱动\n默认驱动是 postgres 主要由于许可证原因。</p>\n<hr>\n"
+    "a": "\n<p>A：1，修改项目根目录 maven 配置文件，移除 scope 的 test 属性，这样 mysql 的包就可以在其它阶段被加载</p>\n<pre><code>&lt;dependency&gt;\n\t&lt;groupId&gt;mysql&lt;/groupId&gt;\n\t&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;\n\t3.2.2${mysql.connector.version}&lt;/version&gt;\n\t&lt;scope&gt;test&lt;scope&gt;\n&lt;/dependency&gt;\n</code></pre>\n<p>​ 2，修改 application-dao.properties 和 quzrtz.properties 来使用 mysql 驱动\n默认驱动是 postgres 主要由于许可证原因。</p>\n<hr>\n"
   },
   {
     "time": "2024-7-16",

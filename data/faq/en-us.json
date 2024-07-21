@@ -165,7 +165,7 @@
     "time": "2024-7-16",
     "version": "3.2.2",
     "q": "<h2>Q: The hive version is 1.1.0+cdh5.15.0, and the SQL hive task connection is reported incorrectly.</h2>",
-    "a": "\n<p align=\"center\">\n   <img src=\"https://analysys.github.io/easyscheduler_docs/images/cdh_hive_error.png\" width=\"60%\" />\n </p>\n<p>A ： Will hive pom</p>\n<pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;\n    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;\n    &lt;version&gt;2.3.9&lt;/version&gt;\n&lt;/dependency&gt;\n</code></pre>\n<p>change into</p>\n<pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;\n    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;\n    &lt;version&gt;1.1.0&lt;/version&gt;\n&lt;/dependency&gt;\n</code></pre>\n<hr>\n"
+    "a": "\n<p align=\"center\">\n   <img src=\"https://analysys.github.io/easyscheduler_docs/images/cdh_hive_error.png\" width=\"60%\" />\n </p>\n<p>A ： Will hive pom</p>\n<pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;\n    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;\n    3.2.22.3.9&lt;/version&gt;\n&lt;/dependency&gt;\n</code></pre>\n<p>change into</p>\n<pre><code>&lt;dependency&gt;\n    &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;\n    &lt;artifactId&gt;hive-jdbc&lt;/artifactId&gt;\n    3.2.21.1.0&lt;/version&gt;\n&lt;/dependency&gt;\n</code></pre>\n<hr>\n"
   },
   {
     "time": "2024-7-16",
@@ -249,7 +249,7 @@
     "time": "2024-7-16",
     "version": "3.2.2",
     "q": "<h2>Q : How to config when use mysql as database instead of postgres</h2>",
-    "a": "\n<p>A: 1, Edit project root dir maven config file, remove scope test property so that mysql driver can be loaded.</p>\n<pre><code>&lt;dependency&gt;\n\t&lt;groupId&gt;mysql&lt;/groupId&gt;\n\t&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;\n\t&lt;version&gt;${mysql.connector.version}&lt;/version&gt;\n\t&lt;scope&gt;test&lt;scope&gt;\n&lt;/dependency&gt;\n</code></pre>\n<p>​ 2, Edit application-dao.properties and quzrtz.properties config file to use mysql driver.\nDefault is postgresql driver because of license problem.</p>\n<hr>\n"
+    "a": "\n<p>A: 1, Edit project root dir maven config file, remove scope test property so that mysql driver can be loaded.</p>\n<pre><code>&lt;dependency&gt;\n\t&lt;groupId&gt;mysql&lt;/groupId&gt;\n\t&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;\n\t3.2.2${mysql.connector.version}&lt;/version&gt;\n\t&lt;scope&gt;test&lt;scope&gt;\n&lt;/dependency&gt;\n</code></pre>\n<p>​ 2, Edit application-dao.properties and quzrtz.properties config file to use mysql driver.\nDefault is postgresql driver because of license problem.</p>\n<hr>\n"
   },
   {
     "time": "2024-7-16",
