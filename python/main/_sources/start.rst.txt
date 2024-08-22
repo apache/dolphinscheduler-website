@@ -127,6 +127,11 @@ the server is healthy if keyword `ApiApplicationServer` is in the console.
    * Environment: `export API_PYTHON_GATEWAY_ENABLED="true"`
    * Configuration File: Set `python-gateway.enabled : true` in `api-server/conf/application.yaml`
 
+   Please modify the token in your production environment and update it periodically, as this is related to your data read and write rights.
+
+   * Environment: `export API_PYTHON_GATEWAY_AUTH_TOKEN="GsAurNxU7A@Xc"`
+   * Configuration File: Set `python-gateway.auth-token : GsAurNxU7A@Xc` in `api-server/conf/application.yaml`
+
 Run an Example
 --------------
 
