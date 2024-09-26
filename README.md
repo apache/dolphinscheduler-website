@@ -2,17 +2,12 @@
 
 This project keeps all sources used for building up DolphinScheduler's official website which is served at https://dolphinscheduler.apache.org/.
 
-## Prerequisite
-
-DolphinScheduler website is powered by [docsite](https://github.com/chengshiwen/docsite-ext). Please also make sure your
-node version is 10+, version lower than 10.x is not supported yet.
-
 ## Build Website Locally
 
 1. Run `yarn` in the root directory to install the dependencies.
 2. Run commands to collect resources
    2.1. Run `export PROTOCOL_MODE=ssh` tells Git clone resource via SSH protocol instead of HTTPS protocol
-   2.2. Run `./scripts/prepare_docs.sh` prepare all related resources, for more information you could see [how prepare script work](HOW_PREPARE_WOKR.md)
+   2.2. Run `./scripts/prepare_docs.sh` prepare all related resources, for more information you could see [how prepare script work](HOW_PREPARE_WORK.md)
 3. Run `yarn generate` in the root directory to format and perpare the data.
 4. Run `yarn dev` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
 

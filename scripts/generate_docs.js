@@ -180,7 +180,7 @@ const getMenu = (list, data, version, lang, isDeployment, location) => {
   });
 };
 
-const wirteFileByLang = (data, lang, fileName) => {
+const writeFileByLang = (data, lang, fileName) => {
   const targetPath = `${BASE}/public/fetch/doc/${lang}`;
   fs.ensureDirSync(targetPath);
   fs.writeFileSync(
@@ -189,7 +189,7 @@ const wirteFileByLang = (data, lang, fileName) => {
   );
 };
 
-const wirteDeployment = () => {
+const writeDeployment = () => {
   const targetDataPath = `${BASE}/public/fetch`;
   fs.ensureDirSync(targetDataPath);
   fs.writeFileSync(
@@ -198,7 +198,7 @@ const wirteDeployment = () => {
   );
 };
 
-const wirteDownload = () => {
+const writeDownload = () => {
   const targetDataPath = `${BASE}/public/fetch`;
   fs.ensureDirSync(targetDataPath);
   fs.writeFileSync(
@@ -207,7 +207,7 @@ const wirteDownload = () => {
   );
 };
 
-const wirteVersion = () => {
+const writeVersion = () => {
   fs.ensureDirSync(`${BASE}/public/fetch`);
   fs.writeFileSync(
     `${BASE}/public/fetch/version.json`,
@@ -215,7 +215,7 @@ const wirteVersion = () => {
   );
 };
 
-const wirteSearchDocData = () => {
+const writeSearchDocData = () => {
   ["en-us", "zh-cn"].forEach((lang) => {
     const targetSearchPath = `${BASE}/public/data/doc/${lang}.json`;
     fs.ensureFileSync(targetSearchPath);
@@ -284,13 +284,13 @@ const parseDocsMenu = () => {
 
     versionData.push(version);
 
-    wirteFileByLang(enUs, "en-us", fileInfo.name);
-    wirteFileByLang(zhCn, "zh-cn", fileInfo.name);
+    writeFileByLang(enUs, "en-us", fileInfo.name);
+    writeFileByLang(zhCn, "zh-cn", fileInfo.name);
   });
-  wirteSearchDocData();
-  wirteDeployment();
-  wirteDownload();
-  wirteVersion();
+  writeSearchDocData();
+  writeDeployment();
+  writeDownload();
+  writeVersion();
 };
 
 module.exports = parseDocsMenu;
