@@ -1,0 +1,28 @@
+{
+  "__html": "<h1 id=\"release-post\">Release Post</h1>\n<p>We still have some publish task to do after we send the announcement mail, currently we have to publish Docker images to\nDocker Hub and also publish pydolphinscheduler to PyPI.</p>\n<h2 id=\"publish-docker-image\">Publish Docker Image</h2>\n<p>we already have the exists CI to publish the latest Docker image to GitHub container register with <a href=\"https://github.com/apache/dolphinscheduler/blob/d80cf21456265c9d84e642bdb4db4067c7577fc6/.github/workflows/publish-docker.yaml#L55-L63\">config</a>.\nWe could reuse the main command the CI run and publish our Docker images to Docker Hub by single command.</p>\n<pre><code class=\"language-bash\"><span class=\"hljs-comment\"># Please change the &lt;VERSION&gt; place hold to the version you release</span>\n./mvnw -B clean deploy \\\n    -Dmaven.test.skip \\\n    -Dmaven.javadoc.skip \\\n    -Dmaven.checkstyle.skip \\\n    -Dmaven.deploy.skip \\\n    -Ddocker.tag=&lt;VERSION&gt; \\\n    -Ddocker.hub=apache \\\n    -Pdocker,release\n</code></pre>\n<h2 id=\"publish-pydolphinscheduler-to-pypi\">Publish pydolphinscheduler to PyPI</h2>\n<p>Python API need to release to PyPI for easier download and use, you can see more detail in <a href=\"https://github.com/apache/dolphinscheduler-sdk-python/blob/main/RELEASE.md#to-pypi\">Python API release</a>\nto finish PyPI release.</p>\n<h2 id=\"get-all-contributors\">Get All Contributors</h2>\n<p>You might need all contributors in current release when you want to publish the release news or announcement, you could\nuse command <code>python release.py contributor</code> in directory <code>tools/release</code> to auto generate contributor GitHub id.</p>\n",
+  "location": [
+    "Contribution",
+    "Release Guide",
+    "Release Post"
+  ],
+  "time": "2023-1-3",
+  "structure": [
+    {
+      "title": "Publish Docker Image",
+      "children": [],
+      "anchor": "publish-docker-image"
+    },
+    {
+      "title": "Publish pydolphinscheduler to PyPI",
+      "children": [],
+      "anchor": "publish-pydolphinscheduler-to-pypi"
+    },
+    {
+      "title": "Get All Contributors",
+      "children": [],
+      "anchor": "get-all-contributors"
+    }
+  ],
+  "title": "Release Post",
+  "link": "/contribute/release/release-post"
+}

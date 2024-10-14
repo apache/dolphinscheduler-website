@@ -1,0 +1,42 @@
+{
+  "__html": "<h1 id=\"基于-rainbond-部署-dolphinscheduler-高可用集群\">基于 Rainbond 部署 DolphinScheduler 高可用集群</h1>\n<p>本文描述通过 <a href=\"https://www.rainbond.com/\">Rainbond</a> 云原生应用管理平台 一键部署高可用的 DolphinScheduler 集群，这种方式适合给不太了解 Kubernetes、容器化等复杂技术的用户使用，降低了在 Kubernetes 中部署 DolphinScheduler 的门槛。</p>\n<h2 id=\"前提条件\">前提条件</h2>\n<ul>\n<li>可用的 Rainbond 云原生应用管理平台，请参阅文档 <a href=\"https://www.rainbond.com/docs/quick-start/quick-install\">Rainbond 快速安装</a></li>\n</ul>\n<h2 id=\"dolphinscheduler-集群一键部署\">DolphinScheduler 集群一键部署</h2>\n<ol>\n<li>进入 Rainbond 的<strong>平台管理 -&gt; 应用市场 -&gt; 开源应用商店</strong>中搜索 <strong>dolphinscheduler</strong> 即可找到 DolphinScheduler 应用。</li>\n</ol>\n<p><img src=\"/img/rainbond/appstore-dolphinscheduler.png\" alt=\"\"></p>\n<ol start=\"2\">\n<li>点击 DolphinScheduler 右侧的<strong>安装</strong>进入应用安装页面，填写对应的信息，点击确定即可开始安装，自动跳转至应用视图。</li>\n</ol>\n<table>\n<thead>\n<tr>\n<th>选择项</th>\n<th>说明</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>团队名称</td>\n<td>用户自建的工作空间，以命名空间隔离</td>\n</tr>\n<tr>\n<td>集群名称</td>\n<td>选择 DolphinScheduler 被部署到哪一个 K8s 集群</td>\n</tr>\n<tr>\n<td>选择应用</td>\n<td>选择 DolphinScheduler 被部署到哪一个应用，应用中包含有若干有关联的组件</td>\n</tr>\n<tr>\n<td>应用版本</td>\n<td>选择 DolphinScheduler 的版本</td>\n</tr>\n</tbody>\n</table>\n<p><img src=\"/img/rainbond/install-dolphinscheduler.png\" alt=\"\"></p>\n<ol start=\"3\">\n<li>等待几分钟后，DolphinScheduler 集群就会安装完成，并运行起来。</li>\n</ol>\n<p><img src=\"/img/rainbond/topology-dolphinscheduler.png\" alt=\"\"></p>\n<ol start=\"4\">\n<li>点击应用内的访问按钮，即可通过 Rainbond 默认提供的域名访问 DolphinScheduler-API 组件，默认的用户密码是 <strong>admin/dolphinscheduler123</strong>。</li>\n</ol>\n<h2 id=\"api-master-worker-节点伸缩\">API Master Worker 节点伸缩</h2>\n<p>DolphinScheduler API、Master、Worker 都支持伸缩多个实例，多个实例可以保证整个集群的高可用性。</p>\n<p>以 Worker 为例，进入组件内 -&gt; 伸缩，设置实例数量。</p>\n<p><img src=\"/img/rainbond/dolpscheduler-worker.png\" alt=\"\"></p>\n<p>验证 Worker 节点，进入 DolphinScheduler UI -&gt; 监控中心 -&gt; Worker 查看节点信息。</p>\n<p><img src=\"/img/rainbond/monitor-dolphinscheduler.png\" alt=\"\"></p>\n<h2 id=\"配置文件\">配置文件</h2>\n<p>API 和 Worker 服务共用 <code>/opt/dolphinscheduler/conf/common.properties</code> ，修改配置时只需修改 API 服务的配置文件。</p>\n<h2 id=\"如何支持-python-3？\">如何支持 Python 3？</h2>\n<p>Worker 服务默认安装了 Python3，使用时可以添加环境变量  <code>PYTHON_LAUNCHER=/usr/bin/python3</code></p>\n<h2 id=\"如何支持-hadoop,-spark,-datax-等？\">如何支持 Hadoop, Spark, DataX 等？</h2>\n<p>以 Datax 为例：</p>\n<ol>\n<li>安装插件。Rainbond 团队视图 -&gt; 插件 -&gt; 从应用商店安装插件 -&gt; 搜索 <code>通用数据初始化插件</code> 并安装。</li>\n<li>开通插件。进入 Worker 组件内 -&gt; 插件 -&gt; 开通  <code>通用数据初始化插件</code> ，并修改配置\n<ul>\n<li>FILE_URL：http://datax-opensource.oss-cn-hangzhou.aliyuncs.com/datax.tar.gz</li>\n<li>FILE_PATH：/opt/soft</li>\n<li>LOCK_PATH：/opt/soft</li>\n</ul>\n</li>\n<li>更新组件，初始化插件会自动下载 <code>Datax</code> 并解压到 <code>/opt/soft</code>目录下。\n<img src=\"/img/rainbond/plugin.png\" alt=\"\"></li>\n</ol>\n<hr>\n",
+  "location": [
+    "部署指南",
+    "集成",
+    "基于Rainbond部署(Cluster)"
+  ],
+  "structure": [
+    {
+      "title": "前提条件",
+      "children": [],
+      "anchor": "前提条件"
+    },
+    {
+      "title": "DolphinScheduler 集群一键部署",
+      "children": [],
+      "anchor": "dolphinscheduler-集群一键部署"
+    },
+    {
+      "title": "API Master Worker 节点伸缩",
+      "children": [],
+      "anchor": "api-master-worker-节点伸缩"
+    },
+    {
+      "title": "配置文件",
+      "children": [],
+      "anchor": "配置文件"
+    },
+    {
+      "title": "如何支持 Python 3？",
+      "children": [],
+      "anchor": "如何支持-python-3？"
+    },
+    {
+      "title": "如何支持 Hadoop, Spark, DataX 等？",
+      "children": [],
+      "anchor": "如何支持-hadoop,-spark,-datax-等？"
+    }
+  ],
+  "title": "基于 Rainbond 部署 DolphinScheduler 高可用集群",
+  "link": "/guide/integration/rainbond"
+}

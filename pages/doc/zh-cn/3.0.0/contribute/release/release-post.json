@@ -1,0 +1,28 @@
+{
+  "__html": "<h1 id=\"发版后续\">发版后续</h1>\n<p>发送公告邮件后，我们还有一些发布任务要做，目前我们必须将 Docker 镜像发布到 Docker Hub 和 并且需要将 pydolphinscheduler 发布到 PyPI。</p>\n<h2 id=\"发布-docker-镜像\">发布 Docker 镜像</h2>\n<p>我们已经有 CI 发布最新的 Docker 镜像到 GitHub container register <a href=\"https://github.com/apache/dolphinscheduler/blob/d80cf21456265c9d84e642bdb4db4067c7577fc6/.github/workflows/publish-docker.yaml#L55-L63\">点击查看详情</a>。\n我们可以稍微修改 CI 的主要命令实现单个命令发布 Docker 镜像发布到 Docker Hub。</p>\n<pre><code class=\"language-bash\"><span class=\"hljs-comment\"># 请将 &lt;VERSION&gt; 修改成你要发版的版本</span>\n./mvnw -B clean deploy \\\n    -Dmaven.test.skip \\\n    -Dmaven.javadoc.skip \\\n    -Dmaven.checkstyle.skip \\\n    -Dmaven.deploy.skip \\\n    -Ddocker.tag=&lt;VERSION&gt; \\\n    -Ddocker.hub=apache \\\n    -Pdocker,release\n</code></pre>\n<h2 id=\"发布-pydolphinscheduler-到-pypi\">发布 pydolphinscheduler 到 PyPI</h2>\n<p>需要将 Python API 发布到 PyPI，请参考 <a href=\"https://github.com/apache/dolphinscheduler/blob/3.0.0/dolphinscheduler-python/pydolphinscheduler/RELEASE.md#to-pypi\">Python API release</a>\n完成 PyPI 的发版</p>\n<h2 id=\"获取全部的贡献者\">获取全部的贡献者</h2>\n<p>当您想要发布新版本的新闻或公告时，您可能需要当前版本的所有贡献者，您可以使用 git 命令 <code>git log --pretty=&quot;%an&quot; &lt;PREVIOUS-RELEASE-SHA&gt;..&lt;CURRENT-RELEASE-SHA&gt; | sort | uniq</code>\n（将对应的版本改成两个版本的 tag 值）自动生成 git 作者姓名。</p>\n",
+  "location": [
+    "贡献指南",
+    "发版指南",
+    "发版后续"
+  ],
+  "time": "2022-8-9",
+  "structure": [
+    {
+      "title": "发布 Docker 镜像",
+      "children": [],
+      "anchor": "发布-docker-镜像"
+    },
+    {
+      "title": "发布 pydolphinscheduler 到 PyPI",
+      "children": [],
+      "anchor": "发布-pydolphinscheduler-到-pypi"
+    },
+    {
+      "title": "获取全部的贡献者",
+      "children": [],
+      "anchor": "获取全部的贡献者"
+    }
+  ],
+  "title": "发版后续",
+  "link": "/contribute/release/release-post"
+}

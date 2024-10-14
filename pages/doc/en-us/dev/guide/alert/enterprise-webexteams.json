@@ -1,0 +1,138 @@
+{
+  "__html": "<h1 id=\"webex-teams\">Webex Teams</h1>\n<p>If you need to use <code>Webex Teams</code> to alert, create an alert instance in the alert instance management, and choose the WebexTeams plugin. You can pick private alert or room group chat alert.\nThe following is the <code>WebexTeams</code> configuration example:</p>\n<p><img src=\"/img/alert/enterprise-webexteams-plugin.png\" alt=\"enterprise-webexteams-plugin\"></p>\n<h2 id=\"parameter-configuration\">Parameter Configuration</h2>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>botAccessToken</td>\n<td>The access token of robot.</td>\n</tr>\n<tr>\n<td>roomID</td>\n<td>The ID of the room that receives message (only support one room ID).</td>\n</tr>\n<tr>\n<td>toPersonId</td>\n<td>The person ID of the recipient when sending a private 1:1 message.</td>\n</tr>\n<tr>\n<td>toPersonEmail</td>\n<td>The email address of the recipient when sending a private 1:1 message.</td>\n</tr>\n<tr>\n<td>atSomeoneInRoom</td>\n<td>If the message destination is room, the emails of the person being @, use <code>,</code> (eng commas) to separate multiple emails.</td>\n</tr>\n<tr>\n<td>destination</td>\n<td>The destination of the message (one message only support one destination).</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"create-bot\">Create Bot</h2>\n<p>Create a bot visit <a href=\"https://developer.webex.com/my-apps\">Official Website My-Apps</a> to <code>Create a New APP</code> and select <code>Create a Bot</code>, fill in the bot information and acquire <code>bot username</code> and <code>bot ID</code> for further usage.</p>\n<p><img src=\"/img/alert/enterprise-webexteams-bot.png\" alt=\"enterprise-webexteams-bot-info\"></p>\n<h2 id=\"create-a-room\">Create a Room</h2>\n<p>Create a root visit <a href=\"https://developer.webex.com/docs/api/v1/rooms/create-a-room\">Official Website for Developer APIs</a> to create a new room, fill in the room name and acquire <code>id</code>(room ID) and <code>creatorId</code> for further usage.</p>\n<p><img src=\"/img/alert/enterprise-webexteams-room.png\" alt=\"enterprise-webexteams-room-info\"></p>\n<h3 id=\"invite-bot-to-the-room\">Invite Bot to the Room</h3>\n<p>Invite bot to the room by invite bot Email (bot username).</p>\n<h2 id=\"send-private-message\">Send Private Message</h2>\n<p>In this way, you can send private message to a person by <code>User Email</code> or <code>UserId</code> in a private conversation. Fill in the <code>To Person Id</code> or <code>To Person Email</code>(recommended) and <code>Bot Access Token</code> and select <code>Destination</code> <code>personEmail</code> or <code>personId</code>.\nThe <code>user Email</code> is user register Email.\nThe <code>userId</code> we can acquire it from the <code>creatorId</code> of creating a new group chat room API.</p>\n<p><img src=\"/img/alert/enterprise-webexteams-private-form.png\" alt=\"enterprise-webexteams-private-message-form\"></p>\n<h3 id=\"private-alert-message-example\">Private Alert Message Example</h3>\n<p><img src=\"/img/alert/enterprise-webexteams-private-msg.png\" alt=\"enterprise-webexteams-private-message-example\"></p>\n<h2 id=\"send-group-room-message\">Send Group Room Message</h2>\n<p>In this way, you can send group room message to a room by <code>Room ID</code>. Fill in the <code>Room Id</code> and <code>Bot Access Token</code> and select <code>Destination</code> <code>roomId</code>.\nThe <code>Room ID</code> we can acquire it from the <code>id</code> of creating a new group chat room API.</p>\n<p><img src=\"/img/alert/enterprise-webexteams-group-form.png\" alt=\"enterprise-webexteams-room\"></p>\n<h3 id=\"group-room-alert-message-example\">Group Room Alert Message Example</h3>\n<p><img src=\"/img/alert/enterprise-webexteams-room-msg.png\" alt=\"enterprise-webexteams-room-message-example\"></p>\n<h2 id=\"references:\">References:</h2>\n<ul>\n<li><a href=\"https://developer.webex.com/docs/bots\">WebexTeams Application Bot Guide</a></li>\n<li><a href=\"https://developer.webex.com/docs/api/v1/messages/create-a-message\">WebexTeams Message Guide</a></li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Alert",
+    "Enterprise Webexteams"
+  ],
+  "structure": [
+    {
+      "title": "Parameter Configuration",
+      "children": [
+        {
+          "title": "Invite Bot to the Room",
+          "children": [],
+          "anchor": "invite-bot-to-the-room"
+        },
+        {
+          "title": "Private Alert Message Example",
+          "children": [],
+          "anchor": "private-alert-message-example"
+        },
+        {
+          "title": "Group Room Alert Message Example",
+          "children": [],
+          "anchor": "group-room-alert-message-example"
+        }
+      ],
+      "anchor": "parameter-configuration"
+    },
+    {
+      "title": "Create Bot",
+      "children": [
+        {
+          "title": "Invite Bot to the Room",
+          "children": [],
+          "anchor": "invite-bot-to-the-room"
+        },
+        {
+          "title": "Private Alert Message Example",
+          "children": [],
+          "anchor": "private-alert-message-example"
+        },
+        {
+          "title": "Group Room Alert Message Example",
+          "children": [],
+          "anchor": "group-room-alert-message-example"
+        }
+      ],
+      "anchor": "create-bot"
+    },
+    {
+      "title": "Create a Room",
+      "children": [
+        {
+          "title": "Invite Bot to the Room",
+          "children": [],
+          "anchor": "invite-bot-to-the-room"
+        },
+        {
+          "title": "Private Alert Message Example",
+          "children": [],
+          "anchor": "private-alert-message-example"
+        },
+        {
+          "title": "Group Room Alert Message Example",
+          "children": [],
+          "anchor": "group-room-alert-message-example"
+        }
+      ],
+      "anchor": "create-a-room"
+    },
+    {
+      "title": "Send Private Message",
+      "children": [
+        {
+          "title": "Invite Bot to the Room",
+          "children": [],
+          "anchor": "invite-bot-to-the-room"
+        },
+        {
+          "title": "Private Alert Message Example",
+          "children": [],
+          "anchor": "private-alert-message-example"
+        },
+        {
+          "title": "Group Room Alert Message Example",
+          "children": [],
+          "anchor": "group-room-alert-message-example"
+        }
+      ],
+      "anchor": "send-private-message"
+    },
+    {
+      "title": "Send Group Room Message",
+      "children": [
+        {
+          "title": "Invite Bot to the Room",
+          "children": [],
+          "anchor": "invite-bot-to-the-room"
+        },
+        {
+          "title": "Private Alert Message Example",
+          "children": [],
+          "anchor": "private-alert-message-example"
+        },
+        {
+          "title": "Group Room Alert Message Example",
+          "children": [],
+          "anchor": "group-room-alert-message-example"
+        }
+      ],
+      "anchor": "send-group-room-message"
+    },
+    {
+      "title": "References:",
+      "children": [
+        {
+          "title": "Invite Bot to the Room",
+          "children": [],
+          "anchor": "invite-bot-to-the-room"
+        },
+        {
+          "title": "Private Alert Message Example",
+          "children": [],
+          "anchor": "private-alert-message-example"
+        },
+        {
+          "title": "Group Room Alert Message Example",
+          "children": [],
+          "anchor": "group-room-alert-message-example"
+        }
+      ],
+      "anchor": "references:"
+    }
+  ],
+  "title": "Webex Teams",
+  "link": "/guide/alert/enterprise-webexteams"
+}

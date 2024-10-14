@@ -1,0 +1,119 @@
+{
+  "__html": "<h1 id=\"open-api\">Open API</h1>\n<h2 id=\"background\">Background</h2>\n<p>Generally, projects and processes are created through pages, but considering the integration with third-party systems requires API calls to manage projects and workflows.</p>\n<h2 id=\"the-operation-steps-of-dolphinscheduler-api-calls\">The Operation Steps of DolphinScheduler API Calls</h2>\n<h3 id=\"create-a-token\">Create a Token</h3>\n<ol>\n<li>Log in to the scheduling system, click &quot;Security&quot;, then click &quot;Token manage&quot; on the left, and click &quot;Create token&quot; to create a token.</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/security/create-token.png\" alt=\"create-token\"></p>\n<ol start=\"2\">\n<li>Select the &quot;Expiration time&quot; (Token validity time), select &quot;User&quot; (choose the specified user to perform the API operation), click &quot;Generate token&quot;, copy the <code>Token</code> string, and click &quot;Submit&quot;.</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/open-api/token_expiration.png\" alt=\"token-expiration\"></p>\n<h3 id=\"examples\">Examples</h3>\n<h4 id=\"query-project-list\">Query project list</h4>\n<ol>\n<li>Open the API documentation</li>\n</ol>\n<blockquote>\n<p>Address：http://{API server ip}:12345/dolphinscheduler/swagger-ui/index.html?language=en_US&amp;lang=en</p>\n</blockquote>\n<p><img src=\"/img/new_ui/dev/open-api/api_doc.png\" alt=\"api-doc\"></p>\n<ol start=\"2\">\n<li>\n<p>select a test API, the API selected for this test is <code>queryAllProjectList</code></p>\n<blockquote>\n<p>projects/list</p>\n</blockquote>\n</li>\n<li>\n<p>Open <code>Postman</code>, fill in the API address, enter the <code>Token</code> in <code>Headers</code>, and then send the request to view the result:</p>\n<pre><code>token: The Token just generated\n</code></pre>\n</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/open-api/api_test.png\" alt=\"api-test\"></p>\n<h4 id=\"create-a-project\">Create a Project</h4>\n<p>This demonstrates how to use the calling api to create the corresponding project.</p>\n<p>By consulting the api documentation, configure the KEY as Accept and VALUE as the parameter of application/json in the headers of Postman.</p>\n<p><img src=\"/img/new_ui/dev/open-api/create_project01.png\" alt=\"create-project01\"></p>\n<p>And then configure the required projectName and description parameters in Body.</p>\n<p><img src=\"/img/new_ui/dev/open-api/create_project02.png\" alt=\"create-project02\"></p>\n<p>Check the post request result.</p>\n<p><img src=\"/img/new_ui/dev/open-api/create_project03.png\" alt=\"create-project03\"></p>\n<p>The returned <code>msg</code> information is &quot;success&quot;, indicating that we have successfully created the project through API.</p>\n<p>If you are interested in the source code of creating a project, please continue to read the following：</p>\n<h3 id=\"appendix：-the-source-code-of-creating-a-project\">Appendix： The Source Code of Creating a Project</h3>\n<p><img src=\"/img/new_ui/dev/open-api/api_source01.png\" alt=\"api-source01\"></p>\n<p><img src=\"/img/new_ui/dev/open-api/api_source02.png\" alt=\"api-source02\"></p>\n",
+  "location": [
+    "API",
+    "Open API"
+  ],
+  "structure": [
+    {
+      "title": "Background",
+      "children": [
+        {
+          "title": "Create a Token",
+          "children": [
+            {
+              "title": "Query project list",
+              "children": [],
+              "anchor": "query-project-list"
+            },
+            {
+              "title": "Create a Project",
+              "children": [],
+              "anchor": "create-a-project"
+            }
+          ],
+          "anchor": "create-a-token"
+        },
+        {
+          "title": "Examples",
+          "children": [
+            {
+              "title": "Query project list",
+              "children": [],
+              "anchor": "query-project-list"
+            },
+            {
+              "title": "Create a Project",
+              "children": [],
+              "anchor": "create-a-project"
+            }
+          ],
+          "anchor": "examples"
+        },
+        {
+          "title": "Appendix： The Source Code of Creating a Project",
+          "children": [
+            {
+              "title": "Query project list",
+              "children": [],
+              "anchor": "query-project-list"
+            },
+            {
+              "title": "Create a Project",
+              "children": [],
+              "anchor": "create-a-project"
+            }
+          ],
+          "anchor": "appendix：-the-source-code-of-creating-a-project"
+        }
+      ],
+      "anchor": "background"
+    },
+    {
+      "title": "The Operation Steps of DolphinScheduler API Calls",
+      "children": [
+        {
+          "title": "Create a Token",
+          "children": [
+            {
+              "title": "Query project list",
+              "children": [],
+              "anchor": "query-project-list"
+            },
+            {
+              "title": "Create a Project",
+              "children": [],
+              "anchor": "create-a-project"
+            }
+          ],
+          "anchor": "create-a-token"
+        },
+        {
+          "title": "Examples",
+          "children": [
+            {
+              "title": "Query project list",
+              "children": [],
+              "anchor": "query-project-list"
+            },
+            {
+              "title": "Create a Project",
+              "children": [],
+              "anchor": "create-a-project"
+            }
+          ],
+          "anchor": "examples"
+        },
+        {
+          "title": "Appendix： The Source Code of Creating a Project",
+          "children": [
+            {
+              "title": "Query project list",
+              "children": [],
+              "anchor": "query-project-list"
+            },
+            {
+              "title": "Create a Project",
+              "children": [],
+              "anchor": "create-a-project"
+            }
+          ],
+          "anchor": "appendix：-the-source-code-of-creating-a-project"
+        }
+      ],
+      "anchor": "the-operation-steps-of-dolphinscheduler-api-calls"
+    }
+  ],
+  "title": "Open API",
+  "link": "/guide/api/open-api"
+}

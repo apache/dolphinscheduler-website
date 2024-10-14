@@ -1,0 +1,33 @@
+{
+  "__html": "<h3 id=\"dolphinscheduler-registry-spi-extension\">DolphinScheduler Registry SPI Extension</h3>\n<h4 id=\"how-to-use?\">how to use?</h4>\n<p>Make the following configuration (take zookeeper as an example)</p>\n<ul>\n<li>\n<p>Registry plug-in configuration, take Zookeeper as an example (registry.properties)\ndolphinscheduler-service/src/main/resources/registry.properties</p>\n<pre><code class=\"language-registry.properties\">registry.plugin.name=zookeeper\nregistry.servers=127.0.0.1:2181\n</code></pre>\n</li>\n</ul>\n<p>For specific configuration information, please refer to the parameter information provided by the specific plug-in, for example zk: <code>org/apache/dolphinscheduler/plugin/registry/zookeeper/ZookeeperConfiguration.java</code>\nAll configuration information prefixes need to be +registry, such as base.sleep.time.ms, which should be configured in the registry as follows: registry.base.sleep.time.ms=100</p>\n<h4 id=\"how-to-expand\">How to expand</h4>\n<p><code>dolphinscheduler-registry-api</code> defines the standard for implementing plugins. When you need to extend plugins, you only need to implement <code>org.apache.dolphinscheduler.registry.api.RegistryFactory</code>.</p>\n<p>Under the <code>dolphinscheduler-registry-plugin</code> module is the registry plugin we currently provide.</p>\n<h4 id=\"faq\">FAQ</h4>\n<p>1: registry connect timeout</p>\n<p>You can increase the relevant timeout parameters.</p>\n",
+  "location": [
+    "Contribution",
+    "Design Document",
+    "Registry SPI"
+  ],
+  "structure": [
+    {
+      "title": "DolphinScheduler Registry SPI Extension",
+      "children": [
+        {
+          "title": "how to use?",
+          "children": [],
+          "anchor": "how-to-use?"
+        },
+        {
+          "title": "How to expand",
+          "children": [],
+          "anchor": "how-to-expand"
+        },
+        {
+          "title": "FAQ",
+          "children": [],
+          "anchor": "faq"
+        }
+      ],
+      "anchor": "dolphinscheduler-registry-spi-extension"
+    }
+  ],
+  "title": "DolphinScheduler Registry SPI Extension",
+  "link": "/contribute/backend/spi/registry"
+}

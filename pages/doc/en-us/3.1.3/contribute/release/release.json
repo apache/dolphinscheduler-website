@@ -1,0 +1,3877 @@
+{
+  "__html": "<h1 id=\"release-guide\">Release Guide</h1>\n<h2 id=\"check-your-environment\">Check Your Environment</h2>\n<p>To make sure you could successfully complete the release for DolphinScheduler, you should check your environment and make sure\nall conditions are met, if any or them are missing, you should install them and make sure them work.</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">JDK 1.8 above is requests</span>\njava -version\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Maven requests</span>\nmvn -version\n</code></pre>\n<h2 id=\"gpg-settings\">GPG Settings</h2>\n<h3 id=\"install-gpg\">Install GPG</h3>\n<p>Download installation package on <a href=\"https://www.gnupg.org/download/index.html\">official GnuPG website</a>.\nThe command of GnuPG 1.x version can differ a little from that of 2.x version.\nThe following instructions take <code>GnuPG-2.1.23</code> version for example.</p>\n<p>After the installation, execute the following command to check the version number.</p>\n<pre><code class=\"language-shell\">gpg --version\n</code></pre>\n<h3 id=\"create-key\">Create Key</h3>\n<p>After the installation, execute the following command to create key.</p>\n<p>This command indicates <code>GnuPG-2.x</code> can be used:</p>\n<pre><code class=\"language-shell\">gpg --full-gen-key\n</code></pre>\n<p>This command indicates <code>GnuPG-1.x</code> can be used:</p>\n<pre><code class=\"language-shell\">gpg --gen-key\n</code></pre>\n<p>Finish the key creation according to instructions, <strong>Notice: Please use Apache mails and its password for key creation.</strong></p>\n<pre><code class=\"language-shell\">gpg (GnuPG) 2.0.12; Copyright (C) 2009 Free Software Foundation, Inc.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nPlease select what kind of key you want:\n  (1) RSA and RSA (default)\n  (2) DSA and Elgamal\n  (3) DSA (sign only)\n  (4) RSA (sign only)\nYour selection? 1\nRSA keys may be between 1024 and 4096 bits long.\nWhat keysize do you want? (2048) 4096\nRequested keysize is 4096 bits\nPlease specify how long the key should be valid.\n        0 = key does not expire\n     &lt;n&gt;  = key expires in n days\n     &lt;n&gt;w = key expires in n weeks\n     &lt;n&gt;m = key expires in n months\n     &lt;n&gt;y = key expires in n years\nKey is valid for? (0)\nKey does not expire at all\nIs this correct? (y/N) y\n\nGnuPG needs to construct a user ID to identify your key.\n\nReal name: ${Input username}\nEmail address: ${Input email}\nComment: ${Input comment}\nYou selected this USER-ID:\n   &quot;${Inputed username} (${Inputed comment}) &lt;${Inputed email}&gt;&quot;\n\nChange (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O\nYou need a Passphrase to protect your secret key. # Input your Apache mail passwords\n</code></pre>\n<h3 id=\"check-generated-key\">Check Generated Key</h3>\n<pre><code class=\"language-shell\">gpg --list-keys\n</code></pre>\n<p>Execution Result:</p>\n<pre><code class=\"language-shell\">pub   4096R/85E11560 2019-11-15\nuid                  ${Username} (${Comment}) &lt;{Email}&gt;\nsub   4096R/A63BC462 2019-11-15\n</code></pre>\n<p>Among them, 85E11560 is public key ID.</p>\n<h3 id=\"upload-the-public-key-to-key-server\">Upload the Public Key to Key Server</h3>\n<p>The command is as follow:</p>\n<pre><code class=\"language-shell\">gpg --keyserver hkp://pool.sks-keyservers.net --send-key 85E11560\n</code></pre>\n<p><code>pool.sks-keyservers.net</code> is randomly chosen from <a href=\"https://sks-keyservers.net/status/\">public key server</a>.\nEach server will automatically synchronize with one another, so it would be okay to choose any one, a backup keys servers\nis <code>gpg --keyserver hkp://keyserver.ubuntu.com --send-key &lt;YOUR_KEY_ID&gt;</code></p>\n<h2 id=\"apache-maven-central-repository-release\">Apache Maven Central Repository Release</h2>\n<h3 id=\"set-<code>settings-security.xml</code>-and-<code>settings.xml</code>\">Set <code>settings-security.xml</code> and <code>settings.xml</code></h3>\n<p>In this section, we add Apache server maven configuration to prepare the release, we have to add <code>settings-security.xml</code> according\nto <a href=\"http://maven.apache.org/guides/mini/guide-encryption.html\">here</a> firstly and then change your <code>~/.m2/settings.xml</code> like below</p>\n<pre><code class=\"language-xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">settings</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">servers</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">server</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">id</span>&gt;</span>apache.snapshots.https<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">id</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">username</span>&gt;</span> <span class=\"hljs-comment\">&lt;!-- APACHE LDAP username --&gt;</span> <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">username</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">password</span>&gt;</span> <span class=\"hljs-comment\">&lt;!-- APACHE LDAP encrypted password --&gt;</span> <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">password</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">server</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">server</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">id</span>&gt;</span>apache.releases.https<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">id</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">username</span>&gt;</span> <span class=\"hljs-comment\">&lt;!-- APACHE LDAP username --&gt;</span> <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">username</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">password</span>&gt;</span> <span class=\"hljs-comment\">&lt;!-- APACHE LDAP encrypted password --&gt;</span> <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">password</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">server</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">servers</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">settings</span>&gt;</span>\n</code></pre>\n<h3 id=\"set-release-in-environment\">Set Release in Environment</h3>\n<p>We will use the release version, your github name and your Apache username below several times, so it is better to store\nit to bash variable for easier use.</p>\n<pre><code class=\"language-shell\">VERSION=&lt;THE-VERSION-YOU-RELEASE&gt;\nGH_USERNAME=&lt;YOUR-GITHUB-USERNAME&gt;\nA_USERNAME=&lt;YOUR-APACHE-USERNAME&gt;\n</code></pre>\n<blockquote>\n<p>Note: We can use the variable directly in you bash after we set environment, without changing anything. For example, we\ncan use command <code>git clone -b &quot;${VERSION}&quot;-prepare https://github.com/apache/dolphinscheduler.git</code> to clone the release branch\nand it can be success by covert the <code>&quot;${VERSION}&quot;</code> to <code>&lt;THE-VERSION-YOU-RELEASE&gt;</code>. But you have to change <code>&lt;VERSION&gt;</code> manually in\nsome of not bash step like <a href=\"#vote-procedure\">vote mail</a>, we using <code>&lt;VERSION&gt;</code> instead of <code>&quot;${VERSION}&quot;</code> to notice release\nmanager they have to change by hand.</p>\n</blockquote>\n<h3 id=\"create-release-branch\">Create Release Branch</h3>\n<p>In this section, we dwonload source code from github and create new branch to release</p>\n<pre><code class=\"language-shell\">git clone -b &quot;${VERSION}&quot;-prepare https://github.com/apache/dolphinscheduler.git\ncd ~/dolphinscheduler/\ngit pull\ngit checkout -b &quot;${VERSION}&quot;-release\ngit push origin &quot;${VERSION}&quot;-release\n</code></pre>\n<h3 id=\"pre-release-check\">Pre-Release Check</h3>\n<pre><code class=\"language-shell\">\nmvn release:prepare -Prelease -Darguments=&quot;-Dmaven.test.skip=true -Dcheckstyle.skip=true -Dmaven.javadoc.skip=true -Dspotless.check.skip=true&quot; -DautoVersionSubmodules=true -DdryRun=true -Dusername=&quot;${GH_USERNAME}&quot;\n</code></pre>\n<ul>\n<li><code>-Prelease</code>: choose release profile, which will pack all the source codes, jar files and executable binary packages.</li>\n<li><code>-DautoVersionSubmodules=true</code>: it can make the version number is inputted only once and not for each sub-module.</li>\n<li><code>-DdryRun=true</code>: dry run which means not to generate or submit new version number and new tag.</li>\n</ul>\n<h3 id=\"prepare-for-the-release\">Prepare for the Release</h3>\n<p>First, clean local pre-release check information.</p>\n<pre><code class=\"language-shell\">mvn release:clean\n</code></pre>\n<p>Then, prepare to execute the release.</p>\n<pre><code class=\"language-shell\">\nmvn release:prepare -Prelease -Darguments=&quot;-Dmaven.test.skip=true -Dcheckstyle.skip=true -Dmaven.javadoc.skip=true -Dspotless.check.skip=true&quot; -DautoVersionSubmodules=true -DpushChanges=false -Dusername=&quot;${GH_USERNAME}&quot;\n</code></pre>\n<p>It is basically the same as the previous rehearsal command, but deleting <code>-DdryRun=true</code> parameter.</p>\n<ul>\n<li><code>-DpushChanges=fals</code>: do not submit the edited version number and tag to GitHub automatically.</li>\n</ul>\n<blockquote>\n<p>Note: You have to config your git <code>user.name</code> and <code>user.password</code> by command <code>git config --global user.email &quot;you@example.com&quot;</code>\nand <code>git config --global user.name &quot;Your Name&quot;</code> if you meet some mistake like <strong>Please tell me who you are.</strong>\nfrom git.</p>\n</blockquote>\n<p>After making sure there is no mistake in local files, submit them to GitHub.</p>\n<pre><code class=\"language-shell\">git push -u origin &quot;${VERSION}&quot;-release\ngit push origin --tags\n</code></pre>\n<!-- markdown-link-check-disable -->\n<blockquote>\n<p>Note1: In this step, you should use github token for password because native password no longer supported, you can see\nhttps://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token for more\ndetail about how to create token about it.</p>\n<p>Note2: After the command done, it will auto-created <code>release.properties</code> file and <code>*.Backup</code> files, their will be need\nin the following command and DO NOT DELETE THEM</p>\n</blockquote>\n<!-- markdown-link-check-enable -->\n<h3 id=\"deploy-the-release\">Deploy the Release</h3>\n<pre><code class=\"language-shell\">mvn release:perform -Prelease -Darguments=&quot;-Dmaven.test.skip=true -Dcheckstyle.skip=true -Dmaven.javadoc.skip=true -Dspotless.check.skip=true&quot; -DautoVersionSubmodules=true -Dusername=&quot;${GH_USERNAME}&quot;\n</code></pre>\n<p>After that command is executed, the version to be released will be uploaded to Apache staging repository automatically.\nGo to <a href=\"https://repository.apache.org/#stagingRepositories\">apache staging repositories</a> and login by Apache LDAP. then you can see the uploaded version, the content of <code>Repository</code> column is the <code>${STAGING.REPOSITORY}</code>.\nClick <code>Close</code> to tell Nexus that the construction is finished, because only in this way, this version can be usable.\nIf there is any problem in gpg signature, <code>Close</code> will fail, but you can see the failure information through <code>Activity</code>.</p>\n<h2 id=\"apache-svn-repository-release\">Apache SVN Repository Release</h2>\n<h3 id=\"checkout-dolphinscheduler-release-directory\">Checkout dolphinscheduler Release Directory</h3>\n<p>If there is no local work directory, create one at first.</p>\n<pre><code class=\"language-shell\">mkdir -p ~/ds_svn/dev/\ncd ~/ds_svn/dev/\n</code></pre>\n<p>After the creation, checkout dolphinscheduler release directory from Apache SVN.</p>\n<pre><code class=\"language-shell\">svn --username=&quot;${A_USERNAME}&quot; co https://dist.apache.org/repos/dist/dev/dolphinscheduler\ncd ~/ds_svn/dev/dolphinscheduler\n</code></pre>\n<h3 id=\"add-gpg-public-key\">Add gpg Public Key</h3>\n<p>Only the account in its first deployment needs to add that.\nIt is alright for <code>KEYS</code> to only include the public key of the deployed account.</p>\n<pre><code class=\"language-shell\">gpg -a --export &lt;YOUR-GPG-KEY-ID&gt; &gt;&gt; KEYS\n</code></pre>\n<h3 id=\"add-the-release-content-to-svn-directory\">Add the Release Content to SVN Directory</h3>\n<p>Create folder by version number.</p>\n<pre><code class=\"language-shell\">mkdir -p ~/ds_svn/dev/dolphinscheduler/&quot;${VERSION}&quot;\ncd ~/ds_svn/dev/dolphinscheduler/&quot;${VERSION}&quot;\n</code></pre>\n<p>Add source code packages, binary packages and executable binary packages to SVN working directory.</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Source and binary tarball <span class=\"hljs-keyword\">for</span> main code</span>\ncp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/&quot;${VERSION}&quot;\ncp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/&quot;${VERSION}&quot;\n</code></pre>\n<h3 id=\"generate-sign-files\">Generate sign files</h3>\n<pre><code class=\"language-shell\">shasum -a 512 apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz &gt;&gt; apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz.sha512\nshasum -b -a 512 apache-dolphinscheduler-&quot;${VERSION}&quot;-bin.tar.gz &gt;&gt; apache-dolphinscheduler-&quot;${VERSION}&quot;-bin.tar.gz.sha512\n</code></pre>\n<h3 id=\"commit-to-apache-svn\">Commit to Apache SVN</h3>\n<pre><code class=\"language-shell\">cd ~/ds_svn/dev/dolphinscheduler\nsvn add *\nsvn --username=&quot;${A_USERNAME}&quot; commit -m &quot;release ${VERSION}&quot;\n</code></pre>\n<h2 id=\"check-release\">Check Release</h2>\n<h3 id=\"check-sha512-hash\">Check sha512 hash</h3>\n<pre><code class=\"language-shell\">shasum -c apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz.sha512\nshasum -c apache-dolphinscheduler-&quot;${VERSION}&quot;-bin.tar.gz.sha512\n</code></pre>\n<h3 id=\"check-gpg-signature\">Check gpg Signature</h3>\n<p>First, import releaser's public key.\nImport KEYS from SVN repository to local. (The releaser does not need to import again; the checking assistant needs to import it, with the user name filled as the releaser's. )</p>\n<pre><code class=\"language-shell\">curl https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS &gt;&gt; KEYS\ngpg --import KEYS\ngpg --edit-key &quot;${A_USERNAME}&quot;\n<span class=\"hljs-meta prompt_\">  &gt; </span><span class=\"language-bash\">trust</span>\n\nPlease decide how far you trust this user to correctly verify other users&#x27; keys\n(by looking at passports, checking fingerprints from different sources, etc.)\n\n  1 = I don&#x27;t know or won&#x27;t say\n  2 = I do NOT trust\n  3 = I trust marginally\n  4 = I trust fully\n  5 = I trust ultimately\n  m = back to the main menu\n\nYour decision? 5\n<span class=\"hljs-meta prompt_\">\n  &gt; </span><span class=\"language-bash\">save</span>\n</code></pre>\n<p>Then, check the gpg signature.</p>\n<pre><code class=\"language-shell\">gpg --verify apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz.asc\ngpg --verify apache-dolphinscheduler-&quot;${VERSION}&quot;-bin.tar.gz.asc\n</code></pre>\n<blockquote>\n<p>Note: You have to create gpg signature manually when you can not find your <code>asc</code> file, the command\n<code>gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-&quot;${VERSION}&quot;-bin.tar.gz</code> and\n<code>gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz</code> will create them</p>\n</blockquote>\n<h3 id=\"check-released-files\">Check Released Files</h3>\n<h4 id=\"check-source-package\">Check source package</h4>\n<p>Decompress <code>apache-dolphinscheduler-&lt;VERSION&gt;-src.tar.gz</code> then check the following items:</p>\n<ul>\n<li>Check whether source tarball is oversized for including nonessential files</li>\n<li><code>LICENSE</code> and <code>NOTICE</code> files exist</li>\n<li>Correct year in <code>NOTICE</code> file</li>\n<li>There is only text files but no binary files</li>\n<li>All source files have ASF headers</li>\n<li>Codes can be compiled and pass the unit tests (mvn install)</li>\n<li>The contents of the release match with what's tagged in version control (diff -r a verify_dir tag_dir)</li>\n<li>Check if there is any extra files or folders, empty folders for example</li>\n</ul>\n<h4 id=\"check-binary-packages\">Check binary packages</h4>\n<p>Decompress <code>apache-dolphinscheduler-&lt;VERSION&gt;-src.tar.gz</code> to check the following items:</p>\n<ul>\n<li><code>LICENSE</code> and <code>NOTICE</code> files exist</li>\n<li>Correct year in <code>NOTICE</code> file</li>\n<li>Check the third party dependency license:\n<ul>\n<li>The software have a compatible license</li>\n<li>All software licenses mentioned in <code>LICENSE</code></li>\n<li>All the third party dependency licenses are under <code>licenses</code> folder</li>\n<li>If it depends on Apache license and has a <code>NOTICE</code> file, that <code>NOTICE</code> file need to be added to <code>NOTICE</code> file of the release</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"call-for-a-vote\">Call for a Vote</h2>\n<h3 id=\"update-release-notes\">Update Release Notes</h3>\n<p>You should create a release note in GitHub by <a href=\"https://github.com/apache/dolphinscheduler/releases/new\">new release note</a>.\nIt should be done before vote mail because we need the release note in the mail. You could use command\n<code>git log --pretty=&quot;- %s&quot; &lt;PREVIOUS-RELEASE-SHA&gt;..&lt;CURRENT-RELEASE-SHA&gt; &gt; changelog.md</code> to creat the changelog(some log\nmaybe not correct, you should filter them by yourself) and classify them and paste them to GitHub release note page</p>\n<h3 id=\"vote-procedure\">Vote procedure</h3>\n<ol>\n<li>\n<p>DolphinScheduler community vote: send the vote e-mail to <code>dev@dolphinscheduler.apache.org</code>.\nPMC needs to check the rightness of the version according to the document before they vote.\nAfter at least 72 hours and with at least 3 <code>+1 and no -1 PMC member</code> votes, it can come to the next stage of the vote.</p>\n</li>\n<li>\n<p>Announce the vote result: send the result vote e-mail to <code>dev@dolphinscheduler.apache.org</code>。</p>\n</li>\n</ol>\n<h3 id=\"vote-templates\">Vote Templates</h3>\n<h4 id=\"dolphinscheduler-community-vote-template\">DolphinScheduler Community Vote Template</h4>\n<p>Title：</p>\n<pre><code class=\"language-txt\">[VOTE] Release Apache DolphinScheduler &lt;VERSION&gt;\n</code></pre>\n<p>Body：</p>\n<pre><code class=\"language-txt\">Hello DolphinScheduler Community,\n\nThis is a call for vote to release Apache DolphinScheduler version &lt;VERSION&gt;\n\nRelease notes: https://github.com/apache/dolphinscheduler/releases/tag/&lt;VERSION&gt;\n\nThe release candidates: https://dist.apache.org/repos/dist/dev/dolphinscheduler/&lt;VERSION&gt;/\n\nMaven 2 staging repository: https://repository.apache.org/content/repositories/&lt;VERSION&gt;/org/apache/dolphinscheduler/\n\nGit tag for the release: https://github.com/apache/dolphinscheduler/tree/&lt;VERSION&gt;\n\nRelease Commit ID: https://github.com/apache/dolphinscheduler/commit/&lt;SHA-VALUE&gt;\n\nKeys to verify the Release Candidate: https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS\n\nLook at here for how to verify this release candidate: https://dolphinscheduler.apache.org/en-us/community/release.html\n\nThe vote will be open for at least 72 hours or until necessary number of votes are reached.\n\nPlease vote accordingly:\n\n[ ] +1 approve\n[ ] +0 no opinion\n[ ] -1 disapprove with the reason\n\nChecklist for reference:\n\n[ ] Download links are valid.\n[ ] Checksums and PGP signatures are valid.\n[ ] Source code artifacts have correct names matching the current release.\n[ ] LICENSE and NOTICE files are correct for each DolphinScheduler repo.\n[ ] All files have license headers if necessary.\n[ ] No compiled archives bundled in source archive.\n</code></pre>\n<ol start=\"2\">\n<li>Announce the vote result:</li>\n</ol>\n<p>Body：</p>\n<pre><code class=\"language-txt\">The vote to release Apache DolphinScheduler &lt;VERSION&gt; has passed.Here is the vote result,\n\n4 PMC member +1 votes:\n\nxxx\nxxx\nxxx\nxxx\n\n1 community +1 vote:\nxxx\n\nThanks everyone for taking time to check this release and help us.\n</code></pre>\n<h2 id=\"finish-the-release\">Finish the Release</h2>\n<h3 id=\"move-source-packages,-binary-packages-from-the-<code>dev</code>-directory-to-<code>release</code>-directory\">Move source packages, binary packages from the <code>dev</code> directory to <code>release</code> directory</h3>\n<pre><code class=\"language-shell\">svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/&quot;${VERSION}&quot; https://dist.apache.org/repos/dist/release/dolphinscheduler/\n</code></pre>\n<h3 id=\"export-you-new-gpg-keys-from-dev-to-release(optional)\">Export you new gpg KEYS from dev to release(optional)</h3>\n<p>Only if the first time you release with this gpg KEY, including it is you first release or you change your KEY</p>\n<pre><code class=\"language-shell\">mkdir -p ~/ds_svn/release/\ncd ~/ds_svn/release/\nsvn --username=&quot;${A_USERNAME}&quot; co https://dist.apache.org/repos/dist/release/dolphinscheduler\ngpg -a --export &lt;YOUR-GPG-KEY-ID&gt; &gt;&gt; KEYS\nsvn add *\nsvn --username=&quot;${A_USERNAME}&quot; commit -m &quot;new key &lt;YOUR-GPG-KEY-ID&gt; add&quot;\n</code></pre>\n<h3 id=\"update-document\">Update Document</h3>\n<p>Website should be present before you send the announce mail this section will tell you how to change the website. For example,\nthe release version is <code>&lt;VERSION&gt;</code>, the following updates are required(note it will take effect immediately when the PR is merged):</p>\n<ul>\n<li>Repository <strong>apache/dolphinscheduler-website</strong>:\n<ul>\n<li><code>download/en-us/download.md</code> and <code>download/zh-cn/download.md</code>: add the download of the <code>&lt;VERSION&gt;</code> release package</li>\n<li><code>scripts/conf.sh</code>: Add new release version <code>&lt;VERSION&gt;</code> key-value pair to variable <code>DEV_RELEASE_DOCS_VERSIONS</code></li>\n</ul>\n</li>\n<li>Repository <strong>apache/dolphinscheduler</strong>:\n<ul>\n<li><code>docs/configs/site.js</code>:\n<ul>\n<li><code>docsLatest</code>: update to <code>&lt;VERSION&gt;</code></li>\n<li><code>docs0</code>: The <code>text</code> of two places of <code>en-us/zh-cn</code> needs to be updated to <code>latest(&lt;VERSION&gt;)</code></li>\n<li><code>docsxyz</code>: Add a drop-down menu with <code>key</code> as <code>docsxyz</code> and <code>text</code> as <code>&lt;VERSION&gt;</code> in <code>children</code> of two places of <code>en-us/zh-cn</code></li>\n</ul>\n</li>\n<li><code>docs/configs/index.md.jsx</code>: Add <code>&lt;VERSION&gt;: docsxyzConfig</code></li>\n<li><code>docs/docs/en/history-versions.md</code> and <code>docs/docs/zh/history-versions.md</code>: Add new <code>&lt;VERSION&gt;</code> release docs.</li>\n<li><code>.github/ISSUE_TEMPLATE/bug-report.yml</code>: DolphinScheduler's GitHub <a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml\">bug-report</a>\nissue template have <strong>Version</strong> selection bottom. So after we release DolphinScheduler we should and the new <code>&lt;VERSION&gt;</code> to\nbug-report.yml</li>\n</ul>\n</li>\n</ul>\n<h3 id=\"find-dolphinscheduler-in-<a-href=\"https://repository.apache.org/#stagingrepositories\">apache-staging-repositories</a>-and-click-<code>release</code>\">Find DolphinScheduler in <a href=\"https://repository.apache.org/#stagingRepositories\">apache staging repositories</a> and click <code>Release</code></h3>\n<h3 id=\"send-announcement-e-mail-community\">Send Announcement E-mail Community</h3>\n<p>You should send announcement E-mail after release process finished. The E-mail should send to <code>dev@dolphinscheduler.apache.org</code>\nand cc to <code>announce@apache.org</code>.</p>\n<p>Announcement e-mail template as below：</p>\n<p>Title：</p>\n<pre><code class=\"language-txt\">[ANNOUNCE] Release Apache DolphinScheduler &lt;VERSION&gt;\n</code></pre>\n<p>Body：</p>\n<pre><code class=\"language-txt\">Hi all,\n\nWe are glad to announce the release of Apache DolphinScheduler &lt;VERSION&gt;. Once again I would like to express my thanks to your help.\n\nDolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,\ndedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.\n\n\nDownload Links: /en-us/download\n\nRelease Notes: https://github.com/apache/dolphinscheduler/releases/tag/&lt;VERSION&gt;\n\nWebsite: https://dolphinscheduler.apache.org/\n\nDolphinScheduler Resources:\n- Issue: https://github.com/apache/dolphinscheduler/issues/\n- Mailing list: dev@dolphinscheduler.apache.org\n- Documents: https://dolphinscheduler.apache.org/zh-cn/docs/&lt;VERSION&gt;/user_doc/about/introduction.html\n</code></pre>\n",
+  "location": [
+    "Contribution",
+    "Release Guide",
+    "Release Guide"
+  ],
+  "time": "2023-01-08",
+  "structure": [
+    {
+      "title": "Check Your Environment",
+      "children": [
+        {
+          "title": "Install GPG",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "install-gpg"
+        },
+        {
+          "title": "Create Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-key"
+        },
+        {
+          "title": "Check Generated Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-generated-key"
+        },
+        {
+          "title": "Upload the Public Key to Key Server",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "upload-the-public-key-to-key-server"
+        },
+        {
+          "title": "Set settings-security.xml and settings.xml",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-settings-security.xml-and-settings.xml"
+        },
+        {
+          "title": "Set Release in Environment",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-release-in-environment"
+        },
+        {
+          "title": "Create Release Branch",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-release-branch"
+        },
+        {
+          "title": "Pre-Release Check",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "pre-release-check"
+        },
+        {
+          "title": "Prepare for the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "prepare-for-the-release"
+        },
+        {
+          "title": "Deploy the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "deploy-the-release"
+        },
+        {
+          "title": "Checkout dolphinscheduler Release Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "checkout-dolphinscheduler-release-directory"
+        },
+        {
+          "title": "Add gpg Public Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-gpg-public-key"
+        },
+        {
+          "title": "Add the Release Content to SVN Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-the-release-content-to-svn-directory"
+        },
+        {
+          "title": "Generate sign files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "generate-sign-files"
+        },
+        {
+          "title": "Commit to Apache SVN",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "commit-to-apache-svn"
+        },
+        {
+          "title": "Check sha512 hash",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-sha512-hash"
+        },
+        {
+          "title": "Check gpg Signature",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-gpg-signature"
+        },
+        {
+          "title": "Check Released Files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-released-files"
+        },
+        {
+          "title": "Update Release Notes",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-release-notes"
+        },
+        {
+          "title": "Vote procedure",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-procedure"
+        },
+        {
+          "title": "Vote Templates",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-templates"
+        },
+        {
+          "title": "Move source packages, binary packages from the dev directory to release directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "move-source-packages,-binary-packages-from-the-dev-directory-to-release-directory"
+        },
+        {
+          "title": "Export you new gpg KEYS from dev to release(optional)",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "export-you-new-gpg-keys-from-dev-to-release(optional)"
+        },
+        {
+          "title": "Update Document",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-document"
+        },
+        {
+          "title": "Find DolphinScheduler in apache staging repositories and click Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "find-dolphinscheduler-in-apache-staging-repositories-and-click-release"
+        },
+        {
+          "title": "Send Announcement E-mail Community",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "send-announcement-e-mail-community"
+        }
+      ],
+      "anchor": "check-your-environment"
+    },
+    {
+      "title": "GPG Settings",
+      "children": [
+        {
+          "title": "Install GPG",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "install-gpg"
+        },
+        {
+          "title": "Create Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-key"
+        },
+        {
+          "title": "Check Generated Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-generated-key"
+        },
+        {
+          "title": "Upload the Public Key to Key Server",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "upload-the-public-key-to-key-server"
+        },
+        {
+          "title": "Set settings-security.xml and settings.xml",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-settings-security.xml-and-settings.xml"
+        },
+        {
+          "title": "Set Release in Environment",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-release-in-environment"
+        },
+        {
+          "title": "Create Release Branch",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-release-branch"
+        },
+        {
+          "title": "Pre-Release Check",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "pre-release-check"
+        },
+        {
+          "title": "Prepare for the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "prepare-for-the-release"
+        },
+        {
+          "title": "Deploy the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "deploy-the-release"
+        },
+        {
+          "title": "Checkout dolphinscheduler Release Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "checkout-dolphinscheduler-release-directory"
+        },
+        {
+          "title": "Add gpg Public Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-gpg-public-key"
+        },
+        {
+          "title": "Add the Release Content to SVN Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-the-release-content-to-svn-directory"
+        },
+        {
+          "title": "Generate sign files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "generate-sign-files"
+        },
+        {
+          "title": "Commit to Apache SVN",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "commit-to-apache-svn"
+        },
+        {
+          "title": "Check sha512 hash",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-sha512-hash"
+        },
+        {
+          "title": "Check gpg Signature",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-gpg-signature"
+        },
+        {
+          "title": "Check Released Files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-released-files"
+        },
+        {
+          "title": "Update Release Notes",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-release-notes"
+        },
+        {
+          "title": "Vote procedure",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-procedure"
+        },
+        {
+          "title": "Vote Templates",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-templates"
+        },
+        {
+          "title": "Move source packages, binary packages from the dev directory to release directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "move-source-packages,-binary-packages-from-the-dev-directory-to-release-directory"
+        },
+        {
+          "title": "Export you new gpg KEYS from dev to release(optional)",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "export-you-new-gpg-keys-from-dev-to-release(optional)"
+        },
+        {
+          "title": "Update Document",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-document"
+        },
+        {
+          "title": "Find DolphinScheduler in apache staging repositories and click Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "find-dolphinscheduler-in-apache-staging-repositories-and-click-release"
+        },
+        {
+          "title": "Send Announcement E-mail Community",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "send-announcement-e-mail-community"
+        }
+      ],
+      "anchor": "gpg-settings"
+    },
+    {
+      "title": "Apache Maven Central Repository Release",
+      "children": [
+        {
+          "title": "Install GPG",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "install-gpg"
+        },
+        {
+          "title": "Create Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-key"
+        },
+        {
+          "title": "Check Generated Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-generated-key"
+        },
+        {
+          "title": "Upload the Public Key to Key Server",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "upload-the-public-key-to-key-server"
+        },
+        {
+          "title": "Set settings-security.xml and settings.xml",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-settings-security.xml-and-settings.xml"
+        },
+        {
+          "title": "Set Release in Environment",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-release-in-environment"
+        },
+        {
+          "title": "Create Release Branch",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-release-branch"
+        },
+        {
+          "title": "Pre-Release Check",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "pre-release-check"
+        },
+        {
+          "title": "Prepare for the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "prepare-for-the-release"
+        },
+        {
+          "title": "Deploy the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "deploy-the-release"
+        },
+        {
+          "title": "Checkout dolphinscheduler Release Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "checkout-dolphinscheduler-release-directory"
+        },
+        {
+          "title": "Add gpg Public Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-gpg-public-key"
+        },
+        {
+          "title": "Add the Release Content to SVN Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-the-release-content-to-svn-directory"
+        },
+        {
+          "title": "Generate sign files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "generate-sign-files"
+        },
+        {
+          "title": "Commit to Apache SVN",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "commit-to-apache-svn"
+        },
+        {
+          "title": "Check sha512 hash",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-sha512-hash"
+        },
+        {
+          "title": "Check gpg Signature",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-gpg-signature"
+        },
+        {
+          "title": "Check Released Files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-released-files"
+        },
+        {
+          "title": "Update Release Notes",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-release-notes"
+        },
+        {
+          "title": "Vote procedure",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-procedure"
+        },
+        {
+          "title": "Vote Templates",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-templates"
+        },
+        {
+          "title": "Move source packages, binary packages from the dev directory to release directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "move-source-packages,-binary-packages-from-the-dev-directory-to-release-directory"
+        },
+        {
+          "title": "Export you new gpg KEYS from dev to release(optional)",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "export-you-new-gpg-keys-from-dev-to-release(optional)"
+        },
+        {
+          "title": "Update Document",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-document"
+        },
+        {
+          "title": "Find DolphinScheduler in apache staging repositories and click Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "find-dolphinscheduler-in-apache-staging-repositories-and-click-release"
+        },
+        {
+          "title": "Send Announcement E-mail Community",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "send-announcement-e-mail-community"
+        }
+      ],
+      "anchor": "apache-maven-central-repository-release"
+    },
+    {
+      "title": "Apache SVN Repository Release",
+      "children": [
+        {
+          "title": "Install GPG",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "install-gpg"
+        },
+        {
+          "title": "Create Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-key"
+        },
+        {
+          "title": "Check Generated Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-generated-key"
+        },
+        {
+          "title": "Upload the Public Key to Key Server",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "upload-the-public-key-to-key-server"
+        },
+        {
+          "title": "Set settings-security.xml and settings.xml",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-settings-security.xml-and-settings.xml"
+        },
+        {
+          "title": "Set Release in Environment",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-release-in-environment"
+        },
+        {
+          "title": "Create Release Branch",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-release-branch"
+        },
+        {
+          "title": "Pre-Release Check",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "pre-release-check"
+        },
+        {
+          "title": "Prepare for the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "prepare-for-the-release"
+        },
+        {
+          "title": "Deploy the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "deploy-the-release"
+        },
+        {
+          "title": "Checkout dolphinscheduler Release Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "checkout-dolphinscheduler-release-directory"
+        },
+        {
+          "title": "Add gpg Public Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-gpg-public-key"
+        },
+        {
+          "title": "Add the Release Content to SVN Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-the-release-content-to-svn-directory"
+        },
+        {
+          "title": "Generate sign files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "generate-sign-files"
+        },
+        {
+          "title": "Commit to Apache SVN",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "commit-to-apache-svn"
+        },
+        {
+          "title": "Check sha512 hash",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-sha512-hash"
+        },
+        {
+          "title": "Check gpg Signature",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-gpg-signature"
+        },
+        {
+          "title": "Check Released Files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-released-files"
+        },
+        {
+          "title": "Update Release Notes",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-release-notes"
+        },
+        {
+          "title": "Vote procedure",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-procedure"
+        },
+        {
+          "title": "Vote Templates",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-templates"
+        },
+        {
+          "title": "Move source packages, binary packages from the dev directory to release directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "move-source-packages,-binary-packages-from-the-dev-directory-to-release-directory"
+        },
+        {
+          "title": "Export you new gpg KEYS from dev to release(optional)",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "export-you-new-gpg-keys-from-dev-to-release(optional)"
+        },
+        {
+          "title": "Update Document",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-document"
+        },
+        {
+          "title": "Find DolphinScheduler in apache staging repositories and click Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "find-dolphinscheduler-in-apache-staging-repositories-and-click-release"
+        },
+        {
+          "title": "Send Announcement E-mail Community",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "send-announcement-e-mail-community"
+        }
+      ],
+      "anchor": "apache-svn-repository-release"
+    },
+    {
+      "title": "Check Release",
+      "children": [
+        {
+          "title": "Install GPG",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "install-gpg"
+        },
+        {
+          "title": "Create Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-key"
+        },
+        {
+          "title": "Check Generated Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-generated-key"
+        },
+        {
+          "title": "Upload the Public Key to Key Server",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "upload-the-public-key-to-key-server"
+        },
+        {
+          "title": "Set settings-security.xml and settings.xml",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-settings-security.xml-and-settings.xml"
+        },
+        {
+          "title": "Set Release in Environment",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-release-in-environment"
+        },
+        {
+          "title": "Create Release Branch",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-release-branch"
+        },
+        {
+          "title": "Pre-Release Check",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "pre-release-check"
+        },
+        {
+          "title": "Prepare for the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "prepare-for-the-release"
+        },
+        {
+          "title": "Deploy the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "deploy-the-release"
+        },
+        {
+          "title": "Checkout dolphinscheduler Release Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "checkout-dolphinscheduler-release-directory"
+        },
+        {
+          "title": "Add gpg Public Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-gpg-public-key"
+        },
+        {
+          "title": "Add the Release Content to SVN Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-the-release-content-to-svn-directory"
+        },
+        {
+          "title": "Generate sign files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "generate-sign-files"
+        },
+        {
+          "title": "Commit to Apache SVN",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "commit-to-apache-svn"
+        },
+        {
+          "title": "Check sha512 hash",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-sha512-hash"
+        },
+        {
+          "title": "Check gpg Signature",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-gpg-signature"
+        },
+        {
+          "title": "Check Released Files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-released-files"
+        },
+        {
+          "title": "Update Release Notes",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-release-notes"
+        },
+        {
+          "title": "Vote procedure",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-procedure"
+        },
+        {
+          "title": "Vote Templates",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-templates"
+        },
+        {
+          "title": "Move source packages, binary packages from the dev directory to release directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "move-source-packages,-binary-packages-from-the-dev-directory-to-release-directory"
+        },
+        {
+          "title": "Export you new gpg KEYS from dev to release(optional)",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "export-you-new-gpg-keys-from-dev-to-release(optional)"
+        },
+        {
+          "title": "Update Document",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-document"
+        },
+        {
+          "title": "Find DolphinScheduler in apache staging repositories and click Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "find-dolphinscheduler-in-apache-staging-repositories-and-click-release"
+        },
+        {
+          "title": "Send Announcement E-mail Community",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "send-announcement-e-mail-community"
+        }
+      ],
+      "anchor": "check-release"
+    },
+    {
+      "title": "Call for a Vote",
+      "children": [
+        {
+          "title": "Install GPG",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "install-gpg"
+        },
+        {
+          "title": "Create Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-key"
+        },
+        {
+          "title": "Check Generated Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-generated-key"
+        },
+        {
+          "title": "Upload the Public Key to Key Server",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "upload-the-public-key-to-key-server"
+        },
+        {
+          "title": "Set settings-security.xml and settings.xml",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-settings-security.xml-and-settings.xml"
+        },
+        {
+          "title": "Set Release in Environment",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-release-in-environment"
+        },
+        {
+          "title": "Create Release Branch",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-release-branch"
+        },
+        {
+          "title": "Pre-Release Check",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "pre-release-check"
+        },
+        {
+          "title": "Prepare for the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "prepare-for-the-release"
+        },
+        {
+          "title": "Deploy the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "deploy-the-release"
+        },
+        {
+          "title": "Checkout dolphinscheduler Release Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "checkout-dolphinscheduler-release-directory"
+        },
+        {
+          "title": "Add gpg Public Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-gpg-public-key"
+        },
+        {
+          "title": "Add the Release Content to SVN Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-the-release-content-to-svn-directory"
+        },
+        {
+          "title": "Generate sign files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "generate-sign-files"
+        },
+        {
+          "title": "Commit to Apache SVN",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "commit-to-apache-svn"
+        },
+        {
+          "title": "Check sha512 hash",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-sha512-hash"
+        },
+        {
+          "title": "Check gpg Signature",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-gpg-signature"
+        },
+        {
+          "title": "Check Released Files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-released-files"
+        },
+        {
+          "title": "Update Release Notes",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-release-notes"
+        },
+        {
+          "title": "Vote procedure",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-procedure"
+        },
+        {
+          "title": "Vote Templates",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-templates"
+        },
+        {
+          "title": "Move source packages, binary packages from the dev directory to release directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "move-source-packages,-binary-packages-from-the-dev-directory-to-release-directory"
+        },
+        {
+          "title": "Export you new gpg KEYS from dev to release(optional)",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "export-you-new-gpg-keys-from-dev-to-release(optional)"
+        },
+        {
+          "title": "Update Document",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-document"
+        },
+        {
+          "title": "Find DolphinScheduler in apache staging repositories and click Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "find-dolphinscheduler-in-apache-staging-repositories-and-click-release"
+        },
+        {
+          "title": "Send Announcement E-mail Community",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "send-announcement-e-mail-community"
+        }
+      ],
+      "anchor": "call-for-a-vote"
+    },
+    {
+      "title": "Finish the Release",
+      "children": [
+        {
+          "title": "Install GPG",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "install-gpg"
+        },
+        {
+          "title": "Create Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-key"
+        },
+        {
+          "title": "Check Generated Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-generated-key"
+        },
+        {
+          "title": "Upload the Public Key to Key Server",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "upload-the-public-key-to-key-server"
+        },
+        {
+          "title": "Set settings-security.xml and settings.xml",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-settings-security.xml-and-settings.xml"
+        },
+        {
+          "title": "Set Release in Environment",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "set-release-in-environment"
+        },
+        {
+          "title": "Create Release Branch",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "create-release-branch"
+        },
+        {
+          "title": "Pre-Release Check",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "pre-release-check"
+        },
+        {
+          "title": "Prepare for the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "prepare-for-the-release"
+        },
+        {
+          "title": "Deploy the Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "deploy-the-release"
+        },
+        {
+          "title": "Checkout dolphinscheduler Release Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "checkout-dolphinscheduler-release-directory"
+        },
+        {
+          "title": "Add gpg Public Key",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-gpg-public-key"
+        },
+        {
+          "title": "Add the Release Content to SVN Directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "add-the-release-content-to-svn-directory"
+        },
+        {
+          "title": "Generate sign files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "generate-sign-files"
+        },
+        {
+          "title": "Commit to Apache SVN",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "commit-to-apache-svn"
+        },
+        {
+          "title": "Check sha512 hash",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-sha512-hash"
+        },
+        {
+          "title": "Check gpg Signature",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-gpg-signature"
+        },
+        {
+          "title": "Check Released Files",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "check-released-files"
+        },
+        {
+          "title": "Update Release Notes",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-release-notes"
+        },
+        {
+          "title": "Vote procedure",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-procedure"
+        },
+        {
+          "title": "Vote Templates",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "vote-templates"
+        },
+        {
+          "title": "Move source packages, binary packages from the dev directory to release directory",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "move-source-packages,-binary-packages-from-the-dev-directory-to-release-directory"
+        },
+        {
+          "title": "Export you new gpg KEYS from dev to release(optional)",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "export-you-new-gpg-keys-from-dev-to-release(optional)"
+        },
+        {
+          "title": "Update Document",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "update-document"
+        },
+        {
+          "title": "Find DolphinScheduler in apache staging repositories and click Release",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "find-dolphinscheduler-in-apache-staging-repositories-and-click-release"
+        },
+        {
+          "title": "Send Announcement E-mail Community",
+          "children": [
+            {
+              "title": "Check source package",
+              "children": [],
+              "anchor": "check-source-package"
+            },
+            {
+              "title": "Check binary packages",
+              "children": [],
+              "anchor": "check-binary-packages"
+            },
+            {
+              "title": "DolphinScheduler Community Vote Template",
+              "children": [],
+              "anchor": "dolphinscheduler-community-vote-template"
+            }
+          ],
+          "anchor": "send-announcement-e-mail-community"
+        }
+      ],
+      "anchor": "finish-the-release"
+    }
+  ],
+  "title": "Release Guide",
+  "link": "/contribute/release/release"
+}

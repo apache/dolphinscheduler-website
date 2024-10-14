@@ -1,0 +1,462 @@
+{
+  "__html": "<h1 id=\"pytorch-节点（试验版）\">Pytorch 节点（试验版）</h1>\n<h2 id=\"综述\">综述</h2>\n<p><a href=\"https://pytorch.org\">Pytorch</a> 是一个的主流Python机器学习库。</p>\n<p>为了用户能够在DolphinScheduler中<strong>更方便的运行Pytorch项目</strong>，实现了Pytorch任务组件。主要提供<strong>便捷的python环境管理</strong>以及支持<strong>运行python项目</strong>。</p>\n<p>与Python任务组件不同，该组件允许用户快速使用已有python环境或者创建新的python环境（使用virtualenv或者conda）；支持运行Python项目（本地项目或者Git项目）而非只是python脚本。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏的 <img src=\"/img/tasks/icons/pytorch.png\" width=\"15\"/> 任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<p>组件图示如下：</p>\n<p><img src=\"/img/tasks/demo/pytorch_en.png\" alt=\"pytorch\"></p>\n<h3 id=\"pytorch参数\">Pytorch参数</h3>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/dev/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<h4 id=\"运行参数\">运行参数</h4>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>python脚本</td>\n<td>需要运行的python脚本文件入口</td>\n</tr>\n<tr>\n<td>脚本启动参数</td>\n<td>运行时的输入参数</td>\n</tr>\n</tbody>\n</table>\n<p>以上为两个最小化配置运行的参数，另外提供其他的一些配置参数如下可选，当选择展开更多配置时，可以配置更多参数。</p>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>python项目地址</td>\n<td>设置<code>PYTHONPATH</code>环境变量，设置后运行python脚本时可以加载该地址下的python包/项目代码。支持本地路径或者Git url。若为本地路径，作为<code>PYTHONPATH</code>环境变量，如果为Git URL （以`git@</td>\n</tr>\n</tbody>\n</table>\n<h4 id=\"python环境参数\">python环境参数</h4>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>是否创建新环境</td>\n<td>是否创建新的python环境来运行该任务</td>\n</tr>\n<tr>\n<td>python命令路径</td>\n<td>如<code>/usr/bin/python</code>，默认为DS环境配置中的<code>${PYTHON_LAUNCHER}</code></td>\n</tr>\n<tr>\n<td>python环境管理工具</td>\n<td>可以选择virtualenv或者conda，若选择<code>virtualenv</code>，则会用<code>virtualenv</code>创建一个新环境，使用命令 <code>virtualenv -p ${PYTHON_LAUNCHER} venv</code> 创建；若选择<code>conda</code>, 则会使用<code>conda</code> 创建一个新环境，并需要指定创建的python版本</td>\n</tr>\n<tr>\n<td>依赖文件</td>\n<td>默认为 requirements.txt</td>\n</tr>\n</tbody>\n</table>\n<p>配置了<code>python项目地址</code>参数，那么<code>python脚本</code>和<code>依赖文件</code>参数允许输入相对路径</p>\n<h4 id=\"demo\">Demo</h4>\n<p>如现在需要运行 https://github.com/pytorch/examples 项目下的mnist的子项目。</p>\n<p>可以设置</p>\n<p><img src=\"/img/tasks/demo/pytorch_note_en.png\" alt=\"pytorch_note\"></p>\n<p>另外如果代码存放在资源中心，则可以使用<code>资源</code>参数下载代码，并将相关参数写成对应资源的路径即可。</p>\n<h2 id=\"环境配置\">环境配置</h2>\n<p>环境配置主要取决于运行时python环境的选择，需要在<code>安全中心</code>-<code>环境管理</code>中配置对应需要的环境变量即可。</p>\n<h3 id=\"指定python路径\">指定python路径</h3>\n<p>适用于worker上已经有运行该项目的python环境，那么可以直接在组件中配置<code>pyhton命令路径</code>为对应的python环境即可，如果不知道该环境地址，可以使用<code>which python</code>获取。</p>\n<h3 id=\"使用conda创建新环境\">使用Conda创建新环境</h3>\n<p>适用于新建环境运行该项目，需要在<code>安全中心</code>-<code>环境管理</code>中创建环境, 参考如下添加修改为实际环境即可。</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">conda命令对应的目录加入PATH中</span>\nexport PATH=$HOME/anaconda3/bin:$PATH\n</code></pre>\n<h3 id=\"使用virtualenv创建新环境\">使用virtualenv创建新环境</h3>\n<p>适用于新建环境运行该项目，需要在<code>安全中心</code>-<code>环境管理</code>中创建环境, 参考如下添加修改为实际环境即可。</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">virtualenv命令对应的目录加入PATH中</span>\nexport PATH=/home/lucky/anaconda3/bin:$PATH\nexport PYTHON_LAUNCHER=/usr/local/bin/python3.7\n</code></pre>\n<h2 id=\"其他\">其他</h2>\n<p>本组件也可以运行xgboost, lightgbm, sklearn, tensorflow, keras 等项目。本组件可作为python组件运行机器学习任务的升级组件。</p>\n<p>如果有需要，后续建议可以统一涵盖为PythonML组件，来运行机器学习项目。</p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Pytorch"
+  ],
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "Pytorch参数",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "pytorch参数"
+        },
+        {
+          "title": "指定python路径",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "指定python路径"
+        },
+        {
+          "title": "使用Conda创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用conda创建新环境"
+        },
+        {
+          "title": "使用virtualenv创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用virtualenv创建新环境"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "Pytorch参数",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "pytorch参数"
+        },
+        {
+          "title": "指定python路径",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "指定python路径"
+        },
+        {
+          "title": "使用Conda创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用conda创建新环境"
+        },
+        {
+          "title": "使用virtualenv创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用virtualenv创建新环境"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "Pytorch参数",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "pytorch参数"
+        },
+        {
+          "title": "指定python路径",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "指定python路径"
+        },
+        {
+          "title": "使用Conda创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用conda创建新环境"
+        },
+        {
+          "title": "使用virtualenv创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用virtualenv创建新环境"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "环境配置",
+      "children": [
+        {
+          "title": "Pytorch参数",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "pytorch参数"
+        },
+        {
+          "title": "指定python路径",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "指定python路径"
+        },
+        {
+          "title": "使用Conda创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用conda创建新环境"
+        },
+        {
+          "title": "使用virtualenv创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用virtualenv创建新环境"
+        }
+      ],
+      "anchor": "环境配置"
+    },
+    {
+      "title": "其他",
+      "children": [
+        {
+          "title": "Pytorch参数",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "pytorch参数"
+        },
+        {
+          "title": "指定python路径",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "指定python路径"
+        },
+        {
+          "title": "使用Conda创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用conda创建新环境"
+        },
+        {
+          "title": "使用virtualenv创建新环境",
+          "children": [
+            {
+              "title": "运行参数",
+              "children": [],
+              "anchor": "运行参数"
+            },
+            {
+              "title": "python环境参数",
+              "children": [],
+              "anchor": "python环境参数"
+            },
+            {
+              "title": "Demo",
+              "children": [],
+              "anchor": "demo"
+            }
+          ],
+          "anchor": "使用virtualenv创建新环境"
+        }
+      ],
+      "anchor": "其他"
+    }
+  ],
+  "title": "Pytorch 节点（试验版）",
+  "link": "/guide/task/pytorch"
+}

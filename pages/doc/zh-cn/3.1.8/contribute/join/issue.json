@@ -1,0 +1,85 @@
+{
+  "__html": "<h1 id=\"issue-须知\">Issue 须知</h1>\n<h2 id=\"前言\">前言</h2>\n<p>Issues 功能被用来追踪各种特性，Bug，功能等。项目维护者可以通过 Issues 来组织需要完成的任务。</p>\n<p>Issue 是引出一个 Feature 或 Bug 等的重要步骤，在单个\nIssue 中可以讨论的内容包括但不限于 Feature 的包含的功能，存在的 Bug 产生原因，前期方案的调研，以及其对应的实现设计和代码思路。</p>\n<p>并且只有当 Issue 被 approve 之后才需要有对应的 Pull Request 去实现。</p>\n<p>如果是一个 Issue 对应的是一个大 Feature，建议先将其按照功能模块等维度分成多个小的 Issue。</p>\n<h2 id=\"规范\">规范</h2>\n<h3 id=\"issue-标题\">Issue 标题</h3>\n<p>标题格式：[<code>Issue 类型</code>][<code>模块名</code>] <code>Issue 描述</code></p>\n<p>其中<code>Issue 类型</code>如下：</p>\n<table>\n    <thead>\n        <tr>\n            <th style=\"width: 10%; text-align: center;\">Issue 类型</th>\n            <th style=\"width: 20%; text-align: center;\">描述</th>\n            <th style=\"width: 20%; text-align: center;\">样例</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr>\n            <td style=\"text-align: center;\">Feature</td>\n            <td style=\"text-align: center;\">包含所期望的新功能和新特性</td>\n            <td style=\"text-align: center;\">[Feature][api] Add xxx api in xxx controller</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">Bug</td>\n            <td style=\"text-align: center;\">程序中存在的 Bug</td>\n            <td style=\"text-align: center;\">[Bug][api] Throw exception when xxx</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">Improvement</td>\n            <td style=\"text-align: center;\">针对目前程序的一些改进，不限于代码格式，程序性能等</td>\n            <td style=\"text-align: center;\">[Improvement][server] Improve xxx between Master and Worker</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">Test</td>\n            <td style=\"text-align: center;\">专门针对测试用例部分</td>\n            <td style=\"text-align: center;\">[Test][server] Add xxx e2e test</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">Sub-Task</td>\n            <td style=\"text-align: center;\">一般都是属于 Feature 类的子任务，针对大 Feature，可以将其分成很多个小的子任务来一一完成</td>\n            <td style=\"text-align: center;\">[Sub-Task][server] Implement xxx in xxx</td>\n        </tr>\n    </tbody>\n</table>\n<p>其中<code>模块名</code>如下：</p>\n<table>\n    <thead>\n        <tr>\n            <th style=\"width: 10%; text-align: center;\">模块名</th>\n            <th style=\"width: 20%; text-align: center;\">描述</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr>\n            <td style=\"text-align: center;\">alert</td>\n            <td style=\"text-align: center;\">报警模块</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">api</td>\n            <td style=\"text-align: center;\">应用程序接口层模块</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">service</td>\n            <td style=\"text-align: center;\">应用程序服务层模块</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">dao</td>\n            <td style=\"text-align: center;\">应用程序数据访问层模块</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">plugin</td>\n            <td style=\"text-align: center;\">插件模块</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">remote</td>\n            <td style=\"text-align: center;\">通信模块</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">server</td>\n            <td style=\"text-align: center;\">服务器模块</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">ui</td>\n            <td style=\"text-align: center;\">前端界面模块</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">docs-zh</td>\n            <td style=\"text-align: center;\">中文文档</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">docs</td>\n            <td style=\"text-align: center;\">英文文档</td>\n        </tr>\n        <tr>\n            <td style=\"text-align: center;\">待补充...</td>\n            <td style=\"text-align: center;\">-</td>\n        </tr>\n    </tbody>\n</table>\n<h3 id=\"issue-内容模板\">Issue 内容模板</h3>\n<p>https://github.com/apache/dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE</p>\n<h3 id=\"bug-类-issue\">Bug 类 Issue</h3>\n<p>当您发现一个 Bug 时，请提交一个 Issue 类的 Bug，提交前：</p>\n<ul>\n<li>请先在 issue 列表里查找一下是否该 Bug 已经提交，如果已经有此 Bug，请在此 Bug 下接着回复。</li>\n<li>如果该 Bug 是可以复现的。请尽量提供完整的重现步骤。</li>\n</ul>\n<p>请在 issues 页面中提交 Bug。</p>\n<p>一个高质量的 Bug 通常有以下特征：</p>\n<ul>\n<li>使用一个清晰并有描述性的标题来定义 Bug。</li>\n<li>详细的描述复现 Bug 的步骤。包括您的配置情况，预计产生的结果，实际产生的结果。并附加详细的 TRACE 日志。</li>\n<li>如果程序抛出异常，请附加完整的堆栈日志。</li>\n<li>如有可能，请附上屏幕截图或动态的 GIF 图，这些图片能帮助演示整个问题的产生过程。</li>\n<li>哪个版本。</li>\n<li>需要修复的优先级(危急、重大、次要、细微)。</li>\n</ul>\n<p>下面是 <strong>Bug 的 Markdown 内容模板</strong>，请按照该模板填写 issue。</p>\n<pre><code class=\"language-shell\">**标题** \n标题格式: [BUG][Priority] bug标题\nPriority分为四级: Critical、Major、Minor、Trivial\n\n**问题描述**\n[清晰准确描述遇到的问题]\n\n**问题复现步骤:**\n1. [第一步]\n2. [第二步]\n3. [...]\n\n**期望的表现:**\n[在这里描述期望的表现]\n\n**观察到的表现:**\n[在这里描述观察到的表现]\n\n**屏幕截图和动态GIF图**\n![复现步骤的屏幕截图和动态GIF图](图片的url)\n\n**DolphinScheduler版本:(以1.1.0为例)** \n -[1.1.0]\n \n**补充的内容:**\n[请描述补充的内容，比如]\n\n**需求或者建议**\n[请描述你的需求或者建议]\n</code></pre>\n<h3 id=\"feature-类-issue\">Feature 类 Issue</h3>\n<p>提交前：</p>\n<ul>\n<li>请确定这不是一个重复的功能增强建议。 查看 Issue Page 列表，搜索您要提交的功能增强建议是否已经被提交过。</li>\n</ul>\n<p>请在 issues 页面中提交 Feature。</p>\n<p>一个高质量的 Feature 通常有以下特征：</p>\n<ul>\n<li>一个清晰的标题来定义 Feature</li>\n<li>详细描述 Feature 的行为模式</li>\n<li>说明为什么该 Feature 对大多数用户是有用的。新功能应该具有广泛的适用性。</li>\n<li>尽量列出其他调度已经具备的类似功能。商用与开源软件均可。</li>\n</ul>\n<p>以下是 <strong>Feature 的 Markdown 内容模板</strong>，请按照该模板填写 issue 内容。</p>\n<pre><code class=\"language-shell\">**标题** \n标题格式: [Feature][Priority] feature标题\nPriority分为四级: Critical、Major、Minor、Trivial\n\n**Feature的描述**\n[描述新Feature应实现的功能]\n\n**为什么这个新功能是对大多数用户有用的**\n[解释这个功能为什么对大多数用户是有用的]\n\n**补充的内容**\n[列出其他的调度是否包含该功能，是如何实现的]\n\n</code></pre>\n<h3 id=\"contributor\">Contributor</h3>\n<p>除一些特殊情况之外，在开始完成\nIssue 之前，建议先在 Issue 下或者邮件列表中和大家讨论确定设计方案或者提供设计方案，以及代码实现思路。</p>\n<p>如果存在多种不同的方案，建议通过邮件列表或者在\nIssue 下进行投票决定，最终方案和代码实现思路被\napprove 之后，再去实现，这样做的主要目的是避免在\nPull Request review 阶段针对实现思路的意见不同或需要重构而导致 waste time。</p>\n<h3 id=\"相关问题\">相关问题</h3>\n<ul>\n<li>\n<p>当出现提出 Issue 的用户不清楚该 Issue 对应的模块时的处理方式。</p>\n<p>确实存在大多数提出 Issue 用户不清楚这个 Issue 是属于哪个模块的，其实这在很多开源社区都是很常见的。在这种情况下，其实\ncommitter/contributor 是知道这个 Issue 影响的模块的，如果之后这个 Issue 被 committer 和 contributor approve\n确实有价值，那么 committer 就可以按照 Issue 涉及到的具体的模块去修改 Issue 标题，或者留言给提出 Issue 的用户去修改成对应的标题。</p>\n</li>\n</ul>\n",
+  "location": [
+    "贡献指南",
+    "如何参与",
+    "Issue须知"
+  ],
+  "time": "2023-08-07",
+  "structure": [
+    {
+      "title": "前言",
+      "children": [
+        {
+          "title": "Issue 标题",
+          "children": [],
+          "anchor": "issue-标题"
+        },
+        {
+          "title": "Issue 内容模板",
+          "children": [],
+          "anchor": "issue-内容模板"
+        },
+        {
+          "title": "Bug 类 Issue",
+          "children": [],
+          "anchor": "bug-类-issue"
+        },
+        {
+          "title": "Feature 类 Issue",
+          "children": [],
+          "anchor": "feature-类-issue"
+        },
+        {
+          "title": "Contributor",
+          "children": [],
+          "anchor": "contributor"
+        },
+        {
+          "title": "相关问题",
+          "children": [],
+          "anchor": "相关问题"
+        }
+      ],
+      "anchor": "前言"
+    },
+    {
+      "title": "规范",
+      "children": [
+        {
+          "title": "Issue 标题",
+          "children": [],
+          "anchor": "issue-标题"
+        },
+        {
+          "title": "Issue 内容模板",
+          "children": [],
+          "anchor": "issue-内容模板"
+        },
+        {
+          "title": "Bug 类 Issue",
+          "children": [],
+          "anchor": "bug-类-issue"
+        },
+        {
+          "title": "Feature 类 Issue",
+          "children": [],
+          "anchor": "feature-类-issue"
+        },
+        {
+          "title": "Contributor",
+          "children": [],
+          "anchor": "contributor"
+        },
+        {
+          "title": "相关问题",
+          "children": [],
+          "anchor": "相关问题"
+        }
+      ],
+      "anchor": "规范"
+    }
+  ],
+  "title": "Issue 须知",
+  "link": "/contribute/join/issue"
+}

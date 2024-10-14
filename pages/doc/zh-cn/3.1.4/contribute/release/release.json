@@ -1,0 +1,2967 @@
+{
+  "__html": "<h1 id=\"发版指南\">发版指南</h1>\n<h2 id=\"检查环境\">检查环境</h2>\n<p>为确保您可以成功完成 DolphinScheduler 的发布，您应该检查您的环境并确保满足所有条件，如果缺少任何条件，您应该安装它们并确保它们正常工作。</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">需要 JDK 1.8 及以上的版本</span>\njava -version\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">需要 Maven</span> \nmvn -version\n</code></pre>\n<h2 id=\"gpg设置\">GPG设置</h2>\n<h3 id=\"安装gpg\">安装GPG</h3>\n<p>在<a href=\"https://www.gnupg.org/download/index.html\">GnuPG官网</a>下载安装包。\nGnuPG的1.x版本和2.x版本的命令有细微差别，下列说明以<code>GnuPG-2.1.23</code>版本为例。</p>\n<p>安装完成后，执行以下命令查看版本号。</p>\n<pre><code class=\"language-shell\">gpg --version\n</code></pre>\n<h3 id=\"创建key\">创建key</h3>\n<p>安装完成后，执行以下命令创建key。</p>\n<p><code>GnuPG-2.x</code>可使用：</p>\n<pre><code class=\"language-shell\">gpg --full-gen-key\n</code></pre>\n<p><code>GnuPG-1.x</code>可使用：</p>\n<pre><code class=\"language-shell\">gpg --gen-key\n</code></pre>\n<p>根据提示完成key，<strong>注意：请使用Apache mail 和 对应的密码生成GPG的Key。</strong></p>\n<pre><code class=\"language-shell\">gpg (GnuPG) 2.0.12; Copyright (C) 2009 Free Software Foundation, Inc.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nPlease select what kind of key you want:\n  (1) RSA and RSA (default)\n  (2) DSA and Elgamal\n  (3) DSA (sign only)\n  (4) RSA (sign only)\nYour selection? 1\nRSA keys may be between 1024 and 4096 bits long.\nWhat keysize do you want? (2048) 4096\nRequested keysize is 4096 bits\nPlease specify how long the key should be valid.\n        0 = key does not expire\n     &lt;n&gt;  = key expires in n days\n     &lt;n&gt;w = key expires in n weeks\n     &lt;n&gt;m = key expires in n months\n     &lt;n&gt;y = key expires in n years\nKey is valid for? (0)\nKey does not expire at all\nIs this correct? (y/N) y\n\nGnuPG needs to construct a user ID to identify your key.\n\nReal name: ${输入用户名}\nEmail address: ${输入邮件地址}\nComment: ${输入注释}\nYou selected this USER-ID:\n   &quot;${输入的用户名} (${输入的注释}) &lt;${输入的邮件地址}&gt;&quot;\n\nChange (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O\nYou need a Passphrase to protect your secret key. # 输入apache登录密码\n</code></pre>\n<p>注意：如果遇到以下错误：</p>\n<pre><code>gpg: cancelled by user\ngpg: Key generation canceled.\n</code></pre>\n<p>需要使用自己的用户登录服务器，而不是root切到自己的账户</p>\n<h3 id=\"查看生成的key\">查看生成的key</h3>\n<pre><code class=\"language-shell\">gpg --list-keys\n</code></pre>\n<p>执行结果：</p>\n<pre><code class=\"language-shell\">pub   4096R/85E11560 2019-11-15\nuid                  ${用户名} (${注释}) &lt;{邮件地址}&gt;\nsub   4096R/A63BC462 2019-11-15\n</code></pre>\n<p>其中85E11560为公钥ID。</p>\n<h3 id=\"将公钥同步到服务器\">将公钥同步到服务器</h3>\n<p>命令如下：</p>\n<pre><code class=\"language-shell\">gpg --keyserver hkp://pool.sks-keyservers.net --send-key 85E11560\n</code></pre>\n<p><code>pool.sks-keyservers.net</code>为随意挑选的<a href=\"https://sks-keyservers.net/status/\">公钥服务器</a>，每个服务器之间是自动同步的，选任意一个即可。</p>\n<p>注意：如果同步到公钥服务器，可以在服务器上查到新建的公钥\nhttp://keyserver.ubuntu.com:11371/pks/lookup?search=${用户名}&amp;fingerprint=on&amp;op=index\n备用公钥服务器 gpg --keyserver hkp://keyserver.ubuntu.com --send-key ${公钥ID}</p>\n<h2 id=\"发布apache-maven中央仓库\">发布Apache Maven中央仓库</h2>\n<h3 id=\"设置-<code>settings-security.xml</code>-和-<code>settings.xml</code>-文件\">设置 <code>settings-security.xml</code> 和 <code>settings.xml</code> 文件</h3>\n<p>在本节中，我们添加 Apache 服务器 maven 配置以准备发布，请参考<a href=\"http://maven.apache.org/guides/mini/guide-encryption.html\">这里</a> 添加\n<code>settings-security.xml</code> 文件，并且像下面这样更改你的 <code>~/.m2/settings.xml</code></p>\n<pre><code class=\"language-xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">settings</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">servers</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">server</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">id</span>&gt;</span>apache.snapshots.https<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">id</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">username</span>&gt;</span> <span class=\"hljs-comment\">&lt;!-- APACHE LDAP 用户名 --&gt;</span> <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">username</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">password</span>&gt;</span> <span class=\"hljs-comment\">&lt;!-- APACHE LDAP 加密后的密码 --&gt;</span> <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">password</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">server</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">server</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">id</span>&gt;</span>apache.releases.https<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">id</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">username</span>&gt;</span> <span class=\"hljs-comment\">&lt;!-- APACHE LDAP 用户名 --&gt;</span> <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">username</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">password</span>&gt;</span> <span class=\"hljs-comment\">&lt;!-- APACHE LDAP 加密后的密码 --&gt;</span> <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">password</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">server</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">servers</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">settings</span>&gt;</span>\n</code></pre>\n<h3 id=\"配置环境变量\">配置环境变量</h3>\n<p>我们将多次使用发布版本 <code>VERSION</code>，github名称 <code>GH_USERNAME</code>，以及 Apache 用户名 <code>&lt;YOUR-APACHE-USERNAME&gt;</code>，因此最好将其存储到bash变量中以便于使用。</p>\n<pre><code class=\"language-shell\">VERSION=&lt;THE-VERSION-YOU-RELEASE&gt;\nGH_USERNAME=&lt;YOUR-GITHUB-USERNAME&gt;\nA_USERNAME=&lt;YOUR-APACHE-USERNAME&gt;\n</code></pre>\n<blockquote>\n<p>注意：设置环境变量后，我们可以直接在你的 bash 中使用该变量，而无需更改任何内容。例如，我们可以直接使用命令 <code>git clone -b &quot;${VERSION}&quot;-prepare https://github.com/apache/dolphinscheduler.git</code>\n来克隆发布分支，他会自动将其中的 <code>&quot;${VERSION}&quot;</code> 转化成你设置的值 <code>&lt;THE-VERSION-YOU-RELEASE&gt;</code>。 但是您必须在一些非 bash 步骤中手动更改\n<code>&lt;VERSION&gt;</code> 为对应的版本号，例如发起投票中的内容。我们使用 <code>&lt;VERSION&gt;</code> 而不是 <code>&quot;${VERSION}&quot;</code> 来提示 release manager 他们必须手动更改这部分内容</p>\n</blockquote>\n<h3 id=\"创建发布分支\">创建发布分支</h3>\n<p>在本节中，我们从 github 下载源代码并创建新分支以发布</p>\n<pre><code class=\"language-shell\">git clone -b &quot;${VERSION}&quot;-prepare https://github.com/apache/dolphinscheduler.git\ncd ~/dolphinscheduler/\ngit pull\ngit checkout -b &quot;${VERSION}&quot;-release\ngit push origin &quot;${VERSION}&quot;-release\n</code></pre>\n<h3 id=\"发布预校验\">发布预校验</h3>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">运行发版校验</span>\nmvn release:prepare -Prelease -Darguments=&quot;-Dmaven.test.skip=true -Dcheckstyle.skip=true -Dmaven.javadoc.skip=true -Dspotless.check.skip=true&quot; -DautoVersionSubmodules=true -DdryRun=true -Dusername=&quot;${GH_USERNAME}&quot;\n</code></pre>\n<ul>\n<li><code>-Prelease</code>: 选择release的profile，这个profile会打包所有源码、jar文件以及可执行二进制包。</li>\n<li><code>-DautoVersionSubmodules=true</code>: 作用是发布过程中版本号只需要输入一次，不必为每个子模块都输入一次。</li>\n<li><code>-DdryRun=true</code>: 演练，即不产生版本号提交，不生成新的tag。</li>\n</ul>\n<h3 id=\"准备发布\">准备发布</h3>\n<p>首先清理发布预校验本地信息。</p>\n<pre><code class=\"language-shell\">mvn release:clean\n</code></pre>\n<p>然后准备执行发布。</p>\n<pre><code class=\"language-shell\">mvn release:prepare -Prelease -Darguments=&quot;-Dmaven.test.skip=true -Dcheckstyle.skip=true -Dmaven.javadoc.skip=true -Dspotless.check.skip=true&quot; -DautoVersionSubmodules=true -DpushChanges=false -Dusername=&quot;${GH_USERNAME}&quot;\n</code></pre>\n<p>和上一步演练的命令基本相同，去掉了 <code>-DdryRun=true</code> 参数。</p>\n<ul>\n<li><code>-DpushChanges=fals</code>:不要将修改后的版本号和tag自动提交至GitHub。</li>\n</ul>\n<blockquote>\n<p>注意：如果你遇到来自 git 的类似 <strong>Please tell me who you are.</strong> 错误信息。您可以通过命令 <code>git config --global user.email &quot;you@example.com&quot;</code>\n和 <code>git config --global user.name &quot;Your Name&quot;</code> 来配置你的用户名和邮箱如果你遇到一些错误。</p>\n</blockquote>\n<p>将本地文件检查无误后，提交至github。</p>\n<pre><code class=\"language-shell\">git push -u origin &quot;${VERSION}&quot;-release\ngit push origin --tags\n</code></pre>\n<!-- markdown-link-check-disable -->\n<blockquote>\n<p>注意1：因为 Github 不再支持在 HTTPS 协议中使用原生密码在，所以在这一步你应该使用 github token 作为密码。你可以通过 https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating -a-personal-access-token\n了解更多如果创建 token 的信息。</p>\n<p>注意2：命令完成后，会自动创建 <code>release.properties</code> 文件和 <code>*.Backup</code> 文件，它们在下面的命令中是需要的，不要删除它们</p>\n</blockquote>\n<!-- markdown-link-check-enable -->\n<h3 id=\"部署发布\">部署发布</h3>\n<pre><code class=\"language-shell\">mvn release:perform -Prelease -Darguments=&quot;-Dmaven.test.skip=true -Dcheckstyle.skip=true -Dmaven.javadoc.skip=true -Dspotless.check.skip=true&quot; -DautoVersionSubmodules=true -Dusername=&quot;${GH_USERNAME}&quot;\n</code></pre>\n<p>执行完该命令后，待发布版本会自动上传到Apache的临时筹备仓库(staging repository)。你可以通过访问 <a href=\"https://repository.apache.org/#stagingRepositories\">apache staging repositories</a>\n, 然后使用Apache的LDAP账户登录后，就会看到上传的版本，<code>Repository</code> 列的内容即为 <code>${STAGING.REPOSITORY}</code>。\n点击 <code>Close</code> 来告诉Nexus这个构建已经完成，只有这样该版本才是可用的。如果电子签名等出现问题，<code>Close</code> 会失败，可以通过 <code>Activity</code> 查看失败信息。</p>\n<h2 id=\"发布apache-svn仓库\">发布Apache SVN仓库</h2>\n<h3 id=\"检出dolphinscheduler发布目录\">检出dolphinscheduler发布目录</h3>\n<p>如无本地工作目录，则先创建本地工作目录。</p>\n<pre><code class=\"language-shell\">mkdir -p ~/ds_svn/dev/\ncd ~/ds_svn/dev/\n</code></pre>\n<p>创建完毕后，从Apache SVN检出dolphinscheduler发布目录。</p>\n<pre><code class=\"language-shell\">svn --username=&quot;${A_USERNAME}&quot; co https://dist.apache.org/repos/dist/dev/dolphinscheduler\ncd ~/ds_svn/dev/dolphinscheduler\n</code></pre>\n<h3 id=\"添加gpg公钥\">添加gpg公钥</h3>\n<p>仅第一次部署的账号需要添加，只要<code>KEYS</code>中包含已经部署过的账户的公钥即可。</p>\n<pre><code class=\"language-shell\">gpg -a --export &lt;YOUR-GPG-KEY-ID&gt; &gt;&gt; KEYS\n</code></pre>\n<h3 id=\"将待发布的内容添加至svn目录\">将待发布的内容添加至SVN目录</h3>\n<p>创建版本号目录。</p>\n<pre><code class=\"language-shell\">mkdir -p ~/ds_svn/dev/dolphinscheduler/&quot;${VERSION}&quot;\ncd ~/ds_svn/dev/dolphinscheduler/&quot;${VERSION}&quot;\n</code></pre>\n<p>将源码包和二进制包添加至SVN工作目录。</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">主程序源码包和二进制包</span>\ncp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz ~/ds_svn/dev/dolphinscheduler/&quot;${VERSION}&quot;\ncp -f ~/dolphinscheduler/dolphinscheduler-dist/target/*.tar.gz.asc ~/ds_svn/dev/dolphinscheduler/&quot;${VERSION}&quot;\n</code></pre>\n<h3 id=\"生成文件签名\">生成文件签名</h3>\n<pre><code class=\"language-shell\">shasum -a 512 apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz &gt;&gt; apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz.sha512\nshasum -b -a 512 apache-dolphinscheduler-&quot;${VERSION}&quot;-bin.tar.gz &gt;&gt; apache-dolphinscheduler-&quot;${VERSION}&quot;-bin.tar.gz.sha512\n</code></pre>\n<h3 id=\"提交apache-svn\">提交Apache SVN</h3>\n<pre><code class=\"language-shell\">cd ~/ds_svn/dev/dolphinscheduler\nsvn add *\nsvn --username=&quot;${A_USERNAME}&quot; commit -m &quot;release ${VERSION}&quot;\n</code></pre>\n<h2 id=\"检查发布结果\">检查发布结果</h2>\n<h3 id=\"检查sha512哈希\">检查sha512哈希</h3>\n<pre><code class=\"language-shell\">shasum -c apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz.sha512\nshasum -c apache-dolphinscheduler-&quot;${VERSION}&quot;-bin.tar.gz.sha512\n</code></pre>\n<h3 id=\"检查gpg签名\">检查gpg签名</h3>\n<p>首先导入发布人公钥。从svn仓库导入KEYS到本地环境。（发布版本的人不需要再导入，帮助做验证的人需要导入，用户名填发版人的即可）</p>\n<pre><code class=\"language-shell\">curl https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS &gt;&gt; KEYS\ngpg --import KEYS\ngpg --edit-key &quot;${A_USERNAME}&quot;\n<span class=\"hljs-meta prompt_\">  &gt; </span><span class=\"language-bash\">trust</span>\n\nPlease decide how far you trust this user to correctly verify other users&#x27; keys\n(by looking at passports, checking fingerprints from different sources, etc.)\n\n  1 = I don&#x27;t know or won&#x27;t say\n  2 = I do NOT trust\n  3 = I trust marginally\n  4 = I trust fully\n  5 = I trust ultimately\n  m = back to the main menu\n\nYour decision? 5\n<span class=\"hljs-meta prompt_\">\n  &gt; </span><span class=\"language-bash\">save</span>\n</code></pre>\n<p>然后进行gpg签名检查。</p>\n<pre><code class=\"language-shell\">gpg --verify apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz.asc\ngpg --verify apache-dolphinscheduler-&quot;${VERSION}&quot;-bin.tar.gz.asc\n</code></pre>\n<blockquote>\n<p>注意：当你找不到你的 <code>asc</code> 文件时，你必须手动创建 gpg 签名，命令 <code>gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-&quot;${VERSION}&quot;- bin.tar.gz</code>\n和 <code>gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-&quot;${VERSION}&quot;-src.tar.gz</code> 将创建它们</p>\n</blockquote>\n<h3 id=\"检查发布文件内容\">检查发布文件内容</h3>\n<h4 id=\"检查源码包的文件内容\">检查源码包的文件内容</h4>\n<p>解压缩<code>apache-dolphinscheduler-&lt;VERSION&gt;-src.tar.gz</code>，进行如下检查:</p>\n<ul>\n<li>检查源码包是否包含由于包含不必要文件，致使tarball过于庞大</li>\n<li>存在<code>LICENSE</code>和<code>NOTICE</code>文件</li>\n<li>只存在文本文件，不存在二进制文件</li>\n<li>所有文件的开头都有ASF许可证</li>\n<li>能够正确编译，单元测试可以通过 (mvn install)</li>\n<li>版本内容与GitHub上tag的内容相符 (diff -r a verify_dir tag_dir)</li>\n<li>检查是否有多余文件或文件夹，例如空文件夹等</li>\n</ul>\n<h4 id=\"检查二进制包的文件内容\">检查二进制包的文件内容</h4>\n<p>解压缩<code>apache-dolphinscheduler-&lt;VERSION&gt;-src.tar.gz</code>进行如下检查:</p>\n<ul>\n<li>存在<code>LICENSE</code>和<code>NOTICE</code>文件</li>\n<li>所有文本文件开头都有ASF许可证</li>\n<li>检查第三方依赖许可证：\n<ul>\n<li>第三方依赖的许可证兼容</li>\n<li>所有第三方依赖的许可证都在<code>LICENSE</code>文件中声明</li>\n<li>依赖许可证的完整版全部在<code>license</code>目录</li>\n<li>如果依赖的是Apache许可证并且存在<code>NOTICE</code>文件，那么这些<code>NOTICE</code>文件也需要加入到版本的<code>NOTICE</code>文件中</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"发起投票\">发起投票</h2>\n<h3 id=\"更新版本说明\">更新版本说明</h3>\n<p>在 GitHub 中通过 <a href=\"https://github.com/apache/dolphinscheduler/releases/new\">创建新的 release note</a> 创建一个 release note。 这要在\n投票邮件开始之前完成，因为我们需要在邮件中使用 release note。你可以通过命令 <code>git log --pretty=&quot;- %s&quot; &lt;PREVIOUS-RELEASE-SHA&gt;..&lt;CURRENT-RELEASE-SHA&gt; &gt; changelog.md</code>\n自动生成 changelog（部分可以不太准确，需要人为过滤一遍），然后将他们分类并粘贴到 GitHub 的 release note 中</p>\n<h3 id=\"投票阶段\">投票阶段</h3>\n<ol>\n<li>\n<p>DolphinScheduler社区投票，发起投票邮件到<code>dev@dolphinscheduler.apache.org</code>。PMC需要先按照文档检查版本的正确性，然后再进行投票。\n经过至少72小时并统计到至少3个<code>+1 并且没有-1 PMC member</code>票后，即可进入下一阶段。</p>\n</li>\n<li>\n<p>宣布投票结果,发起投票结果邮件到<code>dev@dolphinscheduler.apache.org</code>。</p>\n</li>\n</ol>\n<h3 id=\"投票模板\">投票模板</h3>\n<ol>\n<li>DolphinScheduler社区投票模板</li>\n</ol>\n<p>标题：</p>\n<pre><code class=\"language-txt\">[VOTE] Release Apache DolphinScheduler &lt;VERSION&gt;\n</code></pre>\n<p>正文：</p>\n<pre><code class=\"language-txt\">Hello DolphinScheduler Community,\n\nThis is a call for vote to release Apache DolphinScheduler version &lt;VERSION&gt;\n\nRelease notes: https://github.com/apache/dolphinscheduler/releases/tag/&lt;VERSION&gt;\n\nThe release candidates: https://dist.apache.org/repos/dist/dev/dolphinscheduler/&lt;VERSION&gt;/\n\nMaven 2 staging repository: https://repository.apache.org/content/repositories/&lt;VERSION&gt;/org/apache/dolphinscheduler/\n\nGit tag for the release: https://github.com/apache/dolphinscheduler/tree/&lt;VERSION&gt;\n\nRelease Commit ID: https://github.com/apache/dolphinscheduler/commit/&lt;SHA-VALUE&gt;\n\nKeys to verify the Release Candidate: https://dist.apache.org/repos/dist/dev/dolphinscheduler/KEYS\n\nLook at here for how to verify this release candidate: https://dolphinscheduler.apache.org/en-us/community/release.html\n\nThe vote will be open for at least 72 hours or until necessary number of votes are reached.\n\nPlease vote accordingly:\n\n[ ] +1 approve\n[ ] +0 no opinion\n[ ] -1 disapprove with the reason\n\nChecklist for reference:\n\n[ ] Download links are valid.\n[ ] Checksums and PGP signatures are valid.\n[ ] Source code artifacts have correct names matching the current release.\n[ ] LICENSE and NOTICE files are correct for each DolphinScheduler repo.\n[ ] All files have license headers if necessary.\n[ ] No compiled archives bundled in source archive.\n</code></pre>\n<p>2.宣布投票结果模板</p>\n<p>正文：</p>\n<pre><code class=\"language-txt\">The vote to release Apache DolphinScheduler &lt;VERSION&gt; has passed.Here is the vote result,\n\n4 PMC member +1 votes:\n\nxxx\nxxx\nxxx\nxxx\n\n1 community +1 vote:\nxxx\n\nThanks everyone for taking time to check this release and help us.\n</code></pre>\n<h2 id=\"完成发布\">完成发布</h2>\n<h3 id=\"将源码和二进制包从svn的dev目录移动到release目录\">将源码和二进制包从svn的dev目录移动到release目录</h3>\n<pre><code class=\"language-shell\">svn mv https://dist.apache.org/repos/dist/dev/dolphinscheduler/&quot;${VERSION}&quot; https://dist.apache.org/repos/dist/release/dolphinscheduler/\n</code></pre>\n<h3 id=\"将-gpg-keys-svn的dev目录移动到release目录\">将 gpg KEYS svn的dev目录移动到release目录</h3>\n<p>只有你第一次使用该 KEY 发版时才需要，如果之前已经发过版且 KEY 没有变化则不需要</p>\n<pre><code class=\"language-shell\">mkdir -p ~/ds_svn/release/\ncd ~/ds_svn/release/\nsvn --username=&quot;${A_USERNAME}&quot; co https://dist.apache.org/repos/dist/release/dolphinscheduler\ngpg -a --export &lt;YOUR-GPG-KEY-ID&gt; &gt;&gt; KEYS\nsvn add *\nsvn --username=&quot;${A_USERNAME}&quot; commit -m &quot;new key &lt;YOUR-GPG-KEY-ID&gt; add&quot;\n</code></pre>\n<h3 id=\"更新文档\">更新文档</h3>\n<p>官网应该在您发送通知邮件之前完成更新，本节将告诉您如何更改网站。假设发版的版本是 <code>&lt;VERSION&gt;</code>，需要进行以下更新（注意，当修改pull requests 被 merge 后就会生效）:</p>\n<ul>\n<li><strong>apache/dolphinscheduler-website</strong> 仓库：\n<ul>\n<li><code>download/en-us/download.md</code> 和 <code>download/zh-cn/download.md</code>: 增加 <code>&lt;VERSION&gt;</code> 版本发布包的下载</li>\n<li><code>scripts/conf.sh</code>: 在变量 <code>DEV_RELEASE_DOCS_VERSIONS</code> 中增加版本为 <code>&lt;VERSION&gt;</code> 的新键值对</li>\n</ul>\n</li>\n<li><strong>apache/dolphinscheduler</strong> 仓库：\n<ul>\n<li><code>docs/configs/site.js</code>:\n<ul>\n<li><code>docsLatest</code>: 更新为 <code>&lt;VERSION&gt;</code></li>\n<li><code>docs0</code>: 两处 <code>en-us/zh-cn</code> 的 <code>text</code> 更新为 <code>latest(&lt;VERSION&gt;)</code></li>\n<li><code>docsxyz</code>: 两处 <code>en-us/zh-cn</code> 的 <code>children</code> 增加 <code>key</code> 为 <code>docsxyz</code>, <code>text</code> 为 <code>&lt;VERSION&gt;</code> 的下拉菜单</li>\n</ul>\n</li>\n<li><code>docs/configs/index.md.jsx</code>: 增加 <code>'&lt;VERSION&gt;': docsxyzConfig,</code></li>\n<li><code>docs/docs/en/history-versions.md</code> 和 <code>docs/docs/zh/history-versions.md</code>: 增加新的发版版本 <code>&lt;VERSION&gt;</code> 的链接</li>\n<li><code>.github/ISSUE_TEMPLATE/bug-report.yml</code>: DolphinScheduler 在 GitHub issue 中有版本选择的部分，当有新版本发版后，需要更新这部分的内容。目前与版本关联的是\n<a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml\">bug-report</a>，发版的时候需要\n向其中的 <strong>Version</strong> 部分增加内容。</li>\n</ul>\n</li>\n</ul>\n<h3 id=\"在-<a-href=\"https://repository.apache.org/#stagingrepositories\">apache-staging-repositories</a>-仓库找到-dolphinscheduler-并点击<code>release</code>\">在 <a href=\"https://repository.apache.org/#stagingRepositories\">apache staging repositories</a> 仓库找到 DolphinScheduler 并点击<code>Release</code></h3>\n<h3 id=\"发送公告邮件通知社区\">发送公告邮件通知社区</h3>\n<p>当完成了上述的发版流程后，需要发送一封公告邮件给社区。你需要将邮件发送到 <code>dev@dolphinscheduler.apache.org</code> 并抄送到 <code>announce@apache.org</code>。</p>\n<p>通知邮件模板如下：</p>\n<p>标题：</p>\n<pre><code class=\"language-txt\">[ANNOUNCE] Release Apache DolphinScheduler &lt;VERSION&gt;\n</code></pre>\n<p>正文：</p>\n<pre><code class=\"language-txt\">Hi all,\n\nWe are glad to announce the release of Apache DolphinScheduler &lt;VERSION&gt;. Once again I would like to express my thanks to your help.\n\nDolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler system,\ndedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.\n\n\nDownload Links: https://dolphinscheduler.apache.org/en-us/download/download.html\n\nRelease Notes: https://github.com/apache/dolphinscheduler/releases/tag/&lt;VERSION&gt;\n\nWebsite: https://dolphinscheduler.apache.org/\n\nDolphinScheduler Resources:\n- Issue: https://github.com/apache/dolphinscheduler/issues/\n- Mailing list: dev@dolphinscheduler.apache.org\n- Documents: https://dolphinscheduler.apache.org/zh-cn/docs/&lt;VERSION&gt;/user_doc/about/introduction.html\n</code></pre>\n",
+  "location": [
+    "贡献指南",
+    "发版指南",
+    "发版指南"
+  ],
+  "time": "2023-02-24",
+  "structure": [
+    {
+      "title": "检查环境",
+      "children": [
+        {
+          "title": "安装GPG",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "安装gpg"
+        },
+        {
+          "title": "创建key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建key"
+        },
+        {
+          "title": "查看生成的key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "查看生成的key"
+        },
+        {
+          "title": "将公钥同步到服务器",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将公钥同步到服务器"
+        },
+        {
+          "title": "设置 settings-security.xml 和 settings.xml 文件",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "设置-settings-security.xml-和-settings.xml-文件"
+        },
+        {
+          "title": "配置环境变量",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "配置环境变量"
+        },
+        {
+          "title": "创建发布分支",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建发布分支"
+        },
+        {
+          "title": "发布预校验",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发布预校验"
+        },
+        {
+          "title": "准备发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "准备发布"
+        },
+        {
+          "title": "部署发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "部署发布"
+        },
+        {
+          "title": "检出dolphinscheduler发布目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检出dolphinscheduler发布目录"
+        },
+        {
+          "title": "添加gpg公钥",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "添加gpg公钥"
+        },
+        {
+          "title": "将待发布的内容添加至SVN目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将待发布的内容添加至svn目录"
+        },
+        {
+          "title": "生成文件签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "生成文件签名"
+        },
+        {
+          "title": "提交Apache SVN",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "提交apache-svn"
+        },
+        {
+          "title": "检查sha512哈希",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查sha512哈希"
+        },
+        {
+          "title": "检查gpg签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查gpg签名"
+        },
+        {
+          "title": "检查发布文件内容",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查发布文件内容"
+        },
+        {
+          "title": "更新版本说明",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新版本说明"
+        },
+        {
+          "title": "投票阶段",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票阶段"
+        },
+        {
+          "title": "投票模板",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票模板"
+        },
+        {
+          "title": "将源码和二进制包从svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将源码和二进制包从svn的dev目录移动到release目录"
+        },
+        {
+          "title": "将 gpg KEYS svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将-gpg-keys-svn的dev目录移动到release目录"
+        },
+        {
+          "title": "更新文档",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新文档"
+        },
+        {
+          "title": "在 apache staging repositories 仓库找到 DolphinScheduler 并点击Release",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "在-apache-staging-repositories-仓库找到-dolphinscheduler-并点击release"
+        },
+        {
+          "title": "发送公告邮件通知社区",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发送公告邮件通知社区"
+        }
+      ],
+      "anchor": "检查环境"
+    },
+    {
+      "title": "GPG设置",
+      "children": [
+        {
+          "title": "安装GPG",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "安装gpg"
+        },
+        {
+          "title": "创建key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建key"
+        },
+        {
+          "title": "查看生成的key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "查看生成的key"
+        },
+        {
+          "title": "将公钥同步到服务器",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将公钥同步到服务器"
+        },
+        {
+          "title": "设置 settings-security.xml 和 settings.xml 文件",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "设置-settings-security.xml-和-settings.xml-文件"
+        },
+        {
+          "title": "配置环境变量",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "配置环境变量"
+        },
+        {
+          "title": "创建发布分支",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建发布分支"
+        },
+        {
+          "title": "发布预校验",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发布预校验"
+        },
+        {
+          "title": "准备发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "准备发布"
+        },
+        {
+          "title": "部署发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "部署发布"
+        },
+        {
+          "title": "检出dolphinscheduler发布目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检出dolphinscheduler发布目录"
+        },
+        {
+          "title": "添加gpg公钥",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "添加gpg公钥"
+        },
+        {
+          "title": "将待发布的内容添加至SVN目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将待发布的内容添加至svn目录"
+        },
+        {
+          "title": "生成文件签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "生成文件签名"
+        },
+        {
+          "title": "提交Apache SVN",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "提交apache-svn"
+        },
+        {
+          "title": "检查sha512哈希",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查sha512哈希"
+        },
+        {
+          "title": "检查gpg签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查gpg签名"
+        },
+        {
+          "title": "检查发布文件内容",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查发布文件内容"
+        },
+        {
+          "title": "更新版本说明",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新版本说明"
+        },
+        {
+          "title": "投票阶段",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票阶段"
+        },
+        {
+          "title": "投票模板",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票模板"
+        },
+        {
+          "title": "将源码和二进制包从svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将源码和二进制包从svn的dev目录移动到release目录"
+        },
+        {
+          "title": "将 gpg KEYS svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将-gpg-keys-svn的dev目录移动到release目录"
+        },
+        {
+          "title": "更新文档",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新文档"
+        },
+        {
+          "title": "在 apache staging repositories 仓库找到 DolphinScheduler 并点击Release",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "在-apache-staging-repositories-仓库找到-dolphinscheduler-并点击release"
+        },
+        {
+          "title": "发送公告邮件通知社区",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发送公告邮件通知社区"
+        }
+      ],
+      "anchor": "gpg设置"
+    },
+    {
+      "title": "发布Apache Maven中央仓库",
+      "children": [
+        {
+          "title": "安装GPG",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "安装gpg"
+        },
+        {
+          "title": "创建key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建key"
+        },
+        {
+          "title": "查看生成的key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "查看生成的key"
+        },
+        {
+          "title": "将公钥同步到服务器",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将公钥同步到服务器"
+        },
+        {
+          "title": "设置 settings-security.xml 和 settings.xml 文件",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "设置-settings-security.xml-和-settings.xml-文件"
+        },
+        {
+          "title": "配置环境变量",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "配置环境变量"
+        },
+        {
+          "title": "创建发布分支",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建发布分支"
+        },
+        {
+          "title": "发布预校验",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发布预校验"
+        },
+        {
+          "title": "准备发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "准备发布"
+        },
+        {
+          "title": "部署发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "部署发布"
+        },
+        {
+          "title": "检出dolphinscheduler发布目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检出dolphinscheduler发布目录"
+        },
+        {
+          "title": "添加gpg公钥",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "添加gpg公钥"
+        },
+        {
+          "title": "将待发布的内容添加至SVN目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将待发布的内容添加至svn目录"
+        },
+        {
+          "title": "生成文件签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "生成文件签名"
+        },
+        {
+          "title": "提交Apache SVN",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "提交apache-svn"
+        },
+        {
+          "title": "检查sha512哈希",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查sha512哈希"
+        },
+        {
+          "title": "检查gpg签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查gpg签名"
+        },
+        {
+          "title": "检查发布文件内容",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查发布文件内容"
+        },
+        {
+          "title": "更新版本说明",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新版本说明"
+        },
+        {
+          "title": "投票阶段",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票阶段"
+        },
+        {
+          "title": "投票模板",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票模板"
+        },
+        {
+          "title": "将源码和二进制包从svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将源码和二进制包从svn的dev目录移动到release目录"
+        },
+        {
+          "title": "将 gpg KEYS svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将-gpg-keys-svn的dev目录移动到release目录"
+        },
+        {
+          "title": "更新文档",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新文档"
+        },
+        {
+          "title": "在 apache staging repositories 仓库找到 DolphinScheduler 并点击Release",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "在-apache-staging-repositories-仓库找到-dolphinscheduler-并点击release"
+        },
+        {
+          "title": "发送公告邮件通知社区",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发送公告邮件通知社区"
+        }
+      ],
+      "anchor": "发布apache-maven中央仓库"
+    },
+    {
+      "title": "发布Apache SVN仓库",
+      "children": [
+        {
+          "title": "安装GPG",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "安装gpg"
+        },
+        {
+          "title": "创建key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建key"
+        },
+        {
+          "title": "查看生成的key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "查看生成的key"
+        },
+        {
+          "title": "将公钥同步到服务器",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将公钥同步到服务器"
+        },
+        {
+          "title": "设置 settings-security.xml 和 settings.xml 文件",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "设置-settings-security.xml-和-settings.xml-文件"
+        },
+        {
+          "title": "配置环境变量",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "配置环境变量"
+        },
+        {
+          "title": "创建发布分支",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建发布分支"
+        },
+        {
+          "title": "发布预校验",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发布预校验"
+        },
+        {
+          "title": "准备发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "准备发布"
+        },
+        {
+          "title": "部署发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "部署发布"
+        },
+        {
+          "title": "检出dolphinscheduler发布目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检出dolphinscheduler发布目录"
+        },
+        {
+          "title": "添加gpg公钥",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "添加gpg公钥"
+        },
+        {
+          "title": "将待发布的内容添加至SVN目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将待发布的内容添加至svn目录"
+        },
+        {
+          "title": "生成文件签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "生成文件签名"
+        },
+        {
+          "title": "提交Apache SVN",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "提交apache-svn"
+        },
+        {
+          "title": "检查sha512哈希",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查sha512哈希"
+        },
+        {
+          "title": "检查gpg签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查gpg签名"
+        },
+        {
+          "title": "检查发布文件内容",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查发布文件内容"
+        },
+        {
+          "title": "更新版本说明",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新版本说明"
+        },
+        {
+          "title": "投票阶段",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票阶段"
+        },
+        {
+          "title": "投票模板",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票模板"
+        },
+        {
+          "title": "将源码和二进制包从svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将源码和二进制包从svn的dev目录移动到release目录"
+        },
+        {
+          "title": "将 gpg KEYS svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将-gpg-keys-svn的dev目录移动到release目录"
+        },
+        {
+          "title": "更新文档",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新文档"
+        },
+        {
+          "title": "在 apache staging repositories 仓库找到 DolphinScheduler 并点击Release",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "在-apache-staging-repositories-仓库找到-dolphinscheduler-并点击release"
+        },
+        {
+          "title": "发送公告邮件通知社区",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发送公告邮件通知社区"
+        }
+      ],
+      "anchor": "发布apache-svn仓库"
+    },
+    {
+      "title": "检查发布结果",
+      "children": [
+        {
+          "title": "安装GPG",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "安装gpg"
+        },
+        {
+          "title": "创建key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建key"
+        },
+        {
+          "title": "查看生成的key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "查看生成的key"
+        },
+        {
+          "title": "将公钥同步到服务器",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将公钥同步到服务器"
+        },
+        {
+          "title": "设置 settings-security.xml 和 settings.xml 文件",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "设置-settings-security.xml-和-settings.xml-文件"
+        },
+        {
+          "title": "配置环境变量",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "配置环境变量"
+        },
+        {
+          "title": "创建发布分支",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建发布分支"
+        },
+        {
+          "title": "发布预校验",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发布预校验"
+        },
+        {
+          "title": "准备发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "准备发布"
+        },
+        {
+          "title": "部署发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "部署发布"
+        },
+        {
+          "title": "检出dolphinscheduler发布目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检出dolphinscheduler发布目录"
+        },
+        {
+          "title": "添加gpg公钥",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "添加gpg公钥"
+        },
+        {
+          "title": "将待发布的内容添加至SVN目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将待发布的内容添加至svn目录"
+        },
+        {
+          "title": "生成文件签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "生成文件签名"
+        },
+        {
+          "title": "提交Apache SVN",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "提交apache-svn"
+        },
+        {
+          "title": "检查sha512哈希",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查sha512哈希"
+        },
+        {
+          "title": "检查gpg签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查gpg签名"
+        },
+        {
+          "title": "检查发布文件内容",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查发布文件内容"
+        },
+        {
+          "title": "更新版本说明",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新版本说明"
+        },
+        {
+          "title": "投票阶段",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票阶段"
+        },
+        {
+          "title": "投票模板",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票模板"
+        },
+        {
+          "title": "将源码和二进制包从svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将源码和二进制包从svn的dev目录移动到release目录"
+        },
+        {
+          "title": "将 gpg KEYS svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将-gpg-keys-svn的dev目录移动到release目录"
+        },
+        {
+          "title": "更新文档",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新文档"
+        },
+        {
+          "title": "在 apache staging repositories 仓库找到 DolphinScheduler 并点击Release",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "在-apache-staging-repositories-仓库找到-dolphinscheduler-并点击release"
+        },
+        {
+          "title": "发送公告邮件通知社区",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发送公告邮件通知社区"
+        }
+      ],
+      "anchor": "检查发布结果"
+    },
+    {
+      "title": "发起投票",
+      "children": [
+        {
+          "title": "安装GPG",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "安装gpg"
+        },
+        {
+          "title": "创建key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建key"
+        },
+        {
+          "title": "查看生成的key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "查看生成的key"
+        },
+        {
+          "title": "将公钥同步到服务器",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将公钥同步到服务器"
+        },
+        {
+          "title": "设置 settings-security.xml 和 settings.xml 文件",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "设置-settings-security.xml-和-settings.xml-文件"
+        },
+        {
+          "title": "配置环境变量",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "配置环境变量"
+        },
+        {
+          "title": "创建发布分支",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建发布分支"
+        },
+        {
+          "title": "发布预校验",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发布预校验"
+        },
+        {
+          "title": "准备发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "准备发布"
+        },
+        {
+          "title": "部署发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "部署发布"
+        },
+        {
+          "title": "检出dolphinscheduler发布目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检出dolphinscheduler发布目录"
+        },
+        {
+          "title": "添加gpg公钥",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "添加gpg公钥"
+        },
+        {
+          "title": "将待发布的内容添加至SVN目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将待发布的内容添加至svn目录"
+        },
+        {
+          "title": "生成文件签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "生成文件签名"
+        },
+        {
+          "title": "提交Apache SVN",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "提交apache-svn"
+        },
+        {
+          "title": "检查sha512哈希",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查sha512哈希"
+        },
+        {
+          "title": "检查gpg签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查gpg签名"
+        },
+        {
+          "title": "检查发布文件内容",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查发布文件内容"
+        },
+        {
+          "title": "更新版本说明",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新版本说明"
+        },
+        {
+          "title": "投票阶段",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票阶段"
+        },
+        {
+          "title": "投票模板",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票模板"
+        },
+        {
+          "title": "将源码和二进制包从svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将源码和二进制包从svn的dev目录移动到release目录"
+        },
+        {
+          "title": "将 gpg KEYS svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将-gpg-keys-svn的dev目录移动到release目录"
+        },
+        {
+          "title": "更新文档",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新文档"
+        },
+        {
+          "title": "在 apache staging repositories 仓库找到 DolphinScheduler 并点击Release",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "在-apache-staging-repositories-仓库找到-dolphinscheduler-并点击release"
+        },
+        {
+          "title": "发送公告邮件通知社区",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发送公告邮件通知社区"
+        }
+      ],
+      "anchor": "发起投票"
+    },
+    {
+      "title": "完成发布",
+      "children": [
+        {
+          "title": "安装GPG",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "安装gpg"
+        },
+        {
+          "title": "创建key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建key"
+        },
+        {
+          "title": "查看生成的key",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "查看生成的key"
+        },
+        {
+          "title": "将公钥同步到服务器",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将公钥同步到服务器"
+        },
+        {
+          "title": "设置 settings-security.xml 和 settings.xml 文件",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "设置-settings-security.xml-和-settings.xml-文件"
+        },
+        {
+          "title": "配置环境变量",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "配置环境变量"
+        },
+        {
+          "title": "创建发布分支",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "创建发布分支"
+        },
+        {
+          "title": "发布预校验",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发布预校验"
+        },
+        {
+          "title": "准备发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "准备发布"
+        },
+        {
+          "title": "部署发布",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "部署发布"
+        },
+        {
+          "title": "检出dolphinscheduler发布目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检出dolphinscheduler发布目录"
+        },
+        {
+          "title": "添加gpg公钥",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "添加gpg公钥"
+        },
+        {
+          "title": "将待发布的内容添加至SVN目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将待发布的内容添加至svn目录"
+        },
+        {
+          "title": "生成文件签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "生成文件签名"
+        },
+        {
+          "title": "提交Apache SVN",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "提交apache-svn"
+        },
+        {
+          "title": "检查sha512哈希",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查sha512哈希"
+        },
+        {
+          "title": "检查gpg签名",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查gpg签名"
+        },
+        {
+          "title": "检查发布文件内容",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "检查发布文件内容"
+        },
+        {
+          "title": "更新版本说明",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新版本说明"
+        },
+        {
+          "title": "投票阶段",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票阶段"
+        },
+        {
+          "title": "投票模板",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "投票模板"
+        },
+        {
+          "title": "将源码和二进制包从svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将源码和二进制包从svn的dev目录移动到release目录"
+        },
+        {
+          "title": "将 gpg KEYS svn的dev目录移动到release目录",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "将-gpg-keys-svn的dev目录移动到release目录"
+        },
+        {
+          "title": "更新文档",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "更新文档"
+        },
+        {
+          "title": "在 apache staging repositories 仓库找到 DolphinScheduler 并点击Release",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "在-apache-staging-repositories-仓库找到-dolphinscheduler-并点击release"
+        },
+        {
+          "title": "发送公告邮件通知社区",
+          "children": [
+            {
+              "title": "检查源码包的文件内容",
+              "children": [],
+              "anchor": "检查源码包的文件内容"
+            },
+            {
+              "title": "检查二进制包的文件内容",
+              "children": [],
+              "anchor": "检查二进制包的文件内容"
+            }
+          ],
+          "anchor": "发送公告邮件通知社区"
+        }
+      ],
+      "anchor": "完成发布"
+    }
+  ],
+  "title": "发版指南",
+  "link": "/contribute/release/release"
+}

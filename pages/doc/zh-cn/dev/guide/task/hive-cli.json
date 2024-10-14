@@ -1,0 +1,67 @@
+{
+  "__html": "<h1 id=\"hive-cli\">Hive CLI</h1>\n<h2 id=\"综述\">综述</h2>\n<p>使用<code>Hive Cli任务插件</code>创建<code>Hive Cli</code>类型的任务执行SQL脚本语句或者SQL任务文件。\n执行任务的worker会通过<code>hive -e</code>命令执行hive SQL脚本语句或者通过<code>hive -f</code>命令执行<code>资源中心</code>中的hive SQL文件。</p>\n<h2 id=\"hive-cli任务-vs-连接hive数据源的sql任务\">Hive CLI任务 VS 连接Hive数据源的SQL任务</h2>\n<p>在DolphinScheduler中，我们有<code>Hive CLI任务插件</code>和<code>使用Hive数据源的SQL插件</code>提供用户在不同场景下使用，您可以根据需要进行选择。</p>\n<ul>\n<li><code>Hive CLI任务插件</code>直接连接<code>HDFS</code>和<code>Hive Metastore</code>来执行hive类型的任务，所以需要能够访问到对应的服务。\n执行任务的worker节点需要有相应的<code>Hive</code> jar包以及<code>Hive</code>和<code>HDFS</code>的配置文件。\n但是在生产调度中，<code>Hive CLI任务插件</code>能够提供更可靠的稳定性。</li>\n<li><code>使用Hive数据源的SQL插件</code>不需要您在worker节点上有相应的<code>Hive</code> jar包以及<code>Hive</code>和<code>HDFS</code>的配置文件，而且支持 <code>Kerberos</code>认证。\n但是在生产调度中，若调度压力很大，使用这种方式可能会遇到<code>HiveServer2</code>服务过载失败等问题。</li>\n</ul>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击&quot;创建工作流&quot;按钮，进入DAG编辑页面。</li>\n<li>工具栏中拖动 <img src=\"/img/tasks/icons/hivecli.png\" width=\"15\"/> 到画板中，即可完成创建。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/dev/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Hive Cli 任务类型</td>\n<td>Hive Cli任务执行方式，可以选择<code>FROM_SCRIPT</code>或者<code>FROM_FILE</code>。</td>\n</tr>\n<tr>\n<td>Hive SQL 脚本</td>\n<td>手动填入您的Hive SQL脚本语句。</td>\n</tr>\n<tr>\n<td>Hive Cli 选项</td>\n<td>Hive Cli的其他选项，如<code>--verbose</code>来查看任务结果。</td>\n</tr>\n<tr>\n<td>资源</td>\n<td>如果您选择<code>FROM_FILE</code>作为Hive Cli任务类型，您需要在资源中选择Hive SQL文件。</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"hive-cli任务样例\">Hive CLI任务样例</h3>\n<p>下面的样例演示了如何使用<code>Hive CLI</code>任务节点执行Hive SQL脚本语句：</p>\n<p><img src=\"/img/tasks/demo/hive_cli_from_script.png\" alt=\"demo-hive-cli-from-script\"></p>\n<p>下面的样例演示了如何使用<code>Hive CLI</code>任务节点从资源中心的Hive SQL</p>\n<p><img src=\"/img/tasks/demo/hive_cli_from_file.png\" alt=\"demo-hive-cli-from-file\"></p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Hive CLI"
+  ],
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "Hive CLI任务样例",
+          "children": [],
+          "anchor": "hive-cli任务样例"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "Hive CLI任务 VS 连接Hive数据源的SQL任务",
+      "children": [
+        {
+          "title": "Hive CLI任务样例",
+          "children": [],
+          "anchor": "hive-cli任务样例"
+        }
+      ],
+      "anchor": "hive-cli任务-vs-连接hive数据源的sql任务"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "Hive CLI任务样例",
+          "children": [],
+          "anchor": "hive-cli任务样例"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "Hive CLI任务样例",
+          "children": [],
+          "anchor": "hive-cli任务样例"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "Hive CLI任务样例",
+          "children": [],
+          "anchor": "hive-cli任务样例"
+        }
+      ],
+      "anchor": "任务样例"
+    }
+  ],
+  "title": "Hive CLI",
+  "link": "/guide/task/hive-cli"
+}
