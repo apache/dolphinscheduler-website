@@ -154,7 +154,7 @@ In versions prior to 3.0.0-alpha, Apache DolphinScheduler defaulted to the UTC+8
 
 </div>
 
-See link: [https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/howto/general-setting](https://dolphinscheduler.apache.org/zh-cn/docs/3.0.0/guide/howto/general-setting)
+See link: [general-setting](https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/en/guide/installation/general-setting.md)
 
 ### 07 List of task definitions
 

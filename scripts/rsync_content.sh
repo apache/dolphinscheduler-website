@@ -94,7 +94,11 @@ function rsync_released_docs() {
 
         echo "  ---> Git checkout to version ${version}."
         git fetch origin "${branch}" --no-tags
-        git checkout -b "${version}" FETCH_HEAD
+        if [ "${version}" == "dev" ]; then
+          git checkout "${version}"
+        else
+          git checkout -b "${version}" FETCH_HEAD
+        fi
 
         echo "  ---> Sync released version ${version} docs."
         rsync_wrapper "${PROJECT_DIR}/docs/docs/en" "${PROJECT_SITE_DOC_DIR}/en-us/${version}/user_doc" "--exclude=history-versions.md --exclude=development"
