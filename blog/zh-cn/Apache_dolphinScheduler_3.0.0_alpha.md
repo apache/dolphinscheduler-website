@@ -161,7 +161,7 @@ Amazon Redshift 支持
 
 </div>
 
-详见链接：[https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/guide/howto/general-setting.md](https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/guide/howto/general-setting.md)
+详见链接：[general-setting](https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/guide/installation/general-setting.md)
 
 ### 任务定义列表
 
