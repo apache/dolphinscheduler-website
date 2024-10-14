@@ -53,7 +53,7 @@ const Documentation = () => {
         <div className="documentation-sider-title">{t("select_version")}</div>
         <Select
           className="documentation-sider-select"
-          defaultValue={params.version}
+          defaultValue={versions[1]}
           options={versions.map((version) => ({
             label: version,
             value: version,
@@ -61,6 +61,7 @@ const Documentation = () => {
           onChange={(value) => {
             navigate(`/${locale}/docs/${value}`);
           }}
+          showSearch
         />
         <Button
           className="documentation-sider-download"
