@@ -53,7 +53,7 @@ const Documentation = () => {
         <div className="documentation-sider-title">{t("select_version")}</div>
         <Select
           className="documentation-sider-select"
-          defaultValue={versions[1]}
+          defaultValue={params.version}
           options={versions.map((version) => ({
             label: version,
             value: version,
