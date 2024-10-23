@@ -143,16 +143,6 @@ const NavBar = () => {
           >
             <Button shape="round">{t("contacts")}</Button>
           </Dropdown>
-          <Button
-            type="primary"
-            shape="round"
-            onClick={() => {
-              navigate(`/${locale}/download`);
-              setSelectedKeys("");
-            }}
-          >
-            {t("download")}
-          </Button>
         </Space>
       </section>
     </nav>
