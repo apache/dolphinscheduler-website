@@ -24,7 +24,5 @@ export const useVersions = () => {
     // eslint-disable-next-line
   }, []);
 
-
-
   return { versions, currentVersion: versions[0] };
 };
