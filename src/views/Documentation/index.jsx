@@ -42,10 +42,14 @@ const Documentation = () => {
     handleAnchor,
     navigate,
   } = useDocumentation(params);
+  let downloadButtonIsDisabled = false;
   const searchRef = useRef();
 
   if (!versions.includes(params.version)) {
     return <Navigate to={`/${locale}/docs/${versions[0]}`} replace={true} />;
+  }
+  if (params.version === "dev") {
+    downloadButtonIsDisabled = true;
   }
   return (
     <section className="documentation" id="documentation">
@@ -69,6 +73,7 @@ const Documentation = () => {
           shape="round"
           ghost
           size="large"
+          disabled={downloadButtonIsDisabled}
           onClick={() => {
             navigate(`/${locale}/download/${params.version}`);
           }}
