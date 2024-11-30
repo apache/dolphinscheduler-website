@@ -35,7 +35,7 @@ Chair： 代立冬
 * GitHub issue
 * 最活跃的 GitHub issues/ PR
 ## 邮件列表趋势:
-Dev@DolphinScheder.apache.org 在过去的一个季度，流量增长 64%（ 297 封电子邮件，上季度为 181 封）：
+dev@dolphinscheder.apache.org 在过去的一个季度，流量增长 64%（ 297 封电子邮件，上季度为 181 封）：
 
 <div align=center>
 <img src="/img/2022-1-13/640-1.png"/>
