@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pydolphinscheduler.models.base_side &mdash; apache-dolphinscheduler 4.0.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -101,24 +101,24 @@
 
 <span class="sd">&quot;&quot;&quot;Module for models object.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler</span> <span class="kn">import</span> <span class="n">configuration</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
 
 
 <div class="viewcode-block" id="BaseSide">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.BaseSide">[docs]</a>
-<span class="k">class</span> <span class="nc">BaseSide</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseSide</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for models object, it declare base behavior for them.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BaseSide.create_if_not_exists">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.BaseSide.create_if_not_exists">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_if_not_exists</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="c1"># TODO comment for avoiding cycle import</span>
         <span class="c1"># user: Optional[User] = ProcessDefinitionDefault.USER</span>
@@ -130,7 +130,7 @@
 
 <div class="viewcode-block" id="BaseSide.delete_all">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.BaseSide.delete_all">[docs]</a>
-    <span class="k">def</span> <span class="nf">delete_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete all method.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">return</span>

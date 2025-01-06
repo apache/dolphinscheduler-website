@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pydolphinscheduler.models.user &mdash; apache-dolphinscheduler 4.1.0-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -101,16 +101,16 @@
 
 <span class="sd">&quot;&quot;&quot;DolphinScheduler User object.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler</span> <span class="kn">import</span> <span class="n">configuration</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">gateway</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.models</span> <span class="kn">import</span> <span class="n">BaseSide</span><span class="p">,</span> <span class="n">Tenant</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.java_gateway</span><span class="w"> </span><span class="kn">import</span> <span class="n">gateway</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSide</span><span class="p">,</span> <span class="n">Tenant</span>
 
 
 <div class="viewcode-block" id="User">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User">[docs]</a>
-<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseSide</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">BaseSide</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;DolphinScheduler User object.&quot;&quot;&quot;</span>
 
     <span class="n">_KEY_ATTR</span> <span class="o">=</span> <span class="p">{</span>
@@ -123,7 +123,7 @@
         <span class="s2">&quot;status&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">password</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">USER_PASSWORD</span><span class="p">,</span>
@@ -144,7 +144,7 @@
 
 <div class="viewcode-block" id="User.create_tenant_if_not_exists">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.create_tenant_if_not_exists">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_tenant_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_tenant_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create tenant object.&quot;&quot;&quot;</span>
         <span class="n">tenant</span> <span class="o">=</span> <span class="n">Tenant</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tenant</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span>
         <span class="n">tenant</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span></div>
@@ -152,7 +152,7 @@
 
 <div class="viewcode-block" id="User.create_if_not_exists">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.create_if_not_exists">[docs]</a>
-    <span class="k">def</span> <span class="nf">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create User if not exists.&quot;&quot;&quot;</span>
         <span class="c1"># Should make sure queue already exists.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create_tenant_if_not_exists</span><span class="p">()</span>
@@ -173,7 +173,7 @@
 <div class="viewcode-block" id="User.get_user">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.get_user">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_user</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_user</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get User.&quot;&quot;&quot;</span>
         <span class="n">user</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">query_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -194,7 +194,7 @@
 
 <div class="viewcode-block" id="User.update">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.update">[docs]</a>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">password</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">email</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -224,7 +224,7 @@
 
 <div class="viewcode-block" id="User.delete">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.models.User.delete">[docs]</a>
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete User.&quot;&quot;&quot;</span>
         <span class="n">gateway</span><span class="o">.</span><span class="n">delete_user</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">delete_all</span><span class="p">()</span></div>

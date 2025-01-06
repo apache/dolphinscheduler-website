@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Concepts &mdash; apache-dolphinscheduler 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -297,7 +297,7 @@ execute them. We execute file by <code class="docutils literal notranslate"><spa
 mean we could use resource center files in task by name without upload it again. And we can upload files to
 resource center bare without workflow.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Upload file to resource center</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.resource</span> <span class="kn">import</span> <span class="n">Resource</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.resource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Resource</span>
 
 <span class="n">resource</span> <span class="o">=</span> <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;bare-create.py&quot;</span><span class="p">,</span> <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;&lt;USER-MUST-EXISTS-WITH-TENANT&gt;&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;print(&#39;Bareh create resource&#39;)&quot;</span><span class="p">)</span>
 <span class="n">resource</span><span class="o">.</span><span class="n">create_or_update_resource</span><span class="p">()</span>

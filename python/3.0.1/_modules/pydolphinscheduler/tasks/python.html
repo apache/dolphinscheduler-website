@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pydolphinscheduler.tasks.python &mdash; apache-dolphinscheduler 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -99,22 +99,22 @@
 
 <span class="sd">&quot;&quot;&quot;Task Python.&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">types</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">types</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.constants</span> <span class="kn">import</span> <span class="n">TaskType</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.core.task</span> <span class="kn">import</span> <span class="n">Task</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.task</span><span class="w"> </span><span class="kn">import</span> <span class="n">Task</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyDSParamException</span>
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Python">
 <a class="viewcode-back" href="../../../tasks/python.html#pydolphinscheduler.tasks.Python">[docs]</a>
-<span class="k">class</span> <span class="nc">Python</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Python</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Task Python object, declare behavior for Python task to dolphinscheduler.</span>
 
 <span class="sd">    Python task support two types of parameters for :param:``code``, and here is an example:</span>
@@ -143,7 +143,7 @@
         <span class="s2">&quot;raw_script&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">definition</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">PYTHON</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -151,7 +151,7 @@
 
 <div class="viewcode-block" id="Python._build_exe_str">
 <a class="viewcode-back" href="../../../tasks/python.html#pydolphinscheduler.tasks.Python._build_exe_str">[docs]</a>
-    <span class="k">def</span> <span class="nf">_build_exe_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_exe_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build executable string from given definition.</span>
 
 <span class="sd">        Attribute ``self.definition`` almost is a function, we need to call this function after parsing it</span>
@@ -179,7 +179,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">raw_script</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">raw_script</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get python task define attribute `raw_script`.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">definition</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">)):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_exe_str</span><span class="p">()</span>

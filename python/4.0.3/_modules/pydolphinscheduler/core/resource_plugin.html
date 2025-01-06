@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pydolphinscheduler.core.resource_plugin &mdash; apache-dolphinscheduler 4.0.3 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -101,15 +101,15 @@
 
 <span class="sd">&quot;&quot;&quot;DolphinScheduler ResourcePlugin object.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyResPluginException</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyResPluginException</span>
 
 
 <span class="c1"># [start resource_plugin_definition]</span>
 <div class="viewcode-block" id="ResourcePlugin">
 <a class="viewcode-back" href="../../../resources_plugin/resource-plugin.html#pydolphinscheduler.core.resource_plugin.ResourcePlugin">[docs]</a>
-<span class="k">class</span> <span class="nc">ResourcePlugin</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ResourcePlugin</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;ResourcePlugin object, declare resource plugin for task and workflow to dolphinscheduler.</span>
 
 <span class="sd">    :param prefix: A string representing the prefix of ResourcePlugin.</span>
@@ -117,7 +117,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># [start init_method]</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
 
     <span class="c1"># [end init_method]</span>
@@ -126,7 +126,7 @@
 <div class="viewcode-block" id="ResourcePlugin.read_file">
 <a class="viewcode-back" href="../../../resources_plugin/resource-plugin.html#pydolphinscheduler.core.resource_plugin.ResourcePlugin.read_file">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suf</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suf</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the content of the file.</span>
 
 <span class="sd">        The address of the file is the prefix of the resource plugin plus the parameter suf.</span>
@@ -137,7 +137,7 @@
 
 <div class="viewcode-block" id="ResourcePlugin.get_index">
 <a class="viewcode-back" href="../../../resources_plugin/resource-plugin.html#pydolphinscheduler.core.resource_plugin.ResourcePlugin.get_index">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Find the subscript of the nth occurrence of the X character in the string s.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
             <span class="n">all_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">x</span><span class="p">]</span>

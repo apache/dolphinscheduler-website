@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configuration &mdash; apache-dolphinscheduler 4.1.0-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -139,7 +139,7 @@ named <cite>custom-user</cite>.</p>
 variables via Python <code class="docutils literal notranslate"><span class="pre">os</span></code> module. In this example, we change variables as the same value as we change in
 <a class="reference external" href="bybash">Bash</a>. It will take effect the next time you run your workflow, and call workflow <code class="docutils literal notranslate"><span class="pre">run</span></code> or <code class="docutils literal notranslate"><span class="pre">submit</span></code>
 method next to <code class="docutils literal notranslate"><span class="pre">os.environ</span></code> statement.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="c1"># Modify Java Gateway Address</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYDS_JAVA_GATEWAY_ADDRESS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;192.168.1.1&quot;</span>
 

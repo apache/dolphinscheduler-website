@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to develop &mdash; apache-dolphinscheduler 4.0.2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -108,7 +108,7 @@
 <ul class="simple">
 <li><p>Method <cite>__init__</cite>: Initiation method with <cite>param</cite>:<cite>prefix</cite></p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 </pre></div>
@@ -118,7 +118,7 @@
 </ul>
 <p>The file prefix has been initialized in init of the resource plugin.</p>
 <p>The prefix plus suffix is the absolute path of the file in this resource.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suf</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suf</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the content of the file.</span>
 
 <span class="sd">        The address of the file is the prefix of the resource plugin plus the parameter suf.</span>

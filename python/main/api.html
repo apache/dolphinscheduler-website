@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API &mdash; apache-dolphinscheduler 4.1.0-dev documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -2745,7 +2745,7 @@ format json template, you should format by yourself.</p>
 <div><ul>
 <li><p>Use config string directly instead of json file path
 * should use <code class="xref py py-func docutils literal notranslate"><span class="pre">json.dumps()</span></code> to format it if your json template is dict</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="n">custom</span> <span class="o">=</span> <span class="n">CustomDataX</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;custom_datax&quot;</span><span class="p">,</span>
@@ -2758,7 +2758,7 @@ format json template, you should format by yourself.</p>
 </ul>
 </li>
 <li><p>Use json file path, the format it shows in web UI is depended on your json file content.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="n">custom</span> <span class="o">=</span> <span class="n">CustomDataX</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;custom_datax&quot;</span><span class="p">,</span>
@@ -6932,7 +6932,7 @@ directly set as python property, so we Override Task.task_params here.</p>
 </pre></div>
 </div>
 <p>Or using Python callable type of :param:<code class="docutils literal notranslate"><span class="pre">definition</span></code></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello Python task.&quot;</span><span class="p">)</span>
 
 <span class="n">python_task</span> <span class="o">=</span> <span class="n">Python</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;str_type&quot;</span><span class="p">,</span> <span class="n">definition</span><span class="o">=</span><span class="n">foo</span><span class="p">)</span>

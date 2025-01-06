@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pydolphinscheduler.core.database &mdash; apache-dolphinscheduler 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -96,24 +96,24 @@
 
 <span class="sd">&quot;&quot;&quot;Module database.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
 
-<span class="kn">from</span> <span class="nn">py4j.protocol</span> <span class="kn">import</span> <span class="n">Py4JJavaError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">py4j.protocol</span><span class="w"> </span><span class="kn">import</span> <span class="n">Py4JJavaError</span>
 
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.exceptions</span> <span class="kn">import</span> <span class="n">PyDSParamException</span>
-<span class="kn">from</span> <span class="nn">pydolphinscheduler.java_gateway</span> <span class="kn">import</span> <span class="n">launch_gateway</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyDSParamException</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.java_gateway</span><span class="w"> </span><span class="kn">import</span> <span class="n">launch_gateway</span>
 
 
 <div class="viewcode-block" id="Database">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Database">[docs]</a>
-<span class="k">class</span> <span class="nc">Database</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Database</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;database object, get information about database.</span>
 
 <span class="sd">    You provider database_name contain connection information, it decisions which</span>
 <span class="sd">    database type and database instance would run task.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">type_key</span><span class="p">,</span> <span class="n">database_key</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">type_key</span><span class="p">,</span> <span class="n">database_key</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_database</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">database_name</span> <span class="o">=</span> <span class="n">database_name</span>
@@ -121,18 +121,18 @@
         <span class="bp">self</span><span class="p">[</span><span class="n">database_key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database_id</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">database_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">database_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get database type from java gateway, a wrapper for :func:`get_database_info`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_database_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">database_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">database_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">database_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get database id from java gateway, a wrapper for :func:`get_database_info`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_database_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">database_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Database.get_database_info">
 <a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Database.get_database_info">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_database_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_database_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get database info from java gateway, contains database id, type, name.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_database</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_database</span>
