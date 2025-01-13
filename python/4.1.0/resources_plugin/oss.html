@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OSS &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/tabs.js?v=3ee01567"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="S3" href="s3.html" />
+    <link rel="prev" title="GitLab" href="gitlab.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Resources_plugin</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="develop.html">How to develop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource-plugin.html">ResourcePlugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local.html">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github.html">GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OSS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.resources_plugin.OSS">Dive Into</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="s3.html">S3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Resources_plugin</a></li>
+      <li class="breadcrumb-item active">OSS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/resources_plugin/oss.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="oss">
+<h1>OSS<a class="headerlink" href="#oss" title="Link to this heading"></a></h1>
+<p><cite>OSS</cite> is a Aliyun OSS resource plugin for pydolphinscheduler.</p>
+<p>When using a OSS resource plugin, you only need to add the <cite>resource_plugin</cite> parameter in the task subclass or workflow definition,
+such as <cite>resource_plugin=OSS(prefix=”xxx”)</cite>, if the file is publicly readable.</p>
+<p>When the file is private, using <cite>resource_plugin=OSS(prefix=”xxx”, access_key_id=”xxx”, access_key_secret=”xxx”)</cite></p>
+<p>Notice
+The read permission of files in a bucket is inherited from the bucket by default. In other words, if the bucket is private,
+the files in it are also private.</p>
+<p>But the read permission of the files in the bucket can be changed, in other words, the files in the private bucket can also be read publicly.</p>
+<p>So whether the <cite>AccessKey</cite> is needed depends on whether the file is private or not.</p>
+<p>You can view this <a class="reference external" href="https://www.alibabacloud.com/help/en/tablestore/latest/how-can-i-obtain-an-accesskey-pair">document</a>
+when creating a pair <cite>AccessKey</cite>.</p>
+<p>For the specific use of resource plugins, you can see <cite>How to use</cite> in <a class="reference internal" href="resource-plugin.html"><span class="doc">ResourcePlugin</span></a></p>
+<section id="module-pydolphinscheduler.resources_plugin.OSS">
+<span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.resources_plugin.OSS" title="Link to this heading"></a></h2>
+<p>OSS object, declare OSS resource plugin for task and workflow to dolphinscheduler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param prefix<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string representing the prefix of OSS.</p>
+</dd>
+<dt class="field-even">param access_key_id<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string representing the ID of AccessKey for AliCloud OSS.</p>
+</dd>
+<dt class="field-odd">param access_key_secret<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A string representing the secret of AccessKey for AliCloud OSS.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gitlab.html" class="btn btn-neutral float-left" title="GitLab" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="s3.html" class="btn btn-neutral float-right" title="S3" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../../3.0.0/index.html">3.0.0</a></dd>
+      <dd><a href="../../3.0.1/index.html">3.0.1</a></dd>
+      <dd><a href="../../3.1.0/index.html">3.1.0</a></dd>
+      <dd><a href="../../4.0.0/resources_plugin/oss.html">4.0.0</a></dd>
+      <dd><a href="../../4.0.1/resources_plugin/oss.html">4.0.1</a></dd>
+      <dd><a href="../../4.0.2/resources_plugin/oss.html">4.0.2</a></dd>
+      <dd><a href="../../4.0.3/resources_plugin/oss.html">4.0.3</a></dd>
+      <dd><a href="../../4.0.4/resources_plugin/oss.html">4.0.4</a></dd>
+      <dd><a href="oss.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../main/resources_plugin/oss.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

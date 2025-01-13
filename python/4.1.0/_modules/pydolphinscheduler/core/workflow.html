@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pydolphinscheduler.core.workflow &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/tabs.js?v=3ee01567"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pydolphinscheduler.core.workflow</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pydolphinscheduler.core.workflow</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
+<span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
+<span class="c1"># distributed with this work for additional information</span>
+<span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
+<span class="c1"># to you under the Apache License, Version 2.0 (the</span>
+<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># with the License.  You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing,</span>
+<span class="c1"># software distributed under the License is distributed on an</span>
+<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># KIND, either express or implied.  See the License for the</span>
+<span class="c1"># specific language governing permissions and limitations</span>
+<span class="c1"># under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;Module workflow, core class for workflow define.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">TaskType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.resource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Resource</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.resource_plugin</span><span class="w"> </span><span class="kn">import</span> <span class="n">ResourcePlugin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyDSTaskNoFoundException</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.java_gateway</span><span class="w"> </span><span class="kn">import</span> <span class="n">gateway</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span><span class="p">,</span> <span class="n">Project</span><span class="p">,</span> <span class="n">User</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.utils.date</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MAX_DATETIME</span><span class="p">,</span>
+    <span class="n">conv_from_str</span><span class="p">,</span>
+    <span class="n">conv_to_schedule</span><span class="p">,</span>
+    <span class="n">timedelta2timeout</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">WorkflowContext</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class workflow context, use when task get workflow from context expression.&quot;&quot;&quot;</span>
+
+    <span class="n">_context_managed_workflow</span><span class="p">:</span> <span class="n">Workflow</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">workflow</span><span class="p">:</span> <span class="n">Workflow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute self._context_managed_workflow.&quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_context_managed_workflow</span> <span class="o">=</span> <span class="n">workflow</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Workflow</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute self._context_managed_workflow.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_context_managed_workflow</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete attribute self._context_managed_workflow.&quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_context_managed_workflow</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="Workflow">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Workflow</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Workflow object, will define workflow attribute, task, relation.</span>
+
+<span class="sd">    TODO: maybe we should rename this class, currently use DS object name.</span>
+
+<span class="sd">    :param online_schedule: Whether the online workflow is schedule. It will be automatically configured</span>
+<span class="sd">        according to :param:``schedule`` configuration. If the :param:``schedule`` is assigned with valid</span>
+<span class="sd">        value, :param:``online_schedule`` will be set to ``True``. But you can also manually specify</span>
+<span class="sd">        :param:``online_schedule``. For example if you only want to set the workflow :param:``schedule`` but</span>
+<span class="sd">        do not want to online the workflow schedule, you can set :param:``online_schedule`` to ``False``.</span>
+<span class="sd">    :param execution_type: Decision which behavior to run when workflow have multiple instances.</span>
+<span class="sd">        when workflow schedule interval is too short, it may cause multiple instances run at the</span>
+<span class="sd">        same time. We can use this parameter to control the behavior about how to run those workflows</span>
+<span class="sd">        instances. Currently we have four execution type:</span>
+
+<span class="sd">          * ``PARALLEL``: Default value, all instances will allow to run even though the previous</span>
+<span class="sd">            instance is not finished.</span>
+<span class="sd">          * ``SERIAL_WAIT``: All instance will wait for the previous instance to finish, and all</span>
+<span class="sd">            the waiting instances will be executed base on scheduling order.</span>
+<span class="sd">          * ``SERIAL_DISCARD``: All instances will be discard(abandon) if the previous instance is not</span>
+<span class="sd">            finished.</span>
+<span class="sd">          * ``SERIAL_PRIORITY``: means the all instance will wait for the previous instance to finish, and</span>
+<span class="sd">            all the waiting instances will be executed base on workflow priority order.</span>
+<span class="sd">    :param timeout: Timeout attribute for task, in minutes. Task is consider as timed out task when the</span>
+<span class="sd">        running time of a task exceeds than this value. when data type is :class:`datetime.timedelta` will</span>
+<span class="sd">        be converted to int(in minutes). default ``0``</span>
+<span class="sd">    :param user: The user for current workflow. Will create a new one if it do not exists. If your</span>
+<span class="sd">        parameter ``project`` already exists but project&#39;s create do not belongs to ``user``, will grant</span>
+<span class="sd">        ``project`` to ``user`` automatically.</span>
+<span class="sd">    :param project: The project for current workflow. You could see the workflow in this project</span>
+<span class="sd">        thought Web UI after it :func:`submit` or :func:`run`. It will create a new project belongs to</span>
+<span class="sd">        ``user`` if it does not exists. And when ``project`` exists but project&#39;s create do not belongs</span>
+<span class="sd">        to ``user``, will grant `project` to ``user`` automatically.</span>
+<span class="sd">    :param resource_list: Resource files required by the current workflow.You can create and modify</span>
+<span class="sd">        resource files from this field. When the workflow is submitted, these resource files are</span>
+<span class="sd">        also submitted along with it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># key attribute for identify Workflow object</span>
+    <span class="n">_KEY_ATTR</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;project&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;release_state&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;param&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_project&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;worker_group&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;warning_type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;warning_group_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;execution_type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;release_state&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;param&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tasks&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_definition_json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_relation_json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resource_list&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">_EXPECT_SCHEDULE_CHAR_NUM</span> <span class="o">=</span> <span class="mi">7</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">schedule</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">online_schedule</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_time</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">end_time</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timezone</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_TIME_ZONE</span><span class="p">,</span>
+        <span class="n">user</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_USER</span><span class="p">,</span>
+        <span class="n">project</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_PROJECT</span><span class="p">,</span>
+        <span class="n">worker_group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">warning_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WARNING_TYPE</span><span class="p">,</span>
+        <span class="n">warning_group_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">execution_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_EXECUTION_TYPE</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">timedelta</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">release_state</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_RELEASE_STATE</span><span class="p">,</span>
+        <span class="n">param</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_plugin</span><span class="p">:</span> <span class="n">ResourcePlugin</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Resource</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">schedule</span> <span class="k">else</span> <span class="n">schedule</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">BLANK</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_EXPECT_SCHEDULE_CHAR_NUM</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="p">):</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
+                <span class="s2">&quot;Invlaid parameter schedule, expect crontab char is </span><span class="si">%d</span><span class="s2"> but get </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_EXPECT_SCHEDULE_CHAR_NUM</span><span class="p">,</span>
+                <span class="n">schedule</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1">#  handle workflow schedule state according to init value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="ow">and</span> <span class="n">online_schedule</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">online_schedule</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">online_schedule</span> <span class="o">=</span> <span class="n">online_schedule</span> <span class="ow">or</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span> <span class="o">=</span> <span class="n">start_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_end_time</span> <span class="o">=</span> <span class="n">end_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timezone</span> <span class="o">=</span> <span class="n">timezone</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_user</span> <span class="o">=</span> <span class="n">user</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span> <span class="o">=</span> <span class="n">worker_group</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span> <span class="o">=</span> <span class="n">warning_type</span>
+        <span class="k">if</span> <span class="n">warning_type</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;FAILURE&quot;</span><span class="p">,</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;NONE&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
+                <span class="s2">&quot;Parameter `warning_type` with unexpect value `</span><span class="si">%s</span><span class="s2">`&quot;</span><span class="p">,</span> <span class="n">warning_type</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span> <span class="o">=</span> <span class="n">warning_type</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning_group_id</span> <span class="o">=</span> <span class="n">warning_group_id</span>
+        <span class="k">if</span> <span class="n">execution_type</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">execution_type</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
+            <span class="s2">&quot;PARALLEL&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SERIAL_WAIT&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SERIAL_DISCARD&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SERIAL_PRIORITY&quot;</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
+                <span class="s2">&quot;Parameter `execution_type` with unexpect value `</span><span class="si">%s</span><span class="s2">`&quot;</span><span class="p">,</span> <span class="n">execution_type</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_execution_type</span> <span class="o">=</span> <span class="n">execution_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">:</span> <span class="n">timedelta</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_release_state</span> <span class="o">=</span> <span class="n">release_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">param</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="o">=</span> <span class="n">resource_plugin</span>
+        <span class="c1"># TODO how to fix circle import</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">TaskRelation</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># noqa: F821</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_workflow_code</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span> <span class="o">=</span> <span class="n">resource_list</span> <span class="ow">or</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Workflow</span><span class="p">:</span>
+        <span class="n">WorkflowContext</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">WorkflowContext</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">project</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Project</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute project.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">)</span>
+
+    <span class="nd">@project</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">project</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project</span><span class="p">:</span> <span class="n">Project</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute project.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">user</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get user object.</span>
+
+<span class="sd">        For now we just get from python models but not from java gateway models, so it may not correct.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Workflow._parse_datetime">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._parse_datetime">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_datetime</span><span class="p">(</span><span class="n">val</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">datetime</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">val</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">conv_from_str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span><span class="s2">&quot;Do not support value type </span><span class="si">%s</span><span class="s2"> for now&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">))</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute start_time.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_datetime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span><span class="p">)</span>
+
+    <span class="nd">@start_time</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute start_time.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">end_time</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute end_time.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_datetime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_end_time</span><span class="p">)</span>
+
+    <span class="nd">@end_time</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">end_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute end_time.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_end_time</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">release_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute release_state.&quot;&quot;&quot;</span>
+        <span class="n">rs_ref</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;online&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;offline&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_release_state</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rs_ref</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
+                <span class="s2">&quot;Parameter release_state only support `online` or `offline` but get %&quot;</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_release_state</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">rs_ref</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_release_state</span><span class="p">]</span>
+
+    <span class="nd">@release_state</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">release_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute release_state.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_release_state</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute timeout.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span><span class="s2">&quot;The timeout value must be greater than 0&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span>
+        <span class="k">return</span> <span class="n">timedelta2timeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="k">else</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">execution_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute execution_type.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execution_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+    <span class="nd">@execution_type</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">execution_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute execution_type.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_execution_type</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">param_json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return param json base on self.param.&quot;&quot;&quot;</span>
+        <span class="c1"># Handle empty dict and None value</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;prop&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span>
+                <span class="s2">&quot;direct&quot;</span><span class="p">:</span> <span class="s2">&quot;IN&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;VARCHAR&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_definition_json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return all tasks definition in list of dict.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">get_define</span><span class="p">()</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_relation_json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return all relation between tasks pair in list of dict.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handle_root_relation</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">tr</span><span class="o">.</span><span class="n">get_define</span><span class="p">()</span> <span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">schedule_json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get schedule parameter json object. This is requests from java gateway interface.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">conv_to_schedule</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="k">else</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+            <span class="p">)</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">conv_to_schedule</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="k">else</span> <span class="n">MAX_DATETIME</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;startTime&quot;</span><span class="p">:</span> <span class="n">start_time</span><span class="p">,</span>
+                <span class="s2">&quot;endTime&quot;</span><span class="p">:</span> <span class="n">end_time</span><span class="p">,</span>
+                <span class="s2">&quot;crontab&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="p">,</span>
+                <span class="s2">&quot;timezoneId&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">timezone</span><span class="p">,</span>
+            <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Task</span><span class="p">]:</span>  <span class="c1"># noqa: F821</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return list of tasks objects.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<div class="viewcode-block" id="Workflow._handle_root_relation">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._handle_root_relation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_root_relation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Handle root task property :class:`pydolphinscheduler.core.task.TaskRelation`.</span>
+
+<span class="sd">        Root task in DAG do not have dominant upstream node, but we have to add an exactly default</span>
+<span class="sd">        upstream task with task_code equal to `0`. This is requests from java gateway interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.task</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskRelation</span>
+
+        <span class="n">post_relation_code</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">relation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="p">:</span>
+            <span class="n">post_relation_code</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">relation</span><span class="o">.</span><span class="n">post_task_code</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">post_relation_code</span><span class="p">:</span>
+                <span class="n">root_relation</span> <span class="o">=</span> <span class="n">TaskRelation</span><span class="p">(</span><span class="n">pre_task_code</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">post_task_code</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">root_relation</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Workflow.add_task">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.add_task">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a single task to workflow.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">]</span> <span class="o">=</span> <span class="n">task</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">_workflow</span> <span class="o">=</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Workflow.add_tasks">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.add_tasks">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Task</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add task sequence to workflow, it a wrapper of :func:`add_task`.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">task</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Workflow.get_task">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.get_task">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Task</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get task object from workflow by given code.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyDSTaskNoFoundException</span><span class="p">(</span>
+                <span class="s2">&quot;Task with code </span><span class="si">%s</span><span class="s2"> can not found in workflow %&quot;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="p">[</span><span class="n">code</span><span class="p">]</span></div>
+
+
+    <span class="c1"># TODO which tying should return in this case</span>
+<div class="viewcode-block" id="Workflow.get_tasks_by_name">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.get_tasks_by_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_tasks_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="n">Task</span><span class="p">]:</span>  <span class="c1"># noqa: F821</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get tasks object by given name, if will return all tasks with this name.&quot;&quot;&quot;</span>
+        <span class="n">find</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">find</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">find</span></div>
+
+
+<div class="viewcode-block" id="Workflow.get_one_task_by_name">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.get_one_task_by_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_one_task_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Task</span><span class="p">:</span>  <span class="c1"># noqa: F821</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get exact one task from workflow by given name.</span>
+
+<span class="sd">        Function always return one task even though this workflow have more than one task with</span>
+<span class="sd">        this name.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tasks_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">tasks</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyDSTaskNoFoundException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can not find task with name </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tasks</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Workflow.run">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit and Start Workflow instance.</span>
+
+<span class="sd">        Shortcut for function :func:`submit` and function :func:`start`. Only support manual start workflow</span>
+<span class="sd">        for now, and schedule run will coming soon.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Workflow._ensure_side_model_exists">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._ensure_side_model_exists">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_side_model_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure workflow models model exists.</span>
+
+<span class="sd">        For now, models object including :class:`pydolphinscheduler.models.project.Project`,</span>
+<span class="sd">        :class:`pydolphinscheduler.models.tenant.Tenant`, :class:`pydolphinscheduler.models.user.User`.</span>
+<span class="sd">        If these model not exists, would create default value according to</span>
+<span class="sd">        :class:`pydolphinscheduler.configuration`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO used metaclass for more pythonic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">()</span>
+        <span class="c1"># Project model need User object exists</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">create_if_not_exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Workflow._pre_submit_check">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow._pre_submit_check">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_pre_submit_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check specific condition satisfy before.</span>
+
+<span class="sd">        This method should be called before workflow submit to java gateway</span>
+<span class="sd">        For now, we have below checker:</span>
+<span class="sd">        * `self.param` or at least one local param of task should be set if task `switch` in this workflow.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">any</span><span class="p">([</span><span class="n">task</span><span class="o">.</span><span class="n">task_type</span> <span class="o">==</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">SWITCH</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="nb">all</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">local_params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+        <span class="p">):</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
+                <span class="s2">&quot;Parameter param or at least one local_param of task must &quot;</span>
+                <span class="s2">&quot;be provider if task Switch in workflow.&quot;</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Workflow.submit">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.submit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit Workflow instance to java gateway.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_side_model_exists</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pre_submit_check</span><span class="p">()</span>
+
+        <span class="c1"># resource should be created before workflow</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_list</span><span class="p">:</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">user_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">create_or_update_resource</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_workflow_code</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">create_or_update_workflow</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_json</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_group_id</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execution_type</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">release_state</span><span class="p">,</span>
+            <span class="c1"># TODO add serialization function</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_relation_json</span><span class="p">),</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_definition_json</span><span class="p">),</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule_json</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">online_schedule</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workflow_code</span></div>
+
+
+<div class="viewcode-block" id="Workflow.start">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Workflow.start">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and start Workflow instance.</span>
+
+<span class="sd">        which post to `start-process-instance` to java gateway</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">gateway</span><span class="o">.</span><span class="n">exec_workflow_instance</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_user</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_type</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning_group_id</span><span class="p">,</span>
+            <span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">,</span>
+        <span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../../../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../../../../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../../../../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../../../../3.0.0/index.html">3.0.0</a></dd>
+      <dd><a href="../../../../3.0.1/index.html">3.0.1</a></dd>
+      <dd><a href="../../../../3.1.0/index.html">3.1.0</a></dd>
+      <dd><a href="../../../../4.0.0/index.html">4.0.0</a></dd>
+      <dd><a href="../../../../4.0.1/index.html">4.0.1</a></dd>
+      <dd><a href="../../../../4.0.2/index.html">4.0.2</a></dd>
+      <dd><a href="../../../../4.0.3/index.html">4.0.3</a></dd>
+      <dd><a href="../../../../4.0.4/index.html">4.0.4</a></dd>
+      <dd><a href="workflow.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../main/index.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

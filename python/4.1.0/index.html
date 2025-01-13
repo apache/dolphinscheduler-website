@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyDolphinScheduler &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/tabs.js?v=3ee01567"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">PyDolphinScheduler</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pydolphinscheduler">
+<h1>PyDolphinScheduler<a class="headerlink" href="#pydolphinscheduler" title="Link to this heading"></a></h1>
+<p><strong>PyDolphinScheduler</strong> is Python API for <a class="reference external" href="https://dolphinscheduler.apache.org">Apache DolphinScheduler</a>,
+which allow you define your workflow by Python code, aka workflow-as-codes.</p>
+<section id="history">
+<h2>History<a class="headerlink" href="#history" title="Link to this heading"></a></h2>
+<p>We seperated PyDolphinScheduler code base from <a class="reference external" href="https://github.com/apache/dolphinscheduler">Apache dolphinscheduler code base</a>
+into independent repository at Nov 7, 2022. Now the code base is in <a class="reference external" href="https://github.com/apache/dolphinscheduler-sdk-python">Apache dolphinscheduler-sdk-python</a>
+and all issue and pull requests should be submitted to this repository.</p>
+<p>The reason why we seperated is for the following reasons:</p>
+<ul class="simple">
+<li><p><strong>Clear responsibility</strong>: The code base of PyDolphinScheduler is independent of DolphinScheduler, it has its
+own users and developers, CI and test cases, even the language is different.</p></li>
+<li><p><strong>Independent release cycle</strong>: PyDolphinScheduler is a SDK, it should be released independently of DolphinScheduler.
+before we seperated, we have to release PyDolphinScheduler every time when DolphinScheduler released. This brings two
+main problems:</p>
+<ul>
+<li><p>DolphinScheduler release cycle is a little long for PyDolphinScheduler, because PyDolphinScheduler is a new subproject
+for DolphinScheduler, it is not stable enough, we have many features and enhancement want to add, so we have to release
+DolphinScheduler more frequently.</p></li>
+<li><p>We have to release PyDolphinScheduler every time when DolphinScheduler, even if there is no change in PyDolphinScheduler.
+In the past, we release both of them at the same time, and some of DolphinScheduler bugfix version like 2.0.5, 2.0.6, 2.0.7
+only fix some bugs in DolphinScheduler, but not in PyDolphinScheduler, is it unnecessary to release PyDolphinScheduler
+but we have to because the rule is we release them both at the same time.</p></li>
+<li><p>Should use the same version as DolphinScheduler do, due to the same release cycle, we have to have the same version
+as DolphinScheduler, so you may see there are some functional adder in DolphinScheduler bugfix version, it may
+be a little strange to PyDolphinScheduler users.</p></li>
+</ul>
+</li>
+<li><p><strong>Faster CI Run</strong>: PyDolphinScheduler has its own CI, it is not necessary to run DolphinScheduler CI when we only
+change PyDolphinScheduler code. And DolphinScheduler CI is more complete, and some of CI is required to merge pull requests,
+Separating PyDolphinScheduler from DolphinScheduler can make CI run faster in both two repositories.</p></li>
+</ul>
+<p>For more details, please refer to <a class="reference external" href="https://lists.apache.org/thread/4z7l5l54c4d81smjlk1n8nq380p9f0oo">seperated mail thread discuss</a>.</p>
+</section>
+<section id="version">
+<h2>Version<a class="headerlink" href="#version" title="Link to this heading"></a></h2>
+<p>At Nov 7, 2022 we seperated PyDolphinScheduler. And before that, PyDolphinScheduler have the same version with DolphinScheduler.
+So the version of PyDolphinScheduler is the same as DolphinScheduler, for example PyDolphinScheduler 2.0.5 is matched with
+DolphinScheduler 2.0.5. For more details about why we seperated PyDolphinScheduler, please refer to <a class="reference internal" href="#history">History</a>.</p>
+<p>After being separated from the DolphinScheduler repository, PyDolphinScheduler will be released independently,
+and the version of PyDolphinScheduler will not correspond to the version of DolphinScheduler, which means some
+of the PyDolphinScheduler versions will correspond to multiple DolphinScheduler versions when there is no
+change in the PythonGateway code. While part of the code of PyDolphinScheduler will only correspond to one
+version of DolphinScheduler, if the code of the next version of
+<a class="reference external" href="https://github.com/apache/dolphinscheduler/blob/dev/dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/python/PythonGateway.java">PythonGateway</a>
+has changed.</p>
+<p>We will release PyDolphinScheduler version <strong>4.0.0</strong> as the first version after we seperated, so please be ware of when you
+use PyDolphinScheduler above version 4.0.0.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>DolphinScheduler Version</p></th>
+<th class="head"><p>PyDolphinScheduler Version</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2.0.5</p></td>
+<td><p>2.0.5</p></td>
+<td><p>before we seperated</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;=2.0.6, &lt;3.0.0</p></td>
+<td><p>2.0.6</p></td>
+<td><p>before we seperated</p></td>
+</tr>
+<tr class="row-even"><td><p>3.0.0</p></td>
+<td><p>3.0.0</p></td>
+<td><p>before we seperated</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;=3.0.1, &lt;3.1.0</p></td>
+<td><p>3.0.1</p></td>
+<td><p>before we seperated</p></td>
+</tr>
+<tr class="row-even"><td><p>&gt;=3.1.0, &lt;3.1.2</p></td>
+<td><p>3.1.0</p></td>
+<td><p>before we seperated</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;=3.1.2, &lt;3.1.4</p></td>
+<td><p>&gt;=4.0.0, &lt;4.0.3</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>&gt;=3.1.5, &lt;3.2.0</p></td>
+<td><p>&gt;=4.0.4, &lt;4.1.0</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;=3.2.0, &lt;3.3.0</p></td>
+<td><p>&gt;=4.1.0, &lt;4.2.0</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="content">
+<h2>Content<a class="headerlink" href="#content" title="Link to this heading"></a></h2>
+<p>You could go and find how to <a class="reference internal" href="start.html#getting-started"><span class="std std-ref">install</span></a> the project. Or if you want to see simply example
+then go and see <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> for more detail.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start.html#installing-python">Installing Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#installing-pydolphinscheduler">Installing PyDolphinScheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#installing-pydolphinscheduler-in-dev-branch">Installing PyDolphinScheduler In DEV Branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#start-python-gateway-service">Start Python Gateway Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#run-an-example">Run an Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#what-s-more">What’s More</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#overview-of-tutorial">Overview of Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#import-necessary-module">Import Necessary Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#workflow-declaration">workflow Declaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#task-declaration">Task Declaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#setting-task-dependence">Setting Task Dependence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#submit-or-run-workflow">Submit Or Run Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#dag-graph-after-tutorial-run">DAG Graph After Tutorial Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#create-workflow-using-yaml-file">Create Workflow Using YAML File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concept.html">Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concept.html#workflow">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concept.html#tasks">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concept.html#resource-files">Resource Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concept.html#local-parameters">Local Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concept.html#authentication-token">Authentication Token</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tasks/func_wrap.html">Python Function Decorate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/sql.html">SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/sub_workflow.html">Sub Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/switch.html">Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/condition.html">Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/dependent.html">Dependent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/spark.html">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/flink.html">Flink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/map_reduce.html">Map Reduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/procedure.html">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/kubernetes.html">Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/datax.html">Datax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/sagemaker.html">SageMaker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/mlflow.html">MLflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/openmldb.html">OpenMLDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tasks/dvc.html">DVC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">HOWTOs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="howto/remote-submit.html">Submit Your Code from Different machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howto/multi-resources.html">Upload and Use Multiple Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#prepare">Prepare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config.html#using-environment-variables">Using Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#using-configuration-file">Using Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html#priority">Priority</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-pydolphinscheduler.core">Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-pydolphinscheduler.models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-pydolphinscheduler.tasks">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-pydolphinscheduler.constants">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-pydolphinscheduler.exceptions">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resources_plugin/index.html">Resources_plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="resources_plugin/develop.html">How to develop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_plugin/resource-plugin.html">ResourcePlugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_plugin/local.html">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_plugin/github.html">GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_plugin/gitlab.html">GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_plugin/oss.html">OSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_plugin/s3.html">S3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="start.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../3.0.0/index.html">3.0.0</a></dd>
+      <dd><a href="../3.0.1/index.html">3.0.1</a></dd>
+      <dd><a href="../3.1.0/index.html">3.1.0</a></dd>
+      <dd><a href="../4.0.0/index.html">4.0.0</a></dd>
+      <dd><a href="../4.0.1/index.html">4.0.1</a></dd>
+      <dd><a href="../4.0.2/index.html">4.0.2</a></dd>
+      <dd><a href="../4.0.3/index.html">4.0.3</a></dd>
+      <dd><a href="../4.0.4/index.html">4.0.4</a></dd>
+      <dd><a href="index.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../main/index.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

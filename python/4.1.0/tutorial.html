@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/tabs.js?v=3ee01567"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Concepts" href="concept.html" />
+    <link rel="prev" title="Getting Started" href="start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-tutorial">Overview of Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import-necessary-module">Import Necessary Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#workflow-declaration">workflow Declaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#task-declaration">Task Declaration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-task-dependence">Setting Task Dependence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submit-or-run-workflow">Submit Or Run Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dag-graph-after-tutorial-run">DAG Graph After Tutorial Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-workflow-using-yaml-file">Create Workflow Using YAML File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading"></a></h1>
+<p>This tutorial shows you the basic concept of <em>PyDolphinScheduler</em> and tells all
+things you should know before you submit or run your first workflow. If you
+still have not installed <em>PyDolphinScheduler</em> and started DolphinScheduler, you
+could go and see <a class="reference internal" href="start.html#getting-started"><span class="std std-ref">how to get started with PyDolphinScheduler</span></a> firstly.</p>
+<section id="overview-of-tutorial">
+<h2>Overview of Tutorial<a class="headerlink" href="#overview-of-tutorial" title="Link to this heading"></a></h2>
+<p>Here, we have an overview of our tutorial, and it looks a little complex but don’t
+worry about that because we will explain this example below in as much detail as possible.</p>
+<p>There are two types of tutorials: traditional and task decorator.</p>
+<ul class="simple">
+<li><p><strong>Traditional Way</strong>: More general, support many <a class="reference internal" href="tasks/index.html"><span class="doc">built-in task types</span></a>, it is convenient
+when you build your workflow at the beginning.</p></li>
+<li><p><strong>Task Decorator</strong>: A Python decorator that allows you to wrap your function into pydolphinscheduler’s task. Less
+versatility to the traditional way because it only supports Python functions without build-in tasks
+supported. But it is helpful if your workflow is all built with Python or if you already have some Python
+workflow code and want to migrate them to pydolphinscheduler.</p></li>
+<li><p><strong>YAML File</strong>: We can use pydolphinscheduler CLI to create workflow using YAML file: <code class="code docutils literal notranslate"><span class="pre">pydolphinscheduler</span> <span class="pre">yaml</span> <span class="pre">-f</span> <span class="pre">tutorial.yaml</span></code>.
+We can find more YAML file examples in <a class="reference external" href="https://github.com/apache/dolphinscheduler-sdk-python/tree/main/examples/yaml_define">examples/yaml_define</a></p></li>
+</ul>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Tradition</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># [start package_import]</span>
+<span class="c1"># Import Workflow object to define your workflow attributes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
+
+<span class="c1"># Import task Shell object cause we would create some shell tasks later</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.shell</span><span class="w"> </span><span class="kn">import</span> <span class="n">Shell</span>
+
+<span class="c1"># [end package_import]</span>
+
+<span class="c1"># [start workflow_declare]</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial&quot;</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="c1"># [end workflow_declare]</span>
+    <span class="c1"># [start task_declare]</span>
+    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        echo &quot;Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">&quot;</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;param3&quot;</span><span class="p">:</span> <span class="s2">&quot;$[yyyy-MM-dd]&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
+    <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+
+    <span class="c1"># [start resource_limit]</span>
+    <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo resource limit&quot;</span><span class="p">,</span>
+        <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># [end resource_limit]</span>
+    <span class="c1"># [end task_declare]</span>
+
+    <span class="c1"># [start task_relation_declare]</span>
+    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">,</span> <span class="n">task_child_two</span><span class="p">]</span>
+    <span class="n">task_parent</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+
+    <span class="n">resource_limit</span> <span class="o">&lt;&lt;</span> <span class="n">task_union</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+    <span class="c1"># [end task_relation_declare]</span>
+
+    <span class="c1"># [start submit_or_run]</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="c1"># [end submit_or_run]</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># [start package_import]</span>
+<span class="c1"># Import Workflow object to define your workflow attributes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
+
+<span class="c1"># Import task Shell object cause we would create some shell tasks later</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.func_wrap</span><span class="w"> </span><span class="kn">import</span> <span class="n">task</span>
+
+<span class="c1"># [end package_import]</span>
+
+<span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;global-var&quot;</span>
+
+
+<span class="c1"># [start task_declare]</span>
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_something</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_import</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_global_var</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_local_var</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
+    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_func</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+    <span class="n">foo</span><span class="p">()</span>
+
+
+<span class="c1"># [end task_declare]</span>
+
+
+<span class="c1"># [start workflow_declare]</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_decorator&quot;</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="c1"># [end workflow_declare]</span>
+
+    <span class="c1"># [start task_relation_declare]</span>
+    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">depend_import</span><span class="p">(),</span> <span class="n">depend_global_var</span><span class="p">()]</span>
+    <span class="n">print_something</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+
+    <span class="n">task_group</span> <span class="o">&gt;&gt;</span> <span class="n">depend_local_var</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">depend_func</span><span class="p">()</span>
+    <span class="c1"># [end task_relation_declare]</span>
+
+    <span class="c1"># [start submit_or_run]</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+    <span class="c1"># [end submit_or_run]</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--0-input--3" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--3">YAML File</label><div class="tab-content docutils container">
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span>
+<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="c1"># Define the tasks within the workflow</span>
+<span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-necessary-module">
+<h2>Import Necessary Module<a class="headerlink" href="#import-necessary-module" title="Link to this heading"></a></h2>
+<p>First of all, we should import the necessary module which we would use later just like other Python packages.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Tradition</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Workflow object to define your workflow attributes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
+
+<span class="c1"># Import task Shell object cause we would create some shell tasks later</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.shell</span><span class="w"> </span><span class="kn">import</span> <span class="n">Shell</span>
+
+</pre></div>
+</div>
+<p>In tradition tutorial we import <a class="reference internal" href="api.html#pydolphinscheduler.core.Workflow" title="pydolphinscheduler.core.workflow.Workflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow.Workflow</span></code></a> and
+<a class="reference internal" href="tasks/shell.html#pydolphinscheduler.tasks.shell.Shell" title="pydolphinscheduler.tasks.shell.Shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.shell.Shell</span></code></a>.</p>
+<p>If you want to use other task type you could click and <a class="reference internal" href="tasks/index.html"><span class="doc">see all tasks we support</span></a></p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Workflow object to define your workflow attributes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
+
+<span class="c1"># Import task Shell object cause we would create some shell tasks later</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.func_wrap</span><span class="w"> </span><span class="kn">import</span> <span class="n">task</span>
+
+</pre></div>
+</div>
+<p>In task decorator tutorial we import <a class="reference internal" href="api.html#pydolphinscheduler.core.Workflow" title="pydolphinscheduler.core.workflow.Workflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow.Workflow</span></code></a> and
+<a class="reference internal" href="tasks/func_wrap.html#pydolphinscheduler.tasks.func_wrap.task" title="pydolphinscheduler.tasks.func_wrap.task"><code class="xref py py-func docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.func_wrap.task()</span></code></a>.</p>
+</div>
+</div>
+</section>
+<section id="workflow-declaration">
+<h2>workflow Declaration<a class="headerlink" href="#workflow-declaration" title="Link to this heading"></a></h2>
+<p>We should instantiate <a class="reference internal" href="api.html#pydolphinscheduler.core.Workflow" title="pydolphinscheduler.core.workflow.Workflow"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow.Workflow</span></code></a> object after we
+import them from <a class="reference internal" href="#import-necessary-module">import necessary module</a>. Here we declare basic arguments for workflow.
+We define the name of <code class="code docutils literal notranslate"><span class="pre">Workflow</span></code>, using <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#context-manager-types">Python context manager</a> and it <strong>the only required argument</strong>
+for <cite>Workflow</cite>. Besides, we also declare three arguments named <code class="code docutils literal notranslate"><span class="pre">schedule</span></code> and <code class="code docutils literal notranslate"><span class="pre">start_time</span></code>
+which sets workflow schedule interval and schedule start_time, and argument <code class="code docutils literal notranslate"><span class="pre">tenant</span></code> defines which tenant
+will be running this task in the DolphinScheduler worker. See <a class="reference internal" href="concept.html#tenant"><span class="std std-ref">section tenant</span></a> in
+<em>PyDolphinScheduler</em> <a class="reference internal" href="concept.html"><span class="doc">Concepts</span></a> for more information.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Tradition</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial&quot;</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_decorator&quot;</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--3" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--3">YAML File</label><div class="tab-content docutils container">
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span>
+<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could find more details about <code class="code docutils literal notranslate"><span class="pre">Workflow</span></code> in <a class="reference internal" href="concept.html#workflow"><span class="std std-ref">concept about workflow</span></a>
+if you are interested in it. For all arguments of object workflow, you could find in the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow</span></code> API documentation.</p>
+</section>
+<section id="task-declaration">
+<h2>Task Declaration<a class="headerlink" href="#task-declaration" title="Link to this heading"></a></h2>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">Tradition</label><div class="tab-content docutils container">
+<p>We declare four tasks to show how to create tasks, and all of them are simple tasks of
+<a class="reference internal" href="tasks/shell.html#module-pydolphinscheduler.tasks.shell" title="pydolphinscheduler.tasks.shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.shell</span></code></a> which runs <cite>echo</cite> command in the terminal. Besides the argument
+<cite>command</cite> with <code class="code docutils literal notranslate"><span class="pre">echo</span></code> command, we also need to set the argument <cite>name</cite> for each task
+<em>(not only shell task, `name` is required for each type of task)</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        echo &quot;Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">&quot;</span>
+<span class="s2">        echo &quot;Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">&quot;</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;param3&quot;</span><span class="p">:</span> <span class="s2">&quot;$[yyyy-MM-dd]&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
+    <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+
+    <span class="c1"># [start resource_limit]</span>
+    <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo resource limit&quot;</span><span class="p">,</span>
+        <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># [end resource_limit]</span>
+</pre></div>
+</div>
+<p>Besides shell task, <em>PyDolphinScheduler</em> supports multiple tasks and you could find in <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">Task Decorator</label><div class="tab-content docutils container">
+<p>We declare four tasks to show how to create tasks, and all of them are created by the task decorator which
+using <a class="reference internal" href="tasks/func_wrap.html#pydolphinscheduler.tasks.func_wrap.task" title="pydolphinscheduler.tasks.func_wrap.task"><code class="xref py py-func docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.func_wrap.task()</span></code></a>. All we have to do is add a decorator named
+<code class="code docutils literal notranslate"><span class="pre">&#64;task</span></code> to existing Python function, and then use them inside <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_something</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_import</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_global_var</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_local_var</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
+    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_func</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+    <span class="n">foo</span><span class="p">()</span>
+
+
+</pre></div>
+</div>
+<p>It makes our workflow more Pythonic, but be careful that when we use task decorator mode, it means we only use
+Python function as a task and could not use the <a class="reference internal" href="tasks/index.html"><span class="doc">built-in tasks</span></a> most of the cases.</p>
+</div>
+<input class="tab-input" id="tab-set--3-input--3" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--3">YAML File</label><div class="tab-content docutils container">
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="setting-task-dependence">
+<h2>Setting Task Dependence<a class="headerlink" href="#setting-task-dependence" title="Link to this heading"></a></h2>
+<p>After we declare both workflow and task, we have four tasks that are independent and will be running
+in parallel. If you want to start one task until some task is finished, you have to set dependence on those
+tasks.</p>
+<p>Set task dependence is quite easy by task’s attribute <code class="code docutils literal notranslate"><span class="pre">set_downstream</span></code> and <code class="code docutils literal notranslate"><span class="pre">set_upstream</span></code> or by
+bitwise operators <code class="code docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> and <code class="code docutils literal notranslate"><span class="pre">&lt;&lt;</span></code></p>
+<p>In this tutorial, task <cite>task_parent</cite> is the leading task of the whole workflow, then task <cite>task_child_one</cite> and
+task <cite>task_child_two</cite> are its downstream tasks. Task <cite>task_union</cite> will not run unless both task <cite>task_child_one</cite>
+and task <cite>task_child_two</cite> was done, because both two task is <cite>task_union</cite>’s upstream.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">Tradition</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">task_child_one</span><span class="p">,</span> <span class="n">task_child_two</span><span class="p">]</span>
+    <span class="n">task_parent</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+
+    <span class="n">resource_limit</span> <span class="o">&lt;&lt;</span> <span class="n">task_union</span> <span class="o">&lt;&lt;</span> <span class="n">task_group</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">depend_import</span><span class="p">(),</span> <span class="n">depend_global_var</span><span class="p">()]</span>
+    <span class="n">print_something</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+
+    <span class="n">task_group</span> <span class="o">&gt;&gt;</span> <span class="n">depend_local_var</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">depend_func</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--4-input--3" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--3">YAML File</label><div class="tab-content docutils container">
+<p>We can use <code class="code docutils literal notranslate"><span class="pre">deps:[]</span></code> to set task dependence</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_parent</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo hello pydolphinscheduler</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span>
+<span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
+<span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We could set task dependence in batch mode if they have the same downstream or upstream by declaring those
+tasks as task groups. In tutorial, We declare task <cite>task_child_one</cite> and <cite>task_child_two</cite> as task group named
+<cite>task_group</cite>, then set <cite>task_group</cite> as downstream of task <cite>task_parent</cite>. You could see more detail in
+<a class="reference internal" href="concept.html#tasks-dependence"><span class="std std-ref">Tasks Dependence</span></a> for more detail about how to set task dependence.</p>
+</div>
+</section>
+<section id="submit-or-run-workflow">
+<h2>Submit Or Run Workflow<a class="headerlink" href="#submit-or-run-workflow" title="Link to this heading"></a></h2>
+<p>After that, we finish our workflow definition, with four tasks and task dependence, but all these things are
+local, we should let the DolphinScheduler daemon know how the definition of workflow. So the last thing we
+have to do is submit the workflow to the DolphinScheduler daemon.</p>
+<p>Fortunately, we have a convenient method to submit workflow via <cite>Workflow</cite> attribute <code class="code docutils literal notranslate"><span class="pre">run</span></code> which
+will create workflow definition as well as workflow schedule.</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">Tradition</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">Task Decorator</label><div class="tab-content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--5-input--3" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--3">YAML File</label><div class="tab-content docutils container">
+<p>pydolphinscheduler YAML CLI always submit workflow. We can run the workflow if we set <code class="code docutils literal notranslate"><span class="pre">run:</span> <span class="pre">true</span></code></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
+<span class="nt">workflow</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At last, we could execute this workflow code in your terminal like other Python scripts, running
+<code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">tutorial.py</span></code> to trigger and execute it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you do not start your DolphinScheduler API server, you could find how to start it in
+<a class="reference internal" href="start.html#start-python-gateway-service"><span class="std std-ref">Start Python Gateway Service</span></a> for more detail. Besides attribute <code class="code docutils literal notranslate"><span class="pre">run</span></code>, we have attribute
+<code class="code docutils literal notranslate"><span class="pre">submit</span></code> for object <cite>Workflow</cite> which just submits workflow to the daemon but does not set
+the workflow schedule information. For more detail, you could see <a class="reference internal" href="concept.html#workflow"><span class="std std-ref">Workflow</span></a>.</p>
+</div>
+</section>
+<section id="dag-graph-after-tutorial-run">
+<h2>DAG Graph After Tutorial Run<a class="headerlink" href="#dag-graph-after-tutorial-run" title="Link to this heading"></a></h2>
+<p>After we run the tutorial code, you could log in DolphinScheduler web UI, go and see the
+<a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/project.html">DolphinScheduler project page</a>. They is a new workflow be created by <em>PyDolphinScheduler</em> and it
+named “tutorial” or “tutorial_decorator”. The task graph of workflow like below:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                /                    \
+task_parent --&gt;                        --&gt;  task_union
+                \                    /
+                  --&gt; task_child_two
+</pre></div>
+</div>
+</section>
+<section id="create-workflow-using-yaml-file">
+<h2>Create Workflow Using YAML File<a class="headerlink" href="#create-workflow-using-yaml-file" title="Link to this heading"></a></h2>
+<p>We can use pydolphinscheduler CLI to create workflow using YAML file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler<span class="w"> </span>yaml<span class="w"> </span>-f<span class="w"> </span>Shell.yaml
+</pre></div>
+</div>
+<p>We can use the following four special grammars to define workflows more flexibly.</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">$FILE{&quot;file_name&quot;}</span></code>: Read the file (<code class="code docutils literal notranslate"><span class="pre">file_name</span></code>) contents and replace them to that location.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;other_workflow.yaml&quot;}</span></code>: Refer to another workflow defined using YAML file (<code class="code docutils literal notranslate"><span class="pre">other_workflow.yaml</span></code>) and replace the workflow name in this location.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">$ENV{env_name}</span></code>: Read the environment variable (<code class="code docutils literal notranslate"><span class="pre">env_name</span></code>) and replace it to that location.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">${CONFIG.key_name}</span></code>: Read the configuration value of key (<code class="code docutils literal notranslate"><span class="pre">key_name</span></code>) and it them to that location.</p></li>
+</ul>
+<p>In addition, when loading the file path use <code class="code docutils literal notranslate"><span class="pre">$FILE{&quot;file_name&quot;}</span></code> or <code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;other_workflow.yaml&quot;}</span></code>, pydolphinscheduler will search in the path of the YAMl file if the file does not exist.</p>
+<p>For exmaples, our file directory structure is as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
+└──<span class="w"> </span>yaml_define
+<span class="w">    </span>├──<span class="w"> </span>Condition.yaml
+<span class="w">    </span>├──<span class="w"> </span>DataX.yaml
+<span class="w">    </span>├──<span class="w"> </span>Dependent_External.yaml
+<span class="w">    </span>├──<span class="w"> </span>Dependent.yaml
+<span class="w">    </span>├──<span class="w"> </span>example_datax.json
+<span class="w">    </span>├──<span class="w"> </span>example_sql.sql
+<span class="w">    </span>├──<span class="w"> </span>example_sub_workflow.yaml
+<span class="w">    </span>├──<span class="w"> </span>Flink.yaml
+<span class="w">    </span>├──<span class="w"> </span>Http.yaml
+<span class="w">    </span>├──<span class="w"> </span>MapReduce.yaml
+<span class="w">    </span>├──<span class="w"> </span>MoreConfiguration.yaml
+<span class="w">    </span>├──<span class="w"> </span>Procedure.yaml
+<span class="w">    </span>├──<span class="w"> </span>Python.yaml
+<span class="w">    </span>├──<span class="w"> </span>Shell.yaml
+<span class="w">    </span>├──<span class="w"> </span>Spark.yaml
+<span class="w">    </span>├──<span class="w"> </span>Sql.yaml
+<span class="w">    </span>├──<span class="w"> </span>SubWorkflow.yaml
+<span class="w">    </span>└──<span class="w"> </span>Switch.yaml
+</pre></div>
+</div>
+<p>After we run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler<span class="w"> </span>yaml<span class="w"> </span>-file<span class="w"> </span>yaml_define/SubWorkflow.yaml
+</pre></div>
+</div>
+<p>the <code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;example_sub_workflow.yaml&quot;}</span></code> will be set to <code class="code docutils literal notranslate"><span class="pre">$WORKFLOW{&quot;yaml_define/example_sub_workflow.yaml&quot;}</span></code>, because <code class="code docutils literal notranslate"><span class="pre">./example_sub_workflow.yaml</span></code> does not exist and <code class="code docutils literal notranslate"><span class="pre">yaml_define/example_sub_workflow.yaml</span></code> does.</p>
+<p>Furthermore, this feature supports recursion all the way down.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="start.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="concept.html" class="btn btn-neutral float-right" title="Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../2.0.5/tutorial.html">2.0.5</a></dd>
+      <dd><a href="../2.0.6/tutorial.html">2.0.6</a></dd>
+      <dd><a href="../2.0.7/tutorial.html">2.0.7</a></dd>
+      <dd><a href="../3.0.0/tutorial.html">3.0.0</a></dd>
+      <dd><a href="../3.0.1/tutorial.html">3.0.1</a></dd>
+      <dd><a href="../3.1.0/tutorial.html">3.1.0</a></dd>
+      <dd><a href="../4.0.0/tutorial.html">4.0.0</a></dd>
+      <dd><a href="../4.0.1/tutorial.html">4.0.1</a></dd>
+      <dd><a href="../4.0.2/tutorial.html">4.0.2</a></dd>
+      <dd><a href="../4.0.3/tutorial.html">4.0.3</a></dd>
+      <dd><a href="../4.0.4/tutorial.html">4.0.4</a></dd>
+      <dd><a href="tutorial.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../main/tutorial.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

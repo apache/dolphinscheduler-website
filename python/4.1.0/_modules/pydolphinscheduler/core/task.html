@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pydolphinscheduler.core.task &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/tabs.js?v=3ee01567"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pydolphinscheduler.core.task</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pydolphinscheduler.core.task</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
+<span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
+<span class="c1"># distributed with this work for additional information</span>
+<span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
+<span class="c1"># to you under the Apache License, Version 2.0 (the</span>
+<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># with the License.  You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing,</span>
+<span class="c1"># software distributed under the License is distributed on an</span>
+<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># KIND, either express or implied.  See the License for the</span>
+<span class="c1"># specific language governing permissions and limitations</span>
+<span class="c1"># under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;DolphinScheduler Task and TaskRelation object.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">types</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">getLogger</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.constants</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Delimiter</span><span class="p">,</span>
+    <span class="n">IsCache</span><span class="p">,</span>
+    <span class="n">ResourceKey</span><span class="p">,</span>
+    <span class="n">Symbol</span><span class="p">,</span>
+    <span class="n">TaskFlag</span><span class="p">,</span>
+    <span class="n">TaskPriority</span><span class="p">,</span>
+    <span class="n">TaskTimeoutFlag</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.parameter</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataType</span><span class="p">,</span> <span class="n">Direction</span><span class="p">,</span> <span class="n">ParameterHelper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.resource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Resource</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.resource_plugin</span><span class="w"> </span><span class="kn">import</span> <span class="n">ResourcePlugin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span><span class="p">,</span> <span class="n">WorkflowContext</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyDSParamException</span><span class="p">,</span> <span class="n">PyResPluginException</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.java_gateway</span><span class="w"> </span><span class="kn">import</span> <span class="n">gateway</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.utils.date</span><span class="w"> </span><span class="kn">import</span> <span class="n">timedelta2timeout</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TaskRelation</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;TaskRelation object, describe the relation of exactly two tasks.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Add attr `_KEY_ATTR` to overwrite :func:`__eq__`, it is make set</span>
+    <span class="c1"># `Task.workflow._task_relations` work correctly.</span>
+    <span class="n">_KEY_ATTR</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;pre_task_code&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;post_task_code&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;pre_task_code&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;post_task_code&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">_DEFAULT_ATTR</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;preTaskVersion&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;postTaskVersion&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;conditionType&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&quot;conditionParams&quot;</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">pre_task_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">post_task_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pre_task_code</span> <span class="o">=</span> <span class="n">pre_task_code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_task_code</span> <span class="o">=</span> <span class="n">post_task_code</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pre_task_code</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">Delimiter</span><span class="o">.</span><span class="n">DIRECTION</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">post_task_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Task">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Task</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task object, parent class for all exactly task type.</span>
+
+<span class="sd">    :param name: The name of the task. Node names within the same workflow must be unique.</span>
+<span class="sd">    :param task_type:</span>
+<span class="sd">    :param description: default None</span>
+<span class="sd">    :param flag: default TaskFlag.YES,</span>
+<span class="sd">    :param task_priority: default TaskPriority.MEDIUM</span>
+<span class="sd">    :param worker_group: default configuration.WORKFLOW_WORKER_GROUP</span>
+<span class="sd">    :param environment_name: default None</span>
+<span class="sd">    :param task_group_id: Identify of task group to restrict the parallelism of tasks instance run, default 0.</span>
+<span class="sd">    :param task_group_priority: Priority for same task group to, the higher the value, the higher the</span>
+<span class="sd">        priority, default 0.</span>
+<span class="sd">    :param delay_time: deault 0</span>
+<span class="sd">    :param fail_retry_times: default 0</span>
+<span class="sd">    :param fail_retry_interval: default 1</span>
+<span class="sd">    :param timeout_notify_strategy: default, None</span>
+<span class="sd">    :param timeout: Timeout attribute for task, in minutes. Task is consider as  timed out task when the</span>
+<span class="sd">        running time of a task exceeds than this value. when data type is :class:`datetime.timedelta` will</span>
+<span class="sd">        be converted to int(in minutes). default ``None``</span>
+<span class="sd">    :param resource_list: default None</span>
+<span class="sd">    :param wait_start_timeout: default None</span>
+<span class="sd">    :param condition_result: default None,</span>
+<span class="sd">    :param resource_plugin: default None</span>
+<span class="sd">    :param is_cache: default False</span>
+<span class="sd">    :param input_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    :param output_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;code&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;version&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_params&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;description&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;flag&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_priority&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;worker_group&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;environment_code&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;delay_time&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fail_retry_times&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fail_retry_interval&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_group_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;task_group_priority&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;timeout_flag&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;timeout_notify_strategy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;timeout&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_cache&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># task default attribute will into `task_params` property</span>
+    <span class="n">_task_default_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;local_params&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resource_list&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dependence&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;wait_start_timeout&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;condition_result&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="c1"># task attribute ignore from _task_default_attr and will not into `task_params` property</span>
+    <span class="n">_task_ignore_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="c1"># task custom attribute define in sub class and will append to `task_params` property</span>
+    <span class="n">_task_custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="n">ext</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ext_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">DEFAULT_CONDITION_RESULT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;successNode&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="s2">&quot;failedNode&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">task_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskFlag</span><span class="o">.</span><span class="n">YES</span><span class="p">,</span>
+        <span class="n">task_priority</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span>
+        <span class="n">worker_group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">environment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">task_group_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">task_group_priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">delay_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_times</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">timeout_notify_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">timedelta</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">workflow</span><span class="p">:</span> <span class="n">Workflow</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dependence</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">wait_start_timeout</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">condition_result</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_plugin</span><span class="p">:</span> <span class="n">ResourcePlugin</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">is_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_type</span> <span class="o">=</span> <span class="n">task_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_cache</span> <span class="o">=</span> <span class="n">is_cache</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_priority</span> <span class="o">=</span> <span class="n">task_priority</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_group</span> <span class="o">=</span> <span class="n">worker_group</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_environment_name</span> <span class="o">=</span> <span class="n">environment_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_group_id</span> <span class="o">=</span> <span class="n">task_group_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_group_priority</span> <span class="o">=</span> <span class="n">task_group_priority</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fail_retry_times</span> <span class="o">=</span> <span class="n">fail_retry_times</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fail_retry_interval</span> <span class="o">=</span> <span class="n">fail_retry_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_time</span> <span class="o">=</span> <span class="n">delay_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout_notify_strategy</span> <span class="o">=</span> <span class="n">timeout_notify_strategy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">:</span> <span class="n">timedelta</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_params</span> <span class="o">=</span> <span class="n">input_params</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_params</span> <span class="o">=</span> <span class="n">output_params</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="s2">&quot;process_definition&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The `process_definition` parameter is deprecated, please use `workflow` instead.&quot;</span><span class="p">,</span>
+                <span class="ne">DeprecationWarning</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;process_definition&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="p">:</span> <span class="n">Workflow</span> <span class="o">=</span> <span class="n">workflow</span> <span class="ow">or</span> <span class="n">WorkflowContext</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="s2">&quot;local_params&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;The `local_params` parameter is deprecated,</span>
+<span class="sd">                please use `input_params` and `output_params` instead.</span>
+<span class="sd">                &quot;&quot;&quot;</span><span class="p">,</span>
+                <span class="ne">DeprecationWarning</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_local_params</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;local_params&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_upstream_task_codes</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_downstream_task_codes</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_task_relation</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">TaskRelation</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="c1"># move attribute code and version after _workflow and workflow declare</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_code_and_version</span><span class="p">()</span>
+        <span class="c1"># Add task to workflow, maybe we could put into property workflow latter</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">tasks</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;Task code </span><span class="si">%d</span><span class="s2"> already in workflow, prohibit re-add task.&quot;</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Attribute for task param</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resource_list</span> <span class="o">=</span> <span class="n">resource_list</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dependence</span> <span class="o">=</span> <span class="n">dependence</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_start_timeout</span> <span class="o">=</span> <span class="n">wait_start_timeout</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_condition_result</span> <span class="o">=</span> <span class="n">condition_result</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_CONDITION_RESULT</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="o">=</span> <span class="n">resource_plugin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_content</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Workflow</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute workflow.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span>
+
+    <span class="nd">@workflow</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">workflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow</span><span class="p">:</span> <span class="n">Workflow</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute workflow.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span> <span class="o">=</span> <span class="n">workflow</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute timeout.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span><span class="s2">&quot;The timeout value must be greater than 0&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span>
+        <span class="k">return</span> <span class="n">timedelta2timeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="k">else</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">timeout_flag</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the timeout attribute is being set or not.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">TaskTimeoutFlag</span><span class="o">.</span><span class="n">ON</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timeout</span> <span class="k">else</span> <span class="n">TaskTimeoutFlag</span><span class="o">.</span><span class="n">OFF</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the cache is being set or not.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_is_cache</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">IsCache</span><span class="o">.</span><span class="n">YES</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_cache</span> <span class="k">else</span> <span class="n">IsCache</span><span class="o">.</span><span class="n">NO</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span><span class="s2">&quot;is_cache must be a bool&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resource_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Resource</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get task define attribute `resource_list`.&quot;&quot;&quot;</span>
+        <span class="n">resources</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">resources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                    <span class="n">Resource</span><span class="p">(</span>
+                        <span class="n">name</span><span class="o">=</span><span class="n">res</span><span class="p">,</span> <span class="n">user_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user_name</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">get_fullname_from_database</span><span class="p">()</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ResourceKey</span><span class="o">.</span><span class="n">NAME</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="w">                    </span><span class="sd">&quot;&quot;&quot;`resource_list` should be defined using List[str] with resource paths,</span>
+<span class="sd">                       the use of ids to define resources will be remove in version 3.2.0.</span>
+<span class="sd">                    &quot;&quot;&quot;</span><span class="p">,</span>
+                    <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                    <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">resources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ResourceKey</span><span class="o">.</span><span class="n">NAME</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">[{</span><span class="n">ResourceKey</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="n">r</span><span class="p">}</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resources</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">user_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return username of workflow.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span><span class="s2">&quot;`user_name` cannot be empty.&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">condition_result</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get attribute condition_result.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_condition_result</span>
+
+    <span class="nd">@condition_result</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">condition_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">condition_result</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute condition_result.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_condition_result</span> <span class="o">=</span> <span class="n">condition_result</span>
+
+<div class="viewcode-block" id="Task._get_attr">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task._get_attr">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get final task task_params attribute.</span>
+
+<span class="sd">        Base on `_task_default_attr`, append attribute from `_task_custom_attr` and subtract attribute from</span>
+<span class="sd">        `_task_ignore_attr`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">attr</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_default_attr</span><span class="p">)</span>
+        <span class="n">attr</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_ignore_attr</span>
+        <span class="n">attr</span> <span class="o">|=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span>
+        <span class="k">return</span> <span class="n">attr</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get task parameter object.</span>
+
+<span class="sd">        Will get result to combine _task_custom_attr and custom_attr.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">custom_attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_attr</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_define_custom</span><span class="p">(</span><span class="n">custom_attr</span><span class="o">=</span><span class="n">custom_attr</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Task.get_plugin">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.get_plugin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the resource plug-in.</span>
+
+<span class="sd">        according to parameter resource_plugin and parameter</span>
+<span class="sd">        workflow.resource_plugin.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">resource_plugin</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">PyResPluginException</span><span class="p">(</span>
+                    <span class="s2">&quot;The execution command of this task is a file, but the resource plugin is empty&quot;</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_plugin</span></div>
+
+
+<div class="viewcode-block" id="Task.get_content">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.get_content">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the file content according to the resource plugin.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">_ext_attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_ext_attr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_ext_attr</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">_ext_attr</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ext</span><span class="p">)):</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">()</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">_ext_attr</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">UNDERLINE</span><span class="p">),</span> <span class="n">content</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">resource_plugin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="p">):</span>
+                    <span class="n">index</span> <span class="o">=</span> <span class="n">_ext_attr</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">POINT</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;This task does not support files with suffix </span><span class="si">{</span><span class="n">_ext_attr</span><span class="p">[</span><span class="n">index</span><span class="p">:]</span><span class="si">}</span><span class="s2">,&quot;</span>
+                            <span class="sa">f</span><span class="s2">&quot;only supports </span><span class="si">{</span><span class="n">Symbol</span><span class="o">.</span><span class="n">COMMA</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">suf</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">suf</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext_attr</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">Symbol</span><span class="o">.</span><span class="n">UNDERLINE</span><span class="p">),</span> <span class="n">_ext_attr</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__lshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Task</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Task</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Implement Task &lt;&lt; Task.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_upstream</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">other</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Task</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Task</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Implement Task &gt;&gt; Task.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">other</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rrshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Task</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Task</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call for Task &gt;&gt; [Task] because list don&#39;t have __rshift__ operators.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__lshift__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__rlshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Task</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Task</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call for Task &lt;&lt; [Task] because list don&#39;t have __lshift__ operators.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__rshift__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="Task._set_deps">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task._set_deps">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_deps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Task</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Task</span><span class="p">],</span> <span class="n">upstream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set parameter tasks dependent to current task.</span>
+
+<span class="sd">        it is a wrapper for :func:`set_upstream` and :func:`set_downstream`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">):</span>
+            <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">tasks</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">upstream</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_upstream_task_codes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">_downstream_task_codes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span><span class="p">:</span>
+                    <span class="n">task_relation</span> <span class="o">=</span> <span class="n">TaskRelation</span><span class="p">(</span>
+                        <span class="n">pre_task_code</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
+                        <span class="n">post_task_code</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
+                        <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">Delimiter</span><span class="o">.</span><span class="n">DIRECTION</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task_relation</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_downstream_task_codes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">_upstream_task_codes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workflow</span><span class="p">:</span>
+                    <span class="n">task_relation</span> <span class="o">=</span> <span class="n">TaskRelation</span><span class="p">(</span>
+                        <span class="n">pre_task_code</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
+                        <span class="n">post_task_code</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">code</span><span class="p">,</span>
+                        <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">Delimiter</span><span class="o">.</span><span class="n">DIRECTION</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">_task_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task_relation</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Task.set_upstream">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.set_upstream">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_upstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Task</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Task</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set parameter tasks as upstream to current task.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_deps</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">upstream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Task.set_downstream">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.set_downstream">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_downstream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">:</span> <span class="n">Task</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Task</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set parameter tasks as downstream to current task.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_deps</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">upstream</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+    <span class="c1"># TODO code should better generate in bulk mode when :ref: workflow run submit or start</span>
+<div class="viewcode-block" id="Task.gen_code_and_version">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.gen_code_and_version">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">gen_code_and_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate task code and version from java gateway.</span>
+
+<span class="sd">        If task name do not exists in workflow before, if will generate new code and version id</span>
+<span class="sd">        equal to 0 by java gateway, otherwise if will return the exists code and version.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO get code from specific project workflow and task name</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">gateway</span><span class="o">.</span><span class="n">get_code_and_version</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">_project</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span>
+        <span class="c1"># result = gateway.entry_point.genTaskCodeList(DefaultTaskCodeNum.DEFAULT)</span>
+        <span class="c1"># gateway_result_checker(result)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">),</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">environment_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert environment name to code.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_environment_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">gateway</span><span class="o">.</span><span class="n">query_environment_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_environment_name</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">local_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert local params.&quot;&quot;&quot;</span>
+        <span class="n">local_params</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_local_params</span><span class="p">)</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_local_params&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="p">)</span>
+        <span class="n">local_params</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="n">ParameterHelper</span><span class="o">.</span><span class="n">convert_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_input_params</span><span class="p">,</span> <span class="n">Direction</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">local_params</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="n">ParameterHelper</span><span class="o">.</span><span class="n">convert_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_output_params</span><span class="p">,</span> <span class="n">Direction</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">local_params</span>
+
+<div class="viewcode-block" id="Task.add_in">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.add_in">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_in</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">|</span> <span class="n">BaseDataType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add input parameters.</span>
+
+<span class="sd">        :param name: name of the input parameter.</span>
+<span class="sd">        :param value: value of the input parameter.</span>
+
+<span class="sd">        It could be simply command::</span>
+
+<span class="sd">            task.add_in(&quot;a&quot;)</span>
+<span class="sd">            task.add_in(&quot;b&quot;, 123)</span>
+<span class="sd">            task.add_in(&quot;c&quot;, bool)</span>
+<span class="sd">            task.add_in(&quot;d&quot;, ParameterType.LONG(123))</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="Task.add_out">
+<a class="viewcode-back" href="../../../api.html#pydolphinscheduler.core.Task.add_out">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_out</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">|</span> <span class="n">BaseDataType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add output parameters.</span>
+
+<span class="sd">        :param name: name of the output parameter.</span>
+<span class="sd">        :param value: value of the output parameter.</span>
+
+<span class="sd">        It could be simply command::</span>
+
+<span class="sd">            task.add_out(&quot;a&quot;)</span>
+<span class="sd">            task.add_out(&quot;b&quot;, 123)</span>
+<span class="sd">            task.add_out(&quot;c&quot;, bool)</span>
+<span class="sd">            task.add_out(&quot;d&quot;, ParameterType.LONG(123))</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_params</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+</div>
+
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BatchTask</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task object, parent class for all exactly task type.</span>
+
+<span class="sd">    :param name: The name of the task. Node names within the same workflow must be unique.</span>
+<span class="sd">    :param task_type:</span>
+<span class="sd">    :param description: default None</span>
+<span class="sd">    :param flag: default TaskFlag.YES,</span>
+<span class="sd">    :param task_priority: default TaskPriority.MEDIUM</span>
+<span class="sd">    :param worker_group: default configuration.WORKFLOW_WORKER_GROUP</span>
+<span class="sd">    :param environment_name: default None</span>
+<span class="sd">    :param task_group_id: Identify of task group to restrict the parallelism of tasks instance run, default 0.</span>
+<span class="sd">    :param task_group_priority: Priority for same task group to, the higher the value, the higher the</span>
+<span class="sd">        priority, default 0.</span>
+<span class="sd">    :param delay_time: deault 0</span>
+<span class="sd">    :param fail_retry_times: default 0</span>
+<span class="sd">    :param fail_retry_interval: default 1</span>
+<span class="sd">    :param timeout_notify_strategy: default, None</span>
+<span class="sd">    :param timeout: Timeout attribute for task, in minutes. Task is consider as  timed out task when the</span>
+<span class="sd">        running time of a task exceeds than this value. when data type is :class:`datetime.timedelta` will</span>
+<span class="sd">        be converted to int(in minutes). default ``None``</span>
+<span class="sd">    :param resource_list: default None</span>
+<span class="sd">    :param wait_start_timeout: default None</span>
+<span class="sd">    :param condition_result: default None,</span>
+<span class="sd">    :param resource_plugin: default None</span>
+<span class="sd">    :param is_cache: default False</span>
+<span class="sd">    :param input_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    :param output_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;task_execute_type&quot;</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">task_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskFlag</span><span class="o">.</span><span class="n">YES</span><span class="p">,</span>
+        <span class="n">task_priority</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span>
+        <span class="n">worker_group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">environment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">task_group_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">task_group_priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">delay_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_times</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">timeout_notify_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">timedelta</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">workflow</span><span class="p">:</span> <span class="n">Workflow</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dependence</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">wait_start_timeout</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">condition_result</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_plugin</span><span class="p">:</span> <span class="n">ResourcePlugin</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">is_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">task_type</span><span class="p">,</span>
+            <span class="n">description</span><span class="p">,</span>
+            <span class="n">flag</span><span class="p">,</span>
+            <span class="n">task_priority</span><span class="p">,</span>
+            <span class="n">worker_group</span><span class="p">,</span>
+            <span class="n">environment_name</span><span class="p">,</span>
+            <span class="n">task_group_id</span><span class="p">,</span>
+            <span class="n">task_group_priority</span><span class="p">,</span>
+            <span class="n">delay_time</span><span class="p">,</span>
+            <span class="n">fail_retry_times</span><span class="p">,</span>
+            <span class="n">fail_retry_interval</span><span class="p">,</span>
+            <span class="n">timeout_notify_strategy</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="p">,</span>
+            <span class="n">workflow</span><span class="p">,</span>
+            <span class="n">resource_list</span><span class="p">,</span>
+            <span class="n">dependence</span><span class="p">,</span>
+            <span class="n">wait_start_timeout</span><span class="p">,</span>
+            <span class="n">condition_result</span><span class="p">,</span>
+            <span class="n">resource_plugin</span><span class="p">,</span>
+            <span class="n">is_cache</span><span class="p">,</span>
+            <span class="n">input_params</span><span class="p">,</span>
+            <span class="n">output_params</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_execute_type</span> <span class="o">=</span> <span class="s2">&quot;BATCH&quot;</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StreamTask</span><span class="p">(</span><span class="n">Task</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task object, parent class for all exactly task type.</span>
+
+<span class="sd">    :param name: The name of the task. Node names within the same workflow must be unique.</span>
+<span class="sd">    :param task_type:</span>
+<span class="sd">    :param description: default None</span>
+<span class="sd">    :param flag: default TaskFlag.YES,</span>
+<span class="sd">    :param task_priority: default TaskPriority.MEDIUM</span>
+<span class="sd">    :param worker_group: default configuration.WORKFLOW_WORKER_GROUP</span>
+<span class="sd">    :param environment_name: default None</span>
+<span class="sd">    :param task_group_id: Identify of task group to restrict the parallelism of tasks instance run, default 0.</span>
+<span class="sd">    :param task_group_priority: Priority for same task group to, the higher the value, the higher the</span>
+<span class="sd">        priority, default 0.</span>
+<span class="sd">    :param delay_time: deault 0</span>
+<span class="sd">    :param fail_retry_times: default 0</span>
+<span class="sd">    :param fail_retry_interval: default 1</span>
+<span class="sd">    :param timeout_notify_strategy: default, None</span>
+<span class="sd">    :param timeout: Timeout attribute for task, in minutes. Task is consider as  timed out task when the</span>
+<span class="sd">        running time of a task exceeds than this value. when data type is :class:`datetime.timedelta` will</span>
+<span class="sd">        be converted to int(in minutes). default ``None``</span>
+<span class="sd">    :param resource_list: default None</span>
+<span class="sd">    :param wait_start_timeout: default None</span>
+<span class="sd">    :param condition_result: default None,</span>
+<span class="sd">    :param resource_plugin: default None</span>
+<span class="sd">    :param is_cache: default False</span>
+<span class="sd">    :param input_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    :param output_params: default None, input parameters, {param_name: param_value}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="n">Task</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;task_execute_type&quot;</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">task_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">flag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskFlag</span><span class="o">.</span><span class="n">YES</span><span class="p">,</span>
+        <span class="n">task_priority</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">TaskPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span>
+        <span class="n">worker_group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_WORKER_GROUP</span><span class="p">,</span>
+        <span class="n">environment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">task_group_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">task_group_priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">delay_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_times</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">fail_retry_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">timeout_notify_strategy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">timedelta</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">workflow</span><span class="p">:</span> <span class="n">Workflow</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dependence</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">wait_start_timeout</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">condition_result</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">resource_plugin</span><span class="p">:</span> <span class="n">ResourcePlugin</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">is_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">output_params</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">name</span><span class="p">,</span>
+            <span class="n">task_type</span><span class="p">,</span>
+            <span class="n">description</span><span class="p">,</span>
+            <span class="n">flag</span><span class="p">,</span>
+            <span class="n">task_priority</span><span class="p">,</span>
+            <span class="n">worker_group</span><span class="p">,</span>
+            <span class="n">environment_name</span><span class="p">,</span>
+            <span class="n">task_group_id</span><span class="p">,</span>
+            <span class="n">task_group_priority</span><span class="p">,</span>
+            <span class="n">delay_time</span><span class="p">,</span>
+            <span class="n">fail_retry_times</span><span class="p">,</span>
+            <span class="n">fail_retry_interval</span><span class="p">,</span>
+            <span class="n">timeout_notify_strategy</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="p">,</span>
+            <span class="n">workflow</span><span class="p">,</span>
+            <span class="n">resource_list</span><span class="p">,</span>
+            <span class="n">dependence</span><span class="p">,</span>
+            <span class="n">wait_start_timeout</span><span class="p">,</span>
+            <span class="n">condition_result</span><span class="p">,</span>
+            <span class="n">resource_plugin</span><span class="p">,</span>
+            <span class="n">is_cache</span><span class="p">,</span>
+            <span class="n">input_params</span><span class="p">,</span>
+            <span class="n">output_params</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task_execute_type</span> <span class="o">=</span> <span class="s2">&quot;STREAM&quot;</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../../../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../../../../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../../../../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../../../../3.0.0/index.html">3.0.0</a></dd>
+      <dd><a href="../../../../3.0.1/index.html">3.0.1</a></dd>
+      <dd><a href="../../../../3.1.0/index.html">3.1.0</a></dd>
+      <dd><a href="../../../../4.0.0/index.html">4.0.0</a></dd>
+      <dd><a href="../../../../4.0.1/index.html">4.0.1</a></dd>
+      <dd><a href="../../../../4.0.2/index.html">4.0.2</a></dd>
+      <dd><a href="../../../../4.0.3/index.html">4.0.3</a></dd>
+      <dd><a href="../../../../4.0.4/index.html">4.0.4</a></dd>
+      <dd><a href="task.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../main/index.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

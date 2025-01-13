@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pydolphinscheduler.tasks.datax &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/tabs.js?v=3ee01567"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pydolphinscheduler.tasks.datax</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pydolphinscheduler.tasks.datax</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
+<span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
+<span class="c1"># distributed with this work for additional information</span>
+<span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
+<span class="c1"># to you under the Apache License, Version 2.0 (the</span>
+<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># with the License.  You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing,</span>
+<span class="c1"># software distributed under the License is distributed on an</span>
+<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># KIND, either express or implied.  See the License for the</span>
+<span class="c1"># specific language governing permissions and limitations</span>
+<span class="c1"># under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;Task datax.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.mixin</span><span class="w"> </span><span class="kn">import</span> <span class="n">WorkerResourceMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.task</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatchTask</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.models.datasource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Datasource</span>
+
+
+<div class="viewcode-block" id="CustomDataX">
+<a class="viewcode-back" href="../../../tasks/datax.html#pydolphinscheduler.tasks.CustomDataX">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomDataX</span><span class="p">(</span><span class="n">WorkerResourceMixin</span><span class="p">,</span> <span class="n">BatchTask</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task CustomDatax object, declare behavior for custom DataX task to dolphinscheduler.</span>
+
+<span class="sd">    You provider json template for DataX, it can synchronize data according to the template you provided.</span>
+
+<span class="sd">    :param name: task name for this task</span>
+<span class="sd">    :param json: json template string, or json file path for custom DataX task, :class:`CustomDataX` will not</span>
+<span class="sd">        format json template, you should format by yourself.</span>
+
+<span class="sd">          * Use config string directly instead of json file path</span>
+<span class="sd">            * should use :func:`json.dumps` to format it if your json template is dict</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                import json</span>
+
+<span class="sd">                custom = CustomDataX(</span>
+<span class="sd">                    name=&quot;custom_datax&quot;,</span>
+<span class="sd">                    json=json.dumps({&quot;job&quot;: {&quot;content&quot;: [{&quot;reader&quot;: {&quot;name&quot;: &quot;mysqlreader&quot;}}]}}),</span>
+<span class="sd">                )</span>
+
+<span class="sd">            * or format it by manual if your json template is native str.</span>
+<span class="sd">          * Use json file path, the format it shows in web UI is depended on your json file content.</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                import json</span>
+
+<span class="sd">                custom = CustomDataX(</span>
+<span class="sd">                    name=&quot;custom_datax&quot;,</span>
+<span class="sd">                    # web UI datax config will show as json file content</span>
+<span class="sd">                    json=&quot;/path/to/datax.json&quot;,</span>
+<span class="sd">                )</span>
+
+<span class="sd">    :param xms: jvm param about min memory for task datax running, default is 1g</span>
+<span class="sd">    :param xmx: jvm param about max memory for task datax running, default is 1g</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CUSTOM_CONFIG</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;custom_config&quot;</span><span class="p">,</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="s2">&quot;xms&quot;</span><span class="p">,</span> <span class="s2">&quot;xmx&quot;</span><span class="p">}</span>
+
+    <span class="n">ext</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;.json&quot;</span><span class="p">}</span>
+    <span class="n">ext_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;_json&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">json</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">xms</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">xmx</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_json</span> <span class="o">=</span> <span class="n">json</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">DATAX</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CUSTOM_CONFIG</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xms</span> <span class="o">=</span> <span class="n">xms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xmx</span> <span class="o">=</span> <span class="n">xmx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_attr</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="DataX">
+<a class="viewcode-back" href="../../../tasks/datax.html#pydolphinscheduler.tasks.DataX">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DataX</span><span class="p">(</span><span class="n">WorkerResourceMixin</span><span class="p">,</span> <span class="n">BatchTask</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task DataX object, declare behavior for DataX task to dolphinscheduler.</span>
+
+<span class="sd">    It should run database datax job in multiply sql link engine, such as:</span>
+
+<span class="sd">    - MySQL</span>
+<span class="sd">    - Oracle</span>
+<span class="sd">    - Postgresql</span>
+<span class="sd">    - SQLServer</span>
+
+<span class="sd">    You provider datasource_name and datatarget_name contain connection information, it decisions which</span>
+<span class="sd">    database type and database instance would synchronous data.</span>
+
+<span class="sd">    :param name: task name for this task</span>
+<span class="sd">    :param datasource_name: source database name for task datax to extract data, it must exist in</span>
+<span class="sd">        dolphinscheduler&#39;s datasource center otherwise task datax will raise exception.</span>
+<span class="sd">    :param datatarget_name: target database name for task datax to load data, it must exist in</span>
+<span class="sd">        dolphinscheduler&#39;s datasource center otherwise task datax will raise exception.</span>
+<span class="sd">    :param sql: sql statement for task datax to extract data form source database.</span>
+<span class="sd">    :param target_table: target table name for task datax to load data into target database.</span>
+<span class="sd">    :param datasource_type: source database type, dolphinscheduler use it to find :param:``datasource_name``</span>
+<span class="sd">        in datasource center.</span>
+<span class="sd">    :param datasource_type: target database type, dolphinscheduler use it to find :param:``datatarget_name``</span>
+<span class="sd">        in datasource center.</span>
+<span class="sd">    :param job_speed_byte: task datax job speed byte, default is 0. For more detail you can get from</span>
+<span class="sd">        :seealso: https://github.com/alibaba/DataX</span>
+<span class="sd">    :param job_speed_record: task datax job speed record, default is 1000. For more detail you can get from</span>
+<span class="sd">        :seealso: https://github.com/alibaba/DataX</span>
+<span class="sd">    :param pre_statements: task datax job pre statements, it will execute before task datax job start to load.</span>
+<span class="sd">        default is None.</span>
+<span class="sd">    :param post_statements: task datax job post statements, it will execute after task datax job finish load.</span>
+<span class="sd">        default is None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CUSTOM_CONFIG</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;custom_config&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sql&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;target_table&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;job_speed_byte&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;job_speed_record&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pre_statements&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;post_statements&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;xms&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;xmx&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">ext</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;.sql&quot;</span><span class="p">}</span>
+    <span class="n">ext_attr</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;_sql&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">datatarget_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">sql</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">target_table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">datasource_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">datatarget_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">job_speed_byte</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">job_speed_record</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="n">pre_statements</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">post_statements</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">xms</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">xmx</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sql</span> <span class="o">=</span> <span class="n">sql</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">DATAX</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">CUSTOM_CONFIG</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">datasource_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span> <span class="o">=</span> <span class="n">datasource_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datatarget_type</span> <span class="o">=</span> <span class="n">datatarget_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datatarget_name</span> <span class="o">=</span> <span class="n">datatarget_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_table</span> <span class="o">=</span> <span class="n">target_table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_speed_byte</span> <span class="o">=</span> <span class="n">job_speed_byte</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_speed_record</span> <span class="o">=</span> <span class="n">job_speed_record</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pre_statements</span> <span class="o">=</span> <span class="n">pre_statements</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_statements</span> <span class="o">=</span> <span class="n">post_statements</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xms</span> <span class="o">=</span> <span class="n">xms</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xmx</span> <span class="o">=</span> <span class="n">xmx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_attr</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">source_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get source params for datax task.&quot;&quot;&quot;</span>
+        <span class="n">datasource_task_u</span> <span class="o">=</span> <span class="n">Datasource</span><span class="o">.</span><span class="n">get_task_usage_4j</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasource_type</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;dsType&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">&quot;dataSource&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">target_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get target params for datax task.&quot;&quot;&quot;</span>
+        <span class="n">datasource_task_u</span> <span class="o">=</span> <span class="n">Datasource</span><span class="o">.</span><span class="n">get_task_usage_4j</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">datatarget_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">datatarget_type</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;dtType&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">&quot;dataTarget&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override Task.task_params for datax task.</span>
+
+<span class="sd">        datax task have some specials attribute for task_params, and is odd if we</span>
+<span class="sd">        directly set as python property, so we Override Task.task_params here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_params</span><span class="p">)</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_params</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">params</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../../../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../../../../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../../../../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../../../../3.0.0/index.html">3.0.0</a></dd>
+      <dd><a href="../../../../3.0.1/index.html">3.0.1</a></dd>
+      <dd><a href="../../../../3.1.0/index.html">3.1.0</a></dd>
+      <dd><a href="../../../../4.0.0/index.html">4.0.0</a></dd>
+      <dd><a href="../../../../4.0.1/index.html">4.0.1</a></dd>
+      <dd><a href="../../../../4.0.2/index.html">4.0.2</a></dd>
+      <dd><a href="../../../../4.0.3/index.html">4.0.3</a></dd>
+      <dd><a href="../../../../4.0.4/index.html">4.0.4</a></dd>
+      <dd><a href="datax.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../main/index.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

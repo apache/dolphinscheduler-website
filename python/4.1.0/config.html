@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/tabs.js?v=3ee01567"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API" href="api.html" />
+    <link rel="prev" title="Command Line Interface" href="cli.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-environment-variables">Using Environment Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#by-bash">By Bash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#by-python-os-module">By Python OS Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#all-configurations-in-environment-variables">All Configurations in Environment Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-configuration-file">Using Configuration File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#export-configuration-file">Export Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change-configuration">Change Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#all-configurations-in-file">All Configurations in File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#priority">Priority</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/config.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h1>
+<p>pydolphinscheduler has a built-in module setting necessary configuration to start and run your workflow code.
+You could directly use them if you only want to run a quick start or for a simple job like POC. But if you
+want to deep use pydolphinscheduler and even use it in production. You should probably need to modify and
+change the built-in configuration.</p>
+<p>We have two ways to modify the configuration:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-environment-variables">Using Environment Variables</a>: The more lightweight way to modify the configuration. it is useful in
+containerization scenarios, like docker and k8s, or when you like to temporarily override configs in the
+configuration file.</p></li>
+<li><p><a class="reference internal" href="#using-configuration-file">Using Configuration File</a>: The more general way to modify the configuration. It is useful when you want
+to persist and manage configuration files in one single file.</p></li>
+</ul>
+<section id="using-environment-variables">
+<h2>Using Environment Variables<a class="headerlink" href="#using-environment-variables" title="Link to this heading"></a></h2>
+<p>You could change the configuration by adding or modifying the operating system’s environment variables. No
+matter what way you used, as long as you can successfully modify the environment variables. We use two common
+ways, <a class="reference external" href="bybash">Bash</a> and <a class="reference external" href="bypythonosmodule">Python OS Module</a>, as examples:</p>
+<section id="by-bash">
+<h3>By Bash<a class="headerlink" href="#by-bash" title="Link to this heading"></a></h3>
+<p>Setting environment variables via <cite>Bash</cite> is the most straightforward and easiest way. We give some examples about
+how to change them by Bash.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modify Java Gateway Address</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYDS_JAVA_GATEWAY_ADDRESS</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span>
+
+<span class="c1"># Modify Workflow Default User</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYDS_WORKFLOW_USER</span><span class="o">=</span><span class="s2">&quot;custom-user&quot;</span>
+</pre></div>
+</div>
+<p>After executing the commands above, both <code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_ADDRESS</span></code> and <code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_USER</span></code> will be changed.
+The next time you execute and submit your workflow, it will submit to host <cite>192.168.1.1</cite>, and with workflow’s user
+named <cite>custom-user</cite>.</p>
+</section>
+<section id="by-python-os-module">
+<h3>By Python OS Module<a class="headerlink" href="#by-python-os-module" title="Link to this heading"></a></h3>
+<p>pydolphinscheduler is a Python API for Apache DolphinScheduler, and you could modify or add system environment
+variables via Python <code class="docutils literal notranslate"><span class="pre">os</span></code> module. In this example, we change variables as the same value as we change in
+<a class="reference external" href="bybash">Bash</a>. It will take effect the next time you run your workflow, and call workflow <code class="docutils literal notranslate"><span class="pre">run</span></code> or <code class="docutils literal notranslate"><span class="pre">submit</span></code>
+method next to <code class="docutils literal notranslate"><span class="pre">os.environ</span></code> statement.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># Modify Java Gateway Address</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYDS_JAVA_GATEWAY_ADDRESS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;192.168.1.1&quot;</span>
+
+<span class="c1"># Modify Workflow Default User</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYDS_WORKFLOW_USER&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;custom-user&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="all-configurations-in-environment-variables">
+<h3>All Configurations in Environment Variables<a class="headerlink" href="#all-configurations-in-environment-variables" title="Link to this heading"></a></h3>
+<p>All environment variables as below, and you could modify their value via <a class="reference external" href="bybash">Bash</a> or <a class="reference external" href="bypythonosmodule">Python OS Module</a></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable Section</p></th>
+<th class="head"><p>Variable Name</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="4"><p>Java Gateway</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_AUTH_TOKEN</span></code></p></td>
+<td><p>Default Java gateway auth token, should changed to custom value when deploy in public network or in production.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_ADDRESS</span></code></p></td>
+<td><p>Default Java gateway address, will use its value when it is set.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_PORT</span></code></p></td>
+<td><p>Default Java gateway port, will use its value when it is set.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_AUTO_CONVERT</span></code></p></td>
+<td><p>Default boolean Java gateway auto convert, will use its value when it is set.</p></td>
+</tr>
+<tr class="row-even"><td rowspan="5"><p>Default User</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_NAME</span></code></p></td>
+<td><p>Default user name, will use when user’s <code class="docutils literal notranslate"><span class="pre">name</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_PASSWORD</span></code></p></td>
+<td><p>Default user password, will use when user’s <code class="docutils literal notranslate"><span class="pre">password</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_EMAIL</span></code></p></td>
+<td><p>Default user email, will use when user’s <code class="docutils literal notranslate"><span class="pre">email</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_PHONE</span></code></p></td>
+<td><p>Default user phone, will use when user’s <code class="docutils literal notranslate"><span class="pre">phone</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_USER_STATE</span></code></p></td>
+<td><p>Default user state, will use when user’s <code class="docutils literal notranslate"><span class="pre">state</span></code> when does not specify.</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="8"><p>Default Workflow</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_PROJECT</span></code></p></td>
+<td><p>Default workflow project name, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">project</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_USER</span></code></p></td>
+<td><p>Default workflow user, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">user</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_QUEUE</span></code></p></td>
+<td><p>Default workflow queue, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">queue</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_WORKER_GROUP</span></code></p></td>
+<td><p>Default workflow worker group, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">worker_group</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_RELEASE_STATE</span></code></p></td>
+<td><p>Default workflow release state, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">release_state</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_TIME_ZONE</span></code></p></td>
+<td><p>Default workflow worker group, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">timezone</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_WARNING_TYPE</span></code></p></td>
+<td><p>Default workflow warning type, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">warning_type</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_EXECUTION_TYPE</span></code></p></td>
+<td><p>Default workflow execution type, will use its value when workflow does not specify the attribute <code class="docutils literal notranslate"><span class="pre">execution_type</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The scope of setting configuration via environment variable is in the workflow, and it will not change the
+value of the configuration file. The <a class="reference internal" href="cli.html"><span class="doc">CLI</span></a> command <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span></code> and <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">--set</span></code> operate
+the value of the configuration file, so the command <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span></code> may return a different value from what
+you set in the environment variable, and command <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span></code> will never change your environment variable.</p>
+</div>
+</section>
+</section>
+<section id="using-configuration-file">
+<h2>Using Configuration File<a class="headerlink" href="#using-configuration-file" title="Link to this heading"></a></h2>
+<p>If you want to persist and manage configuration in a file instead of environment variables, or maybe you want
+want to save your configuration file to a version control system, like Git or SVN, and the way to change
+configuration by file is the best choice.</p>
+<section id="export-configuration-file">
+<h3>Export Configuration File<a class="headerlink" href="#export-configuration-file" title="Link to this heading"></a></h3>
+<p>pydolphinscheduler allows you to change the built-in configurations via CLI or editor you like. pydolphinscheduler
+integrated built-in configurations in its package, but you could also export it locally by CLI</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--init
+</pre></div>
+</div>
+<p>And it will create a new YAML file in the path <cite>~/pydolphinscheduler/config.yaml</cite> by default. If you want to export
+it to another path, you should set <cite>PYDS_HOME</cite> before you run command <code class="code docutils literal notranslate"><span class="pre">pydolphinscheduler</span> <span class="pre">config</span> <span class="pre">--init</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PYDS_HOME</span><span class="o">=</span>&lt;CUSTOM_PATH&gt;
+pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--init
+</pre></div>
+</div>
+<p>After that, your configuration file will export into <cite>&lt;CUSTOM_PATH&gt;/config.yaml</cite> instead of the default path.</p>
+</section>
+<section id="change-configuration">
+<h3>Change Configuration<a class="headerlink" href="#change-configuration" title="Link to this heading"></a></h3>
+<p>In section <a class="reference internal" href="#export-configuration-file">export configuration file</a> you export the configuration file locally, and as a local file, you could
+edit it with any editor you like. After you save your change in your editor, the latest configuration will work
+when you run your workflow code.</p>
+<p>You could also query or change the configuration via CLI <code class="code docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span> <span class="pre">&lt;config&gt;</span></code> or <code class="code docutils literal notranslate"><span class="pre">config</span> <span class="pre">--get</span> <span class="pre">&lt;config&gt;</span> <span class="pre">&lt;val&gt;</span></code>.
+Both <cite>–get</cite> and <cite>–set</cite> could be called one or more times in single command, and you could only set the leaf
+node of the configuration but could get the parent configuration, there are simple examples below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get single configuration in the leaf node,</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># java_gateway.address = 127.0.0.1</span>
+pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--get<span class="w"> </span>java_gateway.address
+
+<span class="c1"># Get multiple configuration in the leaf node,</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># java_gateway.address = 127.0.0.1</span>
+<span class="c1"># java_gateway.port = 25333</span>
+pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--get<span class="w"> </span>java_gateway.address<span class="w"> </span>--get<span class="w"> </span>java_gateway.port
+
+
+<span class="c1"># Get parent configuration which contain multiple leaf nodes,</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># java_gateway = ordereddict([(&#39;address&#39;, &#39;127.0.0.1&#39;), (&#39;port&#39;, 25333), (&#39;auto_convert&#39;, True)])</span>
+pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--get<span class="w"> </span>java_gateway
+
+<span class="c1"># Set single configuration,</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># Set configuration done.</span>
+pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>java_gateway.address<span class="w"> </span><span class="m">192</span>.168.1.1
+
+<span class="c1"># Set multiple configuration</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># Set configuration done.</span>
+pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>java_gateway.address<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>--set<span class="w"> </span>java_gateway.port<span class="w"> </span><span class="m">25334</span>
+
+<span class="c1"># Set configuration not in leaf node will fail</span>
+<span class="c1"># The output look like below:</span>
+<span class="c1"># Raise error.</span>
+pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>java_gateway<span class="w"> </span><span class="m">192</span>.168.1.1,25334,True
+</pre></div>
+</div>
+<p>For more information about our CLI, you could see document <a class="reference internal" href="cli.html"><span class="doc">Command Line Interface</span></a>.</p>
+</section>
+<section id="all-configurations-in-file">
+<h3>All Configurations in File<a class="headerlink" href="#all-configurations-in-file" title="Link to this heading"></a></h3>
+<p>Here are all our configurations for pydolphinscheduler.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting about Java gateway server</span>
+<span class="nt">java_gateway</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Authentication token for connection from python api to python gateway server. Should be changed the default value</span>
+<span class="w">  </span><span class="c1"># when you deploy in public network.</span>
+<span class="w">  </span><span class="nt">auth_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jwUDzpLsNKEFER4*a8gruBH_GsAurNxU7A@Xc</span>
+
+<span class="w">  </span><span class="c1"># The address of Python gateway server start. Set its value to `0.0.0.0` if your Python API run in different</span>
+<span class="w">  </span><span class="c1"># between Python gateway server. It could be be specific to other address like `127.0.0.1` or `localhost`</span>
+<span class="w">  </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+
+<span class="w">  </span><span class="c1"># The port of Python gateway server start. Define which port you could connect to Python gateway server from</span>
+<span class="w">  </span><span class="c1"># Python API models.</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25333</span>
+
+<span class="w">  </span><span class="c1"># Whether automatically convert Python objects to Java Objects. Default value is ``True``. There is some</span>
+<span class="w">  </span><span class="c1"># performance lost when set to ``True`` but for now pydolphinscheduler do not handle the convert issue between</span>
+<span class="w">  </span><span class="c1"># java and Python, mark it as TODO item in the future.</span>
+<span class="w">  </span><span class="nt">auto_convert</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="c1"># Setting about dolphinscheduler default value, will use the value set below if property do not set, which</span>
+<span class="c1"># including ``user``, ``workflow`` </span>
+<span class="nt">default</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Default value for dolphinscheduler&#39;s user object</span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userPythonGateway</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userPythonGateway</span>
+<span class="w">    </span><span class="nt">email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userPythonGateway@dolphinscheduler.com</span>
+<span class="w">    </span><span class="nt">tenant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tenant_pydolphin</span>
+<span class="w">    </span><span class="nt">phone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11111111111</span>
+<span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="c1"># Default value for dolphinscheduler&#39;s workflow object</span>
+<span class="w">  </span><span class="nt">workflow</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">project-pydolphin</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userPythonGateway</span>
+<span class="w">    </span><span class="nt">queue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">queuePythonGateway</span>
+<span class="w">    </span><span class="nt">worker_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">    </span><span class="c1"># Release state of workflow, default value is ``online`` which mean setting workflow online when it submits</span>
+<span class="w">    </span><span class="c1"># to Java gateway, if you want to set workflow offline set its value to ``offline``</span>
+<span class="w">    </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">online</span>
+<span class="w">    </span><span class="nt">time_zone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Asia/Shanghai</span>
+<span class="w">    </span><span class="c1"># Warning type of the workflow, default value is ``NONE`` mean do not warn user in any cases of workflow state,</span>
+<span class="w">    </span><span class="c1"># change to ``FAILURE`` if you want to warn users when workflow failed. All available enum value are</span>
+<span class="w">    </span><span class="c1"># ``NONE``, ``SUCCESS``, ``FAILURE``, ``ALL`` </span>
+<span class="w">    </span><span class="nt">warning_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NONE</span>
+<span class="w">    </span><span class="c1"># Default execution type about how to run multiple workflow instances, default value is ``parallel`` which</span>
+<span class="w">    </span><span class="c1"># mean run all workflow instances parallel and the other value is ``SERIAL_WAIT``, ``SERIAL_DISCARD``, ``SERIAL_PRIORITY``</span>
+<span class="w">    </span><span class="nt">execution_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parallel</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="priority">
+<h2>Priority<a class="headerlink" href="#priority" title="Link to this heading"></a></h2>
+<p>We have two ways to modify the configuration and there is a built-in config in pydolphinscheduler too. It is
+very important to understand the priority of the configuration when you use them. The overview of configuration
+priority is.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Environment</span> <span class="pre">Variables</span> <span class="pre">&gt;</span> <span class="pre">Configurations</span> <span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Built-in</span> <span class="pre">Configurations</span></code></p>
+<p>This means that your setting in environment variables or configurations file will overwrite the built-in one.
+And you could temporarily modify configurations by setting environment variables without modifying the global
+config in the configuration file.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cli.html" class="btn btn-neutral float-left" title="Command Line Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../3.0.0/config.html">3.0.0</a></dd>
+      <dd><a href="../3.0.1/config.html">3.0.1</a></dd>
+      <dd><a href="../3.1.0/config.html">3.1.0</a></dd>
+      <dd><a href="../4.0.0/config.html">4.0.0</a></dd>
+      <dd><a href="../4.0.1/config.html">4.0.1</a></dd>
+      <dd><a href="../4.0.2/config.html">4.0.2</a></dd>
+      <dd><a href="../4.0.3/config.html">4.0.3</a></dd>
+      <dd><a href="../4.0.4/config.html">4.0.4</a></dd>
+      <dd><a href="config.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../main/config.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

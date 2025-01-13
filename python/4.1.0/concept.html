@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concepts &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/tabs.js?v=3ee01567"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tasks" href="tasks/index.html" />
+    <link rel="prev" title="Tutorial" href="tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#schedule">Schedule</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tenant">Tenant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#execution-type">Execution Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alert">Alert</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tasks-dependence">Tasks Dependence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-with-workflow">Task With Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-group">Task Group</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-files">Resource Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-parameters">Local Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-token">Authentication Token</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Concepts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/concept.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="concepts">
+<h1>Concepts<a class="headerlink" href="#concepts" title="Link to this heading"></a></h1>
+<p>In this section, you would know the core concepts of <em>PyDolphinScheduler</em>.</p>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading"></a></h2>
+<p>Workflow describes the whole things except <a class="reference internal" href="#tasks">tasks</a> and <a class="reference internal" href="#tasks-dependence">tasks dependence</a>, which includes
+name, schedule interval, schedule start time and end time. You would know scheduler</p>
+<p>Workflow could be initialized in a normal assignment statement or within a context manger.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization with assign statement</span>
+<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
+
+<span class="c1"># Or context manger</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Workflow is the main object communicating between <em>PyDolphinScheduler</em> and DolphinScheduler daemon.
+After workflow and task is declared, you could use <cite>submit</cite> and <cite>run</cite> to notify server your definition.</p>
+<p>If you just want to submit your definition and create workflow, without running it, you should use attribute <cite>submit</cite>.
+But if you want to run the workflow after you submit it, you could use attribute <cite>run</cite>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Just submit definition, without run it</span>
+<span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+
+<span class="c1"># Both submit and run definition</span>
+<span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="schedule">
+<h3>Schedule<a class="headerlink" href="#schedule" title="Link to this heading"></a></h3>
+<p>We use parameter <cite>schedule</cite> to determine the schedule interval of workflow, <em>PyDolphinScheduler</em> supports seven
+asterisks expression, and each of the meaning of position is as below</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>* * * * * * *
+┬ ┬ ┬ ┬ ┬ ┬ ┬
+│ │ │ │ │ │ │
+│ │ │ │ │ │ └─── year
+│ │ │ │ │ └───── day of week (1 - 7) (1 to 7 are Sunday to Saturday, or use names; 7 is for Sunday, or use `SUN`)
+│ │ │ │ └─────── month (1 - 12)
+│ │ │ └───────── day of month (1 - 31)
+│ │ └─────────── hour (0 - 23)
+│ └───────────── min (0 - 59)
+└─────────────── second (0 - 59)
+</pre></div>
+</div>
+<p>Here we add some example crontab:</p>
+<ul class="simple">
+<li><p><cite>0 0 0 * * ? *</cite>: Workflow execute every day at 00:00:00.</p></li>
+<li><p><cite>10 2 * * * ? *</cite>: Workflow execute hourly day at ten pass two.</p></li>
+<li><p><cite>10,11 20 0 1,2 * ? *</cite>: Workflow execute first and second day of month at 00:20:10 and 00:20:11.</p></li>
+</ul>
+</section>
+<section id="tenant">
+<h3>Tenant<a class="headerlink" href="#tenant" title="Link to this heading"></a></h3>
+<p>Tenant is the user who run task command in machine or in virtual machine. it could be assign by simple string.
+You should change the tenant value to exists tenant in your host, it config in <cite>config.yaml</cite> in your pydolphinscheduler
+<code class="docutils literal notranslate"><span class="pre">PYDS_HOME</span></code>, or via <a class="reference internal" href="cli.html"><span class="doc">CLI</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>default.user.tenant<span class="w"> </span>&lt;YOUR-TENANT-NAME&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make should tenant exists in target machine, otherwise it will raise an error when you try to run command</p>
+</div>
+</section>
+<section id="execution-type">
+<h3>Execution Type<a class="headerlink" href="#execution-type" title="Link to this heading"></a></h3>
+<p>Decision which behavior to run when workflow have multiple instances. when workflow
+schedule interval is too short, it may cause multiple instances run at the same time. We can use this
+parameter to control the behavior about how to run those workflow instances. Currently we
+have four execution type:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parallel</span></code> (default value): it means all instances will allow to run even though the previous
+instance is not finished.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">serial_wait</span></code>: it means the all instance will wait for the previous instance to finish, and
+all the waiting instances will be executed base on scheduling order.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">serial_discard</span></code>: it means the all instance will be discard(abandon) if the previous instance
+is not finished.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">serial_priority</span></code>: it means the all instance will wait for the previous instance to finish,
+and all the waiting instances will be executed base on workflow priority order.</p></li>
+</ul>
+<p>Parameter <code class="docutils literal notranslate"><span class="pre">execution</span> <span class="pre">type</span></code> can be set in</p>
+<ul>
+<li><p>Direct assign statement. You can pick execute type from above and direct assign to parameter
+<code class="docutils literal notranslate"><span class="pre">execution_type</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;workflow_name&quot;</span><span class="p">,</span>
+    <span class="n">execution_type</span><span class="o">=</span><span class="s2">&quot;parallel&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Via environment variables, configurations file setting, for more detail about those way setting, you can see
+you can read <a class="reference internal" href="config.html"><span class="doc">Configuration</span></a> section.</p></li>
+</ul>
+</section>
+<section id="alert">
+<h3>Alert<a class="headerlink" href="#alert" title="Link to this heading"></a></h3>
+<p>Alert is the way to notify user when workflow instance is success or failed. We can set alert with parameter
+<code class="docutils literal notranslate"><span class="pre">warning_type</span></code> and <code class="docutils literal notranslate"><span class="pre">warning_group_id</span></code> in workflow definition.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">warning_type</span></code> represent the type of alert, when workflow instance in those status, it will trigger alert.
+The value of <code class="docutils literal notranslate"><span class="pre">warning_type</span></code> could be one of <code class="docutils literal notranslate"><span class="pre">failure</span></code>, <code class="docutils literal notranslate"><span class="pre">success</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">none</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warning_group_id</span></code> represent the group of alert, you can get the group id from DolphinScheduler web UI.</p></li>
+</ul>
+</section>
+</section>
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Link to this heading"></a></h2>
+<p>Task is the minimum unit running actual job, and it is a node of DAG, aka directed acyclic graph. You could define
+what you want in the task. It has some required parameters to make uniqueness and definition.</p>
+<p>Here we use <a class="reference internal" href="api.html#pydolphinscheduler.tasks.Shell" title="pydolphinscheduler.tasks.Shell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.Shell()</span></code></a> as example, parameter <cite>name</cite> and <cite>command</cite> is required and must be provider. Parameter
+<cite>name</cite> set name to the task, and parameter <cite>command</cite> declare the command you wish to run in this task.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We named this task as &quot;shell&quot;, and just run command `echo shell task`</span>
+<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you want to see all types of tasks, you could see <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
+<section id="tasks-dependence">
+<h3>Tasks Dependence<a class="headerlink" href="#tasks-dependence" title="Link to this heading"></a></h3>
+<p>You could define many tasks in on single <a class="reference internal" href="#workflow">Workflow</a>. If all those tasks are in parallel processing,
+then you could leave them alone without adding any additional information. But if there are some tasks that should
+not be run unless pre task in workflow has been done, we should set task dependence to them. Set task dependence
+have two main ways and both of them are easy. You could use bitwise operator <cite>&gt;&gt;</cite> and <cite>&lt;&lt;</cite>, or task attribute
+<cite>set_downstream</cite> and <cite>set_upstream</cite> to do it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set task1 as task2 upstream</span>
+<span class="n">task1</span> <span class="o">&gt;&gt;</span> <span class="n">task2</span>
+<span class="c1"># You could use attribute `set_downstream` too, is same as `task1 &gt;&gt; task2`</span>
+<span class="n">task1</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task2</span><span class="p">)</span>
+
+<span class="c1"># Set task1 as task2 downstream</span>
+<span class="n">task1</span> <span class="o">&lt;&lt;</span> <span class="n">task2</span>
+<span class="c1"># It is same as attribute `set_upstream`</span>
+<span class="n">task1</span><span class="o">.</span><span class="n">set_upstream</span><span class="p">(</span><span class="n">task2</span><span class="p">)</span>
+
+<span class="c1"># Beside, we could set dependence between task and sequence of tasks,</span>
+<span class="c1"># we set `task1` is upstream to both `task2` and `task3`. It is useful</span>
+<span class="c1"># for some tasks have same dependence.</span>
+<span class="n">task1</span> <span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">task2</span><span class="p">,</span> <span class="n">task3</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="task-with-workflow">
+<h3>Task With Workflow<a class="headerlink" href="#task-with-workflow" title="Link to this heading"></a></h3>
+<p>In most of data orchestration cases, you should assign attribute <cite>workflow</cite> to task instance to
+decide workflow of task. You could set <cite>workflow</cite> in both normal assign or in context manger mode</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal assign, have to explicit declaration and pass `Workflow` instance to task</span>
+<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
+<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span> <span class="n">workflow</span><span class="o">=</span><span class="n">workflow</span><span class="p">)</span>
+
+<span class="c1"># Context manger, `Workflow` instance workflow would implicit declaration to task</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>With both <a class="reference internal" href="#workflow">Workflow</a>, <a class="reference internal" href="#tasks">Tasks</a>  and <a class="reference internal" href="#tasks-dependence">Tasks Dependence</a>, we could build a workflow with multiple tasks.</p>
+</section>
+<section id="task-group">
+<h3>Task Group<a class="headerlink" href="#task-group" title="Link to this heading"></a></h3>
+<p>A task group can manage and control the maximum number of concurrently running tasks. This is particularly
+useful when you want to limit the simultaneous execution of various task types. For instance, in an ETL
+(Extract, Transform, Load) job where data is extracted from a source database, it’s crucial to control the
+parallelism of extract tasks to prevent an excessive number of connections to the source database. This is
+where a task group comes into play. There are two key parameters, <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code> and <code class="docutils literal notranslate"><span class="pre">task_group_priority</span></code>
+that determine the behavior of the task group.</p>
+<p>Task group can control the maximum number of tasks running at the same time. It is useful when you don’t want
+to run too many type of tasks at the same time. For example when you extract data from source database in ELT
+job, you want to control the parallelism of extract task to avoid too many connections to source database.
+Then task group can help you. There are two major parameters <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code> and <code class="docutils literal notranslate"><span class="pre">task_group_priority</span></code>
+to control the behavior of task group.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">task_group_id</span></code>: is an integer used to identify the task group. You can set a <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code> to
+restrict the parallelism of tasks. The <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code> can be find in the DolphinScheduler web UI. The
+default value is <code class="docutils literal notranslate"><span class="pre">0</span></code>, which means there are no restrictions for this task group.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">task_group_priority</span></code>: is an integer used to define the priority of the task group. When different tasks
+share the same <code class="docutils literal notranslate"><span class="pre">task_group_id</span></code>, the task group’s priority comes into play, controlling the order in which
+they run. Higher values indicate higher priority. The default value is <code class="docutils literal notranslate"><span class="pre">0</span></code>, which means there’s no
+specific priority for this task group, and tasks will run in the order they were created.</p></li>
+</ul>
+<p>Here’s an example in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extract</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;extract&quot;</span><span class="p">,</span>
+   <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;Some extract command here&#39;&quot;</span><span class="p">,</span>
+   <span class="n">task_group_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+   <span class="n">task_group_priority</span><span class="o">=</span><span class="mi">123</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="resource-files">
+<h2>Resource Files<a class="headerlink" href="#resource-files" title="Link to this heading"></a></h2>
+<p>During workflow running, we may need some resource files to help us run task usually. One of a common situation
+is that we already have some executable files locally, and we need to schedule a specific time, or add them
+to existing workflow by adding the new tasks. Of course, we can upload those files to target machine and run them
+in <a class="reference internal" href="tasks/shell.html"><span class="doc">shell task</span></a> by reference the absolute path of file. But if we have more than one machine
+to run task, we have to upload those files to each of them. And it is not convenient and not flexible, because
+we may need to change our resource files sometimes.</p>
+<p>One more pydolphinscheduler way is to upload those files together with <a class="reference internal" href="#workflow">workflow</a>, and use them in task to run.
+For example, you have a bash script named <code class="docutils literal notranslate"><span class="pre">echo-ten.sh</span></code> locally, and it contains some code like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/env bash</span>
+<span class="nv">max</span><span class="o">=</span><span class="m">10</span>
+<span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span><span class="nv">$max</span><span class="p">;</span><span class="w"> </span>++i<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>and you want to use it in workflow but do not want to copy-paste it to shell task parameter <code class="docutils literal notranslate"><span class="pre">command</span></code>. You could
+use this mechanism to upload it to resource center when you create workflow</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read file content</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;echo-ten.sh&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;upload_and_run&quot;</span><span class="p">,</span>
+   <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
+      <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">),</span>
+   <span class="p">],</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>And when we call <code class="code docutils literal notranslate"><span class="pre">workflow.run()</span></code> the new file named <code class="docutils literal notranslate"><span class="pre">echo-ten.sh</span></code> would be uploaded to dolphinscheduler
+resource center.</p>
+<p>After that we can use this file in our task by reference it by name, in this case we could use <a class="reference internal" href="tasks/shell.html"><span class="doc">shell task</span></a>
+to run it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We use `shell` task to run `echo-ten.sh` file</span>
+<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;run&quot;</span><span class="p">,</span>
+   <span class="n">command</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;bash </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+   <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
+      <span class="n">file_name</span>
+   <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>During workflow running, the file would be downloaded to the task runtime working directory which mean you could
+execute them. We execute file by <code class="docutils literal notranslate"><span class="pre">bash</span></code> but reference it by name directly.</p>
+<p>Please notice that we could also reference the resource file already in dolphinscheduler resource center, which
+mean we could use resource center files in task by name without upload it again. And we can upload files to
+resource center bare without workflow.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Upload file to resource center</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.resource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Resource</span>
+
+<span class="n">resource</span> <span class="o">=</span> <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;bare-create.py&quot;</span><span class="p">,</span> <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;&lt;USER-MUST-EXISTS-WITH-TENANT&gt;&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;print(&#39;Bareh create resource&#39;)&quot;</span><span class="p">)</span>
+<span class="n">resource</span><span class="o">.</span><span class="n">create_or_update_resource</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After that, we could see new file named <code class="docutils literal notranslate"><span class="pre">bare-create.py</span></code> is be created in resource center.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both parameter <code class="docutils literal notranslate"><span class="pre">resource_list</span></code> in workflow and task is list of string which mean you could upload and reference
+multiple files. For more complex usage, you could read <a class="reference internal" href="howto/multi-resources.html"><span class="doc">Upload and Use Multiple Resources</span></a>.</p>
+</div>
+</section>
+<section id="local-parameters">
+<h2>Local Parameters<a class="headerlink" href="#local-parameters" title="Link to this heading"></a></h2>
+<p>In DolphinScheduler, we can define parameter in task, aka Local Parameter.</p>
+<p>We can set parameters to variables in tasks to better manage our tasks.</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># define a parameter &quot;a&quot;, and use it in Shell task</span>
+    <span class="n">example1_input_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example1_input_params&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo $</span><span class="si">{a}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;123&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="c1"># define a parameter &quot;random_value&quot;, and pass it to the downstream tasks</span>
+    <span class="n">example2_output_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example2_output_params&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        val=$(echo $RANDOM)</span>
+<span class="s2">        echo &quot;#{setValue(random_value=$</span><span class="si">{val}</span><span class="s2">)}&quot;</span>
+<span class="s2">        echo $val</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;random_value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="c1"># use the parameter &quot;random_value&quot;, from upstream tasks</span>
+    <span class="c1"># we don&#39;t need to define input_params again if the parameter is from upstram tasks</span>
+    <span class="n">example2_input_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example2_input_params&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;echo $</span><span class="si">{random_value}</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">example2_output_params</span> <span class="o">&gt;&gt;</span> <span class="n">example2_input_params</span>
+</pre></div>
+</div>
+<p>There are two ways to define local parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Add parameter via task arguments</span>
+    <span class="n">task_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;value_VARCHAR&quot;</span><span class="p">:</span> <span class="s2">&quot;abc&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;value_INTEGER&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+            <span class="s2">&quot;value_FLOAT&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s2">&quot;value_BOOLEAN&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;value_EMPTY&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Add parameter via task instance&#39;s method</span>
+    <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_VARCHAR&quot;</span><span class="p">,</span> <span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_INTEGER&quot;</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_FLOAT&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_BOOLEAN&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_out</span><span class="p">(</span><span class="s2">&quot;value_EMPTY&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Task 1 is the same as task 2</span>
+
+    <span class="c1"># Others parameter types which cannot be converted automatically, must declare type explicitly</span>
+    <span class="n">task_3</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_3&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;123&#39; &gt;&gt; test.txt&quot;</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;value_LONG&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LONG</span><span class="p">(</span><span class="s2">&quot;1000000&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;value_DATE&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">DATE</span><span class="p">(</span><span class="s2">&quot;2022-01-02&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;value_TIME&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIME</span><span class="p">(</span><span class="s2">&quot;2022-01-01&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;value_TIMESTAMP&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIMESTAMP</span><span class="p">(</span><span class="mi">123123124125</span><span class="p">),</span>
+            <span class="s2">&quot;value_LIST&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(</span><span class="s2">&quot;123123&quot;</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;output_INTEGER&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">INTEGER</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+            <span class="s2">&quot;output_LIST&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(),</span>
+            <span class="s2">&quot;output_FILE&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">FILE</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Full example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A tutorial example set local parameter in pydolphinscheduler.</span>
+
+<span class="sd">Method 1:</span>
+<span class="sd">    task = Shell(..., input_params={&quot;input&quot;:&quot;a&quot;}, output_params={&quot;output&quot;: &quot;b&quot;})</span>
+
+<span class="sd">Method 2:</span>
+<span class="sd">    task = Shell(...)</span>
+<span class="sd">    task.add_in(&quot;input&quot;, &quot;a&quot;)</span>
+<span class="sd">    task.add_out(&quot;output&quot;, &quot;b&quot;)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.parameter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.shell</span><span class="w"> </span><span class="kn">import</span> <span class="n">Shell</span>
+
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;local_parameter_example&quot;</span><span class="p">,</span> <span class="n">release_state</span><span class="o">=</span><span class="s2">&quot;offline&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="c1"># [start parameter example]</span>
+    <span class="c1"># define a parameter &quot;a&quot;, and use it in Shell task</span>
+    <span class="n">example1_input_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example1_input_params&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo $</span><span class="si">{a}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;123&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="c1"># define a parameter &quot;random_value&quot;, and pass it to the downstream tasks</span>
+    <span class="n">example2_output_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example2_output_params&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        val=$(echo $RANDOM)</span>
+<span class="s2">        echo &quot;#{setValue(random_value=$</span><span class="si">{val}</span><span class="s2">)}&quot;</span>
+<span class="s2">        echo $val</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;random_value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="c1"># use the parameter &quot;random_value&quot;, from upstream tasks</span>
+    <span class="c1"># we don&#39;t need to define input_params again if the parameter is from upstram tasks</span>
+    <span class="n">example2_input_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example2_input_params&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;echo $</span><span class="si">{random_value}</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">example2_output_params</span> <span class="o">&gt;&gt;</span> <span class="n">example2_input_params</span>
+    <span class="c1"># [end parameter example]</span>
+
+    <span class="c1"># [start parameter define]</span>
+    <span class="c1"># Add parameter via task arguments</span>
+    <span class="n">task_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;value_VARCHAR&quot;</span><span class="p">:</span> <span class="s2">&quot;abc&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;value_INTEGER&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+            <span class="s2">&quot;value_FLOAT&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s2">&quot;value_BOOLEAN&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;value_EMPTY&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Add parameter via task instance&#39;s method</span>
+    <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_VARCHAR&quot;</span><span class="p">,</span> <span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_INTEGER&quot;</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_FLOAT&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_BOOLEAN&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_out</span><span class="p">(</span><span class="s2">&quot;value_EMPTY&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Task 1 is the same as task 2</span>
+
+    <span class="c1"># Others parameter types which cannot be converted automatically, must declare type explicitly</span>
+    <span class="n">task_3</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_3&quot;</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;123&#39; &gt;&gt; test.txt&quot;</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;value_LONG&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LONG</span><span class="p">(</span><span class="s2">&quot;1000000&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;value_DATE&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">DATE</span><span class="p">(</span><span class="s2">&quot;2022-01-02&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;value_TIME&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIME</span><span class="p">(</span><span class="s2">&quot;2022-01-01&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;value_TIMESTAMP&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIMESTAMP</span><span class="p">(</span><span class="mi">123123124125</span><span class="p">),</span>
+            <span class="s2">&quot;value_LIST&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(</span><span class="s2">&quot;123123&quot;</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;output_INTEGER&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">INTEGER</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+            <span class="s2">&quot;output_LIST&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(),</span>
+            <span class="s2">&quot;output_FILE&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">FILE</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+    <span class="c1"># [end parameter define]</span>
+</pre></div>
+</div>
+</section>
+<section id="authentication-token">
+<h2>Authentication Token<a class="headerlink" href="#authentication-token" title="Link to this heading"></a></h2>
+<p>pydolphinscheduler use token as authentication when communication with dolphinscheduler server, and we have a default auth
+token to make it out-of-box. For security reason, we highly recommend you to change your own auth token when you
+deploy in production environment or test dolphinscheduler in public network. The auth token keyword in <code class="docutils literal notranslate"><span class="pre">auth_token</span></code>
+and it can be set in multiple ways which you can read <a class="reference internal" href="config.html"><span class="doc">Configuration</span></a> section for more detail.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tutorial.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tasks/index.html" class="btn btn-neutral float-right" title="Tasks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../2.0.5/concept.html">2.0.5</a></dd>
+      <dd><a href="../2.0.6/concept.html">2.0.6</a></dd>
+      <dd><a href="../2.0.7/concept.html">2.0.7</a></dd>
+      <dd><a href="../3.0.0/concept.html">3.0.0</a></dd>
+      <dd><a href="../3.0.1/concept.html">3.0.1</a></dd>
+      <dd><a href="../3.1.0/concept.html">3.1.0</a></dd>
+      <dd><a href="../4.0.0/concept.html">4.0.0</a></dd>
+      <dd><a href="../4.0.1/concept.html">4.0.1</a></dd>
+      <dd><a href="../4.0.2/concept.html">4.0.2</a></dd>
+      <dd><a href="../4.0.3/concept.html">4.0.3</a></dd>
+      <dd><a href="../4.0.4/concept.html">4.0.4</a></dd>
+      <dd><a href="concept.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../main/concept.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

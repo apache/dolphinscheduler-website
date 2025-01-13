@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pydolphinscheduler.tasks.mlflow &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/tabs.js?v=3ee01567"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pydolphinscheduler.tasks.mlflow</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pydolphinscheduler.tasks.mlflow</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
+<span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
+<span class="c1"># distributed with this work for additional information</span>
+<span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
+<span class="c1"># to you under the Apache License, Version 2.0 (the</span>
+<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># with the License.  You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing,</span>
+<span class="c1"># software distributed under the License is distributed on an</span>
+<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># KIND, either express or implied.  See the License for the</span>
+<span class="c1"># specific language governing permissions and limitations</span>
+<span class="c1"># under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;Task mlflow.&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.task</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatchTask</span>
+
+
+<div class="viewcode-block" id="MLflowTaskType">
+<a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLflowTaskType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLflowTaskType</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MLflow task type.&quot;&quot;&quot;</span>
+
+    <span class="n">MLFLOW_PROJECTS</span> <span class="o">=</span> <span class="s2">&quot;MLflow Projects&quot;</span>
+    <span class="n">MLFLOW_MODELS</span> <span class="o">=</span> <span class="s2">&quot;MLflow Models&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="MLflowJobType">
+<a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLflowJobType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLflowJobType</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MLflow job type.&quot;&quot;&quot;</span>
+
+    <span class="n">AUTOML</span> <span class="o">=</span> <span class="s2">&quot;AutoML&quot;</span>
+    <span class="n">BASIC_ALGORITHM</span> <span class="o">=</span> <span class="s2">&quot;BasicAlgorithm&quot;</span>
+    <span class="n">CUSTOM_PROJECT</span> <span class="o">=</span> <span class="s2">&quot;CustomProject&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="MLflowDeployType">
+<a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLflowDeployType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLflowDeployType</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MLflow deploy type.&quot;&quot;&quot;</span>
+
+    <span class="n">MLFLOW</span> <span class="o">=</span> <span class="s2">&quot;MLFLOW&quot;</span>
+    <span class="n">DOCKER</span> <span class="o">=</span> <span class="s2">&quot;DOCKER&quot;</span></div>
+
+
+
+<span class="n">DEFAULT_MLFLOW_TRACKING_URI</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:5000&quot;</span>
+<span class="n">DEFAULT_VERSION</span> <span class="o">=</span> <span class="s2">&quot;master&quot;</span>
+
+
+<div class="viewcode-block" id="BaseMLflow">
+<a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.BaseMLflow">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseMLflow</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base MLflow task.&quot;&quot;&quot;</span>
+
+    <span class="n">mlflow_task_type</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;mlflow_tracking_uri&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mlflow_task_type&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">_child_task_mlflow_attr</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">MLFLOW</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mlflow_tracking_uri</span> <span class="o">=</span> <span class="n">mlflow_tracking_uri</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return task params.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_child_task_mlflow_attr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span></div>
+
+
+
+<div class="viewcode-block" id="MLflowModels">
+<a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLflowModels">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLflowModels</span><span class="p">(</span><span class="n">BaseMLflow</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task MLflow models object, declare behavior for MLflow models task to dolphinscheduler.</span>
+
+<span class="sd">    Deploy machine learning models in diverse serving environments.</span>
+
+<span class="sd">    :param name: task name</span>
+<span class="sd">    :param model_uri: Model-URI of MLflow , support models:/&lt;model_name&gt;/suffix format and runs:/ format.</span>
+<span class="sd">        See https://mlflow.org/docs/latest/tracking.html#artifact-stores</span>
+<span class="sd">    :param mlflow_tracking_uri: MLflow tracking server uri, default is http://127.0.0.1:5000</span>
+<span class="sd">    :param deploy_mode: MLflow deploy mode, support MLFLOW, DOCKER, default is DOCKER</span>
+<span class="sd">    :param port: deploy port, default is 7000</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mlflow_task_type</span> <span class="o">=</span> <span class="n">MLflowTaskType</span><span class="o">.</span><span class="n">MLFLOW_MODELS</span>
+
+    <span class="n">_child_task_mlflow_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;deploy_type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;deploy_model_key&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;deploy_port&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">model_uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">mlflow_tracking_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">DEFAULT_MLFLOW_TRACKING_URI</span><span class="p">,</span>
+        <span class="n">deploy_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">MLflowDeployType</span><span class="o">.</span><span class="n">DOCKER</span><span class="p">,</span>
+        <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mi">7000</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init mlflow models task.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deploy_type</span> <span class="o">=</span> <span class="n">deploy_mode</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deploy_model_key</span> <span class="o">=</span> <span class="n">model_uri</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deploy_port</span> <span class="o">=</span> <span class="n">port</span></div>
+
+
+
+<div class="viewcode-block" id="MLFlowProjectsCustom">
+<a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLFlowProjectsCustom">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLFlowProjectsCustom</span><span class="p">(</span><span class="n">BaseMLflow</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task MLflow projects object, declare behavior for MLflow Custom projects task to dolphinscheduler.</span>
+
+<span class="sd">    :param name: task name</span>
+<span class="sd">    :param repository: Repository url of MLflow Project, Support git address and directory on worker.</span>
+<span class="sd">        If it&#39;s in a subdirectory, We add # to support this (same as mlflow run) ,</span>
+<span class="sd">        for example https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native.</span>
+<span class="sd">    :param mlflow_tracking_uri: MLflow tracking server uri, default is http://127.0.0.1:5000</span>
+<span class="sd">    :param experiment_name: MLflow experiment name, default is empty</span>
+<span class="sd">    :param parameters: MLflow project parameters, default is empty</span>
+<span class="sd">    :param version: MLflow project version, default is master</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mlflow_task_type</span> <span class="o">=</span> <span class="n">MLflowTaskType</span><span class="o">.</span><span class="n">MLFLOW_PROJECTS</span>
+    <span class="n">mlflow_job_type</span> <span class="o">=</span> <span class="n">MLflowJobType</span><span class="o">.</span><span class="n">CUSTOM_PROJECT</span>
+
+    <span class="n">_child_task_mlflow_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;mlflow_job_type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;experiment_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mlflow_project_repository&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mlflow_project_version&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">repository</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">mlflow_tracking_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">DEFAULT_MLFLOW_TRACKING_URI</span><span class="p">,</span>
+        <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init mlflow projects task.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mlflow_project_repository</span> <span class="o">=</span> <span class="n">repository</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span> <span class="o">=</span> <span class="n">experiment_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mlflow_project_version</span> <span class="o">=</span> <span class="n">version</span></div>
+
+
+
+<div class="viewcode-block" id="MLFlowProjectsAutoML">
+<a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLFlowProjectsAutoML">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLFlowProjectsAutoML</span><span class="p">(</span><span class="n">BaseMLflow</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task MLflow projects object, declare behavior for AutoML task to dolphinscheduler.</span>
+
+<span class="sd">    :param name: task name</span>
+<span class="sd">    :param data_path: data path of MLflow Project, Support git address and directory on worker.</span>
+<span class="sd">    :param automl_tool: The AutoML tool used, currently supports autosklearn and flaml.</span>
+<span class="sd">    :param mlflow_tracking_uri: MLflow tracking server uri, default is http://127.0.0.1:5000</span>
+<span class="sd">    :param experiment_name: MLflow experiment name, default is empty</span>
+<span class="sd">    :param model_name: MLflow model name, default is empty</span>
+<span class="sd">    :param parameters: MLflow project parameters, default is empty</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mlflow_task_type</span> <span class="o">=</span> <span class="n">MLflowTaskType</span><span class="o">.</span><span class="n">MLFLOW_PROJECTS</span>
+    <span class="n">mlflow_job_type</span> <span class="o">=</span> <span class="n">MLflowJobType</span><span class="o">.</span><span class="n">AUTOML</span>
+
+    <span class="n">_child_task_mlflow_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;mlflow_job_type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;experiment_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;model_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;register_model&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;data_path&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;automl_tool&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">data_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">automl_tool</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;flaml&quot;</span><span class="p">,</span>
+        <span class="n">mlflow_tracking_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">DEFAULT_MLFLOW_TRACKING_URI</span><span class="p">,</span>
+        <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init mlflow projects task.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_path</span> <span class="o">=</span> <span class="n">data_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span> <span class="o">=</span> <span class="n">experiment_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">automl_tool</span> <span class="o">=</span> <span class="n">automl_tool</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_model</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="MLFlowProjectsBasicAlgorithm">
+<a class="viewcode-back" href="../../../tasks/mlflow.html#pydolphinscheduler.tasks.MLFlowProjectsBasicAlgorithm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLFlowProjectsBasicAlgorithm</span><span class="p">(</span><span class="n">BaseMLflow</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task MLflow projects object, declare behavior for BasicAlgorithm task to dolphinscheduler.</span>
+
+<span class="sd">    :param name: task name</span>
+<span class="sd">    :param data_path: data path of MLflow Project, Support git address and directory on worker.</span>
+<span class="sd">    :param algorithm: The selected algorithm currently supports LR, SVM, LightGBM and XGboost</span>
+<span class="sd">            based on scikit-learn form.</span>
+<span class="sd">    :param mlflow_tracking_uri: MLflow tracking server uri, default is http://127.0.0.1:5000</span>
+<span class="sd">    :param experiment_name: MLflow experiment name, default is empty</span>
+<span class="sd">    :param model_name: MLflow model name, default is empty</span>
+<span class="sd">    :param parameters: MLflow project parameters, default is empty</span>
+<span class="sd">    :param search_params: Whether to search the parameters, default is empty</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mlflow_job_type</span> <span class="o">=</span> <span class="n">MLflowJobType</span><span class="o">.</span><span class="n">BASIC_ALGORITHM</span>
+    <span class="n">mlflow_task_type</span> <span class="o">=</span> <span class="n">MLflowTaskType</span><span class="o">.</span><span class="n">MLFLOW_PROJECTS</span>
+
+    <span class="n">_child_task_mlflow_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;mlflow_job_type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;experiment_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;model_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;register_model&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;data_path&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;params&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;algorithm&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;search_params&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">data_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;lightgbm&quot;</span><span class="p">,</span>
+        <span class="n">mlflow_tracking_uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">DEFAULT_MLFLOW_TRACKING_URI</span><span class="p">,</span>
+        <span class="n">experiment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">search_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init mlflow projects task.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mlflow_tracking_uri</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_path</span> <span class="o">=</span> <span class="n">data_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span> <span class="o">=</span> <span class="n">experiment_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">search_params</span> <span class="o">=</span> <span class="n">search_params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_model</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../../../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../../../../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../../../../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../../../../3.0.0/index.html">3.0.0</a></dd>
+      <dd><a href="../../../../3.0.1/index.html">3.0.1</a></dd>
+      <dd><a href="../../../../3.1.0/index.html">3.1.0</a></dd>
+      <dd><a href="../../../../4.0.0/index.html">4.0.0</a></dd>
+      <dd><a href="../../../../4.0.1/index.html">4.0.1</a></dd>
+      <dd><a href="../../../../4.0.2/index.html">4.0.2</a></dd>
+      <dd><a href="../../../../4.0.3/index.html">4.0.3</a></dd>
+      <dd><a href="../../../../4.0.4/index.html">4.0.4</a></dd>
+      <dd><a href="mlflow.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../main/index.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Function Decorate &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/tabs.js?v=3ee01567"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Shell" href="shell.html" />
+    <link rel="prev" title="Tasks" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concept.html">Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tasks</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python Function Decorate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pydolphinscheduler.tasks.func_wrap">Dive Into</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.func_wrap._exists_other_decorator"><code class="docutils literal notranslate"><span class="pre">_exists_other_decorator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.func_wrap.task"><code class="docutils literal notranslate"><span class="pre">task()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shell.html">Shell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html">SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http.html">HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sub_workflow.html">Sub Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condition.html">Condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dependent.html">Dependent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark.html">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flink.html">Flink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_reduce.html">Map Reduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="procedure.html">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kubernetes.html">Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datax.html">Datax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sagemaker.html">SageMaker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mlflow.html">MLflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmldb.html">OpenMLDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dvc.html">DVC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Tasks</a></li>
+      <li class="breadcrumb-item active">Python Function Decorate</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tasks/func_wrap.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-function-decorate">
+<h1>Python Function Decorate<a class="headerlink" href="#python-function-decorate" title="Link to this heading"></a></h1>
+<p>A decorator covert Python function into pydolphinscheduler’s task. Python function decorator use decorate
+<code class="code docutils literal notranslate"><span class="pre">&#64;task</span></code> from <code class="code docutils literal notranslate"><span class="pre">from</span> <span class="pre">pydolphinscheduler.tasks.func_wrap</span> <span class="pre">import</span> <span class="pre">task</span></code> to convert Python function into
+a single Python task of dolphinscheduler.</p>
+<p>Because we have to covert the whole Python definition into multiple Python task in dolphinscheduler, and all of
+the seperated Python task will be executed in the different Python process, so we need to separate not only the
+python function code, but also the all variables and the imported modules related to decorated function.</p>
+<p>For example, we decorated function <code class="docutils literal notranslate"><span class="pre">depend_import</span></code> in definition</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_import</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and we can see functon <code class="docutils literal notranslate"><span class="pre">depend_import</span></code> depend on other modules, it use <code class="code docutils literal notranslate"><span class="pre">time.sleep(2)</span></code> from module <code class="code docutils literal notranslate"><span class="pre">time</span></code>
+to sleep 2 seconds. So when we want to separate this function into dolphinscheduler task, need to include the imported
+<code class="code docutils literal notranslate"><span class="pre">time</span></code> module.</p>
+<p>which means we not only post code</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">depend_import</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">depend_import</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>to dolphinscheduler Python task, we post the dependencies of this function as well, so you will see this in
+dolphinscheduler Python task to make it work. And if you use the global variables or other function in the
+decorated function, it will also including them as well.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_import</span><span class="p">():</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">depend_import</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We use third party library <a class="reference external" href="https://pypi.org/project/stmdency">stmdency</a> to get the dependencies statement
+of current function, so if you find some unexpected behavior you can report bug to <cite>apache-dolphinscheduler</cite>
+or <cite>stmdency</cite>.</p>
+</div>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># [start package_import]</span>
+<span class="c1"># Import Workflow object to define your workflow attributes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
+
+<span class="c1"># Import task Shell object cause we would create some shell tasks later</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.func_wrap</span><span class="w"> </span><span class="kn">import</span> <span class="n">task</span>
+
+<span class="c1"># [end package_import]</span>
+
+<span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;global-var&quot;</span>
+
+
+<span class="c1"># [start task_declare]</span>
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_something</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_import</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_global_var</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_local_var</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
+    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">depend_func</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+    <span class="n">foo</span><span class="p">()</span>
+
+
+<span class="c1"># [end task_declare]</span>
+
+
+<span class="c1"># [start workflow_declare]</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_decorator&quot;</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="c1"># [end workflow_declare]</span>
+
+    <span class="c1"># [start task_relation_declare]</span>
+    <span class="n">task_group</span> <span class="o">=</span> <span class="p">[</span><span class="n">depend_import</span><span class="p">(),</span> <span class="n">depend_global_var</span><span class="p">()]</span>
+    <span class="n">print_something</span><span class="p">()</span><span class="o">.</span><span class="n">set_downstream</span><span class="p">(</span><span class="n">task_group</span><span class="p">)</span>
+
+    <span class="n">task_group</span> <span class="o">&gt;&gt;</span> <span class="n">depend_local_var</span><span class="p">()</span> <span class="o">&gt;&gt;</span> <span class="n">depend_func</span><span class="p">()</span>
+    <span class="c1"># [end task_relation_declare]</span>
+
+    <span class="c1"># [start submit_or_run]</span>
+    <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+    <span class="c1"># [end submit_or_run]</span>
+</pre></div>
+</div>
+</section>
+<section id="module-pydolphinscheduler.tasks.func_wrap">
+<span id="dive-into"></span><h2>Dive Into<a class="headerlink" href="#module-pydolphinscheduler.tasks.func_wrap" title="Link to this heading"></a></h2>
+<p>Task function wrapper allows using decorator to create a task.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.func_wrap._exists_other_decorator">
+<span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.func_wrap.</span></span><span class="sig-name descname"><span class="pre">_exists_other_decorator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LambdaType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/func_wrap.html#_exists_other_decorator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.func_wrap._exists_other_decorator" title="Link to this definition"></a></dt>
+<dd><p>Check if the function has other decorators except &#64;task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> – The function which wraps by decorator <code class="docutils literal notranslate"><span class="pre">&#64;task</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.func_wrap.task">
+<span class="sig-prename descclassname"><span class="pre">pydolphinscheduler.tasks.func_wrap.</span></span><span class="sig-name descname"><span class="pre">task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LambdaType</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pydolphinscheduler/tasks/func_wrap.html#task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydolphinscheduler.tasks.func_wrap.task" title="Link to this definition"></a></dt>
+<dd><p>Decorate which covert Python functions into pydolphinscheduler task.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> – The function which wraps by decorator <code class="docutils literal notranslate"><span class="pre">&#64;task</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Tasks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="shell.html" class="btn btn-neutral float-right" title="Shell" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../../3.0.0/tasks/func_wrap.html">3.0.0</a></dd>
+      <dd><a href="../../3.0.1/tasks/func_wrap.html">3.0.1</a></dd>
+      <dd><a href="../../3.1.0/tasks/func_wrap.html">3.1.0</a></dd>
+      <dd><a href="../../4.0.0/tasks/func_wrap.html">4.0.0</a></dd>
+      <dd><a href="../../4.0.1/tasks/func_wrap.html">4.0.1</a></dd>
+      <dd><a href="../../4.0.2/tasks/func_wrap.html">4.0.2</a></dd>
+      <dd><a href="../../4.0.3/tasks/func_wrap.html">4.0.3</a></dd>
+      <dd><a href="../../4.0.4/tasks/func_wrap.html">4.0.4</a></dd>
+      <dd><a href="func_wrap.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../main/tasks/func_wrap.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

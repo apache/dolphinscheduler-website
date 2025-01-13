@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/tabs.js?v=3ee01567"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="PyDolphinScheduler" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-python">Installing Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-pydolphinscheduler">Installing PyDolphinScheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-pydolphinscheduler-in-dev-branch">Installing PyDolphinScheduler In DEV Branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#start-python-gateway-service">Start Python Gateway Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-an-example">Run an Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-s-more">What’s More</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/start.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<p>To get started with <em>PyDolphinScheduler</em> you must ensure python and pip are
+installed on your machine, if you’re already set up, you can skip straight
+to <a class="reference internal" href="#installing-pydolphinscheduler">Installing PyDolphinScheduler</a>, otherwise please continue with
+<a class="reference internal" href="#installing-python">Installing Python</a>.</p>
+<section id="installing-python">
+<h2>Installing Python<a class="headerlink" href="#installing-python" title="Link to this heading"></a></h2>
+<p>How to install <cite>python</cite> and <cite>pip</cite> depends on what operating system
+you’re using. The python wiki provides up to date
+<a class="reference external" href="https://wiki.python.org/moin/BeginnersGuide/Download">instructions for all platforms here</a>. When you enter the website
+and choose your operating system, you would be offered the choice and
+select python version. <em>PyDolphinScheduler</em> recommends using a version above
+Python 3.9 and we highly recommend installing <em>Stable Releases</em> instead
+of <em>Pre-releases</em>.</p>
+<p>After you have download and installed Python, you should open your terminal,
+type and run <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> to check whether the installation
+is correct or not. If everything is good, you could see the version in console
+without error(here is an example after Python 3.9 is installed)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>Will see detail of Python version, such as <em>Python 3.9</em></p>
+</section>
+<section id="installing-pydolphinscheduler">
+<h2>Installing PyDolphinScheduler<a class="headerlink" href="#installing-pydolphinscheduler" title="Link to this heading"></a></h2>
+<p>After Python is already installed on your machine following section
+<a class="reference internal" href="#installing-python">installing Python</a>, it is easy to install <em>PyDolphinScheduler</em> using pip.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>apache-dolphinscheduler
+</pre></div>
+</div>
+<p>The latest version of <em>PyDolphinScheduler</em> would be installed after you run the above
+command in your terminal. You could go and <a class="reference internal" href="#start-python-gateway-service">start Python Gateway Service</a> to finish
+the preparation, and then go to <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> to get your hand dirty. But if you
+want to install the unreleased version of <em>PyDolphinScheduler</em>, you could go and see
+section <a class="reference internal" href="#installing-pydolphinscheduler-in-dev-branch">installing PyDolphinScheduler in dev branch</a> for more details.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, we have released multiple pre-release packages in PyPI, you can see all released packages
+including pre-release in <a class="reference external" href="https://pypi.org/project/apache-dolphinscheduler/#history">release history</a>.
+You can fix the the package version if you want to install pre-release package, for example if
+you want to install version <cite>3.0.0-beta-2</cite> package, you can run command
+<code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">apache-dolphinscheduler==3.0.0b2</span></code>.</p>
+</div>
+</section>
+<section id="installing-pydolphinscheduler-in-dev-branch">
+<h2>Installing PyDolphinScheduler In DEV Branch<a class="headerlink" href="#installing-pydolphinscheduler-in-dev-branch" title="Link to this heading"></a></h2>
+<p>Because the project is developing and some of the features are still not released.
+If you want to try something unreleased you could install from the source code
+which we hold on GitHub</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clone Apache DolphinScheduler repository</span>
+git<span class="w"> </span>clone<span class="w"> </span>git@github.com:apache/dolphinscheduler-sdk-python.git
+<span class="c1"># Install PyDolphinScheduler in develop mode</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>After you installed <em>PyDolphinScheduler</em>, please remember <a class="reference internal" href="#start-python-gateway-service">start Python Gateway Service</a>
+which is required for <em>PyDolphinScheduler</em>’s workflow definition.</p>
+<p>Above command will clone whole dolphinscheduler source code to local, maybe you want to install the latest pydolphinscheduler
+package directly and do not care about other code(including Python gateway service code), you can execute the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Must escape the &#39;&amp;&#39; character by adding &#39;\&#39;</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;git+https://github.com/apache/dolphinscheduler-sdk-python.git#egg=apache-dolphinscheduler&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="start-python-gateway-service">
+<h2>Start Python Gateway Service<a class="headerlink" href="#start-python-gateway-service" title="Link to this heading"></a></h2>
+<p>Since <strong>PyDolphinScheduler</strong> is Python API for <a class="reference external" href="https://dolphinscheduler.apache.org">Apache DolphinScheduler</a>, it
+could define workflow and task structures, but could not run it unless you
+<a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a> and start its API server which includes
+Python gateway service in it. We only write some key steps here and you could
+go <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a> for more details</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export the environment variable to enabled python-gateway service</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">API_PYTHON_GATEWAY_ENABLED</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+<span class="c1"># Start DolphinScheduler api-server which including python gateway service</span>
+./bin/dolphinscheduler-daemon.sh<span class="w"> </span>start<span class="w"> </span>api-server
+</pre></div>
+</div>
+<p>To check whether the server is alive or not, you could run <code class="code docutils literal notranslate"><span class="pre">jps</span></code>. And
+the server is healthy if keyword <cite>ApiApplicationServer</cite> is in the console.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jps
+<span class="c1"># ....</span>
+<span class="c1"># 201472 ApiApplicationServer</span>
+<span class="c1"># ....</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please make sure you already started Python gateway service along with <cite>api-server</cite>. You can enabled it via</p>
+<ul class="simple">
+<li><p>Environment: <cite>export API_PYTHON_GATEWAY_ENABLED=”true”</cite></p></li>
+<li><p>Configuration File: Set <cite>python-gateway.enabled : true</cite> in <cite>api-server/conf/application.yaml</cite></p></li>
+</ul>
+<p>Please modify the token in your production environment and update it periodically, as this is related to your data read and write rights.</p>
+<ul class="simple">
+<li><p>Environment: <cite>export API_PYTHON_GATEWAY_AUTH_TOKEN=”GsAurNxU7A&#64;Xc”</cite></p></li>
+<li><p>Configuration File: Set <cite>python-gateway.auth-token : GsAurNxU7A&#64;Xc</cite> in <cite>api-server/conf/application.yaml</cite></p></li>
+</ul>
+</div>
+</section>
+<section id="run-an-example">
+<h2>Run an Example<a class="headerlink" href="#run-an-example" title="Link to this heading"></a></h2>
+<p>Before run an example for pydolphinscheduler, you should get the example code from its source code. You could run
+single bash command to get it</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://raw.githubusercontent.com/apache/dolphinscheduler-sdk-python/main/src/pydolphinscheduler/examples/tutorial.py
+</pre></div>
+</div>
+<p>or you could copy-paste the content from <a class="reference external" href="https://raw.githubusercontent.com/apache/dolphinscheduler-sdk-python/main/src/pydolphinscheduler/examples/tutorial.py">tutorial source code</a>. And then you could run the example in your
+terminal</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>tutorial.py
+</pre></div>
+</div>
+<p>If you want to submit your workflow to a remote API server, which means that your workflow script is different
+from the API server, you should first change pydolphinscheduler configuration and then submit the workflow script</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--init
+pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>java_gateway.address<span class="w"> </span>&lt;YOUR-API-SERVER-IP-OR-HOSTNAME&gt;
+python<span class="w"> </span>tutorial.py
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You could see more information in <a class="reference internal" href="config.html"><span class="doc">Configuration</span></a> about all the configurations pydolphinscheduler supported.</p>
+</div>
+<p>After that, you could go and see your DolphinScheduler web UI to find out a new workflow created by pydolphinscheduler,
+and the path of web UI is <cite>Project -&gt; Workflow -&gt; Workflow Definition</cite>, and you can see a workflow and workflow instance
+had been created and DAG is automatically formatted by web UI.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We have default authentication token when you first launch dolphinscheduler and pydolphinscheduler. Please change
+the parameter <code class="docutils literal notranslate"><span class="pre">auth_token</span></code> when you deploy in production environment or test dolphinscheduler in public network.
+See <a class="reference internal" href="concept.html#authentication-token"><span class="std std-ref">authentication token</span></a> for more details.</p>
+</div>
+</section>
+<section id="what-s-more">
+<h2>What’s More<a class="headerlink" href="#what-s-more" title="Link to this heading"></a></h2>
+<p>If you are not familiar with <em>PyDolphinScheduler</em>, you could go to <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> and see how it works. But
+if you already know the basic usage or concept of <em>PyDolphinScheduler</em>, you could go and play with all
+<a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a> <em>PyDolphinScheduler</em> supports, or see our <a class="reference internal" href="howto/index.html"><span class="doc">HOWTOs</span></a> about useful cases.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="PyDolphinScheduler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../2.0.5/start.html">2.0.5</a></dd>
+      <dd><a href="../2.0.6/start.html">2.0.6</a></dd>
+      <dd><a href="../2.0.7/start.html">2.0.7</a></dd>
+      <dd><a href="../3.0.0/start.html">3.0.0</a></dd>
+      <dd><a href="../3.0.1/start.html">3.0.1</a></dd>
+      <dd><a href="../3.1.0/start.html">3.1.0</a></dd>
+      <dd><a href="../4.0.0/start.html">4.0.0</a></dd>
+      <dd><a href="../4.0.1/start.html">4.0.1</a></dd>
+      <dd><a href="../4.0.2/start.html">4.0.2</a></dd>
+      <dd><a href="../4.0.3/start.html">4.0.3</a></dd>
+      <dd><a href="../4.0.4/start.html">4.0.4</a></dd>
+      <dd><a href="start.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../main/start.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

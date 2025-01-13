@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pydolphinscheduler.tasks.dvc &mdash; apache-dolphinscheduler 4.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=42d1b3bd"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/tabs.js?v=3ee01567"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            apache-dolphinscheduler
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../concept.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/index.html">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../howto/index.html">HOWTOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resources_plugin/index.html">Resources_plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">apache-dolphinscheduler</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pydolphinscheduler.tasks.dvc</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pydolphinscheduler.tasks.dvc</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Licensed to the Apache Software Foundation (ASF) under one</span>
+<span class="c1"># or more contributor license agreements.  See the NOTICE file</span>
+<span class="c1"># distributed with this work for additional information</span>
+<span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
+<span class="c1"># to you under the Apache License, Version 2.0 (the</span>
+<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># with the License.  You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing,</span>
+<span class="c1"># software distributed under the License is distributed on an</span>
+<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># KIND, either express or implied.  See the License for the</span>
+<span class="c1"># specific language governing permissions and limitations</span>
+<span class="c1"># under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;Task dvc.&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.task</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatchTask</span>
+
+
+<div class="viewcode-block" id="DvcTaskType">
+<a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.DvcTaskType">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DvcTaskType</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Constants for dvc task type.&quot;&quot;&quot;</span>
+
+    <span class="n">INIT</span> <span class="o">=</span> <span class="s2">&quot;Init DVC&quot;</span>
+    <span class="n">DOWNLOAD</span> <span class="o">=</span> <span class="s2">&quot;Download&quot;</span>
+    <span class="n">UPLOAD</span> <span class="o">=</span> <span class="s2">&quot;Upload&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="BaseDVC">
+<a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.BaseDVC">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseDVC</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for dvc task.&quot;&quot;&quot;</span>
+
+    <span class="n">dvc_task_type</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;dvc_task_type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dvc_repository&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">_child_task_dvc_attr</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">repository</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">DVC</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dvc_repository</span> <span class="o">=</span> <span class="n">repository</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return task params.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_task_custom_attr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_child_task_dvc_attr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span></div>
+
+
+
+<div class="viewcode-block" id="DVCInit">
+<a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.DVCInit">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DVCInit</span><span class="p">(</span><span class="n">BaseDVC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task DVC Init object, declare behavior for DVC Init task to dolphinscheduler.&quot;&quot;&quot;</span>
+
+    <span class="n">dvc_task_type</span> <span class="o">=</span> <span class="n">DvcTaskType</span><span class="o">.</span><span class="n">INIT</span>
+
+    <span class="n">_child_task_dvc_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dvc_store_url&quot;</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">repository</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">store_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">repository</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dvc_store_url</span> <span class="o">=</span> <span class="n">store_url</span></div>
+
+
+
+<div class="viewcode-block" id="DVCDownload">
+<a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.DVCDownload">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DVCDownload</span><span class="p">(</span><span class="n">BaseDVC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task DVC Download object, declare behavior for DVC Download task to dolphinscheduler.&quot;&quot;&quot;</span>
+
+    <span class="n">dvc_task_type</span> <span class="o">=</span> <span class="n">DvcTaskType</span><span class="o">.</span><span class="n">DOWNLOAD</span>
+
+    <span class="n">_child_task_dvc_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;dvc_load_save_data_path&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dvc_data_location&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dvc_version&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">repository</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">data_path_in_dvc_repository</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">data_path_in_worker</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">repository</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dvc_data_location</span> <span class="o">=</span> <span class="n">data_path_in_dvc_repository</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dvc_load_save_data_path</span> <span class="o">=</span> <span class="n">data_path_in_worker</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dvc_version</span> <span class="o">=</span> <span class="n">version</span></div>
+
+
+
+<div class="viewcode-block" id="DVCUpload">
+<a class="viewcode-back" href="../../../tasks/dvc.html#pydolphinscheduler.tasks.DVCUpload">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DVCUpload</span><span class="p">(</span><span class="n">BaseDVC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task DVC Upload object, declare behavior for DVC Upload task to dolphinscheduler.&quot;&quot;&quot;</span>
+
+    <span class="n">dvc_task_type</span> <span class="o">=</span> <span class="n">DvcTaskType</span><span class="o">.</span><span class="n">UPLOAD</span>
+
+    <span class="n">_child_task_dvc_attr</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;dvc_load_save_data_path&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dvc_data_location&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dvc_version&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dvc_message&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">repository</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">data_path_in_worker</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">data_path_in_dvc_repository</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">repository</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dvc_data_location</span> <span class="o">=</span> <span class="n">data_path_in_dvc_repository</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dvc_load_save_data_path</span> <span class="o">=</span> <span class="n">data_path_in_worker</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dvc_version</span> <span class="o">=</span> <span class="n">version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dvc_message</span> <span class="o">=</span> <span class="n">message</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, apache.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: 4.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../../../2.0.5/index.html">2.0.5</a></dd>
+      <dd><a href="../../../../2.0.6/index.html">2.0.6</a></dd>
+      <dd><a href="../../../../2.0.7/index.html">2.0.7</a></dd>
+      <dd><a href="../../../../3.0.0/index.html">3.0.0</a></dd>
+      <dd><a href="../../../../3.0.1/index.html">3.0.1</a></dd>
+      <dd><a href="../../../../3.1.0/index.html">3.1.0</a></dd>
+      <dd><a href="../../../../4.0.0/index.html">4.0.0</a></dd>
+      <dd><a href="../../../../4.0.1/index.html">4.0.1</a></dd>
+      <dd><a href="../../../../4.0.2/index.html">4.0.2</a></dd>
+      <dd><a href="../../../../4.0.3/index.html">4.0.3</a></dd>
+      <dd><a href="../../../../4.0.4/index.html">4.0.4</a></dd>
+      <dd><a href="dvc.html">4.1.0</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../../main/index.html">main</a></dd>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
