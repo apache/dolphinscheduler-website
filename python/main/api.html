@@ -1174,13 +1174,13 @@
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.ext_attr"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.ext_attr</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.is_cache"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.is_cache</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.local_params"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.local_params</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.process_definition_code"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.process_definition_code</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.resource_list"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.resource_list</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.task_params"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.task_params</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.timeout"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.timeout</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.timeout_flag"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.timeout_flag</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.user_name"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.user_name</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.workflow"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.workflow</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.workflow_definition_code"><code class="docutils literal notranslate"><span class="pre">SubWorkflow.workflow_definition_code</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pydolphinscheduler.tasks.Switch"><code class="docutils literal notranslate"><span class="pre">Switch</span></code></a><ul>
@@ -8705,7 +8705,7 @@ workflow.resource_plugin.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubWorkflow._task_custom_attr">
-<span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'process_definition_code'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubWorkflow._task_custom_attr" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_task_custom_attr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'workflow_definition_code'}</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubWorkflow._task_custom_attr" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -8768,14 +8768,6 @@ workflow.resource_plugin.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubWorkflow.process_definition_code">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_definition_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubWorkflow.process_definition_code" title="Link to this definition"></a></dt>
-<dd><p>Get workflow code, a wrapper for <a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.get_workflow_info" title="pydolphinscheduler.tasks.SubWorkflow.get_workflow_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_workflow_info()</span></code></a>.</p>
-<p>We can not change this function name to workflow_code, because it is a keyword used in
-dolphinscheduler itself.</p>
-</dd></dl>
-
-<dl class="py property">
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubWorkflow.resource_list">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubWorkflow.resource_list" title="Link to this definition"></a></dt>
 <dd><p>Get task define attribute <cite>resource_list</cite>.</p>
@@ -8810,6 +8802,14 @@ dolphinscheduler itself.</p>
 <dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubWorkflow.workflow">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">workflow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pydolphinscheduler.core.Workflow" title="pydolphinscheduler.core.workflow.Workflow"><span class="pre">Workflow</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubWorkflow.workflow" title="Link to this definition"></a></dt>
 <dd><p>Get attribute workflow.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pydolphinscheduler.tasks.SubWorkflow.workflow_definition_code">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">workflow_definition_code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pydolphinscheduler.tasks.SubWorkflow.workflow_definition_code" title="Link to this definition"></a></dt>
+<dd><p>Get workflow code, a wrapper for <a class="reference internal" href="#pydolphinscheduler.tasks.SubWorkflow.get_workflow_info" title="pydolphinscheduler.tasks.SubWorkflow.get_workflow_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_workflow_info()</span></code></a>.</p>
+<p>We can not change this function name to workflow_code, because it is a keyword used in
+dolphinscheduler itself.</p>
 </dd></dl>
 
 </dd></dl>
@@ -9378,7 +9378,7 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pydolphinscheduler.constants.TaskType.SUB_WORKFLOW">
-<span class="sig-name descname"><span class="pre">SUB_WORKFLOW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SUB_PROCESS'</span></em><a class="headerlink" href="#pydolphinscheduler.constants.TaskType.SUB_WORKFLOW" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SUB_WORKFLOW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SUB_WORKFLOW'</span></em><a class="headerlink" href="#pydolphinscheduler.constants.TaskType.SUB_WORKFLOW" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
