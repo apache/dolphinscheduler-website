@@ -60,4 +60,4 @@ description: some description
 4. Send the pull request contains the .md and blog.js only.
 
 Best Regards.  
- Thanks for reading :)
+ Thanks for reading :):):)
