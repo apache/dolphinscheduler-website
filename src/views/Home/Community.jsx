@@ -3,11 +3,12 @@ import {
   GithubOutlined,
   SlackOutlined,
   TwitterOutlined,
+  YoutubeOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "../../hooks";
 import "./community.scss";
-import { GITHUB_LINK, SLACK_LINK, TWITTER_LINK } from "../../config";
+import { GITHUB_LINK, SLACK_LINK, TWITTER_LINK, YOUTUBE_LINK } from "../../config";
 
 export const Community = ({ star, fork }) => {
   const { locale, t } = useTranslation();
@@ -60,6 +61,15 @@ export const Community = ({ star, fork }) => {
               size="large"
               shape="circle"
               href={TWITTER_LINK}
+              target="_blank"
+            />
+            <Button
+              className="home-community-buttons"
+              icon={<YoutubeOutlined />}
+              type="text"
+              size="large"
+              shape="circle"
+              href={YOUTUBE_LINK}
               target="_blank"
             />
           </Space>
