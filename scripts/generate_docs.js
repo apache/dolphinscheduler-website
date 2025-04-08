@@ -253,7 +253,7 @@ const parseDocsMenu = () => {
     const zhCn = [];
 
     const version = getVersion(fileInfo.name);
-    console.log("version: ", version)
+
     const enMenu = fileContent["en-us"].sidemenu;
     const zhMenu = fileContent["zh-cn"].sidemenu;
 
