@@ -1,0 +1,23 @@
+{
+  "__html": "<h1 id=\"overview\">Overview</h1>\n<p>This node is used to execute tasks of the <code>Java</code> type and supports running <code>jar</code> packages of the <code>FAT_JAR</code> and <code>NORMAL_JAR</code> types.</p>\n<h1 id=\"create-tasks\">Create Tasks</h1>\n<ul>\n<li>\n<p>Click on <code>Project Management</code> -&gt; <code>Project Name</code> -&gt; <code>Workflow Definition</code>, click on the “Create workflow” button, go to the DAG edit page:</p>\n</li>\n<li>\n<p>Drag the toolbar's Java task node to the palette.</p>\n</li>\n</ul>\n<h1 id=\"task-parameters\">Task Parameters</h1>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.0-alpha/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Module Path</td>\n<td>pick Java 9 + 's modularity feature, put all resources into-module-path, and require that the JDK version in your worker supports modularity.</td>\n</tr>\n<tr>\n<td>Main Parameter</td>\n<td>Java program main method entry parameter.</td>\n</tr>\n<tr>\n<td>Java VM Parameters</td>\n<td>JVM startup parameters.</td>\n</tr>\n<tr>\n<td>Main Class Name</td>\n<td>Fully Qualified Name of the Main Class (Optional)</td>\n</tr>\n<tr>\n<td>Main Package</td>\n<td>Select the main program package to run the application.</td>\n</tr>\n<tr>\n<td>Resources</td>\n<td>External JAR packages or other resource files that are added to the classpath or module path and can be easily retrieved in your JAVA script.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"example\">Example</h2>\n<p>There are two execution modes for Java task types, which will be demonstrated separately here.</p>\n<p>The main configuration parameters are as follows:</p>\n<ul>\n<li>Run Type</li>\n<li>Module Path</li>\n<li>Main Parameters</li>\n<li>Java VM Parameters</li>\n<li>Main Package</li>\n<li>Resources</li>\n</ul>\n<p>As shown in the figure.</p>\n<ul>\n<li>FAT_JAR</li>\n</ul>\n<p><img src=\"/img/tasks/demo/java_fat.png\" alt=\"java_task\"></p>\n<p><code>FAT_JAR</code> is also known as <code>uber-jar</code>, where the dependencies and code are contained within the same <code>jar</code>. You only need to select this one <code>jar</code>.</p>\n<ul>\n<li>NORMAL_JAR</li>\n</ul>\n<p><img src=\"/img/tasks/demo/java_normal.png\" alt=\"java_task\"></p>\n<p><code>normal1.jar</code> is the entry point of the program, and <code>normal2.jar</code> contains the required dependencies. The entry point of the program must be specified in the main program package, and all the dependencies along with the program entry <code>jar</code> files should be selected in the resource file to ensure correct execution.</p>\n<h2 id=\"note\">Note</h2>\n<ol>\n<li>For security reasons, when executing JAVA tasks, please use the environment management module to configure the JDK environment, such as <code>JAVA_HOME</code> and other environment variables.</li>\n<li>NORMAL_JAR should provide the main class name (optional), while FAT_JAR does not need to provide the main class name.</li>\n</ol>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Java"
+  ],
+  "time": "2025-4-7",
+  "structure": [
+    {
+      "title": "Example",
+      "children": [],
+      "anchor": "example"
+    },
+    {
+      "title": "Note",
+      "children": [],
+      "anchor": "note"
+    }
+  ],
+  "title": "Overview",
+  "link": "/guide/task/java"
+}

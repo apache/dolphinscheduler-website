@@ -1,0 +1,44 @@
+{
+  "__html": "<h1 id=\"集群部署(cluster)\">集群部署(Cluster)</h1>\n<p>集群部署目的是在多台机器部署 DolphinScheduler 服务，用于运行大量任务情况。</p>\n<p>如果你是新手，想要体验 DolphinScheduler 的功能，推荐使用<a href=\"/zh-cn/docs/3.3.0-alpha/guide/installation/standalone\">Standalone</a>方式体检。如果你想体验更完整的功能，或者更大的任务量，推荐使用<a href=\"/zh-cn/docs/3.3.0-alpha/guide/installation/pseudo-cluster\">伪集群部署</a>。如果你是在生产中使用，推荐使用<a href=\"/zh-cn/docs/3.3.0-alpha/guide/installation/cluster\">集群部署</a>或者<a href=\"/zh-cn/docs/3.3.0-alpha/guide/installation/kubernetes\">kubernetes</a></p>\n<h2 id=\"部署步骤\">部署步骤</h2>\n<p>集群部署(Cluster)使用的脚本和配置文件与<a href=\"/zh-cn/docs/3.3.0-alpha/guide/installation/pseudo-cluster\">伪集群部署</a>中的配置一样，所以所需要的步骤也与伪集群部署大致一样。区别就是伪集群部署针对的是一台机器，而集群部署(Cluster)需要针对多台机器，且两者“修改相关配置”步骤区别较大</p>\n<h3 id=\"前置准备工作-&amp;&amp;-准备-dolphinscheduler-启动环境\">前置准备工作 &amp;&amp; 准备 DolphinScheduler 启动环境</h3>\n<p>需要将安装包分发至每台集群的每台服务器上，并且需要在每台机器中进行配置执行<a href=\"/zh-cn/docs/3.3.0-alpha/guide/installation/pseudo-cluster\">伪集群部署</a>中的所有执行项</p>\n<blockquote>\n<p><strong><em>注意:</em></strong> 请确保每台机器的配置文件都是一致的，否则会导致集群无法正常工作\n<strong><em>注意:</em></strong> 每个服务都是无状态且互相独立的，所以可以在每台机器上部署多个服务，但是需要注意端口冲突问题\n<strong><em>注意</em></strong>: DS默认使用本地模式的目录 /tmp/dolphinscheduler 作为资源中心, 如果需要修改资源中心目录, 请修改配置文件 conf/common.properties 中 resource 的相关配置项</p>\n</blockquote>\n<h3 id=\"修改相关配置\">修改相关配置</h3>\n<p>这个是与<a href=\"/zh-cn/docs/3.3.0-alpha/guide/installation/pseudo-cluster\">伪集群部署</a>差异较大的一步，请使用 scp 等方式将配置文件分发到各台机器上，然后修改配置文件</p>\n<h2 id=\"启动-dolphinscheduler-&amp;&amp;-登录-dolphinscheduler-&amp;&amp;-启停服务\">启动 DolphinScheduler &amp;&amp; 登录 DolphinScheduler &amp;&amp; 启停服务</h2>\n<p><a href=\"/zh-cn/docs/3.3.0-alpha/guide/installation/pseudo-cluster\">与伪集群部署</a>保持一致</p>\n",
+  "location": [
+    "部署指南",
+    "集群部署(Cluster)"
+  ],
+  "time": "2025-4-7",
+  "structure": [
+    {
+      "title": "部署步骤",
+      "children": [
+        {
+          "title": "前置准备工作 &amp;&amp; 准备 DolphinScheduler 启动环境",
+          "children": [],
+          "anchor": "前置准备工作-&amp;&amp;-准备-dolphinscheduler-启动环境"
+        },
+        {
+          "title": "修改相关配置",
+          "children": [],
+          "anchor": "修改相关配置"
+        }
+      ],
+      "anchor": "部署步骤"
+    },
+    {
+      "title": "启动 DolphinScheduler &amp;&amp; 登录 DolphinScheduler &amp;&amp; 启停服务",
+      "children": [
+        {
+          "title": "前置准备工作 &amp;&amp; 准备 DolphinScheduler 启动环境",
+          "children": [],
+          "anchor": "前置准备工作-&amp;&amp;-准备-dolphinscheduler-启动环境"
+        },
+        {
+          "title": "修改相关配置",
+          "children": [],
+          "anchor": "修改相关配置"
+        }
+      ],
+      "anchor": "启动-dolphinscheduler-&amp;&amp;-登录-dolphinscheduler-&amp;&amp;-启停服务"
+    }
+  ],
+  "title": "集群部署(Cluster)",
+  "link": "/guide/installation/cluster"
+}

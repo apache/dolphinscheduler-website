@@ -1,0 +1,33 @@
+{
+  "__html": "<h1 id=\"sagemaker-node\">SageMaker Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p><a href=\"https://docs.aws.amazon.com/sagemaker/index.html\">Amazon SageMaker</a> is a fully managed machine learning service. With Amazon SageMaker, data scientists and developers can quickly build and train machine learning models, and then deploy them into a production-ready hosted environment.</p>\n<p><a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html\">Amazon SageMaker Model Building Pipelines</a> is a tool for building machine learning pipelines that take advantage of direct SageMaker integration.</p>\n<p>For users using big data and machine learning, SageMaker task plugin help users connect big data workflows with SageMaker usage scenarios.</p>\n<p>DolphinScheduler SageMaker task plugin features are as follows:</p>\n<ul>\n<li>Start a SageMaker pipeline execution. Continuously get the execution status until the pipeline completes execution.</li>\n</ul>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the &quot;Create Workflow&quot; button to enter the\nDAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/sagemaker.png\" width=\"15\"/> task node to canvas.</li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.0-alpha/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<p>Here are some specific parameters for the SagaMaker plugin:</p>\n<ul>\n<li><strong>SagemakerRequestJson</strong>: Request parameters of StartPipelineExecution，see also <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StartPipelineExecution.html\">AWS API</a></li>\n</ul>\n<p>The task plugin are shown as follows:</p>\n<p><img src=\"/img/tasks/demo/sagemaker_pipeline.png\" alt=\"sagemaker_pipeline\"></p>\n<h2 id=\"environment-to-prepare\">Environment to prepare</h2>\n<p>Some AWS configuration is required, modify a field in file <code>aws.yaml</code></p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">sagemaker:</span>\n  <span class=\"hljs-comment\"># The AWS credentials provider type. support: AWSStaticCredentialsProvider, InstanceProfileCredentialsProvider</span>\n  <span class=\"hljs-comment\"># AWSStaticCredentialsProvider: use the access key and secret key to authenticate</span>\n  <span class=\"hljs-comment\"># InstanceProfileCredentialsProvider: use the IAM role to authenticate</span>\n  <span class=\"hljs-attr\">credentials.provider.type:</span> <span class=\"hljs-string\">AWSStaticCredentialsProvider</span>\n  <span class=\"hljs-attr\">access.key.id:</span> <span class=\"hljs-string\">&lt;access.key.id&gt;</span>\n  <span class=\"hljs-attr\">access.key.secret:</span> <span class=\"hljs-string\">&lt;access.key.secret&gt;</span>\n  <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">&lt;region&gt;</span>\n  <span class=\"hljs-attr\">endpoint:</span> <span class=\"hljs-string\">&lt;endpoint&gt;</span>\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "SageMaker"
+  ],
+  "time": "2025-4-7",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Example",
+      "children": [],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Environment to prepare",
+      "children": [],
+      "anchor": "environment-to-prepare"
+    }
+  ],
+  "title": "SageMaker Node",
+  "link": "/guide/task/sagemaker"
+}

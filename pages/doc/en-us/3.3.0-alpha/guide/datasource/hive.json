@@ -1,0 +1,33 @@
+{
+  "__html": "<h1 id=\"hive\">HIVE</h1>\n<h2 id=\"use-hiveserver2\">Use HiveServer2</h2>\n<p><img src=\"/img/new_ui/dev/datasource/hive.png\" alt=\"hive\"></p>\n<h2 id=\"datasource-parameters\">Datasource Parameters</h2>\n<table>\n<thead>\n<tr>\n<th><strong>Datasource</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Datasource</td>\n<td>Select HIVE.</td>\n</tr>\n<tr>\n<td>Datasource name</td>\n<td>Enter the name of the DataSource.</td>\n</tr>\n<tr>\n<td>Description</td>\n<td>Enter a description of the DataSource.</td>\n</tr>\n<tr>\n<td>IP/Host Name</td>\n<td>Enter the HIVE service IP.</td>\n</tr>\n<tr>\n<td>Port</td>\n<td>Enter the HIVE service port.</td>\n</tr>\n<tr>\n<td>Username</td>\n<td>Set the username for HIVE connection.</td>\n</tr>\n<tr>\n<td>Password</td>\n<td>Set the password for HIVE connection.</td>\n</tr>\n<tr>\n<td>Database name</td>\n<td>Enter the database name of the HIVE connection.</td>\n</tr>\n<tr>\n<td>Jdbc connection parameters</td>\n<td>Parameter settings for HIVE connection, in JSON format.</td>\n</tr>\n</tbody>\n</table>\n<blockquote>\n<p>NOTICE: If you wish to execute multiple HIVE SQL in the same session, you could set <code>support.hive.oneSession = true</code> in <code>common.properties</code>.\nIt is helpful when you try to set env variables before running HIVE SQL. Default value of <code>support.hive.oneSession</code> is <code>false</code> and multi-SQLs run in different sessions.</p>\n</blockquote>\n<h2 id=\"use-hiveserver2-ha-zookeeper\">Use HiveServer2 HA ZooKeeper</h2>\n<p><img src=\"/img/new_ui/dev/datasource/hiveserver2.png\" alt=\"hive-server2\"></p>\n<p>NOTICE: If Kerberos is disabled, ensure the parameter <code>hadoop.security.authentication.startup.state</code> is false, and parameter <code>java.security.krb5.conf.path</code> value sets null.\nIf <strong>Kerberos</strong> is enabled, needs to set the following parameters  in <code>common.properties</code>:</p>\n<pre><code class=\"language-conf\"># whether to startup kerberos\nhadoop.security.authentication.startup.state=true\n\n# java.security.krb5.conf path\njava.security.krb5.conf.path=/opt/krb5.conf\n\n# login user from keytab username\nlogin.user.keytab.username=hdfs-mycluster@ESZ.COM\n\n# login user from keytab path\nlogin.user.keytab.path=/opt/hdfs.headless.keytab\n</code></pre>\n<h2 id=\"native-supported\">Native Supported</h2>\n<p>Yes, could use this datasource by default.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Data Source",
+    "HIVE"
+  ],
+  "time": "2025-4-7",
+  "structure": [
+    {
+      "title": "Use HiveServer2",
+      "children": [],
+      "anchor": "use-hiveserver2"
+    },
+    {
+      "title": "Datasource Parameters",
+      "children": [],
+      "anchor": "datasource-parameters"
+    },
+    {
+      "title": "Use HiveServer2 HA ZooKeeper",
+      "children": [],
+      "anchor": "use-hiveserver2-ha-zookeeper"
+    },
+    {
+      "title": "Native Supported",
+      "children": [],
+      "anchor": "native-supported"
+    }
+  ],
+  "title": "HIVE",
+  "link": "/guide/datasource/hive"
+}

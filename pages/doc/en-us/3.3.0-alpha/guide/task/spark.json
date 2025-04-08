@@ -1,0 +1,523 @@
+{
+  "__html": "<h1 id=\"spark-node\">Spark Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Spark task type for executing Spark application. When executing the Spark task, the worker will submits a job to the Spark cluster by following commands:</p>\n<p>(1) <code>spark submit</code> method to submit tasks. See <a href=\"https://archive.apache.org/dist/spark/docs/3.2.1/#running-the-examples-and-shell\">spark-submit</a> for more details.</p>\n<p>(2) <code>spark sql</code> method to submit tasks. See <a href=\"https://archive.apache.org/dist/spark/docs/3.2.1/api/sql/index.html\">spark sql</a> for more details.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/spark.png\" width=\"15\"/> to the canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.0-alpha/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Program type</td>\n<td>Supports Java, Scala, Python, and SQL.</td>\n</tr>\n<tr>\n<td>The class of main function</td>\n<td>The <strong>full path</strong> of Main Class, the entry point of the Spark program.</td>\n</tr>\n<tr>\n<td>Master</td>\n<td>The The master URL for the cluster.</td>\n</tr>\n<tr>\n<td>Main jar package</td>\n<td>The Spark jar package (upload by Resource Center).</td>\n</tr>\n<tr>\n<td>SQL scripts</td>\n<td>SQL statements in .sql files that Spark sql runs.</td>\n</tr>\n<tr>\n<td>Deployment mode</td>\n<td><ul><li>spark submit supports three modes: cluster, client and local.</li><li>spark sql supports client and local modes.</li></ul></td>\n</tr>\n<tr>\n<td>Namespace (cluster)</td>\n<td>Select the namespace, submit application to native kubernetes, instead, submit to yarn cluster (default).</td>\n</tr>\n<tr>\n<td>Task name</td>\n<td>Spark task name.</td>\n</tr>\n<tr>\n<td>Driver core number</td>\n<td>Set the number of Driver core, which can be set according to the actual production environment.</td>\n</tr>\n<tr>\n<td>Driver memory size</td>\n<td>Set the size of Driver memories, which can be set according to the actual production environment.</td>\n</tr>\n<tr>\n<td>Number of Executor</td>\n<td>Set the number of Executor, which can be set according to the actual production environment.</td>\n</tr>\n<tr>\n<td>Executor memory size</td>\n<td>Set the size of Executor memories, which can be set according to the actual production environment.</td>\n</tr>\n<tr>\n<td>Yarn queue</td>\n<td>Set the yarn queue, use <code>default</code> queue by default.</td>\n</tr>\n<tr>\n<td>Main program parameters</td>\n<td>Set the input parameters of the Spark program and support the substitution of custom parameter variables.</td>\n</tr>\n<tr>\n<td>Optional parameters</td>\n<td>Set the spark command options, such as <code>--jars</code>, <code>--files</code>,<code> --archives</code>, <code>--conf</code>.</td>\n</tr>\n<tr>\n<td>Resource</td>\n<td>Appoint resource files in the <code>Resource</code> if parameters refer to them.</td>\n</tr>\n<tr>\n<td>Custom parameter</td>\n<td>It is a local user-defined parameter for Spark, and will replace the content with <code>${variable}</code> in the script.</td>\n</tr>\n<tr>\n<td>Predecessor task</td>\n<td>Selecting a predecessor task for the current task, will set the selected predecessor task as upstream of the current task.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"spark-submit\">spark submit</h3>\n<h4 id=\"execute-the-wordcount-program\">Execute the WordCount Program</h4>\n<p>This is a common introductory case in the big data ecosystem, which often apply to computational frameworks such as MapReduce, Flink and Spark. The main purpose is to count the number of identical words in the input text. (Flink's releases attach this example job)</p>\n<h5 id=\"configure-the-spark-environment-in-dolphinscheduler\">Configure the Spark Environment in DolphinScheduler</h5>\n<p>If you are using the Spark task type in a production environment, it is necessary to configure the required environment first. The following is the configuration file: <code>bin/env/dolphinscheduler_env.sh</code>.</p>\n<p><img src=\"/img/tasks/demo/spark_task01.png\" alt=\"spark_configure\"></p>\n<h5 id=\"upload-the-main-package\">Upload the Main Package</h5>\n<p>When using the Spark task node, you need to upload the jar package to the Resource Centre for the execution, refer to the <a href=\"/en-us/docs/3.3.0-alpha/guide/resource/configuration\">resource center</a>.</p>\n<p>After finish the Resource Centre configuration, upload the required target files directly by dragging and dropping.</p>\n<p><img src=\"/img/tasks/demo/upload_jar.png\" alt=\"resource_upload\"></p>\n<h5 id=\"configure-spark-nodes\">Configure Spark Nodes</h5>\n<p>Configure the required content according to the parameter descriptions above.</p>\n<p><img src=\"/img/tasks/demo/spark_task02.png\" alt=\"demo-spark-simple\"></p>\n<h3 id=\"spark-sql\">Spark sql</h3>\n<h4 id=\"execute-ddl-and-dml-statements\">Execute DDL and DML statements</h4>\n<p>This case is to create a view table terms and write three rows of data and a table wc in parquet format and determine whether the table exists. The program type is SQL. Insert the data of the view table terms into the table wc in parquet format.</p>\n<p><img src=\"/img/tasks/demo/spark_sql.png\" alt=\"spark_sql\"></p>\n<h2 id=\"note\">Note</h2>\n<p>JAVA and Scala are only used for identification, and there is no difference when you use the Spark task. If your application is developed by Python, you could just ignore the parameter <strong>Main Class</strong> in the form. Parameter <strong>SQL scripts</strong> is only for SQL type and could be ignored in JAVA, Scala and Python.</p>\n<p>SQL does not currently support cluster mode.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Spark"
+  ],
+  "time": "2025-4-7",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "Spark sql",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "Spark sql",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "Spark sql",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "Spark sql",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Note",
+      "children": [
+        {
+          "title": "spark submit",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-submit"
+        },
+        {
+          "title": "Spark sql",
+          "children": [
+            {
+              "title": "Execute the WordCount Program",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-the-wordcount-program"
+            },
+            {
+              "title": "Execute DDL and DML statements",
+              "children": [
+                {
+                  "title": "Configure the Spark Environment in DolphinScheduler",
+                  "children": [],
+                  "anchor": "configure-the-spark-environment-in-dolphinscheduler"
+                },
+                {
+                  "title": "Upload the Main Package",
+                  "children": [],
+                  "anchor": "upload-the-main-package"
+                },
+                {
+                  "title": "Configure Spark Nodes",
+                  "children": [],
+                  "anchor": "configure-spark-nodes"
+                }
+              ],
+              "anchor": "execute-ddl-and-dml-statements"
+            }
+          ],
+          "anchor": "spark-sql"
+        }
+      ],
+      "anchor": "note"
+    }
+  ],
+  "title": "Spark Node",
+  "link": "/guide/task/spark"
+}

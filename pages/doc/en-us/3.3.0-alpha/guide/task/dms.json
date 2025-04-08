@@ -1,0 +1,77 @@
+{
+  "__html": "<h1 id=\"dms-node\">DMS Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p><a href=\"https://aws.amazon.com/cn/dms\">AWS Database Migration Service (AWS DMS)</a> helps you migrate databases to AWS quickly and securely.\nThe source database remains fully operational during the migration, minimizing downtime to applications that rely on the database.\nThe AWS Database Migration Service can migrate your data to and from the most widely used commercial and open-source databases.</p>\n<p>DMS task plugin can help users to create and start DMS tasks in DolphinScheduler more conveniently.</p>\n<p>Contains two features:</p>\n<ul>\n<li>Create DMS task and start DMS task</li>\n<li>Restart DMS task</li>\n</ul>\n<p>We can create DMS task and start DMS task in two ways:</p>\n<ul>\n<li>Use interface</li>\n<li>Use JSON data</li>\n</ul>\n<p>DolphinScheduler will track the status of the DMS task and set the status to successfully completed when the DMS task is completed. Except for the CDC task without end time.</p>\n<p>So, if the <code>migrationType</code> is <code>cdc</code> or <code>full-load-and-cdc</code>, <code>cdcStopPosition</code> not be set, DolphinScheduler will set the status to successfully after the DMS task starts successfully.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag <img src=\"/img/tasks/icons/dms.png\" width=\"15\"/> from the toolbar to the canvas.</li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<p>The task plugin picture is as follows</p>\n<p><strong>Create and start DMS task by interface</strong></p>\n<p><img src=\"/img/tasks/demo/dms_create_and_start.png\" alt=\"dms\"></p>\n<p><strong>Restart DMS task by interface</strong></p>\n<p><img src=\"/img/tasks/demo/dms_restart.png\" alt=\"dms\"></p>\n<p><strong>Create and start DMS task by JSON data</strong></p>\n<p><img src=\"/img/tasks/demo/dms_create_and_start_json.png\" alt=\"dms\"></p>\n<p><strong>Restart DMS task by JSON data</strong></p>\n<p><img src=\"/img/tasks/demo/dms_restart_json.png\" alt=\"dms\"></p>\n<h3 id=\"first,-introduce-some-general-parameters-of-dolphinscheduler\">First, introduce some general parameters of DolphinScheduler</h3>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.0-alpha/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<h3 id=\"here-are-some-specific-parameters-for-the-dms-plugin\">Here are some specific parameters for the DMS plugin</h3>\n<ul>\n<li><strong>isRestartTask</strong>：Whether to restart the task. If it is true, the task will be restarted. If it is false, the task will be created and started.</li>\n<li><strong>isJsonFormat</strong>：Whether to use JSON data to create and start the task. If it is true, the task will be created and started by JSON data. If it is false, the task will be created and started by interface.</li>\n<li><strong>jsonData</strong>：Json data for creating and starting the task. Only when <code>isJsonFormat</code> is true, this parameter is valid.</li>\n</ul>\n<p>Parameters of creating and starting the task by interface</p>\n<ul>\n<li><strong>migrationType</strong>：The type of migration. The value can be full-load, cdc, full-load-and-cdc.</li>\n<li><strong>replicationTaskIdentifier</strong>：The name of the task.</li>\n<li><strong>replicationInstanceArn</strong>：The ARN of the replication instance.</li>\n<li><strong>sourceEndpointArn</strong>：The ARN of the source endpoint.</li>\n<li><strong>targetEndpointArn</strong>：The ARN of the target endpoint.</li>\n<li><strong>tableMappings</strong>：The mapping of the table.</li>\n</ul>\n<p>Parameters of restarting the task by interface</p>\n<ul>\n<li><strong>replicationTaskArn</strong>：The ARN of the task.</li>\n</ul>\n<h2 id=\"environment-to-prepare\">Environment to prepare</h2>\n<p>Some AWS configuration is required, modify a field in file <code>aws.yaml</code></p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">dms:</span>\n  <span class=\"hljs-comment\"># The AWS credentials provider type. support: AWSStaticCredentialsProvider, InstanceProfileCredentialsProvider</span>\n  <span class=\"hljs-comment\"># AWSStaticCredentialsProvider: use the access key and secret key to authenticate</span>\n  <span class=\"hljs-comment\"># InstanceProfileCredentialsProvider: use the IAM role to authenticate</span>\n  <span class=\"hljs-attr\">credentials.provider.type:</span> <span class=\"hljs-string\">AWSStaticCredentialsProvider</span>\n  <span class=\"hljs-attr\">access.key.id:</span> <span class=\"hljs-string\">&lt;access.key.id&gt;</span>\n  <span class=\"hljs-attr\">access.key.secret:</span> <span class=\"hljs-string\">&lt;access.key.secret&gt;</span>\n  <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">&lt;region&gt;</span>\n  <span class=\"hljs-attr\">endpoint:</span> <span class=\"hljs-string\">&lt;endpoint&gt;</span>\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Amazon DMS"
+  ],
+  "time": "2025-4-7",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "First, introduce some general parameters of DolphinScheduler",
+          "children": [],
+          "anchor": "first,-introduce-some-general-parameters-of-dolphinscheduler"
+        },
+        {
+          "title": "Here are some specific parameters for the DMS plugin",
+          "children": [],
+          "anchor": "here-are-some-specific-parameters-for-the-dms-plugin"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "First, introduce some general parameters of DolphinScheduler",
+          "children": [],
+          "anchor": "first,-introduce-some-general-parameters-of-dolphinscheduler"
+        },
+        {
+          "title": "Here are some specific parameters for the DMS plugin",
+          "children": [],
+          "anchor": "here-are-some-specific-parameters-for-the-dms-plugin"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "First, introduce some general parameters of DolphinScheduler",
+          "children": [],
+          "anchor": "first,-introduce-some-general-parameters-of-dolphinscheduler"
+        },
+        {
+          "title": "Here are some specific parameters for the DMS plugin",
+          "children": [],
+          "anchor": "here-are-some-specific-parameters-for-the-dms-plugin"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Environment to prepare",
+      "children": [
+        {
+          "title": "First, introduce some general parameters of DolphinScheduler",
+          "children": [],
+          "anchor": "first,-introduce-some-general-parameters-of-dolphinscheduler"
+        },
+        {
+          "title": "Here are some specific parameters for the DMS plugin",
+          "children": [],
+          "anchor": "here-are-some-specific-parameters-for-the-dms-plugin"
+        }
+      ],
+      "anchor": "environment-to-prepare"
+    }
+  ],
+  "title": "DMS Node",
+  "link": "/guide/task/dms"
+}

@@ -1,0 +1,68 @@
+{
+  "__html": "<h1 id=\"apache-zeppelin\">Apache Zeppelin</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Use <code>Zeppelin Task</code> to create a zeppelin-type task and execute zeppelin notebook paragraphs. When the worker executes <code>Zeppelin Task</code>,\nit will call <code>Zeppelin Client API</code> to trigger zeppelin notebook paragraph. Click <a href=\"https://zeppelin.apache.org/\">here</a> for details about <code>Apache Zeppelin Notebook</code>.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag <img src=\"/img/tasks/icons/zeppelin.png\" width=\"15\"/> from the toolbar to the canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.0-alpha/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Zeppelin Note ID</td>\n<td>The unique note id for a zeppelin notebook note.</td>\n</tr>\n<tr>\n<td>Zeppelin Paragraph ID</td>\n<td>The unique paragraph id for a zeppelin notebook paragraph. If you want to schedule a whole note at a time, leave this field blank.</td>\n</tr>\n<tr>\n<td>Zeppelin Production Note Directory</td>\n<td>The directory for cloned note in production mode.</td>\n</tr>\n<tr>\n<td>Zeppelin username</td>\n<td>the login username of your zeppelin server .</td>\n</tr>\n<tr>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>Zeppelin password</td>\n<td>the login password of your zeppelin server .</td>\n</tr>\n<tr>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>Zeppelin Rest Endpoint</td>\n<td>The REST endpoint of your zeppelin server .</td>\n</tr>\n<tr>\n<td>Zeppelin Parameters</td>\n<td>Parameters in json format used for zeppelin dynamic form.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"production-(clone)-mode\">Production (Clone) Mode</h2>\n<ul>\n<li>Fill in the optional <code>Zeppelin Production Note Directory</code> parameter to enable <code>Production Mode</code>.</li>\n<li>In <code>Production Mode</code>, the target note gets copied to the <code>Zeppelin Production Note Directory</code> you choose.\n<code>Zeppelin Task Plugin</code> will execute the cloned note instead of the original one. Once execution done,\n<code>Zeppelin Task Plugin</code> will delete the cloned note automatically.\nTherefore, it increases the stability as the modification to a running note triggered by <code>Dolphin Scheduler</code>\nwill not affect the production task.</li>\n<li>If you leave the <code>Zeppelin Production Note Directory</code> empty, <code>Zeppelin Task Plugin</code> will execute the original note.</li>\n<li>'Zeppelin Production Note Directory' should both start and end with a <code>slash</code>. e.g. <code>/production_note_directory/</code></li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"zeppelin-paragraph-task-example\">Zeppelin Paragraph Task Example</h3>\n<p>This example illustrates how to create a zeppelin paragraph task node.</p>\n<p><img src=\"/img/tasks/demo/zeppelin.png\" alt=\"demo-zeppelin-paragraph\"></p>\n<p><img src=\"/img/tasks/demo/zeppelin_id.png\" alt=\"demo-get-zeppelin-id\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Apache Zeppelin"
+  ],
+  "time": "2025-4-7",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph Task Example",
+          "children": [],
+          "anchor": "zeppelin-paragraph-task-example"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph Task Example",
+          "children": [],
+          "anchor": "zeppelin-paragraph-task-example"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph Task Example",
+          "children": [],
+          "anchor": "zeppelin-paragraph-task-example"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Production (Clone) Mode",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph Task Example",
+          "children": [],
+          "anchor": "zeppelin-paragraph-task-example"
+        }
+      ],
+      "anchor": "production-(clone)-mode"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Zeppelin Paragraph Task Example",
+          "children": [],
+          "anchor": "zeppelin-paragraph-task-example"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "Apache Zeppelin",
+  "link": "/guide/task/zeppelin"
+}

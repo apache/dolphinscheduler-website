@@ -1,0 +1,23 @@
+{
+  "__html": "<h1 id=\"内置参数\">内置参数</h1>\n<h2 id=\"基础内置参数\">基础内置参数</h2>\n<table>\n<thead>\n<tr>\n<th>变量名</th>\n<th>声明方式</th>\n<th>含义</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>system.biz.date</td>\n<td><code>${system.biz.date}</code></td>\n<td>日常调度实例定时的定时时间前一天，格式为 yyyyMMdd</td>\n</tr>\n<tr>\n<td>system.biz.curdate</td>\n<td><code>${system.biz.curdate}</code></td>\n<td>日常调度实例定时的定时时间，格式为 yyyyMMdd</td>\n</tr>\n<tr>\n<td>system.datetime</td>\n<td><code>${system.datetime}</code></td>\n<td>日常调度实例定时的定时时间，格式为 yyyyMMddHHmmss</td>\n</tr>\n<tr>\n<td>system.task.execute.path</td>\n<td><code>${system.task.execute.path}</code></td>\n<td>当前任务执行的绝对路径</td>\n</tr>\n<tr>\n<td>system.task.instance.id</td>\n<td><code>${system.task.instance.id}</code></td>\n<td>当前任务实例的ID</td>\n</tr>\n<tr>\n<td>system.task.definition.name</td>\n<td><code>${system.task.definition.name}</code></td>\n<td>当前任务所属任务定义的名称</td>\n</tr>\n<tr>\n<td>system.task.definition.code</td>\n<td><code>${system.task.definition.code}</code></td>\n<td>当前任务所属任务定义的code</td>\n</tr>\n<tr>\n<td>system.workflow.instance.id</td>\n<td><code>${system.workflow.instance.id}</code></td>\n<td>当前任务所属工作流实例ID</td>\n</tr>\n<tr>\n<td>system.workflow.definition.name</td>\n<td><code>${system.workflow.definition.name}</code></td>\n<td>当前任务所属工作流定义的名称</td>\n</tr>\n<tr>\n<td>system.workflow.definition.code</td>\n<td><code>${system.workflow.definition.code}</code></td>\n<td>当前任务所属工作流定义的code</td>\n</tr>\n<tr>\n<td>system.project.name</td>\n<td><code>${system.project.name}</code></td>\n<td>当前任务所在项目的名称</td>\n</tr>\n<tr>\n<td>system.project.code</td>\n<td><code>${system.project.code}</code></td>\n<td>当前任务所在项目的code</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"衍生内置参数\">衍生内置参数</h2>\n<ul>\n<li>\n<p>支持代码中自定义变量名，声明方式：${变量名}。可以是引用 &quot;系统参数&quot;</p>\n</li>\n<li>\n<p>我们定义这种基准变量为 $[...] 格式的，$[yyyyMMddHHmmss] 是可以任意分解组合的，比如：$[yyyyMMdd], $[HHmmss], $[yyyy-MM-dd] 等</p>\n</li>\n<li>\n<p>也可以通过以下两种方式：</p>\n<p>1.使用add_months()函数，该函数用于加减月份，\n第一个入口参数为[yyyyMMdd]，表示返回时间的格式\n第二个入口参数为月份偏移量，表示加减多少个月</p>\n<ul>\n<li>后 N 年：$[add_months(yyyyMMdd,12*N)]</li>\n<li>前 N 年：$[add_months(yyyyMMdd,-12*N)]</li>\n<li>后 N 月：$[add_months(yyyyMMdd,N)]</li>\n<li>前 N 月：$[add_months(yyyyMMdd,-N)]</li>\n</ul>\n<hr>\n<p>2.直接加减数字\n在自定义格式后直接“+/-”数字</p>\n<ul>\n<li>后 N 周：$[yyyyMMdd+7*N]</li>\n<li>前 N 周：$[yyyyMMdd-7*N]</li>\n<li>后 N 天：$[yyyyMMdd+N]</li>\n<li>前 N 天：$[yyyyMMdd-N]</li>\n<li>后 N 小时：$[HHmmss+N/24]</li>\n<li>前 N 小时：$[HHmmss-N/24]</li>\n<li>后 N 分钟：$[HHmmss+N/24/60]</li>\n<li>前 N 分钟：$[HHmmss-N/24/60]</li>\n</ul>\n<hr>\n<p>3.业务属性方式\n在自定义格式后直接“+/-”数字\n支持日志格式：所有日期表达式，例如：yyyy-MM-dd/yyyyMMddHHmmss</p>\n<ul>\n<li>当天：$[this_day(yyyy-MM-dd)]，如：2022-08-26 =&gt; 2022-08-26</li>\n<li>昨天：$[last_day(yyyy-MM-dd)]，如：2022-08-26 =&gt; 2022-08-25</li>\n<li>年的第N周，以周一为起点：$[year_week(yyyy-MM-dd)]，如：2022-08-26 =&gt; 2022-34</li>\n<li>年的第N周，以周N为起点：$[year_week(yyyy-MM-dd,N)]，如：N=5时 2022-08-26 =&gt; 2022-35</li>\n<li>前(-)/后(+) N 月第一天：$[month_first_day(yyyy-MM-dd,-N)]，如：N=1时 2022-08-26 =&gt; 2022-07-01</li>\n<li>前(-)/后(+) N 月最后一天：$[month_last_day(yyyy-MM-dd,-N)]，如：N=1时 2022-08-28 =&gt; 2022-07-31</li>\n<li>前(-)/后(+) N 周的周一：$[week_first_day(yyyy-MM-dd,-N)]，如：N=1 2022-08-26 =&gt; 2022-08-15</li>\n<li>前(-)/后(+) N 周的周日：$[week_last_day(yyyy-MM-dd,-N)]，如：N=1 2022-08-26 =&gt; 2022-08-21</li>\n</ul>\n</li>\n</ul>\n",
+  "location": [
+    "功能介绍",
+    "参数",
+    "内置参数"
+  ],
+  "time": "2025-4-7",
+  "structure": [
+    {
+      "title": "基础内置参数",
+      "children": [],
+      "anchor": "基础内置参数"
+    },
+    {
+      "title": "衍生内置参数",
+      "children": [],
+      "anchor": "衍生内置参数"
+    }
+  ],
+  "title": "内置参数",
+  "link": "/guide/parameter/built-in"
+}

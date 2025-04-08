@@ -1,0 +1,24 @@
+{
+  "__html": "<h1 id=\"http告警\">HTTP告警</h1>\n<p>如果您需要使用到<code>Http</code>（GET或POST）进行告警，请在告警实例管理里创建告警实例，选择<code>Http</code>插件。</p>\n<h2 id=\"参数配置\">参数配置</h2>\n<table>\n<thead>\n<tr>\n<th><strong>参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>URL</td>\n<td>访问的<code>Http</code>连接URL,需要包含协议、Host、路径，如果是GET方法可以添加参数</td>\n</tr>\n<tr>\n<td>请求方式</td>\n<td>当前支持<code>GET</code>和<code>POST</code>以及<code>PUT</code>三种请求方式</td>\n</tr>\n<tr>\n<td>请求头(Headers)</td>\n<td><code>Http</code>请求的完整请求头，以JSON为格式(注意不包含Content-Type)，非必填</td>\n</tr>\n<tr>\n<td>请求体(Body)</td>\n<td>Http`请求的完整请求体，以JSON为格式，非必填</td>\n</tr>\n<tr>\n<td>Content-Type</td>\n<td>请求体的<code>Content-Type</code>，默认为<code>application/json</code></td>\n</tr>\n</tbody>\n</table>\n<blockquote>\n<p>告警消息，支持变量<code>$msg</code>，可在<code>URL</code>,<code>请求头</code>,<code>请求体</code>中使用，非必填。</p>\n</blockquote>\n<h3 id=\"get-http告警\">GET Http告警</h3>\n<p>GET <code>Http</code>告警指将告警结果作为参数通过<code>Http</code> GET方法进行请求。\n下图是GET告警配置的示例:</p>\n<p><img src=\"/img/alert/http-alert-example.png\" alt=\"http-alert-msg-config\"></p>\n",
+  "location": [
+    "功能介绍",
+    "告警",
+    "Http告警"
+  ],
+  "time": "2025-4-7",
+  "structure": [
+    {
+      "title": "参数配置",
+      "children": [
+        {
+          "title": "GET Http告警",
+          "children": [],
+          "anchor": "get-http告警"
+        }
+      ],
+      "anchor": "参数配置"
+    }
+  ],
+  "title": "HTTP告警",
+  "link": "/guide/alert/http"
+}
