@@ -26,8 +26,21 @@ const getVersion = (name) => {
   if (name === "docsdev") {
     return "dev";
   }
-  const result = name.match(/(\d+)-(\d+)-(\d+)/);
-  return result[1] + "." + result[2] + "." + result[3];
+  // docs3-3-0
+  const regex1 = new RegExp(/(\d+)-(\d+)-(\d+)/);
+
+  // docs3-3-0-alpha
+  const regex2 = new RegExp(/(\d+)-(\d+)-(\d+)-(\w+)/);
+
+  const result = name.match(regex2) ? name.match(regex2) : name.match(regex1)
+
+  if (result.length === 4) {
+    return result[1] + "." + result[2] + "." + result[3];
+  } else if (result.length === 5) {
+    return result[1] + "." + result[2] + "." + result[3] + "-" + result[4];
+  } else {
+    throw new Error("Invalid version format");
+  }
 };
 
 const formatFile = (filePath) => {
