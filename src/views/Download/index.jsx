@@ -37,7 +37,7 @@ const Download = () => {
               className="download-item-more"
               type="link"
               onClick={() => {
-                navigate(`/${params.locale}/download/deployment`);
+                navigate(`/${params.locale}/download/${versions[0]}`);
               }}
             >
               {t("learn_more")}
