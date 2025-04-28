@@ -9,7 +9,7 @@ This project keeps all sources used for building up DolphinScheduler's official 
    2.1. Run `export PROTOCOL_MODE=ssh` tells Git clone resource via SSH protocol instead of HTTPS protocol
    2.2. Run `./scripts/prepare_docs.sh` prepare all related resources, for more information you could see [how prepare script work](HOW_PREPARE_WORK.md)
 3. Run `yarn generate` in the root directory to format and perpare the data.
-4. Run `yarn dev` in the root directory to start a local server, you will see the website in 'http://localhost:8080'.
+4. Run `yarn dev` in the root directory to start a local server, you will see the website in 'http://localhost:3000'.
 
 ```
 Note: if you clone the code in Windows, not Mac or Linux. Please read the details below.
@@ -19,8 +19,8 @@ Because the two steps run command `./scripts/prepare_docs.sh` should Linux envir
 When meeting this problem. You can run two steps in the cmd.exe as an ADMINISTRATOR MEMBER.
 ```
 
-3. Run `yarn build` to build source code into dist directory.
-4. Verify your change locally: `python -m SimpleHTTPServer 8000`, when your python version is 3 use :`python3 -m http.server 8000` instead.
+5. Run `yarn build` to build source code, this will automatically generate a directory called `build`, wait for the execution to complete and into `build` directory.
+6. Verify your change locally: `python -m SimpleHTTPServer 8000`, when your python version is 3 use :`python3 -m http.server 8000` instead.
 
 If you have higher version of node installed, you may consider `nvm` to allow different versions of `node` coexisting on your machine.
 
