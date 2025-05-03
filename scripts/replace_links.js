@@ -17,6 +17,8 @@ const replaceDeadLinks = (content, lang, version) => {
       `/${lang}/docs/${version}/guide/parameter/priority`
     )
     .replaceAll(`local.md`, `/${lang}/docs/${version}/guide/parameter/local`)
+    .replaceAll(`project-parameter.md`, `/${lang}/docs/${version}/guide/parameter/project-parameter`)
+    .replaceAll(`startup-parameter.md`, `/${lang}/docs/${version}/guide/parameter/startup-parameter`)
     .replaceAll(`../task/sql.md`, `/${lang}/docs/${version}/guide/task/sql`)
     .replaceAll(
       `../task/stored-procedure.md`,
@@ -89,6 +91,22 @@ const replaceDeadLinks = (content, lang, version) => {
     .replaceAll(
       /((\.\.\/)*(installation\/)?)datasource-setting.md/g,
       `/${lang}/docs/${version}/guide/installation/datasource-setting`
+    )
+    .replaceAll(
+      /((\.\.\/)*(join\/)|(\.\/)?)document.md/g,
+      `/${lang}/docs/${version}/contribute/join/document`
+    )
+    .replaceAll(
+      /((\.\.\/)*(join\/)|(\.\/)?)issue.md/g,
+      `/${lang}/docs/${version}/contribute/join/issue`
+    )
+    .replaceAll(
+      /((\.\.\/)*(join\/)|(\.\/)?)pull-request.md/g,
+      `/${lang}/docs/${version}/contribute/join/pull-request`
+    )
+    .replaceAll(
+      /((\.\.\/)*(join\/)|(\.\/)?)commit-message.md/g,
+      `/${lang}/docs/${version}/contribute/join/commit-message`
     )
     .replaceAll(
       `./development-environment-setup.md`,
