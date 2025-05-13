@@ -48,7 +48,7 @@ jobs:
         run: |
           rm -rf ./swap
           rm -rf ./node_modules
-          set -xe
+          set -xeo pipefail
           MAX_CONCURRENCY=6
           EXIT_CODE=0
 
