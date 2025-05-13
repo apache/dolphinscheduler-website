@@ -42,12 +42,28 @@ jobs:
       - run: npm install fs-extra --save-dev
       - name: Generate the images of Logs and Events
         run: node ./scripts/generate_imgs
-      - run: sudo npm install -g markdown-link-check@3.10.3
+      - run: sudo npm install -g markdown-link-check@3.13.7
+      - run: sudo apt install plocate -y && sudo updatedb
       # We need to delete directory swap before markdown checker
       - name: Checker
         run: |
           rm -rf ./swap
           rm -rf ./node_modules
-          for file in $(find . -name "*.md"); do
-            markdown-link-check -c .dlc.json -q "$file"
+          set -xe
+          MAX_CONCURRENCY=6
+          EXIT_CODE=0
+
+          cleanup() {
+            pkill -P $$
+            exit "$EXIT_CODE"
+          }
+
+          trap cleanup SIGINT SIGTERM
+
+          for file in $(locate "$PWD*/*.md" | grep -v ./.github); do
+            while [ $(jobs -r | wc -l) -ge "$MAX_CONCURRENCY" ]; do
+              wait -n || { EXIT_CODE=$?; cleanup; }
+            done
+            markdown-link-check -c .dlc.json -q "$file" &
           done
+          wait || { EXIT_CODE=$?; cleanup; }
