@@ -43,12 +43,13 @@ jobs:
       - name: Generate the images of Logs and Events
         run: node ./scripts/generate_imgs
       - run: sudo npm install -g markdown-link-check@3.13.7
+      - run: sudo apt install plocate -y && sudo updatedb
       # We need to delete directory swap before markdown checker
       - name: Checker
         run: |
           rm -rf ./swap
           rm -rf ./node_modules
-          set -xeo pipefail
+          set -xe
           MAX_CONCURRENCY=6
           EXIT_CODE=0
 
