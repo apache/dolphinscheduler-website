@@ -282,6 +282,11 @@
   {
     "version": "dev",
     "q": "<h2>Q：Can not find python-gateway-server in distribute package</h2>",
-    "a": "\n<p>A：After version 3.0.0-alpha, Python gateway server integrate into API server, and Python gateway service will start when you\nstart API server. If you want disabled when Python gateway service you could change API server configuration in path\n<code>api-server/conf/application.yaml</code> and change attribute <code>python-gateway.enabled : false</code>.</p>\n<hr>\n<p>We will collect more FAQ later</p>\n"
+    "a": "\n<p>A：After version 3.0.0-alpha, Python gateway server integrate into API server, and Python gateway service will start when you\nstart API server. If you want disabled when Python gateway service you could change API server configuration in path\n<code>api-server/conf/application.yaml</code> and change attribute <code>python-gateway.enabled : false</code>.</p>\n<hr>\n"
+  },
+  {
+    "version": "dev",
+    "q": "<h2>Q: Why is the schedule status of a workflow definition set to &quot;Offline&quot; after importing an online workflow definition?</h2>",
+    "a": "\n<p>A: This is because we want to prevent users from directly importing a scheduled workflow that is already &quot;Online&quot;.\nTherefore, when exporting such workflows, the system automatically changes their status to &quot;Offline&quot;.\nTo enforce this rule, even if a user manually sets the schedule status to &quot;Online&quot; in the workflow definition before importing,\nthe system will override it and set it to &quot;Offline&quot;.</p>\n<hr>\n<p>We will collect more FAQ later</p>\n"
   }
 ]
