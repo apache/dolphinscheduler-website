@@ -52,7 +52,6 @@ jobs:
           set -xe
           MAX_CONCURRENCY=6
           EXIT_CODE=0
-          declare -A TASK_STATUS
 
           cleanup() {
             pkill -P $$
@@ -65,9 +64,9 @@ jobs:
             while [ $(jobs -r | wc -l) -ge "$MAX_CONCURRENCY" ]; do
               wait -n || { EXIT_CODE=$?; cleanup; }
             done
-            if [ -z "${TASK_STATUS[$file]}" ]; then
-              TASK_STATUS[$file]=1
-              markdown-link-check -c .dlc.json -q "$file" &
-            fi
+            markdown-link-check -c .dlc.json -q "$file" &
           done
           wait || { EXIT_CODE=$?; cleanup; }
+
+
+
