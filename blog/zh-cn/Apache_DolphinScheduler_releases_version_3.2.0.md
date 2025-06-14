@@ -1,13 +1,19 @@
 ﻿---
 title: Apache DolphinScheduler 重磅发布3.2.0版本！
 keywords: Apache DolphinScheduler, 版本发布, 技术动态
-description: 首度公开！Apache DolphinScheduler 3.2.0 全新功能与优化汇总。
-为您带来更加完善的功能体验与系统稳定性。
+description: 首度公开！Apache DolphinScheduler 3.2.0 全新功能与优化汇总。 为您带来更加完善的功能体验与系统稳定性。
 ---
 
 ![file](/img/2023-10-17/0.png)
 
-今天，Apache DolphinScheduler 3.2.0 版本在万众期待中终于发布了！在之前的预告中，包括[《重磅预告！Apache DolphinScheduler 3.2.0 新功能“剧透”》](http://mp.weixin.qq.com/s?__biz=MzA4NDYxNTc2NA==&mid=2247518178&idx=1&sn=59584d01ad5c4661ebe98a40d0a4c00c&chksm=9fe6b0d9a89139cff462faa14fa4c47d03ea19ae89f5b982bf41cbd9d6fcb4ba3c73980f6e65&scene=21#wechat_redirect)、[《3.2.0 版本预告！Apache DolphinScheduler API 增强相关功能》](http://mp.weixin.qq.com/s?__biz=MzA4NDYxNTc2NA==&mid=2247519378&idx=1&sn=831802da114034a476c9d015bb3021fb&chksm=9fe6bba9a89132bfe8fa00a4d76786f339957c242a2afc361cdd4dd816d706019d24203d531b&scene=21#wechat_redirect)、[《3.2.0 版本预告！远程日志解决 Worker 故障获取不到日志的问题》](http://mp.weixin.qq.com/s?__biz=MzA4NDYxNTc2NA==&mid=2247519520&idx=1&sn=cdfd1226e84cd7f48fc00569aed844c8&chksm=9fe6ba1ba891330d35869acdefb44e350b7c392e455d4b3d52c53f81765fd43229d207d29f5f&scene=21#wechat_redirect)，以及《[3.2.0 终极预告！云原生支持新增 Spark on k8S 支持》](https://mp.weixin.qq.com/s/QT9wUT42M2HRhlFwMVvp2g)文章汇总已经大致覆盖了 3.2.0 版本的全新功能和优化。
+今天，Apache DolphinScheduler 3.2.0 版本在万众期待中终于发布了！在之前的预告中，包括
+
+- [《重磅预告！Apache DolphinScheduler 3.2.0 新功能“剧透”》](https://mp.weixin.qq.com/s/J_my_bE9wqlgV5cCpVO8FQ)
+- [《3.2.0 版本预告！Apache DolphinScheduler API 增强相关功能》](https://mp.weixin.qq.com/s/7U3ziPsEbTzR6dMD5iOqdQ)
+- [《3.2.0 版本预告！远程日志解决 Worker 故障获取不到日志的问题》](https://mp.weixin.qq.com/s/K98sPyT9uBGsOzZ59Gx5kg)
+- [《3.2.0 终极预告！云原生支持新增 Spark on k8S 支持》](https://mp.weixin.qq.com/s/-xUfY_zkpsx-b8mMfxWdkA)
+
+文章汇总已经大致覆盖了 3.2.0 版本的全新功能和优化。
 
 现在，来看看新版本的全新“样貌”吧！
 
@@ -86,8 +92,6 @@ Sqoop 日志支持隐藏密码；
 
 ![file](/img/2023-10-17/10.png)
 
-详情参加[《3.2.0 版本预告！远程日志解决 Worker 故障获取不到日志的问题》](https://mp.weixin.qq.com/s/6HTN3XsZi79BcWYvupOuJg)。
-
 # 参数优化
 
 > - 增加了项目级别参数
@@ -105,7 +109,7 @@ Sqoop 日志支持隐藏密码；
 - 支持 KEDA 做 worker 自动扩缩容
 - 支持 Terraform 部署到 AWS
 - zk 和 pg 支持多架构
-- 提交 Spark 任务到 Kubernetes（详情见[《3.2.0 终极预告！云原生支持新增 Spark on k8S 支持》](https://mp.weixin.qq.com/s/QT9wUT42M2HRhlFwMVvp2g)）
+- 提交 Spark 任务到 Kubernetes
 - 获取 pod 实时日志
 - 自定义 k8s 任务标签
 
@@ -124,8 +128,6 @@ Sqoop 日志支持隐藏密码；
 # API 增强
 
 3.2.0 版本中，增加了部分 Restful API，包括 taskInstance、workflow state、workflowInstance、workflow and schedule、task relation，且API 触发工作流运行可以获得 instance ID，从而使得 Apache DolphinScheduler 的 API 能力得到显著增强。
-
-详情参见：《[3.2.0 版本预告！Apache DolphinScheduler API 增强相关功能](https://mp.weixin.qq.com/s/zQ7eaqXMQbvH6W3clVT5Vw)》
 
 # 增加页面易用性
 
