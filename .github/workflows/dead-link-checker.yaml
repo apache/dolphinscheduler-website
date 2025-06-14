@@ -42,7 +42,7 @@ jobs:
       - run: npm install fs-extra --save-dev
       - name: Generate the images of Logs and Events
         run: node ./scripts/generate_imgs
-      - run: sudo npm install -g markdown-link-check@3.13.6
+      - run: sudo npm install -g markdown-link-check@3.13.7
       - run: sudo apt install plocate -y && sudo updatedb
       # We need to delete directory swap before markdown checker
       - name: Checker
