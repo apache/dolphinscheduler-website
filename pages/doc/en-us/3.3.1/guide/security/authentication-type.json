@@ -1,0 +1,121 @@
+{
+  "__html": "<h1 id=\"authentication-type\">Authentication Type</h1>\n<ul>\n<li>So far we support four authentication types, Apache DolphinScheduler password, LDAP, Casdoor SSO and OAuth2，the OAuth2 authorization login mode can be used with other authentication modes.</li>\n</ul>\n<h2 id=\"change-authentication-type\">Change Authentication Type</h2>\n<blockquote>\n<p>dolphinscheduler-api/src/main/resources/application.yaml</p>\n</blockquote>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-comment\"># Authentication types (supported types: PASSWORD,LDAP,CASDOOR_SSO)</span>\n    <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">LDAP</span>\n    <span class=\"hljs-comment\"># IF you set type `LDAP`, below config will be effective</span>\n    <span class=\"hljs-attr\">ldap:</span>\n      <span class=\"hljs-comment\"># ldap server config</span>\n      <span class=\"hljs-attr\">url:</span> <span class=\"hljs-string\">ldap://ldap.forumsys.com:389/</span>\n      <span class=\"hljs-attr\">base-dn:</span> <span class=\"hljs-string\">dc=example,dc=com</span>\n      <span class=\"hljs-attr\">username:</span> <span class=\"hljs-string\">cn=admin,dc=example,dc=com</span>\n      <span class=\"hljs-attr\">password:</span> <span class=\"hljs-string\">password</span>\n      <span class=\"hljs-attr\">user:</span>\n        <span class=\"hljs-comment\"># admin userId when you use LDAP login</span>\n        <span class=\"hljs-attr\">admin:</span> <span class=\"hljs-string\">ldap-admin</span>\n        <span class=\"hljs-comment\"># user search filter to find admin user</span>\n        <span class=\"hljs-attr\">admin-user-filter:</span> <span class=\"hljs-string\">(&amp;(cn={0}))</span>\n        <span class=\"hljs-attr\">identity-attribute:</span> <span class=\"hljs-string\">uid</span>\n        <span class=\"hljs-attr\">email-attribute:</span> <span class=\"hljs-string\">mail</span>\n        <span class=\"hljs-comment\"># action when ldap user is not exist (supported types: CREATE,DENY)</span>\n        <span class=\"hljs-attr\">not-exist-action:</span> <span class=\"hljs-string\">DENY</span>\n      <span class=\"hljs-attr\">ssl:</span>\n        <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">false</span>\n        <span class=\"hljs-comment\"># jks file absolute path &amp;&amp; password</span>\n        <span class=\"hljs-attr\">trust-store:</span> <span class=\"hljs-string\">&quot;/ldapkeystore.jks&quot;</span>\n        <span class=\"hljs-attr\">trust-store-password:</span> <span class=\"hljs-string\">&quot;password&quot;</span>\n    <span class=\"hljs-attr\">casdoor:</span>\n      <span class=\"hljs-attr\">user:</span>\n        <span class=\"hljs-attr\">admin:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n    <span class=\"hljs-attr\">oauth2:</span>\n      <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">false</span>\n      <span class=\"hljs-attr\">provider:</span>\n        <span class=\"hljs-attr\">github:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">github</span>\n        <span class=\"hljs-attr\">google:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">google</span>\n<span class=\"hljs-attr\">casdoor:</span>\n   <span class=\"hljs-comment\"># Your Casdoor server url</span>\n   <span class=\"hljs-attr\">endpoint:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-attr\">client-id:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-attr\">client-secret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># The certificate may be multi-line, you can use `|-` for ease</span>\n   <span class=\"hljs-attr\">certificate:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># Your organization name added in Casdoor</span>\n   <span class=\"hljs-attr\">organization-name:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># Your application name added in Casdoor</span>\n   <span class=\"hljs-attr\">application-name:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># Doplhinscheduler login url</span>\n   <span class=\"hljs-attr\">redirect-url:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n</code></pre>\n<h2 id=\"casdoor-sso\">Casdoor SSO</h2>\n<p><a href=\"https://casdoor.org/\">Casdoor</a> is a UI-first Identity Access Management (IAM) / Single-Sign-On (SSO) platform based on OAuth 2.0, OIDC, SAML and CAS. You can add SSO capability to Dolphinscheduler through Casdoor by following these steps:</p>\n<h3 id=\"step1.-deploy-casdoor\">Step1. Deploy Casdoor</h3>\n<p>Firstly, the Casdoor should be deployed.</p>\n<p>You can refer to the Casdoor official documentation for the <a href=\"https://casdoor.org/docs/basic/server-installation\">Server Installation</a>.</p>\n<p>After a successful deployment, you need to ensure:</p>\n<ul>\n<li>The Casdoor server is successfully running on http://localhost:8000.</li>\n<li>Open your favorite browser and visit http://localhost:7001, you will see the login page of Casdoor.</li>\n<li>Input admin and 123 to test login functionality is working fine.</li>\n</ul>\n<p>Then you can quickly implement a Casdoor based login page in your own app with the following steps.</p>\n<h3 id=\"step2.-configure-casdoor-application\">Step2. Configure Casdoor Application</h3>\n<ol>\n<li>Create or use an existing Casdoor application.</li>\n<li>Add Your redirect url (You can see more details about how to get redirect url in the next section)\n<img src=\"/img/casdoor-sso-configuration.png\" alt=\"Casdoor Application Setting\"></li>\n<li>Add provider you want and supplement other settings.</li>\n</ol>\n<p>Not surprisingly, you can get two values on the application settings page: <code>Client ID</code> and <code>Client secret</code> like the picture above. We will use them in next step.</p>\n<p>Open your favorite browser and visit: <strong>http://<code>CASDOOR_HOSTNAME</code>/.well-known/openid-configuration</strong>, you will see the OIDC configure of Casdoor.</p>\n<h3 id=\"step3.-configure-dolphinscheduler\">Step3. Configure Dolphinscheduler</h3>\n<blockquote>\n<p>dolphinscheduler-api/src/main/resources/application.yaml</p>\n</blockquote>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-comment\"># Authentication types (supported types: PASSWORD,LDAP,CASDOOR_SSO)</span>\n    <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">CASDOOR_SSO</span>\n<span class=\"hljs-attr\">casdoor:</span>\n  <span class=\"hljs-comment\"># Your Casdoor server url</span>\n  <span class=\"hljs-attr\">endpoint:</span>\n  <span class=\"hljs-attr\">client-id:</span>\n  <span class=\"hljs-attr\">client-secret:</span>\n  <span class=\"hljs-comment\"># The certificate may be multi-line, you can use `|-` for ease</span>\n  <span class=\"hljs-attr\">certificate:</span> \n  <span class=\"hljs-comment\"># Your organization name added in Casdoor</span>\n  <span class=\"hljs-attr\">organization-name:</span>\n  <span class=\"hljs-comment\"># Your application name added in Casdoor</span>\n  <span class=\"hljs-attr\">application-name:</span>\n  <span class=\"hljs-comment\"># Doplhinscheduler login url</span>\n  <span class=\"hljs-attr\">redirect-url:</span> <span class=\"hljs-string\">http://localhost:5173/login</span> \n</code></pre>\n<h2 id=\"oauth2\">OAuth2</h2>\n<p>Dolphinscheduler can support multiple OAuth2 providers.</p>\n<h3 id=\"step1.-create-client-credentials\">Step1. Create Client Credentials</h3>\n<p><img src=\"/img/security/authentication/create-client-credentials-1.png\" alt=\"create-client-credentials-1\"></p>\n<p><img src=\"/img/security/authentication/create-client-credentials-2.png\" alt=\"create-client-credentials-2\"></p>\n<h3 id=\"step2.enable-oauth2-login-in-the-api's-configuration-file\">Step2.Enable OAuth2 Login In The Api's Configuration File</h3>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-string\">……</span> <span class=\"hljs-comment\"># omit</span>\n    <span class=\"hljs-attr\">oauth2:</span>\n      <span class=\"hljs-comment\"># Set enable to true to enable oauth2 login mode</span>\n      <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">true</span>\n      <span class=\"hljs-attr\">provider:</span>\n        <span class=\"hljs-attr\">github:</span>\n          <span class=\"hljs-comment\"># Set the provider authorization address, for example:https://github.com/login/oauth/authorize</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># dolphinscheduler backend redirection interface address, for example :http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\">#  clientId</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># client secret</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># Set the provider&#x27;s request token address</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># Set the provider address for requesting user information</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># Redirect address after successful login, http://{ip}:{port}/login</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># The image url of the login page jump button, if not filled, a text button will be displayed</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">github</span>\n        <span class=\"hljs-attr\">google:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">google</span>\n        <span class=\"hljs-attr\">gitee:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;https://gitee.com/oauth/authorize&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;https://gitee.com/oauth/token?grant_type=authorization_code&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;https://gitee.com/api/v5/user&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;http://127.0.0.1:5173/login&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">gitee</span>\n</code></pre>\n<h3 id=\"step.3-login-with-oauth2\">Step.3 Login With OAuth2</h3>\n<p><img src=\"/img/security/authentication/login-with-oauth2.png\" alt=\"login-with-oauth2\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Security",
+    "Authentication Type"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Change Authentication Type",
+      "children": [
+        {
+          "title": "Step1. Deploy Casdoor",
+          "children": [],
+          "anchor": "step1.-deploy-casdoor"
+        },
+        {
+          "title": "Step2. Configure Casdoor Application",
+          "children": [],
+          "anchor": "step2.-configure-casdoor-application"
+        },
+        {
+          "title": "Step3. Configure Dolphinscheduler",
+          "children": [],
+          "anchor": "step3.-configure-dolphinscheduler"
+        },
+        {
+          "title": "Step1. Create Client Credentials",
+          "children": [],
+          "anchor": "step1.-create-client-credentials"
+        },
+        {
+          "title": "Step2.Enable OAuth2 Login In The Api's Configuration File",
+          "children": [],
+          "anchor": "step2.enable-oauth2-login-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step.3 Login With OAuth2",
+          "children": [],
+          "anchor": "step.3-login-with-oauth2"
+        }
+      ],
+      "anchor": "change-authentication-type"
+    },
+    {
+      "title": "Casdoor SSO",
+      "children": [
+        {
+          "title": "Step1. Deploy Casdoor",
+          "children": [],
+          "anchor": "step1.-deploy-casdoor"
+        },
+        {
+          "title": "Step2. Configure Casdoor Application",
+          "children": [],
+          "anchor": "step2.-configure-casdoor-application"
+        },
+        {
+          "title": "Step3. Configure Dolphinscheduler",
+          "children": [],
+          "anchor": "step3.-configure-dolphinscheduler"
+        },
+        {
+          "title": "Step1. Create Client Credentials",
+          "children": [],
+          "anchor": "step1.-create-client-credentials"
+        },
+        {
+          "title": "Step2.Enable OAuth2 Login In The Api's Configuration File",
+          "children": [],
+          "anchor": "step2.enable-oauth2-login-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step.3 Login With OAuth2",
+          "children": [],
+          "anchor": "step.3-login-with-oauth2"
+        }
+      ],
+      "anchor": "casdoor-sso"
+    },
+    {
+      "title": "OAuth2",
+      "children": [
+        {
+          "title": "Step1. Deploy Casdoor",
+          "children": [],
+          "anchor": "step1.-deploy-casdoor"
+        },
+        {
+          "title": "Step2. Configure Casdoor Application",
+          "children": [],
+          "anchor": "step2.-configure-casdoor-application"
+        },
+        {
+          "title": "Step3. Configure Dolphinscheduler",
+          "children": [],
+          "anchor": "step3.-configure-dolphinscheduler"
+        },
+        {
+          "title": "Step1. Create Client Credentials",
+          "children": [],
+          "anchor": "step1.-create-client-credentials"
+        },
+        {
+          "title": "Step2.Enable OAuth2 Login In The Api's Configuration File",
+          "children": [],
+          "anchor": "step2.enable-oauth2-login-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step.3 Login With OAuth2",
+          "children": [],
+          "anchor": "step.3-login-with-oauth2"
+        }
+      ],
+      "anchor": "oauth2"
+    }
+  ],
+  "title": "Authentication Type",
+  "link": "/guide/security/authentication-type"
+}

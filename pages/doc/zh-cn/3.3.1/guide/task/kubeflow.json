@@ -1,0 +1,77 @@
+{
+  "__html": "<h1 id=\"kubeflow\">Kubeflow</h1>\n<h2 id=\"综述\">综述</h2>\n<p><a href=\"https://www.kubeflow.org\">Kubeflow</a> 任务类型，用于在Kubeflow上创建任务。\n后台主要使用 <code>kubectl</code> 命令来创建kubeflow任务, 并持续Kubeflow上资源状态直至任务完成。\n目前主要支持通过使用yaml文件来创建kubeflow任务。 如果需要发布<code>kubeflow pipeline</code>任务可以使用<a href=\"/zh-cn/docs/3.3.1/guide/task/python\">python任务类型</a>。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击项目管理-项目名称-工作流定义，点击“创建工作流”按钮，进入 DAG 编辑页面；</li>\n<li>拖动工具栏的 <img src=\"/img/tasks/icons/kubeflow.png\" width=\"15\"/> 任务节点到画板中。</li>\n</ul>\n<h2 id=\"任务样例\">任务样例</h2>\n<p>组件图示如下：</p>\n<p><img src=\"/img/tasks/demo/kubeflow.png\" alt=\"kubeflow\"></p>\n<h3 id=\"首先介绍一些ds通用参数\">首先介绍一些DS通用参数</h3>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.3.1/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<h3 id=\"kubeflow组件独有的参数\">Kubeflow组件独有的参数</h3>\n<ul>\n<li><strong>Namespace</strong>：集群命名空间参数</li>\n<li><strong>yamlContent</strong>：CRD YAML文件内容, 如：</li>\n</ul>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">apiVersion:</span> <span class=\"hljs-string\">&quot;kubeflow.org/v1&quot;</span>\n<span class=\"hljs-attr\">kind:</span> <span class=\"hljs-string\">TFJob</span>\n<span class=\"hljs-attr\">metadata:</span>\n  <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">tfjob-simple</span>\n  <span class=\"hljs-attr\">namespace:</span> <span class=\"hljs-string\">kubeflow-user-example-com</span>\n<span class=\"hljs-attr\">spec:</span>\n   <span class=\"hljs-attr\">tfReplicaSpecs:</span>\n     <span class=\"hljs-attr\">Worker:</span>\n       <span class=\"hljs-attr\">replicas:</span> <span class=\"hljs-number\">2</span>\n       <span class=\"hljs-attr\">restartPolicy:</span> <span class=\"hljs-string\">OnFailure</span>\n       <span class=\"hljs-attr\">template:</span>\n         <span class=\"hljs-attr\">metadata:</span>\n           <span class=\"hljs-attr\">annotations:</span>\n             <span class=\"hljs-attr\">sidecar.istio.io/inject:</span> <span class=\"hljs-string\">&quot;false&quot;</span>\n         <span class=\"hljs-attr\">spec:</span>\n           <span class=\"hljs-attr\">containers:</span>\n             <span class=\"hljs-bullet\">-</span> <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">tensorflow</span>\n               <span class=\"hljs-attr\">image:</span> <span class=\"hljs-string\">gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0</span>\n               <span class=\"hljs-attr\">command:</span>\n                 <span class=\"hljs-bullet\">-</span> <span class=\"hljs-string\">&quot;python&quot;</span>\n                 <span class=\"hljs-bullet\">-</span> <span class=\"hljs-string\">&quot;/var/tf_mnist/mnist_with_summaries.py&quot;</span>\n</code></pre>\n<h2 id=\"环境配置\">环境配置</h2>\n<p><strong>配置Kubernetes环境</strong></p>\n<p>参考<a href=\"/zh-cn/docs/3.3.1/guide/security/security\">集群管理和命名空间管理</a>。</p>\n<p>只需填写必填项即可，其他无需填写，资源管理依赖于具体Job中的YAML文件定义。</p>\n<p><strong>kubectl</strong></p>\n<p>安装<a href=\"https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/\">kubectl</a>，并确保<code>kubectl</code>能正常提交任务到kubeflow。</p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Kubeflow"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "首先介绍一些DS通用参数",
+          "children": [],
+          "anchor": "首先介绍一些ds通用参数"
+        },
+        {
+          "title": "Kubeflow组件独有的参数",
+          "children": [],
+          "anchor": "kubeflow组件独有的参数"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "首先介绍一些DS通用参数",
+          "children": [],
+          "anchor": "首先介绍一些ds通用参数"
+        },
+        {
+          "title": "Kubeflow组件独有的参数",
+          "children": [],
+          "anchor": "kubeflow组件独有的参数"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "首先介绍一些DS通用参数",
+          "children": [],
+          "anchor": "首先介绍一些ds通用参数"
+        },
+        {
+          "title": "Kubeflow组件独有的参数",
+          "children": [],
+          "anchor": "kubeflow组件独有的参数"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "环境配置",
+      "children": [
+        {
+          "title": "首先介绍一些DS通用参数",
+          "children": [],
+          "anchor": "首先介绍一些ds通用参数"
+        },
+        {
+          "title": "Kubeflow组件独有的参数",
+          "children": [],
+          "anchor": "kubeflow组件独有的参数"
+        }
+      ],
+      "anchor": "环境配置"
+    }
+  ],
+  "title": "Kubeflow",
+  "link": "/guide/task/kubeflow"
+}

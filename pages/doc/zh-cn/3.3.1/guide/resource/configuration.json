@@ -1,0 +1,68 @@
+{
+  "__html": "<h1 id=\"资源中心配置详情\">资源中心配置详情</h1>\n<ul>\n<li>资源中心通常用于上传文件以及任务组管理等操作。</li>\n<li>资源中心可以对接分布式的文件存储系统，如<a href=\"https://hadoop.apache.org/docs/r2.7.0/\">Hadoop</a>（2.6+）或者<a href=\"https://github.com/minio/minio\">MinIO</a>集群，也可以对接远端的对象存储，如<a href=\"https://aws.amazon.com/s3/\">AWS S3</a>或者<a href=\"https://www.aliyun.com/product/oss\">阿里云 OSS</a>，<a href=\"https://support.huaweicloud.com/obs/index.html\">华为云 OBS</a>，<a href=\"https://cloud.tencent.com/product/cos\">腾讯云 COS</a> 等。</li>\n<li>资源中心也可以直接对接本地文件系统。在单机模式下，您无需依赖<code>Hadoop</code>或<code>S3</code>一类的外部存储系统，可以方便地对接本地文件系统进行体验。</li>\n<li>除此之外，对于集群模式下的部署，您可以通过使用<a href=\"https://github.com/s3fs-fuse/s3fs-fuse\">S3FS-FUSE</a>将<code>S3</code>挂载到本地，或者使用<a href=\"https://help.aliyun.com/document_detail/187410.html\">JINDO-FUSE</a>将<code>OSS</code>挂载到本地等，再用资源中心对接本地文件系统方式来操作远端对象存储中的文件。</li>\n</ul>\n<h2 id=\"对接本地文件系统\">对接本地文件系统</h2>\n<h3 id=\"配置-<code>common.properties</code>-文件\">配置 <code>common.properties</code> 文件</h3>\n<p>Dolphinscheduler 资源中心使用本地系统默认是开启的，不需要用户做任何额外的配置，但是当用户需要对默认配置做修改时，请确保同时完成下面的修改。</p>\n<ul>\n<li>如果您以 <code>集群</code> 模式或者 <code>伪集群</code> 模式部署DolphinScheduler，您需要对以下路径的文件进行配置：<code>api-server/conf/common.properties</code> 和 <code>worker-server/conf/common.properties</code>；</li>\n<li>若您以 <code>单机</code> 模式部署DolphinScheduler，您只需要配置 <code>standalone-server/conf/common.properties</code>，具体配置如下：</li>\n</ul>\n<p>您可能需要涉及如下的修改：</p>\n<ul>\n<li>将 <code>resource.storage.upload.base.path</code> 改为本地存储路径，请确保部署 DolphinScheduler 的用户拥有读写权限，例如：<code>resource.storage.upload.base.path=/tmp/dolphinscheduler</code>。当路径不存在时会自动创建文件夹</li>\n</ul>\n<blockquote>\n<p><strong>注意</strong></p>\n<ol>\n<li>LOCAL模式不支持分布式模式读写，意味着上传的资源只能在一台机器上使用，除非使用共享文件挂载点</li>\n<li>如果您不想用默认值作为资源中心的基础路径，请修改<code>resource.storage.upload.base.path</code>的值。</li>\n<li>当配置 <code>resource.storage.type=LOCAL</code>，其实您配置了两个配置项，分别是 <code>resource.storage.type=HDFS</code> 和 <code>resource.hdfs.fs.defaultFS=file:///</code> ，我们单独配置 <code>resource.storage.type=LOCAL</code> 这个值是为了\n方便用户，并且能使得本地资源中心默认开启</li>\n</ol>\n</blockquote>\n<h2 id=\"对接aws-s3\">对接AWS S3</h2>\n<p>如果需要使用到资源中心的 S3 上传资源，我们需要对以下路径的进行配置：<code>api-server/conf/common.properties</code>, <code>api-server/conf/aws.yaml</code> 和 <code>worker-server/conf/common.properties</code>, <code>worker-server/conf/aws.yaml</code>。可参考如下：</p>\n<p>配置以下字段</p>\n<pre><code class=\"language-properties\">\n<span class=\"hljs-attr\">resource.storage.type</span>=<span class=\"hljs-string\">S3</span>\n</code></pre>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">aws:</span>\n    <span class=\"hljs-attr\">s3:</span>\n        <span class=\"hljs-comment\"># The AWS credentials provider type. support: AWSStaticCredentialsProvider, InstanceProfileCredentialsProvider</span>\n        <span class=\"hljs-comment\"># AWSStaticCredentialsProvider: use the access key and secret key to authenticate</span>\n        <span class=\"hljs-comment\"># InstanceProfileCredentialsProvider: use the IAM role to authenticate</span>\n        <span class=\"hljs-attr\">credentials.provider.type:</span> <span class=\"hljs-string\">AWSStaticCredentialsProvider</span>\n        <span class=\"hljs-attr\">access.key.id:</span> <span class=\"hljs-string\">&lt;access.key.id&gt;</span>\n        <span class=\"hljs-attr\">access.key.secret:</span> <span class=\"hljs-string\">&lt;access.key.secret&gt;</span>\n        <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">&lt;region&gt;</span>\n        <span class=\"hljs-attr\">bucket.name:</span> <span class=\"hljs-string\">&lt;bucket.name&gt;</span>\n        <span class=\"hljs-attr\">endpoint:</span> <span class=\"hljs-string\">&lt;endpoint&gt;</span>\n\n</code></pre>\n<h2 id=\"对接阿里云-oss\">对接阿里云 OSS</h2>\n<p>如果需要使用到资源中心的 OSS 上传资源，我们需要对以下路径的进行配置：<code>api-server/conf/common.properties</code> 和 <code>worker-server/conf/common.properties</code>。可参考如下：</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-comment\"># alibaba cloud access key id, required if you set resource.storage.type=OSS </span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.access.key.id</span>=<span class=\"hljs-string\">&lt;your-access-key-id&gt;</span>\n<span class=\"hljs-comment\"># alibaba cloud access key secret, required if you set resource.storage.type=OSS</span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.access.key.secret</span>=<span class=\"hljs-string\">&lt;your-access-key-secret&gt;</span>\n<span class=\"hljs-comment\"># alibaba cloud region, required if you set resource.storage.type=OSS</span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.region</span>=<span class=\"hljs-string\">cn-hangzhou</span>\n<span class=\"hljs-comment\"># oss bucket name, required if you set resource.storage.type=OSS</span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.oss.bucket.name</span>=<span class=\"hljs-string\">dolphinscheduler</span>\n<span class=\"hljs-comment\"># oss bucket endpoint, required if you set resource.storage.type=OSS</span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.oss.endpoint</span>=<span class=\"hljs-string\">https://oss-cn-hangzhou.aliyuncs.com</span>\n\n</code></pre>\n<h2 id=\"对接华为云-obs\">对接华为云 OBS</h2>\n<p>如果需要使用到资源中心的 OBS 上传资源，我们需要对以下路径的进行配置：<code>api-server/conf/common.properties</code> 和 <code>worker-server/conf/common.properties</code>。可参考如下：</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-comment\"># access key id, required if you set resource.storage.type=OBS</span>\n<span class=\"hljs-attr\">resource.huawei.cloud.access.key.id</span>=<span class=\"hljs-string\">&lt;your-access-key-id&gt;</span>\n<span class=\"hljs-comment\"># access key secret, required if you set resource.storage.type=OBS</span>\n<span class=\"hljs-attr\">resource.huawei.cloud.access.key.secret</span>=<span class=\"hljs-string\">&lt;your-access-key-secret&gt;</span>\n<span class=\"hljs-comment\"># oss bucket name, required if you set resource.storage.type=OBS</span>\n<span class=\"hljs-attr\">resource.huawei.cloud.obs.bucket.name</span>=<span class=\"hljs-string\">dolphinscheduler</span>\n<span class=\"hljs-comment\"># oss bucket endpoint, required if you set resource.storage.type=OBS</span>\n<span class=\"hljs-attr\">resource.huawei.cloud.obs.endpoint</span>=<span class=\"hljs-string\">obs.cn-southwest-2.huaweicloud.com</span>\n\n</code></pre>\n<blockquote>\n<p><strong>注意</strong>：</p>\n<ul>\n<li>如果只配置了 <code>api-server/conf/common.properties</code> 的文件，则只是开启了资源上传的操作，并不能满足正常使用。如果想要在工作流中执行相关文件则需要额外配置 <code>worker-server/conf/common.properties</code>。</li>\n<li>如果用到资源上传的功能，那么<a href=\"/zh-cn/docs/3.3.1/guide/installation/standalone\">安装部署</a>中，部署用户需要有这部分的操作权限。</li>\n<li>如果 Hadoop 集群的 NameNode 配置了 HA 的话，需要开启 HDFS 类型的资源上传，同时需要将 Hadoop 集群下的 <code>core-site.xml</code> 和 <code>hdfs-site.xml</code> 复制到 <code>worker-server/conf</code> 以及 <code>api-server/conf</code>，非 NameNode HA 跳过此步骤。</li>\n</ul>\n</blockquote>\n<h2 id=\"对接腾讯云-cos\">对接腾讯云 COS</h2>\n<p>如果需要使用到资源中心的 COS 上传资源，我们需要对以下路径的进行配置：<code>api-server/conf/resource-center.yaml</code> 和 <code>worker-server/conf/resource-center.yaml</code>。可参考如下：</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">resource:</span>\n  <span class=\"hljs-comment\"># 腾讯云 COS 配置</span>\n  <span class=\"hljs-attr\">tencent:</span>\n    <span class=\"hljs-attr\">cloud:</span>\n      <span class=\"hljs-attr\">access:</span>\n        <span class=\"hljs-attr\">key:</span>\n          <span class=\"hljs-attr\">id:</span> <span class=\"hljs-string\">&lt;your-access-key-id&gt;</span>\n          <span class=\"hljs-attr\">secret:</span> <span class=\"hljs-string\">&lt;your-access-key-secret&gt;</span>\n      <span class=\"hljs-attr\">cos:</span>\n        <span class=\"hljs-comment\"># COS 区域代码可参考: https://cloud.tencent.com/document/product/436/6224</span>\n        <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">ap-nanjing</span>\n        <span class=\"hljs-attr\">bucket:</span>\n          <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">dolphinscheduler</span>\n\n</code></pre>\n<p>为了激活腾讯云存储 COS，还需要对以下路径的进行配置：<code>api-server/conf/common.properties</code> 和 <code>worker-server/conf/common.properties</code>。可参考如下：</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-attr\">resource.storage.type</span>=<span class=\"hljs-string\">COS</span>\n</code></pre>\n",
+  "location": [
+    "功能介绍",
+    "资源中心",
+    "配置详情"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "对接本地文件系统",
+      "children": [
+        {
+          "title": "配置 common.properties 文件",
+          "children": [],
+          "anchor": "配置-common.properties-文件"
+        }
+      ],
+      "anchor": "对接本地文件系统"
+    },
+    {
+      "title": "对接AWS S3",
+      "children": [
+        {
+          "title": "配置 common.properties 文件",
+          "children": [],
+          "anchor": "配置-common.properties-文件"
+        }
+      ],
+      "anchor": "对接aws-s3"
+    },
+    {
+      "title": "对接阿里云 OSS",
+      "children": [
+        {
+          "title": "配置 common.properties 文件",
+          "children": [],
+          "anchor": "配置-common.properties-文件"
+        }
+      ],
+      "anchor": "对接阿里云-oss"
+    },
+    {
+      "title": "对接华为云 OBS",
+      "children": [
+        {
+          "title": "配置 common.properties 文件",
+          "children": [],
+          "anchor": "配置-common.properties-文件"
+        }
+      ],
+      "anchor": "对接华为云-obs"
+    },
+    {
+      "title": "对接腾讯云 COS",
+      "children": [
+        {
+          "title": "配置 common.properties 文件",
+          "children": [],
+          "anchor": "配置-common.properties-文件"
+        }
+      ],
+      "anchor": "对接腾讯云-cos"
+    }
+  ],
+  "title": "资源中心配置详情",
+  "link": "/guide/resource/configuration"
+}

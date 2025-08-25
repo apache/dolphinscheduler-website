@@ -1,0 +1,38 @@
+{
+  "__html": "<h1 id=\"documentation-notice\">Documentation Notice</h1>\n<p>Good documentation is critical for any type of software. Any contribution that can improve the DolphinScheduler documentation is welcome.</p>\n<h3 id=\"get-the-document-project\">Get the document project</h3>\n<p>Documentation for the DolphinScheduler project is maintained in a separate <a href=\"https://github.com/apache/dolphinscheduler-website\">git repository</a>.</p>\n<p>First you need to fork the document project into your own github repository, and then clone the document to your local computer.</p>\n<pre><code>git clone https://github.com/&lt;your-github-user-name&gt;/dolphinscheduler-website\n</code></pre>\n<h3 id=\"document-build-guide\">Document build guide</h3>\n<ol>\n<li>Run <code>yarn</code> in the root directory to install the dependencies.</li>\n<li>Run commands to collect resources\n2.1. Run <code>export PROTOCOL_MODE=ssh</code> tells Git clone resource via SSH protocol instead of HTTPS protocol\n2.2. Run <code>./scripts/prepare_docs.sh</code> prepare all related resources, for more information you could see <a href=\"https://github.com/apache/dolphinscheduler-website/blob/master/HOW_PREPARE_WORK.md\">how prepare script work</a></li>\n<li>Run <code>yarn generate</code> in the root directory to format and prepare the data.</li>\n<li>Run <code>yarn dev</code> in the root directory to start a local server, you will see the website in 'http://localhost:3000'.</li>\n</ol>\n<pre><code>Note: if you clone the code in Windows, not Mac or Linux. Please read the details below.\nIf you execute the commands like the two steps above, you will get the exception &quot;UnhandledPromiseRejectionWarning: Error: EPERM: operation not permitted, symlink '2.0.3' -&gt; 'latest'&quot;.\nIf you get the exception &quot;Can't resolve 'antd' in xxx&quot;,you can run `yarn add antd` and `yarn install`.\nBecause the `./scripts/prepare_docs.sh` command requires a Linux environment, if you are on a Windows system, you can use WSL to complete this step.\nWhen you encounter this problem. You can run the two steps in cmd.exe as an administrator on your Windows system.\n</code></pre>\n<ol start=\"5\">\n<li>Run <code>yarn build</code> to build source code, this will automatically generate a directory called <code>build</code>, wait for the execution to complete and into <code>build</code> directory.</li>\n<li>Verify your change locally: <code>python -m SimpleHTTPServer 8000</code>, when your python version is 3 use :<code>python3 -m http.server 8000</code> instead.</li>\n</ol>\n<p>If you have higher version of node installed, you may consider <code>nvm</code> to allow different versions of <code>node</code> coexisting on your machine.</p>\n<ol>\n<li>Follow the <a href=\"http://nvm.sh\">instructions</a> to install nvm</li>\n<li>Run <code>nvm install v18.12.1</code> to install node v18</li>\n<li>Run <code>nvm use v18.12.1</code> to switch the working environment to node v18</li>\n</ol>\n<p>Then you are all set to run and build the website. Follow the build instruction above for the details.</p>\n<h3 id=\"the-document-specification\">The document specification</h3>\n<ol>\n<li>\n<p>** Spaces are Required ** between Chinese characters and English or numbers and ** Spaces are not required ** between Chinese punctuation marks and English or numbers, to enhance the aesthetics and readability of the Chinese-English mix.</p>\n</li>\n<li>\n<p>It is recommended that you use &quot;you&quot; in general. Of course, you can use the term when necessary, such as when there is a warning prompt.</p>\n</li>\n</ol>\n<h3 id=\"how-to-submit-a-document-pull-request\">How to submit a document Pull Request</h3>\n<ol>\n<li>\n<p>Do not use &quot;git add.&quot; to commit all changes.</p>\n</li>\n<li>\n<p>Simply push the changed files, for example:</p>\n</li>\n</ol>\n<ul>\n<li><code>*.md</code></li>\n<li><code>blog.js or docs.js or site.js</code></li>\n</ul>\n<ol start=\"3\">\n<li>Submit the Pull Request to the <strong>master</strong> branch.</li>\n</ol>\n<h3 id=\"reference-to-the-documentation\">Reference to the documentation</h3>\n<p><a href=\"https://cwiki.apache.org/confluence/display/FLINK/Flink+Translation+Specifications\">Apache Flink Translation Specifications</a></p>\n",
+  "location": [
+    "Contribution",
+    "Join",
+    "Document Notice"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Get the document project",
+      "children": [],
+      "anchor": "get-the-document-project"
+    },
+    {
+      "title": "Document build guide",
+      "children": [],
+      "anchor": "document-build-guide"
+    },
+    {
+      "title": "The document specification",
+      "children": [],
+      "anchor": "the-document-specification"
+    },
+    {
+      "title": "How to submit a document Pull Request",
+      "children": [],
+      "anchor": "how-to-submit-a-document-pull-request"
+    },
+    {
+      "title": "Reference to the documentation",
+      "children": [],
+      "anchor": "reference-to-the-documentation"
+    }
+  ],
+  "title": "Documentation Notice",
+  "link": "/contribute/join/document"
+}

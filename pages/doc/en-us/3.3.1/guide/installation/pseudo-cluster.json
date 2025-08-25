@@ -1,0 +1,180 @@
+{
+  "__html": "<h1 id=\"pseudo-cluster-deployment\">Pseudo-Cluster Deployment</h1>\n<p>The purpose of the pseudo-cluster deployment is to deploy the DolphinScheduler service on a single machine. In this mode, DolphinScheduler's master, worker, API server, are all on the same machine.</p>\n<p>If you are a new hand and want to experience DolphinScheduler functions, we recommend you install follow <a href=\"/en-us/docs/3.3.1/guide/installation/standalone\">Standalone deployment</a>. If you want to experience more complete functions and schedule massive tasks, we recommend you install follow pseudo-cluster deployment. If you want to deploy DolphinScheduler in production, we recommend you follow <a href=\"/en-us/docs/3.3.1/guide/installation/cluster\">cluster deployment</a> or <a href=\"/en-us/docs/3.3.1/guide/installation/kubernetes\">Kubernetes deployment</a>.</p>\n<h2 id=\"preparation\">Preparation</h2>\n<p>Pseudo-cluster deployment of DolphinScheduler requires external software support:</p>\n<ul>\n<li>JDK：download <a href=\"https://www.oracle.com/technetwork/java/javase/downloads/index.html\">JDK</a> (1.8 or 11), install and configure environment variable <code>JAVA_HOME</code> and append <code>bin</code> dir (included in <code>JAVA_HOME</code>) to <code>PATH</code> variable. You can skip this step if it already exists in your environment.</li>\n<li>Binary package: Download the DolphinScheduler binary package at <a href=\"https://dolphinscheduler.apache.org/en-us/download\">download page</a></li>\n<li>Database: <a href=\"https://www.postgresql.org/download/\">PostgreSQL</a> (8.2.15+) or <a href=\"https://dev.mysql.com/downloads/mysql/\">MySQL</a> (5.7+), you can choose one of the two, such as MySQL requires JDBC Driver 8.0.33</li>\n<li>Registry Center: <a href=\"https://zookeeper.apache.org/releases.html\">ZooKeeper</a> (3.8.0+), <a href=\"https://www.mysql.com/\">MYSQL</a>(8.0.33), <a href=\"https://etcd.io/\">ETCD</a></li>\n<li>Process tree analysis\n<ul>\n<li><code>pstree</code> for macOS</li>\n<li><code>psmisc</code> for Fedora/Red/Hat/CentOS/Ubuntu/Debian</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"download-plugins-dependencies\">Download Plugins Dependencies</h2>\n<p>Starting from version 3.3.0, the binary package no longer provides plugin dependencies, and users need to download them by themselves. The plugin dependency package download address: <a href=\"https://repo.maven.apache.org/maven2/org/apache/dolphinscheduler\">Plugin Dependency Package</a>\nYou can also execute the following command to install plugin dependencies:</p>\n<pre><code class=\"language-shell\">bash ./bin/install-plugins.sh 3.3.0\n</code></pre>\n<p>Usually, you do not need all connector plugins, you can specify the plugins you need by configuring <code>conf/plugins_config</code>. For example, if you only need the <code>dolphinscheduler-task-shell</code> plugin, you can modify the configuration file as follows:</p>\n<pre><code>--task-plugins--\ndolphinscheduler-task-shell\n--end--\n</code></pre>\n<h2 id=\"dolphinscheduler-startup-environment\">DolphinScheduler Startup Environment</h2>\n<blockquote>\n<p><strong><em>Note:</em></strong> DolphinScheduler itself does not depend on Hadoop, Hive, Spark, but if you need to run tasks that depend on them, you need to have the corresponding environment support.</p>\n</blockquote>\n<h3 id=\"configure-user-exemption-and-permissions\">Configure User Exemption and Permissions</h3>\n<p>Create a deployment user, and make sure to configure <code>sudo</code> without password. Here make an example to create user <code>dolphinscheduler</code>:</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">To create a user, login as root</span>\nuseradd dolphinscheduler\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Add password</span>\necho &quot;dolphinscheduler&quot; | passwd --stdin dolphinscheduler\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Configure sudo without password</span>\nsed -i &#x27;$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; /etc/sudoers\nsed -i &#x27;s/Defaults    requiretty/#Defaults    requiretty/g&#x27; /etc/sudoers\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Modify directory permissions and grant permissions <span class=\"hljs-keyword\">for</span> user you created above</span>\nchown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin\nchmod -R 755 apache-dolphinscheduler-*-bin\n</code></pre>\n<blockquote>\n<p><strong><em>NOTICE:</em></strong></p>\n<ul>\n<li>Due to DolphinScheduler's multi-tenant task switch user using command <code>sudo -u {linux-user} -i</code>, the deployment user needs to have <code>sudo</code> privileges and be password-free. If novice learners don’t understand, you can ignore this point for now.</li>\n<li>If you find the line &quot;Defaults requiretty&quot; in the <code>/etc/sudoers</code> file, please comment the content.</li>\n</ul>\n</blockquote>\n<h3 id=\"prepare-zookeeper\">Prepare Zookeeper</h3>\n<p>If you use Zookeeper as the registry center, you need to install Zookeeper and start it first.</p>\n<h2 id=\"modify-configuration\">Modify Configuration</h2>\n<p>After completing the preparation of the basic environment, you need to modify the configuration file according to the\nenvironment you used. Change the environment configurations via <code>export &lt;ENV_NAME&gt;=&lt;VALUE&gt;</code>. The configuration files are located in directory <code>bin/env</code> as <code>dolphinscheduler_env.sh</code>.</p>\n<h3 id=\"modify-<code>dolphinscheduler_env.sh</code>\">Modify <code>dolphinscheduler_env.sh</code></h3>\n<p>File <code>./bin/env/dolphinscheduler_env.sh</code>,<code>api-server/conf/application.yaml</code>，\n<code>master-server/conf/application.yaml</code>，<code>worker-server/conf/application.yaml</code>，<code>alert-server/conf/application.yaml</code> describes the following configurations:</p>\n<ul>\n<li>Database configuration of DolphinScheduler, see <a href=\"#initialize-the-database\">Initialize the Database</a> for detailed instructions.</li>\n<li>Some tasks which need external dependencies or libraries such as <code>JAVA_HOME</code> and <code>SPARK_HOME</code>.</li>\n<li>Default registry center is mysql.</li>\n<li>Server related configuration, such as cache type, timezone, etc.</li>\n</ul>\n<p>You could ignore the task external dependencies if you do not use those tasks, but you have to change <code>JAVA_HOME</code>, registry center and database\nrelated configurations based on your environment.</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">JAVA_HOME, will use it to start DolphinScheduler server</span>\nexport JAVA_HOME=${JAVA_HOME:-/opt/soft/java}\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Database related configuration, <span class=\"hljs-built_in\">set</span> database <span class=\"hljs-built_in\">type</span>, username and password</span>\nexport DATABASE=${DATABASE:-postgresql}\nexport SPRING_PROFILES_ACTIVE=${DATABASE}\nexport SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;\nexport SPRING_DATASOURCE_USERNAME={user}\nexport SPRING_DATASOURCE_PASSWORD={password}\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">DolphinScheduler server related configuration</span>\nexport SPRING_CACHE_TYPE=${SPRING_CACHE_TYPE:-none}\nexport SPRING_JACKSON_TIME_ZONE=${SPRING_JACKSON_TIME_ZONE:-UTC}\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Registry center configuration, determines the <span class=\"hljs-built_in\">type</span> and <span class=\"hljs-built_in\">link</span> of the registry center</span>\nexport REGISTRY_TYPE=${REGISTRY_TYPE:-zookeeper}\nexport REGISTRY_ZOOKEEPER_CONNECT_STRING=${REGISTRY_ZOOKEEPER_CONNECT_STRING:-localhost:2181}\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Tasks related configurations, need to change the configuration <span class=\"hljs-keyword\">if</span> you use the related tasks.</span>\nexport HADOOP_HOME=${HADOOP_HOME:-/opt/soft/hadoop}\nexport HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/opt/soft/hadoop/etc/hadoop}\nexport SPARK_HOME=${SPARK_HOME:-/opt/soft/spark}\nexport PYTHON_LAUNCHER=${PYTHON_LAUNCHER:-/opt/soft/python/bin/python3}\nexport HIVE_HOME=${HIVE_HOME:-/opt/soft/hive}\nexport FLINK_HOME=${FLINK_HOME:-/opt/soft/flink}\nexport DATAX_LAUNCHER=${DATAX_LAUNCHER:-/opt/soft/datax/bin/datax.py}\n\nexport PATH=$HADOOP_HOME/bin:$SPARK_HOME/bin:$PYTHON_LAUNCHER:$JAVA_HOME/bin:$HIVE_HOME/bin:$FLINK_HOME/bin:$DATAX_LAUNCHER:$PATH\n</code></pre>\n<blockquote>\n<p><strong><em>Note:</em></strong> If you use MySQL database, set <code>DATABASE</code> to <code>mysql</code>, and modify <code>SPRING_DATASOURCE_URL</code>, <code>SPRING_DATASOURCE_USERNAME</code> and <code>SPRING_DATASOURCE_PASSWORD</code> to your database configuration.</p>\n<p><strong><em>Note:</em></strong> The configuration in <code>dolphinscheduler_env.sh</code> will overwrite the configuration in each service's configuration file (application.yaml), so if you configure a parameter in the application.yaml file and also configure it in <code>dolphinscheduler_env.sh</code>,\nthe configuration in <code>dolphinscheduler_env.sh</code> will take precedence. The configuration format in <code>dolphinscheduler_env.sh</code> is as follows:\n<code>SPRING_DATASOURCE_URL</code> in <code>application.yaml</code> is <code>spring.datasource.url</code>, and so on.</p>\n</blockquote>\n<h2 id=\"initialize-the-database\">Initialize the Database</h2>\n<p>Follow the instructions in <a href=\"/en-us/docs/3.3.1/guide/installation/datasource-setting\">datasource-setting</a> <code>Pseudo-Cluster/Cluster Initialize the Database</code> section to create and initialize database</p>\n<h2 id=\"start-dolphinscheduler\">Start DolphinScheduler</h2>\n<p>The server log will be stored in the <code>xxx-server/logs</code> folder.</p>\n<pre><code># Start api-server\nbash ./bin/dolphinscheduler-daemon.sh start api-server\n\n# Start master-server\nbash ./bin/dolphinscheduler-daemon.sh start master-server\n\n# Start worker-server\nbash ./bin/dolphinscheduler-daemon.sh start worker-server\n\n# Start alert-server\nbash ./bin/dolphinscheduler-daemon.sh start alert-server\n</code></pre>\n<blockquote>\n<p><strong><em>Note:</em></strong> For the first time deployment, you can check the status of server through bash ./bin/dolphinscheduler-daemon.sh status xxx-server</p>\n</blockquote>\n<h2 id=\"login-dolphinscheduler\">Login DolphinScheduler</h2>\n<p>Access address <code>http://localhost:12345/dolphinscheduler/ui</code> and login DolphinScheduler UI. The default username and password are <strong>admin/dolphinscheduler123</strong></p>\n<h2 id=\"start-or-stop-server\">Start or Stop Server</h2>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Check the status of DolphinScheduler server</span>\nbash ./bin/dolphinscheduler-daemon.sh status xxx-server\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Start or stop DolphinScheduler Master</span>\nbash ./bin/dolphinscheduler-daemon.sh stop master-server\nbash ./bin/dolphinscheduler-daemon.sh start master-server\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Start or stop DolphinScheduler Worker</span>\nbash ./bin/dolphinscheduler-daemon.sh start worker-server\nbash ./bin/dolphinscheduler-daemon.sh stop worker-server\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Start or stop DolphinScheduler Api</span>\nbash ./bin/dolphinscheduler-daemon.sh start api-server\nbash ./bin/dolphinscheduler-daemon.sh stop api-server\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Start or stop Alert</span>\nbash ./bin/dolphinscheduler-daemon.sh start alert-server\nbash ./bin/dolphinscheduler-daemon.sh stop alert-server\n</code></pre>\n<blockquote>\n<p><strong><em>Note1:</em></strong>: Each server have <code>dolphinscheduler_env.sh</code> file in path <code>&lt;service&gt;/conf/dolphinscheduler_env.sh</code> which\nfor micro-services need. It means that you could start all servers by command <code>&lt;service&gt;/bin/start.sh</code> with different\nenvironment variable from <code>&lt;service&gt;/conf/dolphinscheduler_env.sh</code>. But it will use file <code>bin/env/dolphinscheduler_env.sh</code> overwrite\n<code>&lt;service&gt;/conf/dolphinscheduler_env.sh</code> if you start server with command <code>/bin/dolphinscheduler-daemon.sh start &lt;service&gt;</code>.</p>\n<p><strong><em>Note2:</em></strong>: Please refer to the section of &quot;System Architecture Design&quot; for service usage. Python gateway service is\nstarted along with the api-server, and if you do not want to start Python gateway service please disabled it by changing\nthe yaml config <code>python-gateway.enabled : false</code> in api-server's configuration path <code>api-server/conf/application.yaml</code>\n<strong><em>Note3:</em></strong>: DS uses the /tmp/dolphinscheduler directory as the resource center by default. If you need to change the directory of the resource center, change the resource items in the conf/common.properties file</p>\n</blockquote>\n",
+  "location": [
+    "Installation",
+    "Pseudo Cluster Deployment"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Preparation",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Prepare Zookeeper",
+          "children": [],
+          "anchor": "prepare-zookeeper"
+        },
+        {
+          "title": "Modify dolphinscheduler_env.sh",
+          "children": [],
+          "anchor": "modify-dolphinscheduler_env.sh"
+        }
+      ],
+      "anchor": "preparation"
+    },
+    {
+      "title": "Download Plugins Dependencies",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Prepare Zookeeper",
+          "children": [],
+          "anchor": "prepare-zookeeper"
+        },
+        {
+          "title": "Modify dolphinscheduler_env.sh",
+          "children": [],
+          "anchor": "modify-dolphinscheduler_env.sh"
+        }
+      ],
+      "anchor": "download-plugins-dependencies"
+    },
+    {
+      "title": "DolphinScheduler Startup Environment",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Prepare Zookeeper",
+          "children": [],
+          "anchor": "prepare-zookeeper"
+        },
+        {
+          "title": "Modify dolphinscheduler_env.sh",
+          "children": [],
+          "anchor": "modify-dolphinscheduler_env.sh"
+        }
+      ],
+      "anchor": "dolphinscheduler-startup-environment"
+    },
+    {
+      "title": "Modify Configuration",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Prepare Zookeeper",
+          "children": [],
+          "anchor": "prepare-zookeeper"
+        },
+        {
+          "title": "Modify dolphinscheduler_env.sh",
+          "children": [],
+          "anchor": "modify-dolphinscheduler_env.sh"
+        }
+      ],
+      "anchor": "modify-configuration"
+    },
+    {
+      "title": "Initialize the Database",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Prepare Zookeeper",
+          "children": [],
+          "anchor": "prepare-zookeeper"
+        },
+        {
+          "title": "Modify dolphinscheduler_env.sh",
+          "children": [],
+          "anchor": "modify-dolphinscheduler_env.sh"
+        }
+      ],
+      "anchor": "initialize-the-database"
+    },
+    {
+      "title": "Start DolphinScheduler",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Prepare Zookeeper",
+          "children": [],
+          "anchor": "prepare-zookeeper"
+        },
+        {
+          "title": "Modify dolphinscheduler_env.sh",
+          "children": [],
+          "anchor": "modify-dolphinscheduler_env.sh"
+        }
+      ],
+      "anchor": "start-dolphinscheduler"
+    },
+    {
+      "title": "Login DolphinScheduler",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Prepare Zookeeper",
+          "children": [],
+          "anchor": "prepare-zookeeper"
+        },
+        {
+          "title": "Modify dolphinscheduler_env.sh",
+          "children": [],
+          "anchor": "modify-dolphinscheduler_env.sh"
+        }
+      ],
+      "anchor": "login-dolphinscheduler"
+    },
+    {
+      "title": "Start or Stop Server",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Prepare Zookeeper",
+          "children": [],
+          "anchor": "prepare-zookeeper"
+        },
+        {
+          "title": "Modify dolphinscheduler_env.sh",
+          "children": [],
+          "anchor": "modify-dolphinscheduler_env.sh"
+        }
+      ],
+      "anchor": "start-or-stop-server"
+    }
+  ],
+  "title": "Pseudo-Cluster Deployment",
+  "link": "/guide/installation/pseudo-cluster"
+}

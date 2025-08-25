@@ -1,0 +1,108 @@
+{
+  "__html": "<h1 id=\"standalone-极速体验版\">Standalone 极速体验版</h1>\n<p>Standalone 仅适用于 DolphinScheduler 的快速体验.</p>\n<p>如果你是新手，想要体验 DolphinScheduler 的功能，推荐使用 Standalone 方式体检。如果你想体验更完整的功能，或者更大的任务量，推荐使用<a href=\"/zh-cn/docs/3.3.1/guide/installation/pseudo-cluster\">伪集群部署</a>。如果你是在生产中使用，推荐使用<a href=\"/zh-cn/docs/3.3.1/guide/installation/cluster\">集群部署</a>或者<a href=\"/zh-cn/docs/3.3.1/guide/installation/kubernetes\">kubernetes</a></p>\n<blockquote>\n<p><strong><em>注意:</em></strong> Standalone 仅建议 20 个以下工作流使用，因为其采用内存式的 H2 Database, Zookeeper Testing Server，任务过多可能导致不稳定，并且如果重启或者停止 standalone-server 会导致内存中数据库里的数据清空。\nStandalone 支持元数据持久化，但是需要使用外部数据库，如 mysql 或者 postgresql，请看<a href=\"#%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93\">配置数据库</a></p>\n</blockquote>\n<h2 id=\"前置准备工作\">前置准备工作</h2>\n<ul>\n<li>JDK：下载<a href=\"https://www.oracle.com/technetwork/java/javase/downloads/index.html\">JDK</a> (1.8 or 11)，安装并配置 <code>JAVA_HOME</code> 环境变量，并将其下的 <code>bin</code> 目录追加到 <code>PATH</code> 环境变量中。如果你的环境中已存在，可以跳过这步。</li>\n<li>二进制包：在<a href=\"https://dolphinscheduler.apache.org/en-us/download/3.3.1\">下载页面</a>下载 DolphinScheduler 二进制包  <!-- markdown-link-check-disable-line --></li>\n</ul>\n<h2 id=\"下载插件依赖\">下载插件依赖</h2>\n<p>请参考伪集群部署的<a href=\"/zh-cn/docs/3.3.1/guide/installation/pseudo-cluster#%E4%B8%8B%E8%BD%BD%E6%8F%92%E4%BB%B6%E4%BE%9D%E8%B5%96\">下载插件依赖</a></p>\n<h2 id=\"配置用户免密及权限\">配置用户免密及权限</h2>\n<p>创建部署用户，并且一定要配置 <code>sudo</code> 免密。以创建 dolphinscheduler 用户为例</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">创建用户需使用 root 登录</span>\nuseradd dolphinscheduler\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">添加密码</span>\necho &quot;dolphinscheduler&quot; | passwd --stdin dolphinscheduler\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">配置 sudo 免密</span>\nsed -i &#x27;$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; /etc/sudoers\nsed -i &#x27;s/Defaults    requiretty/#Defaults    requiretty/g&#x27; /etc/sudoers\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">修改目录权限，使得部署用户对二进制包解压后的 apache-dolphinscheduler-*-bin 目录有操作权限</span>\nchown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin\nchmod -R 755 apache-dolphinscheduler-*-bin\n</code></pre>\n<blockquote>\n<p><strong><em>注意:</em></strong></p>\n<ul>\n<li>因为任务执行服务是以 <code>sudo -u {linux-user} -i</code> 切换不同 linux 用户的方式来实现多租户运行作业，所以部署用户需要有 sudo 权限，而且是免密的。初学习者不理解的话，完全可以暂时忽略这一点</li>\n<li>如果发现 <code>/etc/sudoers</code> 文件中有 &quot;Defaults requiretty&quot; 这行，也请注释掉</li>\n</ul>\n</blockquote>\n<h2 id=\"启动-dolphinscheduler-standalone-server\">启动 DolphinScheduler Standalone Server</h2>\n<h3 id=\"解压并启动-dolphinscheduler\">解压并启动 DolphinScheduler</h3>\n<p>二进制压缩包中有 standalone 启动的脚本，解压后即可快速启动。</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">解压并运行 Standalone Server</span>\ntar -xvzf apache-dolphinscheduler-*-bin.tar.gz\nchmod -R 755 apache-dolphinscheduler-*-bin\ncd apache-dolphinscheduler-*-bin\nbash ./bin/dolphinscheduler-daemon.sh start standalone-server\n</code></pre>\n<h3 id=\"登录-dolphinscheduler\">登录 DolphinScheduler</h3>\n<p>浏览器访问地址 http://localhost:12345/dolphinscheduler/ui 即可登录系统 UI。默认的用户名和密码是 <strong>admin/dolphinscheduler123</strong></p>\n<p><img src=\"/img/new_ui/dev/quick-start/login.png\" alt=\"登录页面\"></p>\n<h2 id=\"启停服务\">启停服务</h2>\n<p>脚本 <code>./bin/dolphinscheduler-daemon.sh</code> 除了可以快捷启动 standalone 外，还能停止服务运行，全部命令如下</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">启动 Standalone Server 服务</span>\nbash ./bin/dolphinscheduler-daemon.sh start standalone-server\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">停止 Standalone Server 服务</span>\nbash ./bin/dolphinscheduler-daemon.sh stop standalone-server\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">查看 Standalone Server 状态</span>\nbash ./bin/dolphinscheduler-daemon.sh status standalone-server\n</code></pre>\n<blockquote>\n<p><strong><em>注意</em></strong>: Python 网关服务默认为关闭状态，如果您想启动 Python 网关服务，\n请修改 YAML 配置文件，将 <code>python-gateway.enabled</code> 设置为 <code>true</code>，\n配置文件路径为 <code>api-server/conf/application.yaml</code></p>\n</blockquote>\n<h2 id=\"配置数据库\">配置数据库</h2>\n<p>Standalone server 使用 H2 数据库作为其元数据存储数据，这是为了上手简单，用户在启动服务器之前不需要启动数据库。但是如果用户想将元数据库存储在\nMySQL 或 PostgreSQL 等其他数据库中，必须更改一些配置。请参考 <a href=\"/zh-cn/docs/3.3.1/guide/installation/datasource-setting\">数据源配置</a> <code>Standalone 切换元数据库</code> 创建并初始化数据库</p>\n<blockquote>\n<p><strong><em>注意</em></strong>: DS默认使用本地模式的目录 /tmp/dolphinscheduler 作为资源中心, 如果需要修改资源中心目录, 请修改配置文件 conf/common.properties 中 resource 的相关配置项</p>\n</blockquote>\n",
+  "location": [
+    "部署指南",
+    "单机部署(Standalone)"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "前置准备工作",
+      "children": [
+        {
+          "title": "解压并启动 DolphinScheduler",
+          "children": [],
+          "anchor": "解压并启动-dolphinscheduler"
+        },
+        {
+          "title": "登录 DolphinScheduler",
+          "children": [],
+          "anchor": "登录-dolphinscheduler"
+        }
+      ],
+      "anchor": "前置准备工作"
+    },
+    {
+      "title": "下载插件依赖",
+      "children": [
+        {
+          "title": "解压并启动 DolphinScheduler",
+          "children": [],
+          "anchor": "解压并启动-dolphinscheduler"
+        },
+        {
+          "title": "登录 DolphinScheduler",
+          "children": [],
+          "anchor": "登录-dolphinscheduler"
+        }
+      ],
+      "anchor": "下载插件依赖"
+    },
+    {
+      "title": "配置用户免密及权限",
+      "children": [
+        {
+          "title": "解压并启动 DolphinScheduler",
+          "children": [],
+          "anchor": "解压并启动-dolphinscheduler"
+        },
+        {
+          "title": "登录 DolphinScheduler",
+          "children": [],
+          "anchor": "登录-dolphinscheduler"
+        }
+      ],
+      "anchor": "配置用户免密及权限"
+    },
+    {
+      "title": "启动 DolphinScheduler Standalone Server",
+      "children": [
+        {
+          "title": "解压并启动 DolphinScheduler",
+          "children": [],
+          "anchor": "解压并启动-dolphinscheduler"
+        },
+        {
+          "title": "登录 DolphinScheduler",
+          "children": [],
+          "anchor": "登录-dolphinscheduler"
+        }
+      ],
+      "anchor": "启动-dolphinscheduler-standalone-server"
+    },
+    {
+      "title": "启停服务",
+      "children": [
+        {
+          "title": "解压并启动 DolphinScheduler",
+          "children": [],
+          "anchor": "解压并启动-dolphinscheduler"
+        },
+        {
+          "title": "登录 DolphinScheduler",
+          "children": [],
+          "anchor": "登录-dolphinscheduler"
+        }
+      ],
+      "anchor": "启停服务"
+    },
+    {
+      "title": "配置数据库",
+      "children": [
+        {
+          "title": "解压并启动 DolphinScheduler",
+          "children": [],
+          "anchor": "解压并启动-dolphinscheduler"
+        },
+        {
+          "title": "登录 DolphinScheduler",
+          "children": [],
+          "anchor": "登录-dolphinscheduler"
+        }
+      ],
+      "anchor": "配置数据库"
+    }
+  ],
+  "title": "Standalone 极速体验版",
+  "link": "/guide/installation/standalone"
+}

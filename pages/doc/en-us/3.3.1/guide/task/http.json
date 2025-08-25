@@ -1,0 +1,38 @@
+{
+  "__html": "<h1 id=\"http-node\">HTTP Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>This node is used to perform http type tasks and also supports http request validation and other functions.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag the <img src=\"/img/tasks/icons/http_get.png\" width=\"15\"/> from the toolbar to the drawing board.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Request address</td>\n<td>HTTP request URL.</td>\n</tr>\n<tr>\n<td>Request type</td>\n<td>Supports GET, POST, PUT, DELETE</td>\n</tr>\n<tr>\n<td>Request parameters</td>\n<td>Supports Parameter, Body, Headers.</td>\n</tr>\n<tr>\n<td>Verification conditions</td>\n<td>Supports default response code, custom response code, content included, content not included.</td>\n</tr>\n<tr>\n<td>Verification content</td>\n<td>When the verification condition selects a custom response code, the content contains, and the content does not contain, the verification content is required.</td>\n</tr>\n<tr>\n<td>Custom parameter</td>\n<td>It is a user-defined parameter of http part, which will replace the content with <code>${variable}</code> in the script.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-output-parameters\">Task Output Parameters</h2>\n<table>\n<thead>\n<tr>\n<th><strong>Task Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>response</td>\n<td>VARCHAR, http request return result</td>\n</tr>\n</tbody>\n</table>\n<p>Can use <code>${taskName.response}</code> to reference task output parameters in downstream tasks.</p>\n<p>For example, if the current task1 is a http task, the downstream task can use <code>${task1.response}</code> to reference the output parameters of task1.</p>\n<h2 id=\"example\">Example</h2>\n<p>HTTP defines the different methods of interacting with the server, the most basic methods are GET, POST, PUT, DELETE. Here we use the http task node to demonstrate the use of POST to send a request to the system's login page to submit data.</p>\n<p>The main configuration parameters are as follows(All parameters can be replaced by built-in parameters):</p>\n<ul>\n<li>URL: Address to access the target resource. Here is the system's login page.</li>\n<li>Request type: GET, POST, PUT, DELETE</li>\n<li>Headers: Request header information, currently only supports application/json, application/x-www-form-urlencoded format. If other formats are entered, the application/json format will be used by default.</li>\n<li>HTTP Parameters: GET, DELETE request parameters.</li>\n<li>HTTP Body: POST, PUT request parameters.</li>\n<li>Verification conditions: Default response code 200, custom response code, content included, content not included.</li>\n<li>Verification content: When the verification condition is custom response code, content included, content not included, the verification content is required, and the verification content is a fuzzy match.</li>\n</ul>\n<p><img src=\"/img/tasks/demo/http_post.png\" alt=\"http_task\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "HTTP"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Output Parameters",
+      "children": [],
+      "anchor": "task-output-parameters"
+    },
+    {
+      "title": "Example",
+      "children": [],
+      "anchor": "example"
+    }
+  ],
+  "title": "HTTP Node",
+  "link": "/guide/task/http"
+}

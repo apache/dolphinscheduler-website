@@ -1,0 +1,109 @@
+{
+  "__html": "<h1 id=\"工作流定义\">工作流定义</h1>\n<h2 id=\"创建工作流定义\">创建工作流定义</h2>\n<ul>\n<li>\n<p>点击项目管理-&gt;工作流-&gt;工作流定义，进入工作流定义页面，点击“创建工作流”按钮，进入<strong>工作流DAG编辑</strong>页面，如下图所示：</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-dag.png\" alt=\"workflow-dag\"></p>\n</li>\n<li>\n<p>工具栏中拖拽 <img src=\"/img/tasks/icons/shell.png\" width=\"15\"/> 到画板中，新增一个Shell任务,如下图所示：</p>\n<p><img src=\"/img/tasks/demo/shell.jpg\" alt=\"demo-shell-simple\"></p>\n</li>\n<li>\n<p><strong>添加 Shell 任务的参数设置：</strong></p>\n<ol>\n<li>填写“节点名称”，“描述”，“脚本”字段；</li>\n<li>“运行标志”勾选“正常”，若勾选“禁止执行”，运行工作流不会执行该任务；</li>\n<li>选择“任务优先级”：当 worker 线程数不足时，级别高的任务在执行队列中会优先执行，相同优先级的任务按照先进先出的顺序执行；</li>\n<li>超时告警（非必选）：勾选超时告警、超时失败，填写“超时时长”，当任务执行时间超过<strong>超时时长</strong>，会发送告警邮件并且任务超时失败；</li>\n<li>资源（非必选）：资源文件是资源中心-&gt;文件管理页面创建或上传的文件，如文件名为 <code>test.sh</code>，脚本中调用资源命令为 <code>sh test.sh</code>。注意调用需要使用资源的全路径；</li>\n<li>自定义参数（非必填）；</li>\n<li>点击&quot;确认添加&quot;按钮，保存任务设置。</li>\n</ol>\n</li>\n<li>\n<p><strong>配置任务之间的依赖关系：</strong> 点击任务节点的右侧加号连接任务；如下图所示，任务 Node_B 和任务 Node_C 并行执行，当任务 Node_A 执行完，任务 Node_B、Node_C 会同时执行。</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-dependent.png\" alt=\"workflow-dependent\"></p>\n</li>\n<li>\n<p><strong>实时任务的依赖关系：</strong> 若DAG中包含了实时任务的组件，则实时任务的关联关系显示为虚线，在执行工作流实例的时候会跳过实时任务的执行</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-definition-with-stream-task.png\" alt=\"workflow-dependent\"></p>\n</li>\n<li>\n<p><strong>删除依赖关系：</strong> 点击右上角&quot;箭头&quot;图标<img src=\"/img/arrow.png\" width=\"35\"/>，选中连接线，点击右上角&quot;删除&quot;图标<img src=\"/img/delete.png\" width=\"35\"/>，删除任务间的依赖关系。</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-delete.png\" alt=\"workflow-delete\"></p>\n</li>\n<li>\n<p><strong>保存工作流定义：</strong> 点击”保存“按钮，弹出&quot;设置DAG图名称&quot;弹框，如下图所示，输入工作流定义名称，工作流定义描述，设置全局参数（选填，参考<a href=\"/zh-cn/docs/3.3.1/guide/parameter/global\">全局参数</a>），点击&quot;添加&quot;按钮，工作流定义创建成功。</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-save.png\" alt=\"workflow-save\"></p>\n<blockquote>\n<p>其他类型任务，请参考 <a href=\"#TaskParamers\">任务节点类型和参数设置</a>。 <!-- markdown-link-check-disable-line --></p>\n</blockquote>\n</li>\n<li>\n<p><strong>执行策略</strong></p>\n</li>\n<li>\n<p><code>并行</code>：如果对于同一个工作流定义，同时有多个工作流实例，则并行执行工作流实例。</p>\n</li>\n<li>\n<p><code>串行等待</code>：如果对于同一个工作流定义，同时有多个工作流实例，则串行执行工作流实例。</p>\n</li>\n<li>\n<p><code>串行抛弃</code>：如果对于同一个工作流定义，同时有多个工作流实例，则抛弃后生成的工作流实例并杀掉正在跑的实例。</p>\n</li>\n<li>\n<p><code>串行优先</code>：如果对于同一个工作流定义，同时有多个工作流实例，则按照优先级串行执行工作流实例。</p>\n</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-execution-type.png\" alt=\"workflow-execution-type\"></p>\n<h2 id=\"工作流定义操作功能\">工作流定义操作功能</h2>\n<p>点击项目管理-&gt;工作流-&gt;工作流定义，进入工作流定义页面，如下图所示:</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-list.png\" alt=\"workflow-list\"></p>\n<h3 id=\"单个工作流支持的操作\">单个工作流支持的操作</h3>\n<ul>\n<li><strong>编辑：</strong> 只能编辑&quot;下线&quot;的工作流定义。工作流DAG编辑同创建工作流定义。</li>\n<li><strong>运行：</strong> 只有上线的工作流能运行。运行操作步骤见运行工作流</li>\n<li><strong>上线：</strong> 工作流状态为&quot;下线&quot;时，上线工作流，只有&quot;上线&quot;状态的工作流能运行，但不能编辑。</li>\n<li><strong>下线：</strong> 工作流状态为&quot;上线&quot;时，下线工作流，下线状态的工作流可以编辑，但不能运行。</li>\n<li><strong>定时：</strong> 工作流设置定时，系统自动定时调度工作流运行。创建定时后的状态为&quot;下线&quot;，需要点击右边<img src=\"/img/scheduler_online.png\" width=\"20\"/>按钮上线定时才生效。定时操作步骤见<a href=\"#%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%AE%9A%E6%97%B6\">工作流定时</a></li>\n<li><strong>定时上线：</strong> 定时调度上线，只能定时创建后且工作流状态为&quot;上线&quot;时才可点击。</li>\n<li><strong>定时下线：</strong> 定时调度下线。</li>\n<li><strong>删除：</strong> 删除工作流定义。在同一个项目中，只能删除自己创建的工作流定义，其他用户的工作流定义不能进行删除，如果需要删除请联系创建用户或者管理员。</li>\n<li><strong>下载：</strong> 下载工作流定义到本地。</li>\n<li><strong>复制：</strong> 在当前项目下，根据当前工作流复制出一个新的工作流，新工作流的名称会在原工作流名称的基础上加上后缀<code>_copy_&lt;date&gt;</code>。</li>\n<li><strong>导出：</strong> 导出工作流定义json文件。</li>\n<li><strong>版本信息：</strong> 查看工作流版本信息，可在版本信息列表中切换工作流版本。</li>\n<li><strong>树形图：</strong> 以树形结构展示任务节点的类型及任务状态，如下图所示：</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-tree.png\" alt=\"workflow-tree\"></p>\n<h3 id=\"工作流批量操作\">工作流批量操作</h3>\n<p>选中多个工作流后，可以在工作流定义列表底部执行批量操作，如下：</p>\n<ul>\n<li><strong>批量删除：</strong> 批量删除多个工作流定义。</li>\n<li><strong>批量导出：</strong> 批量导出多个工作流定义到一个json文件。</li>\n<li><strong>批量复制：</strong> 批量复制多个工作流定义，可选择在哪个项目下生成复制的工作流。</li>\n</ul>\n<h2 id=\"运行工作流\">运行工作流</h2>\n<ul>\n<li>点击项目管理-&gt;工作流-&gt;工作流定义，进入工作流定义页面，如下图所示，点击&quot;上线&quot;按钮<img src=\"/img/online.png\" width=\"35\"/>，上线工作流。</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-online.png\" alt=\"workflow-online\"></p>\n<ul>\n<li>点击”运行“按钮，弹出启动参数设置弹框，如下图所示，设置启动参数，点击弹框中的&quot;运行&quot;按钮，工作流开始运行，工作流实例页面生成一条工作流实例。</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-run.png\" alt=\"workflow-run\"></p>\n<p>工作流运行参数说明：</p>\n<ul>\n<li>\n<p>失败策略：当某一个任务节点执行失败时，其他并行的任务节点需要执行的策略。”继续“表示：某一任务失败后，其他任务节点正常执行；”结束“表示：终止所有正在执行的任务，并终止整个流程。</p>\n</li>\n<li>\n<p>通知策略：当流程结束，根据流程状态发送流程执行信息通知邮件，包含任何状态都不发，成功发，失败发，成功或失败都发。</p>\n</li>\n<li>\n<p>流程优先级：流程运行的优先级，分五个等级：最高（HIGHEST），高(HIGH),中（MEDIUM）,低（LOW），最低（LOWEST）。当 master 线程数不足时，级别高的流程在执行队列中会优先执行，相同优先级的流程按照先进先出的顺序执行。</p>\n</li>\n<li>\n<p>Worker 分组：该流程只能在指定的 worker 机器组里执行。默认是 Default，可以在任一 worker 上执行。</p>\n</li>\n<li>\n<p>通知组：选择通知策略||超时报警||发生容错时，会发送流程信息或邮件到通知组里的所有成员。</p>\n</li>\n<li>\n<p>启动参数: 在启动新的流程实例时，设置或覆盖全局参数的值。</p>\n</li>\n<li>\n<p>补数：指运行指定日期范围内的工作流定义，根据补数策略生成对应的工作流实例，补数策略包括串行补数、并行补数 2 种模式。</p>\n<blockquote>\n<p>日期可以通过页面选择或者手动输入，日期范围是左关右关区间(startDate &lt;= N &lt;= endDate)</p>\n</blockquote>\n<ul>\n<li>串行补数：指定时间范围内，从开始日期至结束日期依次执行补数，依次生成多条流程实例；点击运行工作流，选择串行补数模式：例如从7月 9号到7月10号依次执行，依次在流程实例页面生成两条流程实例。</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-serial.png\" alt=\"workflow-serial\"></p>\n<ul>\n<li>并行补数： 指定时间范围内，同时进行多天的补数，同时生成多条流程实例。手动输入日期：手动输入以逗号分割日期格式为 <code>yyyy-MM-dd HH:mm:ss</code> 的日期。点击运行工作流，选择并行补数模式：例如同时执行7月9号到7月10号的工作流定义，同时在流程实例页面生成两条流程实例(执行策略为串行时流程实例按照策略执行)。</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-parallel.png\" alt=\"workflow-parallel\"></p>\n<ul>\n<li>并行度：是指在并行补数的模式下，最多并行执行的实例数。例如同时执行7月6号到7月10号的工作流定义，并行度为2，那么流程实例为：\n<img src=\"/img/new_ui/dev/project/workflow-concurrency-from.png\" alt=\"workflow-concurrency-from\"></li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-concurrency.png\" alt=\"workflow-concurrency\"></p>\n<ul>\n<li>依赖模式：是否触发下游依赖节点依赖到当前工作流的工作流实例的补数（要求当前补数的工作流实例的定时状态为已上线，只会触发下游直接依赖到当前工作流的补数）。</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-dependency.png\" alt=\"workflow-dependency\"></p>\n<ul>\n<li>\n<p>日期选择：</p>\n<ol>\n<li>通过页面选择日期：</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/project/workflow-pageSelection.png\" alt=\"workflow-pageSelection\"></p>\n<ol start=\"2\">\n<li>手动输入：</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/project/workflow-input.png\" alt=\"workflow-input\"></p>\n</li>\n<li>\n<p>补数与定时配置的关系：</p>\n<ol>\n<li><code>未配置定时</code>或<code>已配置定时并定时状态下线</code>：根据所选的时间范围结合定时默认配置(每天0点)进行补数，比如该工作流调度日期为7月7号到7月10号，流程实例为：</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/project/workflow-unconfiguredTimingResult.png\" alt=\"workflow-unconfiguredTimingResult\"></p>\n<ol start=\"2\">\n<li><code>已配置定时并定时状态上线</code>：根据所选的时间范围结合定时配置进行补数，比如该工作流调度日期为7月7号到7月10号，配置了定时（每日凌晨5点运行），流程实例为：</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/project/workflow-configuredTiming.png\" alt=\"workflow-configuredTiming\"></p>\n<p><img src=\"/img/new_ui/dev/project/workflow-configuredTimingResult.png\" alt=\"workflow-configuredTimingResult\"></p>\n</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"单独运行任务\">单独运行任务</h2>\n<ul>\n<li>右键选中任务，点击&quot;启动&quot;按钮(只有已上线的任务才能点击运行)</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-task-run.png\" alt=\"workflow-task-run\"></p>\n<ul>\n<li>弹出启动参数设置弹框，参数说明同运行工作流</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-task-run-config.png\" alt=\"workflow-task-run-config\"></p>\n<h2 id=\"工作流定时\">工作流定时</h2>\n<ul>\n<li>\n<p>创建定时：点击项目管理-&gt;工作流-&gt;工作流定义，进入工作流定义页面，上线工作流，点击&quot;定时&quot;按钮<img src=\"/img/timing.png\" width=\"35\"/>,弹出定时参数设置弹框，如下图所示：</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-time01.png\" alt=\"workflow-time01\"></p>\n</li>\n<li>\n<p>选择起止时间。在起止时间范围内，定时运行工作流；不在起止时间范围内，不再产生定时工作流实例。</p>\n</li>\n<li>\n<p>添加一个每隔 5 分钟执行一次的定时，如下图所示：</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-time02.png\" alt=\"workflow-time02\"></p>\n</li>\n<li>\n<p>失败策略、通知策略、流程优先级、Worker 分组、通知组、收件人、抄送人同工作流运行参数。</p>\n</li>\n<li>\n<p>点击&quot;创建&quot;按钮，创建定时成功，此时定时状态为&quot;<strong>下线</strong>&quot;，定时需<strong>上线</strong>才生效。</p>\n</li>\n<li>\n<p>定时上线：点击&quot;定时上线&quot;按钮<img src=\"/img/scheduler_online.png\" width=\"30\"/>，点击&quot;上线&quot;按钮，定时状态变为&quot;上线&quot;，如下图选中所示，工作流定时生效。\n<img src=\"/img/new_ui/dev/project/workflow-time03.png\" alt=\"workflow-time03\"></p>\n</li>\n<li>\n<p>查看定时：定时上线后可以通过&quot;定时&quot;按钮<img src=\"/img/timing.png\" width=\"35\"/>，查看当前定时情况。但是不可修改，如图所示。\n<img src=\"/img/new_ui/dev/project/workflow-time04.png\" alt=\"workflow-time04\"></p>\n</li>\n</ul>\n<h2 id=\"导入工作流\">导入工作流</h2>\n<p>点击项目管理-&gt;工作流-&gt;工作流定义，进入工作流定义页面，点击&quot;导入工作流&quot;按钮，导入本地工作流文件，工作流定义列表显示导入的工作流，状态为下线。</p>\n",
+  "location": [
+    "功能介绍",
+    "项目管理",
+    "工作流定义"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "创建工作流定义",
+      "children": [
+        {
+          "title": "单个工作流支持的操作",
+          "children": [],
+          "anchor": "单个工作流支持的操作"
+        },
+        {
+          "title": "工作流批量操作",
+          "children": [],
+          "anchor": "工作流批量操作"
+        }
+      ],
+      "anchor": "创建工作流定义"
+    },
+    {
+      "title": "工作流定义操作功能",
+      "children": [
+        {
+          "title": "单个工作流支持的操作",
+          "children": [],
+          "anchor": "单个工作流支持的操作"
+        },
+        {
+          "title": "工作流批量操作",
+          "children": [],
+          "anchor": "工作流批量操作"
+        }
+      ],
+      "anchor": "工作流定义操作功能"
+    },
+    {
+      "title": "运行工作流",
+      "children": [
+        {
+          "title": "单个工作流支持的操作",
+          "children": [],
+          "anchor": "单个工作流支持的操作"
+        },
+        {
+          "title": "工作流批量操作",
+          "children": [],
+          "anchor": "工作流批量操作"
+        }
+      ],
+      "anchor": "运行工作流"
+    },
+    {
+      "title": "单独运行任务",
+      "children": [
+        {
+          "title": "单个工作流支持的操作",
+          "children": [],
+          "anchor": "单个工作流支持的操作"
+        },
+        {
+          "title": "工作流批量操作",
+          "children": [],
+          "anchor": "工作流批量操作"
+        }
+      ],
+      "anchor": "单独运行任务"
+    },
+    {
+      "title": "工作流定时",
+      "children": [
+        {
+          "title": "单个工作流支持的操作",
+          "children": [],
+          "anchor": "单个工作流支持的操作"
+        },
+        {
+          "title": "工作流批量操作",
+          "children": [],
+          "anchor": "工作流批量操作"
+        }
+      ],
+      "anchor": "工作流定时"
+    },
+    {
+      "title": "导入工作流",
+      "children": [
+        {
+          "title": "单个工作流支持的操作",
+          "children": [],
+          "anchor": "单个工作流支持的操作"
+        },
+        {
+          "title": "工作流批量操作",
+          "children": [],
+          "anchor": "工作流批量操作"
+        }
+      ],
+      "anchor": "导入工作流"
+    }
+  ],
+  "title": "工作流定义",
+  "link": "/guide/project/workflow-definition"
+}

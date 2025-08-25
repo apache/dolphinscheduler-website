@@ -1,0 +1,67 @@
+{
+  "__html": "<h1 id=\"remote-logging\">Remote Logging</h1>\n<p>Apache DolphinScheduler supports writing task logs to remote storage. When remote logging is enabled, DolphinScheduler will send the task logs to the specified remote storage asynchronously after the task ends. In addition, when the user views or downloads the task log, if the log file does not exist locally, DolphinScheduler will download the corresponding log file from the remote storage to the local file system.</p>\n<h2 id=\"enabling-remote-logging\">Enabling remote logging</h2>\n<p>If you deploy DolphinScheduler in <code>Cluster</code> or <code>Pseudo-Cluster</code> mode, you need to configure <code>api-server/conf/common.properties</code>, <code>master-server/conf/common.properties</code> and <code>worker-server/conf/common.properties</code>.\nIf you deploy DolphinScheduler in <code>Standalone</code> mode, you only need to configure <code>standalone-server/conf/common.properties</code> as follows:</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-comment\"># Whether to enable remote logging</span>\n<span class=\"hljs-attr\">remote.logging.enable</span>=<span class=\"hljs-string\">false</span>\n<span class=\"hljs-comment\"># if remote.logging.enable = true, set the target of remote logging, currently support OSS, S3, GCS, ABS</span>\n<span class=\"hljs-attr\">remote.logging.target</span>=<span class=\"hljs-string\">OSS</span>\n<span class=\"hljs-comment\"># if remote.logging.enable = true, set the log base directory</span>\n<span class=\"hljs-attr\">remote.logging.base.dir</span>=<span class=\"hljs-string\">logs</span>\n<span class=\"hljs-comment\"># if remote.logging.enable = true, set the number of threads to send logs to remote storage</span>\n<span class=\"hljs-attr\">remote.logging.thread.pool.size</span>=<span class=\"hljs-string\">10</span>\n</code></pre>\n<h2 id=\"writing-task-logs-to-<a-href=\"https://www.aliyun.com/product/oss\">aliyun-object-storage-service-(oss)</a>\">Writing task logs to <a href=\"https://www.aliyun.com/product/oss\">Aliyun Object Storage Service (OSS)</a></h2>\n<p>Configure <code>common.properties</code> as follows:</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-comment\"># oss access key id, required if you set remote.logging.target=OSS</span>\n<span class=\"hljs-attr\">remote.logging.oss.access.key.id</span>=<span class=\"hljs-string\">&lt;access.key.id&gt;</span>\n<span class=\"hljs-comment\"># oss access key secret, required if you set remote.logging.target=OSS</span>\n<span class=\"hljs-attr\">remote.logging.oss.access.key.secret</span>=<span class=\"hljs-string\">&lt;access.key.secret&gt;</span>\n<span class=\"hljs-comment\"># oss bucket name, required if you set remote.logging.target=OSS</span>\n<span class=\"hljs-attr\">remote.logging.oss.bucket.name</span>=<span class=\"hljs-string\">&lt;bucket.name&gt;</span>\n<span class=\"hljs-comment\"># oss endpoint, required if you set remote.logging.target=OSS</span>\n<span class=\"hljs-attr\">remote.logging.oss.endpoint</span>=<span class=\"hljs-string\">&lt;endpoint&gt;</span>\n</code></pre>\n<h2 id=\"writing-task-logs-to-<a-href=\"https://aws.amazon.com/cn/s3/\">amazon-s3</a>\">Writing task logs to <a href=\"https://aws.amazon.com/cn/s3/\">Amazon S3</a></h2>\n<p>Configure <code>common.properties</code> as follows:</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-comment\"># s3 access key id, required if you set remote.logging.target=S3</span>\n<span class=\"hljs-attr\">remote.logging.s3.access.key.id</span>=<span class=\"hljs-string\">&lt;access.key.id&gt;</span>\n<span class=\"hljs-comment\"># s3 access key secret, required if you set remote.logging.target=S3</span>\n<span class=\"hljs-attr\">remote.logging.s3.access.key.secret</span>=<span class=\"hljs-string\">&lt;access.key.secret&gt;</span>\n<span class=\"hljs-comment\"># s3 bucket name, required if you set remote.logging.target=S3</span>\n<span class=\"hljs-attr\">remote.logging.s3.bucket.name</span>=<span class=\"hljs-string\">&lt;bucket.name&gt;</span>\n<span class=\"hljs-comment\"># s3 endpoint, required if you set remote.logging.target=S3</span>\n<span class=\"hljs-attr\">remote.logging.s3.endpoint</span>=<span class=\"hljs-string\">&lt;endpoint&gt;</span>\n<span class=\"hljs-comment\"># s3 region, required if you set remote.logging.target=S3</span>\n<span class=\"hljs-attr\">remote.logging.s3.region</span>=<span class=\"hljs-string\">&lt;region&gt;</span>\n</code></pre>\n<h2 id=\"writing-task-logs-to-<a-href=\"https://cloud.google.com/storage\">google-cloud-storage-(gcs)</a>\">Writing task logs to <a href=\"https://cloud.google.com/storage\">Google Cloud Storage (GCS)</a></h2>\n<p>Configure <code>common.properties</code> as follows:</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-comment\"># the location of the google cloud credential, required if you set remote.logging.target=GCS</span>\n<span class=\"hljs-attr\">remote.logging.google.cloud.storage.credential</span>=<span class=\"hljs-string\">/path/to/credential</span>\n<span class=\"hljs-comment\"># gcs bucket name, required if you set remote.logging.target=GCS</span>\n<span class=\"hljs-attr\">remote.logging.google.cloud.storage.bucket.name</span>=<span class=\"hljs-string\">&lt;your-bucket&gt;</span>\n</code></pre>\n<h2 id=\"writing-task-logs-to-<a-href=\"https://azure.microsoft.com/en-us/products/storage/blobs\">azure-blob-storage-(abs)</a>\">Writing task logs to <a href=\"https://azure.microsoft.com/en-us/products/storage/blobs\">Azure Blob Storage (ABS)</a></h2>\n<p>Configure <code>common.properties</code> as follows:</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-comment\"># abs account name, required if you set resource.storage.type=ABS</span>\n<span class=\"hljs-attr\">remote.logging.abs.account.name</span>=<span class=\"hljs-string\">&lt;your-account-name&gt;</span>\n<span class=\"hljs-comment\"># abs account key, required if you set resource.storage.type=ABS</span>\n<span class=\"hljs-attr\">remote.logging.abs.account.key</span>=<span class=\"hljs-string\">&lt;your-account-key&gt;</span>\n<span class=\"hljs-comment\"># abs container name, required if you set resource.storage.type=ABS</span>\n<span class=\"hljs-attr\">remote.logging.abs.container.name</span>=<span class=\"hljs-string\">&lt;your-container-name&gt;</span>\n</code></pre>\n<h3 id=\"notice\">Notice</h3>\n<p>Since Azure Blob Storage does not support the existence of empty directories, there will be empty files <code>&lt;no name&gt;</code> under the resource directory. But it does not affect the file display on the Dolphinscheduler resource center.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Remote Logging"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Enabling remote logging",
+      "children": [
+        {
+          "title": "Notice",
+          "children": [],
+          "anchor": "notice"
+        }
+      ],
+      "anchor": "enabling-remote-logging"
+    },
+    {
+      "title": "Writing task logs to Aliyun Object Storage Service (OSS)",
+      "children": [
+        {
+          "title": "Notice",
+          "children": [],
+          "anchor": "notice"
+        }
+      ],
+      "anchor": "writing-task-logs-to-aliyun-object-storage-service-(oss)"
+    },
+    {
+      "title": "Writing task logs to Amazon S3",
+      "children": [
+        {
+          "title": "Notice",
+          "children": [],
+          "anchor": "notice"
+        }
+      ],
+      "anchor": "writing-task-logs-to-amazon-s3"
+    },
+    {
+      "title": "Writing task logs to Google Cloud Storage (GCS)",
+      "children": [
+        {
+          "title": "Notice",
+          "children": [],
+          "anchor": "notice"
+        }
+      ],
+      "anchor": "writing-task-logs-to-google-cloud-storage-(gcs)"
+    },
+    {
+      "title": "Writing task logs to Azure Blob Storage (ABS)",
+      "children": [
+        {
+          "title": "Notice",
+          "children": [],
+          "anchor": "notice"
+        }
+      ],
+      "anchor": "writing-task-logs-to-azure-blob-storage-(abs)"
+    }
+  ],
+  "title": "Remote Logging",
+  "link": "/guide/remote-logging"
+}

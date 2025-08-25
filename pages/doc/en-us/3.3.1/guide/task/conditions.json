@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"conditions\">Conditions</h1>\n<p>Condition is a conditional node, that determines which downstream task should run based on the condition of the upstream task. Currently, the Conditions support multiple upstream tasks, but only two downstream tasks. When the number of upstream tasks exceeds one, achieve complex upstream dependencies by through <code>and</code> and <code>or</code> operators.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/conditions.png\" width=\"20\"/> task node to canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Downstream tasks selection</td>\n<td>Depending on the status of the predecessor task, you can jump to the corresponding branch, currently two branches are supported: success, failure <ul><li>Success: When the upstream task runs successfully, run the success branch.</li><li>Failure: When the upstream task runs failed, run the failure branch.</li></ul></li></ul></td>\n</tr>\n<tr>\n<td>Upstream condition selection</td>\n<td>Can select one or more upstream tasks for conditions.<ul><li>Add an upstream dependency: the first parameter is to choose a specified task name, and the second parameter is to choose the upstream task status to trigger conditions.</li><li>Select upstream task relationship: use <code>and</code> and <code>or</code> operators to handle the complex relationship of upstream when there are multiple upstream tasks for conditions.</li></ul></li></ul></td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"related-task\">Related Task</h2>\n<p><a href=\"/en-us/docs/3.3.1/guide/task/switch\">switch</a>: Conditions task mainly executes the corresponding branch based on the execution status (success, failure) of the upstream nodes. The <a href=\"/en-us/docs/3.3.1/guide/task/switch\">Switch</a> task node mainly executes the corresponding branch based on the value of the <a href=\"/en-us/docs/3.3.1/guide/parameter/global\">global parameter</a> and the result of user written expression.</p>\n<h2 id=\"example\">Example</h2>\n<p>This sample demonstrates the operation of the Condition task by using the <a href=\"/en-us/docs/3.3.1/guide/task/shell\">Shell</a> task.</p>\n<h3 id=\"create-workflow\">Create workflow</h3>\n<p>Go to the workflow definition page, and then create the following task nodes:</p>\n<ul>\n<li>Node_A: Shell task, prints out &quot;hello world&quot;, its main function is the upstream branch of Condition, and triggers the corresponding branch node according to whether its execution is successful or not.</li>\n<li>Condition: The Conditions task executes the corresponding branch according to the execution status of the upstream task.</li>\n<li>Node_Success: Shell task, print out &quot;success&quot;, Node_A executes the successful branch.</li>\n<li>Node_False: Shell task, print out &quot;false&quot;, Node_A executes the failed branch.</li>\n</ul>\n<p><img src=\"/img/tasks/demo/condition_task01.png\" alt=\"condition_task01\"></p>\n<h3 id=\"view-the-execution-result\">View the execution result</h3>\n<p>After you finish creating the workflow, you can run the workflow online. You can view the execution status of each task on the workflow instance page. As shown below:</p>\n<p><img src=\"/img/tasks/demo/condition_task02.png\" alt=\"condition_task02\"></p>\n<p>In the above figure, the task status marked with a green check mark is the successfully executed task node.</p>\n<h2 id=\"note\">Note</h2>\n<ul>\n<li>The Conditions task supports multiple upstream tasks, but only two downstream tasks.</li>\n<li>The Conditions task and the workflow that contain it do not support copy operations.</li>\n<li>The predecessor task of Conditions cannot connect to its branch nodes, which will cause logical confusion and does not conform to DAG scheduling. The situation shown below is <strong>wrong</strong>.</li>\n</ul>\n<p><img src=\"/img/tasks/demo/condition_task03.png\" alt=\"condition_task03\">\n<img src=\"/img/tasks/demo/condition_task04.png\" alt=\"condition_task04\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Conditions"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Create workflow",
+          "children": [],
+          "anchor": "create-workflow"
+        },
+        {
+          "title": "View the execution result",
+          "children": [],
+          "anchor": "view-the-execution-result"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Create workflow",
+          "children": [],
+          "anchor": "create-workflow"
+        },
+        {
+          "title": "View the execution result",
+          "children": [],
+          "anchor": "view-the-execution-result"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Related Task",
+      "children": [
+        {
+          "title": "Create workflow",
+          "children": [],
+          "anchor": "create-workflow"
+        },
+        {
+          "title": "View the execution result",
+          "children": [],
+          "anchor": "view-the-execution-result"
+        }
+      ],
+      "anchor": "related-task"
+    },
+    {
+      "title": "Example",
+      "children": [
+        {
+          "title": "Create workflow",
+          "children": [],
+          "anchor": "create-workflow"
+        },
+        {
+          "title": "View the execution result",
+          "children": [],
+          "anchor": "view-the-execution-result"
+        }
+      ],
+      "anchor": "example"
+    },
+    {
+      "title": "Note",
+      "children": [
+        {
+          "title": "Create workflow",
+          "children": [],
+          "anchor": "create-workflow"
+        },
+        {
+          "title": "View the execution result",
+          "children": [],
+          "anchor": "view-the-execution-result"
+        }
+      ],
+      "anchor": "note"
+    }
+  ],
+  "title": "Conditions",
+  "link": "/guide/task/conditions"
+}

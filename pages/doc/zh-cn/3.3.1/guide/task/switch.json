@@ -1,0 +1,76 @@
+{
+  "__html": "<h1 id=\"switch\">Switch</h1>\n<p>Switch 是一个条件判断节点，依据<a href=\"/zh-cn/docs/3.3.1/guide/parameter/global\">全局变量</a>的值和用户所编写的表达式判断结果执行对应分支。\n<strong>注意</strong>使用 javax.script.ScriptEngine.eval 执行表达式。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<p>点击项目管理 -&gt; 项目名称 -&gt; 工作流定义，点击&quot;创建工作流&quot;按钮，进入 DAG 编辑页面。\n拖动工具栏中的 <img src=\"/img/switch.png\" width=\"20\"/> 任务节点到画板中即能完成任务创建。\n<strong>注意</strong> switch 任务创建后，要先配置上下游，才能配置任务分支的参数。</p>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/3.3.1/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>条件</td>\n<td>可以为 switch 任务配置多个条件，当条件满足时，就会执行指定的分支，可以配置多个不同的条件来满足不同的业务，使用字符串判断时需要使用&quot;&quot;</td>\n</tr>\n<tr>\n<td>分支流转</td>\n<td>默认的流转内容，当<strong>条件</strong>中的内容为全部不符合要求时，则运行<strong>分支流转</strong>中指定的分支</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"任务样例\">任务样例</h2>\n<p>这里使用一个 switch 任务以及三个 shell 任务来演示。</p>\n<h3 id=\"创建工作流\">创建工作流</h3>\n<p>新建 switch 任务，以及下游的三个 shell 任务。shell 任务没有要求。\nswitch 任务需要和下游任务连线配置关系后，才可以进行下游任务的选择。</p>\n<p><img src=\"/img/tasks/demo/switch_01.png\" alt=\"switch_01\"></p>\n<h3 id=\"设置条件\">设置条件</h3>\n<p>配置条件和默认分支，满足条件会走指定分支，都不满足则走默认分支。\n图中如果变量的值为 &quot;A&quot; 则执行分支 taskA，如果变量的值为 &quot;B&quot; 则执行分支 taskB ，都不满足则执行 default。</p>\n<p><img src=\"/img/tasks/demo/switch_02.png\" alt=\"switch_02\"></p>\n<p>条件使用了全局变量，请参考<a href=\"/zh-cn/docs/3.3.1/guide/parameter/global\">全局变量</a>。\n这里配置全局变量的值为 A。</p>\n<p><img src=\"/img/tasks/demo/switch_03.png\" alt=\"switch_03\"></p>\n<p>如果执行正确，那么 taskA 会被正确执行。</p>\n<h3 id=\"执行\">执行</h3>\n<p>执行，并且查看是否符合预期。可以看到符合预期，执行了指定的下游任务 taskA。</p>\n<p><img src=\"/img/tasks/demo/switch_04.png\" alt=\"switch_04\"></p>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Switch"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "创建工作流",
+          "children": [],
+          "anchor": "创建工作流"
+        },
+        {
+          "title": "设置条件",
+          "children": [],
+          "anchor": "设置条件"
+        },
+        {
+          "title": "执行",
+          "children": [],
+          "anchor": "执行"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "创建工作流",
+          "children": [],
+          "anchor": "创建工作流"
+        },
+        {
+          "title": "设置条件",
+          "children": [],
+          "anchor": "设置条件"
+        },
+        {
+          "title": "执行",
+          "children": [],
+          "anchor": "执行"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "创建工作流",
+          "children": [],
+          "anchor": "创建工作流"
+        },
+        {
+          "title": "设置条件",
+          "children": [],
+          "anchor": "设置条件"
+        },
+        {
+          "title": "执行",
+          "children": [],
+          "anchor": "执行"
+        }
+      ],
+      "anchor": "任务样例"
+    }
+  ],
+  "title": "Switch",
+  "link": "/guide/task/switch"
+}

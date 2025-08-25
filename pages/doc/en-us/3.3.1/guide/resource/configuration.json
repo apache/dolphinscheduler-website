@@ -1,0 +1,68 @@
+{
+  "__html": "<h1 id=\"resource-center-configuration\">Resource Center Configuration</h1>\n<ul>\n<li>You could use <code>Resource Center</code> to upload text files and other task-related files.</li>\n<li>You could configure <code>Resource Center</code> to use distributed file system like <a href=\"https://hadoop.apache.org/docs/r2.7.0/\">Hadoop</a> (2.6+), <a href=\"https://github.com/minio/minio\">MinIO</a> cluster or remote storage products like <a href=\"https://aws.amazon.com/s3/\">AWS S3</a>, <a href=\"https://www.aliyun.com/product/oss\">Alibaba Cloud OSS</a>, <a href=\"https://support.huaweicloud.com/obs/index.html\">Huawei Cloud OBS</a>, <a href=\"https://cloud.tencent.com/product/cos\">Tencent Cloud COS</a>, etc.</li>\n<li>You could configure <code>Resource Center</code> to use local file system. If you deploy <code>DolphinScheduler</code> in <code>Standalone</code> mode, you could configure it to use local file system for <code>Resource Center</code> without the need of an external <code>HDFS</code> system or <code>S3</code>.</li>\n<li>Furthermore, if you deploy <code>DolphinScheduler</code> in <code>Cluster</code> mode, you could use <a href=\"https://github.com/s3fs-fuse/s3fs-fuse\">S3FS-FUSE</a> to mount <code>S3</code> or <a href=\"https://help.aliyun.com/document_detail/187410.html\">JINDO-FUSE</a> to mount <code>OSS</code> to your machines and use the local file system for <code>Resource Center</code>. In this way, you could operate remote files as if on your local machines.</li>\n</ul>\n<h2 id=\"use-local-file-system\">Use Local File System</h2>\n<h3 id=\"configure-<code>common.properties</code>\">Configure <code>common.properties</code></h3>\n<p>DolphinScheduler Resource Center uses local file system by default, and does not require any additional configuration.\nBut please make sure to change the following configuration at the same time when you need to modify the default value.</p>\n<ul>\n<li>If you deploy DolphinScheduler in <code>Cluster</code> or <code>Pseudo-Cluster</code> mode, you need to configure <code>api-server/conf/common.properties</code> and <code>worker-server/conf/common.properties</code>.</li>\n<li>If you deploy DolphinScheduler in <code>Standalone</code> mode, you only need to configure <code>standalone-server/conf/common.properties</code> as follows:</li>\n</ul>\n<p>The configuration you may need to change:</p>\n<ul>\n<li>Change <code>resource.storage.upload.base.path</code> to your local directory path. Please make sure the <code>tenant resource.hdfs.root.user</code> has read and write permissions for <code>resource.storage.upload.base.path</code>, e,g. <code>/tmp/dolphinscheduler</code>. <code>DolphinScheduler</code> will create the directory you configure if it does not exist.</li>\n</ul>\n<blockquote>\n<p>NOTE:</p>\n<ol>\n<li>LOCAL mode does not support reading and writing in distributed mode, which mean you can only use your resource in one machine, unless use shared file mount point</li>\n<li>Please modify the value of <code>resource.storage.upload.base.path</code> if you do not want to use the default value as the base path.</li>\n<li>The local config is <code>resource.storage.type=LOCAL</code> it has actually configured two setting, <code>resource.storage.type=HDFS</code>\nand <code>resource.hdfs.fs.defaultFS=file:///</code>, The configuration of <code>resource.storage.type=LOCAL</code> is for user-friendly, and enables\nthe local resource center to be enabled by default</li>\n</ol>\n</blockquote>\n<h2 id=\"connect-aws-s3\">connect AWS S3</h2>\n<p>if you want to upload resources to <code>Resource Center</code> connected to <code>S3</code>, you need to configure <code>api-server/conf/common.properties</code>, <code>api-server/conf/aws.yaml</code> and <code>worker-server/conf/common.properties</code>, <code>worker-server/conf/aws.yaml</code>. You can refer to the following:</p>\n<p>config the following fields</p>\n<pre><code class=\"language-properties\">\n<span class=\"hljs-attr\">resource.storage.type</span>=<span class=\"hljs-string\">S3</span>\n</code></pre>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">aws:</span>\n    <span class=\"hljs-attr\">s3:</span>\n        <span class=\"hljs-comment\"># The AWS credentials provider type. support: AWSStaticCredentialsProvider, InstanceProfileCredentialsProvider</span>\n        <span class=\"hljs-comment\"># AWSStaticCredentialsProvider: use the access key and secret key to authenticate</span>\n        <span class=\"hljs-comment\"># InstanceProfileCredentialsProvider: use the IAM role to authenticate</span>\n        <span class=\"hljs-attr\">credentials.provider.type:</span> <span class=\"hljs-string\">AWSStaticCredentialsProvider</span>\n        <span class=\"hljs-attr\">access.key.id:</span> <span class=\"hljs-string\">&lt;access.key.id&gt;</span>\n        <span class=\"hljs-attr\">access.key.secret:</span> <span class=\"hljs-string\">&lt;access.key.secret&gt;</span>\n        <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">&lt;region&gt;</span>\n        <span class=\"hljs-attr\">bucket.name:</span> <span class=\"hljs-string\">&lt;bucket.name&gt;</span>\n        <span class=\"hljs-attr\">endpoint:</span> <span class=\"hljs-string\">&lt;endpoint&gt;</span>\n\n</code></pre>\n<h2 id=\"connect-oss-s3\">connect OSS S3</h2>\n<p>if you want to upload resources to <code>Resource Center</code> connected to <code>OSS</code>, you need to configure <code>api-server/conf/common.properties</code> and <code>worker-server/conf/common.properties</code>. You can refer to the following:</p>\n<p>config the following fields</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-comment\"># alibaba cloud access key id, required if you set resource.storage.type=OSS </span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.access.key.id</span>=<span class=\"hljs-string\">&lt;your-access-key-id&gt;</span>\n<span class=\"hljs-comment\"># alibaba cloud access key secret, required if you set resource.storage.type=OSS</span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.access.key.secret</span>=<span class=\"hljs-string\">&lt;your-access-key-secret&gt;</span>\n<span class=\"hljs-comment\"># alibaba cloud region, required if you set resource.storage.type=OSS</span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.region</span>=<span class=\"hljs-string\">cn-hangzhou</span>\n<span class=\"hljs-comment\"># oss bucket name, required if you set resource.storage.type=OSS</span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.oss.bucket.name</span>=<span class=\"hljs-string\">dolphinscheduler</span>\n<span class=\"hljs-comment\"># oss bucket endpoint, required if you set resource.storage.type=OSS</span>\n<span class=\"hljs-attr\">resource.alibaba.cloud.oss.endpoint</span>=<span class=\"hljs-string\">https://oss-cn-hangzhou.aliyuncs.com</span>\n\n</code></pre>\n<h2 id=\"connect-obs-s3\">connect OBS S3</h2>\n<p>if you want to upload resources to <code>Resource Center</code> connected to <code>OBS</code>, you need to configure <code>api-server/conf/common.properties</code> and <code>worker-server/conf/common.properties</code>. You can refer to the following:</p>\n<p>config the following fields</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-comment\"># access key id, required if you set resource.storage.type=OBS</span>\n<span class=\"hljs-attr\">resource.huawei.cloud.access.key.id</span>=<span class=\"hljs-string\">&lt;your-access-key-id&gt;</span>\n<span class=\"hljs-comment\"># access key secret, required if you set resource.storage.type=OBS</span>\n<span class=\"hljs-attr\">resource.huawei.cloud.access.key.secret</span>=<span class=\"hljs-string\">&lt;your-access-key-secret&gt;</span>\n<span class=\"hljs-comment\"># oss bucket name, required if you set resource.storage.type=OBS</span>\n<span class=\"hljs-attr\">resource.huawei.cloud.obs.bucket.name</span>=<span class=\"hljs-string\">dolphinscheduler</span>\n<span class=\"hljs-comment\"># oss bucket endpoint, required if you set resource.storage.type=OBS</span>\n<span class=\"hljs-attr\">resource.huawei.cloud.obs.endpoint</span>=<span class=\"hljs-string\">obs.cn-southwest-2.huaweicloud.com</span>\n\n</code></pre>\n<blockquote>\n<p><strong>Note:</strong></p>\n<ul>\n<li>If only the <code>api-server/conf/common.properties</code> file is configured, then resource uploading is enabled, but you can not use resources in task. If you want to use or execute the files in the workflow you need to configure <code>worker-server/conf/common.properties</code> too.</li>\n<li>If you want to use the resource upload function, the deployment user in <a href=\"/en-us/docs/3.3.1/guide/installation/standalone\">installation and deployment</a> must have relevant operation authority.</li>\n<li>If you using a Hadoop cluster with HA, you need to enable HDFS resource upload, and you need to copy the <code>core-site.xml</code> and <code>hdfs-site.xml</code> under the Hadoop cluster to <code>worker-server/conf</code> and <code>api-server/conf</code>, otherwise skip this copy step.</li>\n</ul>\n</blockquote>\n<h2 id=\"connect-cos\">connect COS</h2>\n<p>if you want to upload resources to <code>Resource Center</code> connected to <code>COS</code>, you need to configure <code>api-server/conf/resource-center.yaml</code> and <code>worker-server/conf/resource-center.yaml</code>. You can refer to the following:</p>\n<p>config the following fields</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">resource:</span>\n  <span class=\"hljs-comment\"># Tencent Cloud Storage (COS) setup, required if you set resource.storage.type=COS</span>\n  <span class=\"hljs-attr\">tencent:</span>\n    <span class=\"hljs-attr\">cloud:</span>\n      <span class=\"hljs-attr\">access:</span>\n        <span class=\"hljs-attr\">key:</span>\n          <span class=\"hljs-attr\">id:</span> <span class=\"hljs-string\">&lt;your-access-key-id&gt;</span>\n          <span class=\"hljs-attr\">secret:</span> <span class=\"hljs-string\">&lt;your-access-key-secret&gt;</span>\n      <span class=\"hljs-attr\">cos:</span>\n        <span class=\"hljs-comment\"># predefined region code: https://cloud.tencent.com/document/product/436/6224</span>\n        <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">ap-nanjing</span>\n        <span class=\"hljs-attr\">bucket:</span>\n          <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">dolphinscheduler</span>\n\n</code></pre>\n<p>To enable COS, you also need to configure <code>api-server/conf/common.properties</code> and <code>worker-server/conf/common.properties</code>. You can refer to the following:</p>\n<pre><code class=\"language-properties\"><span class=\"hljs-attr\">resource.storage.type</span>=<span class=\"hljs-string\">COS</span>\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Resource",
+    "Configuration"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Use Local File System",
+      "children": [
+        {
+          "title": "Configure common.properties",
+          "children": [],
+          "anchor": "configure-common.properties"
+        }
+      ],
+      "anchor": "use-local-file-system"
+    },
+    {
+      "title": "connect AWS S3",
+      "children": [
+        {
+          "title": "Configure common.properties",
+          "children": [],
+          "anchor": "configure-common.properties"
+        }
+      ],
+      "anchor": "connect-aws-s3"
+    },
+    {
+      "title": "connect OSS S3",
+      "children": [
+        {
+          "title": "Configure common.properties",
+          "children": [],
+          "anchor": "configure-common.properties"
+        }
+      ],
+      "anchor": "connect-oss-s3"
+    },
+    {
+      "title": "connect OBS S3",
+      "children": [
+        {
+          "title": "Configure common.properties",
+          "children": [],
+          "anchor": "configure-common.properties"
+        }
+      ],
+      "anchor": "connect-obs-s3"
+    },
+    {
+      "title": "connect COS",
+      "children": [
+        {
+          "title": "Configure common.properties",
+          "children": [],
+          "anchor": "configure-common.properties"
+        }
+      ],
+      "anchor": "connect-cos"
+    }
+  ],
+  "title": "Resource Center Configuration",
+  "link": "/guide/resource/configuration"
+}

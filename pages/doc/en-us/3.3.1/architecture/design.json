@@ -1,0 +1,1320 @@
+{
+  "__html": "<h1 id=\"system-architecture-design\">System Architecture Design</h1>\n<h2 id=\"system-structure\">System Structure</h2>\n<h3 id=\"system-architecture-diagram\">System Architecture Diagram</h3>\n<p align=\"center\">\n  <img src=\"/img/architecture-lastest.jpg\" alt=\"System architecture diagram\"  width=\"70%\" />\n  <p align=\"center\">\n        <em>System architecture diagram</em>\n  </p>\n</p>\n<h3 id=\"start-process-activity-diagram\">Start Process Activity Diagram</h3>\n<p align=\"center\">\n  <img src=\"/img/process-start-flow-1.3.0.png\" alt=\"Start process activity diagram\"  width=\"70%\" />\n  <p align=\"center\">\n        <em>Start process activity diagram</em>\n  </p>\n</p>\n<h3 id=\"architecture-description\">Architecture Description</h3>\n<ul>\n<li>\n<p><strong>MasterServer</strong></p>\n<p>MasterServer adopts a distributed and decentralized design concept. MasterServer is mainly responsible for DAG task segmentation, task submission monitoring, and monitoring the health status of other MasterServer and WorkerServer at the same time.\nWhen the MasterServer service starts, register a temporary node with ZooKeeper, and perform fault tolerance by monitoring changes in the temporary node of ZooKeeper.\nMasterServer provides monitoring services based on netty.</p>\n<h4 id=\"the-service-mainly-includes:\">The Service Mainly Includes:</h4>\n<ul>\n<li>\n<p><strong>DistributedQuartz</strong> distributed scheduling component, which is mainly responsible for the start and stop operations of scheduled tasks. When quartz start the task, there will be a thread pool inside the Master responsible for the follow-up operation of the processing task;</p>\n</li>\n<li>\n<p><strong>MasterSchedulerService</strong> is a scanning thread that regularly scans the <code>t_ds_command</code> table in the database, runs different business operations according to different <strong>command types</strong>;</p>\n</li>\n<li>\n<p><strong>WorkflowExecuteRunnable</strong> is mainly responsible for DAG task segmentation, task submission monitoring, and logical processing of different event types;</p>\n</li>\n<li>\n<p><strong>TaskExecuteRunnable</strong> is mainly responsible for the processing and persistence of tasks, and generates task events and submits them to the event queue of the process instance;</p>\n</li>\n<li>\n<p><strong>EventExecuteService</strong> is mainly responsible for the polling of the event queue of the process instances;</p>\n</li>\n<li>\n<p><strong>StateWheelExecuteThread</strong> is mainly responsible for process instance and task timeout, task retry, task-dependent polling, and generates the corresponding process instance or task event and submits it to the event queue of the process instance;</p>\n</li>\n<li>\n<p><strong>FailoverExecuteThread</strong> is mainly responsible for the logic of Master fault tolerance and Worker fault tolerance;</p>\n</li>\n</ul>\n</li>\n<li>\n<p><strong>WorkerServer</strong></p>\n<p>WorkerServer also adopts a distributed and decentralized design concept. WorkerServer is mainly responsible for task execution and providing log services.</p>\n<p>When the WorkerServer service starts, register a temporary node with ZooKeeper and maintain a heartbeat.\nWorkerServer provides monitoring services based on netty.</p>\n<h4 id=\"the-service-mainly-includes:\">The Service Mainly Includes:</h4>\n<ul>\n<li>\n<p><strong>WorkerManagerThread</strong> is mainly responsible for the submission of the task queue, continuously receives tasks from the task queue, and submits them to the thread pool for processing;</p>\n</li>\n<li>\n<p><strong>TaskExecuteThread</strong> is mainly responsible for the process of task execution, and the actual processing of tasks according to different task types;</p>\n</li>\n<li>\n<p><strong>RetryReportTaskStatusThread</strong> is mainly responsible for regularly polling to report the task status to the Master until the Master replies to the status ack to avoid the loss of the task status;</p>\n</li>\n</ul>\n</li>\n<li>\n<p><strong>ZooKeeper</strong></p>\n<p>ZooKeeper service, MasterServer and WorkerServer nodes in the system all use ZooKeeper for cluster management and fault tolerance. With evolving needs and modern deployment environments, DolphinScheduler now supports event monitoring and distributed locks not only based on ZooKeeper, but also on <strong>JDBC</strong> and <strong>Etcd</strong> implementations.</p>\n</li>\n<li>\n<p><strong>JDBC</strong>\nDolphinScheduler also provides a JDBC-based registry implementation, located in the <code>dolphinscheduler-registry/dolphinscheduler-registry-plugins/dolphinscheduler-registry-jdbc</code> module. Unlike external systems such as ZooKeeper or Etcd, the JDBC approach leverages a relational database to support event monitoring and distributed locking, making it well-suited for environments that already rely on SQL databases.</p>\n<ul>\n<li>\n<p><strong>Event Monitoring</strong></p>\n<ul>\n<li>\n<p><strong>Subscribe Method</strong>\nThe <code>subscribe(String watchedPath, SubscribeListener listener)</code> method in <code>JdbcRegistry</code> registers a data change listener using the <code>JdbcRegistryDataChangeListenerAdapter</code>. When changes (such as creation, update, or deletion) occur for the specified key or path in the database, the adapter converts these changes into DolphinScheduler <code>Event</code> notifications and triggers the <code>SubscribeListener</code> callback.</p>\n</li>\n<li>\n<p><strong>Polling/Trigger Mechanism</strong>\nInternally, the system uses periodic polling or a trigger-based mechanism to detect changes in the registry data stored in the database, simulating a Watcher-like behavior similar to ZooKeeper.</p>\n</li>\n</ul>\n</li>\n<li>\n<p><strong>Distributed Lock</strong></p>\n<ul>\n<li>\n<p><strong>Lock Acquisition and Release</strong>\nThe JDBC registry offers both <code>acquireLock(String key)</code> and <code>acquireLock(String key, long timeout)</code> methods, which correspond to blocking and timeout-based lock acquisition respectively. These methods internally call <code>JdbcRegistryClient.acquireJdbcRegistryLock(...)</code> to manage locks via database records, ensuring mutual exclusion in a distributed environment.</p>\n</li>\n<li>\n<p><strong>Ephemeral vs. Persistent Locks</strong>\nData entries are classified as either <strong>EPHEMERAL</strong> or <strong>PERSISTENT</strong>. For ephemeral locks, if the client disconnects or fails, heartbeat mechanisms detect the lapse and clean up the lock record automatically, thus releasing the lock.</p>\n</li>\n<li>\n<p><strong>Lock Management</strong>\nUnder the hood, components like <code>JdbcRegistryLockManager</code> (or equivalent) use row-level locking or specific database fields to ensure atomic lock operations, maintaining consistency even when multiple masters/workers compete for the same lock.</p>\n</li>\n</ul>\n<hr>\n<p>By leveraging JDBC for both <strong>event monitoring</strong> and <strong>distributed locking</strong>, DolphinScheduler can achieve reliable task coordination and scheduling without relying on external registry centers, making it an attractive option for environments that prefer or already have robust database infrastructure.</p>\n</li>\n</ul>\n</li>\n<li>\n<p><strong>Etcd</strong></p>\n<p>DolphinScheduler also provides an Etcd-based registry implementation. The Etcd-based registry, implemented in the module <code>dolphinscheduler-registry/dolphinscheduler-registry-plugins/dolphinscheduler-registry-etcd</code>, leverages the Jetcd client library to interact with an Etcd cluster. This implementation provides several key functionalities:</p>\n<ul>\n<li>\n<p><strong>Event Monitoring</strong></p>\n<ul>\n<li><strong>Watch API</strong>\nThe <code>EtcdRegistry</code> class uses Etcd’s Watch API to observe changes (creation, update, or deletion) on specified keys or key prefixes. Low-level Etcd watch events are translated into DolphinScheduler’s <code>Event</code> objects, triggering <code>SubscribeListener</code> callbacks for real-time notifications.</li>\n</ul>\n</li>\n<li>\n<p><strong>Distributed Lock</strong></p>\n<ul>\n<li>\n<p><strong>Lease-Based Locking</strong>\nThe <code>EtcdKeepAliveLeaseManager</code> grants a lease with a specified TTL, continuously kept alive via Etcd’s keep-alive mechanism. If the client disconnects, the lease expires automatically, releasing the lock without manual intervention.</p>\n</li>\n<li>\n<p><strong>Connection Health Monitoring</strong>\nThe <code>EtcdConnectionStateListener</code> tracks the connection state between DolphinScheduler and the Etcd cluster. Upon disconnection or reconnection, it re-establishes locks or re-registers services as needed.</p>\n</li>\n</ul>\n</li>\n<li>\n<p><strong>Configuration</strong></p>\n<ul>\n<li><strong>Flexible Configuration</strong>\nThe behavior of the Etcd registry is controlled by <code>EtcdRegistryProperties</code>, which maps various settings (endpoints, namespace, SSL, authentication, etc.) from configuration files. These settings are integrated into the Spring Boot auto-configuration process via <code>EtcdRegistryAutoConfiguration</code>, ensuring that the Etcd registry is instantiated automatically when <code>registry.type</code> is set to <code>&quot;etcd&quot;</code>.</li>\n</ul>\n<p>Together, these components ensure that DolphinScheduler can reliably use Etcd as an alternative registry center. This is especially useful in cloud-native environments where low latency, high scalability, and ease of deployment are critical.</p>\n<hr>\n</li>\n</ul>\n<p>We have also implemented queues based on Redis, but we hope DolphinScheduler depends on as few components as possible, so we finally removed the Redis implementation.</p>\n</li>\n<li>\n<p><strong>AlertServer</strong></p>\n<p>Provides alarm services, and implements rich alarm methods through alarm plugins.</p>\n</li>\n<li>\n<p><strong>API</strong></p>\n<p>The API interface layer is mainly responsible for processing requests from the front-end UI layer. The service uniformly provides RESTful APIs to provide request services to external.</p>\n</li>\n<li>\n<p><strong>UI</strong></p>\n<p>The front-end page of the system provides various visual operation interfaces of the system, see more at <a href=\"/en-us/docs/3.3.1/guide/homepage\">Introduction to Functions</a> section.</p>\n</li>\n</ul>\n<h3 id=\"architecture-design-ideas\">Architecture Design Ideas</h3>\n<h4 id=\"decentralization-vs-centralization\">Decentralization VS Centralization</h4>\n<h5 id=\"centralized-thinking\">Centralized Thinking</h5>\n<p>The centralized design concept is relatively simple. The nodes in the distributed cluster are roughly divided into two roles according to responsibilities:</p>\n<p align=\"center\">\n   <img src=\"https://analysys.github.io/easyscheduler_docs_cn/images/master_slave.png\" alt=\"master-slave character\"  width=\"50%\" />\n </p>\n<ul>\n<li>The role of the master is mainly responsible for task distribution and monitoring the health status of the slave, and can dynamically balance the task to the slave, so that the slave node won't be in a &quot;busy dead&quot; or &quot;idle dead&quot; state.</li>\n<li>The role of Worker is mainly responsible for task execution and heartbeat maintenance to the Master, so that Master can assign tasks to Slave.</li>\n</ul>\n<p>Problems in centralized thought design:</p>\n<ul>\n<li>Once there is a problem with the Master, the team grow aimless without commander and the entire cluster collapse. In order to solve this problem, most of the Master and Slave architecture models adopt the design scheme of active and standby Master, which can be hot standby or cold standby, or automatic switching or manual switching. More and more new systems are beginning to have ability to automatically elect and switch Master to improve the availability of the system.</li>\n<li>Another problem is that if the Scheduler is on the Master, although it can support different tasks in a DAG running on different machines, it will cause the Master to be overloaded. If the Scheduler is on the slave, all tasks in a DAG can only submit jobs on a certain machine. When there are more parallel tasks, the pressure on the slave may be greater.</li>\n</ul>\n<h5 id=\"decentralized\">Decentralized</h5>\n <p align=\"center\">\n   <img src=\"https://analysys.github.io/easyscheduler_docs_cn/images/decentralization.png\" alt=\"Decentralization\"  width=\"50%\" />\n </p>\n<ul>\n<li>In the decentralized design, there is usually no concept of Master or Slave. All roles are the same, the status is equal, the global Internet is a typical decentralized distributed system. Any node connected to the network goes down, will only affect a small range of functions.</li>\n<li>The core design of decentralized design is that there is no distinct &quot;manager&quot; different from other nodes in the entire distributed system, so there is no single point failure. However, because there is no &quot;manager&quot; node, each node needs to communicate with other nodes to obtain the necessary machine information, and the unreliability of distributed system communication greatly increases the difficulty to implement the above functions.</li>\n<li>In fact, truly decentralized distributed systems are rare. Instead, dynamic centralized distributed systems are constantly pouring out. Under this architecture, the managers in the cluster are dynamically selected, rather than preset, and when the cluster fails, the nodes of the cluster will automatically hold &quot;meetings&quot; to elect new &quot;managers&quot; To preside over the work. The most typical case is Etcd implemented by ZooKeeper and Go language.</li>\n<li>The decentralization of DolphinScheduler is that the Master and Worker register in ZooKeeper, for implement the centerless feature to Master cluster and Worker cluster. Use the ZooKeeper distributed lock to elect one of the Master or Worker as the &quot;manager&quot; to perform the task.</li>\n</ul>\n<h4 id=\"fault-tolerant-design\">Fault-Tolerant Design</h4>\n<p>Fault tolerance divides into service downtime fault tolerance and task retry, and service downtime fault tolerance divides into master fault tolerance and worker fault tolerance.</p>\n<h5 id=\"downtime-fault-tolerance\">Downtime Fault Tolerance</h5>\n<p>The service fault-tolerance design relies on ZooKeeper's Watcher mechanism, and the implementation principle shows in the figure:</p>\n <p align=\"center\">\n   <img src=\"https://analysys.github.io/easyscheduler_docs_cn/images/fault-tolerant.png\" alt=\"DolphinScheduler fault-tolerant design\"  width=\"40%\" />\n </p>\nAmong them, the Master monitors the directories of other Masters and Workers. If the remove event is triggered, perform fault tolerance of the process instance or task instance according to the specific business logic.\n<ul>\n<li>Master fault tolerance：</li>\n</ul>\n<p align=\"center\">\n   <img src=\"/img/failover-master.jpg\" alt=\"failover-master\"  width=\"50%\" />\n </p>\n<p>Fault tolerance range: From the perspective of host, the fault tolerance range of Master includes: own host and node host that does not exist in the registry, and the entire process of fault tolerance will be locked;</p>\n<p>Fault-tolerant content: Master's fault-tolerant content includes: fault-tolerant process instances and task instances. Before fault-tolerant, compares the start time of the instance with the server start-up time, and skips fault-tolerance if after the server start time;</p>\n<p>Fault-tolerant post-processing: After the fault tolerance of ZooKeeper Master completed, then re-schedule by the Scheduler thread in DolphinScheduler, traverses the DAG to find the &quot;running&quot; and &quot;submit successful&quot; tasks. Monitor the status of its task instances for the &quot;running&quot; tasks, and for the &quot;commits successful&quot; tasks, it is necessary to find out whether the task queue already exists. If exists, monitor the status of the task instance. Otherwise, resubmit the task instance.</p>\n<ul>\n<li>Worker fault tolerance：</li>\n</ul>\n<p align=\"center\">\n   <img src=\"/img/failover-worker.jpg\" alt=\"failover-worker\"  width=\"50%\" />\n </p>\n<p>Fault tolerance range: From the perspective of process instance, each Master is only responsible for fault tolerance of its own process instance; it will lock only when <code>handleDeadServer</code>;</p>\n<p>Fault-tolerant content: When sending the remove event of the Worker node, the Master only fault-tolerant task instances. Before fault-tolerant, compares the start time of the instance with the server start-up time, and skips fault-tolerance if after the server start time;</p>\n<p>Fault-tolerant post-processing: Once the Master Scheduler thread finds that the task instance is in the &quot;fault-tolerant&quot; state, it takes over the task and resubmits it.</p>\n<p>Note: Due to &quot;network jitter&quot;, the node may lose heartbeat with ZooKeeper in a short period of time, and the node's remove event may occur. For this situation, we use the simplest way, that is, once the node and ZooKeeper timeout connection occurs, then directly stop the Master or Worker service.</p>\n<h5 id=\"task-failed-and-try-again\">Task Failed and Try Again</h5>\n<p>Here we must first distinguish the concepts of task failure retry, process failure recovery, and process failure re-run:</p>\n<ul>\n<li>Task failure retry is at the task level and is automatically performed by the schedule system. For example, if a Shell task sets to retry for 3 times, it will try to run it again up to 3 times after the Shell task fails.</li>\n<li>Process failure recovery is at the process level and is performed manually. Recovery can only perform <strong>from the failed node</strong> or <strong>from the current node</strong>.</li>\n<li>Process failure re-run is also at the process level and is performed manually, re-run perform from the beginning node.</li>\n</ul>\n<p>Next to the main point, we divide the task nodes in the workflow into two types.</p>\n<ul>\n<li>\n<p>One is a business task, which corresponds to an actual script or process command, such as Shell task, SQL task, and Spark task.</p>\n</li>\n<li>\n<p>Another is a logical task, which does not operate actual script or process command, but only logical processing to the entire process flow, such as sub-process task, dependent task.</p>\n</li>\n</ul>\n<p><strong>Business node</strong> can configure the number of failed retries. When the task node fails, it will automatically retry until it succeeds or exceeds the retry times. <strong>Logical node</strong> failure retry is not supported.</p>\n<p>If there is a task failure in the workflow that reaches the maximum retry times, the workflow will fail and stop, and the failed workflow can be manually re-run or process recovery operations.</p>\n<h4 id=\"task-priority-design\">Task Priority Design</h4>\n<p>In the early schedule design, if there is no priority design and use the fair scheduling, the task submitted first may complete at the same time with the task submitted later, thus invalid the priority of process or task. So we have re-designed this, and the following is our current design:</p>\n<ul>\n<li>According to <strong>the priority of different process instances</strong> prior over <strong>priority of the same process instance</strong> prior over <strong>priority of tasks within the same process</strong> prior over <strong>tasks within the same process</strong>, process task submission order from highest to Lowest.\n<ul>\n<li>The specific implementation is to parse the priority according to the JSON of the task instance, and then save the <strong>process instance priority_process instance id_task priority_task id</strong> information to the ZooKeeper task queue. When obtain from the task queue, we can get the highest priority task by comparing string.\n<ul>\n<li>\n<p>The priority of the process definition is to consider that some processes need to process before other processes. Configure the priority when the process starts or schedules. There are 5 levels in total, which are HIGHEST, HIGH, MEDIUM, LOW, and LOWEST. As shown below</p>\n<p align=\"center\">\n   <img src=\"https://user-images.githubusercontent.com/10797147/146744784-eb351b14-c94a-4ed6-8ba4-5132c2a3d116.png\" alt=\"Process priority configuration\"  width=\"40%\" />\n </p>\n</li>\n<li>\n<p>The priority of the task is also divides into 5 levels, ordered by HIGHEST, HIGH, MEDIUM, LOW, LOWEST. As shown below:</p>\n  <p align=\"center\">\n     <img src=\"https://user-images.githubusercontent.com/10797147/146744830-5eac611f-5933-4f53-a0c6-31613c283708.png\" alt=\"Task priority configuration\"  width=\"35%\" />\n   </p>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n<h4 id=\"logback-and-netty-implement-log-access\">Logback and Netty Implement Log Access</h4>\n<ul>\n<li>Since Web (UI) and Worker are not always on the same machine, to view the log cannot be like querying a local file. There are two options:</li>\n<li>Put logs on the ES search engine.</li>\n<li>Obtain remote log information through netty communication.</li>\n<li>In consideration of the lightness of DolphinScheduler as much as possible, so choose gRPC to achieve remote access to log information.</li>\n</ul>\n <p align=\"center\">\n   <img src=\"https://analysys.github.io/easyscheduler_docs_cn/images/grpc.png\" alt=\"grpc remote access\"  width=\"50%\" />\n </p>\n<ul>\n<li>For details, please refer to the logback configuration of Master and Worker, as shown in the following example:</li>\n</ul>\n<pre><code class=\"language-xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">conversionRule</span> <span class=\"hljs-attr\">conversionWord</span>=<span class=\"hljs-string\">&quot;message&quot;</span> <span class=\"hljs-attr\">converterClass</span>=<span class=\"hljs-string\">&quot;org.apache.dolphinscheduler.plugin.task.api.log.SensitiveDataConverter&quot;</span>/&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">appender</span> <span class=\"hljs-attr\">name</span>=<span class=\"hljs-string\">&quot;TASKLOGFILE&quot;</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">&quot;ch.qos.logback.classic.sift.SiftingAppender&quot;</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">filter</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">&quot;org.apache.dolphinscheduler.plugin.task.api.log.TaskLogFilter&quot;</span>/&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Discriminator</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">&quot;org.apache.dolphinscheduler.plugin.task.api.log.TaskLogDiscriminator&quot;</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">key</span>&gt;</span>taskAppId<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">key</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">logBase</span>&gt;</span>${log.base}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">logBase</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">Discriminator</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">sift</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">appender</span> <span class=\"hljs-attr\">name</span>=<span class=\"hljs-string\">&quot;FILE-${taskAppId}&quot;</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">&quot;ch.qos.logback.core.FileAppender&quot;</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">file</span>&gt;</span>${log.base}/${taskAppId}.log<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">file</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">encoder</span>&gt;</span>\n                <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">pattern</span>&gt;</span>\n                            [%level] %date{yyyy-MM-dd HH:mm:ss.SSS Z} [%thread] %logger{96}:[%line] - %message%n\n                <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">pattern</span>&gt;</span>\n                <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">charset</span>&gt;</span>UTF-8<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">charset</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">encoder</span>&gt;</span>\n            <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">append</span>&gt;</span>true<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">append</span>&gt;</span>\n        <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">appender</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">sift</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">appender</span>&gt;</span>\n</code></pre>\n<h2 id=\"sum-up\">Sum Up</h2>\n<p>From the perspective of scheduling, this article preliminarily introduces the architecture principles and implementation ideas of the big data distributed workflow scheduling system: DolphinScheduler. To be continued.</p>\n",
+  "location": [
+    "Architecture Guide",
+    "Architecture Design"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "System Structure",
+      "children": [
+        {
+          "title": "System Architecture Diagram",
+          "children": [
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "Decentralization VS Centralization",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "decentralization-vs-centralization"
+            },
+            {
+              "title": "Fault-Tolerant Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "fault-tolerant-design"
+            },
+            {
+              "title": "Task Priority Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "task-priority-design"
+            },
+            {
+              "title": "Logback and Netty Implement Log Access",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "logback-and-netty-implement-log-access"
+            }
+          ],
+          "anchor": "system-architecture-diagram"
+        },
+        {
+          "title": "Start Process Activity Diagram",
+          "children": [
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "Decentralization VS Centralization",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "decentralization-vs-centralization"
+            },
+            {
+              "title": "Fault-Tolerant Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "fault-tolerant-design"
+            },
+            {
+              "title": "Task Priority Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "task-priority-design"
+            },
+            {
+              "title": "Logback and Netty Implement Log Access",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "logback-and-netty-implement-log-access"
+            }
+          ],
+          "anchor": "start-process-activity-diagram"
+        },
+        {
+          "title": "Architecture Description",
+          "children": [
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "Decentralization VS Centralization",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "decentralization-vs-centralization"
+            },
+            {
+              "title": "Fault-Tolerant Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "fault-tolerant-design"
+            },
+            {
+              "title": "Task Priority Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "task-priority-design"
+            },
+            {
+              "title": "Logback and Netty Implement Log Access",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "logback-and-netty-implement-log-access"
+            }
+          ],
+          "anchor": "architecture-description"
+        },
+        {
+          "title": "Architecture Design Ideas",
+          "children": [
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "Decentralization VS Centralization",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "decentralization-vs-centralization"
+            },
+            {
+              "title": "Fault-Tolerant Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "fault-tolerant-design"
+            },
+            {
+              "title": "Task Priority Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "task-priority-design"
+            },
+            {
+              "title": "Logback and Netty Implement Log Access",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "logback-and-netty-implement-log-access"
+            }
+          ],
+          "anchor": "architecture-design-ideas"
+        }
+      ],
+      "anchor": "system-structure"
+    },
+    {
+      "title": "Sum Up",
+      "children": [
+        {
+          "title": "System Architecture Diagram",
+          "children": [
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "Decentralization VS Centralization",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "decentralization-vs-centralization"
+            },
+            {
+              "title": "Fault-Tolerant Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "fault-tolerant-design"
+            },
+            {
+              "title": "Task Priority Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "task-priority-design"
+            },
+            {
+              "title": "Logback and Netty Implement Log Access",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "logback-and-netty-implement-log-access"
+            }
+          ],
+          "anchor": "system-architecture-diagram"
+        },
+        {
+          "title": "Start Process Activity Diagram",
+          "children": [
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "Decentralization VS Centralization",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "decentralization-vs-centralization"
+            },
+            {
+              "title": "Fault-Tolerant Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "fault-tolerant-design"
+            },
+            {
+              "title": "Task Priority Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "task-priority-design"
+            },
+            {
+              "title": "Logback and Netty Implement Log Access",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "logback-and-netty-implement-log-access"
+            }
+          ],
+          "anchor": "start-process-activity-diagram"
+        },
+        {
+          "title": "Architecture Description",
+          "children": [
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "Decentralization VS Centralization",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "decentralization-vs-centralization"
+            },
+            {
+              "title": "Fault-Tolerant Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "fault-tolerant-design"
+            },
+            {
+              "title": "Task Priority Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "task-priority-design"
+            },
+            {
+              "title": "Logback and Netty Implement Log Access",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "logback-and-netty-implement-log-access"
+            }
+          ],
+          "anchor": "architecture-description"
+        },
+        {
+          "title": "Architecture Design Ideas",
+          "children": [
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "The Service Mainly Includes:",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "the-service-mainly-includes:"
+            },
+            {
+              "title": "Decentralization VS Centralization",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "decentralization-vs-centralization"
+            },
+            {
+              "title": "Fault-Tolerant Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "fault-tolerant-design"
+            },
+            {
+              "title": "Task Priority Design",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "task-priority-design"
+            },
+            {
+              "title": "Logback and Netty Implement Log Access",
+              "children": [
+                {
+                  "title": "Centralized Thinking",
+                  "children": [],
+                  "anchor": "centralized-thinking"
+                },
+                {
+                  "title": "Decentralized",
+                  "children": [],
+                  "anchor": "decentralized"
+                },
+                {
+                  "title": "Downtime Fault Tolerance",
+                  "children": [],
+                  "anchor": "downtime-fault-tolerance"
+                },
+                {
+                  "title": "Task Failed and Try Again",
+                  "children": [],
+                  "anchor": "task-failed-and-try-again"
+                }
+              ],
+              "anchor": "logback-and-netty-implement-log-access"
+            }
+          ],
+          "anchor": "architecture-design-ideas"
+        }
+      ],
+      "anchor": "sum-up"
+    }
+  ],
+  "title": "System Architecture Design",
+  "link": "/architecture/design"
+}

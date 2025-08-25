@@ -1,0 +1,60 @@
+{
+  "__html": "<h1 id=\"datasource-setting\">Datasource Setting</h1>\n<h2 id=\"standalone-switching-metadata-database-configuration\">Standalone Switching Metadata Database Configuration</h2>\n<p>We here use MySQL as an example to illustrate how to configure an external database:</p>\n<blockquote>\n<p>NOTE: If you use MySQL, you need to manually download <a href=\"https://downloads.MySQL.com/archives/c-j/\">mysql-connector-java driver</a> (8.0.16) and move it to the libs directory of DolphinScheduler\nwhich is <code>api-server/libs</code> and <code>alert-server/libs</code> and <code>master-server/libs</code> and <code>worker-server/libs</code>.</p>\n</blockquote>\n<ul>\n<li>First of all, follow the instructions in <code>Pseudo-Cluster/Cluster Initialize the Database</code> section to create and initialize database</li>\n<li>Set the following environment variables in your terminal with your database address, username and password for <code>{address}</code>, <code>{user}</code> and <code>{password}</code>:</li>\n</ul>\n<pre><code class=\"language-shell\">export DATABASE=mysql\nexport SPRING_PROFILES_ACTIVE=${DATABASE}\nexport SPRING_DATASOURCE_URL=&quot;jdbc:mysql://{address}/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;\nexport SPRING_DATASOURCE_USERNAME={user}\nexport SPRING_DATASOURCE_PASSWORD={password}\n</code></pre>\n<ul>\n<li>Add mysql-connector-java driver to <code>./standalone-server/libs/standalone-server/</code>, see <a href=\"https://github.com/apache/dolphinscheduler/blob/3.3.1-release/docs/docs/en/guide/howto/general-setting.md\">general-setting</a> <code>Pseudo-Cluster/Cluster Initialize the Database</code> section about where to download</li>\n<li>Start standalone-server, now you are using mysql as database and it will not clear up your data when you stop or restart standalone-server.</li>\n</ul>\n<h2 id=\"pseudo-cluster/cluster-initialize-the-database\">Pseudo-Cluster/Cluster Initialize the Database</h2>\n<p>DolphinScheduler stores metadata in <code>relational database</code>. Currently, we support <code>PostgreSQL</code> and <code>MySQL</code>. Let's walk through how to initialize the database in <code>MySQL</code> and <code>PostgreSQL</code> :</p>\n<blockquote>\n<p>If you use MySQL, you need to manually download <a href=\"https://downloads.MySQL.com/archives/c-j/\">mysql-connector-java driver</a> (8.0.16) and move it to the libs directory of DolphinScheduler which is <code>api-server/libs</code> and <code>alert-server/libs</code> and <code>master-server/libs</code> and <code>worker-server/libs</code> and <code>tools/libs</code>.</p>\n</blockquote>\n<p>For mysql 5.6 / 5.7</p>\n<pre><code class=\"language-shell\">mysql -uroot -p\n<span class=\"hljs-meta prompt_\">\nmysql&gt; </span><span class=\"language-bash\">CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Replace {user} and {password} with your username and password</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;%&#x27;</span> IDENTIFIED BY <span class=\"hljs-string\">&#x27;{password}&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class=\"hljs-string\">&#x27;{password}&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">\nmysql&gt; </span><span class=\"language-bash\">flush privileges;</span>\n</code></pre>\n<p>For mysql 8:</p>\n<pre><code class=\"language-shell\">mysql -uroot -p\n<span class=\"hljs-meta prompt_\">\nmysql&gt; </span><span class=\"language-bash\">CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Replace {user} and {password} with your username and password</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">CREATE USER <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;%&#x27;</span> IDENTIFIED BY <span class=\"hljs-string\">&#x27;{password}&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;%&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">CREATE USER <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class=\"hljs-string\">&#x27;{password}&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;localhost&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">FLUSH PRIVILEGES;</span>\n</code></pre>\n<p>For PostgreSQL:</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Use psql-tools to login PostgreSQL</span>\npsql\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Create a database</span>\npostgres=# CREATE DATABASE dolphinscheduler;\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Replace {user} and {password} with your username and password</span>\npostgres=# CREATE USER {user} PASSWORD {password};\npostgres=# ALTER DATABASE dolphinscheduler OWNER TO {user};\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Logout PostgreSQL</span>\npostgres=#\\q\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Exec cmd below <span class=\"hljs-keyword\">in</span> terminal, add config to pg_hba.conf and reload PostgreSQL config, replace {ip} to DS cluster ip addresses</span>\necho &quot;host    dolphinscheduler   {user}    {ip}     md5&quot; &gt;&gt; $PGDATA/pg_hba.conf\npg_ctl reload\n</code></pre>\n<p>Then, set the database configurations by exporting the following environment variables, change {user} and {password} to what you set in the previous step.</p>\n<p>For MySQL:</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\"><span class=\"hljs-keyword\">for</span> mysql</span>\nexport DATABASE=${DATABASE:-mysql}\nexport SPRING_PROFILES_ACTIVE=${DATABASE}\nexport SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;\nexport SPRING_DATASOURCE_USERNAME={user}\nexport SPRING_DATASOURCE_PASSWORD={password}\n</code></pre>\n<p>For PostgreSQL:</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\"><span class=\"hljs-keyword\">for</span> postgresql</span>\nexport DATABASE=${DATABASE:-postgresql}\nexport SPRING_PROFILES_ACTIVE=${DATABASE}\nexport SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;\nexport SPRING_DATASOURCE_USERNAME={user}\nexport SPRING_DATASOURCE_PASSWORD={password}\n</code></pre>\n<p>After the above steps done you would create a new database for DolphinScheduler, then run the Shell script to init database:</p>\n<pre><code class=\"language-shell\">bash tools/bin/upgrade-schema.sh\n</code></pre>\n<h2 id=\"datasource-center\">DataSource Center</h2>\n<p>DataSource supports MySQL, PostgreSQL, Hive/Impala, Spark, ClickHouse, Oracle, SQL Server and other DataSources.</p>\n<ul>\n<li>Click bottom <code>Data Source Center -&gt; Create Data Source</code> to create a new datasource.</li>\n<li>Click <code>Test Connection</code> to test whether the DataSource can connect successfully (datasource can be saved only if it passes the connection test).</li>\n</ul>\n<h3 id=\"using-datasource-incompatible-to-apache-license-v2-license\">Using datasource incompatible to Apache LICENSE V2 LICENSE</h3>\n<p>Some of datasource are native supported to DolphinScheduler while others need users download JDBC driver package manually,\nbecause those JDBC driver incompatible to Apache LICENSE V2 LICENSE. For this reason we have to release DolphinScheduler's\ndistribute package without those packages, even if this will make more complicated for users. Datasource such as MySQL,\nOracle, SQL Server as the examples, but we have the solution to solve this</p>\n<h3 id=\"example\">Example</h3>\n<p>For example, if you want to use MySQL datasource, you need to download the correct JDBC driver from <a href=\"https://repo1.maven.org/maven2/mysql/mysql-connector-java\">mysql maven repository</a>,\nand move it into directory <code>api-server/libs</code> and <code>worker-server/libs</code>. After that, you could activate MySQL datasource by\nrestarting <code>api-server</code> and <code>worker-server</code>. Mount to container volume in the same path and restart it if you use container\nlike Docker.</p>\n<blockquote>\n<p>Note: If you only want to use MySQL in the datasource center, there is no requirement for the version of MySQL JDBC driver.\nBut if you want to use MySQL as the metabase of DolphinScheduler, it only supports [8.0.16 and above](https:/ /repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar) version.</p>\n</blockquote>\n",
+  "location": [
+    "Installation",
+    "Datasource Setting"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Standalone Switching Metadata Database Configuration",
+      "children": [
+        {
+          "title": "Using datasource incompatible to Apache LICENSE V2 LICENSE",
+          "children": [],
+          "anchor": "using-datasource-incompatible-to-apache-license-v2-license"
+        },
+        {
+          "title": "Example",
+          "children": [],
+          "anchor": "example"
+        }
+      ],
+      "anchor": "standalone-switching-metadata-database-configuration"
+    },
+    {
+      "title": "Pseudo-Cluster/Cluster Initialize the Database",
+      "children": [
+        {
+          "title": "Using datasource incompatible to Apache LICENSE V2 LICENSE",
+          "children": [],
+          "anchor": "using-datasource-incompatible-to-apache-license-v2-license"
+        },
+        {
+          "title": "Example",
+          "children": [],
+          "anchor": "example"
+        }
+      ],
+      "anchor": "pseudo-cluster/cluster-initialize-the-database"
+    },
+    {
+      "title": "DataSource Center",
+      "children": [
+        {
+          "title": "Using datasource incompatible to Apache LICENSE V2 LICENSE",
+          "children": [],
+          "anchor": "using-datasource-incompatible-to-apache-license-v2-license"
+        },
+        {
+          "title": "Example",
+          "children": [],
+          "anchor": "example"
+        }
+      ],
+      "anchor": "datasource-center"
+    }
+  ],
+  "title": "Datasource Setting",
+  "link": "/guide/installation/datasource-setting"
+}

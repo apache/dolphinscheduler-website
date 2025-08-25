@@ -1,0 +1,134 @@
+{
+  "__html": "<h1 id=\"dolphinscheduler-初始化工作流-demo\">DolphinScheduler 初始化工作流 demo</h1>\n<h2 id=\"准备工作\">准备工作</h2>\n<h3 id=\"备份上一版本文件和数据库\">备份上一版本文件和数据库</h3>\n<p>为了防止操作错误导致数据丢失，建议初始化工作流 demo 服务之前备份数据，备份方法请结合你数据库的情况来定</p>\n<h3 id=\"下载新版本的安装包\">下载新版本的安装包</h3>\n<p>在<a href=\"https://dolphinscheduler.apache.org/zh-cn/download\">下载</a>页面下载最新版本的二进制安装包，并将二进制包放到与当前 dolphinscheduler 服务不一样的路径中，以下服务启动操作都需要在新版本的目录进行。</p>\n<h2 id=\"服务启动步骤\">服务启动步骤</h2>\n<h3 id=\"开启-dolphinscheduler-服务\">开启 dolphinscheduler 服务</h3>\n<p>根据你部署方式开启 dolphinscheduler 的所有服务，如果你是通过 <a href=\"/zh-cn/docs/3.3.1/guide/installation/cluster\">集群部署</a> 来部署你的 dolphinscheduler 的话，可以通过 <code>sh ./script/start-all.sh</code> 开启全部服务。</p>\n<h3 id=\"数据库配置\">数据库配置</h3>\n<p>初始化工作流 demo 服务需要使用 MySQL 或 PostgreSQL 等其他数据库作为其元数据存储数据，因此必须更改一些配置。\n请参考<a href=\"/zh-cn/docs/3.3.1/guide/installation/datasource-setting\">数据源配置</a> <code>Standalone 切换元数据库</code>创建并初始化数据库 ，然后运行 demo 服务启动脚本。</p>\n<h3 id=\"租户配置\">租户配置</h3>\n<h4 id=\"修改-<code>dolphinscheduler-tools/resources/application.yaml</code>-配置内容\">修改 <code>dolphinscheduler-tools/resources/application.yaml</code> 配置内容</h4>\n<pre><code>demo:\n  tenant-code: default\n  domain-name: localhost\n  api-server-port: 5173\n</code></pre>\n<p>其中 tenant-code 是默认租户 default ，用户可以根据自己操作系统用户名修改，从而代替手动创建租户操作。api-server-port 是 dolphinscheduler 服务的端口号</p>\n<p>然后执行初始化工作流 demo 服务的启动脚本：<code>sh ./tools/bin/create-demo-processes.sh</code> 来启动服务。</p>\n<p>创建 demo 可以参考<a href=\"/zh-cn/docs/3.3.1/guide/start/quick-start\">快速上手</a></p>\n",
+  "location": [
+    "功能介绍",
+    "Demo"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "准备工作",
+      "children": [
+        {
+          "title": "备份上一版本文件和数据库",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "备份上一版本文件和数据库"
+        },
+        {
+          "title": "下载新版本的安装包",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "下载新版本的安装包"
+        },
+        {
+          "title": "开启 dolphinscheduler 服务",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "开启-dolphinscheduler-服务"
+        },
+        {
+          "title": "数据库配置",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "数据库配置"
+        },
+        {
+          "title": "租户配置",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "租户配置"
+        }
+      ],
+      "anchor": "准备工作"
+    },
+    {
+      "title": "服务启动步骤",
+      "children": [
+        {
+          "title": "备份上一版本文件和数据库",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "备份上一版本文件和数据库"
+        },
+        {
+          "title": "下载新版本的安装包",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "下载新版本的安装包"
+        },
+        {
+          "title": "开启 dolphinscheduler 服务",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "开启-dolphinscheduler-服务"
+        },
+        {
+          "title": "数据库配置",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "数据库配置"
+        },
+        {
+          "title": "租户配置",
+          "children": [
+            {
+              "title": "修改 dolphinscheduler-tools/resources/application.yaml 配置内容",
+              "children": [],
+              "anchor": "修改-dolphinscheduler-tools/resources/application.yaml-配置内容"
+            }
+          ],
+          "anchor": "租户配置"
+        }
+      ],
+      "anchor": "服务启动步骤"
+    }
+  ],
+  "title": "DolphinScheduler 初始化工作流 demo",
+  "link": "/guide/demo"
+}

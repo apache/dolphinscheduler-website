@@ -1,0 +1,63 @@
+{
+  "__html": "<h1 id=\"数据源配置\">数据源配置</h1>\n<h2 id=\"standalone-切换元数据库\">Standalone 切换元数据库</h2>\n<p>我们这里以 MySQL 为例来说明如何配置外部数据库：</p>\n<blockquote>\n<p>如果使用 MySQL 需要手动下载 <a href=\"https://downloads.MySQL.com/archives/c-j/\">mysql-connector-java 驱动</a> (8.0.16) 并移动到 DolphinScheduler 的每个模块的 libs 目录下，其中包括 <code>api-server/libs</code> 和 <code>alert-server/libs</code> 和 <code>master-server/libs</code> 和 <code>worker-server/libs</code>。</p>\n</blockquote>\n<ul>\n<li>首先，参照 <code>伪分布式/分布式安装初始化数据库</code> 创建并初始化数据库</li>\n<li>在你的命令行设定下列环境变量，将 <code>{address}</code>, <code>{user}</code> 和 <code>{password}</code> 改为你数据库的地址, 用户名和密码</li>\n</ul>\n<pre><code class=\"language-shell\">export DATABASE=mysql\nexport SPRING_PROFILES_ACTIVE=${DATABASE}\nexport SPRING_DATASOURCE_URL=&quot;jdbc:mysql://{address}/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;\nexport SPRING_DATASOURCE_USERNAME={user}\nexport SPRING_DATASOURCE_PASSWORD={password}\n</code></pre>\n<ul>\n<li>将mysql-connector-java驱动加到<code>./standalone-server/libs/standalone-server/</code>目录下, 下载方法见 <a href=\"/zh-cn/docs/3.3.1/guide/installation/datasource-setting\">数据源配置</a> <code>伪分布式/分布式安装初始化数据库</code> 一栏</li>\n<li>启动standalone-server，此时你已经连接上mysql，重启或者停止standalone-server并不会清空您数据库里的数据</li>\n</ul>\n<h2 id=\"伪分布式/分布式安装初始化数据库\">伪分布式/分布式安装初始化数据库</h2>\n<p>DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreSQL 和 MySQL。下面分别介绍如何使用 MySQL 和 PostgresQL 初始化数据库。</p>\n<blockquote>\n<p>如果使用 MySQL 需要手动下载 <a href=\"https://downloads.MySQL.com/archives/c-j/\">mysql-connector-java 驱动</a> (8.0.16) 并移动到 DolphinScheduler 的每个模块的 libs 目录下，其中包括 <code>api-server/libs</code> 和 <code>alert-server/libs</code> 和 <code>master-server/libs</code> 和 <code>worker-server/libs</code> 和 <code>tools/libs</code>。</p>\n</blockquote>\n<p>对于mysql 5.6 / 5.7：</p>\n<pre><code class=\"language-shell\">mysql -uroot -p\n<span class=\"hljs-meta prompt_\">\nmysql&gt; </span><span class=\"language-bash\">CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">修改 {user} 和 {password} 为你希望的用户名和密码</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;%&#x27;</span> IDENTIFIED BY <span class=\"hljs-string\">&#x27;{password}&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class=\"hljs-string\">&#x27;{password}&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">\nmysql&gt; </span><span class=\"language-bash\">flush privileges;</span>\n</code></pre>\n<p>对于mysql 8：</p>\n<pre><code class=\"language-shell\">mysql -uroot -p\n<span class=\"hljs-meta prompt_\">\nmysql&gt; </span><span class=\"language-bash\">CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span>\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">修改 {user} 和 {password} 为你希望的用户名和密码</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">CREATE USER <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;%&#x27;</span> IDENTIFIED BY <span class=\"hljs-string\">&#x27;{password}&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;%&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">CREATE USER <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class=\"hljs-string\">&#x27;{password}&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">GRANT ALL PRIVILEGES ON dolphinscheduler.* TO <span class=\"hljs-string\">&#x27;{user}&#x27;</span>@<span class=\"hljs-string\">&#x27;localhost&#x27;</span>;</span>\n<span class=\"hljs-meta prompt_\">mysql&gt; </span><span class=\"language-bash\">FLUSH PRIVILEGES;</span>\n</code></pre>\n<p>对于 PostgreSQL：</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">采用命令行工具登陆 PostgreSQL</span>\npsql\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">创建数据库</span>\npostgres=# CREATE DATABASE dolphinscheduler;\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">修改 {user} 和 {password} 为你希望的用户名和密码</span>\npostgres=# CREATE USER {user} PASSWORD {password};\npostgres=# ALTER DATABASE dolphinscheduler OWNER TO {user};\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">退出 PostgreSQL</span>\npostgres=#\\q\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">在终端执行如下命令，向配置文件新增登陆权限，并重载 PostgreSQL 配置，替换 {ip} 为对应的 DS 集群服务器 IP 地址段</span>\necho &quot;host    dolphinscheduler   {user}    {ip}     md5&quot; &gt;&gt; $PGDATA/pg_hba.conf\npg_ctl reload\n</code></pre>\n<p>然后设置以下环境变量，将username和password改成你在上一步中设置的用户名{user}和密码{password}</p>\n<p>对于 MySQL：</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\"><span class=\"hljs-keyword\">for</span> mysql</span>\nexport DATABASE=${DATABASE:-mysql}\nexport SPRING_PROFILES_ACTIVE=${DATABASE}\nexport SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;\nexport SPRING_DATASOURCE_USERNAME={user}\nexport SPRING_DATASOURCE_PASSWORD={password}\n</code></pre>\n<p>对于 PostgreSQL：</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\"><span class=\"hljs-keyword\">for</span> postgresql</span>\nexport DATABASE=${DATABASE:-postgresql}\nexport SPRING_PROFILES_ACTIVE=${DATABASE}\nexport SPRING_DATASOURCE_URL=&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;\nexport SPRING_DATASOURCE_USERNAME={user}\nexport SPRING_DATASOURCE_PASSWORD={password}\n</code></pre>\n<p>完成上述步骤后，您已经为 DolphinScheduler 创建一个新数据库，现在你可以通过快速的 Shell 脚本来初始化数据库</p>\n<pre><code class=\"language-shell\">bash tools/bin/upgrade-schema.sh\n</code></pre>\n<h2 id=\"数据源中心\">数据源中心</h2>\n<p>数据源中心支持MySQL、POSTGRESQL、HIVE/IMPALA、SPARK、CLICKHOUSE、ORACLE、SQLSERVER等数据源。</p>\n<ul>\n<li>点击&quot;数据源中心-&gt;创建数据源&quot;，根据需求创建不同类型的数据源</li>\n<li>点击&quot;测试连接&quot;，测试数据源是否可以连接成功（只有当数据源通过连接性测试后才能保存数据源）。</li>\n</ul>\n<h3 id=\"使用不兼容-apache-license-v2-许可的数据库\">使用不兼容 Apache LICENSE V2 许可的数据库</h3>\n<p>数据源中心里，DolphinScheduler 对部分数据源有原生的支持，但是部分数据源需要用户下载对应的 JDBC 驱动包并放置到正确的位置才能正常使用。\n这对用户会增加用户的使用成本，但是我们不得不这么做，因为这部分数据源的 JDBC 驱动和 Apache LICENSE V2 不兼容，所以我们无法在\nDolphinScheduler 分发的二进制包中包含他们。这部分数据源主要包括 MySQL，Oracle，SQL Server 等，幸运的是我们为这部分数据源的支持给出了解决方案。</p>\n<h4 id=\"样例\">样例</h4>\n<p>我们以 MySQL 为例，如果你想要使用 MySQL 数据源，你需要先在 <a href=\"https://repo1.maven.org/maven2/mysql/mysql-connector-java\">mysql maven 仓库</a>\n中下载对应版本的 JDBC 驱动，将其移入 <code>api-server/libs</code> 以及 <code>worker-server/libs</code> 文件夹中，最后重启 <code>api-server</code> 和 <code>worker-server</code>\n服务，即可使用 MySQL 数据源。如果你使用容器启动 DolphinScheduler，同样也是将 JDBC 驱动挂载放到以上两个服务的对应路径下后，重启驱动即可。</p>\n<blockquote>\n<p>注意：如果你只是想要在数据源中心使用 MySQL，则对 MySQL JDBC 驱动的版本没有要求，如果你想要将 MySQL 作为 DolphinScheduler 的元数据库，\n则仅支持 <a href=\"https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar\">8.0.16 及以上</a>的版本。</p>\n</blockquote>\n",
+  "location": [
+    "部署指南",
+    "数据源设置"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Standalone 切换元数据库",
+      "children": [
+        {
+          "title": "使用不兼容 Apache LICENSE V2 许可的数据库",
+          "children": [
+            {
+              "title": "样例",
+              "children": [],
+              "anchor": "样例"
+            }
+          ],
+          "anchor": "使用不兼容-apache-license-v2-许可的数据库"
+        }
+      ],
+      "anchor": "standalone-切换元数据库"
+    },
+    {
+      "title": "伪分布式/分布式安装初始化数据库",
+      "children": [
+        {
+          "title": "使用不兼容 Apache LICENSE V2 许可的数据库",
+          "children": [
+            {
+              "title": "样例",
+              "children": [],
+              "anchor": "样例"
+            }
+          ],
+          "anchor": "使用不兼容-apache-license-v2-许可的数据库"
+        }
+      ],
+      "anchor": "伪分布式/分布式安装初始化数据库"
+    },
+    {
+      "title": "数据源中心",
+      "children": [
+        {
+          "title": "使用不兼容 Apache LICENSE V2 许可的数据库",
+          "children": [
+            {
+              "title": "样例",
+              "children": [],
+              "anchor": "样例"
+            }
+          ],
+          "anchor": "使用不兼容-apache-license-v2-许可的数据库"
+        }
+      ],
+      "anchor": "数据源中心"
+    }
+  ],
+  "title": "数据源配置",
+  "link": "/guide/installation/datasource-setting"
+}

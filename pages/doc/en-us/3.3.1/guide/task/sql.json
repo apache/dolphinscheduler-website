@@ -1,0 +1,241 @@
+{
+  "__html": "<h1 id=\"sql\">SQL</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>SQL task type used to connect to databases and execute SQL.</p>\n<h2 id=\"create-datasource\">Create DataSource</h2>\n<p>Refer to <a href=\"/en-us/docs/3.3.1/guide/installation/datasource-setting\">datasource-setting</a> <code>DataSource Center</code> section</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/sql.png\" width=\"25\"/> to the canvas.</li>\n</ul>\n<h2 id=\"task-parameter\">Task Parameter</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<p>|   <strong>Parameter</strong>   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           <strong>Description</strong>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |\n|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|\n| Data source       | Select the corresponding DataSource.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |\n| SQL type          | Supports query and non-query. <ul><li>Query: supports <code>DML select</code> type commands, which return a result set. You can specify three templates for email notification as form, attachment or form attachment;</li><li>Non-query: support <code>DDL</code> all commands and <code>DML update, delete, insert</code> three types of commands;<ul><li>Segmented execution symbol: When the data source does not support executing multiple SQL statements at a time, the symbol for splitting SQL statements is provided to call the data source execution method multiple times. Example: 1. When the Hive data source is selected as the data source, please do not use <code>;\\n</code> due to Hive JDBC does not support executing multiple SQL statements at one time; 2. When the MySQL data source is selected as the data source, and multi-segment SQL statements are to be executed, this parameter needs to be filled in with a semicolon <code>;. Because the MySQL data source does not support executing multiple SQL statements at one time.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt; | | SQL parameter     | The input parameter format is </code>key1=value1;key2=value2...<code>.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | | SQL statement     | SQL statement.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |   | | Custom parameters | SQL task type, and stored procedure is a custom parameter order, to set customized parameter type and data type for the method is the same as the stored procedure task type. The difference is that the custom parameter of the SQL task type replaces the </code>${variable}` in the SQL statement.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |\n| Pre-SQL           | Pre-SQL executes before the SQL statement.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |\n| Post-SQL          | Post-SQL executes after the SQL statement.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |</p>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"hive-table-create-example\">Hive Table Create Example</h3>\n<h4 id=\"create-a-temporary-table-in-hive-and-write-data\">Create a Temporary Table in Hive and Write Data</h4>\n<p>This example creates a temporary table <code>tmp_hello_world</code> in Hive and writes a row of data. Before creating a temporary table, we need to ensure that the table does not exist. So we use custom parameters to obtain the time of the day as the suffix of the table name every time we run, this task can run every different day. The format of the created table name is: <code>tmp_hello_world_{yyyyMMdd}</code>.\n<strong>Note</strong>：the hive datasource in the SQL task based on JDBC to execute SQLs, SQL statement does not support multi-statements, please avoid using ';' at the end of the statement. To process multi-statements please use <a href=\"/en-us/docs/3.3.1/guide/task/hive-cli\">Hive-Cli</a> task.</p>\n<p><img src=\"/img/tasks/demo/hive-sql.png\" alt=\"hive-sql\"></p>\n<h4 id=\"after-running-the-task-successfully,-query-the-results-in-hive\">After Running the Task Successfully, Query the Results in Hive</h4>\n<p>Log in to the bigdata cluster and use 'hive' command or 'beeline' or 'JDBC' and other methods to connect to the 'Apache Hive' for the query. The query SQL is <code>select * from tmp_hello_world_{yyyyMMdd}</code>, please replace <code>{yyyyMMdd}</code> with the date of the running day. The following shows the query screenshot:</p>\n<p><img src=\"/img/tasks/demo/hive-result.png\" alt=\"hive-sql\"></p>\n<h3 id=\"use-pre-sql-and-post-sql-example\">Use Pre-SQL and Post-SQL Example</h3>\n<p>Table created in the Pre-SQL, after use in the SQL statement, cleaned in the Post-SQL</p>\n<p><img src=\"/img/tasks/demo/pre_post_sql.png\" alt=\"pre_post_sql\"></p>\n<h2 id=\"note\">Note</h2>\n<p>Pay attention to the selection of SQL type. If it is an insert operation, need to change to &quot;Non-Query&quot; type.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "SQL"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Hive Table Create Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "hive-table-create-example"
+        },
+        {
+          "title": "Use Pre-SQL and Post-SQL Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "use-pre-sql-and-post-sql-example"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create DataSource",
+      "children": [
+        {
+          "title": "Hive Table Create Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "hive-table-create-example"
+        },
+        {
+          "title": "Use Pre-SQL and Post-SQL Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "use-pre-sql-and-post-sql-example"
+        }
+      ],
+      "anchor": "create-datasource"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Hive Table Create Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "hive-table-create-example"
+        },
+        {
+          "title": "Use Pre-SQL and Post-SQL Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "use-pre-sql-and-post-sql-example"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameter",
+      "children": [
+        {
+          "title": "Hive Table Create Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "hive-table-create-example"
+        },
+        {
+          "title": "Use Pre-SQL and Post-SQL Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "use-pre-sql-and-post-sql-example"
+        }
+      ],
+      "anchor": "task-parameter"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Hive Table Create Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "hive-table-create-example"
+        },
+        {
+          "title": "Use Pre-SQL and Post-SQL Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "use-pre-sql-and-post-sql-example"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Note",
+      "children": [
+        {
+          "title": "Hive Table Create Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "hive-table-create-example"
+        },
+        {
+          "title": "Use Pre-SQL and Post-SQL Example",
+          "children": [
+            {
+              "title": "Create a Temporary Table in Hive and Write Data",
+              "children": [],
+              "anchor": "create-a-temporary-table-in-hive-and-write-data"
+            },
+            {
+              "title": "After Running the Task Successfully, Query the Results in Hive",
+              "children": [],
+              "anchor": "after-running-the-task-successfully,-query-the-results-in-hive"
+            }
+          ],
+          "anchor": "use-pre-sql-and-post-sql-example"
+        }
+      ],
+      "anchor": "note"
+    }
+  ],
+  "title": "SQL",
+  "link": "/guide/task/sql"
+}

@@ -1,0 +1,134 @@
+{
+  "__html": "<h1 id=\"dolphinscheduler-initialize-the-workflow-demo\">DolphinScheduler Initialize The Workflow Demo</h1>\n<h2 id=\"prepare\">Prepare</h2>\n<h3 id=\"backup-previous-version's-files-and-database\">Backup Previous Version's Files and Database</h3>\n<p>To prevent data loss by some miss-operation, it is recommended to back up data before initializing the workflow demo. The backup way according to your environment.</p>\n<h3 id=\"download-the-latest-version-installation-package\">Download the Latest Version Installation Package</h3>\n<p>Download the latest binary distribute package from <a href=\"https://dolphinscheduler.apache.org/en-us/download\">download</a> and then put it in the different\ndirectory where current service running. And all below command is running in this directory.</p>\n<h2 id=\"start\">Start</h2>\n<h3 id=\"start-services-of-dolphinscheduler\">Start Services of DolphinScheduler</h3>\n<p>Start all services of dolphinscheduler according to your deployment method. If you deploy your dolphinscheduler according to <a href=\"/en-us/docs/3.3.1/guide/installation/cluster\">cluster deployment</a>, you can start all services by command <code>sh ./script/start-all.sh</code>.</p>\n<h3 id=\"database-configuration\">Database Configuration</h3>\n<p>Initializing the workflow demo needs to store metabase in other database like MySQL or PostgreSQL, they have to change some configuration. Follow the instructions in <a href=\"/en-us/docs/3.3.1/guide/installation/datasource-setting\">datasource-setting</a> <code>Standalone Switching Metadata Database Configuration</code> section to create and initialize database.</p>\n<h3 id=\"tenant-configuration\">Tenant Configuration</h3>\n<h4 id=\"change-<code>dolphinscheduler-tools/resources/application.yaml</code>-placement-details\">Change <code>dolphinscheduler-tools/resources/application.yaml</code> Placement Details</h4>\n<pre><code>demo:\n  tenant-code: default\n  domain-name: localhost\n  api-server-port: 5173\n</code></pre>\n<p>Mentioned above, tenant-code is the default tenant, users can modify the user name according to their operating system, this replaces the manual tenant creation action, api-server-port is the port number of the service.</p>\n<p>Then execute the startup script that initializes the workflow demo service: <code>sh ./tools/bin/create-demo-processes.sh</code> to start the service.</p>\n<p>To create a demo, you can refer to <a href=\"/en-us/docs/3.3.1/guide/start/quick-start\">Quick Start</a></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Demo"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Prepare",
+      "children": [
+        {
+          "title": "Backup Previous Version's Files and Database",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "backup-previous-version's-files-and-database"
+        },
+        {
+          "title": "Download the Latest Version Installation Package",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "download-the-latest-version-installation-package"
+        },
+        {
+          "title": "Start Services of DolphinScheduler",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "start-services-of-dolphinscheduler"
+        },
+        {
+          "title": "Database Configuration",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "database-configuration"
+        },
+        {
+          "title": "Tenant Configuration",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "tenant-configuration"
+        }
+      ],
+      "anchor": "prepare"
+    },
+    {
+      "title": "Start",
+      "children": [
+        {
+          "title": "Backup Previous Version's Files and Database",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "backup-previous-version's-files-and-database"
+        },
+        {
+          "title": "Download the Latest Version Installation Package",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "download-the-latest-version-installation-package"
+        },
+        {
+          "title": "Start Services of DolphinScheduler",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "start-services-of-dolphinscheduler"
+        },
+        {
+          "title": "Database Configuration",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "database-configuration"
+        },
+        {
+          "title": "Tenant Configuration",
+          "children": [
+            {
+              "title": "Change dolphinscheduler-tools/resources/application.yaml Placement Details",
+              "children": [],
+              "anchor": "change-dolphinscheduler-tools/resources/application.yaml-placement-details"
+            }
+          ],
+          "anchor": "tenant-configuration"
+        }
+      ],
+      "anchor": "start"
+    }
+  ],
+  "title": "DolphinScheduler Initialize The Workflow Demo",
+  "link": "/guide/demo"
+}

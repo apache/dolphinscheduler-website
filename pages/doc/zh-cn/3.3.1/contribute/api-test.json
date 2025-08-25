@@ -1,0 +1,76 @@
+{
+  "__html": "<h1 id=\"dolphinscheduler-—-api-测试\">DolphinScheduler — API 测试</h1>\n<h2 id=\"前置知识：\">前置知识：</h2>\n<h3 id=\"api-测试与单元测试的区别\">API 测试与单元测试的区别</h3>\n<p>API测试，它模仿用户调用API，从某个入口开始，逐步执行操作，直到完成某项工作。与单元测试不同，后者通常需要测试参数、参数类型、参数值、参数数量、返回值、抛出错误等，目的在于保证特定函数能够在任何情况下都稳定可靠完成工作。单元测试假定只要所有函数都正常工作，那么整个产品就能正常工作。</p>\n<p>相对来说，API 测试关注的<strong>一个完整的操作链是否能够完成</strong>。</p>\n<p>比如，租户管理界面的 API 测试，关注用户是否能够正常登录；登陆失败的话，是否能够正确显示错误信息。登陆之后时候能够通过携带的 SessionId 进行租户管理的操作等等。</p>\n<h2 id=\"api-测试\">API 测试</h2>\n<h3 id=\"api-pages\">API-Pages</h3>\n<p>DolphinScheduler 的 API 测试使用 docker-compose 部署，当前测试的为单机模式，主要用于检验一些例如“增删改查”基本功能，后期如需做集群验证，例如不同服务之间的协作，或者各个服务之间的通讯机制，可参考 <code>deploy/docker/docker-compose.yml</code>来配置。</p>\n<p>对于 API 测试，使用 <a href=\"https://www.selenium.dev/documentation/guidelines/page_object_models/\">页面模型</a> 的形式，主要为每一个页面建立一个对应的模型。下面以登录页为例：</p>\n<pre><code class=\"language-java\"><span class=\"hljs-keyword\">package</span> org.apache.dolphinscheduler.api.test.pages;\n\n\n<span class=\"hljs-keyword\">import</span> org.apache.dolphinscheduler.api.test.entity.HttpResponse;\n<span class=\"hljs-keyword\">import</span> org.apache.dolphinscheduler.api.test.utils.RequestClient;\n\n<span class=\"hljs-keyword\">import</span> java.util.HashMap;\n<span class=\"hljs-keyword\">import</span> java.util.Map;\n\n<span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">final</span> <span class=\"hljs-keyword\">class</span> <span class=\"hljs-title class_\">LoginPage</span> {\n    <span class=\"hljs-keyword\">public</span> HttpResponse <span class=\"hljs-title function_\">login</span><span class=\"hljs-params\">(String username, String password)</span> {\n        Map&lt;String, Object&gt; params = <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">HashMap</span>&lt;&gt;();\n\n        params.put(<span class=\"hljs-string\">&quot;userName&quot;</span>, username);\n        params.put(<span class=\"hljs-string\">&quot;userPassword&quot;</span>, password);\n\n        <span class=\"hljs-type\">RequestClient</span> <span class=\"hljs-variable\">requestClient</span> <span class=\"hljs-operator\">=</span> <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">RequestClient</span>();\n\n        <span class=\"hljs-keyword\">return</span> requestClient.post(<span class=\"hljs-string\">&quot;/login&quot;</span>, <span class=\"hljs-literal\">null</span>, params);\n    }\n}\n</code></pre>\n<p>在测试过程中，我们只针对所需要关注的接口进行测试，而非页面中的所有接口，所以在登陆页面只对用户名、密码和接口路径进行声明。</p>\n<p>此外，在测试过程中，并不会直接去操作接口，一般选择封装对应的方法，以达到复用的效果。例如想要登录的话，直接传入用户名和密码，通过 <code>public LoginPage login()</code> 方法去操作所传入的信息，从而达到实现登录的效果。</p>\n<p>在登陆页面（LoginPage）只定义接口请求的入参规范，对于接口请求出参只定义统一的基础响应结构，接口实际返回的data数据则再实际的测试用例中测试。主要测试接口的输入和输出是否能够符合测试用例的要求。</p>\n<h3 id=\"api-cases\">API-Cases</h3>\n<p>下面以租户管理测试为例，前文已经说明，我们使用 docker-compose 进行部署，所以每个测试案例，都需要以注解的形式引入对应的文件。</p>\n<p>使用 OkHttpClient 框架来进行 HTTP 请求。在每个测试案例开始之前都需要进行一些准备工作。比如：登录用户、创建对应的租户（根据具体的测试案例而定）。</p>\n<pre><code class=\"language-java\">    <span class=\"hljs-meta\">@BeforeAll</span>\n    <span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">static</span> <span class=\"hljs-keyword\">void</span> <span class=\"hljs-title function_\">setup</span><span class=\"hljs-params\">()</span> {\n        <span class=\"hljs-type\">LoginPage</span> <span class=\"hljs-variable\">loginPage</span> <span class=\"hljs-operator\">=</span> <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">LoginPage</span>();\n        <span class=\"hljs-type\">HttpResponse</span> <span class=\"hljs-variable\">loginHttpResponse</span> <span class=\"hljs-operator\">=</span> loginPage.login(user, password);\n\n        sessionId = JSONUtils.convertValue(loginHttpResponse.body().data(), LoginResponseData.class).sessionId();\n    }\n</code></pre>\n<p>在完成准备工作之后，就是正式的测试案例编写。我们使用 @Order() 注解的形式，用于模块化，确认测试顺序。在进行测试之后，使用断言来判断测试是否成功，如果断言返回 true，则表示创建租户成功。可参考创建租户的测试代码：</p>\n<pre><code class=\"language-java\">    <span class=\"hljs-meta\">@Test</span>\n    <span class=\"hljs-meta\">@Order(1)</span>\n    <span class=\"hljs-keyword\">public</span> <span class=\"hljs-keyword\">void</span> <span class=\"hljs-title function_\">testCreateTenant</span><span class=\"hljs-params\">()</span> {\n        <span class=\"hljs-type\">TenantPage</span> <span class=\"hljs-variable\">tenantPage</span> <span class=\"hljs-operator\">=</span> <span class=\"hljs-keyword\">new</span> <span class=\"hljs-title class_\">TenantPage</span>();\n\n        <span class=\"hljs-type\">HttpResponse</span> <span class=\"hljs-variable\">createTenantHttpResponse</span> <span class=\"hljs-operator\">=</span> tenantPage.createTenant(sessionId, tenant, <span class=\"hljs-number\">1</span>, <span class=\"hljs-string\">&quot;&quot;</span>);\n\n        Assertions.assertTrue(createTenantHttpResponse.body().success());\n    }\n</code></pre>\n<p>其余的都是类似的情况，可参考具体的源码来理解。</p>\n<p>https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-api-test/dolphinscheduler-api-test-case/src/test/java/org/apache/dolphinscheduler/api/test/cases</p>\n<h2 id=\"补充\">补充</h2>\n<p>在本地运行的时候，首先需要启动相应的本地服务，可以参考该页面: <a href=\"/zh-cn/docs/3.3.1/contribute/development-environment-setup\">环境搭建</a></p>\n<p>在本地运行 API 测试的时候，可以配置 <code>-Dlocal=true</code> 参数，用于连接本地，方便对于 UI 界面的更改。</p>\n<p>当前默认的请求超时时长为 10 秒，如无特殊需求不应修改此值。</p>\n",
+  "location": [
+    "贡献指南",
+    "规范",
+    "API 自动化测试"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "前置知识：",
+      "children": [
+        {
+          "title": "API 测试与单元测试的区别",
+          "children": [],
+          "anchor": "api-测试与单元测试的区别"
+        },
+        {
+          "title": "API-Pages",
+          "children": [],
+          "anchor": "api-pages"
+        },
+        {
+          "title": "API-Cases",
+          "children": [],
+          "anchor": "api-cases"
+        }
+      ],
+      "anchor": "前置知识："
+    },
+    {
+      "title": "API 测试",
+      "children": [
+        {
+          "title": "API 测试与单元测试的区别",
+          "children": [],
+          "anchor": "api-测试与单元测试的区别"
+        },
+        {
+          "title": "API-Pages",
+          "children": [],
+          "anchor": "api-pages"
+        },
+        {
+          "title": "API-Cases",
+          "children": [],
+          "anchor": "api-cases"
+        }
+      ],
+      "anchor": "api-测试"
+    },
+    {
+      "title": "补充",
+      "children": [
+        {
+          "title": "API 测试与单元测试的区别",
+          "children": [],
+          "anchor": "api-测试与单元测试的区别"
+        },
+        {
+          "title": "API-Pages",
+          "children": [],
+          "anchor": "api-pages"
+        },
+        {
+          "title": "API-Cases",
+          "children": [],
+          "anchor": "api-cases"
+        }
+      ],
+      "anchor": "补充"
+    }
+  ],
+  "title": "DolphinScheduler — API 测试",
+  "link": "/contribute/api-test"
+}

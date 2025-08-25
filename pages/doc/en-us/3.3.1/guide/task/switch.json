@@ -1,0 +1,97 @@
+{
+  "__html": "<h1 id=\"switch\">Switch</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>The switch is a conditional judgment node, decide the branch executes according to the value of <a href=\"/en-us/docs/3.3.1/guide/parameter/global\">global variable</a> and the expression result written by the user.</p>\n<p><strong>Note</strong>: Execute expressions using javax.script.ScriptEngine.eval.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/switch.png\" width=\"20\"/> task node to canvas to create a task.</li>\n</ul>\n<p><strong>Note</strong>: After created a switch task, you must first configure the upstream and downstream, then configure the parameter of task branches.</p>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Condition</td>\n<td>You can configure multiple conditions for the switch task. When the conditions are satisfied, execute the configured branch. You can configure multiple different conditions to satisfy different businesses.</td>\n</tr>\n<tr>\n<td>Branch flow</td>\n<td>The default branch flow, when all the conditions are not satisfied, execute this branch flow.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<p>This is demonstrated using one switch task and three shell tasks.</p>\n<h3 id=\"create-a-workflow\">Create a workflow</h3>\n<p>Create a new switch task, and three shell tasks downstream. The shell task is not required.\nThe switch task needs to be connected with the downstream task to configure the relationship before the downstream task can be selected.</p>\n<p><img src=\"/img/tasks/demo/switch_01.png\" alt=\"switch_01\"></p>\n<h3 id=\"set-conditions\">Set conditions</h3>\n<p>Configure the conditions and default branches. If the conditions are met, the specified branch will be taken. If the conditions are not met, the default branch will be taken.\nIn the figure, if the value of the variable is &quot;A&quot;, the branch taskA is executed, if the value of the variable is &quot;B&quot;, the branch taskB is executed, and default is executed if both are not satisfied.</p>\n<p><img src=\"/img/tasks/demo/switch_02.png\" alt=\"switch_02\"></p>\n<p>Conditions use global variables, please refer to <a href=\"/en-us/docs/3.3.1/guide/parameter/global\">Global Parameter</a>.\nThe value of the global variable configured here is A.</p>\n<p><img src=\"/img/tasks/demo/switch_03.png\" alt=\"switch_03\"></p>\n<p>If executed correctly, then taskA will be executed correctly.</p>\n<h3 id=\"execute\">Execute</h3>\n<p>Execute and see if it works as expected. It can be seen that the specified downstream tasksA are executed as expected.</p>\n<p><img src=\"/img/tasks/demo/switch_04.png\" alt=\"switch_04\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Switch"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Create a workflow",
+          "children": [],
+          "anchor": "create-a-workflow"
+        },
+        {
+          "title": "Set conditions",
+          "children": [],
+          "anchor": "set-conditions"
+        },
+        {
+          "title": "Execute",
+          "children": [],
+          "anchor": "execute"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Create a workflow",
+          "children": [],
+          "anchor": "create-a-workflow"
+        },
+        {
+          "title": "Set conditions",
+          "children": [],
+          "anchor": "set-conditions"
+        },
+        {
+          "title": "Execute",
+          "children": [],
+          "anchor": "execute"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Create a workflow",
+          "children": [],
+          "anchor": "create-a-workflow"
+        },
+        {
+          "title": "Set conditions",
+          "children": [],
+          "anchor": "set-conditions"
+        },
+        {
+          "title": "Execute",
+          "children": [],
+          "anchor": "execute"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Create a workflow",
+          "children": [],
+          "anchor": "create-a-workflow"
+        },
+        {
+          "title": "Set conditions",
+          "children": [],
+          "anchor": "set-conditions"
+        },
+        {
+          "title": "Execute",
+          "children": [],
+          "anchor": "execute"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "Switch",
+  "link": "/guide/task/switch"
+}

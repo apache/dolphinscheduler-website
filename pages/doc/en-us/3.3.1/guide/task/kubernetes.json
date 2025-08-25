@@ -1,0 +1,93 @@
+{
+  "__html": "<h1 id=\"k8s-node\">K8S Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>K8S task type used to execute a batch task. In this task, the worker submits the task by using a k8s client.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/kubernetes.png\" width=\"15\"/> to the canvas.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Namespace</td>\n<td>The namespace for running k8s task.</td>\n</tr>\n<tr>\n<td>Min CPU</td>\n<td>Minimum CPU requirement for running k8s task.</td>\n</tr>\n<tr>\n<td>Min Memory</td>\n<td>Minimum memory requirement for running k8s task.</td>\n</tr>\n<tr>\n<td>Image</td>\n<td>The registry url for image.</td>\n</tr>\n<tr>\n<td>Image Pull Policy</td>\n<td>The image pull policy for image.</td>\n</tr>\n<tr>\n<td>Command</td>\n<td>The container execution command (yaml-style array), for example: [&quot;printenv&quot;]</td>\n</tr>\n<tr>\n<td>Args</td>\n<td>The args of execution command (yaml-style array), for example: [&quot;HOSTNAME&quot;, &quot;KUBERNETES_PORT&quot;]</td>\n</tr>\n<tr>\n<td>Custom label</td>\n<td>The customized labels for k8s Job.</td>\n</tr>\n<tr>\n<td>Node selector</td>\n<td>The label selectors for running k8s pod. Different value in value set should be separated by comma, for example: <code>value1,value2</code>. You can refer to https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/node-selector-requirement/ for configuration of different operators.</td>\n</tr>\n<tr>\n<td>Custom parameter</td>\n<td>It is a local user-defined parameter for K8S task, these params will pass to container as environment variables.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"configure-the-k8s-environment-in-dolphinscheduler\">Configure the K8S Environment in DolphinScheduler</h3>\n<p>If you are using the K8S task type in a production environment, the K8S cluster environment is required.</p>\n<h3 id=\"configure-k8s-nodes\">Configure K8S Nodes</h3>\n<p>Configure the required content according to the parameter descriptions above.</p>\n<p><img src=\"/img/tasks/demo/kubernetes-task-en.png\" alt=\"K8S\"></p>\n<h2 id=\"note\">Note</h2>\n<p>Task name contains only lowercase alphanumeric characters or '-'</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Kubernetes"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Configure the K8S Environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configure-the-k8s-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configure K8S Nodes",
+          "children": [],
+          "anchor": "configure-k8s-nodes"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Configure the K8S Environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configure-the-k8s-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configure K8S Nodes",
+          "children": [],
+          "anchor": "configure-k8s-nodes"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Configure the K8S Environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configure-the-k8s-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configure K8S Nodes",
+          "children": [],
+          "anchor": "configure-k8s-nodes"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Configure the K8S Environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configure-the-k8s-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configure K8S Nodes",
+          "children": [],
+          "anchor": "configure-k8s-nodes"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Note",
+      "children": [
+        {
+          "title": "Configure the K8S Environment in DolphinScheduler",
+          "children": [],
+          "anchor": "configure-the-k8s-environment-in-dolphinscheduler"
+        },
+        {
+          "title": "Configure K8S Nodes",
+          "children": [],
+          "anchor": "configure-k8s-nodes"
+        }
+      ],
+      "anchor": "note"
+    }
+  ],
+  "title": "K8S Node",
+  "link": "/guide/task/kubernetes"
+}

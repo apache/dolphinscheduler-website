@@ -1,0 +1,300 @@
+{
+  "__html": "<h1 id=\"workflow-definition\">Workflow Definition</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Work Definition screen shows list of existing workflows and utility to create or import workflows.</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-overview.png\" alt=\"workflow-dag\"></p>\n<h2 id=\"create-workflow-definition\">Create workflow definition</h2>\n<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Definition</code>, enter the <code>Workflow Definition</code> page, and click the <code>Create Workflow</code> button to enter the <strong>workflow DAG edit</strong> page, as shown in the following figure:</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-dag.png\" alt=\"workflow-dag\"></p>\n<h3 id=\"create-tasks-to-workflow\">Create Tasks to Workflow</h3>\n<p>Drag from the toolbar <img src=\"/img/tasks/icons/shell.png\" width=\"15\"/> to the canvas, to add a shell task to the canvas, as shown in the figure below:</p>\n<p><img src=\"/img/tasks/demo/shell.jpg\" alt=\"demo-shell-simple\"></p>\n<p><strong>Add parameter settings for shell task:</strong></p>\n<ol>\n<li>Fill in the <code>Node Name</code>, <code>Description</code> and <code>Script</code> fields.</li>\n<li>Check <code>Normal</code> for <code>Run Flag</code>. If <code>Prohibit Execution</code> is checked, the task will not execute when the workflow runs.</li>\n<li>Select <code>Task Priority</code>: when the number of worker threads is insufficient, high priority tasks will execute first in the execution queue, and tasks with the same priority will execute in the order of first in, first out.</li>\n<li>Timeout alarm (optional): check the timeout alarm, timeout failure, and fill in the &quot;timeout period&quot;. When the task execution time exceeds <strong>timeout period</strong>, an alert email will send and the task timeout fails.</li>\n<li>Resources (optional). Resources are files created or uploaded in the <code>Resource Center -&gt; File Management</code> page. For example, the file name is <code>test.sh</code>, and the command to use the resource in the script is <code>sh test.sh</code>. Please note that you need to use the full path to the resource files.</li>\n<li>Customize parameters (optional).</li>\n<li>Click the <code>Confirm Add</code> button to save the task settings.</li>\n</ol>\n<h3 id=\"set-dependencies-between-tasks\">Set dependencies between tasks</h3>\n<p>Click the plus sign on the right of the task node to connect the task; as shown in the figure below, task Node_B and task Node_C execute in parallel, When task Node_A finished execution, tasks Node_B and Node_C will execute simultaneously.</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-dependent.png\" alt=\"workflow-dependent\"></p>\n<h3 id=\"dependencies-with-stream-task\">Dependencies with stream task</h3>\n<p>If the DAG contains stream tasks, the relationship between stream tasks is displayed as a dotted line, and the execution of stream tasks will be skipped when the workflow instance is executed.</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-definition-with-stream-task.png\" alt=\"workflow-dependent\"></p>\n<p><strong>Delete dependencies:</strong> Using your mouse to select the connection line, and click the &quot;Delete&quot; icon in the upper right corner <img src= \"/img/delete.png\" width=\"35\"/>, delete dependencies between tasks.</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-delete.png\" alt=\"workflow-delete\"></p>\n<h3 id=\"save-workflow-definition\">Save workflow definition</h3>\n<p>Click the <code>Save</code> button, and the &quot;Set DAG chart name&quot; window pops up, as shown in the figure below. Enter the workflow definition name, workflow definition description, and set global parameters (optional, refer to <a href=\"/en-us/docs/3.3.1/guide/parameter/global\">global parameters</a>), click the <code>Add</code> button to finish workflow definition creation.</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-save.png\" alt=\"workflow-save\"></p>\n<h3 id=\"configure-workflow-(process)-execution-type\">Configure workflow (process) execution type</h3>\n<p>Click the <code>Save</code> button and configure <code>process execution type</code> in the pop-up window. There are four process execution types:</p>\n<ul>\n<li><code>Parallel</code>: If there are multiple instances of the same workflow definition, execute the instances in parallel.</li>\n<li><code>Serial Wait</code>: If there are multiple instances of the same workflow definition, execute the instances in serial.</li>\n<li><code>Serial Discard</code>: If there are multiple instances of the same workflow definition, discard the later ones and kill the current running ones.</li>\n<li><code>Serial Priority</code>: If there are multiple instances of the same workflow definition, execute the instances according to the priority in serial.</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-execution-type.png\" alt=\"workflow-execution-type\"></p>\n<h2 id=\"workflow-definition-operation-function\">Workflow Definition Operation Function</h2>\n<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Definition</code> to enter the workflow definition page, as shown below:</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-list.png\" alt=\"workflow-list\"></p>\n<h3 id=\"actions-supported-by-a-single-workflow\">Actions Supported by a Single Workflow</h3>\n<ul>\n<li><strong>Edit:</strong> Only &quot;Offline&quot; workflow definitions can be edited. Workflow DAG editing is the same as <a href=\"#create-workflow-definition\">Create Workflow Definition</a></li>\n<li><strong>Run:</strong> Only workflow in the online state can run. See <a href=\"#run-the-workflow\">Run Workflow</a> for the operation steps.</li>\n<li><strong>Online:</strong> When the workflow status is &quot;Offline&quot;, used to make workflow online. Only the workflow in the &quot;Online&quot; state can run, but cannot edit.</li>\n<li><strong>Offline:</strong> When the workflow status is &quot;Online&quot;, used to make workflow offline. Only the workflow in the &quot;Offline&quot; state can be edited, but cannot run.</li>\n<li><strong>Timing:</strong> Timing can only set to online workflows, and the system automatically schedules to run the workflow on time. The status after creating a timing setting is &quot;offline&quot;, You need to click the <img src=\"/img/scheduler_online.png\" width=\"20\"/>button on the right to go online to take effect. See <a href=\"#workflow-schedule\">Workflow Timing</a> for timing operation steps.</li>\n<li><strong>Timing Online：</strong> Scheduled online, schedule can only be clicked after the schedule is created and the workflow status is &quot;online&quot;.</li>\n<li><strong>Timing Offline：</strong> Scheduled offline.</li>\n<li><strong>Timing Management:</strong> The timing management page can edit, online or offline and delete timing.</li>\n<li><strong>Delete:</strong> Delete the workflow definition. In the same project, only the workflow definition created by yourself can be deleted, and the workflow definition of other users cannot be deleted. If you need to delete it, please contact the user who created it or the administrator.</li>\n<li><strong>Download:</strong> Download workflow definition to local.</li>\n<li><strong>Copy:</strong> Under the current project, copy a new workflow based on the current workflow, and the name of the new workflow will be suffixed with <code>_copy_&lt;date&gt;</code> on the basis of the original workflow name.</li>\n<li><strong>Export:</strong> Export workflow definition json file.</li>\n<li><strong>Version Info:</strong> View the workflow version information, and switch the workflow version in the version information list.</li>\n<li><strong>Tree Diagram:</strong> Display the task node type and task status in a tree structure, as shown in the figure below:</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-tree.png\" alt=\"workflow-tree\"></p>\n<h3 id=\"workflow-batch-operations\">Workflow batch operations</h3>\n<p>After selecting multiple workflows, you can perform batch operations at the bottom of the workflow definition list, as follows:</p>\n<ul>\n<li><strong>Batch Delete:</strong> Batch delete multiple workflow definitions.</li>\n<li><strong>Batch Export:</strong> Batch export multiple workflow definitions to a json file.</li>\n<li><strong>Batch Copy:</strong> Batch copy multiple workflow definitions, you can choose under which project to generate the copied workflow.</li>\n</ul>\n<h2 id=\"run-the-workflow\">Run the Workflow</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Workflow -&gt; Workflow Definition</code> to enter the workflow definition page, as shown in the figure below, click the &quot;Go Online&quot; button <img src=\"/img/online.png\" width=\"35\"/>to make workflow online.</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-online.png\" alt=\"workflow-online\"></p>\n<ul>\n<li>Click the <code>Run</code> button to pop up the startup parameter setting window, as shown in the figure below, set the startup parameters, click the <code>Run</code> button in the pop-up box, the workflow starts running, and the workflow instance page generates a workflow instance.</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-run.png\" alt=\"workflow-run\"></p>\n<p>Description of workflow operating parameters:</p>\n<ul>\n<li>Failure strategy: When a task node fails to execute, other parallel task nodes need to execute this strategy. &quot;Continue&quot; means: after a certain task fails, other task nodes execute normally; &quot;End&quot; means: terminate all tasks execution, and terminate the entire process.</li>\n<li>Notification strategy: When the process is over, send the process execution result notification email according to the process status, options including no send, send if success, send of failure, send whatever result.</li>\n<li>Process priority: The priority of process operation, divide into five levels: highest (HIGHEST), high (HIGH), medium (MEDIUM), low (LOW), and lowest (LOWEST). When the number of master threads is insufficient, high priority processes will execute first in the execution queue, and processes with the same priority will execute in the order of first in, first out.</li>\n<li>Worker group: The process can only be executed in the specified worker machine group. The default is <code>Default</code>, which can execute on any worker.</li>\n<li>Notification group: select notification strategy||timeout alarm||when fault tolerance occurs, process result information or email will send to all members in the notification group.</li>\n<li>Recipient: select notification policy||timeout alarm||when fault tolerance occurs, process result information or alarm email will be sent to the recipient list.</li>\n<li>Cc: select notification policy||timeout alarm||when fault tolerance occurs, the process result information or warning email will be copied to the CC list.</li>\n<li>Startup parameter: Set or overwrite global parameter values when starting a new process instance.</li>\n<li>Complement: refers to running the workflow definition within the specified date range and generating the corresponding workflow instance according to the complement policy. The complement policy includes two modes: <strong>serial complement</strong> and <strong>parallel complement</strong>. The date can be selected on the page or entered manually.\n<ul>\n<li>\n<p>Serial complement: within the specified time range, complement is executed from the start date to the end date, and multiple process instances are generated in turn; Click Run workflow and select the serial complement mode: for example, from July 9 to July 10, execute in sequence, and generate two process instances in sequence on the process instance page.</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-serial.png\" alt=\"workflow-serial\"></p>\n</li>\n<li>\n<p>Parallel Replenishment: within the specified time range, replenishment is performed simultaneously for multiple days, and multiple process instances are generated at the same time. Enter date manually: manually enter a date in the comma separated date format of 'yyyy MM DD hh:mm:ss'.Click Run workflow and select the parallel complement mode: for example, execute the workflow definition from July 9 to July 10 at the same time, and generate two process instances on the process instance page at the same time.</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-parallel.png\" alt=\"workflow-parallel\"></p>\n</li>\n<li>\n<p>Concurrency: refers to the maximum number of instances executed in parallel in the parallel complement mode.For example, if tasks from July 6 to July 10 are executed at the same time, and the concurrency is 2, then the process instance is:</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-concurrency-from.png\" alt=\"workflow-concurrency-from\"></p>\n<p><img src=\"/img/new_ui/dev/project/workflow-concurrency.png\" alt=\"workflow-concurrency\"></p>\n</li>\n<li>\n<p>Dependency mode: whether to trigger the replenishment of workflow instances that downstream dependent nodes depend on the current workflow (the timing status of workflow instances that require the current replenishment is online, which will only trigger the replenishment of downstream directly dependent on the current workflow).</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-dependency.png\" alt=\"workflow-dependency\"></p>\n</li>\n<li>\n<p>Date selection:</p>\n<ol>\n<li>Select the date through the page:</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/project/workflow-pageSelection.png\" alt=\"workflow-pageSelection\"></p>\n<ol start=\"2\">\n<li>Manual input:</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/project/workflow-input.png\" alt=\"workflow-input\"></p>\n</li>\n<li>\n<p>Relationship between complement and timing configuration:</p>\n<ol>\n<li>Unconfigured timing: When there is no timing configuration, the daily replenishment will be performed by default according to the selected time range. For example, the workflow scheduling date is July 7 to July 10. If timing is not configured, the process instance is:</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/project/workflow-unconfiguredTimingResult.png\" alt=\"workflow-unconfiguredTimingResult\"></p>\n<ol start=\"2\">\n<li>Configured timing: If there is a timing configuration, it will be supplemented according to the selected time range in combination with the timing configuration. For example, the workflow scheduling date is July 7 to July 10, and the timing is configured (running every 5 a.m.). The process example is:</li>\n</ol>\n<p><img src=\"/img/new_ui/dev/project/workflow-configuredTiming.png\" alt=\"workflow-configuredTiming\"></p>\n<p><img src=\"/img/new_ui/dev/project/workflow-configuredTimingResult.png\" alt=\"workflow-configuredTimingResult\"></p>\n</li>\n</ul>\n</li>\n</ul>\n<h2 id=\"run-the-task-alone\">Run the task alone</h2>\n<ul>\n<li>Right-click the task and click the <code>Start</code> button (only online tasks can be clicked to run).</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-task-run.png\" alt=\"workflow-task-run\"></p>\n<ul>\n<li>The startup parameter setting dialog box is displayed, and the parameter description is the same as <a href=\"#run-the-workflow\">run the workflow</a>.</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/workflow-task-run-config.png\" alt=\"workflow-task-run-config\"></p>\n<h2 id=\"workflow-schedule\">Workflow Schedule</h2>\n<ul>\n<li>\n<p>Create schedule: Click <code>Project Management -&gt; Workflow-&gt; Workflow Definition</code>, enter the workflow definition page, make the workflow online, click the &quot;timing&quot; button <img src=\"/img/timing.png\" width=\"35\"/> , the timing parameter setting dialog box pops up, as shown in the figure below:</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-time01.png\" alt=\"workflow-time01\"></p>\n</li>\n<li>\n<p>Select a start and end time. Within the start and end time range, the workflow is run regularly; outside the start and end time range, no timed workflow instance will be generated.</p>\n</li>\n<li>\n<p>Add a timing that execute 5 minutes once, as shown in the following figure:</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-time02.png\" alt=\"workflow-time02\"></p>\n</li>\n<li>\n<p>Failure strategy, notification strategy, process priority, worker group, notification group, recipient, and CC are the same as workflow running parameters.</p>\n</li>\n<li>\n<p>Click the &quot;Create&quot; button to create the timing. Now the timing status is &quot;<strong>Offline</strong>&quot; and the timing needs to be <strong>Online</strong> to make effect.</p>\n</li>\n<li>\n<p>Schedule online: Click the <code>Timing online</code> button <img src=\"/img/scheduler_online.png\" width=\"30\"/>, click the <code>online</code> button, the timing status will change to <code>online</code>, as shown in the below figure, the workflow makes effect regularly.</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-time03.png\" alt=\"workflow-time03\"></p>\n</li>\n<li>\n<p>View the Schedule Timing：After the scheduled time goes online, you can check the current timing situation through the &quot;Timing&quot; button<img src=\"/img/timing.png\" width=\"35\"/>. But it cannot be modified, as shown in the below figure.\n<img src=\"/img/new_ui/dev/project/workflow-time04.png\" alt=\"workflow-time04\"></p>\n</li>\n</ul>\n<h2 id=\"import-workflow\">Import Workflow</h2>\n<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Definition</code> to enter the workflow definition page, click the <code>Import Workflow</code> button to import the local workflow file, the workflow definition list displays the imported workflow and the status is offline.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Project",
+    "Workflow Definition"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Create Tasks to Workflow",
+          "children": [],
+          "anchor": "create-tasks-to-workflow"
+        },
+        {
+          "title": "Set dependencies between tasks",
+          "children": [],
+          "anchor": "set-dependencies-between-tasks"
+        },
+        {
+          "title": "Dependencies with stream task",
+          "children": [],
+          "anchor": "dependencies-with-stream-task"
+        },
+        {
+          "title": "Save workflow definition",
+          "children": [],
+          "anchor": "save-workflow-definition"
+        },
+        {
+          "title": "Configure workflow (process) execution type",
+          "children": [],
+          "anchor": "configure-workflow-(process)-execution-type"
+        },
+        {
+          "title": "Actions Supported by a Single Workflow",
+          "children": [],
+          "anchor": "actions-supported-by-a-single-workflow"
+        },
+        {
+          "title": "Workflow batch operations",
+          "children": [],
+          "anchor": "workflow-batch-operations"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create workflow definition",
+      "children": [
+        {
+          "title": "Create Tasks to Workflow",
+          "children": [],
+          "anchor": "create-tasks-to-workflow"
+        },
+        {
+          "title": "Set dependencies between tasks",
+          "children": [],
+          "anchor": "set-dependencies-between-tasks"
+        },
+        {
+          "title": "Dependencies with stream task",
+          "children": [],
+          "anchor": "dependencies-with-stream-task"
+        },
+        {
+          "title": "Save workflow definition",
+          "children": [],
+          "anchor": "save-workflow-definition"
+        },
+        {
+          "title": "Configure workflow (process) execution type",
+          "children": [],
+          "anchor": "configure-workflow-(process)-execution-type"
+        },
+        {
+          "title": "Actions Supported by a Single Workflow",
+          "children": [],
+          "anchor": "actions-supported-by-a-single-workflow"
+        },
+        {
+          "title": "Workflow batch operations",
+          "children": [],
+          "anchor": "workflow-batch-operations"
+        }
+      ],
+      "anchor": "create-workflow-definition"
+    },
+    {
+      "title": "Workflow Definition Operation Function",
+      "children": [
+        {
+          "title": "Create Tasks to Workflow",
+          "children": [],
+          "anchor": "create-tasks-to-workflow"
+        },
+        {
+          "title": "Set dependencies between tasks",
+          "children": [],
+          "anchor": "set-dependencies-between-tasks"
+        },
+        {
+          "title": "Dependencies with stream task",
+          "children": [],
+          "anchor": "dependencies-with-stream-task"
+        },
+        {
+          "title": "Save workflow definition",
+          "children": [],
+          "anchor": "save-workflow-definition"
+        },
+        {
+          "title": "Configure workflow (process) execution type",
+          "children": [],
+          "anchor": "configure-workflow-(process)-execution-type"
+        },
+        {
+          "title": "Actions Supported by a Single Workflow",
+          "children": [],
+          "anchor": "actions-supported-by-a-single-workflow"
+        },
+        {
+          "title": "Workflow batch operations",
+          "children": [],
+          "anchor": "workflow-batch-operations"
+        }
+      ],
+      "anchor": "workflow-definition-operation-function"
+    },
+    {
+      "title": "Run the Workflow",
+      "children": [
+        {
+          "title": "Create Tasks to Workflow",
+          "children": [],
+          "anchor": "create-tasks-to-workflow"
+        },
+        {
+          "title": "Set dependencies between tasks",
+          "children": [],
+          "anchor": "set-dependencies-between-tasks"
+        },
+        {
+          "title": "Dependencies with stream task",
+          "children": [],
+          "anchor": "dependencies-with-stream-task"
+        },
+        {
+          "title": "Save workflow definition",
+          "children": [],
+          "anchor": "save-workflow-definition"
+        },
+        {
+          "title": "Configure workflow (process) execution type",
+          "children": [],
+          "anchor": "configure-workflow-(process)-execution-type"
+        },
+        {
+          "title": "Actions Supported by a Single Workflow",
+          "children": [],
+          "anchor": "actions-supported-by-a-single-workflow"
+        },
+        {
+          "title": "Workflow batch operations",
+          "children": [],
+          "anchor": "workflow-batch-operations"
+        }
+      ],
+      "anchor": "run-the-workflow"
+    },
+    {
+      "title": "Run the task alone",
+      "children": [
+        {
+          "title": "Create Tasks to Workflow",
+          "children": [],
+          "anchor": "create-tasks-to-workflow"
+        },
+        {
+          "title": "Set dependencies between tasks",
+          "children": [],
+          "anchor": "set-dependencies-between-tasks"
+        },
+        {
+          "title": "Dependencies with stream task",
+          "children": [],
+          "anchor": "dependencies-with-stream-task"
+        },
+        {
+          "title": "Save workflow definition",
+          "children": [],
+          "anchor": "save-workflow-definition"
+        },
+        {
+          "title": "Configure workflow (process) execution type",
+          "children": [],
+          "anchor": "configure-workflow-(process)-execution-type"
+        },
+        {
+          "title": "Actions Supported by a Single Workflow",
+          "children": [],
+          "anchor": "actions-supported-by-a-single-workflow"
+        },
+        {
+          "title": "Workflow batch operations",
+          "children": [],
+          "anchor": "workflow-batch-operations"
+        }
+      ],
+      "anchor": "run-the-task-alone"
+    },
+    {
+      "title": "Workflow Schedule",
+      "children": [
+        {
+          "title": "Create Tasks to Workflow",
+          "children": [],
+          "anchor": "create-tasks-to-workflow"
+        },
+        {
+          "title": "Set dependencies between tasks",
+          "children": [],
+          "anchor": "set-dependencies-between-tasks"
+        },
+        {
+          "title": "Dependencies with stream task",
+          "children": [],
+          "anchor": "dependencies-with-stream-task"
+        },
+        {
+          "title": "Save workflow definition",
+          "children": [],
+          "anchor": "save-workflow-definition"
+        },
+        {
+          "title": "Configure workflow (process) execution type",
+          "children": [],
+          "anchor": "configure-workflow-(process)-execution-type"
+        },
+        {
+          "title": "Actions Supported by a Single Workflow",
+          "children": [],
+          "anchor": "actions-supported-by-a-single-workflow"
+        },
+        {
+          "title": "Workflow batch operations",
+          "children": [],
+          "anchor": "workflow-batch-operations"
+        }
+      ],
+      "anchor": "workflow-schedule"
+    },
+    {
+      "title": "Import Workflow",
+      "children": [
+        {
+          "title": "Create Tasks to Workflow",
+          "children": [],
+          "anchor": "create-tasks-to-workflow"
+        },
+        {
+          "title": "Set dependencies between tasks",
+          "children": [],
+          "anchor": "set-dependencies-between-tasks"
+        },
+        {
+          "title": "Dependencies with stream task",
+          "children": [],
+          "anchor": "dependencies-with-stream-task"
+        },
+        {
+          "title": "Save workflow definition",
+          "children": [],
+          "anchor": "save-workflow-definition"
+        },
+        {
+          "title": "Configure workflow (process) execution type",
+          "children": [],
+          "anchor": "configure-workflow-(process)-execution-type"
+        },
+        {
+          "title": "Actions Supported by a Single Workflow",
+          "children": [],
+          "anchor": "actions-supported-by-a-single-workflow"
+        },
+        {
+          "title": "Workflow batch operations",
+          "children": [],
+          "anchor": "workflow-batch-operations"
+        }
+      ],
+      "anchor": "import-workflow"
+    }
+  ],
+  "title": "Workflow Definition",
+  "link": "/guide/project/workflow-definition"
+}

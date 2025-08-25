@@ -1,0 +1,116 @@
+{
+  "__html": "<h1 id=\"standalone\">Standalone</h1>\n<p>Standalone only for quick experience for DolphinScheduler.</p>\n<p>If you are a newbie and want to experience DolphinScheduler functions, we recommend you install follow <a href=\"/en-us/docs/3.3.1/guide/installation/standalone\">Standalone deployment</a>.\nIf you want to experience more complete functions and schedule massive tasks, we recommend you install follow <a href=\"/en-us/docs/3.3.1/guide/installation/pseudo-cluster\">pseudo-cluster deployment</a>.\nIf you want to deploy DolphinScheduler in production, we recommend you follow <a href=\"/en-us/docs/3.3.1/guide/installation/cluster\">cluster deployment</a> or <a href=\"/en-us/docs/3.3.1/guide/installation/kubernetes\">Kubernetes deployment</a>.</p>\n<blockquote>\n<p><strong><em>Note:</em></strong> Standalone only recommends the usage of fewer than 20 workflows, because it uses in-memory H2 Database in default, ZooKeeper Testing Server, too many tasks may cause instability.\nWhen Standalone stops or restarts, in-memory H2 database will clear up. To use Standalone with external databases like mysql or postgresql, please see <a href=\"#database-configuration\"><code>Database Configuration</code></a>.</p>\n</blockquote>\n<h2 id=\"preparation\">Preparation</h2>\n<ul>\n<li>JDK：download <a href=\"https://www.oracle.com/technetwork/java/javase/downloads/index.html\">JDK</a> (1.8 or 11), install and configure environment variable <code>JAVA_HOME</code> and append <code>bin</code> dir (included in <code>JAVA_HOME</code>) to <code>PATH</code> variable. You can skip this step if it already exists in your environment.</li>\n<li>Binary package: download the DolphinScheduler binary package at <a href=\"https://dolphinscheduler.apache.org/en-us/download/3.3.1\">download page</a>.  <!-- markdown-link-check-disable-line --></li>\n</ul>\n<h2 id=\"download-plugin-dependencies\">Download Plugin Dependencies</h2>\n<p>Please refer to the <a href=\"/en-us/docs/3.3.1/guide/installation/pseudo-cluster\">Download Plugin Dependencies</a> in pseudo-cluster deployment.</p>\n<h3 id=\"configure-user-exemption-and-permissions\">Configure User Exemption and Permissions</h3>\n<p>Create a deployment user, and make sure to configure <code>sudo</code> without password. Here make an example to create user <code>dolphinscheduler</code>:</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">To create a user, login as root</span>\nuseradd dolphinscheduler\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Add password</span>\necho &quot;dolphinscheduler&quot; | passwd --stdin dolphinscheduler\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Configure sudo without password</span>\nsed -i &#x27;$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; /etc/sudoers\nsed -i &#x27;s/Defaults    requiretty/#Defaults    requiretty/g&#x27; /etc/sudoers\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">Modify directory permissions and grant permissions <span class=\"hljs-keyword\">for</span> user you created above</span>\nchown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin\nchmod -R 755 apache-dolphinscheduler-*-bin\n</code></pre>\n<blockquote>\n<p><strong><em>NOTICE:</em></strong></p>\n<ul>\n<li>Due to DolphinScheduler's multi-tenant task switch user using command <code>sudo -u {linux-user} -i</code>, the deployment user needs to have <code>sudo</code> privileges and be password-free. If novice learners don’t understand, you can ignore this point for now.</li>\n<li>If you find the line &quot;Defaults requiretty&quot; in the <code>/etc/sudoers</code> file, please comment the content.</li>\n</ul>\n</blockquote>\n<h2 id=\"start-dolphinscheduler-standalone-server\">Start DolphinScheduler Standalone Server</h2>\n<h3 id=\"extract-and-start-dolphinscheduler\">Extract and Start DolphinScheduler</h3>\n<p>There is a standalone startup script in the binary compressed package, which can be quickly started after extraction. Switch to a user with sudo permission and run the script:</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Extract and start Standalone Server</span>\ntar -xvzf apache-dolphinscheduler-*-bin.tar.gz\nchmod -R 755 apache-dolphinscheduler-*-bin\ncd apache-dolphinscheduler-*-bin\nbash ./bin/dolphinscheduler-daemon.sh start standalone-server\n</code></pre>\n<h3 id=\"login-dolphinscheduler\">Login DolphinScheduler</h3>\n<p>Access address <code>http://localhost:12345/dolphinscheduler/ui</code> and login DolphinScheduler UI. The default username and password are <strong>admin/dolphinscheduler123</strong></p>\n<p><img src=\"/img/new_ui/dev/quick-start/login.png\" alt=\"login\"></p>\n<h3 id=\"start-or-stop-server\">Start or Stop Server</h3>\n<p>The script <code>./bin/dolphinscheduler-daemon.sh</code> can be used not only quickly start standalone, but also to stop the service operation. The following are all the commands:</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Start Standalone Server</span>\nbash ./bin/dolphinscheduler-daemon.sh start standalone-server\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Stop Standalone Server</span>\nbash ./bin/dolphinscheduler-daemon.sh stop standalone-server\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">Check Standalone Server status</span>\nbash ./bin/dolphinscheduler-daemon.sh status standalone-server\n</code></pre>\n<blockquote>\n<p>Note: Python gateway service is disabled by default. If you want to start the Python gateway\nservice please enable it by changing the yaml config <code>python-gateway.enabled : true</code> in api-server's configuration\npath <code>api-server/conf/application.yaml</code></p>\n</blockquote>\n<h2 id=\"database-configuration\">Database Configuration</h2>\n<p>Standalone server use H2 database as its metadata store, it is easy and users do not need to start database before they set up server.\nBut if user want to store metabase in other database like MySQL or PostgreSQL, they have to change some configuration. Follow the instructions in <a href=\"/en-us/docs/3.3.1/guide/installation/datasource-setting\">datasource-setting</a> <code>Standalone Switching Metadata Database Configuration</code> section to create and initialize database</p>\n<blockquote>\n<p>Note: DS uses the /tmp/dolphinscheduler directory as the resource center by default. If you need to change the directory of the resource center, change the resource items in the conf/common.properties file</p>\n</blockquote>\n",
+  "location": [
+    "Installation",
+    "Standalone Deployment"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Preparation",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Extract and Start DolphinScheduler",
+          "children": [],
+          "anchor": "extract-and-start-dolphinscheduler"
+        },
+        {
+          "title": "Login DolphinScheduler",
+          "children": [],
+          "anchor": "login-dolphinscheduler"
+        },
+        {
+          "title": "Start or Stop Server",
+          "children": [],
+          "anchor": "start-or-stop-server"
+        }
+      ],
+      "anchor": "preparation"
+    },
+    {
+      "title": "Download Plugin Dependencies",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Extract and Start DolphinScheduler",
+          "children": [],
+          "anchor": "extract-and-start-dolphinscheduler"
+        },
+        {
+          "title": "Login DolphinScheduler",
+          "children": [],
+          "anchor": "login-dolphinscheduler"
+        },
+        {
+          "title": "Start or Stop Server",
+          "children": [],
+          "anchor": "start-or-stop-server"
+        }
+      ],
+      "anchor": "download-plugin-dependencies"
+    },
+    {
+      "title": "Start DolphinScheduler Standalone Server",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Extract and Start DolphinScheduler",
+          "children": [],
+          "anchor": "extract-and-start-dolphinscheduler"
+        },
+        {
+          "title": "Login DolphinScheduler",
+          "children": [],
+          "anchor": "login-dolphinscheduler"
+        },
+        {
+          "title": "Start or Stop Server",
+          "children": [],
+          "anchor": "start-or-stop-server"
+        }
+      ],
+      "anchor": "start-dolphinscheduler-standalone-server"
+    },
+    {
+      "title": "Database Configuration",
+      "children": [
+        {
+          "title": "Configure User Exemption and Permissions",
+          "children": [],
+          "anchor": "configure-user-exemption-and-permissions"
+        },
+        {
+          "title": "Extract and Start DolphinScheduler",
+          "children": [],
+          "anchor": "extract-and-start-dolphinscheduler"
+        },
+        {
+          "title": "Login DolphinScheduler",
+          "children": [],
+          "anchor": "login-dolphinscheduler"
+        },
+        {
+          "title": "Start or Stop Server",
+          "children": [],
+          "anchor": "start-or-stop-server"
+        }
+      ],
+      "anchor": "database-configuration"
+    }
+  ],
+  "title": "Standalone",
+  "link": "/guide/installation/standalone"
+}

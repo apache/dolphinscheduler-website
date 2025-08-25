@@ -1,0 +1,535 @@
+{
+  "__html": "<h1 id=\"dolphinscheduler-upgrade\">DolphinScheduler Upgrade</h1>\n<h2 id=\"prepare\">Prepare</h2>\n<h3 id=\"check-incompatible-change\">Check Incompatible Change</h3>\n<p>You should check <a href=\"/en-us/docs/3.3.1/guide/upgrade/incompatible\">incompatible change</a> before you upgrade, because some incompatible change may break your current function.</p>\n<h3 id=\"backup-previous-version's-files-and-database\">Backup Previous Version's Files and Database</h3>\n<p>To prevent data loss by some miss-operation, it is recommended to back up data before upgrading. The backup way according to your environment.</p>\n<h3 id=\"download-the-latest-version-installation-package\">Download the Latest Version Installation Package</h3>\n<p>Download the latest binary distribute package from <a href=\"https://dolphinscheduler.apache.org/en-us/download\">download</a> and then put it in the different\ndirectory where current service running. And all below command is running in this directory.</p>\n<h2 id=\"upgrade\">Upgrade</h2>\n<h3 id=\"stop-all-services-of-dolphinscheduler\">Stop All Services of DolphinScheduler</h3>\n<p>Stop all services of dolphinscheduler according to your deployment method..</p>\n<h3 id=\"upgrade-database\">Upgrade Database</h3>\n<p>Set the following environment variables ({user} and {password} are changed to your database username and password), and then run the upgrade script.</p>\n<p>Using MySQL as an example, change the value if you use other databases. Please manually download the <a href=\"https://downloads.MySQL.com/archives/c-j/\">mysql-connector-java driver jar</a>\njar package and add it to the <code>./tools/libs</code> directory, then export the following environment variables</p>\n<pre><code>    ```shell\n    export DATABASE=${DATABASE:-mysql}\n    export SPRING_PROFILES_ACTIVE=${DATABASE}\n    export SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;\n    export SPRING_DATASOURCE_USERNAME={user}\n    export SPRING_DATASOURCE_PASSWORD={password}\n    ```\n</code></pre>\n<p>Execute database upgrade script: <code>sh ./tools/bin/upgrade-schema.sh</code></p>\n<h3 id=\"migrate-resource\">Migrate Resource</h3>\n<p>After refactoring resource center in version 3.2.0, original resources become unmanaged. You can assign a target tenant and execute one-time migration script. All resources will be migrated to directory <code>.migrate</code> of target tenant.</p>\n<h4 id=\"example\">Example</h4>\n<p>Assign an existed target tenant <code>abc</code>, the base resource path is <code>/dolphinscheduler/abc/</code>.</p>\n<p>Execute script: <code>sh ./tools/bin/migrate-resource.sh abc</code>.</p>\n<p>Execution result:</p>\n<ul>\n<li>The original file resource <code>a/b.sh</code> migrates to <code>/dolphinscheduler/abc/resources/.migrate/a/b.sh</code>.</li>\n<li>The original UDF resource <code>x/y.jar</code> migrates to <code>/dolphinscheduler/abc/udf/.migrate/x/y.jar</code>.</li>\n<li>Update UDF function's bound resource info.</li>\n</ul>\n<h3 id=\"upgrade-lineage\">Upgrade Lineage</h3>\n<p>Execute script: <code>sh ./tools/bin/migrate-lineage.sh</code>.</p>\n<p>Execution result:</p>\n<ul>\n<li>Migrate lineage data to new table <code>t_ds_workflow_task_lineage</code>.</li>\n<li>This script only performs upsert operations, not deletes. You can delete it manually if you need to.</li>\n</ul>\n<h3 id=\"upgrade-service\">Upgrade Service</h3>\n<ul>\n<li>If you deploy with Pseudo-Cluster deployment, change it according to <a href=\"/en-us/docs/3.3.1/guide/installation/pseudo-cluster\">Pseudo-Cluster</a> section &quot;Modify Configuration&quot;.</li>\n<li>If you deploy with Cluster deployment, change it according to <a href=\"/en-us/docs/3.3.1/guide/installation/cluster\">Cluster</a> section &quot;Modify Configuration&quot;.</li>\n</ul>\n<h2 id=\"notice\">Notice</h2>\n<h4 id=\"upgrade-version-restriction\">Upgrade version restriction</h4>\n<ul>\n<li>After version 3.3.X and later, we only support upgrading from 3.0.0. For versions lower than this, please download the historical version and upgrade to 3.0.0.</li>\n<li>After version 3.3.X and later, binary packages no longer provide plugins dependencies by default, so when you use them for the first time, you need to download and install them yourself. For more information, please refer to <a href=\"/en-us/docs/3.3.1/guide/installation/pseudo-cluster\">Pseudo-Cluster</a>.</li>\n</ul>\n<h4 id=\"precautions-after-the-upgrade\">Precautions after the upgrade</h4>\n<p>The alert plugin may have some dirty data. After the upgrade, clear it manually by referring to SQL.</p>\n<pre><code class=\"language-sql\"><span class=\"hljs-keyword\">delete</span> <span class=\"hljs-keyword\">from</span> t_ds_alertgroup <span class=\"hljs-keyword\">where</span> group_name <span class=\"hljs-operator\">=</span> <span class=\"hljs-string\">&#x27;global alert group&#x27;</span> <span class=\"hljs-keyword\">and</span> description <span class=\"hljs-operator\">=</span> <span class=\"hljs-string\">&#x27;global alert group&#x27;</span>;\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Upgrade",
+    "Upgrade"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Prepare",
+      "children": [
+        {
+          "title": "Check Incompatible Change",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "check-incompatible-change"
+        },
+        {
+          "title": "Backup Previous Version's Files and Database",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "backup-previous-version's-files-and-database"
+        },
+        {
+          "title": "Download the Latest Version Installation Package",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "download-the-latest-version-installation-package"
+        },
+        {
+          "title": "Stop All Services of DolphinScheduler",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "stop-all-services-of-dolphinscheduler"
+        },
+        {
+          "title": "Upgrade Database",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "upgrade-database"
+        },
+        {
+          "title": "Migrate Resource",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "migrate-resource"
+        },
+        {
+          "title": "Upgrade Lineage",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "upgrade-lineage"
+        },
+        {
+          "title": "Upgrade Service",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "upgrade-service"
+        }
+      ],
+      "anchor": "prepare"
+    },
+    {
+      "title": "Upgrade",
+      "children": [
+        {
+          "title": "Check Incompatible Change",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "check-incompatible-change"
+        },
+        {
+          "title": "Backup Previous Version's Files and Database",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "backup-previous-version's-files-and-database"
+        },
+        {
+          "title": "Download the Latest Version Installation Package",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "download-the-latest-version-installation-package"
+        },
+        {
+          "title": "Stop All Services of DolphinScheduler",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "stop-all-services-of-dolphinscheduler"
+        },
+        {
+          "title": "Upgrade Database",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "upgrade-database"
+        },
+        {
+          "title": "Migrate Resource",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "migrate-resource"
+        },
+        {
+          "title": "Upgrade Lineage",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "upgrade-lineage"
+        },
+        {
+          "title": "Upgrade Service",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "upgrade-service"
+        }
+      ],
+      "anchor": "upgrade"
+    },
+    {
+      "title": "Notice",
+      "children": [
+        {
+          "title": "Check Incompatible Change",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "check-incompatible-change"
+        },
+        {
+          "title": "Backup Previous Version's Files and Database",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "backup-previous-version's-files-and-database"
+        },
+        {
+          "title": "Download the Latest Version Installation Package",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "download-the-latest-version-installation-package"
+        },
+        {
+          "title": "Stop All Services of DolphinScheduler",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "stop-all-services-of-dolphinscheduler"
+        },
+        {
+          "title": "Upgrade Database",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "upgrade-database"
+        },
+        {
+          "title": "Migrate Resource",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "migrate-resource"
+        },
+        {
+          "title": "Upgrade Lineage",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "upgrade-lineage"
+        },
+        {
+          "title": "Upgrade Service",
+          "children": [
+            {
+              "title": "Example",
+              "children": [],
+              "anchor": "example"
+            },
+            {
+              "title": "Upgrade version restriction",
+              "children": [],
+              "anchor": "upgrade-version-restriction"
+            },
+            {
+              "title": "Precautions after the upgrade",
+              "children": [],
+              "anchor": "precautions-after-the-upgrade"
+            }
+          ],
+          "anchor": "upgrade-service"
+        }
+      ],
+      "anchor": "notice"
+    }
+  ],
+  "title": "DolphinScheduler Upgrade",
+  "link": "/guide/upgrade/upgrade"
+}

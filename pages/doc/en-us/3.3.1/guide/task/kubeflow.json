@@ -1,0 +1,77 @@
+{
+  "__html": "<h1 id=\"kubeflow-node\">Kubeflow Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p><a href=\"https://www.kubeflow.org\">Kubeflow</a> task type is used to create tasks on Kubeflow.</p>\n<p>The backend mainly uses the <code>kubectl</code> command to create kubeflow tasks, and continues to monitor the resource status on Kubeflow until the task is completed.</p>\n<p>Now it mainly supports creating kubeflow tasks using yaml files. If you need to publish <code>kubeflow pipeline</code> tasks, you can use the <a href=\"/en-us/docs/3.3.1/guide/task/python\">python task type</a>.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, and click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag <img src=\"/img/tasks/icons/kubeflow.png\" width=\"15\"/> from the toolbar to the canvas.</li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<p>The task plugin picture is as follows</p>\n<p><img src=\"/img/tasks/demo/kubeflow.png\" alt=\"kubeflow\"></p>\n<h3 id=\"first,-introduce-some-general-parameters-of-dolphinscheduler\">First, introduce some general parameters of DolphinScheduler</h3>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.3.1/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<h3 id=\"here-are-some-specific-parameters-for-the-kubeflow-plugin\">Here are some specific parameters for the Kubeflow plugin</h3>\n<ul>\n<li><strong>Namespace</strong>：The namespace parameter of the cluster</li>\n<li><strong>yamlContent</strong>：CRD YAML file content, for example:</li>\n</ul>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">apiVersion:</span> <span class=\"hljs-string\">&quot;kubeflow.org/v1&quot;</span>\n<span class=\"hljs-attr\">kind:</span> <span class=\"hljs-string\">TFJob</span>\n<span class=\"hljs-attr\">metadata:</span>\n  <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">tfjob-simple</span>\n  <span class=\"hljs-attr\">namespace:</span> <span class=\"hljs-string\">kubeflow-user-example-com</span>\n<span class=\"hljs-attr\">spec:</span>\n  <span class=\"hljs-attr\">tfReplicaSpecs:</span>\n    <span class=\"hljs-attr\">Worker:</span>\n      <span class=\"hljs-attr\">replicas:</span> <span class=\"hljs-number\">2</span>\n      <span class=\"hljs-attr\">restartPolicy:</span> <span class=\"hljs-string\">OnFailure</span>\n      <span class=\"hljs-attr\">template:</span>\n        <span class=\"hljs-attr\">metadata:</span>\n          <span class=\"hljs-attr\">annotations:</span>\n            <span class=\"hljs-attr\">sidecar.istio.io/inject:</span> <span class=\"hljs-string\">&quot;false&quot;</span>\n        <span class=\"hljs-attr\">spec:</span>\n          <span class=\"hljs-attr\">containers:</span>\n            <span class=\"hljs-bullet\">-</span> <span class=\"hljs-attr\">name:</span> <span class=\"hljs-string\">tensorflow</span>\n              <span class=\"hljs-attr\">image:</span> <span class=\"hljs-string\">gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0</span>\n              <span class=\"hljs-attr\">command:</span>\n                <span class=\"hljs-bullet\">-</span> <span class=\"hljs-string\">&quot;python&quot;</span>\n                <span class=\"hljs-bullet\">-</span> <span class=\"hljs-string\">&quot;/var/tf_mnist/mnist_with_summaries.py&quot;</span>\n</code></pre>\n<h2 id=\"environment-configuration\">Environment Configuration</h2>\n<p><strong>Configure Kubernetes environment</strong></p>\n<p>Reference <a href=\"/en-us/docs/3.3.1/guide/security/security\">Cluster Management and Namespace Management</a>.</p>\n<p>Only the required fields need to be filled in, and the others do not need to be filled in. The resource management depends on the YAML file definition in the specific Job.</p>\n<p><strong>kubectl</strong></p>\n<p>Install <a href=\"https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/\">kubectl</a>, and make sure <code>kubectl</code> can submit tasks to kubeflow normally.</p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Kubeflow"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "First, introduce some general parameters of DolphinScheduler",
+          "children": [],
+          "anchor": "first,-introduce-some-general-parameters-of-dolphinscheduler"
+        },
+        {
+          "title": "Here are some specific parameters for the Kubeflow plugin",
+          "children": [],
+          "anchor": "here-are-some-specific-parameters-for-the-kubeflow-plugin"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "First, introduce some general parameters of DolphinScheduler",
+          "children": [],
+          "anchor": "first,-introduce-some-general-parameters-of-dolphinscheduler"
+        },
+        {
+          "title": "Here are some specific parameters for the Kubeflow plugin",
+          "children": [],
+          "anchor": "here-are-some-specific-parameters-for-the-kubeflow-plugin"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "First, introduce some general parameters of DolphinScheduler",
+          "children": [],
+          "anchor": "first,-introduce-some-general-parameters-of-dolphinscheduler"
+        },
+        {
+          "title": "Here are some specific parameters for the Kubeflow plugin",
+          "children": [],
+          "anchor": "here-are-some-specific-parameters-for-the-kubeflow-plugin"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "Environment Configuration",
+      "children": [
+        {
+          "title": "First, introduce some general parameters of DolphinScheduler",
+          "children": [],
+          "anchor": "first,-introduce-some-general-parameters-of-dolphinscheduler"
+        },
+        {
+          "title": "Here are some specific parameters for the Kubeflow plugin",
+          "children": [],
+          "anchor": "here-are-some-specific-parameters-for-the-kubeflow-plugin"
+        }
+      ],
+      "anchor": "environment-configuration"
+    }
+  ],
+  "title": "Kubeflow Node",
+  "link": "/guide/task/kubeflow"
+}

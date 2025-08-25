@@ -1,0 +1,38 @@
+{
+  "__html": "<h1 id=\"workflow-instance\">Workflow Instance</h1>\n<h2 id=\"view-workflow-instance\">View Workflow Instance</h2>\n<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Instance</code>, enter the Workflow Instance page, as shown in the following\nfigure:</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-instance.png\" alt=\"workflow-instance\"></p>\n<p>Click the workflow name to enter the DAG view page, and check the task execution status, as shown in the following\nfigure:</p>\n<p><img src=\"/img/new_ui/dev/project/instance-state.png\" alt=\"instance-state\"></p>\n<h2 id=\"view-task-log\">View Task Log</h2>\n<p>Enter the workflow instance page, click the workflow name, enter the DAG view page, double-click the task node, as shown\nin the following figure:</p>\n<p><img src=\"/img/new_ui/dev/project/instance-log01.png\" alt=\"instance-log01\"></p>\n<p>Click &quot;View Log&quot;, a log window pops up, as shown in the figure below, you can also view the task log on the task\ninstance page, refer to <a href=\"/en-us/docs/3.3.1/guide/project/task-instance\">Task View Log</a></p>\n<p><img src=\"/img/new_ui/dev/project/instance-log02.png\" alt=\"instance-log02\"></p>\n<h2 id=\"view-task-history\">View Task History</h2>\n<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Instance</code> to enter the workflow instance page, click the workflow name\nto enter the workflow DAG page;</p>\n<p>Double-click the task node, click <code>View History</code> to jump to the task instance page, and display the list of task\ninstances run by the task definition.</p>\n<p><img src=\"/img/new_ui/dev/project/instance-history.png\" alt=\"instance-history\"></p>\n<h2 id=\"view-running-parameters\">View Running Parameters</h2>\n<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Instance</code> to enter the workflow instance page, click the workflow name\nto enter the workflow DAG page;</p>\n<p>Click the icon in the upper left corner <img src=\"/img/run_params_button.png\" width=\"35\"/> to view the\nstartup parameters of the workflow instance; click the icon <img src=\"/img/global_param.png\" width=\"35\"/> to\nview the global parameters and local parameters of the workflow instance, as shown in the following figure:</p>\n<p><img src=\"/img/new_ui/dev/project/instance-parameter.png\" alt=\"instance-parameter\"></p>\n<h2 id=\"workflow-instance-operation-function\">Workflow Instance Operation Function</h2>\n<p>Click <code>Project Management -&gt; Workflow -&gt; Workflow Instance</code>, enter the workflow instance page, as shown in the following\nfigure:</p>\n<p><img src=\"/img/new_ui/dev/project/workflow-instance.png\" alt=\"workflow-instance\"></p>\n<table>\n<thead>\n<tr>\n<th>WorkflowInstanceState \\ Operation</th>\n<th>Edit</th>\n<th>Rerun</th>\n<th>Stop</th>\n<th>Pause</th>\n<th>Resume Suspend</th>\n<th>Delete</th>\n<th>Gantt Chart</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>SUBMITTED_SUCCESS</td>\n<td></td>\n<td></td>\n<td>√</td>\n<td>√</td>\n<td></td>\n<td></td>\n<td>√</td>\n</tr>\n<tr>\n<td>SERIAL_WAIT</td>\n<td></td>\n<td></td>\n<td>√</td>\n<td></td>\n<td></td>\n<td></td>\n<td>√</td>\n</tr>\n<tr>\n<td>WAIT_TO_RUN</td>\n<td></td>\n<td></td>\n<td>√</td>\n<td></td>\n<td></td>\n<td></td>\n<td>√</td>\n</tr>\n<tr>\n<td>Executing</td>\n<td></td>\n<td></td>\n<td>√</td>\n<td>√</td>\n<td></td>\n<td></td>\n<td>√</td>\n</tr>\n<tr>\n<td>READY PAUSE</td>\n<td></td>\n<td></td>\n<td></td>\n<td></td>\n<td></td>\n<td></td>\n<td>√</td>\n</tr>\n<tr>\n<td>PAUSE</td>\n<td>√</td>\n<td>√</td>\n<td></td>\n<td></td>\n<td>√</td>\n<td>√</td>\n<td>√</td>\n</tr>\n<tr>\n<td>READY STOP</td>\n<td></td>\n<td></td>\n<td></td>\n<td></td>\n<td></td>\n<td></td>\n<td>√</td>\n</tr>\n<tr>\n<td>STOP</td>\n<td>√</td>\n<td>√</td>\n<td></td>\n<td></td>\n<td>√</td>\n<td>√</td>\n<td>√</td>\n</tr>\n<tr>\n<td>FAILURE</td>\n<td>√</td>\n<td>√</td>\n<td></td>\n<td></td>\n<td></td>\n<td>√</td>\n<td>√</td>\n</tr>\n<tr>\n<td>SUCCESS</td>\n<td>√</td>\n<td>√</td>\n<td></td>\n<td></td>\n<td></td>\n<td>√</td>\n<td>√</td>\n</tr>\n</tbody>\n</table>\n<ul>\n<li>\n<p><strong>Edit:</strong> Only processes with success/failed/stop status can be edited. Click the &quot;Edit&quot; button or the workflow\ninstance name to enter the DAG edit page. After the edit, click the &quot;Save&quot; button to confirm, as shown in the figure\nbelow. In the pop-up box, check &quot;Whether to update the workflow definition&quot;, after saving, the information modified by\nthe instance will be updated to the workflow definition; if not checked, the workflow definition would not be updated.</p>\n   <p align=\"center\">\n     <img src=\"/img/editDag-en.png\" width=\"80%\" />\n   </p>\n</li>\n<li>\n<p><strong>Rerun：</strong> Re-execute the terminated process</p>\n</li>\n<li>\n<p><strong>Recovery Failed:</strong> For failed processes, you can perform failure recovery operations, starting from the failed node</p>\n</li>\n<li>\n<p><strong>Stop:</strong> <strong>Stop</strong> the running process, the background code will first <code>kill</code> the worker process, and then\nexecute <code>kill -9</code> operation</p>\n</li>\n<li>\n<p><strong>Pause:</strong> <strong>Pause</strong> the running process, the system status will change to <strong>waiting for execution</strong>, it will wait for\nthe task to finish, and pause the next sequence task.</p>\n</li>\n<li>\n<p><strong>Resume pause:</strong> Resume the paused process, start running directly from the <strong>paused node</strong></p>\n</li>\n<li>\n<p><strong>Delete:</strong> Delete the workflow instance and the task instance under the workflow instance</p>\n</li>\n<li>\n<p><strong>Gantt Chart:</strong> The vertical axis of the Gantt chart is the topological sorting of task instances of the workflow\ninstance, and the horizontal axis is the running time of the task instances, as shown in the figure:</p>\n</li>\n</ul>\n<p><img src=\"/img/new_ui/dev/project/instance-gantt.png\" alt=\"instance-gantt\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Project",
+    "Workflow Instance"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "View Workflow Instance",
+      "children": [],
+      "anchor": "view-workflow-instance"
+    },
+    {
+      "title": "View Task Log",
+      "children": [],
+      "anchor": "view-task-log"
+    },
+    {
+      "title": "View Task History",
+      "children": [],
+      "anchor": "view-task-history"
+    },
+    {
+      "title": "View Running Parameters",
+      "children": [],
+      "anchor": "view-running-parameters"
+    },
+    {
+      "title": "Workflow Instance Operation Function",
+      "children": [],
+      "anchor": "workflow-instance-operation-function"
+    }
+  ],
+  "title": "Workflow Instance",
+  "link": "/guide/project/workflow-instance"
+}

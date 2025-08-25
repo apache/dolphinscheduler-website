@@ -1,0 +1,18 @@
+{
+  "__html": "<h1 id=\"dolphinscheduler-task-parameters-appendix\">DolphinScheduler Task Parameters Appendix</h1>\n<p>DolphinScheduler task plugins share some common default parameters. Each type of task contains all or <strong>some</strong> default parameters as follows:</p>\n<h2 id=\"default-task-parameters\">Default Task Parameters</h2>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Node Name</td>\n<td>The name of the task. Node names within the same workflow must be unique.</td>\n</tr>\n<tr>\n<td>Run Flag</td>\n<td>Indicating whether to schedule the task. If you do not need to execute the task, you can turn on the <code>Prohibition execution</code> switch.</td>\n</tr>\n<tr>\n<td>Description</td>\n<td>Describing the function of this node.</td>\n</tr>\n<tr>\n<td>Task Priority</td>\n<td>When the number of the worker threads is insufficient, the worker executes task according to the priority. When two tasks have the same priority, the worker will execute them in <code>first come first served</code> fashion.</td>\n</tr>\n<tr>\n<td>Worker Group</td>\n<td>Machines which execute the tasks. If you choose <code>default</code>, scheduler will send the task to a random worker.</td>\n</tr>\n<tr>\n<td>Task Group Name</td>\n<td>Resource group of tasks. It will not take effect if not configured.</td>\n</tr>\n<tr>\n<td>Environment Name</td>\n<td>Environment to execute the task.</td>\n</tr>\n<tr>\n<td>Number of Failed Retries</td>\n<td>The number of task retries for failures. You could select it by drop-down menu or fill it manually.</td>\n</tr>\n<tr>\n<td>Failure Retry Interval</td>\n<td>Interval of task retries for failures. You could select it by drop-down menu or fill it manually.</td>\n</tr>\n<tr>\n<td>CPU Quota</td>\n<td>Assign the specified CPU time quota to the task executed. Takes a percentage value. Default -1 means unlimited. For example, the full CPU load of one core is 100%, and that of 16 cores is 1600%. You could configure it by <a href=\"/en-us/docs/3.3.1/architecture/configuration\">task.resource.limit.state</a>.</td>\n</tr>\n<tr>\n<td>Max Memory</td>\n<td>Assign the specified max memory to the task executed. Exceeding this limit will trigger oom to be killed and will not automatically retry. Takes an MB value. Default -1 means unlimited. You could configure it by <a href=\"/en-us/docs/3.3.1/architecture/configuration\">task.resource.limit.state</a>.</td>\n</tr>\n<tr>\n<td>Timeout Alarm</td>\n<td>Alarm for task timeout. When the task exceeds the &quot;timeout threshold&quot;, an alarm email will send.</td>\n</tr>\n<tr>\n<td>Delayed Execution Time</td>\n<td>The time that a task delays for execution in minutes.</td>\n</tr>\n<tr>\n<td>Resources</td>\n<td>Resources which your task node uses.</td>\n</tr>\n<tr>\n<td>Predecessor Task</td>\n<td>The upstream task of the current task node.</td>\n</tr>\n</tbody>\n</table>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Appendix"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Default Task Parameters",
+      "children": [],
+      "anchor": "default-task-parameters"
+    }
+  ],
+  "title": "DolphinScheduler Task Parameters Appendix",
+  "link": "/guide/task/appendix"
+}

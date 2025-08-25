@@ -1,0 +1,2472 @@
+{
+  "__html": "<h1 id=\"dolphinscheduler-开发手册\">DolphinScheduler 开发手册</h1>\n<h2 id=\"软件要求\">软件要求</h2>\n<p>在搭建 DolphinScheduler 开发环境之前请确保你已经安装以下软件:</p>\n<ul>\n<li><a href=\"https://git-scm.com/downloads\">Git</a></li>\n<li><a href=\"https://www.oracle.com/technetwork/java/javase/downloads/index.html\">JDK</a>: v1.8+</li>\n<li><a href=\"http://maven.apache.org/download.cgi\">Maven</a>: v3.5+</li>\n<li><a href=\"https://nodejs.org/en/download\">Node</a>: v16.0+</li>\n<li><a href=\"https://pnpm.io/installation\">Pnpm</a>: v8.0+ (请确保不同版本的pnpm与Node.js之间是相互兼容的，可参考：<a href=\"https://pnpm.io/installation#compatibility\">Compatibility</a>)</li>\n</ul>\n<h3 id=\"克隆代码库\">克隆代码库</h3>\n<p>通过你 git 管理工具下载 git 代码，下面以 git-core 为例</p>\n<pre><code class=\"language-shell\">mkdir dolphinscheduler\ncd dolphinscheduler\ngit clone git@github.com:apache/dolphinscheduler.git\n</code></pre>\n<h3 id=\"编译源码\">编译源码</h3>\n<p>支持的系统:</p>\n<ul>\n<li>MacOS</li>\n<li>Linux</li>\n</ul>\n<p>运行 <code>mvn clean install -Prelease -Dmaven.test.skip=true</code></p>\n<h3 id=\"代码风格\">代码风格</h3>\n<p>DolphinScheduler使用<code>Spotless</code>检查并修复代码风格和格式问题。\n您可以执行如下的命令，<code>Spotless</code>将会为您自动检查并修复代码风格和格式问题。</p>\n<pre><code class=\"language-shell\">./mvnw spotless:apply\n</code></pre>\n<p>我们也提供了一个<code>pre-commit</code>配置文件，方便您配置。要使用它，您需要先安装python，然后通过运行以下命令安装<code>pre-commit</code>：</p>\n<pre><code class=\"language-shell\">python -m pip install pre-commit\n</code></pre>\n<p>之后，您可以运行以下命令安装<code>pre-commit</code>钩子：</p>\n<pre><code class=\"language-shell\">pre-commit install\n</code></pre>\n<p>现在，每次您提交代码时，<code>pre-commit</code>都会自动运行<code>Spotless</code>来检查代码风格和格式。</p>\n<h3 id=\"helm-模板规范\">Helm 模板规范</h3>\n<p>当您修改了Helm模板相关的文件后， 可以使用如下命令来调试 Helm 模板：</p>\n<pre><code class=\"language-shell\">helm template ./deploy/kubernetes/dolphinscheduler --debug \n</code></pre>\n<p>Helm模板调试通过之后，需要使用如下命令来自动更新README.md文件（手动更新很可能格式不符合要求）：</p>\n<pre><code class=\"language-shell\">./mvnw validate -P helm-doc -pl :dolphinscheduler\n</code></pre>\n<h2 id=\"docker镜像构建\">Docker镜像构建</h2>\n<p>DolphinScheduler 每次发版都会同时发布 Docker 镜像，你可以在 <a href=\"https://hub.docker.com/search?q=DolphinScheduler\">Docker Hub</a> 中找到这些镜像</p>\n<ul>\n<li>如果你想基于源码进行改造，然后在本地构建Docker镜像，可以在代码改造完成后运行</li>\n</ul>\n<blockquote>\n<p>-Pstaging 包含插件，适合开发和测试以及无网络环境离线部署\n-Prelease 不包含插件，适合生产环境，有能访问插件的网络可以按需下载</p>\n</blockquote>\n<pre><code class=\"language-shell\">cd dolphinscheduler\n./mvnw -B clean package \\\n       -Dmaven.test.skip \\\n       -Dspotless.skip=true \\\n       -Ddocker.tag=&lt;TAG&gt; \\\n       -Pdocker,[release|staging]\n</code></pre>\n<p>当命令运行完了后你可以通过 <code>docker images</code> 命令查看刚刚创建的镜像</p>\n<ul>\n<li>如果你想基于源码进行改造，然后构建Docker镜像并推送到 &lt;HUB_URL&gt;，可以在代码改造完成后运行</li>\n</ul>\n<pre><code class=\"language-shell\">cd dolphinscheduler\n./mvnw -B clean deploy \\\n       -Dmaven.test.skip \\\n       -Dspotless.skip = true \\\n       -Ddocker.tag=&lt;TAG&gt; \\\n       -Ddocker.hub=&lt;HUB_URL&gt; \\\n       -Pdocker,[release|staging]\n</code></pre>\n<ul>\n<li>如果你不仅需要改造源码，还想要自定义 Docker 镜像打包的依赖，可以在修改源码的同时修改 Dockerfile 的定义。你可以运行以下命令找到所有的 Dockerfile 文件</li>\n</ul>\n<pre><code class=\"language-shell\">cd dolphinscheduler\nfind . -iname &#x27;Dockerfile&#x27;\n</code></pre>\n<p>之后再运行上面的构建镜像命令</p>\n<ul>\n<li>如果你因为个性化需求想要自己打包 Docker 镜像，最佳实践是基于 DolphinScheduler 对应镜像编写 Dockerfile 文件</li>\n</ul>\n<pre><code class=\"language-Dockerfile\"><span class=\"hljs-keyword\">FROM</span> dolphinscheduler-standalone-server\n<span class=\"hljs-keyword\">RUN</span><span class=\"language-bash\"> apt update ; \\\n    apt install -y &lt;YOUR-CUSTOM-DEPENDENCE&gt; ; \\\n</span></code></pre>\n<blockquote>\n<p><strong><em>注意：</em></strong> Docker默认会构建并推送 linux/amd64,linux/arm64 多架构镜像</p>\n<p>必须使用Docker 19.03及以后的版本，因为19.03及以后的版本包含 buildx</p>\n</blockquote>\n<h2 id=\"开发者须知\">开发者须知</h2>\n<p>DolphinScheduler 开发环境配置有两个方式，分别是standalone模式，以及普通模式</p>\n<ul>\n<li><a href=\"#dolphinscheduler-standalone%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F\">standalone模式</a>：<strong>推荐使用，但仅支持 1.3.9 及以后的版本</strong>，方便快速的开发环境搭建，能解决大部分场景的开发</li>\n<li><a href=\"#dolphinscheduler-%E6%99%AE%E9%80%9A%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F\">普通模式</a>：master、worker、api等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多</li>\n</ul>\n<h2 id=\"dolphinscheduler-standalone快速开发模式\">DolphinScheduler Standalone快速开发模式</h2>\n<blockquote>\n<p><strong><em>注意：</em></strong> 仅供单机开发调试使用，默认使用 H2 Database, Zookeeper Testing Server</p>\n<p>Standalone 仅在 DolphinScheduler 1.3.9 及以后的版本支持</p>\n</blockquote>\n<h3 id=\"分支选择\">分支选择</h3>\n<p>开发不同的代码需要基于不同的分支</p>\n<ul>\n<li>如果想基于二进制包开发，切换到对应版本的代码，如 1.3.9 则是 <code>1.3.9-release</code></li>\n<li>如果想要开发最新代码，切换到 <code>dev</code> 分支</li>\n</ul>\n<h3 id=\"启动后端\">启动后端</h3>\n<p>在 IntelliJ IDEA 找到并启动类 <code>org.apache.dolphinscheduler.StandaloneServer</code> 即可完成后端启动</p>\n<blockquote>\n<p>注意：启动前请在启动配置里将 <code>Add dependencies with &quot;provided&quot; scope to classpath</code> 选项勾选上，这样可以避免启动时找不到依赖的问题</p>\n</blockquote>\n<h3 id=\"启动前端\">启动前端</h3>\n<p>安装前端依赖并运行前端组件</p>\n<blockquote>\n<p>注意：你可以在<a href=\"/zh-cn/docs/3.3.1/contribute/frontend-development\">frontend development</a>里查看更多前端的相关配置</p>\n</blockquote>\n<p>在运行前端组件前，如果你还没有安装<code>pnpm</code>，可以使用以下命令安装：</p>\n<pre><code class=\"language-shell\">npm install -g pnpm\n</code></pre>\n<p>确保<code>pnpm</code>已经安装完成后，运行以下命令：</p>\n<pre><code class=\"language-shell\">cd dolphinscheduler-ui\npnpm install\npnpm run dev\n</code></pre>\n<p>截止目前，前后端已成功运行起来，浏览器访问<a href=\"http://localhost:5173\">http://localhost:5173</a>，并使用默认账户密码 <strong>admin/dolphinscheduler123</strong> 即可完成登录</p>\n<h2 id=\"dolphinscheduler-普通开发模式\">DolphinScheduler 普通开发模式</h2>\n<h3 id=\"必要软件安装\">必要软件安装</h3>\n<h4 id=\"zookeeper\">zookeeper</h4>\n<p>下载 <a href=\"https://zookeeper.apache.org/releases.html\">ZooKeeper</a>，解压</p>\n<ul>\n<li>\n<p>在 ZooKeeper 的目录下新建 zkData、zkLog文件夹</p>\n</li>\n<li>\n<p>将 conf 目录下的 <code>zoo_sample.cfg</code> 文件，复制一份，重命名为 <code>zoo.cfg</code>，修改其中数据和日志的配置，如：</p>\n<pre><code class=\"language-shell\">dataDir=/data/zookeeper/data ## 此处使用绝对路径\ndataLogDir=/data/zookeeper/datalog\n</code></pre>\n</li>\n<li>\n<p>运行 <code>./bin/zkServer.sh</code></p>\n</li>\n</ul>\n<h4 id=\"数据库\">数据库</h4>\n<p>DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关系型数据库包括 MySQL 以及 PostgreSQL。下面以MySQL为例，启动数据库并创建新 database 作为 DolphinScheduler 元数据库，这里以数据库名 dolphinscheduler 为例</p>\n<p>创建完新数据库后，将 <code>dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql</code> 下的 sql 文件直接在 MySQL 中运行，完成数据库初始化</p>\n<h4 id=\"启动后端\">启动后端</h4>\n<p>下面步骤将引导如何启动 DolphinScheduler 后端服务</p>\n<h5 id=\"必要的准备工作\">必要的准备工作</h5>\n<ul>\n<li>\n<p>打开项目：使用开发工具打开项目，这里以 IntelliJ IDEA 为例，打开后需要一段时间，让 IntelliJ IDEA 完成以依赖的下载</p>\n</li>\n<li>\n<p>必要的修改</p>\n<ul>\n<li>如果使用 MySQL 作为元数据库，需要先修改 <code>dolphinscheduler-bom/pom.xml</code>，将 <code>mysql-connector-j</code> 依赖的 <code>scope</code> 改为 <code>compile</code>，使用 PostgreSQL 则不需要</li>\n<li>修改 Master 数据库配置，修改 <code>dolphinscheduler-master/src/main/resources/application.yaml</code> 文件中的数据库配置</li>\n<li>修改 Api 数据库配置，修改 <code>dolphinscheduler-api/src/main/resources/application.yaml</code> 文件中的数据库配置</li>\n<li>修改 Alert 数据库配置，修改 <code>dolphinscheduler-alert/dolphinscheduler-alert-server/src/main/resources/application.yaml</code> 文件中的数据库配置</li>\n</ul>\n<p>本样例以 MySQL 为例，其中数据库名为 dolphinscheduler，账户名密码均为 dolphinscheduler</p>\n<pre><code class=\"language-application.yaml\">spring:\n  datasource:\n    driver-class-name: com.mysql.cj.jdbc.Driver\n    url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8\n    username: dolphinscheduler\n    password: dolphinscheduler\n</code></pre>\n</li>\n</ul>\n<h5 id=\"启动服务\">启动服务</h5>\n<p>我们需要启动三个服务，包括 MasterServer，WorkerServer，ApiApplicationServer</p>\n<ul>\n<li>MasterServer：在 IntelliJ IDEA 中执行 <code>org.apache.dolphinscheduler.server.master.MasterServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-DDOCKER=true -Dspring.profiles.active=mysql</code></li>\n<li>WorkerServer：在 IntelliJ IDEA 中执行 <code>org.apache.dolphinscheduler.server.worker.WorkerServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-DDOCKER=true</code></li>\n<li>AlertServer：在 IntelliJ IDEA 中执行 <code>org.apache.dolphinscheduler.alert.AlertServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-DDOCKER=true -Dspring.profiles.active=mysql</code></li>\n<li>ApiApplicationServer：在 IntelliJ IDEA 中执行 <code>org.apache.dolphinscheduler.api.ApiApplicationServer</code> 中的 <code>main</code> 方法，并配置 <em>VM Options</em> <code>-DDOCKER=true -Dspring.profiles.active=mysql</code>。启动完成可以浏览 Open API 文档，地址为 http://localhost:12345/dolphinscheduler/swagger-ui/index.html</li>\n</ul>\n<blockquote>\n<p>VM Options <code>-Dspring.profiles.active=mysql</code> 中 <code>mysql</code> 表示指定的配置文件</p>\n</blockquote>\n<h3 id=\"启动前端\">启动前端</h3>\n<p>安装前端依赖并运行前端组件</p>\n<pre><code class=\"language-shell\">cd dolphinscheduler-ui\npnpm install\npnpm run dev\n</code></pre>\n<p>截止目前，前后端已成功运行起来，浏览器访问<a href=\"http://localhost:5173\">http://localhost:5173</a>，并使用默认账户密码 <strong>admin/dolphinscheduler123</strong> 即可完成登录</p>\n",
+  "location": [
+    "贡献指南",
+    "环境搭建"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "软件要求",
+      "children": [
+        {
+          "title": "克隆代码库",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "克隆代码库"
+        },
+        {
+          "title": "编译源码",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "编译源码"
+        },
+        {
+          "title": "代码风格",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "代码风格"
+        },
+        {
+          "title": "Helm 模板规范",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "helm-模板规范"
+        },
+        {
+          "title": "分支选择",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "分支选择"
+        },
+        {
+          "title": "启动后端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动后端"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        },
+        {
+          "title": "必要软件安装",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "必要软件安装"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        }
+      ],
+      "anchor": "软件要求"
+    },
+    {
+      "title": "Docker镜像构建",
+      "children": [
+        {
+          "title": "克隆代码库",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "克隆代码库"
+        },
+        {
+          "title": "编译源码",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "编译源码"
+        },
+        {
+          "title": "代码风格",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "代码风格"
+        },
+        {
+          "title": "Helm 模板规范",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "helm-模板规范"
+        },
+        {
+          "title": "分支选择",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "分支选择"
+        },
+        {
+          "title": "启动后端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动后端"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        },
+        {
+          "title": "必要软件安装",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "必要软件安装"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        }
+      ],
+      "anchor": "docker镜像构建"
+    },
+    {
+      "title": "开发者须知",
+      "children": [
+        {
+          "title": "克隆代码库",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "克隆代码库"
+        },
+        {
+          "title": "编译源码",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "编译源码"
+        },
+        {
+          "title": "代码风格",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "代码风格"
+        },
+        {
+          "title": "Helm 模板规范",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "helm-模板规范"
+        },
+        {
+          "title": "分支选择",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "分支选择"
+        },
+        {
+          "title": "启动后端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动后端"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        },
+        {
+          "title": "必要软件安装",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "必要软件安装"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        }
+      ],
+      "anchor": "开发者须知"
+    },
+    {
+      "title": "DolphinScheduler Standalone快速开发模式",
+      "children": [
+        {
+          "title": "克隆代码库",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "克隆代码库"
+        },
+        {
+          "title": "编译源码",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "编译源码"
+        },
+        {
+          "title": "代码风格",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "代码风格"
+        },
+        {
+          "title": "Helm 模板规范",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "helm-模板规范"
+        },
+        {
+          "title": "分支选择",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "分支选择"
+        },
+        {
+          "title": "启动后端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动后端"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        },
+        {
+          "title": "必要软件安装",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "必要软件安装"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        }
+      ],
+      "anchor": "dolphinscheduler-standalone快速开发模式"
+    },
+    {
+      "title": "DolphinScheduler 普通开发模式",
+      "children": [
+        {
+          "title": "克隆代码库",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "克隆代码库"
+        },
+        {
+          "title": "编译源码",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "编译源码"
+        },
+        {
+          "title": "代码风格",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "代码风格"
+        },
+        {
+          "title": "Helm 模板规范",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "helm-模板规范"
+        },
+        {
+          "title": "分支选择",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "分支选择"
+        },
+        {
+          "title": "启动后端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动后端"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        },
+        {
+          "title": "必要软件安装",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "必要软件安装"
+        },
+        {
+          "title": "启动前端",
+          "children": [
+            {
+              "title": "zookeeper",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "zookeeper"
+            },
+            {
+              "title": "数据库",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "数据库"
+            },
+            {
+              "title": "启动后端",
+              "children": [
+                {
+                  "title": "必要的准备工作",
+                  "children": [],
+                  "anchor": "必要的准备工作"
+                },
+                {
+                  "title": "启动服务",
+                  "children": [],
+                  "anchor": "启动服务"
+                }
+              ],
+              "anchor": "启动后端"
+            }
+          ],
+          "anchor": "启动前端"
+        }
+      ],
+      "anchor": "dolphinscheduler-普通开发模式"
+    }
+  ],
+  "title": "DolphinScheduler 开发手册",
+  "link": "/contribute/development-environment-setup"
+}

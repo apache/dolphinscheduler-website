@@ -1,0 +1,180 @@
+{
+  "__html": "<h1 id=\"伪集群部署\">伪集群部署</h1>\n<p>伪集群部署目的是在单台机器部署 DolphinScheduler 服务，该模式下 master、worker、api server 都在同一台机器上</p>\n<p>如果你是新手，想要体验 DolphinScheduler 的功能，推荐使用<a href=\"/zh-cn/docs/3.3.1/guide/installation/standalone\">Standalone</a>方式体检。如果你想体验更完整的功能，或者更大的任务量，推荐使用伪集群部署。如果你是在生产中使用，推荐使用<a href=\"/zh-cn/docs/3.3.1/guide/installation/cluster\">集群部署</a>或者<a href=\"/zh-cn/docs/3.3.1/guide/installation/kubernetes\">kubernetes</a></p>\n<h2 id=\"前置准备工作\">前置准备工作</h2>\n<p>伪分布式部署 DolphinScheduler 需要有外部软件的支持</p>\n<ul>\n<li>JDK：下载<a href=\"https://www.oracle.com/technetwork/java/javase/downloads/index.html\">JDK</a> (1.8 或者 11)，安装并配置 <code>JAVA_HOME</code> 环境变量，并将其下的 <code>bin</code> 目录追加到 <code>PATH</code> 环境变量中。如果你的环境中已存在，可以跳过这步。</li>\n<li>二进制包：在<a href=\"https://dolphinscheduler.apache.org/zh-cn/download\">下载页面</a>下载 DolphinScheduler 二进制包</li>\n<li>数据库：<a href=\"https://www.postgresql.org/download/\">PostgreSQL</a> (8.2.15+) 或者 <a href=\"https://dev.mysql.com/downloads/mysql/\">MySQL</a> (5.7+)，两者任选其一即可，如 MySQL 则需要 JDBC Driver 8.0.33</li>\n<li>注册中心：当前支持 <a href=\"https://zookeeper.apache.org/releases.html\">ZooKeeper</a> (3.8.0)，<a href=\"https://www.mysql.com/\">MYSQL</a>(8.0.33)，<a href=\"https://etcd.io/\">ETCD</a></li>\n<li>进程树分析\n<ul>\n<li>macOS 安装<code>pstree</code></li>\n<li>Fedora/Red/Hat/CentOS/Ubuntu/Debian 安装<code>psmisc</code></li>\n</ul>\n</li>\n</ul>\n<h2 id=\"下载插件依赖\">下载插件依赖</h2>\n<p>从 3.3.0 版本开始，二进制包不再提供插件依赖，需要用户自行下载。插件依赖包下载地址：<a href=\"https://repo.maven.apache.org/maven2/org/apache/dolphinscheduler\">插件依赖包</a>\n你也可以执行以下命令来安装插件依赖:</p>\n<pre><code class=\"language-shell\">bash ./bin/install-plugins.sh 3.3.0\n</code></pre>\n<p>通常你并不需要所有的连接器插件，可以通过配置 <code>conf/plugins_config</code> 来指定你所需要的插件，例如，你只需要 <code>dolphinscheduler-task-shell</code> 插件，那么您可以修改配置文件如下：</p>\n<pre><code>--task-plugins--\ndolphinscheduler-task-shell\n--end--\n</code></pre>\n<h2 id=\"准备-dolphinscheduler-启动环境\">准备 DolphinScheduler 启动环境</h2>\n<blockquote>\n<p><strong><em>注意:</em></strong> DolphinScheduler 本身不依赖 Hadoop、Hive、Spark，但如果你运行的任务需要依赖他们，就需要有对应的环境支持</p>\n</blockquote>\n<h3 id=\"配置用户免密及权限\">配置用户免密及权限</h3>\n<p>创建部署用户，并且一定要配置 <code>sudo</code> 免密。以创建 dolphinscheduler 用户为例</p>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">创建用户需使用 root 登录</span>\nuseradd dolphinscheduler\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">添加密码</span>\necho &quot;dolphinscheduler&quot; | passwd --stdin dolphinscheduler\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">配置 sudo 免密</span>\nsed -i &#x27;$adolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; /etc/sudoers\nsed -i &#x27;s/Defaults    requiretty/#Defaults    requiretty/g&#x27; /etc/sudoers\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">修改目录权限，使得部署用户对二进制包解压后的 apache-dolphinscheduler-*-bin 目录有操作权限</span>\nchown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin\nchmod -R 755 apache-dolphinscheduler-*-bin\n</code></pre>\n<blockquote>\n<p><strong><em>注意:</em></strong></p>\n<ul>\n<li>因为任务执行服务是以 <code>sudo -u {linux-user} -i</code> 切换不同 linux 用户的方式来实现多租户运行作业，所以部署用户需要有 sudo 权限，而且是免密的。初学习者不理解的话，完全可以暂时忽略这一点</li>\n<li>如果发现 <code>/etc/sudoers</code> 文件中有 &quot;Defaults requiretty&quot; 这行，也请注释掉</li>\n</ul>\n</blockquote>\n<h3 id=\"准备-zookeeper\">准备 zookeeper</h3>\n<p>如果使用 Zookeeper 作为注册中心，需要先安装 Zookeeper 并启动。</p>\n<h2 id=\"修改相关配置\">修改相关配置</h2>\n<p>完成基础环境的准备后，需要根据你的机器环境修改配置文件。配置文件可以在目录 <code>bin/env/dolphinscheduler_env.sh</code>，<code>api-server/conf/application.yaml</code>，\n<code>master-server/conf/application.yaml</code>，<code>worker-server/conf/application.yaml</code>，<code>alert-server/conf/application.yaml</code> 中找到。</p>\n<h3 id=\"修改-<code>dolphinscheduler_env.sh</code>-文件\">修改 <code>dolphinscheduler_env.sh</code> 文件</h3>\n<p>文件 <code>./bin/env/dolphinscheduler_env.sh</code> 描述了下列配置：</p>\n<ul>\n<li>DolphinScheduler 的数据库配置，详细配置方法见[初始化数据库]</li>\n<li>一些任务类型外部依赖路径或库文件，如 <code>JAVA_HOME</code> 和 <code>SPARK_HOME</code>都是在这里定义的</li>\n<li>默认的注册中心是 mysql</li>\n<li>服务器相关配置，如缓存类型、时区等</li>\n</ul>\n<p>如果您不使用某些任务类型，您可以忽略任务外部依赖项，但您必须根据您的环境更改 <code>JAVA_HOME</code>、注册中心和数据库相关配置。</p>\n<pre><code class=\"language-sh\"><span class=\"hljs-comment\"># JAVA_HOME, will use it to start DolphinScheduler server</span>\n<span class=\"hljs-built_in\">export</span> JAVA_HOME=<span class=\"hljs-variable\">${JAVA_HOME:-/opt/soft/java}</span>\n\n<span class=\"hljs-comment\"># Database related configuration, set database type, username and password</span>\n<span class=\"hljs-built_in\">export</span> DATABASE=<span class=\"hljs-variable\">${DATABASE:-postgresql}</span>\n<span class=\"hljs-built_in\">export</span> SPRING_PROFILES_ACTIVE=<span class=\"hljs-variable\">${DATABASE}</span>\n<span class=\"hljs-built_in\">export</span> SPRING_DATASOURCE_URL=<span class=\"hljs-string\">&quot;jdbc:postgresql://127.0.0.1:5432/dolphinscheduler&quot;</span>\n<span class=\"hljs-built_in\">export</span> SPRING_DATASOURCE_USERNAME={user}\n<span class=\"hljs-built_in\">export</span> SPRING_DATASOURCE_PASSWORD={password}\n\n<span class=\"hljs-comment\"># DolphinScheduler server related configuration</span>\n<span class=\"hljs-built_in\">export</span> SPRING_CACHE_TYPE=<span class=\"hljs-variable\">${SPRING_CACHE_TYPE:-none}</span>\n<span class=\"hljs-built_in\">export</span> SPRING_JACKSON_TIME_ZONE=<span class=\"hljs-variable\">${SPRING_JACKSON_TIME_ZONE:-UTC}</span>\n\n<span class=\"hljs-comment\"># Registry center configuration, determines the type and link of the registry center</span>\n<span class=\"hljs-built_in\">export</span> REGISTRY_TYPE=<span class=\"hljs-variable\">${REGISTRY_TYPE:-zookeeper}</span>\n<span class=\"hljs-built_in\">export</span> REGISTRY_ZOOKEEPER_CONNECT_STRING=<span class=\"hljs-variable\">${REGISTRY_ZOOKEEPER_CONNECT_STRING:-localhost:2181}</span>\n\n<span class=\"hljs-comment\"># Tasks related configurations, need to change the configuration if you use the related tasks.</span>\n<span class=\"hljs-built_in\">export</span> HADOOP_HOME=<span class=\"hljs-variable\">${HADOOP_HOME:-/opt/soft/hadoop}</span>\n<span class=\"hljs-built_in\">export</span> HADOOP_CONF_DIR=<span class=\"hljs-variable\">${HADOOP_CONF_DIR:-/opt/soft/hadoop/etc/hadoop}</span>\n<span class=\"hljs-built_in\">export</span> SPARK_HOME=<span class=\"hljs-variable\">${SPARK_HOME:-/opt/soft/spark}</span>\n<span class=\"hljs-built_in\">export</span> PYTHON_LAUNCHER=<span class=\"hljs-variable\">${PYTHON_LAUNCHER:-/opt/soft/python}</span>\n<span class=\"hljs-built_in\">export</span> HIVE_HOME=<span class=\"hljs-variable\">${HIVE_HOME:-/opt/soft/hive}</span>\n<span class=\"hljs-built_in\">export</span> FLINK_HOME=<span class=\"hljs-variable\">${FLINK_HOME:-/opt/soft/flink}</span>\n<span class=\"hljs-built_in\">export</span> DATAX_LAUNCHER=<span class=\"hljs-variable\">${DATAX_LAUNCHER:-/opt/soft/datax/bin/python3}</span>\n\n<span class=\"hljs-built_in\">export</span> PATH=<span class=\"hljs-variable\">$HADOOP_HOME</span>/bin:<span class=\"hljs-variable\">$SPARK_HOME</span>/bin:<span class=\"hljs-variable\">$PYTHON_LAUNCHER</span>:<span class=\"hljs-variable\">$JAVA_HOME</span>/bin:<span class=\"hljs-variable\">$HIVE_HOME</span>/bin:<span class=\"hljs-variable\">$FLINK_HOME</span>/bin:<span class=\"hljs-variable\">$DATAX_LAUNCHER</span>:<span class=\"hljs-variable\">$PATH</span>\n</code></pre>\n<blockquote>\n<p><strong><em>注意:</em></strong> 如果您使用的是 MySQL 数据库，需要将 <code>DATABASE</code> 设置为 <code>mysql</code>，并且修改 <code>SPRING_DATASOURCE_URL</code>、<code>SPRING_DATASOURCE_USERNAME</code> 和 <code>SPRING_DATASOURCE_PASSWORD</code> 为您的数据库配置</p>\n<p><strong><em>注意:</em></strong> dolphinscheduler_env.sh 文件中的配置会覆盖各个服务的配置文件(application.yaml)中的配置，所以如果您在配置文件中配置了某个参数，\n而且在 dolphinscheduler_env.sh 文件中也配置了，那么以 dolphinscheduler_env.sh 文件中的配置为准。dolphinscheduler_env.sh 里的配置项格式样例:\nSPRING_DATASOURCE_URL 在 application.yaml 为 spring.datasource.url，以此类推</p>\n</blockquote>\n<h2 id=\"初始化数据库\">初始化数据库</h2>\n<p>请参考 <a href=\"/zh-cn/docs/3.3.1/guide/installation/datasource-setting\">数据源配置</a> <code>伪分布式/分布式安装初始化数据库</code> 创建并初始化数据库</p>\n<h2 id=\"启动-dolphinscheduler\">启动 DolphinScheduler</h2>\n<p>部署后的运行日志将存放在 <code>xxx-server/logs</code> 文件夹内</p>\n<pre><code># 启动 api-server\nbash ./bin/dolphinscheduler-daemon.sh start api-server\n\n# 启动 master-server\nbash ./bin/dolphinscheduler-daemon.sh start master-server\n\n# 启动 worker-server\nbash ./bin/dolphinscheduler-daemon.sh start worker-server\n\n# 启动 alert-server\nbash ./bin/dolphinscheduler-daemon.sh start alert-server\n\n</code></pre>\n<blockquote>\n<p><strong><em>注意:</em></strong> 第一次部署的话，可以通过 bash ./bin/dolphinscheduler-daemon.sh status xxx-server 来进行服务状态查询</p>\n</blockquote>\n<h2 id=\"登录-dolphinscheduler\">登录 DolphinScheduler</h2>\n<p>浏览器访问地址 http://localhost:12345/dolphinscheduler/ui 即可登录系统 UI。默认的用户名和密码是 <strong>admin/dolphinscheduler123</strong></p>\n<h2 id=\"启停服务\">启停服务</h2>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">查询服务状态</span>\nbash ./bin/dolphinscheduler-daemon.sh status xxx-server\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">启停 Master</span>\nbash ./bin/dolphinscheduler-daemon.sh stop master-server\nbash ./bin/dolphinscheduler-daemon.sh start master-server\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">启停 Worker</span>\nbash ./bin/dolphinscheduler-daemon.sh start worker-server\nbash ./bin/dolphinscheduler-daemon.sh stop worker-server\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">启停 Api</span>\nbash ./bin/dolphinscheduler-daemon.sh start api-server\nbash ./bin/dolphinscheduler-daemon.sh stop api-server\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">启停 Alert</span>\nbash ./bin/dolphinscheduler-daemon.sh start alert-server\nbash ./bin/dolphinscheduler-daemon.sh stop alert-server\n</code></pre>\n<blockquote>\n<p><strong><em>注意 1:</em></strong>: 每个服务在路径 <code>&lt;service&gt;/conf/dolphinscheduler_env.sh</code> 中都有 <code>dolphinscheduler_env.sh</code> 文件，这是可以为微\n服务需求提供便利。意味着您可以基于不同的环境变量来启动各个服务，只需要在对应服务中配置 <code>&lt;service&gt;/conf/dolphinscheduler_env.sh</code> 然后通过 <code>&lt;service&gt;/bin/start.sh</code>\n命令启动即可。但是如果您使用命令 <code>/bin/dolphinscheduler-daemon.sh start &lt;service&gt;</code> 启动服务器，它将会用文件 <code>bin/env/dolphinscheduler_env.sh</code>\n覆盖 <code>&lt;service&gt;/conf/dolphinscheduler_env.sh</code> 然后启动服务，目的是为了减少用户修改配置的成本.</p>\n<p><strong><em>注意 2:</em></strong>：服务用途请具体参见《系统架构设计》小节。Python gateway service 默认与 api-server 一起启动，如果您不想启动 Python gateway service\n请通过更改 api-server 配置文件 <code>api-server/conf/application.yaml</code> 中的 <code>python-gateway.enabled : false</code> 来禁用它。\n<strong><em>注意 3:</em></strong>: DS默认使用本地模式的目录 /tmp/dolphinscheduler 作为资源中心, 如果需要修改资源中心目录, 请修改配置文件 conf/common.properties 中 resource 的相关配置项</p>\n</blockquote>\n",
+  "location": [
+    "部署指南",
+    "伪集群部署(Pseudo-Cluster)"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "前置准备工作",
+      "children": [
+        {
+          "title": "配置用户免密及权限",
+          "children": [],
+          "anchor": "配置用户免密及权限"
+        },
+        {
+          "title": "准备 zookeeper",
+          "children": [],
+          "anchor": "准备-zookeeper"
+        },
+        {
+          "title": "修改 dolphinscheduler_env.sh 文件",
+          "children": [],
+          "anchor": "修改-dolphinscheduler_env.sh-文件"
+        }
+      ],
+      "anchor": "前置准备工作"
+    },
+    {
+      "title": "下载插件依赖",
+      "children": [
+        {
+          "title": "配置用户免密及权限",
+          "children": [],
+          "anchor": "配置用户免密及权限"
+        },
+        {
+          "title": "准备 zookeeper",
+          "children": [],
+          "anchor": "准备-zookeeper"
+        },
+        {
+          "title": "修改 dolphinscheduler_env.sh 文件",
+          "children": [],
+          "anchor": "修改-dolphinscheduler_env.sh-文件"
+        }
+      ],
+      "anchor": "下载插件依赖"
+    },
+    {
+      "title": "准备 DolphinScheduler 启动环境",
+      "children": [
+        {
+          "title": "配置用户免密及权限",
+          "children": [],
+          "anchor": "配置用户免密及权限"
+        },
+        {
+          "title": "准备 zookeeper",
+          "children": [],
+          "anchor": "准备-zookeeper"
+        },
+        {
+          "title": "修改 dolphinscheduler_env.sh 文件",
+          "children": [],
+          "anchor": "修改-dolphinscheduler_env.sh-文件"
+        }
+      ],
+      "anchor": "准备-dolphinscheduler-启动环境"
+    },
+    {
+      "title": "修改相关配置",
+      "children": [
+        {
+          "title": "配置用户免密及权限",
+          "children": [],
+          "anchor": "配置用户免密及权限"
+        },
+        {
+          "title": "准备 zookeeper",
+          "children": [],
+          "anchor": "准备-zookeeper"
+        },
+        {
+          "title": "修改 dolphinscheduler_env.sh 文件",
+          "children": [],
+          "anchor": "修改-dolphinscheduler_env.sh-文件"
+        }
+      ],
+      "anchor": "修改相关配置"
+    },
+    {
+      "title": "初始化数据库",
+      "children": [
+        {
+          "title": "配置用户免密及权限",
+          "children": [],
+          "anchor": "配置用户免密及权限"
+        },
+        {
+          "title": "准备 zookeeper",
+          "children": [],
+          "anchor": "准备-zookeeper"
+        },
+        {
+          "title": "修改 dolphinscheduler_env.sh 文件",
+          "children": [],
+          "anchor": "修改-dolphinscheduler_env.sh-文件"
+        }
+      ],
+      "anchor": "初始化数据库"
+    },
+    {
+      "title": "启动 DolphinScheduler",
+      "children": [
+        {
+          "title": "配置用户免密及权限",
+          "children": [],
+          "anchor": "配置用户免密及权限"
+        },
+        {
+          "title": "准备 zookeeper",
+          "children": [],
+          "anchor": "准备-zookeeper"
+        },
+        {
+          "title": "修改 dolphinscheduler_env.sh 文件",
+          "children": [],
+          "anchor": "修改-dolphinscheduler_env.sh-文件"
+        }
+      ],
+      "anchor": "启动-dolphinscheduler"
+    },
+    {
+      "title": "登录 DolphinScheduler",
+      "children": [
+        {
+          "title": "配置用户免密及权限",
+          "children": [],
+          "anchor": "配置用户免密及权限"
+        },
+        {
+          "title": "准备 zookeeper",
+          "children": [],
+          "anchor": "准备-zookeeper"
+        },
+        {
+          "title": "修改 dolphinscheduler_env.sh 文件",
+          "children": [],
+          "anchor": "修改-dolphinscheduler_env.sh-文件"
+        }
+      ],
+      "anchor": "登录-dolphinscheduler"
+    },
+    {
+      "title": "启停服务",
+      "children": [
+        {
+          "title": "配置用户免密及权限",
+          "children": [],
+          "anchor": "配置用户免密及权限"
+        },
+        {
+          "title": "准备 zookeeper",
+          "children": [],
+          "anchor": "准备-zookeeper"
+        },
+        {
+          "title": "修改 dolphinscheduler_env.sh 文件",
+          "children": [],
+          "anchor": "修改-dolphinscheduler_env.sh-文件"
+        }
+      ],
+      "anchor": "启停服务"
+    }
+  ],
+  "title": "伪集群部署",
+  "link": "/guide/installation/pseudo-cluster"
+}

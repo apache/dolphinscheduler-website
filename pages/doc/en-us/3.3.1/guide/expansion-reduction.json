@@ -1,0 +1,94 @@
+{
+  "__html": "<h1 id=\"dolphinscheduler-expansion-and-reduction\">DolphinScheduler Expansion and Reduction</h1>\n<h2 id=\"expansion\">Expansion</h2>\n<p>This article describes how to add a new master service or worker service to an existing DolphinScheduler cluster.</p>\n<pre><code>Attention: There cannot be more than one master service process or worker service process on a physical machine.\n      If the physical machine which locate the expansion master or worker node has already installed the scheduled service, check the [1.4 Modify configuration] and edit the configuration file `bin/env/install_env.sh` on ** all ** nodes, add masters or workers parameter, and restart the scheduling cluster.\n</code></pre>\n<h3 id=\"basic-software-installation\">Basic software installation</h3>\n<ul>\n<li>[required] <a href=\"https://www.oracle.com/technetwork/java/javase/downloads/index.html\">JDK</a> (version 1.8+): must install, install and configure <code>JAVA_HOME</code> and <code>PATH</code> variables under <code>/etc/profile</code></li>\n<li>[optional] If the expansion is a worker node, you need to consider whether to install an external client, such as Hadoop, Hive, Spark Client.</li>\n</ul>\n<pre><code class=\"language-markdown\">Attention: DolphinScheduler itself does not depend on Hadoop, Hive, Spark, but will only call their Client for the corresponding task submission.\n</code></pre>\n<h3 id=\"get-installation-package\">Get Installation Package</h3>\n<ul>\n<li>Check the version of DolphinScheduler used in your existing environment, and get the installation package of the corresponding version, if the versions are different, there may be compatibility problems.</li>\n<li>Confirm the unified installation directory of other nodes, this article assumes that DolphinScheduler is installed in <code>/opt/</code> directory, and the full path is <code>/opt/dolphinscheduler</code>.</li>\n<li>Please download the corresponding version of the installation package to the server installation directory, uncompress it and rename it to <code>dolphinscheduler</code> and store it in the <code>/opt</code> directory.</li>\n<li>Add database dependency package, this document uses Mysql database, add <code>mysql-connector-java</code> driver package to <code>/opt/dolphinscheduler/lib</code> directory.</li>\n</ul>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">create the installation directory, please <span class=\"hljs-keyword\">do</span> not create the installation directory <span class=\"hljs-keyword\">in</span> /root, /home and other high privilege directories</span> \nmkdir -p /opt\ncd /opt\n<span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">decompress</span>\ntar -zxvf apache-dolphinscheduler-3.3.1-bin.tar.gz -C /opt \ncd /opt\nmv apache-dolphinscheduler-3.3.1-bin  dolphinscheduler\n</code></pre>\n<pre><code class=\"language-markdown\">Attention: You can copy the installation package directly from an existing environment to an expanded physical machine.\n</code></pre>\n<h3 id=\"create-deployment-users\">Create Deployment Users</h3>\n<ul>\n<li>Create deployment user on <strong>all</strong> expansion machines, and make sure to configure sudo-free. If we plan to deploy scheduling on four expansion machines, ds1, ds2, ds3, and ds4, create deployment users on each machine is prerequisite.</li>\n</ul>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">to create a user, you need to <span class=\"hljs-built_in\">log</span> <span class=\"hljs-keyword\">in</span> with root and <span class=\"hljs-built_in\">set</span> the deployment user name, modify it by yourself, the following take `dolphinscheduler` as an example:</span>\nuseradd dolphinscheduler;\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\"><span class=\"hljs-built_in\">set</span> the user password, please change it by yourself, the following take `dolphinscheduler123` as an example</span>\necho &quot;dolphinscheduler123&quot; | passwd --stdin dolphinscheduler\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">configure sudo password-free</span>\necho &#x27;dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL&#x27; &gt;&gt; /etc/sudoers\nsed -i &#x27;s/Defaults    requirett/#Defaults    requirett/g&#x27; /etc/sudoers\n\n</code></pre>\n<pre><code class=\"language-markdown\">Attention:\n<span class=\"hljs-bullet\">-</span> Since it is <span class=\"hljs-code\">`sudo -u {linux-user}`</span> to switch between different Linux users to run multi-tenant jobs, the deploying user needs to have sudo privileges and be password free.\n<span class=\"hljs-bullet\">-</span> If you find the line <span class=\"hljs-code\">`Default requiretty`</span> in the <span class=\"hljs-code\">`/etc/sudoers`</span> file, please also comment it out.\n<span class=\"hljs-bullet\">-</span> If have needs to use resource uploads, you also need to assign read and write permissions to the deployment user on <span class=\"hljs-code\">`HDFS or MinIO`</span>.\n</code></pre>\n<h3 id=\"modify-configuration\">Modify Configuration</h3>\n<ul>\n<li>\n<p>From an existing node such as <code>Master/Worker</code>, copy the configuration directory directly to replace the configuration directory in the new node. After finishing the file copy, check whether the configuration items are correct.</p>\n<pre><code class=\"language-markdown\">Highlights:\ndatasource.properties: database connection information \nzookeeper.properties: information for connecting zk \ncommon.properties: Configuration information about the resource store (if hadoop is set up, please check if the core-site.xml and hdfs-site.xml configuration files exist).\ndolphinscheduler<span class=\"hljs-emphasis\">_env.sh: environment Variables\n</span></code></pre>\n</li>\n<li>\n<p>Modify the <code>dolphinscheduler_env.sh</code> environment variable in the <code>bin/env/dolphinscheduler_env.sh</code> directory according to the machine configuration (the following is the example that all the used software install under <code>/opt/soft</code>)</p>\n<pre><code class=\"language-shell\">    export HADOOP_HOME=/opt/soft/hadoop\n    export HADOOP_CONF_DIR=/opt/soft/hadoop/etc/hadoop\n    export SPARK_HOME=/opt/soft/spark\n    export PYTHON_LAUNCHER=/opt/soft/python/bin/python3\n    export JAVA_HOME=/opt/soft/jav\n    export HIVE_HOME=/opt/soft/hive\n    export FLINK_HOME=/opt/soft/flink\n    export DATAX_LAUNCHER=/opt/soft/datax/bin/datax.py\n    export PATH=$HADOOP_HOME/bin:$SPARK_HOME/bin:$PYTHON_LAUNCHER:$JAVA_HOME/bin:$HIVE_HOME/bin:$PATH:$FLINK_HOME/bin:$DATAX_LAUNCHER:$PATH\n\n</code></pre>\n<p><code>Attention: This step is very important, such as </code>JAVA_HOME<code>and</code>PATH<code> is necessary to configure if haven not used just ignore or comment out</code></p>\n</li>\n<li>\n<p>Soft link the <code>JDK</code> to <code>/usr/bin/java</code> (still using <code>JAVA_HOME=/opt/soft/java</code> as an example)</p>\n<pre><code class=\"language-shell\">sudo ln -s /opt/soft/java/bin/java /usr/bin/java\n</code></pre>\n</li>\n<li>\n<p>Modify the configuration file <code>bin/env/install_env.sh</code> on the <strong>all</strong> nodes, synchronizing the following configuration.</p>\n<ul>\n<li>To add a new master node, you need to modify the IPs and masters parameters.</li>\n<li>To add a new worker node, modify the IPs and workers parameters.</li>\n</ul>\n</li>\n</ul>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\"><span class=\"hljs-built_in\">which</span> machines to deploy DS services on, separated by commas between multiple physical machines</span>\nips=&quot;ds1,ds2,ds3,ds4&quot;\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">ssh port,default 22</span>\nsshPort=&quot;22&quot;\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\"><span class=\"hljs-built_in\">which</span> machine the master service is deployed on</span>\nmasters=&quot;existing master01,existing master02,ds1,ds2&quot;\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">the worker service is deployed on <span class=\"hljs-built_in\">which</span> machine, and specify the worker belongs to <span class=\"hljs-built_in\">which</span> worker group, the following example of <span class=\"hljs-string\">&quot;default&quot;</span> is the group name</span>\nworkers=&quot;existing worker01:default,existing worker02:default,ds3:default,ds4:default&quot;\n\n</code></pre>\n<ul>\n<li>\n<p>If the expansion is for worker nodes, you need to set the worker group, refer to the security of the <a href=\"/en-us/docs/3.3.1/guide/security/security\">Worker grouping</a></p>\n</li>\n<li>\n<p>On all new nodes, change the directory permissions so that the deployment user has access to the DolphinScheduler directory</p>\n</li>\n</ul>\n<pre><code class=\"language-shell\">sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler\n</code></pre>\n<h3 id=\"restart-the-cluster-and-verify\">Restart the Cluster and Verify</h3>\n<ul>\n<li>Restart the cluster</li>\n</ul>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">stop <span class=\"hljs-built_in\">command</span>:</span>\n\nbin/stop-all.sh # stop all services\n\nbash bin/dolphinscheduler-daemon.sh stop master-server  # stop master service\nbash bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service\nbash bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service\nbash bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service\n<span class=\"hljs-meta prompt_\">\n\n# </span><span class=\"language-bash\">start <span class=\"hljs-built_in\">command</span>::</span>\nbin/start-all.sh # start all services\n\nbash bin/dolphinscheduler-daemon.sh start master-server  # start master service\nbash bin/dolphinscheduler-daemon.sh start worker-server  # start worker service\nbash bin/dolphinscheduler-daemon.sh start api-server     # start api    service\nbash bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service\n\n</code></pre>\n<pre><code>Attention: When using `stop-all.sh` or `stop-all.sh`, if the physical machine execute the command is not configured to be ssh-free on all machines, it will prompt to enter the password\n</code></pre>\n<ul>\n<li>After completing the script, use the <code>jps</code> command to see if every node service is started (<code>jps</code> comes with the <code>Java JDK</code>)</li>\n</ul>\n<pre><code>MasterServer         ----- master service\nWorkerServer         ----- worker service\nApiApplicationServer ----- api    service\nAlertServer          ----- alert  service\n</code></pre>\n<p>After successful startup, you can view the logs, which are stored in the <code>logs</code> folder.</p>\n<pre><code class=\"language-Log\">logs/\n   ├── dolphinscheduler-alert-server.log\n   ├── dolphinscheduler-master-server.log\n   ├── dolphinscheduler-worker-server.log\n   ├── dolphinscheduler-api-server.log\n</code></pre>\n<p>If the above services start normally and the scheduling system page is normal, check whether there is an expanded Master or Worker service in the [Monitor] of the web system. If it exists, the expansion is complete.</p>\n<hr>\n<h2 id=\"reduction\">Reduction</h2>\n<p>The reduction is to reduce the master or worker services for the existing DolphinScheduler cluster.\nThere are two steps for shrinking. After performing the following two steps, the shrinking operation can be completed.</p>\n<h3 id=\"stop-the-service-on-the-scaled-down-node\">Stop the Service on the Scaled-Down Node</h3>\n<ul>\n<li>If you are scaling down the master node, identify the physical machine where the master service is located, and stop the master service on the physical machine.</li>\n<li>If scale down the worker node, determine the physical machine where the worker service scale down and stop the worker services on the physical machine.</li>\n</ul>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\">stop <span class=\"hljs-built_in\">command</span>:</span>\nbin/stop-all.sh # stop all services\n\nbash bin/dolphinscheduler-daemon.sh stop master-server  # stop master service\nbash bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service\nbash bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service\nbash bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service\n<span class=\"hljs-meta prompt_\">\n\n# </span><span class=\"language-bash\">start <span class=\"hljs-built_in\">command</span>:</span>\nbin/start-all.sh # start all services\n\nbash bin/dolphinscheduler-daemon.sh start master-server # start master service\nbash bin/dolphinscheduler-daemon.sh start worker-server # start worker service\nbash bin/dolphinscheduler-daemon.sh start api-server    # start api    service\nbash bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service\n\n</code></pre>\n<pre><code>Attention: When using `stop-all.sh` or `stop-all.sh`, if the machine without the command is not configured to be ssh-free for all machines, it will prompt to enter the password\n</code></pre>\n<ul>\n<li>After the script is completed, use the <code>jps</code> command to see if every node service was successfully shut down (<code>jps</code> comes with the <code>Java JDK</code>)</li>\n</ul>\n<pre><code>MasterServer         ----- master service\nWorkerServer         ----- worker service\nApiApplicationServer ----- api    service\nAlertServer          ----- alert  service\n</code></pre>\n<p>If the corresponding master service or worker service does not exist, then the master or worker service is successfully shut down.</p>\n<h3 id=\"modify-the-configuration-file\">Modify the Configuration File</h3>\n<ul>\n<li>modify the configuration file <code>bin/env/install_env.sh</code> on the <strong>all</strong> nodes, synchronizing the following configuration.\n<ul>\n<li>to scale down the master node, modify the IPs and masters parameters.</li>\n<li>to scale down worker nodes, modify the IPs and workers parameters.</li>\n</ul>\n</li>\n</ul>\n<pre><code class=\"language-shell\"><span class=\"hljs-meta prompt_\"># </span><span class=\"language-bash\"><span class=\"hljs-built_in\">which</span> machines to deploy DS services on, <span class=\"hljs-string\">&quot;localhost&quot;</span> <span class=\"hljs-keyword\">for</span> this machine</span>\nips=&quot;ds1,ds2,ds3,ds4&quot;\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">ssh port,default: 22</span>\nsshPort=&quot;22&quot;\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\"><span class=\"hljs-built_in\">which</span> machine the master service is deployed on</span>\nmasters=&quot;existing master01,existing master02,ds1,ds2&quot;\n<span class=\"hljs-meta prompt_\">\n# </span><span class=\"language-bash\">The worker service is deployed on <span class=\"hljs-built_in\">which</span> machine, and specify <span class=\"hljs-built_in\">which</span> worker group this worker belongs to, the following example of <span class=\"hljs-string\">&quot;default&quot;</span> is the group name</span>\nworkers=&quot;existing worker01:default,existing worker02:default,ds3:default,ds4:default&quot;\n\n</code></pre>\n",
+  "location": [
+    "Introduction to Functions",
+    "Expansion and Reduction"
+  ],
+  "time": "2025-8-24",
+  "structure": [
+    {
+      "title": "Expansion",
+      "children": [
+        {
+          "title": "Basic software installation",
+          "children": [],
+          "anchor": "basic-software-installation"
+        },
+        {
+          "title": "Get Installation Package",
+          "children": [],
+          "anchor": "get-installation-package"
+        },
+        {
+          "title": "Create Deployment Users",
+          "children": [],
+          "anchor": "create-deployment-users"
+        },
+        {
+          "title": "Modify Configuration",
+          "children": [],
+          "anchor": "modify-configuration"
+        },
+        {
+          "title": "Restart the Cluster and Verify",
+          "children": [],
+          "anchor": "restart-the-cluster-and-verify"
+        },
+        {
+          "title": "Stop the Service on the Scaled-Down Node",
+          "children": [],
+          "anchor": "stop-the-service-on-the-scaled-down-node"
+        },
+        {
+          "title": "Modify the Configuration File",
+          "children": [],
+          "anchor": "modify-the-configuration-file"
+        }
+      ],
+      "anchor": "expansion"
+    },
+    {
+      "title": "Reduction",
+      "children": [
+        {
+          "title": "Basic software installation",
+          "children": [],
+          "anchor": "basic-software-installation"
+        },
+        {
+          "title": "Get Installation Package",
+          "children": [],
+          "anchor": "get-installation-package"
+        },
+        {
+          "title": "Create Deployment Users",
+          "children": [],
+          "anchor": "create-deployment-users"
+        },
+        {
+          "title": "Modify Configuration",
+          "children": [],
+          "anchor": "modify-configuration"
+        },
+        {
+          "title": "Restart the Cluster and Verify",
+          "children": [],
+          "anchor": "restart-the-cluster-and-verify"
+        },
+        {
+          "title": "Stop the Service on the Scaled-Down Node",
+          "children": [],
+          "anchor": "stop-the-service-on-the-scaled-down-node"
+        },
+        {
+          "title": "Modify the Configuration File",
+          "children": [],
+          "anchor": "modify-the-configuration-file"
+        }
+      ],
+      "anchor": "reduction"
+    }
+  ],
+  "title": "DolphinScheduler Expansion and Reduction",
+  "link": "/guide/expansion-reduction"
+}
