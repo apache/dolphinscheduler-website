@@ -24,14 +24,14 @@ export const Community = ({ star, fork }) => {
               <div className="home-community-amount">
                 {star ? star.toLocaleString("en-us") : "-"}
               </div>
-              <div className="home-community-text">Github Stars</div>
+              <div className="home-community-text">GitHub Stars</div>
             </div>
             <Divider type="vertical" />
             <div className="home-community-item">
               <div className="home-community-amount">
                 {fork ? fork.toLocaleString("en-us") : "-"}
               </div>
-              <div className="home-community-text">Github Forks</div>
+              <div className="home-community-text">GitHub Forks</div>
             </div>
           </div>
           <Space className="home-community-icons" size={20}>

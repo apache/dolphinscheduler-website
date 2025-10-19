@@ -97,7 +97,7 @@ const NavBar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Github
+                      GitHub
                     </a>
                   ),
                   key: "github",
