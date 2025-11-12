@@ -1,0 +1,11 @@
+{
+  "__html": "<h1 id=\"introduction\">Introduction</h1>\n<p>This plugin will use zookeeper as the registry center.</p>\n<h1 id=\"how-to-use\">How to use</h1>\n<p>If you want to set the registry center as zookeeper,you need to set the registry properties in master/worker/api's application.yml</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">registry:</span>\n  <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">zookeeper</span>\n  <span class=\"hljs-attr\">zookeeper:</span>\n    <span class=\"hljs-attr\">namespace:</span> <span class=\"hljs-string\">dolphinscheduler</span>\n    <span class=\"hljs-attr\">connect-string:</span> <span class=\"hljs-string\">localhost:2181</span>\n    <span class=\"hljs-attr\">retry-policy:</span>\n      <span class=\"hljs-attr\">base-sleep-time:</span> <span class=\"hljs-string\">60ms</span>\n      <span class=\"hljs-attr\">max-sleep:</span> <span class=\"hljs-string\">300ms</span>\n      <span class=\"hljs-attr\">max-retries:</span> <span class=\"hljs-number\">5</span>\n    <span class=\"hljs-attr\">session-timeout:</span> <span class=\"hljs-string\">30s</span>\n    <span class=\"hljs-attr\">connection-timeout:</span> <span class=\"hljs-string\">9s</span>\n    <span class=\"hljs-attr\">block-until-connected:</span> <span class=\"hljs-string\">600ms</span>\n    <span class=\"hljs-comment\"># The following options are set according to personal needs    </span>\n    <span class=\"hljs-attr\">digest:</span> <span class=\"hljs-string\">~</span>\n</code></pre>\n<p>After do this config, you can start your DolphinScheduler cluster, your cluster will use zookeeper as registry center to\nstore server metadata.</p>\n",
+  "location": [
+    "Installation",
+    "registry-plugins",
+    "Zookeeper"
+  ],
+  "structure": [],
+  "title": "Introduction",
+  "link": "/guide/installation/registry-plugins/zookeeper"
+}
