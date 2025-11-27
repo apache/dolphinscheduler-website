@@ -1,5 +1,5 @@
 {
-  "__html": "<h1 id=\"load-balance\">Load Balance</h1>\n<p>Load balancing refers to the reasonable allocation of server pressure through routing algorithms (usually in cluster environments) to achieve the maximum optimization of server performance.</p>\n<h2 id=\"dolphinscheduler-worker-load-balancing-algorithms\">DolphinScheduler-Worker Load Balancing Algorithms</h2>\n<p>DolphinScheduler-Master allocates tasks to workers, and by default provides three algorithms:</p>\n<ul>\n<li>\n<p>Weighted random (random)</p>\n</li>\n<li>\n<p>Smoothing polling (round-robin)</p>\n</li>\n<li>\n<p>Linear load (lower weight)</p>\n</li>\n</ul>\n<p>The default configuration is the linear load.</p>\n<p>As the routing sets on the client side, the master service, you can change master.host.selector in master.properties to configure the algorithm.</p>\n<p>e.g. master.host.selector=random (case-insensitive)</p>\n<h2 id=\"worker-load-balancing-configuration\">Worker Load Balancing Configuration</h2>\n<p>The configuration file is worker.properties</p>\n<h3 id=\"weight\">Weight</h3>\n<p>All the load algorithms above are weighted based on weights, which affect the routing outcome. You can set different weights for different machines by modifying the <code>worker.weight</code> value.</p>\n<h3 id=\"preheating\">Preheating</h3>\n<p>Consider JIT optimization, worker runs at low power for a period of time after startup, so that it can gradually reach its optimal state, a process we call preheating. If you are interested, you can read some articles about JIT.</p>\n<p>So the worker gradually reaches its maximum weight with time after starts up ( by default ten minutes, there is no configuration about the pre-heating duration, it's recommend to submit a PR if have needs to change the duration).</p>\n<h2 id=\"load-balancing-algorithm-in-details\">Load Balancing Algorithm in Details</h2>\n<h3 id=\"random-(weighted)\">Random (Weighted)</h3>\n<p>This algorithm is relatively simple, select a worker by random (the weight affects its weighting).</p>\n<h3 id=\"smoothed-polling-(weighted)\">Smoothed Polling (Weighted)</h3>\n<p>An obvious drawback of the weighted polling algorithm, which is under special weights circumstance, weighted polling scheduling generates an imbalanced sequence of instances, and this unsmooth load may cause some instances to experience transient high loads, leading to a risk of system crash. To address this scheduling flaw, we provide a smooth weighted polling algorithm.</p>\n<p>Each worker has two weights parameters, weight (which remains constant after warm-up is complete) and current_weight (which changes dynamically). For every route, calculate the current_weight + weight and is iterated over all the workers, the weight of all the workers sum up and count as total_weight, then the worker with the largest current_weight is selected as the worker for this task. By meantime, set worker's current_weight-total_weight.</p>\n<h3 id=\"linear-weighting-(default-algorithm)\">Linear Weighting (Default Algorithm)</h3>\n<p>This algorithm reports its own load information to the registry at regular intervals. We mainly judge by CPU usage, memory usage and worker slot usage.</p>\n<p>If either of these is lower than the configured item, then this worker will not participate in the load. (no traffic will be allocated)</p>\n",
+  "__html": "<h1 id=\"load-balancing\">Load Balancing</h1>\n<p>Load balancing distributes server pressure reasonably through routing algorithms (typically in cluster environments) to optimize server performance to the maximum extent.</p>\n<h2 id=\"dolphinscheduler-worker-load-balancing-algorithms\">DolphinScheduler-Worker Load Balancing Algorithms</h2>\n<p>DolphinScheduler-Master provides four load balancing algorithms for distributing tasks to workers:</p>\n<ul>\n<li><strong>Random</strong> (RANDOM)</li>\n<li><strong>Round Robin</strong> (ROUND_ROBIN)</li>\n<li><strong>Smooth Round Robin</strong> (FIXED_WEIGHTED_ROUND_ROBIN)</li>\n<li><strong>Dynamic Smooth Round Robin</strong> (DYNAMIC_WEIGHTED_ROUND_ROBIN) - Default algorithm</li>\n</ul>\n<h2 id=\"load-balancing-configuration\">Load Balancing Configuration</h2>\n<p>Configure the load balancing algorithm in the configuration file:</p>\n<p>Location: <code>master-server/conf/application.yaml</code></p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">worker-load-balancer-configuration-properties:</span>\n  <span class=\"hljs-comment\"># types: RANDOM, ROUND_ROBIN, FIXED_WEIGHTED_ROUND_ROBIN, DYNAMIC_WEIGHTED_ROUND_ROBIN</span>\n  <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">DYNAMIC_WEIGHTED_ROUND_ROBIN</span>\n</code></pre>\n<h2 id=\"worker-weight-configuration\">Worker Weight Configuration</h2>\n<h3 id=\"smooth-round-robin-configuration-(fixed_weighted_round_robin)\">Smooth Round Robin Configuration (FIXED_WEIGHTED_ROUND_ROBIN)</h3>\n<p>For the <code>FIXED_WEIGHTED_ROUND_ROBIN</code> algorithm, you can modify the fixed weight in each worker's configuration file:</p>\n<p>Location: <code>worker-server/conf/application.yaml</code></p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">worker:</span>\n  <span class=\"hljs-attr\">host-weight:</span> <span class=\"hljs-number\">100</span> <span class=\"hljs-comment\">#default value is 100</span>\n</code></pre>\n<h3 id=\"dynamic-smooth-round-robin-configuration-(dynamic_weighted_round_robin)\">Dynamic Smooth Round Robin Configuration (DYNAMIC_WEIGHTED_ROUND_ROBIN)</h3>\n<p>When using the <code>DYNAMIC_WEIGHTED_ROUND_ROBIN</code> algorithm, you can configure the weights for various metrics:</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">master:</span>\n  <span class=\"hljs-attr\">worker-load-balancer-configuration-properties:</span>\n    <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">DYNAMIC_WEIGHTED_ROUND_ROBIN</span>\n    <span class=\"hljs-comment\"># Dynamic weight configuration, only used for DYNAMIC_WEIGHTED_ROUND_ROBIN algorithm</span>\n    <span class=\"hljs-comment\"># The sum of memory-usage, cpu-usage, task-thread-pool-usage weights must be 100</span>\n    <span class=\"hljs-attr\">dynamic-weight-config-properties:</span>\n      <span class=\"hljs-attr\">memory-usage-weight:</span> <span class=\"hljs-number\">30</span>    <span class=\"hljs-comment\"># Memory usage weight</span>\n      <span class=\"hljs-attr\">cpu-usage-weight:</span> <span class=\"hljs-number\">30</span>       <span class=\"hljs-comment\"># CPU usage weight  </span>\n      <span class=\"hljs-attr\">task-thread-pool-usage-weight:</span> <span class=\"hljs-number\">40</span>  <span class=\"hljs-comment\"># Task thread pool usage weight</span>\n</code></pre>\n<h2 id=\"load-balancing-algorithm-details\">Load Balancing Algorithm Details</h2>\n<h3 id=\"random-(random)\">Random (RANDOM)</h3>\n<p>Randomly selects one available worker node to execute tasks.</p>\n<h3 id=\"round-robin-(round_robin)\">Round Robin (ROUND_ROBIN)</h3>\n<p>Selects worker nodes in a fixed order to ensure each worker receives tasks evenly.</p>\n<h3 id=\"smooth-round-robin-(fixed_weighted_round_robin)\">Smooth Round Robin (FIXED_WEIGHTED_ROUND_ROBIN)</h3>\n<p>Each worker has two weights: weight (remains constant after warm-up) and current_weight (dynamically changes). During each routing, all workers are traversed, and their current_weight is increased by their weight. The total weight of all workers is accumulated as total_weight. The worker with the highest current_weight is selected to execute the task, and then that worker's current_weight is decreased by total_weight.</p>\n<ul>\n<li>Example: For instance, with 3 workers (A, B, C) having weights of 1, 2, and 3 respectively</li>\n<li>Worker selection order will be: C B C A B C C B C A B C C B C A B C C B C A B C C B C A B C ... (In this 30-round scheduling example, the number of tasks allocated to each worker is: C:15, B:10, A:5, exactly matching the weight ratio)</li>\n</ul>\n<h3 id=\"dynamic-smooth-round-robin-(dynamic_weighted_round_robin)---default-algorithm\">Dynamic Smooth Round Robin (DYNAMIC_WEIGHTED_ROUND_ROBIN) - Default Algorithm</h3>\n<p>This algorithm reports its own load information to the registry at regular intervals. We primarily evaluate based on CPU usage, memory usage, and worker thread pool usage, with specific weight configurations as follows:</p>\n<ul>\n<li><strong>Memory Usage</strong> (Default weight: 30%)</li>\n<li><strong>CPU Usage</strong> (Default weight: 30%)</li>\n<li><strong>Task Thread Pool Usage</strong> (Default weight: 40%)</li>\n</ul>\n<p><strong>Weight Calculation Principle:</strong>\nThe dynamic weight of each worker is calculated using the following formula:</p>\n<pre><code>Weight = 100 - (CPU Weight × CPU Usage + Memory Weight × Memory Usage + Thread Pool Weight × Thread Pool Usage) ÷ 3\n</code></pre>\n<p>Therefore, when a worker's load is lower, its weight will be higher, and the system will prioritize selecting worker nodes with lower loads to execute tasks.</p>\n<p>In the final worker node selection process, the workflow is consistent with smooth round robin, with the only difference being that in this algorithm, worker weights change dynamically.\nThrough this dynamic smooth round robin algorithm, DolphinScheduler can intelligently distribute tasks to workers with the lowest loads, achieving true dynamic load balancing.</p>\n",
   "location": [
     "Architecture Guide",
     "Load Balance"
@@ -9,96 +9,147 @@
       "title": "DolphinScheduler-Worker Load Balancing Algorithms",
       "children": [
         {
-          "title": "Weight",
+          "title": "Smooth Round Robin Configuration (FIXED_WEIGHTED_ROUND_ROBIN)",
           "children": [],
-          "anchor": "weight"
+          "anchor": "smooth-round-robin-configuration-(fixed_weighted_round_robin)"
         },
         {
-          "title": "Preheating",
+          "title": "Dynamic Smooth Round Robin Configuration (DYNAMIC_WEIGHTED_ROUND_ROBIN)",
           "children": [],
-          "anchor": "preheating"
+          "anchor": "dynamic-smooth-round-robin-configuration-(dynamic_weighted_round_robin)"
         },
         {
-          "title": "Random (Weighted)",
+          "title": "Random (RANDOM)",
           "children": [],
-          "anchor": "random-(weighted)"
+          "anchor": "random-(random)"
         },
         {
-          "title": "Smoothed Polling (Weighted)",
+          "title": "Round Robin (ROUND_ROBIN)",
           "children": [],
-          "anchor": "smoothed-polling-(weighted)"
+          "anchor": "round-robin-(round_robin)"
         },
         {
-          "title": "Linear Weighting (Default Algorithm)",
+          "title": "Smooth Round Robin (FIXED_WEIGHTED_ROUND_ROBIN)",
           "children": [],
-          "anchor": "linear-weighting-(default-algorithm)"
+          "anchor": "smooth-round-robin-(fixed_weighted_round_robin)"
+        },
+        {
+          "title": "Dynamic Smooth Round Robin (DYNAMIC_WEIGHTED_ROUND_ROBIN) - Default Algorithm",
+          "children": [],
+          "anchor": "dynamic-smooth-round-robin-(dynamic_weighted_round_robin)---default-algorithm"
         }
       ],
       "anchor": "dolphinscheduler-worker-load-balancing-algorithms"
     },
     {
-      "title": "Worker Load Balancing Configuration",
+      "title": "Load Balancing Configuration",
       "children": [
         {
-          "title": "Weight",
+          "title": "Smooth Round Robin Configuration (FIXED_WEIGHTED_ROUND_ROBIN)",
           "children": [],
-          "anchor": "weight"
+          "anchor": "smooth-round-robin-configuration-(fixed_weighted_round_robin)"
         },
         {
-          "title": "Preheating",
+          "title": "Dynamic Smooth Round Robin Configuration (DYNAMIC_WEIGHTED_ROUND_ROBIN)",
           "children": [],
-          "anchor": "preheating"
+          "anchor": "dynamic-smooth-round-robin-configuration-(dynamic_weighted_round_robin)"
         },
         {
-          "title": "Random (Weighted)",
+          "title": "Random (RANDOM)",
           "children": [],
-          "anchor": "random-(weighted)"
+          "anchor": "random-(random)"
         },
         {
-          "title": "Smoothed Polling (Weighted)",
+          "title": "Round Robin (ROUND_ROBIN)",
           "children": [],
-          "anchor": "smoothed-polling-(weighted)"
+          "anchor": "round-robin-(round_robin)"
         },
         {
-          "title": "Linear Weighting (Default Algorithm)",
+          "title": "Smooth Round Robin (FIXED_WEIGHTED_ROUND_ROBIN)",
           "children": [],
-          "anchor": "linear-weighting-(default-algorithm)"
+          "anchor": "smooth-round-robin-(fixed_weighted_round_robin)"
+        },
+        {
+          "title": "Dynamic Smooth Round Robin (DYNAMIC_WEIGHTED_ROUND_ROBIN) - Default Algorithm",
+          "children": [],
+          "anchor": "dynamic-smooth-round-robin-(dynamic_weighted_round_robin)---default-algorithm"
         }
       ],
-      "anchor": "worker-load-balancing-configuration"
+      "anchor": "load-balancing-configuration"
     },
     {
-      "title": "Load Balancing Algorithm in Details",
+      "title": "Worker Weight Configuration",
       "children": [
         {
-          "title": "Weight",
+          "title": "Smooth Round Robin Configuration (FIXED_WEIGHTED_ROUND_ROBIN)",
           "children": [],
-          "anchor": "weight"
+          "anchor": "smooth-round-robin-configuration-(fixed_weighted_round_robin)"
         },
         {
-          "title": "Preheating",
+          "title": "Dynamic Smooth Round Robin Configuration (DYNAMIC_WEIGHTED_ROUND_ROBIN)",
           "children": [],
-          "anchor": "preheating"
+          "anchor": "dynamic-smooth-round-robin-configuration-(dynamic_weighted_round_robin)"
         },
         {
-          "title": "Random (Weighted)",
+          "title": "Random (RANDOM)",
           "children": [],
-          "anchor": "random-(weighted)"
+          "anchor": "random-(random)"
         },
         {
-          "title": "Smoothed Polling (Weighted)",
+          "title": "Round Robin (ROUND_ROBIN)",
           "children": [],
-          "anchor": "smoothed-polling-(weighted)"
+          "anchor": "round-robin-(round_robin)"
         },
         {
-          "title": "Linear Weighting (Default Algorithm)",
+          "title": "Smooth Round Robin (FIXED_WEIGHTED_ROUND_ROBIN)",
           "children": [],
-          "anchor": "linear-weighting-(default-algorithm)"
+          "anchor": "smooth-round-robin-(fixed_weighted_round_robin)"
+        },
+        {
+          "title": "Dynamic Smooth Round Robin (DYNAMIC_WEIGHTED_ROUND_ROBIN) - Default Algorithm",
+          "children": [],
+          "anchor": "dynamic-smooth-round-robin-(dynamic_weighted_round_robin)---default-algorithm"
         }
       ],
-      "anchor": "load-balancing-algorithm-in-details"
+      "anchor": "worker-weight-configuration"
+    },
+    {
+      "title": "Load Balancing Algorithm Details",
+      "children": [
+        {
+          "title": "Smooth Round Robin Configuration (FIXED_WEIGHTED_ROUND_ROBIN)",
+          "children": [],
+          "anchor": "smooth-round-robin-configuration-(fixed_weighted_round_robin)"
+        },
+        {
+          "title": "Dynamic Smooth Round Robin Configuration (DYNAMIC_WEIGHTED_ROUND_ROBIN)",
+          "children": [],
+          "anchor": "dynamic-smooth-round-robin-configuration-(dynamic_weighted_round_robin)"
+        },
+        {
+          "title": "Random (RANDOM)",
+          "children": [],
+          "anchor": "random-(random)"
+        },
+        {
+          "title": "Round Robin (ROUND_ROBIN)",
+          "children": [],
+          "anchor": "round-robin-(round_robin)"
+        },
+        {
+          "title": "Smooth Round Robin (FIXED_WEIGHTED_ROUND_ROBIN)",
+          "children": [],
+          "anchor": "smooth-round-robin-(fixed_weighted_round_robin)"
+        },
+        {
+          "title": "Dynamic Smooth Round Robin (DYNAMIC_WEIGHTED_ROUND_ROBIN) - Default Algorithm",
+          "children": [],
+          "anchor": "dynamic-smooth-round-robin-(dynamic_weighted_round_robin)---default-algorithm"
+        }
+      ],
+      "anchor": "load-balancing-algorithm-details"
     }
   ],
-  "title": "Load Balance",
+  "title": "Load Balancing",
   "link": "/architecture/load-balance"
 }
