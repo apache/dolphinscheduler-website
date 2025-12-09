@@ -319,7 +319,7 @@ For novices
 For experts/non-newbies
 Useful links:
 
-Github repository
+GitHub repository
 Official website
 Youtube
 Slack

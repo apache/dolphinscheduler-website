@@ -165,7 +165,7 @@ AirFlow 的技术栈是 Python，而公司主要是以 Java 为主；
 
 # **3 元数据系统 Datahub 与 Dolphinscheduler 集成**
 
-Datahub由 LinkedIn 开源，原来叫做 WhereHows 。经过一段时间的发展 Datahub 于2020年2月在 Github 开源，首先简单介绍一下 Datahub 这个系统。
+Datahub由 LinkedIn 开源，原来叫做 WhereHows 。经过一段时间的发展 Datahub 于2020年2月在 GitHub 开源，首先简单介绍一下 Datahub 这个系统。
 
 ## **01 总体架构**
 
