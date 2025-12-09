@@ -37,6 +37,8 @@ const NavBar = () => {
               setSelectedKeys("");
             }}
           />
+        </div>
+        <div className="navbar-item">
           {!isSearch && (
             <div className="navbar-menu">
               <Menu
