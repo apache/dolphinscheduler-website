@@ -1,0 +1,793 @@
+{
+  "__html": "<h1 id=\"authentication-type\">Authentication Type</h1>\n<ul>\n<li>So far we support four authentication types, Apache DolphinScheduler password, LDAP, Casdoor SSO, OAuth2, and OIDC (OpenID Connect). The OAuth2 authorization login mode can be used with other authentication modes.</li>\n</ul>\n<h2 id=\"change-authentication-type\">Change Authentication Type</h2>\n<blockquote>\n<p>dolphinscheduler-api/src/main/resources/application.yaml</p>\n</blockquote>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-comment\"># Authentication types (supported types: PASSWORD,LDAP,CASDOOR_SSO, OIDC)</span>\n    <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">LDAP</span>\n    <span class=\"hljs-comment\"># IF you set type `LDAP`, below config will be effective</span>\n    <span class=\"hljs-attr\">ldap:</span>\n      <span class=\"hljs-comment\"># ldap server config</span>\n      <span class=\"hljs-attr\">url:</span> <span class=\"hljs-string\">ldap://ldap.forumsys.com:389/</span>\n      <span class=\"hljs-attr\">base-dn:</span> <span class=\"hljs-string\">dc=example,dc=com</span>\n      <span class=\"hljs-attr\">username:</span> <span class=\"hljs-string\">cn=admin,dc=example,dc=com</span>\n      <span class=\"hljs-attr\">password:</span> <span class=\"hljs-string\">password</span>\n      <span class=\"hljs-attr\">user:</span>\n        <span class=\"hljs-comment\"># admin userId when you use LDAP login</span>\n        <span class=\"hljs-attr\">admin:</span> <span class=\"hljs-string\">ldap-admin</span>\n        <span class=\"hljs-comment\"># user search filter to find admin user</span>\n        <span class=\"hljs-attr\">admin-user-filter:</span> <span class=\"hljs-string\">(&amp;(cn={0}))</span>\n        <span class=\"hljs-attr\">identity-attribute:</span> <span class=\"hljs-string\">uid</span>\n        <span class=\"hljs-attr\">email-attribute:</span> <span class=\"hljs-string\">mail</span>\n        <span class=\"hljs-comment\"># action when ldap user is not exist (supported types: CREATE,DENY)</span>\n        <span class=\"hljs-attr\">not-exist-action:</span> <span class=\"hljs-string\">DENY</span>\n      <span class=\"hljs-attr\">ssl:</span>\n        <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">false</span>\n        <span class=\"hljs-comment\"># jks file absolute path &amp;&amp; password</span>\n        <span class=\"hljs-attr\">trust-store:</span> <span class=\"hljs-string\">&quot;/ldapkeystore.jks&quot;</span>\n        <span class=\"hljs-attr\">trust-store-password:</span> <span class=\"hljs-string\">&quot;password&quot;</span>\n    <span class=\"hljs-attr\">casdoor:</span>\n      <span class=\"hljs-attr\">user:</span>\n        <span class=\"hljs-attr\">admin:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n    <span class=\"hljs-attr\">oauth2:</span>\n      <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">false</span>\n      <span class=\"hljs-attr\">provider:</span>\n        <span class=\"hljs-attr\">github:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">github</span>\n        <span class=\"hljs-attr\">google:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">google</span>\n<span class=\"hljs-attr\">casdoor:</span>\n   <span class=\"hljs-comment\"># Your Casdoor server url</span>\n   <span class=\"hljs-attr\">endpoint:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-attr\">client-id:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-attr\">client-secret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># The certificate may be multi-line, you can use `|-` for ease</span>\n   <span class=\"hljs-attr\">certificate:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># Your organization name added in Casdoor</span>\n   <span class=\"hljs-attr\">organization-name:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># Your application name added in Casdoor</span>\n   <span class=\"hljs-attr\">application-name:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n   <span class=\"hljs-comment\"># Doplhinscheduler login url</span>\n   <span class=\"hljs-attr\">redirect-url:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n</code></pre>\n<h2 id=\"casdoor-sso\">Casdoor SSO</h2>\n<p><a href=\"https://casdoor.org/\">Casdoor</a> is a UI-first Identity Access Management (IAM) / Single-Sign-On (SSO) platform based on OAuth 2.0, OIDC, SAML and CAS. You can add SSO capability to Dolphinscheduler through Casdoor by following these steps:</p>\n<h3 id=\"step1.-deploy-casdoor\">Step1. Deploy Casdoor</h3>\n<p>Firstly, the Casdoor should be deployed.</p>\n<p>You can refer to the Casdoor official documentation for the <a href=\"https://casdoor.org/docs/basic/server-installation\">Server Installation</a>.</p>\n<p>After a successful deployment, you need to ensure:</p>\n<ul>\n<li>The Casdoor server is successfully running on http://localhost:8000.</li>\n<li>Open your favorite browser and visit http://localhost:7001, you will see the login page of Casdoor.</li>\n<li>Input admin and 123 to test login functionality is working fine.</li>\n</ul>\n<p>Then you can quickly implement a Casdoor based login page in your own app with the following steps.</p>\n<h3 id=\"step2.-configure-casdoor-application\">Step2. Configure Casdoor Application</h3>\n<ol>\n<li>Create or use an existing Casdoor application.</li>\n<li>Add Your redirect url (You can see more details about how to get redirect url in the next section)\n<img src=\"/img/casdoor-sso-configuration.png\" alt=\"Casdoor Application Setting\"></li>\n<li>Add provider you want and supplement other settings.</li>\n</ol>\n<p>Not surprisingly, you can get two values on the application settings page: <code>Client ID</code> and <code>Client secret</code> like the picture above. We will use them in next step.</p>\n<p>Open your favorite browser and visit: <strong>http://<code>CASDOOR_HOSTNAME</code>/.well-known/openid-configuration</strong>, you will see the OIDC configure of Casdoor.</p>\n<h3 id=\"step3.-configure-dolphinscheduler\">Step3. Configure Dolphinscheduler</h3>\n<blockquote>\n<p>dolphinscheduler-api/src/main/resources/application.yaml</p>\n</blockquote>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-comment\"># Authentication types (supported types: PASSWORD,LDAP,CASDOOR_SSO)</span>\n    <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">CASDOOR_SSO</span>\n<span class=\"hljs-attr\">casdoor:</span>\n  <span class=\"hljs-comment\"># Your Casdoor server url</span>\n  <span class=\"hljs-attr\">endpoint:</span>\n  <span class=\"hljs-attr\">client-id:</span>\n  <span class=\"hljs-attr\">client-secret:</span>\n  <span class=\"hljs-comment\"># The certificate may be multi-line, you can use `|-` for ease</span>\n  <span class=\"hljs-attr\">certificate:</span> \n  <span class=\"hljs-comment\"># Your organization name added in Casdoor</span>\n  <span class=\"hljs-attr\">organization-name:</span>\n  <span class=\"hljs-comment\"># Your application name added in Casdoor</span>\n  <span class=\"hljs-attr\">application-name:</span>\n  <span class=\"hljs-comment\"># Doplhinscheduler login url</span>\n  <span class=\"hljs-attr\">redirect-url:</span> <span class=\"hljs-string\">http://localhost:5173/login</span> \n</code></pre>\n<h2 id=\"oauth2\">OAuth2</h2>\n<p>Dolphinscheduler can support multiple OAuth2 providers.</p>\n<h3 id=\"step1.-create-client-credentials\">Step1. Create Client Credentials</h3>\n<p><img src=\"/img/security/authentication/create-client-credentials-1.png\" alt=\"create-client-credentials-1\"></p>\n<p><img src=\"/img/security/authentication/create-client-credentials-2.png\" alt=\"create-client-credentials-2\"></p>\n<h3 id=\"step2.enable-oauth2-login-in-the-api's-configuration-file\">Step2.Enable OAuth2 Login In The Api's Configuration File</h3>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-comment\"># omit</span>\n    <span class=\"hljs-attr\">oauth2:</span>\n      <span class=\"hljs-comment\"># Set enable to true to enable oauth2 login mode</span>\n      <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">true</span>\n      <span class=\"hljs-attr\">provider:</span>\n        <span class=\"hljs-attr\">github:</span>\n          <span class=\"hljs-comment\"># Set the provider authorization address, for example:https://github.com/login/oauth/authorize</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># dolphinscheduler backend redirection interface address, for example :http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\">#  clientId</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># client secret</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># Set the provider&#x27;s request token address</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># Set the provider address for requesting user information</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># Redirect address after successful login, http://{ip}:{port}/login</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-comment\"># The image url of the login page jump button, if not filled, a text button will be displayed</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">github</span>\n        <span class=\"hljs-attr\">google:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">google</span>\n        <span class=\"hljs-attr\">gitee:</span>\n          <span class=\"hljs-attr\">authorizationUri:</span> <span class=\"hljs-string\">&quot;https://gitee.com/oauth/authorize&quot;</span>\n          <span class=\"hljs-attr\">redirectUri:</span> <span class=\"hljs-string\">&quot;http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2&quot;</span>\n          <span class=\"hljs-attr\">clientId:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">clientSecret:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">tokenUri:</span> <span class=\"hljs-string\">&quot;https://gitee.com/oauth/token?grant_type=authorization_code&quot;</span>\n          <span class=\"hljs-attr\">userInfoUri:</span> <span class=\"hljs-string\">&quot;https://gitee.com/api/v5/user&quot;</span>\n          <span class=\"hljs-attr\">callbackUrl:</span> <span class=\"hljs-string\">&quot;http://127.0.0.1:5173/login&quot;</span>\n          <span class=\"hljs-attr\">iconUri:</span> <span class=\"hljs-string\">&quot;&quot;</span>\n          <span class=\"hljs-attr\">provider:</span> <span class=\"hljs-string\">gitee</span>\n</code></pre>\n<h3 id=\"step.3-login-with-oauth2\">Step.3 Login With OAuth2</h3>\n<p><img src=\"/img/security/authentication/login-with-oauth2.png\" alt=\"login-with-oauth2\"></p>\n<hr>\n<h2 id=\"oidc-(openid-connect)\">OIDC (OpenID Connect)</h2>\n<p>The OIDC authentication method allows DolphinScheduler to integrate with a wide range of external identity providers, enabling centralized Single Sign-On (SSO). This is ideal for enterprise environments that need to connect with their internal user directories or third-party providers.</p>\n<p>This implementation is generalized and supports any OIDC-compliant provider, such as <strong>Keycloak, Okta, Microsoft Entra ID (Azure AD), Google, DexIDP, Auth0, Feishu, and WeChat Work Login</strong>.</p>\n<h3 id=\"step-1.-enable-oidc-in-the-api's-configuration-file\">Step 1. Enable OIDC in the API's Configuration File</h3>\n<ol>\n<li>To enable OIDC, you first need to set the authentication <code>type</code> to <code>OIDC</code>, modify the following configuration in <code>dolphinscheduler-api/src/main/resources/application.yaml</code>:</li>\n</ol>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-comment\"># Authentication types (supported types: PASSWORD, LDAP, CASDOOR_SSO, OIDC)</span>\n    <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">OIDC</span>\n</code></pre>\n<ol start=\"2\">\n<li>Then, you must configure the OIDC providers you wish to use. The following is a complete example configuration using Keycloak, with a detailed explanation of each parameter.</li>\n</ol>\n<blockquote>\n<p><strong>Note</strong>: Before configuring OIDC, ensure you have set the public-facing URLs for the API and UI, as these are crucial for constructing the correct callback URLs for the OIDC provider.</p>\n</blockquote>\n<pre><code class=\"language-yaml\"><span class=\"hljs-comment\"># dolphinscheduler-api/src/main/resources/application.yaml</span>\n\n<span class=\"hljs-comment\"># These top-level URLs are essential for OIDC to function correctly.</span>\n<span class=\"hljs-attr\">api:</span>\n  <span class=\"hljs-comment\"># The public-facing base URL of the DolphinScheduler API server.</span>\n  <span class=\"hljs-comment\"># This is used to build the `redirect_uri` for the OIDC provider.</span>\n  <span class=\"hljs-comment\"># It must be reachable by the user&#x27;s browser.</span>\n  <span class=\"hljs-attr\">base-url:</span> <span class=\"hljs-string\">http://localhost:12345/dolphinscheduler</span>\n  <span class=\"hljs-comment\"># The public-facing URL of the DolphinScheduler UI.</span>\n  <span class=\"hljs-comment\"># Users will be redirected here after a successful login.</span>\n  <span class=\"hljs-attr\">ui-url:</span> <span class=\"hljs-string\">http://localhost:5173</span>\n\n<span class=\"hljs-attr\">security:</span>\n  <span class=\"hljs-attr\">authentication:</span>\n    <span class=\"hljs-comment\"># Set the primary authentication type to OIDC.</span>\n    <span class=\"hljs-attr\">type:</span> <span class=\"hljs-string\">OIDC</span>\n    <span class=\"hljs-attr\">oidc:</span>\n      <span class=\"hljs-comment\"># Master switch to enable or disable the OIDC feature.</span>\n      <span class=\"hljs-attr\">enable:</span> <span class=\"hljs-literal\">true</span>\n      <span class=\"hljs-comment\"># A map of OIDC provider configurations. The key (e.g., &quot;keycloak&quot;) is the provider&#x27;s unique registrationId,</span>\n      <span class=\"hljs-comment\"># which is used in the login and callback URLs.</span>\n      <span class=\"hljs-attr\">providers:</span>\n        <span class=\"hljs-comment\"># --- Example for Keycloak ---</span>\n        <span class=\"hljs-attr\">keycloak:</span>\n          <span class=\"hljs-comment\"># The text displayed on the login button on the UI.</span>\n          <span class=\"hljs-attr\">display-name:</span> <span class=\"hljs-string\">&quot;Login with Keycloak&quot;</span>\n          <span class=\"hljs-comment\"># The URL of your OIDC provider&#x27;s issuer. This is the core endpoint for OIDC discovery.</span>\n          <span class=\"hljs-comment\"># For Keycloak, it typically ends with /realms/{your-realm-name}.</span>\n          <span class=\"hljs-attr\">issuer-uri:</span> <span class=\"hljs-string\">http://localhost:8080/realms/dolphinscheduler</span>\n          <span class=\"hljs-comment\"># The relative path to an icon for the login button. The image should be placed in the `dolphinscheduler-ui/public/images/providers-icon/` directory.</span>\n          <span class=\"hljs-attr\">icon-uri:</span> <span class=\"hljs-string\">&quot;/images/providers-icon/keycloak.png&quot;</span>\n          <span class=\"hljs-comment\"># The Client ID obtained from your OIDC provider after registering DolphinScheduler as a client.</span>\n          <span class=\"hljs-attr\">client-id:</span> <span class=\"hljs-string\">dolphinscheduler-client</span>\n          <span class=\"hljs-comment\"># The Client Secret obtained from your OIDC provider.</span>\n          <span class=\"hljs-attr\">client-secret:</span> <span class=\"hljs-string\">dolphinscheduler-client-secret</span>\n          <span class=\"hljs-comment\"># (Optional) The method used to authenticate with the token endpoint.</span>\n          <span class=\"hljs-comment\"># Can be &quot;client_secret_basic&quot; (default) or &quot;client_secret_post&quot;.</span>\n          <span class=\"hljs-comment\"># client-authentication-method: client_secret_basic</span>\n          <span class=\"hljs-comment\"># The OIDC scopes to request. &quot;openid&quot; is mandatory. &quot;profile&quot;, &quot;email&quot;, and &quot;groups&quot; are recommended</span>\n          <span class=\"hljs-comment\"># to get user information and roles.</span>\n          <span class=\"hljs-attr\">scope:</span> <span class=\"hljs-string\">openid,</span> <span class=\"hljs-string\">profile,</span> <span class=\"hljs-string\">email,</span> <span class=\"hljs-string\">groups</span>\n          <span class=\"hljs-comment\"># The claim in the ID Token or UserInfo response to use as the DolphinScheduler username.</span>\n          <span class=\"hljs-comment\"># &quot;preferred_username&quot; is common, but could also be &quot;email&quot;, &quot;sub&quot;, or a custom claim.</span>\n          <span class=\"hljs-attr\">user-name-attribute:</span> <span class=\"hljs-string\">preferred_username</span>\n          <span class=\"hljs-comment\"># (Optional) The claim that contains the user&#x27;s group or role memberships.</span>\n          <span class=\"hljs-comment\"># This is required for admin role mapping.</span>\n          <span class=\"hljs-attr\">groups-claim:</span> <span class=\"hljs-string\">groups</span>\n\n        <span class=\"hljs-comment\"># --- You can add more providers here ---</span>\n        <span class=\"hljs-comment\"># okta:</span>\n        <span class=\"hljs-comment\">#   display-name: &quot;Login with Okta&quot;</span>\n        <span class=\"hljs-comment\">#   issuer-uri: [https://your-okta-domain.okta.com/oauth2/default](https://your-okta-domain.okta.com/oauth2/default)</span>\n        <span class=\"hljs-comment\">#   ...</span>\n\n      <span class=\"hljs-comment\"># Settings for automatic user provisioning in DolphinScheduler upon first OIDC login.</span>\n      <span class=\"hljs-attr\">user:</span>\n        <span class=\"hljs-comment\"># If true, a new DolphinScheduler user will be created if one doesn&#x27;t exist upon successful login.</span>\n        <span class=\"hljs-comment\"># If false, only existing users can log in. Default is false.</span>\n        <span class=\"hljs-attr\">auto-create:</span> <span class=\"hljs-literal\">true</span>\n        <span class=\"hljs-comment\"># The default tenant to assign to newly created users.</span>\n        <span class=\"hljs-attr\">default-tenant-code:</span> <span class=\"hljs-string\">&quot;default&quot;</span>\n        <span class=\"hljs-comment\"># The default queue to assign to newly created users.</span>\n        <span class=\"hljs-attr\">default-queue:</span> <span class=\"hljs-string\">&quot;default&quot;</span>\n        <span class=\"hljs-comment\"># A list of group names from the OIDC provider that will grant a user ADMIN privileges in DolphinScheduler.</span>\n        <span class=\"hljs-comment\"># The user&#x27;s groups are read from the claim specified in &quot;groups-claim&quot;.</span>\n        <span class=\"hljs-attr\">admin-group-mapping:</span>\n          <span class=\"hljs-bullet\">-</span> <span class=\"hljs-string\">dolphinscheduler-admins</span>\n</code></pre>\n<blockquote>\n<p><strong>Note on <code>issuer-uri</code></strong>: The correct value depends on your environment.</p>\n<ul>\n<li>If running DolphinScheduler <strong>locally (e.g., in your IDE)</strong> and Keycloak in Docker, use the host machine's address (e.g., <code>http://localhost:8080/...</code>).</li>\n<li>If both DolphinScheduler and Keycloak are running <strong>within the same Docker network</strong> (as in the provided ), you must use the Docker service name (e.g., <code>http://keycloak:8080/...</code>) for container-to-container communication. <code>docker-compose.yaml</code></li>\n</ul>\n<p><strong>💡 Tip</strong>: <strong>Configuring with Environment Variables</strong> - All properties in <code>application.yaml</code> can be configured using environment variables. This is particularly useful for containerized deployments. To convert a YAML path to an environment variable, use uppercase letters and replace dots (<code>.</code>) and hyphens (<code>-</code>) with underscores (<code>_</code>).<br>\nFor example, <code>security.authentication.oidc.providers.keycloak.client-id</code> becomes <code>SECURITY_AUTHENTICATION_OIDC_PROVIDERS_KEYCLOAK_CLIENT_ID</code>.</p>\n</blockquote>\n<h3 id=\"step-2.-configure-your-oidc-provider-(keycloak-example)\">Step 2. Configure Your OIDC Provider (Keycloak Example)</h3>\n<p>You need to register DolphinScheduler as a client in your OIDC provider. Here’s how to do it with Keycloak:</p>\n<h4 id=\"2.1.-easy-setup-using-pre-configured-realm-export:\">2.1. Easy setup using Pre-configured Realm Export:</h4>\n<ol>\n<li>\n<p>Start Keycloak with the provided <code>docker-compose.yaml</code> that includes a pre-configured realm, Ensure docker is running in the background:</p>\n<pre><code class=\"language-bash\"><span class=\"hljs-built_in\">cd</span> dolphinscheduler-api-test/dolphinscheduler-api-test-case/src/test/resources/docker/oidc-login/\ndocker-compose up -d keycloak\n</code></pre>\n<p>This will start Keycloak on port <code>8081</code> and imports a realm with the necessary client, users, and groups.</p>\n</li>\n<li>\n<p>Access the Keycloak Admin Console at <code>http://localhost:8081</code> (Username: <code>admin</code>, Password: <code>admin</code>).</p>\n</li>\n<li>\n<p>Switch to the <code>dolphinscheduler</code> realm and verify the imported configuration.</p>\n</li>\n<li>\n<p>Update the <strong>Valid redirect URIs</strong> in the <code>dolphinscheduler-client</code> client to match your local setup:</p>\n<ul>\n<li><code>http://localhost:12345/dolphinscheduler/login/oauth2/code/keycloak</code></li>\n</ul>\n</li>\n<li>\n<p>Update <strong>Web origins</strong> to include <code>http://localhost:5173</code> to prevent CORS issues.</p>\n</li>\n<li>\n<p>Save your changes.</p>\n</li>\n<li>\n<p>Obtain the <strong>Client ID</strong> and <strong>Client Secret</strong> from the <code>dolphinscheduler-client</code> client in Keycloak.</p>\n</li>\n<li>\n<p>Use these values in your DolphinScheduler configuration as shown in Step 1.</p>\n</li>\n<li>\n<p>Once done with the testing/development, you can stop the Keycloak container using:</p>\n<pre><code class=\"language-bash\">docker-compose down\n</code></pre>\n</li>\n</ol>\n<p><em><strong>or,</strong></em></p>\n<h4 id=\"2.2.-using-custom-configuration:\">2.2. Using Custom configuration:</h4>\n<ol>\n<li>\n<p>Spin up a Keycloak instance using docker (if you haven't already), Ensure docker is running in the background:</p>\n<pre><code class=\"language-bash\">docker run --<span class=\"hljs-built_in\">rm</span> -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:22.0.1 start-dev\n</code></pre>\n<p>This starts Keycloak on port <code>8080</code> with an admin user (Username: <code>admin</code>, Password: <code>admin</code>).</p>\n</li>\n<li>\n<p><strong>Create a Realm</strong>: If you don't have one, create a new realm (e.g., <code>dolphinscheduler</code>).</p>\n</li>\n<li>\n<p><strong>Create a Client</strong>:</p>\n<ul>\n<li>Navigate to <strong>Clients</strong> and click <strong>Create client</strong>.</li>\n<li>Set the <strong>Client ID</strong> to match your configuration (e.g., <code>dolphinscheduler-client</code>).</li>\n<li>Ensure <strong>Client authentication</strong> is <strong>On</strong>.</li>\n<li>On the next screen, set <strong>Valid redirect URIs</strong>. This is critical and must match the URL constructed from your <code>api.base-url</code>:\n<ul>\n<li><code>http://{your-dolphinscheduler-host:port}/dolphinscheduler/login/oauth2/code/{registrationId}</code></li>\n<li>For our example: <code>http://localhost:12345/dolphinscheduler/login/oauth2/code/keycloak</code></li>\n</ul>\n</li>\n<li>Set <strong>Web origins</strong> to allow the UI to communicate with Keycloak (e.g., <code>http://localhost:5173</code>).</li>\n<li><strong>Configure Client Scopes for Email and Profile</strong>:\n<ul>\n<li>In the Keycloak Admin Console, go to <strong>Client scopes</strong>.</li>\n<li>Ensure the built-in <code>email</code> and <code>profile</code> scopes are assigned to your client:\n<ul>\n<li>Navigate to your client (<strong>Clients</strong> -&gt; select your client -&gt; <strong>Client scopes</strong> tab).</li>\n<li>Under <strong>Assigned Default Client Scopes</strong>, add <code>email</code> and <code>profile</code> if they are not already present.</li>\n</ul>\n</li>\n<li>This ensures that the OIDC tokens include the user's email and profile information, which DolphinScheduler may require for user provisioning and display.</li>\n</ul>\n</li>\n</ul>\n</li>\n<li>\n<p><strong>Get Credentials</strong>:</p>\n</li>\n</ol>\n<ul>\n<li>Go to the <strong>Credentials</strong> tab for your new client and copy the <strong>Client secret</strong>.</li>\n</ul>\n<ol start=\"5\">\n<li><strong>Create a Reusable <code>groups</code> Scope (Recommended)</strong>:\n<ul>\n<li>In the left menu, navigate to <strong>Client Scopes</strong> and click <strong>Create client scope</strong>.</li>\n<li>Set the <strong>Name</strong> to <code>groups</code> and click <strong>Save</strong>.</li>\n<li>Go to the <strong>Mappers</strong> tab for your new <code>groups</code> scope.</li>\n<li>Click <strong>Create mapper</strong> and select <strong>Group Membership</strong> from the list.</li>\n<li>Give it a <strong>Name</strong> (e.g., &quot;groups mapper&quot;).</li>\n<li>Set the <strong>Token Claim Name</strong> to <code>groups</code> (this must match the property in your ). <code>groups-claim``application.yaml</code></li>\n<li>Ensure <strong>Add to ID token</strong> is enabled. Click <strong>Save</strong>.</li>\n<li>Finally, navigate back to your client (<strong>Clients</strong> -&gt; -&gt; <strong>Client Scopes</strong> tab). <code>dolphinscheduler-client</code></li>\n<li>Add your new <code>groups</code> scope to the <strong>Default Client Scopes</strong>. This ensures the <code>groups</code> claim is included for all users of this client.</li>\n</ul>\n</li>\n<li><strong>Create Groups and Users</strong>:</li>\n</ol>\n<ul>\n<li>Navigate to <strong>Groups</strong> and create a group with the name you specified in <code>admin-group-mapping</code> (e.g., <code>dolphinscheduler-admins</code>).\n<ul>\n<li>Navigate to <strong>Users</strong>, create a new user, and assign them to this group.</li>\n</ul>\n</li>\n</ul>\n<p><em><strong>or,</strong></em></p>\n<h4 id=\"2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)\">2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)</h4>\n<ol>\n<li>Follow the provider's documentation to register a new application/client.</li>\n<li>Set the redirect URI to <code>http://{your-dolphinscheduler-host:port}/dolphinscheduler/login/oauth2/code/{registrationId}</code>.</li>\n<li>Obtain the Client ID and Client Secret.</li>\n<li>Configure scopes to include <code>openid</code>, <code>profile</code>, <code>email</code>, and any <code>group/role</code> claims if needed.</li>\n<li>Ensure the user information endpoint provides the necessary claims for username and groups.</li>\n<li>Map any necessary roles or groups in your OIDC provider to match the <code>admin-group-mapping</code> in your DolphinScheduler configuration.</li>\n<li>Make sure to test the configuration by logging in with a user that belongs to the admin group.</li>\n<li>Refer to the provider-specific documentation for any additional settings required.</li>\n<li>Ensure that the OIDC provider's metadata endpoint (usually <code>/.well-known/openid-configuration</code>) is accessible from the DolphinScheduler API server.</li>\n<li>Adjust firewall or network settings if necessary to allow communication between DolphinScheduler and the OIDC provider.</li>\n<li>If using a self-signed certificate for HTTPS, ensure that the DolphinScheduler API server trusts the certificate.</li>\n<li>Regularly update the Client Secret and review the OIDC provider's security settings to maintain a secure integration.</li>\n</ol>\n<h3 id=\"step-3.-login-with-oidc\">Step 3. Login with OIDC</h3>\n<p>After restarting the DolphinScheduler API server with the new configuration, the login page will now display a new button for each configured OIDC provider.</p>\n<p>Clicking the button will redirect you to your OIDC provider to authenticate. After a successful login, you will be redirected back to DolphinScheduler and automatically logged in.</p>\n<blockquote>\n<p><strong>Note:</strong> When a user clicks a provider's login button, they are first directed to a specific endpoint on the DolphinScheduler backend (e.g., <code>/dolphinscheduler/oauth2/authorization/keycloak</code>). The backend then constructs the full request and redirects the user's browser to the OIDC provider's login page.</p>\n</blockquote>\n",
+  "location": [
+    "Introduction to Functions",
+    "Security",
+    "Authentication Type"
+  ],
+  "time": "2026-1-20",
+  "structure": [
+    {
+      "title": "Change Authentication Type",
+      "children": [
+        {
+          "title": "Step1. Deploy Casdoor",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step1.-deploy-casdoor"
+        },
+        {
+          "title": "Step2. Configure Casdoor Application",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step2.-configure-casdoor-application"
+        },
+        {
+          "title": "Step3. Configure Dolphinscheduler",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step3.-configure-dolphinscheduler"
+        },
+        {
+          "title": "Step1. Create Client Credentials",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step1.-create-client-credentials"
+        },
+        {
+          "title": "Step2.Enable OAuth2 Login In The Api's Configuration File",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step2.enable-oauth2-login-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step.3 Login With OAuth2",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step.3-login-with-oauth2"
+        },
+        {
+          "title": "Step 1. Enable OIDC in the API's Configuration File",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-1.-enable-oidc-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step 2. Configure Your OIDC Provider (Keycloak Example)",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-2.-configure-your-oidc-provider-(keycloak-example)"
+        },
+        {
+          "title": "Step 3. Login with OIDC",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-3.-login-with-oidc"
+        }
+      ],
+      "anchor": "change-authentication-type"
+    },
+    {
+      "title": "Casdoor SSO",
+      "children": [
+        {
+          "title": "Step1. Deploy Casdoor",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step1.-deploy-casdoor"
+        },
+        {
+          "title": "Step2. Configure Casdoor Application",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step2.-configure-casdoor-application"
+        },
+        {
+          "title": "Step3. Configure Dolphinscheduler",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step3.-configure-dolphinscheduler"
+        },
+        {
+          "title": "Step1. Create Client Credentials",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step1.-create-client-credentials"
+        },
+        {
+          "title": "Step2.Enable OAuth2 Login In The Api's Configuration File",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step2.enable-oauth2-login-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step.3 Login With OAuth2",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step.3-login-with-oauth2"
+        },
+        {
+          "title": "Step 1. Enable OIDC in the API's Configuration File",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-1.-enable-oidc-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step 2. Configure Your OIDC Provider (Keycloak Example)",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-2.-configure-your-oidc-provider-(keycloak-example)"
+        },
+        {
+          "title": "Step 3. Login with OIDC",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-3.-login-with-oidc"
+        }
+      ],
+      "anchor": "casdoor-sso"
+    },
+    {
+      "title": "OAuth2",
+      "children": [
+        {
+          "title": "Step1. Deploy Casdoor",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step1.-deploy-casdoor"
+        },
+        {
+          "title": "Step2. Configure Casdoor Application",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step2.-configure-casdoor-application"
+        },
+        {
+          "title": "Step3. Configure Dolphinscheduler",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step3.-configure-dolphinscheduler"
+        },
+        {
+          "title": "Step1. Create Client Credentials",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step1.-create-client-credentials"
+        },
+        {
+          "title": "Step2.Enable OAuth2 Login In The Api's Configuration File",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step2.enable-oauth2-login-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step.3 Login With OAuth2",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step.3-login-with-oauth2"
+        },
+        {
+          "title": "Step 1. Enable OIDC in the API's Configuration File",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-1.-enable-oidc-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step 2. Configure Your OIDC Provider (Keycloak Example)",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-2.-configure-your-oidc-provider-(keycloak-example)"
+        },
+        {
+          "title": "Step 3. Login with OIDC",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-3.-login-with-oidc"
+        }
+      ],
+      "anchor": "oauth2"
+    },
+    {
+      "title": "OIDC (OpenID Connect)",
+      "children": [
+        {
+          "title": "Step1. Deploy Casdoor",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step1.-deploy-casdoor"
+        },
+        {
+          "title": "Step2. Configure Casdoor Application",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step2.-configure-casdoor-application"
+        },
+        {
+          "title": "Step3. Configure Dolphinscheduler",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step3.-configure-dolphinscheduler"
+        },
+        {
+          "title": "Step1. Create Client Credentials",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step1.-create-client-credentials"
+        },
+        {
+          "title": "Step2.Enable OAuth2 Login In The Api's Configuration File",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step2.enable-oauth2-login-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step.3 Login With OAuth2",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step.3-login-with-oauth2"
+        },
+        {
+          "title": "Step 1. Enable OIDC in the API's Configuration File",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-1.-enable-oidc-in-the-api's-configuration-file"
+        },
+        {
+          "title": "Step 2. Configure Your OIDC Provider (Keycloak Example)",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-2.-configure-your-oidc-provider-(keycloak-example)"
+        },
+        {
+          "title": "Step 3. Login with OIDC",
+          "children": [
+            {
+              "title": "2.1. Easy setup using Pre-configured Realm Export:",
+              "children": [],
+              "anchor": "2.1.-easy-setup-using-pre-configured-realm-export:"
+            },
+            {
+              "title": "2.2. Using Custom configuration:",
+              "children": [],
+              "anchor": "2.2.-using-custom-configuration:"
+            },
+            {
+              "title": "2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)",
+              "children": [],
+              "anchor": "2.3.-if-you-have-existing-oidc-provider-(okta,-azure-ad,-google,-etc.)"
+            }
+          ],
+          "anchor": "step-3.-login-with-oidc"
+        }
+      ],
+      "anchor": "oidc-(openid-connect)"
+    }
+  ],
+  "title": "Authentication Type",
+  "link": "/guide/security/authentication-type"
+}
