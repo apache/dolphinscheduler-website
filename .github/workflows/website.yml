@@ -38,7 +38,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: '3.10'
       - name: Build Python Multiple Version Document
         working-directory: ${{ env.PYDS_HOME }}
         # rsync all files in directory docs/build/html/versions expect .doctrees have sensitive data, so we need to delete it
