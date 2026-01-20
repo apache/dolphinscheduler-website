@@ -67,6 +67,3 @@ jobs:
             markdown-link-check -c .dlc.json -q "$file" &
           done
           wait || { EXIT_CODE=$?; cleanup; }
-
-
-
