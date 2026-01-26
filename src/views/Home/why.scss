@@ -4,10 +4,17 @@
 .home-why {
   @include content-width;
   margin-top: 96px;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 60px;
+  }
 
   @media screen and (max-width: 640px) {
-    margin-top: 0px;
+    margin-top: 40px;
   }
+
   &-title {
     font-weight: 700;
     color: #031b3e;
@@ -15,14 +22,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
     .gradient-text {
-      margin-left: 20px;
+      margin-left: 10px;
+
+      @media screen and (max-width: 640px) {
+        margin-left: 0;
+      }
     }
+
     margin-bottom: 30px;
 
-    @media screen and (max-width: 640px) {
-      font-size: 8vw;
+    @media screen and (max-width: 768px) {
+      font-size: 40px;
     }
+
+    @media screen and (max-width: 640px) {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 28px;
+    }
+  }
+
+  &-content {
+    overflow: hidden;
   }
 
   &-item {
@@ -30,42 +58,96 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 50px;
+    gap: 40px;
+
+    @media screen and (max-width: 1024px) {
+      flex-direction: column-reverse;
+      gap: 30px;
+    }
+
+    @media screen and (max-width: 640px) {
+      padding-bottom: 30px;
+    }
+
+    &-desc {
+      flex: 1;
+      min-width: 0;
+    }
+
     &-title {
       padding-top: 40px;
       font-weight: 700;
       color: #1a194d;
       font-size: 40px;
 
+      @media screen and (max-width: 768px) {
+        font-size: 28px;
+        padding-top: 20px;
+      }
+
       @media screen and (max-width: 640px) {
-        font-size: 5vw;
-        padding-top: 0px;
+        font-size: 24px;
+        padding-top: 10px;
       }
     }
+
     &-slip {
       margin-top: 30px;
       margin-bottom: 50px;
+      padding-left: 20px;
+
+      @media screen and (max-width: 768px) {
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+
+      @media screen and (max-width: 640px) {
+        margin-top: 16px;
+        margin-bottom: 24px;
+      }
     }
+
     &-label {
       width: 30px;
       height: 30px;
       margin-right: 10px;
     }
+
     &-img {
       width: 700px;
     }
+
     &-text {
       color: #000000;
       font-size: 16px;
       padding: 10px 0px;
-      @media screen and (max-width: 640px) {
-        font-size: 14px;
-      }
-    }
-    .ant-image {
-      flex-shrink: 0;
 
       @media screen and (max-width: 640px) {
-        display: none;
+        font-size: 14px;
+        padding: 6px 0;
+      }
+    }
+
+    .ant-image {
+      flex-shrink: 0;
+      max-width: 50%;
+
+      @media screen and (max-width: 1024px) {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    // Button spacing on mobile
+    .ant-space {
+      @media screen and (max-width: 480px) {
+        flex-wrap: wrap;
+        gap: 12px !important;
       }
     }
   }

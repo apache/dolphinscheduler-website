@@ -24,8 +24,8 @@ export const Events = () => {
                 {event.imgName ? (
                   <Image
                     src={`/img/${event.imgName}`}
-                    width={504}
-                    height={278}
+                    preview={false}
+                    style={{ width: '100%', height: 'auto' }}
                   />
                 ) : (
                   ""

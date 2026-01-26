@@ -5,12 +5,166 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
+
   &-desc {
     @include content-width;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &-text {
+      flex-shrink: 0;
+      max-width: 100%;
+
+      @media screen and (max-width: 1280px) {
+        max-width: 480px;
+      }
+
+      @media screen and (max-width: 1024px) {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+
+    // Main carousel styles
+    .ant-carousel {
+      width: 650px;
+      flex-shrink: 0;
+
+      @media screen and (max-width: 1280px) and (min-width: 1025px) {
+        width: 480px;
+      }
+
+      @media screen and (max-width: 1024px) {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto 0;
+      }
+
+      @media screen and (max-width: 640px) {
+        width: 100%;
+        margin: 16px auto 0;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .ant-carousel .slick-dots-bottom {
+      bottom: -40px;
+
+      @media screen and (max-width: 640px) {
+        bottom: -24px;
+      }
+    }
   }
+
+  &-desc-title {
+    font-size: 50px;
+    line-height: 1.5;
+    padding-top: 60px;
+    margin-top: 0px;
+    margin-bottom: 32px;
+
+    @media screen and (max-width: 1280px) {
+      font-size: 42px;
+    }
+
+    @media screen and (max-width: 1024px) {
+      font-size: 42px;
+      padding-top: 40px;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 36px;
+      padding-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 640px) {
+      font-size: 28px;
+      padding-top: 20px;
+      margin-bottom: 16px;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 24px;
+    }
+  }
+
+  &-desc-subtitle {
+    width: 634px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 50px;
+
+    @media screen and (max-width: 1280px) {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    @media screen and (max-width: 640px) {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &-desc-buttons {
+    .ant-space {
+      @media screen and (max-width: 480px) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .ant-space-item {
+          width: 100%;
+
+          .ant-btn {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .ant-btn-lg {
+      @media screen and (max-width: 640px) {
+        height: 38px;
+        font-size: 14px;
+        padding: 4px 20px;
+      }
+    }
+  }
+
   &-github-buttons {
     margin-top: 42px;
+
+    @media screen and (max-width: 640px) {
+      margin-top: 24px;
+    }
+
+    @media screen and (max-width: 480px) {
+      margin-top: 20px;
+    }
   }
+
   .github-button {
     display: flex;
     align-items: center;
@@ -30,57 +184,23 @@
       padding-right: 12px;
       border: 1px solid rgba(112, 112, 112, 1);
     }
+
     &-right {
       color: #707070;
       font-size: 14px;
       padding-left: 12px;
+
+      @media screen and (max-width: 480px) {
+        font-size: 12px;
+        padding-left: 8px;
+      }
     }
   }
+
   .github-fork {
     color: #707070;
     .ant-divider-vertical {
       background-color: #d9d9d9;
-    }
-  }
-  &-desc {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    &-text {
-      flex-shrink: 0;
-    }
-    .ant-carousel {
-      width: 690px;
-
-      @media screen and (max-width: 1280px) {
-        display: none;
-      }
-    }
-    .ant-carousel .slick-dots-bottom {
-      bottom: -40px;
-    }
-  }
-  &-desc-title {
-    font-size: 50px;
-    line-height: 1.5;
-    padding-top: 60px;
-    margin-top: 0px;
-    margin-bottom: 32px;
-
-    @media screen and (max-width: 640px) {
-      font-size: 7vw;
-    }
-  }
-  &-desc-subtitle {
-    width: 634px;
-    font-size: 16px;
-    color: #333;
-    line-height: 1.5;
-    margin-bottom: 50px;
-
-    @media screen and (max-width: 640px) {
-      width: 90vw;
-      font-size: 3vw;
     }
   }
 
@@ -91,10 +211,20 @@
     padding-bottom: 200px;
     overflow: hidden;
 
+    @media screen and (max-width: 768px) {
+      padding-top: 60px;
+      padding-bottom: 150px;
+    }
+
+    @media screen and (max-width: 640px) {
+      padding-top: 40px;
+      padding-bottom: 120px;
+    }
+
     &-bg {
       transform: rotate(-2deg);
       opacity: 7%;
-      width: 100%;
+      width: 120%;
       height: 100%;
       background-image: linear-gradient(
         119.03deg,
@@ -104,15 +234,16 @@
       );
       position: absolute;
       top: 0px;
-      left: -20px;
+      left: -10%;
       z-index: 1;
-      min-width: 1200px;
     }
 
     &-content {
       position: relative;
       z-index: 2;
       margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
 
       @include content-width;
     }

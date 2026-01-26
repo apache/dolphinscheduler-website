@@ -1,70 +1,168 @@
 .home-community {
-    padding-top: 100px;
-    &-title {
-      font-weight: 700;
-      color: #031b3e;
-      font-size: 50px;
-      text-align: center;
-      padding-bottom: 60px;
-  
-      @media screen and (max-width: 640px) {
-        font-size: 7vw;
-      }
+  padding-top: 100px;
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 60px;
+  }
+
+  @media screen and (max-width: 640px) {
+    padding-top: 40px;
+  }
+
+  &-title {
+    font-weight: 700;
+    color: #031b3e;
+    font-size: 50px;
+    text-align: center;
+    padding-bottom: 60px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 36px;
+      padding-bottom: 40px;
     }
-    &-content {
-      display: flex;
-      justify-content: space-between;
+
+    @media screen and (max-width: 640px) {
+      font-size: 28px;
+      padding-bottom: 30px;
     }
-  
-    &-total {
+
+    @media screen and (max-width: 480px) {
+      font-size: 24px;
+    }
+  }
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+    }
+  }
+
+  &-info {
+    flex-shrink: 0;
+
+    @media screen and (max-width: 1024px) {
       display: flex;
+      flex-direction: column;
       align-items: center;
       text-align: center;
     }
-    &-item {
-      padding-right: 50px;
+  }
+
+  &-total {
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    @media screen and (max-width: 480px) {
+      flex-direction: column;
+      gap: 20px;
     }
-    &-amount {
-      font-weight: 700;
+  }
+
+  &-item {
+    padding-right: 50px;
+
+    @media screen and (max-width: 768px) {
+      padding-right: 30px;
+    }
+
+    @media screen and (max-width: 480px) {
+      padding-right: 0;
+    }
+  }
+
+  &-amount {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 60px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 48px;
+    }
+
+    @media screen and (max-width: 640px) {
+      font-size: 40px;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 36px;
+    }
+  }
+
+  &-text {
+    color: #000000;
+    font-size: 20px;
+    margin-top: 8px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+    }
+
+    @media screen and (max-width: 640px) {
+      font-size: 16px;
+    }
+  }
+
+  .ant-divider-vertical {
+    height: 80px;
+    border-color: #707070;
+    margin-right: 50px;
+
+    @media screen and (max-width: 768px) {
+      height: 60px;
+      margin-right: 30px;
+    }
+
+    @media screen and (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  &-icons {
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    @media screen and (max-width: 640px) {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .anticon {
+    font-size: 30px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 24px;
+    }
+
+    &:hover {
       color: var(--primary-color);
-      font-size: 60px;
-  
-      @media screen and (max-width: 640px) {
-        font-size: 10vw;
-      }
     }
-    &-text {
-      color: #000000;
-      font-size: 20px;
-      margin-top: 8px;
-  
-      @media screen and (max-width: 640px) {
-        font-size: 16px;
-      }
+  }
+
+  .ant-image {
+    max-width: 50%;
+
+    @media screen and (max-width: 1024px) {
+      max-width: 100%;
+      width: 100%;
     }
-    .ant-divider-vertical {
-      height: 80px;
-      border-color: #707070;
-      margin-right: 50px;
+
+    img {
+      width: 100%;
+      height: auto;
     }
-    &-icons {
-      margin-top: 30px;
-      margin-bottom: 50px;
-    }
-    .anticon {
-      font-size: 30px;
-      &:hover {
-        color: var(--primary-color);
-      }
-    }
-    .ant-image {
-      @media screen and (max-width: 640px) {
-        display: none;
-      }
-    }
+  }
 }
+
 .home-community-icons .home-community-buttons:hover,
 .home-community-icons .home-community-buttons:active,
 .home-community-icons .home-community-buttons:focus {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
