@@ -1,5 +1,6 @@
 .connect {
-  height: 380px;
+  min-height: 380px;
+  height: auto;
   background-color: #0097e0;
   text-align: center;
   width: 100%;
@@ -7,29 +8,62 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 768px) {
+    min-height: 320px;
+    padding: 50px 20px;
+  }
+
+  @media screen and (max-width: 640px) {
+    min-height: 280px;
+    padding: 40px 16px;
+  }
 
   &-title {
     font-weight: 700;
     color: #ffffff;
     font-size: 50px;
-    line-height: 50px;
+    line-height: 1.2;
     padding: 0px 40px 40px;
+    max-width: 900px;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 42px;
+      padding: 0px 20px 30px;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 32px;
+      padding: 0px 16px 24px;
+    }
 
     @media screen and (max-width: 640px) {
-      font-size: 7vw;
+      font-size: 26px;
+      padding: 0px 10px 20px;
     }
   }
+
   &-desc {
     color: #ffffff;
     font-size: 18px;
-    line-height: 18px;
-    padding-top: 20px;
+    line-height: 1.6;
+    padding: 20px 20px 0;
+    max-width: 800px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+      padding: 16px 16px 0;
+    }
 
     @media screen and (max-width: 640px) {
       font-size: 14px;
-      line-height: 2;
+      padding: 12px 10px 0;
+      line-height: 1.8;
     }
   }
+
   .ant-btn {
     width: 219px;
     height: 60px;
@@ -42,9 +76,29 @@
     font-size: 18px;
     margin-top: 60px;
     vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    
+
+    @media screen and (max-width: 768px) {
+      width: 200px;
+      height: 54px;
+      font-size: 16px;
+      margin-top: 40px;
+    }
 
     @media screen and (max-width: 640px) {
-      margin-top: 20px;
+      width: 180px;
+      height: 48px;
+      font-size: 15px;
+      margin-top: 30px;
+    }
+
+    &:hover {
+      background-color: #f0f0f0;
+      color: #0097e0;
     }
   }
 }

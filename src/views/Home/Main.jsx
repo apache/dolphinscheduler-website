@@ -32,8 +32,8 @@ export const Main = ({ star, fork }) => {
           <div>With Low-Code</div>
         </h1>
         <div className="home-desc-subtitle">{t("desc")}</div>
-        <div>
-          <Space>
+        <div className="home-desc-buttons">
+          <Space wrap size={[12, 12]}>
             <Button
               type="primary"
               shape="round"
