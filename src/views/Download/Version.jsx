@@ -41,7 +41,7 @@ export const Version = () => {
         </div>
         <div className="download-version-main">
           <div className="download-version-main-title">
-            {versions[0]} {t("release_tips")} 3.1.9
+            {versions[0]} {t("release_tips")} 3.3.*/3.4.*
           </div>
           <div className="download-version-log">
             <Button
