@@ -1,4 +1,4 @@
-# Apache DolphinScheduler Official Website
+# Apache DolphinScheduler An Amazing Website
 
 This project keeps all sources used for building up DolphinScheduler's official website which is served at https://dolphinscheduler.apache.org/.
 
