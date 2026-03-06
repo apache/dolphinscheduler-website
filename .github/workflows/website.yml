@@ -45,8 +45,8 @@ jobs:
         # rsync all files in directory docs/build/html/versions expect .doctrees have sensitive data, so we need to delete it
         run: |
           python -m pip install --upgrade ${{ env.DEPENDENCES }}
-          python -m tox -vv -e doc-build-multi
-          rsync -av --progress --exclude .doctrees docs/build/html/versions/* ${GITHUB_WORKSPACE}/build/python
+          python -m tox -vv -e doc-build
+          rsync -av --progress --exclude .doctrees docs/build/html/* ${GITHUB_WORKSPACE}/build/python
 
       - name: Deploy
         if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
