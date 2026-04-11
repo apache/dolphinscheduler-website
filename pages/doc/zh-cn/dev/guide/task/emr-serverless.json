@@ -1,0 +1,194 @@
+{
+  "__html": "<h1 id=\"amazon-emr-serverless\">Amazon EMR Serverless</h1>\n<h2 id=\"综述\">综述</h2>\n<p>Amazon EMR Serverless 任务类型，用于向 <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/emr-serverless.html\">Amazon EMR Serverless</a> 应用程序提交并监控作业运行。\n与传统的 EMR on EC2 不同，EMR Serverless 无需管理集群基础设施，按需自动扩缩容计算资源，适用于 Spark 和 Hive 工作负载。</p>\n<p>后台使用 <a href=\"https://aws.amazon.com/cn/sdk-for-java/\">aws-java-sdk</a> 将 JSON 参数转换为 <a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/emrserverless/model/StartJobRunRequest.html\">StartJobRunRequest</a> 对象，\n通过 <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_StartJobRun.html\">StartJobRun API</a> 提交到 AWS，并通过 <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_GetJobRun.html\">GetJobRun API</a> 轮询作业状态直到完成。</p>\n<h2 id=\"创建任务\">创建任务</h2>\n<ul>\n<li>点击 <code>项目管理 -&gt; 项目名称 -&gt; 工作流定义</code>，点击 <code>创建工作流</code> 按钮进入 DAG 编辑页面。</li>\n<li>从工具栏中拖拽 <code>AmazonEMRServerless</code> 任务到画布中完成创建。</li>\n</ul>\n<h2 id=\"任务参数\">任务参数</h2>\n<ul>\n<li>默认参数说明请参考<a href=\"/zh-cn/docs/dev/guide/task/appendix\">DolphinScheduler任务参数附录</a><code>默认任务参数</code>一栏。</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>任务参数</strong></th>\n<th><strong>描述</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Application Id</td>\n<td>EMR Serverless 应用程序 ID（格式如 <code>00fkht2eodujab09</code>），可在 <a href=\"https://console.aws.amazon.com/emr/home#/serverless\">EMR Serverless 控制台</a> 获取</td>\n</tr>\n<tr>\n<td>Execution Role Arn</td>\n<td>作业执行 IAM 角色的 ARN（格式如 <code>arn:aws:iam::123456789012:role/EMRServerlessRole</code>），该角色需要有访问 S3、Glue 等服务的权限</td>\n</tr>\n<tr>\n<td>Job Name</td>\n<td>作业名称（可选），用于在 EMR Serverless 控制台中标识作业</td>\n</tr>\n<tr>\n<td>StartJobRunRequest JSON</td>\n<td><a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/emrserverless/model/StartJobRunRequest.html\">StartJobRunRequest</a> 中 <code>JobDriver</code> 和 <code>ConfigurationOverrides</code> 部分对应的 JSON，详细定义见下方示例。<strong>注意</strong>：<code>ApplicationId</code> 和 <code>ExecutionRoleArn</code> 无需在 JSON 中重复填写，系统会自动从上方参数注入</td>\n</tr>\n</tbody>\n</table>\n<p><img src=\"/img/tasks/demo/emr_serverless_create.png\" alt=\"RUN_JOB_FLOW\"></p>\n<h2 id=\"任务样例\">任务样例</h2>\n<h3 id=\"提交-spark-作业\">提交 Spark 作业</h3>\n<p>该样例展示了如何创建 <code>EMR_SERVERLESS</code> 任务节点来提交一个 Spark 作业到 EMR Serverless 应用程序。</p>\n<p>StartJobRunRequest JSON 参数样例（Spark）：</p>\n<pre><code class=\"language-json\"><span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;JobDriver&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;SparkSubmit&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;EntryPoint&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;s3://my-bucket/scripts/my-spark-job.jar&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;EntryPointArguments&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n        <span class=\"hljs-string\">&quot;s3://my-bucket/input/&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-string\">&quot;s3://my-bucket/output/&quot;</span>\n      <span class=\"hljs-punctuation\">]</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;SparkSubmitParameters&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;--class com.example.MySparkApp --conf spark.executor.cores=4 --conf spark.executor.memory=8g --conf spark.executor.instances=10&quot;</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;ConfigurationOverrides&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;MonitoringConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;S3MonitoringConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;LogUri&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;s3://my-bucket/emr-serverless-logs/&quot;</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">}</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre>\n<h3 id=\"提交-hive-作业\">提交 Hive 作业</h3>\n<p>该样例展示了如何创建 <code>EMR_SERVERLESS</code> 任务节点来提交一个 Hive 查询作业。</p>\n<p>StartJobRunRequest JSON 参数样例（Hive）：</p>\n<pre><code class=\"language-json\"><span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;JobDriver&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;HiveSQL&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;Query&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;s3://my-bucket/scripts/my-hive-query.sql&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;Parameters&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;--hiveconf hive.exec.dynamic.partition=true --hiveconf hive.exec.dynamic.partition.mode=nonstrict&quot;</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;ConfigurationOverrides&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;MonitoringConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;S3MonitoringConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;LogUri&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;s3://my-bucket/emr-serverless-logs/&quot;</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n    <span class=\"hljs-attr\">&quot;ApplicationConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n      <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;Classification&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;hive-site&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;Properties&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n          <span class=\"hljs-attr\">&quot;hive.metastore.client.factory.class&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory&quot;</span>\n        <span class=\"hljs-punctuation\">}</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">]</span>\n  <span class=\"hljs-punctuation\">}</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre>\n<h2 id=\"aws-认证配置\">AWS 认证配置</h2>\n<p>EMR Serverless 任务通过 DolphinScheduler 的 <code>aws.yaml</code> 配置文件读取 AWS 认证信息，配置路径为 <code>conf/aws.yaml</code> 中的 <code>aws.emr</code> 段。</p>\n<h3 id=\"使用-iam-role（推荐）\">使用 IAM Role（推荐）</h3>\n<p>如果 DolphinScheduler Worker 节点运行在 EC2 实例上并已绑定 IAM Role，配置如下：</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">aws:</span>\n  <span class=\"hljs-attr\">emr:</span>\n    <span class=\"hljs-attr\">credentials.provider.type:</span> <span class=\"hljs-string\">InstanceProfileCredentialsProvider</span>\n    <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">us-east-1</span>\n</code></pre>\n<h3 id=\"使用-access-key\">使用 Access Key</h3>\n<p>如果需要使用 AK/SK 方式认证：</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">aws:</span>\n  <span class=\"hljs-attr\">emr:</span>\n    <span class=\"hljs-attr\">credentials.provider.type:</span> <span class=\"hljs-string\">AWSStaticCredentialsProvider</span>\n    <span class=\"hljs-attr\">access.key.id:</span> <span class=\"hljs-string\">your-access-key-id</span>\n    <span class=\"hljs-attr\">access.key.secret:</span> <span class=\"hljs-string\">your-secret-access-key</span>\n    <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">us-east-1</span>\n</code></pre>\n<blockquote>\n<p><strong>注意</strong>：<code>aws.emr</code> 段的配置同时被 EMR on EC2 和 EMR Serverless 任务类型共享。</p>\n</blockquote>\n<h2 id=\"作业状态流转\">作业状态流转</h2>\n<p>EMR Serverless 作业提交后，DolphinScheduler 会每 10 秒轮询一次作业状态：</p>\n<pre><code>SUBMITTED → PENDING → SCHEDULED → RUNNING → SUCCESS\n                                           → FAILED\n                                           → CANCELLED\n</code></pre>\n<ul>\n<li>作业进入 <code>SUCCESS</code> 状态时，任务标记为成功</li>\n<li>作业进入 <code>FAILED</code> 或 <code>CANCELLED</code> 状态时，任务标记为失败</li>\n<li>如果 DolphinScheduler 任务被终止，会自动调用 <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_CancelJobRun.html\">CancelJobRun API</a> 取消正在运行的作业</li>\n</ul>\n<h2 id=\"注意事项\">注意事项</h2>\n<ul>\n<li><strong>Application Id</strong> 对应的 EMR Serverless 应用程序需要预先在 AWS 控制台或通过 API 创建，并确保处于 <code>STARTED</code> 或 <code>CREATED</code> 状态</li>\n<li><strong>Execution Role</strong> 需要有以下最小权限：<code>emr-serverless:StartJobRun</code>、<code>emr-serverless:GetJobRun</code>、<code>emr-serverless:CancelJobRun</code>，以及作业所需的 S3、Glue 等数据访问权限</li>\n<li><code>StartJobRunRequest JSON</code> 中无需填写 <code>ApplicationId</code> 和 <code>ExecutionRoleArn</code> 字段，系统会自动从表单参数注入</li>\n<li>EMR Serverless 任务支持故障转移（Failover）：当 Worker 节点发生故障时，新的 Worker 可以通过 <code>appIds</code>（即 <code>jobRunId</code>）恢复对正在运行作业的跟踪</li>\n</ul>\n",
+  "location": [
+    "功能介绍",
+    "任务类型",
+    "Amazon EMR Serverless"
+  ],
+  "structure": [
+    {
+      "title": "综述",
+      "children": [
+        {
+          "title": "提交 Spark 作业",
+          "children": [],
+          "anchor": "提交-spark-作业"
+        },
+        {
+          "title": "提交 Hive 作业",
+          "children": [],
+          "anchor": "提交-hive-作业"
+        },
+        {
+          "title": "使用 IAM Role（推荐）",
+          "children": [],
+          "anchor": "使用-iam-role（推荐）"
+        },
+        {
+          "title": "使用 Access Key",
+          "children": [],
+          "anchor": "使用-access-key"
+        }
+      ],
+      "anchor": "综述"
+    },
+    {
+      "title": "创建任务",
+      "children": [
+        {
+          "title": "提交 Spark 作业",
+          "children": [],
+          "anchor": "提交-spark-作业"
+        },
+        {
+          "title": "提交 Hive 作业",
+          "children": [],
+          "anchor": "提交-hive-作业"
+        },
+        {
+          "title": "使用 IAM Role（推荐）",
+          "children": [],
+          "anchor": "使用-iam-role（推荐）"
+        },
+        {
+          "title": "使用 Access Key",
+          "children": [],
+          "anchor": "使用-access-key"
+        }
+      ],
+      "anchor": "创建任务"
+    },
+    {
+      "title": "任务参数",
+      "children": [
+        {
+          "title": "提交 Spark 作业",
+          "children": [],
+          "anchor": "提交-spark-作业"
+        },
+        {
+          "title": "提交 Hive 作业",
+          "children": [],
+          "anchor": "提交-hive-作业"
+        },
+        {
+          "title": "使用 IAM Role（推荐）",
+          "children": [],
+          "anchor": "使用-iam-role（推荐）"
+        },
+        {
+          "title": "使用 Access Key",
+          "children": [],
+          "anchor": "使用-access-key"
+        }
+      ],
+      "anchor": "任务参数"
+    },
+    {
+      "title": "任务样例",
+      "children": [
+        {
+          "title": "提交 Spark 作业",
+          "children": [],
+          "anchor": "提交-spark-作业"
+        },
+        {
+          "title": "提交 Hive 作业",
+          "children": [],
+          "anchor": "提交-hive-作业"
+        },
+        {
+          "title": "使用 IAM Role（推荐）",
+          "children": [],
+          "anchor": "使用-iam-role（推荐）"
+        },
+        {
+          "title": "使用 Access Key",
+          "children": [],
+          "anchor": "使用-access-key"
+        }
+      ],
+      "anchor": "任务样例"
+    },
+    {
+      "title": "AWS 认证配置",
+      "children": [
+        {
+          "title": "提交 Spark 作业",
+          "children": [],
+          "anchor": "提交-spark-作业"
+        },
+        {
+          "title": "提交 Hive 作业",
+          "children": [],
+          "anchor": "提交-hive-作业"
+        },
+        {
+          "title": "使用 IAM Role（推荐）",
+          "children": [],
+          "anchor": "使用-iam-role（推荐）"
+        },
+        {
+          "title": "使用 Access Key",
+          "children": [],
+          "anchor": "使用-access-key"
+        }
+      ],
+      "anchor": "aws-认证配置"
+    },
+    {
+      "title": "作业状态流转",
+      "children": [
+        {
+          "title": "提交 Spark 作业",
+          "children": [],
+          "anchor": "提交-spark-作业"
+        },
+        {
+          "title": "提交 Hive 作业",
+          "children": [],
+          "anchor": "提交-hive-作业"
+        },
+        {
+          "title": "使用 IAM Role（推荐）",
+          "children": [],
+          "anchor": "使用-iam-role（推荐）"
+        },
+        {
+          "title": "使用 Access Key",
+          "children": [],
+          "anchor": "使用-access-key"
+        }
+      ],
+      "anchor": "作业状态流转"
+    },
+    {
+      "title": "注意事项",
+      "children": [
+        {
+          "title": "提交 Spark 作业",
+          "children": [],
+          "anchor": "提交-spark-作业"
+        },
+        {
+          "title": "提交 Hive 作业",
+          "children": [],
+          "anchor": "提交-hive-作业"
+        },
+        {
+          "title": "使用 IAM Role（推荐）",
+          "children": [],
+          "anchor": "使用-iam-role（推荐）"
+        },
+        {
+          "title": "使用 Access Key",
+          "children": [],
+          "anchor": "使用-access-key"
+        }
+      ],
+      "anchor": "注意事项"
+    }
+  ],
+  "title": "Amazon EMR Serverless",
+  "link": "/guide/task/emr-serverless"
+}
