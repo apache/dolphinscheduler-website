@@ -1,5 +1,5 @@
 {
-  "__html": "<h1 id=\"commit-message-notice\">Commit Message Notice</h1>\n<h3 id=\"preface\">Preface</h3>\n<p>A good commit message can help other developers (or future developers) quickly understand the context of related changes, and can also help project managers determine whether the commit is suitable for inclusion in the release. But when we checked the commit logs of many open source projects, we found an interesting problem. Some developers have very good code quality, but the commit message record is rather confusing. When other contributors or learners are viewing the code, it can’t be intuitively understood through commit log.\nThe purpose of the changes before and after the submission, as Peter Hutterer said：Re-establishing the context of a piece of code is wasteful. We can’t avoid it completely, so our efforts should go to reducing it as much as possible. Commit messages can do exactly that and as a result, a commit message shows whether a developer is a good collaborator. Therefore, DolphinScheduler developed the protocol in conjunction with other communities and official Apache documents.</p>\n<h3 id=\"commit-message-rip\">Commit Message RIP</h3>\n<h4 id=\"1：clearly-modify-the-content\">1：Clearly modify the content</h4>\n<p>A commit message should clearly state what issues (bug fixes, function enhancements, etc.) the submission solves, so that other developers can better track the issues and clarify the optimization during the version iteration process.</p>\n<h4 id=\"2：associate-the-corresponding-pull-request-or-issue\">2：Associate the corresponding Pull Request or Issue</h4>\n<p>When our changes are large, the commit message should best be associated with the relevant Issue or Pull Request on GitHub, so that our developers can quickly understand the context of the code submission through the associated information when reviewing the code. If the current commit is for an issue, then the issue can be closed in the Footer section.</p>\n<h4 id=\"3：unified-format\">3：Unified format</h4>\n<p>The formatted CommitMessage can help provide more historical information for quick browsing, and it can also generate a Change Log directly from commit.</p>\n<p>Commit message should include three parts: Header, Body and Footer. Among them, Header is required, Body and Footer can be omitted.</p>\n<h5 id=\"header\">Header</h5>\n<p>The header part has only one line, including three fields: type (required), scope (optional), and subject (required).</p>\n<p>[DS-ISSUE number][type] subject</p>\n<p>(1) Type is used to indicate the category of commit, and only the following 7 types are allowed.</p>\n<ul>\n<li>feat：features</li>\n<li>fix：Bug fixes</li>\n<li>docs：Documentation</li>\n<li>style： Format (does not affect changes in code operation)</li>\n<li>refactor：Refactoring (It is not a new feature or a code change to fix a bug)</li>\n<li>test：Add test</li>\n<li>chore：Changes in the build process or auxiliary tools</li>\n</ul>\n<p>If the type is feat and fix, the commit will definitely appear in the change log. Other types (docs, chore, style, refactor, test) are not recommended.</p>\n<p>(2) Scope</p>\n<p>Scope is used to indicate the scope of commit impact, such as server, remote, etc. If there is no suitable scope, you can use *.</p>\n<p>(3) subject</p>\n<p>Subject is a short description of the purpose of the commit, no more than 50 characters.</p>\n<h5 id=\"body\">Body</h5>\n<p>The body part is a detailed description of this commit, which can be divided into multiple lines, and the line break will wrap with 72 characters to avoid automatic line wrapping affecting the appearance.</p>\n<p>Note the following points in the Body section:</p>\n<ul>\n<li>\n<p>Use the verb-object structure, note the use of present tense. For example, use change instead of changed or changes</p>\n</li>\n<li>\n<p>Don't capitalize the first letter</p>\n</li>\n<li>\n<p>The end of the sentence does not need a ‘.’ (period)</p>\n</li>\n</ul>\n<h5 id=\"footer\">Footer</h5>\n<p>Footer only works in two situations</p>\n<p>(1) Incompatible changes</p>\n<p>If the current code is not compatible with the previous version, the Footer part starts with BREAKING CHANGE, followed by a description of the change, the reason for the change, and the migration method.</p>\n<p>(2) Close Issue</p>\n<p>If the current commit is for a certain issue, you can close the issue in the Footer section, or close multiple issues at once.</p>\n<h5 id=\"for-example\">For Example</h5>\n<pre><code>[DS-001][docs-en] add commit message\n\n- commit message RIP\n- build some conventions\n- help the commit messages become clean and tidy\n- help developers and release managers better track issues\n  and clarify the optimization in the version iteration\n\nThis closes #001\n</code></pre>\n<h3 id=\"reference-documents\">Reference documents</h3>\n<p><a href=\"https://cwiki.apache.org/confluence/display/GEODE/Commit+Message+Format\">Commit message format</a></p>\n<p><a href=\"http://who-t.blogspot.com/2009/12/on-commit-messages.html\">On commit messages-Peter Hutterer</a></p>\n<p><a href=\"https://mp.weixin.qq.com/s/LKM4IXAY-7dKhTzGu5-oug\">RocketMQ Community Operation Conventions</a></p>\n",
+  "__html": "<h1 id=\"commit-message-notice\">Commit Message Notice</h1>\n<p>A good commit message states <strong>what changed and why</strong> at a glance. The full story belongs in the linked Issue / Pull Request — keep the commit message itself concise.</p>\n<h2 id=\"format\">Format</h2>\n<pre><code>[Type-ISSUE_ID][Scope] Subject\n\n(optional body — bullet list of the main changes)\n\n(optional footer — BREAKING CHANGE / Closes #xxx)\n</code></pre>\n<p>Header is required; body and footer are optional. Aim for a Subject under 72 characters so it does not get truncated on GitHub.</p>\n<h3 id=\"type-(required)\">Type (required)</h3>\n<table>\n<thead>\n<tr>\n<th>Type</th>\n<th>When to use</th>\n<th>Issue ID required?</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>Feature</code></td>\n<td>A new user-visible feature</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>Improvement</code></td>\n<td>Enhancement to an existing feature (refactor, perf, UX polish)</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>Fix</code></td>\n<td>Bug fix</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>Doc</code></td>\n<td>Documentation only</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>DSIP</code></td>\n<td>A change implementing a <a href=\"https://github.com/apache/dolphinscheduler/issues?q=label%3ADSIP\">DSIP</a> proposal</td>\n<td>Yes (the DSIP issue)</td>\n</tr>\n<tr>\n<td><code>Chore</code></td>\n<td>Build, CI, test scaffolding, dependency bumps, trivial cleanup</td>\n<td>No</td>\n</tr>\n</tbody>\n</table>\n<p>Every type <strong>except <code>Chore</code></strong> must carry an Issue ID. If no Issue exists for the change, file one first or reclassify it as <code>Chore</code>.</p>\n<h3 id=\"scope-(optional)\">Scope (optional)</h3>\n<p>The module the change touches: <code>Master</code>, <code>Worker</code>, <code>API</code>, <code>UI</code>, <code>TaskPlugin</code>, <code>Dao</code>, etc. Match a real module name. Omit <code>[Scope]</code> when the change is genuinely cross-cutting (most <code>Chore</code> commits).</p>\n<h3 id=\"subject-(required)\">Subject (required)</h3>\n<p>A short imperative sentence describing the change.</p>\n<ul>\n<li>Use the imperative mood: <em>Add</em>, <em>Fix</em>, <em>Remove</em> — not <em>Added</em> / <em>Adds</em>.</li>\n<li>State the <strong>purpose</strong>, not the implementation detail. The diff already shows the <em>how</em>.</li>\n<li>No trailing period.</li>\n</ul>\n<h3 id=\"body-(optional,-recommended-for-non-trivial-changes)\">Body (optional, recommended for non-trivial changes)</h3>\n<p>When the change is not self-evident from the Subject, add a bullet list of the main changes. Keep it tight — one line per change point. Lengthy rationale, design notes, or testing plans go in the <strong>Pull Request description</strong> (see <a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md\">PULL_REQUEST_TEMPLATE.md</a>), not in the commit message.</p>\n<h3 id=\"footer-(optional)\">Footer (optional)</h3>\n<ul>\n<li><code>BREAKING CHANGE: &lt;description&gt;</code> — for incompatible changes. Required if the change breaks RPC, DB schema, or public API compatibility. Also add an entry to <code>docs/docs/en/guide/upgrade/incompatible.md</code>.</li>\n<li><code>Closes #1234</code> — to auto-close the linked issue on merge.</li>\n</ul>\n<h2 id=\"examples\">Examples</h2>\n<p>Good:</p>\n<pre><code>[Fix-18201][TaskPlugin] Fix RemoteShell task NullPointerException on empty stdout\n</code></pre>\n<pre><code>[Improvement-18224][API] Migrate EnvironmentService to typed return values\n\n- Replace Map&lt;String, Object&gt; returns with dedicated DTOs\n- Update controller and unit tests accordingly\n</code></pre>\n<pre><code>[Chore][API] Remove deprecated ProjectService#checkProjectAndAuth\n</code></pre>\n<pre><code>[Feature-17900][Master] Support task-group priority override at runtime\n\n- Add priority field to TaskGroupQueue\n- Honor override when dispatching ready tasks\n\nCloses #17900\n</code></pre>\n<p>Avoid:</p>\n<ul>\n<li><code>fix bug</code> — no type prefix, no scope, no information.</li>\n<li><code>[fix] update master</code> — wrong casing, missing issue ID, vague subject.</li>\n<li><code>[Improvement][Master] refactor scheduler to use new state machine and also fix a NPE in worker dispatch and adjust some logs</code> — multiple unrelated changes; split into separate commits.</li>\n</ul>\n<h2 id=\"references\">References</h2>\n<ul>\n<li><a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md\">PULL_REQUEST_TEMPLATE.md</a></li>\n<li><a href=\"/en-us/docs/dev/contribute/join/pull-request\">Pull Request Notice</a></li>\n<li><a href=\"https://cwiki.apache.org/confluence/display/GEODE/Commit+Message+Format\">Apache Geode commit message format</a></li>\n<li><a href=\"http://who-t.blogspot.com/2009/12/on-commit-messages.html\">On commit messages — Peter Hutterer</a></li>\n</ul>\n",
   "location": [
     "Contribution",
     "Join",
@@ -7,256 +7,97 @@
   ],
   "structure": [
     {
-      "title": "Preface",
+      "title": "Format",
       "children": [
         {
-          "title": "1：Clearly modify the content",
-          "children": [
-            {
-              "title": "Header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "For Example",
-              "children": [],
-              "anchor": "for-example"
-            }
-          ],
-          "anchor": "1：clearly-modify-the-content"
+          "title": "Type (required)",
+          "children": [],
+          "anchor": "type-(required)"
         },
         {
-          "title": "2：Associate the corresponding Pull Request or Issue",
-          "children": [
-            {
-              "title": "Header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "For Example",
-              "children": [],
-              "anchor": "for-example"
-            }
-          ],
-          "anchor": "2：associate-the-corresponding-pull-request-or-issue"
+          "title": "Scope (optional)",
+          "children": [],
+          "anchor": "scope-(optional)"
         },
         {
-          "title": "3：Unified format",
-          "children": [
-            {
-              "title": "Header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "For Example",
-              "children": [],
-              "anchor": "for-example"
-            }
-          ],
-          "anchor": "3：unified-format"
+          "title": "Subject (required)",
+          "children": [],
+          "anchor": "subject-(required)"
+        },
+        {
+          "title": "Body (optional, recommended for non-trivial changes)",
+          "children": [],
+          "anchor": "body-(optional,-recommended-for-non-trivial-changes)"
+        },
+        {
+          "title": "Footer (optional)",
+          "children": [],
+          "anchor": "footer-(optional)"
         }
       ],
-      "anchor": "preface"
+      "anchor": "format"
     },
     {
-      "title": "Commit Message RIP",
+      "title": "Examples",
       "children": [
         {
-          "title": "1：Clearly modify the content",
-          "children": [
-            {
-              "title": "Header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "For Example",
-              "children": [],
-              "anchor": "for-example"
-            }
-          ],
-          "anchor": "1：clearly-modify-the-content"
+          "title": "Type (required)",
+          "children": [],
+          "anchor": "type-(required)"
         },
         {
-          "title": "2：Associate the corresponding Pull Request or Issue",
-          "children": [
-            {
-              "title": "Header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "For Example",
-              "children": [],
-              "anchor": "for-example"
-            }
-          ],
-          "anchor": "2：associate-the-corresponding-pull-request-or-issue"
+          "title": "Scope (optional)",
+          "children": [],
+          "anchor": "scope-(optional)"
         },
         {
-          "title": "3：Unified format",
-          "children": [
-            {
-              "title": "Header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "For Example",
-              "children": [],
-              "anchor": "for-example"
-            }
-          ],
-          "anchor": "3：unified-format"
+          "title": "Subject (required)",
+          "children": [],
+          "anchor": "subject-(required)"
+        },
+        {
+          "title": "Body (optional, recommended for non-trivial changes)",
+          "children": [],
+          "anchor": "body-(optional,-recommended-for-non-trivial-changes)"
+        },
+        {
+          "title": "Footer (optional)",
+          "children": [],
+          "anchor": "footer-(optional)"
         }
       ],
-      "anchor": "commit-message-rip"
+      "anchor": "examples"
     },
     {
-      "title": "Reference documents",
+      "title": "References",
       "children": [
         {
-          "title": "1：Clearly modify the content",
-          "children": [
-            {
-              "title": "Header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "For Example",
-              "children": [],
-              "anchor": "for-example"
-            }
-          ],
-          "anchor": "1：clearly-modify-the-content"
+          "title": "Type (required)",
+          "children": [],
+          "anchor": "type-(required)"
         },
         {
-          "title": "2：Associate the corresponding Pull Request or Issue",
-          "children": [
-            {
-              "title": "Header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "For Example",
-              "children": [],
-              "anchor": "for-example"
-            }
-          ],
-          "anchor": "2：associate-the-corresponding-pull-request-or-issue"
+          "title": "Scope (optional)",
+          "children": [],
+          "anchor": "scope-(optional)"
         },
         {
-          "title": "3：Unified format",
-          "children": [
-            {
-              "title": "Header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "For Example",
-              "children": [],
-              "anchor": "for-example"
-            }
-          ],
-          "anchor": "3：unified-format"
+          "title": "Subject (required)",
+          "children": [],
+          "anchor": "subject-(required)"
+        },
+        {
+          "title": "Body (optional, recommended for non-trivial changes)",
+          "children": [],
+          "anchor": "body-(optional,-recommended-for-non-trivial-changes)"
+        },
+        {
+          "title": "Footer (optional)",
+          "children": [],
+          "anchor": "footer-(optional)"
         }
       ],
-      "anchor": "reference-documents"
+      "anchor": "references"
     }
   ],
   "title": "Commit Message Notice",

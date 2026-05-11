@@ -1,5 +1,5 @@
 {
-  "__html": "<h1 id=\"commit-message-须知\">Commit Message 须知</h1>\n<h3 id=\"前言\">前言</h3>\n<p>一个好的 commit message 是能够帮助其他的开发者（或者未来的开发者）快速理解相关变更的上下文，同时也可以帮助项目管理人员确定该提交是否适合包含在发行版中。但当我们在查看了很多开源项目的 commit log 后，发现一个有趣的问题，一部分开发者，代码质量很不错，但是 commit message 记录却比较混乱，当其他贡献者或者学习者在查看代码的时候，并不能通过 commit log 很直观的了解\n该提交前后变更的目的，正如 Peter Hutterer 所言：Re-establishing the context of a piece of code is wasteful. We can’t avoid it completely, so our efforts should go to reducing it as much as possible. Commit messages can do exactly that and as a result, a commit message shows whether a developer is a good collaborator. 因此，DolphinScheduler 结合其他社区以及 Apache 官方文档制定了该规约。</p>\n<h3 id=\"commit-message-rip\">Commit Message RIP</h3>\n<h4 id=\"1：明确修改内容\">1：明确修改内容</h4>\n<p>commit message 应该明确说明该提交解决了哪些问题（bug 修复、功能增强等），以便于用户开发者更好的跟踪问题，明确版本迭代过程中的优化情况。</p>\n<h4 id=\"2：关联相应的pull-request-或者issue\">2：关联相应的Pull Request 或者Issue</h4>\n<p>当我们的改动较大的时候，commit message 最好能够关联 GitHub 上的相关 Issue 或者 Pull Request，这样，我们的开发者在查阅代码的时候能够通过关联信息较为迅速的了解改代码提交的上下文情景，如果当前 commit 针对某个 issue，那么可以在 Footer 部分关闭这个 issue。</p>\n<h4 id=\"3：统一的格式\">3：统一的格式</h4>\n<p>格式化后的 CommitMessage 能够帮助我们提供更多的历史信息，方便快速浏览，同时也可以直接从 commit 生成 Change Log。</p>\n<p>Commit message 应该包括三个部分：Header，Body 和 Footer。其中，Header 是必需的，Body 和 Footer 可以省略。</p>\n<h5 id=\"header\">header</h5>\n<p>Header 部分只有一行，包括三个字段：type（必需）、scope（可选）和 subject（必需）。</p>\n<p>[DS-ISSUE编号][type] subject</p>\n<p>(1) type 用于说明 commit 的类别，只允许使用下面7个标识。</p>\n<ul>\n<li>feat：新功能（feature）</li>\n<li>fix：修补bug</li>\n<li>docs：文档（documentation）</li>\n<li>style： 格式（不影响代码运行的变动）</li>\n<li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li>\n<li>test：增加测试</li>\n<li>chore：构建过程或辅助工具的变动</li>\n</ul>\n<p>如果 type 为 feat 和 fix，则该 commit 将肯定出现在 Change log 之中。其他情况（docs、chore、style、refactor、test）建议不放入。</p>\n<p>(2）scope</p>\n<p>scope 用于说明 commit 影响的范围，比如 server、remote 等，如果没有更合适的范围，你可以用 *。</p>\n<p>(3) subject</p>\n<p>subject 是 commit 目的的简短描述，不超过50个字符。</p>\n<h5 id=\"body\">Body</h5>\n<p>Body 部分是对本次 commit 的详细描述，可以分成多行，换行符将以72个字符换行，避免自动换行影响美观。</p>\n<p>Body 部分需要注意以下几点：</p>\n<ul>\n<li>\n<p>使用动宾结构，注意使用现在时，比如使用 change 而非 changed 或 changes</p>\n</li>\n<li>\n<p>首字母不要大写</p>\n</li>\n<li>\n<p>语句最后不需要 ‘.’ (句号) 结尾</p>\n</li>\n</ul>\n<h5 id=\"footer\">Footer</h5>\n<p>Footer只适用于两种情况</p>\n<p>(1) 不兼容变动</p>\n<p>如果当前代码与上一个版本不兼容，则 Footer 部分以 BREAKING CHANGE 开头，后面是对变动的描述、以及变动理由和迁移方法。</p>\n<p>(2) 关闭 Issue</p>\n<p>如果当前 commit 针对某个issue，那么可以在 Footer 部分关闭这个 issue,也可以一次关闭多个 issue 。</p>\n<h5 id=\"举个例子\">举个例子</h5>\n<p>[DS-001][docs-zh] add commit message</p>\n<ul>\n<li>commit message RIP</li>\n<li>build some conventions</li>\n<li>help the commit messages become clean and tidy</li>\n<li>help developers and release managers better track issues\nand clarify the optimization in the version iteration</li>\n</ul>\n<p>This closes #001</p>\n<h3 id=\"参考文档\">参考文档</h3>\n<p><a href=\"https://cwiki.apache.org/confluence/display/GEODE/Commit+Message+Format\">提交消息格式</a></p>\n<p><a href=\"http://who-t.blogspot.com/2009/12/on-commit-messages.html\">On commit messages-Peter Hutterer</a></p>\n<p><a href=\"https://mp.weixin.qq.com/s/LKM4IXAY-7dKhTzGu5-oug\">RocketMQ Community Operation Conventions</a></p>\n",
+  "__html": "<h1 id=\"commit-message-须知\">Commit Message 须知</h1>\n<p>一个好的 commit message 应当一眼说清<strong>改了什么、为什么改</strong>。完整的来龙去脉留给关联的 Issue / Pull Request —— commit message 本身保持精炼。</p>\n<h2 id=\"格式\">格式</h2>\n<pre><code>[Type-ISSUE_ID][Scope] Subject\n\n(可选 body —— 用要点列出主要改动)\n\n(可选 footer —— BREAKING CHANGE / Closes #xxx)\n</code></pre>\n<p>Header 必填，body 和 footer 可选。Subject 建议控制在 72 字符内，避免在 GitHub 上被截断。</p>\n<h3 id=\"type（必填）\">Type（必填）</h3>\n<table>\n<thead>\n<tr>\n<th>Type</th>\n<th>使用场景</th>\n<th>是否必须带 Issue ID</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>Feature</code></td>\n<td>用户可见的新功能</td>\n<td>是</td>\n</tr>\n<tr>\n<td><code>Improvement</code></td>\n<td>已有功能的增强（重构、性能、体验优化）</td>\n<td>是</td>\n</tr>\n<tr>\n<td><code>Fix</code></td>\n<td>Bug 修复</td>\n<td>是</td>\n</tr>\n<tr>\n<td><code>Doc</code></td>\n<td>仅文档变动</td>\n<td>是</td>\n</tr>\n<tr>\n<td><code>DSIP</code></td>\n<td>实现某个 <a href=\"https://github.com/apache/dolphinscheduler/issues?q=label%3ADSIP\">DSIP</a> 提案的变更</td>\n<td>是（对应 DSIP issue）</td>\n</tr>\n<tr>\n<td><code>Chore</code></td>\n<td>构建、CI、测试脚手架、依赖升级、零碎清理</td>\n<td>否</td>\n</tr>\n</tbody>\n</table>\n<p>除 <code>Chore</code> 外的所有 type <strong>都必须带上 Issue ID</strong>。如果没有现成 Issue，请先创建一个；否则把它归类为 <code>Chore</code>。</p>\n<h3 id=\"scope（可选）\">Scope（可选）</h3>\n<p>变更涉及的模块名：<code>Master</code>、<code>Worker</code>、<code>API</code>、<code>UI</code>、<code>TaskPlugin</code>、<code>Dao</code> 等。请使用真实存在的模块名。当变更确实横跨多个模块（多数 <code>Chore</code> commit 属于此类）时可以省略 <code>[Scope]</code>。</p>\n<h3 id=\"subject（必填）\">Subject（必填）</h3>\n<p>一句简短的祈使句，描述本次改动。</p>\n<ul>\n<li>使用祈使语气：<em>Add</em>、<em>Fix</em>、<em>Remove</em>，不要用 <em>Added</em> / <em>Adds</em>。</li>\n<li>说<strong>目的</strong>，不要说实现细节 —— <em>如何改</em>已经体现在 diff 中。</li>\n<li>句末不加句号。</li>\n</ul>\n<h3 id=\"body（可选，非平凡改动建议写）\">Body（可选，非平凡改动建议写）</h3>\n<p>当 Subject 无法自解释时，用要点列出主要改动。保持紧凑，一行一个改动点。详细的设计动机、权衡考量、测试方案应当写在 <strong>Pull Request 描述</strong>里（见 <a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md\">PULL_REQUEST_TEMPLATE.md</a>），而不是塞进 commit message。</p>\n<h3 id=\"footer（可选）\">Footer（可选）</h3>\n<ul>\n<li><code>BREAKING CHANGE: &lt;说明&gt;</code> —— 用于不兼容变更。当变更破坏 RPC、数据库 schema 或公开 API 兼容性时必须填写，并在 <code>docs/docs/en/guide/upgrade/incompatible.md</code> 中追加一条记录。</li>\n<li><code>Closes #1234</code> —— 合入时自动关闭对应 issue。</li>\n</ul>\n<h2 id=\"示例\">示例</h2>\n<p>推荐：</p>\n<pre><code>[Fix-18201][TaskPlugin] Fix RemoteShell task NullPointerException on empty stdout\n</code></pre>\n<pre><code>[Improvement-18224][API] Migrate EnvironmentService to typed return values\n\n- Replace Map&lt;String, Object&gt; returns with dedicated DTOs\n- Update controller and unit tests accordingly\n</code></pre>\n<pre><code>[Chore][API] Remove deprecated ProjectService#checkProjectAndAuth\n</code></pre>\n<pre><code>[Feature-17900][Master] Support task-group priority override at runtime\n\n- Add priority field to TaskGroupQueue\n- Honor override when dispatching ready tasks\n\nCloses #17900\n</code></pre>\n<p>不推荐：</p>\n<ul>\n<li><code>fix bug</code> —— 没有 type、没有 scope、没有信息量。</li>\n<li><code>[fix] update master</code> —— 大小写不规范、缺 issue ID、subject 含糊。</li>\n<li><code>[Improvement][Master] refactor scheduler to use new state machine and also fix a NPE in worker dispatch and adjust some logs</code> —— 多个无关改动堆在一起，应当拆成多个 commit。</li>\n</ul>\n<h2 id=\"参考资料\">参考资料</h2>\n<ul>\n<li><a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md\">PULL_REQUEST_TEMPLATE.md</a></li>\n<li><a href=\"/zh-cn/docs/dev/contribute/join/pull-request\">Pull Request 须知</a></li>\n<li><a href=\"https://cwiki.apache.org/confluence/display/GEODE/Commit+Message+Format\">Apache Geode 提交消息格式</a></li>\n<li><a href=\"http://who-t.blogspot.com/2009/12/on-commit-messages.html\">On commit messages —— Peter Hutterer</a></li>\n</ul>\n",
   "location": [
     "贡献指南",
     "如何参与",
@@ -7,256 +7,97 @@
   ],
   "structure": [
     {
-      "title": "前言",
+      "title": "格式",
       "children": [
         {
-          "title": "1：明确修改内容",
-          "children": [
-            {
-              "title": "header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "举个例子",
-              "children": [],
-              "anchor": "举个例子"
-            }
-          ],
-          "anchor": "1：明确修改内容"
+          "title": "Type（必填）",
+          "children": [],
+          "anchor": "type（必填）"
         },
         {
-          "title": "2：关联相应的Pull Request 或者Issue",
-          "children": [
-            {
-              "title": "header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "举个例子",
-              "children": [],
-              "anchor": "举个例子"
-            }
-          ],
-          "anchor": "2：关联相应的pull-request-或者issue"
+          "title": "Scope（可选）",
+          "children": [],
+          "anchor": "scope（可选）"
         },
         {
-          "title": "3：统一的格式",
-          "children": [
-            {
-              "title": "header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "举个例子",
-              "children": [],
-              "anchor": "举个例子"
-            }
-          ],
-          "anchor": "3：统一的格式"
+          "title": "Subject（必填）",
+          "children": [],
+          "anchor": "subject（必填）"
+        },
+        {
+          "title": "Body（可选，非平凡改动建议写）",
+          "children": [],
+          "anchor": "body（可选，非平凡改动建议写）"
+        },
+        {
+          "title": "Footer（可选）",
+          "children": [],
+          "anchor": "footer（可选）"
         }
       ],
-      "anchor": "前言"
+      "anchor": "格式"
     },
     {
-      "title": "Commit Message RIP",
+      "title": "示例",
       "children": [
         {
-          "title": "1：明确修改内容",
-          "children": [
-            {
-              "title": "header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "举个例子",
-              "children": [],
-              "anchor": "举个例子"
-            }
-          ],
-          "anchor": "1：明确修改内容"
+          "title": "Type（必填）",
+          "children": [],
+          "anchor": "type（必填）"
         },
         {
-          "title": "2：关联相应的Pull Request 或者Issue",
-          "children": [
-            {
-              "title": "header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "举个例子",
-              "children": [],
-              "anchor": "举个例子"
-            }
-          ],
-          "anchor": "2：关联相应的pull-request-或者issue"
+          "title": "Scope（可选）",
+          "children": [],
+          "anchor": "scope（可选）"
         },
         {
-          "title": "3：统一的格式",
-          "children": [
-            {
-              "title": "header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "举个例子",
-              "children": [],
-              "anchor": "举个例子"
-            }
-          ],
-          "anchor": "3：统一的格式"
+          "title": "Subject（必填）",
+          "children": [],
+          "anchor": "subject（必填）"
+        },
+        {
+          "title": "Body（可选，非平凡改动建议写）",
+          "children": [],
+          "anchor": "body（可选，非平凡改动建议写）"
+        },
+        {
+          "title": "Footer（可选）",
+          "children": [],
+          "anchor": "footer（可选）"
         }
       ],
-      "anchor": "commit-message-rip"
+      "anchor": "示例"
     },
     {
-      "title": "参考文档",
+      "title": "参考资料",
       "children": [
         {
-          "title": "1：明确修改内容",
-          "children": [
-            {
-              "title": "header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "举个例子",
-              "children": [],
-              "anchor": "举个例子"
-            }
-          ],
-          "anchor": "1：明确修改内容"
+          "title": "Type（必填）",
+          "children": [],
+          "anchor": "type（必填）"
         },
         {
-          "title": "2：关联相应的Pull Request 或者Issue",
-          "children": [
-            {
-              "title": "header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "举个例子",
-              "children": [],
-              "anchor": "举个例子"
-            }
-          ],
-          "anchor": "2：关联相应的pull-request-或者issue"
+          "title": "Scope（可选）",
+          "children": [],
+          "anchor": "scope（可选）"
         },
         {
-          "title": "3：统一的格式",
-          "children": [
-            {
-              "title": "header",
-              "children": [],
-              "anchor": "header"
-            },
-            {
-              "title": "Body",
-              "children": [],
-              "anchor": "body"
-            },
-            {
-              "title": "Footer",
-              "children": [],
-              "anchor": "footer"
-            },
-            {
-              "title": "举个例子",
-              "children": [],
-              "anchor": "举个例子"
-            }
-          ],
-          "anchor": "3：统一的格式"
+          "title": "Subject（必填）",
+          "children": [],
+          "anchor": "subject（必填）"
+        },
+        {
+          "title": "Body（可选，非平凡改动建议写）",
+          "children": [],
+          "anchor": "body（可选，非平凡改动建议写）"
+        },
+        {
+          "title": "Footer（可选）",
+          "children": [],
+          "anchor": "footer（可选）"
         }
       ],
-      "anchor": "参考文档"
+      "anchor": "参考资料"
     }
   ],
   "title": "Commit Message 须知",
