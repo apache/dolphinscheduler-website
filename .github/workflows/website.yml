@@ -27,7 +27,7 @@ jobs:
         run: ./scripts/prepare_docs.sh
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v6
         with:
           node-version: 18.12.1
 
@@ -36,7 +36,7 @@ jobs:
 
       # Build Python API document: from https://github.com/apache/dolphinscheduler-sdk-python
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           # need to pin 3.10 because sphinx-multiversion latest code have bug >= 3.11
           python-version: '3.10'
@@ -50,7 +50,7 @@ jobs:
 
       - name: Deploy
         if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: asf-site
