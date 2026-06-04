@@ -1,0 +1,195 @@
+{
+  "__html": "<h1 id=\"amazon-emr-serverless\">Amazon EMR Serverless</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>Amazon EMR Serverless task type, for submitting and monitoring job runs on <a href=\"https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/emr-serverless.html\">Amazon EMR Serverless</a> applications.\nUnlike traditional EMR on EC2, EMR Serverless requires no cluster infrastructure management and automatically scales compute resources on demand, suitable for Spark and Hive workloads.</p>\n<p>Using <a href=\"https://aws.amazon.com/cn/sdk-for-java/\">aws-java-sdk</a> in the background code, to transfer JSON parameters to a <a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/emrserverless/model/StartJobRunRequest.html\">StartJobRunRequest</a> object\nand submit it to AWS via the <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_StartJobRun.html\">StartJobRun API</a>, then poll job status via the <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_GetJobRun.html\">GetJobRun API</a> until completion.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project Management -&gt; Project Name -&gt; Workflow Definition</code>, click the <code>Create Workflow</code> button to enter the DAG editing page.</li>\n<li>Drag <code>AmazonEMRServerless</code> task from the toolbar to the artboard to complete the creation.</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/3.4.2/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Application Id</td>\n<td>EMR Serverless application ID (e.g. <code>00fkht2eodujab09</code>), obtainable from the <a href=\"https://console.aws.amazon.com/emr/home#/serverless\">EMR Serverless Console</a></td>\n</tr>\n<tr>\n<td>Execution Role Arn</td>\n<td>ARN of the IAM role for job execution (e.g. <code>arn:aws:iam::123456789012:role/EMRServerlessRole</code>), this role needs permissions to access S3, Glue, and other services</td>\n</tr>\n<tr>\n<td>Job Name</td>\n<td>Job name (optional), used to identify the job in the EMR Serverless console</td>\n</tr>\n<tr>\n<td>StartJobRunRequest JSON</td>\n<td>JSON corresponding to the <code>JobDriver</code> and <code>ConfigurationOverrides</code> portions of the <a href=\"https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/emrserverless/model/StartJobRunRequest.html\">StartJobRunRequest</a>, see examples below. <strong>Note</strong>: <code>ApplicationId</code> and <code>ExecutionRoleArn</code> do not need to be included in the JSON as they are automatically injected from the form parameters above</td>\n</tr>\n</tbody>\n</table>\n<p><img src=\"/img/tasks/demo/emr_serverless_create.png\" alt=\"RUN_JOB_FLOW\"></p>\n<h2 id=\"task-example\">Task Example</h2>\n<h3 id=\"submit-a-spark-job\">Submit a Spark Job</h3>\n<p>This example shows how to create an <code>EMR_SERVERLESS</code> task node to submit a Spark job to an EMR Serverless application.</p>\n<p>StartJobRunRequest JSON example (Spark):</p>\n<pre><code class=\"language-json\"><span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;JobDriver&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;SparkSubmit&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;EntryPoint&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;s3://my-bucket/scripts/my-spark-job.jar&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;EntryPointArguments&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n        <span class=\"hljs-string\">&quot;s3://my-bucket/input/&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-string\">&quot;s3://my-bucket/output/&quot;</span>\n      <span class=\"hljs-punctuation\">]</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;SparkSubmitParameters&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;--class com.example.MySparkApp --conf spark.executor.cores=4 --conf spark.executor.memory=8g --conf spark.executor.instances=10&quot;</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;ConfigurationOverrides&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;MonitoringConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;S3MonitoringConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;LogUri&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;s3://my-bucket/emr-serverless-logs/&quot;</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">}</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre>\n<h3 id=\"submit-a-hive-job\">Submit a Hive Job</h3>\n<p>This example shows how to create an <code>EMR_SERVERLESS</code> task node to submit a Hive query job.</p>\n<p>StartJobRunRequest JSON example (Hive):</p>\n<pre><code class=\"language-json\"><span class=\"hljs-punctuation\">{</span>\n  <span class=\"hljs-attr\">&quot;JobDriver&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;HiveSQL&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;Query&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;s3://my-bucket/scripts/my-hive-query.sql&quot;</span><span class=\"hljs-punctuation\">,</span>\n      <span class=\"hljs-attr\">&quot;Parameters&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;--hiveconf hive.exec.dynamic.partition=true --hiveconf hive.exec.dynamic.partition.mode=nonstrict&quot;</span>\n    <span class=\"hljs-punctuation\">}</span>\n  <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n  <span class=\"hljs-attr\">&quot;ConfigurationOverrides&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n    <span class=\"hljs-attr\">&quot;MonitoringConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n      <span class=\"hljs-attr\">&quot;S3MonitoringConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;LogUri&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;s3://my-bucket/emr-serverless-logs/&quot;</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">}</span><span class=\"hljs-punctuation\">,</span>\n    <span class=\"hljs-attr\">&quot;ApplicationConfiguration&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">[</span>\n      <span class=\"hljs-punctuation\">{</span>\n        <span class=\"hljs-attr\">&quot;Classification&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;hive-site&quot;</span><span class=\"hljs-punctuation\">,</span>\n        <span class=\"hljs-attr\">&quot;Properties&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-punctuation\">{</span>\n          <span class=\"hljs-attr\">&quot;hive.metastore.client.factory.class&quot;</span><span class=\"hljs-punctuation\">:</span> <span class=\"hljs-string\">&quot;com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory&quot;</span>\n        <span class=\"hljs-punctuation\">}</span>\n      <span class=\"hljs-punctuation\">}</span>\n    <span class=\"hljs-punctuation\">]</span>\n  <span class=\"hljs-punctuation\">}</span>\n<span class=\"hljs-punctuation\">}</span>\n</code></pre>\n<h2 id=\"aws-authentication-configuration\">AWS Authentication Configuration</h2>\n<p>The EMR Serverless task reads AWS credentials from the DolphinScheduler <code>aws.yaml</code> configuration file, under the <code>aws.emr</code> section at <code>conf/aws.yaml</code>.</p>\n<h3 id=\"using-iam-role-(recommended)\">Using IAM Role (Recommended)</h3>\n<p>If the DolphinScheduler Worker node runs on an EC2 instance with an attached IAM Role:</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">aws:</span>\n  <span class=\"hljs-attr\">emr:</span>\n    <span class=\"hljs-attr\">credentials.provider.type:</span> <span class=\"hljs-string\">InstanceProfileCredentialsProvider</span>\n    <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">us-east-1</span>\n</code></pre>\n<h3 id=\"using-access-key\">Using Access Key</h3>\n<p>If you need to authenticate using AK/SK:</p>\n<pre><code class=\"language-yaml\"><span class=\"hljs-attr\">aws:</span>\n  <span class=\"hljs-attr\">emr:</span>\n    <span class=\"hljs-attr\">credentials.provider.type:</span> <span class=\"hljs-string\">AWSStaticCredentialsProvider</span>\n    <span class=\"hljs-attr\">access.key.id:</span> <span class=\"hljs-string\">your-access-key-id</span>\n    <span class=\"hljs-attr\">access.key.secret:</span> <span class=\"hljs-string\">your-secret-access-key</span>\n    <span class=\"hljs-attr\">region:</span> <span class=\"hljs-string\">us-east-1</span>\n</code></pre>\n<blockquote>\n<p><strong>Note</strong>: The <code>aws.emr</code> section configuration is shared by both EMR on EC2 and EMR Serverless task types.</p>\n</blockquote>\n<h2 id=\"job-state-transitions\">Job State Transitions</h2>\n<p>After an EMR Serverless job is submitted, DolphinScheduler polls the job status every 10 seconds:</p>\n<pre><code>SUBMITTED → PENDING → SCHEDULED → RUNNING → SUCCESS\n                                           → FAILED\n                                           → CANCELLED\n</code></pre>\n<ul>\n<li>When a job reaches <code>SUCCESS</code> state, the task is marked as successful</li>\n<li>When a job reaches <code>FAILED</code> or <code>CANCELLED</code> state, the task is marked as failed</li>\n<li>If a DolphinScheduler task is killed, it automatically calls the <a href=\"https://docs.aws.amazon.com/emr-serverless/latest/APIReference/API_CancelJobRun.html\">CancelJobRun API</a> to cancel the running job</li>\n</ul>\n<h2 id=\"notice\">Notice</h2>\n<ul>\n<li>The <strong>Application Id</strong> must correspond to a pre-existing EMR Serverless application (created via the AWS Console or API) in <code>STARTED</code> or <code>CREATED</code> state</li>\n<li>The <strong>Execution Role</strong> requires the following minimum permissions: <code>emr-serverless:StartJobRun</code>, <code>emr-serverless:GetJobRun</code>, <code>emr-serverless:CancelJobRun</code>, plus S3, Glue and other data access permissions required by the job</li>\n<li><code>StartJobRunRequest JSON</code> should NOT include <code>ApplicationId</code> or <code>ExecutionRoleArn</code> fields — they are automatically injected from the form parameters</li>\n<li>EMR Serverless task supports failover: when a Worker node fails, a new Worker can recover tracking of running jobs through <code>appIds</code> (the <code>jobRunId</code>)</li>\n</ul>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Amazon EMR Serverless"
+  ],
+  "time": "2026-6-3",
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Submit a Spark Job",
+          "children": [],
+          "anchor": "submit-a-spark-job"
+        },
+        {
+          "title": "Submit a Hive Job",
+          "children": [],
+          "anchor": "submit-a-hive-job"
+        },
+        {
+          "title": "Using IAM Role (Recommended)",
+          "children": [],
+          "anchor": "using-iam-role-(recommended)"
+        },
+        {
+          "title": "Using Access Key",
+          "children": [],
+          "anchor": "using-access-key"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Submit a Spark Job",
+          "children": [],
+          "anchor": "submit-a-spark-job"
+        },
+        {
+          "title": "Submit a Hive Job",
+          "children": [],
+          "anchor": "submit-a-hive-job"
+        },
+        {
+          "title": "Using IAM Role (Recommended)",
+          "children": [],
+          "anchor": "using-iam-role-(recommended)"
+        },
+        {
+          "title": "Using Access Key",
+          "children": [],
+          "anchor": "using-access-key"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Submit a Spark Job",
+          "children": [],
+          "anchor": "submit-a-spark-job"
+        },
+        {
+          "title": "Submit a Hive Job",
+          "children": [],
+          "anchor": "submit-a-hive-job"
+        },
+        {
+          "title": "Using IAM Role (Recommended)",
+          "children": [],
+          "anchor": "using-iam-role-(recommended)"
+        },
+        {
+          "title": "Using Access Key",
+          "children": [],
+          "anchor": "using-access-key"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Submit a Spark Job",
+          "children": [],
+          "anchor": "submit-a-spark-job"
+        },
+        {
+          "title": "Submit a Hive Job",
+          "children": [],
+          "anchor": "submit-a-hive-job"
+        },
+        {
+          "title": "Using IAM Role (Recommended)",
+          "children": [],
+          "anchor": "using-iam-role-(recommended)"
+        },
+        {
+          "title": "Using Access Key",
+          "children": [],
+          "anchor": "using-access-key"
+        }
+      ],
+      "anchor": "task-example"
+    },
+    {
+      "title": "AWS Authentication Configuration",
+      "children": [
+        {
+          "title": "Submit a Spark Job",
+          "children": [],
+          "anchor": "submit-a-spark-job"
+        },
+        {
+          "title": "Submit a Hive Job",
+          "children": [],
+          "anchor": "submit-a-hive-job"
+        },
+        {
+          "title": "Using IAM Role (Recommended)",
+          "children": [],
+          "anchor": "using-iam-role-(recommended)"
+        },
+        {
+          "title": "Using Access Key",
+          "children": [],
+          "anchor": "using-access-key"
+        }
+      ],
+      "anchor": "aws-authentication-configuration"
+    },
+    {
+      "title": "Job State Transitions",
+      "children": [
+        {
+          "title": "Submit a Spark Job",
+          "children": [],
+          "anchor": "submit-a-spark-job"
+        },
+        {
+          "title": "Submit a Hive Job",
+          "children": [],
+          "anchor": "submit-a-hive-job"
+        },
+        {
+          "title": "Using IAM Role (Recommended)",
+          "children": [],
+          "anchor": "using-iam-role-(recommended)"
+        },
+        {
+          "title": "Using Access Key",
+          "children": [],
+          "anchor": "using-access-key"
+        }
+      ],
+      "anchor": "job-state-transitions"
+    },
+    {
+      "title": "Notice",
+      "children": [
+        {
+          "title": "Submit a Spark Job",
+          "children": [],
+          "anchor": "submit-a-spark-job"
+        },
+        {
+          "title": "Submit a Hive Job",
+          "children": [],
+          "anchor": "submit-a-hive-job"
+        },
+        {
+          "title": "Using IAM Role (Recommended)",
+          "children": [],
+          "anchor": "using-iam-role-(recommended)"
+        },
+        {
+          "title": "Using Access Key",
+          "children": [],
+          "anchor": "using-access-key"
+        }
+      ],
+      "anchor": "notice"
+    }
+  ],
+  "title": "Amazon EMR Serverless",
+  "link": "/guide/task/emr-serverless"
+}

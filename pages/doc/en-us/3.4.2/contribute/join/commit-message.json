@@ -1,0 +1,106 @@
+{
+  "__html": "<h1 id=\"commit-message-notice\">Commit Message Notice</h1>\n<p>A good commit message states <strong>what changed and why</strong> at a glance. The full story belongs in the linked Issue / Pull Request — keep the commit message itself concise.</p>\n<h2 id=\"format\">Format</h2>\n<pre><code>[Type-ISSUE_ID][Scope] Subject\n\n(optional body — bullet list of the main changes)\n\n(optional footer — BREAKING CHANGE / Closes #xxx)\n</code></pre>\n<p>Header is required; body and footer are optional. Aim for a Subject under 72 characters so it does not get truncated on GitHub.</p>\n<h3 id=\"type-(required)\">Type (required)</h3>\n<table>\n<thead>\n<tr>\n<th>Type</th>\n<th>When to use</th>\n<th>Issue ID required?</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>Feature</code></td>\n<td>A new user-visible feature</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>Improvement</code></td>\n<td>Enhancement to an existing feature (refactor, perf, UX polish)</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>Fix</code></td>\n<td>Bug fix</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>Doc</code></td>\n<td>Documentation only</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td><code>DSIP</code></td>\n<td>A change implementing a <a href=\"https://github.com/apache/dolphinscheduler/issues?q=label%3ADSIP\">DSIP</a> proposal</td>\n<td>Yes (the DSIP issue)</td>\n</tr>\n<tr>\n<td><code>Chore</code></td>\n<td>Build, CI, test scaffolding, dependency bumps, trivial cleanup</td>\n<td>No</td>\n</tr>\n</tbody>\n</table>\n<p>Every type <strong>except <code>Chore</code></strong> must carry an Issue ID. If no Issue exists for the change, file one first or reclassify it as <code>Chore</code>.</p>\n<h3 id=\"scope-(optional)\">Scope (optional)</h3>\n<p>The module the change touches: <code>Master</code>, <code>Worker</code>, <code>API</code>, <code>UI</code>, <code>TaskPlugin</code>, <code>Dao</code>, etc. Match a real module name. Omit <code>[Scope]</code> when the change is genuinely cross-cutting (most <code>Chore</code> commits).</p>\n<h3 id=\"subject-(required)\">Subject (required)</h3>\n<p>A short imperative sentence describing the change.</p>\n<ul>\n<li>Use the imperative mood: <em>Add</em>, <em>Fix</em>, <em>Remove</em> — not <em>Added</em> / <em>Adds</em>.</li>\n<li>State the <strong>purpose</strong>, not the implementation detail. The diff already shows the <em>how</em>.</li>\n<li>No trailing period.</li>\n</ul>\n<h3 id=\"body-(optional,-recommended-for-non-trivial-changes)\">Body (optional, recommended for non-trivial changes)</h3>\n<p>When the change is not self-evident from the Subject, add a bullet list of the main changes. Keep it tight — one line per change point. Lengthy rationale, design notes, or testing plans go in the <strong>Pull Request description</strong> (see <a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md\">PULL_REQUEST_TEMPLATE.md</a>), not in the commit message.</p>\n<h3 id=\"footer-(optional)\">Footer (optional)</h3>\n<ul>\n<li><code>BREAKING CHANGE: &lt;description&gt;</code> — for incompatible changes. Required if the change breaks RPC, DB schema, or public API compatibility. Also add an entry to <code>docs/docs/en/guide/upgrade/incompatible.md</code>.</li>\n<li><code>Closes #1234</code> — to auto-close the linked issue on merge.</li>\n</ul>\n<h2 id=\"examples\">Examples</h2>\n<p>Good:</p>\n<pre><code>[Fix-18201][TaskPlugin] Fix RemoteShell task NullPointerException on empty stdout\n</code></pre>\n<pre><code>[Improvement-18224][API] Migrate EnvironmentService to typed return values\n\n- Replace Map&lt;String, Object&gt; returns with dedicated DTOs\n- Update controller and unit tests accordingly\n</code></pre>\n<pre><code>[Chore][API] Remove deprecated ProjectService#checkProjectAndAuth\n</code></pre>\n<pre><code>[Feature-17900][Master] Support task-group priority override at runtime\n\n- Add priority field to TaskGroupQueue\n- Honor override when dispatching ready tasks\n\nCloses #17900\n</code></pre>\n<p>Avoid:</p>\n<ul>\n<li><code>fix bug</code> — no type prefix, no scope, no information.</li>\n<li><code>[fix] update master</code> — wrong casing, missing issue ID, vague subject.</li>\n<li><code>[Improvement][Master] refactor scheduler to use new state machine and also fix a NPE in worker dispatch and adjust some logs</code> — multiple unrelated changes; split into separate commits.</li>\n</ul>\n<h2 id=\"references\">References</h2>\n<ul>\n<li><a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md\">PULL_REQUEST_TEMPLATE.md</a></li>\n<li><a href=\"/en-us/docs/3.4.2/contribute/join/pull-request\">Pull Request Notice</a></li>\n<li><a href=\"https://cwiki.apache.org/confluence/display/GEODE/Commit+Message+Format\">Apache Geode commit message format</a></li>\n<li><a href=\"http://who-t.blogspot.com/2009/12/on-commit-messages.html\">On commit messages — Peter Hutterer</a></li>\n</ul>\n",
+  "location": [
+    "Contribution",
+    "Join",
+    "Commit Message Notice"
+  ],
+  "time": "2026-6-3",
+  "structure": [
+    {
+      "title": "Format",
+      "children": [
+        {
+          "title": "Type (required)",
+          "children": [],
+          "anchor": "type-(required)"
+        },
+        {
+          "title": "Scope (optional)",
+          "children": [],
+          "anchor": "scope-(optional)"
+        },
+        {
+          "title": "Subject (required)",
+          "children": [],
+          "anchor": "subject-(required)"
+        },
+        {
+          "title": "Body (optional, recommended for non-trivial changes)",
+          "children": [],
+          "anchor": "body-(optional,-recommended-for-non-trivial-changes)"
+        },
+        {
+          "title": "Footer (optional)",
+          "children": [],
+          "anchor": "footer-(optional)"
+        }
+      ],
+      "anchor": "format"
+    },
+    {
+      "title": "Examples",
+      "children": [
+        {
+          "title": "Type (required)",
+          "children": [],
+          "anchor": "type-(required)"
+        },
+        {
+          "title": "Scope (optional)",
+          "children": [],
+          "anchor": "scope-(optional)"
+        },
+        {
+          "title": "Subject (required)",
+          "children": [],
+          "anchor": "subject-(required)"
+        },
+        {
+          "title": "Body (optional, recommended for non-trivial changes)",
+          "children": [],
+          "anchor": "body-(optional,-recommended-for-non-trivial-changes)"
+        },
+        {
+          "title": "Footer (optional)",
+          "children": [],
+          "anchor": "footer-(optional)"
+        }
+      ],
+      "anchor": "examples"
+    },
+    {
+      "title": "References",
+      "children": [
+        {
+          "title": "Type (required)",
+          "children": [],
+          "anchor": "type-(required)"
+        },
+        {
+          "title": "Scope (optional)",
+          "children": [],
+          "anchor": "scope-(optional)"
+        },
+        {
+          "title": "Subject (required)",
+          "children": [],
+          "anchor": "subject-(required)"
+        },
+        {
+          "title": "Body (optional, recommended for non-trivial changes)",
+          "children": [],
+          "anchor": "body-(optional,-recommended-for-non-trivial-changes)"
+        },
+        {
+          "title": "Footer (optional)",
+          "children": [],
+          "anchor": "footer-(optional)"
+        }
+      ],
+      "anchor": "references"
+    }
+  ],
+  "title": "Commit Message Notice",
+  "link": "/contribute/join/commit-message"
+}

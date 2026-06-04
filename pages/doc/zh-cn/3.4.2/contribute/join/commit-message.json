@@ -1,0 +1,106 @@
+{
+  "__html": "<h1 id=\"commit-message-须知\">Commit Message 须知</h1>\n<p>一个好的 commit message 应当一眼说清<strong>改了什么、为什么改</strong>。完整的来龙去脉留给关联的 Issue / Pull Request —— commit message 本身保持精炼。</p>\n<h2 id=\"格式\">格式</h2>\n<pre><code>[Type-ISSUE_ID][Scope] Subject\n\n(可选 body —— 用要点列出主要改动)\n\n(可选 footer —— BREAKING CHANGE / Closes #xxx)\n</code></pre>\n<p>Header 必填，body 和 footer 可选。Subject 建议控制在 72 字符内，避免在 GitHub 上被截断。</p>\n<h3 id=\"type（必填）\">Type（必填）</h3>\n<table>\n<thead>\n<tr>\n<th>Type</th>\n<th>使用场景</th>\n<th>是否必须带 Issue ID</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>Feature</code></td>\n<td>用户可见的新功能</td>\n<td>是</td>\n</tr>\n<tr>\n<td><code>Improvement</code></td>\n<td>已有功能的增强（重构、性能、体验优化）</td>\n<td>是</td>\n</tr>\n<tr>\n<td><code>Fix</code></td>\n<td>Bug 修复</td>\n<td>是</td>\n</tr>\n<tr>\n<td><code>Doc</code></td>\n<td>仅文档变动</td>\n<td>是</td>\n</tr>\n<tr>\n<td><code>DSIP</code></td>\n<td>实现某个 <a href=\"https://github.com/apache/dolphinscheduler/issues?q=label%3ADSIP\">DSIP</a> 提案的变更</td>\n<td>是（对应 DSIP issue）</td>\n</tr>\n<tr>\n<td><code>Chore</code></td>\n<td>构建、CI、测试脚手架、依赖升级、零碎清理</td>\n<td>否</td>\n</tr>\n</tbody>\n</table>\n<p>除 <code>Chore</code> 外的所有 type <strong>都必须带上 Issue ID</strong>。如果没有现成 Issue，请先创建一个；否则把它归类为 <code>Chore</code>。</p>\n<h3 id=\"scope（可选）\">Scope（可选）</h3>\n<p>变更涉及的模块名：<code>Master</code>、<code>Worker</code>、<code>API</code>、<code>UI</code>、<code>TaskPlugin</code>、<code>Dao</code> 等。请使用真实存在的模块名。当变更确实横跨多个模块（多数 <code>Chore</code> commit 属于此类）时可以省略 <code>[Scope]</code>。</p>\n<h3 id=\"subject（必填）\">Subject（必填）</h3>\n<p>一句简短的祈使句，描述本次改动。</p>\n<ul>\n<li>使用祈使语气：<em>Add</em>、<em>Fix</em>、<em>Remove</em>，不要用 <em>Added</em> / <em>Adds</em>。</li>\n<li>说<strong>目的</strong>，不要说实现细节 —— <em>如何改</em>已经体现在 diff 中。</li>\n<li>句末不加句号。</li>\n</ul>\n<h3 id=\"body（可选，非平凡改动建议写）\">Body（可选，非平凡改动建议写）</h3>\n<p>当 Subject 无法自解释时，用要点列出主要改动。保持紧凑，一行一个改动点。详细的设计动机、权衡考量、测试方案应当写在 <strong>Pull Request 描述</strong>里（见 <a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md\">PULL_REQUEST_TEMPLATE.md</a>），而不是塞进 commit message。</p>\n<h3 id=\"footer（可选）\">Footer（可选）</h3>\n<ul>\n<li><code>BREAKING CHANGE: &lt;说明&gt;</code> —— 用于不兼容变更。当变更破坏 RPC、数据库 schema 或公开 API 兼容性时必须填写，并在 <code>docs/docs/en/guide/upgrade/incompatible.md</code> 中追加一条记录。</li>\n<li><code>Closes #1234</code> —— 合入时自动关闭对应 issue。</li>\n</ul>\n<h2 id=\"示例\">示例</h2>\n<p>推荐：</p>\n<pre><code>[Fix-18201][TaskPlugin] Fix RemoteShell task NullPointerException on empty stdout\n</code></pre>\n<pre><code>[Improvement-18224][API] Migrate EnvironmentService to typed return values\n\n- Replace Map&lt;String, Object&gt; returns with dedicated DTOs\n- Update controller and unit tests accordingly\n</code></pre>\n<pre><code>[Chore][API] Remove deprecated ProjectService#checkProjectAndAuth\n</code></pre>\n<pre><code>[Feature-17900][Master] Support task-group priority override at runtime\n\n- Add priority field to TaskGroupQueue\n- Honor override when dispatching ready tasks\n\nCloses #17900\n</code></pre>\n<p>不推荐：</p>\n<ul>\n<li><code>fix bug</code> —— 没有 type、没有 scope、没有信息量。</li>\n<li><code>[fix] update master</code> —— 大小写不规范、缺 issue ID、subject 含糊。</li>\n<li><code>[Improvement][Master] refactor scheduler to use new state machine and also fix a NPE in worker dispatch and adjust some logs</code> —— 多个无关改动堆在一起，应当拆成多个 commit。</li>\n</ul>\n<h2 id=\"参考资料\">参考资料</h2>\n<ul>\n<li><a href=\"https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md\">PULL_REQUEST_TEMPLATE.md</a></li>\n<li><a href=\"/zh-cn/docs/3.4.2/contribute/join/pull-request\">Pull Request 须知</a></li>\n<li><a href=\"https://cwiki.apache.org/confluence/display/GEODE/Commit+Message+Format\">Apache Geode 提交消息格式</a></li>\n<li><a href=\"http://who-t.blogspot.com/2009/12/on-commit-messages.html\">On commit messages —— Peter Hutterer</a></li>\n</ul>\n",
+  "location": [
+    "贡献指南",
+    "如何参与",
+    "Commit Message须知"
+  ],
+  "time": "2026-6-3",
+  "structure": [
+    {
+      "title": "格式",
+      "children": [
+        {
+          "title": "Type（必填）",
+          "children": [],
+          "anchor": "type（必填）"
+        },
+        {
+          "title": "Scope（可选）",
+          "children": [],
+          "anchor": "scope（可选）"
+        },
+        {
+          "title": "Subject（必填）",
+          "children": [],
+          "anchor": "subject（必填）"
+        },
+        {
+          "title": "Body（可选，非平凡改动建议写）",
+          "children": [],
+          "anchor": "body（可选，非平凡改动建议写）"
+        },
+        {
+          "title": "Footer（可选）",
+          "children": [],
+          "anchor": "footer（可选）"
+        }
+      ],
+      "anchor": "格式"
+    },
+    {
+      "title": "示例",
+      "children": [
+        {
+          "title": "Type（必填）",
+          "children": [],
+          "anchor": "type（必填）"
+        },
+        {
+          "title": "Scope（可选）",
+          "children": [],
+          "anchor": "scope（可选）"
+        },
+        {
+          "title": "Subject（必填）",
+          "children": [],
+          "anchor": "subject（必填）"
+        },
+        {
+          "title": "Body（可选，非平凡改动建议写）",
+          "children": [],
+          "anchor": "body（可选，非平凡改动建议写）"
+        },
+        {
+          "title": "Footer（可选）",
+          "children": [],
+          "anchor": "footer（可选）"
+        }
+      ],
+      "anchor": "示例"
+    },
+    {
+      "title": "参考资料",
+      "children": [
+        {
+          "title": "Type（必填）",
+          "children": [],
+          "anchor": "type（必填）"
+        },
+        {
+          "title": "Scope（可选）",
+          "children": [],
+          "anchor": "scope（可选）"
+        },
+        {
+          "title": "Subject（必填）",
+          "children": [],
+          "anchor": "subject（必填）"
+        },
+        {
+          "title": "Body（可选，非平凡改动建议写）",
+          "children": [],
+          "anchor": "body（可选，非平凡改动建议写）"
+        },
+        {
+          "title": "Footer（可选）",
+          "children": [],
+          "anchor": "footer（可选）"
+        }
+      ],
+      "anchor": "参考资料"
+    }
+  ],
+  "title": "Commit Message 须知",
+  "link": "/contribute/join/commit-message"
+}
