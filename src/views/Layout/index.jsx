@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { ConfigProvider, FloatButton } from "antd";
 import { useParams, Navigate, Outlet } from "react-router-dom";
 import { NavBar, Footer } from "../../components";
@@ -17,7 +18,32 @@ const Content = () => {
 };
 
 const Layout = () => {
+  useEffect(() => {
+    if (document.getElementById("kapa-ai-widget")) {
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = "kapa-ai-widget";
+    script.src = "https://widget.kapa.ai/kapa-widget.bundle.js";
+    script.setAttribute("data-website-id", "apache-dolphinscheduler");
+    script.setAttribute("data-project-name", "Apache DolphinScheduler");
+    script.setAttribute("data-project-color", "#0097E0");
+    script.setAttribute("data-button-text", "Ask AI");
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      const existingScript = document.getElementById("kapa-ai-widget");
+      if (existingScript) {
+        document.body.removeChild(existingScript);
+      }
+    };
+  }, []);
+
   const params = useParams();
+
   if (params.locale && ["en-us", "zh-cn"].includes(params.locale)) {
     const locales = JSON.parse(sessionStorage.getItem("locales")) || {};
 
@@ -43,7 +69,9 @@ const Layout = () => {
           <article className="ds-main" id="ds-scroll-content">
             <Content />
             <FloatButton.BackTop
-              target={() => document.getElementById("ds-scroll-content")}
+              target={() =>
+                document.getElementById("ds-scroll-content")
+              }
             />
             <Footer />
           </article>
