@@ -111,7 +111,6 @@ then go and see :doc:`tutorial` for more detail.
    config
    api
    resources_plugin/index
-   changelog
 
 Indices and tables
 ==================
