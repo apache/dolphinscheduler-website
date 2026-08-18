@@ -121,14 +121,14 @@
 <p>A DataX task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
 <span class="sd">A example workflow for task datax.</span>
 
 <span class="sd">This example will create a workflow named `task_datax`.</span>
 <span class="sd">`task_datax` is true workflow define and run task task_datax.</span>
 <span class="sd">You can create data sources `first_mysql` and `first_mysql` through UI.</span>
 <span class="sd">It creates a task to synchronize datax from the source database to the target database.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
@@ -137,77 +137,77 @@
 
 <span class="c1"># datax json template</span>
 <span class="n">JSON_TEMPLATE</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">"job"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"content"</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
-                <span class="s2">&quot;reader&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mysqlreader&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;parameter&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;usr&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;pwd&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;column&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">],</span>
-                        <span class="s2">&quot;splitPk&quot;</span><span class="p">:</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">"reader"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"mysqlreader"</span><span class="p">,</span>
+                    <span class="s2">"parameter"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"username"</span><span class="p">:</span> <span class="s2">"usr"</span><span class="p">,</span>
+                        <span class="s2">"password"</span><span class="p">:</span> <span class="s2">"pwd"</span><span class="p">,</span>
+                        <span class="s2">"column"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">,</span> <span class="s2">"code"</span><span class="p">,</span> <span class="s2">"description"</span><span class="p">],</span>
+                        <span class="s2">"splitPk"</span><span class="p">:</span> <span class="s2">"id"</span><span class="p">,</span>
+                        <span class="s2">"connection"</span><span class="p">:</span> <span class="p">[</span>
                             <span class="p">{</span>
-                                <span class="s2">&quot;table&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;source_table&quot;</span><span class="p">],</span>
-                                <span class="s2">&quot;jdbcUrl&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;jdbc:mysql://127.0.0.1:3306/source_db&quot;</span><span class="p">],</span>
+                                <span class="s2">"table"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"source_table"</span><span class="p">],</span>
+                                <span class="s2">"jdbcUrl"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"jdbc:mysql://127.0.0.1:3306/source_db"</span><span class="p">],</span>
                             <span class="p">}</span>
                         <span class="p">],</span>
                     <span class="p">},</span>
                 <span class="p">},</span>
-                <span class="s2">&quot;writer&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mysqlwriter&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;parameter&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;writeMode&quot;</span><span class="p">:</span> <span class="s2">&quot;insert&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;usr&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;pwd&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;column&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">],</span>
-                        <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">"writer"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"mysqlwriter"</span><span class="p">,</span>
+                    <span class="s2">"parameter"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"writeMode"</span><span class="p">:</span> <span class="s2">"insert"</span><span class="p">,</span>
+                        <span class="s2">"username"</span><span class="p">:</span> <span class="s2">"usr"</span><span class="p">,</span>
+                        <span class="s2">"password"</span><span class="p">:</span> <span class="s2">"pwd"</span><span class="p">,</span>
+                        <span class="s2">"column"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">],</span>
+                        <span class="s2">"connection"</span><span class="p">:</span> <span class="p">[</span>
                             <span class="p">{</span>
-                                <span class="s2">&quot;jdbcUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;jdbc:mysql://127.0.0.1:3306/target_db&quot;</span><span class="p">,</span>
-                                <span class="s2">&quot;table&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;target_table&quot;</span><span class="p">],</span>
+                                <span class="s2">"jdbcUrl"</span><span class="p">:</span> <span class="s2">"jdbc:mysql://127.0.0.1:3306/target_db"</span><span class="p">,</span>
+                                <span class="s2">"table"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"target_table"</span><span class="p">],</span>
                             <span class="p">}</span>
                         <span class="p">],</span>
                     <span class="p">},</span>
                 <span class="p">},</span>
             <span class="p">}</span>
         <span class="p">],</span>
-        <span class="s2">&quot;setting&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;errorLimit&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;percentage&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
-            <span class="s2">&quot;speed&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;channel&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;record&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
+        <span class="s2">"setting"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"errorLimit"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"percentage"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"record"</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+            <span class="s2">"speed"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"channel"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"record"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
         <span class="p">},</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_datax_example&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"task_datax_example"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># This task synchronizes the data in `t_ds_project`</span>
     <span class="c1"># of `first_mysql` database to `target_project` of `second_mysql` database.</span>
     <span class="c1"># You have to make sure data source named `first_mysql` and `second_mysql` exists</span>
     <span class="c1"># in your environment.</span>
     <span class="n">task1</span> <span class="o">=</span> <span class="n">DataX</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_datax&quot;</span><span class="p">,</span>
-        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;first_mysql&quot;</span><span class="p">,</span>
-        <span class="n">datatarget_name</span><span class="o">=</span><span class="s2">&quot;second_mysql&quot;</span><span class="p">,</span>
-        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;select id, name, code, description from source_table&quot;</span><span class="p">,</span>
-        <span class="n">target_table</span><span class="o">=</span><span class="s2">&quot;target_table&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_datax"</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">"first_mysql"</span><span class="p">,</span>
+        <span class="n">datatarget_name</span><span class="o">=</span><span class="s2">"second_mysql"</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">"select id, name, code, description from source_table"</span><span class="p">,</span>
+        <span class="n">target_table</span><span class="o">=</span><span class="s2">"target_table"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># You can custom json_template of datax to sync data. This task create a new</span>
     <span class="c1"># datax job same as task1, transfer record from `first_mysql` to `second_mysql`</span>
     <span class="c1"># We should format the custom json config if we want to format it in web UI</span>
     <span class="n">task2</span> <span class="o">=</span> <span class="n">CustomDataX</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_custom_datax&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">JSON_TEMPLATE</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_custom_datax"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">JSON_TEMPLATE</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
     <span class="p">)</span>
 
     <span class="c1"># [start resource_limit]</span>
     <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">DataX</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
-        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;first_mysql&quot;</span><span class="p">,</span>
-        <span class="n">datatarget_name</span><span class="o">=</span><span class="s2">&quot;second_mysql&quot;</span><span class="p">,</span>
-        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;select id, name, code, description from source_table&quot;</span><span class="p">,</span>
-        <span class="n">target_table</span><span class="o">=</span><span class="s2">&quot;target_table&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"resource_limit"</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">"first_mysql"</span><span class="p">,</span>
+        <span class="n">datatarget_name</span><span class="o">=</span><span class="s2">"second_mysql"</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">"select id, name, code, description from source_table"</span><span class="p">,</span>
+        <span class="n">target_table</span><span class="o">=</span><span class="s2">"target_table"</span><span class="p">,</span>
         <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="p">)</span>
@@ -220,11 +220,11 @@
 <h2>Resource Limit Example<a class="headerlink" href="#resource-limit-example" title="Link to this heading"></a></h2>
 <p>We can add resource limit like CPU quota and max memory by passing parameters when declaring tasks.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">DataX</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
-        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">&quot;first_mysql&quot;</span><span class="p">,</span>
-        <span class="n">datatarget_name</span><span class="o">=</span><span class="s2">&quot;second_mysql&quot;</span><span class="p">,</span>
-        <span class="n">sql</span><span class="o">=</span><span class="s2">&quot;select id, name, code, description from source_table&quot;</span><span class="p">,</span>
-        <span class="n">target_table</span><span class="o">=</span><span class="s2">&quot;target_table&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"resource_limit"</span><span class="p">,</span>
+        <span class="n">datasource_name</span><span class="o">=</span><span class="s2">"first_mysql"</span><span class="p">,</span>
+        <span class="n">datatarget_name</span><span class="o">=</span><span class="s2">"second_mysql"</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s2">"select id, name, code, description from source_table"</span><span class="p">,</span>
+        <span class="n">target_table</span><span class="o">=</span><span class="s2">"target_table"</span><span class="p">,</span>
         <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="p">)</span>
@@ -253,8 +253,8 @@ format json template, you should format by yourself.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="n">custom</span> <span class="o">=</span> <span class="n">CustomDataX</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;custom_datax&quot;</span><span class="p">,</span>
-    <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;reader&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mysqlreader&quot;</span><span class="p">}}]}}),</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"custom_datax"</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">"job"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"content"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"reader"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"mysqlreader"</span><span class="p">}}]}}),</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -266,9 +266,9 @@ format json template, you should format by yourself.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="n">custom</span> <span class="o">=</span> <span class="n">CustomDataX</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;custom_datax&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"custom_datax"</span><span class="p">,</span>
     <span class="c1"># web UI datax config will show as json file content</span>
-    <span class="n">json</span><span class="o">=</span><span class="s2">&quot;/path/to/datax.json&quot;</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="s2">"/path/to/datax.json"</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -429,7 +429,7 @@ directly set as python property, so we Override Task.task_params here.</p>
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DataX&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"DataX"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>
@@ -442,53 +442,53 @@ directly set as python property, so we Override Task.task_params here.</p>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_custon_config</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CustomDataX</span>
-<span class="w">    </span><span class="nt">json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$FILE{&quot;example_datax.json&quot;}</span>
+<span class="w">    </span><span class="nt">json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$FILE{"example_datax.json"}</span>
 </pre></div>
 </div>
 <p>example_datax.json:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;job&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nt">"job"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">      </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;reader&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mysqlreader&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;parameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;usr&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pwd&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;column&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">              </span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="s2">&quot;name&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="s2">&quot;code&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="s2">&quot;description&quot;</span>
+<span class="w">        </span><span class="nt">"reader"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mysqlreader"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"parameter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usr"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pwd"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"column"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">"id"</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">"name"</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">"code"</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">"description"</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;splitPk&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;connection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"splitPk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"connection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">              </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;table&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="s2">&quot;source_table&quot;</span>
+<span class="w">                </span><span class="nt">"table"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="s2">"source_table"</span>
 <span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;jdbcUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="s2">&quot;jdbc:mysql://127.0.0.1:3306/source_db&quot;</span>
+<span class="w">                </span><span class="nt">"jdbcUrl"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="s2">"jdbc:mysql://127.0.0.1:3306/source_db"</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">]</span>
 <span class="w">          </span><span class="p">}</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;writer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mysqlwriter&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;parameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;writeMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;insert&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;usr&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pwd&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;column&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">              </span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="s2">&quot;name&quot;</span>
+<span class="w">        </span><span class="nt">"writer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mysqlwriter"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"parameter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"writeMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"insert"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usr"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pwd"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"column"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">              </span><span class="s2">"id"</span><span class="p">,</span>
+<span class="w">              </span><span class="s2">"name"</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;connection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"connection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">              </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;jdbcUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jdbc:mysql://127.0.0.1:3306/target_db&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;table&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="s2">&quot;target_table&quot;</span>
+<span class="w">                </span><span class="nt">"jdbcUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdbc:mysql://127.0.0.1:3306/target_db"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"table"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="s2">"target_table"</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">]</span>
@@ -496,14 +496,14 @@ directly set as python property, so we Override Task.task_params here.</p>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;setting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;errorLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;percentage&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;record&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="nt">"setting"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"errorLimit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"record"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">&quot;speed&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;record&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="w">      </span><span class="nt">"speed"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"record"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>

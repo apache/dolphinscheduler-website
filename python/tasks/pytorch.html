@@ -121,53 +121,53 @@
 <p>A Pytorch task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A example workflow for task pytorch.&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">"""A example workflow for task pytorch."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.pytorch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pytorch</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_pytorch_example&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"task_pytorch_example"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># run project with existing environment</span>
     <span class="n">task_existing_env</span> <span class="o">=</span> <span class="n">Pytorch</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_existing_env&quot;</span><span class="p">,</span>
-        <span class="n">script</span><span class="o">=</span><span class="s2">&quot;main.py&quot;</span><span class="p">,</span>
-        <span class="n">script_params</span><span class="o">=</span><span class="s2">&quot;--dry-run --no-cuda&quot;</span><span class="p">,</span>
-        <span class="n">project_path</span><span class="o">=</span><span class="s2">&quot;https://github.com/pytorch/examples#mnist&quot;</span><span class="p">,</span>
-        <span class="n">python_command</span><span class="o">=</span><span class="s2">&quot;/home/anaconda3/envs/pytorch/bin/python3&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_existing_env"</span><span class="p">,</span>
+        <span class="n">script</span><span class="o">=</span><span class="s2">"main.py"</span><span class="p">,</span>
+        <span class="n">script_params</span><span class="o">=</span><span class="s2">"--dry-run --no-cuda"</span><span class="p">,</span>
+        <span class="n">project_path</span><span class="o">=</span><span class="s2">"https://github.com/pytorch/examples#mnist"</span><span class="p">,</span>
+        <span class="n">python_command</span><span class="o">=</span><span class="s2">"/home/anaconda3/envs/pytorch/bin/python3"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># run project with creating conda environment</span>
     <span class="n">task_conda_env</span> <span class="o">=</span> <span class="n">Pytorch</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_conda_env&quot;</span><span class="p">,</span>
-        <span class="n">script</span><span class="o">=</span><span class="s2">&quot;main.py&quot;</span><span class="p">,</span>
-        <span class="n">script_params</span><span class="o">=</span><span class="s2">&quot;--dry-run --no-cuda&quot;</span><span class="p">,</span>
-        <span class="n">project_path</span><span class="o">=</span><span class="s2">&quot;https://github.com/pytorch/examples#mnist&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_conda_env"</span><span class="p">,</span>
+        <span class="n">script</span><span class="o">=</span><span class="s2">"main.py"</span><span class="p">,</span>
+        <span class="n">script_params</span><span class="o">=</span><span class="s2">"--dry-run --no-cuda"</span><span class="p">,</span>
+        <span class="n">project_path</span><span class="o">=</span><span class="s2">"https://github.com/pytorch/examples#mnist"</span><span class="p">,</span>
         <span class="n">is_create_environment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">python_env_tool</span><span class="o">=</span><span class="s2">&quot;conda&quot;</span><span class="p">,</span>
-        <span class="n">requirements</span><span class="o">=</span><span class="s2">&quot;requirements.txt&quot;</span><span class="p">,</span>
-        <span class="n">conda_python_version</span><span class="o">=</span><span class="s2">&quot;3.7&quot;</span><span class="p">,</span>
+        <span class="n">python_env_tool</span><span class="o">=</span><span class="s2">"conda"</span><span class="p">,</span>
+        <span class="n">requirements</span><span class="o">=</span><span class="s2">"requirements.txt"</span><span class="p">,</span>
+        <span class="n">conda_python_version</span><span class="o">=</span><span class="s2">"3.7"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># run project with creating virtualenv environment</span>
     <span class="n">task_virtualenv_env</span> <span class="o">=</span> <span class="n">Pytorch</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_virtualenv_env&quot;</span><span class="p">,</span>
-        <span class="n">script</span><span class="o">=</span><span class="s2">&quot;main.py&quot;</span><span class="p">,</span>
-        <span class="n">script_params</span><span class="o">=</span><span class="s2">&quot;--dry-run --no-cuda&quot;</span><span class="p">,</span>
-        <span class="n">project_path</span><span class="o">=</span><span class="s2">&quot;https://github.com/pytorch/examples#mnist&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_virtualenv_env"</span><span class="p">,</span>
+        <span class="n">script</span><span class="o">=</span><span class="s2">"main.py"</span><span class="p">,</span>
+        <span class="n">script_params</span><span class="o">=</span><span class="s2">"--dry-run --no-cuda"</span><span class="p">,</span>
+        <span class="n">project_path</span><span class="o">=</span><span class="s2">"https://github.com/pytorch/examples#mnist"</span><span class="p">,</span>
         <span class="n">is_create_environment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">python_env_tool</span><span class="o">=</span><span class="s2">&quot;virtualenv&quot;</span><span class="p">,</span>
-        <span class="n">requirements</span><span class="o">=</span><span class="s2">&quot;requirements.txt&quot;</span><span class="p">,</span>
+        <span class="n">python_env_tool</span><span class="o">=</span><span class="s2">"virtualenv"</span><span class="p">,</span>
+        <span class="n">requirements</span><span class="o">=</span><span class="s2">"requirements.txt"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># [start resource_limit]</span>
     <span class="n">pytorch_resources_limit</span> <span class="o">=</span> <span class="n">Pytorch</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pytorch_resources_limit&quot;</span><span class="p">,</span>
-        <span class="n">script</span><span class="o">=</span><span class="s2">&quot;main.py&quot;</span><span class="p">,</span>
-        <span class="n">script_params</span><span class="o">=</span><span class="s2">&quot;--dry-run --no-cuda&quot;</span><span class="p">,</span>
-        <span class="n">project_path</span><span class="o">=</span><span class="s2">&quot;https://github.com/pytorch/examples#mnist&quot;</span><span class="p">,</span>
-        <span class="n">python_command</span><span class="o">=</span><span class="s2">&quot;/home/anaconda3/envs/pytorch/bin/python3&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"pytorch_resources_limit"</span><span class="p">,</span>
+        <span class="n">script</span><span class="o">=</span><span class="s2">"main.py"</span><span class="p">,</span>
+        <span class="n">script_params</span><span class="o">=</span><span class="s2">"--dry-run --no-cuda"</span><span class="p">,</span>
+        <span class="n">project_path</span><span class="o">=</span><span class="s2">"https://github.com/pytorch/examples#mnist"</span><span class="p">,</span>
+        <span class="n">python_command</span><span class="o">=</span><span class="s2">"/home/anaconda3/envs/pytorch/bin/python3"</span><span class="p">,</span>
         <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="p">)</span>
@@ -181,11 +181,11 @@
 <h2>Resource Limit Example<a class="headerlink" href="#resource-limit-example" title="Link to this heading"></a></h2>
 <p>We can add resource limit like CPU quota and max memory by passing parameters when declaring tasks.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pytorch_resources_limit</span> <span class="o">=</span> <span class="n">Pytorch</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pytorch_resources_limit&quot;</span><span class="p">,</span>
-        <span class="n">script</span><span class="o">=</span><span class="s2">&quot;main.py&quot;</span><span class="p">,</span>
-        <span class="n">script_params</span><span class="o">=</span><span class="s2">&quot;--dry-run --no-cuda&quot;</span><span class="p">,</span>
-        <span class="n">project_path</span><span class="o">=</span><span class="s2">&quot;https://github.com/pytorch/examples#mnist&quot;</span><span class="p">,</span>
-        <span class="n">python_command</span><span class="o">=</span><span class="s2">&quot;/home/anaconda3/envs/pytorch/bin/python3&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"pytorch_resources_limit"</span><span class="p">,</span>
+        <span class="n">script</span><span class="o">=</span><span class="s2">"main.py"</span><span class="p">,</span>
+        <span class="n">script_params</span><span class="o">=</span><span class="s2">"--dry-run --no-cuda"</span><span class="p">,</span>
+        <span class="n">project_path</span><span class="o">=</span><span class="s2">"https://github.com/pytorch/examples#mnist"</span><span class="p">,</span>
+        <span class="n">python_command</span><span class="o">=</span><span class="s2">"/home/anaconda3/envs/pytorch/bin/python3"</span><span class="p">,</span>
         <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="p">)</span>
@@ -276,7 +276,7 @@
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pytorch&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Pytorch"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>

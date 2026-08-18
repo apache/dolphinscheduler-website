@@ -121,16 +121,16 @@
 <p>A flink task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A example workflow for task flink.&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">"""A example workflow for task flink."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.flink</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeployMode</span><span class="p">,</span> <span class="n">Flink</span><span class="p">,</span> <span class="n">ProgramType</span>
 
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_flink_example&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_flink_example"</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">task</span> <span class="o">=</span> <span class="n">Flink</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_flink&quot;</span><span class="p">,</span>
-        <span class="n">main_class</span><span class="o">=</span><span class="s2">&quot;org.apache.flink.streaming.examples.wordcount.WordCount&quot;</span><span class="p">,</span>
-        <span class="n">main_package</span><span class="o">=</span><span class="s2">&quot;WordCount.jar&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_flink"</span><span class="p">,</span>
+        <span class="n">main_class</span><span class="o">=</span><span class="s2">"org.apache.flink.streaming.examples.wordcount.WordCount"</span><span class="p">,</span>
+        <span class="n">main_package</span><span class="o">=</span><span class="s2">"WordCount.jar"</span><span class="p">,</span>
         <span class="n">program_type</span><span class="o">=</span><span class="n">ProgramType</span><span class="o">.</span><span class="n">JAVA</span><span class="p">,</span>
         <span class="n">deploy_mode</span><span class="o">=</span><span class="n">DeployMode</span><span class="o">.</span><span class="n">LOCAL</span><span class="p">,</span>
     <span class="p">)</span>
@@ -212,7 +212,7 @@
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Flink&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Flink"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>

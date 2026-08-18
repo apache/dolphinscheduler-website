@@ -123,7 +123,7 @@
 <p>A switch task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">A example workflow for task switch.</span>
 
 <span class="sd">This example will create four task in single workflow, with three shell task and one switch task. Task switch</span>
@@ -135,22 +135,22 @@
 <span class="sd">                    \</span>
 <span class="sd">                      --&gt; switch_child_2</span>
 <span class="sd">.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.shell</span><span class="w"> </span><span class="kn">import</span> <span class="n">Shell</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.switch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Branch</span><span class="p">,</span> <span class="n">Default</span><span class="p">,</span> <span class="n">Switch</span><span class="p">,</span> <span class="n">SwitchCondition</span>
 
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_switch_example&quot;</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;var&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">})</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo parent&quot;</span><span class="p">)</span>
-    <span class="n">switch_child_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;switch_child_1&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo switch_child_1&quot;</span><span class="p">)</span>
-    <span class="n">switch_child_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;switch_child_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo switch_child_2&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_switch_example"</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="s2">"var"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">})</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"parent"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo parent"</span><span class="p">)</span>
+    <span class="n">switch_child_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"switch_child_1"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo switch_child_1"</span><span class="p">)</span>
+    <span class="n">switch_child_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"switch_child_2"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo switch_child_2"</span><span class="p">)</span>
     <span class="n">switch_condition</span> <span class="o">=</span> <span class="n">SwitchCondition</span><span class="p">(</span>
-        <span class="n">Branch</span><span class="p">(</span><span class="n">condition</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{var}</span><span class="s2"> &gt; 1&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="n">switch_child_1</span><span class="p">),</span>
+        <span class="n">Branch</span><span class="p">(</span><span class="n">condition</span><span class="o">=</span><span class="s2">"$</span><span class="si">{var}</span><span class="s2"> &gt; 1"</span><span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="n">switch_child_1</span><span class="p">),</span>
         <span class="n">Default</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="n">switch_child_2</span><span class="p">),</span>
     <span class="p">)</span>
 
-    <span class="n">switch</span> <span class="o">=</span> <span class="n">Switch</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;switch&quot;</span><span class="p">,</span> <span class="n">condition</span><span class="o">=</span><span class="n">switch_condition</span><span class="p">)</span>
+    <span class="n">switch</span> <span class="o">=</span> <span class="n">Switch</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"switch"</span><span class="p">,</span> <span class="n">condition</span><span class="o">=</span><span class="n">switch_condition</span><span class="p">)</span>
     <span class="n">parent</span> <span class="o">&gt;&gt;</span> <span class="n">switch</span>
     <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 </pre></div>
@@ -288,7 +288,7 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Switch&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Switch"</span>
 <span class="w">  </span><span class="nt">param</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 
@@ -306,7 +306,7 @@ attribute <cite>_task_custom_attr</cite> due to avoid attribute cover.</p>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Switch</span>
 <span class="w">    </span><span class="nt">condition</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch_child_1</span>
-<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${var}</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">1&quot;</span>
+<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="s">"${var}</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">1"</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">switch_child_2</span>
 </pre></div>
 </div>

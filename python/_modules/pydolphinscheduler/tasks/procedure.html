@@ -86,19 +86,19 @@
 <span class="c1"># distributed with this work for additional information</span>
 <span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
 <span class="c1"># to you under the Apache License, Version 2.0 (the</span>
-<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># "License"); you may not use this file except in compliance</span>
 <span class="c1"># with the License.  You may obtain a copy of the License at</span>
 <span class="c1">#</span>
 <span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
 <span class="c1">#</span>
 <span class="c1"># Unless required by applicable law or agreed to in writing,</span>
 <span class="c1"># software distributed under the License is distributed on an</span>
-<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
 <span class="c1"># KIND, either express or implied.  See the License for the</span>
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;Task procedure.&quot;&quot;&quot;</span>
+<span class="sd">"""Task procedure."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -110,7 +110,7 @@
 <div class="viewcode-block" id="Procedure">
 <a class="viewcode-back" href="../../../tasks/procedure.html#pydolphinscheduler.tasks.Procedure">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Procedure</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task Procedure object, declare behavior for Procedure task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">"""Task Procedure object, declare behavior for Procedure task to dolphinscheduler.</span>
 
 <span class="sd">    It should run database procedure job in multiply sql lik engine, such as:</span>
 <span class="sd">    - ClickHouse</span>
@@ -123,9 +123,9 @@
 <span class="sd">    - SQLServer</span>
 <span class="sd">    You provider datasource_name contain connection information, it decisions which</span>
 <span class="sd">    database type and database instance would run this sql.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;method&quot;</span><span class="p">}</span>
+    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"method"</span><span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -143,22 +143,22 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">datasource</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get datasource for procedure task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Get datasource for procedure task."""</span>
         <span class="n">datasource_task_u</span> <span class="o">=</span> <span class="n">Datasource</span><span class="o">.</span><span class="n">get_task_usage_4j</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">datasource_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasource_type</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;datasource&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">"datasource"</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="s2">"type"</span><span class="p">:</span> <span class="n">datasource_task_u</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
         <span class="p">}</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override Task.task_params for produce task.</span>
+<span class="w">        </span><span class="sd">"""Override Task.task_params for produce task.</span>
 
 <span class="sd">        produce task have some specials attribute for task_params, and is odd if we</span>
 <span class="sd">        directly set as python property, so we Override Task.task_params here.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">params</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span>
         <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasource</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">params</span></div>

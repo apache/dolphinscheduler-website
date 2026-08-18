@@ -124,7 +124,7 @@
 <p>A dependent task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">A example workflow for task dependent.</span>
 
 <span class="sd">This example will create two workflows named `task_dependent` and `task_dependent_external`.</span>
@@ -142,7 +142,7 @@
 <span class="sd">task_dependent:</span>
 
 <span class="sd">task_dependent(this task dependent on task_dependent_external.task_1 and task_dependent_external.task_2).</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
@@ -150,29 +150,29 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.shell</span><span class="w"> </span><span class="kn">import</span> <span class="n">Shell</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dependent_external&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"task_dependent_external"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
-    <span class="n">task_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task 1&quot;</span><span class="p">)</span>
-    <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task 2&quot;</span><span class="p">)</span>
-    <span class="n">task_3</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_3&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task 3&quot;</span><span class="p">)</span>
+    <span class="n">task_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_1"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo task 1"</span><span class="p">)</span>
+    <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_2"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo task 2"</span><span class="p">)</span>
+    <span class="n">task_3</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_3"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo task 3"</span><span class="p">)</span>
     <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dependent_example&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"task_dependent_example"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">task</span> <span class="o">=</span> <span class="n">Dependent</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dependent&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_dependent"</span><span class="p">,</span>
         <span class="n">dependence</span><span class="o">=</span><span class="n">And</span><span class="p">(</span>
             <span class="n">Or</span><span class="p">(</span>
                 <span class="n">DependentItem</span><span class="p">(</span>
                     <span class="n">project_name</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_PROJECT</span><span class="p">,</span>
-                    <span class="n">workflow_name</span><span class="o">=</span><span class="s2">&quot;task_dependent_external&quot;</span><span class="p">,</span>
-                    <span class="n">dependent_task_name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span>
+                    <span class="n">workflow_name</span><span class="o">=</span><span class="s2">"task_dependent_external"</span><span class="p">,</span>
+                    <span class="n">dependent_task_name</span><span class="o">=</span><span class="s2">"task_1"</span><span class="p">,</span>
                 <span class="p">),</span>
                 <span class="n">DependentItem</span><span class="p">(</span>
                     <span class="n">project_name</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">WORKFLOW_PROJECT</span><span class="p">,</span>
-                    <span class="n">workflow_name</span><span class="o">=</span><span class="s2">&quot;task_dependent_external&quot;</span><span class="p">,</span>
-                    <span class="n">dependent_task_name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span>
+                    <span class="n">workflow_name</span><span class="o">=</span><span class="s2">"task_dependent_external"</span><span class="p">,</span>
+                    <span class="n">dependent_task_name</span><span class="o">=</span><span class="s2">"task_2"</span><span class="p">,</span>
                 <span class="p">),</span>
             <span class="p">)</span>
         <span class="p">),</span>
@@ -464,7 +464,7 @@ and set OR condition to those args.</p>
 <section id="yaml-file-example">
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Dependent&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Dependent"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>
@@ -502,24 +502,24 @@ and set OR condition to those args.</p>
 <span class="w">    </span><span class="nt">groups</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">or</span>
 <span class="w">        </span><span class="c1"># we can use ${CONFIG.WORKFLOW_PROJECT} to set the value to configuration.WORKFLOW_PROJECT</span>
-<span class="w">        </span><span class="c1"># we can use $WORKFLOW{&quot;Dependent_External.yaml&quot;} to create or update a workflow from dependent_external.yaml and set the value to that workflow name</span>
+<span class="w">        </span><span class="c1"># we can use $WORKFLOW{"Dependent_External.yaml"} to create or update a workflow from dependent_external.yaml and set the value to that workflow name</span>
 <span class="w">        </span><span class="nt">groups</span><span class="p">:</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">project_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CONFIG.WORKFLOW_PROJECT}</span><span class="w"> </span>
-<span class="w">            </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{&quot;Dependent_External.yaml&quot;}</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{"Dependent_External.yaml"}</span><span class="w"> </span>
 <span class="w">            </span><span class="nt">dependent_task_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_1</span>
 
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">project_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CONFIG.WORKFLOW_PROJECT}</span><span class="w"> </span>
-<span class="w">            </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{&quot;Dependent_External.yaml&quot;}</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{"Dependent_External.yaml"}</span><span class="w"> </span>
 <span class="w">            </span><span class="nt">dependent_task_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_2</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">and</span>
 <span class="w">        </span><span class="nt">groups</span><span class="p">:</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">project_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CONFIG.WORKFLOW_PROJECT}</span><span class="w"> </span>
-<span class="w">            </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{&quot;Dependent_External.yaml&quot;}</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{"Dependent_External.yaml"}</span><span class="w"> </span>
 <span class="w">            </span><span class="nt">dependent_task_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_1</span>
 <span class="w">            </span><span class="nt">dependent_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LAST_WEDNESDAY</span><span class="w"> </span>
 
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">project_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${CONFIG.WORKFLOW_PROJECT}</span><span class="w"> </span>
-<span class="w">            </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{&quot;Dependent_External.yaml&quot;}</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{"Dependent_External.yaml"}</span><span class="w"> </span>
 <span class="w">            </span><span class="nt">dependent_task_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_2</span>
 <span class="w">            </span><span class="nt">dependent_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">last24Hours</span><span class="w"> </span>
 </pre></div>
@@ -527,13 +527,13 @@ and set OR condition to those args.</p>
 <p>Dependent_External.yaml:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;task_dependent_external&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"task_dependent_external"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_1&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">1&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_2&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">2&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_3&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">3&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">"task_type"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Shell"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"name"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"task_1"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"command"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">1"</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">"task_type"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Shell"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"name"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"task_2"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"command"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">2"</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">"task_type"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Shell"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"name"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"task_3"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"command"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">3"</span><span class="w"> </span><span class="p p-Indicator">}</span>
 </pre></div>
 </div>
 </section>

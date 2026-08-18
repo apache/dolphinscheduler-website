@@ -86,19 +86,19 @@
 <span class="c1"># distributed with this work for additional information</span>
 <span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
 <span class="c1"># to you under the Apache License, Version 2.0 (the</span>
-<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># "License"); you may not use this file except in compliance</span>
 <span class="c1"># with the License.  You may obtain a copy of the License at</span>
 <span class="c1">#</span>
 <span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
 <span class="c1">#</span>
 <span class="c1"># Unless required by applicable law or agreed to in writing,</span>
 <span class="c1"># software distributed under the License is distributed on an</span>
-<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
 <span class="c1"># KIND, either express or implied.  See the License for the</span>
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;Task Switch.&quot;&quot;&quot;</span>
+<span class="sd">"""Task Switch."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -111,36 +111,36 @@
 <div class="viewcode-block" id="SwitchBranch">
 <a class="viewcode-back" href="../../../tasks/switch.html#pydolphinscheduler.tasks.SwitchBranch">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SwitchBranch</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class of ConditionBranch of task switch.</span>
+<span class="w">    </span><span class="sd">"""Base class of ConditionBranch of task switch.</span>
 
 <span class="sd">    It a parent class for :class:`Branch` and :class:`Default`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;next_node&quot;</span><span class="p">,</span>
+        <span class="s2">"next_node"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">,</span> <span class="n">exp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Switch.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Switch.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="n">task</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exp</span> <span class="o">=</span> <span class="n">exp</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">next_node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get task switch property next_node, it return task code when init class switch.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Get task switch property next_node, it return task code when init class switch."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">code</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">condition</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get task switch property condition.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Get task switch property condition."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp</span>
 
 <div class="viewcode-block" id="SwitchBranch.get_define">
 <a class="viewcode-back" href="../../../tasks/switch.html#pydolphinscheduler.tasks.SwitchBranch.get_define">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_define</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get :class:`ConditionBranch` definition attribute communicate to Java gateway server.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Get :class:`ConditionBranch` definition attribute communicate to Java gateway server."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;condition&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"condition"</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_define</span><span class="p">()</span></div>
 </div>
 
@@ -149,11 +149,11 @@
 <div class="viewcode-block" id="Branch">
 <a class="viewcode-back" href="../../../tasks/switch.html#pydolphinscheduler.tasks.Branch">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Branch</span><span class="p">(</span><span class="n">SwitchBranch</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Common condition branch for switch task.</span>
+<span class="w">    </span><span class="sd">"""Common condition branch for switch task.</span>
 
-<span class="sd">    If any condition in :class:`Branch` match, would set this :class:`Branch`&#39;s task as downstream of task</span>
-<span class="sd">    switch. If all condition branch do not match would set :class:`Default`&#39;s task as task switch downstream.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    If any condition in :class:`Branch` match, would set this :class:`Branch`'s task as downstream of task</span>
+<span class="sd">    switch. If all condition branch do not match would set :class:`Default`'s task as task switch downstream.</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">condition</span><span class="p">)</span></div>
@@ -163,12 +163,12 @@
 <div class="viewcode-block" id="Default">
 <a class="viewcode-back" href="../../../tasks/switch.html#pydolphinscheduler.tasks.Default">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Default</span><span class="p">(</span><span class="n">SwitchBranch</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class default branch for switch task.</span>
+<span class="w">    </span><span class="sd">"""Class default branch for switch task.</span>
 
 <span class="sd">    If all condition of :class:`Branch` do not match, task switch would run the tasks in :class:`Default`</span>
-<span class="sd">    and set :class:`Default`&#39;s task as switch downstream. Please notice that each switch condition</span>
+<span class="sd">    and set :class:`Default`'s task as switch downstream. Please notice that each switch condition</span>
 <span class="sd">    could only have one single :class:`Default`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Task</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">task</span><span class="p">)</span></div>
@@ -178,10 +178,10 @@
 <div class="viewcode-block" id="SwitchCondition">
 <a class="viewcode-back" href="../../../tasks/switch.html#pydolphinscheduler.tasks.SwitchCondition">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SwitchCondition</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set switch condition of given parameter.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Set switch condition of given parameter."""</span>
 
     <span class="n">_DEFINE_ATTR</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;depend_task_list&quot;</span><span class="p">,</span>
+        <span class="s2">"depend_task_list"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
@@ -191,40 +191,40 @@
 <div class="viewcode-block" id="SwitchCondition.set_define_attr">
 <a class="viewcode-back" href="../../../tasks/switch.html#pydolphinscheduler.tasks.SwitchCondition.set_define_attr">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_define_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set attribute to function :func:`get_define`.</span>
+<span class="w">        </span><span class="sd">"""Set attribute to function :func:`get_define`.</span>
 
 <span class="sd">        It is a wrapper for both `And` and `Or` operator.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">num_branch_default</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">condition</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">SwitchBranch</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
-                    <span class="s2">&quot;Task Switch&#39;s parameter only support SwitchBranch but got </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">,</span>
+                    <span class="s2">"Task Switch's parameter only support SwitchBranch but got </span><span class="si">%s</span><span class="s2">."</span><span class="p">,</span>
                     <span class="nb">type</span><span class="p">(</span><span class="n">condition</span><span class="p">),</span>
                 <span class="p">)</span>
             <span class="c1"># Default number branch checker</span>
             <span class="k">if</span> <span class="n">num_branch_default</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">Default</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
-                    <span class="s2">&quot;Task Switch&#39;s parameter only support exactly one default branch.&quot;</span>
+                    <span class="s2">"Task Switch's parameter only support exactly one default branch."</span>
                 <span class="p">)</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">Default</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;next_node&quot;</span><span class="p">)</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;next_node&quot;</span><span class="p">,</span> <span class="n">condition</span><span class="o">.</span><span class="n">next_node</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"next_node"</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"next_node"</span><span class="p">,</span> <span class="n">condition</span><span class="o">.</span><span class="n">next_node</span><span class="p">)</span>
                 <span class="n">num_branch_default</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">Branch</span><span class="p">):</span>
                 <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">condition</span><span class="o">.</span><span class="n">get_define</span><span class="p">())</span>
-        <span class="c1"># Handle switch default branch, default value is `&quot;&quot;` if not provide.</span>
+        <span class="c1"># Handle switch default branch, default value is `""` if not provide.</span>
         <span class="k">if</span> <span class="n">num_branch_default</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;next_node&quot;</span><span class="p">)</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;next_node&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;depend_task_list&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_DEFINE_ATTR</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"next_node"</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"next_node"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"depend_task_list"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="SwitchCondition.get_define">
 <a class="viewcode-back" href="../../../tasks/switch.html#pydolphinscheduler.tasks.SwitchCondition.get_define">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_define</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Overwrite Base.get_define to get task Condition specific get define.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Overwrite Base.get_define to get task Condition specific get define."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_define_attr</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_define</span><span class="p">()</span></div>
 </div>
@@ -234,15 +234,15 @@
 <div class="viewcode-block" id="Switch">
 <a class="viewcode-back" href="../../../tasks/switch.html#pydolphinscheduler.tasks.Switch">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Switch</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task switch object, declare behavior for switch task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">"""Task switch object, declare behavior for switch task to dolphinscheduler.</span>
 
 <span class="sd">    Param of workflow or at least one local param of task must be set</span>
 <span class="sd">    if task `switch` in this workflow.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">_task_ignore_attr</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;condition_result&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;dependence&quot;</span><span class="p">,</span>
+        <span class="s2">"condition_result"</span><span class="p">,</span>
+        <span class="s2">"dependence"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="n">SwitchCondition</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -254,7 +254,7 @@
 <div class="viewcode-block" id="Switch._set_dep">
 <a class="viewcode-back" href="../../../tasks/switch.html#pydolphinscheduler.tasks.Switch._set_dep">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_dep</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set downstream according to parameter `condition`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Set downstream according to parameter `condition`."""</span>
         <span class="n">downstream</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">condition</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">SwitchBranch</span><span class="p">):</span>
@@ -264,14 +264,14 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">task_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camel_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">custom_attr</span><span class="p">:</span> <span class="nb">set</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override Task.task_params for switch task.</span>
+<span class="w">        </span><span class="sd">"""Override Task.task_params for switch task.</span>
 
 <span class="sd">        switch task have some specials attribute `switch`, and in most of the task</span>
 <span class="sd">        this attribute is None and use empty dict `{}` as default value. We do not use class</span>
 <span class="sd">        attribute `_task_custom_attr` due to avoid attribute cover.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">params</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">task_params</span>
-        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;switchResult&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">get_define</span><span class="p">()</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">"switchResult"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">get_define</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">params</span></div>
 
 </pre></div>

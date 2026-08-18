@@ -123,32 +123,32 @@
 <p>A DVC task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A example workflow for task dvc.&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">"""A example workflow for task dvc."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks</span><span class="w"> </span><span class="kn">import</span> <span class="n">DVCDownload</span><span class="p">,</span> <span class="n">DVCInit</span><span class="p">,</span> <span class="n">DVCUpload</span>
 
-<span class="n">repository</span> <span class="o">=</span> <span class="s2">&quot;git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git&quot;</span>
+<span class="n">repository</span> <span class="o">=</span> <span class="s2">"git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git"</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_dvc_example&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"task_dvc_example"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
-    <span class="n">init_task</span> <span class="o">=</span> <span class="n">DVCInit</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;init_dvc&quot;</span><span class="p">,</span> <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span> <span class="n">store_url</span><span class="o">=</span><span class="s2">&quot;~/dvc_data&quot;</span><span class="p">)</span>
+    <span class="n">init_task</span> <span class="o">=</span> <span class="n">DVCInit</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"init_dvc"</span><span class="p">,</span> <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span> <span class="n">store_url</span><span class="o">=</span><span class="s2">"~/dvc_data"</span><span class="p">)</span>
     <span class="n">upload_task</span> <span class="o">=</span> <span class="n">DVCUpload</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;upload_data&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"upload_data"</span><span class="p">,</span>
         <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span>
-        <span class="n">data_path_in_dvc_repository</span><span class="o">=</span><span class="s2">&quot;iris&quot;</span><span class="p">,</span>
-        <span class="n">data_path_in_worker</span><span class="o">=</span><span class="s2">&quot;~/source/iris&quot;</span><span class="p">,</span>
-        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">,</span>
-        <span class="n">message</span><span class="o">=</span><span class="s2">&quot;upload iris data v1&quot;</span><span class="p">,</span>
+        <span class="n">data_path_in_dvc_repository</span><span class="o">=</span><span class="s2">"iris"</span><span class="p">,</span>
+        <span class="n">data_path_in_worker</span><span class="o">=</span><span class="s2">"~/source/iris"</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s2">"v1"</span><span class="p">,</span>
+        <span class="n">message</span><span class="o">=</span><span class="s2">"upload iris data v1"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">download_task</span> <span class="o">=</span> <span class="n">DVCDownload</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;download_data&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"download_data"</span><span class="p">,</span>
         <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span>
-        <span class="n">data_path_in_dvc_repository</span><span class="o">=</span><span class="s2">&quot;iris&quot;</span><span class="p">,</span>
-        <span class="n">data_path_in_worker</span><span class="o">=</span><span class="s2">&quot;~/target/iris&quot;</span><span class="p">,</span>
-        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">,</span>
+        <span class="n">data_path_in_dvc_repository</span><span class="o">=</span><span class="s2">"iris"</span><span class="p">,</span>
+        <span class="n">data_path_in_worker</span><span class="o">=</span><span class="s2">"~/target/iris"</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s2">"v1"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">init_task</span> <span class="o">&gt;&gt;</span> <span class="n">upload_task</span> <span class="o">&gt;&gt;</span> <span class="n">download_task</span>
@@ -326,12 +326,12 @@
 <section id="yaml-file-example">
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable `repository`</span>
-<span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;repository</span><span class="w"> </span><span class="s">&quot;git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git&quot;</span><span class="w"> </span>
+<span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;repository</span><span class="w"> </span><span class="s">"git@github.com:&lt;YOUR-NAME-OR-ORG&gt;/dvc-data-repository-example.git"</span><span class="w"> </span>
 
 <span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DVC&quot;</span>
-<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"DVC"</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">"offline"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>
@@ -343,7 +343,7 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">upload_data</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DVCUpload</span>
 <span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nv">*repository</span>
-<span class="w">    </span><span class="nt">data_path_in_dvc_repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iris&quot;</span>
+<span class="w">    </span><span class="nt">data_path_in_dvc_repository</span><span class="p">:</span><span class="w"> </span><span class="s">"iris"</span>
 <span class="w">    </span><span class="nt">data_path_in_worker</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/source/iris</span>
 <span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="w">    </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">upload iris data v1</span>
@@ -351,7 +351,7 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">download_data</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DVCDownload</span>
 <span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="nv">*repository</span>
-<span class="w">    </span><span class="nt">data_path_in_dvc_repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iris&quot;</span>
+<span class="w">    </span><span class="nt">data_path_in_dvc_repository</span><span class="p">:</span><span class="w"> </span><span class="s">"iris"</span>
 <span class="w">    </span><span class="nt">data_path_in_worker</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/target/iris</span>
 <span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 </pre></div>

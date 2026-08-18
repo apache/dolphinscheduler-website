@@ -86,19 +86,19 @@
 <span class="c1"># distributed with this work for additional information</span>
 <span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
 <span class="c1"># to you under the Apache License, Version 2.0 (the</span>
-<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># "License"); you may not use this file except in compliance</span>
 <span class="c1"># with the License.  You may obtain a copy of the License at</span>
 <span class="c1">#</span>
 <span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
 <span class="c1">#</span>
 <span class="c1"># Unless required by applicable law or agreed to in writing,</span>
 <span class="c1"># software distributed under the License is distributed on an</span>
-<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
 <span class="c1"># KIND, either express or implied.  See the License for the</span>
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;Task OpenMLDB.&quot;&quot;&quot;</span>
+<span class="sd">"""Task OpenMLDB."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.task</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatchTask</span>
@@ -107,20 +107,20 @@
 <div class="viewcode-block" id="OpenMLDB">
 <a class="viewcode-back" href="../../../tasks/openmldb.html#pydolphinscheduler.tasks.OpenMLDB">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">OpenMLDB</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task OpenMLDB object, declare behavior for OpenMLDB task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">"""Task OpenMLDB object, declare behavior for OpenMLDB task to dolphinscheduler.</span>
 
 <span class="sd">    :param name: task name</span>
 <span class="sd">    :param zookeeper: OpenMLDB cluster zookeeper address, e.g. 127.0.0.1:2181.</span>
 <span class="sd">    :param zookeeper_path: OpenMLDB cluster zookeeper path, e.g. /openmldb.</span>
 <span class="sd">    :param execute_mode: Determine the init mode, offline or online. You can switch it in sql statementself.</span>
 <span class="sd">    :param sql: SQL statement.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;zk&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;zk_path&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;execute_mode&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;sql&quot;</span><span class="p">,</span>
+        <span class="s2">"zk"</span><span class="p">,</span>
+        <span class="s2">"zk_path"</span><span class="p">,</span>
+        <span class="s2">"execute_mode"</span><span class="p">,</span>
+        <span class="s2">"sql"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

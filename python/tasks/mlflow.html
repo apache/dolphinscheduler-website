@@ -126,7 +126,7 @@
 <p>A MLflow task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A example workflow for task mlflow.&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">"""A example workflow for task mlflow."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.mlflow</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -137,35 +137,35 @@
     <span class="n">MLFlowProjectsCustom</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">mlflow_tracking_uri</span> <span class="o">=</span> <span class="s2">&quot;http://127.0.0.1:5000&quot;</span>
+<span class="n">mlflow_tracking_uri</span> <span class="o">=</span> <span class="s2">"http://127.0.0.1:5000"</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_mlflow_example&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"task_mlflow_example"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># run custom mlflow project to train model</span>
     <span class="n">train_custom</span> <span class="o">=</span> <span class="n">MLFlowProjectsCustom</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;train_xgboost_native&quot;</span><span class="p">,</span>
-        <span class="n">repository</span><span class="o">=</span><span class="s2">&quot;https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"train_xgboost_native"</span><span class="p">,</span>
+        <span class="n">repository</span><span class="o">=</span><span class="s2">"https://github.com/mlflow/mlflow#examples/xgboost/xgboost_native"</span><span class="p">,</span>
         <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
-        <span class="n">parameters</span><span class="o">=</span><span class="s2">&quot;-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9&quot;</span><span class="p">,</span>
-        <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;xgboost&quot;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="s2">"-P learning_rate=0.2 -P colsample_bytree=0.8 -P subsample=0.9"</span><span class="p">,</span>
+        <span class="n">experiment_name</span><span class="o">=</span><span class="s2">"xgboost"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># run automl to train model</span>
     <span class="n">train_automl</span> <span class="o">=</span> <span class="n">MLFlowProjectsAutoML</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;train_automl&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"train_automl"</span><span class="p">,</span>
         <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
-        <span class="n">parameters</span><span class="o">=</span><span class="s2">&quot;time_budget=30;estimator_list=[&#39;lgbm&#39;]&quot;</span><span class="p">,</span>
-        <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;automl_iris&quot;</span><span class="p">,</span>
-        <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;iris_A&quot;</span><span class="p">,</span>
-        <span class="n">automl_tool</span><span class="o">=</span><span class="s2">&quot;flaml&quot;</span><span class="p">,</span>
-        <span class="n">data_path</span><span class="o">=</span><span class="s2">&quot;/data/examples/iris&quot;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="s2">"time_budget=30;estimator_list=['lgbm']"</span><span class="p">,</span>
+        <span class="n">experiment_name</span><span class="o">=</span><span class="s2">"automl_iris"</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="o">=</span><span class="s2">"iris_A"</span><span class="p">,</span>
+        <span class="n">automl_tool</span><span class="o">=</span><span class="s2">"flaml"</span><span class="p">,</span>
+        <span class="n">data_path</span><span class="o">=</span><span class="s2">"/data/examples/iris"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># Using DOCKER to deploy model from train_automl</span>
     <span class="n">deploy_docker</span> <span class="o">=</span> <span class="n">MLflowModels</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;deploy_docker&quot;</span><span class="p">,</span>
-        <span class="n">model_uri</span><span class="o">=</span><span class="s2">&quot;models:/iris_A/Production&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"deploy_docker"</span><span class="p">,</span>
+        <span class="n">model_uri</span><span class="o">=</span><span class="s2">"models:/iris_A/Production"</span><span class="p">,</span>
         <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
         <span class="n">deploy_mode</span><span class="o">=</span><span class="n">MLflowDeployType</span><span class="o">.</span><span class="n">DOCKER</span><span class="p">,</span>
         <span class="n">port</span><span class="o">=</span><span class="mi">7002</span><span class="p">,</span>
@@ -175,20 +175,20 @@
 
     <span class="c1"># run lightgbm to train model</span>
     <span class="n">train_basic_algorithm</span> <span class="o">=</span> <span class="n">MLFlowProjectsBasicAlgorithm</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;train_basic_algorithm&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"train_basic_algorithm"</span><span class="p">,</span>
         <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
-        <span class="n">parameters</span><span class="o">=</span><span class="s2">&quot;n_estimators=200;learning_rate=0.2&quot;</span><span class="p">,</span>
-        <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;basic_algorithm_iris&quot;</span><span class="p">,</span>
-        <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;iris_B&quot;</span><span class="p">,</span>
-        <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;lightgbm&quot;</span><span class="p">,</span>
-        <span class="n">data_path</span><span class="o">=</span><span class="s2">&quot;/data/examples/iris&quot;</span><span class="p">,</span>
-        <span class="n">search_params</span><span class="o">=</span><span class="s2">&quot;max_depth=[5, 10];n_estimators=[100, 200]&quot;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="s2">"n_estimators=200;learning_rate=0.2"</span><span class="p">,</span>
+        <span class="n">experiment_name</span><span class="o">=</span><span class="s2">"basic_algorithm_iris"</span><span class="p">,</span>
+        <span class="n">model_name</span><span class="o">=</span><span class="s2">"iris_B"</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="s2">"lightgbm"</span><span class="p">,</span>
+        <span class="n">data_path</span><span class="o">=</span><span class="s2">"/data/examples/iris"</span><span class="p">,</span>
+        <span class="n">search_params</span><span class="o">=</span><span class="s2">"max_depth=[5, 10];n_estimators=[100, 200]"</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># Using MLFLOW to deploy model from training lightgbm project</span>
     <span class="n">deploy_mlflow</span> <span class="o">=</span> <span class="n">MLflowModels</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;deploy_mlflow&quot;</span><span class="p">,</span>
-        <span class="n">model_uri</span><span class="o">=</span><span class="s2">&quot;models:/iris_B/Production&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"deploy_mlflow"</span><span class="p">,</span>
+        <span class="n">model_uri</span><span class="o">=</span><span class="s2">"models:/iris_B/Production"</span><span class="p">,</span>
         <span class="n">mlflow_tracking_uri</span><span class="o">=</span><span class="n">mlflow_tracking_uri</span><span class="p">,</span>
         <span class="n">deploy_mode</span><span class="o">=</span><span class="n">MLflowDeployType</span><span class="o">.</span><span class="n">MLFLOW</span><span class="p">,</span>
         <span class="n">port</span><span class="o">=</span><span class="mi">7001</span><span class="p">,</span>
@@ -510,11 +510,11 @@ See https://mlflow.org/docs/latest/tracking.html#artifact-stores</p></li>
 <section id="yaml-file-example">
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable `mlflow_tracking_uri`</span>
-<span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;mlflow_tracking_uri</span><span class="w"> </span><span class="s">&quot;http://127.0.0.1:5000&quot;</span><span class="w"> </span>
+<span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;mlflow_tracking_uri</span><span class="w"> </span><span class="s">"http://127.0.0.1:5000"</span><span class="w"> </span>
 
 <span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MLflow&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"MLflow"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>
@@ -528,7 +528,7 @@ See https://mlflow.org/docs/latest/tracking.html#artifact-stores</p></li>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">train_automl</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MLFlowProjectsAutoML</span><span class="w"> </span>
 <span class="w">    </span><span class="nt">mlflow_tracking_uri</span><span class="p">:</span><span class="w"> </span><span class="nv">*mlflow_tracking_uri</span>
-<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time_budget=30;estimator_list=[&#39;lgbm&#39;]</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">time_budget=30;estimator_list=['lgbm']</span>
 <span class="w">    </span><span class="nt">experiment_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">automl_iris</span>
 <span class="w">    </span><span class="nt">model_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iris_A</span>
 <span class="w">    </span><span class="nt">automl_tool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flaml</span>

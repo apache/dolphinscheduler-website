@@ -86,19 +86,19 @@
 <span class="c1"># distributed with this work for additional information</span>
 <span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
 <span class="c1"># to you under the Apache License, Version 2.0 (the</span>
-<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># "License"); you may not use this file except in compliance</span>
 <span class="c1"># with the License.  You may obtain a copy of the License at</span>
 <span class="c1">#</span>
 <span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
 <span class="c1">#</span>
 <span class="c1"># Unless required by applicable law or agreed to in writing,</span>
 <span class="c1"># software distributed under the License is distributed on an</span>
-<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
 <span class="c1"># KIND, either express or implied.  See the License for the</span>
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;Task sub workflow.&quot;&quot;&quot;</span>
+<span class="sd">"""Task sub workflow."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -111,9 +111,9 @@
 <div class="viewcode-block" id="SubWorkflow">
 <a class="viewcode-back" href="../../../tasks/sub_workflow.html#pydolphinscheduler.tasks.SubWorkflow">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SubWorkflow</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task SubWorkflow object, declare behavior for SubWorkflow task to dolphinscheduler.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Task SubWorkflow object, declare behavior for SubWorkflow task to dolphinscheduler."""</span>
 
-    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;workflow_definition_code&quot;</span><span class="p">}</span>
+    <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"workflow_definition_code"</span><span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">workflow_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">SUB_WORKFLOW</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -121,20 +121,20 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">workflow_definition_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get workflow code, a wrapper for :func:`get_workflow_info`.</span>
+<span class="w">        </span><span class="sd">"""Get workflow code, a wrapper for :func:`get_workflow_info`.</span>
 
 <span class="sd">        We can not change this function name to workflow_code, because it is a keyword used in</span>
 <span class="sd">        dolphinscheduler itself.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_workflow_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workflow_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_workflow_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workflow_name</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"code"</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SubWorkflow.get_workflow_info">
 <a class="viewcode-back" href="../../../tasks/sub_workflow.html#pydolphinscheduler.tasks.SubWorkflow.get_workflow_info">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_workflow_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">workflow_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get workflow info from java gateway, contains workflow id, name, code.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Get workflow info from java gateway, contains workflow id, name, code."""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PyDSWorkflowNotAssignException</span><span class="p">(</span>
-                <span class="s2">&quot;Workflow must be provider for task SubWorkflow.&quot;</span>
+                <span class="s2">"Workflow must be provider for task SubWorkflow."</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">gateway</span><span class="o">.</span><span class="n">get_workflow_info</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">workflow</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>

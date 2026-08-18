@@ -86,19 +86,19 @@
 <span class="c1"># distributed with this work for additional information</span>
 <span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
 <span class="c1"># to you under the Apache License, Version 2.0 (the</span>
-<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># "License"); you may not use this file except in compliance</span>
 <span class="c1"># with the License.  You may obtain a copy of the License at</span>
 <span class="c1">#</span>
 <span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
 <span class="c1">#</span>
 <span class="c1"># Unless required by applicable law or agreed to in writing,</span>
 <span class="c1"># software distributed under the License is distributed on an</span>
-<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
 <span class="c1"># KIND, either express or implied.  See the License for the</span>
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;Task SageMaker.&quot;&quot;&quot;</span>
+<span class="sd">"""Task SageMaker."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaskType</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.task</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatchTask</span>
@@ -107,17 +107,17 @@
 <div class="viewcode-block" id="SageMaker">
 <a class="viewcode-back" href="../../../tasks/sagemaker.html#pydolphinscheduler.tasks.SageMaker">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SageMaker</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task SageMaker object, declare behavior for SageMaker task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">"""Task SageMaker object, declare behavior for SageMaker task to dolphinscheduler.</span>
 
 <span class="sd">    :param name: A unique, meaningful string for the SageMaker task.</span>
 <span class="sd">    :param sagemaker_request_json: Request parameters of StartPipelineExecution，</span>
 <span class="sd">        see also `AWS API</span>
 <span class="sd">        &lt;https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StartPipelineExecution.html&gt;`_</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;sagemaker_request_json&quot;</span><span class="p">,</span>
+        <span class="s2">"sagemaker_request_json"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sagemaker_request_json</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>

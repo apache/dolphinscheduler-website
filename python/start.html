@@ -151,8 +151,8 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 which is required for <em>PyDolphinScheduler</em>’s workflow definition.</p>
 <p>Above command will clone whole dolphinscheduler source code to local, maybe you want to install the latest pydolphinscheduler
 package directly and do not care about other code(including Python gateway service code), you can execute the command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Must escape the &#39;&amp;&#39; character by adding &#39;\&#39;</span>
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;git+https://github.com/apache/dolphinscheduler-sdk-python.git#egg=apache-dolphinscheduler&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Must escape the '&amp;' character by adding '\'</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">"git+https://github.com/apache/dolphinscheduler-sdk-python.git#egg=apache-dolphinscheduler"</span>
 </pre></div>
 </div>
 </section>
@@ -164,7 +164,7 @@ could define workflow and task structures, but could not run it unless you
 Python gateway service in it. We only write some key steps here and you could
 go <a class="reference external" href="https://dolphinscheduler.apache.org/en-us/docs/latest/user_doc/guide/installation/standalone.html">install Apache DolphinScheduler</a> for more details</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export the environment variable to enabled python-gateway service</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">API_PYTHON_GATEWAY_ENABLED</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">API_PYTHON_GATEWAY_ENABLED</span><span class="o">=</span><span class="s2">"true"</span>
 <span class="c1"># Start DolphinScheduler api-server which including python gateway service</span>
 ./bin/dolphinscheduler-daemon.sh<span class="w"> </span>start<span class="w"> </span>api-server
 </pre></div>

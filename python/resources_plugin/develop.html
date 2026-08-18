@@ -118,16 +118,16 @@
 <p>The file prefix has been initialized in init of the resource plugin.</p>
 <p>The prefix plus suffix is the absolute path of the file in this resource.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suf</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the content of the file.</span>
+<span class="w">        </span><span class="sd">"""Get the content of the file.</span>
 
 <span class="sd">        The address of the file is the prefix of the resource plugin plus the parameter suf.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="n">suf</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="n">PyResPluginException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2"> is not found&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">PyResPluginException</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="si">}</span><span class="s2"> is not found"</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">R_OK</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">PyResPluginException</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;You don&#39;t have permission to access </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">suf</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">"You don't have permission to access </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">suf</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>

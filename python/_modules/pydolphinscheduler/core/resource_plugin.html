@@ -86,19 +86,19 @@
 <span class="c1"># distributed with this work for additional information</span>
 <span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
 <span class="c1"># to you under the Apache License, Version 2.0 (the</span>
-<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># "License"); you may not use this file except in compliance</span>
 <span class="c1"># with the License.  You may obtain a copy of the License at</span>
 <span class="c1">#</span>
 <span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
 <span class="c1">#</span>
 <span class="c1"># Unless required by applicable law or agreed to in writing,</span>
 <span class="c1"># software distributed under the License is distributed on an</span>
-<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
 <span class="c1"># KIND, either express or implied.  See the License for the</span>
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;DolphinScheduler ResourcePlugin object.&quot;&quot;&quot;</span>
+<span class="sd">"""DolphinScheduler ResourcePlugin object."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
@@ -109,11 +109,11 @@
 <div class="viewcode-block" id="ResourcePlugin">
 <a class="viewcode-back" href="../../../resources_plugin/resource-plugin.html#pydolphinscheduler.core.resource_plugin.ResourcePlugin">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ResourcePlugin</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;ResourcePlugin object, declare resource plugin for task and workflow to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">"""ResourcePlugin object, declare resource plugin for task and workflow to dolphinscheduler.</span>
 
 <span class="sd">    :param prefix: A string representing the prefix of ResourcePlugin.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="c1"># [start init_method]</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -126,10 +126,10 @@
 <a class="viewcode-back" href="../../../resources_plugin/resource-plugin.html#pydolphinscheduler.core.resource_plugin.ResourcePlugin.read_file">[docs]</a>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suf</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the content of the file.</span>
+<span class="w">        </span><span class="sd">"""Get the content of the file.</span>
 
 <span class="sd">        The address of the file is the prefix of the resource plugin plus the parameter suf.</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
+<span class="sd">        """</span></div>
 
 
     <span class="c1"># [end abstractmethod read_file]</span>
@@ -137,12 +137,12 @@
 <div class="viewcode-block" id="ResourcePlugin.get_index">
 <a class="viewcode-back" href="../../../resources_plugin/resource-plugin.html#pydolphinscheduler.core.resource_plugin.ResourcePlugin.get_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find the subscript of the nth occurrence of the X character in the string s.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Find the subscript of the nth occurrence of the X character in the string s."""</span>
         <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
             <span class="n">all_index</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">x</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">all_index</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">PyResPluginException</span><span class="p">(</span><span class="s2">&quot;Incomplete path.&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="n">PyResPluginException</span><span class="p">(</span><span class="s2">"Incomplete path."</span><span class="p">)</span></div>
 </div>
 
 

@@ -122,10 +122,10 @@ ways, <a class="reference external" href="bybash">Bash</a> and <a class="referen
 <p>Setting environment variables via <cite>Bash</cite> is the most straightforward and easiest way. We give some examples about
 how to change them by Bash.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modify Java Gateway Address</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">PYDS_JAVA_GATEWAY_ADDRESS</span><span class="o">=</span><span class="s2">&quot;192.168.1.1&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYDS_JAVA_GATEWAY_ADDRESS</span><span class="o">=</span><span class="s2">"192.168.1.1"</span>
 
 <span class="c1"># Modify Workflow Default User</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">PYDS_WORKFLOW_USER</span><span class="o">=</span><span class="s2">&quot;custom-user&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYDS_WORKFLOW_USER</span><span class="o">=</span><span class="s2">"custom-user"</span>
 </pre></div>
 </div>
 <p>After executing the commands above, both <code class="docutils literal notranslate"><span class="pre">PYDS_JAVA_GATEWAY_ADDRESS</span></code> and <code class="docutils literal notranslate"><span class="pre">PYDS_WORKFLOW_USER</span></code> will be changed.
@@ -140,10 +140,10 @@ variables via Python <code class="docutils literal notranslate"><span class="pre
 method next to <code class="docutils literal notranslate"><span class="pre">os.environ</span></code> statement.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="c1"># Modify Java Gateway Address</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYDS_JAVA_GATEWAY_ADDRESS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;192.168.1.1&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"PYDS_JAVA_GATEWAY_ADDRESS"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"192.168.1.1"</span>
 
 <span class="c1"># Modify Workflow Default User</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PYDS_WORKFLOW_USER&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;custom-user&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"PYDS_WORKFLOW_USER"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"custom-user"</span>
 </pre></div>
 </div>
 </section>
@@ -265,7 +265,7 @@ pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--get<sp
 
 <span class="c1"># Get parent configuration which contain multiple leaf nodes,</span>
 <span class="c1"># The output look like below:</span>
-<span class="c1"># java_gateway = ordereddict([(&#39;address&#39;, &#39;127.0.0.1&#39;), (&#39;port&#39;, 25333), (&#39;auto_convert&#39;, True)])</span>
+<span class="c1"># java_gateway = ordereddict([('address', '127.0.0.1'), ('port', 25333), ('auto_convert', True)])</span>
 pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--get<span class="w"> </span>java_gateway
 
 <span class="c1"># Set single configuration,</span>
@@ -311,7 +311,7 @@ pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--set<sp
 <span class="c1"># Setting about dolphinscheduler default value, will use the value set below if property do not set, which</span>
 <span class="c1"># including ``user``, ``workflow`` </span>
 <span class="nt">default</span><span class="p">:</span>
-<span class="w">  </span><span class="c1"># Default value for dolphinscheduler&#39;s user object</span>
+<span class="w">  </span><span class="c1"># Default value for dolphinscheduler's user object</span>
 <span class="w">  </span><span class="nt">user</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userPythonGateway</span>
 <span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userPythonGateway</span>
@@ -319,7 +319,7 @@ pydolphinscheduler<span class="w"> </span>config<span class="w"> </span>--set<sp
 <span class="w">    </span><span class="nt">tenant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tenant_pydolphin</span>
 <span class="w">    </span><span class="nt">phone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11111111111</span>
 <span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">  </span><span class="c1"># Default value for dolphinscheduler&#39;s workflow object</span>
+<span class="w">  </span><span class="c1"># Default value for dolphinscheduler's workflow object</span>
 <span class="w">  </span><span class="nt">workflow</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">project-pydolphin</span>
 <span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">userPythonGateway</span>

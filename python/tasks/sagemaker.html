@@ -119,7 +119,7 @@
 <p>A SageMaker task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A example workflow for task sagemaker.&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">"""A example workflow for task sagemaker."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
@@ -127,21 +127,21 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.sagemaker</span><span class="w"> </span><span class="kn">import</span> <span class="n">SageMaker</span>
 
 <span class="n">sagemaker_request_data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;ParallelismConfiguration&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;MaxParallelExecutionSteps&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
-    <span class="s2">&quot;PipelineExecutionDescription&quot;</span><span class="p">:</span> <span class="s2">&quot;test Pipeline&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;PipelineExecutionDisplayName&quot;</span><span class="p">:</span> <span class="s2">&quot;AbalonePipeline&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;PipelineName&quot;</span><span class="p">:</span> <span class="s2">&quot;AbalonePipeline&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;PipelineParameters&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;ProcessingInstanceType&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;ml.m4.xlarge&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;ProcessingInstanceCount&quot;</span><span class="p">,</span> <span class="s2">&quot;Value&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">},</span>
+    <span class="s2">"ParallelismConfiguration"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"MaxParallelExecutionSteps"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="s2">"PipelineExecutionDescription"</span><span class="p">:</span> <span class="s2">"test Pipeline"</span><span class="p">,</span>
+    <span class="s2">"PipelineExecutionDisplayName"</span><span class="p">:</span> <span class="s2">"AbalonePipeline"</span><span class="p">,</span>
+    <span class="s2">"PipelineName"</span><span class="p">:</span> <span class="s2">"AbalonePipeline"</span><span class="p">,</span>
+    <span class="s2">"PipelineParameters"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span> <span class="s2">"ProcessingInstanceType"</span><span class="p">,</span> <span class="s2">"Value"</span><span class="p">:</span> <span class="s2">"ml.m4.xlarge"</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span> <span class="s2">"ProcessingInstanceCount"</span><span class="p">,</span> <span class="s2">"Value"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">},</span>
     <span class="p">],</span>
 <span class="p">}</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_sagemaker_example&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"task_sagemaker_example"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">task_sagemaker</span> <span class="o">=</span> <span class="n">SageMaker</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_sagemaker&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_sagemaker"</span><span class="p">,</span>
         <span class="n">sagemaker_request_json</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sagemaker_request_data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
     <span class="p">)</span>
 
@@ -198,32 +198,32 @@ see also <a class="reference external" href="https://docs.aws.amazon.com/sagemak
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Sagemaker&quot;</span>
-<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Sagemaker"</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">"offline"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sagemaker</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sagemaker</span>
-<span class="w">    </span><span class="nt">sagemaker_request_json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$FILE{&quot;example_sagemaker_params.json&quot;}</span>
+<span class="w">    </span><span class="nt">sagemaker_request_json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$FILE{"example_sagemaker_params.json"}</span>
 </pre></div>
 </div>
 <p>example_sagemaker_params.json:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;ParallelismConfiguration&quot;</span><span class="p">:{</span>
-<span class="w">        </span><span class="nt">&quot;MaxParallelExecutionSteps&quot;</span><span class="p">:</span><span class="mi">1</span>
+<span class="w">    </span><span class="nt">"ParallelismConfiguration"</span><span class="p">:{</span>
+<span class="w">        </span><span class="nt">"MaxParallelExecutionSteps"</span><span class="p">:</span><span class="mi">1</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;PipelineExecutionDescription&quot;</span><span class="p">:</span><span class="s2">&quot;run pipeline using ds&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;PipelineExecutionDisplayName&quot;</span><span class="p">:</span><span class="s2">&quot;ds-sagemaker-pipeline&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;PipelineName&quot;</span><span class="p">:</span><span class="s2">&quot;DsSagemakerPipeline&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;PipelineParameters&quot;</span><span class="p">:[</span>
+<span class="w">    </span><span class="nt">"PipelineExecutionDescription"</span><span class="p">:</span><span class="s2">"run pipeline using ds"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"PipelineExecutionDisplayName"</span><span class="p">:</span><span class="s2">"ds-sagemaker-pipeline"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"PipelineName"</span><span class="p">:</span><span class="s2">"DsSagemakerPipeline"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"PipelineParameters"</span><span class="p">:[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;InputData&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3://sagemaker/dataset/dataset.csv&quot;</span>
+<span class="w">            </span><span class="nt">"Name"</span><span class="p">:</span><span class="s2">"InputData"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3://sagemaker/dataset/dataset.csv"</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;InferenceData&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;Value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3://sagemaker/dataset/inference.csv&quot;</span>
+<span class="w">            </span><span class="nt">"Name"</span><span class="p">:</span><span class="s2">"InferenceData"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"Value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3://sagemaker/dataset/inference.csv"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>

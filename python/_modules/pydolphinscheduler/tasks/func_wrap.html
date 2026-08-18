@@ -86,19 +86,19 @@
 <span class="c1"># distributed with this work for additional information</span>
 <span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
 <span class="c1"># to you under the Apache License, Version 2.0 (the</span>
-<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># "License"); you may not use this file except in compliance</span>
 <span class="c1"># with the License.  You may obtain a copy of the License at</span>
 <span class="c1">#</span>
 <span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
 <span class="c1">#</span>
 <span class="c1"># Unless required by applicable law or agreed to in writing,</span>
 <span class="c1"># software distributed under the License is distributed on an</span>
-<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
 <span class="c1"># KIND, either express or implied.  See the License for the</span>
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;Task function wrapper allows using decorator to create a task.&quot;&quot;&quot;</span>
+<span class="sd">"""Task function wrapper allows using decorator to create a task."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
@@ -114,17 +114,17 @@
 <div class="viewcode-block" id="_exists_other_decorator">
 <a class="viewcode-back" href="../../../tasks/func_wrap.html#pydolphinscheduler.tasks.func_wrap._exists_other_decorator">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_exists_other_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if the function has other decorators except @task.</span>
+<span class="w">    </span><span class="sd">"""Check if the function has other decorators except @task.</span>
 
 <span class="sd">    :param func: The function which wraps by decorator ``@task``.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsourcelines</span><span class="p">(</span><span class="n">func</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
         <span class="n">strip_line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">strip_line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">strip_line</span> <span class="o">==</span> <span class="s2">&quot;@task&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">strip_line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"@"</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">strip_line</span> <span class="o">==</span> <span class="s2">"@task"</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
-                <span class="s2">&quot;Do no support other decorators for function ``task`` decorator.&quot;</span>
+                <span class="s2">"Do no support other decorators for function ``task`` decorator."</span>
             <span class="p">)</span></div>
 
 
@@ -132,20 +132,20 @@
 <div class="viewcode-block" id="task">
 <a class="viewcode-back" href="../../../tasks/func_wrap.html#pydolphinscheduler.tasks.func_wrap.task">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">task</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">types</span><span class="o">.</span><span class="n">FunctionType</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorate which covert Python functions into pydolphinscheduler task.</span>
+<span class="w">    </span><span class="sd">"""Decorate which covert Python functions into pydolphinscheduler task.</span>
 
 <span class="sd">    :param func: The function which wraps by decorator ``@task``.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">_exists_other_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="n">loc</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__code__</span><span class="o">.</span><span class="n">co_filename</span>
-        <span class="n">extractor</span> <span class="o">=</span> <span class="n">Extractor</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">extractor</span> <span class="o">=</span> <span class="n">Extractor</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"r"</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
         <span class="n">stm</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">get_code</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Python</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span>
-            <span class="n">definition</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stm</span><span class="si">}{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">()&quot;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span>
+            <span class="n">definition</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">stm</span><span class="si">}{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">()"</span><span class="p">,</span>
             <span class="o">*</span><span class="n">args</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>

@@ -105,25 +105,25 @@ and in the real word.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.resource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Resource</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Shell</span>
 
-<span class="n">dependence</span> <span class="o">=</span> <span class="s2">&quot;dependence.py&quot;</span>
-<span class="n">main</span> <span class="o">=</span> <span class="s2">&quot;main.py&quot;</span>
+<span class="n">dependence</span> <span class="o">=</span> <span class="s2">"dependence.py"</span>
+<span class="n">main</span> <span class="o">=</span> <span class="s2">"main.py"</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;multi_resources_example&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"multi_resources_example"</span><span class="p">,</span>
     <span class="c1"># [start create_new_resources]</span>
     <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
         <span class="n">Resource</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="n">dependence</span><span class="p">,</span>
-            <span class="n">content</span><span class="o">=</span><span class="s2">&quot;from datetime import datetime</span><span class="se">\n</span><span class="s2">now = datetime.now()&quot;</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="s2">"from datetime import datetime</span><span class="se">\n</span><span class="s2">now = datetime.now()"</span><span class="p">,</span>
         <span class="p">),</span>
-        <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">main</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;from dependence import now</span><span class="se">\n</span><span class="s2">print(now)&quot;</span><span class="p">),</span>
+        <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">main</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">"from dependence import now</span><span class="se">\n</span><span class="s2">print(now)"</span><span class="p">),</span>
     <span class="p">],</span>
     <span class="c1"># [end create_new_resources]</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># [start use_exists_resources]</span>
     <span class="n">task_use_resource</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;use-resource&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;python </span><span class="si">{</span><span class="n">main</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"use-resource"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="sa">f</span><span class="s2">"python </span><span class="si">{</span><span class="n">main</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
             <span class="n">dependence</span><span class="p">,</span>
             <span class="n">main</span><span class="p">,</span>
@@ -151,9 +151,9 @@ resources should assign to <code class="docutils literal notranslate"><span clas
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
         <span class="n">Resource</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="n">dependence</span><span class="p">,</span>
-            <span class="n">content</span><span class="o">=</span><span class="s2">&quot;from datetime import datetime</span><span class="se">\n</span><span class="s2">now = datetime.now()&quot;</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="s2">"from datetime import datetime</span><span class="se">\n</span><span class="s2">now = datetime.now()"</span><span class="p">,</span>
         <span class="p">),</span>
-        <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">main</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;from dependence import now</span><span class="se">\n</span><span class="s2">print(now)&quot;</span><span class="p">),</span>
+        <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">main</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">"from dependence import now</span><span class="se">\n</span><span class="s2">print(now)"</span><span class="p">),</span>
     <span class="p">],</span>
 </pre></div>
 </div>
@@ -164,8 +164,8 @@ resources should assign to <code class="docutils literal notranslate"><span clas
 attribute of the task and then call the main file to run our task. In this example, we call <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">main.py</span></code>
 which will use <code class="docutils literal notranslate"><span class="pre">dependence.py</span></code> as a dependency.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_use_resource</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;use-resource&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;python </span><span class="si">{</span><span class="n">main</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"use-resource"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="sa">f</span><span class="s2">"python </span><span class="si">{</span><span class="n">main</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
             <span class="n">dependence</span><span class="p">,</span>
             <span class="n">main</span><span class="p">,</span>

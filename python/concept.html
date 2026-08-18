@@ -110,10 +110,10 @@
 name, schedule interval, schedule start time and end time. You would know scheduler</p>
 <p>Workflow could be initialized in a normal assignment statement or within a context manger.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialization with assign statement</span>
-<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
+<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"my first workflow"</span><span class="p">)</span>
 
 <span class="c1"># Or context manger</span>
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"my first workflow"</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">workflow</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -185,8 +185,8 @@ and all the waiting instances will be executed base on workflow priority order.<
 <li><p>Direct assign statement. You can pick execute type from above and direct assign to parameter
 <code class="docutils literal notranslate"><span class="pre">execution_type</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;workflow_name&quot;</span><span class="p">,</span>
-    <span class="n">execution_type</span><span class="o">=</span><span class="s2">&quot;parallel&quot;</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"workflow_name"</span><span class="p">,</span>
+    <span class="n">execution_type</span><span class="o">=</span><span class="s2">"parallel"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -212,8 +212,8 @@ The value of <code class="docutils literal notranslate"><span class="pre">warnin
 what you want in the task. It has some required parameters to make uniqueness and definition.</p>
 <p>Here we use <a class="reference internal" href="api.html#pydolphinscheduler.tasks.Shell" title="pydolphinscheduler.tasks.Shell"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.Shell()</span></code></a> as example, parameter <cite>name</cite> and <cite>command</cite> is required and must be provider. Parameter
 <cite>name</cite> set name to the task, and parameter <cite>command</cite> declare the command you wish to run in this task.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We named this task as &quot;shell&quot;, and just run command `echo shell task`</span>
-<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We named this task as "shell", and just run command `echo shell task`</span>
+<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"shell"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo shell task"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you want to see all types of tasks, you could see <a class="reference internal" href="tasks/index.html"><span class="doc">Tasks</span></a>.</p>
@@ -246,12 +246,12 @@ have two main ways and both of them are easy. You could use bitwise operator <ci
 <p>In most of data orchestration cases, you should assign attribute <cite>workflow</cite> to task instance to
 decide workflow of task. You could set <cite>workflow</cite> in both normal assign or in context manger mode</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normal assign, have to explicit declaration and pass `Workflow` instance to task</span>
-<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span>
-<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span> <span class="n">workflow</span><span class="o">=</span><span class="n">workflow</span><span class="p">)</span>
+<span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"my first workflow"</span><span class="p">)</span>
+<span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"shell"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo shell task"</span><span class="p">,</span> <span class="n">workflow</span><span class="o">=</span><span class="n">workflow</span><span class="p">)</span>
 
 <span class="c1"># Context manger, `Workflow` instance workflow would implicit declaration to task</span>
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my first workflow&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
-    <span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo shell task&quot;</span><span class="p">,</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"my first workflow"</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+    <span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"shell"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo shell task"</span><span class="p">,</span>
 </pre></div>
 </div>
 <p>With both <a class="reference internal" href="#workflow">Workflow</a>, <a class="reference internal" href="#tasks">Tasks</a>  and <a class="reference internal" href="#tasks-dependence">Tasks Dependence</a>, we could build a workflow with multiple tasks.</p>
@@ -280,8 +280,8 @@ specific priority for this task group, and tasks will run in the order they were
 </ul>
 <p>Here’s an example in Python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extract</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;extract&quot;</span><span class="p">,</span>
-   <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;Some extract command here&#39;&quot;</span><span class="p">,</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">"extract"</span><span class="p">,</span>
+   <span class="n">command</span><span class="o">=</span><span class="s2">"echo 'Some extract command here'"</span><span class="p">,</span>
    <span class="n">task_group_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
    <span class="n">task_group_priority</span><span class="o">=</span><span class="mi">123</span>
 <span class="p">)</span>
@@ -302,20 +302,20 @@ For example, you have a bash script named <code class="docutils literal notransl
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/env bash</span>
 <span class="nv">max</span><span class="o">=</span><span class="m">10</span>
 <span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span><span class="nv">$max</span><span class="p">;</span><span class="w"> </span>++i<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$i</span><span class="s2">"</span>
 <span class="k">done</span>
 </pre></div>
 </div>
 <p>and you want to use it in workflow but do not want to copy-paste it to shell task parameter <code class="docutils literal notranslate"><span class="pre">command</span></code>. You could
 use this mechanism to upload it to resource center when you create workflow</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read file content</span>
-<span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;echo-ten.sh&quot;</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s2">"echo-ten.sh"</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
       <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;upload_and_run&quot;</span><span class="p">,</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">"upload_and_run"</span><span class="p">,</span>
    <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
       <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">),</span>
    <span class="p">],</span>
@@ -328,8 +328,8 @@ resource center.</p>
 to run it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We use `shell` task to run `echo-ten.sh` file</span>
 <span class="n">shell_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;run&quot;</span><span class="p">,</span>
-   <span class="n">command</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;bash </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">"run"</span><span class="p">,</span>
+   <span class="n">command</span><span class="o">=</span><span class="sa">f</span><span class="s2">"bash </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
    <span class="n">resource_list</span><span class="o">=</span><span class="p">[</span>
       <span class="n">file_name</span>
    <span class="p">],</span>
@@ -344,7 +344,7 @@ resource center bare without workflow.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Upload file to resource center</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.resource</span><span class="w"> </span><span class="kn">import</span> <span class="n">Resource</span>
 
-<span class="n">resource</span> <span class="o">=</span> <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;bare-create.py&quot;</span><span class="p">,</span> <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;&lt;USER-MUST-EXISTS-WITH-TENANT&gt;&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;print(&#39;Bareh create resource&#39;)&quot;</span><span class="p">)</span>
+<span class="n">resource</span> <span class="o">=</span> <span class="n">Resource</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"bare-create.py"</span><span class="p">,</span> <span class="n">user_name</span><span class="o">=</span><span class="s2">"&lt;USER-MUST-EXISTS-WITH-TENANT&gt;"</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="s2">"print('Bareh create resource')"</span><span class="p">)</span>
 <span class="n">resource</span><span class="o">.</span><span class="n">create_or_update_resource</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -360,32 +360,32 @@ multiple files. For more complex usage, you could read <a class="reference inter
 <p>In DolphinScheduler, we can define parameter in task, aka Local Parameter.</p>
 <p>We can set parameters to variables in tasks to better manage our tasks.</p>
 <p>For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># define a parameter &quot;a&quot;, and use it in Shell task</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># define a parameter "a", and use it in Shell task</span>
     <span class="n">example1_input_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example1_input_params&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo $</span><span class="si">{a}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"example1_input_params"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo $</span><span class="si">{a}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;123&quot;</span><span class="p">,</span>
+            <span class="s2">"a"</span><span class="p">:</span> <span class="s2">"123"</span><span class="p">,</span>
         <span class="p">},</span>
     <span class="p">)</span>
 
-    <span class="c1"># define a parameter &quot;random_value&quot;, and pass it to the downstream tasks</span>
+    <span class="c1"># define a parameter "random_value", and pass it to the downstream tasks</span>
     <span class="n">example2_output_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example2_output_params&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"example2_output_params"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"""</span>
 <span class="s2">        val=$(echo $RANDOM)</span>
-<span class="s2">        echo &quot;#{setValue(random_value=$</span><span class="si">{val}</span><span class="s2">)}&quot;</span>
+<span class="s2">        echo "#{setValue(random_value=$</span><span class="si">{val}</span><span class="s2">)}"</span>
 <span class="s2">        echo $val</span>
-<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">        """</span><span class="p">,</span>
         <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;random_value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">"random_value"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
         <span class="p">},</span>
     <span class="p">)</span>
 
-    <span class="c1"># use the parameter &quot;random_value&quot;, from upstream tasks</span>
-    <span class="c1"># we don&#39;t need to define input_params again if the parameter is from upstram tasks</span>
+    <span class="c1"># use the parameter "random_value", from upstream tasks</span>
+    <span class="c1"># we don't need to define input_params again if the parameter is from upstram tasks</span>
     <span class="n">example2_input_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example2_input_params&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;echo $</span><span class="si">{random_value}</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"example2_input_params"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"""echo $</span><span class="si">{random_value}</span><span class="s2">"""</span>
     <span class="p">)</span>
 
     <span class="n">example2_output_params</span> <span class="o">&gt;&gt;</span> <span class="n">example2_input_params</span>
@@ -394,45 +394,45 @@ multiple files. For more complex usage, you could read <a class="reference inter
 <p>There are two ways to define local parameters:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Add parameter via task arguments</span>
     <span class="n">task_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_1"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo hello pydolphinscheduler"</span><span class="p">,</span>
         <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;value_VARCHAR&quot;</span><span class="p">:</span> <span class="s2">&quot;abc&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;value_INTEGER&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
-            <span class="s2">&quot;value_FLOAT&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-            <span class="s2">&quot;value_BOOLEAN&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">"value_VARCHAR"</span><span class="p">:</span> <span class="s2">"abc"</span><span class="p">,</span>
+            <span class="s2">"value_INTEGER"</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+            <span class="s2">"value_FLOAT"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s2">"value_BOOLEAN"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;value_EMPTY&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">"value_EMPTY"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">},</span>
     <span class="p">)</span>
 
-    <span class="c1"># Add parameter via task instance&#39;s method</span>
-    <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="c1"># Add parameter via task instance's method</span>
+    <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_2"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo hello pydolphinscheduler"</span><span class="p">)</span>
 
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_VARCHAR&quot;</span><span class="p">,</span> <span class="s2">&quot;abc&quot;</span><span class="p">)</span>
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_INTEGER&quot;</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_FLOAT&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_BOOLEAN&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_out</span><span class="p">(</span><span class="s2">&quot;value_EMPTY&quot;</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">"value_VARCHAR"</span><span class="p">,</span> <span class="s2">"abc"</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">"value_INTEGER"</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">"value_FLOAT"</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">"value_BOOLEAN"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_out</span><span class="p">(</span><span class="s2">"value_EMPTY"</span><span class="p">)</span>
 
     <span class="c1"># Task 1 is the same as task 2</span>
 
     <span class="c1"># Others parameter types which cannot be converted automatically, must declare type explicitly</span>
     <span class="n">task_3</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_3&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;123&#39; &gt;&gt; test.txt&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_3"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo '123' &gt;&gt; test.txt"</span><span class="p">,</span>
         <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;value_LONG&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LONG</span><span class="p">(</span><span class="s2">&quot;1000000&quot;</span><span class="p">),</span>
-            <span class="s2">&quot;value_DATE&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">DATE</span><span class="p">(</span><span class="s2">&quot;2022-01-02&quot;</span><span class="p">),</span>
-            <span class="s2">&quot;value_TIME&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIME</span><span class="p">(</span><span class="s2">&quot;2022-01-01&quot;</span><span class="p">),</span>
-            <span class="s2">&quot;value_TIMESTAMP&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIMESTAMP</span><span class="p">(</span><span class="mi">123123124125</span><span class="p">),</span>
-            <span class="s2">&quot;value_LIST&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(</span><span class="s2">&quot;123123&quot;</span><span class="p">),</span>
+            <span class="s2">"value_LONG"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LONG</span><span class="p">(</span><span class="s2">"1000000"</span><span class="p">),</span>
+            <span class="s2">"value_DATE"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">DATE</span><span class="p">(</span><span class="s2">"2022-01-02"</span><span class="p">),</span>
+            <span class="s2">"value_TIME"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIME</span><span class="p">(</span><span class="s2">"2022-01-01"</span><span class="p">),</span>
+            <span class="s2">"value_TIMESTAMP"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIMESTAMP</span><span class="p">(</span><span class="mi">123123124125</span><span class="p">),</span>
+            <span class="s2">"value_LIST"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(</span><span class="s2">"123123"</span><span class="p">),</span>
         <span class="p">},</span>
         <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;output_INTEGER&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">INTEGER</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-            <span class="s2">&quot;output_LIST&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(),</span>
-            <span class="s2">&quot;output_FILE&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">FILE</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">),</span>
+            <span class="s2">"output_INTEGER"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">INTEGER</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+            <span class="s2">"output_LIST"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(),</span>
+            <span class="s2">"output_FILE"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">FILE</span><span class="p">(</span><span class="s2">"test.txt"</span><span class="p">),</span>
         <span class="p">},</span>
     <span class="p">)</span>
 
@@ -440,50 +440,50 @@ multiple files. For more complex usage, you could read <a class="reference inter
 </pre></div>
 </div>
 <p>Full example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">A tutorial example set local parameter in pydolphinscheduler.</span>
 
 <span class="sd">Method 1:</span>
-<span class="sd">    task = Shell(..., input_params={&quot;input&quot;:&quot;a&quot;}, output_params={&quot;output&quot;: &quot;b&quot;})</span>
+<span class="sd">    task = Shell(..., input_params={"input":"a"}, output_params={"output": "b"})</span>
 
 <span class="sd">Method 2:</span>
 <span class="sd">    task = Shell(...)</span>
-<span class="sd">    task.add_in(&quot;input&quot;, &quot;a&quot;)</span>
-<span class="sd">    task.add_out(&quot;output&quot;, &quot;b&quot;)</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    task.add_in("input", "a")</span>
+<span class="sd">    task.add_out("output", "b")</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.parameter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterType</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.shell</span><span class="w"> </span><span class="kn">import</span> <span class="n">Shell</span>
 
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;local_parameter_example&quot;</span><span class="p">,</span> <span class="n">release_state</span><span class="o">=</span><span class="s2">&quot;offline&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"local_parameter_example"</span><span class="p">,</span> <span class="n">release_state</span><span class="o">=</span><span class="s2">"offline"</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># [start parameter example]</span>
-    <span class="c1"># define a parameter &quot;a&quot;, and use it in Shell task</span>
+    <span class="c1"># define a parameter "a", and use it in Shell task</span>
     <span class="n">example1_input_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example1_input_params&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo $</span><span class="si">{a}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"example1_input_params"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo $</span><span class="si">{a}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;123&quot;</span><span class="p">,</span>
+            <span class="s2">"a"</span><span class="p">:</span> <span class="s2">"123"</span><span class="p">,</span>
         <span class="p">},</span>
     <span class="p">)</span>
 
-    <span class="c1"># define a parameter &quot;random_value&quot;, and pass it to the downstream tasks</span>
+    <span class="c1"># define a parameter "random_value", and pass it to the downstream tasks</span>
     <span class="n">example2_output_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example2_output_params&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"example2_output_params"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"""</span>
 <span class="s2">        val=$(echo $RANDOM)</span>
-<span class="s2">        echo &quot;#{setValue(random_value=$</span><span class="si">{val}</span><span class="s2">)}&quot;</span>
+<span class="s2">        echo "#{setValue(random_value=$</span><span class="si">{val}</span><span class="s2">)}"</span>
 <span class="s2">        echo $val</span>
-<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">        """</span><span class="p">,</span>
         <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;random_value&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">"random_value"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
         <span class="p">},</span>
     <span class="p">)</span>
 
-    <span class="c1"># use the parameter &quot;random_value&quot;, from upstream tasks</span>
-    <span class="c1"># we don&#39;t need to define input_params again if the parameter is from upstram tasks</span>
+    <span class="c1"># use the parameter "random_value", from upstream tasks</span>
+    <span class="c1"># we don't need to define input_params again if the parameter is from upstram tasks</span>
     <span class="n">example2_input_params</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example2_input_params&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;echo $</span><span class="si">{random_value}</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"example2_input_params"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"""echo $</span><span class="si">{random_value}</span><span class="s2">"""</span>
     <span class="p">)</span>
 
     <span class="n">example2_output_params</span> <span class="o">&gt;&gt;</span> <span class="n">example2_input_params</span>
@@ -492,45 +492,45 @@ multiple files. For more complex usage, you could read <a class="reference inter
     <span class="c1"># [start parameter define]</span>
     <span class="c1"># Add parameter via task arguments</span>
     <span class="n">task_1</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_1&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_1"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo hello pydolphinscheduler"</span><span class="p">,</span>
         <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;value_VARCHAR&quot;</span><span class="p">:</span> <span class="s2">&quot;abc&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;value_INTEGER&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
-            <span class="s2">&quot;value_FLOAT&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-            <span class="s2">&quot;value_BOOLEAN&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">"value_VARCHAR"</span><span class="p">:</span> <span class="s2">"abc"</span><span class="p">,</span>
+            <span class="s2">"value_INTEGER"</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+            <span class="s2">"value_FLOAT"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s2">"value_BOOLEAN"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;value_EMPTY&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">"value_EMPTY"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">},</span>
     <span class="p">)</span>
 
-    <span class="c1"># Add parameter via task instance&#39;s method</span>
-    <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_2&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="c1"># Add parameter via task instance's method</span>
+    <span class="n">task_2</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_2"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo hello pydolphinscheduler"</span><span class="p">)</span>
 
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_VARCHAR&quot;</span><span class="p">,</span> <span class="s2">&quot;abc&quot;</span><span class="p">)</span>
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_INTEGER&quot;</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_FLOAT&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">&quot;value_BOOLEAN&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-    <span class="n">task_2</span><span class="o">.</span><span class="n">add_out</span><span class="p">(</span><span class="s2">&quot;value_EMPTY&quot;</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">"value_VARCHAR"</span><span class="p">,</span> <span class="s2">"abc"</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">"value_INTEGER"</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">"value_FLOAT"</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_in</span><span class="p">(</span><span class="s2">"value_BOOLEAN"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">task_2</span><span class="o">.</span><span class="n">add_out</span><span class="p">(</span><span class="s2">"value_EMPTY"</span><span class="p">)</span>
 
     <span class="c1"># Task 1 is the same as task 2</span>
 
     <span class="c1"># Others parameter types which cannot be converted automatically, must declare type explicitly</span>
     <span class="n">task_3</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_3&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;123&#39; &gt;&gt; test.txt&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_3"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo '123' &gt;&gt; test.txt"</span><span class="p">,</span>
         <span class="n">input_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;value_LONG&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LONG</span><span class="p">(</span><span class="s2">&quot;1000000&quot;</span><span class="p">),</span>
-            <span class="s2">&quot;value_DATE&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">DATE</span><span class="p">(</span><span class="s2">&quot;2022-01-02&quot;</span><span class="p">),</span>
-            <span class="s2">&quot;value_TIME&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIME</span><span class="p">(</span><span class="s2">&quot;2022-01-01&quot;</span><span class="p">),</span>
-            <span class="s2">&quot;value_TIMESTAMP&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIMESTAMP</span><span class="p">(</span><span class="mi">123123124125</span><span class="p">),</span>
-            <span class="s2">&quot;value_LIST&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(</span><span class="s2">&quot;123123&quot;</span><span class="p">),</span>
+            <span class="s2">"value_LONG"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LONG</span><span class="p">(</span><span class="s2">"1000000"</span><span class="p">),</span>
+            <span class="s2">"value_DATE"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">DATE</span><span class="p">(</span><span class="s2">"2022-01-02"</span><span class="p">),</span>
+            <span class="s2">"value_TIME"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIME</span><span class="p">(</span><span class="s2">"2022-01-01"</span><span class="p">),</span>
+            <span class="s2">"value_TIMESTAMP"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">TIMESTAMP</span><span class="p">(</span><span class="mi">123123124125</span><span class="p">),</span>
+            <span class="s2">"value_LIST"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(</span><span class="s2">"123123"</span><span class="p">),</span>
         <span class="p">},</span>
         <span class="n">output_params</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;output_INTEGER&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">INTEGER</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-            <span class="s2">&quot;output_LIST&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(),</span>
-            <span class="s2">&quot;output_FILE&quot;</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">FILE</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">),</span>
+            <span class="s2">"output_INTEGER"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">INTEGER</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+            <span class="s2">"output_LIST"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">LIST</span><span class="p">(),</span>
+            <span class="s2">"output_FILE"</span><span class="p">:</span> <span class="n">ParameterType</span><span class="o">.</span><span class="n">FILE</span><span class="p">(</span><span class="s2">"test.txt"</span><span class="p">),</span>
         <span class="p">},</span>
     <span class="p">)</span>
 

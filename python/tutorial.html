@@ -127,29 +127,29 @@ We can find more YAML file examples in <a class="reference external" href="https
 
 <span class="c1"># [start workflow_declare]</span>
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial&quot;</span><span class="p">,</span>
-    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
-    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"tutorial"</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">"0 0 0 * * ? *"</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">"2021-01-01"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># [end workflow_declare]</span>
     <span class="c1"># [start task_declare]</span>
-    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_parent"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo hello pydolphinscheduler"</span><span class="p">)</span>
     <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        echo &quot;Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">&quot;</span>
-<span class="s2">        echo &quot;Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">&quot;</span>
-<span class="s2">        echo &quot;Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">&quot;</span>
-<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
-        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;param3&quot;</span><span class="p">:</span> <span class="s2">&quot;$[yyyy-MM-dd]&quot;</span><span class="p">},</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_child_one"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"""</span>
+<span class="s2">        echo "Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">"</span>
+<span class="s2">        echo "Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">"</span>
+<span class="s2">        echo "Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">"</span>
+<span class="s2">        """</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">"param1"</span><span class="p">:</span> <span class="s2">"str1"</span><span class="p">,</span> <span class="s2">"param2"</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">"param3"</span><span class="p">:</span> <span class="s2">"$[yyyy-MM-dd]"</span><span class="p">},</span>
     <span class="p">)</span>
-    <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
-    <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+    <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_child_two"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo 'child two'"</span><span class="p">)</span>
+    <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_union"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo union"</span><span class="p">)</span>
 
     <span class="c1"># [start resource_limit]</span>
     <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo resource limit&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"resource_limit"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo resource limit"</span><span class="p">,</span>
         <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="p">)</span>
@@ -179,43 +179,43 @@ We can find more YAML file examples in <a class="reference external" href="https
 
 <span class="c1"># [end package_import]</span>
 
-<span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;global-var&quot;</span>
+<span class="n">scope_global</span> <span class="o">=</span> <span class="s2">"global-var"</span>
 
 
 <span class="c1"># [start task_declare]</span>
 <span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">print_something</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""First task in this workflow."""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"hello python function wrap task"</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">depend_import</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Depend on import module."""</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">depend_global_var</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Depend on global var."""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">depend_local_var</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
-    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Depend on local variable."""</span>
+    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">"local"</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Call in other task."""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"this is a global function"</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">depend_func</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Depend on global function."""</span>
     <span class="n">foo</span><span class="p">()</span>
 
 
@@ -224,9 +224,9 @@ We can find more YAML file examples in <a class="reference external" href="https
 
 <span class="c1"># [start workflow_declare]</span>
 <span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_decorator&quot;</span><span class="p">,</span>
-    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
-    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"tutorial_decorator"</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">"0 0 0 * * ? *"</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">"2021-01-01"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># [end workflow_declare]</span>
 
@@ -246,10 +246,10 @@ We can find more YAML file examples in <a class="reference external" href="https
 <input class="tab-input" id="tab-set--0-input--3" name="tab-set--0" type="radio" /><label class="tab-label" for="tab-set--0-input--3">YAML File</label><div class="tab-content docutils container">
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span>
-<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span>
-<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span>
-<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"tutorial"</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">"0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*"</span>
+<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">"2021-01-01"</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">"offline"</span>
 <span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
@@ -261,17 +261,17 @@ We can find more YAML file examples in <a class="reference external" href="https
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "child one"</span>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "child two"</span>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "union"</span>
 </pre></div>
 </div>
 </div>
@@ -320,18 +320,18 @@ will be running this task in the DolphinScheduler worker. See <a class="referenc
 <div class="tab-set docutils container">
 <input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio" /><label class="tab-label" for="tab-set--2-input--1">Tradition</label><div class="tab-content docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial&quot;</span><span class="p">,</span>
-    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
-    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"tutorial"</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">"0 0 0 * * ? *"</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">"2021-01-01"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
 </pre></div>
 </div>
 </div>
 <input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio" /><label class="tab-label" for="tab-set--2-input--2">Task Decorator</label><div class="tab-content docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial_decorator&quot;</span><span class="p">,</span>
-    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
-    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"tutorial_decorator"</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">"0 0 0 * * ? *"</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">"2021-01-01"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
 </pre></div>
 </div>
@@ -339,10 +339,10 @@ will be running this task in the DolphinScheduler worker. See <a class="referenc
 <input class="tab-input" id="tab-set--2-input--3" name="tab-set--2" type="radio" /><label class="tab-label" for="tab-set--2-input--3">YAML File</label><div class="tab-content docutils container">
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span>
-<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*&quot;</span>
-<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2021-01-01&quot;</span>
-<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"tutorial"</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s">"0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">?</span><span class="nv"> </span><span class="s">*"</span>
+<span class="w">  </span><span class="nt">start_time</span><span class="p">:</span><span class="w"> </span><span class="s">"2021-01-01"</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">"offline"</span>
 <span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
@@ -360,23 +360,23 @@ if you are interested in it. For all arguments of object workflow, you could fin
 <a class="reference internal" href="tasks/shell.html#module-pydolphinscheduler.tasks.shell" title="pydolphinscheduler.tasks.shell"><code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.tasks.shell</span></code></a> which runs <cite>echo</cite> command in the terminal. Besides the argument
 <cite>command</cite> with <code class="code docutils literal notranslate"><span class="pre">echo</span></code> command, we also need to set the argument <cite>name</cite> for each task
 <em>(not only shell task, `name` is required for each type of task)</em>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_parent"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo hello pydolphinscheduler"</span><span class="p">)</span>
     <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        echo &quot;Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">&quot;</span>
-<span class="s2">        echo &quot;Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">&quot;</span>
-<span class="s2">        echo &quot;Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">&quot;</span>
-<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
-        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;param3&quot;</span><span class="p">:</span> <span class="s2">&quot;$[yyyy-MM-dd]&quot;</span><span class="p">},</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_child_one"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"""</span>
+<span class="s2">        echo "Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">"</span>
+<span class="s2">        echo "Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">"</span>
+<span class="s2">        echo "Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">"</span>
+<span class="s2">        """</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">"param1"</span><span class="p">:</span> <span class="s2">"str1"</span><span class="p">,</span> <span class="s2">"param2"</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">"param3"</span><span class="p">:</span> <span class="s2">"$[yyyy-MM-dd]"</span><span class="p">},</span>
     <span class="p">)</span>
-    <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
-    <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+    <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_child_two"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo 'child two'"</span><span class="p">)</span>
+    <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_union"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo union"</span><span class="p">)</span>
 
     <span class="c1"># [start resource_limit]</span>
     <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo resource limit&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"resource_limit"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo resource limit"</span><span class="p">,</span>
         <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="p">)</span>
@@ -391,37 +391,37 @@ using <a class="reference internal" href="tasks/func_wrap.html#pydolphinschedule
 <code class="code docutils literal notranslate"><span class="pre">&#64;task</span></code> to existing Python function, and then use them inside <code class="xref py py-class docutils literal notranslate"><span class="pre">pydolphinscheduler.core.workflow</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">print_something</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;First task in this workflow.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello python function wrap task&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""First task in this workflow."""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"hello python function wrap task"</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">depend_import</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on import module.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Depend on import module."""</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">depend_global_var</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global var.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Depend on global var."""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Use global variable </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">depend_local_var</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on local variable.&quot;&quot;&quot;</span>
-    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Depend on local variable."""</span>
+    <span class="n">scope_global</span> <span class="o">=</span> <span class="s2">"local"</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Use local variable overwrite global </span><span class="si">{</span><span class="n">scope_global</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call in other task.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is a global function&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Call in other task."""</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"this is a global function"</span><span class="p">)</span>
 
 
 <span class="nd">@task</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">depend_func</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Depend on global function.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Depend on global function."""</span>
     <span class="n">foo</span><span class="p">()</span>
 
 
@@ -439,17 +439,17 @@ Python function as a task and could not use the <a class="reference internal" hr
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "child one"</span>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "child two"</span>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "union"</span>
 </pre></div>
 </div>
 </div>
@@ -492,17 +492,17 @@ and task <cite>task_child_two</cite> was done, because both two task is <cite>ta
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "child one"</span>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "child two"</span>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_union</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_child_one</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">task_child_two</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;union&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "union"</span>
 </pre></div>
 </div>
 </div>
@@ -537,7 +537,7 @@ will create workflow definition as well as workflow schedule.</p>
 <p>pydolphinscheduler YAML CLI always submit workflow. We can run the workflow if we set <code class="code docutils literal notranslate"><span class="pre">run:</span> <span class="pre">true</span></code></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tutorial&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"tutorial"</span>
 <span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>

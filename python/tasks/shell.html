@@ -121,29 +121,29 @@
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tutorial&quot;</span><span class="p">,</span>
-    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;0 0 0 * * ? *&quot;</span><span class="p">,</span>
-    <span class="n">start_time</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"tutorial"</span><span class="p">,</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">"0 0 0 * * ? *"</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="s2">"2021-01-01"</span><span class="p">,</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="c1"># [end workflow_declare]</span>
     <span class="c1"># [start task_declare]</span>
-    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_parent&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo hello pydolphinscheduler&quot;</span><span class="p">)</span>
+    <span class="n">task_parent</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_parent"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo hello pydolphinscheduler"</span><span class="p">)</span>
     <span class="n">task_child_one</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_one&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        echo &quot;Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">&quot;</span>
-<span class="s2">        echo &quot;Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">&quot;</span>
-<span class="s2">        echo &quot;Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">&quot;</span>
-<span class="s2">        &quot;&quot;&quot;</span><span class="p">,</span>
-        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;str1&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;param3&quot;</span><span class="p">:</span> <span class="s2">&quot;$[yyyy-MM-dd]&quot;</span><span class="p">},</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_child_one"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"""</span>
+<span class="s2">        echo "Executing line 1 with parameter str type $</span><span class="si">{param1}</span><span class="s2">"</span>
+<span class="s2">        echo "Executing line 2 with parameter int type $</span><span class="si">{param2}</span><span class="s2">"</span>
+<span class="s2">        echo "Executing line 3 with parameter build-in parameter currently date $</span><span class="si">{param3}</span><span class="s2">"</span>
+<span class="s2">        """</span><span class="p">,</span>
+        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">"param1"</span><span class="p">:</span> <span class="s2">"str1"</span><span class="p">,</span> <span class="s2">"param2"</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">"param3"</span><span class="p">:</span> <span class="s2">"$[yyyy-MM-dd]"</span><span class="p">},</span>
     <span class="p">)</span>
-    <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_child_two&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;child two&#39;&quot;</span><span class="p">)</span>
-    <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_union&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo union&quot;</span><span class="p">)</span>
+    <span class="n">task_child_two</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_child_two"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo 'child two'"</span><span class="p">)</span>
+    <span class="n">task_union</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_union"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo union"</span><span class="p">)</span>
 
     <span class="c1"># [start resource_limit]</span>
     <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo resource limit&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"resource_limit"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo resource limit"</span><span class="p">,</span>
         <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="p">)</span>
@@ -162,8 +162,8 @@
 <h2>Resource Limit Example<a class="headerlink" href="#resource-limit-example" title="Link to this heading"></a></h2>
 <p>We can add resource limit like CPU quota and max memory by passing parameters when declaring tasks.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">resource_limit</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;resource_limit&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo resource limit&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"resource_limit"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo resource limit"</span><span class="p">,</span>
         <span class="n">cpu_quota</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">memory_max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="p">)</span>
@@ -184,14 +184,14 @@
 <li><p><strong>name</strong> – A unique, meaningful string for the shell task.</p></li>
 <li><p><strong>command</strong> – <p>One or more command want to run in this task.</p>
 <p>It could be simply command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=...</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo task shell&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=...</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">"echo task shell"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>or maybe same commands trying to do complex task:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;echo task shell step 1;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="s1">'''echo task shell step 1;</span>
 <span class="s1">echo task shell step 2;</span>
 <span class="s1">echo task shell step 3</span>
-<span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">'''</span>
 
 <span class="n">Shell</span><span class="p">(</span><span class="n">name</span><span class="o">=...</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">command</span><span class="p">)</span>
 </pre></div>
@@ -242,8 +242,8 @@
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span>
-<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;offline&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"Shell"</span>
+<span class="w">  </span><span class="nt">release_state</span><span class="p">:</span><span class="w"> </span><span class="s">"offline"</span>
 <span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
@@ -257,12 +257,12 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_one</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child one&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "child one"</span>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">task_child_two</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Shell</span>
 <span class="w">    </span><span class="nt">deps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_parent</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;child two&quot;</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo "child two"</span>
 </pre></div>
 </div>
 </section>

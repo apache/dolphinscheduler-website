@@ -119,19 +119,19 @@
 <p>A Map Reduce task type’s example and dive into information of <strong>PyDolphinScheduler</strong>.</p>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;A example workflow for task mr.&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">"""A example workflow for task mr."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.engine</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProgramType</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.core.workflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Workflow</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydolphinscheduler.tasks.map_reduce</span><span class="w"> </span><span class="kn">import</span> <span class="n">MR</span>
 
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_map_reduce_example&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"task_map_reduce_example"</span><span class="p">)</span> <span class="k">as</span> <span class="n">workflow</span><span class="p">:</span>
     <span class="n">task</span> <span class="o">=</span> <span class="n">MR</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_mr&quot;</span><span class="p">,</span>
-        <span class="n">main_class</span><span class="o">=</span><span class="s2">&quot;wordcount&quot;</span><span class="p">,</span>
-        <span class="n">main_package</span><span class="o">=</span><span class="s2">&quot;hadoop-mapreduce-examples-3.3.1.jar&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_mr"</span><span class="p">,</span>
+        <span class="n">main_class</span><span class="o">=</span><span class="s2">"wordcount"</span><span class="p">,</span>
+        <span class="n">main_package</span><span class="o">=</span><span class="s2">"hadoop-mapreduce-examples-3.3.1.jar"</span><span class="p">,</span>
         <span class="n">program_type</span><span class="o">=</span><span class="n">ProgramType</span><span class="o">.</span><span class="n">JAVA</span><span class="p">,</span>
-        <span class="n">main_args</span><span class="o">=</span><span class="s2">&quot;/dolphinscheduler/tenant_exists/resources/file.txt /output/ds&quot;</span><span class="p">,</span>
+        <span class="n">main_args</span><span class="o">=</span><span class="s2">"/dolphinscheduler/tenant_exists/resources/file.txt /output/ds"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">workflow</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
@@ -177,7 +177,7 @@
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MapReduce&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"MapReduce"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>

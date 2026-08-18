@@ -86,19 +86,19 @@
 <span class="c1"># distributed with this work for additional information</span>
 <span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
 <span class="c1"># to you under the Apache License, Version 2.0 (the</span>
-<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># "License"); you may not use this file except in compliance</span>
 <span class="c1"># with the License.  You may obtain a copy of the License at</span>
 <span class="c1">#</span>
 <span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
 <span class="c1">#</span>
 <span class="c1"># Unless required by applicable law or agreed to in writing,</span>
 <span class="c1"># software distributed under the License is distributed on an</span>
-<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
 <span class="c1"># KIND, either express or implied.  See the License for the</span>
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;Task Pytorch.&quot;&quot;&quot;</span>
+<span class="sd">"""Task Pytorch."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -110,18 +110,18 @@
 <div class="viewcode-block" id="DEFAULT">
 <a class="viewcode-back" href="../../../tasks/pytorch.html#pydolphinscheduler.tasks.DEFAULT">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DEFAULT</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Default values for Pytorch.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Default values for Pytorch."""</span>
 
     <span class="n">is_create_environment</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">project_path</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
-    <span class="n">python_command</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{PYTHON_HOME}</span><span class="s2">&quot;</span></div>
+    <span class="n">project_path</span> <span class="o">=</span> <span class="s2">"."</span>
+    <span class="n">python_command</span> <span class="o">=</span> <span class="s2">"$</span><span class="si">{PYTHON_HOME}</span><span class="s2">"</span></div>
 
 
 
 <div class="viewcode-block" id="Pytorch">
 <a class="viewcode-back" href="../../../tasks/pytorch.html#pydolphinscheduler.tasks.Pytorch">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Pytorch</span><span class="p">(</span><span class="n">WorkerResourceMixin</span><span class="p">,</span> <span class="n">BatchTask</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task Pytorch object, declare behavior for Pytorch task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">"""Task Pytorch object, declare behavior for Pytorch task to dolphinscheduler.</span>
 
 <span class="sd">    See also: `DolphinScheduler Pytorch Task Plugin</span>
 <span class="sd">    &lt;https://dolphinscheduler.apache.org/en-us/docs/dev/user_doc/guide/task/pytorch.html&gt;`_</span>
@@ -129,41 +129,41 @@
 <span class="sd">    :param name: task name</span>
 <span class="sd">    :param script: Entry to the Python script file that you want to run.</span>
 <span class="sd">    :param script_params: Input parameters at run time.</span>
-<span class="sd">    :param project_path: The path to the project. Default &quot;.&quot; .</span>
+<span class="sd">    :param project_path: The path to the project. Default "." .</span>
 <span class="sd">    :param is_create_environment: is create environment. Default False.</span>
-<span class="sd">    :param python_command: The path to the python command. Default &quot;${PYTHON_HOME}&quot;.</span>
-<span class="sd">    :param python_env_tool: The python environment tool. Default &quot;conda&quot;.</span>
-<span class="sd">    :param requirements: The path to the requirements.txt file. Default &quot;requirements.txt&quot;.</span>
-<span class="sd">    :param conda_python_version: The python version of conda environment. Default &quot;3.7&quot;.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    :param python_command: The path to the python command. Default "${PYTHON_HOME}".</span>
+<span class="sd">    :param python_env_tool: The python environment tool. Default "conda".</span>
+<span class="sd">    :param requirements: The path to the requirements.txt file. Default "requirements.txt".</span>
+<span class="sd">    :param conda_python_version: The python version of conda environment. Default "3.7".</span>
+<span class="sd">    """</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;script&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;script_params&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;other_params&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;python_path&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;is_create_environment&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;python_command&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;python_env_tool&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;requirements&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;conda_python_version&quot;</span><span class="p">,</span>
+        <span class="s2">"script"</span><span class="p">,</span>
+        <span class="s2">"script_params"</span><span class="p">,</span>
+        <span class="s2">"other_params"</span><span class="p">,</span>
+        <span class="s2">"python_path"</span><span class="p">,</span>
+        <span class="s2">"is_create_environment"</span><span class="p">,</span>
+        <span class="s2">"python_command"</span><span class="p">,</span>
+        <span class="s2">"python_env_tool"</span><span class="p">,</span>
+        <span class="s2">"requirements"</span><span class="p">,</span>
+        <span class="s2">"conda_python_version"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">script</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">script_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">script_params</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span>
         <span class="n">project_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">DEFAULT</span><span class="o">.</span><span class="n">project_path</span><span class="p">,</span>
         <span class="n">is_create_environment</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">DEFAULT</span><span class="o">.</span><span class="n">is_create_environment</span><span class="p">,</span>
         <span class="n">python_command</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">DEFAULT</span><span class="o">.</span><span class="n">python_command</span><span class="p">,</span>
-        <span class="n">python_env_tool</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;conda&quot;</span><span class="p">,</span>
-        <span class="n">requirements</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;requirements.txt&quot;</span><span class="p">,</span>
-        <span class="n">conda_python_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;3.7&quot;</span><span class="p">,</span>
+        <span class="n">python_env_tool</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">"conda"</span><span class="p">,</span>
+        <span class="n">requirements</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">"requirements.txt"</span><span class="p">,</span>
+        <span class="n">conda_python_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">"3.7"</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Init Pytorch task.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Init Pytorch task."""</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">TaskType</span><span class="o">.</span><span class="n">PYTORCH</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">script</span> <span class="o">=</span> <span class="n">script</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">script_params</span> <span class="o">=</span> <span class="n">script_params</span>
@@ -177,7 +177,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">other_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return other params.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Return other params."""</span>
         <span class="n">conds</span> <span class="o">=</span> <span class="p">[</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">is_create_environment</span> <span class="o">!=</span> <span class="n">DEFAULT</span><span class="o">.</span><span class="n">is_create_environment</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">python_path</span> <span class="o">!=</span> <span class="n">DEFAULT</span><span class="o">.</span><span class="n">project_path</span><span class="p">,</span>

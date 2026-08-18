@@ -86,19 +86,19 @@
 <span class="c1"># distributed with this work for additional information</span>
 <span class="c1"># regarding copyright ownership.  The ASF licenses this file</span>
 <span class="c1"># to you under the Apache License, Version 2.0 (the</span>
-<span class="c1"># &quot;License&quot;); you may not use this file except in compliance</span>
+<span class="c1"># "License"); you may not use this file except in compliance</span>
 <span class="c1"># with the License.  You may obtain a copy of the License at</span>
 <span class="c1">#</span>
 <span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0</span>
 <span class="c1">#</span>
 <span class="c1"># Unless required by applicable law or agreed to in writing,</span>
 <span class="c1"># software distributed under the License is distributed on an</span>
-<span class="c1"># &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="c1"># "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
 <span class="c1"># KIND, either express or implied.  See the License for the</span>
 <span class="c1"># specific language governing permissions and limitations</span>
 <span class="c1"># under the License.</span>
 
-<span class="sd">&quot;&quot;&quot;Task shell.&quot;&quot;&quot;</span>
+<span class="sd">"""Task shell."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -113,39 +113,39 @@
 <div class="viewcode-block" id="HttpMethod">
 <a class="viewcode-back" href="../../../tasks/http.html#pydolphinscheduler.tasks.HttpMethod">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">HttpMethod</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Constant of HTTP method.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Constant of HTTP method."""</span>
 
-    <span class="n">GET</span> <span class="o">=</span> <span class="s2">&quot;GET&quot;</span>
-    <span class="n">POST</span> <span class="o">=</span> <span class="s2">&quot;POST&quot;</span>
-    <span class="n">HEAD</span> <span class="o">=</span> <span class="s2">&quot;HEAD&quot;</span>
-    <span class="n">PUT</span> <span class="o">=</span> <span class="s2">&quot;PUT&quot;</span>
-    <span class="n">DELETE</span> <span class="o">=</span> <span class="s2">&quot;DELETE&quot;</span></div>
+    <span class="n">GET</span> <span class="o">=</span> <span class="s2">"GET"</span>
+    <span class="n">POST</span> <span class="o">=</span> <span class="s2">"POST"</span>
+    <span class="n">HEAD</span> <span class="o">=</span> <span class="s2">"HEAD"</span>
+    <span class="n">PUT</span> <span class="o">=</span> <span class="s2">"PUT"</span>
+    <span class="n">DELETE</span> <span class="o">=</span> <span class="s2">"DELETE"</span></div>
 
 
 
 <div class="viewcode-block" id="HttpCheckCondition">
 <a class="viewcode-back" href="../../../tasks/http.html#pydolphinscheduler.tasks.HttpCheckCondition">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">HttpCheckCondition</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Constant of HTTP check condition.</span>
+<span class="w">    </span><span class="sd">"""Constant of HTTP check condition.</span>
 
 <span class="sd">    For now it contain four value:</span>
 <span class="sd">    - STATUS_CODE_DEFAULT: when http response code equal to 200, mark as success.</span>
 <span class="sd">    - STATUS_CODE_CUSTOM: when http response code equal to the code user define, mark as success.</span>
 <span class="sd">    - BODY_CONTAINS: when http response body contain text user define, mark as success.</span>
 <span class="sd">    - BODY_NOT_CONTAINS: when http response body do not contain text user define, mark as success.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-    <span class="n">STATUS_CODE_DEFAULT</span> <span class="o">=</span> <span class="s2">&quot;STATUS_CODE_DEFAULT&quot;</span>
-    <span class="n">STATUS_CODE_CUSTOM</span> <span class="o">=</span> <span class="s2">&quot;STATUS_CODE_CUSTOM&quot;</span>
-    <span class="n">BODY_CONTAINS</span> <span class="o">=</span> <span class="s2">&quot;BODY_CONTAINS&quot;</span>
-    <span class="n">BODY_NOT_CONTAINS</span> <span class="o">=</span> <span class="s2">&quot;BODY_NOT_CONTAINS&quot;</span></div>
+    <span class="n">STATUS_CODE_DEFAULT</span> <span class="o">=</span> <span class="s2">"STATUS_CODE_DEFAULT"</span>
+    <span class="n">STATUS_CODE_CUSTOM</span> <span class="o">=</span> <span class="s2">"STATUS_CODE_CUSTOM"</span>
+    <span class="n">BODY_CONTAINS</span> <span class="o">=</span> <span class="s2">"BODY_CONTAINS"</span>
+    <span class="n">BODY_NOT_CONTAINS</span> <span class="o">=</span> <span class="s2">"BODY_NOT_CONTAINS"</span></div>
 
 
 
 <div class="viewcode-block" id="Http">
 <a class="viewcode-back" href="../../../tasks/http.html#pydolphinscheduler.tasks.Http">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Http</span><span class="p">(</span><span class="n">BatchTask</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Task HTTP object, declare behavior for HTTP task to dolphinscheduler.</span>
+<span class="w">    </span><span class="sd">"""Task HTTP object, declare behavior for HTTP task to dolphinscheduler.</span>
 
 <span class="sd">        :param name: The name or identifier for the HTTP task.</span>
 <span class="sd">        :param url: The URL endpoint for the HTTP request.</span>
@@ -159,7 +159,7 @@
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        _task_custom_attr (set): A set containing custom attributes specific to the Http task,</span>
-<span class="sd">                                including &#39;url&#39;, &#39;http_method&#39;, &#39;http_params&#39;, and more.</span>
+<span class="sd">                                including 'url', 'http_method', 'http_params', and more.</span>
 
 
 <span class="sd">    Raises:</span>
@@ -167,17 +167,17 @@
 
 <span class="sd">    Example:</span>
 <span class="sd">        Usage example for creating an HTTP task:</span>
-<span class="sd">        http_task = Http(name=&quot;http_task&quot;, url=&quot;https://api.example.com&quot;, http_method=&quot;POST&quot;, http_params={&quot;key&quot;: &quot;value&quot;})</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        http_task = Http(name="http_task", url="https://api.example.com", http_method="POST", http_params={"key": "value"})</span>
+<span class="sd">    """</span>
 
     <span class="n">_task_custom_attr</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;url&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;http_method&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;http_params&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;http_check_condition&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;condition&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;connect_timeout&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;socket_timeout&quot;</span><span class="p">,</span>
+        <span class="s2">"url"</span><span class="p">,</span>
+        <span class="s2">"http_method"</span><span class="p">,</span>
+        <span class="s2">"http_params"</span><span class="p">,</span>
+        <span class="s2">"http_check_condition"</span><span class="p">,</span>
+        <span class="s2">"condition"</span><span class="p">,</span>
+        <span class="s2">"connect_timeout"</span><span class="p">,</span>
+        <span class="s2">"socket_timeout"</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -197,12 +197,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">HttpMethod</span><span class="p">,</span> <span class="n">http_method</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
-                <span class="s2">&quot;Parameter http_method </span><span class="si">%s</span><span class="s2"> not support.&quot;</span><span class="p">,</span> <span class="n">http_method</span>
+                <span class="s2">"Parameter http_method </span><span class="si">%s</span><span class="s2"> not support."</span><span class="p">,</span> <span class="n">http_method</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">http_params</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                <span class="s2">&quot;The `http_params` parameter currently accepts a dictionary instead of a list. Your parameter is being ignored.&quot;</span><span class="p">,</span>
+                <span class="s2">"The `http_params` parameter currently accepts a dictionary instead of a list. Your parameter is being ignored."</span><span class="p">,</span>
                 <span class="ne">DeprecationWarning</span><span class="p">,</span>
             <span class="p">)</span>
 
@@ -211,7 +211,7 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">HttpCheckCondition</span><span class="p">,</span> <span class="n">http_check_condition</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
-                <span class="s2">&quot;Parameter http_check_condition </span><span class="si">%s</span><span class="s2"> not support.&quot;</span><span class="p">,</span> <span class="n">http_check_condition</span>
+                <span class="s2">"Parameter http_check_condition </span><span class="si">%s</span><span class="s2"> not support."</span><span class="p">,</span> <span class="n">http_check_condition</span>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">http_check_condition</span> <span class="o">=</span> <span class="n">http_check_condition</span>
         <span class="k">if</span> <span class="p">(</span>
@@ -219,7 +219,7 @@
             <span class="ow">and</span> <span class="n">condition</span> <span class="ow">is</span> <span class="kc">None</span>
         <span class="p">):</span>
             <span class="k">raise</span> <span class="n">PyDSParamException</span><span class="p">(</span>
-                <span class="s2">&quot;Parameter condition must provider if http_check_condition not equal to STATUS_CODE_DEFAULT&quot;</span>
+                <span class="s2">"Parameter condition must provider if http_check_condition not equal to STATUS_CODE_DEFAULT"</span>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">=</span> <span class="n">condition</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span> <span class="o">=</span> <span class="n">connect_timeout</span>
@@ -227,7 +227,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">http_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Property to convert http_params using ParameterHelper when accessed.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Property to convert http_params using ParameterHelper when accessed."""</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">ParameterHelper</span><span class="o">.</span><span class="n">convert_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_http_params</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http_params</span>

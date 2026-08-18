@@ -123,12 +123,12 @@ sub workflow task.</p>
 <p>we have a simple example about how to use sub workflow task, when we want to create a sub workflow task,
 we should makeh sure in already exists in current project. So the first thing we do is to create a workflow
 will be used as sub workflow task.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;sub_workflow_downstream&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wf_downstream</span><span class="p">,</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_sub_workflow_example&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"sub_workflow_downstream"</span><span class="p">)</span> <span class="k">as</span> <span class="n">wf_downstream</span><span class="p">,</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"task_sub_workflow_example"</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">wf_upstream</span><span class="p">:</span>
     <span class="n">sub_workflow_ds_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_sub_workflow&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;call sub workflow success!&#39;&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_sub_workflow"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo 'call sub workflow success!'"</span><span class="p">,</span>
         <span class="n">workflow</span><span class="o">=</span><span class="n">wf_downstream</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">wf_downstream</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
@@ -137,7 +137,7 @@ will be used as sub workflow task.</p>
 <p>workflow with name <code class="docutils literal notranslate"><span class="pre">sub_workflow_upstream</span></code> would be create after we exists <code class="docutils literal notranslate"><span class="pre">submit</span></code> method.</p>
 <p>Then we create a main workflow, and the sub workflow task will connect to workflow we created before.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sw_task</span> <span class="o">=</span> <span class="n">SubWorkflow</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sub_workflow&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"sub_workflow"</span><span class="p">,</span>
         <span class="n">workflow_name</span><span class="o">=</span><span class="n">wf_downstream</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
         <span class="n">workflow</span><span class="o">=</span><span class="n">wf_upstream</span><span class="p">,</span>
     <span class="p">)</span>
@@ -151,25 +151,25 @@ already exists in current project instead of create a new one.</p>
 sub workflow run.</p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># [start sub_workflow_declare]</span>
-<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;sub_workflow_downstream&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wf_downstream</span><span class="p">,</span> <span class="n">Workflow</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_sub_workflow_example&quot;</span>
+<span class="k">with</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"sub_workflow_downstream"</span><span class="p">)</span> <span class="k">as</span> <span class="n">wf_downstream</span><span class="p">,</span> <span class="n">Workflow</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"task_sub_workflow_example"</span>
 <span class="p">)</span> <span class="k">as</span> <span class="n">wf_upstream</span><span class="p">:</span>
     <span class="n">sub_workflow_ds_task</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;task_sub_workflow&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;call sub workflow success!&#39;&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"task_sub_workflow"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo 'call sub workflow success!'"</span><span class="p">,</span>
         <span class="n">workflow</span><span class="o">=</span><span class="n">wf_downstream</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">wf_downstream</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
     <span class="c1"># [end sub_workflow_declare]</span>
 
     <span class="n">sub_workflow_pre</span> <span class="o">=</span> <span class="n">Shell</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pre-task&quot;</span><span class="p">,</span>
-        <span class="n">command</span><span class="o">=</span><span class="s2">&quot;echo &#39;prefix task for sub workflow&#39;&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"pre-task"</span><span class="p">,</span>
+        <span class="n">command</span><span class="o">=</span><span class="s2">"echo 'prefix task for sub workflow'"</span><span class="p">,</span>
         <span class="n">workflow</span><span class="o">=</span><span class="n">wf_upstream</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="c1"># [start sub_workflow_task_declare]</span>
     <span class="n">sw_task</span> <span class="o">=</span> <span class="n">SubWorkflow</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sub_workflow&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"sub_workflow"</span><span class="p">,</span>
         <span class="n">workflow_name</span><span class="o">=</span><span class="n">wf_downstream</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
         <span class="n">workflow</span><span class="o">=</span><span class="n">wf_upstream</span><span class="p">,</span>
     <span class="p">)</span>
@@ -234,26 +234,26 @@ dolphinscheduler itself.</p>
 <h2>YAML file example<a class="headerlink" href="#yaml-file-example" title="Link to this heading"></a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SubWorkflow&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"SubWorkflow"</span>
 
 <span class="nt">tasks</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example_workflow</span>
 <span class="w">    </span><span class="nt">task_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SubWorkflow</span>
-<span class="w">    </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{&quot;example_sub_workflow.yaml&quot;}</span>
+<span class="w">    </span><span class="nt">workflow_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$WORKFLOW{"example_sub_workflow.yaml"}</span>
 
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;deps&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">example_workflow</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_3&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">3&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">"task_type"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Shell"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"deps"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">example_workflow</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="s">"name"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"task_3"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"command"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">3"</span><span class="w"> </span><span class="p p-Indicator">}</span>
 </pre></div>
 </div>
 <p>example_sub_workflow.yaml:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the workflow</span>
 <span class="nt">workflow</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;example_workflow_for_sub_workflow&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"example_workflow_for_sub_workflow"</span>
 
 <span class="c1"># Define the tasks within the workflow</span>
 <span class="nt">tasks</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_1&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">1&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;deps&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_1</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_2&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">2&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">&quot;task_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;Shell&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;deps&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_2</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;task_3&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;command&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">3&quot;</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">"task_type"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Shell"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"name"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"task_1"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"command"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">1"</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">"task_type"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Shell"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"deps"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_1</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="s">"name"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"task_2"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"command"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">2"</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="s">"task_type"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"Shell"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"deps"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">task_2</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="s">"name"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"task_3"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"command"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"echo</span><span class="nv"> </span><span class="s">task</span><span class="nv"> </span><span class="s">3"</span><span class="w"> </span><span class="p p-Indicator">}</span>
 </pre></div>
 </div>
 </section>
