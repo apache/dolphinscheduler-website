@@ -1,0 +1,67 @@
+{
+  "__html": "<h1 id=\"azure-datafactory-node\">Azure DataFactory Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>In the world of big data, raw, unorganized data is often stored in relational, non-relational, and other storage systems.<a href=\"https://learn.microsoft.com/en-us/azure/data-factory/introduction\">Azure DataFactory</a> is a managed cloud service that's built for these complex hybrid extract-transform-load (ETL), extract-load-transform (ELT), and data integration projects.</p>\n<p>DolphinScheduler DataFactory functions:</p>\n<ul>\n<li>Create Azure DataFactory task enable DolphinScheduler to schedule DataFactory pipelines, keep query pipeline execution status until finish the execution.</li>\n</ul>\n<h2 id=\"prerequisite\">Prerequisite</h2>\n<ul>\n<li><strong>ResourceGroup</strong>: Azure owns a resource group</li>\n<li><strong>DataFactory</strong>: Azure owns a data factory under the resource group</li>\n<li><strong>Pipeline</strong>: Azure owns pipelines under the assigned resource group and data factory</li>\n<li><strong>Application</strong>: Azure owns an application has permission to visit data factory, enables using SDK to call data factory functions</li>\n<li><strong>ApplicationClientSecret</strong>: To apply for client secret under Application <code>Certificates &amp; secrets</code></li>\n<li><strong>AZURE-CLI</strong>: Install Azure auth application AZURE-CLI on machine, please refer to <a href=\"https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux\">Install the Azure CLI on Linux</a></li>\n</ul>\n<h3 id=\"application-permission-setting\">Application Permission Setting</h3>\n<p>First, visit the <code>Subscription</code> page and choose <code>Access control (IAM)</code>, then click <code>Add role assignment</code> to the authorization page.\n<img src=\"/img/tasks/demo/datafactory_auth1.png\" alt=\"Subscription-IAM\">\nAfter that, select <code>Contributor</code> role which satisfy functions calls in data factory. Then click <code>Members</code> page, and click <code>Select members</code>.\nSearch application name or application <code>Object ID</code> to assign <code>Contributor</code> role to application.\n<img src=\"/img/tasks/demo/datafactory_auth2.png\" alt=\"Subscription-Role\"></p>\n<h2 id=\"configurations\">Configurations</h2>\n<p>Config Azure configurations, modify <code>azure</code> related configurations in <code>common.properties</code></p>\n<ul>\n<li><strong>resource.azure.client.id</strong>: Azure Application Application (client) ID</li>\n<li><strong>resource.azure.client.secret</strong>: Azure Application client secret under <code>Certificates &amp; secrets</code></li>\n<li><strong>resource.azure.subId</strong>: Data factory subscription ID</li>\n<li><strong>resource.azure.tenant.id</strong>: Azure Active Directory tenant ID</li>\n</ul>\n<pre><code class=\"language-yaml\"><span class=\"hljs-comment\"># The Azure client ID (Azure Application (client) ID)</span>\n<span class=\"hljs-string\">resource.azure.client.id=minioadmin</span>\n<span class=\"hljs-comment\"># The Azure client secret in the Azure application</span>\n<span class=\"hljs-string\">resource.azure.client.secret=minioadmin</span>\n<span class=\"hljs-comment\"># The Azure data factory subscription ID</span>\n<span class=\"hljs-string\">resource.azure.subId=minioadmin</span>\n<span class=\"hljs-comment\"># The Azure tenant ID in the Azure Active Directory</span>\n<span class=\"hljs-string\">resource.azure.tenant.id=minioadmin</span>\n\n</code></pre>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>Click <code>Project -&gt; Management-Project -&gt; Name-Workflow Definition</code>, and click the &quot;Create Workflow&quot; button to enter the\nDAG editing page.</li>\n<li>Drag from the toolbar <img src=\"/img/tasks/icons/datafactory.png\" width=\"15\"/> task node to canvas.</li>\n</ul>\n<h2 id=\"task-example\">Task Example</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/dev/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<p>Here are some specific parameters for the DataFactory plugin:</p>\n<ul>\n<li><strong>factoryName</strong>: data factory name</li>\n<li><strong>resourceGroupName</strong>: resource group name of the data factory</li>\n<li><strong>pipelineName</strong>: pipeline name under the resource group and data factory</li>\n</ul>\n<p>The following shows the task plugin example:</p>\n<p><img src=\"/img/tasks/demo/datafactory.png\" alt=\"data-factory\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Azure DataFactory"
+  ],
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [
+        {
+          "title": "Application Permission Setting",
+          "children": [],
+          "anchor": "application-permission-setting"
+        }
+      ],
+      "anchor": "overview"
+    },
+    {
+      "title": "Prerequisite",
+      "children": [
+        {
+          "title": "Application Permission Setting",
+          "children": [],
+          "anchor": "application-permission-setting"
+        }
+      ],
+      "anchor": "prerequisite"
+    },
+    {
+      "title": "Configurations",
+      "children": [
+        {
+          "title": "Application Permission Setting",
+          "children": [],
+          "anchor": "application-permission-setting"
+        }
+      ],
+      "anchor": "configurations"
+    },
+    {
+      "title": "Create Task",
+      "children": [
+        {
+          "title": "Application Permission Setting",
+          "children": [],
+          "anchor": "application-permission-setting"
+        }
+      ],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Example",
+      "children": [
+        {
+          "title": "Application Permission Setting",
+          "children": [],
+          "anchor": "application-permission-setting"
+        }
+      ],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "Azure DataFactory Node",
+  "link": "/guide/task/datafactory"
+}

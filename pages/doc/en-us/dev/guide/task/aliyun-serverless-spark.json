@@ -1,0 +1,142 @@
+{
+  "__html": "<h1 id=\"aliyun-emr-serverless-spark\">Aliyun EMR Serverless Spark</h1>\n<h2 id=\"introduction\">Introduction</h2>\n<p><code>Aliyun EMR Serverless Spark</code> task plugin submits spark job to\n<a href=\"https://help.aliyun.com/zh/emr/emr-serverless-spark/product-overview/what-is-emr-serverless-spark\"><code>Aliyun EMR Serverless Spark</code></a> service.</p>\n<h2 id=\"create-connections\">Create Connections</h2>\n<ul>\n<li>Click <code>Datasource -&gt; Create Datasource -&gt; ALIYUN_SERVERLESS_SPARK</code> to create a connection.</li>\n</ul>\n<p><img src=\"/img/tasks/demo/aliyun_serverless_spark_1.png\" alt=\"demo-aliyun-serverless-spark-create-datasource-1\"></p>\n<ul>\n<li>Fill in <code>Datasource Name</code>, <code>Access Key Id</code>, <code>Access Key Secret</code>, <code>Region Id</code> and click <code>Confirm</code>.</li>\n</ul>\n<p><img src=\"/img/tasks/demo/aliyun_serverless_spark_2.png\" alt=\"demo-aliyun-serverless-spark-create-datasource-2\"></p>\n<h2 id=\"create-tasks\">Create Tasks</h2>\n<ul>\n<li>Click <code>Porject -&gt; Workflow Definition -&gt; Create Workflow</code> and drag the <code>ALIYUN_SERVERLESS_SPARK</code> task to the canvas.</li>\n</ul>\n<p><img src=\"/img/tasks/demo/aliyun_serverless_spark_3.png\" alt=\"demo-aliyun-serverless-spark-create-task-1\"></p>\n<ul>\n<li>Fill in the task parameters and click <code>Confirm</code> to create the task node.</li>\n</ul>\n<p><img src=\"/img/tasks/demo/aliyun_serverless_spark_4.png\" alt=\"demo-aliyun-serverless-spark-create-task-2\"></p>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>Please refer to <a href=\"/en-us/docs/dev/guide/task/appendix\">DolphinScheduler Task Parameters Appendix</a> <code>Default Task Parameters</code> section for default parameters.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Parameters</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Datasource types</td>\n<td>The type of datasource the task uses, should be <code>ALIYUN_SERVERLESS_SPARK</code>.</td>\n</tr>\n<tr>\n<td>Datasource instances</td>\n<td>The instance of <code>ALIYUN_SERVERLESS_SPARK</code> datasource.</td>\n</tr>\n<tr>\n<td>workspace id</td>\n<td><code>Aliyun Serverless Spark</code> workspace id.</td>\n</tr>\n<tr>\n<td>resource queue id</td>\n<td><code>Aliyun Serverless Spark</code> resource queue the task uses to submit spark job.</td>\n</tr>\n<tr>\n<td>code type</td>\n<td><code>Aliyun Serverless Spark</code> code type, could be <code>JAR</code>, <code>PYTHON</code> or <code>SQL</code>.</td>\n</tr>\n<tr>\n<td>job name</td>\n<td><code>Aliyun Serverless Spark</code> job name.</td>\n</tr>\n<tr>\n<td>entry point</td>\n<td>The location of the job code such as jar package, python file, or sql file. OSS location supported.</td>\n</tr>\n<tr>\n<td>entry point arguments</td>\n<td>Arguments of the job main program.</td>\n</tr>\n<tr>\n<td>spark submit parameters</td>\n<td>Spark-submit related parameters.</td>\n</tr>\n<tr>\n<td>engine release version</td>\n<td>Spark engine release version.</td>\n</tr>\n<tr>\n<td>is production</td>\n<td>Whether the spark job runs in production or development environment.</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"examples\">Examples</h2>\n<h3 id=\"submit-jar-tasks\">Submit Jar tasks</h3>\n<table>\n<thead>\n<tr>\n<th><strong>Parameters</strong></th>\n<th><strong>Example Values / Operations</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>region id</td>\n<td>cn-hangzhou</td>\n</tr>\n<tr>\n<td>access key id</td>\n<td><your-access-key-id></td>\n</tr>\n<tr>\n<td>access key secret</td>\n<td><your-access-key-secret></td>\n</tr>\n<tr>\n<td>resource queue id</td>\n<td>root_queue</td>\n</tr>\n<tr>\n<td>code type</td>\n<td>JAR</td>\n</tr>\n<tr>\n<td>job name</td>\n<td>ds-emr-spark-jar</td>\n</tr>\n<tr>\n<td>entry point</td>\n<td>oss://datadev-oss-hdfs-test/spark-resource/examples/jars/spark-examples_2.12-3.3.1.jar</td>\n</tr>\n<tr>\n<td>entry point arguments</td>\n<td>100</td>\n</tr>\n<tr>\n<td>spark submit parameters</td>\n<td>--class org.apache.spark.examples.SparkPi --conf spark.executor.cores=4 --conf spark.executor.memory=20g --conf spark.driver.cores=4 --conf spark.driver.memory=8g --conf spark.executor.instances=1</td>\n</tr>\n<tr>\n<td>engine release version</td>\n<td>esr-2.1-native (Spark 3.3.1, Scala 2.12, Native Runtime)</td>\n</tr>\n<tr>\n<td>is production</td>\n<td>Please open the switch</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"submit-sql-tasks\">Submit SQL tasks</h3>\n<table>\n<thead>\n<tr>\n<th><strong>Parameters</strong></th>\n<th><strong>Example Values / Operations</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>region id</td>\n<td>cn-hangzhou</td>\n</tr>\n<tr>\n<td>access key id</td>\n<td><your-access-key-id></td>\n</tr>\n<tr>\n<td>access key secret</td>\n<td><your-access-key-secret></td>\n</tr>\n<tr>\n<td>resource queue id</td>\n<td>root_queue</td>\n</tr>\n<tr>\n<td>code type</td>\n<td>SQL</td>\n</tr>\n<tr>\n<td>job name</td>\n<td>ds-emr-spark-sql-1</td>\n</tr>\n<tr>\n<td>entry point</td>\n<td>Any non-empty string</td>\n</tr>\n<tr>\n<td>entry point arguments</td>\n<td>-e#show tables;show tables;</td>\n</tr>\n<tr>\n<td>spark submit parameters</td>\n<td>--class org.apache.spark.sql.hive.thriftserver.SparkSQLCLIDriver --conf spark.executor.cores=4 --conf spark.executor.memory=20g --conf spark.driver.cores=4 --conf spark.driver.memory=8g --conf spark.executor.instances=1</td>\n</tr>\n<tr>\n<td>engine release version</td>\n<td>esr-2.1-native (Spark 3.3.1, Scala 2.12, Native Runtime)</td>\n</tr>\n<tr>\n<td>is production</td>\n<td>Please open the switch</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"submit-sql-tasks-located-in-oss\">Submit SQL tasks located in OSS</h3>\n<table>\n<thead>\n<tr>\n<th><strong>Parameters</strong></th>\n<th><strong>Example Values / Operations</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>region id</td>\n<td>cn-hangzhou</td>\n</tr>\n<tr>\n<td>access key id</td>\n<td><your-access-key-id></td>\n</tr>\n<tr>\n<td>access key secret</td>\n<td><your-access-key-secret></td>\n</tr>\n<tr>\n<td>resource queue id</td>\n<td>root_queue</td>\n</tr>\n<tr>\n<td>code type</td>\n<td>SQL</td>\n</tr>\n<tr>\n<td>job name</td>\n<td>ds-emr-spark-sql-2</td>\n</tr>\n<tr>\n<td>entry point</td>\n<td>Any non-empty string</td>\n</tr>\n<tr>\n<td>entry point arguments</td>\n<td>-f#oss://datadev-oss-hdfs-test/spark-resource/examples/sql/show_db.sql</td>\n</tr>\n<tr>\n<td>spark submit parameters</td>\n<td>--class org.apache.spark.sql.hive.thriftserver.SparkSQLCLIDriver --conf spark.executor.cores=4 --conf spark.executor.memory=20g --conf spark.driver.cores=4 --conf spark.driver.memory=8g --conf spark.executor.instances=1&quot;</td>\n</tr>\n<tr>\n<td>engine release version</td>\n<td>esr-2.1-native (Spark 3.3.1, Scala 2.12, Native Runtime)</td>\n</tr>\n<tr>\n<td>is production</td>\n<td>Please open the switch</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"submit-pyspark-tasks\">Submit PySpark Tasks</h3>\n<table>\n<thead>\n<tr>\n<th><strong>Parameters</strong></th>\n<th><strong>Example Values / Operations</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>region id</td>\n<td>cn-hangzhou</td>\n</tr>\n<tr>\n<td>access key id</td>\n<td><your-access-key-id></td>\n</tr>\n<tr>\n<td>access key secret</td>\n<td><your-access-key-secret></td>\n</tr>\n<tr>\n<td>resource queue id</td>\n<td>root_queue</td>\n</tr>\n<tr>\n<td>code type</td>\n<td>PYTHON</td>\n</tr>\n<tr>\n<td>job name</td>\n<td>ds-emr-spark-python</td>\n</tr>\n<tr>\n<td>entry point</td>\n<td>oss://datadev-oss-hdfs-test/spark-resource/examples/src/main/python/pi.py</td>\n</tr>\n<tr>\n<td>entry point arguments</td>\n<td>100</td>\n</tr>\n<tr>\n<td>spark submit parameters</td>\n<td>--conf spark.executor.cores=4 --conf spark.executor.memory=20g --conf spark.driver.cores=4 --conf spark.driver.memory=8g --conf spark.executor.instances=1</td>\n</tr>\n<tr>\n<td>engine release version</td>\n<td>esr-2.1-native (Spark 3.3.1, Scala 2.12, Native Runtime)</td>\n</tr>\n<tr>\n<td>is production</td>\n<td>Please open the switch</td>\n</tr>\n</tbody>\n</table>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "Aliyun Serverless Spark"
+  ],
+  "structure": [
+    {
+      "title": "Introduction",
+      "children": [
+        {
+          "title": "Submit Jar tasks",
+          "children": [],
+          "anchor": "submit-jar-tasks"
+        },
+        {
+          "title": "Submit SQL tasks",
+          "children": [],
+          "anchor": "submit-sql-tasks"
+        },
+        {
+          "title": "Submit SQL tasks located in OSS",
+          "children": [],
+          "anchor": "submit-sql-tasks-located-in-oss"
+        },
+        {
+          "title": "Submit PySpark Tasks",
+          "children": [],
+          "anchor": "submit-pyspark-tasks"
+        }
+      ],
+      "anchor": "introduction"
+    },
+    {
+      "title": "Create Connections",
+      "children": [
+        {
+          "title": "Submit Jar tasks",
+          "children": [],
+          "anchor": "submit-jar-tasks"
+        },
+        {
+          "title": "Submit SQL tasks",
+          "children": [],
+          "anchor": "submit-sql-tasks"
+        },
+        {
+          "title": "Submit SQL tasks located in OSS",
+          "children": [],
+          "anchor": "submit-sql-tasks-located-in-oss"
+        },
+        {
+          "title": "Submit PySpark Tasks",
+          "children": [],
+          "anchor": "submit-pyspark-tasks"
+        }
+      ],
+      "anchor": "create-connections"
+    },
+    {
+      "title": "Create Tasks",
+      "children": [
+        {
+          "title": "Submit Jar tasks",
+          "children": [],
+          "anchor": "submit-jar-tasks"
+        },
+        {
+          "title": "Submit SQL tasks",
+          "children": [],
+          "anchor": "submit-sql-tasks"
+        },
+        {
+          "title": "Submit SQL tasks located in OSS",
+          "children": [],
+          "anchor": "submit-sql-tasks-located-in-oss"
+        },
+        {
+          "title": "Submit PySpark Tasks",
+          "children": [],
+          "anchor": "submit-pyspark-tasks"
+        }
+      ],
+      "anchor": "create-tasks"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [
+        {
+          "title": "Submit Jar tasks",
+          "children": [],
+          "anchor": "submit-jar-tasks"
+        },
+        {
+          "title": "Submit SQL tasks",
+          "children": [],
+          "anchor": "submit-sql-tasks"
+        },
+        {
+          "title": "Submit SQL tasks located in OSS",
+          "children": [],
+          "anchor": "submit-sql-tasks-located-in-oss"
+        },
+        {
+          "title": "Submit PySpark Tasks",
+          "children": [],
+          "anchor": "submit-pyspark-tasks"
+        }
+      ],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Examples",
+      "children": [
+        {
+          "title": "Submit Jar tasks",
+          "children": [],
+          "anchor": "submit-jar-tasks"
+        },
+        {
+          "title": "Submit SQL tasks",
+          "children": [],
+          "anchor": "submit-sql-tasks"
+        },
+        {
+          "title": "Submit SQL tasks located in OSS",
+          "children": [],
+          "anchor": "submit-sql-tasks-located-in-oss"
+        },
+        {
+          "title": "Submit PySpark Tasks",
+          "children": [],
+          "anchor": "submit-pyspark-tasks"
+        }
+      ],
+      "anchor": "examples"
+    }
+  ],
+  "title": "Aliyun EMR Serverless Spark",
+  "link": "/guide/task/aliyun-serverless-spark"
+}

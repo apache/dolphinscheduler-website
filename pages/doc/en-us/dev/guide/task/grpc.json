@@ -1,0 +1,37 @@
+{
+  "__html": "<h1 id=\"grpc-node\">GRPC Node</h1>\n<h2 id=\"overview\">Overview</h2>\n<p>This node is used to execute gRPC tasks and supports checking gRPC status codes, SSL/TLS, and other features.</p>\n<h2 id=\"create-task\">Create Task</h2>\n<ul>\n<li>\n<p>Click Project Management -&gt; Project Name -&gt; Workflow Definition, then click the &quot;Create Workflow&quot; button to enter the DAG editing page:</p>\n</li>\n<li>\n<p>Drag the <img src=\"/img/tasks/icons/grpc.png\" width=\"15\"/> task node from the toolbar to the canvas.</p>\n</li>\n</ul>\n<h2 id=\"task-parameters\">Task Parameters</h2>\n<ul>\n<li>For default parameter descriptions, please refer to <a href=\"/en-us/docs/dev/guide/task/appendix#default-task-parameters\">DolphinScheduler Task Parameters Appendix</a> under <code>Default Task Parameters</code>.</li>\n</ul>\n<table>\n<thead>\n<tr>\n<th><strong>Task Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>----------------------</td>\n<td>-----------------------------------------------------------------------------------------------------------------------------------------------------------------</td>\n</tr>\n<tr>\n<td>gRPC Url</td>\n<td>gRPC request URL, must use the <code>hostname:port</code> format</td>\n</tr>\n<tr>\n<td>gRPC Credential Type</td>\n<td>Supports None (insecure), and client default SSL/TLS credential types</td>\n</tr>\n<tr>\n<td>Protobuf Definition</td>\n<td>Protobuf code defining the service in the <code>.proto</code> file, will be converted to JSON Descriptor when saved</td>\n</tr>\n<tr>\n<td>gRPC Method</td>\n<td>The rpc method to call, must be defined in the service definition, written as <code>Greeter/SayHello</code> format</td>\n</tr>\n<tr>\n<td>Message Content</td>\n<td>Request message defined in JSON, will be merged into the service definition when requesting</td>\n</tr>\n<tr>\n<td>gRPC Check Condition</td>\n<td>Supports default gRPC status code (OK), custom status codes</td>\n</tr>\n<tr>\n<td>gRPC Condition</td>\n<td>When check condition is set to custom response code, must fill in validation content, must match <a href=\"https://grpc.io/docs/guides/status-codes/\">gRPC status codes</a></td>\n</tr>\n<tr>\n<td>Custom Parameters</td>\n<td>User-defined parameters local to gRPC, will replace content in the script like ${variable}</td>\n</tr>\n</tbody>\n</table>\n<h2 id=\"task-output-parameters\">Task Output Parameters</h2>\n<table>\n<thead>\n<tr>\n<th><strong>Task Parameter</strong></th>\n<th><strong>Description</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>response</td>\n<td>VARCHAR, conforms to ProtoJS format, the return result of the gRPC request</td>\n</tr>\n</tbody>\n</table>\n<p>You can reference task output parameters in downstream tasks using ${taskName.response}.</p>\n<p>For example, if the current task1 is a gRPC task, downstream tasks can use <code>${task1.response}</code> to reference the output parameter of task1.</p>\n<h2 id=\"task-example\">Task Example</h2>\n<p>gRPC definition\nMain configuration parameters are as follows (all parameters can be replaced by built-in parameters):</p>\n<ul>\n<li>gRPC Url: The address of the target gRPC service, here is the local 50051 port.</li>\n<li>gRPC Credential Type: Insecure</li>\n<li>Protobuf Definition: The protobuf definition used by the gRPC service</li>\n<li>gRPC Method: The rpc method to call, in <code>Greeter/SayHello</code> format</li>\n<li>Message: Request message defined in JSON</li>\n<li>gRPC Check Condition: Default gRPC status code OK, custom status code</li>\n<li>gRPC Condition: When the validation condition is a custom status code, must fill in the validation content, which should exactly match the gRPC status code string</li>\n</ul>\n<p><img src=\"/img/tasks/demo/grpc_task01.png\" alt=\"grpc_task\">\n<img src=\"/img/tasks/demo/grpc_task02.png\" alt=\"grpc_task\"></p>\n",
+  "location": [
+    "Introduction to Functions",
+    "Task",
+    "gRPC"
+  ],
+  "structure": [
+    {
+      "title": "Overview",
+      "children": [],
+      "anchor": "overview"
+    },
+    {
+      "title": "Create Task",
+      "children": [],
+      "anchor": "create-task"
+    },
+    {
+      "title": "Task Parameters",
+      "children": [],
+      "anchor": "task-parameters"
+    },
+    {
+      "title": "Task Output Parameters",
+      "children": [],
+      "anchor": "task-output-parameters"
+    },
+    {
+      "title": "Task Example",
+      "children": [],
+      "anchor": "task-example"
+    }
+  ],
+  "title": "GRPC Node",
+  "link": "/guide/task/grpc"
+}
