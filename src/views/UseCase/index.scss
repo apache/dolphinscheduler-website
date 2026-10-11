@@ -2,181 +2,196 @@
 @import "../../styles/mixin.scss";
 
 .usecase {
+  overflow-x: hidden;
+
   &-top {
-    height: 350px;
+    min-height: 350px;
+    padding: 40px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 40px;
     background-image: url("../../images/bg/banner_bg.png");
     @include bg;
 
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      text-align: center;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 40px 16px;
+      min-height: 260px;
+    }
+
     &-bg {
-      width: 492px;
-      height: 350px;
+      width: 420px;
+      max-width: 100%;
+      aspect-ratio: 492 / 350;
       background-image: url("../../images/bg/use-case.png");
       @include bg-100;
 
-      @media screen and (max-width: 640px) {
-        display: none;
+      @media (max-width: 768px) {
+        width: 280px;
+      }
+
+      @media (max-width: 480px) {
+        width: 220px;
       }
     }
   }
+
   &-title {
     font-weight: 700;
     color: #031b3e;
-    font-size: 68px;
-    line-height: 90px;
-    width: 780px;
+    font-size: 64px;
+    line-height: 1.2;
+    max-width: 780px;
 
-    @media screen and (max-width: 640px) {
-      width: 100%;
-      font-size: 8vw;
-      text-align: center;
+    @media (max-width: 1024px) {
+      font-size: 48px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 34px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 26px;
     }
   }
+
   &-user {
-    padding: 60px 0px 40px;
+    padding: 60px 20px 40px;
+
     &-title {
       font-weight: 700;
       color: #031b3e;
       font-size: 48px;
       text-align: center;
-      @media screen and (max-width: 640px) {
-        font-size: 6vw;
+
+      @media (max-width: 768px) {
+        font-size: 32px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 24px;
       }
     }
+
     &-list {
       display: flex;
       flex-wrap: wrap;
-      padding-top: 60px;
-      padding-left: 20px;
-
-      @media screen and (max-width: 640px) {
-        padding-top: 4vw;
-        padding-left: 2vw;
-      }
+      justify-content: center;
+      gap: 20px;
+      padding-top: 40px;
     }
+
     &-list-less {
-      width: 1400px;
-      justify-content: space-around;
+      max-width: 1400px;
       margin: 0 auto;
     }
+
     .ant-image {
-      box-shadow: 4px 6px 22px rgba(0, 0, 0, 0.11);
-      margin-left: 10px;
-      margin-right: 10px;
-      margin-top: 20px;
       border-radius: 10px;
+      box-shadow: 4px 6px 22px rgba(0, 0, 0, 0.11);
+
       .ant-image-img {
-        width: 250px !important;
-        height: 113px !important;
+        width: 220px !important;
+        aspect-ratio: 250 / 113;
+        object-fit: contain;
         border-radius: 10px;
 
-        @media screen and (max-width: 640px) {
-          width: 22vw !important;
-          height: 9vw !important;
-          border-radius: 3px;
+        @media (max-width: 768px) {
+          width: 160px !important;
+        }
+
+        @media (max-width: 480px) {
+          width: 120px !important;
         }
       }
-      @media screen and (max-width: 640px) {
-        margin-left: 1vw;
-        margin-right: 1vw;
-        margin-top: 2vw;
-        box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.11);
-      }
     }
+
     &-more {
       text-align: center;
       margin-top: 30px;
     }
   }
+
   &-cases {
     @include content-width;
     margin: 0 auto;
-    padding-top: 50px;
-    padding-bottom: 70px;
+    padding: 60px 20px 80px;
 
-    @media screen and (max-width: 640px) {
-      width: 100vw;
-      padding: 1vw;
-    }
     &-title {
       font-weight: 700;
       color: #031b3e;
       font-size: 48px;
-      line-height: 53px;
       text-align: center;
-      @media screen and (max-width: 640px) {
-        font-size: 6vw;
-        line-height: 1.5;
-      }
-    }
-    &-list {
-      display: flex;
-      padding-top: 40px;
-      flex-wrap: wrap;
 
-      @media screen and (max-width: 640px) {
-        padding-top: 0px;
-        padding-bottom: 3vw;
+      @media (max-width: 768px) {
+        font-size: 32px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 24px;
       }
     }
+
+    &-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding-top: 40px;
+    }
+
     &-item {
-      margin: 40px 10px 0px;
-      width: 456px;
-      height: 460px;
       background-color: #ffffff;
       border: 1px solid rgba(112, 112, 112, 0.6);
       border-radius: 15px;
-      padding: 28px 28px 10px;
-      box-sizing: border-box;
-      position: relative;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
 
-      @media screen and (max-width: 640px) {
-        width: 94vw;
-        height: 94vw;
-        padding: 2vw;
-        margin-top: 3vw;
+      @media (max-width: 480px) {
+        padding: 18px;
       }
 
       .ant-image-img {
-        width: 400px !important;
-        height: 220px !important;
+        width: 100% !important;
+        aspect-ratio: 400 / 220;
+        object-fit: cover;
         border: 1px solid #707070;
         border-radius: 10px;
-
-        @media screen and (max-width: 640px) {
-          width: 89vw !important;
-          height: 46vw !important;
-        }
       }
 
       &-title {
         color: #031b3e;
-        font-size: 24px;
-        line-height: 36px;
-        padding-top: 10px;
-        margin-bottom: 6px !important;
+        font-size: 22px;
+        margin-top: 12px;
       }
 
       &-text {
-        height: 68px;
+        margin-top: 8px;
+        flex: 1;
       }
 
       &-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-bottom: 10px;
+        margin-top: 16px;
       }
 
       &-logo {
-        width: 158px;
-        height: 62px;
+        width: 120px;
+        height: 50px;
         background-repeat: no-repeat;
-        background-size: 100%;
+        background-size: contain;
         background-position: center;
       }
     }
   }
 }
+
