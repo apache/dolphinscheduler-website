@@ -1,5 +1,5 @@
 {
-  "__html": "<h1 id=\"dolphinscheduler-升级\">DolphinScheduler 升级</h1>\n<h2 id=\"准备工作\">准备工作</h2>\n<h3 id=\"检查不向前兼容的更改\">检查不向前兼容的更改</h3>\n<p>在升级之前，您应该检查 <a href=\"/zh-cn/docs/dev/guide/upgrade/incompatible\">incompatible change</a>，因为一些不兼容的更改可能会破坏您当前的功能。</p>\n<h3 id=\"备份上一版本文件和数据库\">备份上一版本文件和数据库</h3>\n<p>为了防止操作错误导致数据丢失，建议升级之前备份数据，备份方法请结合你数据库的情况来定</p>\n<h3 id=\"下载新版本的安装包\">下载新版本的安装包</h3>\n<p>在<a href=\"https://dolphinscheduler.apache.org/zh-cn/download\">下载</a>页面下载最新版本的二进制安装包，并将二进制包放到与当前 dolphinscheduler 服务不一样的路径中，以下升级操作都需要在新版本的目录进行。</p>\n<h2 id=\"升级步骤\">升级步骤</h2>\n<h3 id=\"停止-dolphinscheduler-所有服务\">停止 dolphinscheduler 所有服务</h3>\n<p>根据你部署方式停止 dolphinscheduler 的所有服务。</p>\n<h3 id=\"数据库升级\">数据库升级</h3>\n<p>设置相关环境变量（{user}和{password}改成你数据库的用户名和密码），然后运行升级脚本。</p>\n<p>下面以 MySQL 为例，别的数据库仅需要修改成对应的配置即可。请先手动下载 <a href=\"https://downloads.MySQL.com/archives/c-j/\">mysql-connector-java 驱动 jar</a>\njar 包 并添加到 <code>./tools/libs</code> 目录下，设置以下环境变量</p>\n<pre><code>    ```shell\n    export DATABASE=${DATABASE:-mysql}\n    export SPRING_PROFILES_ACTIVE=${DATABASE}\n    export SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;\n    export SPRING_DATASOURCE_USERNAME={user}\n    export SPRING_DATASOURCE_PASSWORD={password}\n    ```\n</code></pre>\n<p>执行数据库升级脚本：<code>sh ./tools/bin/upgrade-schema.sh</code></p>\n<h3 id=\"资源迁移\">资源迁移</h3>\n<p>3.2.0 版本资源中心重构，原资源中心内的资源将不受管理，您可以指定迁移到的目标租户，然后运行一次性资源迁移脚本，所有资源会迁移到目标租户的 .migrate 目录下。</p>\n<h4 id=\"示例：\">示例：</h4>\n<p>指定已存在目标租户 <code>abc</code>，其资源根目录为 <code>/dolphinscheduler/abc/</code>。</p>\n<p>执行脚本：<code>sh ./tools/bin/migrate-resource.sh abc</code>。</p>\n<p>执行结果：</p>\n<ul>\n<li>原文件资源 <code>a/b.sh</code> 迁移至 <code>/dolphinscheduler/abc/resources/.migrate/a/b.sh</code>。</li>\n<li>原 UDF 资源 <code>x/y.jar</code> 迁移至 <code>/dolphinscheduler/abc/udf/.migrate/x/y.jar</code>。</li>\n<li>更新 UDF 函数绑定资源信息。</li>\n</ul>\n<h3 id=\"血缘升级\">血缘升级</h3>\n<p>执行脚本：<code>sh ./tools/bin/migrate-lineage.sh</code>。</p>\n<p>执行结果：</p>\n<ul>\n<li>原血缘数据迁移至新血缘表 <code>t_ds_workflow_task_lineage</code>。</li>\n<li>此脚本仅执行 upsert 操作，不执行删除操作，如果需要删除，您可以手动删除。</li>\n</ul>\n<h3 id=\"服务升级\">服务升级</h3>\n<h4 id=\"修改配置内容\">修改配置内容</h4>\n<ul>\n<li>伪集群部署请参照<a href=\"/zh-cn/docs/dev/guide/installation/pseudo-cluster\">伪集群部署(Pseudo-Cluster)</a>中的 <code>修改相关配置</code></li>\n<li>集群部署请参照<a href=\"/zh-cn/docs/dev/guide/installation/cluster\">集群部署(Cluster)</a>中的 <code>修改相关配置</code></li>\n</ul>\n<h2 id=\"注意事项\">注意事项</h2>\n<h4 id=\"升级版本限制\">升级版本限制</h4>\n<ul>\n<li>在 3.3.X 以及之后的版本，我们仅支持从 3.0.0 开始进行升级，低于此版本的请下载历史版本升级至 3.0.0。</li>\n<li>在 3.3.X 以及之后的版本，二进制包不再默认提供插件依赖，因此第一次使用时，需要自行下载安装。具体请参考请参照<a href=\"/zh-cn/docs/dev/guide/installation/pseudo-cluster\">伪集群部署(Pseudo-Cluster)</a></li>\n</ul>\n<h4 id=\"升级后的注意事项\">升级后的注意事项</h4>\n<p>在历史版本中可能告警插件会有一些脏数据，升级后请参考一下 SQL 手动清理。</p>\n<pre><code class=\"language-sql\"><span class=\"hljs-keyword\">delete</span> <span class=\"hljs-keyword\">from</span> t_ds_alertgroup <span class=\"hljs-keyword\">where</span> group_name <span class=\"hljs-operator\">=</span> <span class=\"hljs-string\">&#x27;global alert group&#x27;</span> <span class=\"hljs-keyword\">and</span> description <span class=\"hljs-operator\">=</span> <span class=\"hljs-string\">&#x27;global alert group&#x27;</span>;\n</code></pre>\n",
+  "__html": "<h1 id=\"dolphinscheduler-升级\">DolphinScheduler 升级</h1>\n<h2 id=\"准备工作\">准备工作</h2>\n<h3 id=\"检查不向前兼容的更改\">检查不向前兼容的更改</h3>\n<p>在升级之前，您应该检查 <a href=\"/zh-cn/docs/dev/guide/upgrade/incompatible\">incompatible change</a>，因为一些不兼容的更改可能会破坏您当前的功能。</p>\n<h3 id=\"备份上一版本文件和数据库\">备份上一版本文件和数据库</h3>\n<p>为了防止操作错误导致数据丢失，建议升级之前备份数据，备份方法请结合你数据库的情况来定</p>\n<h3 id=\"下载新版本的安装包\">下载新版本的安装包</h3>\n<p>在<a href=\"https://dolphinscheduler.apache.org/zh-cn/download\">下载</a>页面下载最新版本的二进制安装包，并将二进制包放到与当前 dolphinscheduler 服务不一样的路径中，以下升级操作都需要在新版本的目录进行。</p>\n<h2 id=\"升级步骤\">升级步骤</h2>\n<h3 id=\"停止-dolphinscheduler-所有服务\">停止 dolphinscheduler 所有服务</h3>\n<p>根据你部署方式停止 dolphinscheduler 的所有服务。</p>\n<h3 id=\"数据库升级\">数据库升级</h3>\n<p>设置相关环境变量（{user}和{password}改成你数据库的用户名和密码），然后运行升级脚本。</p>\n<p>下面以 MySQL 为例，别的数据库仅需要修改成对应的配置即可。请先手动下载 <a href=\"https://downloads.MySQL.com/archives/c-j/\">mysql-connector-java 驱动 jar</a>\njar 包 并添加到 <code>./tools/libs</code> 目录下，设置以下环境变量</p>\n<pre><code>    ```shell\n    export DATABASE=${DATABASE:-mysql}\n    export SPRING_PROFILES_ACTIVE=${DATABASE}\n    export SPRING_DATASOURCE_URL=&quot;jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&quot;\n    export SPRING_DATASOURCE_USERNAME={user}\n    export SPRING_DATASOURCE_PASSWORD={password}\n    ```\n</code></pre>\n<p>执行数据库升级脚本：<code>sh ./tools/bin/upgrade-schema.sh</code></p>\n<h3 id=\"资源迁移\">资源迁移</h3>\n<p>3.2.0 版本资源中心重构，原资源中心内的资源将不受管理，您可以指定迁移到的目标租户，然后运行一次性资源迁移脚本，所有资源会迁移到目标租户的 .migrate 目录下。</p>\n<h4 id=\"示例：\">示例：</h4>\n<p>指定已存在目标租户 <code>abc</code>，其资源根目录为 <code>/dolphinscheduler/abc/</code>。</p>\n<p>执行脚本：<code>sh ./tools/bin/migrate-resource.sh abc</code>。</p>\n<p>执行结果：</p>\n<ul>\n<li>原文件资源 <code>a/b.sh</code> 迁移至 <code>/dolphinscheduler/abc/resources/.migrate/a/b.sh</code>。</li>\n<li>原 UDF 资源 <code>x/y.jar</code> 迁移至 <code>/dolphinscheduler/abc/udf/.migrate/x/y.jar</code>。</li>\n<li>更新 UDF 函数绑定资源信息。</li>\n</ul>\n<h3 id=\"血缘升级\">血缘升级</h3>\n<p>执行脚本：<code>sh ./tools/bin/migrate-lineage.sh</code>。</p>\n<p>执行结果：</p>\n<ul>\n<li>原血缘数据迁移至新血缘表 <code>t_ds_workflow_task_lineage</code>。</li>\n<li>此脚本仅执行 upsert 操作，不执行删除操作，如果需要删除，您可以手动删除。</li>\n</ul>\n<h3 id=\"服务升级\">服务升级</h3>\n<h4 id=\"修改配置内容\">修改配置内容</h4>\n<ul>\n<li>伪集群部署请参照<a href=\"/zh-cn/docs/dev/guide/installation/pseudo-cluster\">伪集群部署(Pseudo-Cluster)</a>中的 <code>修改相关配置</code></li>\n<li>集群部署请参照<a href=\"/zh-cn/docs/dev/guide/installation/cluster\">集群部署(Cluster)</a>中的 <code>修改相关配置</code></li>\n</ul>\n<h2 id=\"注意事项\">注意事项</h2>\n<h4 id=\"升级版本限制\">升级版本限制</h4>\n<ul>\n<li>在 3.3.X 以及之后的版本，我们仅支持从 3.0.0 开始进行升级，低于此版本的请下载历史版本升级至 3.0.0。</li>\n<li>在 3.3.X 以及之后的版本，二进制包不再默认提供插件依赖，因此第一次使用时，需要自行下载安装。具体请参考请参照<a href=\"/zh-cn/docs/dev/guide/installation/pseudo-cluster\">伪集群部署(Pseudo-Cluster)</a></li>\n</ul>\n<h4 id=\"滚动升降级顺序\">滚动升降级顺序</h4>\n<p>在滚动升降级场景下，<strong>必须先升级 Alert Server，再升级 Master/Worker</strong>。</p>\n<p>从 3.5.0 起，Master 可能向 <code>t_ds_alert</code> 表写入新的 <code>alert_type</code> 枚举值（如 <code>TASK_RESULT</code>）。如果 Alert Server 尚未升级到包含该枚举值的版本，MyBatis 会将未知的枚举值反序列化为 <code>null</code>，导致 <code>AlertSender</code> 在构建告警数据时抛出 <code>NullPointerException</code>，告警将卡在 <code>WAIT_EXECUTION</code> 状态无法投递。</p>\n<p>按照&quot;Alert Server → Master → Worker&quot;的顺序升级可消除此风险。</p>\n<h4 id=\"如果升级失败\">如果升级失败</h4>\n<p>如果未按上述顺序升级（例如在 Alert Server 之前先升级了 Master/Worker），且新的 <code>alert_type</code> 枚举值已写入 <code>t_ds_alert</code> 表，请按以下步骤恢复：</p>\n<ol>\n<li>\n<p>将 Alert Server 升级到包含新枚举值的版本并重启，卡在 <code>WAIT_EXECUTION</code> 状态的告警会被正常拉取并投递。</p>\n</li>\n<li>\n<p>如果暂时无法升级 Alert Server，请先停止旧版 Alert Server，再备份并清理受影响告警，避免其持续阻塞告警投递：</p>\n<pre><code class=\"language-sql\"><span class=\"hljs-comment\">-- 1. 备份受影响告警</span>\n<span class=\"hljs-keyword\">create</span> <span class=\"hljs-keyword\">table</span> t_ds_alert_bak <span class=\"hljs-keyword\">as</span> <span class=\"hljs-keyword\">select</span> <span class=\"hljs-operator\">*</span> <span class=\"hljs-keyword\">from</span> t_ds_alert <span class=\"hljs-keyword\">where</span> alert_type <span class=\"hljs-operator\">=</span> <span class=\"hljs-number\">8</span>;\n<span class=\"hljs-comment\">-- 2. 从主表清理</span>\n<span class=\"hljs-keyword\">delete</span> <span class=\"hljs-keyword\">from</span> t_ds_alert <span class=\"hljs-keyword\">where</span> alert_type <span class=\"hljs-operator\">=</span> <span class=\"hljs-number\">8</span>;\n</code></pre>\n</li>\n</ol>\n<h4 id=\"升级后的注意事项\">升级后的注意事项</h4>\n<p>在历史版本中可能告警插件会有一些脏数据，升级后请参考一下 SQL 手动清理。</p>\n<pre><code class=\"language-sql\"><span class=\"hljs-keyword\">delete</span> <span class=\"hljs-keyword\">from</span> t_ds_alertgroup <span class=\"hljs-keyword\">where</span> group_name <span class=\"hljs-operator\">=</span> <span class=\"hljs-string\">&#x27;global alert group&#x27;</span> <span class=\"hljs-keyword\">and</span> description <span class=\"hljs-operator\">=</span> <span class=\"hljs-string\">&#x27;global alert group&#x27;</span>;\n</code></pre>\n",
   "location": [
     "功能介绍",
     "升级",
@@ -28,6 +28,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -52,6 +62,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -80,6 +100,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -104,6 +134,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -132,6 +172,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -156,6 +206,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -184,6 +244,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -208,6 +278,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -242,6 +322,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -266,6 +356,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -294,6 +394,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -318,6 +428,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -346,6 +466,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -370,6 +500,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -398,6 +538,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -422,6 +572,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -456,6 +616,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -480,6 +650,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -508,6 +688,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -532,6 +722,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -560,6 +760,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -584,6 +794,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
@@ -612,6 +832,16 @@
               "anchor": "升级版本限制"
             },
             {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
+            },
+            {
               "title": "升级后的注意事项",
               "children": [],
               "anchor": "升级后的注意事项"
@@ -636,6 +866,16 @@
               "title": "升级版本限制",
               "children": [],
               "anchor": "升级版本限制"
+            },
+            {
+              "title": "滚动升降级顺序",
+              "children": [],
+              "anchor": "滚动升降级顺序"
+            },
+            {
+              "title": "如果升级失败",
+              "children": [],
+              "anchor": "如果升级失败"
             },
             {
               "title": "升级后的注意事项",
